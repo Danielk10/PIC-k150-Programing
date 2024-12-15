@@ -14,41 +14,38 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.diamon.datos.ChipinfoReader;
-import com.diamon.datos.HexFileListo;
-import com.diamon.datos.HexProcesado;
 import com.diamon.chip.InformacionPic;
 import com.diamon.chip.ProtocoloP018;
-import com.diamon.utilidades.HexFileUtils;
-import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
+import com.diamon.datos.ChipinfoReader;
+import com.diamon.datos.HexFileListo;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -121,12 +118,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                 if (driver.getDevice().equals(device)) {
                                     connectToDevice(driver);
                                     protocolo =
-                                       new ProtocoloP018(
-                                                   getApplicationContext(), usbSerialPort);
-                                   texto.setText(""+ protocolo.iniciarProtocolo());
+                                            new ProtocoloP018(
+                                                    getApplicationContext(), usbSerialPort);
+                                    texto.setText("" + protocolo.iniciarProtocolo());
 
-                            //enviarComando("P");
-                            
+                                    // enviarComando("P");
+
                                     break;
                                 }
                             }
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         diseno = new LinearLayout(this);
 
         driversP = new ArrayList<UsbSerialDriver>();
-        
+
         texto = new TextView(this);
 
         textoPic = new TextView(this);
@@ -154,17 +151,17 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         informacionPic = new TextView(this);
 
         test = new TextView(this);
-        
+
         btnSelectHex = new Button(this);
-        
+
         Spinner spinner = new Spinner(this);
 
         ScrollView scrollView = new ScrollView(this);
 
-
         Button btnInicio = new Button(this);
         btnInicio.setText("Boton inicio");
-        btnInicio.setOnClickListener(v ->protocolo.esperarInicioDeNuevoComando() /* enviarComando("0")*/);
+        btnInicio.setOnClickListener(
+                v -> protocolo.esperarInicioDeNuevoComando() /* enviarComando("0")*/);
 
         Button btnResearComandos = new Button(this);
         btnResearComandos.setText("Resetear Comandos");
@@ -173,18 +170,15 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                     @Override
                     public void onClick(View v) {
-                        
-                    
-                    texto.setText(""+protocolo.leerMemoriaEEPROMPic(chipPIC));
-                    
-                   //test.setText("Hola "+protocolo.borrarMemoriaPic());
-                    
-                    
-                    //enviarComando("1");
-                    
-                   // enviarComando("P");
-                    
-                    
+
+                        texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
+
+                        // test.setText("Hola "+protocolo.borrarMemoriaPic());
+
+                        // enviarComando("1");
+
+                        // enviarComando("P");
+
                     }
                 });
 
@@ -194,24 +188,28 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnInciarVaribles = new Button(this);
         btnInciarVaribles.setText("Iniciar Variables de Programación");
-        btnInciarVaribles.setOnClickListener(v ->  protocolo.iniciarVariablesDeProgramacion(chipPIC) /*enviarComando("3")*/);
+        btnInciarVaribles.setOnClickListener(
+                v -> protocolo.iniciarVariablesDeProgramacion(chipPIC) /*enviarComando("3")*/);
 
         Button btnActivarVoltaje = new Button(this);
         btnActivarVoltaje.setText("Activar voltajes de Programación");
-        btnActivarVoltaje.setOnClickListener(v -> protocolo.activarVoltajesDeProgramacion()/*enviarComando("4")*/);
+        btnActivarVoltaje.setOnClickListener(
+                v -> protocolo.activarVoltajesDeProgramacion() /*enviarComando("4")*/);
 
         Button btnDesactivarVoltaje = new Button(this);
         btnDesactivarVoltaje.setText("Desactivar voltajes de Programación");
-        btnDesactivarVoltaje.setOnClickListener(v ->protocolo.desactivarVoltajesDeProgramacion()/*  enviarComando("5")*/);
+        btnDesactivarVoltaje.setOnClickListener(
+                v -> protocolo.desactivarVoltajesDeProgramacion() /*  enviarComando("5")*/);
 
         Button btnReiniciaVoltaje = new Button(this);
         btnReiniciaVoltaje.setText("Reinicia voltajes de Programación");
-        btnReiniciaVoltaje.setOnClickListener(v -> protocolo.reiniciarVoltajesDeProgramacion() /* enviarComando("6")*/);
+        btnReiniciaVoltaje.setOnClickListener(
+                v -> protocolo.reiniciarVoltajesDeProgramacion() /* enviarComando("6")*/);
 
         btnProgramPic = new Button(this);
         btnProgramPic.setText("Programar ROM");
         btnProgramPic.setEnabled(false);
-        btnProgramPic.setOnClickListener(v ->programarROM(firware)/* enviarComando("7")*/);
+        btnProgramPic.setOnClickListener(v -> programarROM(firware) /* enviarComando("7")*/);
 
         Button btnProgramEEPRON = new Button(this);
         btnProgramEEPRON.setText("Programar EEPROM");
@@ -227,11 +225,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnLeerMemoria = new Button(this);
         btnLeerMemoria.setText("Leer Memoria Rom");
-        btnLeerMemoria.setOnClickListener(v -> protocolo.leerMemoriaROMPic(chipPIC) /* enviarComando("11")*/);
+        btnLeerMemoria.setOnClickListener(
+                v -> protocolo.leerMemoriaROMPic(chipPIC) /* enviarComando("11")*/);
 
         Button btnLeerMemoriaEEPROM = new Button(this);
         btnLeerMemoriaEEPROM.setText("Leer Memoria EEPROM");
-        btnLeerMemoriaEEPROM.setOnClickListener(v ->  protocolo.leerMemoriaEEPROMPic(chipPIC) /* enviarComando("12")*/);
+        btnLeerMemoriaEEPROM.setOnClickListener(
+                v -> protocolo.leerMemoriaEEPROMPic(chipPIC) /* enviarComando("12")*/);
 
         Button btnLeerConfiguracion = new Button(this);
         btnLeerConfiguracion.setText("Leer Configuración");
@@ -285,7 +285,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         btnDatosCalibracion10F.setText("Datos de Calibracion 10F");
         btnDatosCalibracion10F.setOnClickListener(v -> enviarComando("25"));
 
-       
         btnSelectHex.setText("Seleccionar Archivo HEX");
 
         btnSelectHex.setOnClickListener(v -> checkPermissionsAndOpenFile());
@@ -391,8 +390,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             nu++;
         }
-
-        
 
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pic);
@@ -887,35 +884,32 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private void mostrarInformacionPic(String modelo) {
 
         chipPIC = chip.getChipEntry(modelo);
-        
-        
-        
-        test.setText(" romSizeHigh "+ 
-            0x00+
-         " romSizeLow " +
-            chipPIC.getTamanoROM()+
-         " eepromSizeHigh "+
-            0x00  +
-         " eepromSizeLow "+
-            chipPIC.getTamanoEEPROM()+
-         " coreType "+
-            chipPIC.getTipoNucleoPic()+
-         " programFlags "+
-            0x00+
-         " programDelay "+
-            chipPIC.getProgramDelay()+
-         " powerSequence "+
-            chipPIC.getPowerSequence()+
-         " eraseMode "+
-            chipPIC.getEraseMode()+
-         " programTries "+
-            chipPIC.getProgramTries()+ 
-         " overProgram "+
-            chipPIC.getOverProgram());
-        Toast.makeText(getApplicationContext(), modelo  , Toast.LENGTH_LONG).show();
-    }
 
-    
+        test.setText(
+                " romSizeHigh "
+                        + 0x00
+                        + " romSizeLow "
+                        + chipPIC.getTamanoROM()
+                        + " eepromSizeHigh "
+                        + 0x00
+                        + " eepromSizeLow "
+                        + chipPIC.getTamanoEEPROM()
+                        + " coreType "
+                        + chipPIC.getTipoNucleoPic()
+                        + " programFlags "
+                        + 0x00
+                        + " programDelay "
+                        + chipPIC.getProgramDelay()
+                        + " powerSequence "
+                        + chipPIC.getPowerSequence()
+                        + " eraseMode "
+                        + chipPIC.getEraseMode()
+                        + " programTries "
+                        + chipPIC.getProgramTries()
+                        + " overProgram "
+                        + chipPIC.getOverProgram());
+        Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
+    }
 
     private void connectToDevice(UsbSerialDriver driver) {
 
@@ -933,17 +927,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     UsbSerialPort.STOPBITS_1,
                     UsbSerialPort.PARITY_NONE);
 
-            //startIoManager();
+            // startIoManager();
 
             protocolo = new ProtocoloP018(this, usbSerialPort);
-            
-             texto.setText(""+protocolo.iniciarProtocolo());
-            
-            
-           // enviarComando("P");
 
-                                
+            texto.setText("" + protocolo.iniciarProtocolo());
 
+            // enviarComando("P");
 
         } catch (IOException e) {
 
@@ -956,10 +946,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             return;
         }
         try {
-            byte[] data; 
-            
-            if (comando.equals("P")) { 
-                
+            byte[] data;
+
+            if (comando.equals("P")) {
+
                 data = comando.getBytes(StandardCharsets.US_ASCII);
             } else {
                 data = new byte[comando.length()];
@@ -967,29 +957,16 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     data[i] = Byte.parseByte(comando);
                 }
             }
-            
-            
-           
 
-                
-            
-            if(comando.equals("3"))
-            {
-                
-                
-                
-                
+            if (comando.equals("3")) {
+
                 usbSerialPort.write(data, 100); // Enviar datos
-                
-               iniciarVariablesDeProgramacion();
-            
-            }else
-            {
-               usbSerialPort.write(data, 100); // Enviar datos
-                
+
+                iniciarVariablesDeProgramacion();
+
+            } else {
+                usbSerialPort.write(data, 100); // Enviar datos
             }
-            
-            
 
         } catch (NumberFormatException e) {
 
@@ -997,7 +974,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         }
     }
 
-   /* private void startIoManager() {
+    /* private void startIoManager() {
 
         if (ioManager != null) {
             ioManager.stop();
@@ -1020,9 +997,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         executorService.submit(ioManager);
     }*/
 
-   /* private void iniciarVariablesDeProgramacion() {
+    /* private void iniciarVariablesDeProgramacion() {
 
-        
+
 
             runOnUiThread(
                     () -> {
@@ -1068,92 +1045,89 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             payload.put((byte) overProgram); // Byte 11: Over Program
 
                             usbSerialPort.write(payload.array(), 100); // Enviar datos
-                    
-                    
-                    
+
+
+
                     ArrayList<String> d = new ArrayList<String>();
-                    
-                    
+
+
                     for(byte b:payload.array())
                     {
-                        
+
                         d.add(""+b);
-                        
+
                     }
-                    
+
                     Toast.makeText(this, ""+d.toString()+" "+romSize+" "+eepromSize, Toast.LENGTH_SHORT).show();
 
-                    
+
 
                         } catch (IOException err) {
 
                         }
                     });
-        
+
     }*/
-    
-    
-   private void iniciarVariablesDeProgramacion() {
-    // Valores específicos del chip 16F628A
-    byte romSizeHigh = (byte)0x00;      // ROMsize High byte (parte alta de 000800 -> 0x00)
-    byte romSizeLow = (byte)0x08;       // ROMsize Low byte (parte baja de 000800 -> 0x08)
-    byte eepromSizeHigh = (byte)0x00;   // EEPROMsize High byte (parte alta de 00000080 -> 0x00)
-    byte eepromSizeLow = (byte)0x80;    // EEPROMsize Low byte (parte baja de 00000080 -> 0x80)
-    byte coreType = (byte)0x06;         // CoreType para 16F8x, 16C8x, 16F87x (según especificación)
-    byte programFlags = (byte)0x00;     // BandGap=N, CALword=N -> Flags en 0
-    byte programDelay = (byte)50;       // ProgramDelay especificado como 50
-    byte powerSequence = (byte)0x04;    // VPP2 then VCC -> PowerSequence = 4
-    byte eraseMode = (byte)0x02;        // EraseMode=2 (para 12F67x según el protocolo)
-    byte programTries = (byte)0x01;     // ProgramTries=1
-    byte overProgram = (byte)0x01;      // OverProgram=1
 
-    // Crear un arreglo de bytes con los valores en el orden especificado
-    byte[] data = new byte[]{
-            romSizeHigh,
-            romSizeLow,
-            eepromSizeHigh,
-            eepromSizeLow,
-            coreType,
-            programFlags,
-            programDelay,
-            powerSequence,
-            eraseMode,
-            programTries,
-            overProgram
-    };
+    private void iniciarVariablesDeProgramacion() {
+        // Valores específicos del chip 16F628A
+        byte romSizeHigh = (byte) 0x00; // ROMsize High byte (parte alta de 000800 -> 0x00)
+        byte romSizeLow = (byte) 0x08; // ROMsize Low byte (parte baja de 000800 -> 0x08)
+        byte eepromSizeHigh = (byte) 0x00; // EEPROMsize High byte (parte alta de 00000080 -> 0x00)
+        byte eepromSizeLow = (byte) 0x80; // EEPROMsize Low byte (parte baja de 00000080 -> 0x80)
+        byte coreType = (byte) 0x06; // CoreType para 16F8x, 16C8x, 16F87x (según especificación)
+        byte programFlags = (byte) 0x00; // BandGap=N, CALword=N -> Flags en 0
+        byte programDelay = (byte) 50; // ProgramDelay especificado como 50
+        byte powerSequence = (byte) 0x04; // VPP2 then VCC -> PowerSequence = 4
+        byte eraseMode = (byte) 0x02; // EraseMode=2 (para 12F67x según el protocolo)
+        byte programTries = (byte) 0x01; // ProgramTries=1
+        byte overProgram = (byte) 0x01; // OverProgram=1
 
-    // Enviar datos a través del puerto serie
-    runOnUiThread(() -> {
-        try {
-            usbSerialPort.write(data, 100); // Envía el arreglo de bytes
-                    
-                    
-                    Toast.makeText(this, "Hola ", Toast.LENGTH_SHORT).show();
-  
-            Log.d("SerialPort", "Variables de programación inicializadas correctamente.");
-        } catch (IOException err) {
-            Log.e("SerialPort", "Error al inicializar variables de programación", err);
-        }
-    });
-}
-    
-    
-    
-    
-    
+        // Crear un arreglo de bytes con los valores en el orden especificado
+        byte[] data =
+                new byte[] {
+                    romSizeHigh,
+                    romSizeLow,
+                    eepromSizeHigh,
+                    eepromSizeLow,
+                    coreType,
+                    programFlags,
+                    programDelay,
+                    powerSequence,
+                    eraseMode,
+                    programTries,
+                    overProgram
+                };
 
-   /*private void onReceivedData(byte[] data) {
+        // Enviar datos a través del puerto serie
+        runOnUiThread(
+                () -> {
+                    try {
+                        usbSerialPort.write(data, 100); // Envía el arreglo de bytes
+
+                        Toast.makeText(this, "Hola ", Toast.LENGTH_SHORT).show();
+
+                        Log.d(
+                                "SerialPort",
+                                "Variables de programación inicializadas correctamente.");
+                    } catch (IOException err) {
+                        Log.e("SerialPort", "Error al inicializar variables de programación", err);
+                    }
+                });
+    }
+
+    /*private void onReceivedData(byte[] data) {
 
         String response = new String(data, StandardCharsets.UTF_8);
 
         for(byte da:data)
         {
-            
+
             datos.append(" "+da+" ");
-            
+
         }
-        
-        
+
+
         runOnUiThread(
                 () -> {
                     test.setText(response+" "+datos.toString());
@@ -1217,9 +1191,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             connectToDevice(driver);
 
                             conectado = true;
-
-                            
-
                         }
                     }
                 }
@@ -1500,10 +1471,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private void expectResponse(byte[] expected, int timeoutMillis) throws IOException {
         byte[] response = readBytes(expected.length, timeoutMillis);
-        //if (!Arrays.equals(response, expected)) {
-           if ((response[0]==expected[0])) {
-            
-            
+        // if (!Arrays.equals(response, expected)) {
+        if ((response[0] == expected[0])) {
+
             throw new IOException(
                     "Expected: "
                             + Arrays.toString(expected)
@@ -1512,27 +1482,26 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         }
     }
 
-    
-
     private void commandStart(byte command) throws IOException {
-       // Enviar 0x01 para iniciar el comando.
-       usbSerialPort.write(new byte[]{0x01}, 100);
-        
-       // Enviar 'P' para ir a la tabla de salto.
-       usbSerialPort.write(new byte[]{'P'}, 100);
-       byte[] ack = readBytes(1, 100);
+        // Enviar 0x01 para iniciar el comando.
+        usbSerialPort.write(new byte[] {0x01}, 100);
 
-       if (ack[0] != 'P') {
-           throw new IOException("No acknowledgment for command start. Received: " + Arrays.toString(ack));
-       }
+        // Enviar 'P' para ir a la tabla de salto.
+        usbSerialPort.write(new byte[] {'P'}, 100);
+        byte[] ack = readBytes(1, 100);
 
-       // Enviar el número del comando, si es necesario.
-       if (command != 0) {
-           usbSerialPort.write(new byte[]{command}, 100);
-           test.setText("Hola "+new String(readBytes(1, 100)));
-       }
-   }
-    
+        if (ack[0] != 'P') {
+            throw new IOException(
+                    "No acknowledgment for command start. Received: " + Arrays.toString(ack));
+        }
+
+        // Enviar el número del comando, si es necesario.
+        if (command != 0) {
+            usbSerialPort.write(new byte[] {command}, 100);
+            test.setText("Hola " + new String(readBytes(1, 100)));
+        }
+    }
+
     private void commandEnd() throws IOException {
         // Enviar 0x01 para finalizar el comando.
         usbSerialPort.write(new byte[] {0x01}, 100);
