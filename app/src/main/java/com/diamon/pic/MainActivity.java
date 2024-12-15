@@ -122,8 +122,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                                     getApplicationContext(), usbSerialPort);
                                     texto.setText("" + protocolo.iniciarProtocolo());
 
-                                    // enviarComando("P");
-
                                     break;
                                 }
                             }
@@ -885,29 +883,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         chipPIC = chip.getChipEntry(modelo);
 
-        test.setText(
-                " romSizeHigh "
-                        + 0x00
-                        + " romSizeLow "
-                        + chipPIC.getTamanoROM()
-                        + " eepromSizeHigh "
-                        + 0x00
-                        + " eepromSizeLow "
-                        + chipPIC.getTamanoEEPROM()
-                        + " coreType "
-                        + chipPIC.getTipoNucleoPic()
-                        + " programFlags "
-                        + 0x00
-                        + " programDelay "
-                        + chipPIC.getProgramDelay()
-                        + " powerSequence "
-                        + chipPIC.getPowerSequence()
-                        + " eraseMode "
-                        + chipPIC.getEraseMode()
-                        + " programTries "
-                        + chipPIC.getProgramTries()
-                        + " overProgram "
-                        + chipPIC.getOverProgram());
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
 
@@ -927,13 +902,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     UsbSerialPort.STOPBITS_1,
                     UsbSerialPort.PARITY_NONE);
 
-            // startIoManager();
-
             protocolo = new ProtocoloP018(this, usbSerialPort);
 
             texto.setText("" + protocolo.iniciarProtocolo());
-
-            // enviarComando("P");
 
         } catch (IOException e) {
 
@@ -958,181 +929,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 }
             }
 
-            if (comando.equals("3")) {
-
-                usbSerialPort.write(data, 100); // Enviar datos
-
-                iniciarVariablesDeProgramacion();
-
-            } else {
-                usbSerialPort.write(data, 100); // Enviar datos
-            }
+            usbSerialPort.write(data, 100); // Enviar datos
 
         } catch (NumberFormatException e) {
 
         } catch (IOException e) {
         }
     }
-
-    /* private void startIoManager() {
-
-        if (ioManager != null) {
-            ioManager.stop();
-        }
-
-        ioManager =
-                new SerialInputOutputManager(
-                        usbSerialPort,
-                        new SerialInputOutputManager.Listener() {
-                            @Override
-                            public void onNewData(byte[] data) {
-
-                                runOnUiThread(() -> onReceivedData(data));
-                            }
-
-                            @Override
-                            public void onRunError(Exception e) {}
-                        });
-
-        executorService.submit(ioManager);
-    }*/
-
-    /* private void iniciarVariablesDeProgramacion() {
-
-
-
-            runOnUiThread(
-                    () -> {
-                        try {
-
-                            // Parámetros de inicialización
-                            int romSize = chipPIC.getTamanoROM(); // Tamaño de ROM
-                            int eepromSize = chipPIC.getTamanoEEPROM(); // Tamaño de EEPROM
-                            int coreType = chipPIC.getTipoNucleo(); // Core Type: 16F7x 16F7x7
-                            boolean flagCalibrationValueInROM =
-                                    chipPIC.isFlagCalibration(); // Flag 0
-                            boolean flagBandGapFuse = chipPIC.isFlagBandGap(); // Flag 1
-                            boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle(); // Flag 2
-                            boolean flagVccVppDelay = chipPIC.isFlagVccVppDelay(); // Flag 3
-                            int programDelay = chipPIC.getProgramDelay(); // 50 * 100µs = 5ms
-                            int powerSequence =
-                                    chipPIC.getPowerSequence(); // Power Sequence: VPP2 -> VCC
-                            int eraseMode = chipPIC.getEraseMode(); // Erase Mode: 16F7x7
-                            int programRetries =
-                                    chipPIC.getProgramTries(); // Intentos de programación
-                            int overProgram = chipPIC.getOverProgram(); // Over Program
-
-                            // Construir los flags
-                            int flags = 0;
-                            flags |= (flagCalibrationValueInROM ? 1 : 0); // Bit 0
-                            flags |= (flagBandGapFuse ? 2 : 0); // Bit 1
-                            flags |= (flagSinglePanelAccessMode ? 4 : 0); // Bit 2
-                            flags |= (flagVccVppDelay ? 8 : 0); // Bit 3
-
-                            // Crear el payload según el protocolo
-                            ByteBuffer payload = ByteBuffer.allocate(11);
-                            payload.order(
-                                    ByteOrder.BIG_ENDIAN); // Big-endian como el protocolo requiere
-                            payload.putShort((short) romSize); // Bytes 1 y 2: ROM Size High y Low
-                            payload.putShort(
-                                    (short) eepromSize); // Bytes 3 y 4: EEPROM Size High y Low
-                            payload.put((byte) coreType); // Byte 5: Core Type
-                            payload.put((byte) flags); // Byte 6: Flags
-                            payload.put((byte) programDelay); // Byte 7: Program Delay
-                            payload.put((byte) powerSequence); // Byte 8: Power Sequence
-                            payload.put((byte) eraseMode); // Byte 9: Erase Mode
-                            payload.put((byte) programRetries); // Byte 10: Program Tries
-                            payload.put((byte) overProgram); // Byte 11: Over Program
-
-                            usbSerialPort.write(payload.array(), 100); // Enviar datos
-
-
-
-                    ArrayList<String> d = new ArrayList<String>();
-
-
-                    for(byte b:payload.array())
-                    {
-
-                        d.add(""+b);
-
-                    }
-
-                    Toast.makeText(this, ""+d.toString()+" "+romSize+" "+eepromSize, Toast.LENGTH_SHORT).show();
-
-
-
-                        } catch (IOException err) {
-
-                        }
-                    });
-
-    }*/
-
-    private void iniciarVariablesDeProgramacion() {
-        // Valores específicos del chip 16F628A
-        byte romSizeHigh = (byte) 0x00; // ROMsize High byte (parte alta de 000800 -> 0x00)
-        byte romSizeLow = (byte) 0x08; // ROMsize Low byte (parte baja de 000800 -> 0x08)
-        byte eepromSizeHigh = (byte) 0x00; // EEPROMsize High byte (parte alta de 00000080 -> 0x00)
-        byte eepromSizeLow = (byte) 0x80; // EEPROMsize Low byte (parte baja de 00000080 -> 0x80)
-        byte coreType = (byte) 0x06; // CoreType para 16F8x, 16C8x, 16F87x (según especificación)
-        byte programFlags = (byte) 0x00; // BandGap=N, CALword=N -> Flags en 0
-        byte programDelay = (byte) 50; // ProgramDelay especificado como 50
-        byte powerSequence = (byte) 0x04; // VPP2 then VCC -> PowerSequence = 4
-        byte eraseMode = (byte) 0x02; // EraseMode=2 (para 12F67x según el protocolo)
-        byte programTries = (byte) 0x01; // ProgramTries=1
-        byte overProgram = (byte) 0x01; // OverProgram=1
-
-        // Crear un arreglo de bytes con los valores en el orden especificado
-        byte[] data =
-                new byte[] {
-                    romSizeHigh,
-                    romSizeLow,
-                    eepromSizeHigh,
-                    eepromSizeLow,
-                    coreType,
-                    programFlags,
-                    programDelay,
-                    powerSequence,
-                    eraseMode,
-                    programTries,
-                    overProgram
-                };
-
-        // Enviar datos a través del puerto serie
-        runOnUiThread(
-                () -> {
-                    try {
-                        usbSerialPort.write(data, 100); // Envía el arreglo de bytes
-
-                        Toast.makeText(this, "Hola ", Toast.LENGTH_SHORT).show();
-
-                        Log.d(
-                                "SerialPort",
-                                "Variables de programación inicializadas correctamente.");
-                    } catch (IOException err) {
-                        Log.e("SerialPort", "Error al inicializar variables de programación", err);
-                    }
-                });
-    }
-
-    /*private void onReceivedData(byte[] data) {
-
-        String response = new String(data, StandardCharsets.UTF_8);
-
-        for(byte da:data)
-        {
-
-            datos.append(" "+da+" ");
-
-        }
-
-
-        runOnUiThread(
-                () -> {
-                    test.setText(response+" "+datos.toString());
-                });
-    }*/
 
     @Override
     protected void onDestroy() {
@@ -1242,15 +1045,20 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         try {
             InputStream inputStream = getContentResolver().openInputStream(uri);
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
             StringBuilder fileContent = new StringBuilder();
 
             String line;
+
             while ((line = reader.readLine()) != null) {
+
                 fileContent.append(line).append("\n");
             }
 
             reader.close();
+
             hexFileContent = fileContent.toString();
 
             btnProgramPic.setEnabled(true);
@@ -1274,141 +1082,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         }
     }
 
-    // Pruebas
-
     public void programarROM(String datos) {
 
         HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
 
         hexProsesado.iniciarProcesamientoDatos();
-
-        /*
-
-
-                // Rangos de memoria.
-                int romWordBase = 0x0000;
-                int configWordBase = 0x4000;
-                int eepromWordBase = 0x4200;
-                int romWordEnd = configWordBase;
-                int configWordEnd = 0x4010;
-                int eepromWordEnd = 0xffff;
-
-                List<HexFileUtils.Pair<Integer, String>> records =
-                        new ArrayList<HexFileUtils.Pair<Integer, String>>();
-
-                HexProcesado procesado = null;
-
-                try {
-
-                    procesado = new HexProcesado(datos);
-
-                } catch (Exception err) {
-
-                }
-
-                for (int i = 0; i < procesado.getRecords().size(); i++) {
-                    StringBuffer es = new StringBuffer();
-
-                    for (int v = 0; v < procesado.getRecords().get(i).data.length; v++) {
-                        byte b = procesado.getRecords().get(i).data[v];
-
-                        es.append(String.format("%02X", b));
-                    }
-
-                    records.add(
-                            new HexFileUtils.Pair<Integer, String>(
-                                    procesado.getRecords().get(i).address, es.toString()));
-                }
-
-                List<HexFileUtils.Pair<Integer, String>> romRecords =
-                        HexFileUtils.rangeFilterRecords(records, romWordBase, romWordEnd);
-                List<HexFileUtils.Pair<Integer, String>> configRecords =
-                        HexFileUtils.rangeFilterRecords(records, configWordBase, configWordEnd);
-                List<HexFileUtils.Pair<Integer, String>> eepromRecords =
-                        HexFileUtils.rangeFilterRecords(records, eepromWordBase, eepromWordEnd);
-
-                byte[] romBlank = HexFileUtils.generateRomBlank(chipPIC.getTipoNucleo(), chipPIC.getTamanoROM());
-
-                byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
-
-                // Detectar si los datos ROM son big-endian o little-endian
-                boolean swapBytes = false;
-                boolean swapBytesDetected = false;
-                int romBlankWord = 0xFFFF; // Palabra ROM en blanco
-
-                for (HexFileUtils.Pair<Integer, String> record : romRecords) {
-                    if (record.first % 2 != 0) {
-                        throw new IllegalArgumentException("ROM record starts on odd address.");
-                    }
-
-                    if (record.second.length() % 4 != 0) {
-                        throw new IllegalArgumentException(
-                                "Data length in record must be a multiple of 4: " + record.second);
-                    }
-
-                    String data = record.second;
-                    for (int x = 0;
-                            x < data.length();
-                            x += 4) { // Procesamos en bloques de 2 bytes (4 caracteres hex)
-                        String wordHex = data.substring(x, x + 4); // Extraer palabra
-                        int BE_word = Integer.parseInt(wordHex, 16); // Interpretar como big-endian
-                        int LE_word =
-                                Integer.reverseBytes(BE_word) >>> 16; // Interpretar como little-endian
-
-                        boolean BE_ok = (BE_word & romBlankWord) == BE_word;
-                        boolean LE_ok = (LE_word & romBlankWord) == LE_word;
-
-                        if (BE_ok && !LE_ok) {
-                            swapBytes = false;
-                            swapBytesDetected = true;
-                            break;
-                        } else if (LE_ok && !BE_ok) {
-                            swapBytes = true;
-                            swapBytesDetected = true;
-                            break;
-                        } else if (!BE_ok && !LE_ok) {
-                            throw new IllegalArgumentException(
-                                    "Invalid ROM word: "
-                                            + wordHex
-                                            + ", ROM blank word: "
-                                            + String.format("%04X", romBlankWord));
-                        }
-                    }
-                    if (swapBytesDetected) {
-                        break;
-                    }
-                }
-
-                // Si es necesario, ajustar los registros (swabRecords)
-                if (swapBytes) {
-                    romRecords = HexFileUtils.swabRecords(romRecords);
-                    configRecords = HexFileUtils.swabRecords(configRecords);
-                }
-
-                // EEPROM está almacenado en el archivo HEX con un byte por palabra.
-                // Seleccionamos el byte apropiado según el endianess detectado.
-                int pickByte = swapBytes ? 1 : 0;
-
-                List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = new ArrayList<>();
-                for (HexFileUtils.Pair<Integer, String> record : eepromRecords) {
-                    int baseAddress = eepromWordBase + (record.first - eepromWordBase) / 2;
-                    StringBuilder filteredData = new StringBuilder();
-
-                    for (int x = pickByte * 2; x < record.second.length(); x += 4) {
-                        filteredData.append(record.second.substring(x, x + 2)); // Extraer byte seleccionado
-                    }
-
-                    adjustedEepromRecords.add(
-                            new HexFileUtils.Pair<Integer, String>(baseAddress, filteredData.toString()));
-                }
-
-                romRecords = HexFileUtils.swabRecords(romRecords);
-
-                // Crear datos finales fusionando los registros ajustados con los datos en blanco
-                byte[] romData = HexFileUtils.mergeRecords(romRecords, romBlank, romWordBase);
-                byte[] eepromData =
-                        HexFileUtils.mergeRecords(adjustedEepromRecords, eepromBlank, eepromWordBase);
-        */
 
         byte[] romData = hexProsesado.obtenerBytesHexROMPocesado();
 
@@ -1435,9 +1113,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
 
                 usbSerialPort.write(chunk, 100); // Enviar datos
-
-                Toast.makeText(getApplicationContext(), "Hola " + respuesta, Toast.LENGTH_LONG)
-                        .show();
             }
 
         } catch (IOException e) {
@@ -1448,119 +1123,5 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             Toast.LENGTH_LONG)
                     .show();
         }
-    }
-
-    private byte[] readBytes(int count, int timeoutMillis) throws IOException {
-        long startTime = System.currentTimeMillis();
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-
-        while (buffer.size() < count && (System.currentTimeMillis() - startTime) < timeoutMillis) {
-            byte[] tmpBuffer = new byte[count - buffer.size()];
-            int bytesRead = usbSerialPort.read(tmpBuffer, timeoutMillis);
-            if (bytesRead > 0) {
-                buffer.write(tmpBuffer, 0, bytesRead);
-            }
-        }
-
-        if (buffer.size() < count) {
-            throw new IOException("Timeout waiting for data.");
-        }
-
-        return buffer.toByteArray();
-    }
-
-    private void expectResponse(byte[] expected, int timeoutMillis) throws IOException {
-        byte[] response = readBytes(expected.length, timeoutMillis);
-        // if (!Arrays.equals(response, expected)) {
-        if ((response[0] == expected[0])) {
-
-            throw new IOException(
-                    "Expected: "
-                            + Arrays.toString(expected)
-                            + ", but received: "
-                            + Arrays.toString(response));
-        }
-    }
-
-    private void commandStart(byte command) throws IOException {
-        // Enviar 0x01 para iniciar el comando.
-        usbSerialPort.write(new byte[] {0x01}, 100);
-
-        // Enviar 'P' para ir a la tabla de salto.
-        usbSerialPort.write(new byte[] {'P'}, 100);
-        byte[] ack = readBytes(1, 100);
-
-        if (ack[0] != 'P') {
-            throw new IOException(
-                    "No acknowledgment for command start. Received: " + Arrays.toString(ack));
-        }
-
-        // Enviar el número del comando, si es necesario.
-        if (command != 0) {
-            usbSerialPort.write(new byte[] {command}, 100);
-            test.setText("Hola " + new String(readBytes(1, 100)));
-        }
-    }
-
-    private void commandEnd() throws IOException {
-        // Enviar 0x01 para finalizar el comando.
-        usbSerialPort.write(new byte[] {0x01}, 100);
-        byte[] ack = readBytes(1, 500);
-
-        if (ack[0] != 'Q') {
-            throw new IOException(
-                    "Unexpected response in command end. Received: " + Arrays.toString(ack));
-        }
-    }
-
-    private String echo(String message) throws IOException {
-        commandStart((byte) 2);
-
-        StringBuilder response = new StringBuilder();
-        for (char c : message.toCharArray()) {
-            usbSerialPort.write(new byte[] {(byte) 2, (byte) c}, 100);
-            response.append((char) readBytes(1, 500)[0]);
-        }
-
-        commandEnd();
-        return response.toString();
-    }
-
-    private boolean programROM(byte[] data, int romSize) throws IOException {
-        if (data.length % 32 != 0) {
-            throw new IllegalArgumentException("ROM data must be a multiple of 32 bytes in size.");
-        }
-
-        if (data.length / 2 > romSize) {
-            throw new IllegalArgumentException("Data too large for PIC ROM.");
-        }
-
-        commandStart((byte) 7);
-
-        // Establecer tensiones de programación.
-        // setProgrammingVoltages(true);
-
-        // Enviar tamaño de palabra.
-        byte[] wordCountMessage =
-                ByteBuffer.allocate(2).putShort((short) (data.length / 2)).array();
-        usbSerialPort.write(wordCountMessage, 100);
-
-        expectResponse(new byte[] {'Y'}, 2000);
-
-        try {
-            for (int i = 0; i < data.length; i += 32) {
-                usbSerialPort.write(Arrays.copyOfRange(data, i, i + 32), 100);
-                expectResponse(new byte[] {'Y'}, 2000);
-            }
-            expectResponse(new byte[] {'P'}, 2000);
-        } catch (IOException e) {
-            usbSerialPort.purgeHwBuffers(true, true);
-            return false;
-        }
-
-        // Finalizar tensiones de programación.
-        // setProgrammingVoltages(false);
-        commandEnd();
-        return true;
     }
 }
