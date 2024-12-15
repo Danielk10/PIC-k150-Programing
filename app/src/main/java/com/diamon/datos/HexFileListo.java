@@ -17,7 +17,7 @@ public class HexFileListo {
     private byte[] eepromData;
 
     public HexFileListo(String datos, InformacionPic chipPIC) {
-       
+
         this.datos = datos;
 
         this.chipPIC = chipPIC;
@@ -70,7 +70,8 @@ public class HexFileListo {
 
             // Generar datos en blanco
             byte[] romBlank =
-                    HexFileUtils.generateRomBlank(chipPIC.getTipoNucleoBit(), chipPIC.getTamanoROM());
+                    HexFileUtils.generateRomBlank(
+                            chipPIC.getTipoNucleoBit(), chipPIC.getTamanoROM());
 
             byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
 

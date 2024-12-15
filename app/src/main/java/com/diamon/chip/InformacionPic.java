@@ -329,8 +329,7 @@ public class InformacionPic {
 
         return nucleo;
     }
-    
-    
+
     public int getTipoNucleoPic() {
 
         int nucleo =
@@ -343,12 +342,8 @@ public class InformacionPic {
                                                         .toString()
                                                         .toLowerCase()));
 
-       
-
         return nucleo;
     }
-    
-    
 
     public int getSecuenciaEncendido() {
         int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
@@ -376,8 +371,8 @@ public class InformacionPic {
 
         return tamano;
     }
-    
-     public int getIDPIC() {
+
+    public int getIDPIC() {
 
         int id = Integer.parseUnsignedInt("" + variablesDeChip.get("ChipID"), 16);
 

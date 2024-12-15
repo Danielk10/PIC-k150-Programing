@@ -1,16 +1,14 @@
 package com.diamon.chip;
 
 import android.content.Context;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import com.hoho.android.usbserial.driver.UsbSerialPort;
-import java.io.ByteArrayOutputStream;
+
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.nio.charset.StandardCharsets;
-import java.io.IOException;
+import java.util.Arrays;
 
 public class ProtocoloP018 {
 
