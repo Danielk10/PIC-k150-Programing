@@ -141,31 +141,6 @@ public class HexFileUtils {
         return eepromBlank;
     }
 
-    /*public static List<Pair<Integer, String>> swabRecords(List<Pair<Integer, String>> records) {
-    	List<Pair<Integer, String>> swappedRecords = new ArrayList<>();
-
-    	for (Pair<Integer, String> record : records) {
-    		StringBuilder swappedData = new StringBuilder();
-
-    		for (int i = 0; i < record.second.length(); i += 4) {
-    			// Intercambiar bytes adyacentes
-    			swappedData.append(record.second.charAt(i + 2)).append(record.second.charAt(i + 3))
-    				.append(record.second.charAt(i)).append(record.second.charAt(i + 1));
-    		}
-
-    		swappedRecords.add(new Pair<Integer, String>(record.first, swappedData.toString()));
-    	}
-
-    	return swappedRecords;
-    }*/
-
-    /**
-     * Intercambia los bytes de cada palabra en los registros para convertir entre endianess.
-     *
-     * @param records Lista de pares (dirección, datos) donde los datos están en formato
-     *     hexadecimal.
-     * @return Nueva lista de registros con bytes intercambiados.
-     */
     public static List<HexFileUtils.Pair<Integer, String>> swabRecords(
             List<HexFileUtils.Pair<Integer, String>> records) {
         List<HexFileUtils.Pair<Integer, String>> swabbedRecords = new ArrayList<>();
@@ -173,10 +148,23 @@ public class HexFileUtils {
         for (HexFileUtils.Pair<Integer, String> record : records) {
             StringBuilder swappedData = new StringBuilder();
 
+            // Rellenar datos con '3F' si son más cortos de 4 caracteres
+            String paddedData = record.second;
+            if (paddedData.length() % 4 != 0) {
+                int paddingLength =
+                        4 - (paddedData.length() % 4); // Calcular cuántos caracteres faltan
+                paddedData =
+                        String.format(
+                                        "%-" + (paddedData.length() + paddingLength) + "s",
+                                        paddedData)
+                                .replace(' ', '3');
+                paddedData =
+                        paddedData.replaceAll("3{2}", "3F"); // Asegurar que el padding sea '3F'
+            }
+
             // Procesar cada palabra (2 bytes -> 4 caracteres hex)
-            for (int i = 0; i < record.second.length(); i += 4) {
-                String word = record.second.substring(i, i + 4); // Obtener una palabra
-                // Intercambiar bytes (big-endian <-> little-endian)
+            for (int i = 0; i < paddedData.length(); i += 4) {
+                String word = paddedData.substring(i, i + 4); // Obtener una palabra
                 swappedData.append(word.substring(2, 4)); // Byte bajo
                 swappedData.append(word.substring(0, 2)); // Byte alto
             }
@@ -187,5 +175,17 @@ public class HexFileUtils {
         }
 
         return swabbedRecords;
+    }
+
+    public static byte[] generarArrayDeDatos(byte dato, int numeroDeDatos) {
+
+        byte[] datos = new byte[numeroDeDatos];
+
+        for (int i = 0; i < datos.length; i++) {
+
+            datos[i] = dato;
+        }
+
+        return datos;
     }
 }

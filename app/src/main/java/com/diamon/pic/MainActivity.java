@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,6 +33,8 @@ import com.diamon.chip.InformacionPic;
 import com.diamon.chip.ProtocoloP018;
 import com.diamon.datos.ChipinfoReader;
 import com.diamon.datos.HexFileListo;
+import com.diamon.utilidades.HexFileUtils;
+import android.graphics.Color;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -104,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private TextView test;
 
+    // Pruebas
+
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
 
@@ -168,15 +173,28 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                     @Override
                     public void onClick(View v) {
+                    
+                        //texto.setText("" + protocolo.leerCalibracionPic());
+                    
+                         texto.setText("" + protocolo.programarROMPic(chipPIC,firware));
 
-                        texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
 
-                        // test.setText("Hola "+protocolo.borrarMemoriaPic());
+                       // texto.setText("" + protocolo.leerConfiguracionPic());
+
+                        // texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
+
+                         // texto.setText("Hola "+protocolo.borrarMemoriaPic());
 
                         // enviarComando("1");
 
                         // enviarComando("P");
 
+                        // prueba();
+                        if (protocolo != null) {
+                            // texto.setText("" +
+                            // protocolo.iniciarVariablesDeProgramacion(chipPIC));
+
+                        }
                     }
                 });
 
@@ -223,13 +241,29 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnLeerMemoria = new Button(this);
         btnLeerMemoria.setText("Leer Memoria Rom");
+
         btnLeerMemoria.setOnClickListener(
-                v -> protocolo.leerMemoriaROMPic(chipPIC) /* enviarComando("11")*/);
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        texto.setText("" + protocolo.leerMemoriaROMPic(chipPIC));
+                    }
+                });
 
         Button btnLeerMemoriaEEPROM = new Button(this);
         btnLeerMemoriaEEPROM.setText("Leer Memoria EEPROM");
+
         btnLeerMemoriaEEPROM.setOnClickListener(
-                v -> protocolo.leerMemoriaEEPROMPic(chipPIC) /* enviarComando("12")*/);
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
+                    }
+                });
 
         Button btnLeerConfiguracion = new Button(this);
         btnLeerConfiguracion.setText("Leer Configuración");
@@ -241,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnBarraPic = new Button(this);
         btnBarraPic.setText("Barrar Momoria del PIC");
-        btnBarraPic.setOnClickListener(v -> enviarComando("15"));
+        btnBarraPic.setOnClickListener(v -> protocolo.borrarMemoriaPic() /*enviarComando("15")*/);
 
         Button btnVerificarBorrado = new Button(this);
         btnVerificarBorrado.setText("Verificar si se Borro Memoria del PIC");
@@ -858,25 +892,114 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         diseno.addView(spinner);
 
-        /*
-
         for (int i = 0; i < chip.getChipEntry("18F248").getFuses().get("FUSES").size(); i++) {
 
+            for (int j = 0;
+                    j < chip.getChipEntry("18F248").getFuses().get("FUSES").get(i).length;
+                    j++) {
 
+                TextView prueba = new TextView(this);
 
-            for(int j = 0; j<chip.getChipEntry("18F248").getFuses().get("FUSES").get(i).length; j++)
+                String letra = chip.getChipEntry("18F248").getFuses().get("FUSES").get(i)[j];
 
-            {
+                // prueba.setText("Lista de Fuses "+i+" " +
+                // chip.getChipEntry("18F248").getFuses().get("FUSES").get(i)[j]);
 
-            TextView prueba = new TextView(this);
+                prueba.setText("Lista de Fuses " + i + " " + letra);
 
-            prueba.setText("Lista de Fuses "+i+" " + chip.getChipEntry("18F248").getFuses().get("FUSES").get(i)[j]);
+                diseno.addView(prueba);
+            }
+        }
+    }
 
-            diseno.addView(prueba);
+    // Crear etiquetas para la memoria (ROM o EEPROM)
+    private TextView createLabel(String text) {
+        TextView label = new TextView(this);
+        label.setText(text);
+        label.setTextSize(18);
+        label.setTextColor(Color.DKGRAY);
+        return label;
+    }
 
-                }
-        }*/
+    // Vista de memoria dinámica con direcciones y datos
+    private LinearLayout createMemoryView(
+            int memorySize, int byteGroupSize, byte[] blankData, String receivedData) {
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        // Convertir los datos en blanco y recibidos a formato hexadecimal
+        String[] blankHex = convertBytesToHexArray(blankData, byteGroupSize);
+        String[] receivedHex = receivedData.split(" ");
+
+        int address = 0; // Dirección inicial
+        int itemsPerLine = 8; // Columnas por fila
+
+        // Generar las líneas dinámicamente
+        for (int i = 0; i < blankHex.length; i += itemsPerLine) {
+            LinearLayout line = new LinearLayout(this);
+            line.setOrientation(LinearLayout.HORIZONTAL);
+
+            // Mostrar la dirección
+            TextView addressView = new TextView(this);
+            addressView.setText(String.format("%04X: ", address));
+            addressView.setTextColor(Color.DKGRAY);
+            line.addView(addressView);
+
+            // Mostrar los datos
+            for (int j = 0; j < itemsPerLine && (i + j) < blankHex.length; j++) {
+                TextView dataView = new TextView(this);
+                String value = (i + j < receivedHex.length) ? receivedHex[i + j] : blankHex[i + j];
+                dataView.setText(value + " ");
+                dataView.setTextColor((i + j < receivedHex.length) ? Color.GREEN : Color.BLACK);
+                line.addView(dataView);
+            }
+
+            container.addView(line);
+            address += itemsPerLine * byteGroupSize;
+        }
+
+        return container;
+    }
+
+    // Convertir bytes en formato hexadecimal agrupados por tamaño
+    private String[] convertBytesToHexArray(byte[] data, int groupSize) {
+        String[] hexArray = new String[data.length / groupSize];
+        for (int i = 0; i < data.length; i += groupSize) {
+            if (groupSize == 2) { // Agrupar en palabras (2 bytes)
+                int value = ((data[i] & 0xFF) << 8) | (data[i + 1] & 0xFF);
+                hexArray[i / groupSize] = String.format("%04X", value);
+            } else { // Agrupar 1 byte
+                hexArray[i / groupSize] = String.format("%02X", data[i]);
+            }
+        }
+        return hexArray;
+    }
+
+    private void prueba() {
+
+        // Generar y mostrar la memoria ROM
+        diseno.addView(createLabel("Memoria ROM:"));
+        LinearLayout romView =
+                createMemoryView(
+                        chipPIC.getTamanoROM() * 2,
+                        2,
+                        HexFileUtils.generateRomBlank(
+                                chipPIC.getTipoNucleoBit(), chipPIC.getTamanoROM()),
+                        protocolo.leerMemoriaROMPic(chipPIC));
+        diseno.addView(romView);
+
+        // Generar y mostrar la memoria EEPROM
+        diseno.addView(createLabel("Memoria EEPROM:"));
+        LinearLayout eepromView =
+                createMemoryView(
+                        chipPIC.getTamanoEEPROM(),
+                        1,
+                        HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM()),
+                        protocolo.leerMemoriaEEPROMPic(chipPIC));
+        diseno.addView(eepromView);
     }
 
     private void mostrarInformacionPic(String modelo) {
@@ -1054,7 +1177,14 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             while ((line = reader.readLine()) != null) {
 
-                fileContent.append(line).append("\n");
+                if (("" + line.charAt(0)).equals(";")) {
+
+                    break;
+
+                } else {
+
+                    fileContent.append(line).append("\n");
+                }
             }
 
             reader.close();

@@ -2,6 +2,7 @@ package com.diamon.chip;
 
 import android.content.Context;
 
+import com.diamon.datos.HexFileListo;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
 import java.io.IOException;
@@ -28,8 +29,6 @@ public class ProtocoloP018 {
         if (usbSerialPort == null) {
             return false;
         }
-
-        StringBuffer mensaje = new StringBuffer();
 
         String comando = "P";
 
@@ -87,6 +86,11 @@ public class ProtocoloP018 {
 
     // Método para leer bytes del puerto serie
     private byte[] readBytes(int count, int timeoutMillis) throws IOException {
+
+        if (usbSerialPort == null) {
+            return null;
+        }
+
         // Verificar que el número de bytes solicitados sea válido
         if (count <= 0) {
             throw new IllegalArgumentException("El número de bytes a leer debe ser mayor que 0.");
@@ -225,34 +229,32 @@ public class ProtocoloP018 {
         }
     }
 
-    public String iniciarVariablesDeProgramacion(InformacionPic chipPIC) {
+    public boolean iniciarVariablesDeProgramacion(InformacionPic chipPIC) {
 
         enviarComando("3");
 
         StringBuilder respuesta = new StringBuilder();
 
-        // Parámetros de inicialización
-        int romSize = chipPIC.getTamanoROM(); // Tamaño de ROM
-        int eepromSize = chipPIC.getTamanoEEPROM(); // Tamaño de EEPROM
-        int coreType = chipPIC.getTipoNucleoPic(); // Core Type: 16F7x 16F7x7
-        boolean flagCalibrationValueInROM = chipPIC.isFlagCalibration(); // Flag 0
-        boolean flagBandGapFuse = chipPIC.isFlagBandGap(); // Flag 1
-        boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle(); // Flag 2
-        boolean flagVccVppDelay = chipPIC.isFlagVccVppDelay(); // Flag 3
-        int programDelay = chipPIC.getProgramDelay(); // 50 * 100µs = 5ms
-        int powerSequence = chipPIC.getPowerSequence(); // Power Sequence: VPP2 ->
-        // VCC
-        int eraseMode = chipPIC.getEraseMode(); // Erase Mode: 16F7x7
-        int programRetries = chipPIC.getProgramTries(); // Intentos de programación
-        int overProgram = chipPIC.getOverProgram(); // Over Program
-
-        // Construir los flags
-        int flags = 0;
-
-        // Crear el payload según el protocolo
-        ByteBuffer payload = ByteBuffer.allocate(11);
-
         try {
+
+            // Parámetros de inicialización
+            int romSize = chipPIC.getTamanoROM(); // Tamaño de ROM
+            int eepromSize = chipPIC.getTamanoEEPROM(); // Tamaño de EEPROM
+            int coreType = chipPIC.getTipoNucleoPic(); // Core Type: 16F7x 16F7x7
+            boolean flagCalibrationValueInROM = chipPIC.isFlagCalibration(); // Flag 0
+            boolean flagBandGapFuse = chipPIC.isFlagBandGap(); // Flag 1
+            boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle(); // Flag 2
+            boolean flagVccVppDelay = chipPIC.isFlagVccVppDelay(); // Flag 3
+            int programDelay = chipPIC.getProgramDelay(); // 50 * 100µs = 5ms
+            int powerSequence = chipPIC.getPowerSequence(); // Power Sequence: VPP2 ->
+            // VCC
+            int eraseMode = chipPIC.getEraseMode(); // Erase Mode: 16F7x7
+            int programRetries = chipPIC.getProgramTries(); // Intentos de programación
+            int overProgram = chipPIC.getOverProgram(); // Over Program
+            // Construir los flags
+            int flags = 0;
+            // Crear el payload según el protocolo
+            ByteBuffer payload = ByteBuffer.allocate(11);
 
             flags |= (flagCalibrationValueInROM ? 1 : 0); // Bit 0
             flags |= (flagBandGapFuse ? 2 : 0); // Bit 1
@@ -271,37 +273,35 @@ public class ProtocoloP018 {
             payload.put((byte) programRetries); // Byte 10: Program Tries
             payload.put((byte) overProgram); // Byte 11: Over Program
 
-            usbSerialPort.write(payload.array(), 100); // Enviar datos
+            usbSerialPort.write(payload.array(), 100);
 
         } catch (NumberFormatException e) {
 
-            respuesta.append(e.toString());
-            return respuesta.toString();
+            return false;
 
         } catch (IOException e) {
 
-            respuesta.append(e.toString());
-            return respuesta.toString();
+            return false;
         }
 
         try {
 
-            respuesta.append(new String(readBytes(1, 100)));
+            respuesta.append(new String(readBytes(1, 100), StandardCharsets.US_ASCII));
 
             researComandos();
 
-        } catch (Exception err) {
+        } catch (IOException e) {
 
-            respuesta.append(err.toString());
+            return false;
         }
 
-        if (respuesta.equals("I")) {
+        if (respuesta.toString().equals("I")) {
 
-            return respuesta.toString();
+            return true;
 
         } else {
 
-            return respuesta.toString();
+            return false;
         }
     }
 
@@ -313,9 +313,9 @@ public class ProtocoloP018 {
 
         try {
 
-            respuesta.append(new String(readBytes(1, 100)));
+            respuesta.append(new String(readBytes(1, 100), StandardCharsets.US_ASCII));
 
-            if (respuesta.equals("V")) {
+            if (respuesta.toString().equals("V")) {
 
                 return true;
 
@@ -342,9 +342,9 @@ public class ProtocoloP018 {
 
         try {
 
-            respuesta.append(new String(readBytes(1, 100)));
+            respuesta.append(new String(readBytes(1, 100), StandardCharsets.US_ASCII));
 
-            if (respuesta.equals("v")) {
+            if (respuesta.toString().equals("v")) {
 
                 return true;
 
@@ -371,9 +371,9 @@ public class ProtocoloP018 {
 
         try {
 
-            respuesta.append(new String(readBytes(1, 100)));
+            respuesta.append(new String(readBytes(1, 100), StandardCharsets.US_ASCII));
 
-            if (respuesta.equals("V")) {
+            if (respuesta.toString().equals("V")) {
 
                 return true;
 
@@ -392,29 +392,64 @@ public class ProtocoloP018 {
         }
     }
 
-    public boolean programarROMPic() {
+    public String programarROMPic(InformacionPic chipPIC,String datos) {
 
-        if (usbSerialPort == null) {
+        HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
 
-            return false;
+        hexProsesado.iniciarProcesamientoDatos();
+
+        byte[] romData = hexProsesado.obtenerBytesHexROMPocesado();
+
+        int wordCount = romData.length / 2; // Cantidad de palabras (2 bytes por palabra)
+
+        // Verificar que no exceda el límite
+        if (wordCount > chipPIC.getTamanoROM()) {
+            
+            return "Error al programar";
         }
 
+        // Verificar que el tamaño sea múltiplo de 32 bytes
+        if ((wordCount * 2) % 32 != 0) {
+            return "Error al programar";        }
+
+        byte[] wordCountMessage = ByteBuffer.allocate(2).putShort((short) wordCount).array();
+        
+
         try {
+            
+            researComandos();
+            
+            activarVoltajesDeProgramacion();
+            
+           usbSerialPort.write(new byte[] {Byte.parseByte("7")}, 10); 
 
-            byte[] data = {7};
+            
+            
+            usbSerialPort.write(wordCountMessage, 100); 
 
-            usbSerialPort.write(data, 100);
+            // Enviar datos en bloques de 32 bytes
+            for (int i = 0; i < romData.length; i += 32) {
+                // Extraer un bloque de 32 bytes
+                byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
 
-            return true;
-
-        } catch (NumberFormatException e) {
-
-            return false;
+                usbSerialPort.write(chunk, 100); // Enviar datos
+                
+                //expectResponse(new byte[] {'Y'},10); 
+            }
+            
+            //readBytes(1,100);
+           // desactivarVoltajesDeProgramacion();
+            
+           // researComandos();
+            
 
         } catch (IOException e) {
 
-            return false;
+           return "Error al programar";  
         }
+        
+        
+        return "Rom Programada";  
     }
 
     public boolean programarEEPROMPic() {
@@ -492,6 +527,59 @@ public class ProtocoloP018 {
         }
     }
 
+    /* public String leerMemoriaROMPic(InformacionPic chipPIC) {
+
+        StringBuffer datos = new StringBuffer();
+
+        try {
+            // Tamaño total de la memoria ROM esperada
+            int romSize = chipPIC.getTamanoROM() * 2; // Convertir palabras a bytes
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+            int bytesLeidos = 0;
+            int contadorPalabras = 0; // Contador de palabras (2 bytes)
+
+            // Resetear y activar los voltajes de programación
+            researComandos();
+            activarVoltajesDeProgramacion();
+
+            // Enviar el comando para leer ROM (11)
+            usbSerialPort.write(new byte[] {0x0B}, 10); // Comando 11 en hexadecimal (0x0B)
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < romSize) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos - 1; i += 2) { // Agrupar de 2 en 2 bytes
+                        // Combinar 2 bytes en una palabra de 4 caracteres hexadecimales
+                        int palabra = ((buffer[i] & 0xFF) << 8) | (buffer[i + 1] & 0xFF);
+                        datos.append(String.format("%04X ", palabra));
+                        contadorPalabras++;
+
+                        // Insertar salto de línea después de 8 palabras (8 columnas)
+                        if (contadorPalabras % 8 == 0) {
+                            datos.append("\n");
+                        }
+                    }
+                    bytesLeidos += leidos;
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+
+            // Desactivar los voltajes de programación
+            // desactivarVoltajesDeProgramacion();
+
+            // Retornar los datos leídos en formato hexadecimal
+            return datos.toString().trim();
+
+        } catch (NumberFormatException e) {
+            return "Error al leer Memoria ROM: " + e.toString();
+        } catch (IOException e) {
+            return "Error al leer Memoria ROM: " + e.toString();
+        }
+    }
+    */
     public String leerMemoriaROMPic(InformacionPic chipPIC) {
 
         StringBuffer datos = new StringBuffer();
@@ -504,6 +592,7 @@ public class ProtocoloP018 {
 
             // Resetear y activar los voltajes de programación
             researComandos();
+
             activarVoltajesDeProgramacion();
 
             // Enviar el comando para leer ROM (11)
@@ -524,7 +613,9 @@ public class ProtocoloP018 {
             }
 
             // Desactivar los voltajes de programación
-            // desactivarVoltajesDeProgramacion();
+            desactivarVoltajesDeProgramacion();
+
+            researComandos();
 
             // Retornar los datos leídos en formato hexadecimal
             return datos.toString().trim();
@@ -568,7 +659,9 @@ public class ProtocoloP018 {
             }
 
             // Desactivar los voltajes de programación
-            // desactivarVoltajesDeProgramacion();
+            desactivarVoltajesDeProgramacion();
+
+            researComandos();
 
             // Retornar los datos leídos en formato hexadecimal
             return datos.toString().trim();
@@ -580,40 +673,163 @@ public class ProtocoloP018 {
         }
     }
 
-    public boolean leerCalibracionPic() {
+    public String leerConfiguracionPic() {
 
-        if (usbSerialPort == null) {
+        
 
-            return false;
-        }
+        StringBuffer datos = new StringBuffer();
 
         try {
+            
+            
+            
+            
+            int romSize = 27; // Convertir palabras a bytes
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+            int bytesLeidos = 0;
 
-            byte[] data = {14};
+            // Resetear y activar los voltajes de programación
+            researComandos();
 
-            usbSerialPort.write(data, 100);
+            activarVoltajesDeProgramacion();
 
-            return true;
+            // Enviar el comando para leer ROM (11)
+            usbSerialPort.write(new byte[] {Byte.parseByte("13")}, 10); // Comando 11 en hexadecimal (0x0B)
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < romSize) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+                        datos.append(String.format("%02X ", buffer[i]));
+                    }
+                    bytesLeidos += leidos;
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+
+            
+        /* usbSerialPort.write(new byte[] {Byte.parseByte("13")}, 10);
+
+            
+             
+            byte[] respuesta = new byte[1];
+            
+            byte[] configuracion = new byte[26];
+
+         
+             respuesta =  readBytes(1, 100);
+            
+            //configuracion = readBytes(26, 200);
+            
+          
+            
+
+            for (int i = 0; i < respuesta.length; i++) {
+
+               
+                
+                datos.append(new String(new byte[] {respuesta[i]}, StandardCharsets.US_ASCII));
+                
+                
+            }
+            */
+            
+            
+
+            /*for (int i = 0; i < configuracion.length; i++) {
+
+             
+               datos.append(String.format("%02X ", configuracion[i]));
+         
+            }*/
+            
+            
+             
+            
+            desactivarVoltajesDeProgramacion();
+           
+          researComandos();
+
+            return datos.toString();
 
         } catch (NumberFormatException e) {
 
-            return false;
+            return "Error al leer Datos de confuguración: " + e.toString();
 
         } catch (IOException e) {
 
-            return false;
+            return "Error al leer Datos de confuguración: " + e.toString();
+        }
+    }
+
+    public String leerCalibracionPic() {
+
+         researComandos();
+
+        StringBuffer datos = new StringBuffer();
+
+        try {
+
+            activarVoltajesDeProgramacion();
+            
+            
+            usbSerialPort.write(new byte[] {Byte.parseByte("14")}, 10);
+
+
+            
+            byte[] respuesta = new byte[2];
+            
+            respuesta = readBytes(2, 100);
+
+            for (int i = 0; i < respuesta.length; i++) {
+
+                datos.append(new String(new byte[] {respuesta[i]}, StandardCharsets.US_ASCII));
+                
+                
+                datos.append(String.format("%02X ", respuesta[i]));
+     
+            }
+
+            desactivarVoltajesDeProgramacion();
+
+            researComandos();
+
+            return datos.toString();
+
+        } catch (NumberFormatException e) {
+
+            return "Error al leer Datos de calibración: " + e.toString();
+
+        } catch (IOException e) {
+
+            return "Error al leer Datos de calibración: " + e.toString();
         }
     }
 
     public boolean borrarMemoriaPic() {
-
-        enviarComando("15");
+        
+        
+        researComandos();
+        
+        activarVoltajesDeProgramacion();
 
         StringBuffer respuesta = new StringBuffer();
 
         try {
+            
+           usbSerialPort.write(new byte[] {Byte.parseByte("15")}, 10);
 
+
+           
             respuesta.append(new String(readBytes(1, 100)));
+            
+            
+            desactivarVoltajesDeProgramacion();
+            
+            researComandos();
 
             if (respuesta.equals("Y")) {
 
