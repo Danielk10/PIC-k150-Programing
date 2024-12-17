@@ -253,14 +253,19 @@ public class ChipinfoReader {
                     ArrayList<String> dato = new ArrayList<String>();
 
                     StringBuffer letra = new StringBuffer();
+                    
 
                     for (int con = 0; con < te.length(); con++) {
 
                         if (!("" + te.charAt(con)).equals(" ")) {
 
+                            
                             letra.append(te.charAt(con));
+                            
+                            
 
                         } else {
+                            
 
                             dato.add(letra.toString());
 
