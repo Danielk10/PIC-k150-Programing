@@ -1,8 +1,13 @@
 package com.diamon.chip;
 
+import com.diamon.utilidades.DatosFuses;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InformacionPic {
 
@@ -288,12 +293,72 @@ public class InformacionPic {
         return fuseBlank;
     }
 
-    public Map<String, ArrayList<String[]>> getFuses() {
+    private Map<String, ArrayList<String[]>> getFuses() {
 
         Map<String, ArrayList<String[]>> fusess =
                 (Map<String, ArrayList<String[]>>) variablesDeChip.get("fuses");
 
         return fusess;
+    }
+
+    private ArrayList<String> getListaFuses() {
+
+        List<String> lista = new ArrayList<String>();
+
+        StringBuffer listaFuse = new StringBuffer();
+
+        for (int i = 0; i < getFuses().get("FUSES").size(); i++) {
+
+            for (int j = 0; j < getFuses().get("FUSES").get(i).length; j++) {
+
+                listaFuse.append(getFuses().get("FUSES").get(i)[j].toString() + " ");
+            }
+
+            lista.add(new String(listaFuse.toString()));
+
+            listaFuse.setLength(0);
+        }
+
+        return (ArrayList<String>) lista;
+    }
+
+    public ArrayList<DatosFuses> getValoresFuses() {
+
+        ArrayList<DatosFuses> datosProsesados = new ArrayList<DatosFuses>();
+
+        for (String line : getListaFuses()) {
+
+            datosProsesados.add(parseLine(line));
+        }
+
+        return datosProsesados;
+    }
+
+    private DatosFuses parseLine(String line) {
+
+        DatosFuses datosFuses = new DatosFuses();
+
+        // Expresión regular para capturar el texto dentro de comillas y valores hexadecimales
+        Pattern pattern = Pattern.compile("\"([^\"]+)\"=([A-F0-9]+)");
+        Matcher matcher = pattern.matcher(line);
+
+        // Buscar el título principal entre las primeras comillas
+        String mainTitle =
+                line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\"") + 1));
+
+        datosFuses.setTitulo(mainTitle);
+
+        // Iterar sobre los pares "Texto"=HEX
+        while (matcher.find()) {
+            String description = matcher.group(1);
+            String hexValue = matcher.group(2);
+
+            datosFuses.setDescription(description);
+
+            datosFuses.setValor(hexValue);
+        }
+
+        return datosFuses;
     }
 
     public int getTipoNucleoBit() {
@@ -379,60 +444,9 @@ public class InformacionPic {
         return id;
     }
 
-    public String getUbicacionPin1() {
+    public String getUbicacionPin1Pic() {
         String ubicacion = "" + socketImagen.get("" + variablesDeChip.get("SocketImage"));
 
         return ubicacion;
-    }
-
-    public Map<String, String> decodeFuseData(int[] fuseValues) throws Exception {
-        Map<String, String> decoded = new HashMap<>();
-        Map<String, Map<String, int[][]>> fuses =
-                (Map<String, Map<String, int[][]>>) variablesDeChip.get("fuses");
-        int[] fuseBlank = (int[]) variablesDeChip.get("FUSEblank");
-
-        for (String fuse : fuses.keySet()) {
-            Map<String, int[][]> settings = fuses.get(fuse);
-            int[] bestValue = fuseBlank.clone();
-            boolean fuseIdentified = false;
-
-            for (String settingName : settings.keySet()) {
-                int[][] settingValues = settings.get(settingName);
-
-                // Comparamos el resultado de indexwiseAnd con fuseValues
-                if (arraysEqual(indexwiseAnd(fuseValues, settingValues), fuseValues)) {
-                    // Actualizamos el mejor valor si también coincide
-                    if (arraysEqual(indexwiseAnd(bestValue, settingValues), fuseValues)) {
-                        decoded.put(fuse, settingName);
-                        bestValue = indexwiseAnd(bestValue, settingValues);
-                        fuseIdentified = true;
-                    }
-                }
-            }
-
-            if (!fuseIdentified) {
-                throw new Exception("Could not identify fuse setting for " + fuse);
-            }
-        }
-        return decoded;
-    }
-
-    public static int[] indexwiseAnd(int[] values, int[][] settings) {
-        int[] result =
-                values.clone(); // Clonamos el array original para no modificarlo directamente
-        for (int[] setting : settings) {
-            int index = setting[0]; // Primer valor es el índice
-            int value = setting[1]; // Segundo valor es el valor a aplicar
-            result[index] &= value; // Operación bit a bit AND
-        }
-        return result;
-    }
-
-    private boolean arraysEqual(int[] array1, int[] array2) {
-        if (array1.length != array2.length) return false;
-        for (int i = 0; i < array1.length; i++) {
-            if (array1[i] != array2[i]) return false;
-        }
-        return true;
     }
 }
