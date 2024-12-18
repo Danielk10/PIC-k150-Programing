@@ -33,6 +33,7 @@ import com.diamon.chip.InformacionPic;
 import com.diamon.chip.ProtocoloP018;
 import com.diamon.datos.ChipinfoReader;
 import com.diamon.datos.HexFileListo;
+import com.diamon.utilidades.DatosFuses;
 import com.diamon.utilidades.HexFileUtils;
 import android.graphics.Color;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
@@ -892,7 +893,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         diseno.addView(spinner);
 
-        for (int i = 0; i < chip.getChipEntry("18F248").getFuses().get("FUSES").size(); i++) {
+       /* for (int i = 0; i < chip.getChipEntry("18F248").getFuses().get("FUSES").size(); i++) {
 
             for (int j = 0;
                     j < chip.getChipEntry("18F248").getFuses().get("FUSES").get(i).length;
@@ -902,14 +903,68 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                 String letra = chip.getChipEntry("18F248").getFuses().get("FUSES").get(i)[j];
 
-                // prueba.setText("Lista de Fuses "+i+" " +
-                // chip.getChipEntry("18F248").getFuses().get("FUSES").get(i)[j]);
-
+              
                 prueba.setText("Lista de Fuses " + i + " " + letra);
 
                 diseno.addView(prueba);
             }
+        }*/
+        
+        
+      
+        
+        for (int i = 0; i < chip.getChipEntry("18F248").getValoresFuses().size(); i++) {
+
+
+                
+                DatosFuses fusesD = chip.getChipEntry("18F248").getValoresFuses().get(i);
+
+                TextView prueba = new TextView(this);
+
+                prueba.setText(fusesD.getTitulo());
+
+                diseno.addView(prueba);
+            
+            for(int j = 0;j<fusesD.getDescription().size();j++)
+            {
+                TextView prueba1 = new TextView(this);
+
+                prueba1.setText(fusesD.getDescription().get(j)+" "+fusesD.getValor().get(j));
+
+                
+                diseno.addView(prueba1);
+                
+                
+                
+            }
+            
+            
+            
+            
+            
         }
+        
+        
+       
+        
+      /*  for (int i = 0; i < chip.getChipEntry("18F248").getListaFuses().size(); i++) {
+
+
+                TextView prueba = new TextView(this);
+
+                String lista = chip.getChipEntry("18F248").getListaFuses().get(i);
+
+              
+                prueba.setText("Lista de Fuses " + i + " " + lista);
+
+                diseno.addView(prueba);
+            
+        }*/
+        
+        
+        
+        
+        
     }
 
     // Crear etiquetas para la memoria (ROM o EEPROM)

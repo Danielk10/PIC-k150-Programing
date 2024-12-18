@@ -156,9 +156,9 @@ public class HexFileListo {
             byte[] eepromData =
                     HexFileUtils.mergeRecords(adjustedEepromRecords, eepromBlank, eepromWordBase);
             
-            List<HexFileUtils.Pair<Integer, String>> confRe	 = utilidaHEX.rangeFilterRecords(configRecords,0x4000,0x4008);
+            List<HexFileUtils.Pair<Integer, String>> confRe	 = HexFileUtils.rangeFilterRecords(configRecords,0x4000,0x4008);
 					
-				byte[] byt= utilidaHEX.generarArrayDeDatos((byte)0x00,8);
+				byte[] byt= HexFileUtils.generarArrayDeDatos((byte)0x00,8);
 				
             
             
