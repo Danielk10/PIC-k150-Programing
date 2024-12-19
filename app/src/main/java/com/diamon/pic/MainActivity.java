@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private UsbManager usbManager;
 
     private LinearLayout diseno;
+    
+    private LinearLayout fusesPic;
 
     private TextView texto;
 
@@ -174,17 +176,16 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                     @Override
                     public void onClick(View v) {
-                    
+
                         //texto.setText("" + protocolo.leerCalibracionPic());
-                    
-                         texto.setText("" + protocolo.programarROMPic(chipPIC,firware));
 
+                        texto.setText("" + protocolo.programarROMPic(chipPIC, firware));
 
-                       // texto.setText("" + protocolo.leerConfiguracionPic());
+                        // texto.setText("Hola " + protocolo.leerConfiguracionPic());
 
                         // texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
 
-                         // texto.setText("Hola "+protocolo.borrarMemoriaPic());
+                        // texto.setText("Hola "+protocolo.borrarMemoriaPic());
 
                         // enviarComando("1");
 
@@ -226,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         btnProgramPic = new Button(this);
         btnProgramPic.setText("Programar ROM");
         btnProgramPic.setEnabled(false);
-        btnProgramPic.setOnClickListener(v -> programarROM(firware) /* enviarComando("7")*/);
+        btnProgramPic.setOnClickListener(v ->  enviarComando("7"));
 
         Button btnProgramEEPRON = new Button(this);
         btnProgramEEPRON.setText("Programar EEPROM");
@@ -268,11 +269,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnLeerConfiguracion = new Button(this);
         btnLeerConfiguracion.setText("Leer Configuración");
-        btnLeerConfiguracion.setOnClickListener(v -> enviarComando("13"));
+        btnLeerConfiguracion.setOnClickListener(v -> protocolo.leerConfiguracionPic());
 
         Button btnLeerCalibracion = new Button(this);
         btnLeerCalibracion.setText("Leer Calibración");
-        btnLeerCalibracion.setOnClickListener(v -> enviarComando("14"));
+        btnLeerCalibracion.setOnClickListener(v -> protocolo.leerCalibracionPic());
 
         Button btnBarraPic = new Button(this);
         btnBarraPic.setText("Barrar Momoria del PIC");
@@ -892,79 +893,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 });
 
         diseno.addView(spinner);
-
-       /* for (int i = 0; i < chip.getChipEntry("18F248").getFuses().get("FUSES").size(); i++) {
-
-            for (int j = 0;
-                    j < chip.getChipEntry("18F248").getFuses().get("FUSES").get(i).length;
-                    j++) {
-
-                TextView prueba = new TextView(this);
-
-                String letra = chip.getChipEntry("18F248").getFuses().get("FUSES").get(i)[j];
-
-              
-                prueba.setText("Lista de Fuses " + i + " " + letra);
-
-                diseno.addView(prueba);
-            }
-        }*/
-        
-        
-      
-        
-        for (int i = 0; i < chip.getChipEntry("18F248").getValoresFuses().size(); i++) {
-
-
-                
-                DatosFuses fusesD = chip.getChipEntry("18F248").getValoresFuses().get(i);
-
-                TextView prueba = new TextView(this);
-
-                prueba.setText(fusesD.getTitulo());
-
-                diseno.addView(prueba);
-            
-            for(int j = 0;j<fusesD.getDescription().size();j++)
-            {
-                TextView prueba1 = new TextView(this);
-
-                prueba1.setText(fusesD.getDescription().get(j)+" "+fusesD.getValor().get(j));
-
-                
-                diseno.addView(prueba1);
-                
-                
-                
-            }
-            
-            
-            
-            
-            
-        }
-        
-        
-       
-        
-      /*  for (int i = 0; i < chip.getChipEntry("18F248").getListaFuses().size(); i++) {
-
-
-                TextView prueba = new TextView(this);
-
-                String lista = chip.getChipEntry("18F248").getListaFuses().get(i);
-
-              
-                prueba.setText("Lista de Fuses " + i + " " + lista);
-
-                diseno.addView(prueba);
-            
-        }*/
-        
-        
-        
-        
-        
     }
 
     // Crear etiquetas para la memoria (ROM o EEPROM)
@@ -1060,6 +988,65 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private void mostrarInformacionPic(String modelo) {
 
         chipPIC = chip.getChipEntry(modelo);
+        
+        
+        fusesPic = new LinearLayout(this);
+        
+        fusesPic.setOrientation(LinearLayout.VERTICAL);
+
+
+       /* for (int i = 0; i < chipPIC.getValoresFuses().size(); i++) {
+
+            DatosFuses fusesD = chipPIC.getValoresFuses().get(i);
+
+            TextView prueba = new TextView(this);
+
+            prueba.setText(fusesD.getTitulo());
+
+            fusesPic.addView(prueba);
+
+            for (int j = 0; j < fusesD.getDescription().size(); j++) {
+                TextView prueba1 = new TextView(this);
+
+                prueba1.setText(fusesD.getDescription().get(j) + " " + fusesD.getValor().get(j));
+
+                fusesPic.addView(prueba1);
+            }
+        }*/
+        
+        
+       for (int i = 0; i < chipPIC.getFuseBlack().length; i++) {
+
+            int [] fusesD = chipPIC.getFuseBlack();
+
+            TextView prueba = new TextView(this);
+
+            prueba.setText(" "+fusesD[i]);
+
+            fusesPic.addView(prueba);
+
+            
+        }
+        
+        
+        
+        diseno.addView(fusesPic);  
+        
+        
+        
+        if(protocolo!=null)
+        {
+            
+            protocolo.iniciarVariablesDeProgramacion(chipPIC);
+        
+            
+        }
+        
+        
+        
+        
+        
+        
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
