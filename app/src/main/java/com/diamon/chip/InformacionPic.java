@@ -286,9 +286,16 @@ public class InformacionPic {
         return valor;
     }
 
-    public String[] getFuseBlack() {
+    public int[] getFuseBlack() {
 
-        String[] fuseBlank = (String[]) variablesDeChip.get("FUSEblank");
+        String[] fusesTexto = (String[]) variablesDeChip.get("FUSEblank");
+
+        int[] fuseBlank = new int[fusesTexto.length];
+
+        for (int i = 0; i < fuseBlank.length; i++) {
+
+            fuseBlank[i] = Integer.parseUnsignedInt("" + fusesTexto[i], 16);
+        }
 
         return fuseBlank;
     }
@@ -355,7 +362,7 @@ public class InformacionPic {
 
             datosFuses.setDescription(description);
 
-            datosFuses.setValor(hexValue);
+            datosFuses.setValor(Integer.parseUnsignedInt("" + hexValue, 16));
         }
 
         return datosFuses;

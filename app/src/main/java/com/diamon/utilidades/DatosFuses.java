@@ -8,7 +8,7 @@ public class DatosFuses {
 
     private ArrayList<String> description;
 
-    private ArrayList<String> valor;
+    private ArrayList<Integer> valor;
 
     public DatosFuses() {
 
@@ -16,7 +16,7 @@ public class DatosFuses {
 
         description = new ArrayList<String>();
 
-        valor = new ArrayList<String>();
+        valor = new ArrayList<Integer>();
     }
 
     public String getTitulo() {
@@ -35,11 +35,11 @@ public class DatosFuses {
         this.description.add(descripcion);
     }
 
-    public ArrayList<String> getValor() {
+    public ArrayList<Integer> getValor() {
         return this.valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(Integer valor) {
         this.valor.add(valor);
     }
 }
