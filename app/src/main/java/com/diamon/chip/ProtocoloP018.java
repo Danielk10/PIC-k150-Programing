@@ -5,6 +5,7 @@ import android.content.Context;
 import com.diamon.datos.HexFileListo;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -393,6 +394,78 @@ public class ProtocoloP018 {
     }
 
     public String programarROMPic(InformacionPic chipPIC, String datos) {
+        // Procesar datos HEX
+        HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
+        hexProsesado.iniciarProcesamientoDatos();
+        byte[] romData = hexProsesado.obtenerBytesHexROMPocesado();
+
+        int wordCount = romData.length / 2; // Cantidad de palabras (2 bytes por palabra)
+
+        // Validación: Verificar que el tamaño no exceda el límite del PIC
+        if (wordCount > chipPIC.getTamanoROM()) {
+            return "Error: Los datos exceden el tamaño máximo de ROM permitido.";
+        }
+
+        // Validación: Verificar que el tamaño sea múltiplo de 32 bytes
+        if ((wordCount * 2) % 32 != 0) {
+            return "Error: Los datos de la ROM deben ser múltiplos de 32 bytes.";
+        }
+
+        // Preparar mensaje para enviar el tamaño de palabras
+        byte[] wordCountMessage = ByteBuffer.allocate(2).putShort((short) wordCount).array();
+
+        try {
+            // Inicializar comunicación y activar voltajes de programación
+            researComandos();
+            activarVoltajesDeProgramacion();
+
+            // Comando para programar ROM
+            usbSerialPort.write(new byte[] {0x07}, 10);
+
+            // Enviar cantidad de palabras
+            usbSerialPort.write(wordCountMessage, 100);
+
+            // Validar respuesta inicial 'Y'
+            byte[] response = new byte[1];
+            if (!leerRespuesta(
+                    response,
+                    'Y',
+                    "Error: No se recibió la respuesta esperada después de enviar el tamaño de palabras.")) {
+                return "Error al programar";
+            }
+
+            // Enviar datos en bloques de 32 bytes
+            for (int i = 0; i < romData.length; i += 32) {
+                // Extraer un bloque de 32 bytes
+                byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
+
+                // Enviar el bloque y validar respuesta
+                usbSerialPort.write(chunk, 10);
+                if (!leerRespuesta(
+                        response,
+                        'Y',
+                        "Error: No se recibió la respuesta esperada después de enviar un bloque de datos.")) {
+                    return "Error al programar";
+                }
+            }
+
+            // Validar respuesta final 'P'
+            if (!leerRespuesta(
+                    response, 'P', "Error: No se recibió la confirmación final de programación.")) {
+                return "Error al programar";
+            }
+
+            // Desactivar voltajes y limpiar comandos
+            desactivarVoltajesDeProgramacion();
+            researComandos();
+
+            return "ROM programada exitosamente.";
+        } catch (IOException e) {
+            return "Error: Ocurrió un error de comunicación durante la programación.";
+        }
+    }
+
+    /* public String programarROMPic(InformacionPic chipPIC, String datos) {
 
         HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
 
@@ -459,55 +532,176 @@ public class ProtocoloP018 {
         }
 
         return "Rom Programada " + res1;
-    }
+    }*/
 
-    public boolean programarEEPROMPic() {
+    public String programarEEPROMPic(InformacionPic chipPIC, String datos) {
 
-        if (usbSerialPort == null) {
+        HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
 
-            return false;
+        hexProsesado.iniciarProcesamientoDatos();
+
+        byte[] eepromData = hexProsesado.obtenerBytesHexEEPROMPocesado();
+
+        int byteCount = eepromData.length;
+
+        // Validación: Verificar que no exceda el tamaño de la EEPROM
+        if (byteCount > chipPIC.getTamanoEEPROM()) {
+            return "Error: Los datos exceden el tamaño máximo de la EEPROM.";
         }
+
+        // Validación: Verificar que el tamaño sea múltiplo de 2 bytes
+        if (byteCount % 2 != 0) {
+            return "Error: Los datos de la EEPROM deben ser múltiplos de 2 bytes.";
+        }
+
+        // Incrementar el byte count en 2 antes de enviarlo, como lo requiere el protocolo
+        byteCount += 2;
+
+        // Preparar mensaje con la cantidad de bytes
+        byte[] byteCountMessage = ByteBuffer.allocate(2).putShort((short) byteCount).array();
 
         try {
+            // Inicializar comunicación y activar voltajes de programación
+            researComandos();
+            activarVoltajesDeProgramacion();
 
-            byte[] data = {8};
+            // Comando para programar EEPROM
+            usbSerialPort.write(new byte[] {0x08}, 10);
 
-            usbSerialPort.write(data, 100);
+            // Enviar cantidad de bytes
+            usbSerialPort.write(byteCountMessage, 100);
 
-            return true;
+            // Validar respuesta inicial 'Y'
+            byte[] response = new byte[1];
+            if (!leerRespuesta(
+                    response,
+                    'Y',
+                    "Error: No se recibió la respuesta esperada después de enviar el tamaño de bytes.")) {
+                return "Error al programar EEPROM";
+            }
 
-        } catch (NumberFormatException e) {
+            // Enviar datos en bloques de 2 bytes
+            for (int i = 0; i < eepromData.length; i += 2) {
+                byte[] chunk = Arrays.copyOfRange(eepromData, i, i + 2);
 
-            return false;
+                // Enviar el bloque de 2 bytes y validar respuesta
+                usbSerialPort.write(chunk, 10);
+                if (!leerRespuesta(
+                        response,
+                        'Y',
+                        "Error: No se recibió la respuesta esperada después de enviar un bloque de datos.")) {
+                    return "Error al programar EEPROM";
+                }
+            }
 
+            // Enviar 2 bytes adicionales al final (relleno)
+            usbSerialPort.write(new byte[] {0x00, 0x00}, 10);
+
+            // Validar respuesta final 'P'
+            if (!leerRespuesta(
+                    response, 'P', "Error: No se recibió la confirmación final de programación.")) {
+                return "Error al programar EEPROM";
+            }
+
+            // Desactivar voltajes y limpiar comandos
+            desactivarVoltajesDeProgramacion();
+            researComandos();
+
+            return "EEPROM programada exitosamente.";
         } catch (IOException e) {
-
-            return false;
+            return "Error: Ocurrió un error de comunicación durante la programación.";
         }
     }
 
-    public boolean programarFusesIDPic() {
-
-        if (usbSerialPort == null) {
-
+    // Método para leer respuesta y validar contra un carácter esperado
+    private boolean leerRespuesta(byte[] response, char esperado, String mensajeError)
+            throws IOException {
+        usbSerialPort.read(response, 100);
+        if (response[0] != (byte) esperado) {
+            System.err.println(mensajeError);
             return false;
         }
+        return true;
+    }
 
+    public String programarFusesIDPic(InformacionPic chipPIC, String datos) {
         try {
+            // Procesar datos
+            HexFileListo hexProcesado = new HexFileListo(datos, chipPIC);
+            hexProcesado.iniciarProcesamientoDatos();
 
-            byte[] data = {9};
+            // Obtener tipo de núcleo, ID y valores de FUSES
+            int tipoNucleo = chipPIC.getTipoNucleoBit();
+            byte[] id = hexProcesado.obtenerVoloresBytesHexIDPocesado();
+            int[] fuses = hexProcesado.obtenerVoloresIntHexFusesPocesado();
 
-            usbSerialPort.write(data, 100);
+            // Validar datos según tipo de núcleo
+            if (tipoNucleo == 16) {
+                if (id.length != 8) {
+                    return "Error: El ID debe tener 8 bytes para núcleo de 16 bits.";
+                }
+                if (fuses.length != 7) {
+                    return "Error: Debe haber exactamente 7 valores de FUSES para núcleo de 16 bits.";
+                }
+            } else if (tipoNucleo == 14) {
+                if (id.length != 4) {
+                    return "Error: El ID debe tener 4 bytes para núcleo de 14 bits.";
+                }
+                if (fuses.length < 1 || fuses.length > 2) {
+                    return "Error: Debe haber 1 o 2 valores de FUSES para núcleo de 14 bits.";
+                }
+            } else {
+                return "Error: Tipo de núcleo desconocido.";
+            }
 
-            return true;
+            // Reiniciar comandos y activar voltajes de programación
+            researComandos();
+            activarVoltajesDeProgramacion();
 
-        } catch (NumberFormatException e) {
+            // Enviar comando para programar FUSES e ID
+            usbSerialPort.write(new byte[] {0x09}, 10);
 
-            return false;
+            // Preparar cuerpo del comando
+            ByteArrayOutputStream commandBody = new ByteArrayOutputStream();
+            commandBody.write(new byte[] {0x30, 0x30}); // '0' '0' en ASCII
 
+            if (tipoNucleo == 16) {
+                commandBody.write(id);
+                for (int fuse : fuses) {
+                    commandBody.write(ByteBuffer.allocate(2).putShort((short) fuse).array());
+                }
+            } else { // tipoNucleo == 14
+                commandBody.write(id);
+                commandBody.write(new byte[] {'F', 'F', 'F', 'F'}); // 'FFFF' en ASCII
+                commandBody.write(ByteBuffer.allocate(2).putShort((short) fuses[0]).array());
+                commandBody.write(
+                        new byte[] {(byte) 0xFF, (byte) 0xFF},
+                        0,
+                        6 * 2); // Relleno de 6 pares de bytes 0xFF
+            }
+
+            // Enviar comando preparado
+            usbSerialPort.write(commandBody.toByteArray(), 100);
+
+            // Leer respuesta
+            byte[] response = new byte[1];
+            usbSerialPort.read(response, 100);
+
+            // Desactivar voltajes y limpiar comandos
+            desactivarVoltajesDeProgramacion();
+            researComandos();
+
+            // Validar respuesta
+            if ((tipoNucleo == 16 && response[0] == 'Y')
+                    || (tipoNucleo == 14 && response[0] == 0x00)) {
+                return "ID y FUSES programados exitosamente.";
+            } else if (response[0] == (byte) 0xFF) {
+                return "Error: Falló la programación de ID y FUSES.";
+            } else {
+                return "Error: Respuesta inesperada del dispositivo.";
+            }
         } catch (IOException e) {
-
-            return false;
+            return "Error: Ocurrió un error de comunicación durante la programación.";
         }
     }
 
