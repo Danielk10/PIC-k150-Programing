@@ -15,34 +15,43 @@ public class HexFileUtils {
      * @param upperBound Límite superior del rango.
      * @return Nueva lista de registros dentro del rango especificado.
      */
+
+    // Este metodo esta corregido
     public static List<HexFileUtils.Pair<Integer, String>> rangeFilterRecords(
             List<HexFileUtils.Pair<Integer, String>> records, int lowerBound, int upperBound) {
 
-        List<Pair<Integer, String>> result = new ArrayList<>();
+        List<HexFileUtils.Pair<Integer, String>> result = new ArrayList<>();
 
         for (HexFileUtils.Pair<Integer, String> record : records) {
-            int address = record.first;
-            String data = record.second;
-            int recordEnd = address + data.length();
+            int address = record.first; // Dirección del registro
+            String data = record.second; // Datos del registro en formato string
+            int recordEnd =
+                    address
+                            + (data.length()
+                                    / 2); // Final del registro (cada par de caracteres es 1 byte)
 
-            if (address >= lowerBound && address < upperBound) {
-                if (recordEnd < upperBound) {
-                    // Caso 3: Registro completamente dentro del rango.
+            // Caso 2: Registro parcialmente por debajo del límite inferior
+            if (address < lowerBound && recordEnd > lowerBound) {
+                int slicePos =
+                        (lowerBound - address) * 2; // Calcular posición de corte en caracteres
+                String slicedData = data.substring(slicePos); // Cortar los datos desde slicePos
+                result.add(new HexFileUtils.Pair<>(lowerBound, slicedData));
+            }
+            // Caso 3: Registro dentro del rango
+            else if (address >= lowerBound && address < upperBound) {
+                if (recordEnd <= upperBound) {
+                    // Registro completamente dentro del rango
                     result.add(record);
                 } else {
-                    // Caso 4: Registro parcialmente fuera por encima del límite superior.
-                    int sliceLength = upperBound - address;
-                    result.add(
-                            new HexFileUtils.Pair<Integer, String>(
-                                    address, data.substring(0, sliceLength)));
+                    // Caso 4: Registro parcialmente fuera por encima del límite superior
+                    int sliceLength =
+                            (upperBound - address) * 2; // Calcular longitud de corte en caracteres
+                    String slicedData =
+                            data.substring(0, sliceLength); // Cortar los datos hasta sliceLength
+                    result.add(new HexFileUtils.Pair<>(address, slicedData));
                 }
-            } else if (address < lowerBound && recordEnd > lowerBound) {
-                // Caso 2: Registro parcialmente fuera por debajo del límite inferior.
-                int slicePos = lowerBound - address;
-                result.add(
-                        new HexFileUtils.Pair<Integer, String>(
-                                lowerBound, data.substring(slicePos)));
             }
+            // Caso 1 y 5: Registro fuera del rango (no hacer nada)
         }
 
         return result;
@@ -187,5 +196,27 @@ public class HexFileUtils {
         }
 
         return datos;
+    }
+
+    public static byte[] encodeToBytes(int[] integers) {
+        ByteBuffer buffer = ByteBuffer.allocate(integers.length * 2); // Cada entero ocupa 2 bytes
+        buffer.order(java.nio.ByteOrder.BIG_ENDIAN); // Configurar como big-endian
+        for (int value : integers) {
+            buffer.putShort((short) value); // Escribir cada entero como 2 bytes
+        }
+        return buffer.array(); // Devolver el arreglo de bytes
+    }
+
+    public static int[] decodeFromBytes(byte[] bytes) {
+        if (bytes.length % 2 != 0) {
+            throw new IllegalArgumentException("El número de bytes no es múltiplo de 2");
+        }
+        ByteBuffer buffer = ByteBuffer.wrap(bytes);
+        buffer.order(java.nio.ByteOrder.BIG_ENDIAN); // Leer como big-endian
+        int[] integers = new int[bytes.length / 2];
+        for (int i = 0; i < integers.length; i++) {
+            integers[i] = buffer.getShort() & 0xFFFF; // Leer 2 bytes y convertir a entero sin signo
+        }
+        return integers;
     }
 }

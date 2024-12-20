@@ -16,6 +16,12 @@ public class HexFileListo {
 
     private byte[] eepromData;
 
+    private byte[] IDData;
+
+    private byte[] fuseData;
+
+    private int[] fuseValues;
+
     public HexFileListo(String datos, InformacionPic chipPIC) {
 
         this.datos = datos;
@@ -102,6 +108,10 @@ public class HexFileListo {
                     boolean BE_ok = (BE_word & romBlankWord) == BE_word;
                     boolean LE_ok = (LE_word & romBlankWord) == LE_word;
 
+                    // No va
+
+                    BE_ok = false;
+
                     if (BE_ok && !LE_ok) {
                         swapBytes = false;
                         swapBytesDetected = true;
@@ -131,7 +141,7 @@ public class HexFileListo {
 
             // EEPROM está almacenado en el archivo HEX con un byte por palabra.
             // Seleccionamos el byte apropiado según el endianess detectado.
-            int pickByte = swapBytes ? 1 : 0;
+            int pickByte = swapBytes ? 0 : 1;
 
             List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = new ArrayList<>();
             for (HexFileUtils.Pair<Integer, String> record : eepromRecords) {
@@ -148,21 +158,39 @@ public class HexFileListo {
                                 baseAddress, filteredData.toString()));
             }
 
-            romRecords = HexFileUtils.swabRecords(romRecords);
-
             // Crear datos finales fusionando los registros ajustados con los datos en blanco
             byte[] romData = HexFileUtils.mergeRecords(romRecords, romBlank, romWordBase);
 
             byte[] eepromData =
                     HexFileUtils.mergeRecords(adjustedEepromRecords, eepromBlank, eepromWordBase);
-            
-            List<HexFileUtils.Pair<Integer, String>> confRe	 = HexFileUtils.rangeFilterRecords(configRecords,0x4000,0x4008);
-					
-				byte[] byt= HexFileUtils.generarArrayDeDatos((byte)0x00,8);
-				
-            
-            
-            
+
+            List<HexFileUtils.Pair<Integer, String>> configRecordsID =
+                    HexFileUtils.rangeFilterRecords(configRecords, 0x4000, 0x4008);
+           
+            byte[] IDBlanco = HexFileUtils.generarArrayDeDatos((byte) 0x00, 8);
+
+            IDData = HexFileUtils.mergeRecords(configRecordsID, IDBlanco, configWordBase);
+
+            if (chipPIC.getTipoNucleoBit() != 16) {
+
+                byte[] IDTemporal = new byte[IDData.length / 2];
+
+                for (int i = 0; i < IDTemporal.length; i++) {
+
+                    IDTemporal[i] = IDData[i];
+                }
+
+                IDData = IDTemporal;
+            }
+
+            List<HexFileUtils.Pair<Integer, String>> configRecordsFuses =
+                    HexFileUtils.rangeFilterRecords(configRecords, 0x400E, 0x4010);
+           
+            byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlack());
+
+            this.fuseData = HexFileUtils.mergeRecords(configRecordsFuses, fusesBytes, 0x400E);
+
+            this.fuseValues = HexFileUtils.decodeFromBytes(fuseData);
 
             this.romData = romData;
 
@@ -182,4 +210,16 @@ public class HexFileListo {
 
         return this.eepromData;
     }
+
+    public int[] obtenerVoloresIntHexFusesPocesado() {
+
+        return this.fuseValues;
+    }
+    
+    
+    public byte[] obtenerVoloresBytesHexIDPocesado() {
+
+        return this.IDData;
+    }
+    
 }
