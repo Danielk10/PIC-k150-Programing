@@ -421,8 +421,6 @@ public class ProtocoloP018 {
 
             byte[] res = new byte[1];
 
-           // leerCalibracionPic();
-
             researComandos();
 
             activarVoltajesDeProgramacion();
