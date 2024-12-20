@@ -240,8 +240,7 @@ public class ProtocoloP018 {
             // Parámetros de inicialización
             int romSize = chipPIC.getTamanoROM(); // Tamaño de ROM
             int eepromSize = chipPIC.getTamanoEEPROM(); // Tamaño de EEPROM
-            // int coreType = chipPIC.getTipoNucleoPic(); // Core Type: 16F7x 16F7x7
-            int coreType = 0x06; // Core Type: 16F7x 16F7x7
+            int coreType = chipPIC.getTipoNucleoVerdaderoPic(); // Core Type: 16F7x 16F7x7
             boolean flagCalibrationValueInROM = chipPIC.isFlagCalibration(); // Flag 0
             boolean flagBandGapFuse = chipPIC.isFlagBandGap(); // Flag 1
             boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle(); // Flag 2

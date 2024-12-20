@@ -22,6 +22,8 @@ public class InformacionPic {
     private HashMap<String, String> socketImagen;
 
     private HashMap<String, Integer> tipoDeNucleo;
+    
+    private HashMap<String, Integer> tipoDeNucleoVerdadero;
 
     private HashMap<String, Boolean> respuestas;
 
@@ -162,6 +164,37 @@ public class InformacionPic {
         tipoDeNucleo.put("bit14_h", 12);
 
         tipoDeNucleo.put("bit16_c", 13);
+        
+        
+        tipoDeNucleoVerdadero = new HashMap<String, Integer>();
+
+        tipoDeNucleoVerdadero.put("bit16_a", 1);
+
+        tipoDeNucleoVerdadero.put("bit16_b", 2);
+
+        tipoDeNucleoVerdadero.put("bit14_g", 3);
+
+        tipoDeNucleoVerdadero.put("bit12_a", 4);
+
+        tipoDeNucleoVerdadero.put("bit14_a", 5);
+
+        tipoDeNucleoVerdadero.put("bit14_b", 6);
+
+        tipoDeNucleoVerdadero.put("bit14_c", 7);
+
+        tipoDeNucleoVerdadero.put("bit14_d", 6);
+
+        tipoDeNucleoVerdadero.put("bit14_e", 9);
+
+        tipoDeNucleoVerdadero.put("bit14_f", 10);
+
+        tipoDeNucleoVerdadero.put("bit12_b", 11);
+
+        tipoDeNucleoVerdadero.put("bit14_h", 12);
+
+        tipoDeNucleoVerdadero.put("bit16_c", 13);
+        
+        
 
         respuestas = new HashMap<String, Boolean>();
 
@@ -416,6 +449,24 @@ public class InformacionPic {
 
         return nucleo;
     }
+    
+    public int getTipoNucleoVerdaderoPic() {
+
+        int nucleo =
+                Integer.parseInt(
+                        ""
+                                + tipoDeNucleoVerdadero.get(
+                                        ""
+                                                + variablesDeChip
+                                                        .get("core_type")
+                                                        .toString()
+                                                        .toLowerCase()));
+
+        return nucleo;
+    }
+    
+    
+    
 
     public int getSecuenciaEncendido() {
         int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
