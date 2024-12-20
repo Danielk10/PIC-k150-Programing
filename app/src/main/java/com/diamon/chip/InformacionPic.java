@@ -22,7 +22,7 @@ public class InformacionPic {
     private HashMap<String, String> socketImagen;
 
     private HashMap<String, Integer> tipoDeNucleo;
-    
+
     private HashMap<String, Integer> tipoDeNucleoVerdadero;
 
     private HashMap<String, Boolean> respuestas;
@@ -164,35 +164,33 @@ public class InformacionPic {
         tipoDeNucleo.put("bit14_h", 12);
 
         tipoDeNucleo.put("bit16_c", 13);
-        
-        
-       tipoDeNucleoVerdadero = new HashMap<String, Integer>();
 
-        
-       tipoDeNucleoVerdadero.put("bit16_a", 1);
-        
+        tipoDeNucleoVerdadero = new HashMap<String, Integer>();
+
+        tipoDeNucleoVerdadero.put("bit16_a", 1);
+
         tipoDeNucleoVerdadero.put("bit16_c", 1);
-        
+
         tipoDeNucleoVerdadero.put("bit16_b", 2);
-        
+
         tipoDeNucleoVerdadero.put("bit14_g", 3);
-        
+
         tipoDeNucleoVerdadero.put("bit12_a", 4);
-        
+
         tipoDeNucleoVerdadero.put("bit12_b", 5);
-        
+
         tipoDeNucleoVerdadero.put("bit14_a", 5);
-        
+
         tipoDeNucleoVerdadero.put("bit14_d", 6);
-        
+
         tipoDeNucleoVerdadero.put("bit14_e", 7);
-        
+
         tipoDeNucleoVerdadero.put("bit14_b", 7);
-        
+
         tipoDeNucleoVerdadero.put("bit14_c", 8);
-        
+
         tipoDeNucleoVerdadero.put("bit14_f", 9);
-        
+
         tipoDeNucleoVerdadero.put("bit14_h", 10);
 
         respuestas = new HashMap<String, Boolean>();
@@ -204,6 +202,41 @@ public class InformacionPic {
         respuestas.put("n", false);
 
         respuestas.put("0", false);
+    }
+
+    public int getTipoNucleoBit() {
+
+        int nucleo =
+                Integer.parseInt(
+                        ""
+                                + tipoDeNucleo.get(
+                                        ""
+                                                + variablesDeChip
+                                                        .get("core_type")
+                                                        .toString()
+                                                        .toLowerCase()));
+
+        if (nucleo == 1 || nucleo == 2 || nucleo == 13) {
+
+            nucleo = 16;
+
+        } else if (nucleo == 3
+                || nucleo == 5
+                || nucleo == 6
+                || nucleo == 7
+                || nucleo == 8
+                || nucleo == 9
+                || nucleo == 10
+                || nucleo == 12) {
+
+            nucleo = 14;
+
+        } else if (nucleo == 4 || nucleo == 11) {
+
+            nucleo = 12;
+        }
+
+        return nucleo;
     }
 
     public HashMap<String, String> getVariablesProgramacion() {
@@ -400,40 +433,6 @@ public class InformacionPic {
         return datosFuses;
     }
 
-    public int getTipoNucleoBit() {
-
-        int nucleo =
-                Integer.parseInt(
-                        ""
-                                + tipoDeNucleo.get(
-                                        ""
-                                                + variablesDeChip
-                                                        .get("core_type")
-                                                        .toString()
-                                                        .toLowerCase()));
-
-        if (nucleo == 1 || nucleo == 2) {
-
-            nucleo = 16;
-
-        } else if (nucleo == 3
-                || nucleo == 5
-                || nucleo == 6
-                || nucleo == 7
-                || nucleo == 8
-                || nucleo == 9
-                || nucleo == 10) {
-
-            nucleo = 14;
-
-        } else if (nucleo == 4) {
-
-            nucleo = 12;
-        }
-
-        return nucleo;
-    }
-
     public int getTipoNucleoPic() {
 
         int nucleo =
@@ -448,7 +447,7 @@ public class InformacionPic {
 
         return nucleo;
     }
-    
+
     public int getTipoNucleoVerdaderoPic() {
 
         int nucleo =
@@ -463,9 +462,6 @@ public class InformacionPic {
 
         return nucleo;
     }
-    
-    
-    
 
     public int getSecuenciaEncendido() {
         int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
