@@ -7,12 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -33,16 +33,13 @@ import com.diamon.chip.InformacionPic;
 import com.diamon.chip.ProtocoloP018;
 import com.diamon.datos.ChipinfoReader;
 import com.diamon.datos.HexFileListo;
-import com.diamon.utilidades.DatosFuses;
 import com.diamon.utilidades.HexFileUtils;
-import android.graphics.Color;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -166,8 +163,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnInicio = new Button(this);
         btnInicio.setText("Boton inicio");
-        btnInicio.setOnClickListener(
-                v -> protocolo.esperarInicioDeNuevoComando() );
+        btnInicio.setOnClickListener(v -> protocolo.esperarInicioDeNuevoComando());
 
         Button btnResearComandos = new Button(this);
         btnResearComandos.setText("Resetear Comandos");
@@ -177,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
 
-                        texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
+                        // texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
 
                         // texto.setText("" + protocolo.programarEEPROMPic(chipPIC,firware));
 
@@ -191,39 +187,32 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                         // texto.setText("Hola "+protocolo.borrarMemoriaPic());
 
-                        // enviarComando("1");
-
-                        // enviarComando("P");
-
-                        // prueba();
-                        if (protocolo != null) {
-                            // texto.setText("" +
-                            // protocolo.iniciarVariablesDeProgramacion(chipPIC));
-
-                        }
                     }
                 });
 
         Button btnHacerEco = new Button(this);
         btnHacerEco.setText("Hacer Eco");
-        btnHacerEco.setOnClickListener(v -> enviarComando("2"));
+        btnHacerEco.setOnClickListener(v -> texto.setText("" + protocolo.hacerEco()));
 
         Button btnInciarVaribles = new Button(this);
         btnInciarVaribles.setText("Iniciar Variables de Programación");
         btnInciarVaribles.setOnClickListener(
-                v -> protocolo.iniciarVariablesDeProgramacion(chipPIC));
+                v -> texto.setText("" + protocolo.iniciarVariablesDeProgramacion(chipPIC)));
 
         Button btnActivarVoltaje = new Button(this);
         btnActivarVoltaje.setText("Activar voltajes de Programación");
-        btnActivarVoltaje.setOnClickListener(v -> protocolo.activarVoltajesDeProgramacion());
+        btnActivarVoltaje.setOnClickListener(
+                v -> texto.setText("" + protocolo.activarVoltajesDeProgramacion()));
 
         Button btnDesactivarVoltaje = new Button(this);
         btnDesactivarVoltaje.setText("Desactivar voltajes de Programación");
-        btnDesactivarVoltaje.setOnClickListener(v -> protocolo.desactivarVoltajesDeProgramacion());
+        btnDesactivarVoltaje.setOnClickListener(
+                v -> texto.setText("" + protocolo.desactivarVoltajesDeProgramacion()));
 
         Button btnReiniciaVoltaje = new Button(this);
         btnReiniciaVoltaje.setText("Reinicia voltajes de Programación");
-        btnReiniciaVoltaje.setOnClickListener(v -> protocolo.reiniciarVoltajesDeProgramacion());
+        btnReiniciaVoltaje.setOnClickListener(
+                v -> texto.setText("" + protocolo.reiniciarVoltajesDeProgramacion()));
 
         btnProgramPic = new Button(this);
         btnProgramPic.setText("Programar ROM");
@@ -1018,7 +1007,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             }
         }*/
 
-        for (int i = 0; i < chipPIC.getFuseBlack().length; i++) {
+        /*for (int i = 0; i < chipPIC.getFuseBlack().length; i++) {
 
             int[] fusesD = chipPIC.getFuseBlack();
 
@@ -1029,7 +1018,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             fusesPic.addView(prueba);
         }
 
-        diseno.addView(fusesPic);
+        diseno.addView(fusesPic);*/
 
         if (protocolo != null) {
 
@@ -1239,49 +1228,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             } else {
 
             }
-        }
-    }
-
-    public void programarROM(String datos) {
-
-        HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
-
-        hexProsesado.iniciarProcesamientoDatos();
-
-        byte[] romData = hexProsesado.obtenerBytesHexROMPocesado();
-
-        int wordCount = romData.length / 2; // Cantidad de palabras (2 bytes por palabra)
-
-        // Verificar que no exceda el límite
-        if (wordCount > chipPIC.getTamanoROM()) {
-            throw new IllegalArgumentException("Data too large for PIC ROM");
-        }
-
-        // Verificar que el tamaño sea múltiplo de 32 bytes
-        if ((wordCount * 2) % 32 != 0) {
-            throw new IllegalArgumentException("ROM data must be a multiple of 32 bytes in size.");
-        }
-
-        byte[] wordCountMessage = ByteBuffer.allocate(2).putShort((short) wordCount).array();
-
-        try {
-            usbSerialPort.write(wordCountMessage, 100); // Enviar datos
-
-            // Enviar datos en bloques de 32 bytes
-            for (int i = 0; i < romData.length; i += 32) {
-                // Extraer un bloque de 32 bytes
-                byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
-
-                usbSerialPort.write(chunk, 100); // Enviar datos
-            }
-
-        } catch (IOException e) {
-
-            Toast.makeText(
-                            getApplicationContext(),
-                            "Error en grabar ROM " + e.getMessage(),
-                            Toast.LENGTH_LONG)
-                    .show();
         }
     }
 }
