@@ -1,6 +1,6 @@
-# PIC-k150-Programming
+# PIC k150 Programming
 
-**PIC-k150-Programming** es una aplicación Android que permite programar microcontroladores PIC utilizando el programador PIC k150, todo desde la comodidad de un teléfono inteligente Android. La aplicación se basa en el protocolo **P018** de **KITSRUS Programmer Firmware Protocol P018**, versión de agosto de 2004, lo que la hace compatible con todos los dispositivos que implementan este protocolo. Esta innovadora solución permite a los entusiastas de la electrónica y desarrolladores programar sus microcontroladores sin necesidad de un equipo de escritorio, usando únicamente su dispositivo Android.
+**PIC k150 Programming** es una aplicación Android que permite programar microcontroladores PIC utilizando el programador PIC k150, todo desde la comodidad de un teléfono inteligente Android. La aplicación se basa en el protocolo **P018** de **KITSRUS Programmer Firmware Protocol P018**, versión de agosto de 2004, lo que la hace compatible con todos los dispositivos que implementan este protocolo. Esta innovadora solución permite a los entusiastas de la electrónica y desarrolladores programar sus microcontroladores sin necesidad de un equipo de escritorio, usando únicamente su dispositivo Android.
 
 ## Características
 
