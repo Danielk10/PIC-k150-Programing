@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private UsbManager usbManager;
 
     private LinearLayout diseno;
-    
+
     private LinearLayout fusesPic;
 
     private TextView texto;
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         Button btnInicio = new Button(this);
         btnInicio.setText("Boton inicio");
         btnInicio.setOnClickListener(
-                v -> protocolo.esperarInicioDeNuevoComando() /* enviarComando("0")*/);
+                v -> protocolo.esperarInicioDeNuevoComando() );
 
         Button btnResearComandos = new Button(this);
         btnResearComandos.setText("Resetear Comandos");
@@ -177,9 +177,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
 
-                        //texto.setText("" + protocolo.leerCalibracionPic());
+                        texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
 
-                        texto.setText("" + protocolo.programarROMPic(chipPIC, firware));
+                        // texto.setText("" + protocolo.programarEEPROMPic(chipPIC,firware));
+
+                        // texto.setText("" + protocolo.leerCalibracionPic());
+
+                        // texto.setText("" + protocolo.programarROMPic(chipPIC, firware));
 
                         // texto.setText("Hola " + protocolo.leerConfiguracionPic());
 
@@ -207,35 +211,35 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         Button btnInciarVaribles = new Button(this);
         btnInciarVaribles.setText("Iniciar Variables de Programación");
         btnInciarVaribles.setOnClickListener(
-                v -> protocolo.iniciarVariablesDeProgramacion(chipPIC) /*enviarComando("3")*/);
+                v -> protocolo.iniciarVariablesDeProgramacion(chipPIC));
 
         Button btnActivarVoltaje = new Button(this);
         btnActivarVoltaje.setText("Activar voltajes de Programación");
-        btnActivarVoltaje.setOnClickListener(
-                v -> protocolo.activarVoltajesDeProgramacion() /*enviarComando("4")*/);
+        btnActivarVoltaje.setOnClickListener(v -> protocolo.activarVoltajesDeProgramacion());
 
         Button btnDesactivarVoltaje = new Button(this);
         btnDesactivarVoltaje.setText("Desactivar voltajes de Programación");
-        btnDesactivarVoltaje.setOnClickListener(
-                v -> protocolo.desactivarVoltajesDeProgramacion() /*  enviarComando("5")*/);
+        btnDesactivarVoltaje.setOnClickListener(v -> protocolo.desactivarVoltajesDeProgramacion());
 
         Button btnReiniciaVoltaje = new Button(this);
         btnReiniciaVoltaje.setText("Reinicia voltajes de Programación");
-        btnReiniciaVoltaje.setOnClickListener(
-                v -> protocolo.reiniciarVoltajesDeProgramacion() /* enviarComando("6")*/);
+        btnReiniciaVoltaje.setOnClickListener(v -> protocolo.reiniciarVoltajesDeProgramacion());
 
         btnProgramPic = new Button(this);
         btnProgramPic.setText("Programar ROM");
         btnProgramPic.setEnabled(false);
-        btnProgramPic.setOnClickListener(v ->  enviarComando("7"));
+        btnProgramPic.setOnClickListener(
+                v -> texto.setText("" + protocolo.programarROMPic(chipPIC, firware)));
 
         Button btnProgramEEPRON = new Button(this);
         btnProgramEEPRON.setText("Programar EEPROM");
-        btnProgramEEPRON.setOnClickListener(v -> enviarComando("8"));
+        btnProgramEEPRON.setOnClickListener(
+                v -> texto.setText("" + protocolo.programarEEPROMPic(chipPIC, firware)));
 
         Button btnProgramarIDFuses = new Button(this);
         btnProgramarIDFuses.setText("Programar ID y Fuses");
-        btnProgramarIDFuses.setOnClickListener(v -> enviarComando("9"));
+        btnProgramarIDFuses.setOnClickListener(
+                v -> texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware)));
 
         Button btnCalibracion = new Button(this);
         btnCalibracion.setText("Calibracion");
@@ -269,15 +273,17 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnLeerConfiguracion = new Button(this);
         btnLeerConfiguracion.setText("Leer Configuración");
-        btnLeerConfiguracion.setOnClickListener(v -> protocolo.leerConfiguracionPic());
+        btnLeerConfiguracion.setOnClickListener(
+                v -> texto.setText("" + protocolo.leerConfiguracionPic()));
 
         Button btnLeerCalibracion = new Button(this);
         btnLeerCalibracion.setText("Leer Calibración");
-        btnLeerCalibracion.setOnClickListener(v -> protocolo.leerCalibracionPic());
+        btnLeerCalibracion.setOnClickListener(
+                v -> texto.setText("" + protocolo.leerCalibracionPic()));
 
         Button btnBarraPic = new Button(this);
         btnBarraPic.setText("Barrar Momoria del PIC");
-        btnBarraPic.setOnClickListener(v -> protocolo.borrarMemoriaPic() /*enviarComando("15")*/);
+        btnBarraPic.setOnClickListener(v -> texto.setText("" + protocolo.borrarMemoriaPic()));
 
         Button btnVerificarBorrado = new Button(this);
         btnVerificarBorrado.setText("Verificar si se Borro Memoria del PIC");
@@ -988,14 +994,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private void mostrarInformacionPic(String modelo) {
 
         chipPIC = chip.getChipEntry(modelo);
-        
-        
+
         fusesPic = new LinearLayout(this);
-        
+
         fusesPic.setOrientation(LinearLayout.VERTICAL);
 
-
-       /* for (int i = 0; i < chipPIC.getValoresFuses().size(); i++) {
+        /* for (int i = 0; i < chipPIC.getValoresFuses().size(); i++) {
 
             DatosFuses fusesD = chipPIC.getValoresFuses().get(i);
 
@@ -1013,40 +1017,24 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 fusesPic.addView(prueba1);
             }
         }*/
-        
-        
-       for (int i = 0; i < chipPIC.getFuseBlack().length; i++) {
 
-            int [] fusesD = chipPIC.getFuseBlack();
+        for (int i = 0; i < chipPIC.getFuseBlack().length; i++) {
+
+            int[] fusesD = chipPIC.getFuseBlack();
 
             TextView prueba = new TextView(this);
 
-            prueba.setText(" "+fusesD[i]);
+            prueba.setText(" " + fusesD[i]);
 
             fusesPic.addView(prueba);
+        }
 
-            
-        }
-        
-        
-        
-        diseno.addView(fusesPic);  
-        
-        
-        
-        if(protocolo!=null)
-        {
-            
+        diseno.addView(fusesPic);
+
+        if (protocolo != null) {
+
             protocolo.iniciarVariablesDeProgramacion(chipPIC);
-        
-            
         }
-        
-        
-        
-        
-        
-        
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
