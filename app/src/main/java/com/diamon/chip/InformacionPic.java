@@ -167,9 +167,11 @@ public class InformacionPic {
 
         tipoDeNucleoVerdadero = new HashMap<String, Integer>();
 
-        tipoDeNucleoVerdadero.put("bit16_a", 1);
+        tipoDeNucleoVerdadero.put("bit16_a", 0);
 
-        tipoDeNucleoVerdadero.put("bit16_c", 1);
+        tipoDeNucleoVerdadero.put("bit16_c", 0);
+
+        tipoDeNucleoVerdadero.put("bit16_b", 1);
 
         tipoDeNucleoVerdadero.put("bit16_b", 2);
 
@@ -185,14 +187,43 @@ public class InformacionPic {
 
         tipoDeNucleoVerdadero.put("bit14_e", 7);
 
-        tipoDeNucleoVerdadero.put("bit14_b", 7);
-
         tipoDeNucleoVerdadero.put("bit14_c", 8);
 
         tipoDeNucleoVerdadero.put("bit14_f", 9);
 
         tipoDeNucleoVerdadero.put("bit14_h", 10);
 
+        tipoDeNucleoVerdadero.put("bit14_b", 11);
+
+        tipoDeNucleoVerdadero.put("bit12_a", 12);
+
+        /*
+                tipoDeNucleoVerdadero.put("bit16_a", 1);
+
+                tipoDeNucleoVerdadero.put("bit16_c", 1);
+
+                tipoDeNucleoVerdadero.put("bit16_b", 2);
+
+                tipoDeNucleoVerdadero.put("bit14_g", 3);
+
+                tipoDeNucleoVerdadero.put("bit12_a", 4);
+
+                tipoDeNucleoVerdadero.put("bit12_b", 5);
+
+                tipoDeNucleoVerdadero.put("bit14_a", 5);
+
+                tipoDeNucleoVerdadero.put("bit14_d", 6);
+
+                tipoDeNucleoVerdadero.put("bit14_e", 7);
+
+                tipoDeNucleoVerdadero.put("bit14_b", 7);
+
+                tipoDeNucleoVerdadero.put("bit14_c", 8);
+
+                tipoDeNucleoVerdadero.put("bit14_f", 9);
+
+                tipoDeNucleoVerdadero.put("bit14_h", 10);
+        */
         respuestas = new HashMap<String, Boolean>();
 
         respuestas.put("y", true);

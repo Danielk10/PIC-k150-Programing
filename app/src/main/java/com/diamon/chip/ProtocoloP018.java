@@ -1043,90 +1043,52 @@ public class ProtocoloP018 {
     }
 
     public String obtenerVersionDelProgramador() {
-
-       StringBuilder datos = new StringBuilder();
-
         try {
-            // Resetear
+            // Resetear comandos previos
             researComandos();
 
-            
-            // Comando para leer Version
-            usbSerialPort.write(new byte[] {0x6F}, 10); // 0x6F es 21 en hexadecimal
+            // Enviar comando para obtener versión
+            usbSerialPort.write(new byte[] {0x15}, 10); // 0x15 es 21 en decimal
 
-            int size = 1; 
+            // Leer la respuesta (4 bytes esperados)
+            byte[] buffer = new byte[4];
+            int bytesLeidos = usbSerialPort.read(buffer, 100);
 
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        datos.append(String.format("%02X ", buffer[i]));
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
+            if (bytesLeidos != 4) {
+                return "Error: Se esperaban 4 bytes, pero se recibieron " + bytesLeidos;
             }
 
-          
-            researComandos();
-
-            return datos.toString();
+            // Formatear la salida
+            return String.format(
+                    "K128: %02X, K149-A: %02X, K149-B: %02X, K150: %02X",
+                    buffer[0] & 0xFF, buffer[1] & 0xFF, buffer[2] & 0xFF, buffer[3] & 0xFF);
 
         } catch (IOException e) {
-            return "Error al leer Datos " + e.toString();
+            return "Error al obtener la versión del programador: " + e.getMessage();
         }
     }
 
     public String obtenerProtocoloDelProgramador() {
-
-        StringBuilder datos = new StringBuilder();
-
         try {
-            // Resetear
+            // Resetear comandos previos
             researComandos();
 
-            
-            // Comando para leer Version
-            usbSerialPort.write(new byte[] {0x7F}, 10); // 0x7F es 21 en hexadecimal
+            // Enviar comando para obtener protocolo
+            usbSerialPort.write(new byte[] {0x16}, 10); // 0x16 es 22 en decimal
 
-            int size = 4; 
+            // Leer la respuesta (4 bytes esperados)
+            byte[] buffer = new byte[4];
+            int bytesLeidos = usbSerialPort.read(buffer, 100);
 
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        datos.append(String.format("%02X ", buffer[i]));
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
+            if (bytesLeidos != 4) {
+                return "Error: Se esperaban 4 bytes, pero se recibieron " + bytesLeidos;
             }
 
-          
-            researComandos();
-
-            return datos.toString();
+            // Convertir los bytes a una cadena ASCII
+            return new String(buffer, "US-ASCII");
 
         } catch (IOException e) {
-            return "Error al leer Datos " + e.toString();
+            return "Error al obtener el protocolo del programador: " + e.getMessage();
         }
     }
 
