@@ -173,6 +173,14 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
 
+                        texto.setText("" + protocolo.verificarBorradoMemoriaEEPROMPic());
+
+                        // texto.setText("" + protocolo.leerVectorDeDepuracion());
+
+                        // texto.setText("" + protocolo.obtenerProtocoloDelProgramador());
+
+                        // texto.setText("" + protocolo.obtenerVersionDelProgramador());
+
                         // texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
 
                         // texto.setText("" + protocolo.programarEEPROMPic(chipPIC,firware));
@@ -232,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnCalibracion = new Button(this);
         btnCalibracion.setText("Calibracion");
-        btnCalibracion.setOnClickListener(v -> enviarComando("10"));
+        btnCalibracion.setOnClickListener(v -> texto.setText("No implementado"));
 
         Button btnLeerMemoria = new Button(this);
         btnLeerMemoria.setText("Leer Memoria Rom");
@@ -276,43 +284,49 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         Button btnVerificarBorrado = new Button(this);
         btnVerificarBorrado.setText("Verificar si se Borro Memoria del PIC");
-        btnVerificarBorrado.setOnClickListener(v -> enviarComando("16"));
+        btnVerificarBorrado.setOnClickListener(v -> texto.setText("No implementado"));
 
         Button btnChekearBorrarEEPROM = new Button(this);
         btnChekearBorrarEEPROM.setText("Chekear Borrado de EEPROM");
-        btnChekearBorrarEEPROM.setOnClickListener(v -> enviarComando("17"));
+        btnChekearBorrarEEPROM.setOnClickListener(
+                v -> texto.setText("" + protocolo.verificarBorradoMemoriaEEPROMPic()));
 
         Button btnProgramarFuses18F = new Button(this);
         btnProgramarFuses18F.setText("Programar Fuses18F");
-        btnProgramarFuses18F.setOnClickListener(v -> enviarComando("18"));
+        btnProgramarFuses18F.setOnClickListener(
+                v -> texto.setText("" + protocolo.programarFuses18F()));
 
         Button btnDetectarChip = new Button(this);
         btnDetectarChip.setText("Detectar PIC en el Soket");
-        btnDetectarChip.setOnClickListener(v -> enviarComando("19"));
+        btnDetectarChip.setOnClickListener(v -> texto.setText("" + protocolo.detectarPicEnSoket()));
 
         Button btnDetectarChipFuera = new Button(this);
         btnDetectarChipFuera.setText("Detectar PIC fuera del Soket");
-        btnDetectarChipFuera.setOnClickListener(v -> enviarComando("20"));
+        btnDetectarChipFuera.setOnClickListener(
+                v -> texto.setText("" + protocolo.detectarPicFueraDelSoket()));
 
         Button btnVersionProgramdor = new Button(this);
         btnVersionProgramdor.setText("Obtener Version del Programador");
-        btnVersionProgramdor.setOnClickListener(v -> enviarComando("21"));
+        btnVersionProgramdor.setOnClickListener(
+                v -> texto.setText("" + protocolo.obtenerVersionDelProgramador()));
 
         Button btnObtenerProtocolo = new Button(this);
         btnObtenerProtocolo.setText("Obtener Protocolo del K150");
-        btnObtenerProtocolo.setOnClickListener(v -> enviarComando("22"));
+        btnObtenerProtocolo.setOnClickListener(
+                v -> texto.setText("" + protocolo.obtenerProtocoloDelProgramador()));
 
         Button btnDepuracionPrograma = new Button(this);
-        btnDepuracionPrograma.setText("Depuracion del Programa");
-        btnDepuracionPrograma.setOnClickListener(v -> enviarComando("23"));
+        btnDepuracionPrograma.setText("Programar Vector de Depuración");
+        btnDepuracionPrograma.setOnClickListener(v -> texto.setText("No implementado"));
 
         Button btnLeetDebug = new Button(this);
-        btnLeetDebug.setText("Depuracion de Lectura");
-        btnLeetDebug.setOnClickListener(v -> enviarComando("24"));
+        btnLeetDebug.setText("Leer Vector de Depuración");
+        btnLeetDebug.setOnClickListener(
+                v -> texto.setText("" + protocolo.leerVectorDeDepuracion()));
 
         Button btnDatosCalibracion10F = new Button(this);
         btnDatosCalibracion10F.setText("Datos de Calibracion 10F");
-        btnDatosCalibracion10F.setOnClickListener(v -> enviarComando("25"));
+        btnDatosCalibracion10F.setOnClickListener(v -> texto.setText("No implementado"));
 
         btnSelectHex.setText("Seleccionar Archivo HEX");
 
@@ -1051,31 +1065,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         } catch (IOException e) {
 
             Toast.makeText(this, "Error al conectar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void enviarComando(String comando) {
-        if (usbSerialPort == null) {
-            return;
-        }
-        try {
-            byte[] data;
-
-            if (comando.equals("P")) {
-
-                data = comando.getBytes(StandardCharsets.US_ASCII);
-            } else {
-                data = new byte[comando.length()];
-                for (int i = 0; i < comando.length(); i++) {
-                    data[i] = Byte.parseByte(comando);
-                }
-            }
-
-            usbSerialPort.write(data, 100); // Enviar datos
-
-        } catch (NumberFormatException e) {
-
-        } catch (IOException e) {
         }
     }
 
