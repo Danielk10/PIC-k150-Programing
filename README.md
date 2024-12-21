@@ -27,6 +27,10 @@ El proyecto está basado en las siguientes librerías y recursos:
   
 - **picprogrammer**: El proyecto original que implementa la lógica de programación basada en el protocolo P018. El código fuente puede ser consultado [aquí](https://github.com/almost/picprogrammer.git).
 
+- **AndroidIDE**: El proyecto fue desarrollado íntegramente en **AndroidIDE**, una potente plataforma para desarrollar aplicaciones Android directamente desde un dispositivo Android. 
+  - Repositorio oficial: [https://github.com/AndroidIDEOfficial/AndroidIDE.git](https://github.com/AndroidIDEOfficial/AndroidIDE.git)
+  - Página oficial: [https://m.androidide.com/](https://m.androidide.com/)
+
 ## Enlaces útiles
 
 - **KITSRUS - Página oficial**: [https://www.kitsrus.com](https://www.kitsrus.com)
@@ -35,9 +39,10 @@ El proyecto está basado en las siguientes librerías y recursos:
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/Danielk10/pic-k150-programming.git
+   git clone https://github.com/Danielk10/PIC-k150-Programing.git
 
-2. Abre el proyecto en Android Studio.
+
+2. Abre el proyecto en Android Studio o AndroidIDE.
 
 3. Conecta tu dispositivo Android a tu PC y habilita la depuración USB.
 
@@ -51,7 +56,7 @@ El proyecto está basado en las siguientes librerías y recursos:
 
 - **Desarrollador Principal**: Danielk10
   
-- **Contribuyentes**: Agradecimientos a los colaboradores de la librería **usb-serial-for-android** y a los desarrolladores del proyecto **picprogrammer** por proporcionar la base para este proyecto.
+- **Contribuyentes**: Agradecimientos a los colaboradores de las librerías **usb-serial-for-android** y **picprogrammer**, y al equipo detrás de **AndroidIDE** por proporcionar las herramientas necesarias para el desarrollo del proyecto.
 
 - **Protocolo P018**: Gracias a **KITSRUS** por el desarrollo y documentación del protocolo P018 que permite la interoperabilidad de los dispositivos de programación PIC.
 
@@ -62,5 +67,3 @@ Las contribuciones son bienvenidas. Si deseas mejorar la aplicación o agregar n
 ## Licencia
 
 Este proyecto está licenciado bajo la **Licencia Apache 2.0**. Para más detalles, consulta el archivo `LICENSE`.
-
-
