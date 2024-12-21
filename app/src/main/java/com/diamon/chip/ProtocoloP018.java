@@ -1042,53 +1042,91 @@ public class ProtocoloP018 {
         }
     }
 
-    public boolean obtenerVersionDelProgramador() {
+    public String obtenerVersionDelProgramador() {
 
-        if (usbSerialPort == null) {
-
-            return false;
-        }
+       StringBuilder datos = new StringBuilder();
 
         try {
+            // Resetear
+            researComandos();
 
-            byte[] data = {21};
+            
+            // Comando para leer Version
+            usbSerialPort.write(new byte[] {0x6F}, 10); // 0x6F es 21 en hexadecimal
 
-            usbSerialPort.write(data, 100);
+            int size = 1; 
 
-            return true;
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
 
-        } catch (NumberFormatException e) {
+            int bytesLeidos = 0;
 
-            return false;
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        datos.append(String.format("%02X ", buffer[i]));
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+
+          
+            researComandos();
+
+            return datos.toString();
 
         } catch (IOException e) {
-
-            return false;
+            return "Error al leer Datos " + e.toString();
         }
     }
 
-    public boolean obtenerProtocoloDelProgramador() {
+    public String obtenerProtocoloDelProgramador() {
 
-        if (usbSerialPort == null) {
-
-            return false;
-        }
+        StringBuilder datos = new StringBuilder();
 
         try {
+            // Resetear
+            researComandos();
 
-            byte[] data = {22};
+            
+            // Comando para leer Version
+            usbSerialPort.write(new byte[] {0x7F}, 10); // 0x7F es 21 en hexadecimal
 
-            usbSerialPort.write(data, 100);
+            int size = 4; 
 
-            return true;
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
 
-        } catch (NumberFormatException e) {
+            int bytesLeidos = 0;
 
-            return false;
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        datos.append(String.format("%02X ", buffer[i]));
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+
+          
+            researComandos();
+
+            return datos.toString();
 
         } catch (IOException e) {
-
-            return false;
+            return "Error al leer Datos " + e.toString();
         }
     }
 
