@@ -686,7 +686,8 @@ public class ProtocoloP018 {
             activarVoltajesDeProgramacion();
 
             // Enviar el comando para leer ROM (11)
-            usbSerialPort.write(new byte[] {0x0B}, 10); // Comando 11 en hexadecimal (0x0B)
+            usbSerialPort.write(
+                    new byte[] {Byte.parseByte("11")}, 10); // Comando 11 en hexadecimal (0x0B)
 
             // Leer los datos en múltiples iteraciones
             while (bytesLeidos < romSize) {
@@ -732,7 +733,8 @@ public class ProtocoloP018 {
             activarVoltajesDeProgramacion();
 
             // Enviar el comando para leer ROM (12)
-            usbSerialPort.write(new byte[] {0x0C}, 10); // Comando 12 en hexadecimal (0x0C)
+            usbSerialPort.write(
+                    new byte[] {Byte.parseByte("12")}, 10); // Comando 12 en hexadecimal (0x0C)
 
             // Leer los datos en múltiples iteraciones
             while (bytesLeidos < romSize) {
@@ -774,7 +776,7 @@ public class ProtocoloP018 {
             activarVoltajesDeProgramacion();
 
             // Comando para leer la configuración
-            usbSerialPort.write(new byte[] {0x0D}, 10); // 0x0D es 13 en hexadecimal
+            usbSerialPort.write(new byte[] {Byte.parseByte("13")}, 10); // 0x0D es 13 en hexadecimal
 
             int size = 26; // Convertir palabras a bytes
 
@@ -828,13 +830,15 @@ public class ProtocoloP018 {
             activarVoltajesDeProgramacion();
 
             // Comando para leer la configuración
-            usbSerialPort.write(new byte[] {0x0E}, 10); // 0x0E es 14 en hexadecimal
+            usbSerialPort.write(new byte[] {Byte.parseByte("14")}, 10); // 0x0E es 14 en hexadecimal
 
             int size = 2; // Convertir palabras a bytes
 
             byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
 
             int bytesLeidos = 0;
+
+            byte[] bytes = new byte[size];
 
             // Leer los datos en múltiples iteraciones
             while (bytesLeidos < size) {
@@ -843,6 +847,8 @@ public class ProtocoloP018 {
                     for (int i = 0; i < leidos; i++) {
 
                         datos.append(String.format("%02X ", buffer[i]));
+
+                        bytes[i] = buffer[i];
                     }
                     bytesLeidos += leidos;
 
@@ -857,16 +863,14 @@ public class ProtocoloP018 {
 
             researComandos();
 
-            return datos.toString();
+            return new String(bytes, "US-ASCII") + " " + datos.toString();
 
         } catch (IOException e) {
             return "Error al leer Datos de calibración: " + e.toString();
         }
     }
 
-    public boolean borrarMemoriaPic() {
-
-        StringBuilder datos = new StringBuilder();
+    public String borrarMemoriaPic() {
 
         try {
             // Resetear y activar los voltajes de programación
@@ -875,7 +879,7 @@ public class ProtocoloP018 {
             activarVoltajesDeProgramacion();
 
             // Comando para leer la configuración
-            usbSerialPort.write(new byte[] {0x0F}, 10); // 0x0F es 15 en hexadecimal
+            usbSerialPort.write(new byte[] {Byte.parseByte("14")}, 10);
 
             int size = 1; // Convertir palabras a bytes
 
@@ -883,13 +887,15 @@ public class ProtocoloP018 {
 
             int bytesLeidos = 0;
 
+            byte[] bytes = new byte[size];
+
             // Leer los datos en múltiples iteraciones
             while (bytesLeidos < size) {
                 int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
                 if (leidos > 0) {
                     for (int i = 0; i < leidos; i++) {
 
-                        datos.append(String.format("%02X ", buffer[i]));
+                        bytes[i] = buffer[i];
                     }
                     bytesLeidos += leidos;
 
@@ -904,164 +910,252 @@ public class ProtocoloP018 {
 
             researComandos();
 
-            if (datos.toString().equals("Y")) {
+            if (new String(bytes, "US-ASCII").equals("Y")) {
 
-                return true;
+                return "PIC Borrado correctamente";
 
             } else {
-                return false;
+
+                return "Error al Borrar PIC";
             }
 
         } catch (IOException e) {
-            return false;
+            return "Error al Borrar " + e.toString();
         }
     }
 
-    public boolean verificarBorradoMemoriaROMPic() {
+    public String verificarBorradoMemoriaEEPROMPic() {
 
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
-        try {
-
-            byte[] data = {16};
-
-            usbSerialPort.write(data, 100);
-
-            return true;
-
-        } catch (NumberFormatException e) {
-
-            return false;
-
-        } catch (IOException e) {
-
-            return false;
-        }
-    }
-
-    public boolean verificarBorradoMemoriaEEPROMPic() {
-
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
-        try {
-
-            byte[] data = {17};
-
-            usbSerialPort.write(data, 100);
-
-            return true;
-
-        } catch (NumberFormatException e) {
-
-            return false;
-
-        } catch (IOException e) {
-
-            return false;
-        }
-    }
-
-    public boolean programarFuses18F() {
-
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
-        try {
-
-            byte[] data = {18};
-
-            usbSerialPort.write(data, 100);
-
-            return true;
-
-        } catch (NumberFormatException e) {
-
-            return false;
-
-        } catch (IOException e) {
-
-            return false;
-        }
-    }
-
-    public boolean detectarPicEnSoket() {
-
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
-        try {
-
-            byte[] data = {19};
-
-            usbSerialPort.write(data, 100);
-
-            return true;
-
-        } catch (NumberFormatException e) {
-
-            return false;
-
-        } catch (IOException e) {
-
-            return false;
-        }
-    }
-
-    public boolean detectarPicFueraDelSoket() {
-
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
-        try {
-
-            byte[] data = {20};
-
-            usbSerialPort.write(data, 100);
-
-            return true;
-
-        } catch (NumberFormatException e) {
-
-            return false;
-
-        } catch (IOException e) {
-
-            return false;
-        }
-    }
-
-    public String obtenerVersionDelProgramador() {
         try {
             // Resetear comandos previos
             researComandos();
 
             // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] {0x15}, 10); // 0x15 es 21 en decimal
+            usbSerialPort.write(new byte[] {Byte.parseByte("16")}, 10); // 0x10 es 16 en decimal
 
-            // Leer la respuesta (4 bytes esperados)
-            byte[] buffer = new byte[4];
-            int bytesLeidos = usbSerialPort.read(buffer, 100);
+            int size = 1; // Convertir palabras a bytes
 
-            if (bytesLeidos != 4) {
-                return "Error: Se esperaban 4 bytes, pero se recibieron " + bytesLeidos;
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+
+            int bytesLeidos = 0;
+
+            byte[] bytes = new byte[size];
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        bytes[i] = buffer[i];
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+            researComandos();
+
+            if (new String(bytes, "US-ASCII").equals("Y")) {
+
+                return "La Memoria EEPROM se encuetra Vacia";
+
+            } else if (new String(bytes, "US-ASCII").equals("N")) {
+
+                return "La Memoria EEPROM contine datos";
+
+            } else {
+
+                return "Error al verificar memoria EEPROM";
             }
 
-            // Formatear la salida
-            return String.format(
-                    "K128: %02X, K149-A: %02X, K149-B: %02X, K150: %02X",
-                    buffer[0] & 0xFF, buffer[1] & 0xFF, buffer[2] & 0xFF, buffer[3] & 0xFF);
+        } catch (IOException e) {
+
+            return "Error al verificar memoria EEPROM: " + e.getMessage();
+        }
+    }
+
+    public String programarFuses18F() {
+
+        try {
+            // Resetear comandos previos
+            researComandos();
+
+            // Enviar comando para obtener versión
+            usbSerialPort.write(new byte[] {Byte.parseByte("17")}, 10); // 0x10 es 16 en decimal
+
+            int size = 1; // Convertir palabras a bytes
+
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+
+            int bytesLeidos = 0;
+
+            byte[] bytes = new byte[size];
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        bytes[i] = buffer[i];
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+            researComandos();
+
+            if (new String(bytes, "US-ASCII").equals("Y")) {
+
+                return "Fuses programdos correctamente";
+
+            } else if (new String(bytes, "US-ASCII").equals("B")) {
+
+                return "Error al programar fuses B";
+
+            } else {
+
+                return "Error al programar fuses";
+            }
+
+        } catch (IOException e) {
+
+            return "Error al programar fuses: " + e.getMessage();
+        }
+    }
+
+    public String detectarPicEnSoket() {
+
+        StringBuffer datos = new StringBuffer();
+
+        try {
+            // Resetear comandos previos
+            researComandos();
+
+            // Enviar comando para obtener versión
+            usbSerialPort.write(new byte[] {Byte.parseByte("18")}, 10); // 0x10 es 16 en decimal
+
+            byte[] response = new byte[1];
+
+            if (leerRespuesta(response, 'A', "No se recibio la respuesta esperada")) {
+
+                datos.append("El PIC esta dentro del Soket");
+            }
+
+            if (leerRespuesta(response, 'Y', "No se recibio la respuesta esperada")) {
+
+                researComandos();
+
+                return datos.toString();
+
+            } else {
+
+                enviarComando("1");
+
+                return "El PIC esta fuera del Socket";
+            }
+
+        } catch (IOException e) {
+
+            return "Error al detectar PIC: " + e.getMessage();
+        }
+    }
+
+    public String detectarPicFueraDelSoket() {
+
+        StringBuffer datos = new StringBuffer();
+
+        try {
+            // Resetear comandos previos
+            researComandos();
+
+            // Enviar comando para obtener versión
+            usbSerialPort.write(new byte[] {Byte.parseByte("19")}, 10); // 0x10 es 16 en decimal
+
+            byte[] response = new byte[1];
+
+            if (leerRespuesta(response, 'A', "No se recibio la respuesta esperada")) {
+
+                datos.append("El PIC esta fuera del Soket");
+            }
+
+            if (leerRespuesta(response, 'Y', "No se recibio la respuesta esperada")) {
+
+                researComandos();
+
+                return datos.toString();
+
+            } else {
+
+                return "El PIC  esta dentro del Soket";
+            }
+
+        } catch (IOException e) {
+
+            return "Error al detectar PIC: " + e.getMessage();
+        }
+    }
+
+    public String obtenerVersionDelProgramador() {
+
+        StringBuffer datos = new StringBuffer();
+
+        try {
+            // Resetear comandos previos
+            researComandos();
+
+            // Enviar comando para obtener versión
+            usbSerialPort.write(new byte[] {Byte.parseByte("20")}, 10); // 0x15 es 21 en decimal
+
+            int size = 1; // Convertir palabras a bytes
+
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+
+            int bytesLeidos = 0;
+
+            byte[] bytes = new byte[size];
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        bytes[i] = buffer[i];
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+            researComandos();
+
+            if (bytes[0] == Byte.parseByte("0")) {
+
+                datos.append(String.format("K128: %02X", bytes[0] & 0xFF));
+
+            } else if (bytes[0] == Byte.parseByte("1")) {
+
+                datos.append(String.format("K149-A: %02X", bytes[0] & 0xFF));
+
+            } else if (bytes[0] == Byte.parseByte("2")) {
+
+                datos.append(String.format("K149-B: %02X", bytes[0] & 0xFF));
+
+            } else if (bytes[0] == Byte.parseByte("3")) {
+
+                datos.append(String.format("K150: %02X", bytes[0] & 0xFF));
+            }
+
+            return datos.toString();
 
         } catch (IOException e) {
             return "Error al obtener la versión del programador: " + e.getMessage();
@@ -1069,78 +1163,215 @@ public class ProtocoloP018 {
     }
 
     public String obtenerProtocoloDelProgramador() {
+
+        StringBuffer datos = new StringBuffer();
+
         try {
             // Resetear comandos previos
             researComandos();
 
             // Enviar comando para obtener protocolo
-            usbSerialPort.write(new byte[] {0x16}, 10); // 0x16 es 22 en decimal
+            usbSerialPort.write(new byte[] {Byte.parseByte("21")}, 10); // 0x16 es 22 en decimal
 
-            // Leer la respuesta (4 bytes esperados)
-            byte[] buffer = new byte[4];
-            int bytesLeidos = usbSerialPort.read(buffer, 100);
+            int size = 4; // Convertir palabras a bytes
 
-            if (bytesLeidos != 4) {
-                return "Error: Se esperaban 4 bytes, pero se recibieron " + bytesLeidos;
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+
+            int bytesLeidos = 0;
+
+            byte[] bytes = new byte[size];
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        bytes[i] = buffer[i];
+
+                        datos.append(String.format("%02X ", buffer[i]));
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
             }
 
+            researComandos();
+
             // Convertir los bytes a una cadena ASCII
-            return new String(buffer, "US-ASCII");
+            return new String(bytes, "US-ASCII") + " " + datos.toString();
 
         } catch (IOException e) {
             return "Error al obtener el protocolo del programador: " + e.getMessage();
         }
     }
 
-    public boolean vectorDepuracionDelPrograma() {
-
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
+    public boolean programarVectorDeDepuracion(int address) {
         try {
+            // Comando 22 (0x16)
+            byte cmd = 0x16;
 
-            byte[] data = {23};
+            // Dividir la dirección en bytes
+            byte[] BE4_address = ByteBuffer.allocate(4).putInt(address).array();
 
-            usbSerialPort.write(data, 100);
+            // Enviar comando
+            usbSerialPort.write(new byte[] {cmd}, 10);
 
-            return true;
+            // Enviar los 3 bytes de la dirección
+            usbSerialPort.write(new byte[] {BE4_address[1], BE4_address[2], BE4_address[3]}, 10);
 
-        } catch (NumberFormatException e) {
+            // Leer respuesta (1 byte)
+            byte[] response = new byte[1];
+            usbSerialPort.read(response, 100);
 
-            return false;
+            // Validar la respuesta
+            if (response[0] == 'Y') {
+                return true;
+            } else if (response[0] == 'N') {
+                return false;
+            } else {
 
+                return false;
+            }
         } catch (IOException e) {
-
-            return false;
+            throw new RuntimeException(
+                    "Error en programarVectorDeDepuracion(): " + e.getMessage(), e);
         }
     }
 
-    public boolean vectorDepuracionDeLectura() {
-
-        if (usbSerialPort == null) {
-
-            return false;
-        }
-
+    public String programarVectorDeDepuracion(int highAddress, int midAddress, int lowAddress) {
         try {
+            // Resetear comandos previos
+            researComandos();
 
-            byte[] data = {24};
+            // Enviar comando (22 en decimal o 0x16 en hexadecimal)
+            usbSerialPort.write(new byte[] {0x16}, 10);
 
-            usbSerialPort.write(data, 100);
+            // Enviar los bytes de dirección en orden
+            usbSerialPort.write(
+                    new byte[] {(byte) highAddress, (byte) midAddress, (byte) lowAddress}, 10);
 
-            return true;
+            // Leer la respuesta (1 byte)
+            byte[] response = new byte[1];
+            usbSerialPort.read(response, 100);
 
-        } catch (NumberFormatException e) {
-
-            return false;
-
+            // Validar la respuesta
+            if (response[0] == 'Y') {
+                return "Vector de depuración programado correctamente.";
+            } else if (response[0] == 'N') {
+                return "Fallo al programar el vector de depuración.";
+            } else {
+                return "Respuesta inesperada: " + String.format("%02X", response[0]);
+            }
         } catch (IOException e) {
-
-            return false;
+            return "Error al programar el vector de depuración: " + e.getMessage();
         }
     }
+
+    public int leerVectorDeDepuracion() {
+        try {
+            // Comando 23 (0x17)
+            byte cmd = 0x17;
+
+            // Enviar comando
+            usbSerialPort.write(new byte[] {cmd}, 10);
+
+            // Leer respuesta (4 bytes)
+            byte[] response = new byte[4];
+            usbSerialPort.read(response, 100);
+
+            // Validar el primer byte
+            if (response[0] != (byte) 0xEF) {
+                return 0;
+            }
+
+            // Combinar los siguientes 3 bytes para obtener la dirección
+            ByteBuffer buffer = ByteBuffer.allocate(4).put((byte) 0x00).put(response, 1, 3);
+            buffer.flip();
+            return buffer.getInt();
+        } catch (IOException e) {
+            throw new RuntimeException("Error en leerVectorDeDepuracion(): " + e.getMessage(), e);
+        }
+    }
+
+    public String leerVectorDeDepuracion(int dato) {
+        try {
+            // Resetear comandos previos
+            researComandos();
+
+            // Enviar comando (23 en decimal o 0x17 en hexadecimal)
+            usbSerialPort.write(new byte[] {0x17}, 10);
+
+            // Leer la respuesta (4 bytes)
+            byte[] response = new byte[4];
+            usbSerialPort.read(response, 100);
+
+            // Verificar si el primer byte es 0xEF y extraer la dirección
+            if (response[0] == (byte) 0xEF) {
+                int highAddress = response[1] & 0xFF;
+                int midAddress = response[2] & 0xFF;
+                int lowAddress = response[3] & 0xFF;
+
+                return String.format(
+                        "Vector de depuración leído: 0x%02X%02X%02X",
+                        highAddress, midAddress, lowAddress);
+            } else {
+                return "Respuesta inesperada: " + String.format("%02X", response[0]);
+            }
+        } catch (IOException e) {
+            return "Error al leer el vector de depuración: " + e.getMessage();
+        }
+    }
+
+    /* public String leerVectorDeDepuracion() {
+
+        StringBuffer datos = new StringBuffer();
+
+        try {
+            // Resetear comandos previos
+            researComandos();
+
+            // Enviar comando para obtener protocolo
+            usbSerialPort.write(new byte[] {0x18}, 10); // 0x18 es 24 en decimal
+
+            int size = 4; // Convertir palabras a bytes
+
+            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
+
+            int bytesLeidos = 0;
+
+            byte[] bytes = new byte[size];
+
+            // Leer los datos en múltiples iteraciones
+            while (bytesLeidos < size) {
+                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+                if (leidos > 0) {
+                    for (int i = 0; i < leidos; i++) {
+
+                        bytes[i] = buffer[i];
+
+                        datos.append(String.format("%02X ", buffer[i]));
+                    }
+                    bytesLeidos += leidos;
+
+                } else {
+                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
+                    break;
+                }
+            }
+
+            researComandos();
+
+            // Convertir los bytes a una cadena ASCII
+            return new String(bytes, "US-ASCII") + " " + datos.toString();
+
+        } catch (IOException e) {
+            return "Error al obtener el protocolo del programador: " + e.getMessage();
+        }
+    }*/
 
     public boolean datosDeCalibracionPics10F() {
 
