@@ -554,9 +554,6 @@ public class ProtocoloP018 {
             return "Error: Los datos de la EEPROM deben ser múltiplos de 2 bytes.";
         }
 
-        // Incrementar el byte count en 2 antes de enviarlo, como lo requiere el protocolo
-        byteCount += 2;
-
         // Preparar mensaje con la cantidad de bytes
         byte[] byteCountMessage = ByteBuffer.allocate(2).putShort((short) byteCount).array();
 
@@ -668,16 +665,23 @@ public class ProtocoloP018 {
             if (tipoNucleo == 16) {
                 commandBody.write(id);
                 for (int fuse : fuses) {
-                    commandBody.write(ByteBuffer.allocate(2).putShort((short) fuse).array());
+                    commandBody.write(
+                            ByteBuffer.allocate(2)
+                                    .order(ByteOrder.LITTLE_ENDIAN)
+                                    .putShort((short) fuse)
+                                    .array());
                 }
             } else { // tipoNucleo == 14
                 commandBody.write(id);
                 commandBody.write(new byte[] {'F', 'F', 'F', 'F'}); // 'FFFF' en ASCII
-                commandBody.write(ByteBuffer.allocate(2).putShort((short) fuses[0]).array());
                 commandBody.write(
-                        new byte[] {(byte) 0xFF, (byte) 0xFF},
-                        0,
-                        6 * 2); // Relleno de 6 pares de bytes 0xFF
+                        ByteBuffer.allocate(2)
+                                .order(ByteOrder.LITTLE_ENDIAN)
+                                .putShort((short) fuses[0])
+                                .array());
+                for (int i = 0; i < 6; i++) {
+                    commandBody.write(new byte[] {(byte) 0xFF, (byte) 0xFF});
+                }
             }
 
             // Enviar comando preparado
@@ -691,17 +695,32 @@ public class ProtocoloP018 {
             desactivarVoltajesDeProgramacion();
             researComandos();
 
-            // Validar respuesta
+            /*// Validar respuesta
             if ((tipoNucleo == 16 && response[0] == 'Y')
                     || (tipoNucleo == 14 && response[0] == 0x00)) {
                 return "ID y FUSES programados exitosamente.";
             } else if (response[0] == (byte) 0xFF) {
                 return "Error: Falló la programación de ID y FUSES.";
             } else {
+                return "Error: Respuesta inesperada del dispositivo."+new String(response);
+            }*/
+
+            // Validar respuesta
+            if (response[0] == 'Y') {
+
+                return "ID y FUSES programados exitosamente.";
+
+            } else if (response[0] == 'N') {
+
+                return "Error: Falló la programación de ID y FUSES.";
+            } else {
                 return "Error: Respuesta inesperada del dispositivo.";
             }
+
         } catch (IOException e) {
             return "Error: Ocurrió un error de comunicación durante la programación.";
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
         }
     }
 
