@@ -25,7 +25,7 @@ El proyecto está basado en las siguientes librerías y recursos:
 
 - **usb-serial-for-android**: Esta librería se utiliza para establecer la comunicación serial entre el dispositivo Android y el programador PIC k150 a través de USB. Puedes encontrar el repositorio oficial [aquí](https://github.com/mik3y/usb-serial-for-android).
   
-- **picprogrammer**: El proyecto original que implementa la lógica de programación basada en el protocolo P018. El código fuente puede ser consultado [aquí](https://github.com/juanpablov/picprogrammer).
+- **picprogrammer**: El proyecto original que implementa la lógica de programación basada en el protocolo P018. El código fuente puede ser consultado [aquí](https://github.com/almost/picprogrammer.git).
 
 ## Enlaces útiles
 
