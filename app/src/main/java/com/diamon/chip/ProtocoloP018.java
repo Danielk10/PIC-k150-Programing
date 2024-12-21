@@ -465,75 +465,6 @@ public class ProtocoloP018 {
         }
     }
 
-    /* public String programarROMPic(InformacionPic chipPIC, String datos) {
-
-        HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
-
-        hexProsesado.iniciarProcesamientoDatos();
-
-        byte[] romData = hexProsesado.obtenerBytesHexROMPocesado();
-
-        int wordCount = romData.length / 2; // Cantidad de palabras (2 bytes por palabra)
-
-        // Verificar que no exceda el límite
-        if (wordCount > chipPIC.getTamanoROM()) {
-
-            return "Error al programar";
-        }
-
-        // Verificar que el tamaño sea múltiplo de 32 bytes
-        if ((wordCount * 2) % 32 != 0) {
-            return "Error al programar";
-        }
-
-        byte[] wordCountMessage = ByteBuffer.allocate(2).putShort((short) wordCount).array();
-
-        String res1 = new String();
-
-        try {
-
-            byte[] res = new byte[1];
-
-            researComandos();
-
-            activarVoltajesDeProgramacion();
-
-            usbSerialPort.write(new byte[] {0x07}, 10);
-
-            usbSerialPort.write(wordCountMessage, 100);
-
-            usbSerialPort.read(res, 100);
-
-            res1 = new String(new byte[] {res[0]});
-
-            // Enviar datos en bloques de 32 bytes
-            for (int i = 0; i < romData.length; i += 32) {
-                // Extraer un bloque de 32 bytes
-                byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
-
-                usbSerialPort.write(chunk, 10);
-
-                usbSerialPort.read(res, 100);
-
-                res1 = new String(new byte[] {res[0]});
-            }
-
-            usbSerialPort.read(res, 100);
-
-            res1 = new String(new byte[] {res[0]});
-
-            desactivarVoltajesDeProgramacion();
-
-            researComandos();
-
-        } catch (IOException e) {
-
-            return "Error al programar";
-        }
-
-        return "Rom Programada " + res1;
-    }*/
-
     public String programarEEPROMPic(InformacionPic chipPIC, String datos) {
 
         HexFileListo hexProsesado = new HexFileListo(datos, chipPIC);
@@ -694,16 +625,6 @@ public class ProtocoloP018 {
             // Desactivar voltajes y limpiar comandos
             desactivarVoltajesDeProgramacion();
             researComandos();
-
-            /*// Validar respuesta
-            if ((tipoNucleo == 16 && response[0] == 'Y')
-                    || (tipoNucleo == 14 && response[0] == 0x00)) {
-                return "ID y FUSES programados exitosamente.";
-            } else if (response[0] == (byte) 0xFF) {
-                return "Error: Falló la programación de ID y FUSES.";
-            } else {
-                return "Error: Respuesta inesperada del dispositivo."+new String(response);
-            }*/
 
             // Validar respuesta
             if (response[0] == 'Y') {
