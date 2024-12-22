@@ -4,29 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/PIC-k150-Programing/app/src/main/java/com/diamon/pic/MainActivity.java",
       "selection": {
         "end": {
-          "column": 36,
-          "index": 14605,
-          "line": 461
-        },
-        "start": {
-          "column": 36,
-          "index": 14605,
-          "line": 461
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/PIC-k150-Programing/app/src/main/java/com/diamon/chip/ProtocoloP018.java",
-      "selection": {
-        "end": {
           "column": 0,
-          "index": 43538,
-          "line": 1400
+          "index": 0,
+          "line": 0
         },
         "start": {
           "column": 0,
-          "index": 43538,
-          "line": 1400
+          "index": 0,
+          "line": 0
         }
       }
     }
