@@ -32,7 +32,6 @@ import androidx.core.app.ActivityCompat;
 import com.diamon.chip.InformacionPic;
 import com.diamon.chip.ProtocoloP018;
 import com.diamon.datos.ChipinfoReader;
-import com.diamon.datos.HexFileListo;
 import com.diamon.utilidades.HexFileUtils;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -43,10 +42,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -77,8 +73,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private TextView texto;
 
-    private TextView textoPic;
-
     private Thread hilo;
 
     private boolean conectado;
@@ -88,12 +82,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private Button btnSelectHex;
 
     private Button btnProgramPic;
-
-    private StringBuffer datos;
-
-    private String comandoEviado = "";
-
-    private String respuesta = "";
 
     private String firware;
 
@@ -106,8 +94,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private ProtocoloP018 protocolo;
 
     private TextView test;
-
-    // Pruebas
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -122,10 +108,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             for (UsbSerialDriver driver : drivers) {
                                 if (driver.getDevice().equals(device)) {
                                     connectToDevice(driver);
-                                    protocolo =
-                                            new ProtocoloP018(
-                                                    getApplicationContext(), usbSerialPort);
-                                    texto.setText("" + protocolo.iniciarProtocolo());
 
                                     break;
                                 }
@@ -149,8 +131,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         texto = new TextView(this);
 
-        textoPic = new TextView(this);
-
         informacionPic = new TextView(this);
 
         test = new TextView(this);
@@ -161,86 +141,87 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         ScrollView scrollView = new ScrollView(this);
 
-        Button btnInicio = new Button(this);
-        btnInicio.setText("Boton inicio");
-        btnInicio.setOnClickListener(v -> protocolo.esperarInicioDeNuevoComando());
-
-        Button btnResearComandos = new Button(this);
-        btnResearComandos.setText("Resetear Comandos");
-        btnResearComandos.setOnClickListener(
+        Button btnActivarVoltaje = new Button(this);
+        btnActivarVoltaje.setText("Activar voltajes de Programación");
+        btnActivarVoltaje.setOnClickListener(
                 new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
 
-                        texto.setText("" + protocolo.verificarBorradoMemoriaEEPROMPic());
+                        if (protocolo != null) {
 
-                        // texto.setText("" + protocolo.leerVectorDeDepuracion());
-
-                        // texto.setText("" + protocolo.obtenerProtocoloDelProgramador());
-
-                        // texto.setText("" + protocolo.obtenerVersionDelProgramador());
-
-                        // texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
-
-                        // texto.setText("" + protocolo.programarEEPROMPic(chipPIC,firware));
-
-                        // texto.setText("" + protocolo.leerCalibracionPic());
-
-                        // texto.setText("" + protocolo.programarROMPic(chipPIC, firware));
-
-                        // texto.setText("Hola " + protocolo.leerConfiguracionPic());
-
-                        // texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
-
-                        // texto.setText("Hola "+protocolo.borrarMemoriaPic());
-
+                            texto.setText("" + protocolo.activarVoltajesDeProgramacion());
+                        }
                     }
                 });
-
-        Button btnHacerEco = new Button(this);
-        btnHacerEco.setText("Hacer Eco");
-        btnHacerEco.setOnClickListener(v -> texto.setText("" + protocolo.hacerEco()));
-
-        Button btnInciarVaribles = new Button(this);
-        btnInciarVaribles.setText("Iniciar Variables de Programación");
-        btnInciarVaribles.setOnClickListener(
-                v -> texto.setText("" + protocolo.iniciarVariablesDeProgramacion(chipPIC)));
-
-        Button btnActivarVoltaje = new Button(this);
-        btnActivarVoltaje.setText("Activar voltajes de Programación");
-        btnActivarVoltaje.setOnClickListener(
-                v -> texto.setText("" + protocolo.activarVoltajesDeProgramacion()));
 
         Button btnDesactivarVoltaje = new Button(this);
         btnDesactivarVoltaje.setText("Desactivar voltajes de Programación");
         btnDesactivarVoltaje.setOnClickListener(
-                v -> texto.setText("" + protocolo.desactivarVoltajesDeProgramacion()));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.desactivarVoltajesDeProgramacion());
+                        }
+                    }
+                });
 
         Button btnReiniciaVoltaje = new Button(this);
         btnReiniciaVoltaje.setText("Reinicia voltajes de Programación");
         btnReiniciaVoltaje.setOnClickListener(
-                v -> texto.setText("" + protocolo.reiniciarVoltajesDeProgramacion()));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.reiniciarVoltajesDeProgramacion());
+                        }
+                    }
+                });
 
         btnProgramPic = new Button(this);
-        btnProgramPic.setText("Programar ROM");
+        btnProgramPic.setText("Programar ROM del PIC");
         btnProgramPic.setEnabled(false);
         btnProgramPic.setOnClickListener(
-                v -> texto.setText("" + protocolo.programarROMPic(chipPIC, firware)));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.programarROMPic(chipPIC, firware));
+                        }
+                    }
+                });
 
         Button btnProgramEEPRON = new Button(this);
-        btnProgramEEPRON.setText("Programar EEPROM");
+        btnProgramEEPRON.setText("Programar EEPROM del PIC");
         btnProgramEEPRON.setOnClickListener(
-                v -> texto.setText("" + protocolo.programarEEPROMPic(chipPIC, firware)));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.programarEEPROMPic(chipPIC, firware));
+                        }
+                    }
+                });
 
         Button btnProgramarIDFuses = new Button(this);
-        btnProgramarIDFuses.setText("Programar ID y Fuses");
+        btnProgramarIDFuses.setText("Programar ID y Fuses del PIC");
         btnProgramarIDFuses.setOnClickListener(
-                v -> texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware)));
+                new OnClickListener() {
 
-        Button btnCalibracion = new Button(this);
-        btnCalibracion.setText("Calibracion");
-        btnCalibracion.setOnClickListener(v -> texto.setText("No implementado"));
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
+                        }
+                    }
+                });
 
         Button btnLeerMemoria = new Button(this);
         btnLeerMemoria.setText("Leer Memoria Rom");
@@ -251,7 +232,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
 
-                        texto.setText("" + protocolo.leerMemoriaROMPic(chipPIC));
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.leerMemoriaROMPic(chipPIC));
+                        }
                     }
                 });
 
@@ -264,69 +247,150 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
 
-                        texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
+                        }
                     }
                 });
 
         Button btnLeerConfiguracion = new Button(this);
-        btnLeerConfiguracion.setText("Leer Configuración");
+        btnLeerConfiguracion.setText("Leer Configuración del PIC");
         btnLeerConfiguracion.setOnClickListener(
-                v -> texto.setText("" + protocolo.leerConfiguracionPic()));
+                new OnClickListener() {
 
-        Button btnLeerCalibracion = new Button(this);
-        btnLeerCalibracion.setText("Leer Calibración");
-        btnLeerCalibracion.setOnClickListener(
-                v -> texto.setText("" + protocolo.leerCalibracionPic()));
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.leerConfiguracionPic());
+                        }
+                    }
+                });
 
         Button btnBarraPic = new Button(this);
         btnBarraPic.setText("Barrar Momoria del PIC");
-        btnBarraPic.setOnClickListener(v -> texto.setText("" + protocolo.borrarMemoriaPic()));
+        btnBarraPic.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.borrarMemoriaPic());
+                        }
+                    }
+                });
 
         Button btnVerificarBorrado = new Button(this);
-        btnVerificarBorrado.setText("Verificar si se Borro Memoria del PIC");
-        btnVerificarBorrado.setOnClickListener(v -> texto.setText("No implementado"));
+        btnVerificarBorrado.setText("Verificar si la Memoria ROM esta Borrada");
+        btnVerificarBorrado.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("No implementado");
+                        }
+                    }
+                });
 
         Button btnChekearBorrarEEPROM = new Button(this);
-        btnChekearBorrarEEPROM.setText("Chekear Borrado de EEPROM");
+        btnChekearBorrarEEPROM.setText("Verificar si la Memoria EEPROM esta Borrada");
         btnChekearBorrarEEPROM.setOnClickListener(
-                v -> texto.setText("" + protocolo.verificarBorradoMemoriaEEPROMPic()));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.verificarBorradoMemoriaEEPROMPic());
+                        }
+                    }
+                });
 
         Button btnProgramarFuses18F = new Button(this);
-        btnProgramarFuses18F.setText("Programar Fuses18F");
+        btnProgramarFuses18F.setText("Programar Fuses para PICs 18F");
         btnProgramarFuses18F.setOnClickListener(
-                v -> texto.setText("" + protocolo.programarFuses18F()));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.programarFuses18F());
+                        }
+                    }
+                });
 
         Button btnDetectarChip = new Button(this);
         btnDetectarChip.setText("Detectar PIC en el Soket");
-        btnDetectarChip.setOnClickListener(v -> texto.setText("" + protocolo.detectarPicEnSoket()));
+        btnDetectarChip.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.detectarPicEnSoket());
+                        }
+                    }
+                });
 
         Button btnDetectarChipFuera = new Button(this);
         btnDetectarChipFuera.setText("Detectar PIC fuera del Soket");
         btnDetectarChipFuera.setOnClickListener(
-                v -> texto.setText("" + protocolo.detectarPicFueraDelSoket()));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.detectarPicFueraDelSoket());
+                        }
+                    }
+                });
 
         Button btnVersionProgramdor = new Button(this);
         btnVersionProgramdor.setText("Obtener Version del Programador");
         btnVersionProgramdor.setOnClickListener(
-                v -> texto.setText("" + protocolo.obtenerVersionDelProgramador()));
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (protocolo != null) {
+
+                            texto.setText("" + protocolo.obtenerVersionDelProgramador());
+                        }
+                    }
+                });
 
         Button btnObtenerProtocolo = new Button(this);
-        btnObtenerProtocolo.setText("Obtener Protocolo del K150");
+        btnObtenerProtocolo.setText("Obtener Protocolo del Programador");
         btnObtenerProtocolo.setOnClickListener(
-                v -> texto.setText("" + protocolo.obtenerProtocoloDelProgramador()));
+                new OnClickListener() {
 
-        Button btnDepuracionPrograma = new Button(this);
-        btnDepuracionPrograma.setText("Programar Vector de Depuración");
-        btnDepuracionPrograma.setOnClickListener(v -> texto.setText("No implementado"));
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.obtenerProtocoloDelProgramador());
+                        }
+                    }
+                });
 
         Button btnLeetDebug = new Button(this);
         btnLeetDebug.setText("Leer Vector de Depuración");
         btnLeetDebug.setOnClickListener(
-                v -> texto.setText("" + protocolo.leerVectorDeDepuracion()));
+                new OnClickListener() {
 
-        Button btnDatosCalibracion10F = new Button(this);
-        btnDatosCalibracion10F.setText("Datos de Calibracion 10F");
-        btnDatosCalibracion10F.setOnClickListener(v -> texto.setText("No implementado"));
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+                            texto.setText("" + protocolo.leerVectorDeDepuracion());
+                        }
+                    }
+                });
 
         btnSelectHex.setText("Seleccionar Archivo HEX");
 
@@ -335,14 +399,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         diseno.setOrientation(LinearLayout.VERTICAL);
 
         scrollView.addView(diseno);
-
-        diseno.addView(btnInicio);
-
-        diseno.addView(btnResearComandos);
-
-        diseno.addView(btnHacerEco);
-
-        diseno.addView(btnInciarVaribles);
 
         diseno.addView(btnActivarVoltaje);
 
@@ -356,15 +412,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         diseno.addView(btnProgramarIDFuses);
 
-        diseno.addView(btnCalibracion);
-
         diseno.addView(btnLeerMemoria);
 
         diseno.addView(btnLeerMemoriaEEPROM);
 
         diseno.addView(btnLeerConfiguracion);
-
-        diseno.addView(btnLeerCalibracion);
 
         diseno.addView(btnBarraPic);
 
@@ -382,17 +434,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         diseno.addView(btnObtenerProtocolo);
 
-        diseno.addView(btnDepuracionPrograma);
-
         diseno.addView(btnLeetDebug);
-
-        diseno.addView(btnDatosCalibracion10F);
 
         diseno.addView(btnSelectHex);
 
         diseno.addView(texto);
-
-        diseno.addView(textoPic);
 
         diseno.addView(informacionPic);
 
@@ -401,8 +447,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         setContentView(scrollView);
 
         hilo = new Thread(this);
-
-        datos = new StringBuffer();
 
         conectado = false;
 
@@ -415,6 +459,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         hilo.start();
 
+        texto.setText("Dispositivo desconectado");
+
         // Registrar el BroadcastReceiver
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 
@@ -426,12 +472,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         String[] pic = new String[chip.getModelosPic().size()];
 
-        int nu = 0;
+        int numerosPic = 0;
 
         for (String modelo : chip.getModelosPic()) {
-            pic[nu] = modelo;
+            pic[numerosPic] = modelo;
 
-            nu++;
+            numerosPic++;
         }
 
         ArrayAdapter<String> arrayAdapter =
@@ -901,7 +947,19 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onNothingSelected(AdapterView<?> parent) {}
                 });
 
-        diseno.addView(spinner);
+        LinearLayout seleccion = new LinearLayout(this);
+
+        seleccion.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView modelosPic = new TextView(this);
+
+        modelosPic.setText("Seleccione el Tipo de Chip: ");
+
+        seleccion.addView(modelosPic);
+
+        seleccion.addView(spinner);
+
+        diseno.addView(seleccion);
     }
 
     // Crear etiquetas para la memoria (ROM o EEPROM)
@@ -1060,7 +1118,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             protocolo = new ProtocoloP018(this, usbSerialPort);
 
-            texto.setText("" + protocolo.iniciarProtocolo());
+            if (protocolo.iniciarProtocolo()) {
+
+                texto.setText("Dispositivo conectado");
+            }
 
         } catch (IOException e) {
 
