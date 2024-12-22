@@ -412,6 +412,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         diseno.addView(btnProgramarIDFuses);
 
+        diseno.addView(btnProgramarFuses18F);
+
         diseno.addView(btnLeerMemoria);
 
         diseno.addView(btnLeerMemoriaEEPROM);
@@ -423,8 +425,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         diseno.addView(btnVerificarBorrado);
 
         diseno.addView(btnChekearBorrarEEPROM);
-
-        diseno.addView(btnProgramarFuses18F);
 
         diseno.addView(btnDetectarChip);
 
