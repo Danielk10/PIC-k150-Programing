@@ -1,6 +1,6 @@
 package com.diamon.chip;
 
-import com.diamon.utilidades.DatosFuses;
+import com.diamon.datos.DatosFuses;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InformacionPic {
+public class ChipPic {
 
     private Map<String, Object> variablesDeChip;
 
@@ -27,7 +27,7 @@ public class InformacionPic {
 
     private HashMap<String, Boolean> respuestas;
 
-    public InformacionPic(
+    public ChipPic(
             String CHIPname,
             String INCLUDEr,
             String SocketImage,
@@ -235,7 +235,7 @@ public class InformacionPic {
         respuestas.put("0", false);
     }
 
-    public int getTipoNucleoBit() {
+    public int getTipoDeNucleoBit() {
 
         int nucleo =
                 Integer.parseInt(
@@ -270,7 +270,7 @@ public class InformacionPic {
         return nucleo;
     }
 
-    public HashMap<String, String> getVariablesProgramacion() {
+    public HashMap<String, String> getVariablesDeProgramacion() {
 
         variablesProgramacion.put("rom_size", "" + variablesDeChip.get("rom_size"));
 
@@ -404,7 +404,7 @@ public class InformacionPic {
         return fusess;
     }
 
-    private ArrayList<String> getListaFuses() {
+    private ArrayList<String> getListaDeFuses() {
 
         List<String> lista = new ArrayList<String>();
 
@@ -425,11 +425,11 @@ public class InformacionPic {
         return (ArrayList<String>) lista;
     }
 
-    public ArrayList<DatosFuses> getValoresFuses() {
+    public ArrayList<DatosFuses> getValoresDeFuses() {
 
         ArrayList<DatosFuses> datosProsesados = new ArrayList<DatosFuses>();
 
-        for (String line : getListaFuses()) {
+        for (String line : getListaDeFuses()) {
 
             datosProsesados.add(parseLine(line));
         }
@@ -464,7 +464,7 @@ public class InformacionPic {
         return datosFuses;
     }
 
-    public int getTipoNucleoPic() {
+    public int getTipoDeNucleoDelPic() {
 
         int nucleo =
                 Integer.parseInt(
@@ -479,7 +479,7 @@ public class InformacionPic {
         return nucleo;
     }
 
-    public int getTipoNucleoVerdaderoPic() {
+    public int getTipoDeNucleoVerdaderoDelPic() {
 
         int nucleo =
                 Integer.parseInt(
@@ -494,13 +494,13 @@ public class InformacionPic {
         return nucleo;
     }
 
-    public int getSecuenciaEncendido() {
+    public int getSecuenciaDeEncendido() {
         int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
 
         return secuencia;
     }
 
-    public boolean isTamanoValidoEEPROM() {
+    public boolean isTamanoValidoDeEEPROM() {
 
         boolean valido = (Integer.parseInt("" + variablesDeChip.get("eeprom_size")) != 0);
 
@@ -528,7 +528,7 @@ public class InformacionPic {
         return id;
     }
 
-    public String getUbicacionPin1Pic() {
+    public String getUbicacionPin1DelPic() {
         String ubicacion = "" + socketImagen.get("" + variablesDeChip.get("SocketImage"));
 
         return ubicacion;

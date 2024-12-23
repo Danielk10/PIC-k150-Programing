@@ -1,4 +1,4 @@
-package com.diamon.utilidades;
+package com.diamon.datos;
 
 import java.util.ArrayList;
 

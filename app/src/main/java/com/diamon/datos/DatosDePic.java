@@ -14,13 +14,13 @@ public class DatosDePic {
 
     private Context contexto;
 
-    private CargardorArchivos datos;
+    private CargardorDeArchivos datos;
 
     public DatosDePic(Activity actividad) {
 
         contexto = ((AppCompatActivity) actividad).getApplicationContext();
 
-        datos = new CargardorArchivos(actividad);
+        datos = new CargardorDeArchivos(actividad);
     }
 
     public ArrayList<String> getInformacionPic() {
@@ -34,7 +34,7 @@ public class DatosDePic {
             buferarchivoLeer =
                     new BufferedReader(
                             new InputStreamReader(
-                                    datos.leerAsset(CargardorArchivos.DATOS), "UTF-8"));
+                                    datos.leerAsset(CargardorDeArchivos.DATOS), "UTF-8"));
 
             String lineas = "";
 

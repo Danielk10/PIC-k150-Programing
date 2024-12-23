@@ -1,4 +1,4 @@
-package com.diamon.datos;
+package com.diamon.nucleo;
 
 import java.io.IOException;
 import java.io.InputStream;

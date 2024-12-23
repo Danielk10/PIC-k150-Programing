@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
@@ -15,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,10 +27,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.diamon.chip.InformacionPic;
-import com.diamon.chip.ProtocoloP018;
+import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
-import com.diamon.utilidades.HexFileUtils;
+import com.diamon.protocolo.ProtocoloP018;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private String firware;
 
-    private InformacionPic chipPIC;
+    private ChipPic chipPIC;
 
     private ChipinfoReader chip;
 
@@ -141,47 +138,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         ScrollView scrollView = new ScrollView(this);
 
-        Button btnActivarVoltaje = new Button(this);
-        btnActivarVoltaje.setText("Activar voltajes de Programación");
-        btnActivarVoltaje.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-
-                            texto.setText("" + protocolo.activarVoltajesDeProgramacion());
-                        }
-                    }
-                });
-
-        Button btnDesactivarVoltaje = new Button(this);
-        btnDesactivarVoltaje.setText("Desactivar voltajes de Programación");
-        btnDesactivarVoltaje.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.desactivarVoltajesDeProgramacion());
-                        }
-                    }
-                });
-
-        Button btnReiniciaVoltaje = new Button(this);
-        btnReiniciaVoltaje.setText("Reinicia voltajes de Programación");
-        btnReiniciaVoltaje.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.reiniciarVoltajesDeProgramacion());
-                        }
-                    }
-                });
-
         btnProgramPic = new Button(this);
         btnProgramPic.setText("Programar ROM del PIC");
         btnProgramPic.setEnabled(false);
@@ -191,7 +147,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.programarROMPic(chipPIC, firware));
+                            texto.setText(
+                                    "" + protocolo.programarMemoriaROMDelPic(chipPIC, firware));
                         }
                     }
                 });
@@ -204,7 +161,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.programarEEPROMPic(chipPIC, firware));
+                            texto.setText(
+                                    "" + protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware));
                         }
                     }
                 });
@@ -218,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.programarFusesIDPic(chipPIC, firware));
+                            texto.setText("" + protocolo.programarFusesIDDelPic(chipPIC, firware));
                         }
                     }
                 });
@@ -233,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.leerMemoriaROMPic(chipPIC));
+                            texto.setText("" + protocolo.leerMemoriaROMDelPic(chipPIC));
                         }
                     }
                 });
@@ -248,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.leerMemoriaEEPROMPic(chipPIC));
+                            texto.setText("" + protocolo.leerMemoriaEEPROMDelPic(chipPIC));
                         }
                     }
                 });
@@ -262,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.leerConfiguracionPic());
+                            texto.setText("" + protocolo.leerDatosDeConfiguracionDelPic());
                         }
                     }
                 });
@@ -276,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.borrarMemoriaPic());
+                            texto.setText("" + protocolo.borrarMemoriasDelPic());
                         }
                     }
                 });
@@ -304,7 +262,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.verificarBorradoMemoriaEEPROMPic());
+                            texto.setText(
+                                    ""
+                                            + protocolo
+                                                    .verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic());
                         }
                     }
                 });
@@ -317,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(View v) {
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.programarFuses18F());
+                            texto.setText("" + protocolo.programarFusesDePics18F());
                         }
                     }
                 });
@@ -331,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.detectarPicEnSoket());
+                            texto.setText("" + protocolo.detectarPicEnElSocket());
                         }
                     }
                 });
@@ -345,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.detectarPicFueraDelSoket());
+                            texto.setText("" + protocolo.detectarSiEstaFueraElPicDelSocket());
                         }
                     }
                 });
@@ -359,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
                         if (protocolo != null) {
 
-                            texto.setText("" + protocolo.obtenerVersionDelProgramador());
+                            texto.setText("" + protocolo.obtenerVersionOModeloDelProgramador());
                         }
                     }
                 });
@@ -387,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.leerVectorDeDepuracion());
+                            texto.setText("" + protocolo.leerVectorDeDepuracionDelPic());
                         }
                     }
                 });
@@ -399,12 +360,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         diseno.setOrientation(LinearLayout.VERTICAL);
 
         scrollView.addView(diseno);
-
-        diseno.addView(btnActivarVoltaje);
-
-        diseno.addView(btnDesactivarVoltaje);
-
-        diseno.addView(btnReiniciaVoltaje);
 
         diseno.addView(btnProgramPic);
 
@@ -962,95 +917,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         diseno.addView(seleccion);
     }
 
-    // Crear etiquetas para la memoria (ROM o EEPROM)
-    private TextView createLabel(String text) {
-        TextView label = new TextView(this);
-        label.setText(text);
-        label.setTextSize(18);
-        label.setTextColor(Color.DKGRAY);
-        return label;
-    }
-
-    // Vista de memoria dinámica con direcciones y datos
-    private LinearLayout createMemoryView(
-            int memorySize, int byteGroupSize, byte[] blankData, String receivedData) {
-        LinearLayout container = new LinearLayout(this);
-        container.setOrientation(LinearLayout.VERTICAL);
-        container.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        // Convertir los datos en blanco y recibidos a formato hexadecimal
-        String[] blankHex = convertBytesToHexArray(blankData, byteGroupSize);
-        String[] receivedHex = receivedData.split(" ");
-
-        int address = 0; // Dirección inicial
-        int itemsPerLine = 8; // Columnas por fila
-
-        // Generar las líneas dinámicamente
-        for (int i = 0; i < blankHex.length; i += itemsPerLine) {
-            LinearLayout line = new LinearLayout(this);
-            line.setOrientation(LinearLayout.HORIZONTAL);
-
-            // Mostrar la dirección
-            TextView addressView = new TextView(this);
-            addressView.setText(String.format("%04X: ", address));
-            addressView.setTextColor(Color.DKGRAY);
-            line.addView(addressView);
-
-            // Mostrar los datos
-            for (int j = 0; j < itemsPerLine && (i + j) < blankHex.length; j++) {
-                TextView dataView = new TextView(this);
-                String value = (i + j < receivedHex.length) ? receivedHex[i + j] : blankHex[i + j];
-                dataView.setText(value + " ");
-                dataView.setTextColor((i + j < receivedHex.length) ? Color.GREEN : Color.BLACK);
-                line.addView(dataView);
-            }
-
-            container.addView(line);
-            address += itemsPerLine * byteGroupSize;
-        }
-
-        return container;
-    }
-
-    // Convertir bytes en formato hexadecimal agrupados por tamaño
-    private String[] convertBytesToHexArray(byte[] data, int groupSize) {
-        String[] hexArray = new String[data.length / groupSize];
-        for (int i = 0; i < data.length; i += groupSize) {
-            if (groupSize == 2) { // Agrupar en palabras (2 bytes)
-                int value = ((data[i] & 0xFF) << 8) | (data[i + 1] & 0xFF);
-                hexArray[i / groupSize] = String.format("%04X", value);
-            } else { // Agrupar 1 byte
-                hexArray[i / groupSize] = String.format("%02X", data[i]);
-            }
-        }
-        return hexArray;
-    }
-
-    private void prueba() {
-
-        // Generar y mostrar la memoria ROM
-        diseno.addView(createLabel("Memoria ROM:"));
-        LinearLayout romView =
-                createMemoryView(
-                        chipPIC.getTamanoROM() * 2,
-                        2,
-                        HexFileUtils.generateRomBlank(
-                                chipPIC.getTipoNucleoBit(), chipPIC.getTamanoROM()),
-                        protocolo.leerMemoriaROMPic(chipPIC));
-        diseno.addView(romView);
-
-        // Generar y mostrar la memoria EEPROM
-        diseno.addView(createLabel("Memoria EEPROM:"));
-        LinearLayout eepromView =
-                createMemoryView(
-                        chipPIC.getTamanoEEPROM(),
-                        1,
-                        HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM()),
-                        protocolo.leerMemoriaEEPROMPic(chipPIC));
-        diseno.addView(eepromView);
-    }
+    private void prueba() {}
 
     private void mostrarInformacionPic(String modelo) {
 
@@ -1059,38 +926,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         fusesPic = new LinearLayout(this);
 
         fusesPic.setOrientation(LinearLayout.VERTICAL);
-
-        /* for (int i = 0; i < chipPIC.getValoresFuses().size(); i++) {
-
-            DatosFuses fusesD = chipPIC.getValoresFuses().get(i);
-
-            TextView prueba = new TextView(this);
-
-            prueba.setText(fusesD.getTitulo());
-
-            fusesPic.addView(prueba);
-
-            for (int j = 0; j < fusesD.getDescription().size(); j++) {
-                TextView prueba1 = new TextView(this);
-
-                prueba1.setText(fusesD.getDescription().get(j) + " " + fusesD.getValor().get(j));
-
-                fusesPic.addView(prueba1);
-            }
-        }*/
-
-        /*for (int i = 0; i < chipPIC.getFuseBlack().length; i++) {
-
-            int[] fusesD = chipPIC.getFuseBlack();
-
-            TextView prueba = new TextView(this);
-
-            prueba.setText(" " + fusesD[i]);
-
-            fusesPic.addView(prueba);
-        }
-
-        diseno.addView(fusesPic);*/
 
         if (protocolo != null) {
 

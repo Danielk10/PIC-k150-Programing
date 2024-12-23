@@ -2,7 +2,7 @@ package com.diamon.datos;
 
 import android.app.Activity;
 
-import com.diamon.chip.InformacionPic;
+import com.diamon.chip.ChipPic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class ChipinfoReader {
 
     private static final int NUMERO_DE_REGISTROS_DATOS = 3448;
 
-    private Map<String, InformacionPic> chipEntries;
+    private Map<String, ChipPic> chipEntries;
 
     private String CHIPname;
 
@@ -58,7 +58,7 @@ public class ChipinfoReader {
 
     public ChipinfoReader(Activity actividad) {
 
-        chipEntries = new HashMap<String, InformacionPic>();
+        chipEntries = new HashMap<String, ChipPic>();
 
         modelosPic = new ArrayList<String>();
 
@@ -253,19 +253,14 @@ public class ChipinfoReader {
                     ArrayList<String> dato = new ArrayList<String>();
 
                     StringBuffer letra = new StringBuffer();
-                    
 
                     for (int con = 0; con < te.length(); con++) {
 
                         if (!("" + te.charAt(con)).equals(" ")) {
 
-                            
                             letra.append(te.charAt(con));
-                            
-                            
 
                         } else {
-                            
 
                             dato.add(letra.toString());
 
@@ -317,7 +312,7 @@ public class ChipinfoReader {
 
         chipEntries.put(
                 CHIPname,
-                new InformacionPic(
+                new ChipPic(
                         CHIPname,
                         INCLUDEr,
                         SocketImage,
@@ -339,7 +334,7 @@ public class ChipinfoReader {
                         fuses));
     }
 
-    public InformacionPic getChipEntry(String chipName) {
+    public ChipPic getChipEntry(String chipName) {
         return chipEntries.get(chipName);
     }
 
