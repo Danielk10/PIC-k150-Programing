@@ -28,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.diamon.politicas.Politicas;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -412,7 +413,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 new OnClickListener() {
 
                     @Override
-                    public void onClick(View v) {}
+                    public void onClick(View v) {
+
+                        Intent nuevaActividad = new Intent(MainActivity.this, Politicas.class);
+
+                        startActivity(nuevaActividad);
+                    }
                 });
 
         hilo = new Thread(this);
