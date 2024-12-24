@@ -28,6 +28,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -138,6 +142,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppCenter.start(
+                getApplication(),
+                "c9a1ef1a-bbfb-443a-863e-1c1d77e49c18",
+                Analytics.class,
+                Crashes.class);
 
         firware = new String();
 
@@ -305,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                         8); // 4 dígitos por grupo, 8 columnas
 
                                 if (eepromData.getChildCount() > 0) {
-                                
+
                                     eepromData.removeAllViewsInLayout();
 
                                     eepromData.requestLayout();
