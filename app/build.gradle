@@ -1,6 +1,10 @@
-plugins {
-    alias(libs.plugins.android.application)
-}
+//Forma nueva no compatible con AppCenter
+//plugins {
+   // alias(libs.plugins.android.application)
+//}
+
+//Forma antigua de implementar los plugin
+apply plugin: 'com.android.application'
 
 android {
     namespace 'com.diamon.pic'
@@ -28,15 +32,50 @@ android {
     }
 }
 
-dependencies {
+//Estructura nueva, no compatible con AppCenter
 
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.activity
-    implementation libs.constraintlayout
-    testImplementation libs.junit
-    androidTestImplementation libs.ext.junit
-    androidTestImplementation libs.espresso.core
+//dependencies {
+
+//    implementation libs.appcompat
+//    implementation libs.material
+//    implementation libs.activity
+//    implementation libs.constraintlayout
+//    testImplementation libs.junit
+//    androidTestImplementation libs.ext.junit
+//    androidTestImplementation libs.espresso.core
+//}
+
+//Forma antigua de implementar la version de los plugin
+ext {
+    versions = [
+        agp            : "8.2.0",
+        junit          : "4.13.2",
+        junitVersion   : "1.1.5",
+        espressoCore   : "3.5.1",
+        appcompat      : "1.6.1",
+        material       : "1.10.0",
+        activity       : "1.8.0",
+        constraintlayout: "2.1.4"
+    ]
+}
+
+//Forma antigua de implementar las dependencias
+dependencies {
+    // JUnit
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.junitVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espressoCore}"
+
+    // AndroidX libraries
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.activity:activity:${versions.activity}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
     implementation("com.github.mik3y:usb-serial-for-android:3.8.1")
     implementation 'androidx.activity:activity:1.2.0' 
+    def appCenterSdkVersion = '5.0.4'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+    //implementation 'com.google.android.gms:play-services-ads:23.3.0'
+
 }
