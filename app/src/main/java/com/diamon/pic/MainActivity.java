@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
@@ -14,10 +15,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.widget.ProgressBar;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +32,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
 
 import com.diamon.chip.ChipPic;
@@ -64,21 +73,37 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private UsbManager usbManager;
 
-    private LinearLayout diseno;
-
-    private LinearLayout fusesPic;
-
-    private TextView texto;
-
     private Thread hilo;
 
     private boolean conectado;
 
     private volatile boolean iniciar;
 
+    private ConstraintLayout layout;
+
+    private Button btnProgramarPic;
+
+    private Button btnVerificarMemoriaDelPic;
+
+    private Button btnBorrarMemoriaDeLPic;
+
+    private Button btnLeerMemoriaDeLPic;
+
+    private Button btnDetectarPic;
+
     private Button btnSelectHex;
 
-    private Button btnProgramPic;
+    private Button privacyPolicyButton;
+
+    private ProgressBar progressBar;
+
+    private TextView romData;
+
+    private TextView eepromData;
+
+    private TextView mensaje;
+
+    private TextView proceso;
 
     private String firware;
 
@@ -86,11 +111,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private ChipinfoReader chip;
 
-    private TextView informacionPic;
-
     private ProtocoloP018 protocolo;
 
-    private TextView test;
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -122,284 +144,239 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         firware = new String();
 
-        diseno = new LinearLayout(this);
-
         driversP = new ArrayList<UsbSerialDriver>();
 
-        texto = new TextView(this);
+        layout = new ConstraintLayout(this);
 
-        informacionPic = new TextView(this);
+        progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
 
-        test = new TextView(this);
+        romData = new TextView(this);
+
+        eepromData = new TextView(this);
+
+        proceso = new TextView(this);
+
+        mensaje = new TextView(this);
+
+        btnProgramarPic = new Button(this);
+
+        btnProgramarPic.setText("Programar PIC");
+
+        btnProgramarPic.setPadding(40, 20, 40, 20);
+
+        btnProgramarPic.setEnabled(false);
+
+        btnVerificarMemoriaDelPic = new Button(this);
+
+        btnVerificarMemoriaDelPic.setText("Verificar si la memoria del PIC está borrada");
+
+        btnVerificarMemoriaDelPic.setPadding(40, 20, 40, 20);
+
+        btnVerificarMemoriaDelPic.setEnabled(false);
+
+        btnBorrarMemoriaDeLPic = new Button(this);
+
+        btnBorrarMemoriaDeLPic.setText("Borrar Memoria");
+
+        btnBorrarMemoriaDeLPic.setPadding(40, 20, 40, 20);
+
+        btnBorrarMemoriaDeLPic.setEnabled(false);
+
+        btnLeerMemoriaDeLPic = new Button(this);
+
+        btnLeerMemoriaDeLPic.setText("Leer Memoria del PIC");
+
+        btnLeerMemoriaDeLPic.setPadding(40, 20, 40, 20);
+
+        btnLeerMemoriaDeLPic.setEnabled(false);
+
+        btnDetectarPic = new Button(this);
+
+        btnDetectarPic.setText("Detectar PIC en Socket");
+
+        btnDetectarPic.setPadding(40, 20, 40, 20);
+
+        btnDetectarPic.setEnabled(false);
 
         btnSelectHex = new Button(this);
 
-        Spinner spinner = new Spinner(this);
+        btnSelectHex.setText("Cargar Archivo Hex");
 
-        ScrollView scrollView = new ScrollView(this);
+        btnSelectHex.setPadding(40, 20, 40, 20);
 
-        btnProgramPic = new Button(this);
-        btnProgramPic.setText("Programar ROM del PIC");
-        btnProgramPic.setEnabled(false);
-        btnProgramPic.setOnClickListener(
-                new OnClickListener() {
+        privacyPolicyButton = new Button(this);
 
-                    @Override
-                    public void onClick(View v) {
-                        if (protocolo != null) {
-                            texto.setText(
-                                    "" + protocolo.programarMemoriaROMDelPic(chipPIC, firware));
-                        }
-                    }
-                });
+        Spinner chipSpinner = new Spinner(this);
 
-        Button btnProgramEEPRON = new Button(this);
-        btnProgramEEPRON.setText("Programar EEPROM del PIC");
-        btnProgramEEPRON.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (protocolo != null) {
-                            texto.setText(
-                                    "" + protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware));
-                        }
-                    }
-                });
-
-        Button btnProgramarIDFuses = new Button(this);
-        btnProgramarIDFuses.setText("Programar ID y Fuses del PIC");
-        btnProgramarIDFuses.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.programarFusesIDDelPic(chipPIC, firware));
-                        }
-                    }
-                });
-
-        Button btnLeerMemoria = new Button(this);
-        btnLeerMemoria.setText("Leer Memoria Rom");
-
-        btnLeerMemoria.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.leerMemoriaROMDelPic(chipPIC));
-                        }
-                    }
-                });
-
-        Button btnLeerMemoriaEEPROM = new Button(this);
-        btnLeerMemoriaEEPROM.setText("Leer Memoria EEPROM");
-
-        btnLeerMemoriaEEPROM.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.leerMemoriaEEPROMDelPic(chipPIC));
-                        }
-                    }
-                });
-
-        Button btnLeerConfiguracion = new Button(this);
-        btnLeerConfiguracion.setText("Leer Configuración del PIC");
-        btnLeerConfiguracion.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.leerDatosDeConfiguracionDelPic());
-                        }
-                    }
-                });
-
-        Button btnBarraPic = new Button(this);
-        btnBarraPic.setText("Barrar Momoria del PIC");
-        btnBarraPic.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.borrarMemoriasDelPic());
-                        }
-                    }
-                });
-
-        Button btnVerificarBorrado = new Button(this);
-        btnVerificarBorrado.setText("Verificar si la Memoria ROM esta Borrada");
-        btnVerificarBorrado.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("No implementado");
-                        }
-                    }
-                });
-
-        Button btnChekearBorrarEEPROM = new Button(this);
-        btnChekearBorrarEEPROM.setText("Verificar si la Memoria EEPROM esta Borrada");
-        btnChekearBorrarEEPROM.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText(
-                                    ""
-                                            + protocolo
-                                                    .verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic());
-                        }
-                    }
-                });
-
-        Button btnProgramarFuses18F = new Button(this);
-        btnProgramarFuses18F.setText("Programar Fuses para PICs 18F");
-        btnProgramarFuses18F.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.programarFusesDePics18F());
-                        }
-                    }
-                });
-
-        Button btnDetectarChip = new Button(this);
-        btnDetectarChip.setText("Detectar PIC en el Soket");
-        btnDetectarChip.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.detectarPicEnElSocket());
-                        }
-                    }
-                });
-
-        Button btnDetectarChipFuera = new Button(this);
-        btnDetectarChipFuera.setText("Detectar PIC fuera del Soket");
-        btnDetectarChipFuera.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (protocolo != null) {
-                            texto.setText("" + protocolo.detectarSiEstaFueraElPicDelSocket());
-                        }
-                    }
-                });
-
-        Button btnVersionProgramdor = new Button(this);
-        btnVersionProgramdor.setText("Obtener Version del Programador");
-        btnVersionProgramdor.setOnClickListener(
+        btnProgramarPic.setOnClickListener(
                 new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         if (protocolo != null) {
 
-                            texto.setText("" + protocolo.obtenerVersionOModeloDelProgramador());
+                            boolean respuesta =
+                                    protocolo.programarMemoriaROMDelPic(chipPIC, firware);
+
+                            if (respuesta) {
+
+                                proceso.setText("Memoria ROM Programada Exitosamente");
+
+                            } else {
+
+                                proceso.setText("Error al Programar Memoria ROM del PIC");
+
+                                return;
+                            }
+
+                            respuesta = protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware);
+
+                            if (respuesta) {
+
+                                proceso.setText("Memoria EEPROM Programada Exitosamente");
+
+                            } else {
+
+                                proceso.setText("Error al Programar Memoria EEPROM del PIC");
+
+                                return;
+                            }
+
+                            respuesta = protocolo.programarFusesIDDelPic(chipPIC, firware);
+
+                            if (respuesta) {
+
+                                proceso.setText("Fuses Programados Exitosamente");
+
+                            } else {
+
+                                proceso.setText("Error al Programar Fuses del PIC");
+
+                                return;
+                            }
+
+                            if (respuesta) {
+
+                                proceso.setText("PIC Programado Exitosamente");
+
+                            } else {
+                            
+                                proceso.setText("Error al Programar PIC");
+
+                                return;
+                            }
                         }
                     }
                 });
 
-        Button btnObtenerProtocolo = new Button(this);
-        btnObtenerProtocolo.setText("Obtener Protocolo del Programador");
-        btnObtenerProtocolo.setOnClickListener(
+        btnLeerMemoriaDeLPic.setOnClickListener(
                 new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.obtenerProtocoloDelProgramador());
+
+                            StringBuffer datos1 = new StringBuffer();
+
+                            StringBuffer datos2 = new StringBuffer();
+
+                            datos1.append(protocolo.leerMemoriaROMDelPic(chipPIC));
+
+                            datos2.append(protocolo.leerMemoriaEEPROMDelPic(chipPIC));
+
+                            if (datos1.length() > 0 && datos2.length() > 0) {
+
+                                romData.setText(datos1.toString());
+
+                                eepromData.setText(datos2.toString());
+                            
+                            
+                            proceso.setText("Memoria del PIC Leida Exitosamente");
+
+                            } else {
+
+                                proceso.setText("Error al leer Memoria del PIC");
+                            }
                         }
                     }
                 });
 
-        Button btnLeetDebug = new Button(this);
-        btnLeetDebug.setText("Leer Vector de Depuración");
-        btnLeetDebug.setOnClickListener(
+        btnBorrarMemoriaDeLPic.setOnClickListener(
                 new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
 
                         if (protocolo != null) {
-                            texto.setText("" + protocolo.leerVectorDeDepuracionDelPic());
+
+                            boolean respuesta = protocolo.borrarMemoriasDelPic();
+
+                            if (respuesta) {
+
+                                proceso.setText("Memoria del PIC Borrada Exitosamente");
+
+                            } else {
+
+                                proceso.setText("Error al Borrar Memoria del PIC");
+                            }
                         }
                     }
                 });
 
-        btnSelectHex.setText("Seleccionar Archivo HEX");
+        btnVerificarMemoriaDelPic.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+
+                            boolean respuesta =
+                                    protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+
+                            if (respuesta) {
+
+                                proceso.setText("La Memoria No Contiene Datos");
+
+                            } else {
+
+                                proceso.setText("La Memoria Contiene Datos");
+                            }
+                        }
+                    }
+                });
+
+        btnDetectarPic.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        if (protocolo != null) {
+
+                            boolean respuesta = protocolo.detectarPicEnElSocket();
+
+                            if (respuesta) {
+
+                                proceso.setText("El PIC se Encuentra en el Socket");
+
+                            } else {
+
+                                proceso.setText("El PIC No se Encuentra en el Socket");
+                            }
+                        }
+                    }
+                });
 
         btnSelectHex.setOnClickListener(v -> checkPermissionsAndOpenFile());
 
-        diseno.setOrientation(LinearLayout.VERTICAL);
+        privacyPolicyButton.setOnClickListener(
+                new OnClickListener() {
 
-        scrollView.addView(diseno);
-
-        diseno.addView(btnProgramPic);
-
-        diseno.addView(btnProgramEEPRON);
-
-        diseno.addView(btnProgramarIDFuses);
-
-        diseno.addView(btnProgramarFuses18F);
-
-        diseno.addView(btnLeerMemoria);
-
-        diseno.addView(btnLeerMemoriaEEPROM);
-
-        diseno.addView(btnLeerConfiguracion);
-
-        diseno.addView(btnBarraPic);
-
-        diseno.addView(btnVerificarBorrado);
-
-        diseno.addView(btnChekearBorrarEEPROM);
-
-        diseno.addView(btnDetectarChip);
-
-        diseno.addView(btnDetectarChipFuera);
-
-        diseno.addView(btnVersionProgramdor);
-
-        diseno.addView(btnObtenerProtocolo);
-
-        diseno.addView(btnLeetDebug);
-
-        diseno.addView(btnSelectHex);
-
-        diseno.addView(texto);
-
-        diseno.addView(informacionPic);
-
-        diseno.addView(test);
-
-        setContentView(scrollView);
+                    @Override
+                    public void onClick(View v) {}
+                });
 
         hilo = new Thread(this);
 
@@ -414,14 +391,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         hilo.start();
 
-        texto.setText("Dispositivo desconectado");
-
+        
         // Registrar el BroadcastReceiver
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 
         registerReceiver(usbReceiver, filter);
-
-        // Pruebas
 
         chip = new ChipinfoReader(this);
 
@@ -438,13 +412,21 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pic);
 
-        spinner.setAdapter(arrayAdapter);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setOnItemSelectedListener(
+        chipSpinner.setAdapter(arrayAdapter);
+
+        chipSpinner.setPopupBackgroundDrawable(
+                new ColorDrawable(Color.LTGRAY)); // Fondo del dropdown
+
+        chipSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
+
+                        ((TextView) view)
+                                .setTextColor(Color.GREEN); // Color verde del texto seleccionado
 
                         switch (position) {
                             case 0:
@@ -902,19 +884,268 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onNothingSelected(AdapterView<?> parent) {}
                 });
 
-        LinearLayout seleccion = new LinearLayout(this);
+        layout.setLayoutParams(
+                new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
 
-        seleccion.setOrientation(LinearLayout.HORIZONTAL);
+        // Título centrado en la parte superior
+        TextView title = new TextView(this);
+        title.setText("PIC K150 Programing");
+        title.setTextSize(24);
+        title.setTextColor(Color.DKGRAY);
+        title.setGravity(Gravity.CENTER);
+        title.setId(View.generateViewId());
+        layout.addView(title);
 
-        TextView modelosPic = new TextView(this);
+        mensaje.setText("Dispositivo Desconectado");
+        mensaje.setTextSize(18);
+        mensaje.setTextColor(Color.WHITE);
+        mensaje.setGravity(Gravity.CENTER);
+        mensaje.setId(View.generateViewId());
+        layout.addView(mensaje);
 
-        modelosPic.setText("Seleccione el Tipo de Chip: ");
+        // LinearLayout para agrupar botones
+        LinearLayout buttonLayout = new LinearLayout(this);
+        buttonLayout.setOrientation(LinearLayout.VERTICAL);
+        buttonLayout.setId(View.generateViewId());
+        layout.addView(buttonLayout);
 
-        seleccion.addView(modelosPic);
+        buttonLayout.addView(btnProgramarPic);
 
-        seleccion.addView(spinner);
+        buttonLayout.addView(btnVerificarMemoriaDelPic);
 
-        diseno.addView(seleccion);
+        buttonLayout.addView(btnBorrarMemoriaDeLPic);
+
+        buttonLayout.addView(btnLeerMemoriaDeLPic);
+
+        buttonLayout.addView(btnDetectarPic);
+
+        buttonLayout.addView(btnSelectHex);
+
+        proceso.setText("Esperando PIC");
+        proceso.setTextColor(Color.WHITE);
+        proceso.setGravity(Gravity.CENTER);
+        proceso.setId(View.generateViewId());
+        layout.addView(proceso);
+
+        // LinearLayout para agrupar chipLabel y chipSpinner
+        LinearLayout chipLayout = new LinearLayout(this);
+        chipLayout.setOrientation(LinearLayout.HORIZONTAL);
+        chipLayout.setId(View.generateViewId());
+        layout.addView(chipLayout);
+
+        // Etiqueta para seleccionar chip
+        TextView chipLabel = new TextView(this);
+        chipLabel.setText("Seleccionar PIC:");
+        chipLabel.setTextColor(Color.WHITE);
+        chipLabel.setId(View.generateViewId());
+        chipLayout.addView(chipLabel);
+
+        // Spinner para selección de chip
+        chipSpinner.setId(View.generateViewId());
+        chipLayout.addView(chipSpinner);
+
+        // LinearLayout para barra de progreso y etiqueta
+        LinearLayout progressLayout = new LinearLayout(this);
+        progressLayout.setOrientation(LinearLayout.HORIZONTAL);
+        progressLayout.setId(View.generateViewId());
+        progressLayout.setGravity(Gravity.CENTER_VERTICAL);
+        layout.addView(progressLayout);
+
+        // Etiqueta para la barra de progreso
+        TextView progressLabel = new TextView(this);
+        progressLabel.setText("Progreso ");
+        progressLabel.setTextColor(Color.WHITE);
+        progressLabel.setId(View.generateViewId());
+        progressLayout.addView(progressLabel);
+
+        // Barra de progreso
+        progressBar.setId(View.generateViewId());
+        progressBar.setProgress(50); // Valor inicial para ser visible
+        progressBar.setMax(100); // Máximo para pruebas
+        progressBar.setLayoutParams(
+                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        progressLayout.addView(progressBar);
+
+        // ScrollView para datos leídos del chip
+        ScrollView scrollView = new ScrollView(this);
+
+        scrollView.setId(View.generateViewId());
+        layout.addView(scrollView);
+
+        LinearLayout scrollContent = new LinearLayout(this);
+        scrollContent.setOrientation(LinearLayout.VERTICAL);
+        scrollView.addView(scrollContent);
+
+        // Etiquetas y datos para ROM
+        TextView romLabel = new TextView(this);
+        romLabel.setText("Datos de memoria ROM:");
+        romLabel.setTextColor(Color.WHITE);
+        scrollContent.addView(romLabel);
+
+        romData.setTextColor(Color.BLACK);
+        romData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
+        scrollContent.addView(romData);
+
+        // Etiquetas y datos para EEPROM
+        TextView eepromLabel = new TextView(this);
+        eepromLabel.setText("Datos de memoria EEPROM:");
+        eepromLabel.setTextColor(Color.WHITE);
+        scrollContent.addView(eepromLabel);
+
+        eepromData.setTextColor(Color.BLACK);
+        eepromData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
+        scrollContent.addView(eepromData);
+
+        // Menú de políticas y ayuda
+        privacyPolicyButton.setText("Políticas de privacidad");
+        privacyPolicyButton.setPadding(40, 20, 40, 20);
+        privacyPolicyButton.setId(View.generateViewId());
+        layout.addView(privacyPolicyButton);
+
+        // Configurar el ConstraintLayout
+        ConstraintSet constraints = new ConstraintSet();
+        constraints.clone(layout);
+
+        // Título
+        constraints.connect(
+                title.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 20);
+        constraints.connect(
+                title.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                title.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 20);
+
+        // Mensaje
+        constraints.connect(
+                mensaje.getId(), ConstraintSet.TOP, title.getId(), ConstraintSet.BOTTOM, 20);
+        constraints.connect(
+                mensaje.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                mensaje.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 20);
+
+        // Botones
+        constraints.connect(
+                buttonLayout.getId(), ConstraintSet.TOP, mensaje.getId(), ConstraintSet.BOTTOM, 20);
+        constraints.connect(
+                buttonLayout.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                buttonLayout.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+                20);
+
+        constraints.connect(
+                proceso.getId(), ConstraintSet.TOP, buttonLayout.getId(), ConstraintSet.BOTTOM, 20);
+        constraints.connect(
+                proceso.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                proceso.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 20);
+
+        // Layout para chipLabel y chipSpinner
+        constraints.connect(
+                chipLayout.getId(), ConstraintSet.TOP, proceso.getId(), ConstraintSet.BOTTOM, 20);
+        constraints.connect(
+                chipLayout.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                chipLayout.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+                20);
+
+        // Layout para barra de progreso y etiqueta
+        constraints.connect(
+                progressLayout.getId(),
+                ConstraintSet.TOP,
+                chipLayout.getId(),
+                ConstraintSet.BOTTOM,
+                20);
+        constraints.connect(
+                progressLayout.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                progressLayout.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+                20);
+
+        // ScrollView
+        constraints.connect(
+                scrollView.getId(),
+                ConstraintSet.TOP,
+                progressLayout.getId(),
+                ConstraintSet.BOTTOM,
+                20);
+        constraints.connect(
+                scrollView.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                scrollView.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+                20);
+        constraints.connect(
+                scrollView.getId(),
+                ConstraintSet.BOTTOM,
+                privacyPolicyButton.getId(),
+                ConstraintSet.TOP,
+                20);
+        // Ajustar la altura del ScrollView para que ocupe el espacio disponible
+        constraints.constrainHeight(scrollView.getId(), 0); // MATCH_CONSTRAINT
+
+        // Botón de políticas de privacidad
+        constraints.connect(
+                privacyPolicyButton.getId(),
+                ConstraintSet.BOTTOM,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.BOTTOM,
+                20);
+        constraints.connect(
+                privacyPolicyButton.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                privacyPolicyButton.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+                20);
+
+        constraints.applyTo(layout);
+
+        setContentView(layout);
     }
 
     private void prueba() {}
@@ -923,14 +1154,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         chipPIC = chip.getChipEntry(modelo);
 
-        fusesPic = new LinearLayout(this);
-
-        fusesPic.setOrientation(LinearLayout.VERTICAL);
-
         if (protocolo != null) {
 
             protocolo.iniciarVariablesDeProgramacion(chipPIC);
         }
+
+        proceso.setText("El PIC se debe ubicar en el " + chipPIC.getUbicacionPin1DelPic());
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
@@ -955,7 +1184,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             if (protocolo.iniciarProtocolo()) {
 
-                texto.setText("Dispositivo conectado");
+                //mensaje.setTextColor(Color.GREEN);
+
+              // mensaje.setText("Dispositivo Conectado");
             }
 
         } catch (IOException e) {
@@ -1095,7 +1326,15 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             hexFileContent = fileContent.toString();
 
-            btnProgramPic.setEnabled(true);
+            btnProgramarPic.setEnabled(true);
+
+            btnVerificarMemoriaDelPic.setEnabled(true);
+
+            btnBorrarMemoriaDeLPic.setEnabled(true);
+
+            btnLeerMemoriaDeLPic.setEnabled(true);
+
+            btnDetectarPic.setEnabled(true);
 
         } catch (Exception e) {
         }
