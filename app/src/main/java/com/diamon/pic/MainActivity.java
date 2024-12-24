@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,11 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.graphics.Color;
-import android.view.Gravity;
 import android.widget.ProgressBar;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private boolean conectado;
 
-    private volatile boolean iniciar;
+    private boolean iniciar;
 
     private ConstraintLayout layout;
 
@@ -97,11 +95,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private ProgressBar progressBar;
 
-    private TextView romData;
+    private LinearLayout romData;
 
-    private TextView eepromData;
+    private LinearLayout eepromData;
 
-    private TextView mensaje;
+    private volatile TextView mensaje;
 
     private TextView proceso;
 
@@ -112,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private ChipinfoReader chip;
 
     private ProtocoloP018 protocolo;
-
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -150,9 +147,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
 
-        romData = new TextView(this);
+        romData = new LinearLayout(this);
 
-        eepromData = new TextView(this);
+        romData.setOrientation(LinearLayout.VERTICAL);
+
+        eepromData = new LinearLayout(this);
+
+        eepromData.setOrientation(LinearLayout.VERTICAL);
 
         proceso = new TextView(this);
 
@@ -213,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                     @Override
                     public void onClick(View v) {
+
                         if (protocolo != null) {
 
                             boolean respuesta =
@@ -260,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                 proceso.setText("PIC Programado Exitosamente");
 
                             } else {
-                            
+
                                 proceso.setText("Error al Programar PIC");
 
                                 return;
@@ -287,12 +289,37 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (datos1.length() > 0 && datos2.length() > 0) {
 
-                                romData.setText(datos1.toString());
+                                if (romData.getChildCount() > 0) {
 
-                                eepromData.setText(datos2.toString());
-                            
-                            
-                            proceso.setText("Memoria del PIC Leida Exitosamente");
+                                    romData.removeAllViewsInLayout();
+
+                                    romData.requestLayout();
+
+                                    romData.invalidate();
+                                }
+
+                                displayData(
+                                        romData,
+                                        datos1.toString(),
+                                        4,
+                                        8); // 4 dígitos por grupo, 8 columnas
+
+                                if (eepromData.getChildCount() > 0) {
+                                
+                                    eepromData.removeAllViewsInLayout();
+
+                                    eepromData.requestLayout();
+
+                                    eepromData.invalidate();
+                                }
+
+                                displayData(
+                                        eepromData,
+                                        datos2.toString(),
+                                        2,
+                                        8); // 2 dígitos por grupo, 8 columnas
+
+                                proceso.setText("Memoria del PIC Leida Exitosamente");
 
                             } else {
 
@@ -391,7 +418,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         hilo.start();
 
-        
         // Registrar el BroadcastReceiver
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 
@@ -898,7 +924,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         title.setId(View.generateViewId());
         layout.addView(title);
 
-        mensaje.setText("Dispositivo Desconectado");
+        mensaje.setText("");
         mensaje.setTextSize(18);
         mensaje.setTextColor(Color.WHITE);
         mensaje.setGravity(Gravity.CENTER);
@@ -955,15 +981,15 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         // Etiqueta para la barra de progreso
         TextView progressLabel = new TextView(this);
-        progressLabel.setText("Progreso ");
+        progressLabel.setText("");
         progressLabel.setTextColor(Color.WHITE);
         progressLabel.setId(View.generateViewId());
         progressLayout.addView(progressLabel);
 
         // Barra de progreso
         progressBar.setId(View.generateViewId());
-        progressBar.setProgress(50); // Valor inicial para ser visible
-        progressBar.setMax(100); // Máximo para pruebas
+        progressBar.setProgress(0); // Valor inicial para ser visible
+        progressBar.setMax(0); // Máximo para pruebas
         progressBar.setLayoutParams(
                 new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         progressLayout.addView(progressBar);
@@ -981,20 +1007,18 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         // Etiquetas y datos para ROM
         TextView romLabel = new TextView(this);
         romLabel.setText("Datos de memoria ROM:");
-        romLabel.setTextColor(Color.WHITE);
+        romLabel.setTextColor(Color.GREEN);
         scrollContent.addView(romLabel);
 
-        romData.setTextColor(Color.BLACK);
         romData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
         scrollContent.addView(romData);
 
         // Etiquetas y datos para EEPROM
         TextView eepromLabel = new TextView(this);
         eepromLabel.setText("Datos de memoria EEPROM:");
-        eepromLabel.setTextColor(Color.WHITE);
+        eepromLabel.setTextColor(Color.GREEN);
         scrollContent.addView(eepromLabel);
 
-        eepromData.setTextColor(Color.BLACK);
         eepromData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
         scrollContent.addView(eepromData);
 
@@ -1159,9 +1183,49 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             protocolo.iniciarVariablesDeProgramacion(chipPIC);
         }
 
-        proceso.setText("El PIC se debe ubicar en el " + chipPIC.getUbicacionPin1DelPic());
+        String resuesta = chipPIC.getUbicacionPin1DelPic();
+
+        if (!resuesta.equals("null")) {
+
+            proceso.setText("El PIC se debe ubicar en el " + resuesta);
+
+        } else {
+
+            proceso.setText("No se Conoce su Ubicación en el Socket");
+        }
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
+    }
+
+    private void displayData(LinearLayout container, String data, int groupSize, int columns) {
+        int address = 0;
+        StringBuilder formattedRow = new StringBuilder();
+
+        for (int i = 0; i < data.length(); i += groupSize * columns) {
+            // Obtener dirección en formato hexadecimal
+            String addressHex = String.format("%04X", address);
+            formattedRow.append(addressHex).append(": ");
+
+            // Dividir los datos en grupos y columnas
+            for (int j = 0; j < columns; j++) {
+                int start = i + j * groupSize;
+                int end = Math.min(start + groupSize, data.length());
+                if (start < data.length()) {
+                    formattedRow.append(data.substring(start, end)).append(" ");
+                }
+            }
+
+            // Crear TextView para la fila y agregarla al contenedor
+            TextView rowTextView = new TextView(this);
+            rowTextView.setText(formattedRow.toString().trim());
+            rowTextView.setTextSize(16);
+            rowTextView.setPadding(16, 4, 16, 4);
+            container.addView(rowTextView);
+
+            // Incrementar la dirección y limpiar el formato de la fila
+            address += 8;
+            formattedRow.setLength(0);
+        }
     }
 
     private void connectToDevice(UsbSerialDriver driver) {
@@ -1184,9 +1248,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             if (protocolo.iniciarProtocolo()) {
 
-                //mensaje.setTextColor(Color.GREEN);
+                // mensaje.setTextColor(Color.GREEN);
 
-              // mensaje.setText("Dispositivo Conectado");
+                // mensaje.setText("Dispositivo Conectado");
             }
 
         } catch (IOException e) {
