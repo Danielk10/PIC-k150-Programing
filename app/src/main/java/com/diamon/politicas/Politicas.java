@@ -35,6 +35,6 @@ public class Politicas extends AppCompatActivity {
 
         pagina.getSettings().setJavaScriptEnabled(true);
 
-        pagina.loadUrl("https://www.e-droid.net/privacy.php?ida=1454194&idl=es");
+        pagina.loadUrl("https://politicasdeprivacidaspickprograming.blogspot.com/2024/12/pic-k150-programming.html?m=1");
     }
 }
