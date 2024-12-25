@@ -228,8 +228,20 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                         if (protocolo != null) {
 
-                            boolean respuesta =
-                                    protocolo.programarMemoriaROMDelPic(chipPIC, firware);
+                            boolean respuesta = protocolo.borrarMemoriasDelPic();
+
+                            if (respuesta) {
+
+                                proceso.setText("Memoria del PIC Borrada Exitosamente");
+
+                            } else {
+
+                                proceso.setText("Error al Borrar Memoria del PIC");
+
+                                return;
+                            }
+
+                            respuesta = protocolo.programarMemoriaROMDelPic(chipPIC, firware);
 
                             if (respuesta) {
 
@@ -1194,20 +1206,24 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         chipPIC = chip.getChipEntry(modelo);
 
-        if (protocolo != null) {
-
-            protocolo.iniciarVariablesDeProgramacion(chipPIC);
-        }
-
         String resuesta = chipPIC.getUbicacionPin1DelPic();
 
         if (!resuesta.equals("null")) {
+
+            chipPIC.setActivarICSP(false);
 
             proceso.setText("El PIC se debe ubicar en el " + resuesta);
 
         } else {
 
-            proceso.setText("Solo por modo ICSP");
+            chipPIC.setActivarICSP(true);
+
+            proceso.setText("Solo por modo ICSP, Modo ICSP Activado");
+        }
+
+        if (protocolo != null) {
+
+            protocolo.iniciarVariablesDeProgramacion(chipPIC);
         }
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
