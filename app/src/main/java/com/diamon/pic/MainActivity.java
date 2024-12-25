@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnVerificarMemoriaDelPic = new Button(this);
 
-        btnVerificarMemoriaDelPic.setText("Verificar si la memoria del PIC está borrada");
+        btnVerificarMemoriaDelPic.setText("Verificar si la memoria del PIC está Borrada");
 
         btnVerificarMemoriaDelPic.setPadding(40, 20, 40, 20);
 
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnBorrarMemoriaDeLPic = new Button(this);
 
-        btnBorrarMemoriaDeLPic.setText("Borrar Memoria");
+        btnBorrarMemoriaDeLPic.setText("Borrar Memoria del PIC");
 
         btnBorrarMemoriaDeLPic.setPadding(40, 20, 40, 20);
 
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnDetectarPic = new Button(this);
 
-        btnDetectarPic.setText("Detectar PIC en Socket");
+        btnDetectarPic.setText("Detectar PIC en el Socket");
 
         btnDetectarPic.setPadding(40, 20, 40, 20);
 
@@ -1207,7 +1207,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         } else {
 
-            proceso.setText("No se Conoce su Ubicación en el Socket");
+            proceso.setText("Solo por modo ICSP");
         }
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
