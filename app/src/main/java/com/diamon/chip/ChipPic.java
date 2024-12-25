@@ -27,6 +27,8 @@ public class ChipPic {
 
     private HashMap<String, Boolean> respuestas;
 
+    private boolean icsp;
+
     public ChipPic(
             String CHIPname,
             String INCLUDEr,
@@ -233,6 +235,8 @@ public class ChipPic {
         respuestas.put("n", false);
 
         respuestas.put("0", false);
+
+        icsp = false;
     }
 
     public int getTipoDeNucleoBit() {
@@ -268,6 +272,13 @@ public class ChipPic {
         }
 
         return nucleo;
+    }
+
+    public boolean isICSPonly() {
+
+        boolean valor = respuestas.get(variablesDeChip.get("ICSPonly").toString().toLowerCase());
+
+        return valor;
     }
 
     public HashMap<String, String> getVariablesDeProgramacion() {
@@ -479,6 +490,11 @@ public class ChipPic {
         return nucleo;
     }
 
+    public void setActivarICSP(boolean activar) {
+
+        this.icsp = activar;
+    }
+
     public int getTipoDeNucleoVerdaderoDelPic() {
 
         int nucleo =
@@ -495,7 +511,24 @@ public class ChipPic {
     }
 
     public int getSecuenciaDeEncendido() {
+
         int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
+
+        if (icsp) {
+
+            if (secuencia == 2) {
+
+                secuencia = 1;
+
+            } else if (secuencia == 4) {
+
+                secuencia = 3;
+            }
+
+        } else {
+
+            secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
+        }
 
         return secuencia;
     }
@@ -529,6 +562,7 @@ public class ChipPic {
     }
 
     public String getUbicacionPin1DelPic() {
+
         String ubicacion = "" + socketImagen.get("" + variablesDeChip.get("SocketImage"));
 
         return ubicacion;
