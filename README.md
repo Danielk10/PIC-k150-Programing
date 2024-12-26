@@ -35,7 +35,7 @@ El proyecto está basado en las siguientes librerías y recursos:
 
 - **KITSRUS - Página oficial**: [https://www.kitsrus.com](https://www.kitsrus.com)
   
-- **Archivo APK Versión Alpha 1.4.9**: [aquí.](https://drive.google.com/file/d/1vSfCYj7KKz04lr03f7jmQYuIGNJ3D7UR/view?usp=drivesdk)
+- **Archivo APK Versión Alpha 1.5.0**: [aquí.](https://play.google.com/store/apps/details?id=com.diamon.pic)
   
 ## Instrucciones de instalación
 
