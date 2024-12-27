@@ -1,5 +1,6 @@
 package com.diamon.publicidad;
 
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.diamon.nucleo.Publicidad;
@@ -36,6 +37,7 @@ public class MostrarPublicidad implements Publicidad {
         adView = new AdView(actividad);
         adView.setAdUnitId(AD_UNIT_ID);
         adView.setAdSize(AdSize.BANNER);
+        adView.setId(View.generateViewId());
         adRequest = new AdRequest.Builder().build();
     }
 
