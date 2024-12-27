@@ -31,12 +31,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.diamon.politicas.Politicas;
-import com.diamon.publicidad.MostrarPublicidad;
-import com.microsoft.appcenter.AppCenter;
-import com.microsoft.appcenter.analytics.Analytics;
-import com.microsoft.appcenter.crashes.Crashes;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -45,11 +39,16 @@ import androidx.core.app.ActivityCompat;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
+import com.diamon.politicas.Politicas;
 import com.diamon.protocolo.ProtocoloP018;
+import com.diamon.publicidad.MostrarPublicidad;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -172,8 +171,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         principal = new LinearLayout(this);
 
         principal.setOrientation(LinearLayout.VERTICAL);
+
         LayoutParams parametros =
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+        principal.setId(View.generateViewId());
 
         layout = new ConstraintLayout(this);
 
@@ -1221,8 +1223,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         principal.addView(publicidad.getBanner(), parametros);
 
         principal.addView(layout);
-
-        //  setContentView(layout);
 
         setContentView(principal);
 
