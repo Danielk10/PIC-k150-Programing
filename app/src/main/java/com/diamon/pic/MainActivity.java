@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         principal.setOrientation(LinearLayout.VERTICAL);
         LayoutParams parametros =
-                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         layout = new ConstraintLayout(this);
 
@@ -1220,7 +1220,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         principal.addView(publicidad.getBanner(), parametros);
 
-        principal.addView(layout, parametros);
+        principal.addView(layout);
 
         //  setContentView(layout);
 
