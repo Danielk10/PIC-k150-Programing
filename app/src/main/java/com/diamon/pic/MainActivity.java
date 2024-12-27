@@ -14,6 +14,8 @@ import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -29,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diamon.politicas.Politicas;
+import com.diamon.publicidad.MostrarPublicidad;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -104,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private LinearLayout eepromData;
 
+    private LinearLayout principal;
+
     private volatile TextView mensaje;
 
     private TextView proceso;
@@ -115,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private ChipinfoReader chip;
 
     private ProtocoloP018 protocolo;
+
+    private WakeLock wakeLock;
+
+    private MostrarPublicidad publicidad;
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -140,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 }
             };
 
+    @SuppressWarnings({"deprecation", "unused"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,9 +161,19 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 Analytics.class,
                 Crashes.class);
 
+        publicidad = new MostrarPublicidad(this);
+
+        publicidad.cargarBanner();
+
         firware = new String();
 
         driversP = new ArrayList<UsbSerialDriver>();
+
+        principal = new LinearLayout(this);
+
+        principal.setOrientation(LinearLayout.VERTICAL);
+        LayoutParams parametros =
+                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         layout = new ConstraintLayout(this);
 
@@ -1197,7 +1218,17 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         constraints.applyTo(layout);
 
-        setContentView(layout);
+        principal.addView(publicidad.getBanner(), parametros);
+
+        principal.addView(layout, parametros);
+
+        //  setContentView(layout);
+
+        setContentView(principal);
+
+        PowerManager powerManejador = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        wakeLock = powerManejador.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GLGame");
     }
 
     private void prueba() {}
@@ -1449,5 +1480,21 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+
+        wakeLock.release();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+
+        wakeLock.acquire();
     }
 }

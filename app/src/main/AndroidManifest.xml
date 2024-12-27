@@ -24,7 +24,6 @@
             <action android:name="android.intent.action.MAIN" />
         </intent>
     </queries>
-    />
     <uses-permission android:name="android.permission.Ad_ID" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
@@ -38,6 +37,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PIC_k150_Programing"
         tools:targetApi="35">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5141499161332805~8974571579" />
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+            android:value="true" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -52,6 +60,7 @@
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
         </activity>
+        
         <activity
             android:name="com.diamon.politicas.Politicas"
             android:label="@string/politicas"

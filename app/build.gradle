@@ -48,7 +48,7 @@ android {
 //Forma antigua de implementar la version de los plugin
 ext {
     versions = [
-        agp            : "8.6.0",
+        agp            : "8.2.0",
         junit          : "4.13.2",
         junitVersion   : "1.1.5",
         espressoCore   : "3.5.1",
@@ -76,6 +76,6 @@ dependencies {
     def appCenterSdkVersion = '5.0.4'
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
-    //implementation 'com.google.android.gms:play-services-ads:23.3.0'
+    implementation 'com.google.android.gms:play-services-ads:23.3.0'
 
 }
