@@ -14,8 +14,8 @@ android {
         applicationId "com.diamon.pic"
         minSdk 21
         targetSdk 35
-        versionCode 2
-        versionName "1.5.0"
+        versionCode 3
+        versionName "1.5.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,7 +48,7 @@ android {
 //Forma antigua de implementar la version de los plugin
 ext {
     versions = [
-        agp            : "8.2.0",
+        agp            : "8.6.0",
         junit          : "4.13.2",
         junitVersion   : "1.1.5",
         espressoCore   : "3.5.1",
