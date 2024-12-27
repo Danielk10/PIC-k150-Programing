@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         principal.setOrientation(LinearLayout.VERTICAL);
         LayoutParams parametros =
-                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
         layout = new ConstraintLayout(this);
 

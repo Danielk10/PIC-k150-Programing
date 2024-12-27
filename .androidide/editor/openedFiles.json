@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/PIC-k150-Programing/app/src/main/java/com/diamon/pic/MainActivity.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 73,
+          "index": 5244,
+          "line": 175
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 73,
+          "index": 5244,
+          "line": 175
         }
       }
     },
@@ -46,5 +46,5 @@
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/PIC-k150-Programing/app/build.gradle"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/PIC-k150-Programing/app/src/main/java/com/diamon/pic/MainActivity.java"
 }
