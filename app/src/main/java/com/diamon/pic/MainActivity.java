@@ -1405,7 +1405,25 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         }
     }
 
-    // Verifica permisos y abre el selector de archivos
+// Verifica permisos y abre el selector de archivos
+private void checkPermissionsAndOpenFile() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+                    REQUEST_CODE_PERMISSION);
+        } else {
+            openFilePicker();
+        }
+    } else {
+        openFilePicker();
+    }
+}
+
+
+  /*  // Verifica permisos y abre el selector de archivos
     private void checkPermissionsAndOpenFile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -1420,17 +1438,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         } else {
             openFilePicker();
         }
-    }
+    }*/
 
-    // Abre el selector de archivos
-    private void openFilePicker() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        startActivityForResult(intent, REQUEST_CODE_OPEN_FILE);
-    }
-
-    @Override
+ 
+ /*   @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_OPEN_FILE && resultCode == RESULT_OK) {
@@ -1440,7 +1451,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 firware = readHexFile(uri);
             }
         }
-    }
+    }*/
 
     // Lee el archivo .hex seleccionado
     private String readHexFile(Uri uri) {
@@ -1488,7 +1499,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         return hexFileContent;
     }
 
-    @Override
+ /*   @Override
     public void onRequestPermissionsResult(
             int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -1499,7 +1510,42 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             }
         }
+    }*/
+    
+    @Override
+public void onRequestPermissionsResult(
+        int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == REQUEST_CODE_PERMISSION) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            openFilePicker();
+        } else {
+            // Manejar el caso donde el permiso es denegado (opcional)
+        }
     }
+}
+
+// Abre el selector de archivos
+private void openFilePicker() {
+    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+    intent.addCategory(Intent.CATEGORY_OPENABLE);
+    intent.setType("*/*"); // Permite todos los tipos de archivos
+    filePickerLauncher.launch(intent);
+}
+
+// Manejo del resultado del selector de archivos
+private final ActivityResultLauncher<Intent> filePickerLauncher = registerForActivityResult(
+    new ActivityResultContracts.StartActivityForResult(),
+    result -> {
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            Uri uri = result.getData().getData();
+            if (uri != null) {
+                firware = readHexFile(uri);
+            }
+        }
+    }
+);
+
 
     @Override
     protected void onPause() {
