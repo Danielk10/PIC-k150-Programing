@@ -782,7 +782,7 @@ public class ProtocoloP018 extends Protocolo {
             researComandos();
 
             // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] {Byte.parseByte("17")}, 10); // 0x10 es 16 en decimal
+            usbSerialPort.write(new byte[] {Byte.parseByte("17")}, 10); 
 
             int size = 1; // Convertir palabras a bytes
 
