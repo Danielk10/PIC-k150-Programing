@@ -303,6 +303,22 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                 return;
                             }
 
+                            if (chipPIC.getTipoDeNucleoBit() == 16) {
+
+                                respuesta = protocolo.programarFusesDePics18F();
+
+                                if (respuesta) {
+
+                                    proceso.setText("Fuses 18F Programados Exitosamente");
+
+                                } else {
+
+                                    proceso.setText("Error al Programar Fuses 18F del PIC");
+
+                                    return;
+                                }
+                            }
+
                             if (respuesta) {
 
                                 proceso.setText("PIC Programado Exitosamente");
@@ -1324,6 +1340,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     @Override
     protected void onDestroy() {
+
+        publicidad.disposeBanner();
+
         super.onDestroy();
         iniciar = false;
 
@@ -1485,6 +1504,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     @Override
     protected void onPause() {
 
+        publicidad.pausarBanner();
+
         super.onPause();
 
         wakeLock.release();
@@ -1494,6 +1515,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     protected void onResume() {
 
         super.onResume();
+
+        publicidad.resumenBanner();
 
         wakeLock.acquire();
     }
