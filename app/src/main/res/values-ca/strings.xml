@@ -1,0 +1,35 @@
+<resources>
+    <string name="program_pic">Programar PIC</string>
+    <string name="verify_memory_erased">Verificar si la memòria del PIC està esborrada</string>
+    <string name="erase_memory">Esborrar Memòria del PIC</string>
+    <string name="read_memory">Llegir Memòria del PIC</string>
+    <string name="detect_pic">Detectar el PIC al sòcol</string>
+    <string name="load_hex_file">Carregar Fitxer Hex</string>
+    <string name="memory_erased_successfully">Memòria del PIC Esborrada amb Èxit</string>
+    <string name="memory_erase_error">Error en Esborrar la Memòria del PIC</string>
+    <string name="rom_programmed_successfully">Memòria ROM Programada amb Èxit</string>
+    <string name="rom_program_error">Error en Programar la Memòria ROM del PIC</string>
+    <string name="eeprom_programmed_successfully">Memòria EEPROM Programada amb Èxit</string>
+    <string name="eeprom_program_error">Error en Programar la Memòria EEPROM del PIC</string>
+    <string name="fuses_programmed_successfully">Fuses Programats amb Èxit</string>
+    <string name="fuses_program_error">Error en Programar els Fuses del PIC</string>
+    <string name="fuses_18f_programmed_successfully">Fuses 18F Programats amb Èxit</string>
+    <string name="fuses_18f_program_error">Error en Programar els Fuses 18F del PIC</string>
+    <string name="pic_programmed_successfully">PIC Programat amb Èxit</string>
+    <string name="pic_program_error">Error en Programar el PIC</string>
+    <string name="memory_read_successfully">Memòria del PIC Llegida amb Èxit</string>
+    <string name="memory_read_error">Error en Llegir la Memòria del PIC</string>
+    <string name="memory_empty">La Memòria no Conté Dades</string>
+    <string name="memory_has_data">La Memòria Conté Dades</string>
+    <string name="pic_in_socket">El PIC es Troba al Sòcol</string>
+    <string name="pic_not_in_socket">El PIC no es Troba al Sòcol</string>
+    <string name="waiting_for_pic">Esperant el PIC</string>
+    <string name="select_pic">Seleccionar el PIC:</string>
+    <string name="rom_memory_data">Dades de la Memòria ROM:</string>
+    <string name="eeprom_memory_data">Dades de la Memòria EEPROM:</string>
+    <string name="privacy_policy">Política de Privacitat</string>
+    <string name="place_pic">El PIC s'ha de Col·locar al</string>
+    <string name="icsp_mode_only">Només en Mode ICSP, Mode ICSP Activat</string>
+    <string name="connection_error">Error de Connexió:</string>
+    <string name="select_valid_binary_file">Selecciona un fitxer binari vàlid</string>
+</resources>
