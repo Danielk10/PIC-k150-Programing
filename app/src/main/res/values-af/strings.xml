@@ -1,0 +1,35 @@
+<resources>
+    <string name="program_pic">Programmeer PIC</string>
+    <string name="verify_memory_erased">Verifieer of die PIC-geheue uitgevee is</string>
+    <string name="erase_memory">Vee PIC-geheue uit</string>
+    <string name="read_memory">Lees PIC-geheue</string>
+    <string name="detect_pic">Opspoor PIC in die sok</string>
+    <string name="load_hex_file">Laai Hex-lêer</string>
+    <string name="memory_erased_successfully">PIC-geheue suksesvol uitgevee</string>
+    <string name="memory_erase_error">Fout met die uitvee van PIC-geheue</string>
+    <string name="rom_programmed_successfully">ROM suksesvol geprogrammeer</string>
+    <string name="rom_program_error">Fout met ROM-programmering van die PIC</string>
+    <string name="eeprom_programmed_successfully">EEPROM suksesvol geprogrammeer</string>
+    <string name="eeprom_program_error">Fout met EEPROM-programmering van die PIC</string>
+    <string name="fuses_programmed_successfully">Fuses suksesvol geprogrammeer</string>
+    <string name="fuses_program_error">Fout met Fuses-programmering van die PIC</string>
+    <string name="fuses_18f_programmed_successfully">Fuses 18F suksesvol geprogrammeer</string>
+    <string name="fuses_18f_program_error">Fout met Fuses 18F-programmering van die PIC</string>
+    <string name="pic_programmed_successfully">PIC suksesvol geprogrammeer</string>
+    <string name="pic_program_error">Fout met PIC-programmering</string>
+    <string name="memory_read_successfully">PIC-geheue suksesvol gelees</string>
+    <string name="memory_read_error">Fout met die lees van PIC-geheue</string>
+    <string name="memory_empty">Die geheue bevat geen data nie</string>
+    <string name="memory_has_data">Die geheue bevat data</string>
+    <string name="pic_in_socket">Die PIC is in die sok</string>
+    <string name="pic_not_in_socket">Die PIC is nie in die sok nie</string>
+    <string name="waiting_for_pic">Wag op PIC</string>
+    <string name="select_pic">Kies PIC:</string>
+    <string name="rom_memory_data">ROM-geheue-data:</string>
+    <string name="eeprom_memory_data">EEPROM-geheue-data:</string>
+    <string name="privacy_policy">Privaatheidsbeleid</string>
+    <string name="place_pic">Die PIC moet geplaas word in die</string>
+    <string name="icsp_mode_only">Slegs ICSP-modus, ICSP-modus geaktiveer</string>
+    <string name="connection_error">Verbindingsfout:</string>
+    <string name="select_valid_binary_file">Kies ’n geldige binêre lêer</string>
+</resources>
