@@ -1,0 +1,35 @@
+<resources>
+    <string name="program_pic">PIC programmieren</string>
+    <string name="verify_memory_erased">Überprüfen, ob der PIC-Speicher gelöscht ist</string>
+    <string name="erase_memory">PIC-Speicher löschen</string>
+    <string name="read_memory">PIC-Speicher lesen</string>
+    <string name="detect_pic">PIC im Sockel erkennen</string>
+    <string name="load_hex_file">Hex-Datei laden</string>
+    <string name="memory_erased_successfully">PIC-Speicher erfolgreich gelöscht</string>
+    <string name="memory_erase_error">Fehler beim Löschen des PIC-Speichers</string>
+    <string name="rom_programmed_successfully">ROM-Speicher erfolgreich programmiert</string>
+    <string name="rom_program_error">Fehler beim Programmieren des ROM-Speichers</string>
+    <string name="eeprom_programmed_successfully">EEPROM-Speicher erfolgreich programmiert</string>
+    <string name="eeprom_program_error">Fehler beim Programmieren des EEPROM-Speichers</string>
+    <string name="fuses_programmed_successfully">Sicherungen erfolgreich programmiert</string>
+    <string name="fuses_program_error">Fehler beim Programmieren der Sicherungen</string>
+    <string name="fuses_18f_programmed_successfully">18F-Sicherungen erfolgreich programmiert</string>
+    <string name="fuses_18f_program_error">Fehler beim Programmieren der 18F-Sicherungen</string>
+    <string name="pic_programmed_successfully">PIC erfolgreich programmiert</string>
+    <string name="pic_program_error">Fehler beim Programmieren des PIC</string>
+    <string name="memory_read_successfully">PIC-Speicher erfolgreich gelesen</string>
+    <string name="memory_read_error">Fehler beim Lesen des PIC-Speichers</string>
+    <string name="memory_empty">Der Speicher enthält keine Daten</string>
+    <string name="memory_has_data">Der Speicher enthält Daten</string>
+    <string name="pic_in_socket">Der PIC befindet sich im Sockel</string>
+    <string name="pic_not_in_socket">Der PIC befindet sich nicht im Sockel</string>
+    <string name="waiting_for_pic">Warten auf den PIC</string>
+    <string name="select_pic">PIC auswählen:</string>
+    <string name="rom_memory_data">ROM-Speicherdaten:</string>
+    <string name="eeprom_memory_data">EEPROM-Speicherdaten:</string>
+    <string name="privacy_policy">Datenschutzbestimmungen</string>
+    <string name="place_pic">Der PIC muss in</string>
+    <string name="icsp_mode_only">Nur im ICSP-Modus, ICSP-Modus aktiviert</string>
+    <string name="connection_error">Verbindungsfehler:</string>
+    <string name="select_valid_binary_file">Wählen Sie eine gültige Binärdatei</string>
+</resources>

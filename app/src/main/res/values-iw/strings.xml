@@ -1,0 +1,35 @@
+<resources>
+    <string name="program_pic">תכנות PIC</string>
+    <string name="verify_memory_erased">בדוק אם הזיכרון של ה-PIC נמחק</string>
+    <string name="erase_memory">מחק את הזיכרון של ה-PIC</string>
+    <string name="read_memory">קרא את הזיכרון של ה-PIC</string>
+    <string name="detect_pic">גלה PIC בשקע</string>
+    <string name="load_hex_file">טען קובץ Hex</string>
+    <string name="memory_erased_successfully">הזיכרון של ה-PIC נמחק בהצלחה</string>
+    <string name="memory_erase_error">שגיאה במחיקת הזיכרון של ה-PIC</string>
+    <string name="rom_programmed_successfully">זיכרון ROM תכנת בהצלחה</string>
+    <string name="rom_program_error">שגיאה בתכנות זיכרון ROM</string>
+    <string name="eeprom_programmed_successfully">EEPROM תכנת בהצלחה</string>
+    <string name="eeprom_program_error">שגיאה בתכנות EEPROM</string>
+    <string name="fuses_programmed_successfully">פיוזים תכנתו בהצלחה</string>
+    <string name="fuses_program_error">שגיאה בתכנות הפיוזים</string>
+    <string name="fuses_18f_programmed_successfully">פיוזים 18F תכנתו בהצלחה</string>
+    <string name="fuses_18f_program_error">שגיאה בתכנות פיוזים 18F</string>
+    <string name="pic_programmed_successfully">ה-PIC תכנת בהצלחה</string>
+    <string name="pic_program_error">שגיאה בתכנות ה-PIC</string>
+    <string name="memory_read_successfully">הזיכרון של ה-PIC נקרא בהצלחה</string>
+    <string name="memory_read_error">שגיאה בקריאת הזיכרון של ה-PIC</string>
+    <string name="memory_empty">הזיכרון ריק מנתונים</string>
+    <string name="memory_has_data">הזיכרון מכיל נתונים</string>
+    <string name="pic_in_socket">ה-PIC נמצא בשקע</string>
+    <string name="pic_not_in_socket">ה-PIC לא נמצא בשקע</string>
+    <string name="waiting_for_pic">ממתין ל-PIC</string>
+    <string name="select_pic">בחר PIC:</string>
+    <string name="rom_memory_data">נתוני זיכרון ROM:</string>
+    <string name="eeprom_memory_data">נתוני זיכרון EEPROM:</string>
+    <string name="privacy_policy">מדיניות פרטיות</string>
+    <string name="place_pic">הנח את ה-PIC כאן</string>
+    <string name="icsp_mode_only">מצב ICSP בלבד, מצב ICSP מופעל</string>
+    <string name="connection_error">שגיאת חיבור:</string>
+    <string name="select_valid_binary_file">בחר קובץ בינארי תקני</string>
+</resources>

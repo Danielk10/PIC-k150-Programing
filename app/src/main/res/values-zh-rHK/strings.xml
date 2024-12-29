@@ -1,0 +1,35 @@
+<resources>
+    <string name="program_pic">編程 PIC</string>
+    <string name="verify_memory_erased">檢查 PIC 記憶體是否已清除</string>
+    <string name="erase_memory">清除 PIC 記憶體</string>
+    <string name="read_memory">讀取 PIC 記憶體</string>
+    <string name="detect_pic">檢測插槽中的 PIC</string>
+    <string name="load_hex_file">載入 Hex 檔案</string>
+    <string name="memory_erased_successfully">PIC 記憶體已成功清除</string>
+    <string name="memory_erase_error">清除 PIC 記憶體時出錯</string>
+    <string name="rom_programmed_successfully">ROM 記憶體編程成功</string>
+    <string name="rom_program_error">編程 PIC 的 ROM 記憶體時出錯</string>
+    <string name="eeprom_programmed_successfully">EEPROM 記憶體編程成功</string>
+    <string name="eeprom_program_error">編程 PIC 的 EEPROM 記憶體時出錯</string>
+    <string name="fuses_programmed_successfully">熔絲位已成功設置</string>
+    <string name="fuses_program_error">設置 PIC 熔絲位時出錯</string>
+    <string name="fuses_18f_programmed_successfully">18F 熔絲位設置成功</string>
+    <string name="fuses_18f_program_error">設置 PIC 18F 的熔絲位時出錯</string>
+    <string name="pic_programmed_successfully">PIC 編程成功</string>
+    <string name="pic_program_error">編程 PIC 時出錯</string>
+    <string name="memory_read_successfully">成功讀取 PIC 記憶體</string>
+    <string name="memory_read_error">讀取 PIC 記憶體時出錯</string>
+    <string name="memory_empty">記憶體不包含任何數據</string>
+    <string name="memory_has_data">記憶體包含數據</string>
+    <string name="pic_in_socket">PIC 在插槽中</string>
+    <string name="pic_not_in_socket">PIC 不在插槽中</string>
+    <string name="waiting_for_pic">等待 PIC</string>
+    <string name="select_pic">選擇 PIC:</string>
+    <string name="rom_memory_data">ROM 記憶體數據:</string>
+    <string name="eeprom_memory_data">EEPROM 記憶體數據:</string>
+    <string name="privacy_policy">私隱政策</string>
+    <string name="place_pic">請放置 PIC</string>
+    <string name="icsp_mode_only">僅限 ICSP 模式，ICSP 模式已啟用</string>
+    <string name="connection_error">連接錯誤:</string>
+    <string name="select_valid_binary_file">請選擇有效的二進制檔案</string>
+</resources>
