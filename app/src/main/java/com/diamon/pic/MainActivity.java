@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.usb.UsbDevice;
@@ -17,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.provider.OpenableColumns;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,7 +66,7 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity implements Runnable {
 
-    private static final String ACTION_USB_PERMISSION = "com.example.USB_PERMISSION";
+    private static final String ACTION_USB_PERMISSION = "com.diamon.pic.USB_PERMISSION";
 
     private static final int REQUEST_CODE_OPEN_FILE = 1;
 
@@ -198,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnProgramarPic = new Button(this);
 
-        btnProgramarPic.setText("Programar PIC");
+        btnProgramarPic.setText(getString(R.string.program_pic));
 
         btnProgramarPic.setPadding(40, 20, 40, 20);
 
@@ -206,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnVerificarMemoriaDelPic = new Button(this);
 
-        btnVerificarMemoriaDelPic.setText("Verificar si la memoria del PIC está Borrada");
+        btnVerificarMemoriaDelPic.setText(getString(R.string.verify_memory_erased));
 
         btnVerificarMemoriaDelPic.setPadding(40, 20, 40, 20);
 
@@ -214,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnBorrarMemoriaDeLPic = new Button(this);
 
-        btnBorrarMemoriaDeLPic.setText("Borrar Memoria del PIC");
+        btnBorrarMemoriaDeLPic.setText(getString(R.string.erase_memory));
 
         btnBorrarMemoriaDeLPic.setPadding(40, 20, 40, 20);
 
@@ -222,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnLeerMemoriaDeLPic = new Button(this);
 
-        btnLeerMemoriaDeLPic.setText("Leer Memoria del PIC");
+        btnLeerMemoriaDeLPic.setText(getString(R.string.read_memory));
 
         btnLeerMemoriaDeLPic.setPadding(40, 20, 40, 20);
 
@@ -230,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnDetectarPic = new Button(this);
 
-        btnDetectarPic.setText("Detectar PIC en el Socket");
+        btnDetectarPic.setText(getString(R.string.detect_pic));
 
         btnDetectarPic.setPadding(40, 20, 40, 20);
 
@@ -238,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnSelectHex = new Button(this);
 
-        btnSelectHex.setText("Cargar Archivo Hex");
+        btnSelectHex.setText(getString(R.string.load_hex_file));
 
         btnSelectHex.setPadding(40, 20, 40, 20);
 
@@ -258,11 +260,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("Memoria del PIC Borrada Exitosamente");
+                                proceso.setText(getString(R.string.memory_erased_successfully));
 
                             } else {
 
-                                proceso.setText("Error al Borrar Memoria del PIC");
+                                proceso.setText(getString(R.string.memory_erase_error));
 
                                 return;
                             }
@@ -271,11 +273,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("Memoria ROM Programada Exitosamente");
+                                proceso.setText(getString(R.string.rom_programmed_successfully));
 
                             } else {
 
-                                proceso.setText("Error al Programar Memoria ROM del PIC");
+                                proceso.setText(getString(R.string.rom_program_error));
 
                                 return;
                             }
@@ -284,11 +286,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("Memoria EEPROM Programada Exitosamente");
+                                proceso.setText(getString(R.string.eeprom_programmed_successfully));
 
                             } else {
 
-                                proceso.setText("Error al Programar Memoria EEPROM del PIC");
+                                proceso.setText(getString(R.string.eeprom_program_error));
 
                                 return;
                             }
@@ -297,11 +299,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("Fuses Programados Exitosamente");
+                                proceso.setText(getString(R.string.fuses_programmed_successfully));
 
                             } else {
 
-                                proceso.setText("Error al Programar Fuses del PIC");
+                                proceso.setText(getString(R.string.fuses_program_error));
 
                                 return;
                             }
@@ -312,11 +314,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                                 if (respuesta) {
 
-                                    proceso.setText("Fuses 18F Programados Exitosamente");
+                                    proceso.setText(
+                                            getString(R.string.fuses_18f_programmed_successfully));
 
                                 } else {
 
-                                    proceso.setText("Error al Programar Fuses 18F del PIC");
+                                    proceso.setText(getString(R.string.fuses_18f_program_error));
 
                                     return;
                                 }
@@ -324,11 +327,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("PIC Programado Exitosamente");
+                                proceso.setText(getString(R.string.pic_programmed_successfully));
 
                             } else {
 
-                                proceso.setText("Error al Programar PIC");
+                                proceso.setText(getString(R.string.pic_program_error));
 
                                 return;
                             }
@@ -384,11 +387,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                         2,
                                         8); // 2 dígitos por grupo, 8 columnas
 
-                                proceso.setText("Memoria del PIC Leida Exitosamente");
+                                proceso.setText(getString(R.string.memory_read_successfully));
 
                             } else {
 
-                                proceso.setText("Error al leer Memoria del PIC");
+                                proceso.setText(getString(R.string.memory_read_error));
                             }
                         }
                     }
@@ -406,11 +409,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("Memoria del PIC Borrada Exitosamente");
+                                proceso.setText(getString(R.string.memory_erased_successfully));
 
                             } else {
 
-                                proceso.setText("Error al Borrar Memoria del PIC");
+                                proceso.setText(getString(R.string.memory_erase_error));
                             }
                         }
                     }
@@ -429,11 +432,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("La Memoria No Contiene Datos");
+                                proceso.setText(getString(R.string.memory_empty));
 
                             } else {
 
-                                proceso.setText("La Memoria Contiene Datos");
+                                proceso.setText(getString(R.string.memory_has_data));
                             }
                         }
                     }
@@ -451,17 +454,25 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             if (respuesta) {
 
-                                proceso.setText("El PIC se Encuentra en el Socket");
+                                proceso.setText(getString(R.string.pic_in_socket));
 
                             } else {
 
-                                proceso.setText("El PIC No se Encuentra en el Socket");
+                                proceso.setText(getString(R.string.pic_not_in_socket));
                             }
                         }
                     }
                 });
 
-        btnSelectHex.setOnClickListener(v -> checkPermissionsAndOpenFile());
+        btnSelectHex.setOnClickListener(
+                new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        checkPermissionsAndOpenFile();
+                    }
+                });
 
         privacyPolicyButton.setOnClickListener(
                 new OnClickListener() {
@@ -1019,7 +1030,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         buttonLayout.addView(btnSelectHex);
 
-        proceso.setText("Esperando PIC");
+        proceso.setText(getString(R.string.waiting_for_pic));
         proceso.setTextColor(Color.WHITE);
         proceso.setGravity(Gravity.CENTER);
         proceso.setId(View.generateViewId());
@@ -1033,7 +1044,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         // Etiqueta para seleccionar chip
         TextView chipLabel = new TextView(this);
-        chipLabel.setText("Seleccionar PIC:");
+        chipLabel.setText(getString(R.string.select_pic));
         chipLabel.setTextColor(Color.WHITE);
         chipLabel.setId(View.generateViewId());
         chipLayout.addView(chipLabel);
@@ -1076,7 +1087,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         // Etiquetas y datos para ROM
         TextView romLabel = new TextView(this);
-        romLabel.setText("Datos de memoria ROM:");
+        romLabel.setText(getString(R.string.rom_memory_data));
         romLabel.setTextColor(Color.GREEN);
         scrollContent.addView(romLabel);
 
@@ -1085,7 +1096,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         // Etiquetas y datos para EEPROM
         TextView eepromLabel = new TextView(this);
-        eepromLabel.setText("Datos de memoria EEPROM:");
+        eepromLabel.setText(getString(R.string.eeprom_memory_data));
         eepromLabel.setTextColor(Color.GREEN);
         scrollContent.addView(eepromLabel);
 
@@ -1093,7 +1104,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         scrollContent.addView(eepromData);
 
         // Menú de políticas y ayuda
-        privacyPolicyButton.setText("Políticas de privacidad");
+        privacyPolicyButton.setText(getString(R.string.privacy_policy));
         privacyPolicyButton.setPadding(40, 20, 40, 20);
         privacyPolicyButton.setId(View.generateViewId());
         layout.addView(privacyPolicyButton);
@@ -1250,8 +1261,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         wakeLock = powerManejador.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GLGame");
     }
 
-    private void prueba() {}
-
     private void mostrarInformacionPic(String modelo) {
 
         chipPIC = chip.getChipEntry(modelo);
@@ -1262,13 +1271,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             chipPIC.setActivarICSP(false);
 
-            proceso.setText("El PIC se debe ubicar en el " + resuesta);
+            proceso.setText(getString(R.string.place_pic) + " " + resuesta);
 
         } else {
 
             chipPIC.setActivarICSP(true);
 
-            proceso.setText("Solo por modo ICSP, Modo ICSP Activado");
+            proceso.setText(getString(R.string.icsp_mode_only));
         }
 
         if (protocolo != null) {
@@ -1337,7 +1346,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         } catch (IOException e) {
 
-            Toast.makeText(this, "Error al conectar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                            this,
+                            getString(R.string.connection_error) + e.getMessage(),
+                            Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 
@@ -1408,110 +1421,93 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         }
     }
 
-    // Verifica permisos y abre el selector de archivos
-    private void checkPermissionsAndOpenFile() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(
-                        this,
-                        new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_PERMISSION);
-            } else {
-                openFilePicker();
-            }
+    private void processSelectedFile(Uri uri) {
+        String fileName = getFileName(uri); // Implementa esta función
+        if (fileName.endsWith(".bin") || fileName.endsWith(".hex")) {
+            // Procesa el archivo
+            firware = readHexFile(uri);
         } else {
-            openFilePicker();
+            Toast.makeText(this, getString(R.string.select_valid_binary_file), Toast.LENGTH_SHORT)
+                    .show();
         }
     }
-
-    /*  // Verifica permisos y abre el selector de archivos
-    private void checkPermissionsAndOpenFile() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(
-                        this,
-                        new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_PERMISSION);
-            } else {
-                openFilePicker();
-            }
-        } else {
-            openFilePicker();
-        }
-    }*/
-
-    /*   @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_OPEN_FILE && resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            if (uri != null) {
-
-                firware = readHexFile(uri);
-            }
-        }
-    }*/
 
     // Lee el archivo .hex seleccionado
     private String readHexFile(Uri uri) {
 
         String hexFileContent = "";
 
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(uri);
+        String fileName = getFileName(uri); // Implementa esta función
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        if (fileName.endsWith(".hex") || fileName.endsWith(".HEX")) {
 
-            StringBuilder fileContent = new StringBuilder();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uri);
 
-            String line;
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            while ((line = reader.readLine()) != null) {
+                StringBuilder fileContent = new StringBuilder();
 
-                if (("" + line.charAt(0)).equals(";")) {
+                String line;
 
-                    break;
+                while ((line = reader.readLine()) != null) {
 
-                } else {
+                    if (("" + line.charAt(0)).equals(";")) {
 
-                    fileContent.append(line).append("\n");
+                        break;
+
+                    } else {
+
+                        fileContent.append(line).append("\n");
+                    }
                 }
+
+                reader.close();
+
+                hexFileContent = fileContent.toString();
+
+                btnProgramarPic.setEnabled(true);
+
+                btnVerificarMemoriaDelPic.setEnabled(true);
+
+                btnBorrarMemoriaDeLPic.setEnabled(true);
+
+                btnLeerMemoriaDeLPic.setEnabled(true);
+
+                btnDetectarPic.setEnabled(true);
+
+            } catch (Exception e) {
             }
 
-            reader.close();
-
-            hexFileContent = fileContent.toString();
-
-            btnProgramarPic.setEnabled(true);
-
-            btnVerificarMemoriaDelPic.setEnabled(true);
-
-            btnBorrarMemoriaDeLPic.setEnabled(true);
-
-            btnLeerMemoriaDeLPic.setEnabled(true);
-
-            btnDetectarPic.setEnabled(true);
-
-        } catch (Exception e) {
+        } else {
+            Toast.makeText(this, "Selecciona un archivo binario válido", Toast.LENGTH_SHORT).show();
         }
 
         return hexFileContent;
     }
 
-    /*   @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openFilePicker();
+    // Verifica permisos y abre el selector de archivos
+    private void checkPermissionsAndOpenFile() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // En Android 13 no necesitas permisos adicionales para abrir archivos con
+            // ACTION_OPEN_DOCUMENT
+            openFilePicker();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // Android 6 a 12: Verifica y solicita permiso para leer almacenamiento
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                        this,
+                        new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CODE_PERMISSION);
             } else {
-
+                openFilePicker();
             }
+        } else {
+            // Para Android 5 o inferior
+            openFilePicker();
         }
-    }*/
+    }
 
     @Override
     public void onRequestPermissionsResult(
@@ -1530,7 +1526,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private void openFilePicker() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*"); // Permite todos los tipos de archivos
+
+        // Permitir múltiples extensiones específicas
+        String[] mimeTypes = {"application/octet-stream", "application/x-binary"};
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+
         filePickerLauncher.launch(intent);
     }
 
@@ -1547,6 +1548,17 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             }
                         }
                     });
+
+    private String getFileName(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+            String name = cursor.getString(nameIndex);
+            cursor.close();
+            return name;
+        }
+        return null;
+    }
 
     @Override
     protected void onPause() {

@@ -1,0 +1,35 @@
+<resources>
+    <string name="program_pic">PIC प्रोग्राम करें</string>
+    <string name="verify_memory_erased">जांचें कि PIC की मेमोरी मिटाई गई है या नहीं</string>
+    <string name="erase_memory">PIC की मेमोरी मिटाएं</string>
+    <string name="read_memory">PIC की मेमोरी पढ़ें</string>
+    <string name="detect_pic">सॉकेट में PIC का पता लगाएं</string>
+    <string name="load_hex_file">Hex फ़ाइल लोड करें</string>
+    <string name="memory_erased_successfully">PIC की मेमोरी सफलतापूर्वक मिटाई गई</string>
+    <string name="memory_erase_error">PIC की मेमोरी मिटाने में त्रुटि</string>
+    <string name="rom_programmed_successfully">ROM मेमोरी सफलतापूर्वक प्रोग्राम की गई</string>
+    <string name="rom_program_error">PIC की ROM मेमोरी प्रोग्राम करते समय त्रुटि</string>
+    <string name="eeprom_programmed_successfully">EEPROM मेमोरी सफलतापूर्वक प्रोग्राम की गई</string>
+    <string name="eeprom_program_error">PIC की EEPROM मेमोरी प्रोग्राम करते समय त्रुटि</string>
+    <string name="fuses_programmed_successfully">फ्यूज़ सफलतापूर्वक प्रोग्राम किए गए</string>
+    <string name="fuses_program_error">PIC के फ्यूज़ प्रोग्राम करते समय त्रुटि</string>
+    <string name="fuses_18f_programmed_successfully">18F फ्यूज़ सफलतापूर्वक प्रोग्राम किए गए</string>
+    <string name="fuses_18f_program_error">18F PIC के फ्यूज़ प्रोग्राम करते समय त्रुटि</string>
+    <string name="pic_programmed_successfully">PIC सफलतापूर्वक प्रोग्राम किया गया</string>
+    <string name="pic_program_error">PIC प्रोग्राम करते समय त्रुटि</string>
+    <string name="memory_read_successfully">PIC की मेमोरी सफलतापूर्वक पढ़ी गई</string>
+    <string name="memory_read_error">PIC की मेमोरी पढ़ते समय त्रुटि</string>
+    <string name="memory_empty">मेमोरी खाली है</string>
+    <string name="memory_has_data">मेमोरी में डेटा है</string>
+    <string name="pic_in_socket">PIC सॉकेट में है</string>
+    <string name="pic_not_in_socket">PIC सॉकेट में नहीं है</string>
+    <string name="waiting_for_pic">PIC का इंतजार है</string>
+    <string name="select_pic">PIC चुनें:</string>
+    <string name="rom_memory_data">ROM मेमोरी डेटा:</string>
+    <string name="eeprom_memory_data">EEPROM मेमोरी डेटा:</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="place_pic">PIC को इस स्थान पर रखना चाहिए</string>
+    <string name="icsp_mode_only">केवल ICSP मोड में, ICSP मोड सक्रिय हो गया</string>
+    <string name="connection_error">कनेक्शन त्रुटि:</string>
+    <string name="select_valid_binary_file">मान्य बाइनरी फ़ाइल चुनें</string>
+</resources>
