@@ -158,20 +158,16 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                 @Override
                 public void onReceive(Context context, Intent intent) {
+
                     if (ACTION_USB_PERMISSION.equals(intent.getAction())) {
-                        UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
-                        if (device != null
-                                && intent.getBooleanExtra(
-                                        UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
-                            for (UsbSerialDriver driver : drivers) {
-                                if (driver.getDevice().equals(device)) {
-                                    connectToDevice(driver);
 
-                                    break;
-                                }
-                            }
-                        } else {
+                        if (!drivers.isEmpty()) {
 
+                            UsbSerialDriver driver = drivers.get(0);
+
+                            connectToDevice(driver);
+
+                            return;
                         }
                     }
                 }
@@ -1452,12 +1448,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
             protocolo = new ProtocoloP018(this, usbSerialPort);
 
-            if (protocolo.iniciarProtocolo()) {
+            protocolo.iniciarProtocolo();
 
-                // mensaje.setTextColor(Color.GREEN);
+            mensaje.setTextColor(Color.GREEN);
 
-                // mensaje.setText("Dispositivo Conectado");
-            }
+            mensaje.setText("Conectado");
 
         } catch (IOException e) {
 
@@ -1502,7 +1497,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             driversP.add(driver);
 
                         } else {
-                            connectToDevice(driver);
 
                             conectado = true;
                         }
