@@ -5,12 +5,16 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
@@ -20,15 +24,19 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.provider.OpenableColumns;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,7 +45,9 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
@@ -47,6 +57,7 @@ import com.diamon.datos.ChipinfoReader;
 import com.diamon.politicas.Politicas;
 import com.diamon.protocolo.ProtocoloP018;
 import com.diamon.publicidad.MostrarPublicidad;
+import com.diamon.utilidad.Recurso;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -104,15 +115,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private Button btnSelectHex;
 
-    private Button privacyPolicyButton;
-
     private ProgressBar progressBar;
 
     private LinearLayout romData;
 
     private LinearLayout eepromData;
-
-    private LinearLayout principal;
 
     private volatile TextView mensaje;
 
@@ -129,6 +136,22 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private WakeLock wakeLock;
 
     private MostrarPublicidad publicidad;
+
+    private RelativeLayout disenoBanner;
+
+    private FrameLayout disenoUI;
+
+    private LinearLayout disenoBannerDimencion;
+
+    private AlertDialog alertDialog;
+
+    private AlertDialog.Builder builder;
+
+    private AlertDialog alertDialog1;
+
+    private AlertDialog.Builder builder1;
+
+    private Recurso recurso;
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -165,6 +188,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 Analytics.class,
                 Crashes.class);
 
+        recurso = new Recurso(this);
+
         publicidad = new MostrarPublicidad(this);
 
         publicidad.cargarBanner();
@@ -173,14 +198,29 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         driversP = new ArrayList<UsbSerialDriver>();
 
-        principal = new LinearLayout(this);
+        disenoBannerDimencion = new LinearLayout(this);
 
-        principal.setOrientation(LinearLayout.VERTICAL);
+        disenoBannerDimencion.setOrientation(LinearLayout.VERTICAL);
+
+        disenoBannerDimencion.setId(View.generateViewId());
 
         LayoutParams parametros =
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-        principal.setId(View.generateViewId());
+        disenoBanner = new RelativeLayout(this);
+
+        disenoBanner.setId(View.generateViewId());
+
+        disenoUI = new FrameLayout(this);
+
+        disenoUI.setId(View.generateViewId());
+
+        RelativeLayout.LayoutParams parametrosBanner =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+        parametrosBanner.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        parametrosBanner.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 
         layout = new ConstraintLayout(this);
 
@@ -190,9 +230,68 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         romData.setOrientation(LinearLayout.VERTICAL);
 
+        romData.setPadding(24, 24, 24, 24);
+
+        // Crear background con bordes redondeados programáticamente
+        GradientDrawable backgroundDrawable1 = new GradientDrawable();
+        backgroundDrawable1.setColor(Color.parseColor("#1E1E2C")); // Color de fondo de la tarjeta
+        backgroundDrawable1.setCornerRadius(30f); // Bordes redondeados
+        romData.setBackground(backgroundDrawable1);
+
+        // Agregar sombras en API 21 o superior (minSdkVersion >= 21)
+        romData.setElevation(8);
+
+        // LayoutParams con márgenes
+        LinearLayout.LayoutParams layoutParams1 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams1.setMargins(16, 16, 16, 16);
+        romData.setLayoutParams(layoutParams1);
+
         eepromData = new LinearLayout(this);
 
         eepromData.setOrientation(LinearLayout.VERTICAL);
+
+        eepromData.setPadding(24, 24, 24, 24);
+
+        // Crear background con bordes redondeados programáticamente
+        GradientDrawable backgroundDrawable2 = new GradientDrawable();
+        backgroundDrawable2.setColor(Color.parseColor("#1E1E2C")); // Color de fondo de la tarjeta
+        backgroundDrawable2.setCornerRadius(30f); // Bordes redondeados
+        eepromData.setBackground(backgroundDrawable2);
+
+        // Agregar sombras en API 21 o superior (minSdkVersion >= 21)
+        eepromData.setElevation(8);
+
+        // LayoutParams con márgenes
+        LinearLayout.LayoutParams layoutParams2 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams2.setMargins(16, 16, 16, 16);
+        eepromData.setLayoutParams(layoutParams2);
+
+        // Crear el Toolbar de manera programática
+        Toolbar toolbar = new Toolbar(this);
+        toolbar.setId(View.generateViewId());
+        toolbar.setTitle("PIC k150 Programing");
+        toolbar.setBackgroundColor(Color.parseColor("#003366")); // Fondo gris claro
+        toolbar.setElevation(8);
+        toolbar.setTitleTextColor(Color.WHITE);
+
+        Drawable logo = getResources().getDrawable(R.mipmap.logo); // Reemplaza con tu logo
+
+        // recurso
+        toolbar.setLogo(logo);
+
+        // Configurar el Toolbar como ActionBar
+        setSupportActionBar(toolbar);
+
+        ConstraintLayout.LayoutParams toolbarParams =
+                new ConstraintLayout.LayoutParams(
+                        ConstraintLayout.LayoutParams.MATCH_PARENT,
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
         proceso = new TextView(this);
 
@@ -244,8 +343,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         btnSelectHex.setPadding(40, 20, 40, 20);
 
-        privacyPolicyButton = new Button(this);
-
         Spinner chipSpinner = new Spinner(this);
 
         btnProgramarPic.setOnClickListener(
@@ -282,17 +379,22 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                 return;
                             }
 
-                            respuesta = protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware);
+                            if (chipPIC.isTamanoValidoDeEEPROM()) {
 
-                            if (respuesta) {
+                                respuesta =
+                                        protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware);
 
-                                proceso.setText(getString(R.string.eeprom_programmed_successfully));
+                                if (respuesta) {
 
-                            } else {
+                                    proceso.setText(
+                                            getString(R.string.eeprom_programmed_successfully));
 
-                                proceso.setText(getString(R.string.eeprom_program_error));
+                                } else {
 
-                                return;
+                                    proceso.setText(getString(R.string.eeprom_program_error));
+
+                                    return;
+                                }
                             }
 
                             respuesta = protocolo.programarFusesIDDelPic(chipPIC, firware);
@@ -353,9 +455,12 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                             datos1.append(protocolo.leerMemoriaROMDelPic(chipPIC));
 
-                            datos2.append(protocolo.leerMemoriaEEPROMDelPic(chipPIC));
+                            if (chipPIC.isTamanoValidoDeEEPROM()) {
 
-                            if (datos1.length() > 0 && datos2.length() > 0) {
+                                datos2.append(protocolo.leerMemoriaEEPROMDelPic(chipPIC));
+                            }
+
+                            if (datos1.length() > 0) {
 
                                 if (romData.getChildCount() > 0) {
 
@@ -372,20 +477,23 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                         4,
                                         8); // 4 dígitos por grupo, 8 columnas
 
-                                if (eepromData.getChildCount() > 0) {
+                                if (datos2.length() > 0) {
 
-                                    eepromData.removeAllViewsInLayout();
+                                    if (eepromData.getChildCount() > 0) {
 
-                                    eepromData.requestLayout();
+                                        eepromData.removeAllViewsInLayout();
 
-                                    eepromData.invalidate();
+                                        eepromData.requestLayout();
+
+                                        eepromData.invalidate();
+                                    }
+
+                                    displayData(
+                                            eepromData,
+                                            datos2.toString(),
+                                            2,
+                                            8); // 2 dígitos por grupo, 8 columnas
                                 }
-
-                                displayData(
-                                        eepromData,
-                                        datos2.toString(),
-                                        2,
-                                        8); // 2 dígitos por grupo, 8 columnas
 
                                 proceso.setText(getString(R.string.memory_read_successfully));
 
@@ -471,18 +579,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onClick(View v) {
 
                         checkPermissionsAndOpenFile();
-                    }
-                });
-
-        privacyPolicyButton.setOnClickListener(
-                new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent nuevaActividad = new Intent(MainActivity.this, Politicas.class);
-
-                        startActivity(nuevaActividad);
                     }
                 });
 
@@ -996,16 +1092,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
 
-        // Título centrado en la parte superior
-        TextView title = new TextView(this);
-        title.setText("PIC K150 Programing");
-        title.setTextSize(24);
-        title.setTextColor(Color.DKGRAY);
-        title.setGravity(Gravity.CENTER);
-        title.setId(View.generateViewId());
-        layout.addView(title);
+        layout.addView(toolbar, toolbarParams);
 
-        mensaje.setText("");
+        mensaje.setText("Desconectado");
         mensaje.setTextSize(18);
         mensaje.setTextColor(Color.WHITE);
         mensaje.setGravity(Gravity.CENTER);
@@ -1079,35 +1168,65 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         ScrollView scrollView = new ScrollView(this);
 
         scrollView.setId(View.generateViewId());
+
         layout.addView(scrollView);
 
         LinearLayout scrollContent = new LinearLayout(this);
         scrollContent.setOrientation(LinearLayout.VERTICAL);
+
+        // Crear background con bordes redondeados programáticamente
+        GradientDrawable backgroundDrawable3 = new GradientDrawable();
+        backgroundDrawable3.setCornerRadius(30f); // Bordes redondeados
+        scrollContent.setBackground(backgroundDrawable3);
+
+        // Agregar sombras en API 21 o superior (minSdkVersion >= 21)
+        scrollContent.setElevation(8);
+
+        // LayoutParams con márgenes
+        LinearLayout.LayoutParams layoutParams3 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams3.setMargins(16, 16, 16, 16);
+        scrollContent.setLayoutParams(layoutParams3);
+
         scrollView.addView(scrollContent);
 
         // Etiquetas y datos para ROM
         TextView romLabel = new TextView(this);
         romLabel.setText(getString(R.string.rom_memory_data));
         romLabel.setTextColor(Color.GREEN);
+
+        romLabel.setTextSize(16);
+
+        romLabel.setTypeface(null, Typeface.BOLD);
+        romLabel.setPadding(0, 16, 0, 8); // Espaciado superior
+
         scrollContent.addView(romLabel);
 
-        romData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
+        // romData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
         scrollContent.addView(romData);
 
         // Etiquetas y datos para EEPROM
         TextView eepromLabel = new TextView(this);
         eepromLabel.setText(getString(R.string.eeprom_memory_data));
         eepromLabel.setTextColor(Color.GREEN);
+        eepromLabel.setTextSize(16);
+
+        eepromLabel.setTypeface(null, Typeface.BOLD);
+        eepromLabel.setPadding(0, 16, 0, 8); // Espaciado superior
+
         scrollContent.addView(eepromLabel);
 
-        eepromData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
+        // eepromData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
         scrollContent.addView(eepromData);
 
-        // Menú de políticas y ayuda
-        privacyPolicyButton.setText(getString(R.string.privacy_policy));
-        privacyPolicyButton.setPadding(40, 20, 40, 20);
-        privacyPolicyButton.setId(View.generateViewId());
-        layout.addView(privacyPolicyButton);
+        TextView ban = new TextView(this);
+        ban.setId(View.generateViewId());
+        ban.setText("");
+        ban.setTextColor(Color.GREEN);
+        ban.setTextSize(16);
+        layout.addView(ban);
 
         // Configurar el ConstraintLayout
         ConstraintSet constraints = new ConstraintSet();
@@ -1115,19 +1234,19 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         // Título
         constraints.connect(
-                title.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 20);
+                toolbar.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
         constraints.connect(
-                title.getId(),
+                toolbar.getId(),
                 ConstraintSet.START,
                 ConstraintSet.PARENT_ID,
                 ConstraintSet.START,
-                20);
+                0);
         constraints.connect(
-                title.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 20);
+                toolbar.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
 
         // Mensaje
         constraints.connect(
-                mensaje.getId(), ConstraintSet.TOP, title.getId(), ConstraintSet.BOTTOM, 20);
+                mensaje.getId(), ConstraintSet.TOP, toolbar.getId(), ConstraintSet.BOTTOM, 20);
         constraints.connect(
                 mensaje.getId(),
                 ConstraintSet.START,
@@ -1220,41 +1339,36 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 ConstraintSet.END,
                 20);
         constraints.connect(
-                scrollView.getId(),
-                ConstraintSet.BOTTOM,
-                privacyPolicyButton.getId(),
-                ConstraintSet.TOP,
-                20);
+                scrollView.getId(), ConstraintSet.BOTTOM, ban.getId(), ConstraintSet.TOP, 20);
         // Ajustar la altura del ScrollView para que ocupe el espacio disponible
         constraints.constrainHeight(scrollView.getId(), 0); // MATCH_CONSTRAINT
 
-        // Botón de políticas de privacidad
         constraints.connect(
-                privacyPolicyButton.getId(),
+                ban.getId(),
                 ConstraintSet.BOTTOM,
                 ConstraintSet.PARENT_ID,
                 ConstraintSet.BOTTOM,
                 20);
         constraints.connect(
-                privacyPolicyButton.getId(),
-                ConstraintSet.START,
-                ConstraintSet.PARENT_ID,
-                ConstraintSet.START,
-                20);
+                ban.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 20);
         constraints.connect(
-                privacyPolicyButton.getId(),
-                ConstraintSet.END,
-                ConstraintSet.PARENT_ID,
-                ConstraintSet.END,
-                20);
+                ban.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 20);
 
         constraints.applyTo(layout);
 
-        principal.addView(publicidad.getBanner(), parametros);
+        disenoBannerDimencion.addView(publicidad.getBanner(), parametros);
 
-        principal.addView(layout);
+        disenoBanner.addView(disenoBannerDimencion, parametrosBanner);
 
-        setContentView(principal);
+        disenoUI.addView(
+                layout,
+                new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT));
+
+        disenoUI.addView(disenoBanner);
+
+        setContentView(disenoUI);
 
         PowerManager powerManejador = (PowerManager) getSystemService(Context.POWER_SERVICE);
 
@@ -1309,7 +1423,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             // Crear TextView para la fila y agregarla al contenedor
             TextView rowTextView = new TextView(this);
             rowTextView.setText(formattedRow.toString().trim());
-            rowTextView.setTextSize(16);
+            rowTextView.setTextSize(14);
+            rowTextView.setTextColor(Color.WHITE);
             rowTextView.setPadding(16, 4, 16, 4);
             container.addView(rowTextView);
 
@@ -1352,30 +1467,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             Toast.LENGTH_SHORT)
                     .show();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        publicidad.disposeBanner();
-
-        super.onDestroy();
-        iniciar = false;
-
-        if (ioManager != null) {
-            ioManager.stop();
-        }
-
-        if (usbSerialPort != null) {
-            try {
-                usbSerialPort.close();
-            } catch (IOException e) {
-            }
-        }
-
-        executorService.shutdownNow(); // Detener inmediatamente
-
-        unregisterReceiver(usbReceiver);
     }
 
     @Override
@@ -1578,5 +1669,120 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         publicidad.resumenBanner();
 
         wakeLock.acquire();
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        publicidad.disposeBanner();
+
+        super.onDestroy();
+        iniciar = false;
+
+        if (ioManager != null) {
+            ioManager.stop();
+        }
+
+        if (usbSerialPort != null) {
+            try {
+                usbSerialPort.close();
+            } catch (IOException e) {
+            }
+        }
+
+        executorService.shutdownNow(); // Detener inmediatamente
+
+        unregisterReceiver(usbReceiver);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuItem menuInicio = menu.add(Menu.NONE, 1, 1, "Obtener Modelo del Programador");
+
+        MenuItem menuProductos = menu.add(Menu.NONE, 2, 2, "Obtener Protocolo");
+
+        MenuItem menuServicios = menu.add(Menu.NONE, 3, 3, getString(R.string.privacy_policy));
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Manejar eventos del menú
+        switch (item.getItemId()) {
+            case 1:
+                if (protocolo != null) {
+
+                    builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Modelo del Programador"); // set Title
+                    builder.setMessage(
+                            "" + protocolo.obtenerVersionOModeloDelProgramador()); // set message
+                    builder.setCancelable(true); //  Sets whether the dialog is cancelable or not
+                    builder.setIcon(R.mipmap.ic_launcher);
+
+                    builder.setPositiveButton(
+                            "Aceptar",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Replace your Own Action
+
+                                    // Cancel the AlertDialog
+                                    alertDialog.cancel();
+                                }
+                            });
+
+                    alertDialog = builder.create();
+                    alertDialog.show();
+                }
+                return true;
+            case 2:
+                if (protocolo != null) {
+
+                    builder1 = new AlertDialog.Builder(MainActivity.this);
+                    builder1.setTitle("Protocolo del Programador"); // set Title
+                    builder1.setMessage(
+                            "" + protocolo.obtenerProtocoloDelProgramador()); // set message
+                    builder1.setCancelable(true); //  Sets whether the dialog is cancelable or not
+                    builder1.setIcon(R.mipmap.ic_launcher);
+
+                    builder1.setPositiveButton(
+                            "Aceptar",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Replace your Own Action
+
+                                    // Cancel the AlertDialog
+                                    alertDialog1.cancel();
+                                }
+                            });
+
+                    alertDialog1 = builder1.create();
+                    alertDialog1.show();
+                }
+
+                return true;
+            case 3:
+                Intent nuevaActividad = new Intent(MainActivity.this, Politicas.class);
+
+                startActivity(nuevaActividad);
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+
+        // add event for back button pressed
+        Intent intent = new Intent(this, MainActivity.class);
+        finish();
+        startActivity(intent);
+        return true;
     }
 }
