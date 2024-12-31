@@ -939,19 +939,19 @@ public class ProtocoloP018 extends Protocolo {
 
             if (bytes[0] == Byte.parseByte("0")) {
 
-                datos.append(String.format("K128: %02X", bytes[0] & 0xFF));
+                datos.append(String.format("K128", bytes[0] & 0xFF));
 
             } else if (bytes[0] == Byte.parseByte("1")) {
 
-                datos.append(String.format("K149-A: %02X", bytes[0] & 0xFF));
+                datos.append(String.format("K149-A", bytes[0] & 0xFF));
 
             } else if (bytes[0] == Byte.parseByte("2")) {
 
-                datos.append(String.format("K149-B: %02X", bytes[0] & 0xFF));
+                datos.append(String.format("K149-B", bytes[0] & 0xFF));
 
             } else if (bytes[0] == Byte.parseByte("3")) {
 
-                datos.append(String.format("K150: %02X", bytes[0] & 0xFF));
+                datos.append(String.format("K150", bytes[0] & 0xFF));
             }
 
             return datos.toString();

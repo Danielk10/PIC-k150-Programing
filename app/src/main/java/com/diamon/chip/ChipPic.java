@@ -183,7 +183,7 @@ public class ChipPic {
 
         tipoDeNucleoVerdadero.put("bit12_b", 5);
 
-        tipoDeNucleoVerdadero.put("bit14_a", 5);
+        tipoDeNucleoVerdadero.put("bit14_a", 5);//5
 
         tipoDeNucleoVerdadero.put("bit14_d", 6);
 
