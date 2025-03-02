@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private volatile TextView mensaje;
 
     private TextView proceso;
+    
+    
 
     private String firware;
 
