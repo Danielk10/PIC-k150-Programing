@@ -27,6 +27,8 @@ El proyecto está basado en las siguientes librerías y recursos:
   
 - **picprogrammer**: El proyecto original que implementa la lógica de programación basada en el protocolo P018. El código fuente puede ser consultado [aquí](https://github.com/almost/picprogrammer.git).
 
+- **picpro**: Este proyecto implementa varias versiones del protocolo de KITSRUS. El código fuente puede ser consultado [aquí](https://github.com/Salamek/picpro).
+
 - **AndroidIDE**: El proyecto fue desarrollado íntegramente en **AndroidIDE**, una potente plataforma para desarrollar aplicaciones Android directamente desde un dispositivo Android. 
   - Repositorio oficial: [https://github.com/AndroidIDEOfficial/AndroidIDE.git](https://github.com/AndroidIDEOfficial/AndroidIDE.git)
   - Página oficial: [https://m.androidide.com/](https://m.androidide.com/)
