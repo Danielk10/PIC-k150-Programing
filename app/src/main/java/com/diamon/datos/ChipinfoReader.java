@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ChipinfoReader {
 
-    private static final int NUMERO_DE_REGISTROS_DATOS = 6617;//3448
+    private static final int NUMERO_DE_REGISTROS_DATOS = 6617;
 
     private Map<String, ChipPic> chipEntries;
 

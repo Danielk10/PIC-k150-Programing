@@ -23,8 +23,6 @@ public class ChipPic {
 
     private HashMap<String, Integer> tipoDeNucleo;
 
-    private HashMap<String, Integer> tipoDeNucleoVerdadero;
-
     private HashMap<String, Boolean> respuestas;
 
     private boolean icsp;
@@ -167,65 +165,8 @@ public class ChipPic {
 
         tipoDeNucleo.put("bit16_c", 13);
 
-        tipoDeNucleoVerdadero = new HashMap<String, Integer>();
+        tipoDeNucleo.put("newf12b", 0); // No esta en la documentacion
 
-        tipoDeNucleoVerdadero.put("bit16_a", 0);
-
-        tipoDeNucleoVerdadero.put("bit16_c", 0);
-
-        tipoDeNucleoVerdadero.put("bit16_b", 1);
-
-        tipoDeNucleoVerdadero.put("bit16_b", 2);
-
-        tipoDeNucleoVerdadero.put("bit14_g", 3);
-
-        tipoDeNucleoVerdadero.put("bit12_a", 4);
-
-        tipoDeNucleoVerdadero.put("bit12_b", 5);
-
-        tipoDeNucleoVerdadero.put("bit14_a", 5);//5
-
-        tipoDeNucleoVerdadero.put("bit14_d", 6);
-
-        tipoDeNucleoVerdadero.put("bit14_e", 7);
-
-        tipoDeNucleoVerdadero.put("bit14_c", 8);
-
-        tipoDeNucleoVerdadero.put("bit14_f", 9);
-
-        tipoDeNucleoVerdadero.put("bit14_h", 10);
-
-        tipoDeNucleoVerdadero.put("bit14_b", 11);
-
-        tipoDeNucleoVerdadero.put("bit12_a", 12);
-
-        /*
-                tipoDeNucleoVerdadero.put("bit16_a", 1);
-
-                tipoDeNucleoVerdadero.put("bit16_c", 1);
-
-                tipoDeNucleoVerdadero.put("bit16_b", 2);
-
-                tipoDeNucleoVerdadero.put("bit14_g", 3);
-
-                tipoDeNucleoVerdadero.put("bit12_a", 4);
-
-                tipoDeNucleoVerdadero.put("bit12_b", 5);
-
-                tipoDeNucleoVerdadero.put("bit14_a", 5);
-
-                tipoDeNucleoVerdadero.put("bit14_d", 6);
-
-                tipoDeNucleoVerdadero.put("bit14_e", 7);
-
-                tipoDeNucleoVerdadero.put("bit14_b", 7);
-
-                tipoDeNucleoVerdadero.put("bit14_c", 8);
-
-                tipoDeNucleoVerdadero.put("bit14_f", 9);
-
-                tipoDeNucleoVerdadero.put("bit14_h", 10);
-        */
         respuestas = new HashMap<String, Boolean>();
 
         respuestas.put("y", true);
@@ -269,6 +210,9 @@ public class ChipPic {
         } else if (nucleo == 4 || nucleo == 11) {
 
             nucleo = 12;
+        } else if (nucleo == 0) {
+
+            nucleo = 14;
         }
 
         return nucleo;
@@ -493,21 +437,6 @@ public class ChipPic {
     public void setActivarICSP(boolean activar) {
 
         this.icsp = activar;
-    }
-
-    public int getTipoDeNucleoVerdaderoDelPic() {
-
-        int nucleo =
-                Integer.parseInt(
-                        ""
-                                + tipoDeNucleoVerdadero.get(
-                                        ""
-                                                + variablesDeChip
-                                                        .get("core_type")
-                                                        .toString()
-                                                        .toLowerCase()));
-
-        return nucleo;
     }
 
     public int getSecuenciaDeEncendido() {

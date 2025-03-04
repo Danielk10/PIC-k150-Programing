@@ -59,15 +59,15 @@ public class ProtocoloP018 extends Protocolo {
             // Parámetros de inicialización
             int romSize = chipPIC.getTamanoROM(); // Tamaño de ROM
             int eepromSize = chipPIC.getTamanoEEPROM(); // Tamaño de EEPROM
-            int coreType = chipPIC.getTipoDeNucleoVerdaderoDelPic(); // Core Type: 16F7x 16F7x7
+            int coreType = chipPIC.getTipoDeNucleoDelPic(); // Core Type
             boolean flagCalibrationValueInROM = chipPIC.isFlagCalibration(); // Flag 0
             boolean flagBandGapFuse = chipPIC.isFlagBandGap(); // Flag 1
             boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle(); // Flag 2
             boolean flagVccVppDelay = chipPIC.isFlagVccVppDelay(); // Flag 3
-            int programDelay = chipPIC.getProgramDelay(); // 50 * 100µs = 5ms
-            int powerSequence = chipPIC.getPowerSequence(); // Power Sequence: VPP2 ->
+            int programDelay = chipPIC.getProgramDelay(); 
+            int powerSequence = chipPIC.getPowerSequence(); // Power Sequence
             // VCC
-            int eraseMode = chipPIC.getEraseMode(); // Erase Mode: 16F7x7
+            int eraseMode = chipPIC.getEraseMode(); // Erase Mode
             int programRetries = chipPIC.getProgramTries(); // Intentos de programación
             int overProgram = chipPIC.getOverProgram(); // Over Program
             // Construir los flags
