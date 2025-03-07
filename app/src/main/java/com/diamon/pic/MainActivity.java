@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     private volatile TextView mensaje;
 
     private TextView proceso;
-    
-    
 
     private String firware;
 
@@ -626,8 +624,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     public void onItemSelected(
                             AdapterView<?> parent, View view, int position, long id) {
 
-                        ((TextView) view)
-                                .setTextColor(Color.GREEN); // Color verde del texto seleccionado
+                        if (view != null) {
+                            ((TextView) view)
+                                    .setTextColor(
+                                            Color.GREEN); // Color verde del texto seleccionado
+                        } else {
+
+                        }
 
                         switch (position) {
                             case 0:
