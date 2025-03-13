@@ -15,7 +15,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.Build;
@@ -70,12 +69,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainActivity extends AppCompatActivity implements Runnable {
+public class MainActivity extends AppCompatActivity {
 
     private static final String ACTION_USB_PERMISSION = "com.diamon.pic.USB_PERMISSION";
 
@@ -87,19 +85,11 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private List<UsbSerialDriver> drivers;
 
-    private List<UsbSerialDriver> driversP;
-
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     private SerialInputOutputManager ioManager;
 
     private UsbManager usbManager;
-
-    private Thread hilo;
-
-    private boolean conectado;
-
-    private boolean iniciar;
 
     private ConstraintLayout layout;
 
@@ -191,8 +181,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         publicidad.cargarBanner();
 
         firware = new String();
-
-        driversP = new ArrayList<UsbSerialDriver>();
 
         disenoBannerDimencion = new LinearLayout(this);
 
@@ -578,23 +566,29 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     }
                 });
 
-        hilo = new Thread(this);
-
-        conectado = false;
-
-        iniciar = true;
-
         usbManager = (UsbManager) getSystemService(USB_SERVICE);
 
         // Detectar dispositivos USB
         drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
 
-        hilo.start();
-
         // Registrar el BroadcastReceiver
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 
         registerReceiver(usbReceiver, filter);
+
+        if (!drivers.isEmpty()) {
+
+            if (usbManager.hasPermission(drivers.get(0).getDevice())) {
+
+                PendingIntent permissionIntent =
+                        PendingIntent.getBroadcast(
+                                this,
+                                0,
+                                new Intent(ACTION_USB_PERMISSION),
+                                PendingIntent.FLAG_IMMUTABLE);
+                usbManager.requestPermission(drivers.get(0).getDevice(), permissionIntent);
+            }
+        }
 
         chip = new ChipinfoReader(this);
 
@@ -1437,12 +1431,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private void connectToDevice(UsbSerialDriver driver) {
 
-        UsbManager usbManager = (UsbManager) getSystemService(USB_SERVICE);
-
         try {
             usbSerialPort = driver.getPorts().get(0); // Seleccionar el primer puerto
 
-            usbSerialPort.open(usbManager.openDevice(driver.getDevice()));
+            usbSerialPort.open(this.usbManager.openDevice(driver.getDevice()));
 
             // Configurar el puerto
             usbSerialPort.setParameters(
@@ -1461,53 +1453,8 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
         } catch (IOException e) {
 
-            Toast.makeText(
-                            this,
-                            getString(R.string.connection_error) + e.getMessage(),
-                            Toast.LENGTH_SHORT)
-                    .show();
-        }
-    }
-
-    @Override
-    public void run() {
-
-        while (iniciar) {
-
-            if (!conectado) {
-
-                drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
-
-                if (!drivers.isEmpty()) {
-
-                    UsbSerialDriver driver = drivers.get(0);
-
-                    UsbDevice device = driver.getDevice();
-
-                    if (driver != null) {
-
-                        if (!usbManager.hasPermission(device)) {
-
-                            if (driversP.isEmpty()) {
-
-                                PendingIntent permissionIntent =
-                                        PendingIntent.getBroadcast(
-                                                this,
-                                                0,
-                                                new Intent(ACTION_USB_PERMISSION),
-                                                PendingIntent.FLAG_IMMUTABLE);
-                                usbManager.requestPermission(device, permissionIntent);
-                            }
-
-                            driversP.add(driver);
-
-                        } else {
-
-                            conectado = true;
-                        }
-                    }
-                }
-            }
+            // Toast.makeText(this, getString(R.string.connection_error),
+            // Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -1676,7 +1623,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         publicidad.disposeBanner();
 
         super.onDestroy();
-        iniciar = false;
 
         if (ioManager != null) {
             ioManager.stop();
