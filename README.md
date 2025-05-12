@@ -4,7 +4,7 @@
 
 ## Características
 
-- **Programación sin cables**: Permite programar microcontroladores PIC directamente desde tu teléfono Android usando el programador PIC k150 o cualquier dispositivo compatible con el protocolo P018 de KITSRUS.
+- **Programación sin PC**: Permite programar microcontroladores PIC directamente desde tu teléfono Android usando el programador PIC k150 o cualquier dispositivo compatible con el protocolo P018 de KITSRUS.
 - **Protocolo P018**: Basado en el protocolo KITSRUS Programmer Firmware Protocol P018, lo que garantiza una amplia compatibilidad con dispositivos que utilicen este estándar.
 - **Librerías USB-Serial**: Utiliza la librería `usb-serial-for-android` para la comunicación USB entre el teléfono Android y el programador PIC k150.
 - **Fácil uso**: La interfaz de usuario está diseñada para ser intuitiva y fácil de usar, permitiendo a los usuarios cargar fácilmente archivos de programación y realizar el proceso con mínimos pasos.
