@@ -170,9 +170,6 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                     }
-
-
-                  
                 }
             };
 
@@ -225,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
         layout.setBackgroundColor(Color.parseColor("#1A1A2E"));
 
         layout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
-
 
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
 
@@ -304,15 +300,18 @@ public class MainActivity extends AppCompatActivity {
 
         btnProgramarPic.setEnabled(false);
 
-        btnVerificarMemoriaDelPic = createIconButton(getString(R.string.verify_memory_erased), R.drawable.ic_chip);
+        btnVerificarMemoriaDelPic =
+                createIconButton(getString(R.string.verify_memory_erased), R.drawable.ic_chip);
 
         btnVerificarMemoriaDelPic.setEnabled(false);
 
-        btnBorrarMemoriaDeLPic = createIconButton(getString(R.string.erase_memory), R.drawable.ic_chip);
+        btnBorrarMemoriaDeLPic =
+                createIconButton(getString(R.string.erase_memory), R.drawable.ic_chip);
 
         btnBorrarMemoriaDeLPic.setEnabled(false);
 
-        btnLeerMemoriaDeLPic = createIconButton(getString(R.string.read_memory), R.drawable.ic_chip);
+        btnLeerMemoriaDeLPic =
+                createIconButton(getString(R.string.read_memory), R.drawable.ic_chip);
 
         btnLeerMemoriaDeLPic.setEnabled(false);
 
@@ -322,11 +321,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnSelectHex = createIconButton(getString(R.string.load_hex_file), R.drawable.ic_flash);
 
-
         Spinner chipSpinner = new Spinner(this);
 
         // Spinner chipSpinner =  createChipSpinner();
-
 
         btnProgramarPic.setOnClickListener(
                 new OnClickListener() {
@@ -1376,7 +1373,7 @@ public class MainActivity extends AppCompatActivity {
 
         wakeLock = powerManejador.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GLGame");
 
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
 
@@ -1527,9 +1524,6 @@ public class MainActivity extends AppCompatActivity {
         return (int) (dp * getResources().getDisplayMetrics().density);
     }
 
-
-
-
     private LinearLayout createDataCardView(String title, String data) {
         LinearLayout card = new LinearLayout(this);
         card.setOrientation(LinearLayout.VERTICAL);
@@ -1554,10 +1548,8 @@ public class MainActivity extends AppCompatActivity {
         // Divisor
         View divider = new View(this);
         divider.setBackgroundColor(Color.parseColor("#FF6600"));
-        LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dpToPx(1)
-        );
+        LinearLayout.LayoutParams dividerParams =
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
         dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(12));
         divider.setLayoutParams(dividerParams);
         card.addView(divider);
@@ -1586,27 +1578,28 @@ public class MainActivity extends AppCompatActivity {
         spinner.setBackground(spinnerBg);
 
         // Adapter personalizado
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_spinner_item,
-                chip.getModelosPic().toArray(new String[0])
-        ) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                TextView view = (TextView) super.getView(position, convertView, parent);
-                view.setTextColor(Color.WHITE);
-                view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
-                return view;
-            }
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(
+                        this,
+                        android.R.layout.simple_spinner_item,
+                        chip.getModelosPic().toArray(new String[0])) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        TextView view = (TextView) super.getView(position, convertView, parent);
+                        view.setTextColor(Color.WHITE);
+                        view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+                        return view;
+                    }
 
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
-                view.setTextColor(Color.BLACK);
-                view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
-                return view;
-            }
-        };
+                    @Override
+                    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                        TextView view =
+                                (TextView) super.getDropDownView(position, convertView, parent);
+                        view.setTextColor(Color.BLACK);
+                        view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+                        return view;
+                    }
+                };
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
