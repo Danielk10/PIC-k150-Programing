@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_OPEN_FILE = 1;
 
     private static final int REQUEST_CODE_PERMISSION = 2;
+
+    // Colores principales (agregar en los recursos o como constantes)
+    private static final int COLOR_PRIMARY = Color.parseColor("#003366"); // Azul oscuro profesional
+    private static final int COLOR_SECONDARY = Color.parseColor("#FF6600"); // Naranja Microchip
+    private static final int COLOR_BACKGROUND = Color.parseColor("#1A1A2E"); // Fondo oscuro
+    private static final int COLOR_CARD = Color.parseColor("#2A2A3E"); // Tarjetas
+    private static final int COLOR_TEXT = Color.parseColor("#E0E0E0"); // Texto claro
+    private static final int COLOR_ACCENT = Color.parseColor("#4CAF50"); // Verde para acciones
 
     private UsbSerialPort usbSerialPort;
 
@@ -207,6 +216,11 @@ public class MainActivity extends AppCompatActivity {
         parametrosBanner.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 
         layout = new ConstraintLayout(this);
+        
+        layout.setBackgroundColor(Color.parseColor("#1A1A2E"));
+        
+        layout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+
 
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
 
@@ -281,53 +295,33 @@ public class MainActivity extends AppCompatActivity {
 
         mensaje = new TextView(this);
 
-        btnProgramarPic = new Button(this);
-
-        btnProgramarPic.setText(getString(R.string.program_pic));
-
-        btnProgramarPic.setPadding(40, 20, 40, 20);
+        btnProgramarPic = createIconButton(getString(R.string.program_pic), R.drawable.ic_chip);
 
         btnProgramarPic.setEnabled(false);
-
-        btnVerificarMemoriaDelPic = new Button(this);
-
-        btnVerificarMemoriaDelPic.setText(getString(R.string.verify_memory_erased));
-
-        btnVerificarMemoriaDelPic.setPadding(40, 20, 40, 20);
+        
+        btnVerificarMemoriaDelPic = createIconButton(getString(R.string.verify_memory_erased), R.drawable.ic_chip);
 
         btnVerificarMemoriaDelPic.setEnabled(false);
-
-        btnBorrarMemoriaDeLPic = new Button(this);
-
-        btnBorrarMemoriaDeLPic.setText(getString(R.string.erase_memory));
-
-        btnBorrarMemoriaDeLPic.setPadding(40, 20, 40, 20);
+        
+        btnBorrarMemoriaDeLPic = createIconButton(getString(R.string.erase_memory), R.drawable.ic_chip);
 
         btnBorrarMemoriaDeLPic.setEnabled(false);
 
-        btnLeerMemoriaDeLPic = new Button(this);
-
-        btnLeerMemoriaDeLPic.setText(getString(R.string.read_memory));
-
-        btnLeerMemoriaDeLPic.setPadding(40, 20, 40, 20);
+        btnLeerMemoriaDeLPic = createIconButton(getString(R.string.read_memory), R.drawable.ic_chip);
 
         btnLeerMemoriaDeLPic.setEnabled(false);
 
-        btnDetectarPic = new Button(this);
-
-        btnDetectarPic.setText(getString(R.string.detect_pic));
-
-        btnDetectarPic.setPadding(40, 20, 40, 20);
+        btnDetectarPic = createIconButton(getString(R.string.detect_pic), R.drawable.ic_chip);
 
         btnDetectarPic.setEnabled(false);
-
-        btnSelectHex = new Button(this);
-
-        btnSelectHex.setText(getString(R.string.load_hex_file));
-
-        btnSelectHex.setPadding(40, 20, 40, 20);
+        
+        btnSelectHex = createIconButton(getString(R.string.load_hex_file), R.drawable.ic_flash);
+        
 
         Spinner chipSpinner = new Spinner(this);
+        
+       // Spinner chipSpinner =  createChipSpinner();
+        
 
         btnProgramarPic.setOnClickListener(
                 new OnClickListener() {
@@ -1085,7 +1079,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setLayoutParams(
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
+       // layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
 
         layout.addView(toolbar, toolbarParams);
 
@@ -1396,6 +1390,215 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
+
+    ///////
+
+    // Crear layout principal programáticamente
+    private void createMainLayout() {
+        // Layout principal
+        layout = new ConstraintLayout(this);
+        layout.setBackgroundColor(Color.parseColor("#1A1A2E"));
+        layout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+
+        // Toolbar
+        Toolbar toolbar = createToolbar();
+        layout.addView(toolbar);
+
+        // Contenedor de botones
+        LinearLayout buttonContainer = new LinearLayout(this);
+        buttonContainer.setId(View.generateViewId());
+        buttonContainer.setOrientation(LinearLayout.VERTICAL);
+        buttonContainer.setGravity(Gravity.CENTER);
+        layout.addView(buttonContainer);
+
+        // Configurar constraints
+        ConstraintSet set = new ConstraintSet();
+        set.clone(layout);
+
+        // Posicionar toolbar
+        set.connect(toolbar.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
+        set.connect(
+                toolbar.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
+        set.connect(toolbar.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END);
+
+        // Posicionar contenedor de botones
+        set.connect(
+                buttonContainer.getId(),
+                ConstraintSet.TOP,
+                toolbar.getId(),
+                ConstraintSet.BOTTOM,
+                dpToPx(24));
+        set.connect(
+                buttonContainer.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START);
+        set.connect(
+                buttonContainer.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END);
+
+        // Añadir botones al contenedor
+        btnSelectHex = createIconButton("Cargar HEX", R.drawable.ic_flash);
+        buttonContainer.addView(btnSelectHex);
+
+        btnDetectarPic = createIconButton("Detectar PIC", R.drawable.ic_chip);
+        buttonContainer.addView(btnDetectarPic);
+
+        // Añadir más botones...
+
+        // Aplicar constraints
+        set.applyTo(layout);
+
+        setContentView(layout);
+    }
+
+    private Toolbar createToolbar() {
+        Toolbar toolbar = new Toolbar(this);
+        toolbar.setId(View.generateViewId());
+        toolbar.setTitle("PIC K150 Programmer");
+        toolbar.setSubtitle("Conectado vía USB OTG");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setSubtitleTextColor(Color.LTGRAY);
+        toolbar.setBackgroundColor(Color.parseColor("#003366"));
+        toolbar.setLogo(R.drawable.ic_pic_logo);
+        toolbar.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        toolbar.setElevation(dpToPx(8));
+
+        // Configurar logo y título
+        toolbar.setContentInsetsRelative(dpToPx(72), dpToPx(16));
+
+        return toolbar;
+    }
+
+    private Button createIconButton(String text, @DrawableRes int iconRes) {
+        Button button = new Button(this);
+        button.setText(text);
+        button.setCompoundDrawablesWithIntrinsicBounds(iconRes, 0, 0, 0);
+        button.setCompoundDrawablePadding(dpToPx(8));
+
+        // Estilo del botón
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(dpToPx(24));
+        shape.setColor(Color.parseColor("#FF6600"));
+        shape.setStroke(dpToPx(2), Color.WHITE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            button.setBackground(shape);
+        } else {
+            button.setBackgroundDrawable(shape);
+        }
+
+        button.setTextColor(Color.WHITE);
+        button.setTypeface(Typeface.DEFAULT_BOLD);
+        button.setAllCaps(false);
+        button.setPadding(dpToPx(24), dpToPx(12), dpToPx(24), dpToPx(12));
+        button.setElevation(dpToPx(4));
+
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, 0, dpToPx(16));
+        button.setLayoutParams(params);
+
+        return button;
+    }
+
+    private int dpToPx(int dp) {
+        return (int) (dp * getResources().getDisplayMetrics().density);
+    }
+    
+    
+    
+    
+    private LinearLayout createDataCardView(String title, String data) {
+    LinearLayout card = new LinearLayout(this);
+    card.setOrientation(LinearLayout.VERTICAL);
+    
+    // Fondo de la tarjeta
+    GradientDrawable bg = new GradientDrawable();
+    bg.setColor(Color.parseColor("#2A2A3E"));
+    bg.setCornerRadius(dpToPx(12));
+    card.setBackground(bg);
+    card.setElevation(dpToPx(4));
+    card.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+    
+    // Título
+    TextView titleView = new TextView(this);
+    titleView.setText(title);
+    titleView.setTextColor(Color.parseColor("#FF6600"));
+    titleView.setTypeface(Typeface.DEFAULT_BOLD);
+    titleView.setTextSize(18);
+    titleView.setGravity(Gravity.CENTER);
+    card.addView(titleView);
+    
+    // Divisor
+    View divider = new View(this);
+    divider.setBackgroundColor(Color.parseColor("#FF6600"));
+    LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        dpToPx(1)
+    );
+    dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(12));
+    divider.setLayoutParams(dividerParams);
+    card.addView(divider);
+    
+    // Datos (con scroll)
+    ScrollView scrollView = new ScrollView(this);
+    TextView dataView = new TextView(this);
+    dataView.setText(data);
+    dataView.setTextColor(Color.WHITE);
+    dataView.setTypeface(Typeface.MONOSPACE);
+    dataView.setTextSize(14);
+    scrollView.addView(dataView);
+    card.addView(scrollView);
+    
+    return card;
+}
+
+   private Spinner createChipSpinner() {
+    Spinner spinner = new Spinner(this);
+    
+    // Fondo del spinner
+    GradientDrawable spinnerBg = new GradientDrawable();
+    spinnerBg.setColor(Color.TRANSPARENT);
+    spinnerBg.setCornerRadius(dpToPx(16));
+    spinnerBg.setStroke(dpToPx(2), Color.parseColor("#FF6600"));
+    spinner.setBackground(spinnerBg);
+    
+    // Adapter personalizado
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        this,
+        android.R.layout.simple_spinner_item,
+        chip.getModelosPic().toArray(new String[0])
+    ) {
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView view = (TextView) super.getView(position, convertView, parent);
+            view.setTextColor(Color.WHITE);
+            view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+            return view;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+            TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+            view.setTextColor(Color.BLACK);
+            view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+            return view;
+        }
+    };
+    
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    spinner.setAdapter(adapter);
+    
+    return spinner;
+}
+    
+    ////////
 
     private void displayData(LinearLayout container, String data, int groupSize, int columns) {
         int address = 0;
