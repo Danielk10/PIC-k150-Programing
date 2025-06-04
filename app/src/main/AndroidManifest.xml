@@ -35,7 +35,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PIC_k150_Programing"
+        android:theme="@style/Theme.PICk150Programing"
         tools:targetApi="35">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
