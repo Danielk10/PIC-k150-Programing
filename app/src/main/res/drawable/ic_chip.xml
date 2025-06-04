@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <path
+        android:fillColor="#FF6600"
+        android:pathData="M5,5 H19 V19 H5 Z"
+        android:strokeWidth="1"
+        android:strokeColor="#003366"/>
+        
+    <!-- Pins -->
+    <path
+        android:fillColor="#003366"
+        android:pathData="M3,7 H5 V9 H3 Z M3,12 H5 V14 H3 Z M7,3 H9 V5 H7 Z M12,3 H14 V5 H12 Z M17,3 H19 V5 H17 Z
+        M19,7 H21 V9 H19 Z M19,12 H21 V14 H19 Z M17,19 H19 V21 H17 Z M12,19 H14 V21 H12 Z M7,19 H9 V21 H7 Z
+        M3,17 H5 V19 H3 Z"/>
+</vector>
