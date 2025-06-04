@@ -39,7 +39,7 @@ dependencies {
     androidTestImplementation libs.espresso.core
     implementation(libs.usb.serial.for1.android)
     implementation libs.activity
-    def appCenterSdkVersion = '5.0.4'
+    def appCenterSdkVersion = '5.0.6'
     implementation libs.appcenter.analytics
     implementation libs.appcenter.crashes
     implementation libs.play.services.ads
