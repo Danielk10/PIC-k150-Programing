@@ -1,4 +1,4 @@
-package com.diamon.utilidad;
+package com.diamon.utilidades;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -7,8 +7,8 @@ import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-import com.diamon.audio.MusicaJuego;
-import com.diamon.audio.SonidoJuego;
+import com.diamon.audio.MusicaAplicacion;
+import com.diamon.audio.SonidoAplicacion;
 import com.diamon.graficos.Textura2D;
 import com.diamon.nucleo.Musica;
 import com.diamon.nucleo.Sonido;
@@ -147,7 +147,7 @@ public class Recurso {
 
         }
 
-        Musica musica = new MusicaJuego(descriptor);
+        Musica musica = new MusicaAplicacion(descriptor);
 
         musicas.put(nombre, musica);
 
@@ -184,7 +184,7 @@ public class Recurso {
 
         int id = sonidoPool.load(descriptor, 0);
 
-        Sonido sonido = new SonidoJuego(id, sonidoPool);
+        Sonido sonido = new SonidoAplicacion(id, sonidoPool);
 
         sonidos.put(nombre, sonido);
 
