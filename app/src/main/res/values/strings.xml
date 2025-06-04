@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+	<string name="politicas">Politicas de Privacidad</string>
     <string name="program_pic">Programar PIC</string>
     <string name="verify_memory_erased">Verificar si la memoria del PIC está Borrada</string>
     <string name="erase_memory">Borrar Memoria del PIC</string>

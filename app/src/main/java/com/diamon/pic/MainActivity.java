@@ -1,6 +1,7 @@
 package com.diamon.pic;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -169,9 +170,13 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                     }
+
+
+                  
                 }
             };
 
+    @SuppressLint({"UnspecifiedRegisterReceiverFlag", "InvalidWakeLockTag"})
     @SuppressWarnings({"deprecation", "unused"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,9 +221,9 @@ public class MainActivity extends AppCompatActivity {
         parametrosBanner.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 
         layout = new ConstraintLayout(this);
-        
+
         layout.setBackgroundColor(Color.parseColor("#1A1A2E"));
-        
+
         layout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
 
@@ -298,11 +303,11 @@ public class MainActivity extends AppCompatActivity {
         btnProgramarPic = createIconButton(getString(R.string.program_pic), R.drawable.ic_chip);
 
         btnProgramarPic.setEnabled(false);
-        
+
         btnVerificarMemoriaDelPic = createIconButton(getString(R.string.verify_memory_erased), R.drawable.ic_chip);
 
         btnVerificarMemoriaDelPic.setEnabled(false);
-        
+
         btnBorrarMemoriaDeLPic = createIconButton(getString(R.string.erase_memory), R.drawable.ic_chip);
 
         btnBorrarMemoriaDeLPic.setEnabled(false);
@@ -314,14 +319,14 @@ public class MainActivity extends AppCompatActivity {
         btnDetectarPic = createIconButton(getString(R.string.detect_pic), R.drawable.ic_chip);
 
         btnDetectarPic.setEnabled(false);
-        
+
         btnSelectHex = createIconButton(getString(R.string.load_hex_file), R.drawable.ic_flash);
-        
+
 
         Spinner chipSpinner = new Spinner(this);
-        
-       // Spinner chipSpinner =  createChipSpinner();
-        
+
+        // Spinner chipSpinner =  createChipSpinner();
+
 
         btnProgramarPic.setOnClickListener(
                 new OnClickListener() {
@@ -568,7 +573,15 @@ public class MainActivity extends AppCompatActivity {
         // Registrar el BroadcastReceiver
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 
-        registerReceiver(usbReceiver, filter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // TIRAMISU es API 33
+            // Para Android 13 (API 33) y superior, DEBES especificar el flag.
+            // Usamos RECEIVER_NOT_EXPORTED porque es lo más común y seguro para este caso.
+            registerReceiver(usbReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            // Para versiones anteriores a API 33, el registro antiguo es suficiente
+            // y no devuelve un Intent a menos que sea para un sticky broadcast.
+            registerReceiver(usbReceiver, filter);
+        }
 
         if (!drivers.isEmpty()) {
 
@@ -1079,7 +1092,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setLayoutParams(
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-       // layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
+        // layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
 
         layout.addView(toolbar, toolbarParams);
 
@@ -1362,6 +1375,9 @@ public class MainActivity extends AppCompatActivity {
         PowerManager powerManejador = (PowerManager) getSystemService(Context.POWER_SERVICE);
 
         wakeLock = powerManejador.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GLGame");
+
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
     }
 
     private void mostrarInformacionPic(String modelo) {
@@ -1510,94 +1526,94 @@ public class MainActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         return (int) (dp * getResources().getDisplayMetrics().density);
     }
-    
-    
-    
-    
+
+
+
+
     private LinearLayout createDataCardView(String title, String data) {
-    LinearLayout card = new LinearLayout(this);
-    card.setOrientation(LinearLayout.VERTICAL);
-    
-    // Fondo de la tarjeta
-    GradientDrawable bg = new GradientDrawable();
-    bg.setColor(Color.parseColor("#2A2A3E"));
-    bg.setCornerRadius(dpToPx(12));
-    card.setBackground(bg);
-    card.setElevation(dpToPx(4));
-    card.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
-    
-    // Título
-    TextView titleView = new TextView(this);
-    titleView.setText(title);
-    titleView.setTextColor(Color.parseColor("#FF6600"));
-    titleView.setTypeface(Typeface.DEFAULT_BOLD);
-    titleView.setTextSize(18);
-    titleView.setGravity(Gravity.CENTER);
-    card.addView(titleView);
-    
-    // Divisor
-    View divider = new View(this);
-    divider.setBackgroundColor(Color.parseColor("#FF6600"));
-    LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.MATCH_PARENT,
-        dpToPx(1)
-    );
-    dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(12));
-    divider.setLayoutParams(dividerParams);
-    card.addView(divider);
-    
-    // Datos (con scroll)
-    ScrollView scrollView = new ScrollView(this);
-    TextView dataView = new TextView(this);
-    dataView.setText(data);
-    dataView.setTextColor(Color.WHITE);
-    dataView.setTypeface(Typeface.MONOSPACE);
-    dataView.setTextSize(14);
-    scrollView.addView(dataView);
-    card.addView(scrollView);
-    
-    return card;
-}
+        LinearLayout card = new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
 
-   private Spinner createChipSpinner() {
-    Spinner spinner = new Spinner(this);
-    
-    // Fondo del spinner
-    GradientDrawable spinnerBg = new GradientDrawable();
-    spinnerBg.setColor(Color.TRANSPARENT);
-    spinnerBg.setCornerRadius(dpToPx(16));
-    spinnerBg.setStroke(dpToPx(2), Color.parseColor("#FF6600"));
-    spinner.setBackground(spinnerBg);
-    
-    // Adapter personalizado
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-        this,
-        android.R.layout.simple_spinner_item,
-        chip.getModelosPic().toArray(new String[0])
-    ) {
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextView view = (TextView) super.getView(position, convertView, parent);
-            view.setTextColor(Color.WHITE);
-            view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
-            return view;
-        }
+        // Fondo de la tarjeta
+        GradientDrawable bg = new GradientDrawable();
+        bg.setColor(Color.parseColor("#2A2A3E"));
+        bg.setCornerRadius(dpToPx(12));
+        card.setBackground(bg);
+        card.setElevation(dpToPx(4));
+        card.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
-        @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            TextView view = (TextView) super.getDropDownView(position, convertView, parent);
-            view.setTextColor(Color.BLACK);
-            view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
-            return view;
-        }
-    };
-    
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinner.setAdapter(adapter);
-    
-    return spinner;
-}
-    
+        // Título
+        TextView titleView = new TextView(this);
+        titleView.setText(title);
+        titleView.setTextColor(Color.parseColor("#FF6600"));
+        titleView.setTypeface(Typeface.DEFAULT_BOLD);
+        titleView.setTextSize(18);
+        titleView.setGravity(Gravity.CENTER);
+        card.addView(titleView);
+
+        // Divisor
+        View divider = new View(this);
+        divider.setBackgroundColor(Color.parseColor("#FF6600"));
+        LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(1)
+        );
+        dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(12));
+        divider.setLayoutParams(dividerParams);
+        card.addView(divider);
+
+        // Datos (con scroll)
+        ScrollView scrollView = new ScrollView(this);
+        TextView dataView = new TextView(this);
+        dataView.setText(data);
+        dataView.setTextColor(Color.WHITE);
+        dataView.setTypeface(Typeface.MONOSPACE);
+        dataView.setTextSize(14);
+        scrollView.addView(dataView);
+        card.addView(scrollView);
+
+        return card;
+    }
+
+    private Spinner createChipSpinner() {
+        Spinner spinner = new Spinner(this);
+
+        // Fondo del spinner
+        GradientDrawable spinnerBg = new GradientDrawable();
+        spinnerBg.setColor(Color.TRANSPARENT);
+        spinnerBg.setCornerRadius(dpToPx(16));
+        spinnerBg.setStroke(dpToPx(2), Color.parseColor("#FF6600"));
+        spinner.setBackground(spinnerBg);
+
+        // Adapter personalizado
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_spinner_item,
+                chip.getModelosPic().toArray(new String[0])
+        ) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getView(position, convertView, parent);
+                view.setTextColor(Color.WHITE);
+                view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+                view.setTextColor(Color.BLACK);
+                view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+                return view;
+            }
+        };
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        return spinner;
+    }
+
     ////////
 
     private void displayData(LinearLayout container, String data, int groupSize, int columns) {
