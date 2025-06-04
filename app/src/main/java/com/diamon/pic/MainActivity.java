@@ -52,13 +52,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
 import com.diamon.politicas.Politicas;
 import com.diamon.protocolo.ProtocoloP018;
 import com.diamon.publicidad.MostrarPublicidad;
-import com.diamon.utilidad.Recurso;
+import com.diamon.utilidades.Recurso;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -573,7 +574,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // TIRAMISU es API 33
             // Para Android 13 (API 33) y superior, DEBES especificar el flag.
             // Usamos RECEIVER_NOT_EXPORTED porque es lo más común y seguro para este caso.
-            registerReceiver(usbReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+           ContextCompat.registerReceiver(this,usbReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
         } else {
             // Para versiones anteriores a API 33, el registro antiguo es suficiente
             // y no devuelve un Intent a menos que sea para un sticky broadcast.
