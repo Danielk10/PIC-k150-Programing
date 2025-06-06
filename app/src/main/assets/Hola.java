@@ -1,9 +1,6 @@
 package com.diamon.pic;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -13,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -27,24 +23,18 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.provider.OpenableColumns;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -70,16 +60,6 @@ import com.diamon.politicas.Politicas;
 import com.diamon.protocolo.ProtocoloP018;
 import com.diamon.publicidad.MostrarPublicidad;
 import com.diamon.utilidades.Recurso;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.VideoOptions; // Importar VideoOptions
-import com.google.android.gms.ads.nativead.AdChoicesView;
-import com.google.android.gms.ads.nativead.MediaView;
-import com.google.android.gms.ads.nativead.NativeAd;
-import com.google.android.gms.ads.nativead.NativeAdOptions;
-import com.google.android.gms.ads.nativead.NativeAdView;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -106,15 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Colores principales (agregar en los recursos o como constantes)
     private static final int COLOR_PRIMARY = Color.parseColor("#003366"); // Azul oscuro profesional
-
     private static final int COLOR_SECONDARY = Color.parseColor("#FF6600"); // Naranja Microchip
-
     private static final int COLOR_BACKGROUND = Color.parseColor("#1A1A2E"); // Fondo oscuro
-
     private static final int COLOR_CARD = Color.parseColor("#2A2A3E"); // Tarjetas
-
     private static final int COLOR_TEXT = Color.parseColor("#E0E0E0"); // Texto claro
-
     private static final int COLOR_ACCENT = Color.parseColor("#4CAF50"); // Verde para acciones
 
     private UsbSerialPort usbSerialPort;
@@ -140,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDetectarPic;
 
     private Button btnSelectHex;
+
+    private ProgressBar progressBar;
 
     private LinearLayout romData;
 
@@ -176,11 +153,6 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder builder1;
 
     private Recurso recurso;
-
-    // Publicidad
-    private PopupWindow popupWindow;
-
-    private NativeAd nativeAd;
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -252,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
 
         layout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
+        progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+
         romData = new LinearLayout(this);
 
         romData.setOrientation(LinearLayout.VERTICAL);
@@ -260,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Crear background con bordes redondeados programáticamente
         GradientDrawable backgroundDrawable1 = new GradientDrawable();
-        backgroundDrawable1.setColor(Color.parseColor("#E0E0E0")); // Color de fondo de la tarjeta
+        backgroundDrawable1.setColor(Color.parseColor("#1E1E2C")); // Color de fondo de la tarjeta
         backgroundDrawable1.setCornerRadius(30f); // Bordes redondeados
         romData.setBackground(backgroundDrawable1);
 
@@ -283,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Crear background con bordes redondeados programáticamente
         GradientDrawable backgroundDrawable2 = new GradientDrawable();
-        backgroundDrawable2.setColor(Color.parseColor("#E0E0E0")); // Color de fondo de la tarjeta
+        backgroundDrawable2.setColor(Color.parseColor("#1E1E2C")); // Color de fondo de la tarjeta
         backgroundDrawable2.setCornerRadius(30f); // Bordes redondeados
         eepromData.setBackground(backgroundDrawable2);
 
@@ -323,50 +297,42 @@ public class MainActivity extends AppCompatActivity {
 
         mensaje = new TextView(this);
 
-        btnProgramarPic =
-                createIconButton(getString(R.string.program_pic), R.drawable.ic_program_chip);
+        btnProgramarPic = createIconButton(getString(R.string.program_pic), R.drawable.ic_chip);
 
         btnProgramarPic.setEnabled(false);
 
         btnVerificarMemoriaDelPic =
-                createIconButton(
-                        getString(R.string.verify_memory_erased), R.drawable.ic_verify_chip);
+                createIconButton(getString(R.string.verify_memory_erased), R.drawable.ic_chip);
 
         btnVerificarMemoriaDelPic.setEnabled(false);
 
         btnBorrarMemoriaDeLPic =
-                createIconButton(getString(R.string.erase_memory), R.drawable.ic_erase_chip);
+                createIconButton(getString(R.string.erase_memory), R.drawable.ic_chip);
 
         btnBorrarMemoriaDeLPic.setEnabled(false);
 
         btnLeerMemoriaDeLPic =
-                createIconButton(getString(R.string.read_memory), R.drawable.ic_erase_chip);
+                createIconButton(getString(R.string.read_memory), R.drawable.ic_chip);
 
         btnLeerMemoriaDeLPic.setEnabled(false);
 
-        btnDetectarPic = createIconButton(getString(R.string.detect_pic), R.drawable.ic_erase_chip);
+        btnDetectarPic = createIconButton(getString(R.string.detect_pic), R.drawable.ic_chip);
 
         btnDetectarPic.setEnabled(false);
 
-        btnSelectHex =
-                createIconButton(getString(R.string.load_hex_file), R.drawable.ic_erase_chip);
+        btnSelectHex = createIconButton(getString(R.string.load_hex_file), R.drawable.ic_flash);
 
         Spinner chipSpinner = new Spinner(this);
+
+        // Spinner chipSpinner =  createChipSpinner();
 
         btnProgramarPic.setOnClickListener(
                 new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        showAdPopup();
-
-                        publicidad.ocultarBanner();
 
                         if (protocolo != null) {
-
-                            // showAdPopup();
-
-                            // publicidad.ocultarBanner();
 
                             boolean respuesta = protocolo.borrarMemoriasDelPic();
 
@@ -608,8 +574,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // TIRAMISU es API 33
             // Para Android 13 (API 33) y superior, DEBES especificar el flag.
             // Usamos RECEIVER_NOT_EXPORTED porque es lo más común y seguro para este caso.
-            ContextCompat.registerReceiver(
-                    this, usbReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
+           ContextCompat.registerReceiver(this,usbReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
         } else {
             // Para versiones anteriores a API 33, el registro antiguo es suficiente
             // y no devuelve un Intent a menos que sea para un sticky broadcast.
@@ -1125,6 +1090,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setLayoutParams(
                 new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        // layout.setBackgroundColor(Color.parseColor("#B5651D")); // Fondo oscuro profesional
 
         layout.addView(toolbar, toolbarParams);
 
@@ -1176,6 +1142,28 @@ public class MainActivity extends AppCompatActivity {
         chipSpinner.setId(View.generateViewId());
         chipLayout.addView(chipSpinner);
 
+        // LinearLayout para barra de progreso y etiqueta
+        LinearLayout progressLayout = new LinearLayout(this);
+        progressLayout.setOrientation(LinearLayout.HORIZONTAL);
+        progressLayout.setId(View.generateViewId());
+        progressLayout.setGravity(Gravity.CENTER_VERTICAL);
+        layout.addView(progressLayout);
+
+        // Etiqueta para la barra de progreso
+        TextView progressLabel = new TextView(this);
+        progressLabel.setText("");
+        progressLabel.setTextColor(Color.WHITE);
+        progressLabel.setId(View.generateViewId());
+        progressLayout.addView(progressLabel);
+
+        // Barra de progreso
+        progressBar.setId(View.generateViewId());
+        progressBar.setProgress(0); // Valor inicial para ser visible
+        progressBar.setMax(0); // Máximo para pruebas
+        progressBar.setLayoutParams(
+                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        progressLayout.addView(progressBar);
+
         // ScrollView para datos leídos del chip
         ScrollView scrollView = new ScrollView(this);
 
@@ -1216,6 +1204,7 @@ public class MainActivity extends AppCompatActivity {
 
         scrollContent.addView(romLabel);
 
+        // romData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
         scrollContent.addView(romData);
 
         // Etiquetas y datos para EEPROM
@@ -1229,9 +1218,8 @@ public class MainActivity extends AppCompatActivity {
 
         scrollContent.addView(eepromLabel);
 
+        // eepromData.setBackgroundColor(Color.WHITE); // Fondo blanco para destacar
         scrollContent.addView(eepromData);
-
-        //
 
         TextView ban = new TextView(this);
         ban.setId(View.generateViewId());
@@ -1239,8 +1227,6 @@ public class MainActivity extends AppCompatActivity {
         ban.setTextColor(Color.GREEN);
         ban.setTextSize(16);
         layout.addView(ban);
-
-        //
 
         // Configurar el ConstraintLayout
         ConstraintSet constraints = new ConstraintSet();
@@ -1313,11 +1299,31 @@ public class MainActivity extends AppCompatActivity {
                 ConstraintSet.END,
                 20);
 
+        // Layout para barra de progreso y etiqueta
+        constraints.connect(
+                progressLayout.getId(),
+                ConstraintSet.TOP,
+                chipLayout.getId(),
+                ConstraintSet.BOTTOM,
+                20);
+        constraints.connect(
+                progressLayout.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START,
+                20);
+        constraints.connect(
+                progressLayout.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+                20);
+
         // ScrollView
         constraints.connect(
                 scrollView.getId(),
                 ConstraintSet.TOP,
-                chipLayout.getId(),
+                progressLayout.getId(),
                 ConstraintSet.BOTTOM,
                 20);
         constraints.connect(
@@ -1332,7 +1338,6 @@ public class MainActivity extends AppCompatActivity {
                 ConstraintSet.PARENT_ID,
                 ConstraintSet.END,
                 20);
-
         constraints.connect(
                 scrollView.getId(), ConstraintSet.BOTTOM, ban.getId(), ConstraintSet.TOP, 20);
         // Ajustar la altura del ScrollView para que ocupe el espacio disponible
@@ -1400,47 +1405,210 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
 
+    ///////
+
+    // Crear layout principal programáticamente
+    private void createMainLayout() {
+        // Layout principal
+        layout = new ConstraintLayout(this);
+        layout.setBackgroundColor(Color.parseColor("#1A1A2E"));
+        layout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+
+        // Toolbar
+        Toolbar toolbar = createToolbar();
+        layout.addView(toolbar);
+
+        // Contenedor de botones
+        LinearLayout buttonContainer = new LinearLayout(this);
+        buttonContainer.setId(View.generateViewId());
+        buttonContainer.setOrientation(LinearLayout.VERTICAL);
+        buttonContainer.setGravity(Gravity.CENTER);
+        layout.addView(buttonContainer);
+
+        // Configurar constraints
+        ConstraintSet set = new ConstraintSet();
+        set.clone(layout);
+
+        // Posicionar toolbar
+        set.connect(toolbar.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
+        set.connect(
+                toolbar.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
+        set.connect(toolbar.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END);
+
+        // Posicionar contenedor de botones
+        set.connect(
+                buttonContainer.getId(),
+                ConstraintSet.TOP,
+                toolbar.getId(),
+                ConstraintSet.BOTTOM,
+                dpToPx(24));
+        set.connect(
+                buttonContainer.getId(),
+                ConstraintSet.START,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.START);
+        set.connect(
+                buttonContainer.getId(),
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END);
+
+        // Añadir botones al contenedor
+        btnSelectHex = createIconButton("Cargar HEX", R.drawable.ic_flash);
+        buttonContainer.addView(btnSelectHex);
+
+        btnDetectarPic = createIconButton("Detectar PIC", R.drawable.ic_chip);
+        buttonContainer.addView(btnDetectarPic);
+
+        // Añadir más botones...
+
+        // Aplicar constraints
+        set.applyTo(layout);
+
+        setContentView(layout);
+    }
+
+    private Toolbar createToolbar() {
+        Toolbar toolbar = new Toolbar(this);
+        toolbar.setId(View.generateViewId());
+        toolbar.setTitle("PIC K150 Programmer");
+        toolbar.setSubtitle("Conectado vía USB OTG");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setSubtitleTextColor(Color.LTGRAY);
+        toolbar.setBackgroundColor(Color.parseColor("#003366"));
+        toolbar.setLogo(R.drawable.ic_pic_logo);
+        toolbar.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        toolbar.setElevation(dpToPx(8));
+
+        // Configurar logo y título
+        toolbar.setContentInsetsRelative(dpToPx(72), dpToPx(16));
+
+        return toolbar;
+    }
+
     private Button createIconButton(String text, @DrawableRes int iconRes) {
-        Button button = new Button(this, null, android.R.attr.buttonStyle);
+        Button button = new Button(this);
         button.setText(text);
-
-        // Aplicar el nuevo fondo con animaciones y estados
-        button.setBackgroundResource(R.drawable.button_background);
-
-        // Asignar el nuevo icono profesional a la izquierda del texto
         button.setCompoundDrawablesWithIntrinsicBounds(iconRes, 0, 0, 0);
-        button.setCompoundDrawablePadding(dpToPx(12)); // Espacio entre icono y texto
+        button.setCompoundDrawablePadding(dpToPx(8));
 
-        // Estilo del texto y padding
+        // Estilo del botón
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(dpToPx(24));
+        shape.setColor(Color.parseColor("#FF6600"));
+        shape.setStroke(dpToPx(2), Color.WHITE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            button.setBackground(shape);
+        } else {
+            button.setBackgroundDrawable(shape);
+        }
+
         button.setTextColor(Color.WHITE);
         button.setTypeface(Typeface.DEFAULT_BOLD);
-        button.setAllCaps(false); // Letras en formato normal (ej: "Grabar" no "GRABAR")
-        button.setPadding(dpToPx(18), dpToPx(10), dpToPx(18), dpToPx(10));
+        button.setAllCaps(false);
+        button.setPadding(dpToPx(24), dpToPx(12), dpToPx(24), dpToPx(12));
+        button.setElevation(dpToPx(4));
 
-        // Configuración de Layout
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(dpToPx(10), 0, dpToPx(10), dpToPx(10)); // Márgenes laterales
+        params.setMargins(0, 0, 0, dpToPx(16));
         button.setLayoutParams(params);
-
-        // La elevación es manejada por el estilo por defecto, pero puedes añadirla si quieres más
-        // sombra
-        // button.setElevation(dpToPx(4));
 
         return button;
     }
 
     private int dpToPx(int dp) {
-        return (int)
-                TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+        return (int) (dp * getResources().getDisplayMetrics().density);
     }
 
-    /*  private int dpToPx(int dp) {
-        return (int) (dp * getResources().getDisplayMetrics().density);
-    }*/
+    private LinearLayout createDataCardView(String title, String data) {
+        LinearLayout card = new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
+
+        // Fondo de la tarjeta
+        GradientDrawable bg = new GradientDrawable();
+        bg.setColor(Color.parseColor("#2A2A3E"));
+        bg.setCornerRadius(dpToPx(12));
+        card.setBackground(bg);
+        card.setElevation(dpToPx(4));
+        card.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+
+        // Título
+        TextView titleView = new TextView(this);
+        titleView.setText(title);
+        titleView.setTextColor(Color.parseColor("#FF6600"));
+        titleView.setTypeface(Typeface.DEFAULT_BOLD);
+        titleView.setTextSize(18);
+        titleView.setGravity(Gravity.CENTER);
+        card.addView(titleView);
+
+        // Divisor
+        View divider = new View(this);
+        divider.setBackgroundColor(Color.parseColor("#FF6600"));
+        LinearLayout.LayoutParams dividerParams =
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
+        dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(12));
+        divider.setLayoutParams(dividerParams);
+        card.addView(divider);
+
+        // Datos (con scroll)
+        ScrollView scrollView = new ScrollView(this);
+        TextView dataView = new TextView(this);
+        dataView.setText(data);
+        dataView.setTextColor(Color.WHITE);
+        dataView.setTypeface(Typeface.MONOSPACE);
+        dataView.setTextSize(14);
+        scrollView.addView(dataView);
+        card.addView(scrollView);
+
+        return card;
+    }
+
+    private Spinner createChipSpinner() {
+        Spinner spinner = new Spinner(this);
+
+        // Fondo del spinner
+        GradientDrawable spinnerBg = new GradientDrawable();
+        spinnerBg.setColor(Color.TRANSPARENT);
+        spinnerBg.setCornerRadius(dpToPx(16));
+        spinnerBg.setStroke(dpToPx(2), Color.parseColor("#FF6600"));
+        spinner.setBackground(spinnerBg);
+
+        // Adapter personalizado
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(
+                        this,
+                        android.R.layout.simple_spinner_item,
+                        chip.getModelosPic().toArray(new String[0])) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        TextView view = (TextView) super.getView(position, convertView, parent);
+                        view.setTextColor(Color.WHITE);
+                        view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+                        return view;
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                        TextView view =
+                                (TextView) super.getDropDownView(position, convertView, parent);
+                        view.setTextColor(Color.BLACK);
+                        view.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
+                        return view;
+                    }
+                };
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        return spinner;
+    }
+
+    ////////
 
     private void displayData(LinearLayout container, String data, int groupSize, int columns) {
         int address = 0;
@@ -1662,415 +1830,10 @@ public class MainActivity extends AppCompatActivity {
         wakeLock.acquire();
     }
 
-    private void showAdPopup() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int screenWidth = displayMetrics.widthPixels;
-        int currentScreenHeight = displayMetrics.heightPixels; // Usar un valor actual
-
-        int popupHeight = (int) (currentScreenHeight * 0.7);
-
-        LinearLayout popupContainer = new LinearLayout(this);
-        popupContainer.setOrientation(LinearLayout.VERTICAL);
-        popupContainer.setLayoutParams(
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, popupHeight));
-
-        GradientDrawable shape = new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setCornerRadius(40f);
-        shape.setColor(Color.parseColor("#FFFFFF"));
-
-        popupContainer.setBackground(shape);
-
-        // Crear el layout para el contenido superior (información de grabación del PIC)
-        LinearLayout topContent = new LinearLayout(this);
-        topContent.setOrientation(LinearLayout.VERTICAL);
-        LinearLayout.LayoutParams topParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        0,
-                        0.8f); // Peso para la parte superior, puedes ajustarlo según necesites
-        topContent.setLayoutParams(topParams);
-        topContent.setPadding(32, 32, 32, 32); // Padding general para esta sección
-
-        // Añadir título indicando la acción
-        TextView title = new TextView(this);
-        title.setText("Programando Microcontrolador PIC");
-        title.setTextSize(22); // Tamaño de texto para el título
-        title.setTextColor(Color.parseColor("#0D47A1")); // Color principal para el título
-        // Considera un color azul oscuro si quieres un look más "técnico":
-        // title.setTextColor(Color.parseColor("#0D47A1"));
-        title.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams titleViewParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, // Ocupar ancho para centrar texto
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
-        titleViewParams.bottomMargin = 24; // Margen inferior para separar del ProgressBar
-        topContent.addView(title, titleViewParams);
-
-        // Añadir ProgressBar circular
-        // Utiliza el estilo por defecto que suele ser un círculo indeterminado.
-        ProgressBar progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyle);
-        LinearLayout.LayoutParams progressParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
-        progressParams.gravity = Gravity.CENTER_HORIZONTAL; // Centrar la barra de progreso
-        progressParams.topMargin = 16; // Margen superior
-        progressParams.bottomMargin = 24; // Margen inferior
-
-        // Opcional: Para cambiar el color de la ProgressBar (requiere API 21+)
-        // Necesitarías importar android.content.res.ColorStateList;
-        progressBar.setIndeterminateTintList(
-                ColorStateList.valueOf(Color.parseColor("#1976D2"))); // Ejemplo: Azul Material
-
-        topContent.addView(progressBar, progressParams);
-
-        // Añadir descripción del proceso
-        TextView description = new TextView(this);
-        description.setText(
-                "Por favor, espere mientras se graba el firmware en el dispositivo. No lo desconecte para evitar errores.");
-        description.setTextSize(15); // Tamaño de texto para la descripción
-        description.setTextColor(Color.DKGRAY); // Color gris oscuro para la descripción
-        description.setGravity(Gravity.CENTER); // Centrar texto de la descripción
-        LinearLayout.LayoutParams descViewParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, // Ocupar ancho para centrar texto
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
-        // No es necesario padding adicional aquí si el texto está centrado y topContent tiene
-        // padding.
-        topContent.addView(description, descViewParams);
-
-        // Añadir la sección topContent al contenedor principal del popup
-        popupContainer.addView(topContent);
-
-        View divider = new View(this);
-        divider.setBackgroundColor(Color.LTGRAY);
-        popupContainer.addView(
-                divider, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2));
-
-        FrameLayout adContainer = new FrameLayout(this);
-        LinearLayout.LayoutParams adParams =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.2f);
-        adContainer.setLayoutParams(adParams);
-        adContainer.setPadding(8, 8, 8, 8);
-        adContainer.setId(View.generateViewId());
-        popupContainer.addView(adContainer);
-
-        LinearLayout buttonContainer = new LinearLayout(this);
-        buttonContainer.setOrientation(LinearLayout.HORIZONTAL);
-        buttonContainer.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT));
-        buttonContainer.setPadding(16, 16, 16, 16);
-
-        Button acceptButton = new Button(this);
-        acceptButton.setText("Aceptar");
-        LinearLayout.LayoutParams buttonLayoutParam =
-                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        buttonLayoutParam.setMarginEnd(8);
-        acceptButton.setLayoutParams(buttonLayoutParam);
-        acceptButton.setOnClickListener(
-                v -> {
-                    Toast.makeText(this, "Anuncio aceptado", Toast.LENGTH_SHORT).show();
-
-                    publicidad.mostrarBanner();
-                    dismissPopupWithSlideDown();
-                });
-
-        Button closeButton = new Button(this);
-        closeButton.setText("Cerrar");
-        LinearLayout.LayoutParams buttonLayoutParam2 =
-                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        buttonLayoutParam2.setMarginStart(8);
-        closeButton.setLayoutParams(buttonLayoutParam2);
-        closeButton.setOnClickListener(
-                v -> {
-                    publicidad.mostrarBanner();
-
-                    dismissPopupWithSlideDown();
-                });
-
-        buttonContainer.addView(acceptButton);
-        buttonContainer.addView(closeButton);
-        popupContainer.addView(buttonContainer);
-
-        popupWindow = new PopupWindow(popupContainer, (int) (screenWidth * 0.9), popupHeight, true);
-
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setAnimationStyle(0);
-
-        popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
-        applyCustomAnimation(popupContainer);
-        loadNativeAd(adContainer);
-    }
-
-    private void dismissPopupWithSlideDown() {
-        if (popupWindow != null && popupWindow.isShowing()) {
-            final View popupView = popupWindow.getContentView();
-
-            // Obtener la altura actual de la pantalla para el cálculo
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int currentScreenHeight = displayMetrics.heightPixels;
-
-            // La propiedad translationY es relativa a la posición original de la vista.
-            // Queremos que la parte superior de la vista (popupView.getTop() +
-            // popupView.getTranslationY())
-            // alcance la parte inferior de la pantalla (currentScreenHeight).
-            // Entonces, el valor final de translationY debe ser: currentScreenHeight -
-            // popupView.getTop().
-            // Esto moverá la parte superior del popup hasta el borde inferior de la pantalla,
-            // haciéndolo desaparecer completamente hacia abajo.
-            float startTranslationY =
-                    popupView.getTranslationY(); // Normalmente 0 si no hay otras traslaciones
-            // activas
-            float targetTranslationY = currentScreenHeight - popupView.getTop();
-
-            ValueAnimator animator = ValueAnimator.ofFloat(startTranslationY, targetTranslationY);
-            animator.setDuration(600);
-            animator.setInterpolator(new AccelerateInterpolator(1.5f));
-
-            animator.addUpdateListener(
-                    animation -> {
-                        float value = (float) animation.getAnimatedValue();
-                        popupView.setTranslationY(value);
-                    });
-
-            animator.addListener(
-                    new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            popupWindow.dismiss();
-                            if (nativeAd != null) {
-                                nativeAd.destroy();
-                                nativeAd = null;
-                            }
-                        }
-                    });
-            animator.start();
-        }
-    }
-
-    private void applyCustomAnimation(View popupView) {
-        popupView.setScaleY(0);
-        popupView.setPivotY(0);
-
-        ValueAnimator scaleAnimator = ValueAnimator.ofFloat(0f, 1f);
-        scaleAnimator.setDuration(1000);
-        scaleAnimator.setInterpolator(new BounceInterpolator());
-        scaleAnimator.addUpdateListener(
-                animation -> {
-                    float value = (float) animation.getAnimatedValue();
-                    popupView.setScaleY(value);
-                });
-        scaleAnimator.start();
-
-        popupWindow.setTouchInterceptor(
-                (v, event) -> {
-                    if (!isPointInsideView(
-                            event.getRawX(), event.getRawY(), popupWindow.getContentView())) {
-                        dismissPopupWithSlideDown();
-                        return true;
-                    }
-                    return false;
-                });
-    }
-
-    private boolean isPointInsideView(float x, float y, View view) {
-        int[] location = new int[2];
-        view.getLocationOnScreen(location);
-        int viewX = location[0];
-        int viewY = location[1];
-        return (x >= viewX && x <= (viewX + view.getWidth()))
-                && (y >= viewY && y <= (viewY + view.getHeight()));
-    }
-
-    private void loadNativeAd(FrameLayout adContainer) {
-        AdLoader.Builder builder =
-                new AdLoader.Builder(
-                        this, "ca-app-pub-5141499161332805/4642845838"); // ID de prueba
-
-        builder.forNativeAd(
-                loadedNativeAd -> {
-                    adContainer.removeAllViews();
-                    if (this.nativeAd != null) {
-                        this.nativeAd.destroy();
-                    }
-                    this.nativeAd = loadedNativeAd;
-
-                    NativeAdView adView = new NativeAdView(this);
-                    adView.setLayoutParams(
-                            new FrameLayout.LayoutParams(
-                                    FrameLayout.LayoutParams.MATCH_PARENT,
-                                    FrameLayout.LayoutParams.MATCH_PARENT));
-
-                    LinearLayout adInternalLayout = new LinearLayout(this);
-                    adInternalLayout.setOrientation(LinearLayout.VERTICAL);
-                    adInternalLayout.setLayoutParams(
-                            new FrameLayout.LayoutParams(
-                                    FrameLayout.LayoutParams.MATCH_PARENT,
-                                    FrameLayout.LayoutParams.MATCH_PARENT));
-                    adInternalLayout.setPadding(16, 16, 16, 16);
-
-                    TextView adBadge = new TextView(this);
-                    adBadge.setText("Ad");
-                    adBadge.setTextSize(10);
-                    adBadge.setTextColor(Color.WHITE);
-                    GradientDrawable adBadgeBackground = new GradientDrawable();
-                    adBadgeBackground.setShape(GradientDrawable.RECTANGLE);
-                    adBadgeBackground.setColor(Color.parseColor("#FFCC66"));
-                    adBadgeBackground.setCornerRadius(8f);
-                    adBadge.setBackground(adBadgeBackground);
-                    adBadge.setPadding(8, 4, 8, 4);
-                    LinearLayout.LayoutParams adBadgeParams =
-                            new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                    adBadgeParams.setMargins(0, 0, 0, 8);
-                    adInternalLayout.addView(adBadge, adBadgeParams);
-
-                    MediaView mediaView = new MediaView(this);
-                    LinearLayout.LayoutParams mediaParams =
-                            new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
-                    mediaParams.gravity = Gravity.CENTER_HORIZONTAL;
-                    // Ajustar la altura mínima para videos si es necesario, por ejemplo:
-                    mediaParams.height =
-                            (int)
-                                    (200
-                                            * getResources()
-                                                    .getDisplayMetrics()
-                                                    .density); // Altura mínima de 200dp
-                    mediaView.setLayoutParams(mediaParams);
-                    adView.setMediaView(mediaView);
-
-                    TextView headlineView = new TextView(this);
-                    headlineView.setText(nativeAd.getHeadline());
-                    headlineView.setTextSize(18);
-                    headlineView.setTextColor(Color.BLACK);
-                    headlineView.setGravity(Gravity.START);
-                    headlineView.setPadding(0, 8, 0, 4);
-                    adView.setHeadlineView(headlineView);
-
-                    TextView bodyView = new TextView(this);
-                    bodyView.setText(nativeAd.getBody());
-                    bodyView.setTextSize(14);
-                    bodyView.setTextColor(Color.DKGRAY);
-                    bodyView.setPadding(0, 4, 0, 8);
-                    adView.setBodyView(bodyView);
-
-                    ImageView iconView = new ImageView(this);
-                    if (nativeAd.getIcon() != null && nativeAd.getIcon().getDrawable() != null) {
-                        iconView.setImageDrawable(nativeAd.getIcon().getDrawable());
-                        LinearLayout.LayoutParams iconParams =
-                                new LinearLayout.LayoutParams(
-                                        (int) (40 * getResources().getDisplayMetrics().density),
-                                        (int) (40 * getResources().getDisplayMetrics().density));
-                        iconParams.setMarginEnd(8);
-                        iconView.setLayoutParams(iconParams);
-                    } else {
-                        iconView.setVisibility(View.GONE);
-                    }
-                    adView.setIconView(iconView);
-
-                    LinearLayout headerRow = new LinearLayout(this);
-                    headerRow.setOrientation(LinearLayout.HORIZONTAL);
-                    headerRow.setGravity(Gravity.CENTER_VERTICAL);
-                    if (iconView.getVisibility() == View.VISIBLE) {
-                        headerRow.addView(iconView);
-                    }
-                    // Hacer que el headlineView ocupe el espacio restante en la fila
-                    LinearLayout.LayoutParams headlineInRowParams =
-                            new LinearLayout.LayoutParams(
-                                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-                    headlineView.setLayoutParams(headlineInRowParams);
-                    headerRow.addView(headlineView);
-
-                    Button callToAction = new Button(this);
-                    callToAction.setText(nativeAd.getCallToAction());
-                    callToAction.setAllCaps(false);
-                    callToAction.setTextColor(Color.WHITE);
-                    callToAction.setBackgroundColor(Color.parseColor("#4CAF50"));
-                    LinearLayout.LayoutParams ctaParams =
-                            new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                    ctaParams.setMargins(0, 8, 0, 0);
-                    callToAction.setLayoutParams(ctaParams);
-                    adView.setCallToActionView(callToAction);
-
-                    adInternalLayout.addView(headerRow);
-                    adInternalLayout.addView(bodyView);
-                    adInternalLayout.addView(mediaView);
-                    adInternalLayout.addView(callToAction);
-
-                    adView.addView(adInternalLayout);
-
-                    AdChoicesView adChoicesView = new AdChoicesView(this);
-                    FrameLayout.LayoutParams adChoicesParams =
-                            new FrameLayout.LayoutParams(
-                                    FrameLayout.LayoutParams.WRAP_CONTENT,
-                                    FrameLayout.LayoutParams.WRAP_CONTENT);
-                    adChoicesParams.gravity = Gravity.TOP | Gravity.END;
-                    adChoicesParams.setMargins(0, 4, 4, 0);
-                    adView.addView(adChoicesView, adChoicesParams);
-                    adView.setAdChoicesView(adChoicesView);
-
-                    adView.setNativeAd(nativeAd);
-                    adContainer.addView(adView);
-                });
-
-        AdListener adListener =
-                new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(LoadAdError adError) {
-                        adContainer.removeAllViews();
-                        TextView errorText = new TextView(MainActivity.this);
-                        errorText.setText("Error al cargar anuncio: " + adError.getMessage());
-                        errorText.setTextColor(Color.RED);
-                        errorText.setGravity(Gravity.CENTER);
-                        adContainer.addView(errorText);
-                        Toast.makeText(
-                                        MainActivity.this,
-                                        "Fallo al cargar anuncio: " + adError.getMessage(),
-                                        Toast.LENGTH_LONG)
-                                .show();
-                    }
-                };
-        builder.withAdListener(adListener);
-
-        // --- Configuración de Video para Anuncios Nativos ---
-        VideoOptions videoOptions =
-                new VideoOptions.Builder()
-                        .setStartMuted(true) // Recomendado: iniciar videos silenciados
-                        .build();
-
-        NativeAdOptions adOptions =
-                new NativeAdOptions.Builder()
-                        .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                        .setVideoOptions(videoOptions) // Aplicar las opciones de video
-                        .build();
-        builder.withNativeAdOptions(adOptions);
-        // --- Fin Configuración de Video ---
-
-        AdLoader adLoader = builder.build();
-        adLoader.loadAd(new AdRequest.Builder().build());
-    }
-
     @Override
     protected void onDestroy() {
 
         publicidad.disposeBanner();
-
-        if (nativeAd != null) {
-            nativeAd.destroy();
-        }
-        if (popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
-        }
 
         super.onDestroy();
 

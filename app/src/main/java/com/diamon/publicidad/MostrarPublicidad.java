@@ -59,10 +59,24 @@ public class MostrarPublicidad implements Publicidad {
     }
 
     @Override
-    public void mostrarBanner() {}
+    public void mostrarBanner() {
+        actividad.runOnUiThread(
+                () -> {
+                    if (adView != null) {
+                        adView.setVisibility(View.VISIBLE);
+                    }
+                });
+    }
 
     @Override
-    public void ocultarBanner() {}
+    public void ocultarBanner() {
+        actividad.runOnUiThread(
+                () -> {
+                    if (adView != null) {
+                        adView.setVisibility(View.GONE);
+                    }
+                });
+    }
 
     public AdRequest getAdReques() {
 
@@ -71,25 +85,31 @@ public class MostrarPublicidad implements Publicidad {
 
     public void resumenBanner() {
 
-        if (adView != null) {
-
-            adView.resume();
-        }
+        actividad.runOnUiThread(
+                () -> {
+                    if (adView != null) {
+                        adView.resume();
+                    }
+                });
     }
 
     public void pausarBanner() {
 
-        if (adView != null) {
-
-            adView.pause();
-        }
+        actividad.runOnUiThread(
+                () -> {
+                    if (adView != null) {
+                        adView.pause();
+                    }
+                });
     }
 
     public void disposeBanner() {
 
-        if (adView != null) {
-
-            adView.destroy();
-        }
+        actividad.runOnUiThread(
+                () -> {
+                    if (adView != null) {
+                        adView.destroy();
+                    }
+                });
     }
 }
