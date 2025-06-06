@@ -275,11 +275,11 @@ public class MainActivity extends AppCompatActivity {
 
         romData.setOrientation(LinearLayout.VERTICAL);
 
-        romData.setPadding(24, 24, 24, 24);
+        romData.setPadding(18, 18, 18, 18);
 
         // Crear background con bordes redondeados programáticamente
         GradientDrawable backgroundDrawable1 = new GradientDrawable();
-        backgroundDrawable1.setColor(Color.parseColor("#E0E0E0")); // Color de fondo de la tarjeta
+        backgroundDrawable1.setColor(Color.parseColor("#000000")); // Color de fondo de la tarjeta
         backgroundDrawable1.setCornerRadius(30f); // Bordes redondeados
         romData.setBackground(backgroundDrawable1);
 
@@ -298,11 +298,11 @@ public class MainActivity extends AppCompatActivity {
 
         eepromData.setOrientation(LinearLayout.VERTICAL);
 
-        eepromData.setPadding(24, 24, 24, 24);
+        eepromData.setPadding(18, 18, 18, 18);
 
         // Crear background con bordes redondeados programáticamente
         GradientDrawable backgroundDrawable2 = new GradientDrawable();
-        backgroundDrawable2.setColor(Color.parseColor("#E0E0E0")); // Color de fondo de la tarjeta
+        backgroundDrawable2.setColor(Color.parseColor("#000000")); // Color de fondo de la tarjeta
         backgroundDrawable2.setCornerRadius(30f); // Bordes redondeados
         eepromData.setBackground(backgroundDrawable2);
 
