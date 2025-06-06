@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">ICSPモードのみ、ICSPモードが有効です</string>
     <string name="connection_error">接続エラー：</string>
     <string name="select_valid_binary_file">有効なバイナリファイルを選択してください</string>
+    <string name="obtener_modelo">プログラマモデルを取得</string>
+    <string name="obtener_protocolo">プロトコルを取得</string>
+    <string name="modelo_programador">プログラマモデル</string>
+    <string name="protocolo_programador">プログラマプロトコル</string>
+    <string name="aceptar">承認</string>
+    <string name="cancelar">キャンセル</string>
+    <string name="conectado">接続済み</string>
+    <string name="desconectado">切断</string>
+    <string name="grabando_pic">PICをプログラミング中...</string>
+    <string name="espere_grabacion_pic">お待ちください。デバイスを切断しないでください。</string>
+    <string name="grabacion_completada_pic">プログラミング完了</string>
+    <string name="grabacion_correcta_pic">ファームウェアがPICに正常にプログラムされました。</string>
+    <string name="fallo_grabacion_pic">プログラミング失敗</string>
+    <string name="proceso_no_completado">プロセスを完了できませんでした。接続を確認してください。</string>
 </resources>

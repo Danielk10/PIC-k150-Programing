@@ -1159,7 +1159,7 @@ public class MainActivity extends AppCompatActivity {
 
         layout.addView(toolbar, toolbarParams);
 
-        mensaje.setText("Desconectado");
+        mensaje.setText(getString(R.string.desconectado));
         mensaje.setTextSize(18);
         mensaje.setTextColor(Color.WHITE);
         mensaje.setGravity(Gravity.CENTER);
@@ -1521,7 +1521,7 @@ public class MainActivity extends AppCompatActivity {
 
             mensaje.setTextColor(Color.GREEN);
 
-            mensaje.setText("Conectado");
+            mensaje.setText(getString(R.string.conectado));
 
         } catch (IOException e) {
 
@@ -1718,7 +1718,7 @@ public class MainActivity extends AppCompatActivity {
         topContent.setPadding(32, 32, 32, 32);
 
         titleTextView = new TextView(this);
-        titleTextView.setText("Grabando PIC...");
+        titleTextView.setText(getString(R.string.grabando_pic));
         titleTextView.setTextSize(22);
         titleTextView.setTextColor(Color.BLACK);
         titleTextView.setGravity(Gravity.CENTER);
@@ -1748,7 +1748,7 @@ public class MainActivity extends AppCompatActivity {
         statusIndicatorContainer.addView(statusResultIcon);
 
         descriptionTextView = new TextView(this);
-        descriptionTextView.setText("Por favor, espere. No desconecte el dispositivo.");
+        descriptionTextView.setText(getString(R.string.espere_grabacion_pic));
         descriptionTextView.setTextSize(16);
         descriptionTextView.setTextColor(Color.DKGRAY);
         descriptionTextView.setGravity(Gravity.CENTER);
@@ -1790,7 +1790,7 @@ public class MainActivity extends AppCompatActivity {
         actionButton.setTextColor(Color.WHITE);
 
         // Estado inicial del botón
-        actionButton.setText("Cancelar");
+        actionButton.setText(getString(R.string.cancelar));
         actionButton.setBackgroundResource(R.drawable.button_background_red);
         actionButton.setOnClickListener(
                 v -> {
@@ -2004,22 +2004,22 @@ public class MainActivity extends AppCompatActivity {
 
         if (exito) {
             // Estado de ÉXITO
-            titleTextView.setText("Grabación Completa");
-            descriptionTextView.setText("El firmware se ha grabado correctamente en el PIC.");
+            titleTextView.setText(getString(R.string.grabacion_completada_pic));
+            descriptionTextView.setText(getString(R.string.grabacion_correcta_pic));
             statusResultIcon.setImageResource(R.drawable.ic_status_success);
             Drawable successDrawable = DrawableCompat.wrap(statusResultIcon.getDrawable());
             DrawableCompat.setTint(successDrawable, Color.parseColor("#4CAF50")); // Verde
         } else {
             // Estado de FALLO
-            titleTextView.setText("Fallo en la Grabación");
-            descriptionTextView.setText("No se pudo completar el proceso. Verifique la conexión.");
+            titleTextView.setText(getString(R.string.fallo_grabacion_pic));
+            descriptionTextView.setText(getString(R.string.proceso_no_completado));
             statusResultIcon.setImageResource(R.drawable.ic_status_failure);
             Drawable failureDrawable = DrawableCompat.wrap(statusResultIcon.getDrawable());
             DrawableCompat.setTint(failureDrawable, Color.parseColor("#D32F2F")); // Rojo
         }
 
         // Actualizar el botón al estado "Aceptar"
-        actionButton.setText("Aceptar");
+        actionButton.setText(getString(R.string.aceptar));
         actionButton.setBackgroundResource(R.drawable.button_background_blue);
         // El nuevo OnClickListener simplemente cierra el popup
         actionButton.setOnClickListener(
@@ -2264,9 +2264,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuItem menuInicio = menu.add(Menu.NONE, 1, 1, "Obtener Modelo del Programador");
+        MenuItem menuInicio = menu.add(Menu.NONE, 1, 1, getString(R.string.obtener_modelo));
 
-        MenuItem menuProductos = menu.add(Menu.NONE, 2, 2, "Obtener Protocolo");
+        MenuItem menuProductos = menu.add(Menu.NONE, 2, 2, getString(R.string.obtener_protocolo));
 
         MenuItem menuServicios = menu.add(Menu.NONE, 3, 3, getString(R.string.privacy_policy));
 
@@ -2281,14 +2281,14 @@ public class MainActivity extends AppCompatActivity {
                 if (protocolo != null) {
 
                     builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("Modelo del Programador"); // set Title
+                    builder.setTitle(getString(R.string.modelo_programador)); // set Title
                     builder.setMessage(
                             "" + protocolo.obtenerVersionOModeloDelProgramador()); // set message
                     builder.setCancelable(true); //  Sets whether the dialog is cancelable or not
                     builder.setIcon(R.mipmap.ic_launcher);
 
                     builder.setPositiveButton(
-                            "Aceptar",
+                            getString(R.string.aceptar),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -2307,14 +2307,14 @@ public class MainActivity extends AppCompatActivity {
                 if (protocolo != null) {
 
                     builder1 = new AlertDialog.Builder(MainActivity.this);
-                    builder1.setTitle("Protocolo del Programador"); // set Title
+                    builder1.setTitle(getString(R.string.protocolo_programador)); // set Title
                     builder1.setMessage(
                             "" + protocolo.obtenerProtocoloDelProgramador()); // set message
                     builder1.setCancelable(true); //  Sets whether the dialog is cancelable or not
                     builder1.setIcon(R.mipmap.ic_launcher);
 
                     builder1.setPositiveButton(
-                            "Aceptar",
+                            getString(R.string.aceptar),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

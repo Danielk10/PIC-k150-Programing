@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">ICSP Mode Only, ICSP Mode Enabled</string>
     <string name="connection_error">Connection Error:</string>
     <string name="select_valid_binary_file">Select a Valid Binary File</string>
+    <string name="obtener_modelo">Get Programmer Model</string>
+    <string name="obtener_protocolo">Get Protocol</string>
+    <string name="modelo_programador">Programmer Model</string>
+    <string name="protocolo_programador">Programmer Protocol</string>
+    <string name="aceptar">Accept</string>
+    <string name="cancelar">Cancel</string>
+    <string name="conectado">Connected</string>
+    <string name="desconectado">Disconnected</string>
+    <string name="grabando_pic">Programming PIC...</string>
+    <string name="espere_grabacion_pic">Please wait. Do not disconnect the device.</string>
+    <string name="grabacion_completada_pic">Programming Complete</string>
+    <string name="grabacion_correcta_pic">The firmware has been successfully programmed into the PIC.</string>
+    <string name="fallo_grabacion_pic">Programming Failed</string>
+    <string name="proceso_no_completado">Process could not be completed. Check the connection.</string>
 </resources>

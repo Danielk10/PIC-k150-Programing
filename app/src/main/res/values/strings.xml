@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PIC k150 Programing</string>
-	<string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Politicas de Privacidad</string>
     <string name="program_pic">Programar PIC</string>
     <string name="verify_memory_erased">Verificar si la memoria del PIC está Borrada</string>
     <string name="erase_memory">Borrar Memoria del PIC</string>
@@ -34,4 +34,18 @@
     <string name="icsp_mode_only">Solo por modo ICSP, Modo ICSP Activado</string>
     <string name="connection_error">Error al conectar:</string>
     <string name="select_valid_binary_file">Selecciona un archivo binario válido</string>
+    <string name="obtener_modelo">Obtener Modelo del Programador</string>
+    <string name="obtener_protocolo">Obtener Protocolo</string>
+    <string name="modelo_programador">Modelo del Programador</string>
+    <string name="protocolo_programador">Protocolo del Programador</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="conectado">Conectado</string>
+    <string name="desconectado">Desconectado</string>
+    <string name="grabando_pic">Grabando PIC...</string>
+    <string name="espere_grabacion_pic">Por favor, espere. No desconecte el dispositivo.</string>
+    <string name="grabacion_completada_pic">Grabación Completa</string>
+    <string name="grabacion_correcta_pic">El firmware se ha grabado correctamente en el PIC.</string>
+    <string name="fallo_grabacion_pic">Fallo en la Grabación</string>
+    <string name="proceso_no_completado">No se pudo completar el proceso. Verifique la conexión.</string>
 </resources>

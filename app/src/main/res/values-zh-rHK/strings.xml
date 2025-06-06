@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">僅限 ICSP 模式，ICSP 模式已啟用</string>
     <string name="connection_error">連接錯誤:</string>
     <string name="select_valid_binary_file">請選擇有效的二進制檔案</string>
+    <string name="obtener_modelo">獲取編程器型號</string>
+    <string name="obtener_protocolo">獲取協議</string>
+    <string name="modelo_programador">編程器型號</string>
+    <string name="protocolo_programador">編程器協議</string>
+    <string name="aceptar">接受</string>
+    <string name="cancelar">取消</string>
+    <string name="conectado">已連接</string>
+    <string name="desconectado">已斷開</string>
+    <string name="grabando_pic">正在編程PIC...</string>
+    <string name="espere_grabacion_pic">請稍候。不要斷開設備。</string>
+    <string name="grabacion_completada_pic">編程完成</string>
+    <string name="grabacion_correcta_pic">固件已成功編程到PIC中。</string>
+    <string name="fallo_grabacion_pic">編程失敗</string>
+    <string name="proceso_no_completado">無法完成過程。請檢查連接。</string>
 </resources>

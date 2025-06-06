@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">Slegs ICSP-modus, ICSP-modus geaktiveer</string>
     <string name="connection_error">Verbindingsfout:</string>
     <string name="select_valid_binary_file">Kies ’n geldige binêre lêer</string>
+    <string name="obtener_modelo">Kry Programmer Model</string>
+    <string name="obtener_protocolo">Kry Protokol</string>
+    <string name="modelo_programador">Programmer Model</string>
+    <string name="protocolo_programador">Programmer Protokol</string>
+    <string name="aceptar">Aanvaar</string>
+    <string name="cancelar">Kanselleer</string>
+    <string name="conectado">Verbinde</string>
+    <string name="desconectado">Ontkoppel</string>
+    <string name="grabando_pic">PIC Programmering...</string>
+    <string name="espere_grabacion_pic">Wag asseblief. Moenie die toestel ontkoppel nie.</string>
+    <string name="grabacion_completada_pic">Programmering Voltooi</string>
+    <string name="grabacion_correcta_pic">Die firmware is suksesvol op die PIC geprogrammeer.</string>
+    <string name="fallo_grabacion_pic">Programmering Misluk</string>
+    <string name="proceso_no_completado">Proses kon nie voltooi word nie. Verifieer die verbinding.</string>
 </resources>

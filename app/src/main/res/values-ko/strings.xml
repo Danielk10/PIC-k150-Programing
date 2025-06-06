@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">ICSP 모드만 사용, ICSP 모드 활성화됨</string>
     <string name="connection_error">연결 오류:</string>
     <string name="select_valid_binary_file">유효한 바이너리 파일을 선택하세요</string>
+    <string name="obtener_modelo">프로그래머 모델 가져오기</string>
+    <string name="obtener_protocolo">프로토콜 가져오기</string>
+    <string name="modelo_programador">프로그래머 모델</string>
+    <string name="protocolo_programador">프로그래머 프로토콜</string>
+    <string name="aceptar">수락</string>
+    <string name="cancelar">취소</string>
+    <string name="conectado">연결됨</string>
+    <string name="desconectado">연결 끊김</string>
+    <string name="grabando_pic">PIC 프로그래밍 중...</string>
+    <string name="espere_grabacion_pic">기다려 주세요. 장치를 분리하지 마십시오.</string>
+    <string name="grabacion_completada_pic">프로그래밍 완료</string>
+    <string name="grabacion_correcta_pic">펌웨어가 PIC에 성공적으로 프로그래밍되었습니다.</string>
+    <string name="fallo_grabacion_pic">프로그래밍 실패</string>
+    <string name="proceso_no_completado">프로세스를 완료할 수 없습니다. 연결을 확인하십시오.</string>
 </resources>

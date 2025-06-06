@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">Hanya dalam mode ICSP, mode ICSP diaktifkan</string>
     <string name="connection_error">Kesalahan koneksi:</string>
     <string name="select_valid_binary_file">Pilih file biner yang valid</string>
+    <string name="obtener_modelo">Dapatkan Model Pemrogram</string>
+    <string name="obtener_protocolo">Dapatkan Protokol</string>
+    <string name="modelo_programador">Model Pemrogram</string>
+    <string name="protocolo_programador">Protokol Pemrogram</string>
+    <string name="aceptar">Terima</string>
+    <string name="cancelar">Batal</string>
+    <string name="conectado">Terhubung</string>
+    <string name="desconectado">Terputus</string>
+    <string name="grabando_pic">Memprogram PIC...</string>
+    <string name="espere_grabacion_pic">Harap tunggu. Jangan lepaskan perangkat.</string>
+    <string name="grabacion_completada_pic">Pemrograman Selesai</string>
+    <string name="grabacion_correcta_pic">Firmware telah berhasil diprogram ke PIC.</string>
+    <string name="fallo_grabacion_pic">Pemrograman Gagal</string>
+    <string name="proceso_no_completado">Proses tidak dapat diselesaikan. Periksa koneksi.</string>
 </resources>
