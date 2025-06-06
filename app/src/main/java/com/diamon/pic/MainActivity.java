@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -63,6 +62,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
@@ -74,7 +74,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.VideoOptions; // Importar VideoOptions
+import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.nativead.AdChoicesView;
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
@@ -181,6 +181,25 @@ public class MainActivity extends AppCompatActivity {
     private PopupWindow popupWindow;
 
     private NativeAd nativeAd;
+
+    // --- Variables para controlar el estado y la UI dinámica ---
+    private boolean procesoGrabado = false; // Bandera de control
+
+    private Thread hiloGrabado;
+
+    private volatile boolean procesoCancelado = false;
+
+    // Referencias a los componentes de la UI que cambiarán
+    private ProgressBar statusProgressBar;
+
+    private ImageView statusResultIcon;
+
+    private Button actionButton;
+
+    private TextView titleTextView;
+
+    private TextView descriptionTextView;
+    // -----------------------------------------------------------
 
     private final BroadcastReceiver usbReceiver =
             new BroadcastReceiver() {
@@ -355,106 +374,117 @@ public class MainActivity extends AppCompatActivity {
 
         btnProgramarPic.setOnClickListener(
                 new OnClickListener() {
-
                     @Override
                     public void onClick(View v) {
+
                         showAdPopup();
 
                         publicidad.ocultarBanner();
-
-                        if (protocolo != null) {
-
-                            // showAdPopup();
-
-                            // publicidad.ocultarBanner();
-
-                            boolean respuesta = protocolo.borrarMemoriasDelPic();
-
-                            if (respuesta) {
-
-                                proceso.setText(getString(R.string.memory_erased_successfully));
-
-                            } else {
-
-                                proceso.setText(getString(R.string.memory_erase_error));
-
-                                return;
-                            }
-
-                            respuesta = protocolo.programarMemoriaROMDelPic(chipPIC, firware);
-
-                            if (respuesta) {
-
-                                proceso.setText(getString(R.string.rom_programmed_successfully));
-
-                            } else {
-
-                                proceso.setText(getString(R.string.rom_program_error));
-
-                                return;
-                            }
-
-                            if (chipPIC.isTamanoValidoDeEEPROM()) {
-
-                                respuesta =
-                                        protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware);
-
-                                if (respuesta) {
-
-                                    proceso.setText(
-                                            getString(R.string.eeprom_programmed_successfully));
-
-                                } else {
-
-                                    proceso.setText(getString(R.string.eeprom_program_error));
-
-                                    return;
-                                }
-                            }
-
-                            respuesta = protocolo.programarFusesIDDelPic(chipPIC, firware);
-
-                            if (respuesta) {
-
-                                proceso.setText(getString(R.string.fuses_programmed_successfully));
-
-                            } else {
-
-                                proceso.setText(getString(R.string.fuses_program_error));
-
-                                return;
-                            }
-
-                            if (chipPIC.getTipoDeNucleoBit() == 16) {
-
-                                respuesta = protocolo.programarFusesDePics18F();
-
-                                if (respuesta) {
-
-                                    proceso.setText(
-                                            getString(R.string.fuses_18f_programmed_successfully));
-
-                                } else {
-
-                                    proceso.setText(getString(R.string.fuses_18f_program_error));
-
-                                    return;
-                                }
-                            }
-
-                            if (respuesta) {
-
-                                proceso.setText(getString(R.string.pic_programmed_successfully));
-
-                            } else {
-
-                                proceso.setText(getString(R.string.pic_program_error));
-
-                                return;
-                            }
-                        }
                     }
                 });
+
+        /* btnProgramarPic.setOnClickListener(
+        new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                showAdPopup();
+
+                publicidad.ocultarBanner();
+
+
+
+                if (protocolo != null) {
+
+
+                    boolean respuesta = protocolo.borrarMemoriasDelPic();
+
+                    if (respuesta) {
+
+                        proceso.setText(getString(R.string.memory_erased_successfully));
+
+                    } else {
+
+                        proceso.setText(getString(R.string.memory_erase_error));
+
+                        return;
+                    }
+
+                    respuesta = protocolo.programarMemoriaROMDelPic(chipPIC, firware);
+
+                    if (respuesta) {
+
+                        proceso.setText(getString(R.string.rom_programmed_successfully));
+
+                    } else {
+
+                        proceso.setText(getString(R.string.rom_program_error));
+
+                        return;
+                    }
+
+                    if (chipPIC.isTamanoValidoDeEEPROM()) {
+
+                        respuesta =
+                                protocolo.programarMemoriaEEPROMDelPic(chipPIC, firware);
+
+                        if (respuesta) {
+
+                            proceso.setText(
+                                    getString(R.string.eeprom_programmed_successfully));
+
+                        } else {
+
+                            proceso.setText(getString(R.string.eeprom_program_error));
+
+                            return;
+                        }
+                    }
+
+                    respuesta = protocolo.programarFusesIDDelPic(chipPIC, firware);
+
+                    if (respuesta) {
+
+                        proceso.setText(getString(R.string.fuses_programmed_successfully));
+
+                    } else {
+
+                        proceso.setText(getString(R.string.fuses_program_error));
+
+                        return;
+                    }
+
+                    if (chipPIC.getTipoDeNucleoBit() == 16) {
+
+                        respuesta = protocolo.programarFusesDePics18F();
+
+                        if (respuesta) {
+
+                            proceso.setText(
+                                    getString(R.string.fuses_18f_programmed_successfully));
+
+                        } else {
+
+                            proceso.setText(getString(R.string.fuses_18f_program_error));
+
+                            return;
+                        }
+                    }
+
+                    if (respuesta) {
+
+                        proceso.setText(getString(R.string.pic_programmed_successfully));
+
+                    } else {
+
+                        proceso.setText(getString(R.string.pic_program_error));
+
+                        return;
+                    }
+                }
+            }
+        });*/
 
         btnLeerMemoriaDeLPic.setOnClickListener(
                 new OnClickListener() {
@@ -1438,10 +1468,6 @@ public class MainActivity extends AppCompatActivity {
                         TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
-    /*  private int dpToPx(int dp) {
-        return (int) (dp * getResources().getDisplayMetrics().density);
-    }*/
-
     private void displayData(LinearLayout container, String data, int groupSize, int columns) {
         int address = 0;
         StringBuilder formattedRow = new StringBuilder();
@@ -1666,7 +1692,7 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
-        int currentScreenHeight = displayMetrics.heightPixels; // Usar un valor actual
+        int currentScreenHeight = displayMetrics.heightPixels;
 
         int popupHeight = (int) (currentScreenHeight * 0.7);
 
@@ -1678,71 +1704,57 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
         shape.setCornerRadius(40f);
-        shape.setColor(Color.parseColor("#FFFFFF"));
-
+        shape.setColor(Color.WHITE);
         popupContainer.setBackground(shape);
 
-        // Crear el layout para el contenido superior (información de grabación del PIC)
+        // --- Contenido Superior Dinámico ---
         LinearLayout topContent = new LinearLayout(this);
         topContent.setOrientation(LinearLayout.VERTICAL);
+        topContent.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams topParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        0,
-                        0.8f); // Peso para la parte superior, puedes ajustarlo según necesites
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.8f);
         topContent.setLayoutParams(topParams);
-        topContent.setPadding(32, 32, 32, 32); // Padding general para esta sección
+        topContent.setPadding(32, 32, 32, 32);
 
-        // Añadir título indicando la acción
-        TextView title = new TextView(this);
-        title.setText("Programando Microcontrolador PIC");
-        title.setTextSize(22); // Tamaño de texto para el título
-        title.setTextColor(Color.parseColor("#0D47A1")); // Color principal para el título
-        // Considera un color azul oscuro si quieres un look más "técnico":
-        // title.setTextColor(Color.parseColor("#0D47A1"));
-        title.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams titleViewParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, // Ocupar ancho para centrar texto
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
-        titleViewParams.bottomMargin = 24; // Margen inferior para separar del ProgressBar
-        topContent.addView(title, titleViewParams);
+        titleTextView = new TextView(this);
+        titleTextView.setText("Grabando PIC...");
+        titleTextView.setTextSize(22);
+        titleTextView.setTextColor(Color.BLACK);
+        titleTextView.setGravity(Gravity.CENTER);
+        topContent.addView(titleTextView);
 
-        // Añadir ProgressBar circular
-        // Utiliza el estilo por defecto que suele ser un círculo indeterminado.
-        ProgressBar progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyle);
-        LinearLayout.LayoutParams progressParams =
+        // Contenedor para el indicador (ProgressBar / Icono de resultado)
+        FrameLayout statusIndicatorContainer = new FrameLayout(this);
+        statusIndicatorContainer.setLayoutParams(
+                new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams indicatorParams =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-        progressParams.gravity = Gravity.CENTER_HORIZONTAL; // Centrar la barra de progreso
-        progressParams.topMargin = 16; // Margen superior
-        progressParams.bottomMargin = 24; // Margen inferior
+        indicatorParams.setMargins(0, 24, 0, 24);
+        topContent.addView(statusIndicatorContainer, indicatorParams);
 
-        // Opcional: Para cambiar el color de la ProgressBar (requiere API 21+)
-        // Necesitarías importar android.content.res.ColorStateList;
-        progressBar.setIndeterminateTintList(
-                ColorStateList.valueOf(Color.parseColor("#1976D2"))); // Ejemplo: Azul Material
+        // Barra de progreso (visible al inicio)
+        statusProgressBar = new ProgressBar(this, null, android.R.attr.progressBarStyle);
+        statusProgressBar.setVisibility(View.VISIBLE);
+        statusIndicatorContainer.addView(statusProgressBar);
 
-        topContent.addView(progressBar, progressParams);
+        // Icono de resultado (oculto al inicio)
+        statusResultIcon = new ImageView(this);
+        statusResultIcon.setVisibility(View.GONE);
+        statusIndicatorContainer.addView(statusResultIcon);
 
-        // Añadir descripción del proceso
-        TextView description = new TextView(this);
-        description.setText(
-                "Por favor, espere mientras se graba el firmware en el dispositivo. No lo desconecte para evitar errores.");
-        description.setTextSize(15); // Tamaño de texto para la descripción
-        description.setTextColor(Color.DKGRAY); // Color gris oscuro para la descripción
-        description.setGravity(Gravity.CENTER); // Centrar texto de la descripción
-        LinearLayout.LayoutParams descViewParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, // Ocupar ancho para centrar texto
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
-        // No es necesario padding adicional aquí si el texto está centrado y topContent tiene
-        // padding.
-        topContent.addView(description, descViewParams);
+        descriptionTextView = new TextView(this);
+        descriptionTextView.setText("Por favor, espere. No desconecte el dispositivo.");
+        descriptionTextView.setTextSize(16);
+        descriptionTextView.setTextColor(Color.DKGRAY);
+        descriptionTextView.setGravity(Gravity.CENTER);
+        topContent.addView(descriptionTextView);
 
-        // Añadir la sección topContent al contenedor principal del popup
         popupContainer.addView(topContent);
+        // --- Fin Contenido Superior Dinámico ---
 
         View divider = new View(this);
         divider.setBackgroundColor(Color.LTGRAY);
@@ -1757,88 +1769,277 @@ public class MainActivity extends AppCompatActivity {
         adContainer.setId(View.generateViewId());
         popupContainer.addView(adContainer);
 
+        // --- Contenedor para el Botón Único ---
         LinearLayout buttonContainer = new LinearLayout(this);
-        buttonContainer.setOrientation(LinearLayout.HORIZONTAL);
+        buttonContainer.setOrientation(LinearLayout.VERTICAL);
+        buttonContainer.setGravity(Gravity.CENTER_HORIZONTAL); // Centrar el botón
         buttonContainer.setLayoutParams(
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
         buttonContainer.setPadding(16, 16, 16, 16);
 
-        Button acceptButton = new Button(this);
-        acceptButton.setText("Aceptar");
+        actionButton = new Button(this);
         LinearLayout.LayoutParams buttonLayoutParam =
-                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        buttonLayoutParam.setMarginEnd(8);
-        acceptButton.setLayoutParams(buttonLayoutParam);
-        acceptButton.setOnClickListener(
-                v -> {
-                    Toast.makeText(this, "Anuncio aceptado", Toast.LENGTH_SHORT).show();
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        actionButton.setLayoutParams(buttonLayoutParam);
+        actionButton.setPadding(100, 40, 100, 40);
+        actionButton.setTextColor(Color.WHITE);
 
+        // Estado inicial del botón
+        actionButton.setText("Cancelar");
+        actionButton.setBackgroundResource(R.drawable.button_background_red);
+        actionButton.setOnClickListener(
+                v -> {
+                    // Si se cancela, se detiene el "proceso" y se cierra
+                    if (hiloGrabado != null && hiloGrabado.isAlive()) {
+                        procesoCancelado = true;
+                    }
                     publicidad.mostrarBanner();
                     dismissPopupWithSlideDown();
                 });
 
-        Button closeButton = new Button(this);
-        closeButton.setText("Cerrar");
-        LinearLayout.LayoutParams buttonLayoutParam2 =
-                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        buttonLayoutParam2.setMarginStart(8);
-        closeButton.setLayoutParams(buttonLayoutParam2);
-        closeButton.setOnClickListener(
-                v -> {
-                    publicidad.mostrarBanner();
-
-                    dismissPopupWithSlideDown();
-                });
-
-        buttonContainer.addView(acceptButton);
-        buttonContainer.addView(closeButton);
+        buttonContainer.addView(actionButton);
         popupContainer.addView(buttonContainer);
+        // --- Fin Contenedor para el Botón Único ---
 
         popupWindow = new PopupWindow(popupContainer, (int) (screenWidth * 0.9), popupHeight, true);
-
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.setOutsideTouchable(true);
+        popupWindow.setOutsideTouchable(
+                false); // No permitir cerrar tocando fuera durante el proceso
         popupWindow.setAnimationStyle(0);
 
         popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
         applyCustomAnimation(popupContainer);
         loadNativeAd(adContainer);
+
+        // --- Iniciar simulación del proceso de grabado ---
+        simularProcesoDeGrabado();
+    }
+
+    private void simularProcesoDeGrabado() {
+
+        procesoCancelado = false;
+        // Ejecutar en un hilo separado
+        hiloGrabado =
+                new Thread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                if (protocolo != null && !procesoCancelado) {
+                                    // Paso 1: Borrar memorias (10% del progreso)
+                                    procesoGrabado = protocolo.borrarMemoriasDelPic();
+
+                                    runOnUiThread(
+                                            () -> {
+                                                if (procesoGrabado) {
+                                                    proceso.setText(
+                                                            getString(
+                                                                    R.string
+                                                                            .memory_erased_successfully));
+                                                } else {
+                                                    proceso.setText(
+                                                            getString(R.string.memory_erase_error));
+                                                }
+                                            });
+
+                                    if (!procesoGrabado || !procesoCancelado) {
+                                        runOnUiThread(
+                                                () ->
+                                                        actualizarUIProcesoFinalizado(
+                                                                procesoGrabado));
+
+                                        return;
+                                    }
+
+                                    // Paso 2: Programar ROM (30% del progreso)
+                                    procesoGrabado =
+                                            protocolo.programarMemoriaROMDelPic(chipPIC, firware);
+                                    runOnUiThread(
+                                            () -> {
+                                                if (procesoGrabado) {
+                                                    proceso.setText(
+                                                            getString(
+                                                                    R.string
+                                                                            .rom_programmed_successfully));
+                                                } else {
+                                                    proceso.setText(
+                                                            getString(R.string.rom_program_error));
+                                                }
+                                            });
+
+                                    if (!procesoGrabado || !procesoCancelado) {
+                                        runOnUiThread(
+                                                () ->
+                                                        actualizarUIProcesoFinalizado(
+                                                                procesoGrabado));
+
+                                        return;
+                                    }
+
+                                    // Paso 3: Programar EEPROM si es necesario (20% del progreso)
+                                    if (chipPIC.isTamanoValidoDeEEPROM()) {
+                                        procesoGrabado =
+                                                protocolo.programarMemoriaEEPROMDelPic(
+                                                        chipPIC, firware);
+                                        runOnUiThread(
+                                                () -> {
+                                                    if (procesoGrabado) {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .eeprom_programmed_successfully));
+                                                    } else {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .eeprom_program_error));
+                                                    }
+                                                });
+
+                                        if (!procesoGrabado || !procesoCancelado) {
+                                            runOnUiThread(
+                                                    () ->
+                                                            actualizarUIProcesoFinalizado(
+                                                                    procesoGrabado));
+
+                                            return;
+                                        }
+                                    }
+
+                                    // Paso 4: Programar Fuses (20% del progreso)
+                                    procesoGrabado =
+                                            protocolo.programarFusesIDDelPic(chipPIC, firware);
+                                    runOnUiThread(
+                                            () -> {
+                                                if (procesoGrabado) {
+                                                    proceso.setText(
+                                                            getString(
+                                                                    R.string
+                                                                            .fuses_programmed_successfully));
+                                                } else {
+                                                    proceso.setText(
+                                                            getString(
+                                                                    R.string.fuses_program_error));
+                                                }
+                                            });
+
+                                    if (!procesoGrabado || !procesoCancelado) {
+                                        runOnUiThread(
+                                                () ->
+                                                        actualizarUIProcesoFinalizado(
+                                                                procesoGrabado));
+
+                                        return;
+                                    }
+
+                                    // Paso 5: Programar Fuses adicionales para PIC18F (10% del
+                                    // progreso)
+                                    if (chipPIC.getTipoDeNucleoBit() == 16) {
+                                        procesoGrabado = protocolo.programarFusesDePics18F();
+                                        runOnUiThread(
+                                                () -> {
+                                                    if (procesoGrabado) {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .fuses_18f_programmed_successfully));
+                                                    } else {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .fuses_18f_program_error));
+                                                    }
+                                                });
+
+                                        if (!procesoGrabado || !procesoCancelado) {
+                                            runOnUiThread(
+                                                    () ->
+                                                            actualizarUIProcesoFinalizado(
+                                                                    procesoGrabado));
+
+                                            return;
+                                        }
+                                    }
+
+                                    // Completado (100%)
+                                    runOnUiThread(
+                                            () -> {
+                                                if (procesoGrabado) {
+                                                    proceso.setText(
+                                                            getString(
+                                                                    R.string
+                                                                            .pic_programmed_successfully));
+                                                } else {
+                                                    proceso.setText(
+                                                            getString(R.string.pic_program_error));
+                                                }
+
+                                                runOnUiThread(
+                                                        () ->
+                                                                actualizarUIProcesoFinalizado(
+                                                                        procesoGrabado));
+                                            });
+                                }
+                            }
+                        });
+
+        hiloGrabado.start();
+    }
+
+    private void actualizarUIProcesoFinalizado(boolean exito) {
+        // Ocultar barra de progreso y mostrar icono de resultado
+        statusProgressBar.setVisibility(View.GONE);
+        statusResultIcon.setVisibility(View.VISIBLE);
+
+        // Permitir que el popup se cierre tocando fuera
+        popupWindow.setOutsideTouchable(true);
+
+        if (exito) {
+            // Estado de ÉXITO
+            titleTextView.setText("Grabación Completa");
+            descriptionTextView.setText("El firmware se ha grabado correctamente en el PIC.");
+            statusResultIcon.setImageResource(R.drawable.ic_status_success);
+            Drawable successDrawable = DrawableCompat.wrap(statusResultIcon.getDrawable());
+            DrawableCompat.setTint(successDrawable, Color.parseColor("#4CAF50")); // Verde
+        } else {
+            // Estado de FALLO
+            titleTextView.setText("Fallo en la Grabación");
+            descriptionTextView.setText("No se pudo completar el proceso. Verifique la conexión.");
+            statusResultIcon.setImageResource(R.drawable.ic_status_failure);
+            Drawable failureDrawable = DrawableCompat.wrap(statusResultIcon.getDrawable());
+            DrawableCompat.setTint(failureDrawable, Color.parseColor("#D32F2F")); // Rojo
+        }
+
+        // Actualizar el botón al estado "Aceptar"
+        actionButton.setText("Aceptar");
+        actionButton.setBackgroundResource(R.drawable.button_background_blue);
+        // El nuevo OnClickListener simplemente cierra el popup
+        actionButton.setOnClickListener(
+                v -> {
+                    publicidad.mostrarBanner();
+                    dismissPopupWithSlideDown();
+                });
     }
 
     private void dismissPopupWithSlideDown() {
         if (popupWindow != null && popupWindow.isShowing()) {
             final View popupView = popupWindow.getContentView();
-
-            // Obtener la altura actual de la pantalla para el cálculo
             DisplayMetrics displayMetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int currentScreenHeight = displayMetrics.heightPixels;
-
-            // La propiedad translationY es relativa a la posición original de la vista.
-            // Queremos que la parte superior de la vista (popupView.getTop() +
-            // popupView.getTranslationY())
-            // alcance la parte inferior de la pantalla (currentScreenHeight).
-            // Entonces, el valor final de translationY debe ser: currentScreenHeight -
-            // popupView.getTop().
-            // Esto moverá la parte superior del popup hasta el borde inferior de la pantalla,
-            // haciéndolo desaparecer completamente hacia abajo.
-            float startTranslationY =
-                    popupView.getTranslationY(); // Normalmente 0 si no hay otras traslaciones
-            // activas
+            float startTranslationY = popupView.getTranslationY();
             float targetTranslationY = currentScreenHeight - popupView.getTop();
-
             ValueAnimator animator = ValueAnimator.ofFloat(startTranslationY, targetTranslationY);
             animator.setDuration(600);
             animator.setInterpolator(new AccelerateInterpolator(1.5f));
-
             animator.addUpdateListener(
                     animation -> {
                         float value = (float) animation.getAnimatedValue();
                         popupView.setTranslationY(value);
                     });
-
             animator.addListener(
                     new AnimatorListenerAdapter() {
                         @Override
@@ -1857,7 +2058,6 @@ public class MainActivity extends AppCompatActivity {
     private void applyCustomAnimation(View popupView) {
         popupView.setScaleY(0);
         popupView.setPivotY(0);
-
         ValueAnimator scaleAnimator = ValueAnimator.ofFloat(0f, 1f);
         scaleAnimator.setDuration(1000);
         scaleAnimator.setInterpolator(new BounceInterpolator());
@@ -1870,8 +2070,12 @@ public class MainActivity extends AppCompatActivity {
 
         popupWindow.setTouchInterceptor(
                 (v, event) -> {
-                    if (!isPointInsideView(
-                            event.getRawX(), event.getRawY(), popupWindow.getContentView())) {
+                    // Este interceptor ahora solo funciona si outsideTouchable es true
+                    if (popupWindow.isOutsideTouchable()
+                            && !isPointInsideView(
+                                    event.getRawX(),
+                                    event.getRawY(),
+                                    popupWindow.getContentView())) {
                         dismissPopupWithSlideDown();
                         return true;
                     }
@@ -1889,9 +2093,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNativeAd(FrameLayout adContainer) {
+        // El ID de prueba es el más seguro de usar para desarrollo
         AdLoader.Builder builder =
-                new AdLoader.Builder(
-                        this, "ca-app-pub-5141499161332805/4642845838"); // ID de prueba
+                new AdLoader.Builder(this, "ca-app-pub-5141499161332805/4642845838");
 
         builder.forNativeAd(
                 loadedNativeAd -> {
@@ -1900,13 +2104,11 @@ public class MainActivity extends AppCompatActivity {
                         this.nativeAd.destroy();
                     }
                     this.nativeAd = loadedNativeAd;
-
                     NativeAdView adView = new NativeAdView(this);
                     adView.setLayoutParams(
                             new FrameLayout.LayoutParams(
                                     FrameLayout.LayoutParams.MATCH_PARENT,
                                     FrameLayout.LayoutParams.MATCH_PARENT));
-
                     LinearLayout adInternalLayout = new LinearLayout(this);
                     adInternalLayout.setOrientation(LinearLayout.VERTICAL);
                     adInternalLayout.setLayoutParams(
@@ -1914,7 +2116,6 @@ public class MainActivity extends AppCompatActivity {
                                     FrameLayout.LayoutParams.MATCH_PARENT,
                                     FrameLayout.LayoutParams.MATCH_PARENT));
                     adInternalLayout.setPadding(16, 16, 16, 16);
-
                     TextView adBadge = new TextView(this);
                     adBadge.setText("Ad");
                     adBadge.setTextSize(10);
@@ -1931,22 +2132,14 @@ public class MainActivity extends AppCompatActivity {
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                     adBadgeParams.setMargins(0, 0, 0, 8);
                     adInternalLayout.addView(adBadge, adBadgeParams);
-
                     MediaView mediaView = new MediaView(this);
                     LinearLayout.LayoutParams mediaParams =
                             new LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
                     mediaParams.gravity = Gravity.CENTER_HORIZONTAL;
-                    // Ajustar la altura mínima para videos si es necesario, por ejemplo:
-                    mediaParams.height =
-                            (int)
-                                    (200
-                                            * getResources()
-                                                    .getDisplayMetrics()
-                                                    .density); // Altura mínima de 200dp
+                    mediaParams.height = (int) (200 * getResources().getDisplayMetrics().density);
                     mediaView.setLayoutParams(mediaParams);
                     adView.setMediaView(mediaView);
-
                     TextView headlineView = new TextView(this);
                     headlineView.setText(nativeAd.getHeadline());
                     headlineView.setTextSize(18);
@@ -1954,14 +2147,12 @@ public class MainActivity extends AppCompatActivity {
                     headlineView.setGravity(Gravity.START);
                     headlineView.setPadding(0, 8, 0, 4);
                     adView.setHeadlineView(headlineView);
-
                     TextView bodyView = new TextView(this);
                     bodyView.setText(nativeAd.getBody());
                     bodyView.setTextSize(14);
                     bodyView.setTextColor(Color.DKGRAY);
                     bodyView.setPadding(0, 4, 0, 8);
                     adView.setBodyView(bodyView);
-
                     ImageView iconView = new ImageView(this);
                     if (nativeAd.getIcon() != null && nativeAd.getIcon().getDrawable() != null) {
                         iconView.setImageDrawable(nativeAd.getIcon().getDrawable());
@@ -1975,20 +2166,17 @@ public class MainActivity extends AppCompatActivity {
                         iconView.setVisibility(View.GONE);
                     }
                     adView.setIconView(iconView);
-
                     LinearLayout headerRow = new LinearLayout(this);
                     headerRow.setOrientation(LinearLayout.HORIZONTAL);
                     headerRow.setGravity(Gravity.CENTER_VERTICAL);
                     if (iconView.getVisibility() == View.VISIBLE) {
                         headerRow.addView(iconView);
                     }
-                    // Hacer que el headlineView ocupe el espacio restante en la fila
                     LinearLayout.LayoutParams headlineInRowParams =
                             new LinearLayout.LayoutParams(
                                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
                     headlineView.setLayoutParams(headlineInRowParams);
                     headerRow.addView(headlineView);
-
                     Button callToAction = new Button(this);
                     callToAction.setText(nativeAd.getCallToAction());
                     callToAction.setAllCaps(false);
@@ -2001,14 +2189,11 @@ public class MainActivity extends AppCompatActivity {
                     ctaParams.setMargins(0, 8, 0, 0);
                     callToAction.setLayoutParams(ctaParams);
                     adView.setCallToActionView(callToAction);
-
                     adInternalLayout.addView(headerRow);
                     adInternalLayout.addView(bodyView);
                     adInternalLayout.addView(mediaView);
                     adInternalLayout.addView(callToAction);
-
                     adView.addView(adInternalLayout);
-
                     AdChoicesView adChoicesView = new AdChoicesView(this);
                     FrameLayout.LayoutParams adChoicesParams =
                             new FrameLayout.LayoutParams(
@@ -2018,7 +2203,6 @@ public class MainActivity extends AppCompatActivity {
                     adChoicesParams.setMargins(0, 4, 4, 0);
                     adView.addView(adChoicesView, adChoicesParams);
                     adView.setAdChoicesView(adChoicesView);
-
                     adView.setNativeAd(nativeAd);
                     adContainer.addView(adView);
                 });
@@ -2026,35 +2210,17 @@ public class MainActivity extends AppCompatActivity {
         AdListener adListener =
                 new AdListener() {
                     @Override
-                    public void onAdFailedToLoad(LoadAdError adError) {
-                        adContainer.removeAllViews();
-                        TextView errorText = new TextView(MainActivity.this);
-                        errorText.setText("Error al cargar anuncio: " + adError.getMessage());
-                        errorText.setTextColor(Color.RED);
-                        errorText.setGravity(Gravity.CENTER);
-                        adContainer.addView(errorText);
-                        Toast.makeText(
-                                        MainActivity.this,
-                                        "Fallo al cargar anuncio: " + adError.getMessage(),
-                                        Toast.LENGTH_LONG)
-                                .show();
-                    }
+                    public void onAdFailedToLoad(LoadAdError adError) {}
                 };
         builder.withAdListener(adListener);
 
-        // --- Configuración de Video para Anuncios Nativos ---
-        VideoOptions videoOptions =
-                new VideoOptions.Builder()
-                        .setStartMuted(true) // Recomendado: iniciar videos silenciados
-                        .build();
-
+        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
         NativeAdOptions adOptions =
                 new NativeAdOptions.Builder()
                         .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                        .setVideoOptions(videoOptions) // Aplicar las opciones de video
+                        .setVideoOptions(videoOptions)
                         .build();
         builder.withNativeAdOptions(adOptions);
-        // --- Fin Configuración de Video ---
 
         AdLoader adLoader = builder.build();
         adLoader.loadAd(new AdRequest.Builder().build());
