@@ -354,21 +354,22 @@ public class MainActivity extends AppCompatActivity {
         btnVerificarMemoriaDelPic.setEnabled(false);
 
         btnBorrarMemoriaDeLPic =
-                createIconButton(getString(R.string.erase_memory), R.drawable.ic_erase_chip);
+                createIconButton(getString(R.string.erase_memory), R.drawable.ic_verify_chip);
 
         btnBorrarMemoriaDeLPic.setEnabled(false);
 
         btnLeerMemoriaDeLPic =
-                createIconButton(getString(R.string.read_memory), R.drawable.ic_erase_chip);
+                createIconButton(getString(R.string.read_memory), R.drawable.ic_verify_chip);
 
         btnLeerMemoriaDeLPic.setEnabled(false);
 
-        btnDetectarPic = createIconButton(getString(R.string.detect_pic), R.drawable.ic_erase_chip);
+        btnDetectarPic =
+                createIconButton(getString(R.string.detect_pic), R.drawable.ic_verify_chip);
 
         btnDetectarPic.setEnabled(false);
 
         btnSelectHex =
-                createIconButton(getString(R.string.load_hex_file), R.drawable.ic_erase_chip);
+                createIconButton(getString(R.string.load_hex_file), R.drawable.ic_verify_chip);
 
         Spinner chipSpinner = new Spinner(this);
 
@@ -1976,12 +1977,16 @@ public class MainActivity extends AppCompatActivity {
                                                     proceso.setText(
                                                             getString(R.string.pic_program_error));
                                                 }
-
-                                                runOnUiThread(
-                                                        () ->
-                                                                actualizarUIProcesoFinalizado(
-                                                                        procesoGrabado));
                                             });
+
+                                    if (!procesoGrabado || !procesoCancelado) {
+                                        runOnUiThread(
+                                                () ->
+                                                        actualizarUIProcesoFinalizado(
+                                                                procesoGrabado));
+
+                                        return;
+                                    }
                                 }
                             }
                         });
