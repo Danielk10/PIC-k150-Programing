@@ -1830,77 +1830,52 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 if (protocolo != null && !procesoCancelado) {
-                                    // Paso 1: Borrar memorias (10% del progreso)
-                                    procesoGrabado = protocolo.borrarMemoriasDelPic();
 
-                                    runOnUiThread(
-                                            () -> {
-                                                if (procesoGrabado) {
-                                                    proceso.setText(
-                                                            getString(
-                                                                    R.string
-                                                                            .memory_erased_successfully));
-                                                } else {
-                                                    proceso.setText(
-                                                            getString(R.string.memory_erase_error));
-                                                }
-                                            });
+                                    try {
 
-                                    if (!procesoGrabado || !procesoCancelado) {
-                                        runOnUiThread(
-                                                () ->
-                                                        actualizarUIProcesoFinalizado(
-                                                                procesoGrabado));
+                                        // Paso 1: Borrar memorias (10% del progreso)
+                                        procesoGrabado = protocolo.borrarMemoriasDelPic();
 
-                                        return;
-                                    }
-
-                                    // Paso 2: Programar ROM (30% del progreso)
-                                    procesoGrabado =
-                                            protocolo.programarMemoriaROMDelPic(chipPIC, firware);
-                                    runOnUiThread(
-                                            () -> {
-                                                if (procesoGrabado) {
-                                                    proceso.setText(
-                                                            getString(
-                                                                    R.string
-                                                                            .rom_programmed_successfully));
-                                                } else {
-                                                    proceso.setText(
-                                                            getString(R.string.rom_program_error));
-                                                }
-                                            });
-
-                                    if (!procesoGrabado || !procesoCancelado) {
-                                        runOnUiThread(
-                                                () ->
-                                                        actualizarUIProcesoFinalizado(
-                                                                procesoGrabado));
-
-                                        return;
-                                    }
-
-                                    // Paso 3: Programar EEPROM si es necesario (20% del progreso)
-                                    if (chipPIC.isTamanoValidoDeEEPROM()) {
-                                        procesoGrabado =
-                                                protocolo.programarMemoriaEEPROMDelPic(
-                                                        chipPIC, firware);
                                         runOnUiThread(
                                                 () -> {
                                                     if (procesoGrabado) {
                                                         proceso.setText(
                                                                 getString(
                                                                         R.string
-                                                                                .eeprom_programmed_successfully));
+                                                                                .memory_erased_successfully));
                                                     } else {
                                                         proceso.setText(
                                                                 getString(
                                                                         R.string
-                                                                                .eeprom_program_error));
+                                                                                .memory_erase_error));
                                                     }
                                                 });
 
-                                        if (!procesoGrabado || !procesoCancelado) {
+                                        if (!procesoGrabado || procesoCancelado) {
+                                            runOnUiThread(
+                                                    () ->
+                                                            actualizarUIProcesoFinalizado(
+                                                                    procesoGrabado));
+
+                                            return;
+                                        }
+
+                                    } catch (Exception e) {
+
+                                        procesoGrabado = false;
+
+                                        runOnUiThread(
+                                                () -> {
+                                                    if (!procesoGrabado) {
+
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .memory_erase_error));
+                                                    }
+                                                });
+
+                                        if (!procesoGrabado || procesoCancelado) {
                                             runOnUiThread(
                                                     () ->
                                                             actualizarUIProcesoFinalizado(
@@ -1910,58 +1885,227 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     }
 
-                                    // Paso 4: Programar Fuses (20% del progreso)
-                                    procesoGrabado =
-                                            protocolo.programarFusesIDDelPic(chipPIC, firware);
-                                    runOnUiThread(
-                                            () -> {
-                                                if (procesoGrabado) {
-                                                    proceso.setText(
-                                                            getString(
-                                                                    R.string
-                                                                            .fuses_programmed_successfully));
-                                                } else {
-                                                    proceso.setText(
-                                                            getString(
-                                                                    R.string.fuses_program_error));
-                                                }
-                                            });
+                                    try {
 
-                                    if (!procesoGrabado || !procesoCancelado) {
-                                        runOnUiThread(
-                                                () ->
-                                                        actualizarUIProcesoFinalizado(
-                                                                procesoGrabado));
+                                        // Paso 2: Programar ROM (30% del progreso)
+                                        procesoGrabado =
+                                                protocolo.programarMemoriaROMDelPic(
+                                                        chipPIC, firware);
 
-                                        return;
-                                    }
-
-                                    // Paso 5: Programar Fuses adicionales para PIC18F (10% del
-                                    // progreso)
-                                    if (chipPIC.getTipoDeNucleoBit() == 16) {
-                                        procesoGrabado = protocolo.programarFusesDePics18F();
                                         runOnUiThread(
                                                 () -> {
                                                     if (procesoGrabado) {
                                                         proceso.setText(
                                                                 getString(
                                                                         R.string
-                                                                                .fuses_18f_programmed_successfully));
+                                                                                .rom_programmed_successfully));
                                                     } else {
                                                         proceso.setText(
                                                                 getString(
                                                                         R.string
-                                                                                .fuses_18f_program_error));
+                                                                                .rom_program_error));
                                                     }
                                                 });
 
-                                        if (!procesoGrabado || !procesoCancelado) {
+                                        if (!procesoGrabado || procesoCancelado) {
                                             runOnUiThread(
                                                     () ->
                                                             actualizarUIProcesoFinalizado(
                                                                     procesoGrabado));
 
                                             return;
+                                        }
+
+                                    } catch (Exception e) {
+
+                                        procesoGrabado = false;
+
+                                        runOnUiThread(
+                                                () -> {
+                                                    if (!procesoGrabado) {
+
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .rom_program_error));
+                                                    }
+                                                });
+
+                                        if (!procesoGrabado || procesoCancelado) {
+                                            runOnUiThread(
+                                                    () ->
+                                                            actualizarUIProcesoFinalizado(
+                                                                    procesoGrabado));
+
+                                            return;
+                                        }
+                                    }
+
+                                    // Paso 3: Programar EEPROM si es necesario (20% del progreso)
+                                    if (chipPIC.isTamanoValidoDeEEPROM()) {
+
+                                        try {
+
+                                            procesoGrabado =
+                                                    protocolo.programarMemoriaEEPROMDelPic(
+                                                            chipPIC, firware);
+
+                                            runOnUiThread(
+                                                    () -> {
+                                                        if (procesoGrabado) {
+                                                            proceso.setText(
+                                                                    getString(
+                                                                            R.string
+                                                                                    .eeprom_programmed_successfully));
+                                                        } else {
+                                                            proceso.setText(
+                                                                    getString(
+                                                                            R.string
+                                                                                    .eeprom_program_error));
+                                                        }
+                                                    });
+
+                                            if (!procesoGrabado || procesoCancelado) {
+                                                runOnUiThread(
+                                                        () ->
+                                                                actualizarUIProcesoFinalizado(
+                                                                        procesoGrabado));
+
+                                                return;
+                                            }
+
+                                        } catch (Exception e) {
+
+                                            procesoGrabado = false;
+
+                                            runOnUiThread(
+                                                    () -> {
+                                                        if (!procesoGrabado) {
+                                                            proceso.setText(
+                                                                    getString(
+                                                                            R.string
+                                                                                    .eeprom_program_error));
+                                                        }
+                                                    });
+
+                                            if (!procesoGrabado || procesoCancelado) {
+                                                runOnUiThread(
+                                                        () ->
+                                                                actualizarUIProcesoFinalizado(
+                                                                        procesoGrabado));
+
+                                                return;
+                                            }
+                                        }
+                                    }
+
+                                    try {
+
+                                        // Paso 4: Programar Fuses (20% del progreso)
+                                        procesoGrabado =
+                                                protocolo.programarFusesIDDelPic(chipPIC, firware);
+                                        runOnUiThread(
+                                                () -> {
+                                                    if (procesoGrabado) {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .fuses_programmed_successfully));
+                                                    } else {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .fuses_program_error));
+                                                    }
+                                                });
+
+                                        if (!procesoGrabado || procesoCancelado) {
+                                            runOnUiThread(
+                                                    () ->
+                                                            actualizarUIProcesoFinalizado(
+                                                                    procesoGrabado));
+
+                                            return;
+                                        }
+
+                                    } catch (Exception e) {
+
+                                        procesoGrabado = false;
+
+                                        runOnUiThread(
+                                                () -> {
+                                                    if (!procesoGrabado) {
+                                                        proceso.setText(
+                                                                getString(
+                                                                        R.string
+                                                                                .fuses_program_error));
+                                                    }
+                                                });
+
+                                        if (!procesoGrabado || procesoCancelado) {
+                                            runOnUiThread(
+                                                    () ->
+                                                            actualizarUIProcesoFinalizado(
+                                                                    procesoGrabado));
+
+                                            return;
+                                        }
+                                    }
+
+                                    // Paso 5: Programar Fuses adicionales para PIC18F (10% del
+                                    // progreso)
+                                    if (chipPIC.getTipoDeNucleoBit() == 16) {
+
+                                        try {
+
+                                            procesoGrabado = protocolo.programarFusesDePics18F();
+
+                                            runOnUiThread(
+                                                    () -> {
+                                                        if (procesoGrabado) {
+                                                            proceso.setText(
+                                                                    getString(
+                                                                            R.string
+                                                                                    .fuses_18f_programmed_successfully));
+                                                        } else {
+                                                            proceso.setText(
+                                                                    getString(
+                                                                            R.string
+                                                                                    .fuses_18f_program_error));
+                                                        }
+                                                    });
+
+                                            if (!procesoGrabado || procesoCancelado) {
+                                                runOnUiThread(
+                                                        () ->
+                                                                actualizarUIProcesoFinalizado(
+                                                                        procesoGrabado));
+
+                                                return;
+                                            }
+
+                                        } catch (Exception e) {
+
+                                            procesoGrabado = false;
+
+                                            runOnUiThread(
+                                                    () -> {
+                                                        if (!procesoGrabado) {
+                                                            proceso.setText(
+                                                                    getString(
+                                                                            R.string
+                                                                                    .fuses_18f_program_error));
+                                                        }
+                                                    });
+
+                                            if (!procesoGrabado || procesoCancelado) {
+                                                runOnUiThread(
+                                                        () ->
+                                                                actualizarUIProcesoFinalizado(
+                                                                        procesoGrabado));
+
+                                                return;
+                                            }
                                         }
                                     }
 
@@ -1979,7 +2123,7 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                             });
 
-                                    if (!procesoGrabado || !procesoCancelado) {
+                                    if (!procesoGrabado || procesoCancelado) {
                                         runOnUiThread(
                                                 () ->
                                                         actualizarUIProcesoFinalizado(
