@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">فقط في وضع ICSP، تم تفعيل وضع ICSP</string>
     <string name="connection_error">خطأ في الاتصال:</string>
     <string name="select_valid_binary_file">اختر ملف ثنائي صالح</string>
+    <string name="obtener_modelo">الحصول على نموذج المبرمج</string>
+    <string name="obtener_protocolo">الحصول على البروتوكول</string>
+    <string name="modelo_programador">نموذج المبرمج</string>
+    <string name="protocolo_programador">بروتوكول المبرمج</string>
+    <string name="aceptar">موافق</string>
+    <string name="cancelar">إلغاء</string>
+    <string name="conectado">متصل</string>
+    <string name="desconectado">غير متصل</string>
+    <string name="grabando_pic">جاري برمجة PIC...</string>
+    <string name="espere_grabacion_pic">يرجى الانتظار. لا تقم بفصل الجهاز.</string>
+    <string name="grabacion_completada_pic">اكتملت البرمجة</string>
+    <string name="grabacion_correcta_pic">تم برمجة البرنامج الثابت بنجاح في PIC.</string>
+    <string name="fallo_grabacion_pic">فشل البرمجة</string>
+    <string name="proceso_no_completado">تعذر إكمال العملية. تحقق من الاتصال.</string>
 </resources>

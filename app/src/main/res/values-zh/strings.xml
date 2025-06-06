@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">仅限ICSP模式，已启用ICSP模式</string>
     <string name="connection_error">连接错误：</string>
     <string name="select_valid_binary_file">选择有效的二进制文件</string>
+    <string name="obtener_modelo">获取编程器型号</string>
+    <string name="obtener_protocolo">获取协议</string>
+    <string name="modelo_programador">编程器型号</string>
+    <string name="protocolo_programador">编程器协议</string>
+    <string name="aceptar">接受</string>
+    <string name="cancelar">取消</string>
+    <string name="conectado">已连接</string>
+    <string name="desconectado">已断开</string>
+    <string name="grabando_pic">正在编程PIC...</string>
+    <string name="espere_grabacion_pic">请稍候。不要断开设备。</string>
+    <string name="grabacion_completada_pic">编程完成</string>
+    <string name="grabacion_correcta_pic">固件已成功编程到PIC中。</string>
+    <string name="fallo_grabacion_pic">编程失败</string>
+    <string name="proceso_no_completado">无法完成过程。请检查连接。</string>
 </resources>

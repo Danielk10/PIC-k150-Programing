@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">Nur im ICSP-Modus, ICSP-Modus aktiviert</string>
     <string name="connection_error">Verbindungsfehler:</string>
     <string name="select_valid_binary_file">Wählen Sie eine gültige Binärdatei</string>
+    <string name="obtener_modelo">Programmiermodell abrufen</string>
+    <string name="obtener_protocolo">Protokoll abrufen</string>
+    <string name="modelo_programador">Programmiermodell</string>
+    <string name="protocolo_programador">Programmierprotokoll</string>
+    <string name="aceptar">Akzeptieren</string>
+    <string name="cancelar">Abbrechen</string>
+    <string name="conectado">Verbunden</string>
+    <string name="desconectado">Getrennt</string>
+    <string name="grabando_pic">PIC wird programmiert...</string>
+    <string name="espere_grabacion_pic">Bitte warten. Gerät nicht trennen.</string>
+    <string name="grabacion_completada_pic">Programmierung abgeschlossen</string>
+    <string name="grabacion_correcta_pic">Die Firmware wurde erfolgreich auf den PIC programmiert.</string>
+    <string name="fallo_grabacion_pic">Programmierung fehlgeschlagen</string>
+    <string name="proceso_no_completado">Prozess konnte nicht abgeschlossen werden. Verbindung prüfen.</string>
 </resources>

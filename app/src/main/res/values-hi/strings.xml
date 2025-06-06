@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">केवल ICSP मोड में, ICSP मोड सक्रिय हो गया</string>
     <string name="connection_error">कनेक्शन त्रुटि:</string>
     <string name="select_valid_binary_file">मान्य बाइनरी फ़ाइल चुनें</string>
+    <string name="obtener_modelo">प्रोग्रामर मॉडल प्राप्त करें</string>
+    <string name="obtener_protocolo">प्रोटोकॉल प्राप्त करें</string>
+    <string name="modelo_programador">प्रोग्रामर मॉडल</string>
+    <string name="protocolo_programador">प्रोग्रामर प्रोटोकॉल</string>
+    <string name="aceptar">स्वीकार करें</string>
+    <string name="cancelar">रद्द करें</string>
+    <string name="conectado">जुड़ा हुआ</string>
+    <string name="desconectado">डिस्कनेक्ट</string>
+    <string name="grabando_pic">PIC प्रोग्रामिंग...</string>
+    <string name="espere_grabacion_pic">कृपया प्रतीक्षा करें। डिवाइस को डिस्कनेक्ट न करें।</string>
+    <string name="grabacion_completada_pic">प्रोग्रामिंग पूर्ण</string>
+    <string name="grabacion_correcta_pic">फर्मवेयर PIC में सफलतापूर्वक प्रोग्राम किया गया है।</string>
+    <string name="fallo_grabacion_pic">प्रोग्रामिंग विफल</string>
+    <string name="proceso_no_completado">प्रक्रिया पूरी नहीं हो सकी। कनेक्शन जांचें।</string>
 </resources>

@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">מצב ICSP בלבד, מצב ICSP מופעל</string>
     <string name="connection_error">שגיאת חיבור:</string>
     <string name="select_valid_binary_file">בחר קובץ בינארי תקני</string>
+    <string name="obtener_modelo">קבל מודל מתכנת</string>
+    <string name="obtener_protocolo">קבל פרוטוקול</string>
+    <string name="modelo_programador">מודל מתכנת</string>
+    <string name="protocolo_programador">פרוטוקול מתכנת</string>
+    <string name="aceptar">אישור</string>
+    <string name="cancelar">ביטול</string>
+    <string name="conectado">מחובר</string>
+    <string name="desconectado">מנותק</string>
+    <string name="grabando_pic">תכנות PIC...</string>
+    <string name="espere_grabacion_pic">אנא המתן. אל תנתק את המכשיר.</string>
+    <string name="grabacion_completada_pic">תכנות הושלם</string>
+    <string name="grabacion_correcta_pic">הקושחה תוכנתה בהצלחה ל-PIC.</string>
+    <string name="fallo_grabacion_pic">תכנות נכשל</string>
+    <string name="proceso_no_completado">לא ניתן להשלים את התהליך. בדוק את החיבור.</string>
 </resources>

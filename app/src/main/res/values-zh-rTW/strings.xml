@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">僅限 ICSP 模式，ICSP 模式已啟用</string>
     <string name="connection_error">連接錯誤:</string>
     <string name="select_valid_binary_file">請選擇有效的二進制檔案</string>
+    <string name="obtener_modelo">取得燒錄器型號</string>
+    <string name="obtener_protocolo">取得協定</string>
+    <string name="modelo_programador">燒錄器型號</string>
+    <string name="protocolo_programador">燒錄器協定</string>
+    <string name="aceptar">接受</string>
+    <string name="cancelar">取消</string>
+    <string name="conectado">已連接</string>
+    <string name="desconectado">已斷開</string>
+    <string name="grabando_pic">正在燒錄PIC...</string>
+    <string name="espere_grabacion_pic">請稍候。請勿斷開設備。</string>
+    <string name="grabacion_completada_pic">燒錄完成</string>
+    <string name="grabacion_correcta_pic">韌體已成功燒錄到PIC中。</string>
+    <string name="fallo_grabacion_pic">燒錄失敗</string>
+    <string name="proceso_no_completado">無法完成過程。請檢查連接。</string>
 </resources>

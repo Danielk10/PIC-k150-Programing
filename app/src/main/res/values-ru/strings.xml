@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">Только режим ICSP, режим ICSP активирован</string>
     <string name="connection_error">Ошибка подключения:</string>
     <string name="select_valid_binary_file">Выберите допустимый бинарный файл</string>
+    <string name="obtener_modelo">Получить модель программатора</string>
+    <string name="obtener_protocolo">Получить протокол</string>
+    <string name="modelo_programador">Модель программатора</string>
+    <string name="protocolo_programador">Протокол программатора</string>
+    <string name="aceptar">Принять</string>
+    <string name="cancelar">Отмена</string>
+    <string name="conectado">Подключено</string>
+    <string name="desconectado">Отключено</string>
+    <string name="grabando_pic">Программирование PIC...</string>
+    <string name="espere_grabacion_pic">Пожалуйста, подождите. Не отключайте устройство.</string>
+    <string name="grabacion_completada_pic">Программирование завершено</string>
+    <string name="grabacion_correcta_pic">Прошивка успешно записана в PIC.</string>
+    <string name="fallo_grabacion_pic">Ошибка программирования</string>
+    <string name="proceso_no_completado">Не удалось завершить процесс. Проверьте соединение.</string>
 </resources>

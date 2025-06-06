@@ -32,4 +32,18 @@
     <string name="icsp_mode_only">Тільки режим ICSP, активовано режим ICSP</string>
     <string name="connection_error">Помилка з’єднання:</string>
     <string name="select_valid_binary_file">Виберіть дійсний бінарний файл</string>
+    <string name="obtener_modelo">Отримати модель програматора</string>
+    <string name="obtener_protocolo">Отримати протокол</string>
+    <string name="modelo_programador">Модель програматора</string>
+    <string name="protocolo_programador">Протокол програматора</string>
+    <string name="aceptar">Прийняти</string>
+    <string name="cancelar">Скасувати</string>
+    <string name="conectado">Підключено</string>
+    <string name="desconectado">Відключено</string>
+    <string name="grabando_pic">Програмування PIC...</string>
+    <string name="espere_grabacion_pic">Будь ласка, зачекайте. Не відключайте пристрій.</string>
+    <string name="grabacion_completada_pic">Програмування завершено</string>
+    <string name="grabacion_correcta_pic">Прошивка успішно запрограмована в PIC.</string>
+    <string name="fallo_grabacion_pic">Помилка програмування</string>
+    <string name="proceso_no_completado">Не вдалося завершити процес. Перевірте з’єднання.</string>
 </resources>
