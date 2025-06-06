@@ -1987,6 +1987,15 @@ public class MainActivity extends AppCompatActivity {
 
                                         return;
                                     }
+
+                                    if (procesoGrabado || !procesoCancelado) {
+                                        runOnUiThread(
+                                                () ->
+                                                        actualizarUIProcesoFinalizado(
+                                                                procesoGrabado));
+
+                                        return;
+                                    }
                                 }
                             }
                         });
