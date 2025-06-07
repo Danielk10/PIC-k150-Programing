@@ -1693,9 +1693,10 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
-        int currentScreenHeight = displayMetrics.heightPixels;
+        int screenHeight = displayMetrics.heightPixels;
 
-        int popupHeight = (int) (currentScreenHeight * 0.7);
+        // Aumentar la altura del popup para dar más espacio al contenido y al anuncio
+        int popupHeight = (int) (screenHeight * 0.85);
 
         LinearLayout popupContainer = new LinearLayout(this);
         popupContainer.setOrientation(LinearLayout.VERTICAL);
@@ -1712,8 +1713,9 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout topContent = new LinearLayout(this);
         topContent.setOrientation(LinearLayout.VERTICAL);
         topContent.setGravity(Gravity.CENTER);
+        // Usar WRAP_CONTENT para que ocupe solo el espacio necesario
         LinearLayout.LayoutParams topParams =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 0.8f);
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         topContent.setLayoutParams(topParams);
         topContent.setPadding(32, 32, 32, 32);
 
@@ -1724,7 +1726,6 @@ public class MainActivity extends AppCompatActivity {
         titleTextView.setGravity(Gravity.CENTER);
         topContent.addView(titleTextView);
 
-        // Contenedor para el indicador (ProgressBar / Icono de resultado)
         FrameLayout statusIndicatorContainer = new FrameLayout(this);
         statusIndicatorContainer.setLayoutParams(
                 new FrameLayout.LayoutParams(
@@ -1737,12 +1738,10 @@ public class MainActivity extends AppCompatActivity {
         indicatorParams.setMargins(0, 24, 0, 24);
         topContent.addView(statusIndicatorContainer, indicatorParams);
 
-        // Barra de progreso (visible al inicio)
         statusProgressBar = new ProgressBar(this, null, android.R.attr.progressBarStyle);
         statusProgressBar.setVisibility(View.VISIBLE);
         statusIndicatorContainer.addView(statusProgressBar);
 
-        // Icono de resultado (oculto al inicio)
         statusResultIcon = new ImageView(this);
         statusResultIcon.setVisibility(View.GONE);
         statusIndicatorContainer.addView(statusResultIcon);
@@ -1755,25 +1754,28 @@ public class MainActivity extends AppCompatActivity {
         topContent.addView(descriptionTextView);
 
         popupContainer.addView(topContent);
-        // --- Fin Contenido Superior Dinámico ---
 
         View divider = new View(this);
         divider.setBackgroundColor(Color.LTGRAY);
         popupContainer.addView(
                 divider, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2));
 
+        // --- Contenedor del Anuncio ---
         FrameLayout adContainer = new FrameLayout(this);
+        // Asignar peso para que ocupe el espacio restante y flexible
         LinearLayout.LayoutParams adParams =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.2f);
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
         adContainer.setLayoutParams(adParams);
         adContainer.setPadding(8, 8, 8, 8);
+        // Asegurar una altura mínima para el contenedor del anuncio en dp
+        adContainer.setMinimumHeight(dpToPx(250));
         adContainer.setId(View.generateViewId());
         popupContainer.addView(adContainer);
 
-        // --- Contenedor para el Botón Único ---
+        // --- Contenedor para el Botón ---
         LinearLayout buttonContainer = new LinearLayout(this);
         buttonContainer.setOrientation(LinearLayout.VERTICAL);
-        buttonContainer.setGravity(Gravity.CENTER_HORIZONTAL); // Centrar el botón
+        buttonContainer.setGravity(Gravity.CENTER_HORIZONTAL);
         buttonContainer.setLayoutParams(
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -1789,12 +1791,10 @@ public class MainActivity extends AppCompatActivity {
         actionButton.setPadding(100, 40, 100, 40);
         actionButton.setTextColor(Color.WHITE);
 
-        // Estado inicial del botón
         actionButton.setText(getString(R.string.cancelar));
         actionButton.setBackgroundResource(R.drawable.button_background_red);
         actionButton.setOnClickListener(
                 v -> {
-                    // Si se cancela, se detiene el "proceso" y se cierra
                     if (hiloGrabado != null && hiloGrabado.isAlive()) {
                         procesoCancelado = true;
                     }
@@ -1804,21 +1804,19 @@ public class MainActivity extends AppCompatActivity {
 
         buttonContainer.addView(actionButton);
         popupContainer.addView(buttonContainer);
-        // --- Fin Contenedor para el Botón Único ---
 
         popupWindow = new PopupWindow(popupContainer, (int) (screenWidth * 0.9), popupHeight, true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.setOutsideTouchable(
-                false); // No permitir cerrar tocando fuera durante el proceso
+        popupWindow.setOutsideTouchable(false);
         popupWindow.setAnimationStyle(0);
 
         popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
         applyCustomAnimation(popupContainer);
         loadNativeAd(adContainer);
 
-        // --- Iniciar simulación del proceso de grabado ---
         simularProcesoDeGrabado();
     }
+
 
     private void simularProcesoDeGrabado() {
 
@@ -2251,7 +2249,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNativeAd(FrameLayout adContainer) {
-        // El ID de prueba es el más seguro de usar para desarrollo
         AdLoader.Builder builder =
                 new AdLoader.Builder(this, "ca-app-pub-5141499161332805/4642845838");
 
@@ -2262,18 +2259,27 @@ public class MainActivity extends AppCompatActivity {
                         this.nativeAd.destroy();
                     }
                     this.nativeAd = loadedNativeAd;
+
+                    // --- 1. CREAR TODOS LOS ELEMENTOS VISUALES ---
+
+                    // El contenedor raíz del anuncio. Todo debe ir dentro de este.
                     NativeAdView adView = new NativeAdView(this);
                     adView.setLayoutParams(
                             new FrameLayout.LayoutParams(
                                     FrameLayout.LayoutParams.MATCH_PARENT,
                                     FrameLayout.LayoutParams.MATCH_PARENT));
+
+                    // Layout interno para organizar los elementos verticalmente
                     LinearLayout adInternalLayout = new LinearLayout(this);
                     adInternalLayout.setOrientation(LinearLayout.VERTICAL);
                     adInternalLayout.setLayoutParams(
                             new FrameLayout.LayoutParams(
                                     FrameLayout.LayoutParams.MATCH_PARENT,
                                     FrameLayout.LayoutParams.MATCH_PARENT));
-                    adInternalLayout.setPadding(16, 16, 16, 16);
+                    adInternalLayout.setPadding(dpToPx(10), dpToPx(10), dpToPx(10), dpToPx(10));
+                    adInternalLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    // Etiqueta "Ad"
                     TextView adBadge = new TextView(this);
                     adBadge.setText("Ad");
                     adBadge.setTextSize(10);
@@ -2283,92 +2289,96 @@ public class MainActivity extends AppCompatActivity {
                     adBadgeBackground.setColor(Color.parseColor("#FFCC66"));
                     adBadgeBackground.setCornerRadius(8f);
                     adBadge.setBackground(adBadgeBackground);
-                    adBadge.setPadding(8, 4, 8, 4);
-                    LinearLayout.LayoutParams adBadgeParams =
-                            new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                    adBadgeParams.setMargins(0, 0, 0, 8);
-                    adInternalLayout.addView(adBadge, adBadgeParams);
-                    MediaView mediaView = new MediaView(this);
-                    LinearLayout.LayoutParams mediaParams =
-                            new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
-                    mediaParams.gravity = Gravity.CENTER_HORIZONTAL;
-                    mediaParams.height = (int) (200 * getResources().getDisplayMetrics().density);
-                    mediaView.setLayoutParams(mediaParams);
-                    adView.setMediaView(mediaView);
-                    TextView headlineView = new TextView(this);
-                    headlineView.setText(nativeAd.getHeadline());
-                    headlineView.setTextSize(18);
-                    headlineView.setTextColor(Color.BLACK);
-                    headlineView.setGravity(Gravity.START);
-                    headlineView.setPadding(0, 8, 0, 4);
-                    adView.setHeadlineView(headlineView);
-                    TextView bodyView = new TextView(this);
-                    bodyView.setText(nativeAd.getBody());
-                    bodyView.setTextSize(14);
-                    bodyView.setTextColor(Color.DKGRAY);
-                    bodyView.setPadding(0, 4, 0, 8);
-                    adView.setBodyView(bodyView);
+                    adBadge.setPadding(dpToPx(4), dpToPx(2), dpToPx(4), dpToPx(2));
+
+                    // Fila para el ícono y el título (horizontal)
+                    LinearLayout headerRow = new LinearLayout(this);
+                    headerRow.setOrientation(LinearLayout.HORIZONTAL);
+                    headerRow.setGravity(Gravity.CENTER_VERTICAL);
+                    headerRow.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
                     ImageView iconView = new ImageView(this);
                     if (nativeAd.getIcon() != null && nativeAd.getIcon().getDrawable() != null) {
                         iconView.setImageDrawable(nativeAd.getIcon().getDrawable());
-                        LinearLayout.LayoutParams iconParams =
-                                new LinearLayout.LayoutParams(
-                                        (int) (40 * getResources().getDisplayMetrics().density),
-                                        (int) (40 * getResources().getDisplayMetrics().density));
-                        iconParams.setMarginEnd(8);
+                        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(40), dpToPx(40));
+                        iconParams.setMarginEnd(dpToPx(8));
                         iconView.setLayoutParams(iconParams);
                     } else {
                         iconView.setVisibility(View.GONE);
                     }
-                    adView.setIconView(iconView);
-                    LinearLayout headerRow = new LinearLayout(this);
-                    headerRow.setOrientation(LinearLayout.HORIZONTAL);
-                    headerRow.setGravity(Gravity.CENTER_VERTICAL);
-                    if (iconView.getVisibility() == View.VISIBLE) {
-                        headerRow.addView(iconView);
-                    }
-                    LinearLayout.LayoutParams headlineInRowParams =
-                            new LinearLayout.LayoutParams(
-                                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-                    headlineView.setLayoutParams(headlineInRowParams);
-                    headerRow.addView(headlineView);
+
+                    TextView headlineView = new TextView(this);
+                    headlineView.setText(nativeAd.getHeadline());
+                    headlineView.setTextSize(16);
+                    headlineView.setTypeface(null, Typeface.BOLD);
+                    headlineView.setTextColor(Color.BLACK);
+
+                    TextView bodyView = new TextView(this);
+                    bodyView.setText(nativeAd.getBody());
+                    bodyView.setTextSize(14);
+                    bodyView.setTextColor(Color.DKGRAY);
+                    LinearLayout.LayoutParams bodyParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    bodyParams.setMargins(0, dpToPx(4), 0, dpToPx(4));
+                    bodyView.setLayoutParams(bodyParams);
+
+                    MediaView mediaView = new MediaView(this);
+                    LinearLayout.LayoutParams mediaParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
+                    mediaParams.gravity = Gravity.CENTER_HORIZONTAL;
+                    mediaView.setLayoutParams(mediaParams);
+
                     Button callToAction = new Button(this);
                     callToAction.setText(nativeAd.getCallToAction());
                     callToAction.setAllCaps(false);
                     callToAction.setTextColor(Color.WHITE);
                     callToAction.setBackgroundColor(Color.parseColor("#4CAF50"));
-                    LinearLayout.LayoutParams ctaParams =
-                            new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                    ctaParams.setMargins(0, 8, 0, 0);
+                    LinearLayout.LayoutParams ctaParams = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
+                    ctaParams.setMargins(0, dpToPx(8), 0, 0);
                     callToAction.setLayoutParams(ctaParams);
-                    adView.setCallToActionView(callToAction);
+
+                    AdChoicesView adChoicesView = new AdChoicesView(this);
+                    FrameLayout.LayoutParams adChoicesParams = new FrameLayout.LayoutParams(
+                            FrameLayout.LayoutParams.WRAP_CONTENT,
+                            FrameLayout.LayoutParams.WRAP_CONTENT);
+                    adChoicesParams.gravity = Gravity.TOP | Gravity.END;
+
+                    // --- 2. CONSTRUIR LA JERARQUÍA DE VISTAS (AÑADIR VISTAS A SUS PADRES) ---
+                    headerRow.addView(iconView);
+                    headerRow.addView(headlineView);
+
+                    LinearLayout.LayoutParams adBadgeParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    adBadgeParams.setMargins(0, 0, 0, dpToPx(8));
+                    adBadgeParams.gravity = Gravity.START;
+                    adInternalLayout.addView(adBadge, adBadgeParams);
                     adInternalLayout.addView(headerRow);
                     adInternalLayout.addView(bodyView);
                     adInternalLayout.addView(mediaView);
                     adInternalLayout.addView(callToAction);
+
                     adView.addView(adInternalLayout);
-                    AdChoicesView adChoicesView = new AdChoicesView(this);
-                    FrameLayout.LayoutParams adChoicesParams =
-                            new FrameLayout.LayoutParams(
-                                    FrameLayout.LayoutParams.WRAP_CONTENT,
-                                    FrameLayout.LayoutParams.WRAP_CONTENT);
-                    adChoicesParams.gravity = Gravity.TOP | Gravity.END;
-                    adChoicesParams.setMargins(0, 4, 4, 0);
                     adView.addView(adChoicesView, adChoicesParams);
+
+                    // --- 3. REGISTRAR LAS VISTAS (SOLO DESPUÉS DE QUE ESTÉN EN LA JERARQUÍA) ---
+                    adView.setHeadlineView(headlineView);
+                    adView.setBodyView(bodyView);
+                    adView.setCallToActionView(callToAction);
+                    adView.setIconView(iconView);
+                    adView.setMediaView(mediaView);
                     adView.setAdChoicesView(adChoicesView);
+
+                    // --- 4. ASIGNAR EL ANUNCIO Y AÑADIR AL CONTENEDOR PRINCIPAL ---
                     adView.setNativeAd(nativeAd);
                     adContainer.addView(adView);
                 });
 
+
         AdListener adListener =
                 new AdListener() {
                     @Override
-                    public void onAdFailedToLoad(LoadAdError adError) {}
+                    public void onAdFailedToLoad(@NonNull LoadAdError adError) {
+                        adContainer.setVisibility(View.GONE);
+                    }
                 };
         builder.withAdListener(adListener);
 
