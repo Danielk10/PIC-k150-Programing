@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.diamon.pic'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.diamon.pic"
