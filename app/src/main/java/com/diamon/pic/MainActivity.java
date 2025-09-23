@@ -1669,7 +1669,7 @@ public class MainActivity extends AppCompatActivity {
                 usbSerialPort.close();
                 LogManager.d(Categoria.USB, "limpiarEstado", "Puerto USB cerrado");
             } catch (IOException e) {
-                LogManager.w(Categoria.USB, "limpiarEstado", "Error cerrando puerto USB", e);
+                LogManager.w(Categoria.USB, "limpiarEstado", "Error cerrando puerto USB"+e);
             }
             usbSerialPort = null;
         }
@@ -2657,7 +2657,7 @@ public class MainActivity extends AppCompatActivity {
                     usbSerialPort.close();
                     LogManager.d(Categoria.USB, "onDestroy", "Puerto USB cerrado exitosamente");
                 } catch (IOException e) {
-                    LogManager.w(Categoria.USB, "onDestroy", "Error cerrando puerto USB", e);
+                    LogManager.w(Categoria.USB, "onDestroy", "Error cerrando puerto USB"+e);
                 }
                 usbSerialPort = null;
             }
@@ -2675,7 +2675,7 @@ public class MainActivity extends AppCompatActivity {
                     hiloGrabado.interrupt();
                     LogManager.d(Categoria.SISTEMA, "onDestroy", "Hilo de grabado cancelado");
                 } catch (Exception e) {
-                    LogManager.w(Categoria.SISTEMA, "onDestroy", "Error cancelando hilo de grabado", e);
+                    LogManager.w(Categoria.SISTEMA, "onDestroy", "Error cancelando hilo de grabado"+ e);
                 }
             }
 
@@ -2684,7 +2684,7 @@ public class MainActivity extends AppCompatActivity {
                 unregisterReceiver(usbReceiver);
                 LogManager.d(Categoria.USB, "onDestroy", "USB receiver desregistrado");
             } catch (IllegalArgumentException e) {
-                LogManager.w(Categoria.USB, "onDestroy", "USB receiver ya estaba desregistrado", e);
+                LogManager.w(Categoria.USB, "onDestroy", "USB receiver ya estaba desregistrado"+ e);
             }
 
             LogManager.i(Categoria.UI, "onDestroy", "Limpieza de recursos completada exitosamente");

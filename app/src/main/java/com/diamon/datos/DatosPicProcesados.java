@@ -336,7 +336,7 @@ public class DatosPicProcesados {
      * @return Buffer fusionado
      */
     private byte[] fusionarDatos(List<HexFileUtils.Pair<Integer, String>> records, 
-                               byte[] blankData, int baseAddress, String tipoMemoria) {
+                               byte[] blankData, int baseAddress, String tipoMemoria) throws HexProcessingException {
         LogManager.v(Categoria.DATA, "fusionarDatos", 
                     String.format("Fusionando %d registros de %s", records.size(), tipoMemoria));
         
@@ -365,7 +365,7 @@ public class DatosPicProcesados {
      * @param configRecords Registros de configuración
      * @param configWordBase Dirección base de configuración
      */
-    private void procesarIDyFuses(List<HexFileUtils.Pair<Integer, String>> configRecords, int configWordBase) {
+    private void procesarIDyFuses(List<HexFileUtils.Pair<Integer, String>> configRecords, int configWordBase) throws HexProcessingException {
         LogManager.v(Categoria.DATA, "procesarIDFuses", "Procesando ID y fuses del chip");
         
         try {
