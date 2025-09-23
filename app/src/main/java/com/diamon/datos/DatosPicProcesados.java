@@ -1,203 +1,189 @@
 package com.diamon.datos;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.excepciones.HexProcessingException;
+import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.utilidades.ByteUtils;
 import com.diamon.utilidades.HexFileUtils;
+import com.diamon.utilidades.LogManager;
+import com.diamon.utilidades.LogManager.Categoria;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Procesador de datos específicos para chips PIC con logging integrado.
+ *
+ * <p>Esta clase procesa archivos HEX y extrae datos específicos para chips PIC,
+ * incluyendo ROM, EEPROM, ID y configuración de fuses. Incluye validación
+ * robusta y logging detallado de todas las operaciones.</p>
+ *
+ * <p>Datos procesados:</p>
+ * <ul>
+ *   <li>Memoria ROM (código del programa)</li>
+ *   <li>Memoria EEPROM (datos persistentes)</li>
+ *   <li>ID del chip y configuración</li>
+ *   <li>Valores de fuses para configuración</li>
+ *   <li>Detección automática de endianness</li>
+ * </ul>
+ *
+ * @author Danielk10
+ * @version 2.0 - Integrado con sistema de logging y excepciones mejoradas
+ * @since 2025
+ */
 public class DatosPicProcesados {
 
-    private String firware;
+    /** Firmware HEX a procesar */
+    private final String firware;
 
-    private ChipPic chipPIC;
+    /** Información del chip PIC objetivo */
+    private final ChipPic chipPIC;
 
+    /** Datos de memoria ROM procesados */
     private byte[] romData;
 
+    /** Datos de memoria EEPROM procesados */
     private byte[] eepromData;
 
+    /** Datos de ID del chip procesados */
     private byte[] IDData;
 
+    /** Datos de configuración de fuses como bytes */
     private byte[] fuseData;
 
+    /** Valores de fuses como enteros */
     private int[] fuseValues;
+    
+    /** Información del procesamiento para logging */
+    private String informacionProcesamiento;
 
+    /**
+     * Constructor para procesamiento de datos PIC.
+     *
+     * @param firware Contenido del archivo HEX
+     * @param chipPIC Información del chip PIC objetivo
+     */
     public DatosPicProcesados(String firware, ChipPic chipPIC) {
+        if (firware == null || firware.trim().isEmpty()) {
+            throw new IllegalArgumentException("Firmware no puede ser null o vacío");
+        }
+        
+        if (chipPIC == null) {
+            throw new IllegalArgumentException("ChipPIC no puede ser null");
+        }
 
         this.firware = firware;
-
         this.chipPIC = chipPIC;
+        
+        LogManager.i(Categoria.DATA, "DatosPicProcesados",
+                    String.format("Inicializado procesador para chip ROM:%d, EEPROM:%d",
+                                chipPIC.getTamanoROM(), chipPIC.getTamanoEEPROM()));
     }
 
-    public void iniciarProcesamientoDeDatos() {
-
-        // Rangos de memoria.
-        int romWordBase = 0x0000;
-
-        int configWordBase = 0x4000;
-
-        int eepromWordBase = 0x4200;
-
-        int romWordEnd = configWordBase;
-
-        int configWordEnd = 0x4010;
-
-        int eepromWordEnd = 0xffff;
-
-        List<HexFileUtils.Pair<Integer, String>> records =
-                new ArrayList<HexFileUtils.Pair<Integer, String>>();
-
+    /**
+     * Inicia el procesamiento completo de datos HEX para el chip PIC.
+     *
+     * <p>Este método procesa el firmware HEX y extrae todos los datos necesarios
+     * para programar el chip, incluyendo ROM, EEPROM, ID y fuses. Incluye
+     * detección automática de endianness y validación completa.</p>
+     *
+     * @throws HexProcessingException Si ocurre error durante el procesamiento
+     * @throws ChipConfigurationException Si hay incompatibilidad con el chip
+     */
+    public void iniciarProcesamientoDeDatos() throws HexProcessingException, ChipConfigurationException {
+        long inicioOperacion = LogManager.logInicioOperacion(Categoria.DATA, "procesarDatosPIC");
+        
         try {
-            HexProcesado procesado = new HexProcesado(firware);
+            LogManager.i(Categoria.DATA, "procesarDatos",
+                        String.format("Iniciando procesamiento de datos para chip ROM:%d words, EEPROM:%d bytes",
+                                    chipPIC.getTamanoROM(), chipPIC.getTamanoEEPROM()));
 
-            for (int i = 0; i < procesado.getRecords().size(); i++) {
-                StringBuffer es = new StringBuffer();
+            // Definir rangos de memoria según especificación PIC
+            final int romWordBase = 0x0000;
+            final int configWordBase = 0x4000;
+            final int eepromWordBase = 0x4200;
+            final int romWordEnd = configWordBase;
+            final int configWordEnd = 0x4010;
+            final int eepromWordEnd = 0xFFFF;
 
-                for (int v = 0; v < procesado.getRecords().get(i).data.length; v++) {
-                    byte b = procesado.getRecords().get(i).data[v];
+            LogManager.d(Categoria.DATA, "procesarDatos",
+                        String.format("Rangos de memoria - ROM: 0x%04X-0x%04X, CONFIG: 0x%04X-0x%04X, EEPROM: 0x%04X-0x%04X",
+                                    romWordBase, romWordEnd-1, configWordBase, configWordEnd-1, eepromWordBase, eepromWordEnd));
 
-                    es.append(String.format("%02X", b));
-                }
-
-                records.add(
-                        new HexFileUtils.Pair<Integer, String>(
-                                procesado.getRecords().get(i).address, es.toString()));
+            // Procesar archivo HEX
+            HexProcesado procesado;
+            try {
+                procesado = new HexProcesado(firware);
+            } catch (HexProcessingException e) {
+                LogManager.e(Categoria.DATA, "procesarDatos", "Error procesando archivo HEX", e);
+                LogManager.logFinOperacion(Categoria.DATA, "procesarDatosPIC", inicioOperacion, false);
+                throw e;
             }
 
-            // Filtrar registros
+            // Convertir registros HEX a formato interno
+            List<HexFileUtils.Pair<Integer, String>> records = convertirRegistrosHex(procesado);
+            
+            LogManager.d(Categoria.DATA, "procesarDatos",
+                        String.format("Convertidos %d registros HEX", records.size()));
+
+            // Filtrar registros por rangos de memoria
             List<HexFileUtils.Pair<Integer, String>> romRecords =
                     HexFileUtils.rangeFilterRecords(records, romWordBase, romWordEnd);
-
             List<HexFileUtils.Pair<Integer, String>> configRecords =
                     HexFileUtils.rangeFilterRecords(records, configWordBase, configWordEnd);
-
             List<HexFileUtils.Pair<Integer, String>> eepromRecords =
                     HexFileUtils.rangeFilterRecords(records, eepromWordBase, eepromWordEnd);
 
-            // Generar datos en blanco
-            byte[] romBlank =
-                    HexFileUtils.generateRomBlank(
-                            chipPIC.getTipoDeNucleoBit(), chipPIC.getTamanoROM());
+            LogManager.d(Categoria.DATA, "procesarDatos",
+                        String.format("Registros filtrados - ROM: %d, CONFIG: %d, EEPROM: %d",
+                                    romRecords.size(), configRecords.size(), eepromRecords.size()));
 
+            // Generar datos en blanco para cada tipo de memoria
+            byte[] romBlank = HexFileUtils.generateRomBlank(chipPIC.getTipoDeNucleoBit(), chipPIC.getTamanoROM());
             byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
 
-            // Detectar si los datos ROM son big-endian o little-endian
-            boolean swapBytes = false;
-            boolean swapBytesDetected = false;
-            int romBlankWord = 0xFFFF; // Palabra ROM en blanco
+            LogManager.v(Categoria.DATA, "procesarDatos",
+                        String.format("Datos en blanco generados - ROM: %d bytes, EEPROM: %d bytes",
+                                    romBlank.length, eepromBlank.length));
 
-            for (HexFileUtils.Pair<Integer, String> record : romRecords) {
-                if (record.first % 2 != 0) {
-                    throw new IllegalArgumentException("ROM record starts on odd address.");
-                }
+            // Detectar endianness de los datos ROM
+            boolean swapBytes = detectarEndianness(romRecords);
+            LogManager.d(Categoria.DATA, "procesarDatos",
+                        String.format("Endianness detectado: %s", swapBytes ? "Little-Endian" : "Big-Endian"));
 
-                if (record.second.length() % 4 != 0) {
-                    throw new IllegalArgumentException(
-                            "Data length in record must be a multiple of 4: " + record.second);
-                }
-
-                String data = record.second;
-                for (int x = 0;
-                        x < data.length();
-                        x += 4) { // Procesamos en bloques de 2 bytes (4 caracteres hex)
-                    String wordHex = data.substring(x, x + 4); // Extraer palabra
-                    int BE_word = Integer.parseInt(wordHex, 16); // Interpretar como big-endian
-                    int LE_word =
-                            Integer.reverseBytes(BE_word) >>> 16; // Interpretar como little-endian
-
-                    boolean BE_ok = (BE_word & romBlankWord) == BE_word;
-                    boolean LE_ok = (LE_word & romBlankWord) == LE_word;
-
-                    // No va
-
-                    BE_ok = false;
-
-                    if (BE_ok && !LE_ok) {
-                        swapBytes = false;
-                        swapBytesDetected = true;
-                        break;
-                    } else if (LE_ok && !BE_ok) {
-                        swapBytes = true;
-                        swapBytesDetected = true;
-                        break;
-                    } else if (!BE_ok && !LE_ok) {
-                        throw new IllegalArgumentException(
-                                "Invalid ROM word: "
-                                        + wordHex
-                                        + ", ROM blank word: "
-                                        + String.format("%04X", romBlankWord));
-                    }
-                }
-                if (swapBytesDetected) {
-                    break;
-                }
-            }
-
-            // Si es necesario, ajustar los registros (swabRecords)
+            // Ajustar registros según endianness detectado
             if (swapBytes) {
+                LogManager.v(Categoria.DATA, "procesarDatos", "Aplicando intercambio de bytes (swab) a registros");
                 romRecords = HexFileUtils.swabRecords(romRecords);
                 configRecords = HexFileUtils.swabRecords(configRecords);
             }
 
-            // EEPROM está almacenado en el archivo HEX con un byte por palabra.
-            // Seleccionamos el byte apropiado según el endianess detectado.
-            int pickByte = swapBytes ? 0 : 1;
+            // Procesar EEPROM con byte picking según endianness
+            List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords =
+                    procesarRegistrosEEPROM(eepromRecords, eepromWordBase, swapBytes);
 
-            List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = new ArrayList<>();
-            for (HexFileUtils.Pair<Integer, String> record : eepromRecords) {
-                int baseAddress = eepromWordBase + (record.first - eepromWordBase) / 2;
-                StringBuilder filteredData = new StringBuilder();
+            // Fusionar todos los datos
+            this.romData = fusionarDatos(romRecords, romBlank, romWordBase, "ROM");
+            this.eepromData = fusionarDatos(adjustedEepromRecords, eepromBlank, eepromWordBase, "EEPROM");
 
-                for (int x = pickByte * 2; x < record.second.length(); x += 4) {
-                    filteredData.append(
-                            record.second.substring(x, x + 2)); // Extraer byte seleccionado
-                }
+            // Procesar ID y fuses
+            procesarIDyFuses(configRecords, configWordBase);
 
-                adjustedEepromRecords.add(
-                        new HexFileUtils.Pair<Integer, String>(
-                                baseAddress, filteredData.toString()));
+            // Generar información de resumen
+            this.informacionProcesamiento = generarResumenProcesamiento();
+            
+            LogManager.i(Categoria.DATA, "procesarDatos", informacionProcesamiento);
+            LogManager.logFinOperacion(Categoria.DATA, "procesarDatosPIC", inicioOperacion, true);
+
+        } catch (Exception e) {
+            LogManager.e(Categoria.DATA, "procesarDatos", "Error durante procesamiento de datos", e);
+            LogManager.logFinOperacion(Categoria.DATA, "procesarDatosPIC", inicioOperacion, false);
+            
+            if (e instanceof HexProcessingException || e instanceof ChipConfigurationException) {
+                throw e;
+            } else {
+                throw new HexProcessingException("Error inesperado procesando datos PIC", e);
             }
-
-            // Crear datos finales fusionando los registros ajustados con los datos en blanco
-            byte[] romData = HexFileUtils.mergeRecords(romRecords, romBlank, romWordBase);
-
-            byte[] eepromData =
-                    HexFileUtils.mergeRecords(adjustedEepromRecords, eepromBlank, eepromWordBase);
-
-            List<HexFileUtils.Pair<Integer, String>> configRecordsID =
-                    HexFileUtils.rangeFilterRecords(configRecords, 0x4000, 0x4008);
-
-            byte[] IDBlanco = HexFileUtils.generarArrayDeDatos((byte) 0x00, 8);
-
-            IDData = HexFileUtils.mergeRecords(configRecordsID, IDBlanco, configWordBase);
-
-            if (chipPIC.getTipoDeNucleoBit() != 16) {
-
-                byte[] IDTemporal = new byte[IDData.length / 2];
-
-                for (int i = 0; i < IDTemporal.length; i++) {
-
-                    IDTemporal[i] = IDData[i];
-                }
-
-                IDData = IDTemporal;
-            }
-
-            List<HexFileUtils.Pair<Integer, String>> configRecordsFuses =
-                    HexFileUtils.rangeFilterRecords(configRecords, 0x400E, 0x4010);
-
-            byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlack());
-
-            this.fuseData = HexFileUtils.mergeRecords(configRecordsFuses, fusesBytes, 0x400E);
-
-            this.fuseValues = HexFileUtils.decodeFromBytes(fuseData);
-
-            this.romData = romData;
-
-            this.eepromData = eepromData;
-
-        } catch (HexProcesado.InvalidRecordException e) {
-        } catch (HexProcesado.InvalidChecksumException e) {
         }
     }
 
