@@ -66,9 +66,13 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
+import com.diamon.excepciones.UsbCommunicationException;
+import com.diamon.excepciones.HexProcessingException;
 import com.diamon.politicas.Politicas;
 import com.diamon.protocolo.ProtocoloP018;
 import com.diamon.publicidad.MostrarPublicidad;
+import com.diamon.utilidades.LogManager;
+import com.diamon.utilidades.LogManager.Categoria;
 import com.diamon.utilidades.Recurso;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
@@ -227,11 +231,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Inicializar sistema de logging
+        LogManager.configurarModoDesarrollo(); // Cambiar a configurarModoProduccion() para release
+        LogManager.i(Categoria.UI, "MainActivity", "Iniciando aplicación PIC K150 Programming");
+
         AppCenter.start(
                 getApplication(),
                 "c9a1ef1a-bbfb-443a-863e-1c1d77e49c18",
                 Analytics.class,
                 Crashes.class);
+        
+        LogManager.i(Categoria.SISTEMA, "onCreate", "AppCenter inicializado para analytics y crash reports");
 
         recurso = new Recurso(this);
 
@@ -1404,31 +1414,79 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Muestra información del chip PIC seleccionado y configura el protocolo.
+     *
+     * @param modelo Modelo del chip PIC seleccionado
+     */
     private void mostrarInformacionPic(String modelo) {
-
-        chipPIC = chip.getChipEntry(modelo);
-
-        String resuesta = chipPIC.getUbicacionPin1DelPic();
-
-        if (!resuesta.equals("null")) {
-
-            chipPIC.setActivarICSP(false);
-
-            proceso.setText(getString(R.string.place_pic) + " " + resuesta);
-
-        } else {
-
-            chipPIC.setActivarICSP(true);
-
-            proceso.setText(getString(R.string.icsp_mode_only));
+        if (modelo == null || modelo.trim().isEmpty()) {
+            LogManager.e(Categoria.UI, "mostrarInfoPic", "Modelo de chip es null o vacío");
+            return;
         }
+        
+        try {
+            LogManager.i(Categoria.UI, "mostrarInfoPic",
+                        String.format("Mostrando información para chip: %s", modelo));
 
-        if (protocolo != null) {
+            chipPIC = chip.getChipEntry(modelo);
+            if (chipPIC == null) {
+                LogManager.e(Categoria.UI, "mostrarInfoPic",
+                           String.format("No se encontró información para chip: %s", modelo));
+                proceso.setText("Error: Chip no encontrado en base de datos");
+                return;
+            }
 
-            protocolo.iniciarVariablesDeProgramacion(chipPIC);
+            String ubicacionPin = chipPIC.getUbicacionPin1DelPic();
+            boolean esICSPSolamente = ubicacionPin.equals("null");
+
+            if (!esICSPSolamente) {
+                chipPIC.setActivarICSP(false);
+                proceso.setText(getString(R.string.place_pic) + " " + ubicacionPin);
+                LogManager.d(Categoria.UI, "mostrarInfoPic",
+                           String.format("Chip %s configurado para socket: %s", modelo, ubicacionPin));
+            } else {
+                chipPIC.setActivarICSP(true);
+                proceso.setText(getString(R.string.icsp_mode_only));
+                LogManager.d(Categoria.UI, "mostrarInfoPic",
+                           String.format("Chip %s configurado para modo ICSP únicamente", modelo));
+            }
+
+            // Inicializar variables de programación si hay protocolo disponible
+            if (protocolo != null) {
+                try {
+                    boolean inicializado = protocolo.iniciarVariablesDeProgramacion(chipPIC);
+                    if (inicializado) {
+                        LogManager.d(Categoria.CHIP, "mostrarInfoPic",
+                                   "Variables de programación inicializadas para " + modelo);
+                    } else {
+                        LogManager.w(Categoria.CHIP, "mostrarInfoPic",
+                                   "Error inicializando variables de programación para " + modelo);
+                    }
+                } catch (Exception e) {
+                    LogManager.e(Categoria.CHIP, "mostrarInfoPic",
+                               "Error inicializando variables de programación", e);
+                }
+            } else {
+                LogManager.w(Categoria.UI, "mostrarInfoPic",
+                           "Protocolo no disponible, no se pueden inicializar variables de programación");
+            }
+
+            // Registrar configuración del chip para debugging
+            LogManager.logConfiguracionChip(modelo, chipPIC.getVariablesDeProgramacion());
+
+            Toast.makeText(getApplicationContext(),
+                          String.format("Chip seleccionado: %s", modelo), Toast.LENGTH_LONG).show();
+            
+            LogManager.i(Categoria.UI, "mostrarInfoPic",
+                        String.format("Información de chip %s mostrada exitosamente", modelo));
+
+        } catch (Exception e) {
+            LogManager.e(Categoria.UI, "mostrarInfoPic",
+                        String.format("Error inesperado mostrando información de chip %s", modelo), e);
+            proceso.setText("Error procesando información del chip");
+            Toast.makeText(this, "Error procesando chip seleccionado", Toast.LENGTH_SHORT).show();
         }
-
-        Toast.makeText(getApplicationContext(), modelo, Toast.LENGTH_LONG).show();
     }
 
     private Button createIconButton(String text, @DrawableRes int iconRes) {
@@ -1501,33 +1559,123 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Conecta al dispositivo USB programador con logging detallado y manejo robusto de errores.
+     *
+     * @param driver Driver USB del dispositivo programador
+     */
     private void connectToDevice(UsbSerialDriver driver) {
-
+        if (driver == null) {
+            LogManager.e(Categoria.USB, "connectToDevice", "Driver USB es null");
+            return;
+        }
+        
+        long inicioOperacion = LogManager.logInicioOperacion(Categoria.USB, "conectarDispositivo");
+        
         try {
-            usbSerialPort = driver.getPorts().get(0); // Seleccionar el primer puerto
+            LogManager.i(Categoria.USB, "connectToDevice",
+                        String.format("Iniciando conexión a dispositivo: %s",
+                                    driver.getDevice().getProductName()));
+            
+            // Verificar que el dispositivo tiene puertos
+            if (driver.getPorts().isEmpty()) {
+                LogManager.e(Categoria.USB, "connectToDevice", "El dispositivo no tiene puertos disponibles");
+                mostrarErrorConexion("Dispositivo sin puertos USB disponibles");
+                LogManager.logFinOperacion(Categoria.USB, "conectarDispositivo", inicioOperacion, false);
+                return;
+            }
+            
+            // Seleccionar el primer puerto
+            usbSerialPort = driver.getPorts().get(0);
+            LogManager.d(Categoria.USB, "connectToDevice", "Puerto USB seleccionado");
 
+            // Abrir conexión
             usbSerialPort.open(this.usbManager.openDevice(driver.getDevice()));
+            LogManager.d(Categoria.USB, "connectToDevice", "Puerto USB abierto exitosamente");
 
-            // Configurar el puerto
+            // Configurar parámetros del puerto serie
             usbSerialPort.setParameters(
                     19200, // Velocidad (baudios)
                     8, // Bits de datos
                     UsbSerialPort.STOPBITS_1,
                     UsbSerialPort.PARITY_NONE);
+            
+            LogManager.d(Categoria.USB, "connectToDevice",
+                        "Puerto configurado: 19200 baud, 8N1");
 
+            // Crear e inicializar protocolo
             protocolo = new ProtocoloP018(this, usbSerialPort);
+            
+            boolean protocoloIniciado = protocolo.iniciarProtocolo();
+            if (!protocoloIniciado) {
+                LogManager.w(Categoria.USB, "connectToDevice", "Protocolo no se pudo inicializar correctamente");
+                mostrarErrorConexion("Error inicializando protocolo de comunicación");
+                LogManager.logFinOperacion(Categoria.USB, "conectarDispositivo", inicioOperacion, false);
+                return;
+            }
 
-            protocolo.iniciarProtocolo();
+            // Actualizar UI de conexión exitosa
+            runOnUiThread(() -> {
+                mensaje.setTextColor(Color.GREEN);
+                mensaje.setText(getString(R.string.conectado));
+            });
 
-            mensaje.setTextColor(Color.GREEN);
-
-            mensaje.setText(getString(R.string.conectado));
+            LogManager.i(Categoria.USB, "connectToDevice", "Dispositivo conectado y protocolo iniciado exitosamente");
+            LogManager.logFinOperacion(Categoria.USB, "conectarDispositivo", inicioOperacion, true);
 
         } catch (IOException e) {
-
-            // Toast.makeText(this, getString(R.string.connection_error),
-            // Toast.LENGTH_SHORT).show();
+            LogManager.e(Categoria.USB, "connectToDevice", "Error de I/O conectando dispositivo", e);
+            
+            // Mostrar error específico al usuario
+            String mensajeError = "Error de conexión USB: " + e.getMessage();
+            mostrarErrorConexion(mensajeError);
+            
+            // Limpiar estado de conexión
+            limpiarEstadoConexion();
+            
+            LogManager.logFinOperacion(Categoria.USB, "conectarDispositivo", inicioOperacion, false);
+            
+        } catch (Exception e) {
+            LogManager.e(Categoria.USB, "connectToDevice", "Error inesperado conectando dispositivo", e);
+            
+            mostrarErrorConexion("Error inesperado durante la conexión");
+            limpiarEstadoConexion();
+            
+            LogManager.logFinOperacion(Categoria.USB, "conectarDispositivo", inicioOperacion, false);
         }
+    }
+
+    /**
+     * Muestra un error de conexión al usuario de forma consistente.
+     *
+     * @param mensajeError Mensaje de error a mostrar
+     */
+    private void mostrarErrorConexion(String mensajeError) {
+        runOnUiThread(() -> {
+            mensaje.setTextColor(Color.RED);
+            mensaje.setText(getString(R.string.desconectado));
+            Toast.makeText(this, mensajeError, Toast.LENGTH_LONG).show();
+        });
+        
+        LogManager.i(Categoria.UI, "mostrarError", "Error mostrado al usuario: " + mensajeError);
+    }
+
+    /**
+     * Limpia el estado de conexión cuando ocurre un error.
+     */
+    private void limpiarEstadoConexion() {
+        if (usbSerialPort != null) {
+            try {
+                usbSerialPort.close();
+                LogManager.d(Categoria.USB, "limpiarEstado", "Puerto USB cerrado");
+            } catch (IOException e) {
+                LogManager.w(Categoria.USB, "limpiarEstado", "Error cerrando puerto USB", e);
+            }
+            usbSerialPort = null;
+        }
+        
+        protocolo = null;
+        LogManager.d(Categoria.USB, "limpiarEstado", "Estado de conexión limpiado");
     }
 
     private void processSelectedFile(Uri uri) {
@@ -1541,58 +1689,135 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Lee el archivo .hex seleccionado
+    /**
+     * Lee y procesa un archivo .hex seleccionado con logging detallado y validación.
+     *
+     * @param uri URI del archivo seleccionado
+     * @return Contenido del archivo HEX como string, o string vacío si hay error
+     */
     private String readHexFile(Uri uri) {
+        if (uri == null) {
+            LogManager.e(Categoria.UI, "readHexFile", "URI del archivo es null");
+            Toast.makeText(this, getString(R.string.select_valid_binary_file), Toast.LENGTH_SHORT).show();
+            return "";
+        }
 
+        long inicioOperacion = LogManager.logInicioOperacion(Categoria.UI, "leerArchivoHEX");
         String hexFileContent = "";
+        String fileName = getFileName(uri);
 
-        String fileName = getFileName(uri); // Implementa esta función
+        try {
+            LogManager.i(Categoria.UI, "readHexFile",
+                        String.format("Iniciando lectura de archivo: %s", fileName));
 
-        if (fileName.endsWith(".hex") || fileName.endsWith(".HEX")) {
-
-            try {
-                InputStream inputStream = getContentResolver().openInputStream(uri);
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-                StringBuilder fileContent = new StringBuilder();
-
-                String line;
-
-                while ((line = reader.readLine()) != null) {
-
-                    if (("" + line.charAt(0)).equals(";")) {
-
-                        break;
-
-                    } else {
-
-                        fileContent.append(line).append("\n");
-                    }
-                }
-
-                reader.close();
-
-                hexFileContent = fileContent.toString();
-
-                btnProgramarPic.setEnabled(true);
-
-                btnVerificarMemoriaDelPic.setEnabled(true);
-
-                btnBorrarMemoriaDeLPic.setEnabled(true);
-
-                btnLeerMemoriaDeLPic.setEnabled(true);
-
-                btnDetectarPic.setEnabled(true);
-
-            } catch (Exception e) {
+            // Validar extensión del archivo
+            if (fileName == null || (!fileName.toLowerCase().endsWith(".hex") && !fileName.toLowerCase().endsWith(".bin"))) {
+                String mensaje = String.format("Archivo con extensión inválida: %s", fileName);
+                LogManager.w(Categoria.UI, "readHexFile", mensaje);
+                
+                runOnUiThread(() -> {
+                    Toast.makeText(this, getString(R.string.select_valid_binary_file), Toast.LENGTH_SHORT).show();
+                });
+                
+                LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, false);
+                return "";
             }
 
-        } else {
-            Toast.makeText(this, "Selecciona un archivo binario válido", Toast.LENGTH_SHORT).show();
+            // Leer contenido del archivo
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            if (inputStream == null) {
+                LogManager.e(Categoria.UI, "readHexFile", "No se pudo abrir el InputStream del archivo");
+                mostrarErrorLecturaArchivo("Error abriendo el archivo seleccionado");
+                LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, false);
+                return "";
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder fileContent = new StringBuilder();
+            String line;
+            int lineasLeidas = 0;
+
+            while ((line = reader.readLine()) != null) {
+                lineasLeidas++;
+                
+                // Parar en comentarios (líneas que empiezan con ';')
+                if (line.length() > 0 && line.charAt(0) == ';') {
+                    LogManager.v(Categoria.UI, "readHexFile",
+                               String.format("Encontrado comentario en línea %d, finalizando lectura", lineasLeidas));
+                    break;
+                } else {
+                    fileContent.append(line).append("\n");
+                }
+            }
+
+            reader.close();
+            inputStream.close();
+
+            hexFileContent = fileContent.toString();
+            
+            // Validar que el archivo tiene contenido válido
+            if (hexFileContent.trim().isEmpty()) {
+                LogManager.w(Categoria.UI, "readHexFile", "Archivo HEX está vacío");
+                mostrarErrorLecturaArchivo("El archivo seleccionado está vacío");
+                LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, false);
+                return "";
+            }
+
+            // Habilitar botones después de cargar archivo exitosamente
+            habilitarBotonesOperacion();
+
+            LogManager.i(Categoria.UI, "readHexFile",
+                        String.format("Archivo HEX cargado exitosamente: %s (%d líneas, %d caracteres)",
+                                    fileName, lineasLeidas, hexFileContent.length()));
+            LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, true);
+
+        } catch (IOException e) {
+            LogManager.e(Categoria.UI, "readHexFile",
+                        String.format("Error I/O leyendo archivo %s", fileName), e);
+            mostrarErrorLecturaArchivo("Error leyendo el archivo: " + e.getMessage());
+            LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, false);
+            
+        } catch (SecurityException e) {
+            LogManager.e(Categoria.UI, "readHexFile",
+                        String.format("Error de permisos accediendo archivo %s", fileName), e);
+            mostrarErrorLecturaArchivo("Permisos insuficientes para leer el archivo");
+            LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, false);
+            
+        } catch (Exception e) {
+            LogManager.e(Categoria.UI, "readHexFile",
+                        String.format("Error inesperado leyendo archivo %s", fileName), e);
+            mostrarErrorLecturaArchivo("Error inesperado leyendo el archivo");
+            LogManager.logFinOperacion(Categoria.UI, "leerArchivoHEX", inicioOperacion, false);
         }
 
         return hexFileContent;
+    }
+
+    /**
+     * Muestra un error específico de lectura de archivo al usuario.
+     *
+     * @param mensajeError Mensaje de error detallado
+     */
+    private void mostrarErrorLecturaArchivo(String mensajeError) {
+        runOnUiThread(() -> {
+            Toast.makeText(this, mensajeError, Toast.LENGTH_LONG).show();
+            proceso.setText("Error cargando archivo HEX");
+        });
+    }
+
+    /**
+     * Habilita todos los botones de operación después de cargar un archivo HEX.
+     */
+    private void habilitarBotonesOperacion() {
+        runOnUiThread(() -> {
+            btnProgramarPic.setEnabled(true);
+            btnVerificarMemoriaDelPic.setEnabled(true);
+            btnBorrarMemoriaDeLPic.setEnabled(true);
+            btnLeerMemoriaDeLPic.setEnabled(true);
+            btnDetectarPic.setEnabled(true);
+            
+            LogManager.d(Categoria.UI, "habilitarBotones", "Botones de operación habilitados");
+        });
     }
 
     // Verifica permisos y abre el selector de archivos
@@ -2396,32 +2621,77 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-
-        publicidad.disposeBanner();
-
-        if (nativeAd != null) {
-            nativeAd.destroy();
-        }
-        if (popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
-        }
-
-        super.onDestroy();
-
-        if (ioManager != null) {
-            ioManager.stop();
-        }
-
-        if (usbSerialPort != null) {
-            try {
-                usbSerialPort.close();
-            } catch (IOException e) {
+        LogManager.i(Categoria.UI, "onDestroy", "Iniciando limpieza de recursos de la aplicación");
+        
+        try {
+            // Limpiar publicidad
+            if (publicidad != null) {
+                publicidad.disposeBanner();
+                LogManager.d(Categoria.UI, "onDestroy", "Banner de publicidad limpiado");
             }
+
+            // Limpiar anuncios nativos
+            if (nativeAd != null) {
+                nativeAd.destroy();
+                nativeAd = null;
+                LogManager.d(Categoria.UI, "onDestroy", "Anuncio nativo destruido");
+            }
+            
+            // Cerrar popup si está abierto
+            if (popupWindow != null && popupWindow.isShowing()) {
+                popupWindow.dismiss();
+                LogManager.d(Categoria.UI, "onDestroy", "Popup cerrado");
+            }
+
+            super.onDestroy();
+
+            // Detener manager de I/O
+            if (ioManager != null) {
+                ioManager.stop();
+                LogManager.d(Categoria.USB, "onDestroy", "I/O Manager detenido");
+            }
+
+            // Cerrar puerto USB de forma segura
+            if (usbSerialPort != null) {
+                try {
+                    usbSerialPort.close();
+                    LogManager.d(Categoria.USB, "onDestroy", "Puerto USB cerrado exitosamente");
+                } catch (IOException e) {
+                    LogManager.w(Categoria.USB, "onDestroy", "Error cerrando puerto USB", e);
+                }
+                usbSerialPort = null;
+            }
+
+            // Detener executor service
+            if (executorService != null && !executorService.isShutdown()) {
+                executorService.shutdownNow();
+                LogManager.d(Categoria.SISTEMA, "onDestroy", "ExecutorService detenido");
+            }
+
+            // Cancelar hilo de grabado si está activo
+            if (hiloGrabado != null && hiloGrabado.isAlive()) {
+                procesoCancelado = true;
+                try {
+                    hiloGrabado.interrupt();
+                    LogManager.d(Categoria.SISTEMA, "onDestroy", "Hilo de grabado cancelado");
+                } catch (Exception e) {
+                    LogManager.w(Categoria.SISTEMA, "onDestroy", "Error cancelando hilo de grabado", e);
+                }
+            }
+
+            // Desregistrar receiver USB
+            try {
+                unregisterReceiver(usbReceiver);
+                LogManager.d(Categoria.USB, "onDestroy", "USB receiver desregistrado");
+            } catch (IllegalArgumentException e) {
+                LogManager.w(Categoria.USB, "onDestroy", "USB receiver ya estaba desregistrado", e);
+            }
+
+            LogManager.i(Categoria.UI, "onDestroy", "Limpieza de recursos completada exitosamente");
+            
+        } catch (Exception e) {
+            LogManager.e(Categoria.UI, "onDestroy", "Error durante limpieza de recursos", e);
         }
-
-        executorService.shutdownNow(); // Detener inmediatamente
-
-        unregisterReceiver(usbReceiver);
     }
 
     @Override
