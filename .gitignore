@@ -14,4 +14,7 @@
 /captures
 .externalNativeBuild
 .cxx
+.kilocode
+.vscode
+.mvn/wrapper/
 local.properties
