@@ -1089,6 +1089,8 @@ public class ProtocoloP018 extends Protocolo {
         } catch (IOException e) {
 
             return false;
+        } catch (UsbCommunicationException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -1125,6 +1127,8 @@ public class ProtocoloP018 extends Protocolo {
         } catch (IOException e) {
 
             return false;
+        } catch (UsbCommunicationException e) {
+            throw new RuntimeException(e);
         }
     }
 

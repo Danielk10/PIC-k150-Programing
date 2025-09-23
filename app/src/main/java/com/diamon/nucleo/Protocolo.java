@@ -391,6 +391,8 @@ public abstract class Protocolo {
             LogManager.e(Categoria.USB, "iniciarProtocolo", "Error de comunicación USB", e);
             LogManager.logFinOperacion(Categoria.USB, "iniciarProtocolo", inicioOperacion, false);
             return false;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
