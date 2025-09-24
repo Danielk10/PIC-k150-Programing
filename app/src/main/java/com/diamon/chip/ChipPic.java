@@ -77,7 +77,7 @@ public class ChipPic {
             String BandGap,
             String ICSPonly,
             String ChipID,
-            Map<String, Object> fuses) {
+            Map<String, Object> fuses) throws ChipConfigurationException {
         
         LogManager.d(LogManager.Categoria.CHIP, "Creando instancia de ChipPic: " + CHIPname);
         
@@ -235,7 +235,7 @@ public class ChipPic {
      * @return Tipo de núcleo en bits
      * @throws ChipConfigurationException Si el tipo de núcleo es inválido
      */
-    public int getTipoDeNucleoBit() {
+    public int getTipoDeNucleoBit() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo tipo de núcleo en bits");
         
         try {
@@ -279,7 +279,7 @@ public class ChipPic {
      * @return true si el chip solo usa ICSP, false en caso contrario
      * @throws ChipConfigurationException Si hay un error al procesar la configuración ICSP
      */
-    public boolean isICSPonly() {
+    public boolean isICSPonly() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Verificando si el chip solo usa ICSP");
         
         try {
@@ -307,7 +307,7 @@ public class ChipPic {
      * @return Mapa con las variables de programación
      * @throws ChipConfigurationException Si hay un error al obtener las variables
      */
-    public HashMap<String, String> getVariablesDeProgramacion() {
+    public HashMap<String, String> getVariablesDeProgramacion() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo variables de programación");
         
         try {
