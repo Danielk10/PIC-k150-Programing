@@ -401,7 +401,7 @@ public class ChipPic {
      * @return Retardo de programación
      * @throws ChipConfigurationException Si hay un error al procesar el valor
      */
-    public int getProgramDelay() {
+    public int getProgramDelay() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo retardo de programación");
         
         try {
