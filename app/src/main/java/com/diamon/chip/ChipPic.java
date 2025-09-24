@@ -521,8 +521,12 @@ public class ChipPic {
         ArrayList<DatosFuses> datosProsesados = new ArrayList<DatosFuses>();
 
         for (String line : getListaDeFuses()) {
-
-            datosProsesados.add(parseLine(line));
+            try {
+                datosProsesados.add(parseLine(line));
+            } catch (ChipConfigurationException e) {
+                LogManager.e(LogManager.Categoria.CHIP, "Error al procesar línea de fuses: " + e.getMessage(), e);
+                // Continuar con la siguiente línea
+            }
         }
 
         return datosProsesados;
@@ -535,7 +539,7 @@ public class ChipPic {
      * @return Objeto DatosFuses con la información parseada
      * @throws ChipConfigurationException Si hay un error al parsear la línea
      */
-    private DatosFuses parseLine(String line) {
+    private DatosFuses parseLine(String line) throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Parseando línea de fuses: " + line);
         
         if (line == null || line.trim().isEmpty()) {
