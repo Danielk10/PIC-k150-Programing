@@ -68,7 +68,7 @@ public class ChipinfoReader {
      * @param actividad Actividad Android para acceder a recursos
      * @throws ChipConfigurationException Si hay un error al leer la información de los chips
      */
-    public ChipinfoReader(Activity actividad) {
+    public ChipinfoReader(Activity actividad) throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.DATOS, "Inicializando ChipinfoReader");
         
         if (actividad == null) {
