@@ -3,6 +3,7 @@ package com.diamon.nucleo;
 import android.content.Context;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.excepciones.UsbCommunicationException;
 import com.diamon.utilidades.ByteUtils;
 import com.diamon.utilidades.LogManager;
@@ -462,7 +463,7 @@ public abstract class Protocolo {
      * @param chipPIC Información del chip
      * @return Timestamp de inicio para medir duración
      */
-    protected long logInicioOperacionChip(String operacion, ChipPic chipPIC) {
+    protected long logInicioOperacionChip(String operacion, ChipPic chipPIC) throws ChipConfigurationException {
         String infoChip = chipPIC != null ?
             String.format("Chip: %s, ROM: %d words, EEPROM: %d bytes",
                          "Desconocido", chipPIC.getTamanoROM(), chipPIC.getTamanoEEPROM()) :
@@ -531,7 +532,7 @@ public abstract class Protocolo {
 
     public abstract String hacerUnEco();
 
-    public abstract boolean iniciarVariablesDeProgramacion(ChipPic chipPIC);
+    public abstract boolean iniciarVariablesDeProgramacion(ChipPic chipPIC) throws ChipConfigurationException;
 
     public abstract boolean activarVoltajesDeProgramacion();
 
@@ -539,9 +540,9 @@ public abstract class Protocolo {
 
     public abstract boolean reiniciarVoltajesDeProgramacion();
 
-    public abstract boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware);
+    public abstract boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws ChipConfigurationException;
 
-    public abstract boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware);
+    public abstract boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware) throws ChipConfigurationException;
 
     public abstract boolean programarFusesIDDelPic(ChipPic chipPIC, String firware);
 

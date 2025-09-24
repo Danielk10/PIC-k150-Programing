@@ -108,7 +108,7 @@ public class ProtocoloP018 extends Protocolo {
     }
 
     @Override
-    public boolean iniciarVariablesDeProgramacion(ChipPic chipPIC) {
+    public boolean iniciarVariablesDeProgramacion(ChipPic chipPIC) throws ChipConfigurationException {
         if (chipPIC == null) {
             LogManager.e(Categoria.CHIP, "iniciarVariables", "ChipPIC no puede ser null");
             throw new IllegalArgumentException("ChipPIC no puede ser null");
@@ -311,7 +311,7 @@ public class ProtocoloP018 extends Protocolo {
     }
 
     @Override
-    public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) {
+    public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws ChipConfigurationException {
         // Validaciones de entrada
         if (chipPIC == null) {
             LogManager.e(Categoria.CHIP, "programarROM", "ChipPIC no puede ser null");
@@ -450,7 +450,7 @@ public class ProtocoloP018 extends Protocolo {
     }
 
     @Override
-    public boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware) {
+    public boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware) throws ChipConfigurationException {
         // Validaciones de entrada
         if (chipPIC == null) {
             LogManager.e(Categoria.CHIP, "programarEEPROM", "ChipPIC no puede ser null");
@@ -738,6 +738,8 @@ public class ProtocoloP018 extends Protocolo {
             return "Error al leer Memoria ROM: " + e.toString();
         } catch (IOException e) {
             return "Error al leer Memoria ROM: " + e.toString();
+        } catch (ChipConfigurationException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -784,7 +786,7 @@ public class ProtocoloP018 extends Protocolo {
 
         } catch (NumberFormatException e) {
             return "Error al leer Memoria EEPROM: " + e.toString();
-        } catch (IOException e) {
+        } catch (IOException | ChipConfigurationException e) {
             return "Error al leer Memoria EEPROM: " + e.toString();
         }
     }

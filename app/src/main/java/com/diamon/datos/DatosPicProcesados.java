@@ -63,7 +63,7 @@ public class DatosPicProcesados {
      * @param firware Contenido del archivo HEX
      * @param chipPIC Información del chip PIC objetivo
      */
-    public DatosPicProcesados(String firware, ChipPic chipPIC) {
+    public DatosPicProcesados(String firware, ChipPic chipPIC) throws ChipConfigurationException {
         if (firware == null || firware.trim().isEmpty()) {
             throw new IllegalArgumentException("Firmware no puede ser null o vacío");
         }

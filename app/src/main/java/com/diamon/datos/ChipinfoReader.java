@@ -127,7 +127,7 @@ public class ChipinfoReader {
      * @param te Línea a procesar
      * @param numeroRegistro Número de registro actual
      */
-    private void procesarLinea(String te, int numeroRegistro) {
+    private void procesarLinea(String te, int numeroRegistro) throws ChipConfigurationException {
         if (te == null) {
             LogManager.w(LogManager.Categoria.DATA, "Línea nula en registro " + numeroRegistro);
             return;
@@ -234,7 +234,7 @@ public class ChipinfoReader {
      *
      * @param fuseblankData Datos de FUSEblank
      */
-    private void procesarFUSEblank(String fuseblankData) {
+    private void procesarFUSEblank(String fuseblankData) throws ChipConfigurationException {
         LogManager.v(LogManager.Categoria.DATA, "Procesando FUSEblank: " + fuseblankData);
         
         try {
@@ -266,7 +266,7 @@ public class ChipinfoReader {
             
         } catch (Exception e) {
             LogManager.e(LogManager.Categoria.DATA, "Error al procesar FUSEblank: " + e.getMessage(), e);
-            throw new ChipConfigurationException("Error al procesar FUSEblank: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar FUSEblank: " + e.getMessage());
         }
     }
     
@@ -275,7 +275,7 @@ public class ChipinfoReader {
      *
      * @param listData Datos de LIST
      */
-    private void procesarLIST(String listData) {
+    private void procesarLIST(String listData) throws ChipConfigurationException {
         LogManager.v(LogManager.Categoria.DATA, "Procesando LIST: " + listData);
         
         try {
@@ -307,7 +307,7 @@ public class ChipinfoReader {
             
         } catch (Exception e) {
             LogManager.e(LogManager.Categoria.DATA, "Error al procesar LIST: " + e.getMessage(), e);
-            throw new ChipConfigurationException("Error al procesar LIST: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar LIST: " + e.getMessage());
         }
     }
 
@@ -316,7 +316,7 @@ public class ChipinfoReader {
      *
      * @throws ChipConfigurationException Si hay un error al crear el objeto ChipPic
      */
-    private void cargarDatos() {
+    private void cargarDatos() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.DATA, "Cargando datos para chip: " + CHIPname);
         
         try {
@@ -372,7 +372,7 @@ public class ChipinfoReader {
             
         } catch (Exception e) {
             LogManager.e(LogManager.Categoria.DATA, "Error al cargar datos para chip " + CHIPname + ": " + e.getMessage(), e);
-            throw new ChipConfigurationException("Error al cargar datos para chip " + CHIPname + ": " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al cargar datos para chip " + CHIPname + ": " + e.getMessage());
         }
     }
 
