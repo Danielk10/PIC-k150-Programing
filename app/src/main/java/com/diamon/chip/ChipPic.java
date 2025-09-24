@@ -455,7 +455,7 @@ public class ChipPic {
      * @return Array con los valores blank de fuses
      * @throws ChipConfigurationException Si hay un error al procesar los fuses
      */
-    public int[] getFuseBlack() {
+    public int[] getFuseBlack() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo valores blank de fuses");
         
         try {
@@ -641,7 +641,7 @@ public class ChipPic {
      * @return Tamaño de la ROM en bytes
      * @throws ChipConfigurationException Si hay un error al procesar el tamaño
      */
-    public int getTamanoROM() {
+    public int getTamanoROM() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo tamaño de ROM");
         
         try {
@@ -663,7 +663,7 @@ public class ChipPic {
      * @return Tamaño de la EEPROM en bytes
      * @throws ChipConfigurationException Si hay un error al procesar el tamaño
      */
-    public int getTamanoEEPROM() {
+    public int getTamanoEEPROM() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo tamaño de EEPROM");
         
         try {
@@ -685,7 +685,7 @@ public class ChipPic {
      * @return ID del chip
      * @throws ChipConfigurationException Si hay un error al procesar el ID
      */
-    public int getIDPIC() {
+    public int getIDPIC() throws ChipConfigurationException {
         LogManager.d(LogManager.Categoria.CHIP, "Obteniendo ID del PIC");
         
         try {
