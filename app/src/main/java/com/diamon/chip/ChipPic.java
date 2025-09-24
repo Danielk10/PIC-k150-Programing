@@ -1,6 +1,8 @@
 package com.diamon.chip;
 
 import com.diamon.datos.DatosFuses;
+import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.utilidades.LogManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +11,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Clase para manejar la configuración y propiedades de chips PIC.
+ * Proporciona métodos para acceder a las características del chip,
+ * configuraciones de programación y valores de fuses.
+ */
 public class ChipPic {
 
     private Map<String, Object> variablesDeChip;
@@ -27,6 +34,30 @@ public class ChipPic {
 
     private boolean icsp;
 
+    /**
+     * Constructor para inicializar un objeto ChipPic con todas las configuraciones.
+     *
+     * @param CHIPname Nombre del chip PIC
+     * @param INCLUDEr Archivo de inclusión
+     * @param SocketImage Imagen del socket
+     * @param EraseMode Modo de borrado
+     * @param FlashChip Indica si es un chip flash
+     * @param PowerSequence Secuencia de encendido
+     * @param ProgramDelay Retardo de programación
+     * @param ProgramTries Intentos de programación
+     * @param OverProgram Sobrecarga de programación
+     * @param CoreType Tipo de núcleo
+     * @param ROMsize Tamaño de ROM en hexadecimal
+     * @param EEPROMsize Tamaño de EEPROM en hexadecimal
+     * @param FUSEblank Valores blank de fuses
+     * @param CPwarn Advertencia de protección de código
+     * @param CALword Palabra de calibración
+     * @param BandGap Band gap
+     * @param ICSPonly Indica si solo usa ICSP
+     * @param ChipID ID del chip en hexadecimal
+     * @param fuses Mapa de fuses del chip
+     * @throws ChipConfigurationException Si los parámetros son inválidos
+     */
     public ChipPic(
             String CHIPname,
             String INCLUDEr,
@@ -47,6 +78,24 @@ public class ChipPic {
             String ICSPonly,
             String ChipID,
             Map<String, Object> fuses) {
+        
+        LogManager.d(LogManager.Categoria.CHIP, "Creando instancia de ChipPic: " + CHIPname);
+        
+        // Validar parámetros obligatorios
+        if (CHIPname == null || CHIPname.trim().isEmpty()) {
+            LogManager.e(LogManager.Categoria.CHIP, "Nombre de chip no puede ser nulo o vacío");
+            throw new ChipConfigurationException("Nombre de chip no puede ser nulo o vacío");
+        }
+        
+        if (ROMsize == null || ROMsize.trim().isEmpty()) {
+            LogManager.e(LogManager.Categoria.CHIP, "Tamaño de ROM no puede ser nulo o vacío para chip: " + CHIPname);
+            throw new ChipConfigurationException("Tamaño de ROM no puede ser nulo o vacío");
+        }
+        
+        if (CoreType == null || CoreType.trim().isEmpty()) {
+            LogManager.e(LogManager.Categoria.CHIP, "Tipo de núcleo no puede ser nulo o vacío para chip: " + CHIPname);
+            throw new ChipConfigurationException("Tipo de núcleo no puede ser nulo o vacío");
+        }
 
         secuenciaEncedido = new HashMap<String, Integer>();
 
@@ -180,91 +229,138 @@ public class ChipPic {
         icsp = false;
     }
 
+    /**
+     * Obtiene el tipo de núcleo en bits (16, 14 o 12).
+     *
+     * @return Tipo de núcleo en bits
+     * @throws ChipConfigurationException Si el tipo de núcleo es inválido
+     */
     public int getTipoDeNucleoBit() {
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo tipo de núcleo en bits");
+        
+        try {
+            String coreTypeStr = variablesDeChip.get("core_type").toString().toLowerCase();
+            LogManager.d(LogManager.Categoria.CHIP, "Tipo de núcleo: " + coreTypeStr);
+            
+            Integer nucleoObj = tipoDeNucleo.get(coreTypeStr);
+            if (nucleoObj == null) {
+                LogManager.e(LogManager.Categoria.CHIP, "Tipo de núcleo no encontrado: " + coreTypeStr);
+                throw new ChipConfigurationException("Tipo de núcleo no encontrado: " + coreTypeStr);
+            }
+            
+            int nucleo = nucleoObj;
+            LogManager.d(LogManager.Categoria.CHIP, "Valor numérico de núcleo: " + nucleo);
 
-        int nucleo =
-                Integer.parseInt(
-                        ""
-                                + tipoDeNucleo.get(
-                                        ""
-                                                + variablesDeChip
-                                                        .get("core_type")
-                                                        .toString()
-                                                        .toLowerCase()));
-
-        if (nucleo == 1 || nucleo == 2 || nucleo == 13) {
-
-            nucleo = 16;
-
-        } else if (nucleo == 3
-                || nucleo == 5
-                || nucleo == 6
-                || nucleo == 7
-                || nucleo == 8
-                || nucleo == 9
-                || nucleo == 10
-                || nucleo == 12) {
-
-            nucleo = 14;
-
-        } else if (nucleo == 4 || nucleo == 11) {
-
-            nucleo = 12;
-        } else if (nucleo == 0) {
-
-            nucleo = 14;
+            if (nucleo == 1 || nucleo == 2 || nucleo == 13) {
+                nucleo = 16;
+            } else if (nucleo == 3 || nucleo == 5 || nucleo == 6 || nucleo == 7 || nucleo == 8 || nucleo == 9 || nucleo == 10 || nucleo == 12) {
+                nucleo = 14;
+            } else if (nucleo == 4 || nucleo == 11) {
+                nucleo = 12;
+            } else if (nucleo == 0) {
+                nucleo = 14;
+            } else {
+                LogManager.e(LogManager.Categoria.CHIP, "Tipo de núcleo inválido: " + nucleo);
+                throw new ChipConfigurationException("Tipo de núcleo inválido: " + nucleo);
+            }
+            
+            LogManager.d(LogManager.Categoria.CHIP, "Tipo de núcleo en bits: " + nucleo);
+            return nucleo;
+            
+        } catch (NumberFormatException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al procesar tipo de núcleo: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar tipo de núcleo: " + e.getMessage(), e);
         }
-
-        return nucleo;
     }
 
+    /**
+     * Verifica si el chip solo puede ser programado mediante ICSP.
+     *
+     * @return true si el chip solo usa ICSP, false en caso contrario
+     * @throws ChipConfigurationException Si hay un error al procesar la configuración ICSP
+     */
     public boolean isICSPonly() {
-
-        boolean valor = respuestas.get(variablesDeChip.get("ICSPonly").toString().toLowerCase());
-
-        return valor;
+        LogManager.d(LogManager.Categoria.CHIP, "Verificando si el chip solo usa ICSP");
+        
+        try {
+            String icspOnlyStr = variablesDeChip.get("ICSPonly").toString().toLowerCase();
+            LogManager.d(LogManager.Categoria.CHIP, "Valor ICSPonly: " + icspOnlyStr);
+            
+            Boolean valor = respuestas.get(icspOnlyStr);
+            if (valor == null) {
+                LogManager.e(LogManager.Categoria.CHIP, "Valor ICSPonly inválido: " + icspOnlyStr);
+                throw new ChipConfigurationException("Valor ICSPonly inválido: " + icspOnlyStr);
+            }
+            
+            LogManager.d(LogManager.Categoria.CHIP, "ICSPonly: " + valor);
+            return valor;
+            
+        } catch (Exception e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al verificar ICSPonly: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al verificar ICSPonly: " + e.getMessage(), e);
+        }
     }
 
+    /**
+     * Obtiene las variables de programación del chip.
+     *
+     * @return Mapa con las variables de programación
+     * @throws ChipConfigurationException Si hay un error al obtener las variables
+     */
     public HashMap<String, String> getVariablesDeProgramacion() {
-
-        variablesProgramacion.put("rom_size", "" + variablesDeChip.get("rom_size"));
-
-        variablesProgramacion.put("eeprom_size", "" + variablesDeChip.get("eeprom_size"));
-
-        variablesProgramacion.put("core_type", "" + variablesDeChip.get("core_type"));
-
-        variablesProgramacion.put(
-                "flag_calibration_value_in_ROM",
-                "" + variablesDeChip.get("flag_calibration_value_in_ROM"));
-
-        variablesProgramacion.put(
-                "flag_band_gap_fuse", "" + variablesDeChip.get("flag_band_gap_fuse"));
-
-        variablesProgramacion.put(
-                "flag_18f_single_panel_access_mode",
-                ""
-                        + tipoDeNucleo
-                                .get(variablesDeChip.get("core_type").toString().toLowerCase())
-                                .toString()
-                                .equals("" + tipoDeNucleo.get("bit16_a")));
-
-        variablesProgramacion.put(
-                "flag_vcc_vpp_delay",
-                ""
-                        + vccVppTiempo.get(
-                                ("" + variablesDeChip.get("power_sequence_str")).toLowerCase()));
-
-        variablesProgramacion.put("program_delay", "" + variablesDeChip.get("program_delay"));
-
-        variablesProgramacion.put("power_sequence", "" + variablesDeChip.get("power_sequence"));
-
-        variablesProgramacion.put("erase_mode", "" + variablesDeChip.get("erase_mode"));
-
-        variablesProgramacion.put("program_retries", "" + variablesDeChip.get("program_tries"));
-
-        variablesProgramacion.put("over_program", "" + variablesDeChip.get("over_program"));
-
-        return variablesProgramacion;
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo variables de programación");
+        
+        try {
+            // Limpiar el mapa antes de llenarlo
+            variablesProgramacion.clear();
+            
+            // Variables básicas
+            variablesProgramacion.put("rom_size", "" + variablesDeChip.get("rom_size"));
+            variablesProgramacion.put("eeprom_size", "" + variablesDeChip.get("eeprom_size"));
+            variablesProgramacion.put("core_type", "" + variablesDeChip.get("core_type"));
+            variablesProgramacion.put("program_delay", "" + variablesDeChip.get("program_delay"));
+            variablesProgramacion.put("power_sequence", "" + variablesDeChip.get("power_sequence"));
+            variablesProgramacion.put("erase_mode", "" + variablesDeChip.get("erase_mode"));
+            variablesProgramacion.put("program_retries", "" + variablesDeChip.get("program_tries"));
+            variablesProgramacion.put("over_program", "" + variablesDeChip.get("over_program"));
+            
+            // Flags
+            variablesProgramacion.put("flag_calibration_value_in_ROM",
+                    "" + variablesDeChip.get("flag_calibration_value_in_ROM"));
+            variablesProgramacion.put("flag_band_gap_fuse",
+                    "" + variablesDeChip.get("flag_band_gap_fuse"));
+            
+            // Flag 18F single panel access mode
+            String coreType = variablesDeChip.get("core_type").toString().toLowerCase();
+            Integer coreTypeValue = tipoDeNucleo.get(coreType);
+            Integer bit16aValue = tipoDeNucleo.get("bit16_a");
+            
+            if (coreTypeValue != null && bit16aValue != null) {
+                variablesProgramacion.put("flag_18f_single_panel_access_mode",
+                        "" + coreTypeValue.equals(bit16aValue));
+            } else {
+                LogManager.w(LogManager.Categoria.CHIP, "No se pudo determinar flag_18f_single_panel_access_mode");
+                variablesProgramacion.put("flag_18f_single_panel_access_mode", "false");
+            }
+            
+            // Flag VCC VPP delay
+            String powerSequence = variablesDeChip.get("power_sequence_str").toString().toLowerCase();
+            Boolean vccVppDelay = vccVppTiempo.get(powerSequence);
+            
+            if (vccVppDelay != null) {
+                variablesProgramacion.put("flag_vcc_vpp_delay", "" + vccVppDelay);
+            } else {
+                LogManager.w(LogManager.Categoria.CHIP, "No se pudo determinar flag_vcc_vpp_delay para secuencia: " + powerSequence);
+                variablesProgramacion.put("flag_vcc_vpp_delay", "false");
+            }
+            
+            LogManager.d(LogManager.Categoria.CHIP, "Variables de programación obtenidas: " + variablesProgramacion.size());
+            return variablesProgramacion;
+            
+        } catch (Exception e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al obtener variables de programación: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al obtener variables de programación: " + e.getMessage(), e);
+        }
     }
 
     public boolean isFlagCalibration() {
@@ -299,10 +395,26 @@ public class ChipPic {
         return valor;
     }
 
+    /**
+     * Obtiene el retardo de programación.
+     *
+     * @return Retardo de programación
+     * @throws ChipConfigurationException Si hay un error al procesar el valor
+     */
     public int getProgramDelay() {
-        int valor = Integer.parseUnsignedInt("" + variablesDeChip.get("program_delay"), 10);
-
-        return valor;
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo retardo de programación");
+        
+        try {
+            String delayStr = variablesDeChip.get("program_delay").toString();
+            int valor = Integer.parseUnsignedInt(delayStr, 10);
+            
+            LogManager.d(LogManager.Categoria.CHIP, "Retardo de programación: " + valor);
+            return valor;
+            
+        } catch (NumberFormatException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al procesar retardo de programación: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar retardo de programación: " + e.getMessage(), e);
+        }
     }
 
     public int getPowerSequence() {
@@ -337,18 +449,42 @@ public class ChipPic {
         return valor;
     }
 
+    /**
+     * Obtiene los valores blank de fuses como array de enteros.
+     *
+     * @return Array con los valores blank de fuses
+     * @throws ChipConfigurationException Si hay un error al procesar los fuses
+     */
     public int[] getFuseBlack() {
-
-        String[] fusesTexto = (String[]) variablesDeChip.get("FUSEblank");
-
-        int[] fuseBlank = new int[fusesTexto.length];
-
-        for (int i = 0; i < fuseBlank.length; i++) {
-
-            fuseBlank[i] = Integer.parseUnsignedInt("" + fusesTexto[i], 16);
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo valores blank de fuses");
+        
+        try {
+            String[] fusesTexto = (String[]) variablesDeChip.get("FUSEblank");
+            
+            if (fusesTexto == null) {
+                LogManager.w(LogManager.Categoria.CHIP, "No hay fuses configurados");
+                return new int[0];
+            }
+            
+            int[] fuseBlank = new int[fusesTexto.length];
+            
+            for (int i = 0; i < fuseBlank.length; i++) {
+                try {
+                    fuseBlank[i] = Integer.parseUnsignedInt(fusesTexto[i], 16);
+                    LogManager.d(LogManager.Categoria.CHIP, "Fuse[" + i + "]: 0x" + Integer.toHexString(fuseBlank[i]));
+                } catch (NumberFormatException e) {
+                    LogManager.e(LogManager.Categoria.CHIP, "Error al procesar fuse[" + i + "]: " + fusesTexto[i]);
+                    throw new ChipConfigurationException("Error al procesar fuse[" + i + "]: " + fusesTexto[i], e);
+                }
+            }
+            
+            LogManager.d(LogManager.Categoria.CHIP, "Valores blank de fuses obtenidos: " + fuseBlank.length + " fuses");
+            return fuseBlank;
+            
+        } catch (ClassCastException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error de tipo al obtener fuses: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error de tipo al obtener fuses: " + e.getMessage(), e);
         }
-
-        return fuseBlank;
     }
 
     private Map<String, ArrayList<String[]>> getFuses() {
@@ -392,31 +528,61 @@ public class ChipPic {
         return datosProsesados;
     }
 
+    /**
+     * Parsea una línea de configuración de fuses.
+     *
+     * @param line Línea de configuración de fuses
+     * @return Objeto DatosFuses con la información parseada
+     * @throws ChipConfigurationException Si hay un error al parsear la línea
+     */
     private DatosFuses parseLine(String line) {
-
-        DatosFuses datosFuses = new DatosFuses();
-
-        // Expresión regular para capturar el texto dentro de comillas y valores hexadecimales
-        Pattern pattern = Pattern.compile("\"([^\"]+)\"=([A-F0-9]+)");
-        Matcher matcher = pattern.matcher(line);
-
-        // Buscar el título principal entre las primeras comillas
-        String mainTitle =
-                line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\"") + 1));
-
-        datosFuses.setTitulo(mainTitle);
-
-        // Iterar sobre los pares "Texto"=HEX
-        while (matcher.find()) {
-            String description = matcher.group(1);
-            String hexValue = matcher.group(2);
-
-            datosFuses.setDescription(description);
-
-            datosFuses.setValor(Integer.parseUnsignedInt("" + hexValue, 16));
+        LogManager.d(LogManager.Categoria.CHIP, "Parseando línea de fuses: " + line);
+        
+        if (line == null || line.trim().isEmpty()) {
+            LogManager.w(LogManager.Categoria.CHIP, "Línea de fuses vacía");
+            return new DatosFuses();
         }
+        
+        try {
+            DatosFuses datosFuses = new DatosFuses();
 
-        return datosFuses;
+            // Expresión regular para capturar el texto dentro de comillas y valores hexadecimales
+            Pattern pattern = Pattern.compile("\"([^\"]+)\"=([A-F0-9]+)");
+            Matcher matcher = pattern.matcher(line);
+
+            // Buscar el título principal entre las primeras comillas
+            int firstQuote = line.indexOf("\"");
+            int secondQuote = line.indexOf("\"", firstQuote + 1);
+            
+            if (firstQuote == -1 || secondQuote == -1) {
+                LogManager.e(LogManager.Categoria.CHIP, "Formato de línea inválido, no se encontraron comillas: " + line);
+                throw new ChipConfigurationException("Formato de línea inválido: " + line);
+            }
+            
+            String mainTitle = line.substring(firstQuote + 1, secondQuote);
+            datosFuses.setTitulo(mainTitle);
+            LogManager.d(LogManager.Categoria.CHIP, "Título de fuse: " + mainTitle);
+
+            // Iterar sobre los pares "Texto"=HEX
+            while (matcher.find()) {
+                String description = matcher.group(1);
+                String hexValue = matcher.group(2);
+
+                datosFuses.setDescription(description);
+                datosFuses.setValor(Integer.parseUnsignedInt(hexValue, 16));
+                
+                LogManager.d(LogManager.Categoria.CHIP, "Fuse encontrado: " + description + " = 0x" + hexValue);
+            }
+
+            return datosFuses;
+            
+        } catch (NumberFormatException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al parsear valor hexadecimal: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al parsear valor hexadecimal: " + e.getMessage(), e);
+        } catch (Exception e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al parsear línea de fuses: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al parsear línea de fuses: " + e.getMessage(), e);
+        }
     }
 
     public int getTipoDeNucleoDelPic() {
@@ -469,25 +635,70 @@ public class ChipPic {
         return valido;
     }
 
+    /**
+     * Obtiene el tamaño de la ROM del chip.
+     *
+     * @return Tamaño de la ROM en bytes
+     * @throws ChipConfigurationException Si hay un error al procesar el tamaño
+     */
     public int getTamanoROM() {
-
-        int tamano = Integer.parseUnsignedInt("" + variablesDeChip.get("rom_size"), 16);
-
-        return tamano;
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo tamaño de ROM");
+        
+        try {
+            String romSizeStr = variablesDeChip.get("rom_size").toString();
+            int tamano = Integer.parseUnsignedInt(romSizeStr, 16);
+            
+            LogManager.d(LogManager.Categoria.CHIP, "Tamaño de ROM: 0x" + romSizeStr + " = " + tamano + " bytes");
+            return tamano;
+            
+        } catch (NumberFormatException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al procesar tamaño de ROM: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar tamaño de ROM: " + e.getMessage(), e);
+        }
     }
 
+    /**
+     * Obtiene el tamaño de la EEPROM del chip.
+     *
+     * @return Tamaño de la EEPROM en bytes
+     * @throws ChipConfigurationException Si hay un error al procesar el tamaño
+     */
     public int getTamanoEEPROM() {
-
-        int tamano = Integer.parseUnsignedInt("" + variablesDeChip.get("eeprom_size"), 16);
-
-        return tamano;
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo tamaño de EEPROM");
+        
+        try {
+            String eepromSizeStr = variablesDeChip.get("eeprom_size").toString();
+            int tamano = Integer.parseUnsignedInt(eepromSizeStr, 16);
+            
+            LogManager.d(LogManager.Categoria.CHIP, "Tamaño de EEPROM: 0x" + eepromSizeStr + " = " + tamano + " bytes");
+            return tamano;
+            
+        } catch (NumberFormatException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al procesar tamaño de EEPROM: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar tamaño de EEPROM: " + e.getMessage(), e);
+        }
     }
 
+    /**
+     * Obtiene el ID del chip PIC.
+     *
+     * @return ID del chip
+     * @throws ChipConfigurationException Si hay un error al procesar el ID
+     */
     public int getIDPIC() {
-
-        int id = Integer.parseUnsignedInt("" + variablesDeChip.get("ChipID"), 16);
-
-        return id;
+        LogManager.d(LogManager.Categoria.CHIP, "Obteniendo ID del PIC");
+        
+        try {
+            String chipIdStr = variablesDeChip.get("ChipID").toString();
+            int id = Integer.parseUnsignedInt(chipIdStr, 16);
+            
+            LogManager.d(LogManager.Categoria.CHIP, "ID del PIC: 0x" + chipIdStr + " = " + id);
+            return id;
+            
+        } catch (NumberFormatException e) {
+            LogManager.e(LogManager.Categoria.CHIP, "Error al procesar ID del PIC: " + e.getMessage(), e);
+            throw new ChipConfigurationException("Error al procesar ID del PIC: " + e.getMessage(), e);
+        }
     }
 
     public String getUbicacionPin1DelPic() {
