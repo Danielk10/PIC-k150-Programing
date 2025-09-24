@@ -66,6 +66,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
+import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.excepciones.UsbCommunicationException;
 import com.diamon.excepciones.HexProcessingException;
 import com.diamon.politicas.Politicas;
@@ -671,7 +672,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        chip = new ChipinfoReader(this);
+        try {
+            chip = new ChipinfoReader(this);
+        } catch (ChipConfigurationException e) {
+            throw new RuntimeException(e);
+        }
 
         String[] pic = new String[chip.getModelosPic().size()];
 
@@ -2277,59 +2282,63 @@ public class MainActivity extends AppCompatActivity {
 
                                     // Paso 5: Programar Fuses adicionales para PIC18F (10% del
                                     // progreso)
-                                    if (chipPIC.getTipoDeNucleoBit() == 16) {
+                                    try {
+                                        if (chipPIC.getTipoDeNucleoBit() == 16) {
 
-                                        try {
+                                            try {
 
-                                            procesoGrabado = protocolo.programarFusesDePics18F();
+                                                procesoGrabado = protocolo.programarFusesDePics18F();
 
-                                            runOnUiThread(
-                                                    () -> {
-                                                        if (procesoGrabado) {
-                                                            proceso.setText(
-                                                                    getString(
-                                                                            R.string
-                                                                                    .fuses_18f_programmed_successfully));
-                                                        } else {
-                                                            proceso.setText(
-                                                                    getString(
-                                                                            R.string
-                                                                                    .fuses_18f_program_error));
-                                                        }
-                                                    });
-
-                                            if (!procesoGrabado || procesoCancelado) {
                                                 runOnUiThread(
-                                                        () ->
-                                                                actualizarUIProcesoFinalizado(
-                                                                        procesoGrabado));
+                                                        () -> {
+                                                            if (procesoGrabado) {
+                                                                proceso.setText(
+                                                                        getString(
+                                                                                R.string
+                                                                                        .fuses_18f_programmed_successfully));
+                                                            } else {
+                                                                proceso.setText(
+                                                                        getString(
+                                                                                R.string
+                                                                                        .fuses_18f_program_error));
+                                                            }
+                                                        });
 
-                                                return;
-                                            }
+                                                if (!procesoGrabado || procesoCancelado) {
+                                                    runOnUiThread(
+                                                            () ->
+                                                                    actualizarUIProcesoFinalizado(
+                                                                            procesoGrabado));
 
-                                        } catch (Exception e) {
+                                                    return;
+                                                }
 
-                                            procesoGrabado = false;
+                                            } catch (Exception e) {
 
-                                            runOnUiThread(
-                                                    () -> {
-                                                        if (!procesoGrabado) {
-                                                            proceso.setText(
-                                                                    getString(
-                                                                            R.string
-                                                                                    .fuses_18f_program_error));
-                                                        }
-                                                    });
+                                                procesoGrabado = false;
 
-                                            if (!procesoGrabado || procesoCancelado) {
                                                 runOnUiThread(
-                                                        () ->
-                                                                actualizarUIProcesoFinalizado(
-                                                                        procesoGrabado));
+                                                        () -> {
+                                                            if (!procesoGrabado) {
+                                                                proceso.setText(
+                                                                        getString(
+                                                                                R.string
+                                                                                        .fuses_18f_program_error));
+                                                            }
+                                                        });
 
-                                                return;
+                                                if (!procesoGrabado || procesoCancelado) {
+                                                    runOnUiThread(
+                                                            () ->
+                                                                    actualizarUIProcesoFinalizado(
+                                                                            procesoGrabado));
+
+                                                    return;
+                                                }
                                             }
                                         }
+                                    } catch (ChipConfigurationException e) {
+                                        throw new RuntimeException(e);
                                     }
 
                                     // Completado (100%)
