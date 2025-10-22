@@ -322,6 +322,7 @@ public class LogManager {
      * @param datos Array de bytes a registrar
      * @param longitud Longitud válida de datos
      */
+
     public static void logDatosUSB(String direccion, byte[] datos, int longitud) {
         if (!getInstance().debeLoguear(Categoria.USB, Nivel.DEBUG)) {
             return;
