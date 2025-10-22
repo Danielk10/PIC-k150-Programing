@@ -1,9 +1,8 @@
 package com.diamon.datos;
 
-import android.widget.Toast;
 import com.diamon.chip.ChipPic;
-import com.diamon.excepciones.HexProcessingException;
 import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.excepciones.HexProcessingException;
 import com.diamon.utilidades.ByteUtils;
 import com.diamon.utilidades.HexFileUtils;
 import com.diamon.utilidades.LogManager;
@@ -175,13 +174,17 @@ public class DatosPicProcesados {
                             romBlank.length, eepromBlank.length));
 
             // Detectar endianness de los datos ROM
-            boolean swapBytes = detectarEndianness(romRecords, romBlank);
-            LogManager.d(
-                    Categoria.DATA,
-                    "procesarDatos",
-                    String.format(
-                            "Endianness detectado: %s",
-                            swapBytes ? "Little-Endian" : "Big-Endian"));
+            // Detectar endianness con manejo robusto
+            boolean swapBytes;
+            try {
+                swapBytes = detectarEndianness(romRecords, romBlank);
+            } catch (IllegalArgumentException e) {
+                // ✅ SOLUCIÓN: Manejar error de endianness
+                LogManager.w(Categoria.DATA, "procesarDatos",
+                        "Error detectando endianness, usando Big-Endian: " + e.getMessage());
+                swapBytes = false; // Valor por defecto
+            }
+
 
             // Ajustar registros según endianness detectado
             if (swapBytes) {
