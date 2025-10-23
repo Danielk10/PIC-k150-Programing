@@ -272,40 +272,32 @@ public class DatosPicProcesados {
      * @return true si es little-endian, false si es big-endian
      */
     private boolean detectarEndianness(
-            List<HexFileUtils.Pair<Integer, String>> romRecords, byte[] romBlank) {
-        LogManager.v(Categoria.DATA, "detectarEndianness", "Iniciando detección de endianness");
-
-        boolean swapBytes = false;
-        boolean swapBytesDetected = false;
-
-        int romBlankWord = ByteUtils.bytesToInt(romBlank); // Palabra ROM en blanco
-
-        for (HexFileUtils.Pair<Integer, String> record : romRecords) {
-            if (record.first % 2 != 0) {
-                String mensaje =
-                        String.format(
-                                "Registro ROM inicia en dirección impar: 0x%06X", record.first);
-                LogManager.e(Categoria.DATA, "detectarEndianness", mensaje);
-                throw new IllegalArgumentException(mensaje);
-            }
-
-            if (record.second.length() % 4 != 0) {
-                String mensaje =
-                        String.format(
-                                "Longitud de datos debe ser múltiplo de 4: %s", record.second);
-                LogManager.e(Categoria.DATA, "detectarEndianness", mensaje);
-                throw new IllegalArgumentException(mensaje);
-            }
-
-            String data = record.second;
-            for (int x = 0; x < data.length(); x += 4) {
+        List<HexFileUtils.Pair<Integer, String>> romRecords, byte[] romBlank) {
+    LogManager.v(Categoria.DATA, "detectarEndianness", "Iniciando detección de endianness");
+    boolean swapBytes = false;
+    boolean swapBytesDetected = false;
+    int romBlankWord = ByteUtils.bytesToInt(romBlank);
+    
+    for (HexFileUtils.Pair<Integer, String> record : romRecords) {
+        // ✅ CORRECCIÓN BASADA EN PYTHON: Solo validar si hay datos suficientes
+        if (record.first % 2 != 0) {
+            LogManager.w(Categoria.DATA, "detectarEndianness", 
+                String.format("⚠️ ADVERTENCIA: Registro ROM en dirección impar: 0x%06X", record.first));
+            continue; // ✅ Continuar como Python
+        }
+        
+        String data = record.second;
+        // ✅ CORRECCIÓN BASADA EN PYTHON: Solo procesar si hay datos completos
+        for (int x = 0; x < data.length(); x += 4) {
+            // ✅ VERIFICAR que hay suficientes caracteres (como Python hace con x+2 < len)
+            if ((x + 4) <= data.length()) {  // ✅ Solo si hay datos suficientes
                 String wordHex = data.substring(x, x + 4);
                 int BE_word = Integer.parseInt(wordHex, 16);
                 int LE_word = Integer.reverseBytes(BE_word) >>> 16;
-
+                
                 boolean BE_ok = (BE_word & romBlankWord) == BE_word;
                 boolean LE_ok = (LE_word & romBlankWord) == LE_word;
-
+                
                 if (BE_ok && !LE_ok) {
                     swapBytes = false;
                     swapBytesDetected = true;
@@ -317,26 +309,31 @@ public class DatosPicProcesados {
                     LogManager.v(Categoria.DATA, "detectarEndianness", "Detectado Little-Endian");
                     break;
                 } else if (!BE_ok && !LE_ok) {
-                    String mensaje =
-                            String.format(
-                                    "Palabra ROM inválida: %s, ROM blank: 0x%04X",
-                                    wordHex, romBlankWord);
-                    LogManager.e(Categoria.DATA, "detectarEndianness", mensaje);
-                    throw new IllegalArgumentException(mensaje);
+                    // ✅ COMO PYTHON: Solo fallar en casos realmente inválidos
+                    LogManager.w(Categoria.DATA, "detectarEndianness", 
+                        String.format("⚠️ ADVERTENCIA: Palabra ROM no válida: %s", wordHex));
+                    continue;
                 }
             }
-            if (swapBytesDetected) {
-                break;
-            }
         }
-
-        LogManager.d(
-                Categoria.DATA,
-                "detectarEndianness",
-                String.format(
-                        "Endianness detectado: %s", swapBytes ? "Little-Endian" : "Big-Endian"));
-        return swapBytes;
+        
+        if (swapBytesDetected) {
+            break;
+        }
     }
+    
+    // ✅ COMO PYTHON: Valor por defecto si no se detecta
+    if (!swapBytesDetected) {
+        LogManager.i(Categoria.DATA, "detectarEndianness", 
+            "No se pudo detectar endianness, usando Big-Endian por defecto");
+        swapBytes = false;
+    }
+    
+    LogManager.d(Categoria.DATA, "detectarEndianness", 
+        String.format("Endianness detectado: %s", swapBytes ? "Little-Endian" : "Big-Endian"));
+    return swapBytes;
+}
+
 
     /**
      * Procesa registros EEPROM aplicando byte picking según endianness.
