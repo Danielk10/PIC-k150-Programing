@@ -52,7 +52,8 @@
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true" />
         <activity
-            android:name=".MainActivity"
+
+            android:name="com.diamon.pruebas.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
             <intent-filter>
