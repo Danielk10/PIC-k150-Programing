@@ -1,345 +1,488 @@
 package com.diamon.pruebas;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.diamon.pic.R;
 
 /**
- * MainActivity - Aplicación de prueba para procesamiento de chips PIC
+ * MainActivity - Editor dinámico de fusibles para chips PIC
  *
- * Esta actividad demuestra el uso completo de las clases migradas desde Python 2:
- * - ChipinfoReader: Lee información de chips desde chipinfo.txt
- * - ChipinfoEntry: Maneja datos de un chip específico
- * - HexRecord: Representa registros HEX
- * - HexRecordProcessor: Procesa listas de registros
- * - PicFuseProcessor: Extrae y procesa fusibles e ID
- *
- * Funcionalidad:
- * - Carga automática al iniciar
- * - Botón "Recargar": Ejecuta nuevamente el procesamiento
- * - Botón "Limpiar": Limpia el área de salida
- * - ScrollView: Permite ver todo el output
+ * Características:
+ * - Selector dinámico de chips desde chipinfo.cid
+ * - Editor de fusibles generado automáticamente según el chip
+ * - Opción de agregar fusibles personalizados
+ * - Procesamiento y codificación de fusibles
+ * - Log de operaciones en tiempo real
  */
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "PicProgrammer";
 
-    // Vistas del layout
-    private TextView outputTextView;
-    private ScrollView scrollView;
-    private Button btnReload;
-    private Button btnClear;
+    // ==================== VISTAS ====================
+    private Spinner chipSpinner;
+    private Button btnLoadChip, btnProcess, btnReset, btnClearLog, btnAddCustomFuse;
+    private TextView chipInfoTextView, logTextView, emptyFuseMessage;
+    private LinearLayout fuseContainer;
+    private ScrollView logScrollView;
+
+    // ==================== DATOS ====================
+    private ChipinfoReader chipReader;
+    private ChipinfoEntry currentChip;
+    private Map<String, Spinner> fuseSpinners = new HashMap<>();
+    private Map<String, String> customFuses = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializar vistas
         initializeViews();
-
-        // Configurar listeners de botones
-        setupButtonListeners();
-
-        // Ejecutar procesamiento inicial
-        ejecutarProcesamiento();
+        setupListeners();
+        loadChipDatabase();
     }
 
     /**
      * Inicializa todas las vistas del layout
      */
     private void initializeViews() {
-        outputTextView = findViewById(R.id.outputTextView);
-        scrollView = findViewById(R.id.scrollView);
-        btnReload = findViewById(R.id.btnReload);
-        btnClear = findViewById(R.id.btnClear);
-
-        // Configurar TextView para mejor legibilidad
-        outputTextView.setTextIsSelectable(true);
+        chipSpinner = findViewById(R.id.chipSpinner);
+        btnLoadChip = findViewById(R.id.btnLoadChip);
+        btnProcess = findViewById(R.id.btnProcess);
+        btnReset = findViewById(R.id.btnReset);
+        btnClearLog = findViewById(R.id.btnClearLog);
+        btnAddCustomFuse = findViewById(R.id.btnAddCustomFuse);
+        chipInfoTextView = findViewById(R.id.chipInfoTextView);
+        logTextView = findViewById(R.id.logTextView);
+        emptyFuseMessage = findViewById(R.id.emptyFuseMessage);
+        fuseContainer = findViewById(R.id.fuseContainer);
+        logScrollView = findViewById(R.id.logScrollView);
     }
 
     /**
-     * Configura los listeners para los botones
+     * Configura los listeners para todos los botones
      */
-    private void setupButtonListeners() {
-        // Botón Recargar: Ejecuta nuevamente el procesamiento
-        btnReload.setOnClickListener(new View.OnClickListener() {
+    private void setupListeners() {
+        btnLoadChip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,
-                        "Recargando procesamiento...",
-                        Toast.LENGTH_SHORT).show();
-                ejecutarProcesamiento();
+                loadSelectedChip();
             }
         });
 
-        // Botón Limpiar: Limpia el área de salida
-        btnClear.setOnClickListener(new View.OnClickListener() {
+        btnProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                outputTextView.setText("Área de salida limpiada.\n\n" +
-                        "Presiona 'Recargar' para ejecutar el procesamiento.");
-                Toast.makeText(MainActivity.this,
-                        "Salida limpiada",
-                        Toast.LENGTH_SHORT).show();
+                processFuses();
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetFuses();
+            }
+        });
+
+        btnClearLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearLog();
+            }
+        });
+
+        btnAddCustomFuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCustomFuseDialog();
             }
         });
     }
 
     /**
-     * Ejecuta el procesamiento completo en un thread separado
-     * para no bloquear la UI
+     * Carga la base de datos de chips desde chipinfo.cid
+     * Se ejecuta en thread separado para no bloquear la UI
      */
-    private void ejecutarProcesamiento() {
-        // Mostrar mensaje de inicio
-        outputTextView.setText("⏳ Iniciando procesamiento...\n\n");
+    private void loadChipDatabase() {
+        logMessage("⏳ Cargando base de datos...");
 
-        // Ejecutar en thread separado
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String resultado = ejemploCompletoDeUso();
+                try {
+                    chipReader = new ChipinfoReader(MainActivity.this, "chipinfo.cid");
+                    final List<String> chipNames = chipReader.getAvailableChips();
 
-                // Actualizar UI en el thread principal
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        outputTextView.setText(resultado);
-                        // Scroll automático al inicio
-                        scrollView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                scrollView.fullScroll(View.FOCUS_UP);
-                            }
-                        });
-                    }
-                });
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                                    MainActivity.this,
+                                    android.R.layout.simple_spinner_item,
+                                    chipNames
+                            );
+                            adapter.setDropDownViewResource(
+                                    android.R.layout.simple_spinner_dropdown_item
+                            );
+                            chipSpinner.setAdapter(adapter);
+
+                            logMessage("✓ Base de datos cargada: " +
+                                    chipNames.size() + " chips disponibles");
+                        }
+                    });
+
+                } catch (Exception e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            logMessage("❌ Error cargando BD: " + e.getMessage());
+                            Toast.makeText(MainActivity.this,
+                                    "Error cargando base de datos",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    Log.e(TAG, "Error loading database", e);
+                }
             }
         }).start();
     }
 
     /**
-     * Método principal de procesamiento - Demuestra todas las funcionalidades
-     *
-     * @return String con el resultado del procesamiento
+     * Carga el chip seleccionado del Spinner
+     * Genera dinámicamente el editor de fusibles
      */
-    private String ejemploCompletoDeUso() {
-        StringBuilder output = new StringBuilder();
-        output.append("╔════════════════════════════════════════╗\n");
-        output.append("║  PROCESAMIENTO DE CHIP PIC - Android  ║\n");
-        output.append("╚════════════════════════════════════════╝\n\n");
+    private void loadSelectedChip() {
+        final String chipName = (String) chipSpinner.getSelectedItem();
+        if (chipName == null) {
+            Toast.makeText(this, "Selecciona un chip", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        try {
-            // Paso 1: Cargar información del chip
-            output.append("📋 Paso 1: Cargando información del chip\n");
-            output.append("─────────────────────────────────────────\n");
+        logMessage("⏳ Cargando chip: " + chipName);
 
-            ChipinfoReader reader = new ChipinfoReader(this, "chipinfo.cid");
-            ChipinfoEntry chipInfo = reader.getChip("18F8720");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    currentChip = chipReader.getChip(chipName);
 
-            output.append("✓ Chip: ").append(chipInfo.getChipName()).append("\n");
-            output.append("✓ Núcleo: ").append(chipInfo.getCoreBits()).append(" bits\n");
-            output.append("✓ Chips en BD: ").append(reader.getChipCount()).append("\n\n");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            displayChipInfo();
+                            buildFuseEditor();
+                            btnProcess.setEnabled(true);
+                            btnReset.setEnabled(true);
+                            logMessage("✓ Chip cargado: " + chipName);
+                        }
+                    });
 
-            // Paso 2: Crear registros HEX de ejemplo
-            output.append("🔧 Paso 2: Creando registros de configuración\n");
-            output.append("─────────────────────────────────────────\n");
-
-            List<HexRecord> configRecords = crearRegistrosDeEjemplo();
-            output.append("✓ Registros creados: ").append(configRecords.size()).append("\n");
-
-            for (HexRecord record : configRecords) {
-                output.append("  • [0x")
-                        .append(Integer.toHexString(record.getAddress()).toUpperCase())
-                        .append("] len=")
-                        .append(record.getLength())
-                        .append(" bytes\n");
-            }
-            output.append("\n");
-
-            // Paso 3: Filtrar registros por rango
-            output.append("🔍 Paso 3: Filtrando registros de fusibles\n");
-            output.append("─────────────────────────────────────────\n");
-            output.append("Rango: [0x400E - 0x4010)\n");
-
-            List<HexRecord> fuseRecords = HexRecordProcessor.rangeFilterRecords(
-                    configRecords, 0x400E, 0x4010
-            );
-            output.append("✓ Registros filtrados: ").append(fuseRecords.size()).append("\n\n");
-
-            // Paso 4: Extraer ID del chip
-            output.append("🆔 Paso 4: Extrayendo ID del chip\n");
-            output.append("─────────────────────────────────────────\n");
-
-            byte[] chipId = PicFuseProcessor.extractChipId(
-                    configRecords, chipInfo, 0, null
-            );
-            output.append("✓ ID extraído: ").append(bytesToHexString(chipId)).append("\n\n");
-
-            // Paso 5: Extraer valores actuales de fusibles
-            output.append("⚙️  Paso 5: Extrayendo fusibles actuales\n");
-            output.append("─────────────────────────────────────────\n");
-
-            List<Integer> currentFuseValues = PicFuseProcessor.extractFuseValues(
-                    configRecords, chipInfo
-            );
-            output.append(ChipinfoUtils.formatHexList(
-                    currentFuseValues, "Valores actuales"
-            )).append("\n\n");
-
-            // Paso 6: Decodificar fusibles a formato legible
-            output.append("📖 Paso 6: Decodificando fusibles\n");
-            output.append("─────────────────────────────────────────\n");
-
-            Map<String, String> currentSettings = chipInfo.decodeFuseData(currentFuseValues);
-            output.append(ChipinfoUtils.formatFuseDict(currentSettings));
-
-            // Paso 7: Crear nuevas configuraciones de fusibles
-            output.append("\n✏️  Paso 7: Aplicando nuevas configuraciones\n");
-            output.append("─────────────────────────────────────────\n");
-
-            Map<String, String> newSettings = new HashMap<>();
-            newSettings.put("Oscillator Enable", "Disabled");
-            newSettings.put("Brownout Detect", "Enabled");
-
-            output.append("Cambios solicitados:\n");
-            output.append("  • WDT → Disabled\n");
-            output.append("  • PWRTE → Enabled\n\n");
-
-            // Paso 8: Procesar fusibles (combinar actuales + nuevos)
-            output.append("🔄 Paso 8: Procesando fusibles\n");
-            output.append("─────────────────────────────────────────\n");
-
-            PicFuseProcessor.FuseProcessingResult result =
-                    PicFuseProcessor.processFuses(configRecords, chipInfo, newSettings);
-
-            if (result.isSuccess()) {
-                output.append("✅ Procesamiento exitoso\n\n");
-
-                output.append("Configuración final:\n");
-                output.append(ChipinfoUtils.formatFuseDict(
-                        result.getFinalSettings()
-                )).append("\n");
-
-                output.append(ChipinfoUtils.formatHexList(
-                        result.getFinalValues(), "Valores finales"
-                )).append("\n\n");
-
-                if (result.hasChanges()) {
-                    output.append("🔴 Hay cambios para programar en el chip\n");
-                } else {
-                    output.append("🟢 No hay cambios en fusibles\n");
+                } catch (Exception e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            logMessage("❌ Error cargando chip: " + e.getMessage());
+                            Toast.makeText(MainActivity.this,
+                                    "Error cargando chip",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Log.e(TAG, "Error loading chip", e);
                 }
-            } else {
-                output.append("❌ Error: ").append(result.getErrorMessage()).append("\n");
             }
-
-            // Paso 9: Ejemplo de fusión de registros
-            output.append("\n🧩 Paso 9: Ejemplo de fusión de registros\n");
-            output.append("─────────────────────────────────────────\n");
-
-            byte[] defaultData = new byte[] {
-                    (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF
-            };
-
-            List<HexRecord> testRecords = new ArrayList<>();
-            testRecords.add(new HexRecord(0x4000, new byte[]{0x12, 0x34}));
-
-            byte[] merged = HexRecordProcessor.mergeRecords(
-                    testRecords, defaultData, 0x4000
-            );
-
-            output.append("Buffer original:  FF FF FF FF\n");
-            output.append("Registro:         [0x4000] = 12 34\n");
-            output.append("Resultado fusión: ").append(bytesToHexString(merged)).append("\n");
-
-            // Resumen final
-            output.append("\n╔════════════════════════════════════════╗\n");
-            output.append("║      ✅ PROCESAMIENTO COMPLETO ✅      ║\n");
-            output.append("╚════════════════════════════════════════╝\n\n");
-
-            output.append("📊 Resumen:\n");
-            output.append("  • Chip procesado: ").append(chipInfo.getChipName()).append("\n");
-            output.append("  • Registros analizados: ").append(configRecords.size()).append("\n");
-            output.append("  • ID extraído: OK\n");
-            output.append("  • Fusibles procesados: OK\n");
-            output.append("  • Estado: Todo correcto ✓\n\n");
-
-            output.append("💡 Tip: Usa el botón 'Recargar' para ejecutar\n");
-            output.append("   nuevamente el procesamiento.\n");
-
-        } catch (Exception e) {
-            output.append("\n❌ ERROR CRÍTICO\n");
-            output.append("─────────────────────────────────────────\n");
-            output.append("Mensaje: ").append(e.getMessage()).append("\n\n");
-            output.append("Stack trace:\n");
-
-            for (StackTraceElement element : e.getStackTrace()) {
-                output.append("  at ").append(element.toString()).append("\n");
-            }
-
-            Log.e(TAG, "Error en procesamiento", e);
-        }
-
-        return output.toString();
+        }).start();
     }
 
     /**
-     * Crea registros HEX de ejemplo para demostración
-     *
-     * Simula datos leídos desde un chip PIC real
-     *
-     * @return Lista de registros HEX de ejemplo
+     * Muestra información del chip cargado
      */
-    private List<HexRecord> crearRegistrosDeEjemplo() {
-        List<HexRecord> records = new ArrayList<>();
+    private void displayChipInfo() {
+        StringBuilder info = new StringBuilder();
+        info.append("Chip: ").append(currentChip.getChipName()).append("\n");
+        info.append("Núcleo: ").append(currentChip.getCoreBits()).append(" bits\n");
 
-        // Registro de ID del chip (0x4000-0x4007)
-        // Estos bytes identifican el modelo del chip
-        byte[] idData = new byte[] {
-                0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
-        };
-        records.add(new HexRecord(0x4000, idData));
+        Integer romSize = (Integer) currentChip.getVar("rom_size");
+        if (romSize != null) {
+            info.append("ROM: 0x")
+                    .append(Integer.toHexString(romSize).toUpperCase())
+                    .append("\n");
+        }
 
-        // Registro de fusibles (0x400E-0x400F)
-        // Valores de configuración del chip
-        byte[] fuseData = new byte[] {
-                (byte)0x3F, (byte)0xFF  // 0x3FFF (todos los bits en 1)
-        };
-        records.add(new HexRecord(0x400E, fuseData));
+        info.append("EEPROM: ").append(currentChip.hasEeprom() ? "Sí" : "No");
 
-        return records;
+        chipInfoTextView.setText(info.toString());
     }
 
     /**
-     * Convierte bytes a string hexadecimal legible
-     *
-     * @param bytes Array de bytes a convertir
-     * @return String con representación hexadecimal
+     * Construye dinámicamente el editor de fusibles
+     * según los fusibles disponibles en el chip
      */
-    private String bytesToHexString(byte[] bytes) {
-        if (bytes == null || bytes.length == 0) {
-            return "(vacío)";
+    @SuppressWarnings("unchecked")
+    private void buildFuseEditor() {
+        fuseContainer.removeAllViews();
+        fuseSpinners.clear();
+        emptyFuseMessage.setVisibility(View.GONE);
+
+        Map<String, Map<String, List<ChipinfoEntry.FuseValue>>> fuses =
+                (Map<String, Map<String, List<ChipinfoEntry.FuseValue>>>)
+                        currentChip.getVar("fuses");
+
+        if (fuses == null || fuses.isEmpty()) {
+            emptyFuseMessage.setVisibility(View.VISIBLE);
+            emptyFuseMessage.setText("Este chip no tiene fusibles configurables");
+            return;
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < bytes.length; i++) {
-            if (i > 0) sb.append(" ");
-            sb.append(String.format("%02X", bytes[i] & 0xFF));
+        for (Map.Entry<String, Map<String, List<ChipinfoEntry.FuseValue>>> entry :
+                fuses.entrySet()) {
+            String fuseName = entry.getKey();
+            Map<String, List<ChipinfoEntry.FuseValue>> fuseOptions = entry.getValue();
+
+            addFuseRow(fuseName, new ArrayList<>(fuseOptions.keySet()));
         }
-        return sb.toString();
+
+        logMessage("✓ Editor construido: " + fuses.size() + " fusibles");
+    }
+
+    /**
+     * Agrega una fila de fusible al editor
+     *
+     * @param fuseName Nombre del fusible
+     * @param options Lista de opciones disponibles
+     */
+    private void addFuseRow(String fuseName, List<String> options) {
+        LinearLayout row = new LinearLayout(this);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        row.setPadding(8, 8, 8, 8);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 0, 0, 8);
+        row.setLayoutParams(params);
+
+        // Label del fusible
+        TextView label = new TextView(this);
+        label.setText(fuseName + ":");
+        label.setTextSize(14);
+        LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f
+        );
+        label.setLayoutParams(labelParams);
+        row.addView(label);
+
+        // Spinner con opciones
+        Spinner spinner = new Spinner(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                options
+        );
+        adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item
+        );
+        spinner.setAdapter(adapter);
+        LinearLayout.LayoutParams spinnerParams = new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.5f
+        );
+        spinner.setLayoutParams(spinnerParams);
+        row.addView(spinner);
+
+        fuseSpinners.put(fuseName, spinner);
+        fuseContainer.addView(row);
+    }
+
+    /**
+     * Muestra diálogo para agregar fusible personalizado
+     */
+    private void showCustomFuseDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Agregar Fusible Personalizado");
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(50, 40, 50, 10);
+
+        final EditText nameInput = new EditText(this);
+        nameInput.setHint("Nombre del fusible");
+        layout.addView(nameInput);
+
+        final EditText valueInput = new EditText(this);
+        valueInput.setHint("Valor");
+        layout.addView(valueInput);
+
+        builder.setView(layout);
+
+        builder.setPositiveButton("Agregar", new android.content.DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(android.content.DialogInterface dialog, int which) {
+                String name = nameInput.getText().toString().trim();
+                String value = valueInput.getText().toString().trim();
+
+                if (!name.isEmpty() && !value.isEmpty()) {
+                    customFuses.put(name, value);
+                    List<String> valueList = new ArrayList<>();
+                    valueList.add(value);
+                    addFuseRow(name, valueList);
+                    logMessage("✓ Fusible custom agregado: " + name + " = " + value);
+                    Toast.makeText(MainActivity.this,
+                            "Fusible agregado",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this,
+                            "Completa todos los campos",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", null);
+        builder.show();
+    }
+
+    /**
+     * Procesa los fusibles seleccionados
+     * Codifica las configuraciones a valores hexadecimales
+     */
+    private void processFuses() {
+        if (currentChip == null) {
+            Toast.makeText(this, "Carga un chip primero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        logMessage("⏳ Procesando fusibles...");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Recopilar configuración actual
+                    final Map<String, String> fuseConfig = new HashMap<>();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (Map.Entry<String, Spinner> entry : fuseSpinners.entrySet()) {
+                                String fuseName = entry.getKey();
+                                String fuseValue = (String) entry.getValue().getSelectedItem();
+                                if (fuseValue != null) {
+                                    fuseConfig.put(fuseName, fuseValue);
+                                }
+                            }
+                            // Agregar fusibles personalizados
+                            fuseConfig.putAll(customFuses);
+                        }
+                    });
+
+                    // Esperar a que se complete la recopilación
+                    Thread.sleep(100);
+
+                    // Codificar fusibles
+                    final List<Integer> encodedValues = currentChip.encodeFuseData(fuseConfig);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            StringBuilder result = new StringBuilder();
+                            result.append("✅ Procesamiento exitoso\n");
+                            result.append("Configuración aplicada:\n");
+                            for (Map.Entry<String, String> e : fuseConfig.entrySet()) {
+                                result.append("  • ").append(e.getKey())
+                                        .append(" = ").append(e.getValue()).append("\n");
+                            }
+                            result.append("\nValores hex: ");
+                            for (Integer val : encodedValues) {
+                                result.append(String.format("0x%04X ", val));
+                            }
+
+                            logMessage(result.toString());
+                            Toast.makeText(MainActivity.this,
+                                    "Fusibles procesados correctamente",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                } catch (Exception e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            logMessage("❌ Error procesando: " + e.getMessage());
+                            Toast.makeText(MainActivity.this,
+                                    "Error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    Log.e(TAG, "Error processing fuses", e);
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * Restablece el editor de fusibles a su estado inicial
+     */
+    private void resetFuses() {
+        if (currentChip == null) return;
+
+        buildFuseEditor();
+        customFuses.clear();
+        logMessage("↻ Fusibles restablecidos");
+        Toast.makeText(this, "Fusibles restablecidos", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Limpia el área de log
+     */
+    private void clearLog() {
+        logTextView.setText("Log limpiado\n");
+    }
+
+    /**
+     * Agrega un mensaje al log con timestamp
+     *
+     * @param message Mensaje a agregar
+     */
+    private void logMessage(final String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                String timestamp = sdf.format(new Date());
+                String logEntry = "[" + timestamp + "] " + message + "\n";
+
+                logTextView.append(logEntry);
+
+                // Auto-scroll al final
+                logScrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        logScrollView.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
+            }
+        });
     }
 }
