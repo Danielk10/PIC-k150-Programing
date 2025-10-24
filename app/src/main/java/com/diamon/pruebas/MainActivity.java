@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             output.append("─────────────────────────────────────────\n");
 
             ChipinfoReader reader = new ChipinfoReader(this, "chipinfo.cid");
-            ChipinfoEntry chipInfo = reader.getChip("16F877A");
+            ChipinfoEntry chipInfo = reader.getChip("18F8720");
 
             output.append("✓ Chip: ").append(chipInfo.getChipName()).append("\n");
             output.append("✓ Núcleo: ").append(chipInfo.getCoreBits()).append(" bits\n");
@@ -212,8 +212,8 @@ public class MainActivity extends AppCompatActivity {
             output.append("─────────────────────────────────────────\n");
 
             Map<String, String> newSettings = new HashMap<>();
-            newSettings.put("WDT", "Disabled");
-            newSettings.put("PWRTE", "Enabled");
+            newSettings.put("Oscillator Enable", "Disabled");
+            newSettings.put("Brownout Detect", "Enabled");
 
             output.append("Cambios solicitados:\n");
             output.append("  • WDT → Disabled\n");
