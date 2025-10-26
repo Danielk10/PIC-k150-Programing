@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">Pemrograman PIC</string>
-    <string name="verify_memory_erased">Verifikasi apakah memori PIC telah dihapus</string>
-    <string name="erase_memory">Hapus memori PIC</string>
-    <string name="read_memory">Baca memori PIC</string>
-    <string name="detect_pic">Deteksi PIC di soket</string>
-    <string name="load_hex_file">Muat file Hex</string>
-    <string name="memory_erased_successfully">Memori PIC berhasil dihapus</string>
-    <string name="memory_erase_error">Kesalahan saat menghapus memori PIC</string>
-    <string name="rom_programmed_successfully">Memori ROM berhasil diprogram</string>
-    <string name="rom_program_error">Kesalahan saat memprogram memori ROM PIC</string>
-    <string name="eeprom_programmed_successfully">Memori EEPROM berhasil diprogram</string>
-    <string name="eeprom_program_error">Kesalahan saat memprogram memori EEPROM PIC</string>
-    <string name="fuses_programmed_successfully">Fuses berhasil diprogram</string>
-    <string name="fuses_program_error">Kesalahan saat memprogram fuse PIC</string>
-    <string name="fuses_18f_programmed_successfully">Fuses 18F berhasil diprogram</string>
-    <string name="fuses_18f_program_error">Kesalahan saat memprogram fuse 18F PIC</string>
-    <string name="pic_programmed_successfully">PIC berhasil diprogram</string>
-    <string name="pic_program_error">Kesalahan saat memprogram PIC</string>
-    <string name="memory_read_successfully">Memori PIC berhasil dibaca</string>
-    <string name="memory_read_error">Kesalahan saat membaca memori PIC</string>
-    <string name="memory_empty">Memori kosong</string>
-    <string name="memory_has_data">Memori berisi data</string>
-    <string name="pic_in_socket">PIC ada di soket</string>
-    <string name="pic_not_in_socket">PIC tidak ada di soket</string>
-    <string name="waiting_for_pic">Menunggu PIC</string>
-    <string name="select_pic">Pilih PIC:</string>
-    <string name="rom_memory_data">Data memori ROM:</string>
-    <string name="eeprom_memory_data">Data memori EEPROM:</string>
-    <string name="privacy_policy">Kebijakan privasi</string>
-    <string name="place_pic">PIC harus diletakkan di</string>
-    <string name="icsp_mode_only">Hanya dalam mode ICSP, mode ICSP diaktifkan</string>
-    <string name="connection_error">Kesalahan koneksi:</string>
-    <string name="select_valid_binary_file">Pilih file biner yang valid</string>
-    <string name="obtener_modelo">Dapatkan Model Pemrogram</string>
-    <string name="obtener_protocolo">Dapatkan Protokol</string>
-    <string name="modelo_programador">Model Pemrogram</string>
-    <string name="protocolo_programador">Protokol Pemrogram</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Terima</string>
     <string name="cancelar">Batal</string>
     <string name="conectado">Terhubung</string>

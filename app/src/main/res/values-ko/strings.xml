@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">PIC 프로그램</string>
-    <string name="verify_memory_erased">PIC 메모리가 지워졌는지 확인</string>
-    <string name="erase_memory">PIC 메모리 지우기</string>
-    <string name="read_memory">PIC 메모리 읽기</string>
-    <string name="detect_pic">소켓에서 PIC 감지</string>
-    <string name="load_hex_file">Hex 파일 로드</string>
-    <string name="memory_erased_successfully">PIC 메모리가 성공적으로 지워졌습니다</string>
-    <string name="memory_erase_error">PIC 메모리 지우기 오류</string>
-    <string name="rom_programmed_successfully">ROM 메모리가 성공적으로 프로그램되었습니다</string>
-    <string name="rom_program_error">PIC ROM 메모리 프로그램 오류</string>
-    <string name="eeprom_programmed_successfully">EEPROM 메모리가 성공적으로 프로그램되었습니다</string>
-    <string name="eeprom_program_error">PIC EEPROM 메모리 프로그램 오류</string>
-    <string name="fuses_programmed_successfully">퓨즈가 성공적으로 프로그램되었습니다</string>
-    <string name="fuses_program_error">PIC 퓨즈 프로그램 오류</string>
-    <string name="fuses_18f_programmed_successfully">18F 퓨즈가 성공적으로 프로그램되었습니다</string>
-    <string name="fuses_18f_program_error">PIC 18F 퓨즈 프로그램 오류</string>
-    <string name="pic_programmed_successfully">PIC가 성공적으로 프로그램되었습니다</string>
-    <string name="pic_program_error">PIC 프로그램 오류</string>
-    <string name="memory_read_successfully">PIC 메모리가 성공적으로 읽혔습니다</string>
-    <string name="memory_read_error">PIC 메모리 읽기 오류</string>
-    <string name="memory_empty">메모리에 데이터가 없습니다</string>
-    <string name="memory_has_data">메모리에 데이터가 있습니다</string>
-    <string name="pic_in_socket">PIC가 소켓에 있습니다</string>
-    <string name="pic_not_in_socket">PIC가 소켓에 없습니다</string>
-    <string name="waiting_for_pic">PIC를 기다리고 있습니다</string>
-    <string name="select_pic">PIC 선택:</string>
-    <string name="rom_memory_data">ROM 메모리 데이터:</string>
-    <string name="eeprom_memory_data">EEPROM 메모리 데이터:</string>
-    <string name="privacy_policy">개인정보 보호 정책</string>
-    <string name="place_pic">PIC를 다음 위치에 배치하십시오:</string>
-    <string name="icsp_mode_only">ICSP 모드만 사용, ICSP 모드 활성화됨</string>
-    <string name="connection_error">연결 오류:</string>
-    <string name="select_valid_binary_file">유효한 바이너리 파일을 선택하세요</string>
-    <string name="obtener_modelo">프로그래머 모델 가져오기</string>
-    <string name="obtener_protocolo">프로토콜 가져오기</string>
-    <string name="modelo_programador">프로그래머 모델</string>
-    <string name="protocolo_programador">프로그래머 프로토콜</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">수락</string>
     <string name="cancelar">취소</string>
     <string name="conectado">연결됨</string>

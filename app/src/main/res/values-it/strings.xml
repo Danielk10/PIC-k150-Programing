@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">Programmare PIC</string>
-    <string name="verify_memory_erased">Verifica se la memoria del PIC è stata cancellata</string>
-    <string name="erase_memory">Cancellare la memoria del PIC</string>
-    <string name="read_memory">Leggere la memoria del PIC</string>
-    <string name="detect_pic">Rilevare PIC nel socket</string>
-    <string name="load_hex_file">Carica file Hex</string>
-    <string name="memory_erased_successfully">Memoria del PIC cancellata con successo</string>
-    <string name="memory_erase_error">Errore durante la cancellazione della memoria del PIC</string>
-    <string name="rom_programmed_successfully">Memoria ROM programmata con successo</string>
-    <string name="rom_program_error">Errore nella programmazione della memoria ROM del PIC</string>
-    <string name="eeprom_programmed_successfully">Memoria EEPROM programmata con successo</string>
-    <string name="eeprom_program_error">Errore nella programmazione della memoria EEPROM del PIC</string>
-    <string name="fuses_programmed_successfully">Fusibili programmati con successo</string>
-    <string name="fuses_program_error">Errore nella programmazione dei fusibili del PIC</string>
-    <string name="fuses_18f_programmed_successfully">Fusibili 18F programmati con successo</string>
-    <string name="fuses_18f_program_error">Errore nella programmazione dei fusibili 18F del PIC</string>
-    <string name="pic_programmed_successfully">PIC programmato con successo</string>
-    <string name="pic_program_error">Errore durante la programmazione del PIC</string>
-    <string name="memory_read_successfully">Memoria del PIC letta con successo</string>
-    <string name="memory_read_error">Errore nella lettura della memoria del PIC</string>
-    <string name="memory_empty">La memoria non contiene dati</string>
-    <string name="memory_has_data">La memoria contiene dati</string>
-    <string name="pic_in_socket">Il PIC è nel socket</string>
-    <string name="pic_not_in_socket">Il PIC non è nel socket</string>
-    <string name="waiting_for_pic">In attesa del PIC</string>
-    <string name="select_pic">Seleziona PIC:</string>
-    <string name="rom_memory_data">Dati della memoria ROM:</string>
-    <string name="eeprom_memory_data">Dati della memoria EEPROM:</string>
-    <string name="privacy_policy">Politiche sulla privacy</string>
-    <string name="place_pic">Il PIC deve essere posizionato nel</string>
-    <string name="icsp_mode_only">Solo in modalità ICSP, modalità ICSP attivata</string>
-    <string name="connection_error">Errore di connessione:</string>
-    <string name="select_valid_binary_file">Seleziona un file binario valido</string>
-    <string name="obtener_modelo">Ottieni Modello Programmatore</string>
-    <string name="obtener_protocolo">Ottieni Protocollo</string>
-    <string name="modelo_programador">Modello Programmatore</string>
-    <string name="protocolo_programador">Protocollo Programmatore</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Accetta</string>
     <string name="cancelar">Annulla</string>
     <string name="conectado">Connesso</string>

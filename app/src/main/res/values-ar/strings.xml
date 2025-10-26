@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">برمجة PIC</string>
-    <string name="verify_memory_erased">تحقق مما إذا كانت ذاكرة PIC قد تم مسحها</string>
-    <string name="erase_memory">مسح ذاكرة PIC</string>
-    <string name="read_memory">قراءة ذاكرة PIC</string>
-    <string name="detect_pic">اكتشاف PIC في المقبس</string>
-    <string name="load_hex_file">تحميل ملف Hex</string>
-    <string name="memory_erased_successfully">تم مسح ذاكرة PIC بنجاح</string>
-    <string name="memory_erase_error">حدث خطأ أثناء مسح ذاكرة PIC</string>
-    <string name="rom_programmed_successfully">تم برمجة ذاكرة ROM بنجاح</string>
-    <string name="rom_program_error">حدث خطأ أثناء برمجة ذاكرة ROM لـ PIC</string>
-    <string name="eeprom_programmed_successfully">تم برمجة ذاكرة EEPROM بنجاح</string>
-    <string name="eeprom_program_error">حدث خطأ أثناء برمجة ذاكرة EEPROM لـ PIC</string>
-    <string name="fuses_programmed_successfully">تم برمجة الفيوزات بنجاح</string>
-    <string name="fuses_program_error">حدث خطأ أثناء برمجة الفيوزات لـ PIC</string>
-    <string name="fuses_18f_programmed_successfully">تم برمجة فيوزات 18F بنجاح</string>
-    <string name="fuses_18f_program_error">حدث خطأ أثناء برمجة فيوزات 18F لـ PIC</string>
-    <string name="pic_programmed_successfully">تم برمجة PIC بنجاح</string>
-    <string name="pic_program_error">حدث خطأ أثناء برمجة PIC</string>
-    <string name="memory_read_successfully">تم قراءة ذاكرة PIC بنجاح</string>
-    <string name="memory_read_error">حدث خطأ أثناء قراءة ذاكرة PIC</string>
-    <string name="memory_empty">الذاكرة فارغة</string>
-    <string name="memory_has_data">الذاكرة تحتوي على بيانات</string>
-    <string name="pic_in_socket">PIC في المقبس</string>
-    <string name="pic_not_in_socket">PIC غير موجود في المقبس</string>
-    <string name="waiting_for_pic">انتظار PIC</string>
-    <string name="select_pic">اختيار PIC:</string>
-    <string name="rom_memory_data">بيانات ذاكرة ROM:</string>
-    <string name="eeprom_memory_data">بيانات ذاكرة EEPROM:</string>
-    <string name="privacy_policy">سياسة الخصوصية</string>
-    <string name="place_pic">يجب وضع PIC في</string>
-    <string name="icsp_mode_only">فقط في وضع ICSP، تم تفعيل وضع ICSP</string>
-    <string name="connection_error">خطأ في الاتصال:</string>
-    <string name="select_valid_binary_file">اختر ملف ثنائي صالح</string>
-    <string name="obtener_modelo">الحصول على نموذج المبرمج</string>
-    <string name="obtener_protocolo">الحصول على البروتوكول</string>
-    <string name="modelo_programador">نموذج المبرمج</string>
-    <string name="protocolo_programador">بروتوكول المبرمج</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">موافق</string>
     <string name="cancelar">إلغاء</string>
     <string name="conectado">متصل</string>

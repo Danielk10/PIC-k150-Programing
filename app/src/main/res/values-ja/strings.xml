@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">PICをプログラムする</string>
-    <string name="verify_memory_erased">PICのメモリが消去されたか確認する</string>
-    <string name="erase_memory">PICのメモリを消去する</string>
-    <string name="read_memory">PICのメモリを読む</string>
-    <string name="detect_pic">ソケット内のPICを検出する</string>
-    <string name="load_hex_file">Hexファイルを読み込む</string>
-    <string name="memory_erased_successfully">PICのメモリが正常に消去されました</string>
-    <string name="memory_erase_error">PICのメモリ消去中にエラーが発生しました</string>
-    <string name="rom_programmed_successfully">ROMメモリが正常にプログラムされました</string>
-    <string name="rom_program_error">PICのROMメモリのプログラミング中にエラーが発生しました</string>
-    <string name="eeprom_programmed_successfully">EEPROMメモリが正常にプログラムされました</string>
-    <string name="eeprom_program_error">PICのEEPROMメモリのプログラミング中にエラーが発生しました</string>
-    <string name="fuses_programmed_successfully">ヒューズが正常にプログラムされました</string>
-    <string name="fuses_program_error">PICのヒューズのプログラミング中にエラーが発生しました</string>
-    <string name="fuses_18f_programmed_successfully">18Fヒューズが正常にプログラムされました</string>
-    <string name="fuses_18f_program_error">PICの18Fヒューズのプログラミング中にエラーが発生しました</string>
-    <string name="pic_programmed_successfully">PICが正常にプログラムされました</string>
-    <string name="pic_program_error">PICのプログラミング中にエラーが発生しました</string>
-    <string name="memory_read_successfully">PICのメモリが正常に読み取られました</string>
-    <string name="memory_read_error">PICのメモリの読み取り中にエラーが発生しました</string>
-    <string name="memory_empty">メモリにデータがありません</string>
-    <string name="memory_has_data">メモリにデータがあります</string>
-    <string name="pic_in_socket">PICはソケットにあります</string>
-    <string name="pic_not_in_socket">PICはソケットにありません</string>
-    <string name="waiting_for_pic">PICを待っています</string>
-    <string name="select_pic">PICを選択してください：</string>
-    <string name="rom_memory_data">ROMメモリデータ：</string>
-    <string name="eeprom_memory_data">EEPROMメモリデータ：</string>
-    <string name="privacy_policy">プライバシーポリシー</string>
-    <string name="place_pic">PICを次の位置に配置してください：</string>
-    <string name="icsp_mode_only">ICSPモードのみ、ICSPモードが有効です</string>
-    <string name="connection_error">接続エラー：</string>
-    <string name="select_valid_binary_file">有効なバイナリファイルを選択してください</string>
-    <string name="obtener_modelo">プログラマモデルを取得</string>
-    <string name="obtener_protocolo">プロトコルを取得</string>
-    <string name="modelo_programador">プログラマモデル</string>
-    <string name="protocolo_programador">プログラマプロトコル</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">承認</string>
     <string name="cancelar">キャンセル</string>
     <string name="conectado">接続済み</string>
