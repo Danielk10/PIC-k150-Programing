@@ -1,4 +1,4 @@
-package com.diamon.pic.managers;
+package com.diamon.managers;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;

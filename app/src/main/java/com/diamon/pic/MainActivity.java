@@ -21,12 +21,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.excepciones.ChipConfigurationException;
-import com.diamon.pic.managers.ChipSelectionManager;
-import com.diamon.pic.managers.FileManager;
-import com.diamon.pic.managers.MemoryDisplayManager;
-import com.diamon.pic.managers.PicProgrammingManager;
-import com.diamon.pic.managers.UsbConnectionManager;
-import com.diamon.pic.ui.ProgrammingDialogManager;
+
+import com.diamon.managers.ChipSelectionManager;
+import com.diamon.managers.FileManager;
+import com.diamon.managers.MemoryDisplayManager;
+import com.diamon.managers.PicProgrammingManager;
+import com.diamon.managers.ProgrammingDialogManager;
+import com.diamon.managers.UsbConnectionManager;
 import com.diamon.politicas.Politicas;
 import com.diamon.publicidad.MostrarPublicidad;
 import com.diamon.utilidades.Recurso;
