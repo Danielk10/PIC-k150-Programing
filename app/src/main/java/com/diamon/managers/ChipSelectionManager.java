@@ -17,12 +17,11 @@ import com.diamon.excepciones.ChipConfigurationException;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.diamon.pic.R;
 
 /**
- * Gestor de seleccion de chips PIC - VERSION FINAL
- * - Info completa con metodos EXACTOS de ChipPic
- * - Colores: Etiquetas en BLANCO, Datos en VERDE
- * - Tipo de nucleo incluido
+ * Gestor de seleccion de chips PIC - VERSION FINAL - Info completa con metodos EXACTOS de ChipPic -
+ * Colores: Etiquetas en BLANCO, Datos en VERDE - Tipo de nucleo incluido
  */
 public class ChipSelectionManager {
 
@@ -37,6 +36,7 @@ public class ChipSelectionManager {
 
     public interface ChipSelectionListener {
         void onChipSelected(ChipPic chip, String model);
+
         void onChipSelectionError(String errorMessage);
     }
 
@@ -52,7 +52,7 @@ public class ChipSelectionManager {
             chipReader = new ChipinfoReader(this.activity);
             chipModels = chipReader.getModelosPic();
         } catch (Exception e) {
-            notifyError("Error inicializando base de datos de chips: " + e.getMessage());
+            notifyError(context.getString(R.string.error_inicializando_base_de_da) + ": " + e.getMessage());
         }
     }
 
@@ -62,41 +62,40 @@ public class ChipSelectionManager {
 
     public void setupSpinner(Spinner spinner) {
         if (chipModels.isEmpty()) {
-            notifyError("No hay modelos de chips disponibles");
+            notifyError(context.getString(R.string.no_hay_modelos_de_chips_dispon));
             return;
         }
 
         String[] modelsArray = chipModels.toArray(new String[0]);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                context,
-                android.R.layout.simple_spinner_dropdown_item,
-                modelsArray
-        );
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        context, android.R.layout.simple_spinner_dropdown_item, modelsArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, android.view.View view,
-                                       int position, long id) {
-                if (position >= 0 && position < chipModels.size()) {
-                    String model = chipModels.get(position);
-                    selectChipByModel(model);
-                }
-            }
+        spinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(
+                            AdapterView<?> parent, android.view.View view, int position, long id) {
+                        if (position >= 0 && position < chipModels.size()) {
+                            String model = chipModels.get(position);
+                            selectChipByModel(model);
+                        }
+                    }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // No hacer nada
-            }
-        });
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // No hacer nada
+                    }
+                });
     }
 
     private void selectChipByModel(String model) {
         if (model == null || model.trim().isEmpty()) {
-            notifyError("Modelo de chip invalido");
+            notifyError(context.getString(R.string.modelo_de_chip_invalido));
             return;
         }
 
@@ -104,7 +103,7 @@ public class ChipSelectionManager {
             ChipPic chip = chipReader.getChipEntry(model);
 
             if (chip == null) {
-                notifyError("Chip no encontrado en base de datos: " + model);
+                notifyError(context.getString(R.string.chip_no_encontrado_en_base_de_) + ": " + model);
                 return;
             }
 
@@ -120,7 +119,7 @@ public class ChipSelectionManager {
             }
 
         } catch (Exception e) {
-            notifyError("Error procesando chip: " + e.getMessage());
+            notifyError(context.getString(R.string.error_procesando_chip) + ": " + e.getMessage());
         }
     }
 
@@ -133,12 +132,12 @@ public class ChipSelectionManager {
     }
 
     /**
-     * Obtiene informacion COMPLETA con METODOS EXACTOS de ChipPic
-     * Formato: Etiquetas en BLANCO, Datos en VERDE
+     * Obtiene informacion COMPLETA con METODOS EXACTOS de ChipPic Formato: Etiquetas en BLANCO,
+     * Datos en VERDE
      */
     public SpannableString getSelectedChipInfoColored() {
         if (selectedChip == null) {
-            return new SpannableString("No hay chip seleccionado");
+            return new SpannableString(context.getString(R.string.no_hay_chip_seleccionado));
         }
 
         StringBuilder info = new StringBuilder();
@@ -146,39 +145,47 @@ public class ChipSelectionManager {
         try {
             // Modelo
             String modelo = selectedChip.getNombreDelPic();
-            info.append("Modelo: ").append(modelo).append("\n");
+            info.append(context.getString(R.string.modelo) + ": ").append(modelo).append("\n");
 
             // Palabras ROM
             int romWords = selectedChip.getTamanoROM();
-            info.append("Palabras ROM: ").append(romWords).append("\n");
+            info.append(context.getString(R.string.palabras_rom) + ": ").append(romWords).append("\n");
 
             // Tamano ROM en bytes
             int wordSize = selectedChip.getTipoDeNucleoBit() == 16 ? 4 : 2;
             int romBytes = romWords * wordSize;
-            info.append("Tamano ROM: ").append(romBytes).append(" bytes\n");
+            info.append(context.getString(R.string.tamano_rom) + ": ").append(romBytes).append(" bytes\n");
 
             // EEPROM
             if (selectedChip.isTamanoValidoDeEEPROM()) {
                 int eepromSize = selectedChip.getTamanoEEPROM();
-                info.append("EEPROM: ").append(eepromSize).append(" bytes\n");
+                info.append(context.getString(R.string.eeprom) + ": ")
+                        .append(eepromSize)
+                        .append(" bytes\n");
             } else {
-                info.append("EEPROM: No disponible\n");
+                info.append(
+                        context.getString(R.string.eeprom)
+                                + ": "
+                                + context.getString(R.string.no_disponible)
+                                + "\n");
             }
 
             // Tipo de nucleo
             int nucleoBits = selectedChip.getTipoDeNucleoBit();
-            info.append("Tipo de Nucleo: ").append(nucleoBits).append(" bits\n");
+            info.append(context.getString(R.string.tipo_de_nucleo) + ": ")
+                    .append(nucleoBits)
+                    .append(" bits\n");
 
         } catch (ChipConfigurationException e) {
-            info.append("Error obteniendo datos del chip\n");
+            info.append(context.getString(R.string.error_obteniendo_datos_del_chi) + "\n");
         }
 
         // Pin 1 o modo ICSP
         String pinLocation = selectedChip.getUbicacionPin1DelPic();
         if ("null".equals(pinLocation)) {
-            info.append("Modo: ICSP solamente");
+            info.append(context.getString(R.string.modo) + ": " + context.getString(R.string.icsp_solamente));
         } else {
-            info.append("Pin 1: ").append(pinLocation);
+            info.append(context.getString(R.string.pin_1) + ": ").append(pinLocation);
         }
 
         // Crear SpannableString con colores
@@ -191,9 +198,7 @@ public class ChipSelectionManager {
         return spannableString;
     }
 
-    /**
-     * Aplica colores: Etiquetas en BLANCO, datos en VERDE
-     */
+    /** Aplica colores: Etiquetas en BLANCO, datos en VERDE */
     private void colorizeInfo(SpannableString spannable, String text) {
         String[] lines = text.split("\n");
         int currentPos = 0;
@@ -207,8 +212,7 @@ public class ChipSelectionManager {
                         new ForegroundColorSpan(Color.WHITE),
                         currentPos,
                         currentPos + colonPos + 1,
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                );
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                 // Dato (despues de :) en VERDE
                 if (colonPos + 2 < line.length()) {
@@ -216,8 +220,7 @@ public class ChipSelectionManager {
                             new ForegroundColorSpan(Color.parseColor("#4CAF50")),
                             currentPos + colonPos + 2,
                             currentPos + line.length(),
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                    );
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
 
@@ -225,35 +228,43 @@ public class ChipSelectionManager {
         }
     }
 
-    /**
-     * Version simple sin colores (para compatibilidad)
-     */
+    /** Version simple sin colores (para compatibilidad) */
     public String getSelectedChipInfo() {
         if (selectedChip == null) {
-            return "No hay chip seleccionado";
+            return context.getString(R.string.no_hay_chip_seleccionado);
         }
 
         StringBuilder info = new StringBuilder();
 
         try {
-            info.append("Modelo: ").append(selectedChip.getNombreDelPic()).append("\n");
+            info.append(context.getString(R.string.modelo) + ": ")
+                    .append(selectedChip.getNombreDelPic())
+                    .append("\n");
 
             int romWords = selectedChip.getTamanoROM();
-            info.append("Palabras ROM: ").append(romWords).append("\n");
+            info.append(context.getString(R.string.palabras_rom) + ": ").append(romWords).append("\n");
 
             int wordSize = selectedChip.getTipoDeNucleoBit() == 16 ? 4 : 2;
             int romBytes = romWords * wordSize;
-            info.append("Tamano ROM: ").append(romBytes).append(" bytes\n");
+            info.append(context.getString(R.string.tamano_rom) + ": ").append(romBytes).append(" bytes\n");
 
             if (selectedChip.isTamanoValidoDeEEPROM()) {
                 int eepromSize = selectedChip.getTamanoEEPROM();
-                info.append("EEPROM: ").append(eepromSize).append(" bytes\n");
+                info.append(context.getString(R.string.eeprom) + " : ")
+                        .append(eepromSize)
+                        .append(" bytes\n");
             } else {
-                info.append("EEPROM: No disponible\n");
+                info.append(
+                        context.getString(R.string.eeprom)
+                                + " : "
+                                + context.getString(R.string.no_disponible)
+                                + "\n");
             }
 
             int nucleoBits = selectedChip.getTipoDeNucleoBit();
-            info.append("Tipo de Nucleo: ").append(nucleoBits).append(" bits\n");
+            info.append(context.getString(R.string.tipo_de_nucleo) + ": ")
+                    .append(nucleoBits)
+                    .append(" bits\n");
 
         } catch (ChipConfigurationException e) {
             // Ignorar errores
@@ -261,9 +272,9 @@ public class ChipSelectionManager {
 
         String pinLocation = selectedChip.getUbicacionPin1DelPic();
         if ("null".equals(pinLocation)) {
-            info.append("Modo: ICSP solamente");
+            info.append(context.getString(R.string.modo) + ": " + context.getString(R.string.icsp_solamente));
         } else {
-            info.append("Pin 1: ").append(pinLocation);
+            info.append(context.getString(R.string.pin_1) + ": ").append(pinLocation);
         }
 
         return info.toString();

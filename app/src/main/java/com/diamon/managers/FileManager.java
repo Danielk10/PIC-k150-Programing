@@ -13,10 +13,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import com.diamon.pic.R;
 
-/**
- * FileManager CORREGIDO - Filtro EXACTO del original
- */
+/** FileManager CORREGIDO - Filtro EXACTO del original */
 public class FileManager {
 
     private final Context context;
@@ -27,6 +26,7 @@ public class FileManager {
 
     public interface FileLoadListener {
         void onFileLoaded(String content, String fileName);
+
         void onFileLoadError(String errorMessage);
     }
 
@@ -36,53 +36,46 @@ public class FileManager {
     }
 
     public void initialize() {
-        filePickerLauncher = activity.registerForActivityResult(
-                new ActivityResultContracts.OpenDocument(),
-                uri -> {
-                    if (uri != null) {
-                        processSelectedFile(uri);
-                    }
-                }
-        );
+        filePickerLauncher =
+                activity.registerForActivityResult(
+                        new ActivityResultContracts.OpenDocument(),
+                        uri -> {
+                            if (uri != null) {
+                                processSelectedFile(uri);
+                            }
+                        });
     }
 
     public void setFileLoadListener(FileLoadListener listener) {
         this.fileLoadListener = listener;
     }
 
-    /**
-     * Filtro EXACTO del original
-     */
+    /** Filtro EXACTO del original */
     public void openFilePicker() {
         if (filePickerLauncher == null) {
-            notifyError("FileManager no inicializado");
+            notifyError(context.getString(R.string.filemanager_no_inicializado));
             return;
         }
 
         // FILTROS EXACTOS del codigo original
-        String[] mimeTypes = {
-                "application/octet-stream",
-                "application/x-binary"
-        };
+        String[] mimeTypes = {"application/octet-stream", "application/x-binary"};
 
         filePickerLauncher.launch(mimeTypes);
     }
 
-    /**
-     * Procesa archivo seleccionado - LOGICA EXACTA del original
-     */
+    /** Procesa archivo seleccionado - LOGICA EXACTA del original */
     private void processSelectedFile(Uri uri) {
         String fileName = getFileName(uri);
 
         if (fileName == null) {
-            notifyError("No se pudo obtener el nombre del archivo");
+            notifyError(context.getString(R.string.no_se_pudo_obtener_el_nombre_d));
             return;
         }
 
         // Validar extension .hex o .bin (case-insensitive)
         String lowerFileName = fileName.toLowerCase();
         if (!lowerFileName.endsWith(".bin") && !lowerFileName.endsWith(".hex")) {
-            notifyError("Seleccione un archivo binario valido (.hex o .bin)");
+            notifyError(context.getString(R.string.seleccione_un_archivo_binario_));
             return;
         }
 
@@ -90,16 +83,13 @@ public class FileManager {
         hexFileContent = readHexFile(uri);
     }
 
-
-    /**
-     * Lee archivo HEX - LOGICA EXACTA del original
-     */
+    /** Lee archivo HEX - LOGICA EXACTA del original */
     private String readHexFile(Uri uri) {
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
 
             if (inputStream == null) {
-                notifyError("Error abriendo el archivo seleccionado");
+                notifyError(context.getString(R.string.error_abriendo_el_archivo_sele));
                 return "";
             }
 
@@ -121,7 +111,7 @@ public class FileManager {
             String content = fileContent.toString();
 
             if (content.trim().isEmpty()) {
-                notifyError("El archivo seleccionado esta vacio");
+                notifyError(context.getString(R.string.el_archivo_seleccionado_esta_v));
                 return "";
             }
 
@@ -132,10 +122,10 @@ public class FileManager {
             return content;
 
         } catch (IOException e) {
-            notifyError("Error leyendo el archivo: " + e.getMessage());
+            notifyError(context.getString(R.string.error_leyendo_el_archivo) + ": " + e.getMessage());
             return "";
         } catch (Exception e) {
-            notifyError("Error inesperado leyendo el archivo");
+            notifyError(context.getString(R.string.error_inesperado_leyendo_el_ar));
             return "";
         }
     }

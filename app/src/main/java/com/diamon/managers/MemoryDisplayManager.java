@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import com.diamon.pic.R;
 
 /**
  * Gestor de visualizacion de memoria - VERSION FINAL CORREGIDA
@@ -47,7 +48,7 @@ public class MemoryDisplayManager {
 
         // Titulo
         TextView title = new TextView(context);
-        title.setText("Datos de Memoria");
+        title.setText(context.getString(R.string.datos_de_memoria));
         title.setTextColor(Color.BLACK);
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);
@@ -57,7 +58,7 @@ public class MemoryDisplayManager {
 
         // Etiqueta ROM
         TextView romLabel = new TextView(context);
-        romLabel.setText("Memoria ROM");
+        romLabel.setText(context.getString(R.string.memoria_rom));
         romLabel.setTextColor(Color.parseColor("#4CAF50"));
         romLabel.setTextSize(16);
         romLabel.setTypeface(null, Typeface.BOLD);
@@ -89,7 +90,7 @@ public class MemoryDisplayManager {
         // EEPROM si existe
         if (hasEeprom) {
             TextView eepromLabel = new TextView(context);
-            eepromLabel.setText("Memoria EEPROM");
+            eepromLabel.setText(context.getString(R.string.memoria_eeprom));
             eepromLabel.setTextColor(Color.parseColor("#4CAF50"));
             eepromLabel.setTextSize(16);
             eepromLabel.setTypeface(null, Typeface.BOLD);
@@ -119,7 +120,7 @@ eepromScrollView.addView(eepromContainer);
 
         // Boton cerrar
         TextView closeButton = new TextView(context);
-        closeButton.setText("Cerrar");
+        closeButton.setText(context.getString(R.string.cerrar));
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(16);
         closeButton.setGravity(Gravity.CENTER);

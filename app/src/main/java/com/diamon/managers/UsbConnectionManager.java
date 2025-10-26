@@ -17,6 +17,7 @@ import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import java.io.IOException;
 import java.util.List;
+import com.diamon.pic.R;
 
 /**
  * Gestor de conexiones USB para comunicacion con el programador PIC K150. Maneja la deteccion de
@@ -132,14 +133,14 @@ public class UsbConnectionManager {
      */
     private void connectToDevice(UsbSerialDriver driver) {
         if (driver == null) {
-            notifyError("Driver USB no disponible");
+            notifyError(context.getString(R.string.driver_usb_no_disponible));
             return;
         }
 
         try {
             // Verificar que el dispositivo tiene puertos
             if (driver.getPorts().isEmpty()) {
-                notifyError("Dispositivo sin puertos USB disponibles");
+                notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
                 return;
             }
 
@@ -158,7 +159,7 @@ public class UsbConnectionManager {
 
             if (!protocoloIniciado) {
                 cleanupConnection();
-                notifyError("Error inicializando protocolo de comunicacion");
+                notifyError(context.getString(R.string.error_inicializando_protocolo_));
                 return;
             }
 
@@ -168,12 +169,12 @@ public class UsbConnectionManager {
             }
 
         } catch (IOException e) {
-            String mensajeError = "Error de conexion USB: " + e.getMessage();
+            String mensajeError = context.getString(R.string.error_de_conexion_usb) + ": " + e.getMessage();
             cleanupConnection();
             notifyError(mensajeError);
         } catch (Exception e) {
             cleanupConnection();
-            notifyError("Error inesperado durante la conexion");
+            notifyError(context.getString(R.string.error_inesperado_durante_la_co));
         }
     }
 
