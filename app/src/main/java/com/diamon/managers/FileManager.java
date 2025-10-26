@@ -79,8 +79,9 @@ public class FileManager {
             return;
         }
 
-        // Validar extension .hex o .bin
-        if (!fileName.endsWith(".bin") && !fileName.endsWith(".hex")) {
+        // Validar extension .hex o .bin (case-insensitive)
+        String lowerFileName = fileName.toLowerCase();
+        if (!lowerFileName.endsWith(".bin") && !lowerFileName.endsWith(".hex")) {
             notifyError("Seleccione un archivo binario valido (.hex o .bin)");
             return;
         }
@@ -88,6 +89,7 @@ public class FileManager {
         // Leer archivo
         hexFileContent = readHexFile(uri);
     }
+
 
     /**
      * Lee archivo HEX - LOGICA EXACTA del original
