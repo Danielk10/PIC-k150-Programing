@@ -82,7 +82,7 @@ public class MemoryDisplayManager {
         romBg.setCornerRadius(8f);
         romContainer.setBackground(romBg);
 
-        displayDataWithColors(romContainer, romData != null ? romData : "", 4, 8, true);
+        displayDataWithColors(romContainer, romData != null ? romData : "", 4, 8, true, romSize);
         romScrollView.addView(romContainer);
         container.addView(romScrollView);
 
@@ -112,9 +112,8 @@ public class MemoryDisplayManager {
             eepromBg.setColor(Color.BLACK);
             eepromBg.setCornerRadius(8f);
             eepromContainer.setBackground(eepromBg);
-
-            displayDataWithColors(eepromContainer, eepromData != null ? eepromData : "", 2, 8, false);
-            eepromScrollView.addView(eepromContainer);
+            displayDataWithColors(eepromContainer, eepromData != null ? eepromData : "", 2, 8, false, eepromSize);
+eepromScrollView.addView(eepromContainer);
             container.addView(eepromScrollView);
         }
 
@@ -171,8 +170,8 @@ public class MemoryDisplayManager {
      * - VERDE: Datos cargados
      * - ROJO: Datos vacios (FF, 3FFF, FFFF)
      */
-    private void displayDataWithColors(LinearLayout container, String data, int groupSize, int columns, boolean isROM) {
-        int address = 0;
+    private void displayDataWithColors(LinearLayout container, String data, int groupSize, int columns, boolean isROM, int memorySize) {
+      int address = 0;
 
         for (int i = 0; i < data.length(); i += groupSize * columns) {
             StringBuilder rowText = new StringBuilder();
@@ -198,9 +197,11 @@ public class MemoryDisplayManager {
             address += 8;
         }
 
-        // Agregar filas vacias en ROJO
-        int totalRows = (int) Math.ceil(data.length() / (double) (groupSize * columns));
-        for (int i = totalRows; i < totalRows + 10; i++) {
+        // Agregar filas vacias en ROJO hasta el tamano real de memoria
+        int totalDataRows = (int) Math.ceil(data.length() / (double) (groupSize * columns));
+        int totalMemoryRows = (int) Math.ceil(memorySize / (double) columns);
+
+        for (int i = totalDataRows; i < totalMemoryRows; i++) {
             String addressHex = String.format("%04X", address);
             StringBuilder emptyRow = new StringBuilder();
             emptyRow.append(addressHex).append(": ");
@@ -217,6 +218,7 @@ public class MemoryDisplayManager {
 
             address += 8;
         }
+
     }
 
     /**
