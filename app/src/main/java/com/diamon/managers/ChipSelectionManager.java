@@ -1,118 +1,99 @@
 package com.diamon.managers;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.ChipinfoReader;
-
 import com.diamon.excepciones.ChipConfigurationException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gestor de seleccion de chips PIC MEJORADO. Maneja el spinner de seleccion y la informacion
- * detallada de los chips disponibles. Muestra: Modelo, Palabras ROM, Tamano ROM, Tamano EEPROM, Pin
- * 1
+ * Gestor de seleccion de chips PIC - VERSION FINAL
+ * - Info completa con metodos EXACTOS de ChipPic
+ * - Colores: Etiquetas en BLANCO, Datos en VERDE
+ * - Tipo de nucleo incluido
  */
 public class ChipSelectionManager {
 
     private final Context context;
-    private final AppCompatActivity actividad;
+
+    private final AppCompatActivity activity;
     private ChipinfoReader chipReader;
     private List<String> chipModels;
     private ChipPic selectedChip;
 
-    // Listener para notificar cambios en la seleccion
     private ChipSelectionListener selectionListener;
 
-    /** Interfaz para manejar eventos de seleccion de chips */
     public interface ChipSelectionListener {
         void onChipSelected(ChipPic chip, String model);
-
         void onChipSelectionError(String errorMessage);
     }
 
-    /**
-     * Constructor del gestor de seleccion de chips
-     *
-     * @param context Contexto de la aplicacion
-     */
-    public ChipSelectionManager(AppCompatActivity actividad) {
-        this.actividad = actividad;
-        this.context = actividad.getApplicationContext();
+    public ChipSelectionManager(AppCompatActivity activity) {
+        this.activity = activity;
+        this.context = activity.getApplicationContext();
         this.chipModels = new ArrayList<>();
         initializeChipReader();
     }
 
-    /** Inicializa el lector de informacion de chips */
     private void initializeChipReader() {
         try {
-            chipReader = new ChipinfoReader(actividad);
+            chipReader = new ChipinfoReader(this.activity);
             chipModels = chipReader.getModelosPic();
         } catch (Exception e) {
             notifyError("Error inicializando base de datos de chips: " + e.getMessage());
         }
     }
 
-    /**
-     * Establece el listener para eventos de seleccion
-     *
-     * @param listener Listener que sera notificado
-     */
     public void setSelectionListener(ChipSelectionListener listener) {
         this.selectionListener = listener;
     }
 
-    /**
-     * Configura un spinner con la lista de chips disponibles
-     *
-     * @param spinner Spinner a configurar
-     */
     public void setupSpinner(Spinner spinner) {
         if (chipModels.isEmpty()) {
             notifyError("No hay modelos de chips disponibles");
             return;
         }
 
-        // Crear array de modelos
         String[] modelsArray = chipModels.toArray(new String[0]);
 
-        // Crear adaptador
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        context, android.R.layout.simple_spinner_dropdown_item, modelsArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                context,
+                android.R.layout.simple_spinner_dropdown_item,
+                modelsArray
+        );
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // Configurar listener de seleccion
-        spinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(
-                            AdapterView<?> parent, android.view.View view, int position, long id) {
-                        if (position >= 0 && position < chipModels.size()) {
-                            String model = chipModels.get(position);
-                            selectChipByModel(model);
-                        }
-                    }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, android.view.View view,
+                                       int position, long id) {
+                if (position >= 0 && position < chipModels.size()) {
+                    String model = chipModels.get(position);
+                    selectChipByModel(model);
+                }
+            }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // No hacer nada
-                    }
-                });
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // No hacer nada
+            }
+        });
     }
 
-    /**
-     * Selecciona un chip por su modelo
-     *
-     * @param model Modelo del chip a seleccionar
-     */
     private void selectChipByModel(String model) {
         if (model == null || model.trim().isEmpty()) {
             notifyError("Modelo de chip invalido");
@@ -129,12 +110,11 @@ public class ChipSelectionManager {
 
             selectedChip = chip;
 
-            // Configurar modo ICSP si es necesario
+            // Configurar modo ICSP
             String pinLocation = chip.getUbicacionPin1DelPic();
             boolean isIcspOnly = "null".equals(pinLocation);
             chip.setActivarICSP(isIcspOnly);
 
-            // Notificar seleccion
             if (selectionListener != null) {
                 selectionListener.onChipSelected(chip, model);
             }
@@ -144,50 +124,40 @@ public class ChipSelectionManager {
         }
     }
 
-    /**
-     * Obtiene el chip actualmente seleccionado
-     *
-     * @return Chip seleccionado o null si no hay seleccion
-     */
     public ChipPic getSelectedChip() {
         return selectedChip;
     }
 
-    /**
-     * Obtiene la lista de modelos disponibles
-     *
-     * @return Lista de modelos de chips
-     */
     public List<String> getChipModels() {
         return new ArrayList<>(chipModels);
     }
 
     /**
-     * Obtiene informacion COMPLETA formateada del chip seleccionado Incluye: Modelo, Palabras ROM,
-     * Tamano ROM (bytes), EEPROM (con indicacion si no tiene), Pin 1
-     *
-     * @return String con informacion completa del chip
+     * Obtiene informacion COMPLETA con METODOS EXACTOS de ChipPic
+     * Formato: Etiquetas en BLANCO, Datos en VERDE
      */
-    public String getSelectedChipInfo() {
+    public SpannableString getSelectedChipInfoColored() {
         if (selectedChip == null) {
-            return "No hay chip seleccionado";
+            return new SpannableString("No hay chip seleccionado");
         }
 
         StringBuilder info = new StringBuilder();
 
-        // Modelo
-        info.append("Modelo: ").append(selectedChip.getNombreDelPic()).append("\n");
         try {
-            // Palabras de ROM
+            // Modelo
+            String modelo = selectedChip.getNombreDelPic();
+            info.append("Modelo: ").append(modelo).append("\n");
+
+            // Palabras ROM
             int romWords = selectedChip.getTamanoROM();
             info.append("Palabras ROM: ").append(romWords).append("\n");
 
-            // Tamano ROM en bytes (cada palabra = 2 bytes para PICs de 14 bits, 4 para 16 bits)
+            // Tamano ROM en bytes
             int wordSize = selectedChip.getTipoDeNucleoBit() == 16 ? 4 : 2;
             int romBytes = romWords * wordSize;
             info.append("Tamano ROM: ").append(romBytes).append(" bytes\n");
 
-            // EEPROM - Indicar si tiene o no
+            // EEPROM
             if (selectedChip.isTamanoValidoDeEEPROM()) {
                 int eepromSize = selectedChip.getTamanoEEPROM();
                 info.append("EEPROM: ").append(eepromSize).append(" bytes\n");
@@ -195,7 +165,12 @@ public class ChipSelectionManager {
                 info.append("EEPROM: No disponible\n");
             }
 
+            // Tipo de nucleo
+            int nucleoBits = selectedChip.getTipoDeNucleoBit();
+            info.append("Tipo de Nucleo: ").append(nucleoBits).append(" bits\n");
+
         } catch (ChipConfigurationException e) {
+            info.append("Error obteniendo datos del chip\n");
         }
 
         // Pin 1 o modo ICSP
@@ -206,23 +181,98 @@ public class ChipSelectionManager {
             info.append("Pin 1: ").append(pinLocation);
         }
 
-        return info.toString();
+        // Crear SpannableString con colores
+        String infoStr = info.toString();
+        SpannableString spannableString = new SpannableString(infoStr);
+
+        // Aplicar colores: Etiquetas BLANCO, Datos VERDE
+        colorizeInfo(spannableString, infoStr);
+
+        return spannableString;
     }
 
     /**
-     * Verifica si hay un chip seleccionado
-     *
-     * @return true si hay un chip seleccionado, false en caso contrario
+     * Aplica colores: Etiquetas en BLANCO, datos en VERDE
      */
+    private void colorizeInfo(SpannableString spannable, String text) {
+        String[] lines = text.split("\n");
+        int currentPos = 0;
+
+        for (String line : lines) {
+            if (line.contains(":")) {
+                int colonPos = line.indexOf(":");
+
+                // Etiqueta (antes de :) en BLANCO
+                spannable.setSpan(
+                        new ForegroundColorSpan(Color.WHITE),
+                        currentPos,
+                        currentPos + colonPos + 1,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                );
+
+                // Dato (despues de :) en VERDE
+                if (colonPos + 2 < line.length()) {
+                    spannable.setSpan(
+                            new ForegroundColorSpan(Color.parseColor("#4CAF50")),
+                            currentPos + colonPos + 2,
+                            currentPos + line.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    );
+                }
+            }
+
+            currentPos += line.length() + 1; // +1 por el \n
+        }
+    }
+
+    /**
+     * Version simple sin colores (para compatibilidad)
+     */
+    public String getSelectedChipInfo() {
+        if (selectedChip == null) {
+            return "No hay chip seleccionado";
+        }
+
+        StringBuilder info = new StringBuilder();
+
+        try {
+            info.append("Modelo: ").append(selectedChip.getNombreDelPic()).append("\n");
+
+            int romWords = selectedChip.getTamanoROM();
+            info.append("Palabras ROM: ").append(romWords).append("\n");
+
+            int wordSize = selectedChip.getTipoDeNucleoBit() == 16 ? 4 : 2;
+            int romBytes = romWords * wordSize;
+            info.append("Tamano ROM: ").append(romBytes).append(" bytes\n");
+
+            if (selectedChip.isTamanoValidoDeEEPROM()) {
+                int eepromSize = selectedChip.getTamanoEEPROM();
+                info.append("EEPROM: ").append(eepromSize).append(" bytes\n");
+            } else {
+                info.append("EEPROM: No disponible\n");
+            }
+
+            int nucleoBits = selectedChip.getTipoDeNucleoBit();
+            info.append("Tipo de Nucleo: ").append(nucleoBits).append(" bits\n");
+
+        } catch (ChipConfigurationException e) {
+            // Ignorar errores
+        }
+
+        String pinLocation = selectedChip.getUbicacionPin1DelPic();
+        if ("null".equals(pinLocation)) {
+            info.append("Modo: ICSP solamente");
+        } else {
+            info.append("Pin 1: ").append(pinLocation);
+        }
+
+        return info.toString();
+    }
+
     public boolean hasChipSelected() {
         return selectedChip != null;
     }
 
-    /**
-     * Notifica un error al listener
-     *
-     * @param errorMessage Mensaje de error
-     */
     private void notifyError(String errorMessage) {
         if (selectionListener != null) {
             selectionListener.onChipSelectionError(errorMessage);
