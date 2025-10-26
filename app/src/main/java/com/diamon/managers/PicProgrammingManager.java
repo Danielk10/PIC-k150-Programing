@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.protocolo.ProtocoloP018;
+import com.diamon.pic.R;
 
 /**
  * Gestor de operaciones de programacion de microcontroladores PIC. Encapsula todas las operaciones
@@ -74,12 +75,12 @@ public class PicProgrammingManager {
      */
     public boolean programChip(ChipPic chipPIC, String firmware) {
         if (protocolo == null) {
-            notifyError("Protocolo no inicializado");
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
             return false;
         }
 
         if (chipPIC == null || firmware == null || firmware.isEmpty()) {
-            notifyError("Datos invalidos para programacion");
+            notifyError(context.getString(R.string.datos_invalidos_para_programac));
             return false;
         }
 
@@ -87,51 +88,51 @@ public class PicProgrammingManager {
 
         try {
             // Paso 1: Borrar memorias
-            notifyProgress("Borrando memorias...", 10);
+            notifyProgress(context.getString(R.string.borrando_memorias), 10);
             if (!protocolo.borrarMemoriasDelPic()) {
-                notifyError("Error borrando memorias");
+                notifyError(context.getString(R.string.error_borrando_memorias));
                 return false;
             }
 
             // Paso 2: Programar ROM
-            notifyProgress("Programando memoria ROM...", 30);
+            notifyProgress(context.getString(R.string.programando_memoria_rom), 30);
             if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
-                notifyError("Error programando ROM");
+                notifyError(context.getString(R.string.error_programando_rom));
                 return false;
             }
 
             // Paso 3: Programar EEPROM si es necesario
             if (chipPIC.isTamanoValidoDeEEPROM()) {
-                notifyProgress("Programando memoria EEPROM...", 50);
+                notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
                 if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, firmware)) {
-                    notifyError("Error programando EEPROM");
+                    notifyError(context.getString(R.string.error_programando_eeprom));
                     return false;
                 }
             }
 
             // Paso 4: Programar Fuses
-            notifyProgress("Programando Fuses ID...", 70);
+            notifyProgress(context.getString(R.string.programando_fuses_id), 70);
             if (!protocolo.programarFusesIDDelPic(chipPIC, firmware)) {
-                notifyError("Error programando Fuses");
+                notifyError(context.getString(R.string.error_programando_fuses));
                 return false;
             }
 
             // Paso 5: Programar Fuses adicionales para PIC18F
             if (chipPIC.getTipoDeNucleoBit() == 16) {
-                notifyProgress("Programando Fuses 18F...", 90);
+                notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
                 if (!protocolo.programarFusesDePics18F()) {
-                    notifyError("Error programando Fuses 18F");
+                    notifyError(context.getString(R.string.error_programando_fuses_18f));
                     return false;
                 }
             }
 
             // Completado
-            notifyProgress("Programacion completada", 100);
+            notifyProgress(context.getString(R.string.programacion_completada), 100);
             notifyCompleted(true);
             return true;
 
         } catch (Exception e) {
-            notifyError("Error inesperado: " + e.getMessage());
+            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
             return false;
         }
     }
@@ -144,14 +145,15 @@ public class PicProgrammingManager {
      */
     public String readRomMemory(ChipPic chipPIC) {
         if (protocolo == null || chipPIC == null) {
-            notifyError("Protocolo no inicializado");
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
             return "";
         }
 
         try {
             return protocolo.leerMemoriaROMDelPic(chipPIC);
         } catch (Exception e) {
-            notifyError("Error leyendo memoria ROM: " + e.getMessage());
+            notifyError(
+                    context.getString(R.string.error_leyendo_memoria_rom) + ": " + e.getMessage());
             return "";
         }
     }
@@ -164,7 +166,7 @@ public class PicProgrammingManager {
      */
     public String readEepromMemory(ChipPic chipPIC) {
         if (protocolo == null || chipPIC == null) {
-            notifyError("Protocolo no inicializado");
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
             return "";
         }
 
@@ -174,7 +176,10 @@ public class PicProgrammingManager {
             }
             return "";
         } catch (Exception e) {
-            notifyError("Error leyendo memoria EEPROM: " + e.getMessage());
+            notifyError(
+                    context.getString(R.string.error_leyendo_memoria_eeprom)
+                            + ": "
+                            + e.getMessage());
             return "";
         }
     }
@@ -186,14 +191,14 @@ public class PicProgrammingManager {
      */
     public boolean eraseMemory() {
         if (protocolo == null) {
-            notifyError("Protocolo no inicializado");
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
             return false;
         }
 
         try {
             return protocolo.borrarMemoriasDelPic();
         } catch (Exception e) {
-            notifyError("Error borrando memoria: " + e.getMessage());
+            notifyError(context.getString(R.string.error_borrando_memoria) + ": " + e.getMessage());
             return false;
         }
     }
@@ -205,14 +210,15 @@ public class PicProgrammingManager {
      */
     public boolean verifyMemoryErased() {
         if (protocolo == null) {
-            notifyError("Protocolo no inicializado");
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
             return false;
         }
 
         try {
             return protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
         } catch (Exception e) {
-            notifyError("Error verificando memoria: " + e.getMessage());
+            notifyError(
+                    context.getString(R.string.error_verificando_memoria) + ": " + e.getMessage());
             return false;
         }
     }
@@ -224,14 +230,14 @@ public class PicProgrammingManager {
      */
     public boolean detectChipInSocket() {
         if (protocolo == null) {
-            notifyError("Protocolo no inicializado");
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
             return false;
         }
 
         try {
             return protocolo.detectarPicEnElSocket();
         } catch (Exception e) {
-            notifyError("Error detectando chip: " + e.getMessage());
+            notifyError(context.getString(R.string.error_detectando_chip) + ": " + e.getMessage());
             return false;
         }
     }

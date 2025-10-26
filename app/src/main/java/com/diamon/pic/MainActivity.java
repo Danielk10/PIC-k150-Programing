@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.excepciones.ChipConfigurationException;
-
 import com.diamon.managers.ChipSelectionManager;
 import com.diamon.managers.FileManager;
 import com.diamon.managers.MemoryDisplayManager;
@@ -173,11 +172,11 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(
                                 () -> {
                                     connectionStatusTextView.setTextColor(Color.GREEN);
-                                    connectionStatusTextView.setText("Conectado");
+                                    connectionStatusTextView.setText(getString(R.string.conectado));
                                     programmingManager.setProtocolo(usbManager.getProtocolo());
                                     Toast.makeText(
                                                     MainActivity.this,
-                                                    "Conectado al programador",
+                                                    getString(R.string.conectado_al_programador),
                                                     Toast.LENGTH_SHORT)
                                             .show();
                                 });
@@ -188,7 +187,8 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(
                                 () -> {
                                     connectionStatusTextView.setTextColor(Color.RED);
-                                    connectionStatusTextView.setText("Desconectado");
+                                    connectionStatusTextView.setText(
+                                            getString(R.string.desconectado));
                                 });
                     }
 
@@ -197,7 +197,8 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(
                                 () -> {
                                     connectionStatusTextView.setTextColor(Color.RED);
-                                    connectionStatusTextView.setText("Desconectado");
+                                    connectionStatusTextView.setText(
+                                            getString(R.string.desconectado));
                                     Toast.makeText(
                                                     MainActivity.this,
                                                     errorMessage,
@@ -223,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                             } catch (Exception e) {
                                 Toast.makeText(
                                                 MainActivity.this,
-                                                "Error inicializando chip",
+                                                getString(R.string.error_inicializando_chip),
                                                 Toast.LENGTH_SHORT)
                                         .show();
                             }
@@ -245,18 +246,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFileLoaded(String content, String fileName) {
                         firmware = content;
-                        processStatusTextView.setText("Archivo cargado: " + fileName);
+                        processStatusTextView.setText(
+                                getString(R.string.archivo_cargado) + ": " + fileName);
                         enableOperationButtons(true);
                         Toast.makeText(
                                         MainActivity.this,
-                                        "Archivo HEX cargado exitosamente",
+                                        getString(R.string.archivo_hex_cargado_exitosamen),
                                         Toast.LENGTH_SHORT)
                                 .show();
                     }
 
                     @Override
                     public void onFileLoadError(String errorMessage) {
-                        processStatusTextView.setText("Error cargando archivo");
+                        processStatusTextView.setText(getString(R.string.error_cargando_archivo));
                         Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                     }
                 });
@@ -268,7 +270,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onProgrammingStarted() {
                         runOnUiThread(
-                                () -> processStatusTextView.setText("Iniciando programacion..."));
+                                () ->
+                                        processStatusTextView.setText(
+                                                getString(R.string.iniciando_programacion)));
                     }
 
                     @Override
@@ -285,9 +289,10 @@ public class MainActivity extends AppCompatActivity {
                                 () -> {
                                     if (success) {
                                         processStatusTextView.setText(
-                                                "PIC programado exitosamente");
+                                                getString(R.string.pic_programado_exitosamente));
                                     } else {
-                                        processStatusTextView.setText("Error programando PIC");
+                                        processStatusTextView.setText(
+                                                getString(R.string.error_programando_pic));
                                     }
                                 });
                     }
@@ -359,7 +364,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void executeProgram() {
         if (currentChip == null || firmware.isEmpty()) {
-            Toast.makeText(this, "Seleccione un chip y cargue un archivo HEX", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                            this,
+                            getString(R.string.seleccione_un_chip_y_cargue_un),
+                            Toast.LENGTH_SHORT)
                     .show();
             return;
         }
@@ -388,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
     /** LEER MEMORIA: Muestra ROM y EEPROM en UN SOLO popup */
     private void executeReadMemory() {
         if (currentChip == null) {
-            Toast.makeText(this, "Seleccione un chip", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -400,29 +408,27 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(
                                     () -> {
                                         try {
-                                        int romSize = currentChip.getTamanoROM();
-                                        int eepromSize =
-                                                currentChip.isTamanoValidoDeEEPROM()
-                                                        ? currentChip
-                                                                .getTamanoEEPROM()
-                                                        : 0;
-                                        boolean hasEeprom =
-                                                currentChip.isTamanoValidoDeEEPROM()
-                                                        && !eepromData.isEmpty();
+                                            int romSize = currentChip.getTamanoROM();
+                                            int eepromSize =
+                                                    currentChip.isTamanoValidoDeEEPROM()
+                                                            ? currentChip.getTamanoEEPROM()
+                                                            : 0;
+                                            boolean hasEeprom =
+                                                    currentChip.isTamanoValidoDeEEPROM()
+                                                            && !eepromData.isEmpty();
 
-                                        // UN SOLO POPUP con ROM y EEPROM
-                                        memoryDisplayManager.showMemoryDataPopup(
-                                                romData != null ? romData : "",
-                                                romSize,
-                                                eepromData != null ? eepromData : "",
-                                                eepromSize,
-                                                hasEeprom);
+                                            // UN SOLO POPUP con ROM y EEPROM
+                                            memoryDisplayManager.showMemoryDataPopup(
+                                                    romData != null ? romData : "",
+                                                    romSize,
+                                                    eepromData != null ? eepromData : "",
+                                                    eepromSize,
+                                                    hasEeprom);
 
-                                        processStatusTextView.setText("Memoria leida exitosamente");
-                                        }catch(ChipConfigurationException e)
-                                        {
-                                            
-                                            
+                                            processStatusTextView.setText(
+                                                    getString(R.string.memoria_leida_exitosamente));
+                                        } catch (ChipConfigurationException e) {
+
                                         }
                                     });
                         })
@@ -437,9 +443,11 @@ public class MainActivity extends AppCompatActivity {
                                     () -> {
                                         if (success) {
                                             processStatusTextView.setText(
-                                                    "Memoria borrada exitosamente");
+                                                    getString(
+                                                            R.string.memoria_borrada_exitosamente));
                                         } else {
-                                            processStatusTextView.setText("Error borrando memoria");
+                                            processStatusTextView.setText(
+                                                    getString(R.string.error_borrando_memoria));
                                         }
                                     });
                         })
@@ -453,9 +461,11 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(
                                     () -> {
                                         if (isEmpty) {
-                                            processStatusTextView.setText("Memoria vacia");
+                                            processStatusTextView.setText(
+                                                    getString(R.string.memoria_vacia));
                                         } else {
-                                            processStatusTextView.setText("Memoria contiene datos");
+                                            processStatusTextView.setText(
+                                                    getString(R.string.memoria_contiene_datos));
                                         }
                                     });
                         })
@@ -470,10 +480,11 @@ public class MainActivity extends AppCompatActivity {
                                     () -> {
                                         if (detected) {
                                             processStatusTextView.setText(
-                                                    "PIC detectado en socket");
+                                                    getString(R.string.pic_detectado_en_socket));
                                         } else {
                                             processStatusTextView.setText(
-                                                    "No se detecto PIC en socket");
+                                                    getString(
+                                                            R.string.no_se_detecto_pic_en_socket));
                                         }
                                     });
                         })
@@ -488,9 +499,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, 1, 1, "Modelo Programador");
-        menu.add(Menu.NONE, 2, 2, "Protocolo");
-        menu.add(Menu.NONE, 3, 3, "Politica de Privacidad");
+        menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
+        menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
+        menu.add(Menu.NONE, 3, 3, getString(R.string.politica_de_privacidad));
         return true;
     }
 
@@ -515,9 +526,9 @@ public class MainActivity extends AppCompatActivity {
         if (usbManager.isConnected()) {
             String model = usbManager.getProtocolo().obtenerVersionOModeloDelProgramador();
             new AlertDialog.Builder(this)
-                    .setTitle("Modelo del Programador")
+                    .setTitle(getString(R.string.modelo_del_programador))
                     .setMessage(model)
-                    .setPositiveButton("Aceptar", null)
+                    .setPositiveButton(getString(R.string.aceptar), null)
                     .show();
         }
     }
@@ -526,9 +537,9 @@ public class MainActivity extends AppCompatActivity {
         if (usbManager.isConnected()) {
             String protocol = usbManager.getProtocolo().obtenerProtocoloDelProgramador();
             new AlertDialog.Builder(this)
-                    .setTitle("Protocolo del Programador")
+                    .setTitle(getString(R.string.protocolo_del_programador))
                     .setMessage(protocol)
-                    .setPositiveButton("Aceptar", null)
+                    .setPositiveButton(getString(R.string.aceptar), null)
                     .show();
         }
     }
