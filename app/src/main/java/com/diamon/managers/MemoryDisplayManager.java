@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -11,10 +14,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
- * Gestor de visualizacion de memoria COMPLETAMENTE CORREGIDO
+ * Gestor de visualizacion de memoria - VERSION FINAL CORREGIDA
+ * - Direcciones en DORADO (#FFD700)
+ * - Datos cargados en VERDE (#4CAF50)
+ * - Datos vacios (FF, 3FFF, FFFF) en ROJO (#F44336)
  * - ROM y EEPROM en UN popup
- * - Verde para datos, BLANCO para vacio (diferencia clara)
- * - ScrollView funcional en ambos
+ * - ScrollView funcional
  * - NO se sale de pantalla
  */
 public class MemoryDisplayManager {
@@ -27,10 +32,9 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Muestra ROM y EEPROM en UN popup - EXACTO como el original
+     * Muestra ROM y EEPROM en UN popup con colores correctos
      */
     public void showMemoryDataPopup(String romData, int romSize, String eepromData, int eepromSize, boolean hasEeprom) {
-        // Contenedor principal
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
 
@@ -68,25 +72,22 @@ public class MemoryDisplayManager {
         );
         romScrollView.setLayoutParams(romScrollParams);
 
-        // Contenedor ROM con fondo negro
         LinearLayout romContainer = new LinearLayout(context);
         romContainer.setOrientation(LinearLayout.VERTICAL);
         romContainer.setBackgroundColor(Color.BLACK);
         romContainer.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
-        // Crear background con bordes
         GradientDrawable romBg = new GradientDrawable();
         romBg.setColor(Color.BLACK);
         romBg.setCornerRadius(8f);
         romContainer.setBackground(romBg);
 
-        displayData(romContainer, romData != null ? romData : "", 4, 8);
+        displayDataWithColors(romContainer, romData != null ? romData : "", 4, 8, true);
         romScrollView.addView(romContainer);
         container.addView(romScrollView);
 
-        // Si tiene EEPROM
+        // EEPROM si existe
         if (hasEeprom) {
-            // Etiqueta EEPROM
             TextView eepromLabel = new TextView(context);
             eepromLabel.setText("Memoria EEPROM");
             eepromLabel.setTextColor(Color.parseColor("#4CAF50"));
@@ -95,7 +96,6 @@ public class MemoryDisplayManager {
             eepromLabel.setPadding(0, dpToPx(12), 0, dpToPx(8));
             container.addView(eepromLabel);
 
-            // ScrollView EEPROM
             ScrollView eepromScrollView = new ScrollView(context);
             LinearLayout.LayoutParams eepromScrollParams = new LinearLayout.LayoutParams(
                     dpToPx(320),
@@ -103,7 +103,6 @@ public class MemoryDisplayManager {
             );
             eepromScrollView.setLayoutParams(eepromScrollParams);
 
-            // Contenedor EEPROM
             LinearLayout eepromContainer = new LinearLayout(context);
             eepromContainer.setOrientation(LinearLayout.VERTICAL);
             eepromContainer.setBackgroundColor(Color.BLACK);
@@ -114,7 +113,7 @@ public class MemoryDisplayManager {
             eepromBg.setCornerRadius(8f);
             eepromContainer.setBackground(eepromBg);
 
-            displayData(eepromContainer, eepromData != null ? eepromData : "", 2, 8);
+            displayDataWithColors(eepromContainer, eepromData != null ? eepromData : "", 2, 8, false);
             eepromScrollView.addView(eepromContainer);
             container.addView(eepromScrollView);
         }
@@ -167,17 +166,20 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * LOGICA EXACTA del original para mostrar datos
-     * Verde para datos, BLANCO para vacio
+     * Muestra datos con colores:
+     * - DORADO: Direcciones
+     * - VERDE: Datos cargados
+     * - ROJO: Datos vacios (FF, 3FFF, FFFF)
      */
-    private void displayData(LinearLayout container, String data, int groupSize, int columns) {
+    private void displayDataWithColors(LinearLayout container, String data, int groupSize, int columns, boolean isROM) {
         int address = 0;
-        StringBuilder formattedRow = new StringBuilder();
 
         for (int i = 0; i < data.length(); i += groupSize * columns) {
+            StringBuilder rowText = new StringBuilder();
+
             // Direccion
             String addressHex = String.format("%04X", address);
-            formattedRow.append(addressHex).append(": ");
+            rowText.append(addressHex).append(": ");
 
             // Datos
             for (int j = 0; j < columns; j++) {
@@ -185,51 +187,102 @@ public class MemoryDisplayManager {
                 int end = Math.min(start + groupSize, data.length());
 
                 if (start < data.length()) {
-                    formattedRow.append(data.substring(start, end)).append(" ");
+                    rowText.append(data.substring(start, end)).append(" ");
                 }
             }
 
-            // Crear fila
-            TextView rowTextView = new TextView(context);
-            rowTextView.setText(formattedRow.toString().trim());
-            rowTextView.setTextSize(11);
-            rowTextView.setTextColor(Color.parseColor("#4CAF50")); // VERDE para datos
-            rowTextView.setTypeface(Typeface.MONOSPACE);
-            rowTextView.setPadding(4, 2, 4, 2);
+            // Crear TextView con SpannableString para colores
+            TextView rowTextView = createColoredRow(rowText.toString(), addressHex, groupSize, isROM);
             container.addView(rowTextView);
 
             address += 8;
-            formattedRow.setLength(0);
         }
 
-        // Agregar filas BLANCAS para memoria vacia
-        // Calcular cuantas filas faltan
+        // Agregar filas vacias en ROJO
         int totalRows = (int) Math.ceil(data.length() / (double) (groupSize * columns));
-        int maxRows = 50; // Maximo estimado
+        for (int i = totalRows; i < totalRows + 10; i++) {
+            String addressHex = String.format("%04X", address);
+            StringBuilder emptyRow = new StringBuilder();
+            emptyRow.append(addressHex).append(": ");
 
-        if (totalRows < maxRows) {
-            for (int i = totalRows; i < maxRows && i < totalRows + 10; i++) {
-                String addressHex = String.format("%04X", address);
-                StringBuilder emptyRow = new StringBuilder();
-                emptyRow.append(addressHex).append(": ");
-
-                for (int j = 0; j < columns; j++) {
-                    for (int k = 0; k < groupSize; k++) {
-                        emptyRow.append("F");
-                    }
-                    emptyRow.append(" ");
+            for (int j = 0; j < columns; j++) {
+                for (int k = 0; k < groupSize; k++) {
+                    emptyRow.append("F");
                 }
-
-                TextView emptyTextView = new TextView(context);
-                emptyTextView.setText(emptyRow.toString().trim());
-                emptyTextView.setTextSize(11);
-                emptyTextView.setTextColor(Color.WHITE); // BLANCO para vacio
-                emptyTextView.setTypeface(Typeface.MONOSPACE);
-                emptyTextView.setPadding(4, 2, 4, 2);
-                container.addView(emptyTextView);
-
-                address += 8;
+                emptyRow.append(" ");
             }
+
+            TextView emptyTextView = createColoredRow(emptyRow.toString(), addressHex, groupSize, isROM);
+            container.addView(emptyTextView);
+
+            address += 8;
+        }
+    }
+
+    /**
+     * Crea fila con colores: DORADO (dir), VERDE (datos), ROJO (vacios)
+     */
+    private TextView createColoredRow(String fullText, String address, int groupSize, boolean isROM) {
+        TextView textView = new TextView(context);
+        SpannableString spannableString = new SpannableString(fullText);
+
+        // Color DORADO para direccion (0000: )
+        int dirEnd = address.length() + 2; // "0000: "
+        spannableString.setSpan(
+                new ForegroundColorSpan(Color.parseColor("#FFD700")), // DORADO
+                0,
+                dirEnd,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+
+        // Colores para datos
+        int dataStart = dirEnd;
+        String dataSection = fullText.substring(dataStart);
+        String[] groups = dataSection.trim().split("\\s+");
+
+        int currentPos = dataStart;
+        for (String group : groups) {
+            if (group.isEmpty()) continue;
+
+            // Detectar si es dato vacio (FF, 3FFF, FFFF)
+            boolean isEmpty = isEmptyData(group, isROM);
+            int color = isEmpty ? Color.parseColor("#F44336") : Color.parseColor("#4CAF50"); // ROJO : VERDE
+
+            int groupEnd = currentPos + group.length();
+            if (groupEnd <= fullText.length()) {
+                spannableString.setSpan(
+                        new ForegroundColorSpan(color),
+                        currentPos,
+                        groupEnd,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                );
+            }
+            currentPos = groupEnd + 1; // +1 para el espacio
+        }
+
+        textView.setText(spannableString);
+        textView.setTextSize(11);
+        textView.setTypeface(Typeface.MONOSPACE);
+        textView.setPadding(4, 2, 4, 2);
+
+        return textView;
+    }
+
+    /**
+     * Detecta si un dato es vacio (FF, 3FFF, FFFF)
+     */
+    private boolean isEmptyData(String data, boolean isROM) {
+        if (data == null || data.isEmpty()) return false;
+
+        // Normalizar a mayusculas
+        String upper = data.toUpperCase();
+
+        if (isROM) {
+            // ROM: 3FFF o FFFF son vacios
+            return upper.equals("3FFF") || upper.equals("FFFF");
+        } else {
+            // EEPROM: FF es vacio
+            return upper.equals("FF");
         }
     }
 
