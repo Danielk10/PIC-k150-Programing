@@ -4,12 +4,10 @@ import android.content.Context;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
-import com.diamon.excepciones.UsbCommunicationException;
 import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.excepciones.UsbCommunicationException;
 import com.diamon.nucleo.Protocolo;
 import com.diamon.utilidades.ByteUtils;
-import com.diamon.utilidades.LogManager;
-import com.diamon.utilidades.LogManager.Categoria;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
 import java.io.ByteArrayOutputStream;
@@ -22,18 +20,18 @@ import java.util.Arrays;
 /**
  * Implementación del protocolo P018 para programadores PIC K150.
  *
- * <p>Esta clase implementa el protocolo de comunicación P018 específico para
- * programadores KITSRUS, incluyendo todas las operaciones de programación,
- * lectura, borrado y verificación de chips PIC.</p>
+ * <p>Esta clase implementa el protocolo de comunicación P018 específico para programadores KITSRUS,
+ * incluyendo todas las operaciones de programación, lectura, borrado y verificación de chips PIC.
  *
- * <p>Operaciones soportadas:</p>
+ * <p>Operaciones soportadas:
+ *
  * <ul>
- *   <li>Programación de memoria ROM y EEPROM</li>
- *   <li>Configuración de fuses e ID del chip</li>
- *   <li>Lectura de memorias y configuración</li>
- *   <li>Borrado y verificación de memorias</li>
- *   <li>Detección de chips en socket</li>
- *   <li>Manejo de voltajes de programación</li>
+ *   <li>Programación de memoria ROM y EEPROM
+ *   <li>Configuración de fuses e ID del chip
+ *   <li>Lectura de memorias y configuración
+ *   <li>Borrado y verificación de memorias
+ *   <li>Detección de chips en socket
+ *   <li>Manejo de voltajes de programación
  * </ul>
  *
  * @author Danielk10
@@ -44,10 +42,10 @@ public class ProtocoloP018 extends Protocolo {
 
     /** Versión del protocolo P018 implementado */
     private static final String VERSION_PROTOCOLO = "P018 v2.0";
-    
+
     /** Timeout por defecto para operaciones USB en milisegundos */
     private static final int TIMEOUT_DEFAULT = 100;
-    
+
     /** Timeout extendido para operaciones largas en milisegundos */
     private static final int TIMEOUT_EXTENDED = 500;
 
@@ -59,22 +57,17 @@ public class ProtocoloP018 extends Protocolo {
      */
     public ProtocoloP018(Context contexto, UsbSerialPort usbSerialPort) {
         super(contexto, usbSerialPort);
-        LogManager.i(Categoria.USB, "ProtocoloP018",
-                    String.format("Protocolo %s inicializado", VERSION_PROTOCOLO));
     }
 
     @Override
     public String hacerUnEco() {
-        long inicioOperacion = LogManager.logInicioOperacion(Categoria.USB, "hacerUnEco");
-        
         try {
-            LogManager.i(Categoria.USB, "hacerUnEco", "Iniciando test de eco con dispositivo");
-            
+
             // Enviar comando 2 para eco
             enviarComando("2");
 
             StringBuilder response = new StringBuilder();
-            
+
             // Enviar byte de eco
             byte[] byteEco = ByteUtils.prepararDatosUSB(new byte[] {(byte) 2}, "eco");
             escribirDatosUSB(byteEco, TIMEOUT_DEFAULT, "byte_eco");
@@ -84,42 +77,30 @@ public class ProtocoloP018 extends Protocolo {
             response.append((char) respuestaBytes[0]);
 
             // Resetear comandos
-            if (!researComandos()) {
-                LogManager.w(Categoria.USB, "hacerUnEco", "Warning: No se pudo resetear comandos después del eco");
-            }
+            if (!researComandos()) {}
 
             String resultado = response.toString();
-            LogManager.i(Categoria.USB, "hacerUnEco",
-                        String.format("Eco completado - Respuesta: '%s' (0x%02X)",
-                                    resultado, (byte) resultado.charAt(0)));
-            LogManager.logFinOperacion(Categoria.USB, "hacerUnEco", inicioOperacion, true);
-            
+
             return resultado;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.USB, "hacerUnEco", "Error de comunicación durante eco", e);
-            LogManager.logFinOperacion(Categoria.USB, "hacerUnEco", inicioOperacion, false);
             return ""; // Retornar vacío en caso de error
         } catch (Exception e) {
-            LogManager.e(Categoria.USB, "hacerUnEco", "Error inesperado durante eco", e);
-            LogManager.logFinOperacion(Categoria.USB, "hacerUnEco", inicioOperacion, false);
             return "";
         }
     }
 
     @Override
-    public boolean iniciarVariablesDeProgramacion(ChipPic chipPIC) throws ChipConfigurationException {
+    public boolean iniciarVariablesDeProgramacion(ChipPic chipPIC)
+            throws ChipConfigurationException {
         if (chipPIC == null) {
-            LogManager.e(Categoria.CHIP, "iniciarVariables", "ChipPIC no puede ser null");
             throw new IllegalArgumentException("ChipPIC no puede ser null");
         }
-        
-        long inicioOperacion = logInicioOperacionChip("iniciarVariablesProgramacion", chipPIC);
+
         StringBuilder respuesta = new StringBuilder();
 
         try {
-            LogManager.i(Categoria.CHIP, "iniciarVariables", "Iniciando configuración de variables de programación");
-            
+
             // Enviar comando 3
             enviarComando("3");
 
@@ -136,15 +117,6 @@ public class ProtocoloP018 extends Protocolo {
             int eraseMode = chipPIC.getEraseMode();
             int programRetries = chipPIC.getProgramTries();
             int overProgram = chipPIC.getOverProgram();
-            
-            // Registrar configuración del chip
-            LogManager.d(Categoria.CHIP, "iniciarVariables",
-                        String.format("ROM: %d, EEPROM: %d, Core: %d, PowerSeq: %d",
-                                    romSize, eepromSize, coreType, powerSequence));
-            LogManager.d(Categoria.CHIP, "iniciarVariables",
-                        String.format("Flags - Cal: %s, BandGap: %s, Single: %s, VccVpp: %s",
-                                    flagCalibrationValueInROM, flagBandGapFuse,
-                                    flagSinglePanelAccessMode, flagVccVppDelay));
 
             // Construir los flags según el protocolo
             int flags = 0;
@@ -152,23 +124,20 @@ public class ProtocoloP018 extends Protocolo {
             flags |= (flagBandGapFuse ? 2 : 0); // Bit 1
             flags |= (flagSinglePanelAccessMode ? 4 : 0); // Bit 2
             flags |= (flagVccVppDelay ? 8 : 0); // Bit 3
-            
-            LogManager.v(Categoria.CHIP, "iniciarVariables",
-                        String.format("Flags calculados: 0x%02X", flags));
 
             // Crear payload según el protocolo P018
             ByteBuffer payload = ByteBuffer.allocate(11);
             payload.order(ByteOrder.BIG_ENDIAN);
-            
-            payload.putShort((short) romSize);      // Bytes 1-2: ROM Size
-            payload.putShort((short) eepromSize);   // Bytes 3-4: EEPROM Size
-            payload.put((byte) coreType);           // Byte 5: Core Type
-            payload.put((byte) flags);              // Byte 6: Flags
-            payload.put((byte) programDelay);       // Byte 7: Program Delay
-            payload.put((byte) powerSequence);      // Byte 8: Power Sequence
-            payload.put((byte) eraseMode);          // Byte 9: Erase Mode
-            payload.put((byte) programRetries);     // Byte 10: Program Tries
-            payload.put((byte) overProgram);        // Byte 11: Over Program
+
+            payload.putShort((short) romSize); // Bytes 1-2: ROM Size
+            payload.putShort((short) eepromSize); // Bytes 3-4: EEPROM Size
+            payload.put((byte) coreType); // Byte 5: Core Type
+            payload.put((byte) flags); // Byte 6: Flags
+            payload.put((byte) programDelay); // Byte 7: Program Delay
+            payload.put((byte) powerSequence); // Byte 8: Power Sequence
+            payload.put((byte) eraseMode); // Byte 9: Erase Mode
+            payload.put((byte) programRetries); // Byte 10: Program Tries
+            payload.put((byte) overProgram); // Byte 11: Over Program
 
             // Enviar payload de configuración
             escribirDatosUSB(payload.array(), TIMEOUT_DEFAULT, "configuracion_chip");
@@ -178,384 +147,288 @@ public class ProtocoloP018 extends Protocolo {
             respuesta.append(new String(respuestaBytes, StandardCharsets.US_ASCII));
 
             // Resetear comandos
-            if (!researComandos()) {
-                LogManager.w(Categoria.CHIP, "iniciarVariables", "Warning: No se pudo resetear comandos");
-            }
+            if (!researComandos()) {}
 
             boolean exitoso = respuesta.toString().equals("I");
-            
+
             if (exitoso) {
-                LogManager.i(Categoria.CHIP, "iniciarVariables", "Variables de programación inicializadas exitosamente");
             } else {
-                LogManager.w(Categoria.CHIP, "iniciarVariables",
-                           String.format("Inicialización falló - Respuesta: '%s'", respuesta.toString()));
             }
-            
-            logFinOperacionChip("iniciarVariablesProgramacion", inicioOperacion, exitoso, payload.array().length);
+
             return exitoso;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.CHIP, "iniciarVariables", "Error de comunicación USB", e);
-            logFinOperacionChip("iniciarVariablesProgramacion", inicioOperacion, false, -1);
             return false;
         } catch (Exception e) {
-            LogManager.e(Categoria.CHIP, "iniciarVariables", "Error inesperado en inicialización", e);
-            logFinOperacionChip("iniciarVariablesProgramacion", inicioOperacion, false, -1);
             return false;
         }
     }
 
     @Override
     public boolean activarVoltajesDeProgramacion() {
-        long inicioOperacion = LogManager.logInicioOperacion(Categoria.USB, "activarVoltajes");
-        
+
         try {
-            LogManager.i(Categoria.USB, "activarVoltajes", "Activando voltajes de programación");
-            
+
             enviarComando("4");
-            
+
             byte[] respuestaBytes = readBytes(1, TIMEOUT_DEFAULT);
             String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
-            
+
             boolean exitoso = respuesta.equals("V");
-            
+
             if (exitoso) {
-                LogManager.i(Categoria.USB, "activarVoltajes", "Voltajes de programación activados exitosamente");
             } else {
-                LogManager.w(Categoria.USB, "activarVoltajes",
-                           String.format("Error activando voltajes - Respuesta: '%s' (esperado: 'V')", respuesta));
             }
-            
-            LogManager.logFinOperacion(Categoria.USB, "activarVoltajes", inicioOperacion, exitoso);
+
             return exitoso;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.USB, "activarVoltajes", "Error de comunicación activando voltajes", e);
-            LogManager.logFinOperacion(Categoria.USB, "activarVoltajes", inicioOperacion, false);
             return false;
         } catch (Exception e) {
-            LogManager.e(Categoria.USB, "activarVoltajes", "Error inesperado activando voltajes", e);
-            LogManager.logFinOperacion(Categoria.USB, "activarVoltajes", inicioOperacion, false);
             return false;
         }
     }
 
     @Override
     public boolean desactivarVoltajesDeProgramacion() {
-        long inicioOperacion = LogManager.logInicioOperacion(Categoria.USB, "desactivarVoltajes");
-        
+
         try {
-            LogManager.i(Categoria.USB, "desactivarVoltajes", "Desactivando voltajes de programación");
-            
+
             enviarComando("5");
-            
+
             byte[] respuestaBytes = readBytes(1, TIMEOUT_DEFAULT);
             String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
-            
+
             boolean exitoso = respuesta.equals("v");
-            
+
             if (exitoso) {
-                LogManager.i(Categoria.USB, "desactivarVoltajes", "Voltajes de programación desactivados exitosamente");
             } else {
-                LogManager.w(Categoria.USB, "desactivarVoltajes",
-                           String.format("Error desactivando voltajes - Respuesta: '%s' (esperado: 'v')", respuesta));
             }
-            
-            LogManager.logFinOperacion(Categoria.USB, "desactivarVoltajes", inicioOperacion, exitoso);
+
             return exitoso;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.USB, "desactivarVoltajes", "Error de comunicación desactivando voltajes", e);
-            LogManager.logFinOperacion(Categoria.USB, "desactivarVoltajes", inicioOperacion, false);
             return false;
         } catch (Exception e) {
-            LogManager.e(Categoria.USB, "desactivarVoltajes", "Error inesperado desactivando voltajes", e);
-            LogManager.logFinOperacion(Categoria.USB, "desactivarVoltajes", inicioOperacion, false);
             return false;
         }
     }
 
     @Override
     public boolean reiniciarVoltajesDeProgramacion() {
-        long inicioOperacion = LogManager.logInicioOperacion(Categoria.USB, "reiniciarVoltajes");
-        
+
         try {
-            LogManager.i(Categoria.USB, "reiniciarVoltajes", "Reiniciando voltajes de programación");
-            
+
             enviarComando("6");
-            
+
             byte[] respuestaBytes = readBytes(1, TIMEOUT_DEFAULT);
             String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
-            
+
             boolean exitoso = respuesta.equals("V");
-            
+
             if (exitoso) {
-                LogManager.i(Categoria.USB, "reiniciarVoltajes", "Voltajes de programación reiniciados exitosamente");
             } else {
-                LogManager.w(Categoria.USB, "reiniciarVoltajes",
-                           String.format("Error reiniciando voltajes - Respuesta: '%s' (esperado: 'V')", respuesta));
             }
-            
-            LogManager.logFinOperacion(Categoria.USB, "reiniciarVoltajes", inicioOperacion, exitoso);
+
             return exitoso;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.USB, "reiniciarVoltajes", "Error de comunicación reiniciando voltajes", e);
-            LogManager.logFinOperacion(Categoria.USB, "reiniciarVoltajes", inicioOperacion, false);
             return false;
         } catch (Exception e) {
-            LogManager.e(Categoria.USB, "reiniciarVoltajes", "Error inesperado reiniciando voltajes", e);
-            LogManager.logFinOperacion(Categoria.USB, "reiniciarVoltajes", inicioOperacion, false);
             return false;
         }
     }
-@Override
-public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws ChipConfigurationException {
-    // Validaciones de entrada
-    if (chipPIC == null) {
-        LogManager.e(Categoria.CHIP, "programarROM", "ChipPIC no puede ser null");
-        throw new IllegalArgumentException("ChipPIC no puede ser null");
-    }
-    
-    if (firware == null || firware.trim().isEmpty()) {
-        LogManager.e(Categoria.CHIP, "programarROM", "Firmware no puede ser null o vacío");
-        throw new IllegalArgumentException("Firmware no puede ser null o vacío");
-    }
-    
-    long inicioOperacion = logInicioOperacionChip("programarMemoriaROM", chipPIC);
-    
-    try {
-        LogManager.i(Categoria.CHIP, "programarROM", "Iniciando programación de memoria ROM");
-        
-        // ✅ CORRECCIÓN: Manejo robusto de excepciones como Python
-        DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
-        
-        try {
-            datosPic.iniciarProcesamientoDeDatos();
-        } catch (Exception e) {
-            LogManager.e(Categoria.CHIP, "programarROM", "Error procesando HEX: " + e.getMessage(), e);
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-            return false;
-        }
-        
-        byte[] romData = datosPic.obtenerBytesHexROMPocesado();
-        
-        if (romData == null || romData.length == 0) {
-            LogManager.e(Categoria.CHIP, "programarROM", "No se obtuvieron datos ROM válidos del firmware");
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, 0);
-            return false;
-        }
-
-        int wordCount = romData.length / 2;
-        LogManager.d(Categoria.CHIP, "programarROM",
-                    String.format("Datos procesados: %d bytes (%d words)", romData.length, wordCount));
-
-        // Validación crítica de tamaño
-        if (wordCount > chipPIC.getTamanoROM()) {
-            String mensaje = String.format("Datos ROM exceden capacidad del chip: %d > %d words",
-                                          wordCount, chipPIC.getTamanoROM());
-            LogManager.e(Categoria.CHIP, "programarROM", mensaje);
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, romData.length);
-            return false;
-        }
-
-        // ✅ CORRECCIÓN BASADA EN PYTHON: Padding automático
-        int totalSize = wordCount * 2;
-        if (totalSize % 32 != 0) {
-            int paddingNeeded = 32 - (totalSize % 32);
-            LogManager.w(Categoria.CHIP, "programarROM", 
-                String.format("Agregando %d bytes de padding para alinear a 32 bytes (como Python)", paddingNeeded));
-            
-            // Crear nuevo array con padding
-            byte[] paddedRomData = new byte[romData.length + paddingNeeded];
-            System.arraycopy(romData, 0, paddedRomData, 0, romData.length);
-            // Llenar padding con 0xFF (valor por defecto para ROM vacía)
-            Arrays.fill(paddedRomData, romData.length, paddedRomData.length, (byte) 0xFF);
-            
-            romData = paddedRomData;
-            wordCount = romData.length / 2;
-            
-            LogManager.i(Categoria.CHIP, "programarROM", 
-                String.format("ROM data padded: %d -> %d bytes", totalSize, romData.length));
-        }
-
-        LogManager.d(Categoria.CHIP, "programarROM", "Validaciones pasadas, iniciando secuencia de programación");
-
-        // ✅ SIGUIENDO EL PROTOCOLO PYTHON EXACTO
-        if (!researComandos()) {
-            LogManager.e(Categoria.CHIP, "programarROM", "Error reseteando comandos antes de programar");
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-            return false;
-        }
-        
-        if (!activarVoltajesDeProgramacion()) {
-            LogManager.e(Categoria.CHIP, "programarROM", "Error activando voltajes de programación");
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-            return false;
-        }
-
-        // Comando para programar ROM (0x07) - IGUAL QUE PYTHON
-        escribirDatosUSB(new byte[] {0x07}, 10, "comando_programar_ROM");
-
-        // Enviar cantidad de palabras - IGUAL QUE PYTHON
-        byte[] wordCountMessage = ByteUtils.shortToBytes((short) wordCount, true);
-        escribirDatosUSB(wordCountMessage, TIMEOUT_DEFAULT, "tamaño_palabras_ROM");
-
-        // Validar respuesta inicial 'Y' - IGUAL QUE PYTHON
-        byte[] response = new byte[1];
-        if (!leerRespuesta(response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
-            LogManager.e(Categoria.CHIP, "programarROM", "No se recibió confirmación inicial");
-            desactivarVoltajesDeProgramacion();
-            researComandos();
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-            return false;
-        }
-
-        // ✅ ENVIAR DATOS EN BLOQUES DE 32 BYTES - EXACTAMENTE COMO PYTHON
-        int bloquesEnviados = 0;
-        try {
-            for (int i = 0; i < romData.length; i += 32) {
-                byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
-                bloquesEnviados++;
-                
-                LogManager.v(Categoria.CHIP, "programarROM",
-                           String.format("Enviando bloque %d/%d (%d bytes)",
-                                       bloquesEnviados, (romData.length + 31) / 32, chunk.length));
-
-                escribirDatosUSB(chunk, 10, String.format("bloque_ROM_%d", bloquesEnviados));
-                
-                // ✅ TIMEOUT EXTENDIDO COMO PYTHON (timeout=20)
-                if (!leerRespuesta(response, 'Y', "Error: No se recibió confirmación de bloque", TIMEOUT_EXTENDED)) {
-                    LogManager.e(Categoria.CHIP, "programarROM",
-                               String.format("Error en bloque %d", bloquesEnviados));
-                    desactivarVoltajesDeProgramacion();
-                    researComandos();
-                    logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, i);
-                    return false;
-                }
-            }
-            
-            // ✅ TIMEOUT EXTENDIDO COMO PYTHON para respuesta final
-            if (!leerRespuesta(response, 'P', "Error: No se recibió confirmación final de programación", TIMEOUT_EXTENDED)) {
-                LogManager.e(Categoria.CHIP, "programarROM", "No se recibió confirmación final");
-                desactivarVoltajesDeProgramacion();
-                researComandos();
-                logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, romData.length);
-                return false;
-            }
-            
-        } catch (Exception e) {
-            // ✅ MANEJO DE EXCEPCIONES DURANTE PROGRAMACIÓN COMO PYTHON
-            LogManager.w(Categoria.CHIP, "programarROM", "Error durante programación, limpiando estado");
-            desactivarVoltajesDeProgramacion();
-            researComandos();
-            logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-            return false;
-        }
-
-        // Finalizar secuencia
-        if (!desactivarVoltajesDeProgramacion()) {
-            LogManager.w(Categoria.CHIP, "programarROM", "Warning: Error desactivando voltajes");
-        }
-        
-        if (!researComandos()) {
-            LogManager.w(Categoria.CHIP, "programarROM", "Warning: Error reseteando comandos al final");
-        }
-
-        // ✅ AGREGAR VERIFICACIÓN COMO PYTHON
-        LogManager.i(Categoria.CHIP, "programarROM", "Iniciando verificación de ROM programada");
-        try {
-            String romLeida = leerMemoriaROMDelPic(chipPIC);
-            if (romLeida != null && !romLeida.startsWith("Error")) {
-                LogManager.i(Categoria.CHIP, "programarROM", "ROM verificada exitosamente");
-            } else {
-                LogManager.w(Categoria.CHIP, "programarROM", "Advertencia: No se pudo verificar ROM");
-            }
-        } catch (Exception e) {
-            LogManager.w(Categoria.CHIP, "programarROM", "Advertencia: Error en verificación");
-            // No fallar por esto, solo advertir
-        }
-
-        LogManager.i(Categoria.CHIP, "programarROM",
-                    String.format("ROM programada exitosamente: %d words (%d bloques)",
-                                wordCount, bloquesEnviados));
-        logFinOperacionChip("programarMemoriaROM", inicioOperacion, true, romData.length);
-        return true;
-
-    } catch (UsbCommunicationException e) {
-        LogManager.e(Categoria.CHIP, "programarROM", "Error de comunicación USB", e);
-        logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-        return false;
-    } catch (Exception e) {
-        LogManager.e(Categoria.CHIP, "programarROM", "Error inesperado programando ROM", e);
-        logFinOperacionChip("programarMemoriaROM", inicioOperacion, false, -1);
-        return false;
-    }
-}
-
 
     @Override
-    public boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware) throws ChipConfigurationException {
+    public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware)
+            throws ChipConfigurationException {
         // Validaciones de entrada
         if (chipPIC == null) {
-            LogManager.e(Categoria.CHIP, "programarEEPROM", "ChipPIC no puede ser null");
             throw new IllegalArgumentException("ChipPIC no puede ser null");
         }
-        
+
         if (firware == null || firware.trim().isEmpty()) {
-            LogManager.e(Categoria.CHIP, "programarEEPROM", "Firmware no puede ser null o vacío");
             throw new IllegalArgumentException("Firmware no puede ser null o vacío");
         }
-        
-        long inicioOperacion = logInicioOperacionChip("programarMemoriaEEPROM", chipPIC);
-        
+
         try {
-            LogManager.i(Categoria.CHIP, "programarEEPROM", "Iniciando programación de memoria EEPROM");
-            
+
+            // ✅ CORRECCIÓN: Manejo robusto de excepciones como Python
+            DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
+
+            try {
+                datosPic.iniciarProcesamientoDeDatos();
+            } catch (Exception e) {
+                return false;
+            }
+
+            byte[] romData = datosPic.obtenerBytesHexROMPocesado();
+
+            if (romData == null || romData.length == 0) {
+                return false;
+            }
+
+            int wordCount = romData.length / 2;
+            // Validación crítica de tamaño
+            if (wordCount > chipPIC.getTamanoROM()) {
+                String mensaje =
+                        String.format(
+                                "Datos ROM exceden capacidad del chip: %d > %d words",
+                                wordCount, chipPIC.getTamanoROM());
+                return false;
+            }
+
+            // ✅ CORRECCIÓN BASADA EN PYTHON: Padding automático
+            int totalSize = wordCount * 2;
+            if (totalSize % 32 != 0) {
+                int paddingNeeded = 32 - (totalSize % 32);
+
+                // Crear nuevo array con padding
+                byte[] paddedRomData = new byte[romData.length + paddingNeeded];
+                System.arraycopy(romData, 0, paddedRomData, 0, romData.length);
+                // Llenar padding con 0xFF (valor por defecto para ROM vacía)
+                Arrays.fill(paddedRomData, romData.length, paddedRomData.length, (byte) 0xFF);
+
+                romData = paddedRomData;
+                wordCount = romData.length / 2;
+            }
+
+            // ✅ SIGUIENDO EL PROTOCOLO PYTHON EXACTO
+            if (!researComandos()) {
+                return false;
+            }
+
+            if (!activarVoltajesDeProgramacion()) {
+                return false;
+            }
+
+            // Comando para programar ROM (0x07) - IGUAL QUE PYTHON
+            escribirDatosUSB(new byte[] {0x07}, 10, "comando_programar_ROM");
+
+            // Enviar cantidad de palabras - IGUAL QUE PYTHON
+            byte[] wordCountMessage = ByteUtils.shortToBytes((short) wordCount, true);
+            escribirDatosUSB(wordCountMessage, TIMEOUT_DEFAULT, "tamaño_palabras_ROM");
+
+            // Validar respuesta inicial 'Y' - IGUAL QUE PYTHON
+            byte[] response = new byte[1];
+            if (!leerRespuesta(
+                    response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
+                desactivarVoltajesDeProgramacion();
+                researComandos();
+                return false;
+            }
+
+            // ✅ ENVIAR DATOS EN BLOQUES DE 32 BYTES - EXACTAMENTE COMO PYTHON
+            int bloquesEnviados = 0;
+            try {
+                for (int i = 0; i < romData.length; i += 32) {
+                    byte[] chunk = Arrays.copyOfRange(romData, i, Math.min(i + 32, romData.length));
+                    bloquesEnviados++;
+
+                    escribirDatosUSB(chunk, 10, String.format("bloque_ROM_%d", bloquesEnviados));
+
+                    // ✅ TIMEOUT EXTENDIDO COMO PYTHON (timeout=20)
+                    if (!leerRespuesta(
+                            response,
+                            'Y',
+                            "Error: No se recibió confirmación de bloque",
+                            TIMEOUT_EXTENDED)) {
+                        desactivarVoltajesDeProgramacion();
+                        researComandos();
+                        return false;
+                    }
+                }
+
+                // ✅ TIMEOUT EXTENDIDO COMO PYTHON para respuesta final
+                if (!leerRespuesta(
+                        response,
+                        'P',
+                        "Error: No se recibió confirmación final de programación",
+                        TIMEOUT_EXTENDED)) {
+                    desactivarVoltajesDeProgramacion();
+                    researComandos();
+                    return false;
+                }
+
+            } catch (Exception e) {
+                // ✅ MANEJO DE EXCEPCIONES DURANTE PROGRAMACIÓN COMO PYTHON
+                desactivarVoltajesDeProgramacion();
+                researComandos();
+                return false;
+            }
+
+            // Finalizar secuencia
+            if (!desactivarVoltajesDeProgramacion()) {}
+
+            if (!researComandos()) {}
+
+            // ✅ AGREGAR VERIFICACIÓN COMO PYTHON
+            try {
+                String romLeida = leerMemoriaROMDelPic(chipPIC);
+                if (romLeida != null && !romLeida.startsWith("Error")) {
+                } else {
+                }
+            } catch (Exception e) {
+                // No fallar por esto, solo advertir
+            }
+
+            return true;
+
+        } catch (UsbCommunicationException e) {
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware)
+            throws ChipConfigurationException {
+        // Validaciones de entrada
+        if (chipPIC == null) {
+            throw new IllegalArgumentException("ChipPIC no puede ser null");
+        }
+
+        if (firware == null || firware.trim().isEmpty()) {
+            throw new IllegalArgumentException("Firmware no puede ser null o vacío");
+        }
+
+        try {
+
             // Procesar datos HEX
             DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
             datosPic.iniciarProcesamientoDeDatos();
             byte[] eepromData = datosPic.obtenerBytesHexEEPROMPocesado();
-            
+
             if (eepromData == null) {
-                LogManager.w(Categoria.CHIP, "programarEEPROM", "No hay datos EEPROM en el firmware");
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, true, 0);
                 return true; // No es error si no hay datos EEPROM
             }
 
             int byteCount = eepromData.length;
-            LogManager.d(Categoria.CHIP, "programarEEPROM",
-                        String.format("Datos EEPROM procesados: %d bytes", byteCount));
 
             // Validaciones críticas
             if (byteCount > chipPIC.getTamanoEEPROM()) {
-                String mensaje = String.format("Datos EEPROM exceden capacidad del chip: %d > %d bytes",
-                                              byteCount, chipPIC.getTamanoEEPROM());
-                LogManager.e(Categoria.CHIP, "programarEEPROM", mensaje);
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, byteCount);
+                String mensaje =
+                        String.format(
+                                "Datos EEPROM exceden capacidad del chip: %d > %d bytes",
+                                byteCount, chipPIC.getTamanoEEPROM());
                 return false;
             }
 
             // Validar que el tamaño sea múltiplo de 2 bytes
             if (byteCount % 2 != 0) {
-                String mensaje = String.format("Tamaño de datos EEPROM debe ser múltiplo de 2: %d", byteCount);
-                LogManager.e(Categoria.CHIP, "programarEEPROM", mensaje);
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, byteCount);
+                String mensaje =
+                        String.format(
+                                "Tamaño de datos EEPROM debe ser múltiplo de 2: %d", byteCount);
                 return false;
             }
-
-            LogManager.d(Categoria.CHIP, "programarEEPROM", "Validaciones pasadas, iniciando secuencia de programación");
 
             // Preparar secuencia de programación
             if (!researComandos()) {
-                LogManager.e(Categoria.CHIP, "programarEEPROM", "Error reseteando comandos");
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, -1);
                 return false;
             }
-            
+
             if (!activarVoltajesDeProgramacion()) {
-                LogManager.e(Categoria.CHIP, "programarEEPROM", "Error activando voltajes");
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, -1);
                 return false;
             }
 
@@ -568,11 +441,10 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
 
             // Validar respuesta inicial 'Y'
             byte[] response = new byte[1];
-            if (!leerRespuesta(response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
-                LogManager.e(Categoria.CHIP, "programarEEPROM", "No se recibió confirmación inicial");
+            if (!leerRespuesta(
+                    response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
                 desactivarVoltajesDeProgramacion();
                 researComandos();
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, -1);
                 return false;
             }
 
@@ -581,19 +453,12 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
             for (int i = 0; i < eepromData.length; i += 2) {
                 byte[] chunk = Arrays.copyOfRange(eepromData, i, i + 2);
                 bloquesEnviados++;
-                
-                LogManager.v(Categoria.CHIP, "programarEEPROM",
-                           String.format("Enviando bloque %d/%d (2 bytes)",
-                                       bloquesEnviados, eepromData.length / 2));
 
                 escribirDatosUSB(chunk, 10, String.format("bloque_EEPROM_%d", bloquesEnviados));
-                
+
                 if (!leerRespuesta(response, 'Y', "Error: No se recibió confirmación de bloque")) {
-                    LogManager.e(Categoria.CHIP, "programarEEPROM",
-                               String.format("Error en bloque %d", bloquesEnviados));
                     desactivarVoltajesDeProgramacion();
                     researComandos();
-                    logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, i);
                     return false;
                 }
             }
@@ -603,35 +468,21 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
 
             // Validar respuesta final 'P'
             if (!leerRespuesta(response, 'P', "Error: No se recibió confirmación final")) {
-                LogManager.e(Categoria.CHIP, "programarEEPROM", "No se recibió confirmación final");
                 desactivarVoltajesDeProgramacion();
                 researComandos();
-                logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, eepromData.length);
                 return false;
             }
 
             // Finalizar secuencia
-            if (!desactivarVoltajesDeProgramacion()) {
-                LogManager.w(Categoria.CHIP, "programarEEPROM", "Warning: Error desactivando voltajes");
-            }
-            
-            if (!researComandos()) {
-                LogManager.w(Categoria.CHIP, "programarEEPROM", "Warning: Error reseteando comandos al final");
-            }
+            if (!desactivarVoltajesDeProgramacion()) {}
 
-            LogManager.i(Categoria.CHIP, "programarEEPROM",
-                        String.format("EEPROM programada exitosamente: %d bytes (%d bloques)",
-                                    byteCount, bloquesEnviados));
-            logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, true, eepromData.length);
+            if (!researComandos()) {}
+
             return true;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.CHIP, "programarEEPROM", "Error de comunicación USB", e);
-            logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, -1);
             return false;
         } catch (Exception e) {
-            LogManager.e(Categoria.CHIP, "programarEEPROM", "Error inesperado programando EEPROM", e);
-            logFinOperacionChip("programarMemoriaEEPROM", inicioOperacion, false, -1);
             return false;
         }
     }
@@ -648,7 +499,6 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
             int tipoNucleo = chipPIC.getTipoDeNucleoBit();
             byte[] id = datosPic.obtenerVsloresBytesHexIDPocesado();
             int[] fuses = datosPic.obtenerValoresIntHexFusesPocesado();
-
             // Validar datos según tipo de núcleo
             if (tipoNucleo == 16) {
                 if (id.length != 8) {
@@ -783,7 +633,7 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
             return "Error al leer Memoria ROM: " + e.toString();
         } catch (IOException e) {
             return "Error al leer Memoria ROM: " + e.toString();
-        } catch (ChipConfigurationException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -831,7 +681,9 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
 
         } catch (NumberFormatException e) {
             return "Error al leer Memoria EEPROM: " + e.toString();
-        } catch (IOException | ChipConfigurationException e) {
+        } catch (IOException e) {
+            return "Error al leer Memoria EEPROM: " + e.toString();
+        } catch (ChipConfigurationException e) {
             return "Error al leer Memoria EEPROM: " + e.toString();
         }
     }
@@ -899,21 +751,14 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
 
     @Override
     public boolean borrarMemoriasDelPic() {
-        long inicioOperacion = LogManager.logInicioOperacion(Categoria.CHIP, "borrarMemorias");
-        
+
         try {
-            LogManager.i(Categoria.CHIP, "borrarMemorias", "Iniciando borrado de memorias del PIC");
-            
             // Preparar secuencia de borrado
             if (!researComandos()) {
-                LogManager.e(Categoria.CHIP, "borrarMemorias", "Error reseteando comandos");
-                LogManager.logFinOperacion(Categoria.CHIP, "borrarMemorias", inicioOperacion, false);
                 return false;
             }
 
             if (!activarVoltajesDeProgramacion()) {
-                LogManager.e(Categoria.CHIP, "borrarMemorias", "Error activando voltajes de programación");
-                LogManager.logFinOperacion(Categoria.CHIP, "borrarMemorias", inicioOperacion, false);
                 return false;
             }
 
@@ -922,37 +767,25 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
 
             // Leer respuesta de confirmación
             byte[] bytes = readBytes(1, TIMEOUT_EXTENDED); // Usar timeout extendido para borrado
-            
-            // Finalizar secuencia
-            if (!desactivarVoltajesDeProgramacion()) {
-                LogManager.w(Categoria.CHIP, "borrarMemorias", "Warning: Error desactivando voltajes");
-            }
 
-            if (!researComandos()) {
-                LogManager.w(Categoria.CHIP, "borrarMemorias", "Warning: Error reseteando comandos al final");
-            }
+            // Finalizar secuencia
+            if (!desactivarVoltajesDeProgramacion()) {}
+
+            if (!researComandos()) {}
 
             // Validar respuesta
             String respuesta = new String(bytes, StandardCharsets.US_ASCII);
             boolean exitoso = respuesta.equals("Y");
-            
+
             if (exitoso) {
-                LogManager.i(Categoria.CHIP, "borrarMemorias", "Memorias borradas exitosamente");
             } else {
-                LogManager.w(Categoria.CHIP, "borrarMemorias",
-                           String.format("Error borrando memorias - Respuesta: '%s' (esperado: 'Y')", respuesta));
             }
 
-            LogManager.logFinOperacion(Categoria.CHIP, "borrarMemorias", inicioOperacion, exitoso);
             return exitoso;
 
         } catch (UsbCommunicationException e) {
-            LogManager.e(Categoria.CHIP, "borrarMemorias", "Error de comunicación USB", e);
-            LogManager.logFinOperacion(Categoria.CHIP, "borrarMemorias", inicioOperacion, false);
             return false;
         } catch (Exception e) {
-            LogManager.e(Categoria.CHIP, "borrarMemorias", "Error inesperado borrando memorias", e);
-            LogManager.logFinOperacion(Categoria.CHIP, "borrarMemorias", inicioOperacion, false);
             return false;
         }
     }
@@ -1057,7 +890,7 @@ public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware) throws
             researComandos();
 
             // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] {Byte.parseByte("17")}, 10); 
+            usbSerialPort.write(new byte[] {Byte.parseByte("17")}, 10);
 
             int size = 1; // Convertir palabras a bytes
 

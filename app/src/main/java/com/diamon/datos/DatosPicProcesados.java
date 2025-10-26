@@ -5,8 +5,6 @@ import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.excepciones.HexProcessingException;
 import com.diamon.utilidades.ByteUtils;
 import com.diamon.utilidades.HexFileUtils;
-import com.diamon.utilidades.LogManager;
-import com.diamon.utilidades.LogManager.Categoria;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +36,9 @@ public class DatosPicProcesados {
     private final String firware;
 
     /** Información del chip PIC objetivo */
-    private final ChipPic chipPIC;
+    // private final ChipPic chipPIC;
+
+    private ChipPic chipPIC;
 
     /** Datos de memoria ROM procesados */
     private byte[] romData;
@@ -75,13 +75,6 @@ public class DatosPicProcesados {
 
         this.firware = firware;
         this.chipPIC = chipPIC;
-
-        LogManager.i(
-                Categoria.DATA,
-                "DatosPicProcesados",
-                String.format(
-                        "Inicializado procesador para chip ROM:%d, EEPROM:%d",
-                        chipPIC.getTamanoROM(), chipPIC.getTamanoEEPROM()));
     }
 
     /**
@@ -96,16 +89,8 @@ public class DatosPicProcesados {
      */
     public void iniciarProcesamientoDeDatos()
             throws HexProcessingException, ChipConfigurationException {
-        long inicioOperacion = LogManager.logInicioOperacion(Categoria.DATA, "procesarDatosPIC");
 
         try {
-            LogManager.i(
-                    Categoria.DATA,
-                    "procesarDatos",
-                    String.format(
-                            "Iniciando procesamiento de datos para chip ROM:%d words, EEPROM:%d bytes",
-                            chipPIC.getTamanoROM(), chipPIC.getTamanoEEPROM()));
-
             // Definir rangos de memoria según especificación PIC
             final int romWordBase = 0x0000;
             final int configWordBase = 0x4000;
@@ -114,36 +99,16 @@ public class DatosPicProcesados {
             final int configWordEnd = 0x4010;
             final int eepromWordEnd = 0xFFFF;
 
-            LogManager.d(
-                    Categoria.DATA,
-                    "procesarDatos",
-                    String.format(
-                            "Rangos de memoria - ROM: 0x%04X-0x%04X, CONFIG: 0x%04X-0x%04X, EEPROM: 0x%04X-0x%04X",
-                            romWordBase,
-                            romWordEnd - 1,
-                            configWordBase,
-                            configWordEnd - 1,
-                            eepromWordBase,
-                            eepromWordEnd));
-
             // Procesar archivo HEX
             HexProcesado procesado;
             try {
                 procesado = new HexProcesado(firware);
             } catch (HexProcessingException e) {
-                LogManager.e(Categoria.DATA, "procesarDatos", "Error procesando archivo HEX", e);
-                LogManager.logFinOperacion(
-                        Categoria.DATA, "procesarDatosPIC", inicioOperacion, false);
                 throw e;
             }
 
             // Convertir registros HEX a formato interno
             List<HexFileUtils.Pair<Integer, String>> records = convertirRegistrosHex(procesado);
-
-            LogManager.d(
-                    Categoria.DATA,
-                    "procesarDatos",
-                    String.format("Convertidos %d registros HEX", records.size()));
 
             // Filtrar registros por rangos de memoria
             List<HexFileUtils.Pair<Integer, String>> romRecords =
@@ -153,25 +118,11 @@ public class DatosPicProcesados {
             List<HexFileUtils.Pair<Integer, String>> eepromRecords =
                     HexFileUtils.rangeFilterRecords(records, eepromWordBase, eepromWordEnd);
 
-            LogManager.d(
-                    Categoria.DATA,
-                    "procesarDatos",
-                    String.format(
-                            "Registros filtrados - ROM: %d, CONFIG: %d, EEPROM: %d",
-                            romRecords.size(), configRecords.size(), eepromRecords.size()));
-
             // Generar datos en blanco para cada tipo de memoria
             byte[] romBlank =
                     HexFileUtils.generateRomBlank(
                             chipPIC.getTipoDeNucleoBit(), chipPIC.getTamanoROM());
             byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
-
-            LogManager.v(
-                    Categoria.DATA,
-                    "procesarDatos",
-                    String.format(
-                            "Datos en blanco generados - ROM: %d bytes, EEPROM: %d bytes",
-                            romBlank.length, eepromBlank.length));
 
             // Detectar endianness de los datos ROM
             // Detectar endianness con manejo robusto
@@ -180,18 +131,11 @@ public class DatosPicProcesados {
                 swapBytes = detectarEndianness(romRecords, romBlank);
             } catch (IllegalArgumentException e) {
                 // ✅ SOLUCIÓN: Manejar error de endianness
-                LogManager.w(Categoria.DATA, "procesarDatos",
-                        "Error detectando endianness, usando Big-Endian: " + e.getMessage());
                 swapBytes = false; // Valor por defecto
             }
 
-
             // Ajustar registros según endianness detectado
             if (swapBytes) {
-                LogManager.v(
-                        Categoria.DATA,
-                        "procesarDatos",
-                        "Aplicando intercambio de bytes (swab) a registros");
                 romRecords = HexFileUtils.swabRecords(romRecords);
                 configRecords = HexFileUtils.swabRecords(configRecords);
             }
@@ -211,13 +155,7 @@ public class DatosPicProcesados {
             // Generar información de resumen
             this.informacionProcesamiento = generarResumenProcesamiento();
 
-            LogManager.i(Categoria.DATA, "procesarDatos", informacionProcesamiento);
-            LogManager.logFinOperacion(Categoria.DATA, "procesarDatosPIC", inicioOperacion, true);
-
         } catch (Exception e) {
-            LogManager.e(
-                    Categoria.DATA, "procesarDatos", "Error durante procesamiento de datos", e);
-            LogManager.logFinOperacion(Categoria.DATA, "procesarDatosPIC", inicioOperacion, false);
 
             if (e instanceof HexProcessingException || e instanceof ChipConfigurationException) {
                 throw e;
@@ -238,11 +176,6 @@ public class DatosPicProcesados {
     private List<HexFileUtils.Pair<Integer, String>> convertirRegistrosHex(HexProcesado procesado) {
         List<HexFileUtils.Pair<Integer, String>> records = new ArrayList<>();
 
-        LogManager.v(
-                Categoria.DATA,
-                "convertirRegistros",
-                String.format("Convirtiendo %d registros HEX", procesado.getRecords().size()));
-
         for (int i = 0; i < procesado.getRecords().size(); i++) {
             HexProcesado.HexRecord registro = procesado.getRecords().get(i);
             StringBuilder datosHex = new StringBuilder();
@@ -253,13 +186,6 @@ public class DatosPicProcesados {
             }
 
             records.add(new HexFileUtils.Pair<>(registro.address, datosHex.toString()));
-
-            LogManager.v(
-                    Categoria.DATA,
-                    "convertirRegistros",
-                    String.format(
-                            "Registro %d: addr=0x%06X, %d bytes",
-                            i + 1, registro.address, registro.data.length));
         }
 
         return records;
@@ -272,68 +198,56 @@ public class DatosPicProcesados {
      * @return true si es little-endian, false si es big-endian
      */
     private boolean detectarEndianness(
-        List<HexFileUtils.Pair<Integer, String>> romRecords, byte[] romBlank) {
-    LogManager.v(Categoria.DATA, "detectarEndianness", "Iniciando detección de endianness");
-    boolean swapBytes = false;
-    boolean swapBytesDetected = false;
-    int romBlankWord = ByteUtils.bytesToInt(romBlank);
-    
-    for (HexFileUtils.Pair<Integer, String> record : romRecords) {
-        // ✅ CORRECCIÓN BASADA EN PYTHON: Solo validar si hay datos suficientes
-        if (record.first % 2 != 0) {
-            LogManager.w(Categoria.DATA, "detectarEndianness", 
-                String.format("⚠️ ADVERTENCIA: Registro ROM en dirección impar: 0x%06X", record.first));
-            continue; // ✅ Continuar como Python
-        }
-        
-        String data = record.second;
-        // ✅ CORRECCIÓN BASADA EN PYTHON: Solo procesar si hay datos completos
-        for (int x = 0; x < data.length(); x += 4) {
-            // ✅ VERIFICAR que hay suficientes caracteres (como Python hace con x+2 < len)
-            if ((x + 4) <= data.length()) {  // ✅ Solo si hay datos suficientes
-                String wordHex = data.substring(x, x + 4);
-                int BE_word = Integer.parseInt(wordHex, 16);
-                int LE_word = Integer.reverseBytes(BE_word) >>> 16;
-                
-                boolean BE_ok = (BE_word & romBlankWord) == BE_word;
-                boolean LE_ok = (LE_word & romBlankWord) == LE_word;
-                
-                if (BE_ok && !LE_ok) {
-                    swapBytes = false;
-                    swapBytesDetected = true;
-                    LogManager.v(Categoria.DATA, "detectarEndianness", "Detectado Big-Endian");
-                    break;
-                } else if (LE_ok && !BE_ok) {
-                    swapBytes = true;
-                    swapBytesDetected = true;
-                    LogManager.v(Categoria.DATA, "detectarEndianness", "Detectado Little-Endian");
-                    break;
-                } else if (!BE_ok && !LE_ok) {
-                    // ✅ COMO PYTHON: Solo fallar en casos realmente inválidos
-                    LogManager.w(Categoria.DATA, "detectarEndianness", 
-                        String.format("⚠️ ADVERTENCIA: Palabra ROM no válida: %s", wordHex));
-                    continue;
+            List<HexFileUtils.Pair<Integer, String>> romRecords, byte[] romBlank) {
+        boolean swapBytes = false;
+        boolean swapBytesDetected = false;
+        int romBlankWord = ByteUtils.bytesToInt(romBlank);
+
+        for (HexFileUtils.Pair<Integer, String> record : romRecords) {
+            // ✅ CORRECCIÓN BASADA EN PYTHON: Solo validar si hay datos suficientes
+            if (record.first % 2 != 0) {
+                continue; // ✅ Continuar como Python
+            }
+
+            String data = record.second;
+            // ✅ CORRECCIÓN BASADA EN PYTHON: Solo procesar si hay datos completos
+            for (int x = 0; x < data.length(); x += 4) {
+                // ✅ VERIFICAR que hay suficientes caracteres (como Python hace con x+2 < len)
+                if ((x + 4) <= data.length()) { // ✅ Solo si hay datos suficientes
+                    String wordHex = data.substring(x, x + 4);
+                    int BE_word = Integer.parseInt(wordHex, 16);
+                    int LE_word = Integer.reverseBytes(BE_word) >>> 16;
+
+                    boolean BE_ok = (BE_word & romBlankWord) == BE_word;
+                    boolean LE_ok = (LE_word & romBlankWord) == LE_word;
+
+                    if (BE_ok && !LE_ok) {
+                        swapBytes = false;
+                        swapBytesDetected = true;
+                        break;
+                    } else if (LE_ok && !BE_ok) {
+                        swapBytes = true;
+                        swapBytesDetected = true;
+                        break;
+                    } else if (!BE_ok && !LE_ok) {
+                        // ✅ COMO PYTHON: Solo fallar en casos realmente inválidos
+                        continue;
+                    }
                 }
             }
-        }
-        
-        if (swapBytesDetected) {
-            break;
-        }
-    }
-    
-    // ✅ COMO PYTHON: Valor por defecto si no se detecta
-    if (!swapBytesDetected) {
-        LogManager.i(Categoria.DATA, "detectarEndianness", 
-            "No se pudo detectar endianness, usando Big-Endian por defecto");
-        swapBytes = false;
-    }
-    
-    LogManager.d(Categoria.DATA, "detectarEndianness", 
-        String.format("Endianness detectado: %s", swapBytes ? "Little-Endian" : "Big-Endian"));
-    return swapBytes;
-}
 
+            if (swapBytesDetected) {
+                break;
+            }
+        }
+
+        // ✅ COMO PYTHON: Valor por defecto si no se detecta
+        if (!swapBytesDetected) {
+            swapBytes = false;
+        }
+
+        return swapBytes;
+    }
 
     /**
      * Procesa registros EEPROM aplicando byte picking según endianness.
@@ -348,20 +262,9 @@ public class DatosPicProcesados {
             int eepromWordBase,
             boolean swapBytes) {
 
-        LogManager.v(
-                Categoria.DATA,
-                "procesarEEPROM",
-                String.format(
-                        "Procesando %d registros EEPROM con byte picking", eepromRecords.size()));
-
         // EEPROM está almacenado en el archivo HEX con un byte por palabra
         // Seleccionar el byte apropiado según el endianness detectado
         int pickByte = swapBytes ? 0 : 1;
-
-        LogManager.v(
-                Categoria.DATA,
-                "procesarEEPROM",
-                String.format("Usando byte %d para extracción EEPROM", pickByte));
 
         List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = new ArrayList<>();
 
@@ -375,13 +278,6 @@ public class DatosPicProcesados {
 
             adjustedEepromRecords.add(
                     new HexFileUtils.Pair<>(baseAddress, filteredData.toString()));
-
-            LogManager.v(
-                    Categoria.DATA,
-                    "procesarEEPROM",
-                    String.format(
-                            "Registro EEPROM ajustado: addr=0x%06X, datos=%s",
-                            baseAddress, filteredData.toString()));
         }
 
         return adjustedEepromRecords;
@@ -402,33 +298,15 @@ public class DatosPicProcesados {
             int baseAddress,
             String tipoMemoria)
             throws HexProcessingException {
-        LogManager.v(
-                Categoria.DATA,
-                "fusionarDatos",
-                String.format("Fusionando %d registros de %s", records.size(), tipoMemoria));
-
         try {
             byte[] resultado = HexFileUtils.mergeRecords(records, blankData, baseAddress);
 
-            LogManager.d(
-                    Categoria.DATA,
-                    "fusionarDatos",
-                    String.format("Memoria %s fusionada: %d bytes", tipoMemoria, resultado.length));
-
             // Generar estadísticas de los datos fusionados
             String estadisticas = ByteUtils.obtenerEstadisticas(resultado);
-            LogManager.v(
-                    Categoria.DATA,
-                    "fusionarDatos",
-                    String.format("Estadísticas %s: %s", tipoMemoria, estadisticas));
 
             return resultado;
         } catch (Exception e) {
-            LogManager.e(
-                    Categoria.DATA,
-                    "fusionarDatos",
-                    String.format("Error fusionando memoria %s", tipoMemoria),
-                    e);
+
             throw new HexProcessingException("Error fusionando memoria " + tipoMemoria, e);
         }
     }
@@ -442,7 +320,6 @@ public class DatosPicProcesados {
     private void procesarIDyFuses(
             List<HexFileUtils.Pair<Integer, String>> configRecords, int configWordBase)
             throws HexProcessingException {
-        LogManager.v(Categoria.DATA, "procesarIDFuses", "Procesando ID y fuses del chip");
 
         try {
             // Procesar ID del chip (0x4000-0x4008)
@@ -457,13 +334,6 @@ public class DatosPicProcesados {
                 byte[] IDTemporal = new byte[IDData.length / 2];
                 ByteUtils.copiarBytes(IDData, 0, IDTemporal, 0, IDTemporal.length);
                 this.IDData = IDTemporal;
-
-                LogManager.v(
-                        Categoria.DATA,
-                        "procesarIDFuses",
-                        String.format(
-                                "ID ajustado para chip de %d bits: %d bytes",
-                                chipPIC.getTipoDeNucleoBit(), IDData.length));
             }
 
             // Procesar fuses (0x400E-0x4010)
@@ -472,17 +342,10 @@ public class DatosPicProcesados {
 
             byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlack());
             this.fuseData = HexFileUtils.mergeRecords(configRecordsFuses, fusesBytes, 0x400E);
+            int[] fuseINT = HexFileUtils.decodeFromBytes(fuseData);
             this.fuseValues = HexFileUtils.decodeFromBytes(fuseData);
 
-            LogManager.d(
-                    Categoria.DATA,
-                    "procesarIDFuses",
-                    String.format(
-                            "ID procesado: %d bytes, Fuses: %d valores",
-                            IDData.length, fuseValues.length));
-
         } catch (Exception e) {
-            LogManager.e(Categoria.DATA, "procesarIDFuses", "Error procesando ID y fuses", e);
             throw new HexProcessingException("Error procesando ID y fuses del chip", e);
         }
     }
