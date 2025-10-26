@@ -1,7 +1,6 @@
 package com.diamon.utilidades;
 
 import com.diamon.excepciones.UsbCommunicationException;
-import com.diamon.utilidades.LogManager.Categoria;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -63,7 +62,6 @@ public final class ByteUtils {
     public static void validarArray(byte[] datos, int tamanoEsperado, String nombreParametro) {
         if (datos == null) {
             String mensaje = String.format("Parámetro '%s' no puede ser null", nombreParametro);
-            LogManager.e(Categoria.DATA, LOG_PREFIX, mensaje);
             throw new IllegalArgumentException(mensaje);
         }
 
@@ -72,7 +70,6 @@ public final class ByteUtils {
                     String.format(
                             "Parámetro '%s' debe tener %d bytes, pero tiene %d",
                             nombreParametro, tamanoEsperado, datos.length);
-            LogManager.e(Categoria.DATA, LOG_PREFIX, mensaje);
             throw new IllegalArgumentException(mensaje);
         }
 
@@ -81,14 +78,8 @@ public final class ByteUtils {
                     String.format(
                             "Parámetro '%s' excede el tamaño máximo permitido (%d bytes)",
                             nombreParametro, MAX_BUFFER_SIZE);
-            LogManager.e(Categoria.DATA, LOG_PREFIX, mensaje);
             throw new IllegalArgumentException(mensaje);
         }
-
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format("Array '%s' validado: %d bytes", nombreParametro, datos.length));
     }
 
     /**
@@ -105,7 +96,6 @@ public final class ByteUtils {
                     String.format(
                             "Rango inválido: offset=%d, longitud=%d, arraySize=%d",
                             offset, longitud, array.length);
-            LogManager.e(Categoria.DATA, LOG_PREFIX, mensaje);
             throw new IndexOutOfBoundsException(mensaje);
         }
     }
@@ -128,13 +118,6 @@ public final class ByteUtils {
         }
 
         String resultado = sb.toString();
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Convertidos %d bytes a hex: %s",
-                        datos.length,
-                        resultado.length() > 32 ? resultado.substring(0, 32) + "..." : resultado));
         return resultado;
     }
 
@@ -171,10 +154,6 @@ public final class ByteUtils {
             resultado[i / 2] = (byte) ((high << 4) | low);
         }
 
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format("Convertido hex a %d bytes: %s", resultado.length, hex));
         return resultado;
     }
 
@@ -191,12 +170,6 @@ public final class ByteUtils {
         buffer.putInt(valor);
 
         byte[] resultado = buffer.array();
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Int %d convertido a bytes (%s): %s",
-                        valor, bigEndian ? "BE" : "LE", bytesToHex(resultado)));
         return resultado;
     }
 
@@ -213,12 +186,6 @@ public final class ByteUtils {
         buffer.putShort(valor);
 
         byte[] resultado = buffer.array();
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Short %d convertido a bytes (%s): %s",
-                        valor, bigEndian ? "BE" : "LE", bytesToHex(resultado)));
         return resultado;
     }
 
@@ -236,12 +203,6 @@ public final class ByteUtils {
         buffer.order(bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
 
         int resultado = buffer.getInt();
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Bytes %s convertidos a int (%s): %d",
-                        bytesToHex(datos), bigEndian ? "BE" : "LE", resultado));
         return resultado;
     }
 
@@ -259,12 +220,6 @@ public final class ByteUtils {
         buffer.order(bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
 
         short resultado = buffer.getShort();
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Bytes %s convertidos a short (%s): %d",
-                        bytesToHex(datos), bigEndian ? "BE" : "LE", resultado));
         return resultado;
     }
 
@@ -289,12 +244,6 @@ public final class ByteUtils {
 
         System.arraycopy(origen, offsetOrigen, destino, offsetDestino, longitud);
 
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Copiados %d bytes desde pos %d a pos %d",
-                        longitud, offsetOrigen, offsetDestino));
         return longitud;
     }
 
@@ -313,13 +262,6 @@ public final class ByteUtils {
         for (int i = offset; i < offset + longitud; i++) {
             array[i] = valor;
         }
-
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Array rellenado con 0x%02X desde pos %d por %d bytes",
-                        valor & 0xFF, offset, longitud));
     }
 
     /**
@@ -341,10 +283,6 @@ public final class ByteUtils {
             resultado[i + 1] = datos[i];
         }
 
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format("Intercambiados %d pares de bytes", datos.length / 2));
         return resultado;
     }
 
@@ -367,10 +305,6 @@ public final class ByteUtils {
             checksum = (checksum + (datos[i] & 0xFF)) % 256;
         }
 
-        LogManager.v(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format("Checksum calculado para %d bytes: 0x%02X", longitud, checksum));
         return checksum;
     }
 
@@ -389,12 +323,6 @@ public final class ByteUtils {
         int checksumEsperado = datos[datos.length - 1] & 0xFF;
 
         boolean valido = checksumCalculado == checksumEsperado;
-        LogManager.d(
-                Categoria.DATA,
-                LOG_PREFIX,
-                String.format(
-                        "Verificación checksum: calculado=0x%02X, esperado=0x%02X, válido=%s",
-                        checksumCalculado, checksumEsperado, valido));
         return valido;
     }
 
@@ -412,13 +340,8 @@ public final class ByteUtils {
             byte[] hash = md.digest(datos);
             String resultado = bytesToHex(hash);
 
-            LogManager.d(
-                    Categoria.DATA,
-                    LOG_PREFIX,
-                    String.format("Hash MD5 calculado para %d bytes: %s", datos.length, resultado));
             return resultado;
         } catch (NoSuchAlgorithmException e) {
-            LogManager.e(Categoria.DATA, LOG_PREFIX, "Error calculando MD5", e);
             throw new RuntimeException("MD5 no disponible", e);
         }
     }
@@ -439,10 +362,6 @@ public final class ByteUtils {
         validarArray(respuesta, -1, "respuesta");
 
         if (respuesta.length == 0) {
-            LogManager.e(
-                    Categoria.USB,
-                    LOG_PREFIX,
-                    String.format("Respuesta vacía para comando '%s'", comando));
             throw UsbCommunicationException.crearRespuestaInesperada(
                     String.format("0x%02X", esperado), "VACIO", comando);
         }
@@ -451,17 +370,7 @@ public final class ByteUtils {
         boolean valida = recibido == esperado;
 
         if (valida) {
-            LogManager.v(
-                    Categoria.USB,
-                    LOG_PREFIX,
-                    String.format("Respuesta USB válida para '%s': 0x%02X", comando, recibido));
         } else {
-            LogManager.w(
-                    Categoria.USB,
-                    LOG_PREFIX,
-                    String.format(
-                            "Respuesta USB inválida para '%s': esperado=0x%02X, recibido=0x%02X",
-                            comando, esperado, recibido));
             throw UsbCommunicationException.crearRespuestaInesperada(
                     String.format("0x%02X", esperado), String.format("0x%02X", recibido), comando);
         }
@@ -482,12 +391,6 @@ public final class ByteUtils {
         // Crear copia para evitar modificaciones accidentales
         byte[] copia = new byte[datos.length];
         copiarBytes(datos, 0, copia, 0, datos.length);
-
-        LogManager.d(
-                Categoria.USB,
-                LOG_PREFIX,
-                String.format("Datos USB preparados para '%s': %d bytes", comando, copia.length));
-        LogManager.logDatosUSB("ENVÍO", copia, copia.length);
 
         return copia;
     }
