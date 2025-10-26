@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">Программировать PIC</string>
-    <string name="verify_memory_erased">Проверьте, очищена ли память PIC</string>
-    <string name="erase_memory">Очистить память PIC</string>
-    <string name="read_memory">Прочитать память PIC</string>
-    <string name="detect_pic">Обнаружить PIC в сокете</string>
-    <string name="load_hex_file">Загрузить Hex-файл</string>
-    <string name="memory_erased_successfully">Память PIC успешно очищена</string>
-    <string name="memory_erase_error">Ошибка при очистке памяти PIC</string>
-    <string name="rom_programmed_successfully">Память ROM успешно запрограммирована</string>
-    <string name="rom_program_error">Ошибка при программировании памяти ROM</string>
-    <string name="eeprom_programmed_successfully">EEPROM успешно запрограммирован</string>
-    <string name="eeprom_program_error">Ошибка при программировании EEPROM</string>
-    <string name="fuses_programmed_successfully">Предохранители успешно запрограммированы</string>
-    <string name="fuses_program_error">Ошибка при программировании предохранителей</string>
-    <string name="fuses_18f_programmed_successfully">Предохранители 18F успешно запрограммированы</string>
-    <string name="fuses_18f_program_error">Ошибка при программировании предохранителей 18F</string>
-    <string name="pic_programmed_successfully">PIC успешно запрограммирован</string>
-    <string name="pic_program_error">Ошибка при программировании PIC</string>
-    <string name="memory_read_successfully">Память PIC успешно прочитана</string>
-    <string name="memory_read_error">Ошибка при чтении памяти PIC</string>
-    <string name="memory_empty">Память не содержит данных</string>
-    <string name="memory_has_data">Память содержит данные</string>
-    <string name="pic_in_socket">PIC находится в сокете</string>
-    <string name="pic_not_in_socket">PIC не находится в сокете</string>
-    <string name="waiting_for_pic">Ожидание PIC</string>
-    <string name="select_pic">Выберите PIC:</string>
-    <string name="rom_memory_data">Данные памяти ROM:</string>
-    <string name="eeprom_memory_data">Данные памяти EEPROM:</string>
-    <string name="privacy_policy">Политика конфиденциальности</string>
-    <string name="place_pic">Установите PIC сюда</string>
-    <string name="icsp_mode_only">Только режим ICSP, режим ICSP активирован</string>
-    <string name="connection_error">Ошибка подключения:</string>
-    <string name="select_valid_binary_file">Выберите допустимый бинарный файл</string>
-    <string name="obtener_modelo">Получить модель программатора</string>
-    <string name="obtener_protocolo">Получить протокол</string>
-    <string name="modelo_programador">Модель программатора</string>
-    <string name="protocolo_programador">Протокол программатора</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Принять</string>
     <string name="cancelar">Отмена</string>
     <string name="conectado">Подключено</string>

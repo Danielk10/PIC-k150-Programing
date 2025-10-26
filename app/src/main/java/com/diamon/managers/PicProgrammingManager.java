@@ -144,6 +144,7 @@ public class PicProgrammingManager {
      */
     public String readRomMemory(ChipPic chipPIC) {
         if (protocolo == null || chipPIC == null) {
+            notifyError("Protocolo no inicializado");
             return "";
         }
 
@@ -163,6 +164,7 @@ public class PicProgrammingManager {
      */
     public String readEepromMemory(ChipPic chipPIC) {
         if (protocolo == null || chipPIC == null) {
+            notifyError("Protocolo no inicializado");
             return "";
         }
 

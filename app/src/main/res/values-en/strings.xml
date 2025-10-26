@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">Program PIC</string>
-    <string name="verify_memory_erased">Verify if PIC Memory is Erased</string>
-    <string name="erase_memory">Erase PIC Memory</string>
-    <string name="read_memory">Read PIC Memory</string>
-    <string name="detect_pic">Detect PIC in Socket</string>
-    <string name="load_hex_file">Load Hex File</string>
-    <string name="memory_erased_successfully">PIC Memory Erased Successfully</string>
-    <string name="memory_erase_error">Error Erasing PIC Memory</string>
-    <string name="rom_programmed_successfully">ROM Memory Programmed Successfully</string>
-    <string name="rom_program_error">Error Programming ROM Memory</string>
-    <string name="eeprom_programmed_successfully">EEPROM Memory Programmed Successfully</string>
-    <string name="eeprom_program_error">Error Programming EEPROM Memory</string>
-    <string name="fuses_programmed_successfully">Fuses Programmed Successfully</string>
-    <string name="fuses_program_error">Error Programming Fuses</string>
-    <string name="fuses_18f_programmed_successfully">18F Fuses Programmed Successfully</string>
-    <string name="fuses_18f_program_error">Error Programming 18F Fuses</string>
-    <string name="pic_programmed_successfully">PIC Programmed Successfully</string>
-    <string name="pic_program_error">Error Programming PIC</string>
-    <string name="memory_read_successfully">PIC Memory Read Successfully</string>
-    <string name="memory_read_error">Error Reading PIC Memory</string>
-    <string name="memory_empty">Memory Contains No Data</string>
-    <string name="memory_has_data">Memory Contains Data</string>
-    <string name="pic_in_socket">PIC is in Socket</string>
-    <string name="pic_not_in_socket">PIC is Not in Socket</string>
-    <string name="waiting_for_pic">Waiting for PIC</string>
-    <string name="select_pic">Select PIC:</string>
-    <string name="rom_memory_data">ROM Memory Data:</string>
-    <string name="eeprom_memory_data">EEPROM Memory Data:</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="place_pic">Place PIC in</string>
-    <string name="icsp_mode_only">ICSP Mode Only, ICSP Mode Enabled</string>
-    <string name="connection_error">Connection Error:</string>
-    <string name="select_valid_binary_file">Select a Valid Binary File</string>
-    <string name="obtener_modelo">Get Programmer Model</string>
-    <string name="obtener_protocolo">Get Protocol</string>
-    <string name="modelo_programador">Programmer Model</string>
-    <string name="protocolo_programador">Programmer Protocol</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Accept</string>
     <string name="cancelar">Cancel</string>
     <string name="conectado">Connected</string>

@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">编程PIC</string>
-    <string name="verify_memory_erased">检查PIC内存是否已擦除</string>
-    <string name="erase_memory">擦除PIC内存</string>
-    <string name="read_memory">读取PIC内存</string>
-    <string name="detect_pic">检测PIC是否插入插座</string>
-    <string name="load_hex_file">加载Hex文件</string>
-    <string name="memory_erased_successfully">PIC内存成功擦除</string>
-    <string name="memory_erase_error">擦除PIC内存时出错</string>
-    <string name="rom_programmed_successfully">ROM内存成功编程</string>
-    <string name="rom_program_error">编程PIC的ROM内存时出错</string>
-    <string name="eeprom_programmed_successfully">EEPROM内存成功编程</string>
-    <string name="eeprom_program_error">编程PIC的EEPROM内存时出错</string>
-    <string name="fuses_programmed_successfully">保险丝成功编程</string>
-    <string name="fuses_program_error">编程PIC保险丝时出错</string>
-    <string name="fuses_18f_programmed_successfully">18F保险丝成功编程</string>
-    <string name="fuses_18f_program_error">编程PIC 18F保险丝时出错</string>
-    <string name="pic_programmed_successfully">PIC成功编程</string>
-    <string name="pic_program_error">编程PIC时出错</string>
-    <string name="memory_read_successfully">成功读取PIC内存</string>
-    <string name="memory_read_error">读取PIC内存时出错</string>
-    <string name="memory_empty">内存没有数据</string>
-    <string name="memory_has_data">内存中有数据</string>
-    <string name="pic_in_socket">PIC在插座中</string>
-    <string name="pic_not_in_socket">PIC不在插座中</string>
-    <string name="waiting_for_pic">等待PIC</string>
-    <string name="select_pic">选择PIC：</string>
-    <string name="rom_memory_data">ROM内存数据：</string>
-    <string name="eeprom_memory_data">EEPROM内存数据：</string>
-    <string name="privacy_policy">隐私政策</string>
-    <string name="place_pic">将PIC放置在</string>
-    <string name="icsp_mode_only">仅限ICSP模式，已启用ICSP模式</string>
-    <string name="connection_error">连接错误：</string>
-    <string name="select_valid_binary_file">选择有效的二进制文件</string>
-    <string name="obtener_modelo">获取编程器型号</string>
-    <string name="obtener_protocolo">获取协议</string>
-    <string name="modelo_programador">编程器型号</string>
-    <string name="protocolo_programador">编程器协议</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">接受</string>
     <string name="cancelar">取消</string>
     <string name="conectado">已连接</string>

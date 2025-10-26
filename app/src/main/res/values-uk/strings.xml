@@ -1,43 +1,8 @@
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
-    <string name="program_pic">Програмувати PIC</string>
-    <string name="verify_memory_erased">Перевірити, чи пам’ять PIC очищена</string>
-    <string name="erase_memory">Очистити пам’ять PIC</string>
-    <string name="read_memory">Зчитати пам’ять PIC</string>
-    <string name="detect_pic">Виявити PIC у гнізді</string>
-    <string name="load_hex_file">Завантажити файл Hex</string>
-    <string name="memory_erased_successfully">Пам’ять PIC успішно очищена</string>
-    <string name="memory_erase_error">Помилка очищення пам’яті PIC</string>
-    <string name="rom_programmed_successfully">ROM успішно запрограмовано</string>
-    <string name="rom_program_error">Помилка програмування ROM PIC</string>
-    <string name="eeprom_programmed_successfully">EEPROM успішно запрограмовано</string>
-    <string name="eeprom_program_error">Помилка програмування EEPROM PIC</string>
-    <string name="fuses_programmed_successfully">Fuses успішно запрограмовано</string>
-    <string name="fuses_program_error">Помилка програмування Fuses PIC</string>
-    <string name="fuses_18f_programmed_successfully">Fuses 18F успішно запрограмовано</string>
-    <string name="fuses_18f_program_error">Помилка програмування Fuses 18F PIC</string>
-    <string name="pic_programmed_successfully">PIC успішно запрограмовано</string>
-    <string name="pic_program_error">Помилка програмування PIC</string>
-    <string name="memory_read_successfully">Пам’ять PIC успішно зчитана</string>
-    <string name="memory_read_error">Помилка зчитування пам’яті PIC</string>
-    <string name="memory_empty">Пам’ять не містить даних</string>
-    <string name="memory_has_data">Пам’ять містить дані</string>
-    <string name="pic_in_socket">PIC знаходиться у гнізді</string>
-    <string name="pic_not_in_socket">PIC не знаходиться у гнізді</string>
-    <string name="waiting_for_pic">Очікування PIC</string>
-    <string name="select_pic">Вибрати PIC:</string>
-    <string name="rom_memory_data">Дані пам’яті ROM:</string>
-    <string name="eeprom_memory_data">Дані пам’яті EEPROM:</string>
-    <string name="privacy_policy">Політика конфіденційності</string>
-    <string name="place_pic">PIC потрібно розмістити у</string>
-    <string name="icsp_mode_only">Тільки режим ICSP, активовано режим ICSP</string>
-    <string name="connection_error">Помилка з’єднання:</string>
-    <string name="select_valid_binary_file">Виберіть дійсний бінарний файл</string>
-    <string name="obtener_modelo">Отримати модель програматора</string>
-    <string name="obtener_protocolo">Отримати протокол</string>
-    <string name="modelo_programador">Модель програматора</string>
-    <string name="protocolo_programador">Протокол програматора</string>
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Прийняти</string>
     <string name="cancelar">Скасувати</string>
     <string name="conectado">Підключено</string>
