@@ -1,19 +1,21 @@
-package com.diamon.pic.managers;
+package com.diamon.managers;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
- * Gestor de visualizacion de datos de memoria CORREGIDO. Muestra ROM y EEPROM en UN SOLO
- * PopupWindow con tabs Colores: Verde para datos, Blanco para vacio ScrollView en ambas secciones
+ * Gestor de visualizacion de memoria COMPLETAMENTE CORREGIDO
+ * - ROM y EEPROM en UN popup
+ * - Verde para datos, BLANCO para vacio (diferencia clara)
+ * - ScrollView funcional en ambos
+ * - NO se sale de pantalla
  */
 public class MemoryDisplayManager {
 
@@ -24,70 +26,95 @@ public class MemoryDisplayManager {
         this.context = context;
     }
 
-    /** Muestra datos ROM y EEPROM en UN SOLO popup con dos secciones */
-    public void showMemoryDataPopup(
-            String romData, int romSize, String eepromData, int eepromSize, boolean hasEeprom) {
+    /**
+     * Muestra ROM y EEPROM en UN popup - EXACTO como el original
+     */
+    public void showMemoryDataPopup(String romData, int romSize, String eepromData, int eepromSize, boolean hasEeprom) {
+        // Contenedor principal
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
-        container.setBackgroundColor(Color.parseColor("#1A1A2E"));
-        container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(40f);
+        shape.setColor(Color.WHITE);
+        container.setBackground(shape);
+        container.setPadding(dpToPx(20), dpToPx(20), dpToPx(20), dpToPx(20));
 
         // Titulo
-        TextView titleView = new TextView(context);
-        titleView.setText("Datos de Memoria");
-        titleView.setTextColor(Color.parseColor("#4CAF50"));
-        titleView.setTextSize(18);
-        titleView.setTypeface(null, Typeface.BOLD);
-        titleView.setGravity(Gravity.CENTER);
-        titleView.setPadding(0, 0, 0, dpToPx(12));
-        container.addView(titleView);
+        TextView title = new TextView(context);
+        title.setText("Datos de Memoria");
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(20);
+        title.setTypeface(null, Typeface.BOLD);
+        title.setGravity(Gravity.CENTER);
+        title.setPadding(0, 0, 0, dpToPx(16));
+        container.addView(title);
 
-        // Seccion ROM
-        TextView romTitle = new TextView(context);
-        romTitle.setText("Memoria ROM");
-        romTitle.setTextColor(Color.parseColor("#FFD700"));
-        romTitle.setTextSize(16);
-        romTitle.setTypeface(null, Typeface.BOLD);
-        romTitle.setPadding(0, 0, 0, dpToPx(8));
-        container.addView(romTitle);
+        // Etiqueta ROM
+        TextView romLabel = new TextView(context);
+        romLabel.setText("Memoria ROM");
+        romLabel.setTextColor(Color.parseColor("#4CAF50"));
+        romLabel.setTextSize(16);
+        romLabel.setTypeface(null, Typeface.BOLD);
+        romLabel.setPadding(0, 0, 0, dpToPx(8));
+        container.addView(romLabel);
 
-        // ScrollView ROM con altura fija
+        // ScrollView ROM
         ScrollView romScrollView = new ScrollView(context);
-        LinearLayout.LayoutParams romScrollParams =
-                new LinearLayout.LayoutParams(dpToPx(350), dpToPx(hasEeprom ? 200 : 350));
+        LinearLayout.LayoutParams romScrollParams = new LinearLayout.LayoutParams(
+                dpToPx(320),
+                dpToPx(hasEeprom ? 180 : 350)
+        );
         romScrollView.setLayoutParams(romScrollParams);
 
+        // Contenedor ROM con fondo negro
         LinearLayout romContainer = new LinearLayout(context);
         romContainer.setOrientation(LinearLayout.VERTICAL);
         romContainer.setBackgroundColor(Color.BLACK);
-        romContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+        romContainer.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
-        displayMemoryDataWithColors(romContainer, romData, romSize, 4, 8);
+        // Crear background con bordes
+        GradientDrawable romBg = new GradientDrawable();
+        romBg.setColor(Color.BLACK);
+        romBg.setCornerRadius(8f);
+        romContainer.setBackground(romBg);
+
+        displayData(romContainer, romData != null ? romData : "", 4, 8);
         romScrollView.addView(romContainer);
         container.addView(romScrollView);
 
-        // Seccion EEPROM si existe
-        if (hasEeprom && eepromData != null && !eepromData.isEmpty()) {
-            TextView eepromTitle = new TextView(context);
-            eepromTitle.setText("Memoria EEPROM");
-            eepromTitle.setTextColor(Color.parseColor("#FFD700"));
-            eepromTitle.setTextSize(16);
-            eepromTitle.setTypeface(null, Typeface.BOLD);
-            eepromTitle.setPadding(0, dpToPx(12), 0, dpToPx(8));
-            container.addView(eepromTitle);
+        // Si tiene EEPROM
+        if (hasEeprom) {
+            // Etiqueta EEPROM
+            TextView eepromLabel = new TextView(context);
+            eepromLabel.setText("Memoria EEPROM");
+            eepromLabel.setTextColor(Color.parseColor("#4CAF50"));
+            eepromLabel.setTextSize(16);
+            eepromLabel.setTypeface(null, Typeface.BOLD);
+            eepromLabel.setPadding(0, dpToPx(12), 0, dpToPx(8));
+            container.addView(eepromLabel);
 
-            // ScrollView EEPROM con altura fija
+            // ScrollView EEPROM
             ScrollView eepromScrollView = new ScrollView(context);
-            LinearLayout.LayoutParams eepromScrollParams =
-                    new LinearLayout.LayoutParams(dpToPx(350), dpToPx(150));
+            LinearLayout.LayoutParams eepromScrollParams = new LinearLayout.LayoutParams(
+                    dpToPx(320),
+                    dpToPx(150)
+            );
             eepromScrollView.setLayoutParams(eepromScrollParams);
 
+            // Contenedor EEPROM
             LinearLayout eepromContainer = new LinearLayout(context);
             eepromContainer.setOrientation(LinearLayout.VERTICAL);
             eepromContainer.setBackgroundColor(Color.BLACK);
-            eepromContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+            eepromContainer.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
-            displayMemoryDataWithColors(eepromContainer, eepromData, eepromSize, 2, 16);
+            GradientDrawable eepromBg = new GradientDrawable();
+            eepromBg.setColor(Color.BLACK);
+            eepromBg.setCornerRadius(8f);
+            eepromContainer.setBackground(eepromBg);
+
+            displayData(eepromContainer, eepromData != null ? eepromData : "", 2, 8);
             eepromScrollView.addView(eepromContainer);
             container.addView(eepromScrollView);
         }
@@ -98,7 +125,7 @@ public class MemoryDisplayManager {
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(16);
         closeButton.setGravity(Gravity.CENTER);
-        closeButton.setPadding(dpToPx(40), dpToPx(12), dpToPx(40), dpToPx(12));
+        closeButton.setPadding(dpToPx(50), dpToPx(12), dpToPx(50), dpToPx(12));
 
         GradientDrawable buttonBg = new GradientDrawable();
         buttonBg.setShape(GradientDrawable.RECTANGLE);
@@ -106,10 +133,10 @@ public class MemoryDisplayManager {
         buttonBg.setCornerRadius(dpToPx(8));
         closeButton.setBackground(buttonBg);
 
-        LinearLayout.LayoutParams buttonParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
         buttonParams.gravity = Gravity.CENTER;
         buttonParams.setMargins(0, dpToPx(16), 0, 0);
         closeButton.setLayoutParams(buttonParams);
@@ -120,12 +147,12 @@ public class MemoryDisplayManager {
             memoryPopup.dismiss();
         }
 
-        memoryPopup =
-                new PopupWindow(
-                        container,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        true);
+        memoryPopup = new PopupWindow(
+                container,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                true
+        );
 
         memoryPopup.setOutsideTouchable(true);
         memoryPopup.setFocusable(true);
@@ -135,64 +162,74 @@ public class MemoryDisplayManager {
                 ((android.app.Activity) context).findViewById(android.R.id.content),
                 Gravity.CENTER,
                 0,
-                0);
+                0
+        );
     }
 
-    /** Muestra datos con colores: VERDE para datos, BLANCO para vacio */
-    private void displayMemoryDataWithColors(
-            LinearLayout container, String data, int totalSize, int groupSize, int columns) {
-        if (data == null) data = "";
-
-        int dataLength = data.length();
+    /**
+     * LOGICA EXACTA del original para mostrar datos
+     * Verde para datos, BLANCO para vacio
+     */
+    private void displayData(LinearLayout container, String data, int groupSize, int columns) {
         int address = 0;
+        StringBuilder formattedRow = new StringBuilder();
 
-        // Calcular filas necesarias
-        int totalGroups = totalSize;
-        int groupsPerRow = columns;
-        int totalRows = (totalGroups + groupsPerRow - 1) / groupsPerRow;
-
-        for (int row = 0; row < totalRows; row++) {
-            LinearLayout rowLayout = new LinearLayout(context);
-            rowLayout.setOrientation(LinearLayout.HORIZONTAL);
-            rowLayout.setPadding(0, dpToPx(1), 0, dpToPx(1));
-
+        for (int i = 0; i < data.length(); i += groupSize * columns) {
             // Direccion
-            TextView addressView = new TextView(context);
-            addressView.setText(String.format("%04X: ", address));
-            addressView.setTextColor(Color.parseColor("#FFD700"));
-            addressView.setTypeface(Typeface.MONOSPACE);
-            addressView.setTextSize(11);
-            addressView.setMinWidth(dpToPx(50));
-            rowLayout.addView(addressView);
+            String addressHex = String.format("%04X", address);
+            formattedRow.append(addressHex).append(": ");
 
             // Datos
-            for (int col = 0; col < columns; col++) {
-                int dataIndex = (row * columns + col) * groupSize;
+            for (int j = 0; j < columns; j++) {
+                int start = i + j * groupSize;
+                int end = Math.min(start + groupSize, data.length());
 
-                TextView dataView = new TextView(context);
-                dataView.setTypeface(Typeface.MONOSPACE);
-                dataView.setTextSize(11);
-                dataView.setPadding(dpToPx(2), 0, dpToPx(2), 0);
-
-                if (dataIndex < dataLength) {
-                    int endIndex = Math.min(dataIndex + groupSize, dataLength);
-                    String hexValue = data.substring(dataIndex, endIndex);
-                    while (hexValue.length() < groupSize) hexValue += " ";
-
-                    dataView.setText(hexValue + " ");
-                    dataView.setTextColor(Color.parseColor("#4CAF50")); // VERDE
-                } else {
-                    String emptyValue = "";
-                    for (int i = 0; i < groupSize; i++) emptyValue += "F";
-                    dataView.setText(emptyValue + " ");
-                    dataView.setTextColor(Color.WHITE); // BLANCO
+                if (start < data.length()) {
+                    formattedRow.append(data.substring(start, end)).append(" ");
                 }
-
-                rowLayout.addView(dataView);
             }
 
-            container.addView(rowLayout);
-            address += columns;
+            // Crear fila
+            TextView rowTextView = new TextView(context);
+            rowTextView.setText(formattedRow.toString().trim());
+            rowTextView.setTextSize(11);
+            rowTextView.setTextColor(Color.parseColor("#4CAF50")); // VERDE para datos
+            rowTextView.setTypeface(Typeface.MONOSPACE);
+            rowTextView.setPadding(4, 2, 4, 2);
+            container.addView(rowTextView);
+
+            address += 8;
+            formattedRow.setLength(0);
+        }
+
+        // Agregar filas BLANCAS para memoria vacia
+        // Calcular cuantas filas faltan
+        int totalRows = (int) Math.ceil(data.length() / (double) (groupSize * columns));
+        int maxRows = 50; // Maximo estimado
+
+        if (totalRows < maxRows) {
+            for (int i = totalRows; i < maxRows && i < totalRows + 10; i++) {
+                String addressHex = String.format("%04X", address);
+                StringBuilder emptyRow = new StringBuilder();
+                emptyRow.append(addressHex).append(": ");
+
+                for (int j = 0; j < columns; j++) {
+                    for (int k = 0; k < groupSize; k++) {
+                        emptyRow.append("F");
+                    }
+                    emptyRow.append(" ");
+                }
+
+                TextView emptyTextView = new TextView(context);
+                emptyTextView.setText(emptyRow.toString().trim());
+                emptyTextView.setTextSize(11);
+                emptyTextView.setTextColor(Color.WHITE); // BLANCO para vacio
+                emptyTextView.setTypeface(Typeface.MONOSPACE);
+                emptyTextView.setPadding(4, 2, 4, 2);
+                container.addView(emptyTextView);
+
+                address += 8;
+            }
         }
     }
 

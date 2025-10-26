@@ -1,10 +1,9 @@
-package com.diamon.pic.managers;
+package com.diamon.managers;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.OpenableColumns;
-import android.webkit.MimeTypeMap;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -16,8 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Gestor de archivos HEX CORREGIDO. Filtra CORRECTAMENTE archivos .hex y .bin como el codigo
- * original
+ * FileManager CORREGIDO - Filtro EXACTO del original
  */
 public class FileManager {
 
@@ -29,7 +27,6 @@ public class FileManager {
 
     public interface FileLoadListener {
         void onFileLoaded(String content, String fileName);
-
         void onFileLoadError(String errorMessage);
     }
 
@@ -38,35 +35,43 @@ public class FileManager {
         this.context = activity;
     }
 
-    /** Inicializa el launcher con filtro EXACTO del original */
     public void initialize() {
-        filePickerLauncher =
-                activity.registerForActivityResult(
-                        new ActivityResultContracts.OpenDocument(),
-                        uri -> {
-                            if (uri != null) {
-                                processFile(uri);
-                            }
-                        });
+        filePickerLauncher = activity.registerForActivityResult(
+                new ActivityResultContracts.OpenDocument(),
+                uri -> {
+                    if (uri != null) {
+                        processSelectedFile(uri);
+                    }
+                }
+        );
     }
 
     public void setFileLoadListener(FileLoadListener listener) {
         this.fileLoadListener = listener;
     }
 
-    /** Abre selector con filtro EXACTO: solo .hex y .bin */
+    /**
+     * Filtro EXACTO del original
+     */
     public void openFilePicker() {
         if (filePickerLauncher == null) {
             notifyError("FileManager no inicializado");
             return;
         }
 
-        // FILTRO CORRECTO: Solo hex y bin
-        String[] mimeTypes = {"*/*"};
+        // FILTROS EXACTOS del codigo original
+        String[] mimeTypes = {
+                "application/octet-stream",
+                "application/x-binary"
+        };
+
         filePickerLauncher.launch(mimeTypes);
     }
 
-    private void processFile(Uri uri) {
+    /**
+     * Procesa archivo seleccionado - LOGICA EXACTA del original
+     */
+    private void processSelectedFile(Uri uri) {
         String fileName = getFileName(uri);
 
         if (fileName == null) {
@@ -74,28 +79,26 @@ public class FileManager {
             return;
         }
 
-        // VALIDACION ESTRICTA: Solo .hex o .bin
-        String lowerFileName = fileName.toLowerCase();
-        if (!lowerFileName.endsWith(".hex") && !lowerFileName.endsWith(".bin")) {
-            notifyError("Solo se permiten archivos .hex o .bin");
+        // Validar extension .hex o .bin
+        if (!fileName.endsWith(".bin") && !fileName.endsWith(".hex")) {
+            notifyError("Seleccione un archivo binario valido (.hex o .bin)");
             return;
         }
 
-        String content = readFileContent(uri);
-
-        if (content != null && !content.isEmpty()) {
-            hexFileContent = content;
-            notifyFileLoaded(content, fileName);
-        }
+        // Leer archivo
+        hexFileContent = readHexFile(uri);
     }
 
-    private String readFileContent(Uri uri) {
+    /**
+     * Lee archivo HEX - LOGICA EXACTA del original
+     */
+    private String readHexFile(Uri uri) {
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
 
             if (inputStream == null) {
-                notifyError("Error abriendo el archivo");
-                return null;
+                notifyError("Error abriendo el archivo seleccionado");
+                return "";
             }
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -103,6 +106,7 @@ public class FileManager {
             String line;
 
             while ((line = reader.readLine()) != null) {
+                // Parar en comentarios (lineas con ';')
                 if (line.length() > 0 && line.charAt(0) == ';') {
                     break;
                 }
@@ -115,18 +119,22 @@ public class FileManager {
             String content = fileContent.toString();
 
             if (content.trim().isEmpty()) {
-                notifyError("El archivo esta vacio");
-                return null;
+                notifyError("El archivo seleccionado esta vacio");
+                return "";
             }
+
+            // Notificar exito
+            String fileName = getFileName(uri);
+            notifyFileLoaded(content, fileName);
 
             return content;
 
         } catch (IOException e) {
             notifyError("Error leyendo el archivo: " + e.getMessage());
-            return null;
+            return "";
         } catch (Exception e) {
-            notifyError("Error inesperado: " + e.getMessage());
-            return null;
+            notifyError("Error inesperado leyendo el archivo");
+            return "";
         }
     }
 

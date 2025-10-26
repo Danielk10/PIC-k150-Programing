@@ -1,4 +1,4 @@
-package com.diamon.pic.ui;
+package com.diamon.managers;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
