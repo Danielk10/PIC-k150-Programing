@@ -95,4 +95,6 @@
     <string name="esperando_operacion">संचालन की प्रतीक्षा में...</string>
     <string name="esperando_seleccion">चयन की प्रतीक्षा में...</string>
     <string name="seleccionar_chip_pic">PIC चिप चुनें</string>
+    <!-- values-hi/strings.xml (Hindi) -->
+    <string name="gputils_termux_asm">Termux में GPUTILS ASM कंपाइलर Android</string>
 </resources>

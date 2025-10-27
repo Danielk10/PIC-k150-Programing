@@ -95,4 +95,6 @@
     <string name="esperando_operacion">等待操作...</string>
     <string name="esperando_seleccion">等待选择...</string>
     <string name="seleccionar_chip_pic">选择 PIC 芯片</string>
+    <!-- values-zh/strings.xml (Chino Simplificado) -->
+    <string name="gputils_termux_asm">Termux 中的 GPUTILS ASM 编译器 Android</string>
 </resources>

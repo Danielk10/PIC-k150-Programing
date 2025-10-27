@@ -95,4 +95,6 @@
     <string name="esperando_operacion">ממתין לפעולה...</string>
     <string name="esperando_seleccion">ממתין לבחירה...</string>
     <string name="seleccionar_chip_pic">בחר שבב PIC</string>
+    <!-- values-iw/strings.xml (Hebreo) -->
+    <string name="gputils_termux_asm">GPUTILS ב-Termux ASM Compiler Android</string>
 </resources>

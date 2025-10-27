@@ -95,4 +95,6 @@
     <string name="esperando_operacion">操作を待っています...</string>
     <string name="esperando_seleccion">選択を待っています...</string>
     <string name="seleccionar_chip_pic">PICチップを選択</string>
+    <!-- values-ja/strings.xml (Japonés) -->
+    <string name="gputils_termux_asm">Termux の GPUTILS ASM コンパイラ Android</string>
 </resources>
