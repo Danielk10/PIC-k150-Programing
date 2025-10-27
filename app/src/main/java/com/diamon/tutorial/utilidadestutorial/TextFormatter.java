@@ -17,14 +17,14 @@ import android.widget.TextView;
 public class TextFormatter {
 
     private Context context;
-    private static final int COLOR_KEYWORD = 0xFF0066CC;      // Azul para palabras clave
-    private static final int COLOR_STRING = 0xFF66BB6A;        // Verde para strings
-    private static final int COLOR_COMMENT = 0xFF888888;       // Gris para comentarios
-    private static final int COLOR_ERROR = 0xFFD32F2F;         // Rojo para errores
-    private static final int COLOR_SUCCESS = 0xFF388E3C;       // Verde oscuro para éxito
-    private static final int COLOR_WARNING = 0xFFFFA500;       // Naranja para advertencias
-    private static final int COLOR_CODE_BG = 0xFF1A1A1A;       // Negro para fondo de código
-    private static final int COLOR_CODE_TEXT = 0xFFEEEEEE;     // Blanco roto para texto de código
+    private static final int COLOR_KEYWORD = 0xFF0066CC;     // Azul para palabras clave
+    private static final int COLOR_STRING = 0xFF66BB6A;      // Verde para strings
+    private static final int COLOR_COMMENT = 0xFF888888;     // Gris para comentarios
+    private static final int COLOR_ERROR = 0xFFD32F2F;       // Rojo para errores
+    private static final int COLOR_SUCCESS = 0xFF388E3C;     // Verde oscuro para éxito
+    private static final int COLOR_WARNING = 0xFFFFA500;     // Naranja para advertencias
+    private static final int COLOR_CODE_BG = 0xFF1A1A1A;     // Negro para fondo de código
+    private static final int COLOR_CODE_TEXT = 0xFFEEEEEE;   // Blanco roto para texto de código
 
     public TextFormatter(Context context) {
         this.context = context;
@@ -85,7 +85,6 @@ public class TextFormatter {
      */
     public SpannableString highlightKeywords(String text, String[] keywords, int color) {
         SpannableString spannable = new SpannableString(text);
-
         for (String keyword : keywords) {
             int start = 0;
             while ((start = text.indexOf(keyword, start)) != -1) {
@@ -121,7 +120,7 @@ public class TextFormatter {
 
         // Colorear símbolo de prompt
         spannable.setSpan(
-                new ForegroundColorSpan(0xFF00AA00),  // Verde
+                new ForegroundColorSpan(0xFF00AA00), // Verde
                 0,
                 2,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -153,7 +152,7 @@ public class TextFormatter {
 
         // Color para el emoji
         builder.setSpan(
-                new ForegroundColorSpan(0xFFFFA500),  // Naranja
+                new ForegroundColorSpan(0xFFFFA500), // Naranja
                 0,
                 emoji.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -177,7 +176,6 @@ public class TextFormatter {
         String stepNum = String.valueOf(stepNumber);
         int stepNumStart = fullText.indexOf(stepNum);
         int stepNumEnd = stepNumStart + stepNum.length();
-
         builder.setSpan(
                 new ForegroundColorSpan(COLOR_KEYWORD),
                 stepNumStart,
@@ -204,18 +202,16 @@ public class TextFormatter {
      */
     public SpannableString formatError(String errorMessage) {
         SpannableString spannable = new SpannableString("❌ ERROR: " + errorMessage);
-
         spannable.setSpan(
                 new ForegroundColorSpan(COLOR_ERROR),
                 0,
                 spannable.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
-
         spannable.setSpan(
                 new StyleSpan(android.graphics.Typeface.BOLD),
                 0,
-                9,  // "❌ ERROR:"
+                9, // "❌ ERROR:"
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 
@@ -229,18 +225,16 @@ public class TextFormatter {
      */
     public SpannableString formatSuccess(String successMessage) {
         SpannableString spannable = new SpannableString("✅ ÉXITO: " + successMessage);
-
         spannable.setSpan(
                 new ForegroundColorSpan(COLOR_SUCCESS),
                 0,
                 spannable.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
-
         spannable.setSpan(
                 new StyleSpan(android.graphics.Typeface.BOLD),
                 0,
-                9,  // "✅ ÉXITO:"
+                9, // "✅ ÉXITO:"
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 
@@ -254,18 +248,16 @@ public class TextFormatter {
      */
     public SpannableString formatWarning(String warningMessage) {
         SpannableString spannable = new SpannableString("⚠️ ADVERTENCIA: " + warningMessage);
-
         spannable.setSpan(
                 new ForegroundColorSpan(COLOR_WARNING),
                 0,
                 spannable.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
-
         spannable.setSpan(
                 new StyleSpan(android.graphics.Typeface.BOLD),
                 0,
-                15,  // "⚠️ ADVERTENCIA:"
+                15, // "⚠️ ADVERTENCIA:"
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 

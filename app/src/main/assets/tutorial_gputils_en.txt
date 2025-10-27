@@ -1,6 +1,8 @@
-# GPUTILS 1.5.2 INSTALLATION ON TERMUX FOR ANDROID
+GPUTILS 1.5.2 INSTALLATION ON TERMUX FOR ANDROID
+For Termux Google Play version
 
-# 📋 Contents
+
+📋 Contents
 1. Update Repositories
 2. Install Dependencies
 3. Download Source Code
@@ -12,201 +14,174 @@
 9. Compile Program for PIC
 10. Copy HEX File
 
---
 
-# 📦 STEP 1: Update Termux Repositories
+
+📦 STEP 1: Update Termux Repositories
 
 Open the Termux application and update your system packages to ensure you have the latest versions:
 
-```
 pkg update && pkg upgrade -y
-```
 
-# ℹ️ Important Notes:
+ℹ️ Important Notes:
 • This command downloads and installs the latest updates for all packages
-• The `-y` parameter automatically answers "yes" to any confirmation questions
+• The -y parameter automatically answers "yes" to any confirmation questions
 • This ensures your Termux has all necessary security patches
 
-# 🔐 Configure Storage Access:
+🔐 Configure Storage Access:
 Grant storage permissions to Termux so it can access your files:
 
-```
 termux-setup-storage
-```
 
-# ℹ️ Explanation:
+ℹ️ Explanation:
 This command creates a symbolic link to your external storage. You will need to accept the permission on your Android device.
 
---
 
-# 🔧 STEP 2: Install Required Dependencies
+
+🔧 STEP 2: Install Required Dependencies
 
 Install the compilation tools required to build gputils. Execute the following commands:
 
-```
 pkg install build-essential clang make wget tar bzip2 -y
-```
 
-# 📋 Installed Packages:
-• **build-essential**: Contains basic compilation tools (gcc, g++, etc.)
-• **clang**: Modern C/C++ compiler alternative to GCC (compatible with Termux)
-• **make**: Automation tool that executes compilation instructions
-• **wget**: Downloads files from the Internet using command line
-• **tar/bzip2**: Tools to extract compressed files
+📋 Installed Packages:
+• build-essential: Contains basic compilation tools (gcc, g++, etc.)
+• clang: Modern C/C++ compiler alternative to GCC (compatible with Termux)
+• make: Automation tool that executes compilation instructions
+• wget: Downloads files from the Internet using command line
+• tar/bzip2: Tools to extract compressed files
 
 Then install the binary utilities:
 
-```
 pkg install binutils -y
-```
 
-# 🔍 Binutils Utilities:
-• **ar**: Creates and manipulates static library files
-• **ranlib**: Generates indexes for library files for quick access
-• **as**: GNU assembler for compiling assembly code
-• **ld**: Linker that combines object files into executables
-• **nm, objcopy, objdump, strip**: Utilities for analyzing and manipulating object code
+🔍 Binutils Utilities:
+• ar: Creates and manipulates static library files
+• ranlib: Generates indexes for library files for quick access
+• as: GNU assembler for compiling assembly code
+• ld: Linker that combines object files into executables
+• nm, objcopy, objdump, strip: Utilities for analyzing and manipulating object code
 
---
 
-# 📥 STEP 3: Download GPUTILS 1.5.2 Source Code
+
+📥 STEP 3: Download GPUTILS 1.5.2 Source Code
 
 Download the compressed source file from SourceForge:
 
-```
 wget https://sourceforge.net/projects/gputils/files/gputils/1.5.0/gputils-1.5.2.tar.bz2/download -O gputils-1.5.2.tar.bz2
-```
 
-# ℹ️ Command Explanation:
-• **wget**: Tool for downloading files
-• **-O**: Specifies the name of the downloaded file locally
-• The file will be saved as `gputils-1.5.2.tar.bz2` in your current directory
+ℹ️ Command Explanation:
+• wget: Tool for downloading files
+• -O: Specifies the name of the downloaded file locally
+• The file will be saved as gputils-1.5.2.tar.bz2 in your current directory
 
-# ⏱️ Download Time:
+⏱️ Download Time:
 Depending on your connection speed, this may take 1-5 minutes approximately.
 
---
 
-# 📂 STEP 4: Extract Source Code
+
+📂 STEP 4: Extract Source Code
 
 Once downloaded, extract the compressed file:
 
-```
 tar -xjf gputils-1.5.2.tar.bz2
 cd gputils-1.5.2
-```
 
-# 📋 Explanation:
-• **tar**: Command for manipulating packaged files
-• **-xjf**: Combined options:
-  - `-x`: Extract files
-  - `-j`: Decompress using bzip2
-  - `-f`: Specifies the file to process
-• **cd**: Changes to the extracted directory
+📋 Explanation:
+• tar: Command for manipulating packaged files
+• -xjf: Combined options:
+  - -x: Extract files
+  - -j: Decompress using bzip2
+  - -f: Specifies the file to process
+• cd: Changes to the extracted directory
 
---
 
-# ⚙️ STEP 5: Configure the Project
+
+⚙️ STEP 5: Configure the Project
 
 Configure GPUTILS specifying where it will be installed and what tools to use:
 
-```
 ./configure AR=ar RANLIB=ranlib --prefix=$PREFIX
-```
 
-# 🔍 Configuration Options:
-• **./configure**: Script that prepares the project for compilation
-• **AR=ar**: Specifies that the `ar` archiver be used to create static libraries
-• **RANLIB=ranlib**: Specifies that `ranlib` be used to generate library indexes
-• **--prefix=$PREFIX**: Sets the installation path to `/data/data/com.termux/files/usr`
+🔍 Configuration Options:
+• ./configure: Script that prepares the project for compilation
+• AR=ar: Specifies that the ar archiver be used to create static libraries
+• RANLIB=ranlib: Specifies that ranlib be used to generate library indexes
+• --prefix=$PREFIX: Sets the installation path to /data/data/com.termux/files/usr
 
-# ⚠️ Important:
-If you see error messages, check the `config.log` file to diagnose problems:
+⚠️ Important:
+If you see error messages, check the config.log file to diagnose problems:
 
-```
 cat config.log
-```
 
---
 
-# 🔨 STEP 6: Compile GPUTILS
+
+🔨 STEP 6: Compile GPUTILS
 
 Start the compilation using all available processor cores:
 
-```
 make -j$(nproc)
-```
 
-# 📋 Explanation:
-• **make**: Reads the `Makefile` and executes compilation instructions
-• **-j$(nproc)**: Parallelizes compilation:
-  - `-j`: Enables parallel compilation
-  - `$(nproc)`: Automatically detects the number of available cores
+📋 Explanation:
+• make: Reads the Makefile and executes compilation instructions
+• -j$(nproc): Parallelizes compilation:
+  - -j: Enables parallel compilation
+  - $(nproc): Automatically detects the number of available cores
   - This significantly speeds up the compilation process
 
-# ⏱️ Compilation Time:
-This may take 2-10 minutes depending on your device. **Do not interrupt this process!**
+⏱️ Compilation Time:
+This may take 2-10 minutes depending on your device. Do not interrupt this process!
 
---
 
-# 💾 STEP 7: Install GPUTILS
+
+💾 STEP 7: Install GPUTILS
 
 Once compilation completes successfully, install the binaries and files:
 
-```
 make install
-```
 
-# 📍 Installation Locations:
-• **Binaries**: `/data/data/com.termux/files/usr/bin/`
-  - `gpasm`: PIC assembler
-  - `gplink`: Object code linker
-  - `gplib`: Library manager
+📍 Installation Locations:
+• Binaries: /data/data/com.termux/files/usr/bin/
+  - gpasm: PIC assembler
+  - gplink: Object code linker
+  - gplib: Library manager
 
-• **Libraries**: `/data/data/com.termux/files/usr/lib/`
+• Libraries: /data/data/com.termux/files/usr/lib/
   - Library files needed for execution
 
-• **Headers**: `/data/data/com.termux/files/usr/include/`
+• Headers: /data/data/com.termux/files/usr/include/
   - Definition files for development
 
---
 
-# ✅ STEP 8: Verify the Installation
+
+✅ STEP 8: Verify the Installation
 
 Verify that GPUTILS installed correctly by checking the version of each tool:
 
-```
 gpasm --version
 gplink --version
 gplib --version
-```
 
-# ✨ Expected Result:
+✨ Expected Result:
 You should see something like:
 
-```
 gputils-1.5.2
 Copyright (c) 1998-2017 James Bowman
 Copyright (c) 2007-2016 Craig Franklin
-```
 
---
 
-# 💻 STEP 9: Compile Program for PIC16F628A
 
-# Create the Assembler File:
+💻 STEP 9: Compile Program for PIC16F628A
+
+Create the Assembler File:
 
 Open the nano editor to create your first program:
 
-```
 nano blink_628a.asm
-```
 
-# 📝 Assembler Code - LED Blink:
+📝 Assembler Code - LED Blink:
 
 Copy the following code in the editor:
 
-```asm
 ; Program to blink an LED on PIC16F628A
 ; LED connected to RB0 (pin 6)
 
@@ -272,126 +247,109 @@ Retardo_Loop:
     return
 
     END
-```
 
-# 💾 Save the File:
-Press `CTRL + X`, then `Y` to confirm, and `ENTER` to save.
+💾 Save the File:
+Press CTRL + X, then Y to confirm, and ENTER to save.
 
-# 🔨 Compile the Code:
+🔨 Compile the Code:
 
 Compile the assembly program:
 
-```
 gpasm -p p16f628a blink_628a.asm
-```
 
-# 📋 Command Explanation:
-• **gpasm**: GPUTILS assembler
-• **-p p16f628a**: Specifies the PIC model to use
-• **blink_628a.asm**: Assembly source file
+📋 Command Explanation:
+• gpasm: GPUTILS assembler
+• -p p16f628a: Specifies the PIC model to use
+• blink_628a.asm: Assembly source file
 
-# 📂 List Generated Files:
+📂 List Generated Files:
 
 Verify that the output files were created:
 
-```
 ls -la blink_628a.*
-```
 
-# ✨ Generated Files:
-• **blink_628a.hex**: Machine code file in hexadecimal format (to program the PIC)
-• **blink_628a.lst**: Listing file with cross-references
-• **blink_628a.cod**: Debug file with code information
+✨ Generated Files:
+• blink_628a.hex: Machine code file in hexadecimal format (to program the PIC)
+• blink_628a.lst: Listing file with cross-references
+• blink_628a.cod: Debug file with code information
 
---
 
-# 📋 STEP 10: Copy HEX File to Downloads
+
+📋 STEP 10: Copy HEX File to Downloads
 
 Once compilation completes successfully, copy the HEX file to your Downloads folder:
 
-```
 cp blink_628a.hex ~/storage/downloads/
-```
 
-# 📍 Explanation:
-• **cp**: Command to copy files
-• **~/storage/downloads/**: Path to your device's Downloads folder
+📍 Explanation:
+• cp: Command to copy files
+• ~/storage/downloads/: Path to your device's Downloads folder
 
-# ✅ Verify the Copy:
+✅ Verify the Copy:
 
 Confirm that the file was copied successfully:
 
-```
 ls -l ~/storage/downloads/blink_628a.hex
-```
 
---
 
-# 🚀 STEP 11: Program the PIC
+
+🚀 STEP 11: Program the PIC
 
 You now have the HEX file ready to program. Now:
 
-# 📝 Final Instructions:
+📝 Final Instructions:
 1. Connect your PIC k150 programmer to your Android device (via USB OTG if necessary)
-2. Open the **PIC k150 Programing** application
-3. Select your PIC model: **PIC16F628A**
-4. Load the `blink_628a.hex` file from the Downloads folder
+2. Open the PIC k150 Programing application
+3. Select your PIC model: PIC16F628A
+4. Load the blink_628a.hex file from the Downloads folder
 5. Verify that the PIC is correctly inserted in the programmer
 6. Click "Program" or "Program"
 7. Wait for the programming process to complete
 
-# ✨ Expected Result:
+✨ Expected Result:
 Once programmed, your LED will blink continuously with an approximate period of 1 second (500ms on, 500ms off).
 
---
 
-# 💡 Tips and Troubleshooting
 
-# ⚠️ Error: "command not found"
+💡 Tips and Troubleshooting
+
+⚠️ Error: "command not found"
 If GPUTILS commands are not found after installation, add the path to your PATH:
 
-```
 export PATH=$PREFIX/bin:$PATH
 echo 'export PATH=$PREFIX/bin:$PATH' >> ~/.bashrc
-```
 
-# ⚠️ Error: "Permission denied" when running gpasm
+⚠️ Error: "Permission denied" when running gpasm
 Make sure the files have execution permissions:
 
-```
 chmod +x $PREFIX/bin/gpasm
 chmod +x $PREFIX/bin/gplink
 chmod +x $PREFIX/bin/gplib
-```
 
-# ⚠️ Error: "ar: not found"
+⚠️ Error: "ar: not found"
 This means binutils was not installed correctly. Try:
 
-```
 pkg remove binutils
 pkg install binutils -y
 make clean
 make -j$(nproc)
 make install
-```
 
-# 📝 Check Compilation Logs:
+📝 Check Compilation Logs:
 If there are errors during compilation, check:
 
-```
 cat config.log | grep -i error
-```
 
---
 
-# 📚 References and Additional Resources
 
-• **GPUTILS Official Site**: https://sourceforge.net/projects/gputils/
-• **PIC16F628A Documentation**: Datasheet available on the Microchip website
-• **Termux Wiki**: https://wiki.termux.com/
+📚 References and Additional Resources
 
---
+• GPUTILS Official Site: https://sourceforge.net/projects/gputils/
+• PIC16F628A Documentation: Datasheet available on the Microchip website
+• Termux Wiki: https://wiki.termux.com/
 
-# ✅ Congratulations!
+
+
+✅ Congratulations!
 
 You have successfully installed GPUTILS 1.5.2 on Termux and compiled your first PIC program. Now you can create more complex programs for your microcontrollers.

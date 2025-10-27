@@ -82,7 +82,7 @@
 
             </LinearLayout>
 
-            <!-- Info de idioma actual -->
+            <!-- Info de idioma actual - Actualizable dinámicamente -->
             <TextView
                 android:id="@+id/languageInfoTextView"
                 android:layout_width="match_parent"
