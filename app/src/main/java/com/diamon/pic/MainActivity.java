@@ -502,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
-        menu.add(Menu.NONE, 3, 3, "📚 Tutorial GPUTILS Termux Compilador ASM Android");  // ← NUEVA OPCIÓN
+        menu.add(Menu.NONE, 3, 3, "📚 GPUTILS en Termux Compilador ASM Android");  // ← NUEVA OPCIÓN
         menu.add(Menu.NONE, 4, 4, getString(R.string.politica_de_privacidad));
         return true;
     }
