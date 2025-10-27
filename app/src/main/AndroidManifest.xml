@@ -68,6 +68,18 @@
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
         </activity>
+        <!-- Activity del Tutorial de GPUTILS -->
+        <activity
+            android:name="com.diamon.tutorial.TutorialGputilsActivity"
+            android:exported="false"
+            android:label="GPUTILS Tutorial"
+            android:theme="@style/Theme.PICk150Programing"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity
             android:name="com.diamon.politicas.Politicas"
             android:label="@string/politicas"

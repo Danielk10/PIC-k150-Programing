@@ -1,0 +1,397 @@
+# INSTALACIÓN DE GPUTILS 1.5.2 EN TERMUX PARA ANDROID
+
+## 📋 Contenido
+1. Actualizar Repositorios
+2. Instalar Dependencias
+3. Descargar Código Fuente
+4. Extraer Archivos
+5. Configurar el Proyecto
+6. Compilar GPUTILS
+7. Instalar GPUTILS
+8. Verificar Instalación
+9. Compilar Programa para PIC
+10. Copiar Archivo HEX
+
+---
+
+## 📦 PASO 1: Actualizar Repositorios de Termux
+
+Abre la aplicación Termux y actualiza los paquetes del sistema para asegurar que tengas las versiones más recientes:
+
+```
+pkg update && pkg upgrade -y
+```
+
+### ℹ️ Notas Importantes:
+• Este comando descarga e instala las actualizaciones más recientes de todos los paquetes
+• El parámetro `-y` responde automáticamente "sí" a cualquier pregunta de confirmación
+• Esto garantiza que tu Termux tiene todas las correcciones de seguridad necesarias
+
+### 🔐 Configurar Acceso al Almacenamiento:
+Otorga permisos de almacenamiento a Termux para que pueda acceder a tus archivos:
+
+```
+termux-setup-storage
+```
+
+### ℹ️ Explicación:
+Este comando crea un enlace simbólico a tu almacenamiento externo. Necesitarás aceptar el permiso en tu dispositivo Android.
+
+---
+
+## 🔧 PASO 2: Instalar Dependencias Necesarias
+
+Instala las herramientas de compilación requeridas para compilar gputils. Ejecuta los siguientes comandos:
+
+```
+pkg install build-essential clang make wget tar bzip2 -y
+```
+
+### 📋 Paquetes Instalados:
+• **build-essential**: Contiene herramientas básicas de compilación (gcc, g++, etc.)
+• **clang**: Compilador moderno de C/C++ alternativo a GCC (compatible con Termux)
+• **make**: Herramienta de automatización que ejecuta instrucciones de compilación
+• **wget**: Descarga archivos desde Internet usando línea de comandos
+• **tar/bzip2**: Herramientas para extraer archivos comprimidos
+
+Luego instala las utilidades binarias:
+
+```
+pkg install binutils -y
+```
+
+### 🔍 Utilidades de Binutils:
+• **ar**: Crea y manipula archivos de bibliotecas estáticas
+• **ranlib**: Genera índices para archivos de biblioteca para acceso rápido
+• **as**: Ensamblador GNU para compilar código ensamblador
+• **ld**: Enlazador que combina archivos objeto en ejecutables
+• **nm, objcopy, objdump, strip**: Utilidades para analizar y manipular código objeto
+
+---
+
+## 📥 PASO 3: Descargar el Código Fuente de GPUTILS 1.5.2
+
+Descarga el archivo fuente comprimido desde SourceForge:
+
+```
+wget https://sourceforge.net/projects/gputils/files/gputils/1.5.0/gputils-1.5.2.tar.bz2/download -O gputils-1.5.2.tar.bz2
+```
+
+### ℹ️ Explicación del Comando:
+• **wget**: Herramienta para descargar archivos
+• **-O**: Especifica el nombre del archivo descargado localmente
+• El archivo se guardará como `gputils-1.5.2.tar.bz2` en tu directorio actual
+
+### ⏱️ Tiempo de Descarga:
+Dependiendo de tu velocidad de conexión, esto puede tomar 1-5 minutos aproximadamente.
+
+---
+
+## 📂 PASO 4: Extraer el Código Fuente
+
+Una vez descargado, extrae el archivo comprimido:
+
+```
+tar -xjf gputils-1.5.2.tar.bz2
+cd gputils-1.5.2
+```
+
+### 📋 Explicación:
+• **tar**: Comando para manipular archivos empaquetados
+• **-xjf**: Opciones combinadas:
+  - `-x`: Extraer archivos
+  - `-j`: Descomprimir usando bzip2
+  - `-f`: Especifica el archivo a procesar
+• **cd**: Cambia al directorio extraído
+
+---
+
+## ⚙️ PASO 5: Configurar el Proyecto
+
+Configura GPUTILS especificando dónde se instalará y qué herramientas usar:
+
+```
+./configure AR=ar RANLIB=ranlib --prefix=$PREFIX
+```
+
+### 🔍 Opciones de Configuración:
+• **./configure**: Script que prepara el proyecto para compilación
+• **AR=ar**: Especifica que se use el archivador `ar` para crear bibliotecas estáticas
+• **RANLIB=ranlib**: Especifica que se use `ranlib` para generar índices de biblioteca
+• **--prefix=$PREFIX**: Establece que la instalación sea en `/data/data/com.termux/files/usr`
+
+### ⚠️ Importante:
+Si ves mensajes de error, revisa el archivo `config.log` para diagnosticar problemas:
+
+```
+cat config.log
+```
+
+---
+
+## 🔨 PASO 6: Compilar GPUTILS
+
+Inicia la compilación usando todos los núcleos del procesador disponibles:
+
+```
+make -j$(nproc)
+```
+
+### 📋 Explicación:
+• **make**: Lee el archivo `Makefile` y ejecuta las instrucciones de compilación
+• **-j$(nproc)**: Paraleliza la compilación:
+  - `-j`: Permite compilación paralela
+  - `$(nproc)`: Detecta automáticamente el número de núcleos disponibles
+  - Esto acelera significativamente el proceso de compilación
+
+### ⏱️ Tiempo de Compilación:
+Esto puede tomar 2-10 minutos dependiendo del dispositivo. **¡No interrumpas este proceso!**
+
+---
+
+## 💾 PASO 7: Instalar GPUTILS
+
+Una vez completada la compilación exitosamente, instala los binarios y archivos:
+
+```
+make install
+```
+
+### 📍 Ubicaciones de Instalación:
+• **Binarios**: `/data/data/com.termux/files/usr/bin/`
+  - `gpasm`: Ensamblador de PIC
+  - `gplink`: Enlazador de código objeto
+  - `gplib`: Gestor de bibliotecas
+
+• **Librerías**: `/data/data/com.termux/files/usr/lib/`
+  - Archivos de biblioteca necesarios para ejecución
+
+• **Encabezados**: `/data/data/com.termux/files/usr/include/`
+  - Archivos de definición para desarrollo
+
+---
+
+## ✅ PASO 8: Verificar la Instalación
+
+Verifica que GPUTILS se instaló correctamente comprobando la versión de cada herramienta:
+
+```
+gpasm --version
+gplink --version
+gplib --version
+```
+
+### ✨ Resultado Esperado:
+Deberías ver algo como:
+
+```
+gputils-1.5.2
+Copyright (c) 1998-2017 James Bowman
+Copyright (c) 2007-2016 Craig Franklin
+```
+
+---
+
+## 💻 PASO 9: Compilar Programa para PIC16F628A
+
+### Crear el Archivo Ensamblador:
+
+Abre el editor nano para crear tu primer programa:
+
+```
+nano blink_628a.asm
+```
+
+### 📝 Código Ensamblador - Parpadeo de LED:
+
+Copia el siguiente código en el editor:
+
+```asm
+; Programa para parpadear un LED en PIC16F628A
+; LED conectado en RB0 (pin 6)
+
+    LIST P=16F628A
+    #include <p16f628a.inc>
+
+; Configuración de fusibles
+    __CONFIG _CP_OFF & _WDT_OFF & _PWRTE_ON & _INTRC_OSC_NOCLKOUT & _LVP_OFF & _BODEN_OFF & _MCLRE_ON
+
+; Variables para retardo
+    CBLOCK 0x20
+        d1
+        d2
+        d3
+    ENDC
+
+; Vector de reset
+    ORG 0x00
+    goto Inicio
+
+; Programa principal
+Inicio:
+    ; Configurar puertos
+    banksel TRISB
+    movlw   b'00000000'     ; Todo PORTB como salida
+    movwf   TRISB
+
+    banksel CMCON
+    movlw   0x07            ; Desactivar comparadores
+    movwf   CMCON
+
+    banksel PORTB
+
+; Bucle principal
+Bucle:
+    ; Encender LED (RB0 = 1)
+    bsf     PORTB, 0
+    call    Retardo
+
+    ; Apagar LED (RB0 = 0)
+    bcf     PORTB, 0
+    call    Retardo
+
+    goto    Bucle
+
+; Subrutina de retardo (~500ms a 4MHz)
+Retardo:
+    movlw   0x03
+    movwf   d1
+    movlw   0x18
+    movwf   d2
+    movlw   0x02
+    movwf   d3
+
+Retardo_Loop:
+    decfsz  d1, f
+    goto    $+2
+    decfsz  d2, f
+    goto    $+2
+    decfsz  d3, f
+    goto    Retardo_Loop
+
+    return
+
+    END
+```
+
+### 💾 Guardar el Archivo:
+Presiona `CTRL + X`, luego `Y` para confirmar, y `ENTER` para guardar.
+
+### 🔨 Compilar el Código:
+
+Compila el programa ensamblador:
+
+```
+gpasm -p p16f628a blink_628a.asm
+```
+
+### 📋 Explicación del Comando:
+• **gpasm**: Ensamblador de GPUTILS
+• **-p p16f628a**: Especifica el modelo de PIC a usar
+• **blink_628a.asm**: Archivo fuente ensamblador
+
+### 📂 Listar Archivos Generados:
+
+Verifica que se crearon los archivos de salida:
+
+```
+ls -la blink_628a.*
+```
+
+### ✨ Archivos Generados:
+• **blink_628a.hex**: Archivo de código máquina en formato hexadecimal (para programar el PIC)
+• **blink_628a.lst**: Archivo de listado con referencias cruzadas
+• **blink_628a.cod**: Archivo de depuración con información del código
+
+---
+
+## 📋 PASO 10: Copiar Archivo HEX a Descargas
+
+Una vez completada la compilación exitosamente, copia el archivo HEX a tu carpeta de Descargas:
+
+```
+cp blink_628a.hex ~/storage/downloads/
+```
+
+### 📍 Explicación:
+• **cp**: Comando para copiar archivos
+• **~/storage/downloads/**: Ruta a la carpeta Descargas de tu dispositivo
+
+### ✅ Verificar la Copia:
+
+Confirma que el archivo se copió correctamente:
+
+```
+ls -l ~/storage/downloads/blink_628a.hex
+```
+
+---
+
+## 🚀 PASO 11: Programar el PIC
+
+Ya tienes el archivo HEX listo para programar. Ahora:
+
+### 📝 Instrucciones Finales:
+1. Conecta tu programador PIC k150 a tu dispositivo Android (mediante USB OTG si es necesario)
+2. Abre la aplicación **PIC k150 Programing**
+3. Selecciona tu modelo de PIC: **PIC16F628A**
+4. Carga el archivo `blink_628a.hex` desde la carpeta Descargas
+5. Verifica que el PIC esté correctamente insertado en el programador
+6. Haz clic en "Programar" o "Program"
+7. Espera a que se complete el proceso de programación
+
+### ✨ Resultado Esperado:
+Una vez programado, tu LED parpadeará continuamente con un período aproximado de 1 segundo (500ms encendido, 500ms apagado).
+
+---
+
+## 💡 Consejos y Solución de Problemas
+
+### ⚠️ Error: "command not found"
+Si después de instalar GPUTILS los comandos no se encuentran, añade la ruta a tu PATH:
+
+```
+export PATH=$PREFIX/bin:$PATH
+echo 'export PATH=$PREFIX/bin:$PATH' >> ~/.bashrc
+```
+
+### ⚠️ Error: "Permission denied" al ejecutar gpasm
+Asegúrate de que los archivos tienen permisos de ejecución:
+
+```
+chmod +x $PREFIX/bin/gpasm
+chmod +x $PREFIX/bin/gplink
+chmod +x $PREFIX/bin/gplib
+```
+
+### ⚠️ Error: "ar: not found"
+Significa que binutils no se instaló correctamente. Intenta:
+
+```
+pkg remove binutils
+pkg install binutils -y
+make clean
+make -j$(nproc)
+make install
+```
+
+### 📝 Verificar Logs de Compilación:
+Si hay errores durante la compilación, revisa:
+
+```
+cat config.log | grep -i error
+```
+
+---
+
+## 📚 Referencias y Recursos Adicionales
+
+• **Sitio oficial de GPUTILS**: https://sourceforge.net/projects/gputils/
+• **Documentación de PIC16F628A**: Datasheet disponible en el sitio de Microchip
+• **Termux Wiki**: https://wiki.termux.com/
+
+---
+
+## ✅ ¡Felicidades!
+
+Has instalado exitosamente GPUTILS 1.5.2 en Termux y compilado tu primer programa para PIC. Ahora puedes crear programas más complejos para tus microcontroladores.

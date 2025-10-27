@@ -29,6 +29,7 @@ import com.diamon.managers.ProgrammingDialogManager;
 import com.diamon.managers.UsbConnectionManager;
 import com.diamon.politicas.Politicas;
 import com.diamon.publicidad.MostrarPublicidad;
+import com.diamon.tutorial.TutorialGputilsActivity;
 import com.diamon.utilidades.Recurso;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
@@ -501,7 +502,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
-        menu.add(Menu.NONE, 3, 3, getString(R.string.politica_de_privacidad));
+        menu.add(Menu.NONE, 3, 3, "📚 Tutorial GPUTILS Compilador PIC ASM");  // ← NUEVA OPCIÓN
+        menu.add(Menu.NONE, 4, 4, getString(R.string.politica_de_privacidad));
         return true;
     }
 
@@ -514,13 +516,33 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 showProtocolDialog();
                 return true;
-            case 3:
+            case 3:  // ← NUEVO CASE PARA TUTORIAL
+                openTutorialGputils();
+                return true;
+            case 4:
                 startActivity(new Intent(this, Politicas.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /**
+     * NUEVO: Abre el tutorial de GPUTILS en una Activity secundaria
+     */
+    private void openTutorialGputils() {
+        try {
+            Intent intent = new Intent(MainActivity.this, TutorialGputilsActivity.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(
+                            this,
+                            "Error al abrir tutorial: " + e.getMessage(),
+                            Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
+
 
     private void showProgrammerModelDialog() {
         if (usbManager.isConnected()) {
