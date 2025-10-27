@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">संचार प्रोटोकॉल शुरू करने में त्रुटि</string>
     <string name="error_de_conexion_usb">USB कनेक्शन त्रुटि</string>
     <string name="error_inesperado_durante_la_co">कनेक्शन के दौरान अप्रत्याशित त्रुटि</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">संचालन</string>
+    <string name="cargar_archivo_hex">HEX फ़ाइल लोड करें</string>
+    <string name="programar_pic">PIC प्रोग्राम करें</string>
+    <string name="leer_memoria">मेमोरी पढ़ें</string>
+    <string name="verificar">सत्यापित करें</string>
+    <string name="borrar_memoria">मेमोरी मिटाएं</string>
+    <string name="detectar_pic">PIC का पता लगाएं</string>
+    <string name="esperando_operacion">संचालन की प्रतीक्षा में...</string>
+    <string name="esperando_seleccion">चयन की प्रतीक्षा में...</string>
+    <string name="seleccionar_chip_pic">PIC चिप चुनें</string>
 </resources>

@@ -3,6 +3,7 @@
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
     <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
@@ -86,4 +87,16 @@
     <string name="error_inicializando_protocolo_">Error inicializando protocolo de comunicacion</string>
     <string name="error_de_conexion_usb">Error de conexion USB</string>
     <string name="error_inesperado_durante_la_co">Error inesperado durante la conexion</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operaciones</string>
+    <string name="cargar_archivo_hex">Cargar Archivo HEX</string>
+    <string name="programar_pic">Programar PIC</string>
+    <string name="leer_memoria">Leer Memoria</string>
+    <string name="verificar">Verificar</string>
+    <string name="borrar_memoria">Borrar Memoria</string>
+    <string name="detectar_pic">Detectar PIC</string>
+    <string name="esperando_operacion">Esperando operacion...</string>
+    <string name="esperando_seleccion">Esperando seleccion...</string>
+    <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
 </resources>

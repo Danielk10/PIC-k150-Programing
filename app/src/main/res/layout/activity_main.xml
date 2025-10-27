@@ -26,7 +26,7 @@
             android:background="#003366"
             android:elevation="8dp"
             app:titleTextColor="#FFFFFF"
-            app:title="PIC K150 Programming" />
+            app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- ScrollView principal -->
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Desconectado"
+                    android:text="@string/desconectado"
                     android:textColor="#E0E0E0"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Seleccionar Chip PIC"
+                        android:text="@string/seleccionar_chip_pic"
                         android:textColor="#FF6600"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -108,7 +108,7 @@
                         android:background="#1A1A2E"
                         android:fontFamily="monospace"
                         android:padding="12dp"
-                        android:text="Esperando seleccion..."
+                        android:text="@string/esperando_seleccion"
                         android:textColor="#4CAF50"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -133,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Operaciones"
+                        android:text="@string/operaciones"
                         android:textColor="#FF6600"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:backgroundTint="#4CAF50"
-                        android:text="Cargar Archivo HEX"
+                        android:text="@string/cargar_archivo_hex"
                         android:textColor="#FFFFFF" />
 
                     <!-- Programar -->
@@ -156,7 +156,7 @@
                         android:layout_marginBottom="8dp"
                         android:backgroundTint="#555555"
                         android:enabled="false"
-                        android:text="Programar PIC"
+                        android:text="@string/programar_pic"
                         android:textColor="#AAAAAA" />
 
                     <!-- Fila: Leer y Verificar -->
@@ -173,7 +173,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#555555"
                             android:enabled="false"
-                            android:text="Leer Memoria"
+                            android:text="@string/leer_memoria"
                             android:textColor="#AAAAAA" />
 
                         <Button
@@ -184,7 +184,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#555555"
                             android:enabled="false"
-                            android:text="Verificar"
+                            android:text="@string/verificar"
                             android:textColor="#AAAAAA" />
                     </LinearLayout>
 
@@ -203,7 +203,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#555555"
                             android:enabled="false"
-                            android:text="Borrar Memoria"
+                            android:text="@string/borrar_memoria"
                             android:textColor="#AAAAAA" />
 
                         <Button
@@ -214,7 +214,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#555555"
                             android:enabled="false"
-                            android:text="Detectar PIC"
+                            android:text="@string/detectar_pic"
                             android:textColor="#AAAAAA" />
                     </LinearLayout>
                 </LinearLayout>
@@ -235,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Esperando operacion..."
+                    android:text="@string/esperando_operacion"
                     android:textColor="#E0E0E0"
                     android:textSize="14sp" />
             </androidx.cardview.widget.CardView>

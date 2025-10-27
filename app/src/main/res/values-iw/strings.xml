@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">שגיאה באתחול פרוטוקול התקשורת</string>
     <string name="error_de_conexion_usb">שגיאת חיבור USB</string>
     <string name="error_inesperado_durante_la_co">שגיאה בלתי צפויה במהלך החיבור</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">פעולות</string>
+    <string name="cargar_archivo_hex">טען קובץ HEX</string>
+    <string name="programar_pic">תכנת PIC</string>
+    <string name="leer_memoria">קרא זיכרון</string>
+    <string name="verificar">אמת</string>
+    <string name="borrar_memoria">מחק זיכרון</string>
+    <string name="detectar_pic">זהה PIC</string>
+    <string name="esperando_operacion">ממתין לפעולה...</string>
+    <string name="esperando_seleccion">ממתין לבחירה...</string>
+    <string name="seleccionar_chip_pic">בחר שבב PIC</string>
 </resources>
