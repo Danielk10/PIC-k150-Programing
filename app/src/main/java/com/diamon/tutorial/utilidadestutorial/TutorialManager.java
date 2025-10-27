@@ -24,6 +24,14 @@ public class TutorialManager {
     }
 
     /**
+     * Obtiene el idioma actual
+     * @return Código del idioma ("es" o "en")
+     */
+    public String getCurrentLanguage() {
+        return currentLanguage;
+    }
+
+    /**
      * Obtiene el nombre del archivo de tutorial basado en el idioma
      * @return Nombre del archivo
      */
@@ -120,15 +128,13 @@ public class TutorialManager {
      */
     public String formatCodeBlock(String code, String title) {
         StringBuilder formatted = new StringBuilder();
-
         if (title != null && !title.isEmpty()) {
             formatted.append("═══════════════════════════════════\n");
-            formatted.append("    ").append(title).append("\n");
+            formatted.append(" ").append(title).append("\n");
             formatted.append("═══════════════════════════════════\n\n");
         }
 
         formatted.append(code).append("\n\n");
-
         return formatted.toString();
     }
 

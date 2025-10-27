@@ -47,6 +47,7 @@ public class CodeBlockView {
         // Crear header con título y botón
         LinearLayout headerLayout = new LinearLayout(context);
         headerLayout.setOrientation(LinearLayout.HORIZONTAL);
+
         LinearLayout.LayoutParams headerParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -58,6 +59,7 @@ public class CodeBlockView {
         titleView.setTextSize(14);
         titleView.setTypeface(null, Typeface.BOLD);
         titleView.setTextColor(0xFF424242);
+
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -69,6 +71,7 @@ public class CodeBlockView {
         ImageButton copyBtn = new ImageButton(context);
         copyBtn.setImageResource(android.R.drawable.ic_menu_edit);
         copyBtn.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                 48,
                 48);
@@ -81,6 +84,7 @@ public class CodeBlockView {
         // Separador
         View separator = new View(context);
         separator.setBackgroundColor(0xFFE0E0E0);
+
         LinearLayout.LayoutParams sepParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 2);
@@ -97,6 +101,7 @@ public class CodeBlockView {
         codeView.setTextSize(12);
         codeView.setPadding(12, 12, 12, 12);
         codeView.setTextIsSelectable(true);
+
         LinearLayout.LayoutParams codeParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -117,7 +122,6 @@ public class CodeBlockView {
                         Context.CLIPBOARD_SERVICE);
         android.content.ClipData clip = android.content.ClipData.newPlainText("code", code);
         clipboard.setPrimaryClip(clip);
-
         Toast.makeText(context, "Código copiado al portapapeles", Toast.LENGTH_SHORT).show();
     }
 
@@ -150,6 +154,7 @@ public class CodeBlockView {
         noteContent.setTextSize(12);
         noteContent.setTextColor(0xFF424242);
         noteContent.setLineSpacing(4, 1.0f);
+
         LinearLayout.LayoutParams contentParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -166,6 +171,7 @@ public class CodeBlockView {
     public void addSeparator() {
         View separator = new View(context);
         separator.setBackgroundColor(0xFFBDBDBD);
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 3);

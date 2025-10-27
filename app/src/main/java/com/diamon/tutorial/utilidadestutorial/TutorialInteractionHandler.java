@@ -17,7 +17,7 @@ public class TutorialInteractionHandler {
     private ScrollView scrollView;
     private Context context;
     private TutorialManager tutorialManager;
-    private static final int HIGHLIGHT_COLOR = 0xFFFFFF00;  // Amarillo para destacar
+    private static final int HIGHLIGHT_COLOR = 0xFFFFFF00; // Amarillo para destacar
 
     public TutorialInteractionHandler(TextView textView, ScrollView scroll, Context context) {
         this.tutorialTextView = textView;
@@ -55,24 +55,21 @@ public class TutorialInteractionHandler {
     private void copySelectedText() {
         int selStart = tutorialTextView.getSelectionStart();
         int selEnd = tutorialTextView.getSelectionEnd();
-
         if (selStart != selEnd && selStart != -1 && selEnd != -1) {
             String selectedText = tutorialTextView.getText()
                     .subSequence(selStart, selEnd).toString();
-
             android.content.ClipboardManager clipboard =
                     (android.content.ClipboardManager) context.getSystemService(
                             Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData
                     .newPlainText("tutorial_text", selectedText);
-
             if (clipboard != null) {
                 clipboard.setPrimaryClip(clip);
             }
-
-            android.widget.Toast.makeText(context, "Texto copiado al portapapeles",
-                    android.widget.Toast.LENGTH_SHORT).show();
         }
+
+        android.widget.Toast.makeText(context, "Texto copiado al portapapeles",
+                android.widget.Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -83,13 +80,12 @@ public class TutorialInteractionHandler {
         String searchText = "PASO " + stepNumber;
         CharSequence tutorialContent = tutorialTextView.getText();
         String content = tutorialContent.toString();
-
         int startPos = content.indexOf(searchText);
+
         if (startPos != -1 && tutorialTextView.getLayout() != null) {
             // Calcular la posición en píxeles
             int line = tutorialTextView.getLayout().getLineForOffset(startPos);
             int y = tutorialTextView.getLayout().getLineTop(line);
-
             scrollView.smoothScrollTo(0, y);
         }
     }
@@ -106,8 +102,8 @@ public class TutorialInteractionHandler {
 
         CharSequence tutorialContent = tutorialTextView.getText();
         String content = tutorialContent.toString();
-
         int startPos = content.indexOf(searchTerm);
+
         if (startPos != -1) {
             // Crear un SpannableString para destacar el término encontrado
             SpannableStringBuilder builder = new SpannableStringBuilder(tutorialContent);
@@ -150,8 +146,8 @@ public class TutorialInteractionHandler {
 
         CharSequence tutorialContent = tutorialTextView.getText();
         String content = tutorialContent.toString();
-
         SpannableStringBuilder builder = new SpannableStringBuilder(tutorialContent);
+
         int count = 0;
         int startPos = 0;
 
