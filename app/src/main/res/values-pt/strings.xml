@@ -95,4 +95,6 @@
     <string name="esperando_operacion">Aguardando operação...</string>
     <string name="esperando_seleccion">Aguardando seleção...</string>
     <string name="seleccionar_chip_pic">Selecionar Chip PIC</string>
+    <!-- values-pt/strings.xml (Portugués) -->
+    <string name="gputils_termux_asm">GPUTILS no Termux Compilador ASM Android</string>
 </resources>

@@ -95,4 +95,6 @@
     <string name="esperando_operacion">Wag vir bewerking...</string>
     <string name="esperando_seleccion">Wag vir keuse...</string>
     <string name="seleccionar_chip_pic">Kies PIC-skyfie</string>
+    <!-- values-af/strings.xml (Afrikáans) -->
+    <string name="gputils_termux_asm">GPUTILS in Termux ASM Compiler Android</string>
 </resources>

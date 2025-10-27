@@ -95,4 +95,6 @@
     <string name="esperando_operacion">작업 대기 중...</string>
     <string name="esperando_seleccion">선택 대기 중...</string>
     <string name="seleccionar_chip_pic">PIC 칩 선택</string>
+    <!-- values-ko/strings.xml (Coreano) -->
+    <string name="gputils_termux_asm">Termux의 GPUTILS ASM 컴파일러 Android</string>
 </resources>

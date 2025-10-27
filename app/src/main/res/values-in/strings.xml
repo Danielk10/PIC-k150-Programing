@@ -95,4 +95,6 @@
     <string name="esperando_operacion">Menunggu operasi...</string>
     <string name="esperando_seleccion">Menunggu pilihan...</string>
     <string name="seleccionar_chip_pic">Pilih Chip PIC</string>
+    <!-- values-in/strings.xml (Indonesio) -->
+    <string name="gputils_termux_asm">GPUTILS di Termux Kompiler ASM Android</string>
 </resources>
