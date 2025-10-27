@@ -47,7 +47,7 @@
     <string name="tamano_rom">Tamano ROM</string>
     <string name="eeprom">EEPROM</string>
     <string name="no_disponible">No disponible</string>
-    <string name="tipo_de_nucleo">&quot;Tipo de Nucleo</string>
+    <string name="tipo_de_nucleo">Tipo de Nucleo</string>
     <string name="error_obteniendo_datos_del_chi">Error obteniendo datos del chip</string>
     <string name="modo">Modo</string>
     <string name="icsp_solamente">ICSP solamente</string>
