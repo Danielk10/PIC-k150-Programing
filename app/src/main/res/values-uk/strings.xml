@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">Помилка ініціалізації протоколу зв\'язку</string>
     <string name="error_de_conexion_usb">Помилка USB-з\'єднання</string>
     <string name="error_inesperado_durante_la_co">Несподівана помилка під час підключення</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">Операції</string>
+    <string name="cargar_archivo_hex">Завантажити файл HEX</string>
+    <string name="programar_pic">Програмувати PIC</string>
+    <string name="leer_memoria">Читати пам\'ять</string>
+    <string name="verificar">Перевірити</string>
+    <string name="borrar_memoria">Стерти пам\'ять</string>
+    <string name="detectar_pic">Виявити PIC</string>
+    <string name="esperando_operacion">Очікування операції...</string>
+    <string name="esperando_seleccion">Очікування вибору...</string>
+    <string name="seleccionar_chip_pic">Вибрати чіп PIC</string>
 </resources>

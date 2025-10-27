@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">初始化通訊協定時發生錯誤</string>
     <string name="error_de_conexion_usb">USB 連線錯誤</string>
     <string name="error_inesperado_durante_la_co">連線期間發生意外錯誤</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">操作</string>
+    <string name="cargar_archivo_hex">載入 HEX 檔案</string>
+    <string name="programar_pic">程式 PIC</string>
+    <string name="leer_memoria">讀取記憶體</string>
+    <string name="verificar">驗證</string>
+    <string name="borrar_memoria">清除記憶體</string>
+    <string name="detectar_pic">偵測 PIC</string>
+    <string name="esperando_operacion">等待操作...</string>
+    <string name="esperando_seleccion">等待選擇...</string>
+    <string name="seleccionar_chip_pic">選擇 PIC 晶片</string>
 </resources>

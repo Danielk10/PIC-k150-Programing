@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">通信プロトコルの初期化中にエラーが発生しました</string>
     <string name="error_de_conexion_usb">USB接続エラー</string>
     <string name="error_inesperado_durante_la_co">接続中に予期しないエラーが発生しました</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">操作</string>
+    <string name="cargar_archivo_hex">HEXファイルを読み込む</string>
+    <string name="programar_pic">PICをプログラム</string>
+    <string name="leer_memoria">メモリを読む</string>
+    <string name="verificar">確認</string>
+    <string name="borrar_memoria">メモリを消去</string>
+    <string name="detectar_pic">PICを検出</string>
+    <string name="esperando_operacion">操作を待っています...</string>
+    <string name="esperando_seleccion">選択を待っています...</string>
+    <string name="seleccionar_chip_pic">PICチップを選択</string>
 </resources>

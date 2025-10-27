@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">Error menginisialisasi protokol komunikasi</string>
     <string name="error_de_conexion_usb">Error koneksi USB</string>
     <string name="error_inesperado_durante_la_co">Error tak terduga selama koneksi</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">Operasi</string>
+    <string name="cargar_archivo_hex">Muat File HEX</string>
+    <string name="programar_pic">Program PIC</string>
+    <string name="leer_memoria">Baca Memori</string>
+    <string name="verificar">Verifikasi</string>
+    <string name="borrar_memoria">Hapus Memori</string>
+    <string name="detectar_pic">Deteksi PIC</string>
+    <string name="esperando_operacion">Menunggu operasi...</string>
+    <string name="esperando_seleccion">Menunggu pilihan...</string>
+    <string name="seleccionar_chip_pic">Pilih Chip PIC</string>
 </resources>

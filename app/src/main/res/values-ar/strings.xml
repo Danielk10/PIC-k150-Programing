@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">خطأ في تهيئة بروتوكول الاتصال</string>
     <string name="error_de_conexion_usb">خطأ في اتصال USB</string>
     <string name="error_inesperado_durante_la_co">خطأ غير متوقع أثناء الاتصال</string>
+    <!-- Strings adicionales para UI -->
+    <string name="operaciones">العمليات</string>
+    <string name="cargar_archivo_hex">تحميل ملف HEX</string>
+    <string name="programar_pic">برمجة PIC</string>
+    <string name="leer_memoria">قراءة الذاكرة</string>
+    <string name="verificar">التحقق</string>
+    <string name="borrar_memoria">مسح الذاكرة</string>
+    <string name="detectar_pic">كشف PIC</string>
+    <string name="esperando_operacion">في انتظار العملية...</string>
+    <string name="esperando_seleccion">في انتظار الاختيار...</string>
+    <string name="seleccionar_chip_pic">اختيار شريحة PIC</string>
 </resources>

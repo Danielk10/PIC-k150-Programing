@@ -84,4 +84,15 @@
     <string name="error_inicializando_protocolo_">Error initializing communication protocol</string>
     <string name="error_de_conexion_usb">USB connection error</string>
     <string name="error_inesperado_durante_la_co">Unexpected error during connection</string>
+    <!-- Additional UI strings -->
+    <string name="operaciones">Operations</string>
+    <string name="cargar_archivo_hex">Load HEX File</string>
+    <string name="programar_pic">Program PIC</string>
+    <string name="leer_memoria">Read Memory</string>
+    <string name="verificar">Verify</string>
+    <string name="borrar_memoria">Erase Memory</string>
+    <string name="detectar_pic">Detect PIC</string>
+    <string name="esperando_operacion">Waiting for operation...</string>
+    <string name="esperando_seleccion">Waiting for selection...</string>
+    <string name="seleccionar_chip_pic">Select PIC Chip</string>
 </resources>
