@@ -397,4 +397,9 @@ public class DatosPicProcesados {
 
         return this.IDData;
     }
+
+    public ChipPic obtenerChipProcesado() {
+
+        return chipPIC;
+    }
 }
