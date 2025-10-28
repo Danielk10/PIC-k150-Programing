@@ -5,6 +5,8 @@ import android.content.Context;
 import com.diamon.chip.ChipPic;
 import com.diamon.protocolo.ProtocoloP018;
 import com.diamon.pic.R;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Gestor de operaciones de programacion de microcontroladores PIC. Encapsula todas las operaciones
@@ -73,7 +75,8 @@ public class PicProgrammingManager {
      * @param firmware Contenido del archivo HEX
      * @return true si la programacion fue exitosa, false en caso contrario
      */
-    public boolean programChip(ChipPic chipPIC, String firmware) {
+    public boolean programChip(
+            ChipPic chipPIC, String firmware, byte[] IDPic, List<Integer> fusesUsuario) {
         if (protocolo == null) {
             notifyError(context.getString(R.string.protocolo_no_inicializado));
             return false;
@@ -112,7 +115,7 @@ public class PicProgrammingManager {
 
             // Paso 4: Programar Fuses
             notifyProgress(context.getString(R.string.programando_fuses_id), 70);
-            if (!protocolo.programarFusesIDDelPic(chipPIC, firmware)) {
+            if (!protocolo.programarFusesIDDelPic(chipPIC, firmware, IDPic, fusesUsuario)) {
                 notifyError(context.getString(R.string.error_programando_fuses));
                 return false;
             }

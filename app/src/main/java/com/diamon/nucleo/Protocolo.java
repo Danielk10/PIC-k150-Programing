@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Clase abstracta base para protocolos de comunicación con programadores PIC.
@@ -415,7 +416,8 @@ public abstract class Protocolo {
     public abstract boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware)
             throws ChipConfigurationException;
 
-    public abstract boolean programarFusesIDDelPic(ChipPic chipPIC, String firware);
+    public abstract boolean programarFusesIDDelPic(
+            ChipPic chipPIC, String firware, byte[] IDPic, List<Integer> fusesUsuario);
 
     public abstract boolean programarCalibracionDelPic(ChipPic chipPIC, String firware);
 
