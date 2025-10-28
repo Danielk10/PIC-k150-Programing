@@ -21,9 +21,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.chip.ChipinfoEntry;
+import com.diamon.datos.DatosPicProcesados;
 import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.managers.ChipSelectionManager;
 import com.diamon.managers.FileManager;
+import com.diamon.managers.FuseConfigPopup;
 import com.diamon.managers.MemoryDisplayManager;
 import com.diamon.managers.PicProgrammingManager;
 import com.diamon.managers.ProgrammingDialogManager;
@@ -32,31 +34,39 @@ import com.diamon.politicas.Politicas;
 import com.diamon.publicidad.MostrarPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
 import com.diamon.utilidades.Recurso;
+
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
- * MainActivity COMPLETAMENTE CORREGIDA - Banner ABAJO funcional - Filtro de archivos .hex/.bin
- * funcional - Botones con estados visuales (activo/desactivado) - Datos ROM/EEPROM en UN SOLO popup
- * - Colores: Verde (datos) / Blanco (vacio) - ScrollView en ambas secciones - Datos NO se salen de
- * la pantalla
+ * MainActivity COMPLETAMENTE ACTUALIZADA
+ *
+ * <p>Nueva funcionalidad: - Configuración de fusibles mediante PopupWindow - Indicador visual de
+ * estado de fusibles - Restauración de fusibles desde PIC o HEX - ID personalizado del usuario -
+ * Integración completa con DatosPicProcesados y ChipinfoEntry
  */
 public class MainActivity extends AppCompatActivity {
 
     private TextView connectionStatusTextView;
     private TextView processStatusTextView;
     private TextView chipInfoTextView;
+    private TextView fuseStatusTextView; // NUEVO
     private LinearLayout romDataContainer;
     private LinearLayout eepromDataContainer;
     private Spinner chipSpinner;
+
     private android.widget.Button btnSelectHex;
     private android.widget.Button btnProgramarPic;
     private android.widget.Button btnLeerMemoriaDeLPic;
     private android.widget.Button btnVerificarMemoriaDelPic;
     private android.widget.Button btnBorrarMemoriaDeLPic;
     private android.widget.Button btnDetectarPic;
+    private android.widget.Button btnConfigureFuses; // NUEVO
 
     private UsbConnectionManager usbManager;
     private PicProgrammingManager programmingManager;
@@ -68,10 +78,18 @@ public class MainActivity extends AppCompatActivity {
     private Recurso recurso;
     private PowerManager.WakeLock wakeLock;
 
+    private FuseConfigPopup fuseConfigPopup; // NUEVO
+
     private String firmware = "";
     private ChipPic currentChip;
-    //Fuses
     private ChipinfoEntry currentChipFuses;
+
+    // NUEVAS VARIABLES PARA FUSES
+    private boolean fusesConfigured = false;
+    private List<Integer> configuredFuses = new ArrayList<>();
+    private byte[] configuredID = new byte[] {0};
+    private Map<String, String> lastFuseConfiguration = null;
+    private DatosPicProcesados datosPicProcesados = null;
 
     @SuppressLint({"InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag"})
     @Override
@@ -82,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         initializeAppCenter();
         initializeBasicComponents();
         findViews();
-        setupBanner(); // IMPORTANTE: Configurar banner ABAJO
+        setupBanner();
         initializeManagers();
         setupListeners();
         setupToolbar();
@@ -111,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         connectionStatusTextView = findViewById(R.id.connectionStatusTextView);
         processStatusTextView = findViewById(R.id.processStatusTextView);
         chipInfoTextView = findViewById(R.id.chipInfoTextView);
+        fuseStatusTextView = findViewById(R.id.fuseStatusTextView); // NUEVO
         chipSpinner = findViewById(R.id.chipSpinner);
 
         btnSelectHex = findViewById(R.id.btnSelectHex);
@@ -119,23 +138,20 @@ public class MainActivity extends AppCompatActivity {
         btnVerificarMemoriaDelPic = findViewById(R.id.btnVerificarMemoriaDelPic);
         btnBorrarMemoriaDeLPic = findViewById(R.id.btnBorrarMemoriaDeLPic);
         btnDetectarPic = findViewById(R.id.btnDetectarPic);
+        btnConfigureFuses = findViewById(R.id.btnConfigureFuses); // NUEVO
 
         romDataContainer = findViewById(R.id.romDataContainer);
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
     }
 
-    /** CONFIGURACION DEL BANNER ABAJO */
     private void setupBanner() {
         FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
         if (bannerContainer != null && publicidad != null) {
             com.google.android.gms.ads.AdView banner = publicidad.getBanner();
             if (banner != null) {
-                // Limpiar cualquier padre previo
                 if (banner.getParent() != null) {
                     ((android.view.ViewGroup) banner.getParent()).removeView(banner);
                 }
-
-                // Agregar al contenedor con parametros correctos
                 FrameLayout.LayoutParams params =
                         new FrameLayout.LayoutParams(
                                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -159,6 +175,38 @@ public class MainActivity extends AppCompatActivity {
         chipSelectionManager = new ChipSelectionManager(this);
         memoryDisplayManager = new MemoryDisplayManager(this);
         dialogManager = new ProgrammingDialogManager(this);
+
+        // NUEVO: Inicializar popup de fusibles
+        fuseConfigPopup =
+                new FuseConfigPopup(
+                        this,
+                        new FuseConfigPopup.FuseConfigListener() {
+                            @Override
+                            public void onFusesApplied(
+                                    List<Integer> fuses,
+                                    byte[] idData,
+                                    Map<String, String> configuration) {
+                                // Guardar configuración de fusibles
+                                fusesConfigured = true;
+                                configuredFuses = new ArrayList<>(fuses);
+                                configuredID = idData;
+                                lastFuseConfiguration = configuration;
+
+                                // Actualizar UI
+                                updateFuseStatus(true);
+
+                                Toast.makeText(
+                                                MainActivity.this,
+                                                "Fusibles configurados correctamente",
+                                                Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+
+                            @Override
+                            public void onFusesCancelled() {
+                                // No hacer nada, mantener configuración anterior
+                            }
+                        });
     }
 
     private void setupListeners() {
@@ -222,9 +270,12 @@ public class MainActivity extends AppCompatActivity {
                         currentChip = chip;
                         String info = chipSelectionManager.getSelectedChipInfo();
                         chipInfoTextView.setText(info);
-                    
-                        //Aqui prodria cargar fuses actomaticamente
+
+                        // Cargar fusibles del chip
                         currentChipFuses = chipSelectionManager.getSelectedChipFuses();
+
+                        // NUEVO: Limpiar configuración de fusibles cuando se selecciona nuevo chip
+                        clearFuseConfiguration();
 
                         if (usbManager.isConnected()) {
                             try {
@@ -244,7 +295,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
-
         chipSelectionManager.setupSpinner(chipSpinner);
     }
 
@@ -257,6 +307,13 @@ public class MainActivity extends AppCompatActivity {
                         processStatusTextView.setText(
                                 getString(R.string.archivo_cargado) + ": " + fileName);
                         enableOperationButtons(true);
+
+                        // NUEVO: Habilitar botón de configuración de fusibles
+                        enableFuseConfigButton(true);
+
+                        // NUEVO: Procesar datos del HEX
+                        procesarDatosHex();
+
                         Toast.makeText(
                                         MainActivity.this,
                                         getString(R.string.archivo_hex_cargado_exitosamen),
@@ -322,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupButtonListeners() {
         btnSelectHex.setOnClickListener(v -> fileManager.openFilePicker());
+        btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration()); // NUEVO
         btnProgramarPic.setOnClickListener(v -> executeProgram());
         btnLeerMemoriaDeLPic.setOnClickListener(v -> executeReadMemory());
         btnBorrarMemoriaDeLPic.setOnClickListener(v -> executeEraseMemory());
@@ -329,7 +387,94 @@ public class MainActivity extends AppCompatActivity {
         btnDetectarPic.setOnClickListener(v -> executeDetectChip());
     }
 
-    /** HABILITAR/DESHABILITAR BOTONES CON ESTADOS VISUALES CLAROS */
+    /** NUEVO: Procesa los datos del archivo HEX */
+    private void procesarDatosHex() {
+        if (currentChip == null || firmware.isEmpty()) {
+            return;
+        }
+
+        new Thread(
+                        () -> {
+                            try {
+                                datosPicProcesados = new DatosPicProcesados(firmware,currentChip);
+                                datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                                runOnUiThread(
+                                        () -> {
+                                            processStatusTextView.setText(
+                                                    "HEX procesado correctamente");
+                                        });
+
+                            } catch (Exception e) {
+                                runOnUiThread(
+                                        () -> {
+                                            Toast.makeText(
+                                                            MainActivity.this,
+                                                            "Error procesando HEX: "
+                                                                    + e.getMessage(),
+                                                            Toast.LENGTH_LONG)
+                                                    .show();
+                                        });
+                            }
+                        })
+                .start();
+    }
+
+    /** NUEVO: Abre el popup de configuración de fusibles */
+    private void openFuseConfiguration() {
+        if (currentChip == null) {
+            Toast.makeText(this, "Selecciona un chip primero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (currentChipFuses == null) {
+            Toast.makeText(this, "No hay datos de fusibles para este chip", Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
+        // Mostrar popup con última configuración si existe
+        fuseConfigPopup.show(
+                currentChip, currentChipFuses, datosPicProcesados, lastFuseConfiguration);
+    }
+
+    /** NUEVO: Limpia la configuración de fusibles */
+    private void clearFuseConfiguration() {
+        fusesConfigured = false;
+        configuredFuses = new ArrayList<>();
+        configuredID = new byte[] {0};
+        lastFuseConfiguration = null;
+        datosPicProcesados = null;
+        updateFuseStatus(false);
+    }
+
+    /** NUEVO: Actualiza el indicador de estado de fusibles */
+    private void updateFuseStatus(boolean configured) {
+        if (configured) {
+            fuseStatusTextView.setText("✓ Configurados");
+            fuseStatusTextView.setTextColor(Color.WHITE);
+            fuseStatusTextView.setBackgroundColor(Color.parseColor("#4CAF50"));
+        } else {
+            fuseStatusTextView.setText("No configurados");
+            fuseStatusTextView.setTextColor(Color.parseColor("#757575"));
+            fuseStatusTextView.setBackgroundColor(Color.parseColor("#3A3A3A"));
+        }
+    }
+
+    /** NUEVO: Habilita/deshabilita el botón de configuración de fusibles */
+    private void enableFuseConfigButton(boolean enabled) {
+        btnConfigureFuses.setEnabled(enabled);
+        if (enabled) {
+            btnConfigureFuses.setBackgroundTintList(
+                    android.content.res.ColorStateList.valueOf(Color.parseColor("#9C27B0")));
+            btnConfigureFuses.setTextColor(Color.WHITE);
+        } else {
+            btnConfigureFuses.setBackgroundTintList(
+                    android.content.res.ColorStateList.valueOf(Color.parseColor("#555555")));
+            btnConfigureFuses.setTextColor(Color.parseColor("#AAAAAA"));
+        }
+    }
+
     private void enableOperationButtons(boolean enabled) {
         android.widget.Button[] buttons = {
             btnProgramarPic,
@@ -342,7 +487,6 @@ public class MainActivity extends AppCompatActivity {
         for (android.widget.Button btn : buttons) {
             btn.setEnabled(enabled);
             if (enabled) {
-                // ACTIVO: Color brillante + texto blanco
                 if (btn == btnProgramarPic) {
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
@@ -362,7 +506,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 btn.setTextColor(Color.WHITE);
             } else {
-                // DESACTIVADO: Gris oscuro + texto gris claro
                 btn.setBackgroundTintList(
                         android.content.res.ColorStateList.valueOf(Color.parseColor("#555555")));
                 btn.setTextColor(Color.parseColor("#AAAAAA"));
@@ -370,6 +513,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** MODIFICADO: Ahora usa los fusibles configurados */
     private void executeProgram() {
         if (currentChip == null || firmware.isEmpty()) {
             Toast.makeText(
@@ -382,13 +526,18 @@ public class MainActivity extends AppCompatActivity {
 
         publicidad.ocultarBanner();
 
+        // MODIFICADO: Usar fusibles y ID configurados si existen
+        final byte[] idToUse = fusesConfigured ? configuredID : new byte[] {0};
+        final List<Integer> fusesToUse =
+                fusesConfigured ? new ArrayList<>(configuredFuses) : new ArrayList<>();
+
         dialogManager.showProgrammingDialog(
                 () -> {
                     new Thread(
                                     () -> {
                                         boolean success =
                                                 programmingManager.programChip(
-                                                        currentChip, firmware,new byte[]{0},new ArrayList<Integer>());
+                                                        currentChip, firmware, idToUse, fusesToUse);
                                         runOnUiThread(
                                                 () -> {
                                                     dialogManager.updateProgrammingResult(success);
@@ -401,7 +550,6 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    /** LEER MEMORIA: Muestra ROM y EEPROM en UN SOLO popup */
     private void executeReadMemory() {
         if (currentChip == null) {
             Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
@@ -425,7 +573,6 @@ public class MainActivity extends AppCompatActivity {
                                                     currentChip.isTamanoValidoDeEEPROM()
                                                             && !eepromData.isEmpty();
 
-                                            // UN SOLO POPUP con ROM y EEPROM
                                             memoryDisplayManager.showMemoryDataPopup(
                                                     romData != null ? romData : "",
                                                     romSize,
@@ -436,7 +583,11 @@ public class MainActivity extends AppCompatActivity {
                                             processStatusTextView.setText(
                                                     getString(R.string.memoria_leida_exitosamente));
                                         } catch (ChipConfigurationException e) {
-
+                                            Toast.makeText(
+                                                            MainActivity.this,
+                                                            "Error: " + e.getMessage(),
+                                                            Toast.LENGTH_LONG)
+                                                    .show();
                                         }
                                     });
                         })
@@ -509,7 +660,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
-        menu.add(Menu.NONE, 3, 3, "📚 "+getString(R.string.gputils_termux_asm));  // ← NUEVA OPCIÓN
+        menu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
         menu.add(Menu.NONE, 4, 4, getString(R.string.politica_de_privacidad));
         return true;
     }
@@ -523,7 +674,7 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 showProtocolDialog();
                 return true;
-            case 3:  // ← NUEVO CASE PARA TUTORIAL
+            case 3:
                 openTutorialGputils();
                 return true;
             case 4:
@@ -534,22 +685,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * NUEVO: Abre el tutorial de GPUTILS en una Activity secundaria
-     */
     private void openTutorialGputils() {
         try {
             Intent intent = new Intent(MainActivity.this, TutorialGputilsActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(
-                            this,
-                            "Error al abrir tutorial: " + e.getMessage(),
-                            Toast.LENGTH_LONG)
+            Toast.makeText(this, "Error al abrir tutorial: " + e.getMessage(), Toast.LENGTH_LONG)
                     .show();
         }
     }
-
 
     private void showProgrammerModelDialog() {
         if (usbManager.isConnected()) {
@@ -608,6 +752,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (memoryDisplayManager != null) {
                 memoryDisplayManager.dismissAllPopups();
+            }
+
+            // NUEVO: Limpiar popup de fusibles
+            if (fuseConfigPopup != null) {
+                fuseConfigPopup.dismiss();
             }
 
             if (wakeLock != null && wakeLock.isHeld()) {
