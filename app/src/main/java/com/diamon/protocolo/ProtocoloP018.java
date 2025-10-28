@@ -16,6 +16,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Implementación del protocolo P018 para programadores PIC K150.
@@ -488,7 +489,8 @@ public class ProtocoloP018 extends Protocolo {
     }
 
     @Override
-    public boolean programarFusesIDDelPic(ChipPic chipPIC, String firware) {
+    public boolean programarFusesIDDelPic(
+            ChipPic chipPIC, String firware, byte[] IDPic, List<Integer> fusesUsuario) {
 
         try {
             // Procesar datos

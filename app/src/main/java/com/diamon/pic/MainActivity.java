@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.chip.ChipinfoEntry;
 import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.managers.ChipSelectionManager;
 import com.diamon.managers.FileManager;
@@ -34,6 +35,7 @@ import com.diamon.utilidades.Recurso;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
+import java.util.ArrayList;
 
 /**
  * MainActivity COMPLETAMENTE CORREGIDA - Banner ABAJO funcional - Filtro de archivos .hex/.bin
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String firmware = "";
     private ChipPic currentChip;
+    //Fuses
+    private ChipinfoEntry currentChipFuses;
 
     @SuppressLint({"InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag"})
     @Override
@@ -218,6 +222,9 @@ public class MainActivity extends AppCompatActivity {
                         currentChip = chip;
                         String info = chipSelectionManager.getSelectedChipInfo();
                         chipInfoTextView.setText(info);
+                    
+                        //Aqui prodria cargar fuses actomaticamente
+                        currentChipFuses = chipSelectionManager.getSelectedChipFuses();
 
                         if (usbManager.isConnected()) {
                             try {
@@ -381,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                                     () -> {
                                         boolean success =
                                                 programmingManager.programChip(
-                                                        currentChip, firmware);
+                                                        currentChip, firmware,new byte[]{0},new ArrayList<Integer>());
                                         runOnUiThread(
                                                 () -> {
                                                     dialogManager.updateProgrammingResult(success);
