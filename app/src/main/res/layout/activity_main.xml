@@ -114,6 +114,47 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Indicador de estado de fuses -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#2A2A3E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Estado de Fusibles:"
+                        android:textColor="#E0E0E0"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fuseStatusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No configurados"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="#3A3A3A" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Botones de operacion -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -147,6 +188,17 @@
                         android:backgroundTint="#4CAF50"
                         android:text="@string/cargar_archivo_hex"
                         android:textColor="#FFFFFF" />
+
+                    <!-- Configurar Fuses (NUEVO) -->
+                    <Button
+                        android:id="@+id/btnConfigureFuses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="⚙️ Configurar Fusibles"
+                        android:textColor="#AAAAAA" />
 
                     <!-- Programar -->
                     <Button
