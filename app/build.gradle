@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -45,4 +46,6 @@ dependencies {
     implementation libs.appcenter.analytics
     implementation libs.appcenter.crashes
     implementation libs.play.services.ads
+    implementation platform(libs.firebase.bom)
+    implementation libs.firebase.analytics
 }
