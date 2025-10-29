@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319470178881",
+    "project_id": "pic-k150-programing-9d189",
+    "storage_bucket": "pic-k150-programing-9d189.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319470178881:android:5a399fce8608e393e1acc0",
+        "android_client_info": {
+          "package_name": "com.diamon.pic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwLL0yhe4mwEPi-vlqSyabFY_eHP8QvOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
