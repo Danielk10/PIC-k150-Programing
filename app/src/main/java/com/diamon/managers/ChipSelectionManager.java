@@ -101,7 +101,7 @@ public class ChipSelectionManager {
                 });
     }
 
-    private void selectChipByModel(String model) {
+    /* private void selectChipByModel(String model) {
         if (model == null || model.trim().isEmpty()) {
             notifyError(context.getString(R.string.modelo_de_chip_invalido));
             return;
@@ -133,6 +133,72 @@ public class ChipSelectionManager {
         } catch (Exception e) {
             notifyError(context.getString(R.string.error_procesando_chip) + ": " + e.getMessage());
         }
+    }*/
+
+    private void selectChipByModel(String model) {
+        if (model == null || model.trim().isEmpty()) {
+            notifyError(context.getString(R.string.modelo_de_chip_invalido));
+            return;
+        }
+
+        try {
+            ChipPic chip = chipReader.getChipEntry(model);
+            ChipinfoEntry chipFs = chipfuses.getChip(model);
+
+            if (chip == null) {
+                notifyError(
+                        context.getString(R.string.chip_no_encontrado_en_base_de_) + ": " + model);
+                return;
+            }
+
+            selectedChip = chip;
+            chipFusesSelected = chipFs;
+
+            // LÓGICA MEJORADA PARA ICSP
+            String pinLocation = chip.getUbicacionPin1DelPic();
+            boolean isIcspOnly = "null".equals(pinLocation);
+
+            // Si es ICSP only, activar automáticamente
+            chip.setActivarICSP(isIcspOnly);
+
+            if (selectionListener != null) {
+                // Notificar también si el chip es compatible solo con ICSP
+                selectionListener.onChipSelected(chip, model);
+            }
+
+        } catch (Exception e) {
+            notifyError(context.getString(R.string.error_procesando_chip) + ": " + e.getMessage());
+        }
+    }
+
+    /** Obtiene si el chip actual es compatible SOLO con ICSP */
+    public boolean isCurrentChipICSPOnly() throws ChipConfigurationException {
+        if (selectedChip == null) {
+            return false;
+        }
+        return selectedChip.isICSPOnlyCompatible();
+    }
+
+    /** Obtiene el estado actual del modo ICSP del chip seleccionado */
+    public boolean getCurrentICSPMode() {
+        if (selectedChip == null) {
+            return false;
+        }
+        return selectedChip.getICSPModoActual();
+    }
+
+    /** Cambia el estado del modo ICSP si es permitido */
+    public void setICSPMode(boolean enabled) throws ChipConfigurationException {
+        if (selectedChip == null) {
+            throw new ChipConfigurationException("No hay chip seleccionado");
+        }
+
+        // No permitir cambio si es ICSP only
+        if (selectedChip.isICSPOnlyCompatible()) {
+            throw new ChipConfigurationException("Este chip solo soporta ICSP");
+        }
+
+        selectedChip.setActivarICSP(enabled);
     }
 
     public ChipPic getSelectedChip() {

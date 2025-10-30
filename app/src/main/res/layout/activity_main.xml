@@ -182,8 +182,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:thumbTint="#757575"
-                            android:trackTint="#E0E0E0" />
+                            android:thumbTint="#FFFFFF"
+                            android:trackTint="#90EE90" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -114,7 +114,8 @@ public class ProtocoloP018 extends Protocolo {
             boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle();
             boolean flagVccVppDelay = chipPIC.isFlagVccVppDelay();
             int programDelay = chipPIC.getProgramDelay();
-            int powerSequence = chipPIC.getPowerSequence();
+            // int powerSequence = chipPIC.getPowerSequence();
+            int powerSequence = chipPIC.getSecuenciaDeEncendido();
             int eraseMode = chipPIC.getEraseMode();
             int programRetries = chipPIC.getProgramTries();
             int overProgram = chipPIC.getOverProgram();
@@ -487,9 +488,8 @@ public class ProtocoloP018 extends Protocolo {
             return false;
         }
     }
-    
-    
-       @Override
+
+    @Override
     public boolean programarFusesIDDelPic(
             ChipPic chipPIC, String firware, byte[] IDPic, List<Integer> fusesUsuario) {
 
@@ -500,34 +500,32 @@ public class ProtocoloP018 extends Protocolo {
 
             // Obtener tipo de núcleo
             int tipoNucleo = chipPIC.getTipoDeNucleoBit();
-            
+
             // ============================================================
             // NUEVO: Determinar si usar datos del usuario o del HEX
             // ============================================================
             byte[] id;
             int[] fuses;
-            
+
             // Verificar si el usuario configuró fusibles
-            boolean usuarioConfiguroFuses = fusesUsuario != null 
-                && !fusesUsuario.isEmpty() 
-                && fusesUsuario.size() > 0;
-            
-            boolean usuarioConfiguroID = IDPic != null 
-                && IDPic.length > 1 
-                && !(IDPic.length == 1 && IDPic[0] == 0);
-            
+            boolean usuarioConfiguroFuses =
+                    fusesUsuario != null && !fusesUsuario.isEmpty() && fusesUsuario.size() > 0;
+
+            boolean usuarioConfiguroID =
+                    IDPic != null && IDPic.length > 1 && !(IDPic.length == 1 && IDPic[0] == 0);
+
             if (usuarioConfiguroFuses || usuarioConfiguroID) {
                 // ============================================================
                 // USAR DATOS DEL USUARIO
                 // ============================================================
-                
+
                 // ID: Usar del usuario si existe, sino del HEX
                 if (usuarioConfiguroID) {
                     id = IDPic;
                 } else {
                     id = datosPic.obtenerVsloresBytesHexIDPocesado();
                 }
-                
+
                 // FUSES: Usar del usuario si existe, sino del HEX
                 if (usuarioConfiguroFuses) {
                     // Convertir List<Integer> a int[]
@@ -538,7 +536,7 @@ public class ProtocoloP018 extends Protocolo {
                 } else {
                     fuses = datosPic.obtenerValoresIntHexFusesPocesado();
                 }
-                
+
             } else {
                 // ============================================================
                 // USAR DATOS DEL HEX (comportamiento original)
@@ -546,7 +544,7 @@ public class ProtocoloP018 extends Protocolo {
                 id = datosPic.obtenerVsloresBytesHexIDPocesado();
                 fuses = datosPic.obtenerValoresIntHexFusesPocesado();
             }
-            
+
             // ============================================================
             // Validar datos según tipo de núcleo
             // ============================================================
