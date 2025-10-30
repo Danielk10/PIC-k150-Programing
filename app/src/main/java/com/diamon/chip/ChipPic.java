@@ -452,6 +452,11 @@ public class ChipPic {
         this.icsp = activar;
     }
 
+    public boolean isISCPModo() {
+
+        return icsp;
+    }
+
     public int getSecuenciaDeEncendido() {
 
         int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
@@ -583,14 +588,9 @@ public class ChipPic {
         return ubicacion;
     }
 
-  public String getNombreDelPic()
-    {
-       String chipIdStr = variablesDeChip.get("CHIPname").toString();
-     
-        
+    public String getNombreDelPic() {
+        String chipIdStr = variablesDeChip.get("CHIPname").toString();
+
         return chipIdStr;
-     
     }
-
-
 }
