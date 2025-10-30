@@ -3,6 +3,7 @@ package com.diamon.pic;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout romDataContainer;
     private LinearLayout eepromDataContainer;
     private Spinner chipSpinner;
+    private Switch swModeICSP;
 
     private android.widget.Button btnSelectHex;
     private android.widget.Button btnProgramarPic;
@@ -96,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inicializar el Switch de ICSP (Agregar esta línea)
+        swModeICSP = findViewById(R.id.swModeICSP);
+
+        updateSwitchColors();
+        // Configurar listener para el switch
+        setupICSPSwitchListener();
 
         initializeAppCenter();
         initializeBasicComponents();
@@ -267,12 +277,21 @@ public class MainActivity extends AppCompatActivity {
                 new ChipSelectionManager.ChipSelectionListener() {
                     @Override
                     public void onChipSelected(ChipPic chip, String model) {
+
                         currentChip = chip;
                         String info = chipSelectionManager.getSelectedChipInfo();
                         chipInfoTextView.setText(info);
 
                         // Cargar fusibles del chip
                         currentChipFuses = chipSelectionManager.getSelectedChipFuses();
+
+                        // Actualizar información del chip
+                        chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
+
+                        updateSwitchColors();
+
+                        // IMPORTANTE: Actualizar estado del switch ICSP
+                        updateICSPSwitchState();
 
                         // NUEVO: Limpiar configuración de fusibles cuando se selecciona nuevo chip
                         clearFuseConfiguration();
@@ -293,9 +312,123 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onChipSelectionError(String errorMessage) {
                         Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                        // Desabilitar switch y botones
+                        swModeICSP.setEnabled(false);
+                        swModeICSP.setChecked(false);
                     }
                 });
         chipSelectionManager.setupSpinner(chipSpinner);
+    }
+
+    /** Configura el listener para el switch de ICSP */
+    private void setupICSPSwitchListener() {
+        swModeICSP.setOnCheckedChangeListener(
+                (buttonView, isChecked) -> {
+                    if (currentChip == null) {
+                        swModeICSP.setChecked(false);
+                        return;
+                    }
+
+                    updateSwitchColors();
+
+                    try {
+                        // Si el chip es ONLY ICSP, no permitir desactivar
+                        if (currentChip.isICSPOnlyCompatible()) {
+                            swModeICSP.setChecked(true);
+
+                            return;
+                        }
+
+                        // Si el chip soporta ambos modos, permitir cambio
+                        currentChip.setActivarICSP(isChecked);
+
+                    } catch (ChipConfigurationException e) {
+                        swModeICSP.setChecked(false);
+                        Toast.makeText(
+                                        MainActivity.this,
+                                        "Error al cambiar modo: " + e.getMessage(),
+                                        Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });
+    }
+
+    private void updateSwitchColors() {
+
+        try {
+            // Obtén el chip actual seleccionado
+            boolean isICSPCompatible = currentChip != null && currentChip.isICSPOnlyCompatible();
+            boolean isDualMode = currentChip != null && (!currentChip.isICSPonly());
+
+            if (isICSPCompatible && !isDualMode) {
+                // PIC SOLO COMPATIBLE CON ICSP
+                // Tanto en ON como en OFF, usa el mismo verde claro
+                swModeICSP.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#90EE90")));
+                swModeICSP.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                swModeICSP.setEnabled(true);
+            } else if (isDualMode) {
+                // PIC COMPATIBLE CON AMBOS MODOS
+                boolean isChecked = swModeICSP.isChecked();
+
+                if (isChecked) {
+                    // Switch ACTIVADO - Verde claro
+                    swModeICSP.setTrackTintList(
+                            ColorStateList.valueOf(Color.parseColor("#90EE90")));
+                    swModeICSP.setThumbTintList(
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                } else {
+                    // Switch DESACTIVADO - Gris oscuro
+                    swModeICSP.setTrackTintList(
+                            ColorStateList.valueOf(Color.parseColor("#90EE90")));
+                    swModeICSP.setThumbTintList(
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                }
+                swModeICSP.setEnabled(true);
+            } else {
+                // PIC NO COMPATIBLE CON ICSP
+                swModeICSP.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
+                swModeICSP.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#999999")));
+                swModeICSP.setEnabled(false);
+            }
+        } catch (ChipConfigurationException e) {
+        }
+    }
+
+    /** Actualiza el estado del switch cuando se selecciona un nuevo chip */
+    private void updateICSPSwitchState() {
+        if (currentChip == null) {
+            swModeICSP.setEnabled(false);
+            swModeICSP.setChecked(false);
+            return;
+        }
+
+        try {
+            boolean isIcspOnly = currentChip.isICSPOnlyCompatible();
+            boolean currentMode = currentChip.getICSPModoActual();
+
+            // Desactivar listener temporalmente para evitar recursión
+            swModeICSP.setOnCheckedChangeListener(null);
+
+            if (isIcspOnly) {
+                // ICSP only: switch habilitado pero siempre activado y deshabilitado
+                swModeICSP.setChecked(true);
+                swModeICSP.setEnabled(false);
+                swModeICSP.setAlpha(0.5f); // Visual de deshabilitado
+            } else {
+                // Compatible con ambos: switch habilitado y usuario puede controlar
+                swModeICSP.setChecked(currentMode);
+                swModeICSP.setEnabled(true);
+                swModeICSP.setAlpha(1.0f);
+            }
+
+            // Restaurar listener
+            setupICSPSwitchListener();
+
+        } catch (ChipConfigurationException e) {
+            swModeICSP.setEnabled(false);
+            swModeICSP.setChecked(false);
+        }
     }
 
     private void setupFileManagerListeners() {
@@ -396,7 +529,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(
                         () -> {
                             try {
-                                datosPicProcesados = new DatosPicProcesados(firmware,currentChip);
+                                datosPicProcesados = new DatosPicProcesados(firmware, currentChip);
                                 datosPicProcesados.iniciarProcesamientoDeDatos();
 
                                 runOnUiThread(

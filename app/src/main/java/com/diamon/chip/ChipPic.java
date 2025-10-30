@@ -459,7 +459,7 @@ public class ChipPic {
 
     public int getSecuenciaDeEncendido() {
 
-        int secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
+        int secuencia = Integer.parseUnsignedInt("" + variablesDeChip.get("power_sequence"), 10);
 
         if (icsp) {
 
@@ -473,8 +473,8 @@ public class ChipPic {
             }
 
         } else {
-
-            secuencia = Integer.parseInt("" + variablesDeChip.get("power_sequence"));
+            
+            secuencia = Integer.parseUnsignedInt("" + variablesDeChip.get("power_sequence"), 10);
         }
 
         return secuencia;
@@ -586,6 +586,23 @@ public class ChipPic {
         String ubicacion = "" + socketImagen.get("" + variablesDeChip.get("SocketImage"));
 
         return ubicacion;
+    }
+
+    /**
+     * Verifica si el chip es compatible SOLO con ICSP. Si retorna true: el usuario NO puede cambiar
+     * el modo (switch deshabilitado) Si retorna false: el usuario puede cambiar entre ICSP y
+     * programación normal
+     *
+     * @return true si el chip es SOLO ICSP, false si es compatible con ambos modos
+     * @throws ChipConfigurationException Si hay error al procesar
+     */
+    public boolean isICSPOnlyCompatible() throws ChipConfigurationException {
+        return isICSPonly();
+    }
+
+    /** Obtiene el estado actual del modo ICSP */
+    public boolean getICSPModoActual() {
+        return icsp;
     }
 
     public String getNombreDelPic() {
