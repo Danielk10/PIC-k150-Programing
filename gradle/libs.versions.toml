@@ -1,4 +1,5 @@
 [versions]
+admobMediation = "3.1.1"
 agp = "8.13.0"
 appCenterSdkVersion = "5.0.6"
 firebaseBom = "34.5.0"
@@ -13,6 +14,7 @@ playServicesAds = "24.7.0"
 usbSerialForAndroid = "3.9.0"
 
 [libraries]
+admob-mediation = { module = "io.start:admob-mediation", version.ref = "admobMediation" }
 appcenter-analytics = { module = "com.microsoft.appcenter:appcenter-analytics", version.ref = "appCenterSdkVersion" }
 appcenter-crashes = { module = "com.microsoft.appcenter:appcenter-crashes", version.ref = "appCenterSdkVersion" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
