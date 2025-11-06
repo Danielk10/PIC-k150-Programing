@@ -9,35 +9,49 @@
     android:background="#F5F5F5"
     tools:context="com.diamon.tutorial.TutorialGputilsActivity">
 
-    <!-- Título principal - Mismo estilo que activity_main -->
-    <TextView
-        android:id="@+id/titleTextView"
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#2196F3"
-        android:elevation="4dp"
-        android:padding="16dp"
-        android:text="GPUTILS 1.5.2 - Tutorial en Termux"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- CardView Controles de Idioma -->
-    <androidx.cardview.widget.CardView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#2196F3"
+            app:titleTextColor="#FFFFFF">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GPUTILS 1.5.2 Tutorial"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Card de Idioma -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/languageCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:elevation="2dp"
-        app:cardCornerRadius="8dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
+        app:strokeColor="#E0E0E0"
+        app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +66,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#424242"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,129 +77,164 @@
                 <Spinner
                     android:id="@+id/languageSpinner"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:padding="12dp"
                     android:background="@drawable/spinner_background"
                     android:spinnerMode="dropdown" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCopyTutorial"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📋 Copiar"
+                    android:layout_height="48dp"
+                    android:text="📋 Copiar Todo"
                     android:layout_marginStart="8dp"
-                    android:backgroundTint="#4CAF50"
+                    app:backgroundTint="#4CAF50"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     style="@style/Widget.MaterialComponents.Button" />
 
             </LinearLayout>
 
-            <!-- Info de idioma actual - Actualizable dinámicamente -->
-            <TextView
-                android:id="@+id/languageInfoTextView"
+            <!-- Info de idioma (ICONO AJUSTADO) -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:padding="8dp"
+                android:padding="12dp"
                 android:background="#E3F2FD"
-                android:text="Idioma: Español"
-                android:textSize="12sp"
-                android:fontFamily="monospace"
-                android:textColor="#1976D2" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_dialog_info"
+                    android:tint="#1976D2"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/languageInfoTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🌐 Idioma: Español"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#1976D2" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <!-- CardView Contenido Tutorial -->
-    <androidx.cardview.widget.CardView
+    <!-- Card Tutorial -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/tutorialCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="12dp"
-        android:elevation="2dp"
-        app:cardCornerRadius="8dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
+        app:strokeColor="#E0E0E0"
+        app:strokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/languageCard">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <!-- Header del tutorial -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="#E8EAF6"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="📚 Tutorial de Instalación"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#424242" />
-
-            </LinearLayout>
-
-            <!-- ScrollView del contenido del tutorial -->
-            <ScrollView
-                android:id="@+id/tutorialScrollView"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp"
-                android:fillViewport="true">
+                android:orientation="vertical">
 
+                <!-- Header -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="#E8EAF6"
+                    android:padding="12dp">
 
-                    <!-- Imagen del Tutorial -->
-                    <ImageView
-                        android:id="@+id/tutorialImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginBottom="12dp"
-                        android:contentDescription="Tutorial Image"
-                        android:scaleType="fitCenter"
-                        android:background="#F5F5F5" />
-
-                    <!-- Separador -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="#BDBDBD" />
-
-                    <!-- Texto del Tutorial -->
                     <TextView
-                        android:id="@+id/tutorialTextView"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:lineSpacingExtra="4dp"
-                        android:text="Cargando tutorial..."
-                        android:textColor="#424242"
-                        android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:text="📚 Tutorial de Instalación"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#424242" />
 
                 </LinearLayout>
 
-            </ScrollView>
+                <!-- ScrollView -->
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/tutorialScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:fillViewport="true"
+                    android:scrollbars="vertical">
 
-        </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tutorialContentLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-    </androidx.cardview.widget.CardView>
+                        <!-- Imagen -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp">
+
+                            <ImageView
+                                android:id="@+id/tutorialImageView"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:contentDescription="Tutorial Image"
+                                android:scaleType="centerCrop"
+                                android:background="#F5F5F5" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Contenido dinámico -->
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+
+            <!-- Loading Progress -->
+            <ProgressBar
+                android:id="@+id/loadingProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateTint="#2196F3" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabScrollTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_upload"
+        android:contentDescription="Volver arriba"
+        app:tint="#FFFFFF"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

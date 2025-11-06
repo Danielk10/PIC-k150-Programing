@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Accepter</string>
+    <string name="cancelar">Annuler</string>
+    <string name="conectado">Connecté</string>
+    <string name="desconectado">Déconnecté</string>
+    <string name="grabando_pic">Programmation PIC...</string>
+    <string name="espere_grabacion_pic">Veuillez patienter. Ne débranchez pas l\u0027appareil.</string>
+    <string name="grabacion_completada_pic">Programmation terminée</string>
+    <string name="grabacion_correcta_pic">Le firmware a été écrit correctement dans le PIC.</string>
+    <string name="fallo_grabacion_pic">Erreur de programmation</string>
+    <string name="proceso_no_completado">Impossible de terminer le processus. Vérifiez la connexion.</string>
+    <string name="protocolo_del_programador">Protocole du programmeur</string>
+    <string name="modelo_del_programador">Modèle du programmeur</string>
+    <string name="modelo_programador">Modèle Programmeur</string>
+    <string name="protocolo">Protocole</string>
+    <string name="politica_de_privacidad">Politique de confidentialité</string>
+    <string name="no_se_detecto_pic_en_socket">Aucun PIC détecté dans la prise</string>
+    <string name="pic_detectado_en_socket">PIC détecté dans la prise</string>
+    <string name="memoria_contiene_datos">La mémoire contient des données</string>
+    <string name="memoria_vacia">Mémoire vide</string>
+    <string name="error_borrando_memoria">Erreur lors de l\u0027effacement de la mémoire</string>
+    <string name="memoria_borrada_exitosamente">Mémoire effacée avec succès</string>
+    <string name="memoria_leida_exitosamente">Mémoire lue avec succès</string>
+    <string name="seleccione_un_chip">Sélectionnez une puce</string>
+    <string name="seleccione_un_chip_y_cargue_un">Sélectionnez une puce et chargez un fichier HEX</string>
+    <string name="error_programando_pic">Erreur lors de la programmation du PIC</string>
+    <string name="pic_programado_exitosamente">PIC programmé avec succès</string>
+    <string name="iniciando_programacion">Lancement de la programmation...</string>
+    <string name="error_cargando_archivo">Erreur lors du chargement du fichier</string>
+    <string name="archivo_hex_cargado_exitosamen">Fichier HEX chargé avec succès</string>
+    <string name="archivo_cargado">Fichier chargé</string>
+    <string name="error_inicializando_chip">Erreur lors de l\u0027initialisation de la puce</string>
+    <string name="conectado_al_programador">Connecté au programmeur</string>
+    <string name="error_inicializando_base_de_da">Erreur lors de l\u0027initialisation de la base de données des puces</string>
+    <string name="no_hay_modelos_de_chips_dispon">Aucun modèle de puce disponible</string>
+    <string name="modelo_de_chip_invalido">Modèle de puce invalide</string>
+    <string name="chip_no_encontrado_en_base_de_">Puce non trouvée dans la base de données</string>
+    <string name="error_procesando_chip">Erreur lors du traitement de la puce</string>
+    <string name="no_hay_chip_seleccionado">Aucune puce sélectionnée</string>
+    <string name="modelo">Modèle</string>
+    <string name="palabras_rom">Mots ROM</string>
+    <string name="tamano_rom">Taille ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Non disponible</string>
+    <string name="tipo_de_nucleo">Type de noyau</string>
+    <string name="error_obteniendo_datos_del_chi">Erreur lors de l\u0027obtention des données de la puce</string>
+    <string name="modo">Mode</string>
+    <string name="icsp_solamente">ICSP uniquement</string>
+    <string name="pin_1">Broche 1</string>
+    <string name="filemanager_no_inicializado">FileManager non initialisé</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Impossible d\u0027obtenir le nom du fichier</string>
+    <string name="seleccione_un_archivo_binario_">Sélectionnez un fichier binaire valide (.hex ou .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Erreur lors de l\u0027ouverture du fichier sélectionné</string>
+    <string name="el_archivo_seleccionado_esta_v">Le fichier sélectionné est vide</string>
+    <string name="error_leyendo_el_archivo">Erreur lors de la lecture du fichier</string>
+    <string name="error_inesperado_leyendo_el_ar">Erreur inattendue lors de la lecture du fichier</string>
+    <string name="datos_de_memoria">Données de mémoire</string>
+    <string name="memoria_rom">Mémoire ROM</string>
+    <string name="memoria_eeprom">Mémoire EEPROM</string>
+    <string name="cerrar">Fermer</string>
+    <string name="protocolo_no_inicializado">Protocole non initialisé</string>
+    <string name="datos_invalidos_para_programac">Données invalides pour la programmation</string>
+    <string name="borrando_memorias">Effacement des mémoires...</string>
+    <string name="error_borrando_memorias">Erreur lors de l\u0027effacement des mémoires</string>
+    <string name="programando_memoria_rom">Programmation de la mémoire ROM...</string>
+    <string name="error_programando_rom">Erreur lors de la programmation de la ROM</string>
+    <string name="programando_memoria_eeprom">Programmation de la mémoire EEPROM...</string>
+    <string name="error_programando_eeprom">Erreur lors de la programmation de l\u0027EEPROM</string>
+    <string name="programando_fuses_id">Programmation des Fuses ID...</string>
+    <string name="error_programando_fuses">Erreur lors de la programmation des Fuses</string>
+    <string name="programando_fuses_18f">Programmation des Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Erreur lors de la programmation des Fuses 18F</string>
+    <string name="programacion_completada">Programmation terminée</string>
+    <string name="error_inesperado">Erreur inattendue</string>
+    <string name="error_leyendo_memoria_rom">Erreur lors de la lecture de la mémoire ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Erreur lors de la lecture de la mémoire EEPROM</string>
+    <string name="error_verificando_memoria">Erreur lors de la vérification de la mémoire</string>
+    <string name="error_detectando_chip">Erreur lors de la détection de la puce</string>
+    <string name="driver_usb_no_disponible">Pilote USB non disponible</string>
+    <string name="dispositivo_sin_puertos_usb_di">Appareil sans ports USB disponibles</string>
+    <string name="error_inicializando_protocolo_">Erreur lors de l\u0027initialisation du protocole de communication</string>
+    <string name="error_de_conexion_usb">Erreur de connexion USB</string>
+    <string name="error_inesperado_durante_la_co">Erreur inattendue lors de la connexion</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Opérations</string>
+    <string name="cargar_archivo_hex">Charger le fichier HEX</string>
+    <string name="programar_pic">Programmer PIC</string>
+    <string name="leer_memoria">Lire la mémoire</string>
+    <string name="verificar">Vérifier</string>
+    <string name="borrar_memoria">Effacer la mémoire</string>
+    <string name="detectar_pic">Détecter PIC</string>
+    <string name="esperando_operacion">En attente d\u0027opération...</string>
+    <string name="esperando_seleccion">En attente de sélection...</string>
+    <string name="seleccionar_chip_pic">Sélectionner la puce PIC</string>
+    <!-- values-fr/strings.xml (Francés) -->
+    <string name="gputils_termux_asm">GPUTILS dans Termux Compilateur ASM Android</string>
+</resources>

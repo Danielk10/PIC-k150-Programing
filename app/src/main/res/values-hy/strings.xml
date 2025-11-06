@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Ընդունել</string>
+    <string name="cancelar">Չեղարկել</string>
+    <string name="conectado">Միացված</string>
+    <string name="desconectado">Անջատված</string>
+    <string name="grabando_pic">PIC-ը գրում...</string>
+    <string name="espere_grabacion_pic">Խնդրում ենք սպասել: Մի անջատեք սարքը:</string>
+    <string name="grabacion_completada_pic">Գրումն ավարտված</string>
+    <string name="grabacion_correcta_pic">Firmware-ը հաջողությամբ գրվել է PIC-ի մեջ:</string>
+    <string name="fallo_grabacion_pic">Գրման սխալ</string>
+    <string name="proceso_no_completado">Գործընթացը չի կարող ավարտվել: Ստուգեք միացումը:</string>
+    <string name="protocolo_del_programador">Ծրագրավորողի ամբ.</string>
+    <string name="modelo_del_programador">Ծրագրավորողի մոդել</string>
+    <string name="modelo_programador">Ծրագրավորողի մոդել</string>
+    <string name="protocolo">Ամբ.</string>
+    <string name="politica_de_privacidad">Գոկտայնության քաղաք</string>
+    <string name="no_se_detecto_pic_en_socket">PIC-ը հայտնաբերված չէ վարդակում</string>
+    <string name="pic_detectado_en_socket">PIC հայտնաբերված վարդակում</string>
+    <string name="memoria_contiene_datos">Հիշողությունը պարունակում է տվյալներ</string>
+    <string name="memoria_vacia">Հիշողությունը դատարկ է</string>
+    <string name="error_borrando_memoria">Հիշողությունը ջնջելու ժամանակ սխալ</string>
+    <string name="memoria_borrada_exitosamente">Հիշողությունը հաջողությամբ ջնջվել է</string>
+    <string name="memoria_leida_exitosamente">Հիշողությունը հաջողությամբ կարդացվել է</string>
+    <string name="seleccione_un_chip">Ընտրեք չիպ</string>
+    <string name="seleccione_un_chip_y_cargue_un">Ընտրեք չիպ և բեռնել HEX ֆայլ</string>
+    <string name="error_programando_pic">PIC-ը ծրագրավորելու ժամանակ սխալ</string>
+    <string name="pic_programado_exitosamente">PIC-ը հաջողությամբ ծրագրավորվել է</string>
+    <string name="iniciando_programacion">Ծրագրավորման մեկնարկ...</string>
+    <string name="error_cargando_archivo">Ֆայլ բեռնելու ժամանակ սխալ</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX ֆայլը հաջողությամբ բեռնված է</string>
+    <string name="archivo_cargado">Ֆայլը բեռնված է</string>
+    <string name="error_inicializando_chip">Չիպ նախաստորագրելու ժամանակ սխալ</string>
+    <string name="conectado_al_programador">Միացված ծրագրավորիչին</string>
+    <string name="error_inicializando_base_de_da">Չիպերի տվյալների բազան նախաստորագրելու ժամանակ սխալ</string>
+    <string name="no_hay_modelos_de_chips_dispon">Չիպերի մոդելներ չկան</string>
+    <string name="modelo_de_chip_invalido">Չափազանց չիպ մոդել</string>
+    <string name="chip_no_encontrado_en_base_de_">Չիպը չի հայտնաբերվել տվյալների բազայում</string>
+    <string name="error_procesando_chip">Չիպ մշակելու ժամանակ սխալ</string>
+    <string name="no_hay_chip_seleccionado">Ընտրված չիպ չկա</string>
+    <string name="modelo">Մոդել</string>
+    <string name="palabras_rom">ROM բառեր</string>
+    <string name="tamano_rom">ROM չափ</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Մատչելի չէ</string>
+    <string name="tipo_de_nucleo">Միջուկի տեսակ</string>
+    <string name="error_obteniendo_datos_del_chi">Չիպի տվյալներ ստանալու ժամանակ սխալ</string>
+    <string name="modo">Ռեժիմ</string>
+    <string name="icsp_solamente">Միայն ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager-ը նախաստորագրված չէ</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Չի կարող ստանալ ֆայլի անունը</string>
+    <string name="seleccione_un_archivo_binario_">Ընտրեք վավեր հիմնական ֆայլ (.hex կամ .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Ընտրված ֆայլ բացելու ժամանակ սխալ</string>
+    <string name="el_archivo_seleccionado_esta_v">Ընտրված ֆայլը դատարկ է</string>
+    <string name="error_leyendo_el_archivo">Ֆայլ կարդալու ժամանակ սխալ</string>
+    <string name="error_inesperado_leyendo_el_ar">Ֆայլ կարդալու ժամանակ անակնկալ սխալ</string>
+    <string name="datos_de_memoria">Հիշողության տվյալներ</string>
+    <string name="memoria_rom">ROM հիշողություն</string>
+    <string name="memoria_eeprom">EEPROM հիշողություն</string>
+    <string name="cerrar">Փակել</string>
+    <string name="protocolo_no_inicializado">Ամբ. նախաստորագրված չէ</string>
+    <string name="datos_invalidos_para_programac">Ծրագրավորման համար անվավեր տվյալներ</string>
+    <string name="borrando_memorias">Հիշողությունները ջնջում...</string>
+    <string name="error_borrando_memorias">Հիշողությունները ջնջելու ժամանակ սխալ</string>
+    <string name="programando_memoria_rom">ROM հիշողության ծրագրավորում...</string>
+    <string name="error_programando_rom">ROM-ի ծրագրավորման ժամանակ սխալ</string>
+    <string name="programando_memoria_eeprom">EEPROM հիշողության ծրագրավորում...</string>
+    <string name="error_programando_eeprom">EEPROM-ի ծրագրավորման ժամանակ սխալ</string>
+    <string name="programando_fuses_id">Fuses ID ծրագրավորում...</string>
+    <string name="error_programando_fuses">Fuses ծրագրավորելու ժամանակ սխալ</string>
+    <string name="programando_fuses_18f">Fuses 18F ծրագրավորում...</string>
+    <string name="error_programando_fuses_18f">Fuses 18F ծրագրավորելու ժամանակ սխալ</string>
+    <string name="programacion_completada">Ծրագրավորումն ավարտված</string>
+    <string name="error_inesperado">Անակնկալ սխալ</string>
+    <string name="error_leyendo_memoria_rom">ROM հիշողություն կարդալու ժամանակ սխալ</string>
+    <string name="error_leyendo_memoria_eeprom">EEPROM հիշողություն կարդալու ժամանակ սխալ</string>
+    <string name="error_verificando_memoria">Հիշողություն հաստատելու ժամանակ սխալ</string>
+    <string name="error_detectando_chip">Չիպ հայտնաբերելու ժամանակ սխալ</string>
+    <string name="driver_usb_no_disponible">USB վարորդ մատչելի չէ</string>
+    <string name="dispositivo_sin_puertos_usb_di">USB մեջբերման առանց սարք</string>
+    <string name="error_inicializando_protocolo_">Հաղորդակցման ամբ. նախաստորագրելու ժամանակ սխալ</string>
+    <string name="error_de_conexion_usb">USB միացման սխալ</string>
+    <string name="error_inesperado_durante_la_co">Միացման ժամանակ անակնկալ սխալ</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Գործառություններ</string>
+    <string name="cargar_archivo_hex">Բեռնել HEX ֆայլ</string>
+    <string name="programar_pic">Ծրագրավորել PIC</string>
+    <string name="leer_memoria">Կարդալ հիշողություն</string>
+    <string name="verificar">Հաստատել</string>
+    <string name="borrar_memoria">Ջնջել հիշողություն</string>
+    <string name="detectar_pic">Հայտնաբերել PIC</string>
+    <string name="esperando_operacion">Սպասում գործործարկման...</string>
+    <string name="esperando_seleccion">Ընտրություն սպասում...</string>
+    <string name="seleccionar_chip_pic">Ընտրեք PIC չիպ</string>
+    <!-- values-hy/strings.xml (Armenian) -->
+    <string name="gputils_termux_asm">GPUTILS-ը Termux-ում ASM Compiler Android</string>
+</resources>

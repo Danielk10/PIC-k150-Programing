@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Acceptar</string>
+    <string name="cancelar">Cancel\u00b7lar</string>
+    <string name="conectado">Connectat</string>
+    <string name="desconectado">Desconnectat</string>
+    <string name="grabando_pic">Gravant PIC...</string>
+    <string name="espere_grabacion_pic">Si us plau, esperi. No desconnecteu el dispositiu.</string>
+    <string name="grabacion_completada_pic">Gravació Completa</string>
+    <string name="grabacion_correcta_pic">El firmware s\u0027ha gravat correctament al PIC.</string>
+    <string name="fallo_grabacion_pic">Error de Gravació</string>
+    <string name="proceso_no_completado">No s\u0027ha pogut completar el procés. Verifiqueu la connexió.</string>
+    <string name="protocolo_del_programador">Protocol del Programador</string>
+    <string name="modelo_del_programador">Model del Programador</string>
+    <string name="modelo_programador">Model Programador</string>
+    <string name="protocolo">Protocol</string>
+    <string name="politica_de_privacidad">Política de Privacitat</string>
+    <string name="no_se_detecto_pic_en_socket">No es va detectar PIC a la presa</string>
+    <string name="pic_detectado_en_socket">PIC detectat a la presa</string>
+    <string name="memoria_contiene_datos">La memòria conté dades</string>
+    <string name="memoria_vacia">Memòria buida</string>
+    <string name="error_borrando_memoria">Error en esborrar la memòria</string>
+    <string name="memoria_borrada_exitosamente">Memòria esborrada correctament</string>
+    <string name="memoria_leida_exitosamente">Memòria llegida correctament</string>
+    <string name="seleccione_un_chip">Seleccioni un xip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Seleccioni un xip i carregui un fitxer HEX</string>
+    <string name="error_programando_pic">Error programant PIC</string>
+    <string name="pic_programado_exitosamente">PIC programat correctament</string>
+    <string name="iniciando_programacion">Iniciant la programació...</string>
+    <string name="error_cargando_archivo">Error en carregar el fitxer</string>
+    <string name="archivo_hex_cargado_exitosamen">Fitxer HEX carregat correctament</string>
+    <string name="archivo_cargado">Fitxer carregat</string>
+    <string name="error_inicializando_chip">Error inicialitzant el xip</string>
+    <string name="conectado_al_programador">Connectat al programador</string>
+    <string name="error_inicializando_base_de_da">Error inicialitzant la base de dades de xips</string>
+    <string name="no_hay_modelos_de_chips_dispon">No hi ha models de xips disponibles</string>
+    <string name="modelo_de_chip_invalido">Model de xip no vàlid</string>
+    <string name="chip_no_encontrado_en_base_de_">Xip no trobat a la base de dades</string>
+    <string name="error_procesando_chip">Error processant el xip</string>
+    <string name="no_hay_chip_seleccionado">No hi ha xip seleccionat</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">Paraules ROM</string>
+    <string name="tamano_rom">Mida ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">No disponible</string>
+    <string name="tipo_de_nucleo">Tipus de Nucli</string>
+    <string name="error_obteniendo_datos_del_chi">Error obtenint dades del xip</string>
+    <string name="modo">Mode</string>
+    <string name="icsp_solamente">Només ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager no inicialitzat</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">No s\u0027ha pogut obtenir el nom del fitxer</string>
+    <string name="seleccione_un_archivo_binario_">Seleccioni un fitxer binari vàlid (.hex o .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Error obrint el fitxer seleccionat</string>
+    <string name="el_archivo_seleccionado_esta_v">El fitxer seleccionat està buit</string>
+    <string name="error_leyendo_el_archivo">Error llegint el fitxer</string>
+    <string name="error_inesperado_leyendo_el_ar">Error inesperat llegint el fitxer</string>
+    <string name="datos_de_memoria">Dades de Memòria</string>
+    <string name="memoria_rom">Memòria ROM</string>
+    <string name="memoria_eeprom">Memòria EEPROM</string>
+    <string name="cerrar">Tancar</string>
+    <string name="protocolo_no_inicializado">Protocol no inicialitzat</string>
+    <string name="datos_invalidos_para_programac">Dades no vàlides per a la programació</string>
+    <string name="borrando_memorias">Esborrant memòries...</string>
+    <string name="error_borrando_memorias">Error esborrant memòries</string>
+    <string name="programando_memoria_rom">Programant memòria ROM...</string>
+    <string name="error_programando_rom">Error programant ROM</string>
+    <string name="programando_memoria_eeprom">Programant memòria EEPROM...</string>
+    <string name="error_programando_eeprom">Error programant EEPROM</string>
+    <string name="programando_fuses_id">Programant Fuses ID...</string>
+    <string name="error_programando_fuses">Error programant Fuses</string>
+    <string name="programando_fuses_18f">Programant Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Error programant Fuses 18F</string>
+    <string name="programacion_completada">Programació completada</string>
+    <string name="error_inesperado">Error inesperat</string>
+    <string name="error_leyendo_memoria_rom">Error llegint memòria ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Error llegint memòria EEPROM</string>
+    <string name="error_verificando_memoria">Error verificant memòria</string>
+    <string name="error_detectando_chip">Error detectant el xip</string>
+    <string name="driver_usb_no_disponible">Controlador USB no disponible</string>
+    <string name="dispositivo_sin_puertos_usb_di">Dispositiu sense ports USB disponibles</string>
+    <string name="error_inicializando_protocolo_">Error inicialitzant el protocol de comunicació</string>
+    <string name="error_de_conexion_usb">Error de connexió USB</string>
+    <string name="error_inesperado_durante_la_co">Error inesperat durant la connexió</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operacions</string>
+    <string name="cargar_archivo_hex">Carregar Fitxer HEX</string>
+    <string name="programar_pic">Programar PIC</string>
+    <string name="leer_memoria">Llegir Memòria</string>
+    <string name="verificar">Verificar</string>
+    <string name="borrar_memoria">Esborrar Memòria</string>
+    <string name="detectar_pic">Detectar PIC</string>
+    <string name="esperando_operacion">Esperant operació...</string>
+    <string name="esperando_seleccion">Esperant selecció...</string>
+    <string name="seleccionar_chip_pic">Seleccionar Xip PIC</string>
+    <!-- values-ca/strings.xml (Catalan) -->
+    <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
+</resources>

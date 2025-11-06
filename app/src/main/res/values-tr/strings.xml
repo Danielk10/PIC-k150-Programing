@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Kabul Et</string>
+    <string name="cancelar">İptal</string>
+    <string name="conectado">Bağlı</string>
+    <string name="desconectado">Bağlantısı Kesildi</string>
+    <string name="grabando_pic">PIC Yazılıyor...</string>
+    <string name="espere_grabacion_pic">Lütfen bekleyin. Cihazı sökmeyin.</string>
+    <string name="grabacion_completada_pic">Yazma Tamamlandı</string>
+    <string name="grabacion_correcta_pic">Firmware, PIC\u0027e başarıyla yazıldı.</string>
+    <string name="fallo_grabacion_pic">Yazma Hatası</string>
+    <string name="proceso_no_completado">İşlem tamamlanamadı. Bağlantıyı kontrol edin.</string>
+    <string name="protocolo_del_programador">Programcı Protokolü</string>
+    <string name="modelo_del_programador">Programcı Modeli</string>
+    <string name="modelo_programador">Programcı Modeli</string>
+    <string name="protocolo">Protokol</string>
+    <string name="politica_de_privacidad">Gizlilik Politikası</string>
+    <string name="no_se_detecto_pic_en_socket">Sokette PIC algılanmadı</string>
+    <string name="pic_detectado_en_socket">Sokette PIC algılandı</string>
+    <string name="memoria_contiene_datos">Bellek veri içerir</string>
+    <string name="memoria_vacia">Bellek boş</string>
+    <string name="error_borrando_memoria">Bellek silinirken hata oluştu</string>
+    <string name="memoria_borrada_exitosamente">Bellek başarıyla silindi</string>
+    <string name="memoria_leida_exitosamente">Bellek başarıyla okundu</string>
+    <string name="seleccione_un_chip">Bir çip seçin</string>
+    <string name="seleccione_un_chip_y_cargue_un">Bir çip seçin ve HEX dosyası yükleyin</string>
+    <string name="error_programando_pic">PIC programlanırken hata oluştu</string>
+    <string name="pic_programado_exitosamente">PIC başarıyla programlandı</string>
+    <string name="iniciando_programacion">Programlama başlatılıyor...</string>
+    <string name="error_cargando_archivo">Dosya yüklenirken hata oluştu</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX dosyası başarıyla yüklendi</string>
+    <string name="archivo_cargado">Dosya yüklendi</string>
+    <string name="error_inicializando_chip">Çip başlatılırken hata oluştu</string>
+    <string name="conectado_al_programador">Programcıya bağlı</string>
+    <string name="error_inicializando_base_de_da">Çip veritabanı başlatılırken hata oluştu</string>
+    <string name="no_hay_modelos_de_chips_dispon">Kullanılabilir çip modeli yok</string>
+    <string name="modelo_de_chip_invalido">Geçersiz çip modeli</string>
+    <string name="chip_no_encontrado_en_base_de_">Çip veritabanında bulunamadı</string>
+    <string name="error_procesando_chip">Çip işlenirken hata oluştu</string>
+    <string name="no_hay_chip_seleccionado">Seçili çip yok</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">ROM Sözcükleri</string>
+    <string name="tamano_rom">ROM Boyutu</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Kullanılmıyor</string>
+    <string name="tipo_de_nucleo">Çekirdek Türü</string>
+    <string name="error_obteniendo_datos_del_chi">Çip verisi alınırken hata oluştu</string>
+    <string name="modo">Mod</string>
+    <string name="icsp_solamente">Yalnızca ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager başlatılmadı</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Dosya adı alınamadı</string>
+    <string name="seleccione_un_archivo_binario_">Geçerli bir binary dosyası seçin (.hex veya .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Seçili dosya açılırken hata oluştu</string>
+    <string name="el_archivo_seleccionado_esta_v">Seçili dosya boş</string>
+    <string name="error_leyendo_el_archivo">Dosya okunurken hata oluştu</string>
+    <string name="error_inesperado_leyendo_el_ar">Dosya okunurken beklenmeyen hata oluştu</string>
+    <string name="datos_de_memoria">Bellek Verileri</string>
+    <string name="memoria_rom">ROM Belleği</string>
+    <string name="memoria_eeprom">EEPROM Belleği</string>
+    <string name="cerrar">Kapat</string>
+    <string name="protocolo_no_inicializado">Protokol başlatılmadı</string>
+    <string name="datos_invalidos_para_programac">Programlama için geçersiz veriler</string>
+    <string name="borrando_memorias">Bellekler siliniyor...</string>
+    <string name="error_borrando_memorias">Bellekler silinirken hata oluştu</string>
+    <string name="programando_memoria_rom">ROM Belleği programlanıyor...</string>
+    <string name="error_programando_rom">ROM programlanırken hata oluştu</string>
+    <string name="programando_memoria_eeprom">EEPROM Belleği programlanıyor...</string>
+    <string name="error_programando_eeprom">EEPROM programlanırken hata oluştu</string>
+    <string name="programando_fuses_id">Fuses ID programlanıyor...</string>
+    <string name="error_programando_fuses">Fuses programlanırken hata oluştu</string>
+    <string name="programando_fuses_18f">Fuses 18F programlanıyor...</string>
+    <string name="error_programando_fuses_18f">Fuses 18F programlanırken hata oluştu</string>
+    <string name="programacion_completada">Programlama tamamlandı</string>
+    <string name="error_inesperado">Beklenmeyen hata</string>
+    <string name="error_leyendo_memoria_rom">ROM Belleği okunurken hata oluştu</string>
+    <string name="error_leyendo_memoria_eeprom">EEPROM Belleği okunurken hata oluştu</string>
+    <string name="error_verificando_memoria">Bellek doğrulanırken hata oluştu</string>
+    <string name="error_detectando_chip">Çip algılanırken hata oluştu</string>
+    <string name="driver_usb_no_disponible">USB sürücüsü kullanılmıyor</string>
+    <string name="dispositivo_sin_puertos_usb_di">Kullanılabilir USB bağlantı noktası olmayan cihaz</string>
+    <string name="error_inicializando_protocolo_">İletişim protokolü başlatılırken hata oluştu</string>
+    <string name="error_de_conexion_usb">USB bağlantı hatası</string>
+    <string name="error_inesperado_durante_la_co">Bağlantı sırasında beklenmeyen hata oluştu</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">İşlemler</string>
+    <string name="cargar_archivo_hex">HEX Dosyası Yükle</string>
+    <string name="programar_pic">PIC Programla</string>
+    <string name="leer_memoria">Belleği Oku</string>
+    <string name="verificar">Doğrula</string>
+    <string name="borrar_memoria">Belleği Sil</string>
+    <string name="detectar_pic">PIC\u0027i Algıla</string>
+    <string name="esperando_operacion">İşlem bekleniyor...</string>
+    <string name="esperando_seleccion">Seçim bekleniyor...</string>
+    <string name="seleccionar_chip_pic">PIC Çipini Seçin</string>
+    <!-- values-tr/strings.xml (Turco) -->
+    <string name="gputils_termux_asm">GPUTILS in Termux ASM Compiler Android</string>
+</resources>

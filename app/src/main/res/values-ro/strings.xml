@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Accepta</string>
+    <string name="cancelar">Anulare</string>
+    <string name="conectado">Conectat</string>
+    <string name="desconectado">Deconectat</string>
+    <string name="grabando_pic">Se scrie PIC...</string>
+    <string name="espere_grabacion_pic">Vă rog așteptați. Nu deconectați dispozitivul.</string>
+    <string name="grabacion_completada_pic">Scriere completă</string>
+    <string name="grabacion_correcta_pic">Firmware-ul a fost scris corect în PIC.</string>
+    <string name="fallo_grabacion_pic">Eroare de scriere</string>
+    <string name="proceso_no_completado">Nu a putut finaliza procesul. Verificați conexiunea.</string>
+    <string name="protocolo_del_programador">Protocolul programatorului</string>
+    <string name="modelo_del_programador">Modelul programatorului</string>
+    <string name="modelo_programador">Modelul programatorului</string>
+    <string name="protocolo">Protocol</string>
+    <string name="politica_de_privacidad">Politica de confidențialitate</string>
+    <string name="no_se_detecto_pic_en_socket">PIC nu a fost detectat în soclu</string>
+    <string name="pic_detectado_en_socket">PIC detectat în soclu</string>
+    <string name="memoria_contiene_datos">Memoria conține date</string>
+    <string name="memoria_vacia">Memorie goală</string>
+    <string name="error_borrando_memoria">Eroare la ștergerea memoriei</string>
+    <string name="memoria_borrada_exitosamente">Memorie ștearsă cu succes</string>
+    <string name="memoria_leida_exitosamente">Memorie citită cu succes</string>
+    <string name="seleccione_un_chip">Selectați un cip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Selectați un cip și încărcați un fișier HEX</string>
+    <string name="error_programando_pic">Eroare la programarea PIC</string>
+    <string name="pic_programado_exitosamente">PIC programat cu succes</string>
+    <string name="iniciando_programacion">Inițierea programării...</string>
+    <string name="error_cargando_archivo">Eroare la încărcarea fișierului</string>
+    <string name="archivo_hex_cargado_exitosamen">Fișierul HEX încărcat cu succes</string>
+    <string name="archivo_cargado">Fișier încărcat</string>
+    <string name="error_inicializando_chip">Eroare la inițializarea cipului</string>
+    <string name="conectado_al_programador">Conectat la programator</string>
+    <string name="error_inicializando_base_de_da">Eroare la inițializarea bazei de date a cipurilor</string>
+    <string name="no_hay_modelos_de_chips_dispon">Nu sunt disponibile modele de cipuri</string>
+    <string name="modelo_de_chip_invalido">Model de cip nevalid</string>
+    <string name="chip_no_encontrado_en_base_de_">Cipul nu a fost găsit în baza de date</string>
+    <string name="error_procesando_chip">Eroare la prelucrarea cipului</string>
+    <string name="no_hay_chip_seleccionado">Niciun cip selectat</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">Cuvinte ROM</string>
+    <string name="tamano_rom">Dimensiunea ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Nu este disponibil</string>
+    <string name="tipo_de_nucleo">Tip de nucleu</string>
+    <string name="error_obteniendo_datos_del_chi">Eroare la obținerea datelor cipului</string>
+    <string name="modo">Mod</string>
+    <string name="icsp_solamente">Doar ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager nu a fost inițializat</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Nu a putut obține numele fișierului</string>
+    <string name="seleccione_un_archivo_binario_">Selectați un fișier binar valid (.hex sau .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Eroare la deschiderea fișierului selectat</string>
+    <string name="el_archivo_seleccionado_esta_v">Fișierul selectat este gol</string>
+    <string name="error_leyendo_el_archivo">Eroare la citirea fișierului</string>
+    <string name="error_inesperado_leyendo_el_ar">Eroare neașteptată la citirea fișierului</string>
+    <string name="datos_de_memoria">Date de memorie</string>
+    <string name="memoria_rom">Memorie ROM</string>
+    <string name="memoria_eeprom">Memorie EEPROM</string>
+    <string name="cerrar">Inchide</string>
+    <string name="protocolo_no_inicializado">Protocol nu este inițializat</string>
+    <string name="datos_invalidos_para_programac">Date nevalide pentru programare</string>
+    <string name="borrando_memorias">Ștergere memorii...</string>
+    <string name="error_borrando_memorias">Eroare la ștergerea memoriilor</string>
+    <string name="programando_memoria_rom">Programarea memoriei ROM...</string>
+    <string name="error_programando_rom">Eroare la programarea ROM</string>
+    <string name="programando_memoria_eeprom">Programarea memoriei EEPROM...</string>
+    <string name="error_programando_eeprom">Eroare la programarea EEPROM</string>
+    <string name="programando_fuses_id">Programarea Fuses ID...</string>
+    <string name="error_programando_fuses">Eroare la programarea Fuses</string>
+    <string name="programando_fuses_18f">Programarea Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Eroare la programarea Fuses 18F</string>
+    <string name="programacion_completada">Programare completă</string>
+    <string name="error_inesperado">Eroare neașteptată</string>
+    <string name="error_leyendo_memoria_rom">Eroare la citirea memoriei ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Eroare la citirea memoriei EEPROM</string>
+    <string name="error_verificando_memoria">Eroare la verificarea memoriei</string>
+    <string name="error_detectando_chip">Eroare la detectarea cipului</string>
+    <string name="driver_usb_no_disponible">Driverul USB nu este disponibil</string>
+    <string name="dispositivo_sin_puertos_usb_di">Dispozitiv fără porturi USB disponibile</string>
+    <string name="error_inicializando_protocolo_">Eroare la inițializarea protocolului de comunicare</string>
+    <string name="error_de_conexion_usb">Eroare de conexiune USB</string>
+    <string name="error_inesperado_durante_la_co">Eroare neașteptată în timpul conexiunii</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operații</string>
+    <string name="cargar_archivo_hex">Încarcă fișier HEX</string>
+    <string name="programar_pic">Programează PIC</string>
+    <string name="leer_memoria">Citește Memorie</string>
+    <string name="verificar">Verifică</string>
+    <string name="borrar_memoria">Șterge Memorie</string>
+    <string name="detectar_pic">Detectează PIC</string>
+    <string name="esperando_operacion">Se așteaptă operație...</string>
+    <string name="esperando_seleccion">Se așteaptă selecție...</string>
+    <string name="seleccionar_chip_pic">Selectați Chip PIC</string>
+    <!-- values-ro/strings.xml (Romanian) -->
+    <string name="gputils_termux_asm">GPUTILS în Termux Compiler ASM Android</string>
+</resources>

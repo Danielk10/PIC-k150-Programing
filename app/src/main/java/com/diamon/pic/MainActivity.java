@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -35,6 +36,7 @@ import com.diamon.managers.UsbConnectionManager;
 import com.diamon.politicas.Politicas;
 import com.diamon.publicidad.MostrarPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
+import com.diamon.utilidades.PantallaCompleta;
 import com.diamon.utilidades.Recurso;
 
 import com.microsoft.appcenter.AppCenter;
@@ -94,11 +96,19 @@ public class MainActivity extends AppCompatActivity {
     private Map<String, String> lastFuseConfiguration = null;
     private DatosPicProcesados datosPicProcesados = null;
 
+    private PantallaCompleta pantallaCompleta;
+
     @SuppressLint({"InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pantallaCompleta = new PantallaCompleta(this);
+
+        pantallaCompleta.pantallaCompleta();
+
+        pantallaCompleta.ocultarBotonesVirtuales();
 
         // Inicializar el Switch de ICSP (Agregar esta línea)
         swModeICSP = findViewById(R.id.swModeICSP);
@@ -901,5 +911,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         super.onDestroy();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (hasFocus) {
+
+            pantallaCompleta.ocultarBotonesVirtuales();
+        }
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+        pantallaCompleta.ocultarBotonesVirtuales();
+
+        return super.onKeyUp(keyCode, event);
     }
 }

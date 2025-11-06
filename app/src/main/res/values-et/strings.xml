@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Nõustu</string>
+    <string name="cancelar">Tühista</string>
+    <string name="conectado">Ühendatud</string>
+    <string name="desconectado">Ühendus katkestatud</string>
+    <string name="grabando_pic">PIC-i kirjutamine...</string>
+    <string name="espere_grabacion_pic">Palun oodake. Ärge katkestage seadet.</string>
+    <string name="grabacion_completada_pic">Kirjutamine lõpetatud</string>
+    <string name="grabacion_correcta_pic">Firmware kirjutati edukalt PIC-sse.</string>
+    <string name="fallo_grabacion_pic">Kirjutamise tõrge</string>
+    <string name="proceso_no_completado">Protsessi ei saanud lõpetada. Kontrollige ühendust.</string>
+    <string name="protocolo_del_programador">Programmeerija protokoll</string>
+    <string name="modelo_del_programador">Programmeerija mudel</string>
+    <string name="modelo_programador">Programmeerija mudel</string>
+    <string name="protocolo">Protokoll</string>
+    <string name="politica_de_privacidad">Privaatsuspoliitika</string>
+    <string name="no_se_detecto_pic_en_socket">PIC-i soklisse ei avastatud</string>
+    <string name="pic_detectado_en_socket">PIC avastati soklisse</string>
+    <string name="memoria_contiene_datos">Mälus on andmeid</string>
+    <string name="memoria_vacia">Mälu on tühi</string>
+    <string name="error_borrando_memoria">Mälu kustutamise viga</string>
+    <string name="memoria_borrada_exitosamente">Mälu kustutati edukalt</string>
+    <string name="memoria_leida_exitosamente">Mälu loeti edukalt</string>
+    <string name="seleccione_un_chip">Valige kiip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Valige kiip ja laadige HEX-fail</string>
+    <string name="error_programando_pic">PIC-i programmerimise viga</string>
+    <string name="pic_programado_exitosamente">PIC programmeeriti edukalt</string>
+    <string name="iniciando_programacion">Programmerimise alustamine...</string>
+    <string name="error_cargando_archivo">Faili laadimise viga</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-fail laaditi edukalt</string>
+    <string name="archivo_cargado">Fail on laaditud</string>
+    <string name="error_inicializando_chip">Kiibistamise viga</string>
+    <string name="conectado_al_programador">Programmeerija külge ühendatud</string>
+    <string name="error_inicializando_base_de_da">Kiipide andmebaasi lähtestamise viga</string>
+    <string name="no_hay_modelos_de_chips_dispon">Saadaolevaid kiipide mudeleid pole</string>
+    <string name="modelo_de_chip_invalido">Vigane kiibimudel</string>
+    <string name="chip_no_encontrado_en_base_de_">Kiipet andmebaasist ei leitud</string>
+    <string name="error_procesando_chip">Kiibide töötlemise viga</string>
+    <string name="no_hay_chip_seleccionado">Ühtegi kiipot pole valitud</string>
+    <string name="modelo">Mudel</string>
+    <string name="palabras_rom">ROM-sõnad</string>
+    <string name="tamano_rom">ROM-i suurus</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Pole saadaval</string>
+    <string name="tipo_de_nucleo">Tuuma tüüp</string>
+    <string name="error_obteniendo_datos_del_chi">Kiibide andmete toomise viga</string>
+    <string name="modo">Režiim</string>
+    <string name="icsp_solamente">Ainult ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager pole lähtestatud</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Faili nime hankimine ebaõnnestus</string>
+    <string name="seleccione_un_archivo_binario_">Valige kehtiv binaarfail (.hex või .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Valitud faili avamise viga</string>
+    <string name="el_archivo_seleccionado_esta_v">Valitud fail on tühi</string>
+    <string name="error_leyendo_el_archivo">Faili lugemise viga</string>
+    <string name="error_inesperado_leyendo_el_ar">Ootamatu viga faili lugemisel</string>
+    <string name="datos_de_memoria">Mäluandmed</string>
+    <string name="memoria_rom">ROM-mälu</string>
+    <string name="memoria_eeprom">EEPROM-mälu</string>
+    <string name="cerrar">Sule</string>
+    <string name="protocolo_no_inicializado">Protokoll pole lähtestatud</string>
+    <string name="datos_invalidos_para_programac">Kehtetud andmed programmerimiseks</string>
+    <string name="borrando_memorias">Mälude kustutamine...</string>
+    <string name="error_borrando_memorias">Mälude kustutamise viga</string>
+    <string name="programando_memoria_rom">ROM-mälu programmeerimine...</string>
+    <string name="error_programando_rom">ROM-i programmerimise viga</string>
+    <string name="programando_memoria_eeprom">EEPROM-mälu programmeerimine...</string>
+    <string name="error_programando_eeprom">EEPROM-i programmerimise viga</string>
+    <string name="programando_fuses_id">Fuses ID programmeerimine...</string>
+    <string name="error_programando_fuses">Fuses programmerimise viga</string>
+    <string name="programando_fuses_18f">Fuses 18F programmeerimine...</string>
+    <string name="error_programando_fuses_18f">Fuses 18F programmerimise viga</string>
+    <string name="programacion_completada">Programmeerimine lõpetatud</string>
+    <string name="error_inesperado">Ootamatu viga</string>
+    <string name="error_leyendo_memoria_rom">ROM-mälu lugemise viga</string>
+    <string name="error_leyendo_memoria_eeprom">EEPROM-mälu lugemise viga</string>
+    <string name="error_verificando_memoria">Mälu kontrollimise viga</string>
+    <string name="error_detectando_chip">Kiibide tuvastamise viga</string>
+    <string name="driver_usb_no_disponible">USB-juht pole saadaval</string>
+    <string name="dispositivo_sin_puertos_usb_di">Seadmel pole saadaolevaid USB-porte</string>
+    <string name="error_inicializando_protocolo_">Suhtlusprotokoll lähtestamise viga</string>
+    <string name="error_de_conexion_usb">USB-ühenduse viga</string>
+    <string name="error_inesperado_durante_la_co">Ootamatu viga ühenduse ajal</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operatsioonid</string>
+    <string name="cargar_archivo_hex">Laadige HEX-fail</string>
+    <string name="programar_pic">Programmeeri PIC</string>
+    <string name="leer_memoria">Lugege mälu</string>
+    <string name="verificar">Kontrolli</string>
+    <string name="borrar_memoria">Kustuta mälu</string>
+    <string name="detectar_pic">Tuvasta PIC</string>
+    <string name="esperando_operacion">Operatsiooni ootamine...</string>
+    <string name="esperando_seleccion">Valikut ootama...</string>
+    <string name="seleccionar_chip_pic">Valige Chip PIC</string>
+    <!-- values-et/strings.xml (Estonian) -->
+    <string name="gputils_termux_asm">GPUTILS Termuxis ASM Compiler Android</string>
+</resources>
