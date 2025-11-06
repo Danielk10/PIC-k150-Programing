@@ -41,7 +41,7 @@ dependencies {
     implementation libs.activity
     implementation libs.constraintlayout
     // Compatibilidad API 23+
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation libs.vectordrawable
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
