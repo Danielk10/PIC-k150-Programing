@@ -1,39 +1,22 @@
 package com.diamon.tutorial.utilidadestutorial;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-
 /**
- * Vista de bloques de código optimizada
- * Compatible con API Level 23-36
+ * Clase para manejar bloques de código con capacidad de copiar
+ * Proporciona un contenedor visual para código con emoticones y botón de copiar
  */
 public class CodeBlockView {
 
     private LinearLayout codeContainer;
+    private String codeContent;
     private Context context;
-
-    // Colores para sintaxis
-    private static final int COLOR_KEYWORD = 0xFF569CD6;
-    private static final int COLOR_COMMENT = 0xFF6A9955;
-    private static final int COLOR_NUMBER = 0xFFB5CEA8;
-    private static final int COLOR_REGISTER = 0xFF4EC9B0;
-    private static final int COLOR_DIRECTIVE = 0xFFC586C0;
-    private static final int COLOR_LABEL = 0xFFDCDCAA;
 
     public CodeBlockView(Context context, LinearLayout container) {
         this.context = context;
@@ -41,367 +24,159 @@ public class CodeBlockView {
     }
 
     /**
-     * Añade bloque de comando
+     * Añade un bloque de código al contenedor
+     * @param emoji Emoticón para el título
+     * @param title Título del bloque
+     * @param code Código a mostrar
      */
-    public void addCommandBlock(String command, String language) {
-        MaterialCardView cardView = new MaterialCardView(context);
-        cardView.setCardElevation(4);
-        cardView.setRadius(12);
-        cardView.setCardBackgroundColor(0xFF1E1E1E);
+    public void addCodeBlock(String emoji, String title, String code) {
+        this.codeContent = code;
 
-        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        cardParams.setMargins(0, 16, 0, 16);
-        cardView.setLayoutParams(cardParams);
-
+        // Crear LinearLayout para el bloque
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setPadding(16, 16, 16, 16);
+        blockLayout.setPadding(12, 12, 12, 12);
+        blockLayout.setBackgroundColor(0xFFFAFAFA);
 
-        // Header
-        LinearLayout headerLayout = createHeader(
-                language.equals("es") ? "💻 Comando" : "💻 Command",
-                command
-        );
-        blockLayout.addView(headerLayout);
-
-        // Separador
-        blockLayout.addView(createSeparator());
-
-        // Código
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        scrollView.setLayoutParams(scrollParams);
-        scrollView.setHorizontalScrollBarEnabled(true);
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        blockParams.setMargins(8, 8, 8, 8);
+        blockLayout.setLayoutParams(blockParams);
 
-        TextView codeView = new TextView(context);
-        codeView.setText(command);
-        codeView.setTextColor(0xFFD4D4D4);
-        codeView.setBackgroundColor(Color.TRANSPARENT);
-        codeView.setTypeface(Typeface.MONOSPACE);
-        codeView.setTextSize(13);
-        codeView.setPadding(12, 12, 12, 12);
-        codeView.setTextIsSelectable(true);
-
-        scrollView.addView(codeView);
-        blockLayout.addView(scrollView);
-
-        cardView.addView(blockLayout);
-        codeContainer.addView(cardView);
-    }
-
-    /**
-     * Añade bloque de código ensamblador
-     */
-    public void addAssemblyBlock(String asmCode, String language) {
-        MaterialCardView cardView = new MaterialCardView(context);
-        cardView.setCardElevation(4);
-        cardView.setRadius(12);
-        cardView.setCardBackgroundColor(0xFF1E1E1E);
-
-        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        cardParams.setMargins(0, 16, 0, 16);
-        cardView.setLayoutParams(cardParams);
-
-        LinearLayout blockLayout = new LinearLayout(context);
-        blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setPadding(16, 16, 16, 16);
-
-        // Header
-        LinearLayout headerLayout = createHeader(
-                language.equals("es") ? "📝 Código Ensamblador" : "📝 Assembly Code",
-                asmCode
-        );
-        blockLayout.addView(headerLayout);
-
-        // Separador
-        blockLayout.addView(createSeparator());
-
-        // Código con numeración
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        scrollView.setLayoutParams(scrollParams);
-        scrollView.setHorizontalScrollBarEnabled(true);
-
-        LinearLayout codeWithLineNumbers = new LinearLayout(context);
-        codeWithLineNumbers.setOrientation(LinearLayout.HORIZONTAL);
-
-        // Números de línea
-        codeWithLineNumbers.addView(createLineNumbers(asmCode));
-
-        // Separador vertical
-        View verticalSep = new View(context);
-        verticalSep.setBackgroundColor(0xFF3E3E42);
-        LinearLayout.LayoutParams sepParams = new LinearLayout.LayoutParams(2,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        sepParams.setMargins(8, 0, 8, 0);
-        verticalSep.setLayoutParams(sepParams);
-        codeWithLineNumbers.addView(verticalSep);
-
-        // Código con resaltado
-        TextView codeView = new TextView(context);
-        codeView.setText(highlightAssemblyCode(asmCode));
-        codeView.setBackgroundColor(Color.TRANSPARENT);
-        codeView.setTypeface(Typeface.MONOSPACE);
-        codeView.setTextSize(13);
-        codeView.setPadding(12, 12, 12, 12);
-        codeView.setTextIsSelectable(true);
-
-        codeWithLineNumbers.addView(codeView);
-        scrollView.addView(codeWithLineNumbers);
-        blockLayout.addView(scrollView);
-
-        cardView.addView(blockLayout);
-        codeContainer.addView(cardView);
-    }
-
-    /**
-     * Añade bloque de output esperado
-     */
-    public void addExpectedOutputBlock(String output, String language) {
-        MaterialCardView cardView = new MaterialCardView(context);
-        cardView.setCardElevation(4);
-        cardView.setRadius(12);
-        cardView.setCardBackgroundColor(0xFF263238); // Color diferente para output
-
-        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        cardParams.setMargins(0, 16, 0, 16);
-        cardView.setLayoutParams(cardParams);
-
-        LinearLayout blockLayout = new LinearLayout(context);
-        blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setPadding(16, 16, 16, 16);
-
-        // Header
-        LinearLayout headerLayout = createHeader(
-                language.equals("es") ? "✨ Salida Esperada" : "✨ Expected Output",
-                output
-        );
-        blockLayout.addView(headerLayout);
-
-        // Separador
-        blockLayout.addView(createSeparator());
-
-        // Output
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        scrollView.setLayoutParams(scrollParams);
-
-        TextView outputView = new TextView(context);
-        outputView.setText(output);
-        outputView.setTextColor(0xFF80CBC4); // Verde agua para output
-        outputView.setBackgroundColor(Color.TRANSPARENT);
-        outputView.setTypeface(Typeface.MONOSPACE);
-        outputView.setTextSize(13);
-        outputView.setPadding(12, 12, 12, 12);
-        outputView.setTextIsSelectable(true);
-
-        scrollView.addView(outputView);
-        blockLayout.addView(scrollView);
-
-        cardView.addView(blockLayout);
-        codeContainer.addView(cardView);
-    }
-
-    /**
-     * Crea header con botón de copiar (ICONO CORRECTO)
-     */
-    private LinearLayout createHeader(String title, String code) {
+        // Crear header con título y botón
         LinearLayout headerLayout = new LinearLayout(context);
         headerLayout.setOrientation(LinearLayout.HORIZONTAL);
-        headerLayout.setGravity(Gravity.CENTER_VERTICAL);
 
         LinearLayout.LayoutParams headerParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
+                LinearLayout.LayoutParams.WRAP_CONTENT);
         headerLayout.setLayoutParams(headerParams);
 
-        // Título
+        // Título con emoticón
         TextView titleView = new TextView(context);
-        titleView.setText(title);
+        titleView.setText(emoji + " " + title);
         titleView.setTextSize(14);
         titleView.setTypeface(null, Typeface.BOLD);
-        titleView.setTextColor(0xFFD4D4D4);
+        titleView.setTextColor(0xFF424242);
 
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f
-        );
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1f);
         titleView.setLayoutParams(titleParams);
         headerLayout.addView(titleView);
 
-        // Botón copiar con MaterialButton (SIN ICONO, SOLO TEXTO)
-        MaterialButton copyBtn = new MaterialButton(context);
-        copyBtn.setText("Copiar");
-        copyBtn.setTextSize(12);
-        copyBtn.setTextColor(0xFFFFFFFF);
-        copyBtn.setBackgroundColor(0xFF4CAF50);
-        copyBtn.setCornerRadius(8);
+        // Botón de copiar
+        ImageButton copyBtn = new ImageButton(context);
+        copyBtn.setImageResource(android.R.drawable.ic_menu_edit);
+        copyBtn.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
+                48,
+                48);
         copyBtn.setLayoutParams(btnParams);
         copyBtn.setOnClickListener(v -> copyToClipboard(code));
-
         headerLayout.addView(copyBtn);
 
-        return headerLayout;
-    }
+        blockLayout.addView(headerLayout);
 
-    /**
-     * Crea separador
-     */
-    private View createSeparator() {
+        // Separador
         View separator = new View(context);
-        separator.setBackgroundColor(0xFF3E3E42);
+        separator.setBackgroundColor(0xFFE0E0E0);
 
         LinearLayout.LayoutParams sepParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 2
-        );
-        sepParams.setMargins(0, 12, 0, 12);
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                2);
+        sepParams.setMargins(0, 8, 0, 8);
         separator.setLayoutParams(sepParams);
+        blockLayout.addView(separator);
 
-        return separator;
+        // Código con fondo negro
+        TextView codeView = new TextView(context);
+        codeView.setText(code);
+        codeView.setTextColor(0xFFFAFAFA);
+        codeView.setBackgroundColor(0xFF1A1A1A);
+        codeView.setTypeface(Typeface.MONOSPACE);
+        codeView.setTextSize(12);
+        codeView.setPadding(12, 12, 12, 12);
+        codeView.setTextIsSelectable(true);
+
+        LinearLayout.LayoutParams codeParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        codeView.setLayoutParams(codeParams);
+        blockLayout.addView(codeView);
+
+        // Añadir al contenedor principal
+        codeContainer.addView(blockLayout);
     }
 
     /**
-     * Crea números de línea
-     */
-    private LinearLayout createLineNumbers(String code) {
-        LinearLayout lineNumbersLayout = new LinearLayout(context);
-        lineNumbersLayout.setOrientation(LinearLayout.VERTICAL);
-        lineNumbersLayout.setBackgroundColor(0xFF252526);
-        lineNumbersLayout.setPadding(8, 12, 8, 12);
-
-        String[] lines = code.split("\n");
-        for (int i = 1; i <= lines.length; i++) {
-            TextView lineNumber = new TextView(context);
-            lineNumber.setText(String.valueOf(i));
-            lineNumber.setTextColor(0xFF858585);
-            lineNumber.setTextSize(13);
-            lineNumber.setTypeface(Typeface.MONOSPACE);
-            lineNumber.setGravity(Gravity.END);
-            lineNumber.setPadding(4, 0, 4, 0);
-
-            lineNumbersLayout.addView(lineNumber);
-        }
-
-        return lineNumbersLayout;
-    }
-
-    /**
-     * Resaltado de sintaxis optimizado
-     */
-    private SpannableStringBuilder highlightAssemblyCode(String code) {
-        SpannableStringBuilder builder = new SpannableStringBuilder(code);
-
-        String[] lines = code.split("\n");
-        int currentPos = 0;
-
-        String[] keywords = {"LIST", "INCLUDE", "ORG", "END", "CBLOCK", "ENDC",
-                "goto", "call", "return", "banksel", "movlw", "movwf",
-                "bsf", "bcf", "btfss", "btfsc", "decfsz", "incfsz",
-                "addwf", "subwf", "andwf", "iorwf", "xorwf", "comf",
-                "rlf", "rrf", "swapf", "clrf", "clrw", "nop"};
-
-        String[] directives = {"__CONFIG", "#include", "#define", "equ", "EQU"};
-
-        for (String line : lines) {
-            int lineStart = currentPos;
-            int lineEnd = currentPos + line.length();
-
-            if (line.trim().startsWith(";")) {
-                builder.setSpan(
-                        new ForegroundColorSpan(COLOR_COMMENT),
-                        lineStart, lineEnd,
-                        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-                );
-            } else {
-                for (String keyword : keywords) {
-                    highlightWord(builder, line, keyword, COLOR_KEYWORD, lineStart);
-                }
-
-                for (String directive : directives) {
-                    highlightWord(builder, line, directive, COLOR_DIRECTIVE, lineStart);
-                }
-
-                highlightPattern(builder, line, "\\b[A-Z][A-Z0-9]+\\b", COLOR_REGISTER, lineStart);
-                highlightPattern(builder, line, "\\b0x[0-9A-Fa-f]+\\b|\\b\\d+\\b|\\bb'[01]+'\\b",
-                        COLOR_NUMBER, lineStart);
-                highlightPattern(builder, line, "^\\w+:", COLOR_LABEL, lineStart);
-            }
-
-            currentPos += line.length() + 1;
-        }
-
-        return builder;
-    }
-
-    private void highlightWord(SpannableStringBuilder builder, String line,
-                               String word, int color, int lineStart) {
-        int index = 0;
-        while ((index = line.indexOf(word, index)) != -1) {
-            boolean isWord = (index == 0 || !Character.isLetterOrDigit(line.charAt(index - 1))) &&
-                    (index + word.length() >= line.length() ||
-                            !Character.isLetterOrDigit(line.charAt(index + word.length())));
-
-            if (isWord) {
-                builder.setSpan(
-                        new ForegroundColorSpan(color),
-                        lineStart + index,
-                        lineStart + index + word.length(),
-                        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-                );
-            }
-            index += word.length();
-        }
-    }
-
-    private void highlightPattern(SpannableStringBuilder builder, String line,
-                                  String pattern, int color, int lineStart) {
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
-        java.util.regex.Matcher m = p.matcher(line);
-
-        while (m.find()) {
-            builder.setSpan(
-                    new ForegroundColorSpan(color),
-                    lineStart + m.start(),
-                    lineStart + m.end(),
-                    SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-            );
-        }
-    }
-
-    /**
-     * Copia al portapapeles
+     * Copia el código al portapapeles
+     * @param code Código a copiar
      */
     private void copyToClipboard(String code) {
-        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(
-                Context.CLIPBOARD_SERVICE
-        );
-        ClipData clip = ClipData.newPlainText("code", code);
-        if (clipboard != null) {
-            clipboard.setPrimaryClip(clip);
-            Toast.makeText(context, "✅ Código copiado", Toast.LENGTH_SHORT).show();
-        }
+        android.content.ClipboardManager clipboard =
+                (android.content.ClipboardManager) context.getSystemService(
+                        Context.CLIPBOARD_SERVICE);
+        android.content.ClipData clip = android.content.ClipData.newPlainText("code", code);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(context, "Código copiado al portapapeles", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Añade una nota explicativa con emoticón
+     * @param emoji Emoticón para la nota
+     * @param noteText Texto de la nota
+     */
+    public void addNote(String emoji, String noteText) {
+        LinearLayout noteLayout = new LinearLayout(context);
+        noteLayout.setOrientation(LinearLayout.VERTICAL);
+        noteLayout.setBackgroundColor(0xFFE8F5E9);
+        noteLayout.setPadding(12, 12, 12, 12);
+
+        LinearLayout.LayoutParams noteParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        noteParams.setMargins(8, 8, 8, 8);
+        noteLayout.setLayoutParams(noteParams);
+
+        TextView noteTitle = new TextView(context);
+        noteTitle.setText(emoji + " Nota:");
+        noteTitle.setTextSize(13);
+        noteTitle.setTypeface(null, Typeface.BOLD);
+        noteTitle.setTextColor(0xFF2E7D32);
+        noteLayout.addView(noteTitle);
+
+        TextView noteContent = new TextView(context);
+        noteContent.setText(noteText);
+        noteContent.setTextSize(12);
+        noteContent.setTextColor(0xFF424242);
+        noteContent.setLineSpacing(4, 1.0f);
+
+        LinearLayout.LayoutParams contentParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        contentParams.topMargin = 6;
+        noteContent.setLayoutParams(contentParams);
+        noteLayout.addView(noteContent);
+
+        codeContainer.addView(noteLayout);
+    }
+
+    /**
+     * Añade un separador visual
+     */
+    public void addSeparator() {
+        View separator = new View(context);
+        separator.setBackgroundColor(0xFFBDBDBD);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                3);
+        params.setMargins(8, 16, 8, 16);
+        separator.setLayoutParams(params);
+        codeContainer.addView(separator);
     }
 }
