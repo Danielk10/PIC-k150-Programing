@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Приемам</string>
+    <string name="cancelar">Отмяна</string>
+    <string name="conectado">Свързан</string>
+    <string name="desconectado">Отключен</string>
+    <string name="grabando_pic">Записване на PIC...</string>
+    <string name="espere_grabacion_pic">Моля, изчакайте. Не отключвайте устройството.</string>
+    <string name="grabacion_completada_pic">Записване завършено</string>
+    <string name="grabacion_correcta_pic">Фърмуерът е записан успешно в PIC.</string>
+    <string name="fallo_grabacion_pic">Грешка при записване</string>
+    <string name="proceso_no_completado">Не можа да се завърши процесът. Проверете връзката.</string>
+    <string name="protocolo_del_programador">Протокол на програмиста</string>
+    <string name="modelo_del_programador">Модел на програмиста</string>
+    <string name="modelo_programador">Модел на програмиста</string>
+    <string name="protocolo">Протокол</string>
+    <string name="politica_de_privacidad">Политика за поверителност</string>
+    <string name="no_se_detecto_pic_en_socket">PIC не е открит в гнездото</string>
+    <string name="pic_detectado_en_socket">PIC е открит в гнездото</string>
+    <string name="memoria_contiene_datos">Памятта съдържа данни</string>
+    <string name="memoria_vacia">Паметта е празна</string>
+    <string name="error_borrando_memoria">Грешка при изтриване на памятта</string>
+    <string name="memoria_borrada_exitosamente">Памятта е изтрита успешно</string>
+    <string name="memoria_leida_exitosamente">Памятта е прочетена успешно</string>
+    <string name="seleccione_un_chip">Изберете чип</string>
+    <string name="seleccione_un_chip_y_cargue_un">Изберете чип и заредете HEX файл</string>
+    <string name="error_programando_pic">Грешка при програмиране на PIC</string>
+    <string name="pic_programado_exitosamente">PIC е програмиран успешно</string>
+    <string name="iniciando_programacion">Начало на програмирането...</string>
+    <string name="error_cargando_archivo">Грешка при зареждане на файл</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX файлът е зареден успешно</string>
+    <string name="archivo_cargado">Файлът е зареден</string>
+    <string name="error_inicializando_chip">Грешка при инициализация на чип</string>
+    <string name="conectado_al_programador">Свързан към програмиста</string>
+    <string name="error_inicializando_base_de_da">Грешка при инициализация на базата данни на чипове</string>
+    <string name="no_hay_modelos_de_chips_dispon">Няма налични модели на чипове</string>
+    <string name="modelo_de_chip_invalido">Невалиден модел на чип</string>
+    <string name="chip_no_encontrado_en_base_de_">Чипът не е намерен в базата данни</string>
+    <string name="error_procesando_chip">Грешка при обработка на чип</string>
+    <string name="no_hay_chip_seleccionado">Няма избран чип</string>
+    <string name="modelo">Модел</string>
+    <string name="palabras_rom">ROM думи</string>
+    <string name="tamano_rom">Размер ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Не е налично</string>
+    <string name="tipo_de_nucleo">Тип на ядро</string>
+    <string name="error_obteniendo_datos_del_chi">Грешка при получаване на данни от чип</string>
+    <string name="modo">Режим</string>
+    <string name="icsp_solamente">Само ICSP</string>
+    <string name="pin_1">Щифт 1</string>
+    <string name="filemanager_no_inicializado">FileManager не е инициализиран</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Не можа да се получи име на файл</string>
+    <string name="seleccione_un_archivo_binario_">Изберете валиден двоичен файл (.hex или .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Грешка при отваряне на избрания файл</string>
+    <string name="el_archivo_seleccionado_esta_v">Избраният файл е празен</string>
+    <string name="error_leyendo_el_archivo">Грешка при четене на файл</string>
+    <string name="error_inesperado_leyendo_el_ar">Неочаквана грешка при четене на файл</string>
+    <string name="datos_de_memoria">Данни на памятта</string>
+    <string name="memoria_rom">ROM памят</string>
+    <string name="memoria_eeprom">EEPROM памят</string>
+    <string name="cerrar">Затвори</string>
+    <string name="protocolo_no_inicializado">Протокол не е инициализиран</string>
+    <string name="datos_invalidos_para_programac">Невалидни данни за програмиране</string>
+    <string name="borrando_memorias">Изтриване на памяти...</string>
+    <string name="error_borrando_memorias">Грешка при изтриване на памяти</string>
+    <string name="programando_memoria_rom">Програмиране на ROM памят...</string>
+    <string name="error_programando_rom">Грешка при програмиране на ROM</string>
+    <string name="programando_memoria_eeprom">Програмиране на EEPROM памят...</string>
+    <string name="error_programando_eeprom">Грешка при програмиране на EEPROM</string>
+    <string name="programando_fuses_id">Програмиране на Fuses ID...</string>
+    <string name="error_programando_fuses">Грешка при програмиране на Fuses</string>
+    <string name="programando_fuses_18f">Програмиране на Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Грешка при програмиране на Fuses 18F</string>
+    <string name="programacion_completada">Програмирането е завършено</string>
+    <string name="error_inesperado">Неочаквана грешка</string>
+    <string name="error_leyendo_memoria_rom">Грешка при четене на ROM памят</string>
+    <string name="error_leyendo_memoria_eeprom">Грешка при четене на EEPROM памят</string>
+    <string name="error_verificando_memoria">Грешка при проверка на памятта</string>
+    <string name="error_detectando_chip">Грешка при откриване на чип</string>
+    <string name="driver_usb_no_disponible">USB драйвер не е налице</string>
+    <string name="dispositivo_sin_puertos_usb_di">Устройство без налични USB портове</string>
+    <string name="error_inicializando_protocolo_">Грешка при инициализация на протокол за комуникация</string>
+    <string name="error_de_conexion_usb">Грешка при USB връзка</string>
+    <string name="error_inesperado_durante_la_co">Неочаквана грешка при връзката</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Операции</string>
+    <string name="cargar_archivo_hex">Заредете HEX файл</string>
+    <string name="programar_pic">Програмирайте PIC</string>
+    <string name="leer_memoria">Прочетете памятта</string>
+    <string name="verificar">Проверете</string>
+    <string name="borrar_memoria">Изтрийте памятта</string>
+    <string name="detectar_pic">Откройте PIC</string>
+    <string name="esperando_operacion">Очаква операция...</string>
+    <string name="esperando_seleccion">Очаква избор...</string>
+    <string name="seleccionar_chip_pic">Изберете Chip PIC</string>
+    <!-- values-bg/strings.xml (Bulgarian) -->
+    <string name="gputils_termux_asm">GPUTILS в Termux Compiler ASM Android</string>
+</resources>

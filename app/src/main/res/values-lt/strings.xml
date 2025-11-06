@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Priimti</string>
+    <string name="cancelar">Atšaukti</string>
+    <string name="conectado">Prisijungta</string>
+    <string name="desconectado">Atjungta</string>
+    <string name="grabando_pic">Rašoma į PIC...</string>
+    <string name="espere_grabacion_pic">Palaukite. Neatsijunkite įrenginio.</string>
+    <string name="grabacion_completada_pic">Rašymas baigtas</string>
+    <string name="grabacion_correcta_pic">Programinė įranga sėkmingai įrašyta į PIC.</string>
+    <string name="fallo_grabacion_pic">Rašymo klaida</string>
+    <string name="proceso_no_completado">Nepavyko užbaigti proceso. Patikrinkite ryšį.</string>
+    <string name="protocolo_del_programador">Programuotojo protokolas</string>
+    <string name="modelo_del_programador">Programuotojo modelis</string>
+    <string name="modelo_programador">Programuotojo modelis</string>
+    <string name="protocolo">Protokolas</string>
+    <string name="politica_de_privacidad">Privatumo politika</string>
+    <string name="no_se_detecto_pic_en_socket">PIC neaptikta lizdoje</string>
+    <string name="pic_detectado_en_socket">PIC aptikta lizdoje</string>
+    <string name="memoria_contiene_datos">Atmintis turi duomenis</string>
+    <string name="memoria_vacia">Atmintis tuščia</string>
+    <string name="error_borrando_memoria">Klaida trinant atmintį</string>
+    <string name="memoria_borrada_exitosamente">Atmintis sėkmingai ištrinta</string>
+    <string name="memoria_leida_exitosamente">Atmintis sėkmingai nuskaitytas</string>
+    <string name="seleccione_un_chip">Pasirinkite lustą</string>
+    <string name="seleccione_un_chip_y_cargue_un">Pasirinkite lustą ir įkelkite HEX failą</string>
+    <string name="error_programando_pic">Klaida programuojant PIC</string>
+    <string name="pic_programado_exitosamente">PIC sėkmingai naprogramuota</string>
+    <string name="iniciando_programacion">Pradedamas programavimas...</string>
+    <string name="error_cargando_archivo">Klaida įkeliant failą</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX failas sėkmingai įkeltas</string>
+    <string name="archivo_cargado">Failas įkeltas</string>
+    <string name="error_inicializando_chip">Klaida inicijuojant lustą</string>
+    <string name="conectado_al_programador">Prisijungta prie programuotojo</string>
+    <string name="error_inicializando_base_de_da">Klaida inicijuojant lustų duomenų bazę</string>
+    <string name="no_hay_modelos_de_chips_dispon">Nėra jokių prieinamų lustų modelių</string>
+    <string name="modelo_de_chip_invalido">Negaliotas lusto modelis</string>
+    <string name="chip_no_encontrado_en_base_de_">Lustas nerastas duomenų bazėje</string>
+    <string name="error_procesando_chip">Klaida apdorojant lustą</string>
+    <string name="no_hay_chip_seleccionado">Nėra pasirinkto lusto</string>
+    <string name="modelo">Modelis</string>
+    <string name="palabras_rom">ROM žodžiai</string>
+    <string name="tamano_rom">ROM dydis</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Negalima</string>
+    <string name="tipo_de_nucleo">Branduolio tipas</string>
+    <string name="error_obteniendo_datos_del_chi">Klaida gaunant lusto duomenis</string>
+    <string name="modo">Režimas</string>
+    <string name="icsp_solamente">Tik ICSP</string>
+    <string name="pin_1">Spyna 1</string>
+    <string name="filemanager_no_inicializado">FileManager nepradėta</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Nepavyko gauti failo pavadinimo</string>
+    <string name="seleccione_un_archivo_binario_">Pasirinkite galiojantį binarinį failą (.hex arba .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Klaida atidarant pasirinktą failą</string>
+    <string name="el_archivo_seleccionado_esta_v">Pasirinktas failas tuščias</string>
+    <string name="error_leyendo_el_archivo">Klaida skaitant failą</string>
+    <string name="error_inesperado_leyendo_el_ar">Netikėta klaida skaitant failą</string>
+    <string name="datos_de_memoria">Atminties duomenys</string>
+    <string name="memoria_rom">ROM atmintis</string>
+    <string name="memoria_eeprom">EEPROM atmintis</string>
+    <string name="cerrar">Užverti</string>
+    <string name="protocolo_no_inicializado">Protokolas nepradėtas</string>
+    <string name="datos_invalidos_para_programac">Negaliojami duomenys programavimui</string>
+    <string name="borrando_memorias">Trinamos atminties...</string>
+    <string name="error_borrando_memorias">Klaida trinant atmintį</string>
+    <string name="programando_memoria_rom">Programuojama ROM atmintis...</string>
+    <string name="error_programando_rom">Klaida programuojant ROM</string>
+    <string name="programando_memoria_eeprom">Programuojama EEPROM atmintis...</string>
+    <string name="error_programando_eeprom">Klaida programuojant EEPROM</string>
+    <string name="programando_fuses_id">Programuojamos Fuses ID...</string>
+    <string name="error_programando_fuses">Klaida programuojant Fuses</string>
+    <string name="programando_fuses_18f">Programuojamos Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Klaida programuojant Fuses 18F</string>
+    <string name="programacion_completada">Programavimas baigtas</string>
+    <string name="error_inesperado">Netikėta klaida</string>
+    <string name="error_leyendo_memoria_rom">Klaida skaitant ROM atmintį</string>
+    <string name="error_leyendo_memoria_eeprom">Klaida skaitant EEPROM atmintį</string>
+    <string name="error_verificando_memoria">Klaida tikrinant atmintį</string>
+    <string name="error_detectando_chip">Klaida aptinkant lustą</string>
+    <string name="driver_usb_no_disponible">USB tvarkiklis neprieinamas</string>
+    <string name="dispositivo_sin_puertos_usb_di">Nėra prieinamų USB prievadų įrenginys</string>
+    <string name="error_inicializando_protocolo_">Klaida inicijuojant ryšio protokolą</string>
+    <string name="error_de_conexion_usb">USB ryšio klaida</string>
+    <string name="error_inesperado_durante_la_co">Netikėta klaida prijungiant</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operacijos</string>
+    <string name="cargar_archivo_hex">Įkelkite HEX failą</string>
+    <string name="programar_pic">Programuoti PIC</string>
+    <string name="leer_memoria">Nuskaityti atmintį</string>
+    <string name="verificar">Patikrinti</string>
+    <string name="borrar_memoria">Trinti atmintį</string>
+    <string name="detectar_pic">Aptikti PIC</string>
+    <string name="esperando_operacion">Laukiama operacijos...</string>
+    <string name="esperando_seleccion">Laukiama pasirinkimo...</string>
+    <string name="seleccionar_chip_pic">Pasirinkite PIC lustą</string>
+    <!-- values-lt/strings.xml (Lithuanian) -->
+    <string name="gputils_termux_asm">GPUTILS Termuxe ASM Compiler Android</string>
+</resources>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Chấp nhận</string>
+    <string name="cancelar">Hủy bỏ</string>
+    <string name="conectado">Đã kết nối</string>
+    <string name="desconectado">Đã ngắt kết nối</string>
+    <string name="grabando_pic">Đang ghi PIC...</string>
+    <string name="espere_grabacion_pic">Vui lòng chờ. Không ngắt kết nối thiết bị.</string>
+    <string name="grabacion_completada_pic">Ghi hoàn tất</string>
+    <string name="grabacion_correcta_pic">Firmware đã được ghi chính xác vào PIC.</string>
+    <string name="fallo_grabacion_pic">Lỗi ghi</string>
+    <string name="proceso_no_completado">Không thể hoàn tất quy trình. Kiểm tra kết nối.</string>
+    <string name="protocolo_del_programador">Giao thức lập trình viên</string>
+    <string name="modelo_del_programador">Mô hình lập trình viên</string>
+    <string name="modelo_programador">Mô hình lập trình viên</string>
+    <string name="protocolo">Giao thức</string>
+    <string name="politica_de_privacidad">Chính sách bảo mật</string>
+    <string name="no_se_detecto_pic_en_socket">Không phát hiện được PIC trong ổ cắm</string>
+    <string name="pic_detectado_en_socket">Phát hiện PIC trong ổ cắm</string>
+    <string name="memoria_contiene_datos">Bộ nhớ chứa dữ liệu</string>
+    <string name="memoria_vacia">Bộ nhớ trống</string>
+    <string name="error_borrando_memoria">Lỗi xóa bộ nhớ</string>
+    <string name="memoria_borrada_exitosamente">Bộ nhớ đã xóa thành công</string>
+    <string name="memoria_leida_exitosamente">Bộ nhớ đã đọc thành công</string>
+    <string name="seleccione_un_chip">Chọn một chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Chọn một chip và tải tệp HEX</string>
+    <string name="error_programando_pic">Lỗi lập trình PIC</string>
+    <string name="pic_programado_exitosamente">PIC đã lập trình thành công</string>
+    <string name="iniciando_programacion">Bắt đầu lập trình...</string>
+    <string name="error_cargando_archivo">Lỗi tải tệp</string>
+    <string name="archivo_hex_cargado_exitosamen">Tệp HEX đã tải thành công</string>
+    <string name="archivo_cargado">Tệp đã tải</string>
+    <string name="error_inicializando_chip">Lỗi khởi tạo chip</string>
+    <string name="conectado_al_programador">Đã kết nối với lập trình viên</string>
+    <string name="error_inicializando_base_de_da">Lỗi khởi tạo cơ sở dữ liệu chip</string>
+    <string name="no_hay_modelos_de_chips_dispon">Không có mô hình chip nào khả dụng</string>
+    <string name="modelo_de_chip_invalido">Mô hình chip không hợp lệ</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip không tìm thấy trong cơ sở dữ liệu</string>
+    <string name="error_procesando_chip">Lỗi xử lý chip</string>
+    <string name="no_hay_chip_seleccionado">Không có chip nào được chọn</string>
+    <string name="modelo">Mô hình</string>
+    <string name="palabras_rom">Từ ROM</string>
+    <string name="tamano_rom">Kích thước ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Không có sẵn</string>
+    <string name="tipo_de_nucleo">Loại lõi</string>
+    <string name="error_obteniendo_datos_del_chi">Lỗi lấy dữ liệu chip</string>
+    <string name="modo">Chế độ</string>
+    <string name="icsp_solamente">Chỉ ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager chưa khởi tạo</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Không thể lấy tên tệp</string>
+    <string name="seleccione_un_archivo_binario_">Chọn tệp nhị phân hợp lệ (.hex hoặc .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Lỗi mở tệp được chọn</string>
+    <string name="el_archivo_seleccionado_esta_v">Tệp được chọn trống</string>
+    <string name="error_leyendo_el_archivo">Lỗi đọc tệp</string>
+    <string name="error_inesperado_leyendo_el_ar">Lỗi không mong muốn khi đọc tệp</string>
+    <string name="datos_de_memoria">Dữ liệu bộ nhớ</string>
+    <string name="memoria_rom">Bộ nhớ ROM</string>
+    <string name="memoria_eeprom">Bộ nhớ EEPROM</string>
+    <string name="cerrar">Đóng</string>
+    <string name="protocolo_no_inicializado">Giao thức chưa khởi tạo</string>
+    <string name="datos_invalidos_para_programac">Dữ liệu không hợp lệ để lập trình</string>
+    <string name="borrando_memorias">Xóa bộ nhớ...</string>
+    <string name="error_borrando_memorias">Lỗi xóa bộ nhớ</string>
+    <string name="programando_memoria_rom">Lập trình bộ nhớ ROM...</string>
+    <string name="error_programando_rom">Lỗi lập trình ROM</string>
+    <string name="programando_memoria_eeprom">Lập trình bộ nhớ EEPROM...</string>
+    <string name="error_programando_eeprom">Lỗi lập trình EEPROM</string>
+    <string name="programando_fuses_id">Lập trình Fuses ID...</string>
+    <string name="error_programando_fuses">Lỗi lập trình Fuses</string>
+    <string name="programando_fuses_18f">Lập trình Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Lỗi lập trình Fuses 18F</string>
+    <string name="programacion_completada">Lập trình hoàn tất</string>
+    <string name="error_inesperado">Lỗi không mong muốn</string>
+    <string name="error_leyendo_memoria_rom">Lỗi đọc bộ nhớ ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Lỗi đọc bộ nhớ EEPROM</string>
+    <string name="error_verificando_memoria">Lỗi xác minh bộ nhớ</string>
+    <string name="error_detectando_chip">Lỗi phát hiện chip</string>
+    <string name="driver_usb_no_disponible">Trình điều khiển USB không khả dụng</string>
+    <string name="dispositivo_sin_puertos_usb_di">Thiết bị không có cổng USB khả dụng</string>
+    <string name="error_inicializando_protocolo_">Lỗi khởi tạo giao thức truyền thông</string>
+    <string name="error_de_conexion_usb">Lỗi kết nối USB</string>
+    <string name="error_inesperado_durante_la_co">Lỗi không mong muốn trong quá trình kết nối</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Hoạt động</string>
+    <string name="cargar_archivo_hex">Tải tệp HEX</string>
+    <string name="programar_pic">Lập trình PIC</string>
+    <string name="leer_memoria">Đọc bộ nhớ</string>
+    <string name="verificar">Xác minh</string>
+    <string name="borrar_memoria">Xóa bộ nhớ</string>
+    <string name="detectar_pic">Phát hiện PIC</string>
+    <string name="esperando_operacion">Đợi hoạt động...</string>
+    <string name="esperando_seleccion">Chờ lựa chọn...</string>
+    <string name="seleccionar_chip_pic">Chọn Chip PIC</string>
+    <!-- values-vi/strings.xml (Vietnamese) -->
+    <string name="gputils_termux_asm">GPUTILS trong Termux Compiler ASM Android</string>
+</resources>

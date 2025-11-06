@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Terima</string>
+    <string name="cancelar">Batal</string>
+    <string name="conectado">Bersambung</string>
+    <string name="desconectado">Terputus</string>
+    <string name="grabando_pic">Menulis PIC...</string>
+    <string name="espere_grabacion_pic">Sila tunggu. Jangan putuskan peranti.</string>
+    <string name="grabacion_completada_pic">Penulisan Selesai</string>
+    <string name="grabacion_correcta_pic">Firmware telah ditulis dengan betul ke PIC.</string>
+    <string name="fallo_grabacion_pic">Kegagalan Penulisan</string>
+    <string name="proceso_no_completado">Proses tidak dapat diselesaikan. Semak sambungan.</string>
+    <string name="protocolo_del_programador">Protokol Pengatur Program</string>
+    <string name="modelo_del_programador">Model Pengatur Program</string>
+    <string name="modelo_programador">Model Pengatur Program</string>
+    <string name="protocolo">Protokol</string>
+    <string name="politica_de_privacidad">Dasar Privasi</string>
+    <string name="no_se_detecto_pic_en_socket">Tiada PIC dikesan di soket</string>
+    <string name="pic_detectado_en_socket">PIC dikesan di soket</string>
+    <string name="memoria_contiene_datos">Memori mengandungi data</string>
+    <string name="memoria_vacia">Memori kosong</string>
+    <string name="error_borrando_memoria">Ralat semasa memadamkan memori</string>
+    <string name="memoria_borrada_exitosamente">Memori dipadamkan dengan berjaya</string>
+    <string name="memoria_leida_exitosamente">Memori dibaca dengan berjaya</string>
+    <string name="seleccione_un_chip">Pilih cip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Pilih cip dan muat fail HEX</string>
+    <string name="error_programando_pic">Ralat mengatur program PIC</string>
+    <string name="pic_programado_exitosamente">PIC diatur program dengan berjaya</string>
+    <string name="iniciando_programacion">Memulakan pengaturan program...</string>
+    <string name="error_cargando_archivo">Ralat memuatkan fail</string>
+    <string name="archivo_hex_cargado_exitosamen">Fail HEX dimuat dengan berjaya</string>
+    <string name="archivo_cargado">Fail dimuat</string>
+    <string name="error_inicializando_chip">Ralat memulakan cip</string>
+    <string name="conectado_al_programador">Bersambung ke pengatur program</string>
+    <string name="error_inicializando_base_de_da">Ralat memulakan pangkalan data cip</string>
+    <string name="no_hay_modelos_de_chips_dispon">Tiada model cip tersedia</string>
+    <string name="modelo_de_chip_invalido">Model cip tidak sah</string>
+    <string name="chip_no_encontrado_en_base_de_">Cip tidak ditemui dalam pangkalan data</string>
+    <string name="error_procesando_chip">Ralat memproses cip</string>
+    <string name="no_hay_chip_seleccionado">Tiada cip dipilih</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">Kata ROM</string>
+    <string name="tamano_rom">Saiz ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Tidak tersedia</string>
+    <string name="tipo_de_nucleo">Jenis Inti</string>
+    <string name="error_obteniendo_datos_del_chi">Ralat mendapatkan data cip</string>
+    <string name="modo">Mod</string>
+    <string name="icsp_solamente">Hanya ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager tidak dimulakan</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Tidak dapat mendapatkan nama fail</string>
+    <string name="seleccione_un_archivo_binario_">Pilih fail binari yang sah (.hex atau .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Ralat membuka fail yang dipilih</string>
+    <string name="el_archivo_seleccionado_esta_v">Fail yang dipilih kosong</string>
+    <string name="error_leyendo_el_archivo">Ralat membaca fail</string>
+    <string name="error_inesperado_leyendo_el_ar">Ralat tidak dijangka membaca fail</string>
+    <string name="datos_de_memoria">Data Memori</string>
+    <string name="memoria_rom">Memori ROM</string>
+    <string name="memoria_eeprom">Memori EEPROM</string>
+    <string name="cerrar">Tutup</string>
+    <string name="protocolo_no_inicializado">Protokol tidak dimulakan</string>
+    <string name="datos_invalidos_para_programac">Data tidak sah untuk pengaturan program</string>
+    <string name="borrando_memorias">Memadamkan memori...</string>
+    <string name="error_borrando_memorias">Ralat memadamkan memori</string>
+    <string name="programando_memoria_rom">Mengatur program memori ROM...</string>
+    <string name="error_programando_rom">Ralat mengatur program ROM</string>
+    <string name="programando_memoria_eeprom">Mengatur program memori EEPROM...</string>
+    <string name="error_programando_eeprom">Ralat mengatur program EEPROM</string>
+    <string name="programando_fuses_id">Mengatur program Fuses ID...</string>
+    <string name="error_programando_fuses">Ralat mengatur program Fuses</string>
+    <string name="programando_fuses_18f">Mengatur program Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Ralat mengatur program Fuses 18F</string>
+    <string name="programacion_completada">Pengaturan program selesai</string>
+    <string name="error_inesperado">Ralat tidak dijangka</string>
+    <string name="error_leyendo_memoria_rom">Ralat membaca memori ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Ralat membaca memori EEPROM</string>
+    <string name="error_verificando_memoria">Ralat mengesahkan memori</string>
+    <string name="error_detectando_chip">Ralat mengesan cip</string>
+    <string name="driver_usb_no_disponible">Pemacu USB tidak tersedia</string>
+    <string name="dispositivo_sin_puertos_usb_di">Peranti tanpa port USB tersedia</string>
+    <string name="error_inicializando_protocolo_">Ralat memulakan protokol komunikasi</string>
+    <string name="error_de_conexion_usb">Ralat sambungan USB</string>
+    <string name="error_inesperado_durante_la_co">Ralat tidak dijangka semasa sambungan</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operasi</string>
+    <string name="cargar_archivo_hex">Muat Fail HEX</string>
+    <string name="programar_pic">Atur Program PIC</string>
+    <string name="leer_memoria">Baca Memori</string>
+    <string name="verificar">Sahkan</string>
+    <string name="borrar_memoria">Padamkan Memori</string>
+    <string name="detectar_pic">Kesan PIC</string>
+    <string name="esperando_operacion">Menunggu operasi...</string>
+    <string name="esperando_seleccion">Menunggu pilihan...</string>
+    <string name="seleccionar_chip_pic">Pilih Cip PIC</string>
+    <!-- values-ms/strings.xml (Malayo) -->
+    <string name="gputils_termux_asm">GPUTILS dalam Termux Compiler ASM Android</string>
+</resources>
