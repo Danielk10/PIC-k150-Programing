@@ -3,7 +3,6 @@ package com.diamon.tutorial;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ import androidx.core.widget.NestedScrollView;
 import com.diamon.datos.CargardorDeArchivos;
 import com.diamon.pic.R;
 import com.diamon.tutorial.utilidadestutorial.TutorialContentParser;
-import com.diamon.utilidades.PantallaCompleta;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -45,18 +43,11 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     private String tutorialText = "";
     private TutorialContentParser contentParser;
     private boolean isLoading = false;
-    private PantallaCompleta pantallaCompleta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_gputils);
-
-        pantallaCompleta = new PantallaCompleta(this);
-
-        pantallaCompleta.pantallaCompleta();
-
-        pantallaCompleta.ocultarBotonesVirtuales();
 
         initializeViews();
 
@@ -266,23 +257,5 @@ public class TutorialGputilsActivity extends AppCompatActivity {
         if (tutorialContentLayout != null) {
             tutorialContentLayout.removeAllViews();
         }
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-
-        if (hasFocus) {
-
-            pantallaCompleta.ocultarBotonesVirtuales();
-        }
-    }
-
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-
-        pantallaCompleta.ocultarBotonesVirtuales();
-
-        return super.onKeyUp(keyCode, event);
     }
 }

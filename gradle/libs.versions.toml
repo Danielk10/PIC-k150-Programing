@@ -12,6 +12,7 @@ activity = "1.11.0"
 constraintlayout = "2.2.1"
 playServicesAds = "24.7.0"
 usbSerialForAndroid = "3.9.0"
+vectordrawable = "1.2.0"
 
 [libraries]
 admob-mediation = { module = "io.start:admob-mediation", version.ref = "admobMediation" }
@@ -30,6 +31,7 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 usb-serial-for1-android = { module = "com.github.mik3y:usb-serial-for-android", version.ref = "usbSerialForAndroid" }
+vectordrawable = { module = "androidx.vectordrawable:vectordrawable", version.ref = "vectordrawable" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
