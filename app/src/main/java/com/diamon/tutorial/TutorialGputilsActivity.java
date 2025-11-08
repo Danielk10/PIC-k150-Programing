@@ -5,59 +5,68 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.KeyEvent;
-import com.diamon.utilidades.PantallaCompleta;
+import android.graphics.Typeface;
 
+import com.diamon.utilidades.PantallaCompleta;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.diamon.datos.CargardorDeArchivos;
 import com.diamon.pic.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+/**
+ * Activity mejorada para mostrar tutoriales de GPUTILS
+ * Con formato profesional, comandos en cajas negras, código con numeración
+ * y enlaces clickeables
+ */
 public class TutorialGputilsActivity extends AppCompatActivity {
 
-    private TextView tutorialTextView;
+    private LinearLayout tutorialContainer;
     private ScrollView scrollView;
     private Spinner languageSpinner;
     private Button copyButton;
     private ImageView tutorialImageView;
     private TextView languageInfoTextView;
+    
     private CargardorDeArchivos fileLoader;
     private String currentLanguage = "es";
     private String tutorialText = "";
     private PantallaCompleta pantallaCompleta;
+    
+    private TutorialContentRenderer contentRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_gputils);
-        
+
         pantallaCompleta = new PantallaCompleta(this);
-
         pantallaCompleta.pantallaCompleta();
-
         pantallaCompleta.ocultarBotonesVirtuales();
 
-
         // Inicializar componentes
-        tutorialTextView = findViewById(R.id.tutorialTextView);
+        tutorialContainer = findViewById(R.id.tutorialContainer);
         scrollView = findViewById(R.id.tutorialScrollView);
         languageSpinner = findViewById(R.id.languageSpinner);
         copyButton = findViewById(R.id.btnCopyTutorial);
         tutorialImageView = findViewById(R.id.tutorialImageView);
         languageInfoTextView = findViewById(R.id.languageInfoTextView);
 
-        // Inicializar cargador de archivos
+        // Inicializar cargador de archivos y renderizador
         fileLoader = new CargardorDeArchivos(this);
+        contentRenderer = new TutorialContentRenderer(this, tutorialContainer);
 
         // Configurar spinner de idiomas
         setupLanguageSpinner();
@@ -72,19 +81,21 @@ public class TutorialGputilsActivity extends AppCompatActivity {
 
     private void setupLanguageSpinner() {
         String[] languages = {"Español", "English"};
-        ArrayAdapter adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(adapter);
+        
         languageSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(android.widget.AdapterView<?> parent, View view,
-                                       int position, long id) {
+                                     int position, long id) {
                 String selectedLanguage = position == 0 ? "es" : "en";
                 if (!currentLanguage.equals(selectedLanguage)) {
                     currentLanguage = selectedLanguage;
                     loadTutorial(selectedLanguage);
                     updateLanguageInfo(selectedLanguage);
+                    updateCopyButtonText(selectedLanguage);
                 }
             }
 
@@ -103,8 +114,9 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             inputStream.close();
             tutorialText = new String(buffer, StandardCharsets.UTF_8);
 
-            // Procesar y mostrar el texto con formatos especiales
-            displayFormattedTutorial(tutorialText);
+            // Renderizar el tutorial con formato profesional
+            contentRenderer.setLanguage(language);
+            contentRenderer.renderTutorial(tutorialText);
 
             // Cargar imagen
             loadTutorialImage();
@@ -116,24 +128,13 @@ public class TutorialGputilsActivity extends AppCompatActivity {
         }
     }
 
-    private void displayFormattedTutorial(String text) {
-        // Mostrar el texto en el TextView
-        tutorialTextView.setText(text);
-
-        // Hacer que el texto sea seleccionable
-        tutorialTextView.setTextIsSelectable(true);
-    }
-
     private void loadTutorialImage() {
         try {
-            // Cargar la imagen desde assets usando BitmapFactory
             InputStream inputStream = fileLoader.leerAsset("compilacion.jpg");
             android.graphics.Bitmap bitmap = android.graphics.BitmapFactory.decodeStream(inputStream);
             inputStream.close();
             tutorialImageView.setImageBitmap(bitmap);
-
         } catch (IOException e) {
-            // Si la imagen no existe, mostrar un icono de marcador de posición
             tutorialImageView.setImageDrawable(ContextCompat.getDrawable(this,
                     android.R.drawable.ic_menu_gallery));
         }
@@ -147,6 +148,14 @@ public class TutorialGputilsActivity extends AppCompatActivity {
         }
     }
 
+    private void updateCopyButtonText(String language) {
+        if (language.equals("es")) {
+            copyButton.setText("📋 Copiar Todo");
+        } else {
+            copyButton.setText("📋 Copy All");
+        }
+    }
+
     private void copyTutorialText() {
         if (!tutorialText.isEmpty()) {
             android.content.ClipboardManager clipboard =
@@ -154,50 +163,31 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             android.content.ClipData clip = android.content.ClipData.newPlainText(
                     "tutorial", tutorialText);
             clipboard.setPrimaryClip(clip);
+            
             Toast.makeText(this, currentLanguage.equals("es") ?
                     "Tutorial copiado al portapapeles" :
                     "Tutorial copied to clipboard", Toast.LENGTH_SHORT).show();
         }
     }
 
-    /**
-     * Método estático para copiar código específico al portapapeles
-     *
-     * @param context Contexto de la aplicación
-     * @param code Código a copiar
-     */
-    public static void copyCodeToClipboard(android.content.Context context, String code) {
-        android.content.ClipboardManager clipboard =
-                (android.content.ClipboardManager) context.getSystemService(
-                        android.content.Context.CLIPBOARD_SERVICE);
-        android.content.ClipData clip = android.content.ClipData.newPlainText("code", code);
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, "Código copiado", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Mantener el idioma seleccionado al cambiar orientación
         loadTutorial(currentLanguage);
         updateLanguageInfo(currentLanguage);
     }
 
- @Override
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-
         if (hasFocus) {
-
             pantallaCompleta.ocultarBotonesVirtuales();
         }
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-
         pantallaCompleta.ocultarBotonesVirtuales();
-
         return super.onKeyUp(keyCode, event);
     }
 }
