@@ -9,7 +9,7 @@
     android:background="#F5F5F5"
     tools:context="com.diamon.tutorial.TutorialGputilsActivity">
 
-    <!-- Título principal - Mismo estilo que activity_main -->
+    <!-- Título principal -->
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
@@ -66,14 +66,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="12dp"
-                    android:background="@drawable/spinner_background"
                     android:spinnerMode="dropdown" />
 
                 <Button
                     android:id="@+id/btnCopyTutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📋 Copiar"
+                    android:text="📋 Copiar Todo"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="#4CAF50"
                     android:textColor="#FFFFFF"
@@ -82,7 +81,7 @@
 
             </LinearLayout>
 
-            <!-- Info de idioma actual - Actualizable dinámicamente -->
+            <!-- Info de idioma actual -->
             <TextView
                 android:id="@+id/languageInfoTextView"
                 android:layout_width="match_parent"
@@ -168,17 +167,16 @@
                         android:layout_marginBottom="12dp"
                         android:background="#BDBDBD" />
 
-                    <!-- Texto del Tutorial -->
-                    <TextView
-                        android:id="@+id/tutorialTextView"
+                    <!-- Contenedor dinámico del tutorial -->
+                    <LinearLayout
+                        android:id="@+id/tutorialContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:lineSpacingExtra="4dp"
-                        android:text="Cargando tutorial..."
-                        android:textColor="#424242"
-                        android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:orientation="vertical">
+                        
+                        <!-- El contenido se agregará dinámicamente aquí -->
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
