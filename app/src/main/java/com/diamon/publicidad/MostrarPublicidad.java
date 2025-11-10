@@ -16,7 +16,7 @@ public class MostrarPublicidad implements Publicidad {
 
     private AppCompatActivity actividad;
 
-    private static final String AD_UNIT_ID = "ca-app-pub-5141499161332805/9306546396";
+    private static final String AD_UNIT_ID = "ca-app-pub-5141499161332805/5248084133";
 
     private AdView adView;
 

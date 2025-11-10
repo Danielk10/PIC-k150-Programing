@@ -47,8 +47,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-//import com.tappx.sdk.Tappx;
-
 
 /**
  * MainActivity COMPLETAMENTE ACTUALIZADA
@@ -106,12 +104,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        
-      
-       
-        // PRIMERO pide permiso al usuario en tu app, luego:
-      //  Tappx.setCollectLocationEnabled(this, true);
 
         pantallaCompleta = new PantallaCompleta(this);
 
