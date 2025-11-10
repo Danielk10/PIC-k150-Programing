@@ -13,8 +13,8 @@ android {
         applicationId "com.diamon.pic"
         minSdk 23
         targetSdk 36
-        versionCode 26
-        versionName "2.5.7"
+        versionCode 27
+        versionName "2.5.8"
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
