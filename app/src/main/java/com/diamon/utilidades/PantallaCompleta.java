@@ -14,6 +14,7 @@ public class PantallaCompleta {
         this.actividad = actividad;
     }
 
+    // Colocar en Pantalla completa
     public void pantallaCompleta() {
         actividad
                 .getWindow()
@@ -22,6 +23,7 @@ public class PantallaCompleta {
                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
+    // Olcultar los botones virtuales
     public void ocultarBotonesVirtuales() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             actividad
