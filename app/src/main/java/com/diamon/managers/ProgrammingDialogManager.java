@@ -288,7 +288,7 @@ public class ProgrammingDialogManager {
      */
     private void loadNativeAd(FrameLayout adContainer) {
         AdLoader.Builder builder =
-                new AdLoader.Builder(context, "ca-app-pub-5141499161332805/4642845838");
+                new AdLoader.Builder(context, "ca-app-pub-5141499161332805/2642812533");
 
         builder.forNativeAd(
                 ad -> {
