@@ -34,6 +34,7 @@ android {
     ndkVersion '29.0.13599879 rc2'
 }
 
+
 dependencies {
 
     implementation libs.appcompat
@@ -58,4 +59,6 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.crashlytics.ndk)
     implementation(libs.google.firebase.analytics)
+    implementation 'com.tappx.sdk.android:tappx-sdk:4.+'
+
 }
