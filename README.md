@@ -32,6 +32,9 @@ El proyecto está basado en las siguientes librerías y recursos:
 - **AndroidIDE**: El proyecto fue desarrollado íntegramente en **AndroidIDE**, una potente plataforma para desarrollar aplicaciones Android directamente desde un dispositivo Android. 
   - Repositorio oficial: [https://github.com/AndroidIDEOfficial/AndroidIDE.git](https://github.com/AndroidIDEOfficial/AndroidIDE.git)
   - Página oficial: [https://m.androidide.com/](https://m.androidide.com/)
+ 
+  - **Android Code Studio**: El proyecto ahora se desarrolla en Android Code Studio en **Android Code Studio**, una potente plataforma para desarrollar aplicaciones Android directamente desde un dispositivo Android. 
+  - Repositorio oficial: [https://github.com/AndroidCSOfficial/android-code-studio.git](https://github.com/AndroidCSOfficial/android-code-studio.git)
 
 ## Enlaces útiles
 
