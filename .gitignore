@@ -2,6 +2,7 @@
 .gradle
 .androidide/
 .idea/
+.acside/
 /local.properties
 /.idea/caches
 /.idea/libraries
