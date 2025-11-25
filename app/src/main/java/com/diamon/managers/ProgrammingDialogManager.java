@@ -34,7 +34,8 @@ import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
 
 /**
- * Gestor de dialogos de programacion con publicidad integrada. Muestra el progreso de programacion
+ * Gestor de dialogos de programacion con publicidad integrada. Muestra el
+ * progreso de programacion
  * y anuncios nativos de Google Ads.
  */
 public class ProgrammingDialogManager {
@@ -66,7 +67,7 @@ public class ProgrammingDialogManager {
     /**
      * Muestra el dialogo de programacion con anuncio
      *
-     * @param onStart Callback al iniciar programacion
+     * @param onStart   Callback al iniciar programacion
      * @param onDismiss Callback al cerrar dialogo
      */
     public void showProgrammingDialog(Runnable onStart, Runnable onDismiss) {
@@ -83,8 +84,7 @@ public class ProgrammingDialogManager {
 
     /** Crea y muestra el PopupWindow con el dialogo */
     private void createPopupWindow() {
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
 
@@ -99,7 +99,18 @@ public class ProgrammingDialogManager {
         popupWindow.setOutsideTouchable(false);
         popupWindow.setAnimationStyle(0);
 
-        View rootView = ((android.app.Activity) context).findViewById(android.R.id.content);
+        // CORREGIDO: Usar getWindow().getDecorView() para compatibilidad con
+        // edge-to-edge
+        // En Android 15 con edge-to-edge, android.R.id.content puede tener dimensiones
+        // incorrectas
+        View rootView;
+        if (context instanceof android.app.Activity) {
+            android.app.Activity activity = (android.app.Activity) context;
+            rootView = activity.getWindow().getDecorView();
+        } else {
+            rootView = ((android.app.Activity) context).findViewById(android.R.id.content);
+        }
+
         popupWindow.showAtLocation(rootView, Gravity.CENTER, 0, 0);
 
         applyShowAnimation(popupContainer);
@@ -162,10 +173,9 @@ public class ProgrammingDialogManager {
 
         // Contenedor de indicador de estado
         FrameLayout statusContainer = new FrameLayout(context);
-        LinearLayout.LayoutParams statusParams =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams statusParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
         statusParams.setMargins(0, dpToPx(24), 0, dpToPx(24));
 
         statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
@@ -196,8 +206,8 @@ public class ProgrammingDialogManager {
      */
     private FrameLayout createAdContainer() {
         FrameLayout adContainer = new FrameLayout(context);
-        LinearLayout.LayoutParams adParams =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
+        LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,
+                1.0f);
         adContainer.setLayoutParams(adParams);
         adContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
         adContainer.setMinimumHeight(dpToPx(250));
@@ -287,8 +297,7 @@ public class ProgrammingDialogManager {
      * @param adContainer Contenedor para el anuncio
      */
     private void loadNativeAd(FrameLayout adContainer) {
-        AdLoader.Builder builder =
-                new AdLoader.Builder(context, "ca-app-pub-5141499161332805/2642812533");
+        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-5141499161332805/2642812533");
 
         builder.forNativeAd(
                 ad -> {
@@ -308,11 +317,10 @@ public class ProgrammingDialogManager {
                 });
 
         VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        NativeAdOptions adOptions =
-                new NativeAdOptions.Builder()
-                        .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                        .setVideoOptions(videoOptions)
-                        .build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                .setVideoOptions(videoOptions)
+                .build();
 
         builder.withNativeAdOptions(adOptions);
         builder.build().loadAd(new AdRequest.Builder().build());
@@ -322,7 +330,7 @@ public class ProgrammingDialogManager {
      * Puebla la vista del anuncio nativo con datos
      *
      * @param container Contenedor del anuncio
-     * @param ad Anuncio nativo cargado
+     * @param ad        Anuncio nativo cargado
      */
     private void populateNativeAdView(FrameLayout container, NativeAd ad) {
         container.removeAllViews();
@@ -355,8 +363,8 @@ public class ProgrammingDialogManager {
 
         // Media view
         MediaView mediaView = new MediaView(context);
-        LinearLayout.LayoutParams mediaParams =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
+        LinearLayout.LayoutParams mediaParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,
+                1.0f);
         mediaView.setLayoutParams(mediaParams);
         adLayout.addView(mediaView);
 
@@ -404,8 +412,7 @@ public class ProgrammingDialogManager {
         }
 
         View popupView = popupWindow.getContentView();
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics metrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
