@@ -39,12 +39,12 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     private Button copyButton;
     private ImageView tutorialImageView;
     private TextView languageInfoTextView;
-    
+
     private CargardorDeArchivos fileLoader;
     private String currentLanguage = "es";
     private String tutorialText = "";
     private PantallaCompleta pantallaCompleta;
-    
+
     private TutorialContentRenderer contentRenderer;
 
     @Override
@@ -52,9 +52,9 @@ public class TutorialGputilsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_gputils);
 
+        // Configurar edge-to-edge para Android 15+
         pantallaCompleta = new PantallaCompleta(this);
-        pantallaCompleta.pantallaCompleta();
-        pantallaCompleta.ocultarBotonesVirtuales();
+        pantallaCompleta.configurarEdgeToEdgeCompleto();
 
         // Inicializar componentes
         tutorialContainer = findViewById(R.id.tutorialContainer);
@@ -80,16 +80,16 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     }
 
     private void setupLanguageSpinner() {
-        String[] languages = {"Español", "English"};
+        String[] languages = { "Español", "English" };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(adapter);
-        
+
         languageSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(android.widget.AdapterView<?> parent, View view,
-                                     int position, long id) {
+                    int position, long id) {
                 String selectedLanguage = position == 0 ? "es" : "en";
                 if (!currentLanguage.equals(selectedLanguage)) {
                     currentLanguage = selectedLanguage;
@@ -158,15 +158,15 @@ public class TutorialGputilsActivity extends AppCompatActivity {
 
     private void copyTutorialText() {
         if (!tutorialText.isEmpty()) {
-            android.content.ClipboardManager clipboard =
-                    (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(
+                    CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData.newPlainText(
                     "tutorial", tutorialText);
             clipboard.setPrimaryClip(clip);
-            
-            Toast.makeText(this, currentLanguage.equals("es") ?
-                    "Tutorial copiado al portapapeles" :
-                    "Tutorial copied to clipboard", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this,
+                    currentLanguage.equals("es") ? "Tutorial copiado al portapapeles" : "Tutorial copied to clipboard",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
