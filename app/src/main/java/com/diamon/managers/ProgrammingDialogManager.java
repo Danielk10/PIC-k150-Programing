@@ -312,7 +312,10 @@ public class ProgrammingDialogManager {
                 new AdListener() {
                     @Override
                     public void onAdFailedToLoad(LoadAdError error) {
-                        adContainer.setVisibility(View.GONE);
+                        // Mostrar placeholder cuando el anuncio no carga
+                        // Esto es especialmente útil en emuladores donde Google Play Services
+                        // puede no estar completamente funcional
+                        showAdPlaceholder(adContainer);
                     }
                 });
 
@@ -452,6 +455,46 @@ public class ProgrammingDialogManager {
         if (onDismissCallback != null) {
             onDismissCallback.run();
         }
+    }
+
+    /**
+     * Muestra un placeholder cuando el anuncio no se puede cargar
+     * Esto mantiene el diálogo visible y con buen aspecto incluso cuando
+     * el anuncio no está disponible (común en emuladores)
+     *
+     * @param container Contenedor del anuncio
+     */
+    private void showAdPlaceholder(FrameLayout container) {
+        container.removeAllViews();
+        container.setVisibility(View.VISIBLE);
+
+        LinearLayout placeholderLayout = new LinearLayout(context);
+        placeholderLayout.setOrientation(LinearLayout.VERTICAL);
+        placeholderLayout.setGravity(Gravity.CENTER);
+        placeholderLayout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        placeholderLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
+
+        // Icono de información
+        ImageView icon = new ImageView(context);
+        icon.setImageResource(android.R.drawable.ic_dialog_info);
+        icon.setColorFilter(Color.parseColor("#9E9E9E"));
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(48), dpToPx(48));
+        iconParams.setMargins(0, 0, 0, dpToPx(8));
+        placeholderLayout.addView(icon, iconParams);
+
+        // Texto informativo
+        TextView placeholderText = new TextView(context);
+        placeholderText.setText("Anuncio no disponible");
+        placeholderText.setTextSize(14);
+        placeholderText.setTextColor(Color.parseColor("#757575"));
+        placeholderText.setGravity(Gravity.CENTER);
+        placeholderLayout.addView(placeholderText);
+
+        container.addView(
+                placeholderLayout,
+                new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT));
     }
 
     /**
