@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.acside
 .androidide/
 .idea/
 .acside/
