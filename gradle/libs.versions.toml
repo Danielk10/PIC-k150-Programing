@@ -1,6 +1,6 @@
 [versions]
 admobMediation = "3.1.1"
-agp = "8.13.1"
+agp = "8.13.2"
 appCenterSdkVersion = "5.0.6"
 firebaseBom = "34.6.0"
 junit = "4.13.2"
@@ -13,6 +13,7 @@ constraintlayout = "2.2.1"
 playServicesAds = "24.8.0"
 usbSerialForAndroid = "3.9.0"
 vectordrawable = "1.2.0"
+firebaseCrashlytics = "20.0.3"
 
 [libraries]
 admob-mediation = { module = "io.start:admob-mediation", version.ref = "admobMediation" }
@@ -32,6 +33,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 usb-serial-for1-android = { module = "com.github.mik3y:usb-serial-for-android", version.ref = "usbSerialForAndroid" }
 vectordrawable = { module = "androidx.vectordrawable:vectordrawable", version.ref = "vectordrawable" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
