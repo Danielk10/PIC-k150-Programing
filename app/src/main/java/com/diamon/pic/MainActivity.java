@@ -174,18 +174,19 @@ public class MainActivity extends AppCompatActivity {
     private void setupBanner() {
         FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
         if (bannerContainer != null && publicidad != null) {
-            com.google.android.gms.ads.AdView banner = publicidad.getBanner();
-            if (banner != null) {
-                if (banner.getParent() != null) {
-                    ((android.view.ViewGroup) banner.getParent()).removeView(banner);
+            publicidad.setBannerListener(banner -> {
+                if (banner != null) {
+                    if (banner.getParent() != null) {
+                        ((ViewGroup) banner.getParent()).removeView(banner);
+                    }
+                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                            FrameLayout.LayoutParams.WRAP_CONTENT,
+                            FrameLayout.LayoutParams.WRAP_CONTENT);
+                    params.gravity = Gravity.CENTER;
+                    banner.setLayoutParams(params);
+                    bannerContainer.addView(banner);
                 }
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                        FrameLayout.LayoutParams.WRAP_CONTENT,
-                        FrameLayout.LayoutParams.WRAP_CONTENT);
-                params.gravity = Gravity.CENTER;
-                banner.setLayoutParams(params);
-                bannerContainer.addView(banner);
-            }
+            });
         }
     }
 
