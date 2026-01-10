@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Accepteren</string>
+    <string name="cancelar">Annuleren</string>
+    <string name="conectado">Verbonden</string>
+    <string name="desconectado">Losgekoppeld</string>
+    <string name="grabando_pic">PIC programmeren...</string>
+    <string name="espere_grabacion_pic">Even geduld. Koppel het apparaat niet los.</string>
+    <string name="grabacion_completada_pic">Programmeren Voltooid</string>
+    <string name="grabacion_correcta_pic">De firmware is succesvol naar de PIC geschreven.</string>
+    <string name="fallo_grabacion_pic">Programmeren Mislukt</string>
+    <string name="proceso_no_completado">Het proces kon niet worden voltooid. Controleer de verbinding.</string>
+    <string name="protocolo_del_programador">Programmeerprotocol</string>
+    <string name="modelo_del_programador">Programmeermodel</string>
+    <string name="modelo_programador">Programmeermodel</string>
+    <string name="protocolo">Protocol</string>
+    <string name="politica_de_privacidad">Privacybeleid</string>
+    <string name="no_se_detecto_pic_en_socket">Geen PIC gedetecteerd in socket</string>
+    <string name="pic_detectado_en_socket">PIC gedetecteerd in socket</string>
+    <string name="memoria_contiene_datos">Geheugen bevat gegevens</string>
+    <string name="memoria_vacia">Geheugen leeg</string>
+    <string name="error_borrando_memoria">Fout bij wissen geheugen</string>
+    <string name="memoria_borrada_exitosamente">Geheugen succesvol gewist</string>
+    <string name="memoria_leida_exitosamente">Geheugen succesvol gelezen</string>
+    <string name="seleccione_un_chip">Selecteer een chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Selecteer een chip en laad een HEX-bestand</string>
+    <string name="error_programando_pic">Fout bij programmeren PIC</string>
+    <string name="pic_programado_exitosamente">PIC succesvol geprogrammeerd</string>
+    <string name="iniciando_programacion">Programmeren starten...</string>
+    <string name="error_cargando_archivo">Fout bij laden bestand</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-bestand succesvol geladen</string>
+    <string name="archivo_cargado">Bestand geladen</string>
+    <string name="error_inicializando_chip">Fout bij initialiseren chip</string>
+    <string name="conectado_al_programador">Verbonden met programmeur</string>
+    <string name="error_inicializando_base_de_da">Fout bij initialiseren chipdatabase</string>
+    <string name="no_hay_modelos_de_chips_dispon">Geen chipmodellen beschikbaar</string>
+    <string name="modelo_de_chip_invalido">Ongeldig chipmodel</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip niet gevonden in database</string>
+    <string name="error_procesando_chip">Fout bij verwerken chip</string>
+    <string name="no_hay_chip_seleccionado">Geen chip geselecteerd</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">ROM-woorden</string>
+    <string name="tamano_rom">ROM-grootte</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Niet beschikbaar</string>
+    <string name="tipo_de_nucleo">Kerntype</string>
+    <string name="error_obteniendo_datos_del_chi">Fout bij ophalen chipgegevens</string>
+    <string name="modo">Modus</string>
+    <string name="icsp_solamente">Alleen ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager niet geïnitialiseerd</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Kon bestandsnaam niet ophalen</string>
+    <string name="seleccione_un_archivo_binario_">Selecteer een geldig binair bestand (.hex of .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Fout bij openen geselecteerd bestand</string>
+    <string name="el_archivo_seleccionado_esta_v">Het geselecteerde bestand is leeg</string>
+    <string name="error_leyendo_el_archivo">Fout bij lezen bestand</string>
+    <string name="error_inesperado_leyendo_el_ar">Onverwachte fout bij lezen bestand</string>
+    <string name="datos_de_memoria">Geheugengegevens</string>
+    <string name="memoria_rom">ROM-geheugen</string>
+    <string name="memoria_eeprom">EEPROM-geheugen</string>
+    <string name="cerrar">Sluiten</string>
+    <string name="protocolo_no_inicializado">Protocol niet geïnitialiseerd</string>
+    <string name="datos_invalidos_para_programac">Ongeldige gegevens voor programmeren</string>
+    <string name="borrando_memorias">Geheugen wissen...</string>
+    <string name="error_borrando_memorias">Fout bij wissen geheugen</string>
+    <string name="programando_memoria_rom">ROM-geheugen programmeren...</string>
+    <string name="error_programando_rom">Fout bij programmeren ROM</string>
+    <string name="programando_memoria_eeprom">EEPROM-geheugen programmeren...</string>
+    <string name="error_programando_eeprom">Fout bij programmeren EEPROM</string>
+    <string name="programando_fuses_id">Fuses ID programmeren...</string>
+    <string name="error_programando_fuses">Fout bij programmeren Fuses</string>
+    <string name="programando_fuses_18f">18F Fuses programmeren...</string>
+    <string name="error_programando_fuses_18f">Fout bij programmeren 18F Fuses</string>
+    <string name="programacion_completada">Programmeren voltooid</string>
+    <string name="error_inesperado">Onverwachte fout</string>
+    <string name="error_leyendo_memoria_rom">Fout bij lezen ROM-geheugen</string>
+    <string name="error_leyendo_memoria_eeprom">Fout bij lezen EEPROM-geheugen</string>
+    <string name="error_verificando_memoria">Fout bij verifiëren geheugen</string>
+    <string name="error_detectando_chip">Fout bij detecteren chip</string>
+    <string name="driver_usb_no_disponible">USB-driver niet beschikbaar</string>
+    <string name="dispositivo_sin_puertos_usb_di">Apparaat zonder beschikbare USB-poorten</string>
+    <string name="error_inicializando_protocolo_">Fout bij initialiseren communicatieprotocol</string>
+    <string name="error_de_conexion_usb">USB-verbindingsfout</string>
+    <string name="error_inesperado_durante_la_co">Onverwachte fout tijdens verbinding</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Bewerkingen</string>
+    <string name="cargar_archivo_hex">HEX-bestand laden</string>
+    <string name="programar_pic">PIC programmeren</string>
+    <string name="leer_memoria">Geheugen lezen</string>
+    <string name="verificar">Verifiëren</string>
+    <string name="borrar_memoria">Geheugen wissen</string>
+    <string name="detectar_pic">PIC detecteren</string>
+    <string name="esperando_operacion">Wachten op bewerking...</string>
+    <string name="esperando_seleccion">Wachten op selectie...</string>
+    <string name="seleccionar_chip_pic">PIC-chip selecteren</string>
+    <!-- values-nl/strings.xml (Holandés) -->
+    <string name="gputils_termux_asm">GPUTILS in Termux ASM Compiler Android</string>
+</resources>

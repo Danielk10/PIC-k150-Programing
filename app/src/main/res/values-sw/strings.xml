@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Kubali</string>
+    <string name="cancelar">Ghairi</string>
+    <string name="conectado">Imeunganishwa</string>
+    <string name="desconectado">Imekatwa</string>
+    <string name="grabando_pic">Inaandika PIC...</string>
+    <string name="espere_grabacion_pic">Tafadhali subiri. Usiondoe kifaa.</string>
+    <string name="grabacion_completada_pic">Kuandika Kumekamilika</string>
+    <string name="grabacion_correcta_pic">Firmware imeandikwa kwa mafanikio kwenye PIC.</string>
+    <string name="fallo_grabacion_pic">Kuandika Kumeshindwa</string>
+    <string name="proceso_no_completado">Mchakato haukukamilika. Angalia muunganisho.</string>
+    <string name="protocolo_del_programador">Itifaki ya Kiprogramu</string>
+    <string name="modelo_del_programador">Modeli ya Kiprogramu</string>
+    <string name="modelo_programador">Modeli ya Kiprogramu</string>
+    <string name="protocolo">Itifaki</string>
+    <string name="politica_de_privacidad">Sera ya Faragha</string>
+    <string name="no_se_detecto_pic_en_socket">PIC haijagunduliwa kwenye soketi</string>
+    <string name="pic_detectado_en_socket">PIC imegunduliwa kwenye soketi</string>
+    <string name="memoria_contiene_datos">Kumbukumbu ina data</string>
+    <string name="memoria_vacia">Kumbukumbu tupu</string>
+    <string name="error_borrando_memoria">Hitilafu ya kufuta kumbukumbu</string>
+    <string name="memoria_borrada_exitosamente">Kumbukumbu imefutwa kwa mafanikio</string>
+    <string name="memoria_leida_exitosamente">Kumbukumbu imesomwa kwa mafanikio</string>
+    <string name="seleccione_un_chip">Chagua chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Chagua chip na upakue faili ya HEX</string>
+    <string name="error_programando_pic">Hitilafu ya kuprogramu PIC</string>
+    <string name="pic_programado_exitosamente">PIC imeprogramiwa kwa mafanikio</string>
+    <string name="iniciando_programacion">Inaanza kuprogramu...</string>
+    <string name="error_cargando_archivo">Hitilafu ya kupakia faili</string>
+    <string name="archivo_hex_cargado_exitosamen">Faili ya HEX imepakiwa kwa mafanikio</string>
+    <string name="archivo_cargado">Faili imepakiwa</string>
+    <string name="error_inicializando_chip">Hitilafu ya kuanzisha chip</string>
+    <string name="conectado_al_programador">Imeunganishwa na kiprogramu</string>
+    <string name="error_inicializando_base_de_da">Hitilafu ya kuanzisha hifadhidata ya chip</string>
+    <string name="no_hay_modelos_de_chips_dispon">Hakuna modeli za chip zinazopatikana</string>
+    <string name="modelo_de_chip_invalido">Modeli ya chip si halali</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip haijapatikana kwenye hifadhidata</string>
+    <string name="error_procesando_chip">Hitilafu ya kusindika chip</string>
+    <string name="no_hay_chip_seleccionado">Hakuna chip iliyochaguliwa</string>
+    <string name="modelo">Modeli</string>
+    <string name="palabras_rom">Maneno ya ROM</string>
+    <string name="tamano_rom">Ukubwa wa ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Haipatikani</string>
+    <string name="tipo_de_nucleo">Aina ya Kiini</string>
+    <string name="error_obteniendo_datos_del_chi">Hitilafu ya kupata data ya chip</string>
+    <string name="modo">Hali</string>
+    <string name="icsp_solamente">ICSP pekee</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager haijaanzishwa</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Haikuweza kupata jina la faili</string>
+    <string name="seleccione_un_archivo_binario_">Chagua faili halali ya binary (.hex au .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Hitilafu ya kufungua faili iliyochaguliwa</string>
+    <string name="el_archivo_seleccionado_esta_v">Faili iliyochaguliwa ni tupu</string>
+    <string name="error_leyendo_el_archivo">Hitilafu ya kusoma faili</string>
+    <string name="error_inesperado_leyendo_el_ar">Hitilafu isiyotarajiwa ya kusoma faili</string>
+    <string name="datos_de_memoria">Data ya Kumbukumbu</string>
+    <string name="memoria_rom">Kumbukumbu ya ROM</string>
+    <string name="memoria_eeprom">Kumbukumbu ya EEPROM</string>
+    <string name="cerrar">Funga</string>
+    <string name="protocolo_no_inicializado">Itifaki haijaanzishwa</string>
+    <string name="datos_invalidos_para_programac">Data si halali kwa kuprogramu</string>
+    <string name="borrando_memorias">Inafuta kumbukumbu...</string>
+    <string name="error_borrando_memorias">Hitilafu ya kufuta kumbukumbu</string>
+    <string name="programando_memoria_rom">Inaprogramu kumbukumbu ya ROM...</string>
+    <string name="error_programando_rom">Hitilafu ya kuprogramu ROM</string>
+    <string name="programando_memoria_eeprom">Inaprogramu kumbukumbu ya EEPROM...</string>
+    <string name="error_programando_eeprom">Hitilafu ya kuprogramu EEPROM</string>
+    <string name="programando_fuses_id">Inaprogramu Fuses ID...</string>
+    <string name="error_programando_fuses">Hitilafu ya kuprogramu Fuses</string>
+    <string name="programando_fuses_18f">Inaprogramu 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Hitilafu ya kuprogramu 18F Fuses</string>
+    <string name="programacion_completada">Kuprogramu kumekamilika</string>
+    <string name="error_inesperado">Hitilafu isiyotarajiwa</string>
+    <string name="error_leyendo_memoria_rom">Hitilafu ya kusoma kumbukumbu ya ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Hitilafu ya kusoma kumbukumbu ya EEPROM</string>
+    <string name="error_verificando_memoria">Hitilafu ya kuthibitisha kumbukumbu</string>
+    <string name="error_detectando_chip">Hitilafu ya kugundua chip</string>
+    <string name="driver_usb_no_disponible">Dereva wa USB haipatikani</string>
+    <string name="dispositivo_sin_puertos_usb_di">Kifaa bila bandari za USB zinazopatikana</string>
+    <string name="error_inicializando_protocolo_">Hitilafu ya kuanzisha itifaki ya mawasiliano</string>
+    <string name="error_de_conexion_usb">Hitilafu ya muunganisho wa USB</string>
+    <string name="error_inesperado_durante_la_co">Hitilafu isiyotarajiwa wakati wa muunganisho</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Shughuli</string>
+    <string name="cargar_archivo_hex">Pakia Faili ya HEX</string>
+    <string name="programar_pic">Programu PIC</string>
+    <string name="leer_memoria">Soma Kumbukumbu</string>
+    <string name="verificar">Thibitisha</string>
+    <string name="borrar_memoria">Futa Kumbukumbu</string>
+    <string name="detectar_pic">Gundua PIC</string>
+    <string name="esperando_operacion">Inasubiri operesheni...</string>
+    <string name="esperando_seleccion">Inasubiri uchaguzi...</string>
+    <string name="seleccionar_chip_pic">Chagua Chip ya PIC</string>
+    <!-- values-sw/strings.xml (Swahili) -->
+    <string name="gputils_termux_asm">GPUTILS katika Termux ASM Compiler Android</string>
+</resources>

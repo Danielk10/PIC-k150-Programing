@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Godta</string>
+    <string name="cancelar">Avbryt</string>
+    <string name="conectado">Tilkoblet</string>
+    <string name="desconectado">Frakoblet</string>
+    <string name="grabando_pic">Programmerer PIC...</string>
+    <string name="espere_grabacion_pic">Vennligst vent. Ikke koble fra enheten.</string>
+    <string name="grabacion_completada_pic">Programmering Fullført</string>
+    <string name="grabacion_correcta_pic">Firmware ble skrevet til PIC.</string>
+    <string name="fallo_grabacion_pic">Programmering Mislyktes</string>
+    <string name="proceso_no_completado">Prosessen kunne ikke fullføres. Sjekk tilkoblingen.</string>
+    <string name="protocolo_del_programador">Programmer Protokoll</string>
+    <string name="modelo_del_programador">Programmer Modell</string>
+    <string name="modelo_programador">Programmer Modell</string>
+    <string name="protocolo">Protokoll</string>
+    <string name="politica_de_privacidad">Personvernpolicy</string>
+    <string name="no_se_detecto_pic_en_socket">PIC ikke oppdaget i sokkel</string>
+    <string name="pic_detectado_en_socket">PIC oppdaget i sokkel</string>
+    <string name="memoria_contiene_datos">Minne inneholder data</string>
+    <string name="memoria_vacia">Minne tomt</string>
+    <string name="error_borrando_memoria">Feil ved sletting av minne</string>
+    <string name="memoria_borrada_exitosamente">Minne slettet</string>
+    <string name="memoria_leida_exitosamente">Minne lest</string>
+    <string name="seleccione_un_chip">Velg en brikke</string>
+    <string name="seleccione_un_chip_y_cargue_un">Velg en brikke og last inn HEX-fil</string>
+    <string name="error_programando_pic">Feil ved programmering av PIC</string>
+    <string name="pic_programado_exitosamente">PIC programmert</string>
+    <string name="iniciando_programacion">Starter programmering...</string>
+    <string name="error_cargando_archivo">Feil ved lasting av fil</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-fil lastet</string>
+    <string name="archivo_cargado">Fil lastet</string>
+    <string name="error_inicializando_chip">Feil ved initialisering av brikke</string>
+    <string name="conectado_al_programador">Tilkoblet programmer</string>
+    <string name="error_inicializando_base_de_da">Feil ved initialisering av brikkedatabase</string>
+    <string name="no_hay_modelos_de_chips_dispon">Ingen brikke-modeller tilgjengelige</string>
+    <string name="modelo_de_chip_invalido">Ugyldig brikke-modell</string>
+    <string name="chip_no_encontrado_en_base_de_">Brikke ikke funnet i database</string>
+    <string name="error_procesando_chip">Feil ved behandling av brikke</string>
+    <string name="no_hay_chip_seleccionado">Ingen brikke valgt</string>
+    <string name="modelo">Modell</string>
+    <string name="palabras_rom">ROM-ord</string>
+    <string name="tamano_rom">ROM-størrelse</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Ikke tilgjengelig</string>
+    <string name="tipo_de_nucleo">Kjernetype</string>
+    <string name="error_obteniendo_datos_del_chi">Feil ved henting av brikkedata</string>
+    <string name="modo">Modus</string>
+    <string name="icsp_solamente">Kun ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager ikke initialisert</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Kunne ikke hente filnavn</string>
+    <string name="seleccione_un_archivo_binario_">Velg en gyldig binærfil (.hex eller .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Feil ved åpning av valgt fil</string>
+    <string name="el_archivo_seleccionado_esta_v">Den valgte filen er tom</string>
+    <string name="error_leyendo_el_archivo">Feil ved lesing av fil</string>
+    <string name="error_inesperado_leyendo_el_ar">Uventet feil ved lesing av fil</string>
+    <string name="datos_de_memoria">Minnedata</string>
+    <string name="memoria_rom">ROM-minne</string>
+    <string name="memoria_eeprom">EEPROM-minne</string>
+    <string name="cerrar">Lukk</string>
+    <string name="protocolo_no_inicializado">Protokoll ikke initialisert</string>
+    <string name="datos_invalidos_para_programac">Ugyldige data for programmering</string>
+    <string name="borrando_memorias">Sletter minne...</string>
+    <string name="error_borrando_memorias">Feil ved sletting av minne</string>
+    <string name="programando_memoria_rom">Programmerer ROM-minne...</string>
+    <string name="error_programando_rom">Feil ved programmering av ROM</string>
+    <string name="programando_memoria_eeprom">Programmerer EEPROM-minne...</string>
+    <string name="error_programando_eeprom">Feil ved programmering av EEPROM</string>
+    <string name="programando_fuses_id">Programmerer Fuses ID...</string>
+    <string name="error_programando_fuses">Feil ved programmering av Fuses</string>
+    <string name="programando_fuses_18f">Programmerer 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Feil ved programmering av 18F Fuses</string>
+    <string name="programacion_completada">Programmering fullført</string>
+    <string name="error_inesperado">Uventet feil</string>
+    <string name="error_leyendo_memoria_rom">Feil ved lesing av ROM-minne</string>
+    <string name="error_leyendo_memoria_eeprom">Feil ved lesing av EEPROM-minne</string>
+    <string name="error_verificando_memoria">Feil ved verifisering av minne</string>
+    <string name="error_detectando_chip">Feil ved detektering av brikke</string>
+    <string name="driver_usb_no_disponible">USB-driver ikke tilgjengelig</string>
+    <string name="dispositivo_sin_puertos_usb_di">Enhet uten tilgjengelige USB-porter</string>
+    <string name="error_inicializando_protocolo_">Feil ved initialisering av kommunikasjonsprotokoll</string>
+    <string name="error_de_conexion_usb">USB-tilkoblingsfeil</string>
+    <string name="error_inesperado_durante_la_co">Uventet feil under tilkobling</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Handlinger</string>
+    <string name="cargar_archivo_hex">Last inn HEX-fil</string>
+    <string name="programar_pic">Programmer PIC</string>
+    <string name="leer_memoria">Les Minne</string>
+    <string name="verificar">Verifiser</string>
+    <string name="borrar_memoria">Slett Minne</string>
+    <string name="detectar_pic">Oppdag PIC</string>
+    <string name="esperando_operacion">Venter på handling...</string>
+    <string name="esperando_seleccion">Venter på valg...</string>
+    <string name="seleccionar_chip_pic">Velg PIC Brikke</string>
+    <!-- values-nb/strings.xml (Noruego) -->
+    <string name="gputils_termux_asm">GPUTILS i Termux ASM Compiler Android</string>
+</resources>

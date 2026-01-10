@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="conectado">Conectado</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">Error inicializando protocolo de comunicacion</string>
     <string name="error_de_conexion_usb">Error de conexion USB</string>
     <string name="error_inesperado_durante_la_co">Error inesperado durante la conexion</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">Operaciones</string>
     <string name="cargar_archivo_hex">Cargar Archivo HEX</string>
     <string name="programar_pic">Programar PIC</string>
@@ -95,6 +99,6 @@
     <string name="esperando_operacion">Esperando operación...</string>
     <string name="esperando_seleccion">Esperando selección...</string>
     <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
-    <!-- values-es-rVE/strings.xml (Español - Venezuela) -->
+    <!-- values-es-rVE/strings.xml (Español (Venezuela)) -->
     <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
 </resources>

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">接受</string>
     <string name="cancelar">取消</string>
     <string name="conectado">已连接</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">初始化通信协议时出错</string>
     <string name="error_de_conexion_usb">USB 连接错误</string>
     <string name="error_inesperado_durante_la_co">连接期间出现意外错误</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">操作</string>
     <string name="cargar_archivo_hex">加载 HEX 文件</string>
     <string name="programar_pic">编程 PIC</string>
@@ -95,6 +99,6 @@
     <string name="esperando_operacion">等待操作...</string>
     <string name="esperando_seleccion">等待选择...</string>
     <string name="seleccionar_chip_pic">选择 PIC 芯片</string>
-    <!-- values-zh/strings.xml (Chino Simplificado) -->
+    <!-- values-zh/strings.xml (Chino) -->
     <string name="gputils_termux_asm">Termux 中的 GPUTILS ASM 编译器 Android</string>
 </resources>

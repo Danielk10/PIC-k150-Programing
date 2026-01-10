@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Terima</string>
     <string name="cancelar">Batal</string>
     <string name="conectado">Terhubung</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">Error menginisialisasi protokol komunikasi</string>
     <string name="error_de_conexion_usb">Error koneksi USB</string>
     <string name="error_inesperado_durante_la_co">Error tak terduga selama koneksi</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">Operasi</string>
     <string name="cargar_archivo_hex">Muat File HEX</string>
     <string name="programar_pic">Program PIC</string>

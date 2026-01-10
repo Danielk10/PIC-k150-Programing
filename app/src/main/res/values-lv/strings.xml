@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Pieņemt</string>
+    <string name="cancelar">Atcelt</string>
+    <string name="conectado">Savienots</string>
+    <string name="desconectado">Atvienots</string>
+    <string name="grabando_pic">Programmē PIC...</string>
+    <string name="espere_grabacion_pic">Lūdzu, uzgaidiet. Neatvienojiet ierīci.</string>
+    <string name="grabacion_completada_pic">Programmēšana Pabeigta</string>
+    <string name="grabacion_correcta_pic">Programmaparatūra veiksmīgi ierakstīta PIC.</string>
+    <string name="fallo_grabacion_pic">Programmēšana Neizdevās</string>
+    <string name="proceso_no_completado">Procesu nevarēja pabeigt. Pārbaudiet savienojumu.</string>
+    <string name="protocolo_del_programador">Programmētāja Protokols</string>
+    <string name="modelo_del_programador">Programmētāja Modelis</string>
+    <string name="modelo_programador">Programmētāja Modelis</string>
+    <string name="protocolo">Protokols</string>
+    <string name="politica_de_privacidad">Privātuma Politika</string>
+    <string name="no_se_detecto_pic_en_socket">PIC nav konstatēts ligzdā</string>
+    <string name="pic_detectado_en_socket">PIC konstatēts ligzdā</string>
+    <string name="memoria_contiene_datos">Atmiņa satur datus</string>
+    <string name="memoria_vacia">Atmiņa tukša</string>
+    <string name="error_borrando_memoria">Kļūda dzēšot atmiņu</string>
+    <string name="memoria_borrada_exitosamente">Atmiņa veiksmīgi dzēsta</string>
+    <string name="memoria_leida_exitosamente">Atmiņa veiksmīgi nolasīta</string>
+    <string name="seleccione_un_chip">Izvēlieties mikroshēmu</string>
+    <string name="seleccione_un_chip_y_cargue_un">Izvēlieties mikroshēmu un ielādējiet HEX failu</string>
+    <string name="error_programando_pic">Kļūda programmējot PIC</string>
+    <string name="pic_programado_exitosamente">PIC veiksmīgi ieprogrammēts</string>
+    <string name="iniciando_programacion">Sāk programmēšanu...</string>
+    <string name="error_cargando_archivo">Kļūda ielādējot failu</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX fails veiksmīgi ielādēts</string>
+    <string name="archivo_cargado">Fails ielādēts</string>
+    <string name="error_inicializando_chip">Kļūda inicializējot mikroshēmu</string>
+    <string name="conectado_al_programador">Savienots ar programmētāju</string>
+    <string name="error_inicializando_base_de_da">Kļūda inicializējot mikroshēmu datubāzi</string>
+    <string name="no_hay_modelos_de_chips_dispon">Nav pieejamu mikroshēmu modeļu</string>
+    <string name="modelo_de_chip_invalido">Nederīgs mikroshēmas modelis</string>
+    <string name="chip_no_encontrado_en_base_de_">Mikroshēma nav atrasta datubāzē</string>
+    <string name="error_procesando_chip">Kļūda apstrādājot mikroshēmu</string>
+    <string name="no_hay_chip_seleccionado">Mikroshēma nav izvēlēta</string>
+    <string name="modelo">Modelis</string>
+    <string name="palabras_rom">ROM vārdi</string>
+    <string name="tamano_rom">ROM izmērs</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Nav pieejams</string>
+    <string name="tipo_de_nucleo">Kodola Tips</string>
+    <string name="error_obteniendo_datos_del_chi">Kļūda iegūstot mikroshēmas datus</string>
+    <string name="modo">Režīms</string>
+    <string name="icsp_solamente">Tikai ICSP</string>
+    <string name="pin_1">Tapa 1</string>
+    <string name="filemanager_no_inicializado">FileManager nav inicializēts</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Nevar iegūt faila nosaukumu</string>
+    <string name="seleccione_un_archivo_binario_">Izvēlieties derīgu bināro failu (.hex vai .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Kļūda atverot izvēlēto failu</string>
+    <string name="el_archivo_seleccionado_esta_v">Izvēlētais fails ir tukšs</string>
+    <string name="error_leyendo_el_archivo">Kļūda lasot failu</string>
+    <string name="error_inesperado_leyendo_el_ar">Neparedzēta kļūda lasot failu</string>
+    <string name="datos_de_memoria">Atmiņas Dati</string>
+    <string name="memoria_rom">ROM Atmiņa</string>
+    <string name="memoria_eeprom">EEPROM Atmiņa</string>
+    <string name="cerrar">Aizvērt</string>
+    <string name="protocolo_no_inicializado">Protokols nav inicializēts</string>
+    <string name="datos_invalidos_para_programac">Nederīgi dati programmēšanai</string>
+    <string name="borrando_memorias">Dzēš atmiņu...</string>
+    <string name="error_borrando_memorias">Kļūda dzēšot atmiņu</string>
+    <string name="programando_memoria_rom">Programmē ROM atmiņu...</string>
+    <string name="error_programando_rom">Kļūda programmējot ROM</string>
+    <string name="programando_memoria_eeprom">Programmē EEPROM atmiņu...</string>
+    <string name="error_programando_eeprom">Kļūda programmējot EEPROM</string>
+    <string name="programando_fuses_id">Programmē Fuses ID...</string>
+    <string name="error_programando_fuses">Kļūda programmējot Fuses</string>
+    <string name="programando_fuses_18f">Programmē 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Kļūda programmējot 18F Fuses</string>
+    <string name="programacion_completada">Programmēšana pabeigta</string>
+    <string name="error_inesperado">Neparedzēta kļūda</string>
+    <string name="error_leyendo_memoria_rom">Kļūda lasot ROM atmiņu</string>
+    <string name="error_leyendo_memoria_eeprom">Kļūda lasot EEPROM atmiņu</string>
+    <string name="error_verificando_memoria">Kļūda verificējot atmiņu</string>
+    <string name="error_detectando_chip">Kļūda konstatējot mikroshēmu</string>
+    <string name="driver_usb_no_disponible">USB draiveris nav pieejams</string>
+    <string name="dispositivo_sin_puertos_usb_di">Ierīcei nav pieejamu USB portu</string>
+    <string name="error_inicializando_protocolo_">Kļūda inicializējot komunikācijas protokolu</string>
+    <string name="error_de_conexion_usb">USB savienojuma kļūda</string>
+    <string name="error_inesperado_durante_la_co">Neparedzēta kļūda savienošanas laikā</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Darbības</string>
+    <string name="cargar_archivo_hex">Ielādēt HEX Failu</string>
+    <string name="programar_pic">Programmēt PIC</string>
+    <string name="leer_memoria">Lasīt Atmiņu</string>
+    <string name="verificar">Verificēt</string>
+    <string name="borrar_memoria">Dzēst Atmiņu</string>
+    <string name="detectar_pic">Konstatēt PIC</string>
+    <string name="esperando_operacion">Gaida darbību...</string>
+    <string name="esperando_seleccion">Gaida izvēli...</string>
+    <string name="seleccionar_chip_pic">Izvēlēties PIC Mikroshēmu</string>
+    <!-- values-lv/strings.xml (Letón) -->
+    <string name="gputils_termux_asm">GPUTILS Termux ASM Kompilators Android</string>
+</resources>

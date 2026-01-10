@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">수락</string>
     <string name="cancelar">취소</string>
     <string name="conectado">연결됨</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">통신 프로토콜 초기화 오류</string>
     <string name="error_de_conexion_usb">USB 연결 오류</string>
     <string name="error_inesperado_durante_la_co">연결 중 예기치 않은 오류 발생</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">작업</string>
     <string name="cargar_archivo_hex">HEX 파일 로드</string>
     <string name="programar_pic">PIC 프로그래밍</string>

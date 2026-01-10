@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="conectado">Conectado</string>
+    <string name="desconectado">Desconectado</string>
+    <string name="grabando_pic">Grabando PIC...</string>
+    <string name="espere_grabacion_pic">Por favor, espere. No desconecte el dispositivo.</string>
+    <string name="grabacion_completada_pic">Grabación Completa</string>
+    <string name="grabacion_correcta_pic">El firmware se ha grabado correctamente en el PIC.</string>
+    <string name="fallo_grabacion_pic">Fallo en la Grabación</string>
+    <string name="proceso_no_completado">No se pudo completar el proceso. Verifique la conexión.</string>
+    <string name="protocolo_del_programador">Protocolo del Programador</string>
+    <string name="modelo_del_programador">Modelo del Programador</string>
+    <string name="modelo_programador">Modelo Programador</string>
+    <string name="protocolo">Protocolo</string>
+    <string name="politica_de_privacidad">Política de Privacidad</string>
+    <string name="no_se_detecto_pic_en_socket">No se detectó PIC en socket</string>
+    <string name="pic_detectado_en_socket">PIC detectado en socket</string>
+    <string name="memoria_contiene_datos">Memoria contiene datos</string>
+    <string name="memoria_vacia">Memoria vacía</string>
+    <string name="error_borrando_memoria">Error borrando memoria</string>
+    <string name="memoria_borrada_exitosamente">Memoria borrada exitosamente</string>
+    <string name="memoria_leida_exitosamente">Memoria leída exitosamente</string>
+    <string name="seleccione_un_chip">Seleccione un chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Seleccione un chip y cargue un archivo HEX</string>
+    <string name="error_programando_pic">Error programando PIC</string>
+    <string name="pic_programado_exitosamente">PIC programado exitosamente</string>
+    <string name="iniciando_programacion">Iniciando programación...</string>
+    <string name="error_cargando_archivo">Error cargando archivo</string>
+    <string name="archivo_hex_cargado_exitosamen">Archivo HEX cargado exitosamente</string>
+    <string name="archivo_cargado">Archivo cargado</string>
+    <string name="error_inicializando_chip">Error inicializando chip</string>
+    <string name="conectado_al_programador">Conectado al programador</string>
+    <string name="error_inicializando_base_de_da">Error inicializando base de datos de chips</string>
+    <string name="no_hay_modelos_de_chips_dispon">No hay modelos de chips disponibles</string>
+    <string name="modelo_de_chip_invalido">Modelo de chip inválido</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip no encontrado en base de datos</string>
+    <string name="error_procesando_chip">Error procesando chip</string>
+    <string name="no_hay_chip_seleccionado">No hay chip seleccionado</string>
+    <string name="modelo">Modelo</string>
+    <string name="palabras_rom">Palabras ROM</string>
+    <string name="tamano_rom">Tamaño ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">No disponible</string>
+    <string name="tipo_de_nucleo">Tipo de Núcleo</string>
+    <string name="error_obteniendo_datos_del_chi">Error obteniendo datos del chip</string>
+    <string name="modo">Modo</string>
+    <string name="icsp_solamente">ICSP solamente</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager no inicializado</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">No se pudo obtener el nombre del archivo</string>
+    <string name="seleccione_un_archivo_binario_">Seleccione un archivo binario válido (.hex o .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Error abriendo el archivo seleccionado</string>
+    <string name="el_archivo_seleccionado_esta_v">El archivo seleccionado está vacío</string>
+    <string name="error_leyendo_el_archivo">Error leyendo el archivo</string>
+    <string name="error_inesperado_leyendo_el_ar">Error inesperado leyendo el archivo</string>
+    <string name="datos_de_memoria">Datos de Memoria</string>
+    <string name="memoria_rom">Memoria ROM</string>
+    <string name="memoria_eeprom">Memoria EEPROM</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="protocolo_no_inicializado">Protocolo no inicializado</string>
+    <string name="datos_invalidos_para_programac">Datos inválidos para programación</string>
+    <string name="borrando_memorias">Borrando memorias...</string>
+    <string name="error_borrando_memorias">Error borrando memorias</string>
+    <string name="programando_memoria_rom">Programando memoria ROM...</string>
+    <string name="error_programando_rom">Error programando ROM</string>
+    <string name="programando_memoria_eeprom">Programando memoria EEPROM...</string>
+    <string name="error_programando_eeprom">Error programando EEPROM</string>
+    <string name="programando_fuses_id">Programando Fuses ID...</string>
+    <string name="error_programando_fuses">Error programando Fuses</string>
+    <string name="programando_fuses_18f">Programando Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Error programando Fuses 18F</string>
+    <string name="programacion_completada">Programación completada</string>
+    <string name="error_inesperado">Error inesperado</string>
+    <string name="error_leyendo_memoria_rom">Error leyendo memoria ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Error leyendo memoria EEPROM</string>
+    <string name="error_verificando_memoria">Error verificando memoria</string>
+    <string name="error_detectando_chip">Error detectando chip</string>
+    <string name="driver_usb_no_disponible">Driver USB no disponible</string>
+    <string name="dispositivo_sin_puertos_usb_di">Dispositivo sin puertos USB disponibles</string>
+    <string name="error_inicializando_protocolo_">Error inicializando protocolo de comunicación</string>
+    <string name="error_de_conexion_usb">Error de conexión USB</string>
+    <string name="error_inesperado_durante_la_co">Error inesperado durante la conexión</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operaciones</string>
+    <string name="cargar_archivo_hex">Cargar Archivo HEX</string>
+    <string name="programar_pic">Programar PIC</string>
+    <string name="leer_memoria">Leer Memoria</string>
+    <string name="verificar">Verificar</string>
+    <string name="borrar_memoria">Borrar Memoria</string>
+    <string name="detectar_pic">Detectar PIC</string>
+    <string name="esperando_operacion">Esperando operación...</string>
+    <string name="esperando_seleccion">Esperando selección...</string>
+    <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
+    <!-- values-es-rES/strings.xml (Español (España)) -->
+    <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
+</resources>

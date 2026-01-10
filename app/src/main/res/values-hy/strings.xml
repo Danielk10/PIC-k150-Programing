@@ -99,6 +99,6 @@
     <string name="esperando_operacion">Սպասում գործործարկման...</string>
     <string name="esperando_seleccion">Ընտրություն սպասում...</string>
     <string name="seleccionar_chip_pic">Ընտրեք PIC չիպ</string>
-    <!-- values-hy/strings.xml (Armenian) -->
+    <!-- values-hy/strings.xml (Armenio) -->
     <string name="gputils_termux_asm">GPUTILS-ը Termux-ում ASM Compiler Android</string>
 </resources>

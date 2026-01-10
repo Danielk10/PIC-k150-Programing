@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Přijmout</string>
+    <string name="cancelar">Zrušit</string>
+    <string name="conectado">Připojeno</string>
+    <string name="desconectado">Odpojeno</string>
+    <string name="grabando_pic">Programování PIC...</string>
+    <string name="espere_grabacion_pic">Prosím vyčkejte. Neodpojujte zařízení.</string>
+    <string name="grabacion_completada_pic">Programování Dokončeno</string>
+    <string name="grabacion_correcta_pic">Firmware byl úspěšně zapsán do PIC.</string>
+    <string name="fallo_grabacion_pic">Programování Selhalo</string>
+    <string name="proceso_no_completado">Proces nelze dokončit. Zkontrolujte připojení.</string>
+    <string name="protocolo_del_programador">Protokol Programátoru</string>
+    <string name="modelo_del_programador">Model Programátoru</string>
+    <string name="modelo_programador">Model Programátoru</string>
+    <string name="protocolo">Protokol</string>
+    <string name="politica_de_privacidad">Zásady Ochrany Osobních Údajů</string>
+    <string name="no_se_detecto_pic_en_socket">PIC nebyl detekován v patici</string>
+    <string name="pic_detectado_en_socket">PIC detekován v patici</string>
+    <string name="memoria_contiene_datos">Paměť obsahuje data</string>
+    <string name="memoria_vacia">Paměť prázdná</string>
+    <string name="error_borrando_memoria">Chyba mazání paměti</string>
+    <string name="memoria_borrada_exitosamente">Paměť úspěšně smazána</string>
+    <string name="memoria_leida_exitosamente">Paměť úspěšně přečtena</string>
+    <string name="seleccione_un_chip">Vyberte čip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Vyberte čip a nahrajte HEX soubor</string>
+    <string name="error_programando_pic">Chyba programování PIC</string>
+    <string name="pic_programado_exitosamente">PIC úspěšně naprogramován</string>
+    <string name="iniciando_programacion">Zahajování programování...</string>
+    <string name="error_cargando_archivo">Chyba načítání souboru</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX soubor úspěšně načten</string>
+    <string name="archivo_cargado">Soubor načten</string>
+    <string name="error_inicializando_chip">Chyba inicializace čipu</string>
+    <string name="conectado_al_programador">Připojeno k programátoru</string>
+    <string name="error_inicializando_base_de_da">Chyba inicializace databáze čipů</string>
+    <string name="no_hay_modelos_de_chips_dispon">Žádné dostupné modely čipů</string>
+    <string name="modelo_de_chip_invalido">Neplatný model čipu</string>
+    <string name="chip_no_encontrado_en_base_de_">Čip nenalezen v databázi</string>
+    <string name="error_procesando_chip">Chyba zpracování čipu</string>
+    <string name="no_hay_chip_seleccionado">Není vybrán žádný čip</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">ROM slova</string>
+    <string name="tamano_rom">Velikost ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Nedostupné</string>
+    <string name="tipo_de_nucleo">Typ Jádra</string>
+    <string name="error_obteniendo_datos_del_chi">Chyba získávání dat čipu</string>
+    <string name="modo">Režim</string>
+    <string name="icsp_solamente">Pouze ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager není inicializován</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Nelze získat název souboru</string>
+    <string name="seleccione_un_archivo_binario_">Vyberte platný binární soubor (.hex nebo .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Chyba otevírání vybraného souboru</string>
+    <string name="el_archivo_seleccionado_esta_v">Vybraný soubor je prázdný</string>
+    <string name="error_leyendo_el_archivo">Chyba čtení souboru</string>
+    <string name="error_inesperado_leyendo_el_ar">Neočekávaná chyba čtení souboru</string>
+    <string name="datos_de_memoria">Data Paměti</string>
+    <string name="memoria_rom">ROM Paměť</string>
+    <string name="memoria_eeprom">EEPROM Paměť</string>
+    <string name="cerrar">Zavřít</string>
+    <string name="protocolo_no_inicializado">Protokol není inicializován</string>
+    <string name="datos_invalidos_para_programac">Neplatná data pro programování</string>
+    <string name="borrando_memorias">Mazání paměti...</string>
+    <string name="error_borrando_memorias">Chyba mazání paměti</string>
+    <string name="programando_memoria_rom">Programování ROM paměti...</string>
+    <string name="error_programando_rom">Chyba programování ROM</string>
+    <string name="programando_memoria_eeprom">Programování EEPROM paměti...</string>
+    <string name="error_programando_eeprom">Chyba programování EEPROM</string>
+    <string name="programando_fuses_id">Programování Fuses ID...</string>
+    <string name="error_programando_fuses">Chyba programování Fuses</string>
+    <string name="programando_fuses_18f">Programování 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Chyba programování 18F Fuses</string>
+    <string name="programacion_completada">Programování dokončeno</string>
+    <string name="error_inesperado">Neočekávaná chyba</string>
+    <string name="error_leyendo_memoria_rom">Chyba čtení ROM paměti</string>
+    <string name="error_leyendo_memoria_eeprom">Chyba čtení EEPROM paměti</string>
+    <string name="error_verificando_memoria">Chyba ověření paměti</string>
+    <string name="error_detectando_chip">Chyba detekce čipu</string>
+    <string name="driver_usb_no_disponible">USB ovladač nedostupný</string>
+    <string name="dispositivo_sin_puertos_usb_di">Zařízení bez dostupných USB portů</string>
+    <string name="error_inicializando_protocolo_">Chyba inicializace komunikačního protokolu</string>
+    <string name="error_de_conexion_usb">Chyba USB připojení</string>
+    <string name="error_inesperado_durante_la_co">Neočekávaná chyba během připojení</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Operace</string>
+    <string name="cargar_archivo_hex">Načíst HEX Soubor</string>
+    <string name="programar_pic">Programovat PIC</string>
+    <string name="leer_memoria">Číst Paměť</string>
+    <string name="verificar">Ověřit</string>
+    <string name="borrar_memoria">Smazat Paměť</string>
+    <string name="detectar_pic">Detekovat PIC</string>
+    <string name="esperando_operacion">Čekání na operaci...</string>
+    <string name="esperando_seleccion">Čekání na výběr...</string>
+    <string name="seleccionar_chip_pic">Vybrat PIC Čip</string>
+    <!-- values-cs/strings.xml (Checo) -->
+    <string name="gputils_termux_asm">GPUTILS v Termux ASM Kompilátor Android</string>
+</resources>

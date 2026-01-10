@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">承認</string>
     <string name="cancelar">キャンセル</string>
     <string name="conectado">接続済み</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">通信プロトコルの初期化中にエラーが発生しました</string>
     <string name="error_de_conexion_usb">USB接続エラー</string>
     <string name="error_inesperado_durante_la_co">接続中に予期しないエラーが発生しました</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">操作</string>
     <string name="cargar_archivo_hex">HEXファイルを読み込む</string>
     <string name="programar_pic">PICをプログラム</string>

@@ -99,6 +99,6 @@
     <string name="esperando_operacion">ሥራ እየተጠበቀ...</string>
     <string name="esperando_seleccion">ምርጫ እየተጠበቀ...</string>
     <string name="seleccionar_chip_pic">PIC ቹ ይምረጡ</string>
-    <!-- values-am/strings.xml (Amharic) -->
+    <!-- values-am/strings.xml (Amárico) -->
     <string name="gputils_termux_asm">GPUTILS በTermux Compiler ASM Android</string>
 </resources>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Қабылдау</string>
+    <string name="cancelar">Болдырмау</string>
+    <string name="conectado">Қосылған</string>
+    <string name="desconectado">Ажыратылған</string>
+    <string name="grabando_pic">PIC бағдарламалануда...</string>
+    <string name="espere_grabacion_pic">Күтіңіз. Құрылғыны ажыратпаңыз.</string>
+    <string name="grabacion_completada_pic">Бағдарламалау Аяқталды</string>
+    <string name="grabacion_correcta_pic">Микробағдарлама PIC-ке сәтті жазылды.</string>
+    <string name="fallo_grabacion_pic">Бағдарламалау Сәтсіз</string>
+    <string name="proceso_no_completado">Процесс аяқталмады. Қосылымды тексеріңіз.</string>
+    <string name="protocolo_del_programador">Бағдарламашы Протоколы</string>
+    <string name="modelo_del_programador">Бағдарламашы Моделі</string>
+    <string name="modelo_programador">Бағдарламашы Моделі</string>
+    <string name="protocolo">Протокол</string>
+    <string name="politica_de_privacidad">Құпиялылық Саясаты</string>
+    <string name="no_se_detecto_pic_en_socket">PIC ұяшықта табылмады</string>
+    <string name="pic_detectado_en_socket">PIC ұяшықта табылды</string>
+    <string name="memoria_contiene_datos">Жадта деректер бар</string>
+    <string name="memoria_vacia">Жад бос</string>
+    <string name="error_borrando_memoria">Жадты өшіру қатесі</string>
+    <string name="memoria_borrada_exitosamente">Жад сәтті өшірілді</string>
+    <string name="memoria_leida_exitosamente">Жад сәтті оқылды</string>
+    <string name="seleccione_un_chip">Чипті таңдаңыз</string>
+    <string name="seleccione_un_chip_y_cargue_un">Чипті таңдап, HEX файлын жүктеңіз</string>
+    <string name="error_programando_pic">PIC бағдарламалау қатесі</string>
+    <string name="pic_programado_exitosamente">PIC сәтті бағдарламаланды</string>
+    <string name="iniciando_programacion">Бағдарламалау басталуда...</string>
+    <string name="error_cargando_archivo">Файлды жүктеу қатесі</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX файлы сәтті жүктелді</string>
+    <string name="archivo_cargado">Файл жүктелді</string>
+    <string name="error_inicializando_chip">Чипті инициализациялау қатесі</string>
+    <string name="conectado_al_programador">Бағдарламашыға қосылды</string>
+    <string name="error_inicializando_base_de_da">Чип дерекқорын инициализациялау қатесі</string>
+    <string name="no_hay_modelos_de_chips_dispon">Қол жетімді чип модельдері жоқ</string>
+    <string name="modelo_de_chip_invalido">Жарамсыз чип моделі</string>
+    <string name="chip_no_encontrado_en_base_de_">Чип дерекқорда табылмады</string>
+    <string name="error_procesando_chip">Чипті өңдеу қатесі</string>
+    <string name="no_hay_chip_seleccionado">Чип таңдалмаған</string>
+    <string name="modelo">Модель</string>
+    <string name="palabras_rom">ROM сөздері</string>
+    <string name="tamano_rom">ROM көлемі</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Қол жетімсіз</string>
+    <string name="tipo_de_nucleo">Ядро Түрі</string>
+    <string name="error_obteniendo_datos_del_chi">Чип деректерін алу қатесі</string>
+    <string name="modo">Режим</string>
+    <string name="icsp_solamente">Тек ICSP</string>
+    <string name="pin_1">Пин 1</string>
+    <string name="filemanager_no_inicializado">FileManager инициализацияланбаған</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Файл атауын алу мүмкін емес</string>
+    <string name="seleccione_un_archivo_binario_">Жарамды бинарлық файлды таңдаңыз (.hex немесе .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Таңдалған файлды ашу қатесі</string>
+    <string name="el_archivo_seleccionado_esta_v">Таңдалған файл бос</string>
+    <string name="error_leyendo_el_archivo">Файлды оқу қатесі</string>
+    <string name="error_inesperado_leyendo_el_ar">Файлды оқу кезінде күтпеген қате</string>
+    <string name="datos_de_memoria">Жад Деректері</string>
+    <string name="memoria_rom">ROM Жады</string>
+    <string name="memoria_eeprom">EEPROM Жады</string>
+    <string name="cerrar">Жабу</string>
+    <string name="protocolo_no_inicializado">Протокол инициализацияланбаған</string>
+    <string name="datos_invalidos_para_programac">Бағдарламалау үшін жарамсыз деректер</string>
+    <string name="borrando_memorias">Жад өшірілуде...</string>
+    <string name="error_borrando_memorias">Жадты өшіру қатесі</string>
+    <string name="programando_memoria_rom">ROM жады бағдарламалануда...</string>
+    <string name="error_programando_rom">ROM бағдарламалау қатесі</string>
+    <string name="programando_memoria_eeprom">EEPROM жады бағдарламалануда...</string>
+    <string name="error_programando_eeprom">EEPROM бағдарламалау қатесі</string>
+    <string name="programando_fuses_id">Fuses ID бағдарламалануда...</string>
+    <string name="error_programando_fuses">Fuses бағдарламалау қатесі</string>
+    <string name="programando_fuses_18f">18F Fuses бағдарламалануда...</string>
+    <string name="error_programando_fuses_18f">18F Fuses бағдарламалау қатесі</string>
+    <string name="programacion_completada">Бағдарламалау аяқталды</string>
+    <string name="error_inesperado">Күтпеген қате</string>
+    <string name="error_leyendo_memoria_rom">ROM жадын оқу қатесі</string>
+    <string name="error_leyendo_memoria_eeprom">EEPROM жадын оқу қатесі</string>
+    <string name="error_verificando_memoria">Жадты тексеру қатесі</string>
+    <string name="error_detectando_chip">Чипті анықтау қатесі</string>
+    <string name="driver_usb_no_disponible">USB драйвері қол жетімсіз</string>
+    <string name="dispositivo_sin_puertos_usb_di">USB порттары жоқ құрылғы</string>
+    <string name="error_inicializando_protocolo_">Байланыс протоколын инициализациялау қатесі</string>
+    <string name="error_de_conexion_usb">USB қосылу қатесі</string>
+    <string name="error_inesperado_durante_la_co">Қосылу кезінде күтпеген қате</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Әрекеттер</string>
+    <string name="cargar_archivo_hex">HEX Файлын Жүктеу</string>
+    <string name="programar_pic">PIC Бағдарламалау</string>
+    <string name="leer_memoria">Жадты Оқу</string>
+    <string name="verificar">Тексеру</string>
+    <string name="borrar_memoria">Жадты Өшіру</string>
+    <string name="detectar_pic">PIC Анықтау</string>
+    <string name="esperando_operacion">Әрекетті күтуде...</string>
+    <string name="esperando_seleccion">Таңдауды күтуде...</string>
+    <string name="seleccionar_chip_pic">PIC Чипін Таңдау</string>
+    <!-- values-kk/strings.xml (Kazajo) -->
+    <string name="gputils_termux_asm">GPUTILS Termux ASM Компилятор Android</string>
+</resources>

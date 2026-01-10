@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Прыняць</string>
+    <string name="cancelar">Адмяніць</string>
+    <string name="conectado">Падключана</string>
+    <string name="desconectado">Адключана</string>
+    <string name="grabando_pic">Праграмаванне PIC...</string>
+    <string name="espere_grabacion_pic">Калі ласка, пачакайце. Не адключайце прыладу.</string>
+    <string name="grabacion_completada_pic">Праграмаванне Завершана</string>
+    <string name="grabacion_correcta_pic">Прашыўка паспяхова запісана ў PIC.</string>
+    <string name="fallo_grabacion_pic">Праграмаванне Няўдалае</string>
+    <string name="proceso_no_completado">Працэс не завершаны. Праверце злучэнне.</string>
+    <string name="protocolo_del_programador">Пратакол Праграматара</string>
+    <string name="modelo_del_programador">Мадэль Праграматара</string>
+    <string name="modelo_programador">Мадэль Праграматара</string>
+    <string name="protocolo">Пратакол</string>
+    <string name="politica_de_privacidad">Палітыка Канфідэнцыяльнасці</string>
+    <string name="no_se_detecto_pic_en_socket">PIC не выяўлены ў раздыме</string>
+    <string name="pic_detectado_en_socket">PIC выяўлены ў раздыме</string>
+    <string name="memoria_contiene_datos">Памяць утрымлівае дадзеныя</string>
+    <string name="memoria_vacia">Памяць пустая</string>
+    <string name="error_borrando_memoria">Памылка выдалення памяці</string>
+    <string name="memoria_borrada_exitosamente">Памяць паспяхова выдалена</string>
+    <string name="memoria_leida_exitosamente">Памяць паспяхова прачытана</string>
+    <string name="seleccione_un_chip">Выберыце чып</string>
+    <string name="seleccione_un_chip_y_cargue_un">Выберыце чып і загрузіце файл HEX</string>
+    <string name="error_programando_pic">Памылка праграмавання PIC</string>
+    <string name="pic_programado_exitosamente">PIC паспяхова запраграмаваны</string>
+    <string name="iniciando_programacion">Пачатак праграмавання...</string>
+    <string name="error_cargando_archivo">Памылка загрузкі файла</string>
+    <string name="archivo_hex_cargado_exitosamen">Файл HEX паспяхова загружаны</string>
+    <string name="archivo_cargado">Файл загружаны</string>
+    <string name="error_inicializando_chip">Памылка ініцыялізацыі чыпа</string>
+    <string name="conectado_al_programador">Падключана да праграматара</string>
+    <string name="error_inicializando_base_de_da">Памылка ініцыялізацыі базы дадзеных чыпаў</string>
+    <string name="no_hay_modelos_de_chips_dispon">Няма даступных мадэляў чыпаў</string>
+    <string name="modelo_de_chip_invalido">Няправільная мадэль чыпа</string>
+    <string name="chip_no_encontrado_en_base_de_">Чып не знойдзены ў базе дадзеных</string>
+    <string name="error_procesando_chip">Памылка апрацоўкі чыпа</string>
+    <string name="no_hay_chip_seleccionado">Чып не выбраны</string>
+    <string name="modelo">Мадэль</string>
+    <string name="palabras_rom">Словы ROM</string>
+    <string name="tamano_rom">Памер ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Недаступна</string>
+    <string name="tipo_de_nucleo">Тып Ядра</string>
+    <string name="error_obteniendo_datos_del_chi">Памылка атрымання дадзеных чыпа</string>
+    <string name="modo">Рэжым</string>
+    <string name="icsp_solamente">Толькі ICSP</string>
+    <string name="pin_1">Пін 1</string>
+    <string name="filemanager_no_inicializado">FileManager не ініцыялізаваны</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Немагчыма атрымаць імя файла</string>
+    <string name="seleccione_un_archivo_binario_">Выберыце правільны бінарны файл (.hex або .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Памылка адкрыцця выбранага файла</string>
+    <string name="el_archivo_seleccionado_esta_v">Выбраны файл пусты</string>
+    <string name="error_leyendo_el_archivo">Памылка чытання файла</string>
+    <string name="error_inesperado_leyendo_el_ar">Нечаканая памылка чытання файла</string>
+    <string name="datos_de_memoria">Дадзеныя Памяці</string>
+    <string name="memoria_rom">Памяць ROM</string>
+    <string name="memoria_eeprom">Памяць EEPROM</string>
+    <string name="cerrar">Закрыць</string>
+    <string name="protocolo_no_inicializado">Пратакол не ініцыялізаваны</string>
+    <string name="datos_invalidos_para_programac">Няправільныя дадзеныя для праграмавання</string>
+    <string name="borrando_memorias">Выдаленне памяці...</string>
+    <string name="error_borrando_memorias">Памылка выдалення памяці</string>
+    <string name="programando_memoria_rom">Праграмаванне памяці ROM...</string>
+    <string name="error_programando_rom">Памылка праграмавання ROM</string>
+    <string name="programando_memoria_eeprom">Праграмаванне памяці EEPROM...</string>
+    <string name="error_programando_eeprom">Памылка праграмавання EEPROM</string>
+    <string name="programando_fuses_id">Праграмаванне Fuses ID...</string>
+    <string name="error_programando_fuses">Памылка праграмавання Fuses</string>
+    <string name="programando_fuses_18f">Праграмаванне 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Памылка праграмавання 18F Fuses</string>
+    <string name="programacion_completada">Праграмаванне завершана</string>
+    <string name="error_inesperado">Нечаканая памылка</string>
+    <string name="error_leyendo_memoria_rom">Памылка чытання памяці ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Памылка чытання памяці EEPROM</string>
+    <string name="error_verificando_memoria">Памылка праверкі памяці</string>
+    <string name="error_detectando_chip">Памылка выяўлення чыпа</string>
+    <string name="driver_usb_no_disponible">USB драйвер недаступны</string>
+    <string name="dispositivo_sin_puertos_usb_di">Прылада без даступных USB партоў</string>
+    <string name="error_inicializando_protocolo_">Памылка ініцыялізацыі пратакола сувязі</string>
+    <string name="error_de_conexion_usb">Памылка злучэння USB</string>
+    <string name="error_inesperado_durante_la_co">Нечаканая памылка падчас злучэння</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Аперацыі</string>
+    <string name="cargar_archivo_hex">Загрузіць Файл HEX</string>
+    <string name="programar_pic">Запраграмаваць PIC</string>
+    <string name="leer_memoria">Прачытаць Памяць</string>
+    <string name="verificar">Праверыць</string>
+    <string name="borrar_memoria">Выдаліць Памяць</string>
+    <string name="detectar_pic">Выявіць PIC</string>
+    <string name="esperando_operacion">Чаканне аперацыі...</string>
+    <string name="esperando_seleccion">Чаканне выбару...</string>
+    <string name="seleccionar_chip_pic">Выбраць PIC Чып</string>
+    <!-- values-be/strings.xml (Bielorruso) -->
+    <string name="gputils_termux_asm">GPUTILS у Termux ASM Кампілятар Android</string>
+</resources>

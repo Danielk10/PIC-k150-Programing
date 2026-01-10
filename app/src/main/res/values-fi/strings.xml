@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Hyväksy</string>
+    <string name="cancelar">Peruuta</string>
+    <string name="conectado">Yhdistetty</string>
+    <string name="desconectado">Katkaistu</string>
+    <string name="grabando_pic">Ohjelmoidaan PIC...</string>
+    <string name="espere_grabacion_pic">Odota. Älä irrota laitetta.</string>
+    <string name="grabacion_completada_pic">Ohjelmointi Valmis</string>
+    <string name="grabacion_correcta_pic">Firmware kirjoitettiin onnistuneesti PIC:iin.</string>
+    <string name="fallo_grabacion_pic">Ohjelmointi Epäonnistui</string>
+    <string name="proceso_no_completado">Prosessia ei voitu suorittaa loppuun. Tarkista yhteys.</string>
+    <string name="protocolo_del_programador">Ohjelmoijan Protokolla</string>
+    <string name="modelo_del_programador">Ohjelmoijan Malli</string>
+    <string name="modelo_programador">Ohjelmoijan Malli</string>
+    <string name="protocolo">Protokolla</string>
+    <string name="politica_de_privacidad">Tietosuojakäytäntö</string>
+    <string name="no_se_detecto_pic_en_socket">PIC ei havaittu kannassa</string>
+    <string name="pic_detectado_en_socket">PIC havaittu kannassa</string>
+    <string name="memoria_contiene_datos">Muisti sisältää tietoja</string>
+    <string name="memoria_vacia">Muisti tyhjä</string>
+    <string name="error_borrando_memoria">Virhe muistin tyhjentämisessä</string>
+    <string name="memoria_borrada_exitosamente">Muisti tyhjennetty onnistuneesti</string>
+    <string name="memoria_leida_exitosamente">Muisti luettu onnistuneesti</string>
+    <string name="seleccione_un_chip">Valitse siru</string>
+    <string name="seleccione_un_chip_y_cargue_un">Valitse siru ja lataa HEX-tiedosto</string>
+    <string name="error_programando_pic">Virhe PIC:n ohjelmoinnissa</string>
+    <string name="pic_programado_exitosamente">PIC ohjelmoitu onnistuneesti</string>
+    <string name="iniciando_programacion">Aloitetaan ohjelmointia...</string>
+    <string name="error_cargando_archivo">Virhe tiedoston lataamisessa</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-tiedosto ladattu onnistuneesti</string>
+    <string name="archivo_cargado">Tiedosto ladattu</string>
+    <string name="error_inicializando_chip">Virhe sirun alustamisessa</string>
+    <string name="conectado_al_programador">Yhdistetty ohjelmoijaan</string>
+    <string name="error_inicializando_base_de_da">Virhe sirutietokannan alustamisessa</string>
+    <string name="no_hay_modelos_de_chips_dispon">Ei saatavilla olevia sirumalleja</string>
+    <string name="modelo_de_chip_invalido">Virheellinen sirumalli</string>
+    <string name="chip_no_encontrado_en_base_de_">Sirua ei löydy tietokannasta</string>
+    <string name="error_procesando_chip">Virhe sirun käsittelyssä</string>
+    <string name="no_hay_chip_seleccionado">Sirua ei ole valittu</string>
+    <string name="modelo">Malli</string>
+    <string name="palabras_rom">ROM-sanat</string>
+    <string name="tamano_rom">ROM-koko</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Ei saatavilla</string>
+    <string name="tipo_de_nucleo">Ydintyyppi</string>
+    <string name="error_obteniendo_datos_del_chi">Virhe sirun tietojen hakemisessa</string>
+    <string name="modo">Tila</string>
+    <string name="icsp_solamente">Vain ICSP</string>
+    <string name="pin_1">Pinni 1</string>
+    <string name="filemanager_no_inicializado">FileManager ei alustettu</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Tiedoston nimeä ei voitu hakea</string>
+    <string name="seleccione_un_archivo_binario_">Valitse kelvollinen binääritiedosto (.hex tai .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Virhe valitun tiedoston avaamisessa</string>
+    <string name="el_archivo_seleccionado_esta_v">Valittu tiedosto on tyhjä</string>
+    <string name="error_leyendo_el_archivo">Virhe tiedoston lukemisessa</string>
+    <string name="error_inesperado_leyendo_el_ar">Odottamaton virhe tiedoston lukemisessa</string>
+    <string name="datos_de_memoria">Muistitiedot</string>
+    <string name="memoria_rom">ROM-muisti</string>
+    <string name="memoria_eeprom">EEPROM-muisti</string>
+    <string name="cerrar">Sulje</string>
+    <string name="protocolo_no_inicializado">Protokollaa ei alustettu</string>
+    <string name="datos_invalidos_para_programac">Virheelliset tiedot ohjelmointiin</string>
+    <string name="borrando_memorias">Tyhjennetään muistia...</string>
+    <string name="error_borrando_memorias">Virhe muistin tyhjentämisessä</string>
+    <string name="programando_memoria_rom">Ohjelmoidaan ROM-muistia...</string>
+    <string name="error_programando_rom">Virhe ROM:n ohjelmoinnissa</string>
+    <string name="programando_memoria_eeprom">Ohjelmoidaan EEPROM-muistia...</string>
+    <string name="error_programando_eeprom">Virhe EEPROM:n ohjelmoinnissa</string>
+    <string name="programando_fuses_id">Ohjelmoidaan Fuses ID...</string>
+    <string name="error_programando_fuses">Virhe Fuses-ohjelmoinnissa</string>
+    <string name="programando_fuses_18f">Ohjelmoidaan 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Virhe 18F Fuses -ohjelmoinnissa</string>
+    <string name="programacion_completada">Ohjelmointi valmis</string>
+    <string name="error_inesperado">Odottamaton virhe</string>
+    <string name="error_leyendo_memoria_rom">Virhe ROM-muistin lukemisessa</string>
+    <string name="error_leyendo_memoria_eeprom">Virhe EEPROM-muistin lukemisessa</string>
+    <string name="error_verificando_memoria">Virhe muistin varmentamisessa</string>
+    <string name="error_detectando_chip">Virhe sirun tunnistamisessa</string>
+    <string name="driver_usb_no_disponible">USB-ohjain ei saatavilla</string>
+    <string name="dispositivo_sin_puertos_usb_di">Laite ilman USB-portteja</string>
+    <string name="error_inicializando_protocolo_">Virhe viestintäprotokollan alustamisessa</string>
+    <string name="error_de_conexion_usb">USB-yhteysvirhe</string>
+    <string name="error_inesperado_durante_la_co">Odottamaton virhe yhteyden aikana</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Toiminnot</string>
+    <string name="cargar_archivo_hex">Lataa HEX-tiedosto</string>
+    <string name="programar_pic">Ohjelmoi PIC</string>
+    <string name="leer_memoria">Lue Muisti</string>
+    <string name="verificar">Varmenna</string>
+    <string name="borrar_memoria">Tyhjennä Muisti</string>
+    <string name="detectar_pic">Tunnista PIC</string>
+    <string name="esperando_operacion">Odotetaan toimintoa...</string>
+    <string name="esperando_seleccion">Odotetaan valintaa...</string>
+    <string name="seleccionar_chip_pic">Valitse PIC Siru</string>
+    <!-- values-fi/strings.xml (Finlandés) -->
+    <string name="gputils_termux_asm">GPUTILS Termuxissa ASM Kääntäjä Android</string>
+</resources>

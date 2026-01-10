@@ -99,6 +99,6 @@
     <string name="esperando_operacion">Laukiama operacijos...</string>
     <string name="esperando_seleccion">Laukiama pasirinkimo...</string>
     <string name="seleccionar_chip_pic">Pasirinkite PIC lustą</string>
-    <!-- values-lt/strings.xml (Lithuanian) -->
+    <!-- values-lt/strings.xml (Lituano) -->
     <string name="gputils_termux_asm">GPUTILS Termuxe ASM Compiler Android</string>
 </resources>

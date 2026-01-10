@@ -1,17 +1,31 @@
 package com.diamon.utilidades;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+/**
+ * Utilidad para configurar pantalla completa y Edge-to-Edge.
+ * 
+ * Optimizado para Android 15 (SDK 35):
+ * - Usa EdgeToEdge.enable() de AndroidX Activity
+ * - Maneja WindowInsets correctamente
+ * - Proporciona retrocompatibilidad con versiones anteriores
+ * 
+ * Nota: En Android 15+, las apps se muestran edge-to-edge por defecto.
+ * setStatusBarColor y setNavigationBarColor están deprecados y no tienen
+ * efecto.
+ */
 public class PantallaCompleta {
 
     private final AppCompatActivity actividad;
@@ -21,20 +35,31 @@ public class PantallaCompleta {
     }
 
     /**
-     * Habilita edge-to-edge para Android 15+
-     * Configura la ventana para que el contenido se dibuje detrás de las barras del
-     * sistema
+     * Habilita Edge-to-Edge usando la API oficial de AndroidX.
+     * 
+     * Esta es la forma recomendada para Android 15+ y proporciona
+     * retrocompatibilidad automática con versiones anteriores.
+     * 
+     * Debe llamarse ANTES de setContentView().
      */
     public void habilitarEdgeToEdge() {
-        Window window = actividad.getWindow();
-
-        // Habilitar edge-to-edge usando WindowCompat
-        WindowCompat.setDecorFitsSystemWindows(window, false);
+        try {
+            // Usar la API de EdgeToEdge de AndroidX Activity
+            // Esto configura automáticamente:
+            // - Barras del sistema transparentes
+            // - setDecorFitsSystemWindows(false)
+            // - Colores apropiados para el contenido
+            EdgeToEdge.enable(actividad);
+        } catch (Exception e) {
+            // Fallback manual si EdgeToEdge falla
+            Window window = actividad.getWindow();
+            WindowCompat.setDecorFitsSystemWindows(window, false);
+        }
     }
 
     /**
-     * Aplica window insets a una vista específica
-     * Esto asegura que el contenido no quede oculto por las barras del sistema
+     * Aplica window insets a una vista específica.
+     * Esto asegura que el contenido no quede oculto por las barras del sistema.
      * 
      * @param view La vista raíz a la que aplicar los insets
      */
@@ -50,20 +75,40 @@ public class PantallaCompleta {
         });
     }
 
-    // Colocar en Pantalla completa (deprecado - usar habilitarEdgeToEdge)
-    @Deprecated
-    public void pantallaCompleta() {
-        actividad
-                .getWindow()
-                .setFlags(
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    /**
+     * Aplica insets solo a la parte inferior de una vista.
+     * Útil cuando el toolbar ya maneja el inset superior.
+     * 
+     * @param view La vista a la que aplicar los insets inferiores
+     */
+    public void aplicarWindowInsetsInferior(View view) {
+        ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // Solo aplicar padding inferior
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    insets.bottom);
+
+            return WindowInsetsCompat.CONSUMED;
+        });
     }
 
     /**
-     * Ocultar los botones virtuales de navegación
-     * Usa WindowInsetsController para API 30+ y flags legacy para versiones
-     * anteriores
+     * @deprecated Use {@link #habilitarEdgeToEdge()} en su lugar.
+     *             Este método usa FLAG_FULLSCREEN que está deprecado.
+     */
+    @Deprecated
+    public void pantallaCompleta() {
+        // Redirigir a la nueva implementación
+        habilitarEdgeToEdge();
+    }
+
+    /**
+     * Ocultar los botones virtuales de navegación en modo inmersivo.
+     * Las barras reaparecen temporalmente con un swipe desde el borde.
      */
     public void ocultarBotonesVirtuales() {
         Window window = actividad.getWindow();
@@ -74,8 +119,7 @@ public class PantallaCompleta {
             if (controller != null) {
                 // Ocultar barras del sistema
                 controller.hide(android.view.WindowInsets.Type.systemBars());
-                // Configurar comportamiento inmersivo (las barras reaparecen con swipe y se
-                // ocultan automáticamente)
+                // Configurar comportamiento inmersivo
                 controller.setSystemBarsBehavior(
                         WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
             }
@@ -93,11 +137,49 @@ public class PantallaCompleta {
     }
 
     /**
-     * Configuración completa de edge-to-edge con ocultación de barras
-     * Combina edge-to-edge con modo inmersivo
+     * Configuración completa de Edge-to-Edge con ocultación de barras.
+     * Combina Edge-to-Edge con modo inmersivo.
      */
     public void configurarEdgeToEdgeCompleto() {
         habilitarEdgeToEdge();
         ocultarBotonesVirtuales();
+    }
+
+    /**
+     * Configura los colores de las barras del sistema para modo claro.
+     * 
+     * Nota: En Android 15+ con SDK 35, setStatusBarColor y setNavigationBarColor
+     * están deprecados y no tienen efecto. Las barras son transparentes por
+     * defecto.
+     * Este método solo tiene efecto en versiones anteriores.
+     */
+    public void configurarBarrasClaro() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsetsController controller = actividad.getWindow().getInsetsController();
+            if (controller != null) {
+                // Iconos oscuros para fondo claro
+                controller.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                                | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                                | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+            }
+        }
+    }
+
+    /**
+     * Configura los colores de las barras del sistema para modo oscuro.
+     */
+    public void configurarBarrasOscuro() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsetsController controller = actividad.getWindow().getInsetsController();
+            if (controller != null) {
+                // Quitar apariencia light para iconos claros en fondo oscuro
+                controller.setSystemBarsAppearance(
+                        0,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                                | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+            }
+        }
     }
 }

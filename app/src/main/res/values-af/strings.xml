@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Aanvaar</string>
     <string name="cancelar">Kanselleer</string>
     <string name="conectado">Gekoppel</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">Fout tydens initialisering van kommunikasieprotokol</string>
     <string name="error_de_conexion_usb">USB-verbindingsfout</string>
     <string name="error_inesperado_durante_la_co">Onverwagte fout tydens verbinding</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">Bewerkings</string>
     <string name="cargar_archivo_hex">Laai HEX-lêer</string>
     <string name="programar_pic">Programmeer PIC</string>

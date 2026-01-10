@@ -49,12 +49,15 @@ public class TutorialGputilsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Configurar edge-to-edge ANTES de setContentView (requerido por Android 15)
+        pantallaCompleta = new PantallaCompleta(this);
+        pantallaCompleta.habilitarEdgeToEdge();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_gputils);
 
-        // Configurar edge-to-edge para Android 15+
-        pantallaCompleta = new PantallaCompleta(this);
-        pantallaCompleta.configurarEdgeToEdgeCompleto();
+        // Ocultar barras de navegación para modo inmersivo
+        pantallaCompleta.ocultarBotonesVirtuales();
 
         // Inicializar componentes
         tutorialContainer = findViewById(R.id.tutorialContainer);

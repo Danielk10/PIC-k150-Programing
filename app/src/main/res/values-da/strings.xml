@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Accepter</string>
+    <string name="cancelar">Annuller</string>
+    <string name="conectado">Tilsluttet</string>
+    <string name="desconectado">Frakoblet</string>
+    <string name="grabando_pic">Programmerer PIC...</string>
+    <string name="espere_grabacion_pic">Vent venligst. Afbryd ikke enheden.</string>
+    <string name="grabacion_completada_pic">Programmering Fuldført</string>
+    <string name="grabacion_correcta_pic">Firmware er skrevet korrekt til PIC.</string>
+    <string name="fallo_grabacion_pic">Programmering Mislykkedes</string>
+    <string name="proceso_no_completado">Processen kunne ikke fuldføres. Kontroller forbindelsen.</string>
+    <string name="protocolo_del_programador">Programmer Protokol</string>
+    <string name="modelo_del_programador">Programmer Model</string>
+    <string name="modelo_programador">Programmer Model</string>
+    <string name="protocolo">Protokol</string>
+    <string name="politica_de_privacidad">Privatlivspolitik</string>
+    <string name="no_se_detecto_pic_en_socket">PIC ikke registreret i sokkel</string>
+    <string name="pic_detectado_en_socket">PIC registreret i sokkel</string>
+    <string name="memoria_contiene_datos">Hukommelse indeholder data</string>
+    <string name="memoria_vacia">Hukommelse tom</string>
+    <string name="error_borrando_memoria">Fejl ved sletning af hukommelse</string>
+    <string name="memoria_borrada_exitosamente">Hukommelse slettet med succes</string>
+    <string name="memoria_leida_exitosamente">Hukommelse læst med succes</string>
+    <string name="seleccione_un_chip">Vælg en chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Vælg en chip og indlæs en HEX-fil</string>
+    <string name="error_programando_pic">Fejl ved programmering af PIC</string>
+    <string name="pic_programado_exitosamente">PIC programmeret med succes</string>
+    <string name="iniciando_programacion">Starter programmering...</string>
+    <string name="error_cargando_archivo">Fejl ved indlæsning af fil</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-fil indlæst med succes</string>
+    <string name="archivo_cargado">Fil indlæst</string>
+    <string name="error_inicializando_chip">Fejl ved initialisering af chip</string>
+    <string name="conectado_al_programador">Tilsluttet programmer</string>
+    <string name="error_inicializando_base_de_da">Fejl ved initialisering af chip-database</string>
+    <string name="no_hay_modelos_de_chips_dispon">Ingen chip-modeller tilgængelige</string>
+    <string name="modelo_de_chip_invalido">Ugyldig chip-model</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip ikke fundet i database</string>
+    <string name="error_procesando_chip">Fejl ved behandling af chip</string>
+    <string name="no_hay_chip_seleccionado">Ingen chip valgt</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">ROM-ord</string>
+    <string name="tamano_rom">ROM-størrelse</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Ikke tilgængelig</string>
+    <string name="tipo_de_nucleo">Kernetype</string>
+    <string name="error_obteniendo_datos_del_chi">Fejl ved hentning af chip-data</string>
+    <string name="modo">Tilstand</string>
+    <string name="icsp_solamente">Kun ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager ikke initialiseret</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Kunne ikke hente filnavn</string>
+    <string name="seleccione_un_archivo_binario_">Vælg en gyldig binær fil (.hex eller .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Fejl ved åbning af valgt fil</string>
+    <string name="el_archivo_seleccionado_esta_v">Den valgte fil er tom</string>
+    <string name="error_leyendo_el_archivo">Fejl ved læsning af fil</string>
+    <string name="error_inesperado_leyendo_el_ar">Uventet fejl ved læsning af fil</string>
+    <string name="datos_de_memoria">Hukommelsesdata</string>
+    <string name="memoria_rom">ROM-hukommelse</string>
+    <string name="memoria_eeprom">EEPROM-hukommelse</string>
+    <string name="cerrar">Luk</string>
+    <string name="protocolo_no_inicializado">Protokol ikke initialiseret</string>
+    <string name="datos_invalidos_para_programac">Ugyldige data til programmering</string>
+    <string name="borrando_memorias">Sletter hukommelse...</string>
+    <string name="error_borrando_memorias">Fejl ved sletning af hukommelse</string>
+    <string name="programando_memoria_rom">Programmerer ROM-hukommelse...</string>
+    <string name="error_programando_rom">Fejl ved programmering af ROM</string>
+    <string name="programando_memoria_eeprom">Programmerer EEPROM-hukommelse...</string>
+    <string name="error_programando_eeprom">Fejl ved programmering af EEPROM</string>
+    <string name="programando_fuses_id">Programmerer Fuses ID...</string>
+    <string name="error_programando_fuses">Fejl ved programmering af Fuses</string>
+    <string name="programando_fuses_18f">Programmerer 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Fejl ved programmering af 18F Fuses</string>
+    <string name="programacion_completada">Programmering fuldført</string>
+    <string name="error_inesperado">Uventet fejl</string>
+    <string name="error_leyendo_memoria_rom">Fejl ved læsning af ROM-hukommelse</string>
+    <string name="error_leyendo_memoria_eeprom">Fejl ved læsning af EEPROM-hukommelse</string>
+    <string name="error_verificando_memoria">Fejl ved verifikation af hukommelse</string>
+    <string name="error_detectando_chip">Fejl ved detektering af chip</string>
+    <string name="driver_usb_no_disponible">USB-driver ikke tilgængelig</string>
+    <string name="dispositivo_sin_puertos_usb_di">Enhed uden tilgængelige USB-porte</string>
+    <string name="error_inicializando_protocolo_">Fejl ved initialisering af kommunikationsprotokol</string>
+    <string name="error_de_conexion_usb">USB-forbindelsesfejl</string>
+    <string name="error_inesperado_durante_la_co">Uventet fejl under forbindelse</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Handlinger</string>
+    <string name="cargar_archivo_hex">Indlæs HEX-fil</string>
+    <string name="programar_pic">Programmer PIC</string>
+    <string name="leer_memoria">Læs Hukommelse</string>
+    <string name="verificar">Verificer</string>
+    <string name="borrar_memoria">Slet Hukommelse</string>
+    <string name="detectar_pic">Detekter PIC</string>
+    <string name="esperando_operacion">Venter på handling...</string>
+    <string name="esperando_seleccion">Venter på valg...</string>
+    <string name="seleccionar_chip_pic">Vælg PIC Chip</string>
+    <!-- values-da/strings.xml (Danés) -->
+    <string name="gputils_termux_asm">GPUTILS i Termux ASM Compiler Android</string>
+</resources>

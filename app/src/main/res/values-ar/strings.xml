@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">قبول</string>
     <string name="cancelar">إلغاء</string>
     <string name="conectado">متصل</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">خطأ في تهيئة بروتوكول الاتصال</string>
     <string name="error_de_conexion_usb">خطأ في اتصال USB</string>
     <string name="error_inesperado_durante_la_co">خطأ غير متوقع أثناء الاتصال</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">العمليات</string>
     <string name="cargar_archivo_hex">تحميل ملف HEX</string>
     <string name="programar_pic">برمجة PIC</string>

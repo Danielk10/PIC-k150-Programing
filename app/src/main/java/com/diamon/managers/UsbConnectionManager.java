@@ -6,43 +6,46 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
-import android.os.Build;
-
-import androidx.core.content.ContextCompat;
+import android.util.Log;
 
 import com.diamon.protocolo.ProtocoloP018;
+import com.diamon.pic.R;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import java.io.IOException;
 import java.util.List;
-import com.diamon.pic.R;
 
 /**
- * Gestor de conexiones USB para comunicacion con el programador PIC K150. Maneja la deteccion de
- * dispositivos USB, permisos y configuracion del puerto serial.
+ * Gestor de conexiones USB para comunicación con el programador PIC K150.
+ * 
+ * Maneja la detección de dispositivos USB, permisos y configuración del puerto
+ * serial.
+ * Usa SafeBroadcastManager para registro seguro de BroadcastReceivers.
  */
 public class UsbConnectionManager {
 
+    private static final String TAG = "UsbConnectionManager";
     private static final String ACTION_USB_PERMISSION = "com.diamon.pic.USB_PERMISSION";
 
-    // Parametros de configuracion del puerto serial
+    // Parámetros de configuración del puerto serial
     private static final int BAUD_RATE = 19200;
     private static final int DATA_BITS = 8;
     private static final int STOP_BITS = UsbSerialPort.STOPBITS_1;
     private static final int PARITY = UsbSerialPort.PARITY_NONE;
 
     private final Context context;
+    private final SafeBroadcastManager broadcastManager;
     private UsbManager usbManager;
     private UsbSerialPort usbSerialPort;
     private List<UsbSerialDriver> drivers;
     private ProtocoloP018 protocolo;
 
-    // Interfaz para notificar eventos de conexion
+    // Interfaz para notificar eventos de conexión
     private UsbConnectionListener connectionListener;
 
-    /** Interfaz para manejar eventos de conexion USB */
+    /** Interfaz para manejar eventos de conexión USB */
     public interface UsbConnectionListener {
         void onConnected();
 
@@ -52,33 +55,33 @@ public class UsbConnectionManager {
     }
 
     /** BroadcastReceiver para manejar permisos USB */
-    private final BroadcastReceiver usbReceiver =
-            new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if (ACTION_USB_PERMISSION.equals(intent.getAction())) {
-                        if (!drivers.isEmpty()) {
-                            UsbSerialDriver driver = drivers.get(0);
-                            connectToDevice(driver);
-                        }
-                    }
+    private final BroadcastReceiver usbReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ACTION_USB_PERMISSION.equals(intent.getAction())) {
+                if (!drivers.isEmpty()) {
+                    UsbSerialDriver driver = drivers.get(0);
+                    connectToDevice(driver);
                 }
-            };
+            }
+        }
+    };
 
     /**
      * Constructor del gestor de conexiones USB
      *
-     * @param context Contexto de la aplicacion
+     * @param context Contexto de la aplicación
      */
     public UsbConnectionManager(Context context) {
         this.context = context;
         this.usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
+        this.broadcastManager = new SafeBroadcastManager(context);
     }
 
     /**
-     * Establece el listener para eventos de conexion
+     * Establece el listener para eventos de conexión
      *
-     * @param listener Listener que sera notificado de eventos
+     * @param listener Listener que será notificado de eventos
      */
     public void setConnectionListener(UsbConnectionListener listener) {
         this.connectionListener = listener;
@@ -89,16 +92,15 @@ public class UsbConnectionManager {
         // Detectar dispositivos USB conectados
         drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
 
-        // Registrar el BroadcastReceiver para permisos USB
+        // Registrar el BroadcastReceiver para permisos USB usando SafeBroadcastManager
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13 (API 33) y superior requiere especificar el flag
-            ContextCompat.registerReceiver(
-                    context, usbReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
-        } else {
-            // Versiones anteriores a Android 13
-            context.registerReceiver(usbReceiver, filter);
+        // Usar SafeBroadcastManager para registro seguro
+        // El receiver NO es exportado (solo recibe broadcasts internos de la app)
+        boolean registered = broadcastManager.registerReceiver(usbReceiver, filter, false);
+
+        if (!registered) {
+            Log.w(TAG, "Failed to register USB receiver");
         }
 
         // Solicitar permisos si hay dispositivos conectados
@@ -115,12 +117,11 @@ public class UsbConnectionManager {
                 connectToDevice(driver);
             } else {
                 // Solicitar permisos
-                PendingIntent permissionIntent =
-                        PendingIntent.getBroadcast(
-                                context,
-                                0,
-                                new Intent(ACTION_USB_PERMISSION),
-                                PendingIntent.FLAG_IMMUTABLE);
+                PendingIntent permissionIntent = PendingIntent.getBroadcast(
+                        context,
+                        0,
+                        new Intent(ACTION_USB_PERMISSION),
+                        PendingIntent.FLAG_IMMUTABLE);
                 usbManager.requestPermission(driver.getDevice(), permissionIntent);
             }
         }
@@ -147,10 +148,10 @@ public class UsbConnectionManager {
             // Seleccionar el primer puerto
             usbSerialPort = driver.getPorts().get(0);
 
-            // Abrir conexion
+            // Abrir conexión
             usbSerialPort.open(usbManager.openDevice(driver.getDevice()));
 
-            // Configurar parametros del puerto serial
+            // Configurar parámetros del puerto serial
             usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
 
             // Crear e inicializar protocolo
@@ -163,7 +164,7 @@ public class UsbConnectionManager {
                 return;
             }
 
-            // Notificar conexion exitosa
+            // Notificar conexión exitosa
             if (connectionListener != null) {
                 connectionListener.onConnected();
             }
@@ -178,7 +179,7 @@ public class UsbConnectionManager {
         }
     }
 
-    /** Limpia el estado de conexion cuando ocurre un error */
+    /** Limpia el estado de conexión cuando ocurre un error */
     private void cleanupConnection() {
         if (usbSerialPort != null) {
             try {
@@ -203,24 +204,24 @@ public class UsbConnectionManager {
     }
 
     /**
-     * Obtiene el protocolo de comunicacion P018
+     * Obtiene el protocolo de comunicación P018
      *
-     * @return Instancia del protocolo o null si no esta conectado
+     * @return Instancia del protocolo o null si no está conectado
      */
     public ProtocoloP018 getProtocolo() {
         return protocolo;
     }
 
     /**
-     * Verifica si hay una conexion activa
+     * Verifica si hay una conexión activa
      *
-     * @return true si esta conectado, false en caso contrario
+     * @return true si está conectado, false en caso contrario
      */
     public boolean isConnected() {
         return usbSerialPort != null && protocolo != null;
     }
 
-    /** Cierra la conexion USB y libera recursos */
+    /** Cierra la conexión USB y libera recursos */
     public void disconnect() {
         cleanupConnection();
 
@@ -233,10 +234,7 @@ public class UsbConnectionManager {
     public void release() {
         disconnect();
 
-        try {
-            context.unregisterReceiver(usbReceiver);
-        } catch (IllegalArgumentException e) {
-            // El receiver ya fue desregistrado
-        }
+        // Usar SafeBroadcastManager para desregistro seguro
+        broadcastManager.unregisterReceiver(usbReceiver);
     }
 }
