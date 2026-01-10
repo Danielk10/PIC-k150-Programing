@@ -50,12 +50,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * MainActivity COMPLETAMENTE ACTUALIZADA
  *
- * <p>Nueva funcionalidad: - Configuración de fusibles mediante PopupWindow - Indicador visual de
- * estado de fusibles - Restauración de fusibles desde PIC o HEX - ID personalizado del usuario -
+ * <p>
+ * Nueva funcionalidad: - Configuración de fusibles mediante PopupWindow -
+ * Indicador visual de
+ * estado de fusibles - Restauración de fusibles desde PIC o HEX - ID
+ * personalizado del usuario -
  * Integración completa con DatosPicProcesados y ChipinfoEntry
  */
 public class MainActivity extends AppCompatActivity {
@@ -96,22 +98,23 @@ public class MainActivity extends AppCompatActivity {
     // NUEVAS VARIABLES PARA FUSES
     private boolean fusesConfigured = false;
     private List<Integer> configuredFuses = new ArrayList<>();
-    private byte[] configuredID = new byte[] {0};
+    private byte[] configuredID = new byte[] { 0 };
     private Map<String, String> lastFuseConfiguration = null;
     private DatosPicProcesados datosPicProcesados = null;
 
     private PantallaCompleta pantallaCompleta;
 
-    @SuppressLint({"InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag"})
+    @SuppressLint({ "InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag" })
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Habilitar Edge-to-Edge ANTES de setContentView (requerido por Android 15)
+        pantallaCompleta = new PantallaCompleta(this);
+        pantallaCompleta.habilitarEdgeToEdge();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pantallaCompleta = new PantallaCompleta(this);
-
-        pantallaCompleta.pantallaCompleta();
-
+        // Ocultar barras de navegación para modo inmersivo
         pantallaCompleta.ocultarBotonesVirtuales();
 
         // Inicializar el Switch de ICSP (Agregar esta línea)
@@ -176,10 +179,9 @@ public class MainActivity extends AppCompatActivity {
                 if (banner.getParent() != null) {
                     ((android.view.ViewGroup) banner.getParent()).removeView(banner);
                 }
-                FrameLayout.LayoutParams params =
-                        new FrameLayout.LayoutParams(
-                                FrameLayout.LayoutParams.WRAP_CONTENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT);
                 params.gravity = Gravity.CENTER;
                 banner.setLayoutParams(params);
                 bannerContainer.addView(banner);
@@ -201,36 +203,35 @@ public class MainActivity extends AppCompatActivity {
         dialogManager = new ProgrammingDialogManager(this);
 
         // NUEVO: Inicializar popup de fusibles
-        fuseConfigPopup =
-                new FuseConfigPopup(
-                        this,
-                        new FuseConfigPopup.FuseConfigListener() {
-                            @Override
-                            public void onFusesApplied(
-                                    List<Integer> fuses,
-                                    byte[] idData,
-                                    Map<String, String> configuration) {
-                                // Guardar configuración de fusibles
-                                fusesConfigured = true;
-                                configuredFuses = new ArrayList<>(fuses);
-                                configuredID = idData;
-                                lastFuseConfiguration = configuration;
+        fuseConfigPopup = new FuseConfigPopup(
+                this,
+                new FuseConfigPopup.FuseConfigListener() {
+                    @Override
+                    public void onFusesApplied(
+                            List<Integer> fuses,
+                            byte[] idData,
+                            Map<String, String> configuration) {
+                        // Guardar configuración de fusibles
+                        fusesConfigured = true;
+                        configuredFuses = new ArrayList<>(fuses);
+                        configuredID = idData;
+                        lastFuseConfiguration = configuration;
 
-                                // Actualizar UI
-                                updateFuseStatus(true);
+                        // Actualizar UI
+                        updateFuseStatus(true);
 
-                                Toast.makeText(
-                                                MainActivity.this,
-                                                "Fusibles configurados correctamente",
-                                                Toast.LENGTH_SHORT)
-                                        .show();
-                            }
+                        Toast.makeText(
+                                MainActivity.this,
+                                "Fusibles configurados correctamente",
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
 
-                            @Override
-                            public void onFusesCancelled() {
-                                // No hacer nada, mantener configuración anterior
-                            }
-                        });
+                    @Override
+                    public void onFusesCancelled() {
+                        // No hacer nada, mantener configuración anterior
+                    }
+                });
     }
 
     private void setupListeners() {
@@ -252,9 +253,9 @@ public class MainActivity extends AppCompatActivity {
                                     connectionStatusTextView.setText(getString(R.string.conectado));
                                     programmingManager.setProtocolo(usbManager.getProtocolo());
                                     Toast.makeText(
-                                                    MainActivity.this,
-                                                    getString(R.string.conectado_al_programador),
-                                                    Toast.LENGTH_SHORT)
+                                            MainActivity.this,
+                                            getString(R.string.conectado_al_programador),
+                                            Toast.LENGTH_SHORT)
                                             .show();
                                 });
                     }
@@ -277,9 +278,9 @@ public class MainActivity extends AppCompatActivity {
                                     connectionStatusTextView.setText(
                                             getString(R.string.desconectado));
                                     Toast.makeText(
-                                                    MainActivity.this,
-                                                    errorMessage,
-                                                    Toast.LENGTH_LONG)
+                                            MainActivity.this,
+                                            errorMessage,
+                                            Toast.LENGTH_LONG)
                                             .show();
                                 });
                     }
@@ -315,9 +316,9 @@ public class MainActivity extends AppCompatActivity {
                                 usbManager.getProtocolo().iniciarVariablesDeProgramacion(chip);
                             } catch (Exception e) {
                                 Toast.makeText(
-                                                MainActivity.this,
-                                                getString(R.string.error_inicializando_chip),
-                                                Toast.LENGTH_SHORT)
+                                        MainActivity.this,
+                                        getString(R.string.error_inicializando_chip),
+                                        Toast.LENGTH_SHORT)
                                         .show();
                             }
                         }
@@ -360,9 +361,9 @@ public class MainActivity extends AppCompatActivity {
                     } catch (ChipConfigurationException e) {
                         swModeICSP.setChecked(false);
                         Toast.makeText(
-                                        MainActivity.this,
-                                        "Error al cambiar modo: " + e.getMessage(),
-                                        Toast.LENGTH_SHORT)
+                                MainActivity.this,
+                                "Error al cambiar modo: " + e.getMessage(),
+                                Toast.LENGTH_SHORT)
                                 .show();
                     }
                 });
@@ -462,9 +463,9 @@ public class MainActivity extends AppCompatActivity {
                         procesarDatosHex();
 
                         Toast.makeText(
-                                        MainActivity.this,
-                                        getString(R.string.archivo_hex_cargado_exitosamen),
-                                        Toast.LENGTH_SHORT)
+                                MainActivity.this,
+                                getString(R.string.archivo_hex_cargado_exitosamen),
+                                Toast.LENGTH_SHORT)
                                 .show();
                     }
 
@@ -482,17 +483,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onProgrammingStarted() {
                         runOnUiThread(
-                                () ->
-                                        processStatusTextView.setText(
-                                                getString(R.string.iniciando_programacion)));
+                                () -> processStatusTextView.setText(
+                                        getString(R.string.iniciando_programacion)));
                     }
 
                     @Override
                     public void onProgrammingProgress(String message, int progress) {
                         runOnUiThread(
-                                () ->
-                                        processStatusTextView.setText(
-                                                message + " (" + progress + "%)"));
+                                () -> processStatusTextView.setText(
+                                        message + " (" + progress + "%)"));
                     }
 
                     @Override
@@ -515,9 +514,9 @@ public class MainActivity extends AppCompatActivity {
                                 () -> {
                                     processStatusTextView.setText("Error: " + errorMessage);
                                     Toast.makeText(
-                                                    MainActivity.this,
-                                                    errorMessage,
-                                                    Toast.LENGTH_LONG)
+                                            MainActivity.this,
+                                            errorMessage,
+                                            Toast.LENGTH_LONG)
                                             .show();
                                 });
                     }
@@ -541,29 +540,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         new Thread(
-                        () -> {
-                            try {
-                                datosPicProcesados = new DatosPicProcesados(firmware, currentChip);
-                                datosPicProcesados.iniciarProcesamientoDeDatos();
+                () -> {
+                    try {
+                        datosPicProcesados = new DatosPicProcesados(firmware, currentChip);
+                        datosPicProcesados.iniciarProcesamientoDeDatos();
 
-                                runOnUiThread(
-                                        () -> {
-                                            processStatusTextView.setText(
-                                                    "HEX procesado correctamente");
-                                        });
+                        runOnUiThread(
+                                () -> {
+                                    processStatusTextView.setText(
+                                            "HEX procesado correctamente");
+                                });
 
-                            } catch (Exception e) {
-                                runOnUiThread(
-                                        () -> {
-                                            Toast.makeText(
-                                                            MainActivity.this,
-                                                            "Error procesando HEX: "
-                                                                    + e.getMessage(),
-                                                            Toast.LENGTH_LONG)
-                                                    .show();
-                                        });
-                            }
-                        })
+                    } catch (Exception e) {
+                        runOnUiThread(
+                                () -> {
+                                    Toast.makeText(
+                                            MainActivity.this,
+                                            "Error procesando HEX: "
+                                                    + e.getMessage(),
+                                            Toast.LENGTH_LONG)
+                                            .show();
+                                });
+                    }
+                })
                 .start();
     }
 
@@ -589,7 +588,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearFuseConfiguration() {
         fusesConfigured = false;
         configuredFuses = new ArrayList<>();
-        configuredID = new byte[] {0};
+        configuredID = new byte[] { 0 };
         lastFuseConfiguration = null;
         datosPicProcesados = null;
         updateFuseStatus(false);
@@ -624,11 +623,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void enableOperationButtons(boolean enabled) {
         android.widget.Button[] buttons = {
-            btnProgramarPic,
-            btnLeerMemoriaDeLPic,
-            btnVerificarMemoriaDelPic,
-            btnBorrarMemoriaDeLPic,
-            btnDetectarPic
+                btnProgramarPic,
+                btnLeerMemoriaDeLPic,
+                btnVerificarMemoriaDelPic,
+                btnBorrarMemoriaDeLPic,
+                btnDetectarPic
         };
 
         for (android.widget.Button btn : buttons) {
@@ -664,9 +663,9 @@ public class MainActivity extends AppCompatActivity {
     private void executeProgram() {
         if (currentChip == null || firmware.isEmpty()) {
             Toast.makeText(
-                            this,
-                            getString(R.string.seleccione_un_chip_y_cargue_un),
-                            Toast.LENGTH_SHORT)
+                    this,
+                    getString(R.string.seleccione_un_chip_y_cargue_un),
+                    Toast.LENGTH_SHORT)
                     .show();
             return;
         }
@@ -674,22 +673,20 @@ public class MainActivity extends AppCompatActivity {
         publicidad.ocultarBanner();
 
         // MODIFICADO: Usar fusibles y ID configurados si existen
-        final byte[] idToUse = fusesConfigured ? configuredID : new byte[] {0};
-        final List<Integer> fusesToUse =
-                fusesConfigured ? new ArrayList<>(configuredFuses) : new ArrayList<>();
+        final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
+        final List<Integer> fusesToUse = fusesConfigured ? new ArrayList<>(configuredFuses) : new ArrayList<>();
 
         dialogManager.showProgrammingDialog(
                 () -> {
                     new Thread(
-                                    () -> {
-                                        boolean success =
-                                                programmingManager.programChip(
-                                                        currentChip, firmware, idToUse, fusesToUse);
-                                        runOnUiThread(
-                                                () -> {
-                                                    dialogManager.updateProgrammingResult(success);
-                                                });
-                                    })
+                            () -> {
+                                boolean success = programmingManager.programChip(
+                                        currentChip, firmware, idToUse, fusesToUse);
+                                runOnUiThread(
+                                        () -> {
+                                            dialogManager.updateProgrammingResult(success);
+                                        });
+                            })
                             .start();
                 },
                 () -> {
@@ -704,96 +701,94 @@ public class MainActivity extends AppCompatActivity {
         }
 
         new Thread(
-                        () -> {
-                            String romData = programmingManager.readRomMemory(currentChip);
-                            String eepromData = programmingManager.readEepromMemory(currentChip);
+                () -> {
+                    String romData = programmingManager.readRomMemory(currentChip);
+                    String eepromData = programmingManager.readEepromMemory(currentChip);
 
-                            runOnUiThread(
-                                    () -> {
-                                        try {
-                                            int romSize = currentChip.getTamanoROM();
-                                            int eepromSize =
-                                                    currentChip.isTamanoValidoDeEEPROM()
-                                                            ? currentChip.getTamanoEEPROM()
-                                                            : 0;
-                                            boolean hasEeprom =
-                                                    currentChip.isTamanoValidoDeEEPROM()
-                                                            && !eepromData.isEmpty();
+                    runOnUiThread(
+                            () -> {
+                                try {
+                                    int romSize = currentChip.getTamanoROM();
+                                    int eepromSize = currentChip.isTamanoValidoDeEEPROM()
+                                            ? currentChip.getTamanoEEPROM()
+                                            : 0;
+                                    boolean hasEeprom = currentChip.isTamanoValidoDeEEPROM()
+                                            && !eepromData.isEmpty();
 
-                                            memoryDisplayManager.showMemoryDataPopup(
-                                                    romData != null ? romData : "",
-                                                    romSize,
-                                                    eepromData != null ? eepromData : "",
-                                                    eepromSize,
-                                                    hasEeprom);
+                                    memoryDisplayManager.showMemoryDataPopup(
+                                            romData != null ? romData : "",
+                                            romSize,
+                                            eepromData != null ? eepromData : "",
+                                            eepromSize,
+                                            hasEeprom);
 
-                                            processStatusTextView.setText(
-                                                    getString(R.string.memoria_leida_exitosamente));
-                                        } catch (ChipConfigurationException e) {
-                                            Toast.makeText(
-                                                            MainActivity.this,
-                                                            "Error: " + e.getMessage(),
-                                                            Toast.LENGTH_LONG)
-                                                    .show();
-                                        }
-                                    });
-                        })
+                                    processStatusTextView.setText(
+                                            getString(R.string.memoria_leida_exitosamente));
+                                } catch (ChipConfigurationException e) {
+                                    Toast.makeText(
+                                            MainActivity.this,
+                                            "Error: " + e.getMessage(),
+                                            Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            });
+                })
                 .start();
     }
 
     private void executeEraseMemory() {
         new Thread(
-                        () -> {
-                            boolean success = programmingManager.eraseMemory();
-                            runOnUiThread(
-                                    () -> {
-                                        if (success) {
-                                            processStatusTextView.setText(
-                                                    getString(
-                                                            R.string.memoria_borrada_exitosamente));
-                                        } else {
-                                            processStatusTextView.setText(
-                                                    getString(R.string.error_borrando_memoria));
-                                        }
-                                    });
-                        })
+                () -> {
+                    boolean success = programmingManager.eraseMemory();
+                    runOnUiThread(
+                            () -> {
+                                if (success) {
+                                    processStatusTextView.setText(
+                                            getString(
+                                                    R.string.memoria_borrada_exitosamente));
+                                } else {
+                                    processStatusTextView.setText(
+                                            getString(R.string.error_borrando_memoria));
+                                }
+                            });
+                })
                 .start();
     }
 
     private void executeVerifyMemory() {
         new Thread(
-                        () -> {
-                            boolean isEmpty = programmingManager.verifyMemoryErased();
-                            runOnUiThread(
-                                    () -> {
-                                        if (isEmpty) {
-                                            processStatusTextView.setText(
-                                                    getString(R.string.memoria_vacia));
-                                        } else {
-                                            processStatusTextView.setText(
-                                                    getString(R.string.memoria_contiene_datos));
-                                        }
-                                    });
-                        })
+                () -> {
+                    boolean isEmpty = programmingManager.verifyMemoryErased();
+                    runOnUiThread(
+                            () -> {
+                                if (isEmpty) {
+                                    processStatusTextView.setText(
+                                            getString(R.string.memoria_vacia));
+                                } else {
+                                    processStatusTextView.setText(
+                                            getString(R.string.memoria_contiene_datos));
+                                }
+                            });
+                })
                 .start();
     }
 
     private void executeDetectChip() {
         new Thread(
-                        () -> {
-                            boolean detected = programmingManager.detectChipInSocket();
-                            runOnUiThread(
-                                    () -> {
-                                        if (detected) {
-                                            processStatusTextView.setText(
-                                                    getString(R.string.pic_detectado_en_socket));
-                                        } else {
-                                            processStatusTextView.setText(
-                                                    getString(
-                                                            R.string.no_se_detecto_pic_en_socket));
-                                        }
-                                    });
-                        })
+                () -> {
+                    boolean detected = programmingManager.detectChipInSocket();
+                    runOnUiThread(
+                            () -> {
+                                if (detected) {
+                                    processStatusTextView.setText(
+                                            getString(R.string.pic_detectado_en_socket));
+                                } else {
+                                    processStatusTextView.setText(
+                                            getString(
+                                                    R.string.no_se_detecto_pic_en_socket));
+                                }
+                            });
+                })
                 .start();
     }
 

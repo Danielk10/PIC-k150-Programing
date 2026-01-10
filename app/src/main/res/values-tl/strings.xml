@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Tanggapin</string>
+    <string name="cancelar">Kanselahin</string>
+    <string name="conectado">Nakakonekta</string>
+    <string name="desconectado">Nakadiskonekta</string>
+    <string name="grabando_pic">Pinoprogram ang PIC...</string>
+    <string name="espere_grabacion_pic">Maghintay lamang. Huwag idiskonekta ang device.</string>
+    <string name="grabacion_completada_pic">Kumpleto na ang Programming</string>
+    <string name="grabacion_correcta_pic">Matagumpay na naisulat ang firmware sa PIC.</string>
+    <string name="fallo_grabacion_pic">Nabigo ang Programming</string>
+    <string name="proceso_no_completado">Hindi nakumpleto ang proseso. Suriin ang koneksyon.</string>
+    <string name="protocolo_del_programador">Protocol ng Programmer</string>
+    <string name="modelo_del_programador">Modelo ng Programmer</string>
+    <string name="modelo_programador">Modelo ng Programmer</string>
+    <string name="protocolo">Protocol</string>
+    <string name="politica_de_privacidad">Patakaran sa Privacy</string>
+    <string name="no_se_detecto_pic_en_socket">Hindi nakita ang PIC sa socket</string>
+    <string name="pic_detectado_en_socket">Nakita ang PIC sa socket</string>
+    <string name="memoria_contiene_datos">May laman ang memory</string>
+    <string name="memoria_vacia">Walang laman ang memory</string>
+    <string name="error_borrando_memoria">Error sa pagbura ng memory</string>
+    <string name="memoria_borrada_exitosamente">Matagumpay na nabura ang memory</string>
+    <string name="memoria_leida_exitosamente">Matagumpay na nabasa ang memory</string>
+    <string name="seleccione_un_chip">Pumili ng chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Pumili ng chip at mag-load ng HEX file</string>
+    <string name="error_programando_pic">Error sa pag-program ng PIC</string>
+    <string name="pic_programado_exitosamente">Matagumpay na naprogram ang PIC</string>
+    <string name="iniciando_programacion">Sinisimulan ang programming...</string>
+    <string name="error_cargando_archivo">Error sa pag-load ng file</string>
+    <string name="archivo_hex_cargado_exitosamen">Matagumpay na na-load ang HEX file</string>
+    <string name="archivo_cargado">Na-load ang file</string>
+    <string name="error_inicializando_chip">Error sa pag-initialize ng chip</string>
+    <string name="conectado_al_programador">Nakakonekta sa programmer</string>
+    <string name="error_inicializando_base_de_da">Error sa pag-initialize ng chip database</string>
+    <string name="no_hay_modelos_de_chips_dispon">Walang available na mga chip model</string>
+    <string name="modelo_de_chip_invalido">Hindi valid ang chip model</string>
+    <string name="chip_no_encontrado_en_base_de_">Hindi nakita ang chip sa database</string>
+    <string name="error_procesando_chip">Error sa pagproseso ng chip</string>
+    <string name="no_hay_chip_seleccionado">Walang napiling chip</string>
+    <string name="modelo">Modelo</string>
+    <string name="palabras_rom">ROM words</string>
+    <string name="tamano_rom">Laki ng ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Hindi available</string>
+    <string name="tipo_de_nucleo">Uri ng Core</string>
+    <string name="error_obteniendo_datos_del_chi">Error sa pagkuha ng chip data</string>
+    <string name="modo">Mode</string>
+    <string name="icsp_solamente">ICSP lang</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">Hindi na-initialize ang FileManager</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Hindi makuha ang pangalan ng file</string>
+    <string name="seleccione_un_archivo_binario_">Pumili ng valid na binary file (.hex o .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Error sa pagbukas ng napiling file</string>
+    <string name="el_archivo_seleccionado_esta_v">Walang laman ang napiling file</string>
+    <string name="error_leyendo_el_archivo">Error sa pagbasa ng file</string>
+    <string name="error_inesperado_leyendo_el_ar">Hindi inaasahang error sa pagbasa ng file</string>
+    <string name="datos_de_memoria">Data ng Memory</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="cerrar">Isara</string>
+    <string name="protocolo_no_inicializado">Hindi na-initialize ang protocol</string>
+    <string name="datos_invalidos_para_programac">Hindi valid ang data para sa programming</string>
+    <string name="borrando_memorias">Binubura ang memory...</string>
+    <string name="error_borrando_memorias">Error sa pagbura ng memory</string>
+    <string name="programando_memoria_rom">Pinoprogram ang ROM memory...</string>
+    <string name="error_programando_rom">Error sa pag-program ng ROM</string>
+    <string name="programando_memoria_eeprom">Pinoprogram ang EEPROM memory...</string>
+    <string name="error_programando_eeprom">Error sa pag-program ng EEPROM</string>
+    <string name="programando_fuses_id">Pinoprogram ang Fuses ID...</string>
+    <string name="error_programando_fuses">Error sa pag-program ng Fuses</string>
+    <string name="programando_fuses_18f">Pinoprogram ang 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Error sa pag-program ng 18F Fuses</string>
+    <string name="programacion_completada">Kumpleto na ang programming</string>
+    <string name="error_inesperado">Hindi inaasahang error</string>
+    <string name="error_leyendo_memoria_rom">Error sa pagbasa ng ROM memory</string>
+    <string name="error_leyendo_memoria_eeprom">Error sa pagbasa ng EEPROM memory</string>
+    <string name="error_verificando_memoria">Error sa pag-verify ng memory</string>
+    <string name="error_detectando_chip">Error sa pag-detect ng chip</string>
+    <string name="driver_usb_no_disponible">Hindi available ang USB driver</string>
+    <string name="dispositivo_sin_puertos_usb_di">Walang available na USB ports ang device</string>
+    <string name="error_inicializando_protocolo_">Error sa pag-initialize ng communication protocol</string>
+    <string name="error_de_conexion_usb">Error sa USB connection</string>
+    <string name="error_inesperado_durante_la_co">Hindi inaasahang error habang kumokonekta</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Mga Operasyon</string>
+    <string name="cargar_archivo_hex">Mag-load ng HEX File</string>
+    <string name="programar_pic">I-program ang PIC</string>
+    <string name="leer_memoria">Basahin ang Memory</string>
+    <string name="verificar">I-verify</string>
+    <string name="borrar_memoria">Burahin ang Memory</string>
+    <string name="detectar_pic">Detect ang PIC</string>
+    <string name="esperando_operacion">Naghihintay ng operasyon...</string>
+    <string name="esperando_seleccion">Naghihintay ng pagpili...</string>
+    <string name="seleccionar_chip_pic">Pumili ng PIC Chip</string>
+    <!-- values-tl/strings.xml (Tagalo) -->
+    <string name="gputils_termux_asm">GPUTILS sa Termux ASM Compiler Android</string>
+</resources>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Elfogadás</string>
+    <string name="cancelar">Mégse</string>
+    <string name="conectado">Csatlakoztatva</string>
+    <string name="desconectado">Leválasztva</string>
+    <string name="grabando_pic">PIC programozása...</string>
+    <string name="espere_grabacion_pic">Kérjük, várjon. Ne válassza le az eszközt.</string>
+    <string name="grabacion_completada_pic">Programozás Befejezve</string>
+    <string name="grabacion_correcta_pic">A firmware sikeresen beíródott a PIC-be.</string>
+    <string name="fallo_grabacion_pic">Programozás Sikertelen</string>
+    <string name="proceso_no_completado">A folyamat nem fejeződött be. Ellenőrizze a kapcsolatot.</string>
+    <string name="protocolo_del_programador">Programozó Protokoll</string>
+    <string name="modelo_del_programador">Programozó Modell</string>
+    <string name="modelo_programador">Programozó Modell</string>
+    <string name="protocolo">Protokoll</string>
+    <string name="politica_de_privacidad">Adatvédelmi Irányelvek</string>
+    <string name="no_se_detecto_pic_en_socket">Nem található PIC a foglalatban</string>
+    <string name="pic_detectado_en_socket">PIC észlelve a foglalatban</string>
+    <string name="memoria_contiene_datos">A memória adatokat tartalmaz</string>
+    <string name="memoria_vacia">Memória üres</string>
+    <string name="error_borrando_memoria">Hiba a memória törlése közben</string>
+    <string name="memoria_borrada_exitosamente">Memória sikeresen törölve</string>
+    <string name="memoria_leida_exitosamente">Memória sikeresen olvasva</string>
+    <string name="seleccione_un_chip">Válasszon chipet</string>
+    <string name="seleccione_un_chip_y_cargue_un">Válasszon chipet és töltsön be egy HEX fájlt</string>
+    <string name="error_programando_pic">Hiba a PIC programozása közben</string>
+    <string name="pic_programado_exitosamente">PIC sikeresen programozva</string>
+    <string name="iniciando_programacion">Programozás indítása...</string>
+    <string name="error_cargando_archivo">Hiba a fájl betöltése közben</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX fájl sikeresen betöltve</string>
+    <string name="archivo_cargado">Fájl betöltve</string>
+    <string name="error_inicializando_chip">Hiba a chip inicializálása közben</string>
+    <string name="conectado_al_programador">Csatlakoztatva a programozóhoz</string>
+    <string name="error_inicializando_base_de_da">Hiba a chip adatbázis inicializálása közben</string>
+    <string name="no_hay_modelos_de_chips_dispon">Nincsenek elérhető chip modellek</string>
+    <string name="modelo_de_chip_invalido">Érvénytelen chip modell</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip nem található az adatbázisban</string>
+    <string name="error_procesando_chip">Hiba a chip feldolgozása közben</string>
+    <string name="no_hay_chip_seleccionado">Nincs chip kiválasztva</string>
+    <string name="modelo">Modell</string>
+    <string name="palabras_rom">ROM szavak</string>
+    <string name="tamano_rom">ROM méret</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Nem elérhető</string>
+    <string name="tipo_de_nucleo">Mag típusa</string>
+    <string name="error_obteniendo_datos_del_chi">Hiba a chip adatok lekérése közben</string>
+    <string name="modo">Mód</string>
+    <string name="icsp_solamente">Csak ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager nincs inicializálva</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Nem sikerült lekérni a fájlnevet</string>
+    <string name="seleccione_un_archivo_binario_">Válasszon érvényes bináris fájlt (.hex vagy .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Hiba a kiválasztott fájl megnyitása közben</string>
+    <string name="el_archivo_seleccionado_esta_v">A kiválasztott fájl üres</string>
+    <string name="error_leyendo_el_archivo">Hiba a fájl olvasása közben</string>
+    <string name="error_inesperado_leyendo_el_ar">Váratlan hiba a fájl olvasása közben</string>
+    <string name="datos_de_memoria">Memória adatok</string>
+    <string name="memoria_rom">ROM memória</string>
+    <string name="memoria_eeprom">EEPROM memória</string>
+    <string name="cerrar">Bezárás</string>
+    <string name="protocolo_no_inicializado">Protokoll nincs inicializálva</string>
+    <string name="datos_invalidos_para_programac">Érvénytelen adatok a programozáshoz</string>
+    <string name="borrando_memorias">Memória törlése...</string>
+    <string name="error_borrando_memorias">Hiba a memória törlése közben</string>
+    <string name="programando_memoria_rom">ROM memória programozása...</string>
+    <string name="error_programando_rom">Hiba a ROM programozása közben</string>
+    <string name="programando_memoria_eeprom">EEPROM memória programozása...</string>
+    <string name="error_programando_eeprom">Hiba az EEPROM programozása közben</string>
+    <string name="programando_fuses_id">Fuses ID programozása...</string>
+    <string name="error_programando_fuses">Hiba a Fuses programozása közben</string>
+    <string name="programando_fuses_18f">18F Fuses programozása...</string>
+    <string name="error_programando_fuses_18f">Hiba a 18F Fuses programozása közben</string>
+    <string name="programacion_completada">Programozás befejezve</string>
+    <string name="error_inesperado">Váratlan hiba</string>
+    <string name="error_leyendo_memoria_rom">Hiba a ROM memória olvasása közben</string>
+    <string name="error_leyendo_memoria_eeprom">Hiba az EEPROM memória olvasása közben</string>
+    <string name="error_verificando_memoria">Hiba a memória ellenőrzése közben</string>
+    <string name="error_detectando_chip">Hiba a chip felismerése közben</string>
+    <string name="driver_usb_no_disponible">USB meghajtó nem elérhető</string>
+    <string name="dispositivo_sin_puertos_usb_di">Eszköz elérhető USB portok nélkül</string>
+    <string name="error_inicializando_protocolo_">Hiba a kommunikációs protokoll inicializálása közben</string>
+    <string name="error_de_conexion_usb">USB csatlakozási hiba</string>
+    <string name="error_inesperado_durante_la_co">Váratlan hiba a csatlakozás közben</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Műveletek</string>
+    <string name="cargar_archivo_hex">HEX fájl betöltése</string>
+    <string name="programar_pic">PIC programozása</string>
+    <string name="leer_memoria">Memória olvasása</string>
+    <string name="verificar">Ellenőrzés</string>
+    <string name="borrar_memoria">Memória törlése</string>
+    <string name="detectar_pic">PIC felismerése</string>
+    <string name="esperando_operacion">Művelet várakozása...</string>
+    <string name="esperando_seleccion">Kiválasztás várakozása...</string>
+    <string name="seleccionar_chip_pic">PIC chip kiválasztása</string>
+    <!-- values-hu/strings.xml (Húngaro) -->
+    <string name="gputils_termux_asm">GPUTILS Termux-ban ASM Fordító Android</string>
+</resources>

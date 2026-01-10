@@ -99,6 +99,6 @@
     <string name="esperando_operacion">Čakam na operacijo...</string>
     <string name="esperando_seleccion">Pričakujem izbiro...</string>
     <string name="seleccionar_chip_pic">Izberite čip PIC</string>
-    <!-- values-sl/strings.xml (Slovenian) -->
+    <!-- values-sl/strings.xml (Esloveno) -->
     <string name="gputils_termux_asm">GPUTILS v Termux Compiler ASM Android</string>
 </resources>

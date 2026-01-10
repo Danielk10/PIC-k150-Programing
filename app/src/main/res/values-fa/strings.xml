@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">قبول</string>
+    <string name="cancelar">لغو</string>
+    <string name="conectado">متصل</string>
+    <string name="desconectado">قطع شده</string>
+    <string name="grabando_pic">در حال برنامه‌ریزی PIC...</string>
+    <string name="espere_grabacion_pic">لطفاً صبر کنید. دستگاه را جدا نکنید.</string>
+    <string name="grabacion_completada_pic">برنامه‌ریزی کامل شد</string>
+    <string name="grabacion_correcta_pic">فریمور با موفقیت در PIC نوشته شد.</string>
+    <string name="fallo_grabacion_pic">برنامه‌ریزی ناموفق</string>
+    <string name="proceso_no_completado">فرآیند کامل نشد. اتصال را بررسی کنید.</string>
+    <string name="protocolo_del_programador">پروتکل برنامه‌نویس</string>
+    <string name="modelo_del_programador">مدل برنامه‌نویس</string>
+    <string name="modelo_programador">مدل برنامه‌نویس</string>
+    <string name="protocolo">پروتکل</string>
+    <string name="politica_de_privacidad">سیاست حفظ حریم خصوصی</string>
+    <string name="no_se_detecto_pic_en_socket">PIC در سوکت شناسایی نشد</string>
+    <string name="pic_detectado_en_socket">PIC در سوکت شناسایی شد</string>
+    <string name="memoria_contiene_datos">حافظه حاوی داده است</string>
+    <string name="memoria_vacia">حافظه خالی</string>
+    <string name="error_borrando_memoria">خطا در پاک کردن حافظه</string>
+    <string name="memoria_borrada_exitosamente">حافظه با موفقیت پاک شد</string>
+    <string name="memoria_leida_exitosamente">حافظه با موفقیت خوانده شد</string>
+    <string name="seleccione_un_chip">یک تراشه انتخاب کنید</string>
+    <string name="seleccione_un_chip_y_cargue_un">یک تراشه انتخاب کنید و فایل HEX بارگذاری کنید</string>
+    <string name="error_programando_pic">خطا در برنامه‌ریزی PIC</string>
+    <string name="pic_programado_exitosamente">PIC با موفقیت برنامه‌ریزی شد</string>
+    <string name="iniciando_programacion">شروع برنامه‌ریزی...</string>
+    <string name="error_cargando_archivo">خطا در بارگذاری فایل</string>
+    <string name="archivo_hex_cargado_exitosamen">فایل HEX با موفقیت بارگذاری شد</string>
+    <string name="archivo_cargado">فایل بارگذاری شد</string>
+    <string name="error_inicializando_chip">خطا در راه‌اندازی تراشه</string>
+    <string name="conectado_al_programador">متصل به برنامه‌نویس</string>
+    <string name="error_inicializando_base_de_da">خطا در راه‌اندازی پایگاه داده تراشه</string>
+    <string name="no_hay_modelos_de_chips_dispon">مدل تراشه‌ای موجود نیست</string>
+    <string name="modelo_de_chip_invalido">مدل تراشه نامعتبر</string>
+    <string name="chip_no_encontrado_en_base_de_">تراشه در پایگاه داده یافت نشد</string>
+    <string name="error_procesando_chip">خطا در پردازش تراشه</string>
+    <string name="no_hay_chip_seleccionado">تراشه‌ای انتخاب نشده</string>
+    <string name="modelo">مدل</string>
+    <string name="palabras_rom">کلمات ROM</string>
+    <string name="tamano_rom">اندازه ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">موجود نیست</string>
+    <string name="tipo_de_nucleo">نوع هسته</string>
+    <string name="error_obteniendo_datos_del_chi">خطا در دریافت داده‌های تراشه</string>
+    <string name="modo">حالت</string>
+    <string name="icsp_solamente">فقط ICSP</string>
+    <string name="pin_1">پین ۱</string>
+    <string name="filemanager_no_inicializado">FileManager راه‌اندازی نشده</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">نام فایل قابل دریافت نیست</string>
+    <string name="seleccione_un_archivo_binario_">یک فایل باینری معتبر انتخاب کنید (.hex یا .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">خطا در باز کردن فایل انتخاب شده</string>
+    <string name="el_archivo_seleccionado_esta_v">فایل انتخاب شده خالی است</string>
+    <string name="error_leyendo_el_archivo">خطا در خواندن فایل</string>
+    <string name="error_inesperado_leyendo_el_ar">خطای غیرمنتظره در خواندن فایل</string>
+    <string name="datos_de_memoria">داده‌های حافظه</string>
+    <string name="memoria_rom">حافظه ROM</string>
+    <string name="memoria_eeprom">حافظه EEPROM</string>
+    <string name="cerrar">بستن</string>
+    <string name="protocolo_no_inicializado">پروتکل راه‌اندازی نشده</string>
+    <string name="datos_invalidos_para_programac">داده‌های نامعتبر برای برنامه‌ریزی</string>
+    <string name="borrando_memorias">در حال پاک کردن حافظه...</string>
+    <string name="error_borrando_memorias">خطا در پاک کردن حافظه</string>
+    <string name="programando_memoria_rom">در حال برنامه‌ریزی حافظه ROM...</string>
+    <string name="error_programando_rom">خطا در برنامه‌ریزی ROM</string>
+    <string name="programando_memoria_eeprom">در حال برنامه‌ریزی حافظه EEPROM...</string>
+    <string name="error_programando_eeprom">خطا در برنامه‌ریزی EEPROM</string>
+    <string name="programando_fuses_id">در حال برنامه‌ریزی Fuses ID...</string>
+    <string name="error_programando_fuses">خطا در برنامه‌ریزی Fuses</string>
+    <string name="programando_fuses_18f">در حال برنامه‌ریزی 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">خطا در برنامه‌ریزی 18F Fuses</string>
+    <string name="programacion_completada">برنامه‌ریزی کامل شد</string>
+    <string name="error_inesperado">خطای غیرمنتظره</string>
+    <string name="error_leyendo_memoria_rom">خطا در خواندن حافظه ROM</string>
+    <string name="error_leyendo_memoria_eeprom">خطا در خواندن حافظه EEPROM</string>
+    <string name="error_verificando_memoria">خطا در تأیید حافظه</string>
+    <string name="error_detectando_chip">خطا در شناسایی تراشه</string>
+    <string name="driver_usb_no_disponible">درایور USB موجود نیست</string>
+    <string name="dispositivo_sin_puertos_usb_di">دستگاه بدون درگاه USB</string>
+    <string name="error_inicializando_protocolo_">خطا در راه‌اندازی پروتکل ارتباطی</string>
+    <string name="error_de_conexion_usb">خطای اتصال USB</string>
+    <string name="error_inesperado_durante_la_co">خطای غیرمنتظره در حین اتصال</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">عملیات</string>
+    <string name="cargar_archivo_hex">بارگذاری فایل HEX</string>
+    <string name="programar_pic">برنامه‌ریزی PIC</string>
+    <string name="leer_memoria">خواندن حافظه</string>
+    <string name="verificar">تأیید</string>
+    <string name="borrar_memoria">پاک کردن حافظه</string>
+    <string name="detectar_pic">شناسایی PIC</string>
+    <string name="esperando_operacion">در انتظار عملیات...</string>
+    <string name="esperando_seleccion">در انتظار انتخاب...</string>
+    <string name="seleccionar_chip_pic">انتخاب تراشه PIC</string>
+    <!-- values-fa/strings.xml (Persa) -->
+    <string name="gputils_termux_asm">GPUTILS در Termux کامپایلر ASM اندروید</string>
+</resources>

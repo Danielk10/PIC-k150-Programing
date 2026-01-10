@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Αποδοχή</string>
+    <string name="cancelar">Ακύρωση</string>
+    <string name="conectado">Συνδεδεμένο</string>
+    <string name="desconectado">Αποσυνδεδεμένο</string>
+    <string name="grabando_pic">Προγραμματισμός PIC...</string>
+    <string name="espere_grabacion_pic">Παρακαλώ περιμένετε. Μην αποσυνδέετε τη συσκευή.</string>
+    <string name="grabacion_completada_pic">Προγραμματισμός Ολοκληρώθηκε</string>
+    <string name="grabacion_correcta_pic">Το firmware γράφτηκε επιτυχώς στο PIC.</string>
+    <string name="fallo_grabacion_pic">Αποτυχία Προγραμματισμού</string>
+    <string name="proceso_no_completado">Η διαδικασία δεν ολοκληρώθηκε. Ελέγξτε τη σύνδεση.</string>
+    <string name="protocolo_del_programador">Πρωτόκολλο Προγραμματιστή</string>
+    <string name="modelo_del_programador">Μοντέλο Προγραμματιστή</string>
+    <string name="modelo_programador">Μοντέλο Προγραμματιστή</string>
+    <string name="protocolo">Πρωτόκολλο</string>
+    <string name="politica_de_privacidad">Πολιτική Απορρήτου</string>
+    <string name="no_se_detecto_pic_en_socket">Δεν εντοπίστηκε PIC στην υποδοχή</string>
+    <string name="pic_detectado_en_socket">PIC εντοπίστηκε στην υποδοχή</string>
+    <string name="memoria_contiene_datos">Η μνήμη περιέχει δεδομένα</string>
+    <string name="memoria_vacia">Η μνήμη είναι κενή</string>
+    <string name="error_borrando_memoria">Σφάλμα διαγραφής μνήμης</string>
+    <string name="memoria_borrada_exitosamente">Η μνήμη διαγράφηκε επιτυχώς</string>
+    <string name="memoria_leida_exitosamente">Η μνήμη διαβάστηκε επιτυχώς</string>
+    <string name="seleccione_un_chip">Επιλέξτε chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Επιλέξτε chip και φορτώστε αρχείο HEX</string>
+    <string name="error_programando_pic">Σφάλμα προγραμματισμού PIC</string>
+    <string name="pic_programado_exitosamente">Το PIC προγραμματίστηκε επιτυχώς</string>
+    <string name="iniciando_programacion">Έναρξη προγραμματισμού...</string>
+    <string name="error_cargando_archivo">Σφάλμα φόρτωσης αρχείου</string>
+    <string name="archivo_hex_cargado_exitosamen">Το αρχείο HEX φορτώθηκε επιτυχώς</string>
+    <string name="archivo_cargado">Το αρχείο φορτώθηκε</string>
+    <string name="error_inicializando_chip">Σφάλμα αρχικοποίησης chip</string>
+    <string name="conectado_al_programador">Συνδεδεμένο στον προγραμματιστή</string>
+    <string name="error_inicializando_base_de_da">Σφάλμα αρχικοποίησης βάσης δεδομένων chip</string>
+    <string name="no_hay_modelos_de_chips_dispon">Δεν υπάρχουν διαθέσιμα μοντέλα chip</string>
+    <string name="modelo_de_chip_invalido">Μη έγκυρο μοντέλο chip</string>
+    <string name="chip_no_encontrado_en_base_de_">Το chip δεν βρέθηκε στη βάση δεδομένων</string>
+    <string name="error_procesando_chip">Σφάλμα επεξεργασίας chip</string>
+    <string name="no_hay_chip_seleccionado">Δεν έχει επιλεγεί chip</string>
+    <string name="modelo">Μοντέλο</string>
+    <string name="palabras_rom">Λέξεις ROM</string>
+    <string name="tamano_rom">Μέγεθος ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Μη διαθέσιμο</string>
+    <string name="tipo_de_nucleo">Τύπος Πυρήνα</string>
+    <string name="error_obteniendo_datos_del_chi">Σφάλμα λήψης δεδομένων chip</string>
+    <string name="modo">Λειτουργία</string>
+    <string name="icsp_solamente">Μόνο ICSP</string>
+    <string name="pin_1">Ακίδα 1</string>
+    <string name="filemanager_no_inicializado">Ο FileManager δεν έχει αρχικοποιηθεί</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Δεν ήταν δυνατή η λήψη του ονόματος αρχείου</string>
+    <string name="seleccione_un_archivo_binario_">Επιλέξτε έγκυρο δυαδικό αρχείο (.hex ή .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Σφάλμα ανοίγματος επιλεγμένου αρχείου</string>
+    <string name="el_archivo_seleccionado_esta_v">Το επιλεγμένο αρχείο είναι κενό</string>
+    <string name="error_leyendo_el_archivo">Σφάλμα ανάγνωσης αρχείου</string>
+    <string name="error_inesperado_leyendo_el_ar">Απροσδόκητο σφάλμα ανάγνωσης αρχείου</string>
+    <string name="datos_de_memoria">Δεδομένα Μνήμης</string>
+    <string name="memoria_rom">Μνήμη ROM</string>
+    <string name="memoria_eeprom">Μνήμη EEPROM</string>
+    <string name="cerrar">Κλείσιμο</string>
+    <string name="protocolo_no_inicializado">Το πρωτόκολλο δεν έχει αρχικοποιηθεί</string>
+    <string name="datos_invalidos_para_programac">Μη έγκυρα δεδομένα για προγραμματισμό</string>
+    <string name="borrando_memorias">Διαγραφή μνήμης...</string>
+    <string name="error_borrando_memorias">Σφάλμα διαγραφής μνήμης</string>
+    <string name="programando_memoria_rom">Προγραμματισμός μνήμης ROM...</string>
+    <string name="error_programando_rom">Σφάλμα προγραμματισμού ROM</string>
+    <string name="programando_memoria_eeprom">Προγραμματισμός μνήμης EEPROM...</string>
+    <string name="error_programando_eeprom">Σφάλμα προγραμματισμού EEPROM</string>
+    <string name="programando_fuses_id">Προγραμματισμός Fuses ID...</string>
+    <string name="error_programando_fuses">Σφάλμα προγραμματισμού Fuses</string>
+    <string name="programando_fuses_18f">Προγραμματισμός 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Σφάλμα προγραμματισμού 18F Fuses</string>
+    <string name="programacion_completada">Ο προγραμματισμός ολοκληρώθηκε</string>
+    <string name="error_inesperado">Απροσδόκητο σφάλμα</string>
+    <string name="error_leyendo_memoria_rom">Σφάλμα ανάγνωσης μνήμης ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Σφάλμα ανάγνωσης μνήμης EEPROM</string>
+    <string name="error_verificando_memoria">Σφάλμα επαλήθευσης μνήμης</string>
+    <string name="error_detectando_chip">Σφάλμα ανίχνευσης chip</string>
+    <string name="driver_usb_no_disponible">Ο οδηγός USB δεν είναι διαθέσιμος</string>
+    <string name="dispositivo_sin_puertos_usb_di">Συσκευή χωρίς διαθέσιμες θύρες USB</string>
+    <string name="error_inicializando_protocolo_">Σφάλμα αρχικοποίησης πρωτοκόλλου επικοινωνίας</string>
+    <string name="error_de_conexion_usb">Σφάλμα σύνδεσης USB</string>
+    <string name="error_inesperado_durante_la_co">Απροσδόκητο σφάλμα κατά τη σύνδεση</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Ενέργειες</string>
+    <string name="cargar_archivo_hex">Φόρτωση Αρχείου HEX</string>
+    <string name="programar_pic">Προγραμματισμός PIC</string>
+    <string name="leer_memoria">Ανάγνωση Μνήμης</string>
+    <string name="verificar">Επαλήθευση</string>
+    <string name="borrar_memoria">Διαγραφή Μνήμης</string>
+    <string name="detectar_pic">Ανίχνευση PIC</string>
+    <string name="esperando_operacion">Αναμονή ενέργειας...</string>
+    <string name="esperando_seleccion">Αναμονή επιλογής...</string>
+    <string name="seleccionar_chip_pic">Επιλογή PIC Chip</string>
+    <!-- values-el/strings.xml (Griego) -->
+    <string name="gputils_termux_asm">GPUTILS σε Termux ASM Compiler Android</string>
+</resources>

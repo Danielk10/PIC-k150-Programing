@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">स्वीकार करें</string>
     <string name="cancelar">रद्द करें</string>
     <string name="conectado">कनेक्टेड</string>
@@ -84,7 +87,8 @@
     <string name="error_inicializando_protocolo_">संचार प्रोटोकॉल शुरू करने में त्रुटि</string>
     <string name="error_de_conexion_usb">USB कनेक्शन त्रुटि</string>
     <string name="error_inesperado_durante_la_co">कनेक्शन के दौरान अप्रत्याशित त्रुटि</string>
-    <!-- Strings adicionales para UI -->
+
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">संचालन</string>
     <string name="cargar_archivo_hex">HEX फ़ाइल लोड करें</string>
     <string name="programar_pic">PIC प्रोग्राम करें</string>

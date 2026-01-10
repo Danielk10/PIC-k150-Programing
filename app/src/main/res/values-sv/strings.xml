@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Acceptera</string>
+    <string name="cancelar">Avbryt</string>
+    <string name="conectado">Ansluten</string>
+    <string name="desconectado">Frånkopplad</string>
+    <string name="grabando_pic">Programmerar PIC...</string>
+    <string name="espere_grabacion_pic">Vänta. Koppla inte bort enheten.</string>
+    <string name="grabacion_completada_pic">Programmering Slutförd</string>
+    <string name="grabacion_correcta_pic">Firmware skrevs framgångsrikt till PIC.</string>
+    <string name="fallo_grabacion_pic">Programmering Misslyckades</string>
+    <string name="proceso_no_completado">Processen kunde inte slutföras. Kontrollera anslutningen.</string>
+    <string name="protocolo_del_programador">Programmerarprotokoll</string>
+    <string name="modelo_del_programador">Programmerarmodell</string>
+    <string name="modelo_programador">Programmerarmodell</string>
+    <string name="protocolo">Protokoll</string>
+    <string name="politica_de_privacidad">Integritetspolicy</string>
+    <string name="no_se_detecto_pic_en_socket">PIC upptäcktes inte i sockeln</string>
+    <string name="pic_detectado_en_socket">PIC upptäckt i sockeln</string>
+    <string name="memoria_contiene_datos">Minnet innehåller data</string>
+    <string name="memoria_vacia">Minnet är tomt</string>
+    <string name="error_borrando_memoria">Fel vid radering av minne</string>
+    <string name="memoria_borrada_exitosamente">Minnet raderades framgångsrikt</string>
+    <string name="memoria_leida_exitosamente">Minnet lästes framgångsrikt</string>
+    <string name="seleccione_un_chip">Välj ett chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Välj ett chip och ladda en HEX-fil</string>
+    <string name="error_programando_pic">Fel vid programmering av PIC</string>
+    <string name="pic_programado_exitosamente">PIC programmerades framgångsrikt</string>
+    <string name="iniciando_programacion">Startar programmering...</string>
+    <string name="error_cargando_archivo">Fel vid laddning av fil</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-fil laddades framgångsrikt</string>
+    <string name="archivo_cargado">Fil laddad</string>
+    <string name="error_inicializando_chip">Fel vid initiering av chip</string>
+    <string name="conectado_al_programador">Ansluten till programmerare</string>
+    <string name="error_inicializando_base_de_da">Fel vid initiering av chipdatabas</string>
+    <string name="no_hay_modelos_de_chips_dispon">Inga chipmodeller tillgängliga</string>
+    <string name="modelo_de_chip_invalido">Ogiltig chipmodell</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip hittades inte i databasen</string>
+    <string name="error_procesando_chip">Fel vid bearbetning av chip</string>
+    <string name="no_hay_chip_seleccionado">Inget chip valt</string>
+    <string name="modelo">Modell</string>
+    <string name="palabras_rom">ROM-ord</string>
+    <string name="tamano_rom">ROM-storlek</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Inte tillgänglig</string>
+    <string name="tipo_de_nucleo">Kärntyp</string>
+    <string name="error_obteniendo_datos_del_chi">Fel vid hämtning av chipdata</string>
+    <string name="modo">Läge</string>
+    <string name="icsp_solamente">Endast ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager inte initierad</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Kunde inte hämta filnamn</string>
+    <string name="seleccione_un_archivo_binario_">Välj en giltig binärfil (.hex eller .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Fel vid öppning av vald fil</string>
+    <string name="el_archivo_seleccionado_esta_v">Den valda filen är tom</string>
+    <string name="error_leyendo_el_archivo">Fel vid läsning av fil</string>
+    <string name="error_inesperado_leyendo_el_ar">Oväntat fel vid läsning av fil</string>
+    <string name="datos_de_memoria">Minnesdata</string>
+    <string name="memoria_rom">ROM-minne</string>
+    <string name="memoria_eeprom">EEPROM-minne</string>
+    <string name="cerrar">Stäng</string>
+    <string name="protocolo_no_inicializado">Protokoll inte initierat</string>
+    <string name="datos_invalidos_para_programac">Ogiltiga data för programmering</string>
+    <string name="borrando_memorias">Raderar minne...</string>
+    <string name="error_borrando_memorias">Fel vid radering av minne</string>
+    <string name="programando_memoria_rom">Programmerar ROM-minne...</string>
+    <string name="error_programando_rom">Fel vid programmering av ROM</string>
+    <string name="programando_memoria_eeprom">Programmerar EEPROM-minne...</string>
+    <string name="error_programando_eeprom">Fel vid programmering av EEPROM</string>
+    <string name="programando_fuses_id">Programmerar Fuses ID...</string>
+    <string name="error_programando_fuses">Fel vid programmering av Fuses</string>
+    <string name="programando_fuses_18f">Programmerar 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Fel vid programmering av 18F Fuses</string>
+    <string name="programacion_completada">Programmering slutförd</string>
+    <string name="error_inesperado">Oväntat fel</string>
+    <string name="error_leyendo_memoria_rom">Fel vid läsning av ROM-minne</string>
+    <string name="error_leyendo_memoria_eeprom">Fel vid läsning av EEPROM-minne</string>
+    <string name="error_verificando_memoria">Fel vid verifiering av minne</string>
+    <string name="error_detectando_chip">Fel vid detektering av chip</string>
+    <string name="driver_usb_no_disponible">USB-drivrutin inte tillgänglig</string>
+    <string name="dispositivo_sin_puertos_usb_di">Enhet utan tillgängliga USB-portar</string>
+    <string name="error_inicializando_protocolo_">Fel vid initiering av kommunikationsprotokoll</string>
+    <string name="error_de_conexion_usb">USB-anslutningsfel</string>
+    <string name="error_inesperado_durante_la_co">Oväntat fel under anslutning</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Åtgärder</string>
+    <string name="cargar_archivo_hex">Ladda HEX-fil</string>
+    <string name="programar_pic">Programmera PIC</string>
+    <string name="leer_memoria">Läs Minne</string>
+    <string name="verificar">Verifiera</string>
+    <string name="borrar_memoria">Radera Minne</string>
+    <string name="detectar_pic">Detektera PIC</string>
+    <string name="esperando_operacion">Väntar på åtgärd...</string>
+    <string name="esperando_seleccion">Väntar på val...</string>
+    <string name="seleccionar_chip_pic">Välj PIC Chip</string>
+    <!-- values-sv/strings.xml (Sueco) -->
+    <string name="gputils_termux_asm">GPUTILS i Termux ASM Compiler Android</string>
+</resources>

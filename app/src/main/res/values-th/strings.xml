@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">ยอมรับ</string>
     <string name="cancelar">ยกเลิก</string>
     <string name="conectado">เชื่อมต่อแล้ว</string>
@@ -84,6 +87,7 @@
     <string name="error_inicializando_protocolo_">ข้อผิดพลาดในการเริ่มต้นโปรโตคอลการสื่อสาร</string>
     <string name="error_de_conexion_usb">ข้อผิดพลาดการเชื่อมต่อ USB</string>
     <string name="error_inesperado_durante_la_co">ข้อผิดพลาดที่ไม่คาดคิดระหว่างการเชื่อมต่อ</string>
+
     <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">การดำเนินการ</string>
     <string name="cargar_archivo_hex">โหลดไฟล์ HEX</string>
@@ -95,6 +99,6 @@
     <string name="esperando_operacion">รอการดำเนินการ...</string>
     <string name="esperando_seleccion">รอการเลือก...</string>
     <string name="seleccionar_chip_pic">เลือกชิป PIC</string>
-    <!-- values-th/strings.xml (Tailandes) -->
+    <!-- values-th/strings.xml (Tailandés) -->
     <string name="gputils_termux_asm">GPUTILS ใน Termux ตัวรวบรวม ASM Android</string>
 </resources>

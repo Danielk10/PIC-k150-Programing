@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titulos de Actividades -->
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Politicas de Privacidad</string>
+
+    <!-- Ventana de grabacion del PIC -->
+    <string name="aceptar">Samþykkja</string>
+    <string name="cancelar">Hætta við</string>
+    <string name="conectado">Tengt</string>
+    <string name="desconectado">Aftengt</string>
+    <string name="grabando_pic">Forritar PIC...</string>
+    <string name="espere_grabacion_pic">Vinsamlegast bíðið. Ekki aftengja tækið.</string>
+    <string name="grabacion_completada_pic">Forritun Lokið</string>
+    <string name="grabacion_correcta_pic">Fastbúnaður var skrifaður á PIC.</string>
+    <string name="fallo_grabacion_pic">Forritun Mistókst</string>
+    <string name="proceso_no_completado">Ferlið kláraðist ekki. Athugaðu tengingu.</string>
+    <string name="protocolo_del_programador">Samskiptareglur Forritara</string>
+    <string name="modelo_del_programador">Gerð Forritara</string>
+    <string name="modelo_programador">Gerð Forritara</string>
+    <string name="protocolo">Samskiptareglur</string>
+    <string name="politica_de_privacidad">Persónuverndarstefna</string>
+    <string name="no_se_detecto_pic_en_socket">PIC fannst ekki í faldi</string>
+    <string name="pic_detectado_en_socket">PIC fannst í faldi</string>
+    <string name="memoria_contiene_datos">Minni inniheldur gögn</string>
+    <string name="memoria_vacia">Minni tómt</string>
+    <string name="error_borrando_memoria">Villa við að eyða minni</string>
+    <string name="memoria_borrada_exitosamente">Minni eytt</string>
+    <string name="memoria_leida_exitosamente">Minni lesið</string>
+    <string name="seleccione_un_chip">Veldu flögu</string>
+    <string name="seleccione_un_chip_y_cargue_un">Veldu flögu og hladdu HEX skrá</string>
+    <string name="error_programando_pic">Villa við að forrita PIC</string>
+    <string name="pic_programado_exitosamente">PIC forritað</string>
+    <string name="iniciando_programacion">Byrja forritun...</string>
+    <string name="error_cargando_archivo">Villa við að hlaða skrá</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX skrá hlaðin</string>
+    <string name="archivo_cargado">Skrá hlaðin</string>
+    <string name="error_inicializando_chip">Villa við að ræsa flögu</string>
+    <string name="conectado_al_programador">Tengt við forritara</string>
+    <string name="error_inicializando_base_de_da">Villa við að ræsa flögugagnagrunn</string>
+    <string name="no_hay_modelos_de_chips_dispon">Engar flögugerðir tiltækar</string>
+    <string name="modelo_de_chip_invalido">Ógild flögugerð</string>
+    <string name="chip_no_encontrado_en_base_de_">Flaga fannst ekki í gagnagrunni</string>
+    <string name="error_procesando_chip">Villa við að vinna úr flögu</string>
+    <string name="no_hay_chip_seleccionado">Engin flaga valin</string>
+    <string name="modelo">Gerð</string>
+    <string name="palabras_rom">ROM orð</string>
+    <string name="tamano_rom">ROM stærð</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Ekki tiltækt</string>
+    <string name="tipo_de_nucleo">Kjarnagerð</string>
+    <string name="error_obteniendo_datos_del_chi">Villa við að sækja flögugögn</string>
+    <string name="modo">Stilling</string>
+    <string name="icsp_solamente">Aðeins ICSP</string>
+    <string name="pin_1">Pinni 1</string>
+    <string name="filemanager_no_inicializado">FileManager ekki ræstur</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Gat ekki sótt skráarnafn</string>
+    <string name="seleccione_un_archivo_binario_">Veldu gilda tvíundaskrá (.hex eða .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Villa við að opna valda skrá</string>
+    <string name="el_archivo_seleccionado_esta_v">Valin skrá er tóm</string>
+    <string name="error_leyendo_el_archivo">Villa við að lesa skrá</string>
+    <string name="error_inesperado_leyendo_el_ar">Óvænt villa við að lesa skrá</string>
+    <string name="datos_de_memoria">Minnigögn</string>
+    <string name="memoria_rom">ROM Minni</string>
+    <string name="memoria_eeprom">EEPROM Minni</string>
+    <string name="cerrar">Loka</string>
+    <string name="protocolo_no_inicializado">Samskiptareglur ekki ræstar</string>
+    <string name="datos_invalidos_para_programac">Ógild gögn til forritunar</string>
+    <string name="borrando_memorias">Eyði minni...</string>
+    <string name="error_borrando_memorias">Villa við að eyða minni</string>
+    <string name="programando_memoria_rom">Forrita ROM minni...</string>
+    <string name="error_programando_rom">Villa við að forrita ROM</string>
+    <string name="programando_memoria_eeprom">Forrita EEPROM minni...</string>
+    <string name="error_programando_eeprom">Villa við að forrita EEPROM</string>
+    <string name="programando_fuses_id">Forrita Fuses ID...</string>
+    <string name="error_programando_fuses">Villa við að forrita Fuses</string>
+    <string name="programando_fuses_18f">Forrita 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Villa við að forrita 18F Fuses</string>
+    <string name="programacion_completada">Forritun lokið</string>
+    <string name="error_inesperado">Óvænt villa</string>
+    <string name="error_leyendo_memoria_rom">Villa við að lesa ROM minni</string>
+    <string name="error_leyendo_memoria_eeprom">Villa við að lesa EEPROM minni</string>
+    <string name="error_verificando_memoria">Villa við að staðfesta minni</string>
+    <string name="error_detectando_chip">Villa við að greina flögu</string>
+    <string name="driver_usb_no_disponible">USB rekill ekki tiltækur</string>
+    <string name="dispositivo_sin_puertos_usb_di">Tæki án tiltækra USB gátta</string>
+    <string name="error_inicializando_protocolo_">Villa við að ræsa samskiptareglur</string>
+    <string name="error_de_conexion_usb">USB tengingarvilla</string>
+    <string name="error_inesperado_durante_la_co">Óvænt villa við tengingu</string>
+
+    <!-- Strings adicionales necesarios para UI -->
+    <string name="operaciones">Aðgerðir</string>
+    <string name="cargar_archivo_hex">Hlaða HEX Skrá</string>
+    <string name="programar_pic">Forrita PIC</string>
+    <string name="leer_memoria">Lesa Minni</string>
+    <string name="verificar">Staðfesta</string>
+    <string name="borrar_memoria">Eyða Minni</string>
+    <string name="detectar_pic">Greina PIC</string>
+    <string name="esperando_operacion">Bíð eftir aðgerð...</string>
+    <string name="esperando_seleccion">Bíð eftir vali...</string>
+    <string name="seleccionar_chip_pic">Velja PIC Flögu</string>
+    <!-- values-is/strings.xml (Islandés) -->
+    <string name="gputils_termux_asm">GPUTILS í Termux ASM Þýðandi Android</string>
+</resources>
