@@ -44,14 +44,18 @@ public class PantallaCompleta {
      */
     public void habilitarEdgeToEdge() {
         try {
-            // Usar la API de EdgeToEdge de AndroidX Activity
-            // Esto configura automáticamente:
-            // - Barras del sistema transparentes
-            // - setDecorFitsSystemWindows(false)
-            // - Colores apropiados para el contenido
-            EdgeToEdge.enable(actividad);
+            if (Build.VERSION.SDK_INT >= 35) {
+                // En Android 15+ (API 35), Edge-to-Edge es el comportamiento por defecto.
+                // EdgeToEdge.enable() llama a métodos deprecados (setStatusBarColor),
+                // así que lo configuramos manualmente para evitar advertencias.
+                Window window = actividad.getWindow();
+                WindowCompat.setDecorFitsSystemWindows(window, false);
+            } else {
+                // Para versiones anteriores, usar la librería de compatibilidad
+                EdgeToEdge.enable(actividad);
+            }
         } catch (Exception e) {
-            // Fallback manual si EdgeToEdge falla
+            // Fallback manual si algo falla
             Window window = actividad.getWindow();
             WindowCompat.setDecorFitsSystemWindows(window, false);
         }
