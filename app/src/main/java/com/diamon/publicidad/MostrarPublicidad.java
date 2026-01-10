@@ -85,6 +85,8 @@ public class MostrarPublicidad implements Publicidad {
         }
     }
 
+    private boolean loadRequested = false;
+
     /**
      * Crea el AdView y prepara el AdRequest.
      * Debe ser llamado después de que MobileAds esté inicializado.
@@ -104,6 +106,11 @@ public class MostrarPublicidad implements Publicidad {
                 if (bannerListener != null) {
                     bannerListener.onBannerLoaded(adView);
                 }
+
+                // Cargar si estaba pendiente
+                if (loadRequested) {
+                    adView.loadAd(adRequest);
+                }
             });
         } catch (Exception e) {
             Log.e(TAG, "Error creating AdView: " + e.getMessage());
@@ -121,12 +128,8 @@ public class MostrarPublicidad implements Publicidad {
     @Override
     public void cargarBanner() {
         if (!isInitialized || adView == null) {
-            // Si aún no está inicializado, reintentar después de un delay
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                if (isInitialized && adView != null && adRequest != null) {
-                    adView.loadAd(adRequest);
-                }
-            }, 1000);
+            // Marcar como pendiente para cuando se inicialice
+            loadRequested = true;
             return;
         }
 
