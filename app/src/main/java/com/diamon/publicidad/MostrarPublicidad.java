@@ -71,6 +71,20 @@ public class MostrarPublicidad implements Publicidad {
         });
     }
 
+    public interface BannerListener {
+        void onBannerLoaded(AdView banner);
+    }
+
+    private BannerListener bannerListener;
+
+    public void setBannerListener(BannerListener listener) {
+        this.bannerListener = listener;
+        // Si ya esta listo, notificar de inmediato
+        if (isInitialized && adView != null) {
+            listener.onBannerLoaded(adView);
+        }
+    }
+
     /**
      * Crea el AdView y prepara el AdRequest.
      * Debe ser llamado después de que MobileAds esté inicializado.
@@ -85,6 +99,11 @@ public class MostrarPublicidad implements Publicidad {
                 adRequest = new AdRequest.Builder().build();
                 isInitialized = true;
                 Log.d(TAG, "AdView created successfully");
+
+                // Notificar listener si existe
+                if (bannerListener != null) {
+                    bannerListener.onBannerLoaded(adView);
+                }
             });
         } catch (Exception e) {
             Log.e(TAG, "Error creating AdView: " + e.getMessage());
