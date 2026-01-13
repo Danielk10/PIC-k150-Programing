@@ -795,8 +795,12 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("InvalidWakeLockTag")
     private void setupWakeLock() {
+        // CORREGIDO: FULL_WAKE_LOCK está deprecado.
+        // Usamos FLAG_KEEP_SCREEN_ON para la pantalla y PARTIAL_WAKE_LOCK para la CPU.
+        getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "PICProgramming");
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PICProgramming:Proceso");
     }
 
     @Override
