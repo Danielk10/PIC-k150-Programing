@@ -105,6 +105,7 @@
         android:layout_height="0dp"
         android:layout_margin="12dp"
         android:elevation="2dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
