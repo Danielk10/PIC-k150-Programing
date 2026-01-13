@@ -1,0 +1,10 @@
+<resources>
+    <!-- Configuración específica para Android 15 (API 35+) -->
+    <!-- Edge-to-Edge es el comportamiento por defecto, no es necesario establecer colores de barras -->
+    <style name="Base.Theme.PICk150Programing" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- En Android 15+, no establecemos statusBarColor ni navigationBarColor -->
+        <!-- El sistema se encarga de esto automáticamente para edge-to-edge -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

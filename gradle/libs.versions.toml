@@ -14,6 +14,8 @@ playServicesAds = "24.9.0"
 usbSerialForAndroid = "3.10.0"
 vectordrawable = "1.2.0"
 firebaseCrashlytics = "20.0.3"
+googleServices = "4.4.4"
+crashlyticsPlugin = "3.0.6"
 
 [libraries]
 admob-mediation = { module = "io.start:admob-mediation", version.ref = "admobMediation" }
@@ -37,4 +39,6 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
 
