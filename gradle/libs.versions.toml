@@ -11,7 +11,7 @@ material = "1.13.0"
 activity = "1.12.2"
 constraintlayout = "2.2.1"
 playServicesAds = "24.9.0"
-usbSerialForAndroid = "3.9.0"
+usbSerialForAndroid = "3.10.0"
 vectordrawable = "1.2.0"
 firebaseCrashlytics = "20.0.3"
 
