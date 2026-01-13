@@ -415,9 +415,9 @@ public class ProgrammingDialogManager {
         }
 
         View popupView = popupWindow.getContentView();
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics metrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        // CORREGIDO: Usar recursos del contexto para métricas
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 
         float targetY = metrics.heightPixels - popupView.getTop();
 
