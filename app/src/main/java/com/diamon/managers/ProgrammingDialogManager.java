@@ -84,9 +84,9 @@ public class ProgrammingDialogManager {
 
     /** Crea y muestra el PopupWindow con el dialogo */
     private void createPopupWindow() {
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        // CORREGIDO: Evitar usar windowManager.getDefaultDisplay() (Deprecado)
+        // Usamos los recursos del contexto que ya tienen las métricas ajustadas
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
 
         int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
