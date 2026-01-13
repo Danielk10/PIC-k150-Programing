@@ -34,8 +34,11 @@ import java.util.Map;
 /**
  * FuseConfigPopup - Gestor del PopupWindow para configuración de fusibles
  *
- * <p>VERSIÓN REDISEÑADA: - Layout dinámico que se ajusta automáticamente - Fusibles crecen/encojen
- * según cantidad - Log simplificado sin scroll (solo mostrará últimos mensajes) - Componentes
+ * <p>
+ * VERSIÓN REDISEÑADA: - Layout dinámico que se ajusta automáticamente -
+ * Fusibles crecen/encojen
+ * según cantidad - Log simplificado sin scroll (solo mostrará últimos mensajes)
+ * - Componentes
  * fluyen naturalmente - Scroll SOLO en el ScrollView principal
  */
 public class FuseConfigPopup {
@@ -71,7 +74,7 @@ public class FuseConfigPopup {
     private Map<String, Spinner> fuseSpinners = new HashMap<>();
     private Map<String, String> customFuses = new HashMap<>();
     private Map<String, String> lastConfiguration;
-    private byte[] currentIDData = new byte[] {0};
+    private byte[] currentIDData = new byte[] { 0 };
 
     public FuseConfigPopup(Context context, FuseConfigListener listener) {
         this.context = context;
@@ -110,8 +113,7 @@ public class FuseConfigPopup {
 
         // ========== SCROLL PRINCIPAL (WEIGHT=1) - TODO FLUYE AQUÍ ==========
         ScrollView mainScrollView = new ScrollView(context);
-        LinearLayout.LayoutParams scrollParams =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
+        LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         scrollParams.weight = 1;
         mainScrollView.setLayoutParams(scrollParams);
 
@@ -175,9 +177,8 @@ public class FuseConfigPopup {
         section.setBackgroundColor(Color.WHITE);
         section.setPadding(12, 12, 12, 12);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
@@ -208,7 +209,8 @@ public class FuseConfigPopup {
     }
 
     /**
-     * CORREGIDO: Crea la sección de edición de fusibles SIN ScrollView interno Se ajusta
+     * CORREGIDO: Crea la sección de edición de fusibles SIN ScrollView interno Se
+     * ajusta
      * dinámicamente según cantidad de fusibles
      */
     private LinearLayout createFuseEditorSection() {
@@ -217,11 +219,10 @@ public class FuseConfigPopup {
         section.setBackgroundColor(Color.WHITE);
         section.setPadding(12, 12, 12, 12);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT // ← SE AJUSTA SEGÚN CONTENIDO
-                        );
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT // ← SE AJUSTA SEGÚN CONTENIDO
+        );
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
@@ -239,11 +240,10 @@ public class FuseConfigPopup {
         fuseContainer.setPadding(8, 8, 8, 8);
         fuseContainer.setBackgroundColor(Color.parseColor("#FAFAFA"));
 
-        LinearLayout.LayoutParams containerParams =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT // ← SE AJUSTA SEGÚN CONTENIDO
-                        );
+        LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT // ← SE AJUSTA SEGÚN CONTENIDO
+        );
         fuseContainer.setLayoutParams(containerParams);
 
         section.addView(fuseContainer);
@@ -258,9 +258,8 @@ public class FuseConfigPopup {
         btnAddCustomFuse.setBackgroundColor(Color.parseColor("#FF9800"));
         btnAddCustomFuse.setAllCaps(false);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 12);
         btnAddCustomFuse.setLayoutParams(params);
 
@@ -327,9 +326,8 @@ public class FuseConfigPopup {
         section.setBackgroundColor(Color.WHITE);
         section.setPadding(12, 12, 12, 12);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
@@ -353,7 +351,8 @@ public class FuseConfigPopup {
     }
 
     /**
-     * SIMPLIFICADO: Crea la sección de log SIN ScrollView Solo muestra últimos 5 mensajes (trunca
+     * SIMPLIFICADO: Crea la sección de log SIN ScrollView Solo muestra últimos 5
+     * mensajes (trunca
      * automáticamente)
      */
     private LinearLayout createLogSection() {
@@ -362,9 +361,8 @@ public class FuseConfigPopup {
         section.setBackgroundColor(Color.parseColor("#FAFAFA"));
         section.setPadding(12, 12, 12, 12);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
@@ -384,9 +382,8 @@ public class FuseConfigPopup {
         logTextView.setPadding(8, 8, 8, 8);
         logTextView.setBackgroundColor(Color.WHITE);
 
-        LinearLayout.LayoutParams textParams =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         logTextView.setLayoutParams(textParams);
         logTextView.setMaxLines(5); // ← Solo muestra máximo 5 líneas
         logTextView.setEllipsize(android.text.TextUtils.TruncateAt.END);
@@ -402,9 +399,8 @@ public class FuseConfigPopup {
         buttonBar.setBackgroundColor(Color.WHITE);
         buttonBar.setPadding(12, 12, 12, 12);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonBar.setLayoutParams(params);
 
         // Primera fila: Restaurar desde PIC y HEX
@@ -417,8 +413,8 @@ public class FuseConfigPopup {
         btnRestoreFromChip = createButton("Restaurar desde PIC", "#FF9800");
         btnRestoreFromHex = createButton("Restaurar desde HEX", "#FF9800");
 
-        LinearLayout.LayoutParams btnParams =
-                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.0f);
         btnParams.setMargins(0, 0, 4, 0);
         btnRestoreFromChip.setLayoutParams(btnParams);
 
@@ -432,8 +428,7 @@ public class FuseConfigPopup {
 
         // Espacio
         View space = new View(context);
-        LinearLayout.LayoutParams spaceParams =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 8);
+        LinearLayout.LayoutParams spaceParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 8);
         space.setLayoutParams(spaceParams);
         buttonBar.addView(space);
 
@@ -545,8 +540,8 @@ public class FuseConfigPopup {
             }
 
             @SuppressWarnings("unchecked")
-            Map<String, Map<String, List<Integer>>> chipFuses =
-                    (Map<String, Map<String, List<Integer>>>) currentChipFuses.getVar("fuses");
+            Map<String, Map<String, List<Integer>>> chipFuses = (Map<String, Map<String, List<Integer>>>) currentChipFuses
+                    .getVar("fuses");
 
             if (chipFuses != null) {
                 int expectedFuseCount = chipFuses.size();
@@ -594,8 +589,8 @@ public class FuseConfigPopup {
         fuseSpinners.clear();
         customFuses.clear();
 
-        Map<String, Map<String, List<Integer>>> fuses =
-                (Map<String, Map<String, List<Integer>>>) currentChipFuses.getVar("fuses");
+        Map<String, Map<String, List<Integer>>> fuses = (Map<String, Map<String, List<Integer>>>) currentChipFuses
+                .getVar("fuses");
 
         if (fuses == null || fuses.isEmpty()) {
             TextView empty = new TextView(context);
@@ -623,9 +618,8 @@ public class FuseConfigPopup {
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setPadding(8, 8, 8, 8);
 
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 8);
         row.setLayoutParams(params);
 
@@ -635,20 +629,19 @@ public class FuseConfigPopup {
         label.setTextSize(14);
         label.setTextColor(Color.parseColor("#424242"));
 
-        LinearLayout.LayoutParams labelParams =
-                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+        LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.0f);
         label.setLayoutParams(labelParams);
         row.addView(label);
 
         // Spinner
         Spinner spinner = new Spinner(context);
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, options);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        LinearLayout.LayoutParams spinnerParams =
-                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.5f);
+        LinearLayout.LayoutParams spinnerParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.5f);
         spinner.setLayoutParams(spinnerParams);
         row.addView(spinner);
 
@@ -669,7 +662,7 @@ public class FuseConfigPopup {
             }
 
             customIdEditText.setText("");
-            currentIDData = new byte[] {0};
+            currentIDData = new byte[] { 0 };
 
             logMessage("✓ Restaurado desde chip");
             Toast.makeText(context, "Fusibles restaurados", Toast.LENGTH_SHORT).show();
@@ -730,7 +723,7 @@ public class FuseConfigPopup {
 
             Spinner spinner = fuseSpinners.get(fuseName);
             if (spinner != null) {
-                ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinner.getAdapter();
+                android.widget.SpinnerAdapter adapter = spinner.getAdapter();
                 for (int i = 0; i < adapter.getCount(); i++) {
                     if (adapter.getItem(i).equals(fuseValue)) {
                         spinner.setSelection(i);
@@ -779,7 +772,7 @@ public class FuseConfigPopup {
         String idText = customIdEditText.getText().toString().trim();
 
         if (idText.isEmpty()) {
-            return currentIDData != null ? currentIDData : new byte[] {0};
+            return currentIDData != null ? currentIDData : new byte[] { 0 };
         }
 
         try {
@@ -793,7 +786,7 @@ public class FuseConfigPopup {
             return result;
         } catch (Exception e) {
             logMessage("⚠ Error parseando ID");
-            return currentIDData != null ? currentIDData : new byte[] {0};
+            return currentIDData != null ? currentIDData : new byte[] { 0 };
         }
     }
 
