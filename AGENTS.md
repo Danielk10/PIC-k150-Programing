@@ -7,35 +7,38 @@ Este documento establece las reglas, estándares y convenciones para el desarrol
 - **Nombre**: PIC k150 Programming
 - **Lenguaje**: Java
 - **Plataforma**: Android (API 23-36)
-- **Arquitectura**: Programación Orientada a Objetos con patrones de diseño
+- **Arquitectura**: Programación Orientada a Objetos con Patrón Manager
 - **Protocolo**: P018 de KITSRUS
-- **Compilación**: Java 11
-- **Build Tools**: Gradle
+- **Compilación**: Java 11 (Compatibilidad Android Marshmallow/16)
+- **Build Tools**: Gradle (SDK 36)
 
 ## 🏗️ Arquitectura del Proyecto
 
 ### Estructura de Paquetes
 
-El proyecto sigue una arquitectura modular organizizada por funcionalidad:
+El proyecto sigue una arquitectura modular y delegada mediante managers:
 
 ```
-com.diamon.pic/
+com.diamon/
 ├── audio/           # Manejo de sonido y música de la aplicación
 ├── chip/            # Lógica específica de chips PIC y configuraciones
 ├── datos/           # Procesamiento de datos, archivos HEX y configuraciones
+├── excepciones/     # Excepciones personalizadas para manejo robusto de errores
 ├── graficos/        # Renderizado gráfico 2D y texturas
+├── managers/        # Lógica de negocio extraída de las Activities (Delegación)
 ├── nucleo/          # Interfaces abstractas y contratos del núcleo
-├── pic/             # Activities principales y UI
+├── pic/             # Activities principales y punto de entrada
 ├── politicas/       # Políticas de privacidad y términos
 ├── protocolo/       # Implementaciones específicas de protocolos
 ├── publicidad/      # Integración con servicios de publicidad
-└── utilidades/      # Clases de utilidad y helpers
+├── tutorial/        # Sistema de guías y ayuda al usuario
+└── utilidades/      # Clases de utilidad, helpers y PantallaCompleta
 ```
 
 ### Principios Arquitectónicos
 
 1. **Separación de Responsabilidades**: Cada paquete tiene una función específica y bien definida
-2. **Abstracciones en Núcleo**: Todas las funcionalidades principales se definen como interfaces en `nucleo`
+2. **Abstracciones en Núcleo**: Todas las funcionalidades principales se definen como interfaces y clases abstractas en `nucleo`
 3. **Implementaciones Específicas**: Las implementaciones concretas se ubican en paquetes especializados
 4. **Modularidad**: Componentes intercambiables y extensibles
 
@@ -104,6 +107,28 @@ public interface Datos {
 #### 4. Singleton Pattern (implícito)
 - **Ubicación**: Clases de utilidades
 - **Uso**: Gestión de recursos únicos
+
+#### 5. Manager Pattern (Core)
+- **Ubicación**: Paquete `com.diamon.managers`
+- **Uso**: Delegar lógica compleja fuera de `MainActivity`. Ejemplos: `UsbConnectionManager`, `PicProgrammingManager`, `FileManager`.
+- **Regla**: Las Activities NO deben contener lógica de protocolos o archivos; deben delegarla a un Manager.
+
+## 📱 Desarrollo Android Moderno
+
+### Soporte Android 15/16 y Edge-to-Edge
+El proyecto está optimizado para las últimas versiones de Android.
+
+1. **Edge-to-Edge**: Obligatorio para Android 15+. Se usa `PantallaCompleta.habilitarEdgeToEdge()` antes de `setContentView`.
+2. **Window Insets**: Manejo de paddings dinámicos para evitar que el contenido quede bajo la barra de navegación o estado.
+3. **Inmersión**: Uso de `controller.hide(Type.systemBars())` para modo de programación ininterrumpido.
+
+### Gestión Segura de Vistas y Contexto
+```java
+// Ejemplo de inicialización en MainActivity
+pantallaCompleta = new PantallaCompleta(this);
+pantallaCompleta.habilitarEdgeToEdge();
+pantallaCompleta.ocultarBotonesVirtuales();
+```
 
 ## 📝 Convenciones de Nomenclatura
 
@@ -182,32 +207,38 @@ public class InvalidChecksumException extends Exception {
 
 ### Patrón de Manejo
 ```java
-// Patrón típico: Try-catch con retorno de boolean
-public boolean iniciarVariablesDeProgramacion(ChipPic chipPIC) {
+// Patrón típico: Try-catch con delegación a UI thread
+new Thread(() -> {
     try {
-        // Lógica principal
-        usbSerialPort.write(payload.array(), 100);
-        respuesta.append(new String(readBytes(1, 100), StandardCharsets.US_ASCII));
-        
-        if (respuesta.toString().equals("I")) {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (IOException e) {
-        return false;
-    } catch (NumberFormatException e) {
-        return false;
+        boolean success = programmingManager.programChip(currentChip, firmware, idToUse, fusesToUse);
+        runOnUiThread(() -> dialogManager.updateProgrammingResult(success));
+    } catch (Exception e) {
+        runOnUiThread(() -> processStatusTextView.setText("Error: " + e.getMessage()));
     }
+}).start();
+```
+
+### Resiliencia y Estabilidad del Sistema
+Para errores globales o del sistema fuera de nuestro control (como fallos en el SDK de anuncios o broadcasts del sistema), se implementa un handler global en `PicApplication`:
+
+```java
+// En PicApplication.java
+private void setupUncaughtExceptionHandler() {
+    Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+        if (isSystemException(throwable)) {
+            Log.w(TAG, "Absorbed system exception: " + throwable.getClass().getSimpleName());
+            return; // Absorber sin crashear
+        }
+        // ... handler por defecto para el resto
+    });
 }
 ```
 
-### Manejo Silencioso Aceptable
+### Comunicación Segura (SafeBroadcastManager)
+Para Android 13+ (API 33+), se debe usar `SafeBroadcastManager` para asegurar el cumplimiento de exportación de receivers:
+
 ```java
-// Para operaciones de limpieza o no críticas
-} catch (IOException e) {
-    // Manejo silencioso aceptable para limpieza de recursos
-}
+safeManager.registerReceiver(receiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
 ```
 
 ## 💬 Estilo de Comentarios
@@ -506,16 +537,16 @@ app/src/androidTest/java/            # Integration tests
 2. **TODOS los nombres de métodos DEBEN ser descriptivos en español**
 3. **TODAS las respuestas y mensajes al usuario DEBEN estar en español**
 4. **TODA la documentación técnica DEBE estar en español**
-5. **El código DEBE seguir los principios de POO establecidos**
+5. **El código DEBE seguir el Patrón Manager (Separación de Actividad y Lógica)**
 6. **Las validaciones DEBEN hacerse al inicio de los métodos**
-7. **Los recursos de UI DEBEN usar el sistema de internacionalización**
-8. **El manejo de excepciones DEBE seguir el patrón establecido**
+7. **El soporte Edge-to-Edge es obligatorio para todas las nuevas Activities**
+8. **El manejo de excepciones DEBE ser resiliente y evitar crash por errores de sistema**
 9. **La estructura de paquetes DEBE respetarse estrictamente**
 10. **Context7 DEBE utilizarse para documentación actualizada de librerías externas**
 
 ---
 
-**Versión**: 1.0  
-**Última Actualización**: 2025  
+**Versión**: 2.6.2  
+**Última Actualización**: 2026  
 **Mantenedor**: Danielk10  
-**Licencia**: Apache 2.0
+**Licencia**: GPL-2.0 (Verificada en README)
