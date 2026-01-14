@@ -338,53 +338,43 @@ public class ProgrammingDialogManager {
     private void populateNativeAdView(FrameLayout container, NativeAd ad) {
         container.removeAllViews();
 
-        NativeAdView adView = new NativeAdView(context);
-        adView.setLayoutParams(
-                new FrameLayout.LayoutParams(
-                        FrameLayout.LayoutParams.MATCH_PARENT,
-                        FrameLayout.LayoutParams.MATCH_PARENT));
+        // Inflar el diseño XML personalizado
+        NativeAdView adView = (NativeAdView) android.view.LayoutInflater.from(context)
+                .inflate(R.layout.layout_native_ad, null);
 
-        // Crear vista del anuncio (simplificado)
-        LinearLayout adLayout = new LinearLayout(context);
-        adLayout.setOrientation(LinearLayout.VERTICAL);
-        adLayout.setPadding(dpToPx(10), dpToPx(10), dpToPx(10), dpToPx(10));
-        adLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+        // Ajustar parametros de layout
+        adView.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT));
 
-        // Titulo
-        TextView headline = new TextView(context);
-        headline.setText(ad.getHeadline());
-        headline.setTextSize(16);
-        headline.setTextColor(Color.BLACK);
-        adLayout.addView(headline);
+        // Vincular vistas
+        adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+        adView.setBodyView(adView.findViewById(R.id.ad_body));
+        adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+        adView.setIconView(adView.findViewById(R.id.ad_app_icon));
+        adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
+        adView.setMediaView(adView.findViewById(R.id.ad_media));
 
-        // Cuerpo
-        TextView body = new TextView(context);
-        body.setText(ad.getBody());
-        body.setTextSize(14);
-        body.setTextColor(Color.DKGRAY);
-        adLayout.addView(body);
+        // Poblar vistas
+        ((TextView) adView.getHeadlineView()).setText(ad.getHeadline());
+        ((TextView) adView.getBodyView()).setText(ad.getBody());
+        ((TextView) adView.getCallToActionView()).setText(ad.getCallToAction());
 
-        // Media view
-        MediaView mediaView = new MediaView(context);
-        LinearLayout.LayoutParams mediaParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,
-                1.0f);
-        mediaView.setLayoutParams(mediaParams);
-        adLayout.addView(mediaView);
+        if (ad.getAdvertiser() == null) {
+            adView.getAdvertiserView().setVisibility(View.INVISIBLE);
+        } else {
+            ((TextView) adView.getAdvertiserView()).setText(ad.getAdvertiser());
+            adView.getAdvertiserView().setVisibility(View.VISIBLE);
+        }
 
-        // Boton de accion
-        Button cta = new Button(context);
-        cta.setText(ad.getCallToAction());
-        cta.setTextColor(Color.WHITE);
-        cta.setBackgroundColor(Color.parseColor("#4CAF50"));
-        adLayout.addView(cta);
+        if (ad.getIcon() == null) {
+            adView.getIconView().setVisibility(View.GONE);
+        } else {
+            ((ImageView) adView.getIconView()).setImageDrawable(ad.getIcon().getDrawable());
+            adView.getIconView().setVisibility(View.VISIBLE);
+        }
 
-        adView.addView(adLayout);
-        adView.setHeadlineView(headline);
-        adView.setBodyView(body);
-        adView.setMediaView(mediaView);
-        adView.setCallToActionView(cta);
         adView.setNativeAd(ad);
-
         container.addView(adView);
     }
 
