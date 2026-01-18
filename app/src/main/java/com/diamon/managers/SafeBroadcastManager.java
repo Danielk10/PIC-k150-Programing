@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
  * Proporciona:
  * - Compatibilidad con Android 13+ (RECEIVER_EXPORTED/RECEIVER_NOT_EXPORTED)
  * - Manejo seguro de doble unregister
- * - Logging para debugging en producción
+ * - Logging para debugging en produccion
  * 
  * Uso:
  * 
@@ -62,7 +62,7 @@ public class SafeBroadcastManager {
 
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                // Android 13 (API 33) y superior requiere especificar el flag de exportación
+                // Android 13 (API 33) y superior requiere especificar el flag de exportacion
                 int flag = exported ? ContextCompat.RECEIVER_EXPORTED : ContextCompat.RECEIVER_NOT_EXPORTED;
 
                 ContextCompat.registerReceiver(context, receiver, filter, flag);
@@ -86,7 +86,7 @@ public class SafeBroadcastManager {
 
     /**
      * Desregistra un BroadcastReceiver de forma segura.
-     * No lanza excepción si el receiver ya fue desregistrado.
+     * No lanza excepcion si el receiver ya fue desregistrado.
      * 
      * @param receiver El BroadcastReceiver a desregistrar
      * @return true si el desregistro fue exitoso, false si hubo un error o ya
@@ -109,7 +109,7 @@ public class SafeBroadcastManager {
             return true;
 
         } catch (IllegalArgumentException e) {
-            // El receiver ya fue desregistrado - esto no es un error crítico
+            // El receiver ya fue desregistrado - esto no es un error critico
             Log.d(TAG, "Receiver was already unregistered");
             return false;
 

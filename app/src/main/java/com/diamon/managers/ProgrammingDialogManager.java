@@ -85,7 +85,7 @@ public class ProgrammingDialogManager {
     /** Crea y muestra el PopupWindow con el dialogo */
     private void createPopupWindow() {
         // CORREGIDO: Evitar usar windowManager.getDefaultDisplay() (Deprecado)
-        // Usamos los recursos del contexto que ya tienen las métricas ajustadas
+        // Usamos los recursos del contexto que ya tienen las metricas ajustadas
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
 
         int screenWidth = displayMetrics.widthPixels;
@@ -313,7 +313,7 @@ public class ProgrammingDialogManager {
                     @Override
                     public void onAdFailedToLoad(LoadAdError error) {
                         // Mostrar placeholder cuando el anuncio no carga
-                        // Esto es especialmente útil en emuladores donde Google Play Services
+                        // Esto es especialmente util en emuladores donde Google Play Services
                         // puede no estar completamente funcional
                         showAdPlaceholder(adContainer);
                     }
@@ -338,7 +338,7 @@ public class ProgrammingDialogManager {
     private void populateNativeAdView(FrameLayout container, NativeAd ad) {
         container.removeAllViews();
 
-        // Inflar el diseño XML personalizado
+        // Inflar el diseno XML personalizado
         NativeAdView adView = (NativeAdView) android.view.LayoutInflater.from(context)
                 .inflate(R.layout.layout_native_ad, null);
 
@@ -406,7 +406,7 @@ public class ProgrammingDialogManager {
 
         View popupView = popupWindow.getContentView();
 
-        // CORREGIDO: Usar recursos del contexto para métricas
+        // CORREGIDO: Usar recursos del contexto para metricas
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 
         float targetY = metrics.heightPixels - popupView.getTop();
@@ -448,9 +448,9 @@ public class ProgrammingDialogManager {
     }
 
     /**
-     * Muestra un placeholder cuando el anuncio no se puede cargar
-     * Esto mantiene el diálogo visible y con buen aspecto incluso cuando
-     * el anuncio no está disponible (común en emuladores)
+     * Muestra un placeholder cuando el anuncio no se puede cargar.
+     * Esto mantiene el dialogo visible y con buen aspecto incluso cuando
+     * el anuncio no esta disponible (comun en emuladores).
      *
      * @param container Contenedor del anuncio
      */
@@ -464,7 +464,7 @@ public class ProgrammingDialogManager {
         placeholderLayout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
         placeholderLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
 
-        // Icono de información
+        // Icono de informacion
         ImageView icon = new ImageView(context);
         icon.setImageResource(android.R.drawable.ic_dialog_info);
         icon.setColorFilter(Color.parseColor("#9E9E9E"));

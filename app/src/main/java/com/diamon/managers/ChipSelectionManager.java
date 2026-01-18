@@ -22,7 +22,8 @@ import java.util.List;
 import com.diamon.pic.R;
 
 /**
- * Gestor de seleccion de chips PIC - VERSION FINAL - Info completa con metodos EXACTOS de ChipPic -
+ * Gestor de seleccion de chips PIC - VERSION FINAL - Info completa con metodos
+ * EXACTOS de ChipPic -
  * Colores: Etiquetas en BLANCO, Datos en VERDE - Tipo de nucleo incluido
  */
 public class ChipSelectionManager {
@@ -76,9 +77,8 @@ public class ChipSelectionManager {
 
         String[] modelsArray = chipModels.toArray(new String[0]);
 
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        context, android.R.layout.simple_spinner_dropdown_item, modelsArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                context, android.R.layout.simple_spinner_dropdown_item, modelsArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -101,39 +101,42 @@ public class ChipSelectionManager {
                 });
     }
 
-    /* private void selectChipByModel(String model) {
-        if (model == null || model.trim().isEmpty()) {
-            notifyError(context.getString(R.string.modelo_de_chip_invalido));
-            return;
-        }
-
-        try {
-            ChipPic chip = chipReader.getChipEntry(model);
-            // Selecciom de chip
-            ChipinfoEntry chipFs = chipfuses.getChip(model);
-
-            if (chip == null) {
-                notifyError(
-                        context.getString(R.string.chip_no_encontrado_en_base_de_) + ": " + model);
-                return;
-            }
-
-            selectedChip = chip;
-            chipFusesSelected = chipFs;
-
-            // Configurar modo ICSP
-            String pinLocation = chip.getUbicacionPin1DelPic();
-            boolean isIcspOnly = "null".equals(pinLocation);
-            chip.setActivarICSP(isIcspOnly);
-
-            if (selectionListener != null) {
-                selectionListener.onChipSelected(chip, model);
-            }
-
-        } catch (Exception e) {
-            notifyError(context.getString(R.string.error_procesando_chip) + ": " + e.getMessage());
-        }
-    }*/
+    /*
+     * private void selectChipByModel(String model) {
+     * if (model == null || model.trim().isEmpty()) {
+     * notifyError(context.getString(R.string.modelo_de_chip_invalido));
+     * return;
+     * }
+     * 
+     * try {
+     * ChipPic chip = chipReader.getChipEntry(model);
+     * // Selecciom de chip
+     * ChipinfoEntry chipFs = chipfuses.getChip(model);
+     * 
+     * if (chip == null) {
+     * notifyError(
+     * context.getString(R.string.chip_no_encontrado_en_base_de_) + ": " + model);
+     * return;
+     * }
+     * 
+     * selectedChip = chip;
+     * chipFusesSelected = chipFs;
+     * 
+     * // Configurar modo ICSP
+     * String pinLocation = chip.getUbicacionPin1DelPic();
+     * boolean isIcspOnly = "null".equals(pinLocation);
+     * chip.setActivarICSP(isIcspOnly);
+     * 
+     * if (selectionListener != null) {
+     * selectionListener.onChipSelected(chip, model);
+     * }
+     * 
+     * } catch (Exception e) {
+     * notifyError(context.getString(R.string.error_procesando_chip) + ": " +
+     * e.getMessage());
+     * }
+     * }
+     */
 
     private void selectChipByModel(String model) {
         if (model == null || model.trim().isEmpty()) {
@@ -154,15 +157,15 @@ public class ChipSelectionManager {
             selectedChip = chip;
             chipFusesSelected = chipFs;
 
-            // LÓGICA MEJORADA PARA ICSP
+            // LOGICA MEJORADA PARA ICSP
             String pinLocation = chip.getUbicacionPin1DelPic();
             boolean isIcspOnly = "null".equals(pinLocation);
 
-            // Si es ICSP only, activar automáticamente
+            // Si es ICSP only, activar automaticamente
             chip.setActivarICSP(isIcspOnly);
 
             if (selectionListener != null) {
-                // Notificar también si el chip es compatible solo con ICSP
+                // Notificar tambien si el chip es compatible solo con ICSP
                 selectionListener.onChipSelected(chip, model);
             }
 
@@ -214,7 +217,8 @@ public class ChipSelectionManager {
     }
 
     /**
-     * Obtiene informacion COMPLETA con METODOS EXACTOS de ChipPic Formato: Etiquetas en BLANCO,
+     * Obtiene informacion COMPLETA con METODOS EXACTOS de ChipPic Formato:
+     * Etiquetas en BLANCO,
      * Datos en VERDE
      */
     public SpannableString getSelectedChipInfoColored() {
