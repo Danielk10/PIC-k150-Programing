@@ -38,9 +38,9 @@ import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
 
 /**
- * Gestor de visualización de memoria - VERSIÓN MEJORADA
- * Características:
- * - Diseño responsive (porcentajes de pantalla)
+ * Gestor de visualizacion de memoria - VERSION MEJORADA
+ * Caracteristicas:
+ * - Diseno responsive (porcentajes de pantalla)
  * - Columna ASCII junto a datos hex
  * - Barra de progreso durante carga
  * - Anuncio nativo integrado
@@ -81,8 +81,8 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Muestra el popup con estado de carga (progreso + anuncio)
-     * Llamar ANTES de iniciar la lectura de memoria
+     * Muestra el popup con estado de carga (progreso + anuncio).
+     * Llamar ANTES de iniciar la lectura de memoria.
      */
     public void showLoadingState() {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
@@ -117,8 +117,8 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Actualiza el popup con los datos de memoria
-     * Llamar DESPUÉS de que la lectura termine
+     * Actualiza el popup con los datos de memoria.
+     * Llamar DESPUES de que la lectura termine.
      */
     public void updateWithData(String romData, int romSize, String eepromData, int eepromSize, boolean hasEeprom) {
         if (memoryPopup == null || !memoryPopup.isShowing()) {
@@ -171,11 +171,11 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Método legacy para compatibilidad
+     * Metodo legacy para compatibilidad.
      */
     public void showMemoryDataPopup(String romData, int romSize, String eepromData, int eepromSize, boolean hasEeprom) {
         showLoadingState();
-        // Pequeño delay para mostrar el popup primero
+        // Pequeno delay para mostrar el popup primero
         new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
             updateWithData(romData, romSize, eepromData, eepromSize, hasEeprom);
         }, 100);
@@ -196,7 +196,7 @@ public class MemoryDisplayManager {
         container.setBackground(shape);
         container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
-        // Título - String: datos_de_memoria
+        // Titulo - String: datos_de_memoria
         TextView title = new TextView(context);
         title.setText("📖 Datos de Memoria"); // R.string.datos_de_memoria
         title.setTextColor(Color.WHITE);
@@ -314,7 +314,7 @@ public class MemoryDisplayManager {
 
         container.addView(contentContainer);
 
-        // Botón cerrar - String: cerrar
+        // Boton cerrar - String: cerrar
         closeButton = new Button(context);
         closeButton.setText("Cerrar"); // R.string.cerrar
         closeButton.setTextColor(Color.WHITE);
@@ -351,7 +351,7 @@ public class MemoryDisplayManager {
             StringBuilder hexPart = new StringBuilder();
             StringBuilder asciiPart = new StringBuilder();
 
-            // Dirección
+            // Direccion
             String addressHex = String.format("%04X", address);
             hexPart.append(addressHex).append(": ");
 
@@ -387,7 +387,7 @@ public class MemoryDisplayManager {
             address += columns;
         }
 
-        // Agregar filas vacías hasta el tamaño real de memoria
+        // Agregar filas vacias hasta el tamano real de memoria
         int totalDataRows = (int) Math.ceil(data.length() / (double) bytesPerRow);
         int totalMemoryRows = (int) Math.ceil(memorySize / (double) columns);
 
@@ -424,7 +424,7 @@ public class MemoryDisplayManager {
         TextView textView = new TextView(context);
         SpannableString spannableString = new SpannableString(fullText);
 
-        // Color DORADO para dirección (0000: )
+        // Color DORADO para direccion (0000: )
         int dirEnd = address.length() + 2;
         spannableString.setSpan(
                 new ForegroundColorSpan(COLOR_ADDRESS),
@@ -474,7 +474,7 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Detecta si un dato es vacío (FF, 3FFF, FFFF)
+     * Detecta si un dato es vacio (FF, 3FFF, FFFF).
      */
     private boolean isEmptyData(String data, boolean isROM) {
         if (data == null || data.isEmpty())
@@ -598,7 +598,7 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Aplica animación de entrada
+     * Aplica animacion de entrada.
      */
     private void applyShowAnimation(View view) {
         view.setScaleY(0);
@@ -615,7 +615,7 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Cierra con animación
+     * Cierra con animacion.
      */
     private void dismissWithAnimation() {
         if (memoryPopup == null || !memoryPopup.isShowing()) {

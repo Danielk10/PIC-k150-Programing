@@ -18,9 +18,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Gestor de conexiones USB para comunicación con el programador PIC K150.
+ * Gestor de conexiones USB para comunicacion con el programador PIC K150.
  * 
- * Maneja la detección de dispositivos USB, permisos y configuración del puerto
+ * Maneja la deteccion de dispositivos USB, permisos y configuracion del puerto
  * serial.
  * Usa SafeBroadcastManager para registro seguro de BroadcastReceivers.
  */
@@ -29,7 +29,7 @@ public class UsbConnectionManager {
     private static final String TAG = "UsbConnectionManager";
     private static final String ACTION_USB_PERMISSION = "com.diamon.pic.USB_PERMISSION";
 
-    // Parámetros de configuración del puerto serial
+    // Parametros de configuracion del puerto serial
     private static final int BAUD_RATE = 19200;
     private static final int DATA_BITS = 8;
     private static final int STOP_BITS = UsbSerialPort.STOPBITS_1;
@@ -42,10 +42,10 @@ public class UsbConnectionManager {
     private List<UsbSerialDriver> drivers;
     private ProtocoloP018 protocolo;
 
-    // Interfaz para notificar eventos de conexión
+    // Interfaz para notificar eventos de conexion
     private UsbConnectionListener connectionListener;
 
-    /** Interfaz para manejar eventos de conexión USB */
+    /** Interfaz para manejar eventos de conexion USB */
     public interface UsbConnectionListener {
         void onConnected();
 
@@ -70,7 +70,7 @@ public class UsbConnectionManager {
     /**
      * Constructor del gestor de conexiones USB
      *
-     * @param context Contexto de la aplicación
+     * @param context Contexto de la aplicacion
      */
     public UsbConnectionManager(Context context) {
         this.context = context;
@@ -79,9 +79,9 @@ public class UsbConnectionManager {
     }
 
     /**
-     * Establece el listener para eventos de conexión
+     * Establece el listener para eventos de conexion
      *
-     * @param listener Listener que será notificado de eventos
+     * @param listener Listener que sera notificado de eventos
      */
     public void setConnectionListener(UsbConnectionListener listener) {
         this.connectionListener = listener;
@@ -148,10 +148,10 @@ public class UsbConnectionManager {
             // Seleccionar el primer puerto
             usbSerialPort = driver.getPorts().get(0);
 
-            // Abrir conexión
+            // Abrir conexion
             usbSerialPort.open(usbManager.openDevice(driver.getDevice()));
 
-            // Configurar parámetros del puerto serial
+            // Configurar parametros del puerto serial
             usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
 
             // Crear e inicializar protocolo
@@ -164,7 +164,7 @@ public class UsbConnectionManager {
                 return;
             }
 
-            // Notificar conexión exitosa
+            // Notificar conexion exitosa
             if (connectionListener != null) {
                 connectionListener.onConnected();
             }
@@ -179,7 +179,7 @@ public class UsbConnectionManager {
         }
     }
 
-    /** Limpia el estado de conexión cuando ocurre un error */
+    /** Limpia el estado de conexion cuando ocurre un error */
     private void cleanupConnection() {
         if (usbSerialPort != null) {
             try {
@@ -204,24 +204,24 @@ public class UsbConnectionManager {
     }
 
     /**
-     * Obtiene el protocolo de comunicación P018
+     * Obtiene el protocolo de comunicacion P018
      *
-     * @return Instancia del protocolo o null si no está conectado
+     * @return Instancia del protocolo o null si no esta conectado
      */
     public ProtocoloP018 getProtocolo() {
         return protocolo;
     }
 
     /**
-     * Verifica si hay una conexión activa
+     * Verifica si hay una conexion activa
      *
-     * @return true si está conectado, false en caso contrario
+     * @return true si esta conectado, false en caso contrario
      */
     public boolean isConnected() {
         return usbSerialPort != null && protocolo != null;
     }
 
-    /** Cierra la conexión USB y libera recursos */
+    /** Cierra la conexion USB y libera recursos */
     public void disconnect() {
         cleanupConnection();
 

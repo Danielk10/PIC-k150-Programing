@@ -32,12 +32,12 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * FuseConfigPopup - Gestor del PopupWindow para configuración de fusibles
+ * FuseConfigPopup - Gestor del PopupWindow para configuracion de fusibles.
  *
  * <p>
- * VERSIÓN REDISEÑADA: - Layout dinámico que se ajusta automáticamente -
+ * VERSION REDISENADA: - Layout dinamico que se ajusta automaticamente -
  * Fusibles crecen/encojen
- * según cantidad - Log simplificado sin scroll (solo mostrará últimos mensajes)
+ * segun cantidad - Log simplificado sin scroll (solo mostrara ultimos mensajes)
  * - Componentes
  * fluyen naturalmente - Scroll SOLO en el ScrollView principal
  */
@@ -81,7 +81,7 @@ public class FuseConfigPopup {
         this.listener = listener;
     }
 
-    /** Muestra el popup de configuración de fusibles */
+    /** Muestra el popup de configuracion de fusibles */
     public void show(
             ChipPic chip,
             ChipinfoEntry chipFuses,
@@ -96,7 +96,7 @@ public class FuseConfigPopup {
         dialog.show();
     }
 
-    /** Crea y configura el diálogo - DISEÑO SIMPLIFICADO */
+    /** Crea y configura el dialogo - DISENO SIMPLIFICADO */
     private void createDialog() {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -107,11 +107,11 @@ public class FuseConfigPopup {
         mainLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
         mainLayout.setPadding(0, 0, 0, 0);
 
-        // ========== TÍTULO (FIJO ARRIBA) ==========
+        // ========== TITULO (FIJO ARRIBA) ==========
         TextView titleView = createTitle();
         mainLayout.addView(titleView);
 
-        // ========== SCROLL PRINCIPAL (WEIGHT=1) - TODO FLUYE AQUÍ ==========
+        // ========== SCROLL PRINCIPAL (WEIGHT=1) - TODO FLUYE AQUI ==========
         ScrollView mainScrollView = new ScrollView(context);
         LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         scrollParams.weight = 1;
@@ -121,13 +121,13 @@ public class FuseConfigPopup {
         scrollContent.setOrientation(LinearLayout.VERTICAL);
         scrollContent.setPadding(16, 16, 16, 16);
 
-        // Información del chip
+        // Informacion del chip
         scrollContent.addView(createChipInfoSection());
 
         // Editor de fusibles (SIN ScrollView interno, solo crece/encoge)
         scrollContent.addView(createFuseEditorSection());
 
-        // Botón agregar fusible personalizado
+        // Boton agregar fusible personalizado
         scrollContent.addView(createAddCustomFuseButton());
 
         // ID personalizado
@@ -142,7 +142,7 @@ public class FuseConfigPopup {
         // ========== BOTONES (FIJOS ABAJO) ==========
         mainLayout.addView(createButtonBar());
 
-        // Configurar diálogo
+        // Configurar dialogo
         dialog.setContentView(mainLayout);
         Window window = dialog.getWindow();
         if (window != null) {
@@ -155,7 +155,7 @@ public class FuseConfigPopup {
         loadInitialData();
     }
 
-    /** Crea el título del diálogo */
+    /** Crea el titulo del dialogo */
     private TextView createTitle() {
         TextView title = new TextView(context);
         title.setText("Configuraciones de Fusibles del PIC");
@@ -170,7 +170,7 @@ public class FuseConfigPopup {
         return title;
     }
 
-    /** Crea la sección de información del chip */
+    /** Crea la seccion de informacion del chip */
     private LinearLayout createChipInfoSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
@@ -209,9 +209,9 @@ public class FuseConfigPopup {
     }
 
     /**
-     * CORREGIDO: Crea la sección de edición de fusibles SIN ScrollView interno Se
+     * CORREGIDO: Crea la seccion de edicion de fusibles SIN ScrollView interno Se
      * ajusta
-     * dinámicamente según cantidad de fusibles
+     * dinamicamente segun cantidad de fusibles
      */
     private LinearLayout createFuseEditorSection() {
         LinearLayout section = new LinearLayout(context);
@@ -221,13 +221,13 @@ public class FuseConfigPopup {
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT // ← SE AJUSTA SEGÚN CONTENIDO
+                ViewGroup.LayoutParams.WRAP_CONTENT // SE AJUSTA SEGUN CONTENIDO
         );
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
         TextView label = new TextView(context);
-        label.setText("Configuración de Fusibles");
+        label.setText("Configuracion de Fusibles");
         label.setTextColor(Color.parseColor("#424242"));
         label.setTextSize(16);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -242,7 +242,7 @@ public class FuseConfigPopup {
 
         LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT // ← SE AJUSTA SEGÚN CONTENIDO
+                ViewGroup.LayoutParams.WRAP_CONTENT // SE AJUSTA SEGUN CONTENIDO
         );
         fuseContainer.setLayoutParams(containerParams);
 
@@ -250,7 +250,7 @@ public class FuseConfigPopup {
         return section;
     }
 
-    /** Crea el botón para agregar fusibles personalizados */
+    /** Crea el boton para agregar fusibles personalizados */
     private Button createAddCustomFuseButton() {
         btnAddCustomFuse = new Button(context);
         btnAddCustomFuse.setText("➕ Agregar Fusible Personalizado");
@@ -274,7 +274,7 @@ public class FuseConfigPopup {
         return btnAddCustomFuse;
     }
 
-    /** Muestra diálogo para agregar fusible personalizado */
+    /** Muestra dialogo para agregar fusible personalizado */
     private void showCustomFuseDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Agregar Fusible Personalizado");
@@ -319,7 +319,7 @@ public class FuseConfigPopup {
         builder.show();
     }
 
-    /** Crea la sección de ID personalizado */
+    /** Crea la seccion de ID personalizado */
     private LinearLayout createCustomIdSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
@@ -351,9 +351,9 @@ public class FuseConfigPopup {
     }
 
     /**
-     * SIMPLIFICADO: Crea la sección de log SIN ScrollView Solo muestra últimos 5
+     * SIMPLIFICADO: Crea la seccion de log SIN ScrollView Solo muestra ultimos 5
      * mensajes (trunca
-     * automáticamente)
+     * automaticamente)
      */
     private LinearLayout createLogSection() {
         LinearLayout section = new LinearLayout(context);
@@ -385,7 +385,7 @@ public class FuseConfigPopup {
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         logTextView.setLayoutParams(textParams);
-        logTextView.setMaxLines(5); // ← Solo muestra máximo 5 líneas
+        logTextView.setMaxLines(5); // Solo muestra maximo 5 lineas
         logTextView.setEllipsize(android.text.TextUtils.TruncateAt.END);
 
         section.addView(logTextView);
@@ -458,7 +458,7 @@ public class FuseConfigPopup {
         return buttonBar;
     }
 
-    /** Crea un botón con estilo */
+    /** Crea un boton con estilo */
     private Button createButton(String text, String color) {
         Button button = new Button(context);
         button.setText(text);
@@ -516,7 +516,7 @@ public class FuseConfigPopup {
 
         if (lastConfiguration != null && !lastConfiguration.isEmpty()) {
             restoreConfiguration(lastConfiguration);
-            logMessage("✓ Última configuración restaurada");
+            logMessage("✓ Ultima configuracion restaurada");
         } else {
             if (hexData != null) {
                 restoreFromHex();
@@ -560,7 +560,7 @@ public class FuseConfigPopup {
         }
     }
 
-    /** Muestra la información del chip */
+    /** Muestra la informacion del chip */
     private void displayChipInfo() {
         StringBuilder info = new StringBuilder();
         info.append("Chip: ").append(currentChip.getNombreDelPic()).append("\n");
@@ -582,7 +582,7 @@ public class FuseConfigPopup {
         chipInfoTextView.setText(info.toString());
     }
 
-    /** Construye el editor de fusibles dinámicamente */
+    /** Construye el editor de fusibles dinamicamente */
     @SuppressWarnings("unchecked")
     private void buildFuseEditor() {
         fuseContainer.removeAllViews();
@@ -715,7 +715,7 @@ public class FuseConfigPopup {
         }
     }
 
-    /** Restaura una configuración de fusibles */
+    /** Restaura una configuracion de fusibles */
     private void restoreConfiguration(Map<String, String> config) {
         for (Map.Entry<String, String> entry : config.entrySet()) {
             String fuseName = entry.getKey();
@@ -790,7 +790,7 @@ public class FuseConfigPopup {
         }
     }
 
-    /** Cancela y cierra el diálogo */
+    /** Cancela y cierra el dialogo */
     private void cancel() {
         if (listener != null) {
             listener.onFusesCancelled();
@@ -798,7 +798,7 @@ public class FuseConfigPopup {
         dialog.dismiss();
     }
 
-    /** Agrega un mensaje al log (truncado a 5 líneas) */
+    /** Agrega un mensaje al log (truncado a 5 lineas) */
     private void logMessage(String message) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String timestamp = sdf.format(new Date());
@@ -807,7 +807,7 @@ public class FuseConfigPopup {
         String currentText = logTextView.getText().toString();
         String[] lines = currentText.split("\n");
 
-        // Mantener solo últimas 4 líneas + nueva
+        // Mantener solo ultimas 4 lineas + nueva
         StringBuilder newText = new StringBuilder();
         int start = Math.max(0, lines.length - 4);
         for (int i = start; i < lines.length; i++) {
@@ -820,7 +820,7 @@ public class FuseConfigPopup {
         logTextView.setText(newText.toString());
     }
 
-    /** Cierra el diálogo */
+    /** Cierra el dialogo */
     public void dismiss() {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
