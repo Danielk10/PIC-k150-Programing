@@ -125,9 +125,13 @@ public class MemoryDisplayManager {
             return;
         }
 
-        // Ocultar progreso
+        // Ocultar progreso y anuncio para dar espacio a los datos
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
+        }
+        if (adContainer != null) {
+            adContainer.setVisibility(View.GONE);
+            adContainer.removeAllViews(); // Limpiar recursos
         }
 
         // Actualizar texto de estado - String: lectura_completada
@@ -193,12 +197,13 @@ public class MemoryDisplayManager {
         shape.setShape(GradientDrawable.RECTANGLE);
         shape.setCornerRadius(dpToPx(16));
         shape.setColor(COLOR_BACKGROUND);
+        shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E")); // Borde para diferenciar del fondo
         container.setBackground(shape);
         container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
         // Titulo - String: datos_de_memoria
         TextView title = new TextView(context);
-        title.setText("📖 Datos de Memoria"); // R.string.datos_de_memoria
+        title.setText("Datos de Memoria"); // R.string.datos_de_memoria
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);
@@ -466,7 +471,7 @@ public class MemoryDisplayManager {
         }
 
         textView.setText(spannableString);
-        textView.setTextSize(10);
+        textView.setTextSize(12); // Fuente mas grande para mejor legibilidad
         textView.setTypeface(Typeface.MONOSPACE);
         textView.setPadding(dpToPx(4), dpToPx(1), dpToPx(4), dpToPx(1));
 
