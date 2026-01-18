@@ -701,6 +701,13 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        // Ocultar banner mientras se muestra el popup
+        publicidad.ocultarBanner();
+
+        // Mostrar popup con estado de carga ANTES de leer (no bloquea UI)
+        memoryDisplayManager.showLoadingState();
+
+        // Leer memoria en hilo secundario
         new Thread(
                 () -> {
                     String romData = programmingManager.readRomMemory(currentChip);
@@ -716,7 +723,8 @@ public class MainActivity extends AppCompatActivity {
                                     boolean hasEeprom = currentChip.isTamanoValidoDeEEPROM()
                                             && !eepromData.isEmpty();
 
-                                    memoryDisplayManager.showMemoryDataPopup(
+                                    // Actualizar popup con los datos leídos
+                                    memoryDisplayManager.updateWithData(
                                             romData != null ? romData : "",
                                             romSize,
                                             eepromData != null ? eepromData : "",
@@ -725,12 +733,16 @@ public class MainActivity extends AppCompatActivity {
 
                                     processStatusTextView.setText(
                                             getString(R.string.memoria_leida_exitosamente));
+
+                                    // Mostrar banner de nuevo
+                                    publicidad.mostrarBanner();
                                 } catch (ChipConfigurationException e) {
                                     Toast.makeText(
                                             MainActivity.this,
                                             "Error: " + e.getMessage(),
                                             Toast.LENGTH_LONG)
                                             .show();
+                                    publicidad.mostrarBanner();
                                 }
                             });
                 })
