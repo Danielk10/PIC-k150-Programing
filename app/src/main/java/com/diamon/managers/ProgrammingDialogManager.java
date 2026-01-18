@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -94,7 +95,13 @@ public class ProgrammingDialogManager {
 
         LinearLayout popupContainer = createPopupContainer(popupHeight);
 
-        popupWindow = new PopupWindow(popupContainer, (int) (screenWidth * 0.9), popupHeight, true);
+        // CORREGIDO: Ancho 92% para consistencia
+        popupWindow = new PopupWindow(popupContainer, (int) (screenWidth * 0.92), popupHeight, true);
+
+        // IMPORTANTE: Fondo transparente para ver bordes redondeados y sombra
+        popupWindow.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+        // Elevacion para sombra
+        popupWindow.setElevation(24);
 
         popupWindow.setOutsideTouchable(false);
         popupWindow.setAnimationStyle(0);
@@ -127,7 +134,14 @@ public class ProgrammingDialogManager {
         container.setOrientation(LinearLayout.VERTICAL);
         container.setLayoutParams(
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height));
-        container.setBackgroundColor(Color.WHITE);
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(dpToPx(16));
+        shape.setColor(Color.parseColor("#505060")); // Nuevo color de fondo
+        shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E")); // Borde
+        container.setBackground(shape);
+        // Elevacion del contenedor
+        container.setElevation(16f);
         container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
         // Contenido superior
@@ -136,7 +150,7 @@ public class ProgrammingDialogManager {
 
         // Divisor
         View divider = new View(context);
-        divider.setBackgroundColor(Color.LTGRAY);
+        divider.setBackgroundColor(Color.parseColor("#3A3A4E")); // Color borde
         container.addView(
                 divider, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2));
 
@@ -167,7 +181,9 @@ public class ProgrammingDialogManager {
         titleTextView = new TextView(context);
         titleTextView.setText(R.string.grabando_pic);
         titleTextView.setTextSize(22);
-        titleTextView.setTextColor(Color.BLACK);
+        titleTextView.setText(R.string.grabando_pic);
+        titleTextView.setTextSize(22);
+        titleTextView.setTextColor(Color.WHITE); // Texto blanco
         titleTextView.setGravity(Gravity.CENTER);
         topContent.addView(titleTextView);
 
@@ -179,6 +195,8 @@ public class ProgrammingDialogManager {
         statusParams.setMargins(0, dpToPx(24), 0, dpToPx(24));
 
         statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
+        statusProgressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE,
+                android.graphics.PorterDuff.Mode.SRC_IN); // Progreso blanco
         statusProgressBar.setVisibility(View.VISIBLE);
         statusContainer.addView(statusProgressBar);
 
@@ -192,7 +210,7 @@ public class ProgrammingDialogManager {
         descriptionTextView = new TextView(context);
         descriptionTextView.setText(R.string.espere_grabacion_pic);
         descriptionTextView.setTextSize(16);
-        descriptionTextView.setTextColor(Color.DKGRAY);
+        descriptionTextView.setTextColor(Color.LTGRAY); // Texto gris claro
         descriptionTextView.setGravity(Gravity.CENTER);
         topContent.addView(descriptionTextView);
 
