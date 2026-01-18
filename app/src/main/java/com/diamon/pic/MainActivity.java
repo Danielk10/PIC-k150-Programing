@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         // Pre-cargar anuncio nativo
         memoryDisplayManager.preloadAd();
         dialogManager = new ProgrammingDialogManager(this);
+        dialogManager.preloadAd(); // Precargar anuncio de programacion
 
         // NUEVO: Inicializar popup de fusibles
         fuseConfigPopup = new FuseConfigPopup(
