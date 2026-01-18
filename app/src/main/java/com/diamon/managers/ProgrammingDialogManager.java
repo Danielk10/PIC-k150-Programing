@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.DisplayMetrics;
@@ -195,8 +197,10 @@ public class ProgrammingDialogManager {
         statusParams.setMargins(0, dpToPx(24), 0, dpToPx(24));
 
         statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
-        statusProgressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE,
-                android.graphics.PorterDuff.Mode.SRC_IN); // Progreso blanco
+        // CORREGIDO: Usar PorterDuffColorFilter para evitar API deprecada
+        // (setColorFilter(int, Mode))
+        statusProgressBar.getIndeterminateDrawable().setColorFilter(
+                new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
         statusProgressBar.setVisibility(View.VISIBLE);
         statusContainer.addView(statusProgressBar);
 
