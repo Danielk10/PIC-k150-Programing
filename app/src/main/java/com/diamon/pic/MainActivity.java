@@ -201,6 +201,8 @@ public class MainActivity extends AppCompatActivity {
         fileManager.initialize();
         chipSelectionManager = new ChipSelectionManager(this);
         memoryDisplayManager = new MemoryDisplayManager(this);
+        // Pre-cargar anuncio nativo
+        memoryDisplayManager.preloadAd();
         dialogManager = new ProgrammingDialogManager(this);
 
         // NUEVO: Inicializar popup de fusibles
