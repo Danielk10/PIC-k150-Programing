@@ -101,4 +101,9 @@
     <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
     <!-- values/strings.xml (Español genérico) -->
     <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
+    
+    <!-- Nuevos strings para popup de memoria mejorado -->
+    <string name="leyendo_memoria">Leyendo memoria...</string>
+    <string name="espere_lectura_memoria">Por favor, espere. Leyendo datos del PIC.</string>
+    <string name="lectura_completada">Lectura Completa</string>
 </resources>
