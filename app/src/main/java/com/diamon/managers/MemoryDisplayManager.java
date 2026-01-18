@@ -81,6 +81,29 @@ public class MemoryDisplayManager {
     }
 
     /**
+     * Pre-carga un anuncio nativo para que este listo cuando se muestre el popup.
+     */
+    public void preloadAd() {
+        if (nativeAd != null) {
+            return; // Ya hay uno cargado
+        }
+
+        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-5141499161332805/1625082944");
+        builder.forNativeAd(ad -> {
+            nativeAd = ad; // Guardar referencia para uso posterior
+        });
+
+        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                .setVideoOptions(videoOptions)
+                .build();
+
+        builder.withNativeAdOptions(adOptions);
+        builder.build().loadAd(new AdRequest.Builder().build());
+    }
+
+    /**
      * Muestra el popup con estado de carga (progreso + anuncio).
      * Llamar ANTES de iniciar la lectura de memoria.
      */
@@ -112,8 +135,12 @@ public class MemoryDisplayManager {
         memoryPopup.showAtLocation(rootView, Gravity.CENTER, 0, 0);
         applyShowAnimation(mainContainer);
 
-        // Cargar anuncio nativo
-        loadNativeAd(adContainer);
+        // Cargar o mostrar anuncio nativo
+        if (nativeAd != null) {
+            populateNativeAdView(adContainer, nativeAd);
+        } else {
+            loadNativeAd(adContainer);
+        }
     }
 
     /**
@@ -276,6 +303,11 @@ public class MemoryDisplayManager {
         romScrollView.setLayoutParams(romScrollParams);
         romScrollView.setVisibility(View.GONE);
 
+        // Horizontal Scroll para ROM
+        android.widget.HorizontalScrollView romHorizontalScroll = new android.widget.HorizontalScrollView(context);
+        romHorizontalScroll.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+
         romContainer = new LinearLayout(context);
         romContainer.setOrientation(LinearLayout.VERTICAL);
 
@@ -285,7 +317,8 @@ public class MemoryDisplayManager {
         romContainer.setBackground(romBg);
         romContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
 
-        romScrollView.addView(romContainer);
+        romHorizontalScroll.addView(romContainer);
+        romScrollView.addView(romHorizontalScroll);
         contentContainer.addView(romScrollView);
 
         // Label EEPROM - String: memoria_eeprom
@@ -305,6 +338,11 @@ public class MemoryDisplayManager {
         eepromScrollView.setLayoutParams(eepromScrollParams);
         eepromScrollView.setVisibility(View.GONE);
 
+        // Horizontal Scroll para EEPROM
+        android.widget.HorizontalScrollView eepromHorizontalScroll = new android.widget.HorizontalScrollView(context);
+        eepromHorizontalScroll.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+
         eepromContainer = new LinearLayout(context);
         eepromContainer.setOrientation(LinearLayout.VERTICAL);
 
@@ -314,7 +352,8 @@ public class MemoryDisplayManager {
         eepromContainer.setBackground(eepromBg);
         eepromContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
 
-        eepromScrollView.addView(eepromContainer);
+        eepromHorizontalScroll.addView(eepromContainer);
+        eepromScrollView.addView(eepromHorizontalScroll);
         contentContainer.addView(eepromScrollView);
 
         container.addView(contentContainer);
@@ -650,17 +689,23 @@ public class MemoryDisplayManager {
     }
 
     /**
-     * Cierra el popup y libera recursos
+     * Cierra el popup y libera recursos, y precarga el siguiente anuncio.
      */
     public void dismiss() {
         if (memoryPopup != null && memoryPopup.isShowing()) {
             memoryPopup.dismiss();
         }
 
+        // NO destruir el anuncio aqui por si queremos precargarlo, o destruirlo y
+        // cargar uno nuevo
+        // Mejor estrategia: Pre-cargar uno nuevo para la proxima vez
         if (nativeAd != null) {
             nativeAd.destroy();
             nativeAd = null;
         }
+
+        // Precargar para la siguiente vez
+        preloadAd();
     }
 
     public void dismissAllPopups() {
