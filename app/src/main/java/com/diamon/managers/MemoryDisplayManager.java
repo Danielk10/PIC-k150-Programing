@@ -66,7 +66,7 @@ public class MemoryDisplayManager {
     private Button closeButton;
 
     // Colores
-    private static final int COLOR_BACKGROUND = Color.parseColor("#2C2C3E"); // Tono mas claro
+    private static final int COLOR_BACKGROUND = Color.parseColor("#3E3E50"); // Tono mas claro e integrado
     private static final int COLOR_CARD = Color.parseColor("#2A2A3E");
     private static final int COLOR_ADDRESS = Color.parseColor("#FFD700");
     private static final int COLOR_DATA_LOADED = Color.parseColor("#4CAF50");
@@ -334,7 +334,7 @@ public class MemoryDisplayManager {
         // ScrollView EEPROM
         eepromScrollView = new ScrollView(context);
         LinearLayout.LayoutParams eepromScrollParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(120));
+                LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f); // Simetrico con ROM
         eepromScrollView.setLayoutParams(eepromScrollParams);
         eepromScrollView.setVisibility(View.GONE);
 
