@@ -85,6 +85,29 @@ public class ProgrammingDialogManager {
         }
     }
 
+    /**
+     * Pre-carga un anuncio nativo para que este listo cuando se muestre el dialogo.
+     */
+    public void preloadAd() {
+        if (nativeAd != null) {
+            return; // Ya hay uno cargado
+        }
+
+        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-5141499161332805/2642812533");
+        builder.forNativeAd(ad -> {
+            nativeAd = ad; // Guardar referencia para uso posterior
+        });
+
+        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                .setVideoOptions(videoOptions)
+                .build();
+
+        builder.withNativeAdOptions(adOptions);
+        builder.build().loadAd(new AdRequest.Builder().build());
+    }
+
     /** Crea y muestra el PopupWindow con el dialogo */
     private void createPopupWindow() {
         // CORREGIDO: Evitar usar windowManager.getDefaultDisplay() (Deprecado)
@@ -159,7 +182,13 @@ public class ProgrammingDialogManager {
         // Contenedor de anuncio
         FrameLayout adContainer = createAdContainer();
         container.addView(adContainer);
-        loadNativeAd(adContainer);
+
+        // Cargar o mostrar anuncio nativo
+        if (nativeAd != null) {
+            populateNativeAdView(adContainer, nativeAd);
+        } else {
+            loadNativeAd(adContainer);
+        }
 
         // Boton de accion
         LinearLayout buttonContainer = createButtonContainer();
@@ -459,10 +488,17 @@ public class ProgrammingDialogManager {
             popupWindow.dismiss();
         }
 
+        // NO destruir el anuncio aqui por si queremos precargarlo, o destruirlo y carga
+        // uno nuevo
+        // Mejor estrategia: Pre-cargar uno nuevo para la proxima vez
         if (nativeAd != null) {
             nativeAd.destroy();
             nativeAd = null;
         }
+
+        // Precargar para la siguiente vez (usando handler para asegurar que se ejecute
+        // despues de liberar)
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(this::preloadAd, 500);
 
         if (onDismissCallback != null) {
             onDismissCallback.run();
