@@ -66,7 +66,7 @@ public class MemoryDisplayManager {
     private Button closeButton;
 
     // Colores
-    private static final int COLOR_BACKGROUND = Color.parseColor("#1A1A2E");
+    private static final int COLOR_BACKGROUND = Color.parseColor("#2C2C3E"); // Tono mas claro
     private static final int COLOR_CARD = Color.parseColor("#2A2A3E");
     private static final int COLOR_ADDRESS = Color.parseColor("#FFD700");
     private static final int COLOR_DATA_LOADED = Color.parseColor("#4CAF50");
@@ -704,8 +704,9 @@ public class MemoryDisplayManager {
             nativeAd = null;
         }
 
-        // Precargar para la siguiente vez
-        preloadAd();
+        // Precargar para la siguiente vez (usando handler para asegurar que se ejecute
+        // despues de liberar)
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(this::preloadAd, 500);
     }
 
     public void dismissAllPopups() {
