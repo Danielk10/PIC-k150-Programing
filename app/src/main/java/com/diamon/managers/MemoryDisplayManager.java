@@ -66,7 +66,7 @@ public class MemoryDisplayManager {
     private Button closeButton;
 
     // Colores
-    private static final int COLOR_BACKGROUND = Color.parseColor("#3E3E50"); // Tono mas claro e integrado
+    private static final int COLOR_BACKGROUND = Color.parseColor("#505060"); // Tono mas claro
     private static final int COLOR_CARD = Color.parseColor("#2A2A3E");
     private static final int COLOR_ADDRESS = Color.parseColor("#FFD700");
     private static final int COLOR_DATA_LOADED = Color.parseColor("#4CAF50");
@@ -302,19 +302,21 @@ public class MemoryDisplayManager {
                 LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
         romScrollView.setLayoutParams(romScrollParams);
         romScrollView.setVisibility(View.GONE);
+        romScrollView.setFillViewport(true); // Estirar contenido para simetria
+
+        GradientDrawable dataBg = new GradientDrawable();
+        dataBg.setColor(Color.BLACK);
+        dataBg.setCornerRadius(dpToPx(8));
+        romScrollView.setBackground(dataBg);
+        romScrollView.setClipToOutline(true);
 
         // Horizontal Scroll para ROM
         android.widget.HorizontalScrollView romHorizontalScroll = new android.widget.HorizontalScrollView(context);
         romHorizontalScroll.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)); // Llenar scrollview
 
         romContainer = new LinearLayout(context);
         romContainer.setOrientation(LinearLayout.VERTICAL);
-
-        GradientDrawable romBg = new GradientDrawable();
-        romBg.setColor(Color.BLACK);
-        romBg.setCornerRadius(dpToPx(8));
-        romContainer.setBackground(romBg);
         romContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
 
         romHorizontalScroll.addView(romContainer);
@@ -327,7 +329,7 @@ public class MemoryDisplayManager {
         eepromLabel.setTextColor(COLOR_DATA_LOADED);
         eepromLabel.setTextSize(14);
         eepromLabel.setTypeface(null, Typeface.BOLD);
-        eepromLabel.setPadding(0, dpToPx(8), 0, dpToPx(4));
+        eepromLabel.setPadding(0, 0, 0, dpToPx(4)); // Padding identico a ROM
         eepromLabel.setVisibility(View.GONE);
         contentContainer.addView(eepromLabel);
 
@@ -337,19 +339,18 @@ public class MemoryDisplayManager {
                 LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f); // Simetrico con ROM
         eepromScrollView.setLayoutParams(eepromScrollParams);
         eepromScrollView.setVisibility(View.GONE);
+        eepromScrollView.setFillViewport(true); // Estirar contenido
+
+        eepromScrollView.setBackground(dataBg); // Reusar background
+        eepromScrollView.setClipToOutline(true);
 
         // Horizontal Scroll para EEPROM
         android.widget.HorizontalScrollView eepromHorizontalScroll = new android.widget.HorizontalScrollView(context);
         eepromHorizontalScroll.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 
         eepromContainer = new LinearLayout(context);
         eepromContainer.setOrientation(LinearLayout.VERTICAL);
-
-        GradientDrawable eepromBg = new GradientDrawable();
-        eepromBg.setColor(Color.BLACK);
-        eepromBg.setCornerRadius(dpToPx(8));
-        eepromContainer.setBackground(eepromBg);
         eepromContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
 
         eepromHorizontalScroll.addView(eepromContainer);
