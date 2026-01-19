@@ -412,12 +412,17 @@ public class MemoryDisplayManager {
                     // Convertir a ASCII - CORRECCION: ROM debe ser Little Endian (Byte Bajo
                     // primero)
                     if (isROM) {
-                        // ROM (16-bit word): Mostrar byte bajo (chars 2-3) primero, luego byte alto
-                        // (chars 0-1)
-                        int[] offsets = { 2, 0 };
-                        for (int k : offsets) {
-                            if (k + 2 <= hexGroup.length()) {
-                                appendAscii(asciiPart, hexGroup.substring(k, k + 2));
+                        // Si es dato vacio (3FFF o FFFF), mostrar puntos para evitar ruido visual (?)
+                        if (hexGroup.equalsIgnoreCase("3FFF") || hexGroup.equalsIgnoreCase("FFFF")) {
+                            asciiPart.append("..");
+                        } else {
+                            // ROM (16-bit word): Mostrar byte bajo (chars 2-3) primero, luego byte alto
+                            // (chars 0-1)
+                            int[] offsets = { 2, 0 };
+                            for (int k : offsets) {
+                                if (k + 2 <= hexGroup.length()) {
+                                    appendAscii(asciiPart, hexGroup.substring(k, k + 2));
+                                }
                             }
                         }
                     } else {
