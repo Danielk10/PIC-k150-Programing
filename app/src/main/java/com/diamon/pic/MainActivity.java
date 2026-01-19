@@ -60,7 +60,9 @@ import java.util.Map;
  * personalizado del usuario -
  * Integración completa con DatosPicProcesados y ChipinfoEntry
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements UsbConnectionManager.UsbConnectionListener,
+        PicProgrammingManager.ProgrammingListener {
 
     private TextView connectionStatusTextView;
     private TextView processStatusTextView;
@@ -144,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeBasicComponents() {
+        Analytics.trackEvent("Init: Basic Components");
         recurso = new Recurso(this);
         publicidad = new MostrarPublicidad(this);
         publicidad.cargarBanner();
@@ -195,8 +198,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeManagers() {
+        Analytics.trackEvent("Init: Managers");
         usbManager = new UsbConnectionManager(this);
         programmingManager = new PicProgrammingManager(this);
+
+        // Configurar listeners
+        usbManager.setConnectionListener(this);
+        programmingManager.setProgrammingListener(this);
+
         fileManager = new FileManager(this);
         fileManager.initialize();
         chipSelectionManager = new ChipSelectionManager(this);
@@ -215,80 +224,97 @@ public class MainActivity extends AppCompatActivity {
                             List<Integer> fuses,
                             byte[] idData,
                             Map<String, String> configuration) {
-                        // Guardar configuración de fusibles
-                        fusesConfigured = true;
+                        // Guardar configuración en las variables de la actividad
                         configuredFuses = new ArrayList<>(fuses);
                         configuredID = idData;
                         lastFuseConfiguration = configuration;
+                        fusesConfigured = true;
 
-                        // Actualizar UI
                         updateFuseStatus(true);
-
+                        // Se usa literal para evitar errores de compilación en otros idiomas hasta que
+                        // se traduzca R.string.fusibles_aplicados_correctamente
                         Toast.makeText(
                                 MainActivity.this,
-                                "Fusibles configurados correctamente",
+                                "Fusibles aplicados correctamente",
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }
 
                     @Override
                     public void onFusesCancelled() {
-                        // No hacer nada, mantener configuración anterior
+                        // No hacer nada
                     }
                 });
     }
 
     private void setupListeners() {
-        setupUsbConnectionListeners();
         setupChipSelectionListeners();
         setupFileManagerListeners();
-        setupProgrammingListeners();
         setupButtonListeners();
     }
 
-    private void setupUsbConnectionListeners() {
-        usbManager.setConnectionListener(
-                new UsbConnectionManager.UsbConnectionListener() {
-                    @Override
-                    public void onConnected() {
-                        runOnUiThread(
-                                () -> {
-                                    connectionStatusTextView.setTextColor(Color.GREEN);
-                                    connectionStatusTextView.setText(getString(R.string.conectado));
-                                    programmingManager.setProtocolo(usbManager.getProtocolo());
-                                    Toast.makeText(
-                                            MainActivity.this,
-                                            getString(R.string.conectado_al_programador),
-                                            Toast.LENGTH_SHORT)
-                                            .show();
-                                });
-                    }
+    // IMPLEMENTACIÓN DE UsbConnectionListener
+    @Override
+    public void onConnected() {
+        Analytics.trackEvent("USB: Connected");
+        runOnUiThread(() -> {
+            connectionStatusTextView.setTextColor(Color.GREEN);
+            connectionStatusTextView.setText(getString(R.string.conectado));
+            programmingManager.setProtocolo(usbManager.getProtocolo());
+            Toast.makeText(this, getString(R.string.conectado_al_programador), Toast.LENGTH_SHORT).show();
+        });
+    }
 
-                    @Override
-                    public void onDisconnected() {
-                        runOnUiThread(
-                                () -> {
-                                    connectionStatusTextView.setTextColor(Color.RED);
-                                    connectionStatusTextView.setText(
-                                            getString(R.string.desconectado));
-                                });
-                    }
+    @Override
+    public void onDisconnected() {
+        Analytics.trackEvent("USB: Disconnected");
+        runOnUiThread(() -> {
+            connectionStatusTextView.setTextColor(Color.RED);
+            connectionStatusTextView.setText(getString(R.string.desconectado));
+        });
+    }
 
-                    @Override
-                    public void onConnectionError(String errorMessage) {
-                        runOnUiThread(
-                                () -> {
-                                    connectionStatusTextView.setTextColor(Color.RED);
-                                    connectionStatusTextView.setText(
-                                            getString(R.string.desconectado));
-                                    Toast.makeText(
-                                            MainActivity.this,
-                                            errorMessage,
-                                            Toast.LENGTH_LONG)
-                                            .show();
-                                });
-                    }
-                });
+    @Override
+    public void onConnectionError(String errorMessage) {
+        Analytics.trackEvent("USB: Error", Map.of("Message", errorMessage));
+        runOnUiThread(() -> {
+            connectionStatusTextView.setTextColor(Color.RED);
+            connectionStatusTextView.setText(getString(R.string.desconectado));
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        });
+    }
+
+    // IMPLEMENTACIÓN DE ProgrammingListener
+    @Override
+    public void onProgrammingStarted() {
+        Analytics.trackEvent("Prog: Started");
+        runOnUiThread(() -> processStatusTextView.setText(getString(R.string.iniciando_programacion)));
+    }
+
+    @Override
+    public void onProgrammingProgress(String message, int progress) {
+        runOnUiThread(() -> processStatusTextView.setText(message + " (" + progress + "%)"));
+    }
+
+    @Override
+    public void onProgrammingCompleted(boolean success) {
+        Analytics.trackEvent("Prog: Completed", Map.of("Success", String.valueOf(success)));
+        runOnUiThread(() -> {
+            if (success) {
+                processStatusTextView.setText(getString(R.string.pic_programado_exitosamente));
+            } else {
+                processStatusTextView.setText(getString(R.string.error_programando_pic));
+            }
+        });
+    }
+
+    @Override
+    public void onProgrammingError(String errorMessage) {
+        Analytics.trackEvent("Prog: Error", Map.of("Message", errorMessage));
+        runOnUiThread(() -> {
+            processStatusTextView.setText("Error: " + errorMessage);
+            Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+        });
     }
 
     private void setupChipSelectionListeners() {
@@ -477,52 +503,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onFileLoadError(String errorMessage) {
                         processStatusTextView.setText(getString(R.string.error_cargando_archivo));
                         Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
-
-    private void setupProgrammingListeners() {
-        programmingManager.setProgrammingListener(
-                new PicProgrammingManager.ProgrammingListener() {
-                    @Override
-                    public void onProgrammingStarted() {
-                        runOnUiThread(
-                                () -> processStatusTextView.setText(
-                                        getString(R.string.iniciando_programacion)));
-                    }
-
-                    @Override
-                    public void onProgrammingProgress(String message, int progress) {
-                        runOnUiThread(
-                                () -> processStatusTextView.setText(
-                                        message + " (" + progress + "%)"));
-                    }
-
-                    @Override
-                    public void onProgrammingCompleted(boolean success) {
-                        runOnUiThread(
-                                () -> {
-                                    if (success) {
-                                        processStatusTextView.setText(
-                                                getString(R.string.pic_programado_exitosamente));
-                                    } else {
-                                        processStatusTextView.setText(
-                                                getString(R.string.error_programando_pic));
-                                    }
-                                });
-                    }
-
-                    @Override
-                    public void onProgrammingError(String errorMessage) {
-                        runOnUiThread(
-                                () -> {
-                                    processStatusTextView.setText("Error: " + errorMessage);
-                                    Toast.makeText(
-                                            MainActivity.this,
-                                            errorMessage,
-                                            Toast.LENGTH_LONG)
-                                            .show();
-                                });
                     }
                 });
     }

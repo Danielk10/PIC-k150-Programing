@@ -10,18 +10,22 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Utilidades seguras para operaciones con bytes en la aplicación PIC K150.
  *
- * <p>Esta clase proporciona métodos seguros para manipulación de bytes, incluyendo validación,
- * conversión, verificación de integridad y logging automático de operaciones críticas.
+ * <p>
+ * Esta clase proporciona métodos seguros para manipulación de bytes, incluyendo
+ * validación,
+ * conversión, verificación de integridad y logging automático de operaciones
+ * críticas.
  *
- * <p>Características principales:
+ * <p>
+ * Características principales:
  *
  * <ul>
- *   <li>Validación automática de parámetros de entrada
- *   <li>Logging integrado de operaciones de bytes
- *   <li>Verificación de integridad con checksums
- *   <li>Conversiones seguras entre tipos de datos
- *   <li>Manejo de endianness para comunicación USB
- *   <li>Utilidades para formateo y visualización
+ * <li>Validación automática de parámetros de entrada
+ * <li>Logging integrado de operaciones de bytes
+ * <li>Verificación de integridad con checksums
+ * <li>Conversiones seguras entre tipos de datos
+ * <li>Manejo de endianness para comunicación USB
+ * <li>Utilidades para formateo y visualización
  * </ul>
  *
  * @author Danielk10
@@ -54,8 +58,8 @@ public final class ByteUtils {
     /**
      * Valida que un array de bytes no sea null y tenga el tamaño esperado.
      *
-     * @param datos Array a validar
-     * @param tamanoEsperado Tamaño esperado (-1 para no validar tamaño)
+     * @param datos           Array a validar
+     * @param tamanoEsperado  Tamaño esperado (-1 para no validar tamaño)
      * @param nombreParametro Nombre del parámetro para mensajes de error
      * @throws IllegalArgumentException Si la validación falla
      */
@@ -66,18 +70,16 @@ public final class ByteUtils {
         }
 
         if (tamanoEsperado >= 0 && datos.length != tamanoEsperado) {
-            String mensaje =
-                    String.format(
-                            "Parámetro '%s' debe tener %d bytes, pero tiene %d",
-                            nombreParametro, tamanoEsperado, datos.length);
+            String mensaje = String.format(
+                    "Parámetro '%s' debe tener %d bytes, pero tiene %d",
+                    nombreParametro, tamanoEsperado, datos.length);
             throw new IllegalArgumentException(mensaje);
         }
 
         if (datos.length > MAX_BUFFER_SIZE) {
-            String mensaje =
-                    String.format(
-                            "Parámetro '%s' excede el tamaño máximo permitido (%d bytes)",
-                            nombreParametro, MAX_BUFFER_SIZE);
+            String mensaje = String.format(
+                    "Parámetro '%s' excede el tamaño máximo permitido (%d bytes)",
+                    nombreParametro, MAX_BUFFER_SIZE);
             throw new IllegalArgumentException(mensaje);
         }
     }
@@ -85,17 +87,16 @@ public final class ByteUtils {
     /**
      * Valida que los índices de un array estén dentro del rango válido.
      *
-     * @param array Array de referencia
-     * @param offset Índice de inicio
+     * @param array    Array de referencia
+     * @param offset   Índice de inicio
      * @param longitud Longitud de datos
      * @throws IndexOutOfBoundsException Si los índices están fuera de rango
      */
     public static void validarRango(byte[] array, int offset, int longitud) {
         if (offset < 0 || longitud < 0 || offset + longitud > array.length) {
-            String mensaje =
-                    String.format(
-                            "Rango inválido: offset=%d, longitud=%d, arraySize=%d",
-                            offset, longitud, array.length);
+            String mensaje = String.format(
+                    "Rango inválido: offset=%d, longitud=%d, arraySize=%d",
+                    offset, longitud, array.length);
             throw new IndexOutOfBoundsException(mensaje);
         }
     }
@@ -108,17 +109,43 @@ public final class ByteUtils {
      * @param datos Array de bytes a convertir
      * @return String hexadecimal en mayúsculas
      */
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+
+    /**
+     * Convierte un array de bytes a string hexadecimal de forma ultra rápida.
+     *
+     * @param datos Array de bytes a convertir
+     * @return String hexadecimal en mayúsculas
+     */
     public static String bytesToHex(byte[] datos) {
-        validarArray(datos, -1, "datos");
-
-        StringBuilder sb = new StringBuilder(datos.length * 2);
-        for (byte b : datos) {
-            sb.append(HEX_CHARS.charAt((b >> 4) & 0xF));
-            sb.append(HEX_CHARS.charAt(b & 0xF));
+        if (datos == null)
+            return "";
+        char[] hexChars = new char[datos.length * 2];
+        for (int j = 0; j < datos.length; j++) {
+            int v = datos[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
         }
+        return new String(hexChars);
+    }
 
-        String resultado = sb.toString();
-        return resultado;
+    /**
+     * Añade la representación hexadecimal de un array de bytes a un StringBuilder
+     * existente.
+     * Evita la creación de objetos string intermedios.
+     *
+     * @param data   Array de bytes
+     * @param length Cantidad de bytes a procesar
+     * @param sb     StringBuilder donde añadir los datos
+     */
+    public static void appendHexToBuilder(byte[] data, int length, StringBuilder sb) {
+        if (data == null || sb == null)
+            return;
+        for (int j = 0; j < length; j++) {
+            int v = data[j] & 0xFF;
+            sb.append(HEX_ARRAY[v >>> 4]);
+            sb.append(HEX_ARRAY[v & 0x0F]);
+        }
     }
 
     /**
@@ -160,7 +187,7 @@ public final class ByteUtils {
     /**
      * Convierte un entero a array de bytes con endianness especificado.
      *
-     * @param valor Valor entero a convertir
+     * @param valor     Valor entero a convertir
      * @param bigEndian true para big-endian, false para little-endian
      * @return Array de 4 bytes
      */
@@ -176,7 +203,7 @@ public final class ByteUtils {
     /**
      * Convierte un short a array de bytes con endianness especificado.
      *
-     * @param valor Valor short a convertir
+     * @param valor     Valor short a convertir
      * @param bigEndian true para big-endian, false para little-endian
      * @return Array de 2 bytes
      */
@@ -192,7 +219,7 @@ public final class ByteUtils {
     /**
      * Convierte array de bytes a entero con endianness especificado.
      *
-     * @param datos Array de bytes (debe tener exactamente 4 bytes)
+     * @param datos     Array de bytes (debe tener exactamente 4 bytes)
      * @param bigEndian true para big-endian, false para little-endian
      * @return Valor entero
      */
@@ -209,7 +236,7 @@ public final class ByteUtils {
     /**
      * Convierte array de bytes a short con endianness especificado.
      *
-     * @param datos Array de bytes (debe tener exactamente 2 bytes)
+     * @param datos     Array de bytes (debe tener exactamente 2 bytes)
      * @param bigEndian true para big-endian, false para little-endian
      * @return Valor short
      */
@@ -228,11 +255,11 @@ public final class ByteUtils {
     /**
      * Copia de forma segura un rango de bytes entre arrays.
      *
-     * @param origen Array origen
-     * @param offsetOrigen Índice de inicio en origen
-     * @param destino Array destino
+     * @param origen        Array origen
+     * @param offsetOrigen  Índice de inicio en origen
+     * @param destino       Array destino
      * @param offsetDestino Índice de inicio en destino
-     * @param longitud Número de bytes a copiar
+     * @param longitud      Número de bytes a copiar
      * @return Número de bytes copiados efectivamente
      */
     public static int copiarBytes(
@@ -250,9 +277,9 @@ public final class ByteUtils {
     /**
      * Rellena un array con un valor específico.
      *
-     * @param array Array a rellenar
-     * @param valor Valor para rellenar
-     * @param offset Índice de inicio
+     * @param array    Array a rellenar
+     * @param valor    Valor para rellenar
+     * @param offset   Índice de inicio
      * @param longitud Número de bytes a rellenar
      */
     public static void rellenarArray(byte[] array, byte valor, int offset, int longitud) {
@@ -291,8 +318,8 @@ public final class ByteUtils {
     /**
      * Calcula checksum simple (suma de bytes módulo 256).
      *
-     * @param datos Array de bytes
-     * @param offset Índice de inicio
+     * @param datos    Array de bytes
+     * @param offset   Índice de inicio
      * @param longitud Número de bytes a incluir
      * @return Checksum calculado
      */
@@ -352,8 +379,8 @@ public final class ByteUtils {
      * Valida respuesta USB esperada con logging detallado.
      *
      * @param respuesta Respuesta recibida
-     * @param esperado Valor esperado
-     * @param comando Comando que generó la respuesta
+     * @param esperado  Valor esperado
+     * @param comando   Comando que generó la respuesta
      * @return true si la respuesta es correcta
      * @throws UsbCommunicationException Si la respuesta no coincide
      */
@@ -381,7 +408,7 @@ public final class ByteUtils {
     /**
      * Prepara datos para envío USB con validación y logging.
      *
-     * @param datos Datos a enviar
+     * @param datos   Datos a enviar
      * @param comando Nombre del comando para logging
      * @return Array validado listo para envío
      */
@@ -400,9 +427,9 @@ public final class ByteUtils {
     /**
      * Formatea array de bytes para visualización con agrupación.
      *
-     * @param datos Array de bytes
+     * @param datos         Array de bytes
      * @param bytesPorLinea Número de bytes por línea
-     * @param mostrarAscii true para mostrar representación ASCII
+     * @param mostrarAscii  true para mostrar representación ASCII
      * @return String formateado para visualización
      */
     public static String formatearParaVisualizacion(
@@ -463,10 +490,14 @@ public final class ByteUtils {
         byte min = datos[0], max = datos[0];
 
         for (byte b : datos) {
-            if (b == 0) ceros++;
-            if (b == (byte) 0xFF) unos++;
-            if (b < min) min = b;
-            if (b > max) max = b;
+            if (b == 0)
+                ceros++;
+            if (b == (byte) 0xFF)
+                unos++;
+            if (b < min)
+                min = b;
+            if (b > max)
+                max = b;
         }
 
         return String.format(
