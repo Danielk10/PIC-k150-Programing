@@ -70,14 +70,6 @@
         <path android:fillColor="#4CAF50" android:pathData="M220,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M224,336 h6 v6 h-6 z"/>
     </group>
 
-    <!-- CHIP: BLACK (No pin dot) -->
-    <path
-        android:fillColor="#101010"
-        android:pathData="M90,28 h120 v200 h-120 z" />
-    <path
-        android:strokeColor="#505050"
-        android:strokeWidth="1"
-        android:pathData="M90,28 h120 v200 h-120 z" />
 
     <!-- INDICATOR: "1" and Arrow (Direction: Right >) -->
     <!-- Place Number "1" at X=10, Arrow at X=25 to X=35 -->

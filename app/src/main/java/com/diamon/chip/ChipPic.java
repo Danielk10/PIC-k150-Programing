@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Clase para manejar la configuración y propiedades de chips PIC. Proporciona métodos para acceder
- * a las características del chip, configuraciones de programación y valores de fuses.
+ * Clase para manejar la configuración y propiedades de chips PIC. Proporciona
+ * métodos para acceder
+ * a las características del chip, configuraciones de programación y valores de
+ * fuses.
  */
 public class ChipPic {
 
@@ -30,25 +32,25 @@ public class ChipPic {
     /**
      * Constructor para inicializar un objeto ChipPic con todas las configuraciones.
      *
-     * @param CHIPname Nombre del chip PIC
-     * @param INCLUDEr Archivo de inclusión
-     * @param SocketImage Imagen del socket
-     * @param EraseMode Modo de borrado
-     * @param FlashChip Indica si es un chip flash
+     * @param CHIPname      Nombre del chip PIC
+     * @param INCLUDEr      Archivo de inclusión
+     * @param SocketImage   Imagen del socket
+     * @param EraseMode     Modo de borrado
+     * @param FlashChip     Indica si es un chip flash
      * @param PowerSequence Secuencia de encendido
-     * @param ProgramDelay Retardo de programación
-     * @param ProgramTries Intentos de programación
-     * @param OverProgram Sobrecarga de programación
-     * @param CoreType Tipo de núcleo
-     * @param ROMsize Tamaño de ROM en hexadecimal
-     * @param EEPROMsize Tamaño de EEPROM en hexadecimal
-     * @param FUSEblank Valores blank de fuses
-     * @param CPwarn Advertencia de protección de código
-     * @param CALword Palabra de calibración
-     * @param BandGap Band gap
-     * @param ICSPonly Indica si solo usa ICSP
-     * @param ChipID ID del chip en hexadecimal
-     * @param fuses Mapa de fuses del chip
+     * @param ProgramDelay  Retardo de programación
+     * @param ProgramTries  Intentos de programación
+     * @param OverProgram   Sobrecarga de programación
+     * @param CoreType      Tipo de núcleo
+     * @param ROMsize       Tamaño de ROM en hexadecimal
+     * @param EEPROMsize    Tamaño de EEPROM en hexadecimal
+     * @param FUSEblank     Valores blank de fuses
+     * @param CPwarn        Advertencia de protección de código
+     * @param CALword       Palabra de calibración
+     * @param BandGap       Band gap
+     * @param ICSPonly      Indica si solo usa ICSP
+     * @param ChipID        ID del chip en hexadecimal
+     * @param fuses         Mapa de fuses del chip
      * @throws ChipConfigurationException Si los parámetros son inválidos
      */
     public ChipPic(
@@ -267,7 +269,8 @@ public class ChipPic {
      * Verifica si el chip solo puede ser programado mediante ICSP.
      *
      * @return true si el chip solo usa ICSP, false en caso contrario
-     * @throws ChipConfigurationException Si hay un error al procesar la configuración ICSP
+     * @throws ChipConfigurationException Si hay un error al procesar la
+     *                                    configuración ICSP
      */
     public boolean isICSPonly() throws ChipConfigurationException {
 
@@ -330,8 +333,7 @@ public class ChipPic {
             }
 
             // Flag VCC VPP delay
-            String powerSequence =
-                    variablesDeChip.get("power_sequence_str").toString().toLowerCase();
+            String powerSequence = variablesDeChip.get("power_sequence_str").toString().toLowerCase();
             Boolean vccVppDelay = vccVppTiempo.get(powerSequence);
 
             if (vccVppDelay != null) {
@@ -349,31 +351,28 @@ public class ChipPic {
     }
 
     public boolean isFlagCalibration() {
-        boolean valor =
-                respuestas.get(
-                        variablesDeChip
-                                .get("flag_calibration_value_in_ROM")
-                                .toString()
-                                .toLowerCase());
+        boolean valor = respuestas.get(
+                variablesDeChip
+                        .get("flag_calibration_value_in_ROM")
+                        .toString()
+                        .toLowerCase());
 
         return valor;
     }
 
     public boolean isFlagBandGap() {
-        boolean valor =
-                respuestas.get(variablesDeChip.get("flag_band_gap_fuse").toString().toLowerCase());
+        boolean valor = respuestas.get(variablesDeChip.get("flag_band_gap_fuse").toString().toLowerCase());
 
         return valor;
     }
 
     public boolean isFlag18fSingle() {
 
-        String dato =
-                ""
-                        + tipoDeNucleo
-                                .get(variablesDeChip.get("core_type").toString().toLowerCase())
-                                .toString()
-                                .equals("" + tipoDeNucleo.get("bit16_a"));
+        String dato = ""
+                + tipoDeNucleo
+                        .get(variablesDeChip.get("core_type").toString().toLowerCase())
+                        .toString()
+                        .equals("" + tipoDeNucleo.get("bit16_a"));
 
         boolean valor = Boolean.parseBoolean(dato);
 
@@ -426,23 +425,21 @@ public class ChipPic {
 
     public boolean isFlagVccVppDelay() {
 
-        boolean valor =
-                vccVppTiempo.get(("" + variablesDeChip.get("power_sequence_str")).toLowerCase());
+        boolean valor = vccVppTiempo.get(("" + variablesDeChip.get("power_sequence_str")).toLowerCase());
 
         return valor;
     }
 
     public int getTipoDeNucleoDelPic() {
 
-        int nucleo =
-                Integer.parseInt(
-                        ""
-                                + tipoDeNucleo.get(
-                                        ""
-                                                + variablesDeChip
-                                                        .get("core_type")
-                                                        .toString()
-                                                        .toLowerCase()));
+        int nucleo = Integer.parseInt(
+                ""
+                        + tipoDeNucleo.get(
+                                ""
+                                        + variablesDeChip
+                                                .get("core_type")
+                                                .toString()
+                                                .toLowerCase()));
 
         return nucleo;
     }
@@ -473,7 +470,7 @@ public class ChipPic {
             }
 
         } else {
-            
+
             secuencia = Integer.parseUnsignedInt("" + variablesDeChip.get("power_sequence"), 10);
         }
 
@@ -589,8 +586,10 @@ public class ChipPic {
     }
 
     /**
-     * Verifica si el chip es compatible SOLO con ICSP. Si retorna true: el usuario NO puede cambiar
-     * el modo (switch deshabilitado) Si retorna false: el usuario puede cambiar entre ICSP y
+     * Verifica si el chip es compatible SOLO con ICSP. Si retorna true: el usuario
+     * NO puede cambiar
+     * el modo (switch deshabilitado) Si retorna false: el usuario puede cambiar
+     * entre ICSP y
      * programación normal
      *
      * @return true si el chip es SOLO ICSP, false si es compatible con ambos modos
@@ -609,5 +608,30 @@ public class ChipPic {
         String chipIdStr = variablesDeChip.get("CHIPname").toString();
 
         return chipIdStr;
+    }
+
+    /**
+     * Obtiene el numero de pines del chip basado en la propiedad SocketImage.
+     *
+     * @return Numero de pines (8, 14, 18, 28, 40) o 0 si no se reconoce.
+     */
+    public int getNumeroDePines() {
+        String socketImage = (String) variablesDeChip.get("SocketImage");
+        if (socketImage == null)
+            return 0;
+
+        String lowerValue = socketImage.toLowerCase();
+        if (lowerValue.contains("8pin"))
+            return 8;
+        if (lowerValue.contains("14pin"))
+            return 14;
+        if (lowerValue.contains("18pin"))
+            return 18;
+        if (lowerValue.contains("28npin"))
+            return 28;
+        if (lowerValue.contains("40pin"))
+            return 40;
+
+        return 0;
     }
 }
