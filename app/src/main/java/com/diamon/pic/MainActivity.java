@@ -24,6 +24,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.chip.ChipinfoEntry;
@@ -494,6 +503,8 @@ public class MainActivity extends AppCompatActivity
 
         chipSocketImageView.setVisibility(View.VISIBLE);
         String pinLocation = chip.getUbicacionPin1DelPic();
+        int numPines = chip.getNumeroDePines();
+
         boolean isIcspOnly = false;
         try {
             isIcspOnly = chip.isICSPOnlyCompatible();
@@ -504,18 +515,100 @@ public class MainActivity extends AppCompatActivity
         // MOSTRAR ICSP SI: Es ICSP-only O el switch esta activado manualmente
         boolean isIcspActive = swModeICSP != null && swModeICSP.isChecked();
 
-        if (isIcspOnly || isIcspActive || "null".equals(pinLocation)) {
+        if (isIcspOnly || isIcspActive || "null".equals(pinLocation) || numPines == 0) {
             chipSocketImageView.setImageResource(R.drawable.socket_icsp);
-        } else if ("socket pin 1".equalsIgnoreCase(pinLocation)) {
-            chipSocketImageView.setImageResource(R.drawable.socket_pin_1);
+            return;
+        }
+
+        int socketResId;
+        final int startRowIndex;
+
+        if ("socket pin 1".equalsIgnoreCase(pinLocation)) {
+            socketResId = R.drawable.socket_pin_1;
+            startRowIndex = 0;
         } else if ("socket pin 2".equalsIgnoreCase(pinLocation)) {
-            chipSocketImageView.setImageResource(R.drawable.socket_pin_2);
+            socketResId = R.drawable.socket_pin_2;
+            startRowIndex = 1;
         } else if ("socket pin 13".equalsIgnoreCase(pinLocation)) {
-            chipSocketImageView.setImageResource(R.drawable.socket_pin_13);
+            socketResId = R.drawable.socket_pin_13;
+            startRowIndex = 12;
         } else {
             // Default fallback
             chipSocketImageView.setImageResource(R.drawable.socket_icsp);
+            return;
         }
+
+        Drawable socketDrawable = ContextCompat.getDrawable(this, socketResId);
+        if (socketDrawable == null) {
+            chipSocketImageView.setImageResource(socketResId);
+            return;
+        }
+
+        // Crear el cuerpo del chip dinamicamente
+        final int pinsParaDibujar = numPines;
+        Drawable chipBodyDrawable = new Drawable() {
+            @Override
+            public void draw(@NonNull Canvas canvas) {
+                Rect bounds = getBounds();
+                float scaleX = bounds.width() / 300f;
+                float scaleY = bounds.height() / 360f;
+
+                Paint paint = new Paint();
+                paint.setColor(Color.parseColor("#101010"));
+                paint.setStyle(Paint.Style.FILL);
+                paint.setAntiAlias(true);
+
+                Paint borderPaint = new Paint();
+                borderPaint.setColor(Color.parseColor("#505050"));
+                borderPaint.setStyle(Paint.Style.STROKE);
+                borderPaint.setStrokeWidth(1.5f * scaleX);
+                borderPaint.setAntiAlias(true);
+
+                // Coordenadas en sistema 300x360
+                float left = 90 * scaleX;
+                float right = 210 * scaleX;
+                float pin1Top = (30 + startRowIndex * 16) * scaleY;
+                float top = pin1Top - 2 * scaleY;
+                float height = ((pinsParaDibujar / 2) * 16 + 4) * scaleY;
+                float bottom = top + height;
+
+                canvas.drawRect(left, top, right, bottom, paint);
+                canvas.drawRect(left, top, right, bottom, borderPaint);
+
+                // Opcional: muesca del chip (notch)
+                Paint notchPaint = new Paint();
+                notchPaint.setColor(Color.parseColor("#050505"));
+                notchPaint.setStyle(Paint.Style.FILL);
+                notchPaint.setAntiAlias(true);
+                float notchWidth = 20 * scaleX;
+                float notchHeight = 10 * scaleY;
+                canvas.drawArc(
+                        (300 / 2f - 10) * scaleX,
+                        top - 5 * scaleY,
+                        (300 / 2f + 10) * scaleX,
+                        top + 5 * scaleY,
+                        0,
+                        180,
+                        true,
+                        notchPaint);
+            }
+
+            @Override
+            public void setAlpha(int alpha) {
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+
+            @Override
+            public int getOpacity() {
+                return PixelFormat.TRANSLUCENT;
+            }
+        };
+
+        LayerDrawable combined = new LayerDrawable(new Drawable[] { socketDrawable, chipBodyDrawable });
+        chipSocketImageView.setImageDrawable(combined);
     }
 
     private void setupFileManagerListeners() {
