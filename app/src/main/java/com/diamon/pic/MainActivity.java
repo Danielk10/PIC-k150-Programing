@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout romDataContainer;
     private LinearLayout eepromDataContainer;
     private Spinner chipSpinner;
+    private android.widget.ImageView chipSocketImageView; // NUEVO
     private Switch swModeICSP;
 
     private android.widget.Button btnSelectHex;
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity
         connectionStatusTextView = findViewById(R.id.connectionStatusTextView);
         processStatusTextView = findViewById(R.id.processStatusTextView);
         chipInfoTextView = findViewById(R.id.chipInfoTextView);
+        chipSocketImageView = findViewById(R.id.chipSocketImageView); // NUEVO
         fuseStatusTextView = findViewById(R.id.fuseStatusTextView); // NUEVO
         chipSpinner = findViewById(R.id.chipSpinner);
 
@@ -338,6 +340,12 @@ public class MainActivity extends AppCompatActivity
                         // IMPORTANTE: Actualizar estado del switch ICSP
                         updateICSPSwitchState();
 
+                        // IMPORTANTE: Actualizar estado del switch ICSP
+                        updateICSPSwitchState();
+
+                        // NUEVO: Actualizar imagen del socket
+                        updateChipImage(chip);
+
                         // NUEVO: Limpiar configuración de fusibles cuando se selecciona nuevo chip
                         clearFuseConfiguration();
 
@@ -381,12 +389,13 @@ public class MainActivity extends AppCompatActivity
                         // Si el chip es ONLY ICSP, no permitir desactivar
                         if (currentChip.isICSPOnlyCompatible()) {
                             swModeICSP.setChecked(true);
-
-                            return;
+                        } else {
+                            // Si el chip soporta ambos modos, permitir cambio
+                            currentChip.setActivarICSP(isChecked);
                         }
 
-                        // Si el chip soporta ambos modos, permitir cambio
-                        currentChip.setActivarICSP(isChecked);
+                        // ACTUALIZAR IMAGEN SEGUN ESTADO DEL SWITCH
+                        updateChipImage(currentChip);
 
                     } catch (ChipConfigurationException e) {
                         swModeICSP.setChecked(false);
@@ -473,6 +482,39 @@ public class MainActivity extends AppCompatActivity
         } catch (ChipConfigurationException e) {
             swModeICSP.setEnabled(false);
             swModeICSP.setChecked(false);
+        }
+    }
+
+    /** NUEVO: Actualiza la imagen del socket segun el chip */
+    private void updateChipImage(ChipPic chip) {
+        if (chip == null) {
+            chipSocketImageView.setVisibility(View.GONE);
+            return;
+        }
+
+        chipSocketImageView.setVisibility(View.VISIBLE);
+        String pinLocation = chip.getUbicacionPin1DelPic();
+        boolean isIcspOnly = false;
+        try {
+            isIcspOnly = chip.isICSPOnlyCompatible();
+        } catch (ChipConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        // MOSTRAR ICSP SI: Es ICSP-only O el switch esta activado manualmente
+        boolean isIcspActive = swModeICSP != null && swModeICSP.isChecked();
+
+        if (isIcspOnly || isIcspActive || "null".equals(pinLocation)) {
+            chipSocketImageView.setImageResource(R.drawable.socket_icsp);
+        } else if ("socket pin 1".equalsIgnoreCase(pinLocation)) {
+            chipSocketImageView.setImageResource(R.drawable.socket_pin_1);
+        } else if ("socket pin 2".equalsIgnoreCase(pinLocation)) {
+            chipSocketImageView.setImageResource(R.drawable.socket_pin_2);
+        } else if ("socket pin 13".equalsIgnoreCase(pinLocation)) {
+            chipSocketImageView.setImageResource(R.drawable.socket_pin_13);
+        } else {
+            // Default fallback
+            chipSocketImageView.setImageResource(R.drawable.socket_icsp);
         }
     }
 
