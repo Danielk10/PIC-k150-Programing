@@ -213,7 +213,7 @@ public class ProgrammingDialogManager {
         titleTextView.setText(R.string.grabando_pic);
         titleTextView.setTextSize(22);
         titleTextView.setText(R.string.grabando_pic);
-        titleTextView.setTextSize(22);
+        titleTextView.setTextSize(18);
         titleTextView.setTextColor(Color.WHITE); // Texto blanco
         titleTextView.setGravity(Gravity.CENTER);
         topContent.addView(titleTextView);
@@ -230,7 +230,7 @@ public class ProgrammingDialogManager {
         // (setColorFilter(int, Mode))
         statusProgressBar.getIndeterminateDrawable().setColorFilter(
                 new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
-        LinearLayout.LayoutParams progressSizeParams = new LinearLayout.LayoutParams(dpToPx(50), dpToPx(50));
+        LinearLayout.LayoutParams progressSizeParams = new LinearLayout.LayoutParams(dpToPx(35), dpToPx(35));
         statusProgressBar.setLayoutParams(progressSizeParams);
         statusProgressBar.setVisibility(View.VISIBLE);
         statusContainer.addView(statusProgressBar);
@@ -263,7 +263,7 @@ public class ProgrammingDialogManager {
                 1.0f);
         adContainer.setLayoutParams(adParams);
         adContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-        adContainer.setMinimumHeight(dpToPx(300));
+        adContainer.setMinimumHeight(dpToPx(350));
         return adContainer;
     }
 

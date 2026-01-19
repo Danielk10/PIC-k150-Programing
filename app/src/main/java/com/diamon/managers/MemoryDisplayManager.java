@@ -273,10 +273,10 @@ public class MemoryDisplayManager {
         // Contenedor de anuncio
         adContainer = new FrameLayout(context);
         LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(320));
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(380));
         adParams.setMargins(0, 0, 0, dpToPx(8));
         adContainer.setLayoutParams(adParams);
-        adContainer.setMinimumHeight(dpToPx(300));
+        adContainer.setMinimumHeight(dpToPx(350));
         container.addView(adContainer);
 
         // Contenedor de datos (ScrollView con peso para llenar espacio restante)
