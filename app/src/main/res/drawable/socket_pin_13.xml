@@ -9,15 +9,14 @@
         android:fillColor="#005F5F"
         android:pathData="M0,0h200v360h-200z" />
 
-     <!-- Socket Frame (Grey) -->
+     <!-- Socket Frame: Requested BLUE -->
     <path
-        android:fillColor="#404040"
+        android:fillColor="#1565C0"
         android:pathData="M30,10 h140 v340 h-140 z"
         android:strokeColor="#808080"
         android:strokeWidth="2" />
-    <!-- Socket Inner Recess -->
     <path
-        android:fillColor="#202020"
+        android:fillColor="#0D47A1"
         android:pathData="M70,20 h60 v320 h-60 z" />
     <!-- Lever -->
     <path
@@ -27,7 +26,7 @@
         android:fillColor="#A0A0A0"
         android:pathData="M20,10 a5,5 0 0,1 10,0" />
 
-    <!-- PINS (Same as P1 - compressed copy) -->
+    <!-- PINS -->
     <group>
         <path android:fillColor="#4CAF50" android:pathData="M35,30 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,32 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M35,46 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,48 h8 v6 h-8 z"/>
@@ -49,7 +48,7 @@
         <path android:fillColor="#4CAF50" android:pathData="M35,302 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,304 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M35,318 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,320 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M35,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,336 h8 v6 h-8 z"/>
-        <!-- Right side -->
+        
         <path android:fillColor="#4CAF50" android:pathData="M135,30 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,32 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M135,46 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,48 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M135,62 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,64 h8 v6 h-8 z"/>
@@ -72,42 +71,42 @@
         <path android:fillColor="#4CAF50" android:pathData="M135,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,336 h8 v6 h-8 z"/>
     </group>
 
-    <!-- CHIP: Black with Texture -->
-    <!-- Position: PIN 13 (Y+12*16) = 28+192 = 220 -->
-    <!-- Usually small chip (8 or 18 pins) for this pos. Let's make it 80 height. -->
+    <!-- CHIP: YELLOW -->
+    <!-- Position: PIN 13 (Y+192) -->
     <path
-        android:fillColor="#101010"
+        android:fillColor="#FFC107"
         android:pathData="M68,220 h64 v80 h-64 z" />
     <path
-        android:strokeColor="#505050"
+        android:strokeColor="#FF6F00"
         android:strokeWidth="1"
         android:pathData="M68,220 h64 v80 h-64 z" />
 
-    <!-- PIN 1 DOT (Yellow) -->
-    <!-- Top Left (Y+192) = 38+192 = 230 -->
+    <!-- PIN 1 DOT (Black) -->
     <path
-        android:fillColor="#FFEB3B"
+        android:fillColor="#000000"
         android:pathData="M78,230 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
 
+    <!-- "PIC" TEXT VERTICAL -->
+    <!-- Shifted down 192 from P1=80. 80+192 = 272 -->
+    <group>
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="3"
+            android:pathData="M95,242 v12 h6 a3,3 0 0,0 0,-6 h-6" />
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="3"
+            android:pathData="M95,262 h10 M100,262 v12 M95,274 h10" />
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="3"
+            android:pathData="M105,282 h-6 v12 h6" />
+    </group>
+
     <!-- INDICATOR: "13" and Arrow -->
-    <!-- Position: At Y=227 (Center of 13th pad) -->
-    <!-- Arrow Triangle pointing Right to Pad 13 -->
     <path
         android:fillColor="#FFFFFF"
         android:pathData="M25,227 L15,222 V232 Z" />
-    
-    <!-- Text "13" -->
-    <!-- "1": M2,117... wait coords: Y around 217-237 -->
-    <!-- "1": x=-2, y=217, h20 -->
-    <!-- "3": x=6.. -->
     <group>
-        <!-- 1 -->
         <path
             android:pathData="M0,218 L4,218 L4,236 M0,236 L8,236 M0,221 L4,218"
             android:strokeColor="#FFFFFF"
             android:strokeWidth="2"
             android:strokeLineCap="square" />
-        <!-- 3 -->
         <path
             android:pathData="M9,218 h6 l-3,9 l3,0 a4,4 0 1,1 -4,8 h-3"
             android:strokeColor="#FFFFFF"
