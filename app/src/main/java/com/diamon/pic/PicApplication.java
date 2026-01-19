@@ -34,6 +34,21 @@ public class PicApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // ✅ REGLA CRÍTICA: Definir el sufijo del directorio de datos del WebView
+        // ANTES de cualquier inicialización de SDKs que usen WebView (como AdMob)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            try {
+                String processName = getProcessName();
+                if (!getPackageName().equals(processName)) {
+                    WebView.setDataDirectorySuffix(processName);
+                } else {
+                    WebView.setDataDirectorySuffix("webview");
+                }
+            } catch (Exception e) {
+                Log.w(TAG, "Error setting WebView data directory suffix: " + e.getMessage());
+            }
+        }
+
         // Configurar handler para excepciones del sistema que no podemos controlar
         setupUncaughtExceptionHandler();
 
@@ -119,11 +134,7 @@ public class PicApplication extends Application {
                 // Handler para ejecutar en el main thread (requerido para WebView)
                 new Handler(Looper.getMainLooper()).post(() -> {
                     try {
-                        // Pre-cargar el provider de WebView
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                            WebView.setDataDirectorySuffix("webview");
-                        }
-                        // Crear y descartar inmediatamente para pre-cargar
+                        // Crear y descartar inmediatamente para pre-cargar el motor de renderizado
                         new WebView(getApplicationContext()).destroy();
                         Log.d(TAG, "WebView preloaded successfully");
                     } catch (Exception e) {
