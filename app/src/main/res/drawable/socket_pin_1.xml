@@ -77,24 +77,24 @@
         <path android:fillColor="#4CAF50" android:pathData="M135,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,336 h8 v6 h-8 z"/>
     </group>
 
-    <!-- CHIP: Requested YELLOW -->
+    <!-- CHIP: BLACK (Restored) -->
     <!-- Position: PIN 1 (Top) -->
     <path
-        android:fillColor="#FFC107"
+        android:fillColor="#101010"
         android:pathData="M68,28 h64 v200 h-64 z" />
     
-    <!-- Chip Outline/Legs connection -->
+    <!-- Chip Outline -->
     <path
-        android:strokeColor="#FF6F00"
+        android:strokeColor="#505050"
         android:strokeWidth="1"
         android:pathData="M68,28 h64 v200 h-64 z" />
 
-    <!-- PIN 1 DOT (White or Black? Black contrast on Yellow) -->
+    <!-- PIN 1 DOT (Yellow) -->
     <path
-        android:fillColor="#000000"
+        android:fillColor="#FFEB3B"
         android:pathData="M78,38 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
 
-    <!-- "PIC" TEXT VERTICAL -->
+    <!-- "PIC" TEXT VERTICAL (White on Black) -->
     <!-- Center X=100. Y Start ~80 -->
     <!-- P: M95,80 v10 h5 a2... 
          I: M100,100 v10
