@@ -409,15 +409,22 @@ public class MemoryDisplayManager {
                     String hexGroup = data.substring(start, end);
                     hexPart.append(hexGroup).append(" ");
 
-                    // Convertir a ASCII
-                    for (int k = 0; k < hexGroup.length(); k += 2) {
-                        if (k + 2 <= hexGroup.length()) {
-                            try {
-                                int value = Integer.parseInt(hexGroup.substring(k, k + 2), 16);
-                                char c = (value >= 32 && value <= 126) ? (char) value : '.';
-                                asciiPart.append(c);
-                            } catch (NumberFormatException e) {
-                                asciiPart.append('.');
+                    // Convertir a ASCII - CORRECCION: ROM debe ser Little Endian (Byte Bajo
+                    // primero)
+                    if (isROM) {
+                        // ROM (16-bit word): Mostrar byte bajo (chars 2-3) primero, luego byte alto
+                        // (chars 0-1)
+                        int[] offsets = { 2, 0 };
+                        for (int k : offsets) {
+                            if (k + 2 <= hexGroup.length()) {
+                                appendAscii(asciiPart, hexGroup.substring(k, k + 2));
+                            }
+                        }
+                    } else {
+                        // Otros (EEPROM): Orden secuencial normal
+                        for (int k = 0; k < hexGroup.length(); k += 2) {
+                            if (k + 2 <= hexGroup.length()) {
+                                appendAscii(asciiPart, hexGroup.substring(k, k + 2));
                             }
                         }
                     }
@@ -716,5 +723,18 @@ public class MemoryDisplayManager {
 
     private int dpToPx(int dp) {
         return Math.round(dp * context.getResources().getDisplayMetrics().density);
+    }
+
+    /**
+     * Helper para convertir hex a ASCII y agregarlo al StringBuilder
+     */
+    private void appendAscii(StringBuilder builder, String hexByte) {
+        try {
+            int value = Integer.parseInt(hexByte, 16);
+            char c = (value >= 32 && value <= 126) ? (char) value : '.';
+            builder.append(c);
+        } catch (NumberFormatException e) {
+            builder.append('.');
+        }
     }
 }
