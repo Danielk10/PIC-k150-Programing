@@ -1,68 +1,110 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="200dp"
-    android:height="300dp"
+    android:height="360dp"
     android:viewportWidth="200"
-    android:viewportHeight="300">
+    android:viewportHeight="360">
 
-    <!-- Background: Cyan/Teal -->
+    <!-- Background: Teal #005f5f -->
     <path
         android:fillColor="#005F5F"
-        android:pathData="M0,0h200v300h-200z" />
+        android:pathData="M0,0h200v360h-200z" />
 
-    <!-- ZIF Socket Frame: Grey -->
+    <!-- Socket Frame (Grey) -->
     <path
-        android:fillColor="#3A3A3A"
-        android:pathData="M40,20 h120 v260 h-120 z"
+        android:fillColor="#404040"
+        android:pathData="M30,10 h140 v340 h-140 z"
         android:strokeColor="#808080"
         android:strokeWidth="2" />
-        
-    <!-- ZIF Handle (Lever) -->
+    <!-- Socket Inner Recess -->
+    <path
+        android:fillColor="#202020"
+        android:pathData="M70,20 h60 v320 h-60 z" />
+    <!-- Lever -->
     <path
         android:fillColor="#C0C0C0"
-        android:pathData="M30,20 h10 v40 h-10 z" />
-
-    <!-- Green Pads -->
-    <!-- Left Column -->
+        android:pathData="M20,10 h10 v60 h-10 z" />
     <path
-        android:fillColor="#4CAF50"
-        android:pathData="M50,40 h20 v5 h-20 z M50,50 h20 v5 h-20 z M50,60 h20 v5 h-20 z M50,70 h20 v5 h-20 z
-                          M50,80 h20 v5 h-20 z M50,90 h20 v5 h-20 z M50,100 h20 v5 h-20 z M50,110 h20 v5 h-20 z
-                          M50,120 h20 v5 h-20 z M50,130 h20 v5 h-20 z M50,140 h20 v5 h-20 z M50,150 h20 v5 h-20 z
-                          M50,160 h20 v5 h-20 z M50,170 h20 v5 h-20 z M50,180 h20 v5 h-20 z M50,190 h20 v5 h-20 z
-                          M50,200 h20 v5 h-20 z M50,210 h20 v5 h-20 z M50,220 h20 v5 h-20 z M50,230 h20 v5 h-20 z" />
-    
-    <!-- Right Column -->
-    <path
-        android:fillColor="#4CAF50"
-        android:pathData="M130,40 h20 v5 h-20 z M130,50 h20 v5 h-20 z M130,60 h20 v5 h-20 z M130,70 h20 v5 h-20 z
-                          M130,80 h20 v5 h-20 z M130,90 h20 v5 h-20 z M130,100 h20 v5 h-20 z M130,110 h20 v5 h-20 z
-                          M130,120 h20 v5 h-20 z M130,130 h20 v5 h-20 z M130,140 h20 v5 h-20 z M130,150 h20 v5 h-20 z
-                          M130,160 h20 v5 h-20 z M130,170 h20 v5 h-20 z M130,180 h20 v5 h-20 z M130,190 h20 v5 h-20 z
-                          M130,200 h20 v5 h-20 z M130,210 h20 v5 h-20 z M130,220 h20 v5 h-20 z M130,230 h20 v5 h-20 z" />
+        android:fillColor="#A0A0A0"
+        android:pathData="M20,10 a5,5 0 0,1 10,0" />
 
-    <!-- CHIP: Black Rectangle -->
-    <!-- Position: Pin 2 (Shifted down by 10 units compared to Pin 1) -->
-    <!-- Y start was 35, now 45. -->
+    <!-- PINS (Same as P1) -->
+    <group>
+        <path android:fillColor="#4CAF50" android:pathData="M35,30 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,32 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,46 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,48 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,62 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,64 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,78 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,80 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,94 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,96 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,110 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,112 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,126 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,128 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,142 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,144 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,158 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,160 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,174 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,176 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,190 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,192 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,206 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,208 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,222 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,224 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,238 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,240 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,254 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,256 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,270 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,272 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,286 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,288 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,302 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,304 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,318 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,320 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M35,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M55,336 h8 v6 h-8 z"/>
+        
+        <!-- Right side pads -->
+        <path android:fillColor="#4CAF50" android:pathData="M135,30 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,32 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,46 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,48 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,62 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,64 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,78 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,80 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,94 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,96 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,110 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,112 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,126 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,128 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,142 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,144 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,158 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,160 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,174 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,176 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,190 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,192 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,206 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,208 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,222 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,224 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,238 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,240 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,254 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,256 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,270 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,272 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,286 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,288 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,302 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,304 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,318 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,320 h8 v6 h-8 z"/>
+        <path android:fillColor="#4CAF50" android:pathData="M135,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,336 h8 v6 h-8 z"/>
+    </group>
+
+    <!-- CHIP: Black with Texture -->
+    <!-- Position: PIN 2 (Y+16) = 28+16 = 44 -->
     <path
         android:fillColor="#101010"
-        android:pathData="M80,45 h40 v140 h-40 z" 
-        android:strokeColor="#606060"
-        android:strokeWidth="1"/>
+        android:pathData="M68,44 h64 v200 h-64 z" />
+    <path
+        android:strokeColor="#505050"
+        android:strokeWidth="1"
+        android:pathData="M68,44 h64 v200 h-64 z" />
 
-    <!-- Pin 1 Indicator: Yellow Dot -->
-    <!-- Moved down 10 units: Y=55 -->
+    <!-- PIN 1 DOT (Yellow) -->
+    <!-- Top Left (Y+16) = 38+16 = 54 -->
     <path
         android:fillColor="#FFEB3B"
-        android:pathData="M85,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0" />
-        
-    <!-- Text/Arrow indicating socket pos 2 -->
-    <!-- Arrow pointing to second pad (Y=50 region) -->
+        android:pathData="M78,54 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+
+    <!-- INDICATOR: "2" and Arrow -->
+    <!-- Position: At Y=51 (Center of 2nd pad) -->
+    <!-- Arrow Triangle pointing Right to Pad 2 -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M25,52 l-10,-5 v10 z" />
+        android:pathData="M25,51 L15,46 V56 Z" />
+    
+    <!-- Text "2" -->
+    <!-- "2": Top curve, diagonal down, bottom horiz -->
+    <!-- Box: x=3-13, y=41-61 approx -->
+    <!-- Path for "2": M3,43 h10 v5 l-10,10 h10 -->
     <path
-        android:pathData="M15,52 h-10"
+        android:pathData="M3,42 h10 v5 l-10,10 h10"
         android:strokeColor="#FFFFFF"
-        android:strokeWidth="2"/>
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 
 </vector>
