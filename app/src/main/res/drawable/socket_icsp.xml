@@ -4,85 +4,81 @@
     android:viewportWidth="200"
     android:viewportHeight="240">
 
-    <!-- Background: Purple #6A0D6A -->
+    <!-- Background: Purple #6A0D6A (Deep Purple from Image) -->
     <path
-        android:fillColor="#6A0D6A"
+        android:fillColor="#800080"
         android:pathData="M0,0h200v240h-200z" />
 
     <group android:translateY="-40">
-        <!-- Header Connector: Grey Rectangle -->
-        <!-- Moved Left to make space for text -->
+        <!-- Header Connector: Grey Rectangle (Left side) -->
         <path
             android:fillColor="#808080"
-            android:pathData="M5,50 h30 v200 h-30 z"
-            android:strokeWidth="2"
-            android:strokeColor="#FFFFFF" />
+            android:pathData="M10,50 h25 v190 h-25 z"
+            android:strokeWidth="1"
+            android:strokeColor="#000000" />
 
         <!-- Wires and Labels -->
-        <!-- Wires shorter (M35 to M130) to leave Right space for text -->
-        
+        <!-- Wires go from Connector (X=35) to Right Edge (X=200) -->
+        <!-- Text is centered ABOVE the wire -->
+        <!-- Font style: Simple white lines -->
+
         <!-- 1. VPP1 - White -->
         <path
-            android:pathData="M35,70 h95"
+            android:pathData="M35,70 h165"
             android:strokeColor="#FFFFFF"
-            android:strokeWidth="6" />
-        <!-- Label VPP1 - Moved to Right (x=140) -->
+            android:strokeWidth="5" />
+        <!-- Label VPP1 (Above) -->
         <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M140,60 l3,8 l3,-8 M150,60 v8 h3 a2,2 0 0,0 0,-4 h-3 M160,60 v8 h3 a2,2 0 0,0 0,-4 h-3 M172,60 v8 M170,62 l2,-2" />
-        <path android:fillColor="#FFFFFF" android:pathData="M185,60 v8 h3 v-3 h2 v-2 h-2 v-3 z" />
+            android:pathData="M100,55 l3,8 l3,-8 M110,55 v8 h3 a2,2 0 0,0 0,-4 h-3 M120,55 v8 h3 a2,2 0 0,0 0,-4 h-3 M132,55 v8 M130,57 l2,-2 M45,60" />
 
         <!-- 2. LOW - Blue -->
         <path
-            android:pathData="M35,100 h95"
-            android:strokeColor="#2196F3"
-            android:strokeWidth="6" />
-        <!-- Label LOW -->
+            android:pathData="M35,100 h165"
+            android:strokeColor="#0000FF"
+            android:strokeWidth="5" />
+        <!-- Label LOW (Above) -->
         <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M140,95 v10 h4 M155,95 a2,2 0 1,1 -4,0 v10 a2,2 0 1,0 4,0 M170,95 l2,8 l2,-8 l2,8 l2,-8" />
+            android:pathData="M100,85 v8 h4 M115,85 a2,2 0 1,1 -4,0 v8 a2,2 0 1,0 4,0 M130,85 l2,8 l2,-4 l2,4 l2,-8" />
 
         <!-- 3. DAT - Green -->
         <path
-            android:pathData="M35,130 h95"
-            android:strokeColor="#4CAF50"
-            android:strokeWidth="6" />
-        <!-- Label DAT -->
+            android:pathData="M35,130 h165"
+            android:strokeColor="#008000"
+            android:strokeWidth="5" />
+        <!-- Label DAT (Above) -->
         <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M140,125 v10 h2 a2,2 0 0,0 0,-10 h-2 M155,135 l2,-10 l2,10 M156,131 h2 M168,125 h6 M171,125 v10" />
+            android:pathData="M100,115 v8 h2 a2,2 0 0,0 0,-8 h-2 M115,123 l2,-8 l2,8 M116,119 h2 M128,115 h6 M131,115 v8" />
 
         <!-- 4. CLK - Red -->
         <path
-            android:pathData="M35,160 h95"
-            android:strokeColor="#F44336"
-            android:strokeWidth="6" />
-        <!-- Label CLK -->
+            android:pathData="M35,160 h165"
+            android:strokeColor="#FF0000"
+            android:strokeWidth="5" />
+        <!-- Label CLK (Above) -->
         <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M142,165 a2,2 0 1,1 -4,0 v-7 h4 M155,155 v10 h4 M168,155 v10 M168,160 l4,-5 M168,160 l4,5" />
+            android:pathData="M102,153 a2,2 0 1,1 -4,0 v-7 h4 M115,145 v8 h4 M128,145 v8 M128,149 l4,-4 M128,149 l4,4" />
 
+        <!-- 5. VCC - Yellow (Wait, Reference image had diff colors? Standard is usually specific) -->
+        <!-- User Image 1: Pin 5 is Black (VCC?), Pin 6 is Yellow (GND?) -->
+        <!-- User text/image check: Image 1 shows: White, Blue, Green, Red, Black, Yellow -->
+        <!-- Let's follow that sequence. -->
         <!-- 5. VCC - Black -->
         <path
-            android:pathData="M35,190 h95"
+            android:pathData="M35,190 h165"
             android:strokeColor="#000000"
-            android:strokeWidth="6" />
-        <!-- Label VCC -->
+            android:strokeWidth="5" />
+        <!-- Label VCC (Above) -->
         <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M140,185 l2,10 l2,-10 M152,185 a2,2 0 1,0 4,0 v1 h-4 v8 h4 M168,185 a2,2 0 1,0 4,0 v1 h-4 v8 h4" />
+            android:pathData="M100,175 l2,8 l2,-8 M112,175 a2,2 0 1,0 4,0 v1 h-4 v8 h4 M128,175 a2,2 0 1,0 4,0 v1 h-4 v8 h4" />
 
         <!-- 6. GND - Yellow -->
         <path
-            android:pathData="M35,220 h95"
-            android:strokeColor="#FFEB3B"
-            android:strokeWidth="6" />
-        <!-- Label GND -->
-        <path android:strokeColor="#101010" android:strokeWidth="2"
-            android:pathData="M142,215 a2,2 0 1,1 -4,0 v-2 h4 v-1 M155,215 v10 l5,-8 v8 M170,215 a2,2 0 0,1 4,0 v8 a2,2 0 0,1 -4,0 h4" />
+            android:pathData="M35,220 h165"
+            android:strokeColor="#FFFF00"
+            android:strokeWidth="5" />
+        <!-- Label GND (Above) -->
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
+            android:pathData="M102,213 a2,2 0 1,1 -4,0 v-2 h4 v-1 M115,205 v8 l5,-8 v8 M130,205 a2,2 0 0,1 4,0 v8 a2,2 0 0,1 -4,0 h4" />
 
     </group>
-    <!-- Pins -->
-    <path android:fillColor="#CCCCCC" android:pathData="M20,70 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-    <path android:fillColor="#CCCCCC" android:pathData="M20,100 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-    <path android:fillColor="#CCCCCC" android:pathData="M20,130 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-    <path android:fillColor="#CCCCCC" android:pathData="M20,160 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-    <path android:fillColor="#CCCCCC" android:pathData="M20,190 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-    <path android:fillColor="#CCCCCC" android:pathData="M20,220 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-
 </vector>
