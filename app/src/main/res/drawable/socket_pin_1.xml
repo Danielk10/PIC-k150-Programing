@@ -21,13 +21,7 @@
         android:fillColor="#0D47A1"
         android:pathData="M90,20 h120 v320 h-120 z" />
 
-    <!-- Lever (Silver) -->
-    <path
-        android:fillColor="#C0C0C0"
-        android:pathData="M45,10 h30 v60 h-30 z" />
-    <path
-        android:fillColor="#A0A0A0"
-        android:pathData="M45,10 a5,5 0 0,1 10,0" />
+    <!-- Lever removed as requested -->
 
     <!-- PINS (Green/Gold) -->
     <group>
