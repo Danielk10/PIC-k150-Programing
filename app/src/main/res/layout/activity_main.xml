@@ -120,22 +120,22 @@
                             android:textColor="#4CAF50"
                             android:textSize="12sp" />
 
-                        <!-- Linea de separacion amarilla -->
+                        <!-- Linea de separacion (Naranja Coherente) -->
                         <View
-                            android:layout_width="2dp"
+                            android:layout_width="4dp"
                             android:layout_height="match_parent"
-                            android:background="#FFEB3B"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp" />
+                            android:background="#FF6600"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp" />
 
-                        <!-- Imagen del Socket -->
+                        <!-- Imagen del Socket (Mas grande) -->
                         <ImageView
                             android:id="@+id/chipSocketImageView"
-                            android:layout_width="100dp"
+                            android:layout_width="160dp"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:contentDescription="Socket Diagram"
-                            android:padding="4dp"
+                            android:padding="2dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/socket_icsp"
                             android:visibility="visible" />
