@@ -101,16 +101,46 @@
                         android:paddingEnd="12dp"
                         android:spinnerMode="dropdown" />
 
-                    <TextView
-                        android:id="@+id/chipInfoTextView"
+                    <!-- Contenedor Horizontal para Info e Imagen -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:background="#1A1A2E"
-                        android:fontFamily="monospace"
-                        android:padding="12dp"
-                        android:text="@string/esperando_seleccion"
-                        android:textColor="#4CAF50"
-                        android:textSize="12sp" />
+                        android:baselineAligned="false">
+
+                        <TextView
+                            android:id="@+id/chipInfoTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:padding="12dp"
+                            android:text="@string/esperando_seleccion"
+                            android:textColor="#4CAF50"
+                            android:textSize="12sp" />
+
+                        <!-- Linea de separacion amarilla -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="#FFEB3B"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp" />
+
+                        <!-- Imagen del Socket -->
+                        <ImageView
+                            android:id="@+id/chipSocketImageView"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="Socket Diagram"
+                            android:padding="4dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/socket_icsp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
