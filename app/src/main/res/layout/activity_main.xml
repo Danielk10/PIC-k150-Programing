@@ -128,10 +128,10 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp" />
 
-                        <!-- Imagen del Socket (Mas grande) -->
+                        <!-- Imagen del Socket -->
                         <ImageView
                             android:id="@+id/chipSocketImageView"
-                            android:layout_width="160dp"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:contentDescription="Socket Diagram"
