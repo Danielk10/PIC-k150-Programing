@@ -131,11 +131,10 @@
                         <!-- Imagen del Socket -->
                         <ImageView
                             android:id="@+id/chipSocketImageView"
-                            android:layout_width="100dp"
+                            android:layout_width="135dp"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:contentDescription="Socket Diagram"
-                            android:padding="2dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/socket_icsp"
                             android:visibility="visible" />

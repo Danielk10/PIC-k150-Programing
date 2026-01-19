@@ -1,44 +1,12 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="200dp"
+    android:width="300dp"
     android:height="360dp"
-    android:viewportWidth="200"
+    android:viewportWidth="300"
     android:viewportHeight="360">
 
     <!-- Background: Teal #005f5f -->
     <path
         android:fillColor="#005F5F"
-        android:pathData="M0,0h200v360h-200z" />
-
-    <!-- Socket Frame (BLUE) -->
-    <path
-        android:fillColor="#1565C0"
-        android:pathData="M0,10 h200 v340 h-200 z"
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="1" />
-    
-    <!-- Socket Inner Recess -->
-    <path
-        android:fillColor="#0D47A1"
-        android:pathData="M50,20 h100 v320 h-100 z" />
-
-    <!-- Lever -->
-    <path
-        android:fillColor="#C0C0C0"
-        android:pathData="M5,10 h20 v60 h-20 z" />
-    <path
-        android:fillColor="#A0A0A0"
-        android:pathData="M5,10 a5,5 0 0,1 10,0" />
-
-    <!-- PINS -->
-    <group>
-        <path android:fillColor="#4CAF50" android:pathData="M5,30 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,32 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,46 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,48 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,62 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,64 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,78 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,80 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,94 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,96 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,110 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,112 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,126 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,128 h8 v6 h-8 z"/>
-        <path android:fillColor="#4CAF50" android:pathData="M5,142 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,144 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M5,158 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,160 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M5,174 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,176 h8 v6 h-8 z"/>
         <path android:fillColor="#4CAF50" android:pathData="M5,190 h40 v10 h-40 z"/><path android:fillColor="#FFD700" android:pathData="M35,192 h8 v6 h-8 z"/>

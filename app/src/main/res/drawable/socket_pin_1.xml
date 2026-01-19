@@ -1,40 +1,76 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="200dp"
+    android:width="300dp"
     android:height="360dp"
-    android:viewportWidth="200"
+    android:viewportWidth="300"
     android:viewportHeight="360">
 
-    <!-- Background: Teal #005f5f (User seems to accept this background, complained about frame) -->
+    <!-- Background: Teal -->
     <path
         android:fillColor="#005F5F"
-        android:pathData="M0,0h200v360h-200z" />
+        android:pathData="M0,0h300v360h-300z" />
 
-    <!-- 
-      ZIF Socket - MAX WIDTH 
+    <!--
+      ZIF Socket - MAX WIDTH
       Full viewport width 200.
       Frame M0 to M200.
     -->
-    
-    <!-- Socket Frame (BLUE #1565C0) -->
-    <path
-        android:fillColor="#1565C0"
-        android:pathData="M0,10 h200 v340 h-200 z"
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="1" />
-    
-    <!-- Socket Inner Recess (Dark Blue) -->
-    <!-- M50 h100 -->
-    <path
-        android:fillColor="#0D47A1"
-        android:pathData="M50,20 h100 v320 h-100 z" />
 
-    <!-- Lever (Silver) - Positioned at X=5 -->
-    <path
-        android:fillColor="#C0C0C0"
-        android:pathData="M5,10 h20 v60 h-20 z" />
-    <path
-        android:fillColor="#A0A0A0"
-        android:pathData="M5,10 a5,5 0 0,1 10,0" />
+    <group android:scaleX="1.5" android:pivotX="0">
+        <!-- Socket Frame (BLUE #1565C0) -->
+        <path
+            android:fillColor="#1565C0"
+            android:pathData="M0,10 h200 v340 h-200 z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1" />
+
+        <!-- Socket Inner Recess (Dark Blue) -->
+        <!-- M50 h100 -->
+        <path
+            android:fillColor="#0D47A1"
+            android:pathData="M50,20 h100 v320 h-100 z" />
+
+        <!-- Lever (Silver) - Positioned at X=5 -->
+        <path
+            android:fillColor="#C0C0C0"
+            android:pathData="M5,10 h20 v60 h-20 z" />
+        <path
+            android:fillColor="#A0A0A0"
+            android:pathData="M5,10 a5,5 0 0,1 10,0" />
+
+        <!-- CHIP: BLACK (Wide) -->
+        <!-- Position: PIN 1 (Top). Width: 100 (50 to 150) -->
+        <path
+            android:fillColor="#101010"
+            android:pathData="M50,28 h100 v200 h-100 z" />
+        <path
+            android:strokeColor="#505050"
+            android:strokeWidth="1"
+            android:pathData="M50,28 h100 v200 h-100 z" />
+
+        <!-- PIN 1 DOT (Yellow) -->
+        <path
+            android:fillColor="#FFEB3B"
+            android:pathData="M60,38 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+
+        <!-- INDICATOR: "1" and Arrow -->
+        <!-- Arrow pointing to socket pin 1 at Y=35 (x=5) -->
+        <!-- Draw Over Lever area (white contrast) -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M10,35 L20,30 V40 Z" />
+
+        <!-- Large Number "1" on the chip to include numbering as requested -->
+        <!-- X=60, Y=50 -->
+        <!-- No, user wants numbers "MISSING NUMBERS INDICATING PIN".
+             Usually this means numbering the socket pins? Or just the big indicator?
+             I will put "1" next to the arrow.
+        -->
+        <path
+            android:pathData="M6,25 L10,25 L10,45 M6,45 L15,45 M6,28 L10,25"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="3"
+            android:strokeLineCap="square" />
+    </group>
 
     <!-- PINS (Green/Gold) -->
     <!-- Left Column: X range 5-45 -->
