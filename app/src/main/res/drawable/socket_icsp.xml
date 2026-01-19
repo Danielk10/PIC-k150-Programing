@@ -1,13 +1,13 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="200dp"
-    android:height="300dp"
+    android:height="360dp"
     android:viewportWidth="200"
-    android:viewportHeight="300">
+    android:viewportHeight="360">
 
-    <!-- Background: Purple -->
+    <!-- Background: Purple #6A0D6A -->
     <path
-        android:fillColor="#800080"
-        android:pathData="M0,0h200v300h-200z" />
+        android:fillColor="#6A0D6A"
+        android:pathData="M0,0h200v360h-200z" />
 
     <!-- Header Connector: Grey Rectangle -->
     <path
@@ -17,51 +17,104 @@
         android:strokeColor="#FFFFFF" />
 
     <!-- Wires and Labels -->
+    
     <!-- 1. VPP1 - White -->
     <path
-        android:pathData="M60,70 h100"
+        android:pathData="M60,70 h120"
         android:strokeColor="#FFFFFF"
-        android:strokeWidth="6" />
+        android:strokeWidth="4" />
+    
+    <!-- Lable VPP1 at (Top Right)
+       V: M130,55 l4,10 l4,-10
+       P: M142,65 V55 h4 a2,2 0 0,1 0,4 h-4
+       P: M152,65 V55 h4 a2,2 0 0,1 0,4 h-4
+       1: M162,65 V55 M160,57 l2,-2
+    -->
     <path
-        android:pathData="M60,70 h1"
         android:strokeColor="#FFFFFF"
-        android:strokeWidth="6"
-        android:strokeLineCap="round"/>
-    <!-- Label VPP1 -->
-    <!-- Note: VectorDrawables don't support text directly. Using paths for simple text or omitting. 
-         Ideally we draw lines and user knows color codes, or we simple lines. 
-         The user image had text. Implementing strict text in vector path is hard without SVG tool.
-         I will use simple colored lines which are distinct. -->
+        android:strokeWidth="2"
+        android:pathData="
+            M120,55 l3,10 l3,-10 
+            M130,65 V55 h4 a2,2 0 0,1 0,4 h-4
+            M140,65 V55 h4 a2,2 0 0,1 0,4 h-4
+            M152,65 V55 M150,57 l2,-2
+        " />
+
 
     <!-- 2. LOW - Blue -->
     <path
-        android:pathData="M60,100 h100"
+        android:pathData="M60,100 h120"
         android:strokeColor="#0000FF"
-        android:strokeWidth="6" />
+        android:strokeWidth="4" />
+    <!-- Label LOW (Blue? Or White text? Image showed white text) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="
+            M120,85 v10 h6
+            M132,95 a4,4 0 1,0 0,-8 a4,4 0 1,0 0,8
+            M142,85 l3,10 l2,-6 l2,6 l3,-10
+        " />
 
     <!-- 3. DAT - Green -->
     <path
-        android:pathData="M60,130 h100"
-        android:strokeColor="#00FF00"
-        android:strokeWidth="6" />
+        android:pathData="M60,130 h120"
+        android:strokeColor="#008000"
+        android:strokeWidth="4" />
+    <!-- Label DAT -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="
+            M120,115 v10 h4 a3,3 0 0,0 0,-10 h-4
+            M135,125 l3,-10 l3,10 M137,121 h4
+            M148,115 h8 M152,115 v10
+        " />
 
     <!-- 4. CLK - Red -->
     <path
-        android:pathData="M60,160 h100"
+        android:pathData="M60,160 h120"
         android:strokeColor="#FF0000"
-        android:strokeWidth="6" />
+        android:strokeWidth="4" />
+    <!-- Label CLK -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="
+            M125,147 a4,4 0 1,0 0,8 
+            M132,145 v10 h6
+            M142,145 v10 M142,150 l6,-5 M142,150 l6,5
+        " />
 
     <!-- 5. VCC - Black -->
     <path
-        android:pathData="M60,190 h100"
+        android:pathData="M60,190 h120"
         android:strokeColor="#000000"
-        android:strokeWidth="6" />
+        android:strokeWidth="4" />
+    <!-- Label VCC -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="
+            M120,175 l3,10 l3,-10
+            M135,177 a4,4 0 1,0 0,8 
+            M145,177 a4,4 0 1,0 0,8
+        " />
 
     <!-- 6. GND - Yellow -->
     <path
-        android:pathData="M60,220 h100"
+        android:pathData="M60,220 h120"
         android:strokeColor="#FFFF00"
-        android:strokeWidth="6" />
+        android:strokeWidth="4" />
+    <!-- Label GND -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="
+            M125,215 h-4 v-8 h6 
+            M132,205 v10 l6,-10 v10
+            M142,205 v10 h4 a3,3 0 0,0 0,-10 h-4
+        " />
 
     <!-- Pins on Header (Small circles) -->
     <path android:fillColor="#CCCCCC" android:pathData="M35,70 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
