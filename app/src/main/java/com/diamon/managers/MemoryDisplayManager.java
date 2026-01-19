@@ -409,21 +409,23 @@ public class MemoryDisplayManager {
                     String hexGroup = data.substring(start, end);
                     hexPart.append(hexGroup).append(" ");
 
-                    // Convertir a ASCII - CORRECCION: ROM debe ser Little Endian (Byte Bajo
-                    // primero)
+                    // Convertir a ASCII - CORRECCION: ROM debe mostrar SOLO Byte Bajo (estandar
+                    // PIC)
                     if (isROM) {
-                        // Si es dato vacio (3FFF o FFFF), mostrar puntos para evitar ruido visual (?)
-                        if (hexGroup.equalsIgnoreCase("3FFF") || hexGroup.equalsIgnoreCase("FFFF")) {
-                            asciiPart.append("..");
-                        } else {
-                            // ROM (16-bit word): Mostrar byte bajo (chars 2-3) primero, luego byte alto
-                            // (chars 0-1)
-                            int[] offsets = { 2, 0 };
-                            for (int k : offsets) {
-                                if (k + 2 <= hexGroup.length()) {
-                                    appendAscii(asciiPart, hexGroup.substring(k, k + 2));
-                                }
-                            }
+                        // En PICs de 14 bits (como 16F628A), los datos se guardan en instrucciones
+                        // RETLW
+                        // (Opcode + Literal de 8 bits).
+                        // El ASCII util esta SOLO en el Byte Bajo (los ultimos 8 bits).
+                        // El Byte Alto es codigo de instruccion (irrelevante para ASCII).
+
+                        // Tomar solo los ultimos 2 caracteres (Byte Bajo)
+                        if (hexGroup.length() >= 2) {
+                            String lowByteHex = hexGroup.substring(hexGroup.length() - 2);
+                            appendAscii(asciiPart, lowByteHex);
+                            // Agregar espacio para mantener alineacion visual con los datos Hex (opcional
+                            // pero
+                            // recomendado)
+                            // asciiPart.append(" ");
                         }
                     } else {
                         // Otros (EEPROM): Orden secuencial normal
