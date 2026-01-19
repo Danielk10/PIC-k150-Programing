@@ -120,18 +120,10 @@
                             android:textColor="#4CAF50"
                             android:textSize="12sp" />
 
-                        <!-- Linea de separacion (Naranja Coherente) -->
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="match_parent"
-                            android:background="#FF6600"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp" />
-
                         <!-- Imagen del Socket -->
                         <ImageView
                             android:id="@+id/chipSocketImageView"
-                            android:layout_width="135dp"
+                            android:layout_width="125dp"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:contentDescription="Socket Diagram"
