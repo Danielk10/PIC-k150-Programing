@@ -223,13 +223,15 @@ public class ProgrammingDialogManager {
         LinearLayout.LayoutParams statusParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        statusParams.setMargins(0, dpToPx(24), 0, dpToPx(24));
+        statusParams.setMargins(0, dpToPx(12), 0, dpToPx(12));
 
         statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
         // CORREGIDO: Usar PorterDuffColorFilter para evitar API deprecada
         // (setColorFilter(int, Mode))
         statusProgressBar.getIndeterminateDrawable().setColorFilter(
                 new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
+        LinearLayout.LayoutParams progressSizeParams = new LinearLayout.LayoutParams(dpToPx(50), dpToPx(50));
+        statusProgressBar.setLayoutParams(progressSizeParams);
         statusProgressBar.setVisibility(View.VISIBLE);
         statusContainer.addView(statusProgressBar);
 
@@ -261,7 +263,7 @@ public class ProgrammingDialogManager {
                 1.0f);
         adContainer.setLayoutParams(adParams);
         adContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-        adContainer.setMinimumHeight(dpToPx(250));
+        adContainer.setMinimumHeight(dpToPx(300));
         return adContainer;
     }
 
