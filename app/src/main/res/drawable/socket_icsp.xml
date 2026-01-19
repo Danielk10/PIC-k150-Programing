@@ -1,0 +1,74 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="300dp"
+    android:viewportWidth="200"
+    android:viewportHeight="300">
+
+    <!-- Background: Purple -->
+    <path
+        android:fillColor="#800080"
+        android:pathData="M0,0h200v300h-200z" />
+
+    <!-- Header Connector: Grey Rectangle -->
+    <path
+        android:fillColor="#808080"
+        android:pathData="M20,50 h40 v200 h-40 z"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFF" />
+
+    <!-- Wires and Labels -->
+    <!-- 1. VPP1 - White -->
+    <path
+        android:pathData="M60,70 h100"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6" />
+    <path
+        android:pathData="M60,70 h1"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6"
+        android:strokeLineCap="round"/>
+    <!-- Label VPP1 -->
+    <!-- Note: VectorDrawables don't support text directly. Using paths for simple text or omitting. 
+         Ideally we draw lines and user knows color codes, or we simple lines. 
+         The user image had text. Implementing strict text in vector path is hard without SVG tool.
+         I will use simple colored lines which are distinct. -->
+
+    <!-- 2. LOW - Blue -->
+    <path
+        android:pathData="M60,100 h100"
+        android:strokeColor="#0000FF"
+        android:strokeWidth="6" />
+
+    <!-- 3. DAT - Green -->
+    <path
+        android:pathData="M60,130 h100"
+        android:strokeColor="#00FF00"
+        android:strokeWidth="6" />
+
+    <!-- 4. CLK - Red -->
+    <path
+        android:pathData="M60,160 h100"
+        android:strokeColor="#FF0000"
+        android:strokeWidth="6" />
+
+    <!-- 5. VCC - Black -->
+    <path
+        android:pathData="M60,190 h100"
+        android:strokeColor="#000000"
+        android:strokeWidth="6" />
+
+    <!-- 6. GND - Yellow -->
+    <path
+        android:pathData="M60,220 h100"
+        android:strokeColor="#FFFF00"
+        android:strokeWidth="6" />
+
+    <!-- Pins on Header (Small circles) -->
+    <path android:fillColor="#CCCCCC" android:pathData="M35,70 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+    <path android:fillColor="#CCCCCC" android:pathData="M35,100 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+    <path android:fillColor="#CCCCCC" android:pathData="M35,130 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+    <path android:fillColor="#CCCCCC" android:pathData="M35,160 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+    <path android:fillColor="#CCCCCC" android:pathData="M35,190 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+    <path android:fillColor="#CCCCCC" android:pathData="M35,220 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
+
+</vector>

@@ -1,0 +1,68 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="300dp"
+    android:viewportWidth="200"
+    android:viewportHeight="300">
+
+    <!-- Background: Cyan/Teal -->
+    <path
+        android:fillColor="#005F5F"
+        android:pathData="M0,0h200v300h-200z" />
+
+    <!-- ZIF Socket Frame: Grey -->
+    <path
+        android:fillColor="#3A3A3A"
+        android:pathData="M40,20 h120 v260 h-120 z"
+        android:strokeColor="#808080"
+        android:strokeWidth="2" />
+        
+    <!-- ZIF Handle (Lever) -->
+    <path
+        android:fillColor="#C0C0C0"
+        android:pathData="M30,20 h10 v40 h-10 z" />
+
+    <!-- Green Pads -->
+    <!-- Left Column -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M50,40 h20 v5 h-20 z M50,50 h20 v5 h-20 z M50,60 h20 v5 h-20 z M50,70 h20 v5 h-20 z
+                          M50,80 h20 v5 h-20 z M50,90 h20 v5 h-20 z M50,100 h20 v5 h-20 z M50,110 h20 v5 h-20 z
+                          M50,120 h20 v5 h-20 z M50,130 h20 v5 h-20 z M50,140 h20 v5 h-20 z M50,150 h20 v5 h-20 z
+                          M50,160 h20 v5 h-20 z M50,170 h20 v5 h-20 z M50,180 h20 v5 h-20 z M50,190 h20 v5 h-20 z
+                          M50,200 h20 v5 h-20 z M50,210 h20 v5 h-20 z M50,220 h20 v5 h-20 z M50,230 h20 v5 h-20 z" />
+    
+    <!-- Right Column -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M130,40 h20 v5 h-20 z M130,50 h20 v5 h-20 z M130,60 h20 v5 h-20 z M130,70 h20 v5 h-20 z
+                          M130,80 h20 v5 h-20 z M130,90 h20 v5 h-20 z M130,100 h20 v5 h-20 z M130,110 h20 v5 h-20 z
+                          M130,120 h20 v5 h-20 z M130,130 h20 v5 h-20 z M130,140 h20 v5 h-20 z M130,150 h20 v5 h-20 z
+                          M130,160 h20 v5 h-20 z M130,170 h20 v5 h-20 z M130,180 h20 v5 h-20 z M130,190 h20 v5 h-20 z
+                          M130,200 h20 v5 h-20 z M130,210 h20 v5 h-20 z M130,220 h20 v5 h-20 z M130,230 h20 v5 h-20 z" />
+
+    <!-- CHIP: Black Rectangle -->
+    <!-- Position: Pin 2 (Shifted down by 10 units compared to Pin 1) -->
+    <!-- Y start was 35, now 45. -->
+    <path
+        android:fillColor="#101010"
+        android:pathData="M80,45 h40 v140 h-40 z" 
+        android:strokeColor="#606060"
+        android:strokeWidth="1"/>
+
+    <!-- Pin 1 Indicator: Yellow Dot -->
+    <!-- Moved down 10 units: Y=55 -->
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M85,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0" />
+        
+    <!-- Text/Arrow indicating socket pos 2 -->
+    <!-- Arrow pointing to second pad (Y=50 region) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25,52 l-10,-5 v10 z" />
+    <path
+        android:pathData="M15,52 h-10"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"/>
+
+</vector>
