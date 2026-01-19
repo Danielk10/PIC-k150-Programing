@@ -71,22 +71,22 @@
         <path android:fillColor="#4CAF50" android:pathData="M135,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M137,336 h8 v6 h-8 z"/>
     </group>
 
-    <!-- CHIP: YELLOW -->
+    <!-- CHIP: BLACK (Restored) -->
     <!-- Position: PIN 13 (Y+192) -->
     <path
-        android:fillColor="#FFC107"
+        android:fillColor="#101010"
         android:pathData="M68,220 h64 v80 h-64 z" />
     <path
-        android:strokeColor="#FF6F00"
+        android:strokeColor="#505050"
         android:strokeWidth="1"
         android:pathData="M68,220 h64 v80 h-64 z" />
 
-    <!-- PIN 1 DOT (Black) -->
+    <!-- PIN 1 DOT (Yellow) -->
     <path
-        android:fillColor="#000000"
+        android:fillColor="#FFEB3B"
         android:pathData="M78,230 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
 
-    <!-- "PIC" TEXT VERTICAL -->
+    <!-- "PIC" TEXT VERTICAL (White on Black) -->
     <!-- Shifted down 192 from P1=80. 80+192 = 272 -->
     <group>
         <path android:strokeColor="#FFFFFF" android:strokeWidth="3"
