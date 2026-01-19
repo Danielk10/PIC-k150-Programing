@@ -4,81 +4,94 @@
     android:viewportWidth="200"
     android:viewportHeight="240">
 
-    <!-- Background: Purple #6A0D6A (Deep Purple from Image) -->
+    <!-- Background: Purple #800080 -->
     <path
         android:fillColor="#800080"
         android:pathData="M0,0h200v240h-200z" />
 
     <group android:translateY="-40">
-        <!-- Header Connector: Grey Rectangle (Left side) -->
+        <!-- Header Connector: Grey Rectangle -->
         <path
             android:fillColor="#808080"
             android:pathData="M10,50 h25 v190 h-25 z"
             android:strokeWidth="1"
             android:strokeColor="#000000" />
 
-        <!-- Wires and Labels -->
-        <!-- Wires go from Connector (X=35) to Right Edge (X=200) -->
-        <!-- Text is centered ABOVE the wire -->
-        <!-- Font style: Simple white lines -->
-
+        <!-- Wires and WHITE Labels above each line -->
+        
         <!-- 1. VPP1 - White -->
         <path
             android:pathData="M35,70 h165"
             android:strokeColor="#FFFFFF"
             android:strokeWidth="5" />
-        <!-- Label VPP1 (Above) -->
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M100,55 l3,8 l3,-8 M110,55 v8 h3 a2,2 0 0,0 0,-4 h-3 M120,55 v8 h3 a2,2 0 0,0 0,-4 h-3 M132,55 v8 M130,57 l2,-2 M45,60" />
+        <!-- Label VPP1 (White, Clear paths) -->
+        <group android:translateX="80" android:translateY="52">
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M0,0 l3,8 l3,-8"/> <!-- V -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M10,0 v8 h3 a2,2 0 0,0 0,-4 h-3"/> <!-- P -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M20,0 v8 h3 a2,2 0 0,0 0,-4 h-3"/> <!-- P -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M32,0 v8"/> <!-- 1 -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M30,2 l2,-2"/> <!-- 1 serif -->
+        </group>
 
         <!-- 2. LOW - Blue -->
         <path
             android:pathData="M35,100 h165"
             android:strokeColor="#0000FF"
             android:strokeWidth="5" />
-        <!-- Label LOW (Above) -->
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M100,85 v8 h4 M115,85 a2,2 0 1,1 -4,0 v8 a2,2 0 1,0 4,0 M130,85 l2,8 l2,-4 l2,4 l2,-8" />
+        <!-- Label LOW (White) -->
+        <group android:translateX="80" android:translateY="82">
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M0,0 v8 h4"/> <!-- L -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M10,4 a2,2 0 1,1 4,0 v1 a2,2 0 1,1 -4,0 z"/> <!-- O -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M20,0 l2,8 l2,-4 l2,4 l2,-8"/> <!-- W -->
+        </group>
 
         <!-- 3. DAT - Green -->
         <path
             android:pathData="M35,130 h165"
             android:strokeColor="#008000"
             android:strokeWidth="5" />
-        <!-- Label DAT (Above) -->
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M100,115 v8 h2 a2,2 0 0,0 0,-8 h-2 M115,123 l2,-8 l2,8 M116,119 h2 M128,115 h6 M131,115 v8" />
+        <!-- Label DAT (White) -->
+        <group android:translateX="80" android:translateY="112">
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M0,0 v8 h2 a2,2 0 0,0 0,-8 h-2"/> <!-- D -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M12,8 l2,-8 l2,8 M12.5,5 h3"/> <!-- A -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M24,0 h6 M27,0 v8"/> <!-- T -->
+        </group>
 
         <!-- 4. CLK - Red -->
         <path
             android:pathData="M35,160 h165"
             android:strokeColor="#FF0000"
             android:strokeWidth="5" />
-        <!-- Label CLK (Above) -->
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M102,153 a2,2 0 1,1 -4,0 v-7 h4 M115,145 v8 h4 M128,145 v8 M128,149 l4,-4 M128,149 l4,4" />
+        <!-- Label CLK (White) -->
+        <group android:translateX="80" android:translateY="142">
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M5,0 a3,3 0 0,0 -3,3 v2 a3,3 0 0,0 3,3"/> <!-- C -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M10,0 v8 h4"/> <!-- L -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M20,0 v8 M20,4 l3,-4 M20,4 l3,4"/> <!-- K -->
+        </group>
 
-        <!-- 5. VCC - Yellow (Wait, Reference image had diff colors? Standard is usually specific) -->
-        <!-- User Image 1: Pin 5 is Black (VCC?), Pin 6 is Yellow (GND?) -->
-        <!-- User text/image check: Image 1 shows: White, Blue, Green, Red, Black, Yellow -->
-        <!-- Let's follow that sequence. -->
         <!-- 5. VCC - Black -->
         <path
             android:pathData="M35,190 h165"
             android:strokeColor="#000000"
             android:strokeWidth="5" />
-        <!-- Label VCC (Above) -->
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M100,175 l2,8 l2,-8 M112,175 a2,2 0 1,0 4,0 v1 h-4 v8 h4 M128,175 a2,2 0 1,0 4,0 v1 h-4 v8 h4" />
+        <!-- Label VCC (White) -->
+        <group android:translateX="80" android:translateY="172">
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M0,0 l3,8 l3,-8"/> <!-- V -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M12,3 a3,3 0 0,0 -3,3 v2 a3,3 0 0,0 3,3"/> <!-- C -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M22,3 a3,3 0 0,0 -3,3 v2 a3,3 0 0,0 3,3"/> <!-- C -->
+        </group>
 
         <!-- 6. GND - Yellow -->
         <path
             android:pathData="M35,220 h165"
             android:strokeColor="#FFFF00"
             android:strokeWidth="5" />
-        <!-- Label GND (Above) -->
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
-            android:pathData="M102,213 a2,2 0 1,1 -4,0 v-2 h4 v-1 M115,205 v8 l5,-8 v8 M130,205 a2,2 0 0,1 4,0 v8 a2,2 0 0,1 -4,0 h4" />
+        <!-- Label GND (White) -->
+        <group android:translateX="80" android:translateY="202">
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M5,4 a3,3 0 1,0 -3,3 v1 h3 v-4"/> <!-- G -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M10,0 v8 l4,-8 v8"/> <!-- N -->
+            <path android:strokeColor="#FFFFFF" android:strokeWidth="2" android:pathData="M20,0 v8 h2 a3,3 0 0,0 0,-8 h-2"/> <!-- D -->
+        </group>
 
     </group>
 </vector>

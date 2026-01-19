@@ -76,8 +76,7 @@
         <path android:fillColor="#4CAF50" android:pathData="M220,334 h30 v10 h-30 z"/> <path android:fillColor="#FFD700" android:pathData="M224,336 h6 v6 h-6 z"/>
     </group>
 
-    <!-- CHIP: BLACK - Centered -->
-    <!-- X=90, Width=120. Position Y=44 for Pin 2 -->
+    <!-- CHIP: BLACK (No pin dot) -->
     <path
         android:fillColor="#101010"
         android:pathData="M90,44 h120 v200 h-120 z" />
@@ -86,17 +85,11 @@
         android:strokeWidth="1"
         android:pathData="M90,44 h120 v200 h-120 z" />
 
-    <!-- PIN 1 DOT (Yellow) - Relative to Chip Y=44. +10 = 54 -->
-    <path
-        android:fillColor="#FFEB3B"
-        android:pathData="M100,54 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" />
-
-    <!-- INDICATOR: "2" and Arrow -->
-    <!-- Arrow pointing to socket pin 2 (Y=51 center) -->
+    <!-- INDICATOR: "2" and Arrow (Direction: Right >) -->
+    <!-- Place Number "2" at X=10, Arrow at X=25 to X=35 -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M30,51 L40,46 V56 Z" />
-    <!-- Number "2" at X=10 -->
+        android:pathData="M25,46 L35,51 L25,56 Z" />
     <path
         android:pathData="M10,42 h6 v5 l-6,10 h6"
         android:strokeColor="#FFFFFF"
