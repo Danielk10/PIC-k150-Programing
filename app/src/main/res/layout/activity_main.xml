@@ -122,11 +122,11 @@
 
                         <!-- Linea de separacion (Naranja Coherente) -->
                         <View
-                            android:layout_width="4dp"
+                            android:layout_width="2dp"
                             android:layout_height="match_parent"
                             android:background="#FF6600"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="4dp" />
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp" />
 
                         <!-- Imagen del Socket (Mas grande) -->
                         <ImageView
