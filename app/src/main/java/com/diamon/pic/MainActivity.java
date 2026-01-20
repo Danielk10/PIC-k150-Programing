@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -520,9 +521,12 @@ public class MainActivity extends AppCompatActivity
         boolean isIcspActive = swModeICSP != null && swModeICSP.isChecked();
 
         if (isIcspOnly || isIcspActive || "null".equals(pinLocation) || numPines == 0) {
+            chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_XY);
             dibujarICSP();
             return;
         }
+
+        chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         int socketResId;
         final int startRowIndex;
@@ -631,8 +635,8 @@ public class MainActivity extends AppCompatActivity
         // 2. Conector Gris
         float rectWidth = 35 * scaleX;
         float rectX = 10 * scaleX;
-        float rectY = 5 * scaleY; // Margen minimo arriba
-        float rectHeight = height - (10 * scaleY); // Casi todo el alto
+        float rectY = 0; // Al borde superior
+        float rectHeight = height; // Al borde inferior
         g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
 
         // Borde del conector
@@ -658,25 +662,23 @@ public class MainActivity extends AppCompatActivity
         lapiz.setFakeBoldText(true);
 
         float lineStartX = rectX + rectWidth;
-        float lineEndX = width - (5 * scaleX);
+        float lineEndX = width - (2 * scaleX);
 
-        // Distribucion dinamica para ocupar todo el alto
-        float firstLineY = 20 * scaleY;
-        float lastLineY = height - (20 * scaleY);
-        float lineSpacing = (lastLineY - firstLineY) / (labels.length - 1);
+        // Distribucion TOTAL para ocupar todo el alto (Cero margenes)
+        float lineSpacing = height / labels.length;
 
         for (int i = 0; i < labels.length; i++) {
-            float currentY = firstLineY + (i * lineSpacing);
+            float currentY = (i * lineSpacing) + (lineSpacing / 2f);
 
             // Dibujar Cable
             lapiz.setColor(colors[i]);
-            lapiz.setStrokeWidth(6f * scaleX); // Un poco mas grueso
+            lapiz.setStrokeWidth(height / (labels.length * 2.5f)); // Grosor proporcional al alto
             g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
 
-            // Dibujar Etiqueta arriba del cable
+            // Dibujar Etiqueta exactamente arriba del cable
             lapiz.setColor(Color.WHITE);
-            float textX = lineStartX + (10 * scaleX);
-            float textY = currentY - (6 * scaleY);
+            float textX = lineStartX + (8 * scaleX);
+            float textY = currentY - (3 * scaleY);
             g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
         }
 
