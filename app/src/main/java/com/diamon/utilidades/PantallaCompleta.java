@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 /**
  * Utilidad para configurar pantalla completa y Edge-to-Edge.
@@ -110,35 +111,19 @@ public class PantallaCompleta {
         habilitarEdgeToEdge();
     }
 
-    /**
-     * Ocultar los botones virtuales de navegación en modo inmersivo.
-     * Las barras reaparecen temporalmente con un swipe desde el borde.
-     */
-    @SuppressWarnings("deprecation")
     public void ocultarBotonesVirtuales() {
         Window window = actividad.getWindow();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // Usar WindowInsetsController para API 30+ (Android 11+)
-            WindowInsetsController controller = window.getInsetsController();
-            if (controller != null) {
-                // Ocultar barras del sistema
-                controller.hide(android.view.WindowInsets.Type.systemBars());
-                // Configurar comportamiento inmersivo
-                controller.setSystemBarsBehavior(
-                        WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // Usar flags legacy para API 21-29 con supresión de advertencias
-            @SuppressWarnings("deprecation")
-            View decorView = window.getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        // Usar WindowInsetsControllerCompat (estándar de AndroidX)
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
+
+        if (controller != null) {
+            // Ocultar barras del sistema (navegación y estado)
+            controller.hide(WindowInsetsCompat.Type.systemBars());
+
+            // Configurar comportamiento inmersivo
+            controller.setSystemBarsBehavior(
+                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
         }
     }
 
