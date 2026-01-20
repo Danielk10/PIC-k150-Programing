@@ -630,9 +630,9 @@ public class MainActivity extends AppCompatActivity
 
         // 2. Conector Gris
         float rectWidth = 35 * scaleX;
-        float rectHeight = 220 * scaleY; // Aumentado de 190 a 220
         float rectX = 10 * scaleX;
-        float rectY = 10 * scaleY; // Reducido de 25 a 10
+        float rectY = 5 * scaleY; // Margen minimo arriba
+        float rectHeight = height - (10 * scaleY); // Casi todo el alto
         g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
 
         // Borde del conector
@@ -658,22 +658,25 @@ public class MainActivity extends AppCompatActivity
         lapiz.setFakeBoldText(true);
 
         float lineStartX = rectX + rectWidth;
-        float lineEndX = width - (10 * scaleX);
-        float firstLineY = 30 * scaleY; // Ajustado para ser mas fiel al borde superior
-        float lineSpacing = 36 * scaleY; // Espaciado aumentado
+        float lineEndX = width - (5 * scaleX);
+
+        // Distribucion dinamica para ocupar todo el alto
+        float firstLineY = 20 * scaleY;
+        float lastLineY = height - (20 * scaleY);
+        float lineSpacing = (lastLineY - firstLineY) / (labels.length - 1);
 
         for (int i = 0; i < labels.length; i++) {
             float currentY = firstLineY + (i * lineSpacing);
 
             // Dibujar Cable
             lapiz.setColor(colors[i]);
-            lapiz.setStrokeWidth(5f * scaleX);
+            lapiz.setStrokeWidth(6f * scaleX); // Un poco mas grueso
             g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
 
             // Dibujar Etiqueta arriba del cable
             lapiz.setColor(Color.WHITE);
-            float textX = lineStartX + (15 * scaleX);
-            float textY = currentY - (8 * scaleY);
+            float textX = lineStartX + (10 * scaleX);
+            float textY = currentY - (6 * scaleY);
             g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
         }
 
