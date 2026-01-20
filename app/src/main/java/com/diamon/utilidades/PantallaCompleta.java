@@ -101,16 +101,6 @@ public class PantallaCompleta {
         });
     }
 
-    /**
-     * @deprecated Use {@link #habilitarEdgeToEdge()} en su lugar.
-     *             Este método usa FLAG_FULLSCREEN que está deprecado.
-     */
-    @Deprecated
-    public void pantallaCompleta() {
-        // Redirigir a la nueva implementación
-        habilitarEdgeToEdge();
-    }
-
     public void ocultarBotonesVirtuales() {
         Window window = actividad.getWindow();
 

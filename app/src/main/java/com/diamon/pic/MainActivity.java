@@ -544,44 +544,48 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        // Crear el cuerpo del chip dinamicamente
+        // Crear el cuerpo del chip dinamicamente usando ShapeDrawable para evitar
+        // advertencias de getOpacity()
         final int pinsParaDibujar = numPines;
-        Drawable chipBodyDrawable = new Drawable() {
+        final int fStartRowIndex = startRowIndex;
+
+        android.graphics.drawable.shapes.Shape chipShape = new android.graphics.drawable.shapes.Shape() {
             @Override
-            public void draw(@NonNull Canvas canvas) {
-                Rect bounds = getBounds();
-                float scaleX = bounds.width() / 300f;
-                float scaleY = bounds.height() / 360f;
+            public void draw(Canvas canvas, Paint paint) {
+                float width = getWidth();
+                float height = getHeight();
+                float scaleX = width / 300f;
+                float scaleY = height / 360f;
 
-                Paint paint = new Paint();
-                paint.setColor(Color.parseColor("#101010"));
-                paint.setStyle(Paint.Style.FILL);
-                paint.setAntiAlias(true);
+                Paint chipBodyPaint = new Paint();
+                chipBodyPaint.setColor(Color.parseColor("#101010"));
+                chipBodyPaint.setStyle(Paint.Style.FILL);
+                chipBodyPaint.setAntiAlias(true);
 
-                Paint borderPaint = new Paint();
-                borderPaint.setColor(Color.parseColor("#505050"));
-                borderPaint.setStyle(Paint.Style.STROKE);
-                borderPaint.setStrokeWidth(1.5f * scaleX);
-                borderPaint.setAntiAlias(true);
+                Paint chipBorderPaint = new Paint();
+                chipBorderPaint.setColor(Color.parseColor("#505050"));
+                chipBorderPaint.setStyle(Paint.Style.STROKE);
+                chipBorderPaint.setStrokeWidth(1.5f * scaleX);
+                chipBorderPaint.setAntiAlias(true);
+
+                Paint chipNotchPaint = new Paint();
+                chipNotchPaint.setColor(Color.parseColor("#050505"));
+                chipNotchPaint.setStyle(Paint.Style.FILL);
+                chipNotchPaint.setAntiAlias(true);
 
                 // Coordenadas en sistema 300x360
                 float left = 90 * scaleX;
                 float right = 210 * scaleX;
-                float pin1Top = (30 + startRowIndex * 16) * scaleY;
+                float pin1Top = (30 + fStartRowIndex * 16) * scaleY;
                 float top = pin1Top - 2 * scaleY;
-                float height = ((pinsParaDibujar / 2) * 16 + 4) * scaleY;
-                float bottom = top + height;
+                float chipHeight = ((pinsParaDibujar / 2) * 16 + 4) * scaleY;
+                float bottom = top + chipHeight;
 
-                canvas.drawRect(left, top, right, bottom, paint);
-                canvas.drawRect(left, top, right, bottom, borderPaint);
+                // Dibujar cuerpo del chip
+                canvas.drawRect(left, top, right, bottom, chipBodyPaint);
+                canvas.drawRect(left, top, right, bottom, chipBorderPaint);
 
-                // Opcional: muesca del chip (notch)
-                Paint notchPaint = new Paint();
-                notchPaint.setColor(Color.parseColor("#050505"));
-                notchPaint.setStyle(Paint.Style.FILL);
-                notchPaint.setAntiAlias(true);
-                float notchWidth = 20 * scaleX;
-                float notchHeight = 10 * scaleY;
+                // Dibujar muesca (notch)
                 canvas.drawArc(
                         (300 / 2f - 10) * scaleX,
                         top - 5 * scaleY,
@@ -590,24 +594,12 @@ public class MainActivity extends AppCompatActivity
                         0,
                         180,
                         true,
-                        notchPaint);
-            }
-
-            @Override
-            public void setAlpha(int alpha) {
-            }
-
-            @Override
-            public void setColorFilter(ColorFilter colorFilter) {
-            }
-
-            @Override
-            @SuppressWarnings("deprecation")
-            public int getOpacity() {
-                return android.graphics.PixelFormat.TRANSLUCENT;
+                        chipNotchPaint);
             }
         };
 
+        android.graphics.drawable.ShapeDrawable chipBodyDrawable = new android.graphics.drawable.ShapeDrawable(
+                chipShape);
         LayerDrawable combined = new LayerDrawable(new Drawable[] { socketDrawable, chipBodyDrawable });
         chipSocketImageView.setImageDrawable(combined);
     }
