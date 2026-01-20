@@ -51,6 +51,10 @@ import com.diamon.tutorial.TutorialGputilsActivity;
 import com.diamon.utilidades.PantallaCompleta;
 import com.diamon.utilidades.Recurso;
 
+import com.diamon.graficos.Graficos2D;
+import com.diamon.graficos.Textura2D;
+import com.diamon.nucleo.Graficos;
+import com.diamon.nucleo.Textura;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -516,7 +520,7 @@ public class MainActivity extends AppCompatActivity
         boolean isIcspActive = swModeICSP != null && swModeICSP.isChecked();
 
         if (isIcspOnly || isIcspActive || "null".equals(pinLocation) || numPines == 0) {
-            chipSocketImageView.setImageResource(R.drawable.socket_icsp);
+            dibujarICSP();
             return;
         }
 
@@ -534,7 +538,7 @@ public class MainActivity extends AppCompatActivity
             startRowIndex = 12;
         } else {
             // Default fallback
-            chipSocketImageView.setImageResource(R.drawable.socket_icsp);
+            dibujarICSP();
             return;
         }
 
@@ -602,6 +606,78 @@ public class MainActivity extends AppCompatActivity
                 chipShape);
         LayerDrawable combined = new LayerDrawable(new Drawable[] { socketDrawable, chipBodyDrawable });
         chipSocketImageView.setImageDrawable(combined);
+    }
+
+    private void dibujarICSP() {
+        // Obtenemos el tamaño del ImageView para crear una textura que calce perfecto
+        int width = chipSocketImageView.getWidth();
+        int height = chipSocketImageView.getHeight();
+
+        // Si el layout aun no se ha medido, usamos valores por defecto proporcionales
+        if (width <= 0 || height <= 0) {
+            width = (int) (125 * getResources().getDisplayMetrics().density);
+            height = (int) (150 * getResources().getDisplayMetrics().density); // Proporcional aproximado
+        }
+
+        Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
+        Graficos g = new Graficos2D(textura);
+
+        // 1. Fondo PURPURA
+        g.limpiar(Color.parseColor("#800080"));
+
+        float scaleX = width / 200f;
+        float scaleY = height / 240f;
+
+        // 2. Conector Gris
+        float rectWidth = 35 * scaleX;
+        float rectHeight = 190 * scaleY;
+        float rectX = 10 * scaleX;
+        float rectY = 25 * scaleY;
+        g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
+
+        // Borde del conector
+        Paint lapiz = g.getLapiz();
+        lapiz.setStyle(Paint.Style.STROKE);
+        lapiz.setStrokeWidth(2f * scaleX);
+        g.getCanvas().drawRect(rectX, rectY, rectX + rectWidth, rectY + rectHeight, lapiz);
+
+        // 3. Cables y Etiquetas
+        String[] labels = { "VPP1", "LOW", "DAT", "CLK", "VCC", "GND" };
+        int[] colors = {
+                Color.WHITE,
+                Color.BLUE,
+                Color.parseColor("#008000"), // Verde oscuro
+                Color.RED,
+                Color.BLACK,
+                Color.YELLOW
+        };
+
+        lapiz.setStyle(Paint.Style.FILL);
+        lapiz.setAntiAlias(true);
+        lapiz.setTextSize(18f * scaleY);
+        lapiz.setFakeBoldText(true);
+
+        float lineStartX = rectX + rectWidth;
+        float lineEndX = width - (10 * scaleX);
+        float firstLineY = 55 * scaleY;
+        float lineSpacing = 30 * scaleY;
+
+        for (int i = 0; i < labels.length; i++) {
+            float currentY = firstLineY + (i * lineSpacing);
+
+            // Dibujar Cable
+            lapiz.setColor(colors[i]);
+            lapiz.setStrokeWidth(5f * scaleX);
+            g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
+
+            // Dibujar Etiqueta arriba del cable
+            lapiz.setColor(Color.WHITE);
+            float textX = lineStartX + (15 * scaleX);
+            float textY = currentY - (8 * scaleY);
+            g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
+        }
+
+        chipSocketImageView.setImageBitmap(textura.getBipmap());
     }
 
     private void setupFileManagerListeners() {
