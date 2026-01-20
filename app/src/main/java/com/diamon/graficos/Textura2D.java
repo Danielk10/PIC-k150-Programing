@@ -14,7 +14,6 @@ public class Textura2D implements Textura {
 
     private Graficos.FormatoTextura formatoTextura;
 
-    @SuppressWarnings("deprecation")
     public Textura2D(float ancho, float alto, Graficos.FormatoTextura formatoTextura) {
 
         Bitmap.Config config;
@@ -29,7 +28,7 @@ public class Textura2D implements Textura {
 
         } else if (formatoTextura == Graficos.FormatoTextura.ARGB4444) {
 
-            config = Bitmap.Config.ARGB_4444;
+            config = Bitmap.Config.ARGB_8888;
 
             this.bitmap = Bitmap.createBitmap((int) ancho, (int) alto, config);
 
@@ -43,7 +42,6 @@ public class Textura2D implements Textura {
         new BitmapFactory.Options().inPreferredConfig = config;
     }
 
-    @SuppressWarnings("deprecation")
     public Textura2D(Bitmap bitmap) {
 
         if (bitmap.getConfig() == Bitmap.Config.RGB_565) {
@@ -52,9 +50,9 @@ public class Textura2D implements Textura {
 
             this.bitmap = Bitmap.createBitmap(bitmap);
 
-        } else if (bitmap.getConfig() == Bitmap.Config.ARGB_4444) {
+        } else if (bitmap.getConfig() == Bitmap.Config.ARGB_8888) {
 
-            formatoTextura = Graficos.FormatoTextura.ARGB4444;
+            formatoTextura = Graficos.FormatoTextura.ARGB8888;
 
             this.bitmap = Bitmap.createBitmap(bitmap);
 
@@ -68,7 +66,6 @@ public class Textura2D implements Textura {
         new BitmapFactory.Options().inPreferredConfig = bitmap.getConfig();
     }
 
-    @SuppressWarnings("deprecation")
     public Textura2D(Bitmap bitmap, float ancho, float alto) {
 
         float w = bitmap.getWidth();
@@ -89,18 +86,13 @@ public class Textura2D implements Textura {
         // Asigna el formato de textura basado en la configuración
         if (config == Bitmap.Config.RGB_565) {
             formatoTextura = Graficos.FormatoTextura.RGB565;
-        } else if (config == Bitmap.Config.ARGB_4444) {
-            formatoTextura = Graficos.FormatoTextura.ARGB4444;
         } else {
             formatoTextura = Graficos.FormatoTextura.ARGB8888;
         }
 
         this.bitmap = Bitmap.createBitmap(bitmap, 0, 0, (int) w, (int) h, max, false);
-
-        new BitmapFactory.Options().inPreferredConfig = this.bitmap.getConfig();
     }
 
-    @SuppressWarnings("deprecation")
     public Textura2D(Textura textura, float ancho, float alto) {
 
         float w = textura.getAncho();
@@ -121,8 +113,6 @@ public class Textura2D implements Textura {
         // Asigna el formato de textura basado en la configuración
         if (config == Bitmap.Config.RGB_565) {
             formatoTextura = Graficos.FormatoTextura.RGB565;
-        } else if (config == Bitmap.Config.ARGB_4444) {
-            formatoTextura = Graficos.FormatoTextura.ARGB4444;
         } else {
             formatoTextura = Graficos.FormatoTextura.ARGB8888;
         }

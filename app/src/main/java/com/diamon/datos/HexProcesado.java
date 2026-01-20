@@ -9,21 +9,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Procesador de archivos HEX Intel con logging integrado y manejo robusto de errores.
+ * Procesador de archivos HEX Intel con logging integrado y manejo robusto de
+ * errores.
  *
- * <p>Esta clase procesa archivos en formato Intel HEX, validando checksums, formatos de registro y
- * integridad de datos. Incluye logging detallado de todas las operaciones y manejo de excepciones
+ * <p>
+ * Esta clase procesa archivos en formato Intel HEX, validando checksums,
+ * formatos de registro y
+ * integridad de datos. Incluye logging detallado de todas las operaciones y
+ * manejo de excepciones
  * específicas del dominio.
  *
- * <p>Características principales:
+ * <p>
+ * Características principales:
  *
  * <ul>
- *   <li>Validación completa de formato Intel HEX
- *   <li>Verificación automática de checksums
- *   <li>Logging detallado de procesamiento
- *   <li>Manejo robusto de errores con contexto
- *   <li>Soporte para direcciones extendidas
- *   <li>Validación de integridad de datos
+ * <li>Validación completa de formato Intel HEX
+ * <li>Verificación automática de checksums
+ * <li>Logging detallado de procesamiento
+ * <li>Manejo robusto de errores con contexto
+ * <li>Soporte para direcciones extendidas
+ * <li>Validación de integridad de datos
  * </ul>
  *
  * @author Danielk10
@@ -32,27 +37,7 @@ import java.util.regex.Pattern;
  */
 public class HexProcesado {
 
-    // ========== EXCEPCIONES DEPRECADAS (Usar HexProcessingException en su lugar) ==========
-
-    /**
-     * @deprecated Usar HexProcessingException.crearErrorFormato() en su lugar
-     */
-    @Deprecated
-    public class InvalidRecordException extends Exception {
-        public InvalidRecordException(String message) {
-            super(message);
-        }
-    }
-
-    /**
-     * @deprecated Usar HexProcessingException.crearErrorChecksum() en su lugar
-     */
-    @Deprecated
-    public class InvalidChecksumException extends Exception {
-        public InvalidChecksumException(String message) {
-            super(message);
-        }
-    }
+    // ========== PROCESAMIENTO HEX ==========
 
     // Clase para representar un registro HEX
     public class HexRecord {
@@ -84,8 +69,7 @@ public class HexProcesado {
         }
 
         String[] lineas = fileContent.split("\n");
-        this.informacionArchivo =
-                String.format("%d líneas, %d caracteres", lineas.length, fileContent.length());
+        this.informacionArchivo = String.format("%d líneas, %d caracteres", lineas.length, fileContent.length());
 
         boolean eof = false;
         int extendedAddress = 0;
@@ -94,9 +78,8 @@ public class HexProcesado {
 
         // Expresiones regulares optimizadas para validación
         Pattern hexRecordPattern = Pattern.compile("^:[0-9A-Fa-f]+$");
-        Pattern hexRecordChopper =
-                Pattern.compile(
-                        "^:([0-9A-Fa-f]{2})([0-9A-Fa-f]{4})([0-9A-Fa-f]{2})([0-9A-Fa-f]*)([0-9A-Fa-f]{2})$");
+        Pattern hexRecordChopper = Pattern.compile(
+                "^:([0-9A-Fa-f]{2})([0-9A-Fa-f]{4})([0-9A-Fa-f]{2})([0-9A-Fa-f]*)([0-9A-Fa-f]{2})$");
 
         try {
             for (int numeroLinea = 0; numeroLinea < lineas.length; numeroLinea++) {
@@ -142,10 +125,9 @@ public class HexProcesado {
 
                 // Validar longitud
                 if (length != data.length) {
-                    String razon =
-                            String.format(
-                                    "Longitud declarada (%d) no coincide con datos (%d)",
-                                    length, data.length);
+                    String razon = String.format(
+                            "Longitud declarada (%d) no coincide con datos (%d)",
+                            length, data.length);
                     throw HexProcessingException.crearErrorFormato(numeroLinea + 1, line, razon);
                 }
 
@@ -182,7 +164,8 @@ public class HexProcesado {
             }
 
             // Verificar que se encontró EOF
-            if (!eof) {}
+            if (!eof) {
+            }
 
         } catch (NumberFormatException e) {
             throw new HexProcessingException("Error de formato numérico en archivo HEX", e);
@@ -200,11 +183,13 @@ public class HexProcesado {
     }
 
     /**
-     * Fusiona todos los registros HEX en un buffer de datos con validación y logging.
+     * Fusiona todos los registros HEX en un buffer de datos con validación y
+     * logging.
      *
      * @param dataBuffer Buffer de destino donde fusionar los datos
      * @return Buffer actualizado con todos los datos fusionados
-     * @throws HexProcessingException Si los datos exceden el buffer o hay conflictos
+     * @throws HexProcessingException Si los datos exceden el buffer o hay
+     *                                conflictos
      */
     public byte[] merge(byte[] dataBuffer) throws HexProcessingException {
         ByteUtils.validarArray(dataBuffer, -1, "dataBuffer");
@@ -220,10 +205,9 @@ public class HexProcesado {
 
                 // Validar que el registro cabe en el buffer
                 if ((address + data.length) > dataBuffer.length) {
-                    String mensaje =
-                            String.format(
-                                    "Registro fuera de rango: addr=0x%06X, len=%d, bufferSize=%d",
-                                    address, data.length, dataBuffer.length);
+                    String mensaje = String.format(
+                            "Registro fuera de rango: addr=0x%06X, len=%d, bufferSize=%d",
+                            address, data.length, dataBuffer.length);
                     throw HexProcessingException.crearErrorDireccion(
                             -1, address, 0, dataBuffer.length - 1, "BUFFER");
                 }
@@ -248,9 +232,9 @@ public class HexProcesado {
     /**
      * Verifica el checksum de un registro HEX con logging detallado.
      *
-     * @param registro Línea completa del registro
+     * @param registro         Línea completa del registro
      * @param checksumEsperado Checksum esperado del registro
-     * @param numeroLinea Número de línea para logging
+     * @param numeroLinea      Número de línea para logging
      * @return true si el checksum es válido
      * @throws HexProcessingException Si el checksum es inválido
      */
@@ -259,7 +243,8 @@ public class HexProcesado {
 
         int checksumCalculado = 0;
 
-        // Calcular checksum excluyendo el ':' inicial y los 2 últimos caracteres (checksum)
+        // Calcular checksum excluyendo el ':' inicial y los 2 últimos caracteres
+        // (checksum)
         for (int i = 1; i < registro.length() - 2; i += 2) {
             String byteHex = registro.substring(i, i + 2);
             checksumCalculado = (checksumCalculado + Integer.parseInt(byteHex, 16)) % 256;
@@ -291,18 +276,4 @@ public class HexProcesado {
         }
     }
 
-    /**
-     * Convierte string hexadecimal a array de bytes (método legacy).
-     *
-     * @deprecated Usar hexStringToByteArraySeguro() en su lugar
-     */
-    @Deprecated
-    private byte[] hexStringToByteArray(String s) {
-        try {
-            return hexStringToByteArraySeguro(s);
-        } catch (HexProcessingException e) {
-            // Comportamiento legacy: retornar array vacío en caso de error
-            return new byte[0];
-        }
-    }
 }
