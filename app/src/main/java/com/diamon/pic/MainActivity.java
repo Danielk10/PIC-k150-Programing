@@ -604,7 +604,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             @SuppressWarnings("deprecation")
             public int getOpacity() {
-                return PixelFormat.TRANSLUCENT;
+                return android.graphics.PixelFormat.TRANSLUCENT;
             }
         };
 
