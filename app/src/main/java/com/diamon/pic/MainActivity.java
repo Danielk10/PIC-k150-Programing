@@ -630,9 +630,9 @@ public class MainActivity extends AppCompatActivity
 
         // 2. Conector Gris
         float rectWidth = 35 * scaleX;
-        float rectHeight = 190 * scaleY;
+        float rectHeight = 220 * scaleY; // Aumentado de 190 a 220
         float rectX = 10 * scaleX;
-        float rectY = 25 * scaleY;
+        float rectY = 10 * scaleY; // Reducido de 25 a 10
         g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
 
         // Borde del conector
@@ -659,8 +659,8 @@ public class MainActivity extends AppCompatActivity
 
         float lineStartX = rectX + rectWidth;
         float lineEndX = width - (10 * scaleX);
-        float firstLineY = 55 * scaleY;
-        float lineSpacing = 30 * scaleY;
+        float firstLineY = 30 * scaleY; // Ajustado para ser mas fiel al borde superior
+        float lineSpacing = 36 * scaleY; // Espaciado aumentado
 
         for (int i = 0; i < labels.length; i++) {
             float currentY = firstLineY + (i * lineSpacing);
@@ -678,6 +678,18 @@ public class MainActivity extends AppCompatActivity
         }
 
         chipSocketImageView.setImageBitmap(textura.getBipmap());
+
+        // Asegurar que si el tamaño cambia, se vuelva a dibujar (opcional pero util)
+        if (chipSocketImageView.getHeight() == 0) {
+            chipSocketImageView.getViewTreeObserver()
+                    .addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            chipSocketImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            dibujarICSP();
+                        }
+                    });
+        }
     }
 
     private void setupFileManagerListeners() {
