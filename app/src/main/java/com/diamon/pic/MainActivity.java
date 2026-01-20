@@ -613,14 +613,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void dibujarICSP() {
-        // Obtenemos el tamaño del ImageView para crear una textura que calce perfecto
+        // Obtenemos el tamaño del ImageView
         int width = chipSocketImageView.getWidth();
         int height = chipSocketImageView.getHeight();
 
-        // Si el layout aun no se ha medido, usamos valores por defecto proporcionales
+        // IMPORTANTE: Si las dimensiones son 0 (durante el inflado), NO dibujamos.
+        // Esperaremos al OnGlobalLayoutListener.
         if (width <= 0 || height <= 0) {
-            width = (int) (125 * getResources().getDisplayMetrics().density);
-            height = (int) (150 * getResources().getDisplayMetrics().density); // Proporcional aproximado
+            setupOneTimeLayoutListener();
+            return;
         }
 
         Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
@@ -658,7 +659,6 @@ public class MainActivity extends AppCompatActivity
 
         lapiz.setStyle(Paint.Style.FILL);
         lapiz.setAntiAlias(true);
-        lapiz.setTextSize(18f * scaleY);
         lapiz.setFakeBoldText(true);
 
         float lineStartX = rectX + rectWidth;
@@ -672,29 +672,30 @@ public class MainActivity extends AppCompatActivity
 
             // Dibujar Cable
             lapiz.setColor(colors[i]);
-            lapiz.setStrokeWidth(height / (labels.length * 2.5f)); // Grosor proporcional al alto
+            float strokeWidth = height / (labels.length * 3.5f); // Grosor balanceado
+            lapiz.setStrokeWidth(strokeWidth);
             g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
 
-            // Dibujar Etiqueta exactamente arriba del cable
+            // Dibujar Etiqueta CLARAMENTE arriba del cable (evita solapamiento)
             lapiz.setColor(Color.WHITE);
-            float textX = lineStartX + (8 * scaleX);
-            float textY = currentY - (3 * scaleY);
+            lapiz.setTextSize(strokeWidth * 1.8f); // Texto proporcional al grosor del cable
+            float textX = lineStartX + (6 * scaleX);
+            float textY = currentY - (strokeWidth / 1.5f); // Posicion relativa al grosor
             g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
         }
 
         chipSocketImageView.setImageBitmap(textura.getBipmap());
+    }
 
-        // Asegurar que si el tamaño cambia, se vuelva a dibujar (opcional pero util)
-        if (chipSocketImageView.getHeight() == 0) {
-            chipSocketImageView.getViewTreeObserver()
-                    .addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            chipSocketImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            dibujarICSP();
-                        }
-                    });
-        }
+    private void setupOneTimeLayoutListener() {
+        chipSocketImageView.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        chipSocketImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        dibujarICSP();
+                    }
+                });
     }
 
     private void setupFileManagerListeners() {
