@@ -128,7 +128,6 @@
                             android:adjustViewBounds="true"
                             android:contentDescription="Socket Diagram"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/socket_icsp"
                             android:visibility="visible" />
 
                     </LinearLayout>
