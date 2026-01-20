@@ -618,9 +618,9 @@ public class MainActivity extends AppCompatActivity
         int height = chipSocketImageView.getHeight();
 
         // IMPORTANTE: Si las dimensiones son 0 (durante el inflado), NO dibujamos.
-        // Esperaremos al OnGlobalLayoutListener.
+        // Registramos el listener para cuando el layout sea real.
         if (width <= 0 || height <= 0) {
-            setupOneTimeLayoutListener();
+            setupPersistentLayoutListener();
             return;
         }
 
@@ -634,10 +634,15 @@ public class MainActivity extends AppCompatActivity
         float scaleY = height / 240f;
 
         // 2. Conector Gris
+        // Añadimos un margen vertical interno (padding) para evitar que el texto
+        // superior (VPP1) se corte
+        float vPadding = height * 0.05f; // 5% de margen
+        float effectiveHeight = height - (2 * vPadding);
+
         float rectWidth = 35 * scaleX;
         float rectX = 10 * scaleX;
-        float rectY = 0; // Al borde superior
-        float rectHeight = height; // Al borde inferior
+        float rectY = vPadding;
+        float rectHeight = effectiveHeight;
         g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
 
         // Borde del conector
@@ -664,38 +669,41 @@ public class MainActivity extends AppCompatActivity
         float lineStartX = rectX + rectWidth;
         float lineEndX = width - (2 * scaleX);
 
-        // Distribucion TOTAL para ocupar todo el alto (Cero margenes)
-        float lineSpacing = height / labels.length;
+        // Distribucion sobre el alto EFECTIVO (con padding)
+        float lineSpacing = effectiveHeight / labels.length;
 
         for (int i = 0; i < labels.length; i++) {
-            float currentY = (i * lineSpacing) + (lineSpacing / 2f);
+            float currentY = rectY + (i * lineSpacing) + (lineSpacing / 2f);
 
             // Dibujar Cable
             lapiz.setColor(colors[i]);
-            float strokeWidth = height / (labels.length * 3.5f); // Grosor balanceado
+            float strokeWidth = effectiveHeight / (labels.length * 4f); // Un poco mas fino para dar aire
             lapiz.setStrokeWidth(strokeWidth);
             g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
 
-            // Dibujar Etiqueta CLARAMENTE arriba del cable (evita solapamiento)
+            // Dibujar Etiqueta CLARAMENTE arriba del cable (evita solapamiento y clipping)
             lapiz.setColor(Color.WHITE);
-            lapiz.setTextSize(strokeWidth * 1.8f); // Texto proporcional al grosor del cable
+            lapiz.setTextSize(strokeWidth * 1.8f);
             float textX = lineStartX + (6 * scaleX);
-            float textY = currentY - (strokeWidth / 1.5f); // Posicion relativa al grosor
+            float textY = currentY - (strokeWidth / 1.2f); // Mas separacion
             g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
         }
 
         chipSocketImageView.setImageBitmap(textura.getBipmap());
     }
 
-    private void setupOneTimeLayoutListener() {
-        chipSocketImageView.getViewTreeObserver()
-                .addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        chipSocketImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        dibujarICSP();
-                    }
-                });
+    private void setupPersistentLayoutListener() {
+        chipSocketImageView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                    int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                // Si el tamaño real cambió y es valido, redibujamos
+                if ((right - left) > 0 && (bottom - top) > 0 &&
+                        (left != oldLeft || top != oldTop || right != oldRight || bottom != oldBottom)) {
+                    dibujarICSP();
+                }
+            }
+        });
     }
 
     private void setupFileManagerListeners() {

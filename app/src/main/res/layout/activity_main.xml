@@ -125,7 +125,6 @@
                             android:id="@+id/chipSocketImageView"
                             android:layout_width="125dp"
                             android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
                             android:contentDescription="Socket Diagram"
                             android:scaleType="fitCenter"
                             android:visibility="visible" />
