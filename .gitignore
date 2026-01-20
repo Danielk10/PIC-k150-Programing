@@ -22,3 +22,4 @@
 .mvn/wrapper/
 local.properties
 /.acside/
+/app/build/
