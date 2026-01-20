@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
@@ -168,6 +169,7 @@ public class Recurso {
         return musica;
     }
 
+    @SuppressWarnings("deprecation")
     public Sonido cargarSonido(String nombre) {
 
         AssetFileDescriptor descriptor = null;
@@ -180,7 +182,20 @@ public class Recurso {
 
         }
 
-        final SoundPool sonidoPool = new SoundPool(200, AudioManager.STREAM_MUSIC, 0);
+        SoundPool sonidoPool;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+
+            sonidoPool = new SoundPool.Builder()
+                    .setAudioAttributes(audioAttributes)
+                    .setMaxStreams(200)
+                    .build();
+        } else {
+            sonidoPool = new SoundPool(200, AudioManager.STREAM_MUSIC, 0);
+        }
 
         int id = sonidoPool.load(descriptor, 0);
 
