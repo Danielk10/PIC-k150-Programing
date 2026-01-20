@@ -267,6 +267,7 @@ public class MainActivity extends AppCompatActivity
         setupChipSelectionListeners();
         setupFileManagerListeners();
         setupButtonListeners();
+        setupPersistentLayoutListener(); // Registramos el vigilante de tamaño desde el inicio
     }
 
     // IMPLEMENTACIÓN DE UsbConnectionListener
@@ -618,9 +619,9 @@ public class MainActivity extends AppCompatActivity
         int height = chipSocketImageView.getHeight();
 
         // IMPORTANTE: Si las dimensiones son 0 (durante el inflado), NO dibujamos.
-        // Registramos el listener para cuando el layout sea real.
+        // El listener registrado en setupListeners se encargara de llamar
+        // a este metodo cuando el layout sea real.
         if (width <= 0 || height <= 0) {
-            setupPersistentLayoutListener();
             return;
         }
 
