@@ -647,25 +647,22 @@ public class MainActivity extends AppCompatActivity
                 g.dibujarRectangulo(208 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
             }
 
-            // B. Cuerpo y Shimmer (Brillo)
+            // B. Cuerpo
             g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
-            // Efecto de brillo vertical
-            int colorShimmer = Color.parseColor("#252525");
-            g.dibujarRectangulo(left + 15 * scaleX, top, 8 * scaleX, bottom - top, colorShimmer);
 
-            // C. Modelo del Chip (Texto grabado)
+            // C. Modelo del Chip (Texto grabado) - Horizontal y más grande
             String chipName = chip.getNombreDelPic();
             lapiz.setStyle(Paint.Style.FILL);
-            lapiz.setColor(Color.parseColor("#CCCCCC")); // Plateado láser
-            lapiz.setTextSize(18 * scaleY);
+            lapiz.setColor(Color.parseColor("#D0D0D0")); // Gris claro láser
+            lapiz.setTextSize(24 * scaleY); // Aumentado
             lapiz.setFakeBoldText(true);
 
-            android.graphics.Canvas canvas = g.getCanvas();
-            canvas.save();
-            canvas.rotate(-90, (left + right) / 2f, (top + bottom) / 2f);
+            float chipCenterX = (left + right) / 2f;
+            float chipCenterY = (top + bottom) / 2f;
             float textWidth = lapiz.measureText(chipName);
-            canvas.drawText(chipName, (left + right) / 2f - textWidth / 2f, (top + bottom) / 2f + 6 * scaleY, lapiz);
-            canvas.restore();
+
+            // Dibujar centrado horizontalmente y verticalmente
+            g.getCanvas().drawText(chipName, chipCenterX - textWidth / 2f, chipCenterY + (8 * scaleY), lapiz);
 
             // Borde del chip
             lapiz.setStyle(Paint.Style.STROKE);
