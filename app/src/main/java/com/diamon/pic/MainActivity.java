@@ -595,28 +595,28 @@ public class MainActivity extends AppCompatActivity
         float indicatorY = (30 + pinStartRow * 16) * scaleY; // Y coord of the first pin row
         float rowCenterY = indicatorY + (5 * scaleY); // Center of the 10-unit high pin
 
-        // Flecha Blanca - Aún más grande y estilizada
+        // Flecha Blanca - Tamaño moderado para evitar solape
         lapiz.setColor(Color.WHITE);
         android.graphics.Path path = new android.graphics.Path();
-        float arrowWidth = 15 * scaleX;
-        float arrowHeight = 12 * scaleY;
-        path.moveTo(20 * scaleX, rowCenterY - arrowHeight);
-        path.lineTo(42 * scaleX, rowCenterY);
-        path.lineTo(20 * scaleX, rowCenterY + arrowHeight);
+        float arrowWidth = 12 * scaleX;
+        float arrowHeight = 10 * scaleY;
+        path.moveTo(22 * scaleX, rowCenterY - arrowHeight);
+        path.lineTo(40 * scaleX, rowCenterY);
+        path.lineTo(22 * scaleX, rowCenterY + arrowHeight);
         path.close();
         g.getCanvas().drawPath(path, lapiz);
 
-        // Texto del indicador - Máximo tamaño para legibilidad
-        lapiz.setTextSize(32 * scaleY);
+        // Texto del indicador - Resuelto solapamiento
+        lapiz.setTextSize(24 * scaleY);
         lapiz.setFakeBoldText(true);
-        // Centrado respecto al rowCenterY
-        g.dibujarTexto(indicatorText, 0, rowCenterY + 12 * scaleY, Color.WHITE);
+        // Desplazado para evitar la flecha si es de dos dígitos
+        g.dibujarTexto(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, Color.WHITE);
 
-        // Brillo sutil en el texto para resaltar
+        // Brillo sutil en el texto
         lapiz.setStyle(Paint.Style.STROKE);
         lapiz.setStrokeWidth(0.5f * scaleX);
         lapiz.setColor(Color.LTGRAY);
-        g.getCanvas().drawText(indicatorText, 0, rowCenterY + 12 * scaleY, lapiz);
+        g.getCanvas().drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, lapiz);
         lapiz.setStyle(Paint.Style.FILL);
 
         // 5. Cuerpo del Chip (Negro)
@@ -632,22 +632,52 @@ public class MainActivity extends AppCompatActivity
             float chipHeight = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
             float bottom = top + chipHeight;
 
-            int colorChipBody = Color.parseColor("#121212");
-            int colorChipBorder = Color.parseColor("#606060");
-            int colorNotch = Color.parseColor("#A0522D"); // Marrón Tierra de Siena (más visible)
+            int colorChipBody = Color.parseColor("#151515");
+            int colorChipBorder = Color.parseColor("#404040");
+            int colorNotch = Color.parseColor("#8B4513"); // Marrón
+            int colorLegs = Color.parseColor("#BDBDBD"); // Plateado metálico
 
-            // Cuerpo y Borde
+            // A. PATAS del Chip (debajo del cuerpo)
+            lapiz.setStyle(Paint.Style.FILL);
+            for (int i = 0; i < numFilas; i++) {
+                float legY = (30 + (pinStartRow + i) * 16 + 3) * scaleY;
+                // Pata Izquierda
+                g.dibujarRectangulo(80 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
+                // Pata Derecha
+                g.dibujarRectangulo(208 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
+            }
+
+            // B. Cuerpo y Shimmer (Brillo)
             g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
+            // Efecto de brillo vertical
+            int colorShimmer = Color.parseColor("#252525");
+            g.dibujarRectangulo(left + 15 * scaleX, top, 8 * scaleX, bottom - top, colorShimmer);
+
+            // C. Modelo del Chip (Texto grabado)
+            String chipName = chip.getNombreDelPic();
+            lapiz.setStyle(Paint.Style.FILL);
+            lapiz.setColor(Color.parseColor("#CCCCCC")); // Plateado láser
+            lapiz.setTextSize(18 * scaleY);
+            lapiz.setFakeBoldText(true);
+
+            android.graphics.Canvas canvas = g.getCanvas();
+            canvas.save();
+            canvas.rotate(-90, (left + right) / 2f, (top + bottom) / 2f);
+            float textWidth = lapiz.measureText(chipName);
+            canvas.drawText(chipName, (left + right) / 2f - textWidth / 2f, (top + bottom) / 2f + 6 * scaleY, lapiz);
+            canvas.restore();
+
+            // Borde del chip
             lapiz.setStyle(Paint.Style.STROKE);
-            lapiz.setStrokeWidth(1.5f * scaleX);
+            lapiz.setStrokeWidth(1.2f * scaleX);
             lapiz.setColor(colorChipBorder);
             g.getCanvas().drawRect(left, top, right, bottom, lapiz);
 
-            // Muesca (Notch) - Marrón, robusta y visible
+            // D. Muesca (Notch)
             lapiz.setStyle(Paint.Style.FILL);
             lapiz.setColor(colorNotch);
-            float notchWidth = 40 * scaleX; // Más ancha
-            float notchHeight = 20 * scaleY; // Más profunda
+            float notchWidth = 40 * scaleX;
+            float notchHeight = 18 * scaleY;
             g.getCanvas().drawArc(
                     (300 / 2f - notchWidth / 2f) * scaleX,
                     top - notchHeight / 2f,
@@ -655,10 +685,10 @@ public class MainActivity extends AppCompatActivity
                     top + notchHeight / 2f,
                     0, 180, true, lapiz);
 
-            // Brillo sutil en la muesca
+            // Sombra interna notch
             lapiz.setStyle(Paint.Style.STROKE);
-            lapiz.setStrokeWidth(0.5f * scaleX);
-            lapiz.setColor(colorChipBorder);
+            lapiz.setStrokeWidth(0.8f * scaleX);
+            lapiz.setColor(Color.BLACK);
             g.getCanvas().drawArc(
                     (300 / 2f - notchWidth / 2f) * scaleX,
                     top - notchHeight / 2f,
