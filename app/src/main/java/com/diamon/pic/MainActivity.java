@@ -595,21 +595,29 @@ public class MainActivity extends AppCompatActivity
         float indicatorY = (30 + pinStartRow * 16) * scaleY; // Y coord of the first pin row
         float rowCenterY = indicatorY + (5 * scaleY); // Center of the 10-unit high pin
 
-        // Flecha Blanca - Más grande
+        // Flecha Blanca - Aún más grande y estilizada
         lapiz.setColor(Color.WHITE);
         android.graphics.Path path = new android.graphics.Path();
-        float arrowSize = 10 * scaleX;
-        path.moveTo(25 * scaleX, rowCenterY - arrowSize);
-        path.lineTo(40 * scaleX, rowCenterY);
-        path.lineTo(25 * scaleX, rowCenterY + arrowSize);
+        float arrowWidth = 15 * scaleX;
+        float arrowHeight = 12 * scaleY;
+        path.moveTo(20 * scaleX, rowCenterY - arrowHeight);
+        path.lineTo(42 * scaleX, rowCenterY);
+        path.lineTo(20 * scaleX, rowCenterY + arrowHeight);
         path.close();
         g.getCanvas().drawPath(path, lapiz);
 
-        // Texto del indicador - Más grande
-        lapiz.setTextSize(22 * scaleY);
+        // Texto del indicador - Máximo tamaño para legibilidad
+        lapiz.setTextSize(32 * scaleY);
         lapiz.setFakeBoldText(true);
-        // Centrado vertical respecto al rowCenterY
-        g.dibujarTexto(indicatorText, 2 * scaleX, rowCenterY + 8 * scaleY, Color.WHITE);
+        // Centrado respecto al rowCenterY
+        g.dibujarTexto(indicatorText, 0, rowCenterY + 12 * scaleY, Color.WHITE);
+
+        // Brillo sutil en el texto para resaltar
+        lapiz.setStyle(Paint.Style.STROKE);
+        lapiz.setStrokeWidth(0.5f * scaleX);
+        lapiz.setColor(Color.LTGRAY);
+        g.getCanvas().drawText(indicatorText, 0, rowCenterY + 12 * scaleY, lapiz);
+        lapiz.setStyle(Paint.Style.FILL);
 
         // 5. Cuerpo del Chip (Negro)
         int numPines = chip.getNumeroDePines();
@@ -624,9 +632,9 @@ public class MainActivity extends AppCompatActivity
             float chipHeight = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
             float bottom = top + chipHeight;
 
-            int colorChipBody = Color.parseColor("#101010");
-            int colorChipBorder = Color.parseColor("#505050");
-            int colorNotch = Color.parseColor("#8B4513"); // Marrón para que sea visible
+            int colorChipBody = Color.parseColor("#121212");
+            int colorChipBorder = Color.parseColor("#606060");
+            int colorNotch = Color.parseColor("#A0522D"); // Marrón Tierra de Siena (más visible)
 
             // Cuerpo y Borde
             g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
@@ -635,11 +643,11 @@ public class MainActivity extends AppCompatActivity
             lapiz.setColor(colorChipBorder);
             g.getCanvas().drawRect(left, top, right, bottom, lapiz);
 
-            // Muesca (Notch) - Marrón, grande y visible
+            // Muesca (Notch) - Marrón, robusta y visible
             lapiz.setStyle(Paint.Style.FILL);
             lapiz.setColor(colorNotch);
-            float notchWidth = 30 * scaleX;
-            float notchHeight = 15 * scaleY;
+            float notchWidth = 40 * scaleX; // Más ancha
+            float notchHeight = 20 * scaleY; // Más profunda
             g.getCanvas().drawArc(
                     (300 / 2f - notchWidth / 2f) * scaleX,
                     top - notchHeight / 2f,
