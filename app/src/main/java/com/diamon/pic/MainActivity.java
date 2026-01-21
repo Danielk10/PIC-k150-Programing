@@ -508,7 +508,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         chipSocketImageView.setVisibility(View.VISIBLE);
-        String pinLocation = chip.getUbicacionPin1DelPic();
         int numPines = chip.getNumeroDePines();
 
         boolean isIcspOnly = false;
@@ -521,96 +520,126 @@ public class MainActivity extends AppCompatActivity
         // MOSTRAR ICSP SI: Es ICSP-only O el switch esta activado manualmente
         boolean isIcspActive = swModeICSP != null && swModeICSP.isChecked();
 
-        if (isIcspOnly || isIcspActive || "null".equals(pinLocation) || numPines == 0) {
+        if (isIcspOnly || isIcspActive || numPines == 0) {
             chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_XY);
             dibujarICSP();
             return;
         }
 
-        chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        // Para ZIF Sockets usamos el mismo ratio que ICSP y mantenemos el dibujo nitido
+        chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        dibujarSocketZIF(chip);
+    }
 
-        int socketResId;
-        final int startRowIndex;
+    private void dibujarSocketZIF(ChipPic chip) {
+        int width = chipSocketImageView.getWidth();
+        int height = chipSocketImageView.getHeight();
 
-        if ("socket pin 1".equalsIgnoreCase(pinLocation)) {
-            socketResId = R.drawable.socket_pin_1;
-            startRowIndex = 0;
-        } else if ("socket pin 2".equalsIgnoreCase(pinLocation)) {
-            socketResId = R.drawable.socket_pin_2;
-            startRowIndex = 1;
+        if (width <= 0 || height <= 0)
+            return;
+
+        Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
+        Graficos g = new Graficos2D(textura);
+
+        // Colores originales del vector
+        int colorTeal = Color.parseColor("#005F5F");
+        int colorBlueFrame = Color.parseColor("#1565C0");
+        int colorInnerRecess = Color.parseColor("#0D47A1");
+        int colorPinGreen = Color.parseColor("#4CAF50");
+        int colorPinGold = Color.parseColor("#FFD700");
+
+        // Fondo Teal
+        g.limpiar(colorTeal);
+
+        float scaleX = width / 300f;
+        float scaleY = height / 360f;
+
+        // 1. Marco del Socket (BLUE)
+        g.dibujarRectangulo(40 * scaleX, 10 * scaleY, 220 * scaleX, 340 * scaleY, colorBlueFrame);
+        Paint lapiz = g.getLapiz();
+        lapiz.setStyle(Paint.Style.STROKE);
+        lapiz.setStrokeWidth(1 * scaleX);
+        lapiz.setColor(Color.WHITE);
+        g.getCanvas().drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, lapiz);
+
+        // 2. Hueco Central (Inner Recess)
+        g.dibujarRectangulo(90 * scaleX, 20 * scaleY, 120 * scaleX, 320 * scaleY, colorInnerRecess);
+
+        // 3. Pines (Grid de 20x2)
+        lapiz.setStyle(Paint.Style.FILL);
+        for (int i = 0; i < 20; i++) {
+            float rowY = (30 + i * 16) * scaleY;
+
+            // Columna Izquierda
+            g.dibujarRectangulo(50 * scaleX, rowY, 30 * scaleX, 10 * scaleY, colorPinGreen);
+            g.dibujarRectangulo(70 * scaleX, rowY + 2 * scaleY, 6 * scaleX, 6 * scaleY, colorPinGold);
+
+            // Columna Derecha
+            g.dibujarRectangulo(220 * scaleX, rowY, 30 * scaleX, 10 * scaleY, colorPinGreen);
+            g.dibujarRectangulo(224 * scaleX, rowY + 2 * scaleY, 6 * scaleX, 6 * scaleY, colorPinGold);
+        }
+
+        // 4. Indicadores (Numero y Flecha)
+        String pinLocation = chip.getUbicacionPin1DelPic();
+        int pinStartRow = 0;
+        String indicatorText = "1";
+
+        if ("socket pin 2".equalsIgnoreCase(pinLocation)) {
+            pinStartRow = 1;
+            indicatorText = "2";
         } else if ("socket pin 13".equalsIgnoreCase(pinLocation)) {
-            socketResId = R.drawable.socket_pin_13;
-            startRowIndex = 12;
-        } else {
-            // Default fallback
-            dibujarICSP();
-            return;
+            pinStartRow = 12;
+            indicatorText = "13";
         }
 
-        Drawable socketDrawable = ContextCompat.getDrawable(this, socketResId);
-        if (socketDrawable == null) {
-            chipSocketImageView.setImageResource(socketResId);
-            return;
+        float indicatorY = (30 + pinStartRow * 16) * scaleY;
+
+        // Flecha Blanca
+        lapiz.setColor(Color.WHITE);
+        android.graphics.Path path = new android.graphics.Path();
+        path.moveTo(25 * scaleX, indicatorY);
+        path.lineTo(35 * scaleX, indicatorY + 5 * scaleY);
+        path.lineTo(25 * scaleX, indicatorY + 10 * scaleY);
+        path.close();
+        g.getCanvas().drawPath(path, lapiz);
+
+        // Texto del indicador
+        lapiz.setTextSize(14 * scaleY);
+        lapiz.setFakeBoldText(true);
+        g.dibujarTexto(indicatorText, 5 * scaleX, indicatorY + 10 * scaleY, Color.WHITE);
+
+        // 5. Cuerpo del Chip (Negro)
+        int numPines = chip.getNumeroDePines();
+        if (numPines > 0) {
+            float left = 90 * scaleX;
+            float right = 210 * scaleX;
+            float top = (30 + pinStartRow * 16 - 2) * scaleY;
+            float chipHeight = ((numPines / 2) * 16 + 4) * scaleY;
+            float bottom = top + chipHeight;
+
+            int colorChipBody = Color.parseColor("#101010");
+            int colorChipBorder = Color.parseColor("#505050");
+            int colorNotch = Color.parseColor("#050505");
+
+            // Cuerpo y Borde
+            g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
+            lapiz.setStyle(Paint.Style.STROKE);
+            lapiz.setStrokeWidth(1.5f * scaleX);
+            lapiz.setColor(colorChipBorder);
+            g.getCanvas().drawRect(left, top, right, bottom, lapiz);
+
+            // Muesca (Notch)
+            lapiz.setStyle(Paint.Style.FILL);
+            lapiz.setColor(colorNotch);
+            g.getCanvas().drawArc(
+                    (300 / 2f - 10) * scaleX,
+                    top - 5 * scaleY,
+                    (300 / 2f + 10) * scaleX,
+                    top + 5 * scaleY,
+                    0, 180, true, lapiz);
         }
 
-        // Crear el cuerpo del chip dinamicamente usando ShapeDrawable para evitar
-        // advertencias de getOpacity()
-        final int pinsParaDibujar = numPines;
-        final int fStartRowIndex = startRowIndex;
-
-        android.graphics.drawable.shapes.Shape chipShape = new android.graphics.drawable.shapes.Shape() {
-            @Override
-            public void draw(Canvas canvas, Paint paint) {
-                float width = getWidth();
-                float height = getHeight();
-                float scaleX = width / 300f;
-                float scaleY = height / 360f;
-
-                Paint chipBodyPaint = new Paint();
-                chipBodyPaint.setColor(Color.parseColor("#101010"));
-                chipBodyPaint.setStyle(Paint.Style.FILL);
-                chipBodyPaint.setAntiAlias(true);
-
-                Paint chipBorderPaint = new Paint();
-                chipBorderPaint.setColor(Color.parseColor("#505050"));
-                chipBorderPaint.setStyle(Paint.Style.STROKE);
-                chipBorderPaint.setStrokeWidth(1.5f * scaleX);
-                chipBorderPaint.setAntiAlias(true);
-
-                Paint chipNotchPaint = new Paint();
-                chipNotchPaint.setColor(Color.parseColor("#050505"));
-                chipNotchPaint.setStyle(Paint.Style.FILL);
-                chipNotchPaint.setAntiAlias(true);
-
-                // Coordenadas en sistema 300x360
-                float left = 90 * scaleX;
-                float right = 210 * scaleX;
-                float pin1Top = (30 + fStartRowIndex * 16) * scaleY;
-                float top = pin1Top - 2 * scaleY;
-                float chipHeight = ((pinsParaDibujar / 2) * 16 + 4) * scaleY;
-                float bottom = top + chipHeight;
-
-                // Dibujar cuerpo del chip
-                canvas.drawRect(left, top, right, bottom, chipBodyPaint);
-                canvas.drawRect(left, top, right, bottom, chipBorderPaint);
-
-                // Dibujar muesca (notch)
-                canvas.drawArc(
-                        (300 / 2f - 10) * scaleX,
-                        top - 5 * scaleY,
-                        (300 / 2f + 10) * scaleX,
-                        top + 5 * scaleY,
-                        0,
-                        180,
-                        true,
-                        chipNotchPaint);
-            }
-        };
-
-        android.graphics.drawable.ShapeDrawable chipBodyDrawable = new android.graphics.drawable.ShapeDrawable(
-                chipShape);
-        LayerDrawable combined = new LayerDrawable(new Drawable[] { socketDrawable, chipBodyDrawable });
-        chipSocketImageView.setImageDrawable(combined);
+        chipSocketImageView.setImageBitmap(textura.getBipmap());
     }
 
     private void dibujarICSP() {
@@ -701,7 +730,7 @@ public class MainActivity extends AppCompatActivity
                 // Si el tamaño real cambió y es valido, redibujamos
                 if ((right - left) > 0 && (bottom - top) > 0 &&
                         (left != oldLeft || top != oldTop || right != oldRight || bottom != oldBottom)) {
-                    dibujarICSP();
+                    updateChipImage(currentChip);
                 }
             }
         });
