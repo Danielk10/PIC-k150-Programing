@@ -613,13 +613,17 @@ public class MainActivity extends AppCompatActivity
         if (numPines > 0) {
             float left = 90 * scaleX;
             float right = 210 * scaleX;
+
+            // Calculo exacto para que el chip coincida con los pines (2 unidades de margen
+            // arriba/abajo)
             float top = (30 + pinStartRow * 16 - 2) * scaleY;
-            float chipHeight = ((numPines / 2) * 16 + 4) * scaleY;
+            int numFilas = numPines / 2;
+            float chipHeight = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
             float bottom = top + chipHeight;
 
             int colorChipBody = Color.parseColor("#101010");
             int colorChipBorder = Color.parseColor("#505050");
-            int colorNotch = Color.parseColor("#050505");
+            int colorNotch = Color.parseColor("#303030"); // Mas claro para que sea visible
 
             // Cuerpo y Borde
             g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
@@ -628,15 +632,28 @@ public class MainActivity extends AppCompatActivity
             lapiz.setColor(colorChipBorder);
             g.getCanvas().drawRect(left, top, right, bottom, lapiz);
 
-            // Muesca (Notch)
+            // Muesca (Notch) - Mas grande y visible
             lapiz.setStyle(Paint.Style.FILL);
             lapiz.setColor(colorNotch);
+            float notchWidth = 24 * scaleX;
+            float notchHeight = 12 * scaleY;
             g.getCanvas().drawArc(
-                    (300 / 2f - 10) * scaleX,
-                    top - 5 * scaleY,
-                    (300 / 2f + 10) * scaleX,
-                    top + 5 * scaleY,
+                    (300 / 2f - notchWidth / 2f) * scaleX,
+                    top - notchHeight / 2f,
+                    (300 / 2f + notchWidth / 2f) * scaleX,
+                    top + notchHeight / 2f,
                     0, 180, true, lapiz);
+
+            // Brillo sutil en la muesca
+            lapiz.setStyle(Paint.Style.STROKE);
+            lapiz.setStrokeWidth(0.5f * scaleX);
+            lapiz.setColor(colorChipBorder);
+            g.getCanvas().drawArc(
+                    (300 / 2f - notchWidth / 2f) * scaleX,
+                    top - notchHeight / 2f,
+                    (300 / 2f + notchWidth / 2f) * scaleX,
+                    top + notchHeight / 2f,
+                    0, 180, false, lapiz);
         }
 
         chipSocketImageView.setImageBitmap(textura.getBipmap());
