@@ -621,16 +621,16 @@ public class ChipPic {
             return 0;
 
         String lowerValue = socketImage.toLowerCase();
-        if (lowerValue.contains("8pin"))
-            return 8;
-        if (lowerValue.contains("14pin"))
-            return 14;
-        if (lowerValue.contains("18pin"))
-            return 18;
-        if (lowerValue.contains("28npin"))
-            return 28;
         if (lowerValue.contains("40pin"))
             return 40;
+        if (lowerValue.contains("28npin"))
+            return 28;
+        if (lowerValue.contains("18pin"))
+            return 18;
+        if (lowerValue.contains("14pin"))
+            return 14;
+        if (lowerValue.contains("8pin"))
+            return 8;
 
         return 0;
     }
