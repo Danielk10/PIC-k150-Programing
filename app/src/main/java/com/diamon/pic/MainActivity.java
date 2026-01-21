@@ -592,21 +592,24 @@ public class MainActivity extends AppCompatActivity
             indicatorText = "13";
         }
 
-        float indicatorY = (30 + pinStartRow * 16) * scaleY;
+        float indicatorY = (30 + pinStartRow * 16) * scaleY; // Y coord of the first pin row
+        float rowCenterY = indicatorY + (5 * scaleY); // Center of the 10-unit high pin
 
-        // Flecha Blanca
+        // Flecha Blanca - Más grande
         lapiz.setColor(Color.WHITE);
         android.graphics.Path path = new android.graphics.Path();
-        path.moveTo(25 * scaleX, indicatorY);
-        path.lineTo(35 * scaleX, indicatorY + 5 * scaleY);
-        path.lineTo(25 * scaleX, indicatorY + 10 * scaleY);
+        float arrowSize = 10 * scaleX;
+        path.moveTo(25 * scaleX, rowCenterY - arrowSize);
+        path.lineTo(40 * scaleX, rowCenterY);
+        path.lineTo(25 * scaleX, rowCenterY + arrowSize);
         path.close();
         g.getCanvas().drawPath(path, lapiz);
 
-        // Texto del indicador
-        lapiz.setTextSize(14 * scaleY);
+        // Texto del indicador - Más grande
+        lapiz.setTextSize(22 * scaleY);
         lapiz.setFakeBoldText(true);
-        g.dibujarTexto(indicatorText, 5 * scaleX, indicatorY + 10 * scaleY, Color.WHITE);
+        // Centrado vertical respecto al rowCenterY
+        g.dibujarTexto(indicatorText, 2 * scaleX, rowCenterY + 8 * scaleY, Color.WHITE);
 
         // 5. Cuerpo del Chip (Negro)
         int numPines = chip.getNumeroDePines();
@@ -623,7 +626,7 @@ public class MainActivity extends AppCompatActivity
 
             int colorChipBody = Color.parseColor("#101010");
             int colorChipBorder = Color.parseColor("#505050");
-            int colorNotch = Color.parseColor("#303030"); // Mas claro para que sea visible
+            int colorNotch = Color.parseColor("#8B4513"); // Marrón para que sea visible
 
             // Cuerpo y Borde
             g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
@@ -632,11 +635,11 @@ public class MainActivity extends AppCompatActivity
             lapiz.setColor(colorChipBorder);
             g.getCanvas().drawRect(left, top, right, bottom, lapiz);
 
-            // Muesca (Notch) - Mas grande y visible
+            // Muesca (Notch) - Marrón, grande y visible
             lapiz.setStyle(Paint.Style.FILL);
             lapiz.setColor(colorNotch);
-            float notchWidth = 24 * scaleX;
-            float notchHeight = 12 * scaleY;
+            float notchWidth = 30 * scaleX;
+            float notchHeight = 15 * scaleY;
             g.getCanvas().drawArc(
                     (300 / 2f - notchWidth / 2f) * scaleX,
                     top - notchHeight / 2f,
