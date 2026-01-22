@@ -104,8 +104,15 @@ public class FuseConfigPopup {
         // Layout principal (VERTICAL)
         LinearLayout mainLayout = new LinearLayout(context);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
-        mainLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
-        mainLayout.setPadding(0, 0, 0, 0);
+
+        // Estilo Premium: Fondo oscuro y bordes redondeados
+        android.graphics.drawable.GradientDrawable shape = new android.graphics.drawable.GradientDrawable();
+        shape.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(dpToPx(16));
+        shape.setColor(Color.parseColor("#505060"));
+        shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E"));
+        mainLayout.setBackground(shape);
+        mainLayout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
         // ========== TITULO (FIJO ARRIBA) ==========
         TextView titleView = createTitle();
@@ -119,7 +126,7 @@ public class FuseConfigPopup {
 
         LinearLayout scrollContent = new LinearLayout(context);
         scrollContent.setOrientation(LinearLayout.VERTICAL);
-        scrollContent.setPadding(16, 16, 16, 16);
+        scrollContent.setPadding(0, dpToPx(8), 0, dpToPx(8));
 
         // Informacion del chip
         scrollContent.addView(createChipInfoSection());
@@ -146,24 +153,47 @@ public class FuseConfigPopup {
         dialog.setContentView(mainLayout);
         Window window = dialog.getWindow();
         if (window != null) {
+            window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+            window.setElevation(24f);
             window.setLayout(
                     (int) (context.getResources().getDisplayMetrics().widthPixels * 0.95),
                     (int) (context.getResources().getDisplayMetrics().heightPixels * 0.90));
         }
 
+        // Animación de entrada
+        applyShowAnimation(mainLayout);
+
         // Cargar datos iniciales
         loadInitialData();
+    }
+
+    private void applyShowAnimation(View view) {
+        view.setScaleY(0);
+        view.setPivotY(0);
+
+        android.animation.ValueAnimator animator = android.animation.ValueAnimator.ofFloat(0f, 1f);
+        animator.setDuration(800);
+        animator.setInterpolator(new android.view.animation.BounceInterpolator());
+        animator.addUpdateListener(animation -> {
+            float value = (float) animation.getAnimatedValue();
+            view.setScaleY(value);
+        });
+        animator.start();
+    }
+
+    private int dpToPx(int dp) {
+        return Math.round(dp * context.getResources().getDisplayMetrics().density);
     }
 
     /** Crea el titulo del dialogo */
     private TextView createTitle() {
         TextView title = new TextView(context);
-        title.setText("Configuraciones de Fusibles del PIC");
+        title.setText("Configuraciones de Fusibles");
         title.setTextColor(Color.WHITE);
-        title.setBackgroundColor(Color.parseColor("#2196F3"));
-        title.setTextSize(18);
+        title.setTextSize(20);
+        title.setTypeface(null, android.graphics.Typeface.BOLD);
         title.setGravity(Gravity.CENTER);
-        title.setPadding(16, 16, 16, 16);
+        title.setPadding(0, 0, 0, dpToPx(12));
         title.setLayoutParams(
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -174,8 +204,12 @@ public class FuseConfigPopup {
     private LinearLayout createChipInfoSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
-        section.setBackgroundColor(Color.WHITE);
-        section.setPadding(12, 12, 12, 12);
+
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setColor(Color.parseColor("#2A2A3E"));
+        bg.setCornerRadius(dpToPx(8));
+        section.setBackground(bg);
+        section.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -216,8 +250,12 @@ public class FuseConfigPopup {
     private LinearLayout createFuseEditorSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
-        section.setBackgroundColor(Color.WHITE);
-        section.setPadding(12, 12, 12, 12);
+
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setColor(Color.parseColor("#2A2A3E"));
+        bg.setCornerRadius(dpToPx(8));
+        section.setBackground(bg);
+        section.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -323,8 +361,12 @@ public class FuseConfigPopup {
     private LinearLayout createCustomIdSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
-        section.setBackgroundColor(Color.WHITE);
-        section.setPadding(12, 12, 12, 12);
+
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setColor(Color.parseColor("#2A2A3E"));
+        bg.setCornerRadius(dpToPx(8));
+        section.setBackground(bg);
+        section.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -358,8 +400,12 @@ public class FuseConfigPopup {
     private LinearLayout createLogSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
-        section.setBackgroundColor(Color.parseColor("#FAFAFA"));
-        section.setPadding(12, 12, 12, 12);
+
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setColor(Color.parseColor("#2A2A3E"));
+        bg.setCornerRadius(dpToPx(8));
+        section.setBackground(bg);
+        section.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -396,8 +442,7 @@ public class FuseConfigPopup {
     private LinearLayout createButtonBar() {
         LinearLayout buttonBar = new LinearLayout(context);
         buttonBar.setOrientation(LinearLayout.VERTICAL);
-        buttonBar.setBackgroundColor(Color.WHITE);
-        buttonBar.setPadding(12, 12, 12, 12);
+        buttonBar.setPadding(0, dpToPx(12), 0, 0);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -463,7 +508,12 @@ public class FuseConfigPopup {
         Button button = new Button(context);
         button.setText(text);
         button.setTextColor(Color.WHITE);
-        button.setBackgroundColor(Color.parseColor(color));
+
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setColor(Color.parseColor(color));
+        bg.setCornerRadius(dpToPx(8));
+        button.setBackground(bg);
+
         button.setAllCaps(false);
         return button;
     }
@@ -595,9 +645,9 @@ public class FuseConfigPopup {
         if (fuses == null || fuses.isEmpty()) {
             TextView empty = new TextView(context);
             empty.setText("Este chip no tiene fusibles configurables");
-            empty.setTextColor(Color.parseColor("#757575"));
+            empty.setTextColor(Color.parseColor("#9E9E9E"));
             empty.setGravity(Gravity.CENTER);
-            empty.setPadding(32, 32, 32, 32);
+            empty.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
             fuseContainer.addView(empty);
             logMessage("⚠ Este chip no tiene fusibles configurables");
             return;
