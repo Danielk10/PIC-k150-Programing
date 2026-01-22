@@ -147,30 +147,40 @@ public class MostrarPublicidad implements Publicidad {
             return;
 
         mainHandler.post(() -> {
-            if (!PicApplication.isMobileAdsInitialized()) {
-                Log.d(TAG, "NativeAd precarga diferida para: " + key);
-                return;
+            try {
+                if (!PicApplication.isMobileAdsInitialized()) {
+                    Log.d(TAG, "Diferido: Precargando NativeAd (" + key + ") tras inicialización...");
+                    mainHandler.postDelayed(() -> precargarNativeAd(key), 2000);
+                    return;
+                }
+
+                // Si ya está cargado, no duplicar trabajo a menos que se fuerce
+                if (nativeAdsMap.containsKey(key)) {
+                    return;
+                }
+
+                AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
+                        .forNativeAd(nativeAd -> {
+                            NativeAd oldAd = nativeAdsMap.put(key, nativeAd);
+                            if (oldAd != null)
+                                oldAd.destroy();
+                            Log.d(TAG, "NativeAd precargado: " + key);
+                        })
+                        .withAdListener(new AdListener() {
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                Log.e(TAG, "Fallo precarga NativeAd (" + key + "): " + adError.getMessage());
+                            }
+                        })
+                        .withNativeAdOptions(new NativeAdOptions.Builder()
+                                .setVideoOptions(new VideoOptions.Builder().setStartMuted(true).build())
+                                .build())
+                        .build();
+
+                adLoader.loadAd(new AdRequest.Builder().build());
+            } catch (Exception e) {
+                Log.e(TAG, "Error en precarga NativeAd: " + e.getMessage());
             }
-
-            AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
-                    .forNativeAd(nativeAd -> {
-                        NativeAd oldAd = nativeAdsMap.put(key, nativeAd);
-                        if (oldAd != null)
-                            oldAd.destroy();
-                        Log.d(TAG, "NativeAd precargado: " + key);
-                    })
-                    .withAdListener(new AdListener() {
-                        @Override
-                        public void onAdFailedToLoad(LoadAdError adError) {
-                            Log.e(TAG, "Fallo precarga NativeAd (" + key + "): " + adError.getMessage());
-                        }
-                    })
-                    .withNativeAdOptions(new NativeAdOptions.Builder()
-                            .setVideoOptions(new VideoOptions.Builder().setStartMuted(true).build())
-                            .build())
-                    .build();
-
-            adLoader.loadAd(new AdRequest.Builder().build());
         });
     }
 
