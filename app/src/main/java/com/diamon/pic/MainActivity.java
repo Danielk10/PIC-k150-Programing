@@ -164,7 +164,6 @@ public class MainActivity extends AppCompatActivity
         Analytics.trackEvent("Init: Basic Components");
         recurso = new Recurso(this);
         publicidad = new MostrarPublicidad(this);
-        publicidad.cargarBanner();
     }
 
     private void findViews() {
@@ -193,19 +192,7 @@ public class MainActivity extends AppCompatActivity
     private void setupBanner() {
         FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
         if (bannerContainer != null && publicidad != null) {
-            publicidad.setBannerListener(banner -> {
-                if (banner != null) {
-                    if (banner.getParent() != null) {
-                        ((ViewGroup) banner.getParent()).removeView(banner);
-                    }
-                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                            FrameLayout.LayoutParams.WRAP_CONTENT,
-                            FrameLayout.LayoutParams.WRAP_CONTENT);
-                    params.gravity = Gravity.CENTER;
-                    banner.setLayoutParams(params);
-                    bannerContainer.addView(banner);
-                }
-            });
+            publicidad.cargarBanner(bannerContainer);
         }
     }
 
@@ -224,12 +211,59 @@ public class MainActivity extends AppCompatActivity
 
         fileManager = new FileManager(this);
         fileManager.initialize();
+
         chipSelectionManager = new ChipSelectionManager(this);
+        chipSelectionManager.setSelectionListener(new ChipSelectionManager.ChipSelectionListener() {
+            @Override
+            public void onChipSelected(ChipPic chip, String model) {
+                currentChip = chip;
+                currentChipFuses = chipSelectionManager.getSelectedChipFuses();
+                chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
+
+                updateSwitchColors();
+                updateICSPSwitchState();
+                updateChipImage(chip);
+                clearFuseConfiguration();
+
+                if (usbManager.isConnected()) {
+                    try {
+                        usbManager.getProtocolo().iniciarVariablesDeProgramacion(chip);
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, getString(R.string.error_inicializando_chip),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onChipSelectionError(String errorMessage) {
+                Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                swModeICSP.setEnabled(false);
+                swModeICSP.setChecked(false);
+            }
+
+            @Override
+            public void onDatabaseLoaded() {
+                if (chipSpinner != null) {
+                    chipSelectionManager.setupSpinner(chipSpinner);
+                }
+                Analytics.trackEvent("Chips Loaded: Success");
+            }
+        });
+
+        // Iniciar carga asíncrona de chips
+        chipSelectionManager.initializeAsync();
+
         memoryDisplayManager = new MemoryDisplayManager(this);
-        // Pre-cargar anuncio nativo
-        memoryDisplayManager.preloadAd();
         dialogManager = new ProgrammingDialogManager(this);
-        dialogManager.preloadAd(); // Precargar anuncio de programacion
+
+        // NUEVO: Diferir la precarga para evitar ANR durante la inicialización
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            if (publicidad != null) {
+                publicidad.precargarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY);
+                publicidad.precargarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_PROGRAMMING);
+            }
+        }, 3000); // Esperar 3 segundos para asegurar que MobileAds esté listo
 
         // NUEVO: Inicializar popup de fusibles
         fuseConfigPopup = new FuseConfigPopup(
@@ -264,7 +298,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupListeners() {
-        setupChipSelectionListeners();
+        // setupChipSelectionListeners(); // ELIMINADO: Se maneja en initializeManagers
         setupFileManagerListeners();
         setupButtonListeners();
         setupPersistentLayoutListener(); // Registramos el vigilante de tamaño desde el inicio
@@ -332,61 +366,6 @@ public class MainActivity extends AppCompatActivity
             processStatusTextView.setText("Error: " + errorMessage);
             Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
         });
-    }
-
-    private void setupChipSelectionListeners() {
-        chipSelectionManager.setSelectionListener(
-                new ChipSelectionManager.ChipSelectionListener() {
-                    @Override
-                    public void onChipSelected(ChipPic chip, String model) {
-
-                        currentChip = chip;
-                        String info = chipSelectionManager.getSelectedChipInfo();
-                        chipInfoTextView.setText(info);
-
-                        // Cargar fusibles del chip
-                        currentChipFuses = chipSelectionManager.getSelectedChipFuses();
-
-                        // Actualizar información del chip
-                        chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
-
-                        updateSwitchColors();
-
-                        // IMPORTANTE: Actualizar estado del switch ICSP
-                        updateICSPSwitchState();
-
-                        // IMPORTANTE: Actualizar estado del switch ICSP
-                        updateICSPSwitchState();
-
-                        // NUEVO: Actualizar imagen del socket
-                        updateChipImage(chip);
-
-                        // NUEVO: Limpiar configuración de fusibles cuando se selecciona nuevo chip
-                        clearFuseConfiguration();
-
-                        if (usbManager.isConnected()) {
-                            try {
-                                usbManager.getProtocolo().iniciarVariablesDeProgramacion(chip);
-                            } catch (Exception e) {
-                                Toast.makeText(
-                                        MainActivity.this,
-                                        getString(R.string.error_inicializando_chip),
-                                        Toast.LENGTH_SHORT)
-                                        .show();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onChipSelectionError(String errorMessage) {
-                        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-
-                        // Desabilitar switch y botones
-                        swModeICSP.setEnabled(false);
-                        swModeICSP.setChecked(false);
-                    }
-                });
-        chipSelectionManager.setupSpinner(chipSpinner);
     }
 
     /** Configura el listener para el switch de ICSP */
@@ -1196,7 +1175,7 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         try {
             if (publicidad != null) {
-                publicidad.disposeBanner();
+                publicidad.destruirPublicidad();
             }
 
             if (usbManager != null) {
@@ -1243,5 +1222,9 @@ public class MainActivity extends AppCompatActivity
         pantallaCompleta.ocultarBotonesVirtuales();
 
         return super.onKeyUp(keyCode, event);
+    }
+
+    public MostrarPublicidad getPublicidad() {
+        return publicidad;
     }
 }

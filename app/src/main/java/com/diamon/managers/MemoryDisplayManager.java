@@ -24,18 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.core.graphics.drawable.DrawableCompat;
-
 import com.diamon.pic.R;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.VideoOptions;
-import com.google.android.gms.ads.nativead.MediaView;
-import com.google.android.gms.ads.nativead.NativeAd;
-import com.google.android.gms.ads.nativead.NativeAdOptions;
-import com.google.android.gms.ads.nativead.NativeAdView;
 
 /**
  * Gestor de visualizacion de memoria - VERSION MEJORADA
@@ -43,17 +32,15 @@ import com.google.android.gms.ads.nativead.NativeAdView;
  * - Diseno responsive (porcentajes de pantalla)
  * - Columna ASCII junto a datos hex
  * - Barra de progreso durante carga
- * - Anuncio nativo integrado
+ * - Anuncio nativo centralizado
  * - Colores premium
  */
 public class MemoryDisplayManager {
 
     private final Context context;
     private PopupWindow memoryPopup;
-    private NativeAd nativeAd;
 
     // Referencias a elementos del popup
-    private LinearLayout contentContainer;
     private ProgressBar progressBar;
     private TextView statusTextView;
     private FrameLayout adContainer;
@@ -63,44 +50,23 @@ public class MemoryDisplayManager {
     private LinearLayout eepromContainer;
     private TextView romLabel;
     private TextView eepromLabel;
-    private Button closeButton;
 
     // Colores
-    private static final int COLOR_BACKGROUND = Color.parseColor("#505060"); // Tono mas claro
+    private static final int COLOR_BACKGROUND = Color.parseColor("#505060");
     private static final int COLOR_CARD = Color.parseColor("#2A2A3E");
     private static final int COLOR_ADDRESS = Color.parseColor("#FFD700");
     private static final int COLOR_DATA_LOADED = Color.parseColor("#4CAF50");
     private static final int COLOR_DATA_EMPTY = Color.parseColor("#F44336");
     private static final int COLOR_ASCII = Color.parseColor("#00BCD4");
     private static final int COLOR_BUTTON = Color.parseColor("#2196F3");
-    private static final int COLOR_TEXT_PRIMARY = Color.parseColor("#E0E0E0");
     private static final int COLOR_TEXT_SECONDARY = Color.parseColor("#9E9E9E");
 
     public MemoryDisplayManager(Context context) {
         this.context = context;
     }
 
-    /**
-     * Pre-carga un anuncio nativo para que este listo cuando se muestre el popup.
-     */
     public void preloadAd() {
-        if (nativeAd != null) {
-            return; // Ya hay uno cargado
-        }
-
-        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-5141499161332805/1625082944");
-        builder.forNativeAd(ad -> {
-            nativeAd = ad; // Guardar referencia para uso posterior
-        });
-
-        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                .setVideoOptions(videoOptions)
-                .build();
-
-        builder.withNativeAdOptions(adOptions);
-        builder.build().loadAd(new AdRequest.Builder().build());
+        // La precarga ahora se maneja centralizadamente en MostrarPublicidad
     }
 
     /**
@@ -135,11 +101,11 @@ public class MemoryDisplayManager {
         memoryPopup.showAtLocation(rootView, Gravity.CENTER, 0, 0);
         applyShowAnimation(mainContainer);
 
-        // Cargar o mostrar anuncio nativo
-        if (nativeAd != null) {
-            populateNativeAdView(adContainer, nativeAd);
-        } else {
-            loadNativeAd(adContainer);
+        // Cargar o mostrar anuncio nativo usando el gestor centralizado
+        if (context instanceof com.diamon.pic.MainActivity) {
+            com.diamon.pic.MainActivity activity = (com.diamon.pic.MainActivity) context;
+            activity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY,
+                    adContainer);
         }
     }
 
@@ -152,22 +118,19 @@ public class MemoryDisplayManager {
             return;
         }
 
-        // Ocultar progreso y anuncio para dar espacio a los datos
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
         if (adContainer != null) {
             adContainer.setVisibility(View.GONE);
-            adContainer.removeAllViews(); // Limpiar recursos
+            adContainer.removeAllViews();
         }
 
-        // Actualizar texto de estado - String: lectura_completada
         if (statusTextView != null) {
-            statusTextView.setText("Lectura Completa"); // R.string.lectura_completada
+            statusTextView.setText("Lectura Completa");
             statusTextView.setTextColor(COLOR_DATA_LOADED);
         }
 
-        // Mostrar contenedor de datos
         if (romScrollView != null) {
             romScrollView.setVisibility(View.VISIBLE);
         }
@@ -175,13 +138,11 @@ public class MemoryDisplayManager {
             romLabel.setVisibility(View.VISIBLE);
         }
 
-        // Poblar datos ROM
         if (romContainer != null) {
             romContainer.removeAllViews();
             displayDataWithColors(romContainer, romData != null ? romData : "", 4, 8, true, romSize);
         }
 
-        // EEPROM si existe
         if (hasEeprom) {
             if (eepromLabel != null) {
                 eepromLabel.setVisibility(View.VISIBLE);
@@ -195,7 +156,6 @@ public class MemoryDisplayManager {
             }
         }
 
-        // Habilitar cierre
         if (memoryPopup != null) {
             memoryPopup.setOutsideTouchable(true);
         }
@@ -206,15 +166,11 @@ public class MemoryDisplayManager {
      */
     public void showMemoryDataPopup(String romData, int romSize, String eepromData, int eepromSize, boolean hasEeprom) {
         showLoadingState();
-        // Pequeno delay para mostrar el popup primero
         new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
             updateWithData(romData, romSize, eepromData, eepromSize, hasEeprom);
         }, 100);
     }
 
-    /**
-     * Crea el contenedor principal del popup
-     */
     private LinearLayout createMainContainer(int width, int height) {
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
@@ -224,13 +180,12 @@ public class MemoryDisplayManager {
         shape.setShape(GradientDrawable.RECTANGLE);
         shape.setCornerRadius(dpToPx(16));
         shape.setColor(COLOR_BACKGROUND);
-        shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E")); // Borde para diferenciar del fondo
+        shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E"));
         container.setBackground(shape);
         container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
-        // Titulo - String: datos_de_memoria
         TextView title = new TextView(context);
-        title.setText("Datos de Memoria"); // R.string.datos_de_memoria
+        title.setText("Datos de Memoria");
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);
@@ -238,7 +193,6 @@ public class MemoryDisplayManager {
         title.setPadding(0, 0, 0, dpToPx(12));
         container.addView(title);
 
-        // Contenedor de estado (progreso + texto)
         LinearLayout statusContainer = new LinearLayout(context);
         statusContainer.setOrientation(LinearLayout.VERTICAL);
         statusContainer.setGravity(Gravity.CENTER);
@@ -252,9 +206,8 @@ public class MemoryDisplayManager {
         progressBar.setLayoutParams(progressParams);
         statusContainer.addView(progressBar);
 
-        // Texto de estado - String: leyendo_memoria
         statusTextView = new TextView(context);
-        statusTextView.setText("Leyendo memoria..."); // R.string.leyendo_memoria
+        statusTextView.setText("Leyendo memoria...");
         statusTextView.setTextColor(COLOR_TEXT_SECONDARY);
         statusTextView.setTextSize(14);
         statusTextView.setGravity(Gravity.CENTER);
@@ -262,7 +215,6 @@ public class MemoryDisplayManager {
 
         container.addView(statusContainer);
 
-        // Divider
         View divider = new View(context);
         divider.setBackgroundColor(Color.parseColor("#3A3A4E"));
         LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
@@ -270,7 +222,6 @@ public class MemoryDisplayManager {
         dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
         container.addView(divider, dividerParams);
 
-        // Contenedor de anuncio
         adContainer = new FrameLayout(context);
         LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(380));
@@ -279,16 +230,14 @@ public class MemoryDisplayManager {
         adContainer.setMinimumHeight(dpToPx(350));
         container.addView(adContainer);
 
-        // Contenedor de datos (ScrollView con peso para llenar espacio restante)
-        contentContainer = new LinearLayout(context);
+        LinearLayout contentContainer = new LinearLayout(context);
         contentContainer.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams contentParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
         contentContainer.setLayoutParams(contentParams);
 
-        // Label ROM - String: memoria_rom
         romLabel = new TextView(context);
-        romLabel.setText("▶ Memoria ROM"); // R.string.memoria_rom
+        romLabel.setText("▶ Memoria ROM");
         romLabel.setTextColor(COLOR_DATA_LOADED);
         romLabel.setTextSize(14);
         romLabel.setTypeface(null, Typeface.BOLD);
@@ -296,72 +245,57 @@ public class MemoryDisplayManager {
         romLabel.setVisibility(View.GONE);
         contentContainer.addView(romLabel);
 
-        // ScrollView ROM
         romScrollView = new ScrollView(context);
         LinearLayout.LayoutParams romScrollParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
         romScrollView.setLayoutParams(romScrollParams);
         romScrollView.setVisibility(View.GONE);
-        romScrollView.setFillViewport(true); // Estirar contenido para simetria
+        romScrollView.setFillViewport(true);
 
         GradientDrawable dataBg = new GradientDrawable();
         dataBg.setColor(Color.BLACK);
         dataBg.setCornerRadius(dpToPx(8));
         romScrollView.setBackground(dataBg);
-        romScrollView.setClipToOutline(true);
 
-        // Horizontal Scroll para ROM
         android.widget.HorizontalScrollView romHorizontalScroll = new android.widget.HorizontalScrollView(context);
-        romHorizontalScroll.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)); // Llenar scrollview
-
         romContainer = new LinearLayout(context);
         romContainer.setOrientation(LinearLayout.VERTICAL);
         romContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-
         romHorizontalScroll.addView(romContainer);
+
         romScrollView.addView(romHorizontalScroll);
         contentContainer.addView(romScrollView);
 
-        // Label EEPROM - String: memoria_eeprom
         eepromLabel = new TextView(context);
-        eepromLabel.setText("▶ Memoria EEPROM"); // R.string.memoria_eeprom
+        eepromLabel.setText("▶ Memoria EEPROM");
         eepromLabel.setTextColor(COLOR_DATA_LOADED);
         eepromLabel.setTextSize(14);
         eepromLabel.setTypeface(null, Typeface.BOLD);
-        eepromLabel.setPadding(0, 0, 0, dpToPx(4)); // Padding identico a ROM
+        eepromLabel.setPadding(0, 0, 0, dpToPx(4));
         eepromLabel.setVisibility(View.GONE);
         contentContainer.addView(eepromLabel);
 
-        // ScrollView EEPROM
         eepromScrollView = new ScrollView(context);
         LinearLayout.LayoutParams eepromScrollParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f); // Simetrico con ROM
+                LinearLayout.LayoutParams.MATCH_PARENT, 0, 1.0f);
         eepromScrollView.setLayoutParams(eepromScrollParams);
         eepromScrollView.setVisibility(View.GONE);
-        eepromScrollView.setFillViewport(true); // Estirar contenido
+        eepromScrollView.setFillViewport(true);
+        eepromScrollView.setBackground(dataBg);
 
-        eepromScrollView.setBackground(dataBg); // Reusar background
-        eepromScrollView.setClipToOutline(true);
-
-        // Horizontal Scroll para EEPROM
         android.widget.HorizontalScrollView eepromHorizontalScroll = new android.widget.HorizontalScrollView(context);
-        eepromHorizontalScroll.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-
         eepromContainer = new LinearLayout(context);
         eepromContainer.setOrientation(LinearLayout.VERTICAL);
         eepromContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-
         eepromHorizontalScroll.addView(eepromContainer);
+
         eepromScrollView.addView(eepromHorizontalScroll);
         contentContainer.addView(eepromScrollView);
 
         container.addView(contentContainer);
 
-        // Boton cerrar - String: cerrar
-        closeButton = new Button(context);
-        closeButton.setText("Cerrar"); // R.string.cerrar
+        Button closeButton = new Button(context);
+        closeButton.setText("Cerrar");
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(14);
 
@@ -384,9 +318,6 @@ public class MemoryDisplayManager {
         return container;
     }
 
-    /**
-     * Muestra datos con colores y columna ASCII
-     */
     private void displayDataWithColors(LinearLayout container, String data, int groupSize, int columns, boolean isROM,
             int memorySize) {
         int address = 0;
@@ -396,11 +327,9 @@ public class MemoryDisplayManager {
             StringBuilder hexPart = new StringBuilder();
             StringBuilder asciiPart = new StringBuilder();
 
-            // Direccion
             String addressHex = String.format("%04X", address);
             hexPart.append(addressHex).append(": ");
 
-            // Datos hex y ASCII
             for (int j = 0; j < columns; j++) {
                 int start = i + j * groupSize;
                 int end = Math.min(start + groupSize, data.length());
@@ -409,26 +338,12 @@ public class MemoryDisplayManager {
                     String hexGroup = data.substring(start, end);
                     hexPart.append(hexGroup).append(" ");
 
-                    // Convertir a ASCII - CORRECCION: ROM debe mostrar SOLO Byte Bajo (estandar
-                    // PIC)
                     if (isROM) {
-                        // En PICs de 14 bits (como 16F628A), los datos se guardan en instrucciones
-                        // RETLW
-                        // (Opcode + Literal de 8 bits).
-                        // El ASCII util esta SOLO en el Byte Bajo (los ultimos 8 bits).
-                        // El Byte Alto es codigo de instruccion (irrelevante para ASCII).
-
-                        // Tomar solo los ultimos 2 caracteres (Byte Bajo)
                         if (hexGroup.length() >= 2) {
                             String lowByteHex = hexGroup.substring(hexGroup.length() - 2);
                             appendAscii(asciiPart, lowByteHex);
-                            // Agregar espacio para mantener alineacion visual con los datos Hex (opcional
-                            // pero
-                            // recomendado)
-                            // asciiPart.append(" ");
                         }
                     } else {
-                        // Otros (EEPROM): Orden secuencial normal
                         for (int k = 0; k < hexGroup.length(); k += 2) {
                             if (k + 2 <= hexGroup.length()) {
                                 appendAscii(asciiPart, hexGroup.substring(k, k + 2));
@@ -438,7 +353,6 @@ public class MemoryDisplayManager {
                 }
             }
 
-            // Crear fila con colores
             String fullText = hexPart.toString() + "│" + asciiPart.toString();
             TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, hexPart.length());
             container.addView(rowTextView);
@@ -446,12 +360,10 @@ public class MemoryDisplayManager {
             address += columns;
         }
 
-        // Agregar filas vacias hasta el tamano real de memoria
         int totalDataRows = (int) Math.ceil(data.length() / (double) bytesPerRow);
         int totalMemoryRows = (int) Math.ceil(memorySize / (double) columns);
 
         String emptyValue = isROM ? (groupSize == 4 ? "3FFF" : "FFFF") : "FF";
-        int charsPerGroup = groupSize;
 
         for (int i = totalDataRows; i < totalMemoryRows && i < totalDataRows + 50; i++) {
             String addressHex = String.format("%04X", address);
@@ -462,7 +374,7 @@ public class MemoryDisplayManager {
 
             for (int j = 0; j < columns; j++) {
                 hexPart.append(emptyValue).append(" ");
-                for (int k = 0; k < charsPerGroup / 2; k++) {
+                for (int k = 0; k < groupSize / 2; k++) {
                     asciiPart.append('.');
                 }
             }
@@ -475,22 +387,17 @@ public class MemoryDisplayManager {
         }
     }
 
-    /**
-     * Crea fila con colores: DORADO (dir), VERDE/ROJO (datos), CYAN (ASCII)
-     */
     private TextView createColoredRowWithAscii(String fullText, String address, int groupSize, boolean isROM,
             int hexPartLength) {
         TextView textView = new TextView(context);
         SpannableString spannableString = new SpannableString(fullText);
 
-        // Color DORADO para direccion (0000: )
         int dirEnd = address.length() + 2;
         spannableString.setSpan(
                 new ForegroundColorSpan(COLOR_ADDRESS),
                 0, dirEnd,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        // Colores para datos hex
         int dataStart = dirEnd;
         int separatorPos = fullText.indexOf("│");
         if (separatorPos > 0) {
@@ -515,7 +422,6 @@ public class MemoryDisplayManager {
                 currentPos = groupEnd + 1;
             }
 
-            // Color CYAN para ASCII
             if (separatorPos + 1 < fullText.length()) {
                 spannableString.setSpan(
                         new ForegroundColorSpan(COLOR_ASCII),
@@ -525,16 +431,13 @@ public class MemoryDisplayManager {
         }
 
         textView.setText(spannableString);
-        textView.setTextSize(12); // Fuente mas grande para mejor legibilidad
+        textView.setTextSize(12);
         textView.setTypeface(Typeface.MONOSPACE);
         textView.setPadding(dpToPx(4), dpToPx(1), dpToPx(4), dpToPx(1));
 
         return textView;
     }
 
-    /**
-     * Detecta si un dato es vacio (FF, 3FFF, FFFF).
-     */
     private boolean isEmptyData(String data, boolean isROM) {
         if (data == null || data.isEmpty())
             return false;
@@ -547,118 +450,6 @@ public class MemoryDisplayManager {
         }
     }
 
-    /**
-     * Carga un anuncio nativo
-     */
-    private void loadNativeAd(FrameLayout adContainer) {
-        // ID de anuncio para lectura de memoria
-        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-5141499161332805/1625082944");
-
-        builder.forNativeAd(ad -> {
-            if (nativeAd != null) {
-                nativeAd.destroy();
-            }
-            nativeAd = ad;
-            populateNativeAdView(adContainer, ad);
-        });
-
-        builder.withAdListener(new AdListener() {
-            @Override
-            public void onAdFailedToLoad(LoadAdError error) {
-                showAdPlaceholder(adContainer);
-            }
-        });
-
-        VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-        NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                .setVideoOptions(videoOptions)
-                .build();
-
-        builder.withNativeAdOptions(adOptions);
-        builder.build().loadAd(new AdRequest.Builder().build());
-    }
-
-    /**
-     * Puebla la vista del anuncio nativo
-     */
-    private void populateNativeAdView(FrameLayout container, NativeAd ad) {
-        container.removeAllViews();
-
-        NativeAdView adView = (NativeAdView) android.view.LayoutInflater.from(context)
-                .inflate(R.layout.layout_native_ad, null);
-
-        adView.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT));
-
-        adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
-        adView.setBodyView(adView.findViewById(R.id.ad_body));
-        adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
-        adView.setIconView(adView.findViewById(R.id.ad_app_icon));
-        adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
-        adView.setMediaView(adView.findViewById(R.id.ad_media));
-
-        ((TextView) adView.getHeadlineView()).setText(ad.getHeadline());
-        ((TextView) adView.getBodyView()).setText(ad.getBody());
-        ((TextView) adView.getCallToActionView()).setText(ad.getCallToAction());
-
-        if (ad.getAdvertiser() == null) {
-            adView.getAdvertiserView().setVisibility(View.INVISIBLE);
-        } else {
-            ((TextView) adView.getAdvertiserView()).setText(ad.getAdvertiser());
-            adView.getAdvertiserView().setVisibility(View.VISIBLE);
-        }
-
-        if (ad.getIcon() == null) {
-            adView.getIconView().setVisibility(View.GONE);
-        } else {
-            ((ImageView) adView.getIconView()).setImageDrawable(ad.getIcon().getDrawable());
-            adView.getIconView().setVisibility(View.VISIBLE);
-        }
-
-        adView.setNativeAd(ad);
-        container.addView(adView);
-    }
-
-    /**
-     * Muestra placeholder cuando el anuncio no carga
-     */
-    private void showAdPlaceholder(FrameLayout container) {
-        container.removeAllViews();
-
-        LinearLayout placeholderLayout = new LinearLayout(context);
-        placeholderLayout.setOrientation(LinearLayout.VERTICAL);
-        placeholderLayout.setGravity(Gravity.CENTER);
-        placeholderLayout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
-
-        GradientDrawable bg = new GradientDrawable();
-        bg.setColor(COLOR_CARD);
-        bg.setCornerRadius(dpToPx(8));
-        placeholderLayout.setBackground(bg);
-
-        ImageView icon = new ImageView(context);
-        icon.setImageResource(android.R.drawable.ic_dialog_info);
-        icon.setColorFilter(COLOR_TEXT_SECONDARY);
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(48), dpToPx(48));
-        iconParams.setMargins(0, 0, 0, dpToPx(8));
-        placeholderLayout.addView(icon, iconParams);
-
-        TextView placeholderText = new TextView(context);
-        placeholderText.setText("Anuncio no disponible");
-        placeholderText.setTextSize(14);
-        placeholderText.setTextColor(COLOR_TEXT_SECONDARY);
-        placeholderText.setGravity(Gravity.CENTER);
-        placeholderLayout.addView(placeholderText);
-
-        container.addView(placeholderLayout, new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT));
-    }
-
-    /**
-     * Aplica animacion de entrada.
-     */
     private void applyShowAnimation(View view) {
         view.setScaleY(0);
         view.setPivotY(0);
@@ -673,9 +464,6 @@ public class MemoryDisplayManager {
         animator.start();
     }
 
-    /**
-     * Cierra con animacion.
-     */
     private void dismissWithAnimation() {
         if (memoryPopup == null || !memoryPopup.isShowing()) {
             return;
@@ -703,25 +491,10 @@ public class MemoryDisplayManager {
         animator.start();
     }
 
-    /**
-     * Cierra el popup y libera recursos, y precarga el siguiente anuncio.
-     */
     public void dismiss() {
         if (memoryPopup != null && memoryPopup.isShowing()) {
             memoryPopup.dismiss();
         }
-
-        // NO destruir el anuncio aqui por si queremos precargarlo, o destruirlo y
-        // cargar uno nuevo
-        // Mejor estrategia: Pre-cargar uno nuevo para la proxima vez
-        if (nativeAd != null) {
-            nativeAd.destroy();
-            nativeAd = null;
-        }
-
-        // Precargar para la siguiente vez (usando handler para asegurar que se ejecute
-        // despues de liberar)
-        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(this::preloadAd, 500);
     }
 
     public void dismissAllPopups() {
@@ -732,9 +505,6 @@ public class MemoryDisplayManager {
         return Math.round(dp * context.getResources().getDisplayMetrics().density);
     }
 
-    /**
-     * Helper para convertir hex a ASCII y agregarlo al StringBuilder
-     */
     private void appendAscii(StringBuilder builder, String hexByte) {
         try {
             int value = Integer.parseInt(hexByte, 16);
