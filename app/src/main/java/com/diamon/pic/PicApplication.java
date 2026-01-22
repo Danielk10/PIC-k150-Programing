@@ -128,15 +128,28 @@ public class PicApplication extends Application {
     private void preloadWebViewAsync() {
         new Thread(() -> {
             try {
-                // Pequeño delay para no interferir con el inicio de la app
-                Thread.sleep(2000);
+                // ✅ Aumentar el delay a 5 segundos.
+                // Los crashes en libmonochrome (SIGTRAP) suelen ocurrir por inicialización
+                // prematura o colisiones de recursos durante el arranque intenso.
+                Thread.sleep(5000);
 
-                // Handler para ejecutar en el main thread (requerido para WebView)
                 new Handler(Looper.getMainLooper()).post(() -> {
                     try {
-                        // Crear y descartar inmediatamente para pre-cargar el motor de renderizado
-                        new WebView(getApplicationContext()).destroy();
-                        Log.d(TAG, "WebView preloaded successfully");
+                        // Pre-cargar el motor de renderizado de forma segura.
+                        // Usar una instancia global persistente o destruirla después de un tiempo
+                        // es opcional, pero aquí simplemente forzamos la carga.
+                        WebView webView = new WebView(getApplicationContext());
+                        webView.loadUrl("about:blank"); // Forzar carga mínima
+
+                        // Diferir destrucción para asegurar que el motor se asiente
+                        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                            try {
+                                webView.destroy();
+                                Log.d(TAG, "WebView preloaded and settled successfully");
+                            } catch (Exception ignored) {
+                            }
+                        }, 1000);
+
                     } catch (Exception e) {
                         Log.w(TAG, "Failed to preload WebView: " + e.getMessage());
                     }
@@ -155,16 +168,23 @@ public class PicApplication extends Application {
         if (mobileAdsInitialized)
             return;
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+        // ✅ CORRECCIÓN CRÍTICA PARA ANR (Unsafe.park):
+        // Iniciar un HILO DE FONDO real para la inicialización pesada de
+        // AdMob/StartApp.
+        // Esto evita que el main thread se bloquee esperando mediadores sincronizados.
+        new Thread(() -> {
             try {
-                MobileAds.initialize(this, initializationStatus -> {
+                // Esperar a que la app termine de cargar la UI básica
+                Thread.sleep(2000);
+
+                MobileAds.initialize(PicApplication.this, initializationStatus -> {
                     mobileAdsInitialized = true;
-                    Log.d(TAG, "MobileAds initialized successfully");
+                    Log.d(TAG, "MobileAds initialized successfully in background thread");
                 });
             } catch (Exception e) {
-                Log.e(TAG, "Error initializing MobileAds: " + e.getMessage());
+                Log.e(TAG, "Error initializing MobileAds in background: " + e.getMessage());
             }
-        }, 1500); // Delay de 1.5 segundos para permitir que la UI se renderice primero
+        }, "AdMobInitializer").start();
     }
 
     /**

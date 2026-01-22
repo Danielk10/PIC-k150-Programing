@@ -148,7 +148,20 @@ public class MainActivity extends AppCompatActivity
         initializeManagers();
         setupListeners();
         setupToolbar();
-        usbManager.initialize();
+        // CORRECCIÓN PARA ANR en inicio:
+        // Mover la inicialización de USB (escaneo de drivers y apertura de protocolo)
+        // a un hilo secundario para no bloquear el onCreate.
+        new Thread(() -> {
+            try {
+                if (usbManager != null) {
+                    usbManager.initialize();
+                }
+            } catch (Exception e) {
+                Analytics.trackEvent("USB: Init Error",
+                        Map.of("Message", e.getMessage() != null ? e.getMessage() : "unknown"));
+            }
+        }, "UsbInitializer").start();
+
         setupWakeLock();
     }
 
