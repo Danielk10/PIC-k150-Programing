@@ -218,25 +218,25 @@ public class FuseConfigPopup {
 
         TextView label = new TextView(context);
         label.setText("Chip Seleccionado");
-        label.setTextColor(Color.parseColor("#424242"));
+        label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(14);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
         section.addView(label);
 
         chipNameTextView = new TextView(context);
         chipNameTextView.setText(currentChip != null ? currentChip.getNombreDelPic() : "Sin chip");
-        chipNameTextView.setTextColor(Color.parseColor("#1976D2"));
+        chipNameTextView.setTextColor(Color.parseColor("#4CAF50"));
         chipNameTextView.setTextSize(16);
         chipNameTextView.setTypeface(null, android.graphics.Typeface.BOLD);
         chipNameTextView.setPadding(0, 8, 0, 8);
         section.addView(chipNameTextView);
 
         chipInfoTextView = new TextView(context);
-        chipInfoTextView.setBackgroundColor(Color.parseColor("#E3F2FD"));
+        chipInfoTextView.setBackgroundColor(Color.parseColor("#1A1A2E"));
         chipInfoTextView.setPadding(12, 12, 12, 12);
         chipInfoTextView.setTextSize(12);
         chipInfoTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
-        chipInfoTextView.setTextColor(Color.parseColor("#1976D2"));
+        chipInfoTextView.setTextColor(Color.parseColor("#4CAF50"));
         section.addView(chipInfoTextView);
 
         return section;
@@ -266,7 +266,7 @@ public class FuseConfigPopup {
 
         TextView label = new TextView(context);
         label.setText("Configuracion de Fusibles");
-        label.setTextColor(Color.parseColor("#424242"));
+        label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(16);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
         label.setPadding(0, 0, 0, 12);
@@ -276,7 +276,7 @@ public class FuseConfigPopup {
         fuseContainer = new LinearLayout(context);
         fuseContainer.setOrientation(LinearLayout.VERTICAL);
         fuseContainer.setPadding(8, 8, 8, 8);
-        fuseContainer.setBackgroundColor(Color.parseColor("#FAFAFA"));
+        fuseContainer.setBackgroundColor(Color.parseColor("#1A1A2E"));
 
         LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -375,7 +375,7 @@ public class FuseConfigPopup {
 
         TextView label = new TextView(context);
         label.setText("ID Personalizado (hex)");
-        label.setTextColor(Color.parseColor("#424242"));
+        label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(14);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
         section.addView(label);
@@ -383,10 +383,12 @@ public class FuseConfigPopup {
         customIdEditText = new EditText(context);
         customIdEditText.setHint("Ejemplo: 00 01 02 03 04 05 06 07");
         customIdEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-        customIdEditText.setBackgroundColor(Color.parseColor("#F5F5F5"));
+        customIdEditText.setBackgroundColor(Color.parseColor("#1A1A2E"));
         customIdEditText.setPadding(12, 12, 12, 12);
         customIdEditText.setTextSize(12);
         customIdEditText.setTypeface(android.graphics.Typeface.MONOSPACE);
+        customIdEditText.setTextColor(Color.WHITE);
+        customIdEditText.setHintTextColor(Color.parseColor("#808080"));
         section.addView(customIdEditText);
 
         return section;
@@ -414,7 +416,7 @@ public class FuseConfigPopup {
 
         TextView label = new TextView(context);
         label.setText("Log de Operaciones");
-        label.setTextColor(Color.parseColor("#424242"));
+        label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(14);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
         label.setPadding(0, 0, 0, 8);
@@ -423,10 +425,10 @@ public class FuseConfigPopup {
         logTextView = new TextView(context);
         logTextView.setTextSize(10);
         logTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
-        logTextView.setTextColor(Color.parseColor("#616161"));
+        logTextView.setTextColor(Color.parseColor("#AAAAAA"));
         logTextView.setText("Log iniciado...\n");
         logTextView.setPadding(8, 8, 8, 8);
-        logTextView.setBackgroundColor(Color.WHITE);
+        logTextView.setBackgroundColor(Color.parseColor("#1A1A2E"));
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -677,7 +679,7 @@ public class FuseConfigPopup {
         TextView label = new TextView(context);
         label.setText(fuseName + ":");
         label.setTextSize(14);
-        label.setTextColor(Color.parseColor("#424242"));
+        label.setTextColor(Color.WHITE);
 
         LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
                 1.0f);
