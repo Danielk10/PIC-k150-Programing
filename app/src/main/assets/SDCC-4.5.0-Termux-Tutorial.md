@@ -1250,7 +1250,7 @@ Has instalado exitosamente **SDCC 4.5.0** en Termux y compilado tu primer progra
 
 # 📚 ENGLISH VERSION / VERSIÓN EN INGLÉS
 
-# 🇬🇧 SDCC 4.5.0 INSTALLATION ON TERMUX FOR ANDROID
+# SDCC 4.5.0 INSTALLATION ON TERMUX FOR ANDROID
 ## Small Device C Compiler for PIC
 
 **Version for Termux Google Play**
@@ -2499,5 +2499,3 @@ You have successfully installed **SDCC 4.5.0** on Termux and compiled your first
 **Dependency:** GPUTILS 1.5.2
 
 ---
-
-**END OF TUTORIAL / FIN DEL TUTORIAL**
