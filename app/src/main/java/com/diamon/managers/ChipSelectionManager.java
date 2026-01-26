@@ -124,14 +124,17 @@ public class ChipSelectionManager {
             StringBuilder sb = new StringBuilder();
 
             // Modelo
-            sb.append(formatLabel(context.getString(R.string.modelo))).append(" ").append(currentChip.getNombreDelPic()).append("<br>");
+            sb.append(formatLabel(context.getString(R.string.modelo))).append(" ").append(currentChip.getNombreDelPic())
+                    .append("<br>");
 
             // Palabras ROM y Tamaño ROM
             int romBytes = currentChip.getTamanoROM();
             int romWords = romBytes / 2;
 
-            sb.append(formatLabel(context.getString(R.string.palabras_rom))).append(" ").append(romWords).append("<br>");
-            sb.append(formatLabel(context.getString(R.string.tamano_rom))).append(" ").append(romBytes).append(" bytes<br>");
+            sb.append(formatLabel(context.getString(R.string.palabras_rom))).append(" ").append(romWords)
+                    .append("<br>");
+            sb.append(formatLabel(context.getString(R.string.tamano_rom))).append(" ").append(romBytes)
+                    .append(" bytes<br>");
 
             // EEPROM
             sb.append(formatLabel(context.getString(R.string.eeprom))).append(" ");
@@ -143,7 +146,8 @@ public class ChipSelectionManager {
             sb.append("<br>");
 
             // Tipo de Nucleo
-            sb.append(formatLabel(context.getString(R.string.tipo_de_nucleo))).append(" ").append(currentChip.getTipoDeNucleoBit()).append(" bits<br>");
+            sb.append(formatLabel(context.getString(R.string.tipo_de_nucleo))).append(" ")
+                    .append(currentChip.getTipoDeNucleoBit()).append(" bits<br>");
 
             // Modo
             sb.append(formatLabel(context.getString(R.string.modo))).append(" ");
@@ -153,7 +157,11 @@ public class ChipSelectionManager {
                 sb.append(context.getString(R.string.pin_1)).append(" ").append(currentChip.getUbicacionPin1DelPic());
             }
 
-            return android.text.Html.fromHtml(sb.toString(), android.text.Html.FROM_HTML_MODE_LEGACY);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                return android.text.Html.fromHtml(sb.toString(), android.text.Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                return android.text.Html.fromHtml(sb.toString());
+            }
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }

@@ -240,15 +240,17 @@ public class FuseConfigPopup {
 
         if (currentChip != null) {
             StringBuilder sb = new StringBuilder();
-            sb.append("ROM:    ").append(currentChip.getTamanoROM()).append(" bytes\n");
             try {
-               if (currentChip.isTamanoValidoDeEEPROM()) {
-                   sb.append("EEPROM: ").append(currentChip.getTamanoEEPROM()).append(" bytes\n");
-               }
+                sb.append("ROM:    ").append(currentChip.getTamanoROM()).append(" bytes\n");
+
+                if (currentChip.isTamanoValidoDeEEPROM()) {
+                    sb.append("EEPROM: ").append(currentChip.getTamanoEEPROM()).append(" bytes\n");
+                }
+
+                sb.append("ID:     ").append(String.format("0x%04X", currentChip.getIDPIC()));
             } catch (Exception e) {
-                 // Ignorar error EEPROM si no disponible
+                sb.append("Error leyendo info chip");
             }
-            sb.append("ID:     ").append(String.format("0x%04X", currentChip.getIDPIC()));
             chipInfoTextView.setText(sb.toString());
         }
 
