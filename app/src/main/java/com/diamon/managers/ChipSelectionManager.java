@@ -122,13 +122,36 @@ public class ChipSelectionManager {
             return "";
         try {
             StringBuilder sb = new StringBuilder();
-            sb.append("Modelo: ").append(currentChip.getNombreDelPic()).append("\n");
-            sb.append("ROM: ").append(String.format("0x%04X", currentChip.getTamanoROM())).append(" bytes\n");
+
+            // Modelo
+            sb.append(context.getString(R.string.modelo)).append(": ").append(currentChip.getNombreDelPic())
+                    .append("\n");
+
+            // Palabras ROM y Tamaño ROM
+            // Asumiendo que getTamanoROM devuelve bytes, calculamos palabras aproximadas
+            // (ej. 14-bit core = 2 bytes/word en mapa de memoria)
+            int romBytes = currentChip.getTamanoROM();
+            int romWords = romBytes / 2;
+
+            sb.append(context.getString(R.string.palabras_rom)).append(": ").append(romWords).append("\n");
+            sb.append(context.getString(R.string.tamano_rom)).append(": ").append(romBytes).append(" bytes\n");
+
+            // EEPROM
+            sb.append(context.getString(R.string.eeprom)).append(": ");
             if (currentChip.isTamanoValidoDeEEPROM()) {
-                sb.append("EEPROM: ").append(String.format("0x%04X", currentChip.getTamanoEEPROM())).append(" bytes\n");
+                sb.append(currentChip.getTamanoEEPROM()).append(" bytes");
+            } else {
+                sb.append(context.getString(R.string.no_disponible));
             }
-            sb.append("Núcleo: ").append(currentChip.getTipoDeNucleoBit()).append("-bit\n");
-            sb.append("ID: ").append(String.format("0x%04X", currentChip.getIDPIC()));
+            sb.append("\n");
+
+            // Tipo de Nucleo
+            sb.append(context.getString(R.string.tipo_de_nucleo)).append(": ").append(currentChip.getTipoDeNucleoBit())
+                    .append(" bits\n");
+
+            // Modo (Hardcoded a ICSP solamente por ahora según imagen, o lógica si existe)
+            sb.append(context.getString(R.string.modo)).append(": ").append(context.getString(R.string.icsp_solamente));
+
             return sb.toString();
         } catch (Exception e) {
             return "Error obteniendo info";

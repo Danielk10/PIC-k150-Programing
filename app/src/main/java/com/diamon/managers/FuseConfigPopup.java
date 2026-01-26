@@ -688,7 +688,18 @@ public class FuseConfigPopup {
 
         // Spinner
         Spinner spinner = new Spinner(context);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, options);
+        // Spinner personalizado para texto blanco
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                options) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                if (view instanceof TextView) {
+                    ((TextView) view).setTextColor(Color.WHITE);
+                }
+                return view;
+            }
+        };
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -812,11 +823,44 @@ public class FuseConfigPopup {
             }
 
             Toast.makeText(context, "Fusibles aplicados", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
+            dismissWithAnimation(); // Usar animación al cerrar
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
         }
+    }
+
+    private void dismissWithAnimation() {
+        if (dialog == null || !dialog.isShowing()) {
+            return;
+        }
+
+        Window window = dialog.getWindow();
+        if (window == null) {
+            dialog.dismiss();
+            return;
+        }
+
+        View decorView = window.getDecorView();
+        android.util.DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        float targetY = metrics.heightPixels;
+
+        android.animation.ValueAnimator animator = android.animation.ValueAnimator.ofFloat(0, targetY);
+        animator.setDuration(500);
+        animator.setInterpolator(new android.view.animation.AccelerateInterpolator(1.5f));
+        animator.addUpdateListener(animation -> {
+            float value = (float) animation.getAnimatedValue();
+            decorView.setTranslationY(value);
+        });
+
+        animator.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                dialog.dismiss();
+            }
+        });
+
+        animator.start();
     }
 
     /** Parsea el ID personalizado */
@@ -847,7 +891,7 @@ public class FuseConfigPopup {
         if (listener != null) {
             listener.onFusesCancelled();
         }
-        dialog.dismiss();
+        dismissWithAnimation();
     }
 
     /** Agrega un mensaje al log (truncado a 5 lineas) */
