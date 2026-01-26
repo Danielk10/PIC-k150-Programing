@@ -236,7 +236,22 @@ public class FuseConfigPopup {
         chipInfoTextView.setPadding(12, 12, 12, 12);
         chipInfoTextView.setTextSize(12);
         chipInfoTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
-        chipInfoTextView.setTextColor(Color.parseColor("#4CAF50"));
+        chipInfoTextView.setTextColor(Color.parseColor("#4CAF50")); // Valor en verde
+
+        if (currentChip != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("ROM:    ").append(currentChip.getTamanoROM()).append(" bytes\n");
+            try {
+               if (currentChip.isTamanoValidoDeEEPROM()) {
+                   sb.append("EEPROM: ").append(currentChip.getTamanoEEPROM()).append(" bytes\n");
+               }
+            } catch (Exception e) {
+                 // Ignorar error EEPROM si no disponible
+            }
+            sb.append("ID:     ").append(String.format("0x%04X", currentChip.getIDPIC()));
+            chipInfoTextView.setText(sb.toString());
+        }
+
         section.addView(chipInfoTextView);
 
         return section;
