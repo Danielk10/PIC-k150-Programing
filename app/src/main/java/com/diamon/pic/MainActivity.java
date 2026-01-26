@@ -1115,8 +1115,8 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
         menu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
         // Aquí va el recurso string: R.string.sdcc_termux_tutorial
-        menu.add(Menu.NONE, 5, 5, "📚 " + "SDCC en Termux Compilador C Android");
-        menu.add(Menu.NONE, 4, 4, getString(R.string.politica_de_privacidad));
+        menu.add(Menu.NONE, 5, 4, "📚 " + "SDCC en Termux Compilador C Android");
+        menu.add(Menu.NONE, 4, 5, getString(R.string.politica_de_privacidad));
         return true;
     }
 
