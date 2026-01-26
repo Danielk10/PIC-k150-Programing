@@ -117,51 +117,54 @@ public class ChipSelectionManager {
         }
     }
 
-    public String getSelectedChipInfo() {
+    public CharSequence getSelectedChipInfoColored() {
         if (currentChip == null)
             return "";
         try {
             StringBuilder sb = new StringBuilder();
 
             // Modelo
-            sb.append(context.getString(R.string.modelo)).append(": ").append(currentChip.getNombreDelPic())
-                    .append("\n");
+            sb.append(formatLabel(context.getString(R.string.modelo))).append(" ").append(currentChip.getNombreDelPic()).append("<br>");
 
             // Palabras ROM y Tamaño ROM
-            // Asumiendo que getTamanoROM devuelve bytes, calculamos palabras aproximadas
-            // (ej. 14-bit core = 2 bytes/word en mapa de memoria)
             int romBytes = currentChip.getTamanoROM();
             int romWords = romBytes / 2;
 
-            sb.append(context.getString(R.string.palabras_rom)).append(": ").append(romWords).append("\n");
-            sb.append(context.getString(R.string.tamano_rom)).append(": ").append(romBytes).append(" bytes\n");
+            sb.append(formatLabel(context.getString(R.string.palabras_rom))).append(" ").append(romWords).append("<br>");
+            sb.append(formatLabel(context.getString(R.string.tamano_rom))).append(" ").append(romBytes).append(" bytes<br>");
 
             // EEPROM
-            sb.append(context.getString(R.string.eeprom)).append(": ");
+            sb.append(formatLabel(context.getString(R.string.eeprom))).append(" ");
             if (currentChip.isTamanoValidoDeEEPROM()) {
                 sb.append(currentChip.getTamanoEEPROM()).append(" bytes");
             } else {
                 sb.append(context.getString(R.string.no_disponible));
             }
-            sb.append("\n");
+            sb.append("<br>");
 
             // Tipo de Nucleo
-            sb.append(context.getString(R.string.tipo_de_nucleo)).append(": ").append(currentChip.getTipoDeNucleoBit())
-                    .append(" bits\n");
+            sb.append(formatLabel(context.getString(R.string.tipo_de_nucleo))).append(" ").append(currentChip.getTipoDeNucleoBit()).append(" bits<br>");
 
-            // Modo (Hardcoded a ICSP solamente por ahora según imagen, o lógica si existe)
-            sb.append(context.getString(R.string.modo)).append(": ").append(context.getString(R.string.icsp_solamente));
+            // Modo
+            sb.append(formatLabel(context.getString(R.string.modo))).append(" ");
+            if (currentChip.isICSPOnlyCompatible()) {
+                sb.append(context.getString(R.string.icsp_solamente));
+            } else {
+                sb.append(context.getString(R.string.pin_1)).append(" ").append(currentChip.getUbicacionPin1DelPic());
+            }
 
-            return sb.toString();
+            return android.text.Html.fromHtml(sb.toString(), android.text.Html.FROM_HTML_MODE_LEGACY);
         } catch (Exception e) {
-            return "Error obteniendo info";
+            return "Error: " + e.getMessage();
         }
     }
 
-    public String getSelectedChipInfoColored() {
-        // En una implementación real esto podría devolver un Spannable,
-        // pero para simplificar devolvemos el mismo texto que el anterior.
-        return getSelectedChipInfo();
+    private String formatLabel(String label) {
+        return "<font color='#FFFFFF'><b>" + label + ":</b></font>";
+    }
+
+    public String getSelectedChipInfo() {
+        return getSelectedChipInfoColored().toString();
     }
 
     private void notifyError(String message) {
