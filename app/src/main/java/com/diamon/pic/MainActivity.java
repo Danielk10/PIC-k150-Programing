@@ -1114,6 +1114,8 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
         menu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
+        // Aquí va el recurso string: R.string.sdcc_termux_tutorial
+        menu.add(Menu.NONE, 5, 5, "📚 " + "SDCC en Termux Compilador C Android");
         menu.add(Menu.NONE, 4, 4, getString(R.string.politica_de_privacidad));
         return true;
     }
@@ -1130,6 +1132,9 @@ public class MainActivity extends AppCompatActivity
             case 3:
                 openTutorialGputils();
                 return true;
+            case 5:
+                openTutorialSdcc();
+                return true;
             case 4:
                 startActivity(new Intent(this, Politicas.class));
                 return true;
@@ -1141,6 +1146,16 @@ public class MainActivity extends AppCompatActivity
     private void openTutorialGputils() {
         try {
             Intent intent = new Intent(MainActivity.this, TutorialGputilsActivity.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al abrir tutorial: " + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    private void openTutorialSdcc() {
+        try {
+            Intent intent = new Intent(MainActivity.this, com.diamon.tutorial.TutorialSdccActivity.class);
             startActivity(intent);
         } catch (Exception e) {
             Toast.makeText(this, "Error al abrir tutorial: " + e.getMessage(), Toast.LENGTH_LONG)

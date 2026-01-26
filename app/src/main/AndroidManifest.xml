@@ -84,6 +84,19 @@
         </activity>
 
         <activity
+            android:name="com.diamon.tutorial.TutorialSdccActivity"
+            android:exported="false"
+            android:label="SDCC Tutorial"
+            android:theme="@style/Theme.PICk150Programing"
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
             android:name="com.diamon.politicas.Politicas"
             android:label="@string/politicas"
             android:configChanges="orientation|screenSize|keyboardHidden"
