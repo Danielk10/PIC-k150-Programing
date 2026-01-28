@@ -70,6 +70,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
         // Inicializar cargador de archivos y renderizador
         fileLoader = new CargardorDeArchivos(this);
         contentRenderer = new TutorialContentRenderer(this, tutorialContainer);
+        contentRenderer.setMarkdownEnabled(false);
 
         // Configurar spinner de idiomas
         setupLanguageSpinner();

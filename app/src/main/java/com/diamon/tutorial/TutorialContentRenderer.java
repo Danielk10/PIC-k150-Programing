@@ -33,6 +33,11 @@ public class TutorialContentRenderer {
     private Context context;
     private LinearLayout container;
     private String currentLanguage = "es";
+    private boolean isMarkdownEnabled = false;
+
+    // Colores del tema Legacy (GPUTILS)
+    private static final int COLOR_TITLE_LEGACY = Color.parseColor("#2196F3");
+    private static final int COLOR_SUBTITLE_LEGACY = Color.parseColor("#424242");
 
     // Colores del tema
     private static final int COLOR_COMMAND_BG = Color.parseColor("#1E1E1E");
@@ -52,6 +57,10 @@ public class TutorialContentRenderer {
 
     public void setLanguage(String language) {
         this.currentLanguage = language;
+    }
+
+    public void setMarkdownEnabled(boolean enabled) {
+        this.isMarkdownEnabled = enabled;
     }
 
     public void renderTutorial(String tutorialText) {
@@ -195,60 +204,87 @@ public class TutorialContentRenderer {
     }
 
     private void addTitle(String text, int textSize, boolean bold) {
-        TextView titleView = new TextView(context);
-        titleView.setText(text);
-        titleView.setTextSize(textSize + 4);
-        titleView.setTextColor(Color.BLACK);
-        titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-        titleView.setPadding(0, dpToPx(24), 0, dpToPx(8));
+        if (isMarkdownEnabled) {
+            TextView titleView = new TextView(context);
+            titleView.setText(text);
+            titleView.setTextSize(textSize + 4);
+            titleView.setTextColor(Color.BLACK);
+            titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+            titleView.setPadding(0, dpToPx(24), 0, dpToPx(8));
+            container.addView(titleView);
 
-        container.addView(titleView);
-
-        // Línea divisoria debajo del título principal
-        View divider = new View(context);
-        divider.setBackgroundColor(Color.parseColor("#EEEEEE"));
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(2));
-        params.setMargins(0, 0, 0, dpToPx(16));
-        divider.setLayoutParams(params);
-        container.addView(divider);
+            // Línea divisoria debajo del título estilo GitHub
+            View divider = new View(context);
+            divider.setBackgroundColor(Color.parseColor("#EEEEEE"));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(2));
+            params.setMargins(0, 0, 0, dpToPx(16));
+            divider.setLayoutParams(params);
+            container.addView(divider);
+        } else {
+            // Estilo Original GPUTILS
+            TextView titleView = new TextView(context);
+            titleView.setText(text);
+            titleView.setTextSize(textSize);
+            titleView.setTextColor(COLOR_TITLE_LEGACY);
+            if (bold) {
+                titleView.setTypeface(null, Typeface.BOLD);
+            }
+            titleView.setPadding(0, dpToPx(16), 0, dpToPx(8));
+            titleView.setGravity(Gravity.CENTER);
+            container.addView(titleView);
+        }
     }
 
     private void addSectionTitle(String text) {
-        TextView sectionView = new TextView(context);
-        sectionView.setText(text);
-        sectionView.setTextSize(20);
-        sectionView.setTextColor(Color.parseColor("#24292E"));
-        sectionView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-        sectionView.setPadding(0, dpToPx(20), 0, dpToPx(8));
+        if (isMarkdownEnabled) {
+            TextView sectionView = new TextView(context);
+            sectionView.setText(text);
+            sectionView.setTextSize(20);
+            sectionView.setTextColor(Color.parseColor("#24292E"));
+            sectionView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+            sectionView.setPadding(0, dpToPx(20), 0, dpToPx(8));
+            container.addView(sectionView);
 
-        container.addView(sectionView);
-
-        // Línea fina debajo de secciones (estilo GitHub)
-        View divider = new View(context);
-        divider.setBackgroundColor(Color.parseColor("#E1E4E8"));
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-        params.setMargins(0, 0, 0, dpToPx(12));
-        divider.setLayoutParams(params);
-        container.addView(divider);
+            // Línea fina estilo GitHub
+            View divider = new View(context);
+            divider.setBackgroundColor(Color.parseColor("#E1E4E8"));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
+            params.setMargins(0, 0, 0, dpToPx(12));
+            divider.setLayoutParams(params);
+            container.addView(divider);
+        } else {
+            // Estilo Original GPUTILS
+            TextView sectionView = new TextView(context);
+            sectionView.setText(text);
+            sectionView.setTextSize(18);
+            sectionView.setTextColor(COLOR_TITLE_LEGACY);
+            sectionView.setTypeface(null, Typeface.BOLD);
+            sectionView.setPadding(0, dpToPx(16), 0, dpToPx(8));
+            container.addView(sectionView);
+        }
     }
 
     private void addSubtitle(String text) {
-        TextView subtitleView = new TextView(context);
-        subtitleView.setText(text);
-        subtitleView.setTextSize(16);
-        subtitleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-        subtitleView.setTextColor(Color.parseColor("#24292E"));
-        subtitleView.setPadding(0, dpToPx(12), 0, dpToPx(4));
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, dpToPx(8), 0, dpToPx(4));
-        subtitleView.setLayoutParams(params);
-
-        container.addView(subtitleView);
+        if (isMarkdownEnabled) {
+            TextView subtitleView = new TextView(context);
+            subtitleView.setText(text);
+            subtitleView.setTextSize(16);
+            subtitleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+            subtitleView.setTextColor(Color.parseColor("#24292E"));
+            subtitleView.setPadding(0, dpToPx(12), 0, dpToPx(4));
+            container.addView(subtitleView);
+        } else {
+            // Estilo Original GPUTILS
+            TextView subtitleView = new TextView(context);
+            subtitleView.setText(text);
+            subtitleView.setTextSize(14);
+            subtitleView.setTypeface(null, Typeface.BOLD);
+            subtitleView.setTextColor(COLOR_SUBTITLE_LEGACY);
+            subtitleView.setPadding(0, dpToPx(8), 0, dpToPx(4));
+            container.addView(subtitleView);
+        }
     }
 
     private void addCommandBlock(String command) {
