@@ -107,64 +107,53 @@ public class TutorialContentRenderer {
             }
 
             // Detectar encabezados Markdown
-            if (trimmedLine.startsWith("# ")) {
-                addTitle(trimmedLine.substring(2).trim(), 20, true);
-                i++;
-                continue;
-            } else if (trimmedLine.startsWith("## ")) {
-                addSectionTitle(trimmedLine.substring(3).trim());
-                i++;
-                continue;
-            } else if (trimmedLine.startsWith("### ")) {
-                addSubtitle(trimmedLine.substring(4).trim());
-                i++;
-                continue;
-            } else if (trimmedLine.startsWith("#### ")) {
-                addSubtitle(trimmedLine.substring(5).trim());
-                i++;
-                continue;
-            }
-
-            // Detectar líneas horizontales
-            if (trimmedLine.equals("---") || trimmedLine.equals("***")) {
-                addSeparator();
-                i++;
-                continue;
-            }
-
-            // Detectar listas
-            if (trimmedLine.startsWith("- ") || trimmedLine.startsWith("* ") || trimmedLine.matches("^\\d+\\.\\s.*")) {
-                addNormalText(line); // Mantener la indentación original si es posible
-                i++;
-                continue;
-            }
-
-            // Detectar referencias (contiene URLs)
-            if (line.contains("http://") || line.contains("https://")) {
-                addClickableLink(line.trim());
-                i++;
-                continue;
-            }
-
-            // Texto normal (fallback para patrones antiguos que no son estrictamente MD
-            // pero el usuario los usa)
-            if (line.contains("PASO") || line.contains("STEP") ||
-                    line.contains("📋") || line.contains("ℹ️") || line.contains("⚠️") ||
-                    line.contains("✨") || line.contains("📝") || line.contains("📂") ||
-                    line.contains("⏱️") || line.contains("💡") || line.contains("💾") ||
-                    line.contains("🔨")) {
-
-                if (line.length() < 50) {
-                    addSubtitle(line.trim());
-                } else {
-                    addNormalText(line.trim());
+            if (isMarkdownEnabled) {
+                if (trimmedLine.startsWith("# ")) {
+                    addTitle(trimmedLine.substring(2).trim(), 20, true);
+                    i++;
+                    continue;
+                } else if (trimmedLine.startsWith("## ")) {
+                    addSectionTitle(trimmedLine.substring(3).trim());
+                    i++;
+                    continue;
+                } else if (trimmedLine.startsWith("### ")) {
+                    addSubtitle(trimmedLine.substring(4).trim());
+                    i++;
+                    continue;
                 }
-                i++;
-                continue;
+
+                if (trimmedLine.equals("---") || trimmedLine.equals("***")) {
+                    addSeparator();
+                    i++;
+                    continue;
+                }
             }
 
-            // Texto normal
-            addNormalText(line.trim());
+            // Lógica diferenciada para GPUTILS (Legacy)
+            if (!isMarkdownEnabled) {
+                if (isCommandLine(line)) {
+                    addCommandBlock(line.trim());
+                    i++;
+                    continue;
+                }
+
+                if (line.contains("PASO") || line.contains("STEP") ||
+                        line.contains("📋") || line.contains("ℹ️") || line.contains("⚠️") ||
+                        line.contains("✨") || line.contains("📝") || line.contains("📂") ||
+                        line.contains("⏱️") || line.contains("💡") || line.contains("💾") ||
+                        line.contains("🔨")) {
+                    if (line.length() < 60) {
+                        addTitle(line.trim(), 18, true);
+                    } else {
+                        addNormalText(line.trim());
+                    }
+                    i++;
+                    continue;
+                }
+            }
+
+            // Texto normal (SDCC o GPUTILS)
+            addNormalText(line);
             i++;
         }
     }
@@ -495,17 +484,62 @@ public class TutorialContentRenderer {
         return spannable;
     }
 
-    private void addClickableLink(String text) {
-        TextView linkView = new TextView(context);
-        linkView.setTextSize(14);
-        linkView.setPadding(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4));
-        linkView.setLineSpacing(0, 1.2f);
+    private void addNormalText(String text) {
+        TextView textView = new TextView(context);
+        textView.setTextSize(14);
+        textView.setTextColor(isMarkdownEnabled ? Color.parseColor("#24292E") : COLOR_SUBTITLE_LEGACY);
+        textView.setLineSpacing(0, 1.3f);
+        textView.setPadding(dpToPx(4), dpToPx(2), dpToPx(4), dpToPx(2));
 
-        // Extraer URL
-        Pattern urlPattern = Pattern.compile("(https?://[^\\s\\)\\]]+)");
-        Matcher matcher = urlPattern.matcher(text);
+        String processedText = text;
+        if (isMarkdownEnabled) {
+            if (text.trim().startsWith("- ") || text.trim().startsWith("* ")) {
+                processedText = "  • " + text.trim().substring(2);
+            }
+        }
 
-        SpannableString spannable = new SpannableString(text);
+        android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder();
+
+        // 1. Procesar Negritas **texto** (Solo si es Markdown)
+        if (isMarkdownEnabled) {
+            Pattern boldPattern = Pattern.compile("\\*\\*(.*?)\\*\\*");
+            Matcher mBold = boldPattern.matcher(processedText);
+            int lastPos = 0;
+            while (mBold.find()) {
+                ssb.append(processedText.substring(lastPos, mBold.start()));
+                int start = ssb.length();
+                ssb.append(mBold.group(1));
+                ssb.setSpan(new StyleSpan(Typeface.BOLD), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                lastPos = mBold.end();
+            }
+            ssb.append(processedText.substring(lastPos));
+        } else {
+            ssb.append(processedText);
+        }
+
+        // 2. Procesar comillas simples 'texto' como monoespacio (Opcional para SDCC)
+        if (isMarkdownEnabled) {
+            String tempText = ssb.toString();
+            ssb.clear(); // Re-procesar para aplicar sobre el resultado anterior
+            Pattern codePattern = Pattern.compile("'(.*?)'");
+            Matcher mCode = codePattern.matcher(tempText);
+            int lastPos = 0;
+            while (mCode.find()) {
+                ssb.append(tempText.substring(lastPos, mCode.start()));
+                int start = ssb.length();
+                ssb.append(mCode.group(1));
+                ssb.setSpan(new TypefaceSpan("monospace"), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E4405F")), start, ssb.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                lastPos = mCode.end();
+            }
+            ssb.append(tempText.substring(lastPos));
+        }
+
+        // 3. Procesar Enlaces (Ambos modos)
+        String currentText = ssb.toString();
+        Pattern urlPattern = Pattern.compile("(https?://[^\\s\\)\\]\\*]+)");
+        Matcher matcher = urlPattern.matcher(currentText);
 
         while (matcher.find()) {
             final String url = matcher.group(1);
@@ -516,6 +550,7 @@ public class TutorialContentRenderer {
                 @Override
                 public void onClick(View widget) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
 
@@ -526,53 +561,37 @@ public class TutorialContentRenderer {
                     ds.setUnderlineText(true);
                 }
             };
-
-            spannable.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ssb.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-
-        linkView.setText(spannable);
-        linkView.setMovementMethod(LinkMovementMethod.getInstance());
-
-        container.addView(linkView);
-    }
-
-    private void addNormalText(String text) {
-        TextView textView = new TextView(context);
-        textView.setTextSize(14);
-        textView.setTextColor(Color.parseColor("#24292E"));
-        textView.setLineSpacing(0, 1.3f);
-        textView.setPadding(dpToPx(4), dpToPx(2), dpToPx(4), dpToPx(2));
-
-        String processedText = text;
-        if (text.startsWith("- ") || text.startsWith("* ")) {
-            processedText = "  • " + text.substring(2);
-        }
-
-        // Lógica mejorada para detectar negritas **texto** y eliminar los asteriscos
-        android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder();
-        int lastPos = 0;
-        Pattern boldPattern = Pattern.compile("\\*\\*(.*?)\\*\\*");
-        Matcher mBold = boldPattern.matcher(processedText);
-
-        while (mBold.find()) {
-            // Añadir texto antes de la negrita
-            ssb.append(processedText.substring(lastPos, mBold.start()));
-
-            // Añadir contenido de negrita sin los asteriscos
-            int start = ssb.length();
-            ssb.append(mBold.group(1));
-            // Aplicar estilo negrita
-            ssb.setSpan(new StyleSpan(Typeface.BOLD), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            lastPos = mBold.end();
-        }
-        // Añadir el resto del texto
-        ssb.append(processedText.substring(lastPos));
 
         textView.setText(ssb);
-
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
         textView.setTextIsSelectable(true);
         container.addView(textView);
+    }
+
+    private void addClickableLink(String text) {
+        // Redirigir a addNormalText para que use el mismo motor de parseo unificado
+        addNormalText(text);
+    }
+
+    // Clase auxiliar para Monoespacio en API antiguas
+    private static class TypefaceSpan extends android.text.style.MetricAffectingSpan {
+        private final Typeface typeface;
+
+        public TypefaceSpan(String family) {
+            this.typeface = Typeface.create(family, Typeface.NORMAL);
+        }
+
+        @Override
+        public void updateDrawState(TextPaint ds) {
+            ds.setTypeface(typeface);
+        }
+
+        @Override
+        public void updateMeasureState(TextPaint paint) {
+            paint.setTypeface(typeface);
+        }
     }
 
     private void addSpacer(int heightDp) {
