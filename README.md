@@ -73,4 +73,4 @@ Las contribuciones son bienvenidas. Si deseas mejorar la aplicación o agregar n
 
 ## Licencia
 
-Este proyecto está licenciado bajo la **Licencia GPL-2.0**. Para más detalles, consulta el archivo `LICENSE`.
+Este proyecto está licenciado bajo la **Licencia GPL-3.0**. Para más detalles, consulta el archivo `LICENSE`.
