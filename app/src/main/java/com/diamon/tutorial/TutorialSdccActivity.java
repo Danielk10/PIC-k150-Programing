@@ -50,9 +50,6 @@ public class TutorialSdccActivity extends AppCompatActivity {
 
     private TutorialContentRenderer contentRenderer;
 
-    // Separador definido en el archivo markdown
-    private static final String LANGUAGE_SEPARATOR = "# 📚 ENGLISH VERSION / VERSIÓN EN INGLÉS";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         pantallaCompleta = new PantallaCompleta(this);
@@ -77,9 +74,6 @@ public class TutorialSdccActivity extends AppCompatActivity {
         contentRenderer = new TutorialContentRenderer(this, tutorialContainer);
 
         setupLanguageSpinner();
-
-        // Cargar todo el contenido del archivo una sola vez
-        loadFullTutorialContent();
 
         // Mostrar idioma inicial
         showTutorialForLanguage("es");
@@ -114,9 +108,10 @@ public class TutorialSdccActivity extends AppCompatActivity {
         });
     }
 
-    private void loadFullTutorialContent() {
+    private void loadFullTutorialContent(String language) {
         try {
-            InputStream inputStream = fileLoader.leerAsset("SDCC-4.5.0-Termux-Tutorial.md");
+            String fileName = language.equals("es") ? "tutorial_sdcc_es.md" : "tutorial_sdcc_en.md";
+            InputStream inputStream = fileLoader.leerAsset(fileName);
             byte[] buffer = new byte[inputStream.available()];
             inputStream.read(buffer);
             inputStream.close();
@@ -130,24 +125,13 @@ public class TutorialSdccActivity extends AppCompatActivity {
     }
 
     private void showTutorialForLanguage(String language) {
+        loadFullTutorialContent(language);
+
         if (fullTutorialContent.isEmpty()) {
             return;
         }
 
-        int separatorIndex = fullTutorialContent.indexOf(LANGUAGE_SEPARATOR);
-
-        if (separatorIndex == -1) {
-            // Si no encuentra el separador, muestra todo (fallback)
-            tutorialText = fullTutorialContent;
-        } else {
-            if (language.equals("es")) {
-                // Español es la primera parte hasta el separador
-                tutorialText = fullTutorialContent.substring(0, separatorIndex).trim();
-            } else {
-                // Inglés es desde el separador hasta el final
-                tutorialText = fullTutorialContent.substring(separatorIndex).trim();
-            }
-        }
+        tutorialText = fullTutorialContent;
 
         contentRenderer.setLanguage(language);
         contentRenderer.renderTutorial(tutorialText);
@@ -157,7 +141,6 @@ public class TutorialSdccActivity extends AppCompatActivity {
         // Actualizar título según idioma si es necesario
         if (language.equals("es")) {
             titleTextView.setText("SDCC 4.5.0 - Tutorial en Termux");
-            // "compilacionC.jpg" será cargada por loadTutorialImage
         } else {
             titleTextView.setText("SDCC 4.5.0 - Termux Tutorial");
         }
