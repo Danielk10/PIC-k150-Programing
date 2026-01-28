@@ -72,6 +72,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
         // Inicializar cargador de archivos y renderizador
         fileLoader = new CargardorDeArchivos(this);
         contentRenderer = new TutorialContentRenderer(this, tutorialContainer);
+        contentRenderer.setMarkdownEnabled(true);
 
         setupLanguageSpinner();
 
