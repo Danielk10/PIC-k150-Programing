@@ -197,63 +197,72 @@ public class TutorialContentRenderer {
     private void addTitle(String text, int textSize, boolean bold) {
         TextView titleView = new TextView(context);
         titleView.setText(text);
-        titleView.setTextSize(textSize);
-        titleView.setTextColor(COLOR_TITLE);
-        if (bold) {
-            titleView.setTypeface(null, Typeface.BOLD);
-        }
-        titleView.setPadding(0, dpToPx(16), 0, dpToPx(8));
-        titleView.setGravity(Gravity.CENTER);
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, dpToPx(8), 0, dpToPx(8));
-        titleView.setLayoutParams(params);
+        titleView.setTextSize(textSize + 4);
+        titleView.setTextColor(Color.BLACK);
+        titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        titleView.setPadding(0, dpToPx(24), 0, dpToPx(8));
 
         container.addView(titleView);
+
+        // Línea divisoria debajo del título principal
+        View divider = new View(context);
+        divider.setBackgroundColor(Color.parseColor("#EEEEEE"));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(2));
+        params.setMargins(0, 0, 0, dpToPx(16));
+        divider.setLayoutParams(params);
+        container.addView(divider);
     }
 
     private void addSectionTitle(String text) {
         TextView sectionView = new TextView(context);
         sectionView.setText(text);
-        sectionView.setTextSize(18);
-        sectionView.setTextColor(COLOR_TITLE);
-        sectionView.setTypeface(null, Typeface.BOLD);
-        sectionView.setPadding(0, dpToPx(16), 0, dpToPx(8));
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, dpToPx(8), 0, dpToPx(4));
-        sectionView.setLayoutParams(params);
+        sectionView.setTextSize(20);
+        sectionView.setTextColor(Color.parseColor("#24292E"));
+        sectionView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        sectionView.setPadding(0, dpToPx(20), 0, dpToPx(8));
 
         container.addView(sectionView);
+
+        // Línea fina debajo de secciones (estilo GitHub)
+        View divider = new View(context);
+        divider.setBackgroundColor(Color.parseColor("#E1E4E8"));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
+        params.setMargins(0, 0, 0, dpToPx(12));
+        divider.setLayoutParams(params);
+        container.addView(divider);
     }
 
     private void addSubtitle(String text) {
         TextView subtitleView = new TextView(context);
         subtitleView.setText(text);
-        subtitleView.setTextSize(14);
-        subtitleView.setTypeface(null, Typeface.BOLD);
-        subtitleView.setTextColor(Color.parseColor("#424242"));
-        subtitleView.setPadding(0, dpToPx(8), 0, dpToPx(4));
+        subtitleView.setTextSize(16);
+        subtitleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        subtitleView.setTextColor(Color.parseColor("#24292E"));
+        subtitleView.setPadding(0, dpToPx(12), 0, dpToPx(4));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, dpToPx(4), 0, dpToPx(4));
+        params.setMargins(0, dpToPx(8), 0, dpToPx(4));
         subtitleView.setLayoutParams(params);
 
         container.addView(subtitleView);
     }
 
     private void addCommandBlock(String command) {
-        // Contenedor principal
+        // Contenedor principal con estilo de caja de terminal de GitHub
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setBackgroundColor(COLOR_COMMAND_BG);
-        blockLayout.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
+        blockLayout.setBackgroundColor(Color.parseColor("#F6F8FA")); // Gris muy claro
+        blockLayout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+
+        // Bordes redondeados simulados
+        android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+        gd.setColor(Color.parseColor("#F6F8FA"));
+        gd.setCornerRadius(dpToPx(6));
+        blockLayout.setBackground(gd);
 
         LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -261,194 +270,189 @@ public class TutorialContentRenderer {
         blockParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
         blockLayout.setLayoutParams(blockParams);
 
-        // Header con título y botón
-        LinearLayout headerLayout = new LinearLayout(context);
-        headerLayout.setOrientation(LinearLayout.HORIZONTAL);
-        headerLayout.setGravity(Gravity.CENTER_VERTICAL);
-
-        TextView titleView = new TextView(context);
-        titleView.setText("💻 " + (currentLanguage.equals("es") ? "Comando" : "Command"));
-        titleView.setTextSize(12);
-        titleView.setTextColor(Color.parseColor("#00FF00"));
-        titleView.setTypeface(null, Typeface.BOLD);
-
-        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-        titleView.setLayoutParams(titleParams);
-
-        headerLayout.addView(titleView);
-
-        // Botón copiar
-        Button copyBtn = new Button(context);
-        copyBtn.setText(currentLanguage.equals("es") ? "📋 Copiar" : "📋 Copy");
-        copyBtn.setTextSize(10);
-        copyBtn.setTextColor(Color.WHITE);
-        copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
-        copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
-
-        final String commandText = command;
-        copyBtn.setOnClickListener(v -> copyToClipboard(commandText));
-
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        copyBtn.setLayoutParams(btnParams);
-
-        headerLayout.addView(copyBtn);
-        blockLayout.addView(headerLayout);
-
-        // Separador
-        View separator = new View(context);
-        separator.setBackgroundColor(Color.parseColor("#555555"));
-        LinearLayout.LayoutParams sepParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-        sepParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
-        separator.setLayoutParams(sepParams);
-        blockLayout.addView(separator);
-
         // Texto del comando con scroll horizontal
         HorizontalScrollView scrollView = new HorizontalScrollView(context);
+        scrollView.setHorizontalScrollBarEnabled(false);
 
         TextView commandView = new TextView(context);
         commandView.setText(command);
-        commandView.setTextColor(COLOR_COMMAND_TEXT);
+        commandView.setTextColor(Color.parseColor("#24292E"));
         commandView.setTypeface(Typeface.MONOSPACE);
-        commandView.setTextSize(12);
+        commandView.setTextSize(13);
         commandView.setTextIsSelectable(true);
-        commandView.setPadding(0, 0, dpToPx(16), 0);
 
         scrollView.addView(commandView);
         blockLayout.addView(scrollView);
+
+        // Botón flotante de copia discreto a la derecha si es posible,
+        // o simplemente añadirlo al final de la caja
+        Button copyBtn = new Button(context);
+        copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
+        copyBtn.setTextSize(10);
+        copyBtn.setAllCaps(false);
+        copyBtn.setTextColor(Color.parseColor("#0366D6"));
+        copyBtn.setBackgroundColor(Color.TRANSPARENT);
+        copyBtn.setPadding(0, dpToPx(4), 0, 0);
+        copyBtn.setGravity(Gravity.END);
+
+        copyBtn.setOnClickListener(v -> copyToClipboard(command));
+        blockLayout.addView(copyBtn);
 
         container.addView(blockLayout);
     }
 
     private void addAssemblyCodeBlock(String code) {
-        // Contenedor principal
+        renderCodeBlock(code, "ASM", Color.parseColor("#24292E"), Color.parseColor("#F6F8FA"));
+    }
+
+    private void addCCodeBlock(String code) {
+        renderCodeBlock(code, "C", Color.parseColor("#24292E"), Color.parseColor("#F6F8FA"));
+    }
+
+    private void renderCodeBlock(String code, String languageLabel, int textColor, int bgColor) {
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setBackgroundColor(COLOR_CODE_BG);
-        blockLayout.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
+
+        android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+        gd.setColor(bgColor);
+        gd.setCornerRadius(dpToPx(6));
+        gd.setStroke(dpToPx(1), Color.parseColor("#E1E4E8"));
+        blockLayout.setBackground(gd);
+        blockLayout.setPadding(0, 0, 0, 0);
 
         LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        blockParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
+        blockParams.setMargins(0, dpToPx(12), 0, dpToPx(12));
         blockLayout.setLayoutParams(blockParams);
 
-        // Header con título y botón
-        LinearLayout headerLayout = new LinearLayout(context);
-        headerLayout.setOrientation(LinearLayout.HORIZONTAL);
-        headerLayout.setGravity(Gravity.CENTER_VERTICAL);
+        // Header de la caja de código
+        LinearLayout header = new LinearLayout(context);
+        header.setBackgroundColor(Color.parseColor("#F1F8FF"));
+        header.setPadding(dpToPx(12), dpToPx(6), dpToPx(12), dpToPx(6));
+        header.setGravity(Gravity.CENTER_VERTICAL);
 
-        TextView titleView = new TextView(context);
-        titleView.setText("📝 " + (currentLanguage.equals("es") ? "Código Ensamblador" : "Assembly Code"));
-        titleView.setTextSize(12);
-        titleView.setTextColor(Color.parseColor("#61AFEF"));
-        titleView.setTypeface(null, Typeface.BOLD);
+        TextView langView = new TextView(context);
+        langView.setText(languageLabel);
+        langView.setTextSize(11);
+        langView.setTextColor(Color.parseColor("#586069"));
+        langView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
 
-        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-        titleView.setLayoutParams(titleParams);
+        LinearLayout.LayoutParams langParams = new LinearLayout.LayoutParams(0, -2, 1f);
+        langView.setLayoutParams(langParams);
+        header.addView(langView);
 
-        headerLayout.addView(titleView);
+        TextView copyLabel = new TextView(context);
+        copyLabel.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
+        copyLabel.setTextSize(11);
+        copyLabel.setTextColor(Color.parseColor("#0366D6"));
+        copyLabel.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
+        copyLabel.setOnClickListener(v -> copyToClipboard(code));
+        header.addView(copyLabel);
 
-        // Botón copiar
-        Button copyBtn = new Button(context);
-        copyBtn.setText(currentLanguage.equals("es") ? "📋 Copiar" : "📋 Copy");
-        copyBtn.setTextSize(10);
-        copyBtn.setTextColor(Color.WHITE);
-        copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
-        copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
+        blockLayout.addView(header);
 
-        final String codeText = code;
-        copyBtn.setOnClickListener(v -> copyToClipboard(codeText));
-
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        copyBtn.setLayoutParams(btnParams);
-
-        headerLayout.addView(copyBtn);
-        blockLayout.addView(headerLayout);
-
-        // Separador
-        View separator = new View(context);
-        separator.setBackgroundColor(Color.parseColor("#3E4451"));
-        LinearLayout.LayoutParams sepParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-        sepParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
-        separator.setLayoutParams(sepParams);
-        blockLayout.addView(separator);
-
-        // Código con numeración
+        // Contenido del código
         HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        LinearLayout codeContainer = new LinearLayout(context);
-        codeContainer.setOrientation(LinearLayout.HORIZONTAL);
+        scrollView.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
 
-        // Columna de números de línea
-        LinearLayout lineNumberLayout = new LinearLayout(context);
-        lineNumberLayout.setOrientation(LinearLayout.VERTICAL);
-        lineNumberLayout.setPadding(dpToPx(8), 0, dpToPx(8), 0);
-
-        // Columna de código
-        LinearLayout codeLineLayout = new LinearLayout(context);
-        codeLineLayout.setOrientation(LinearLayout.VERTICAL);
-
-        String[] lines = code.split("\\n");
-        int lineNumber = 1;
-
-        for (String line : lines) {
-            // Número de línea
-            TextView lineNumView = new TextView(context);
-            lineNumView.setText(String.format("%3d", lineNumber));
-            lineNumView.setTextColor(COLOR_LINE_NUMBER);
-            lineNumView.setTypeface(Typeface.MONOSPACE);
-            lineNumView.setTextSize(11);
-            lineNumView.setGravity(Gravity.END);
-            lineNumberLayout.addView(lineNumView);
-
-            // Línea de código con resaltado de sintaxis
-            TextView codeLineView = new TextView(context);
-            codeLineView.setText(highlightAssemblySyntax(line));
-            codeLineView.setTextColor(COLOR_CODE_TEXT);
-            codeLineView.setTypeface(Typeface.MONOSPACE);
-            codeLineView.setTextSize(11);
-            codeLineView.setTextIsSelectable(true);
-            codeLineLayout.addView(codeLineView);
-
-            lineNumber++;
+        TextView codeView = new TextView(context);
+        if (languageLabel.equals("C")) {
+            codeView.setText(highlightCSyntax(code));
+        } else if (languageLabel.equals("ASM")) {
+            codeView.setText(highlightAssemblySyntax(code));
+        } else {
+            codeView.setText(code);
         }
+        codeView.setTextColor(textColor);
+        codeView.setTypeface(Typeface.MONOSPACE);
+        codeView.setTextSize(12);
+        codeView.setLineSpacing(0, 1.2f);
 
-        codeContainer.addView(lineNumberLayout);
-        codeContainer.addView(codeLineLayout);
-        scrollView.addView(codeContainer);
+        scrollView.addView(codeView);
         blockLayout.addView(scrollView);
 
         container.addView(blockLayout);
     }
 
-    private SpannableString highlightAssemblySyntax(String line) {
-        SpannableString spannable = new SpannableString(line);
+    private SpannableString highlightAssemblySyntax(String code) {
+        SpannableString spannable = new SpannableString(code);
+        String[] lines = code.split("\n");
+        int offset = 0;
 
-        // Comentarios (empiezan con ;)
-        if (line.trim().startsWith(";")) {
-            spannable.setSpan(new ForegroundColorSpan(COLOR_COMMENT),
-                    0, line.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            return spannable;
+        for (String line : lines) {
+            String trimmedLine = line.trim();
+
+            // Comentarios (;)
+            if (trimmedLine.contains(";")) {
+                int commentStart = line.indexOf(";");
+                spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#6A737D")),
+                        offset + commentStart, offset + line.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+
+            // Instrucciones comunes
+            String[] commonInstr = { "movlw", "movwf", "goto", "call", "return", "bsf", "bcf", "decfsz", "banksel",
+                    "clrf" };
+            for (String instr : commonInstr) {
+                Pattern p = Pattern.compile("\\b" + instr + "\\b", Pattern.CASE_INSENSITIVE);
+                Matcher m = p.matcher(line);
+                while (m.find()) {
+                    spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#D73A49")),
+                            offset + m.start(), offset + m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+
+            offset += line.length() + 1;
+        }
+        return spannable;
+    }
+
+    private SpannableString highlightCSyntax(String code) {
+        SpannableString spannable = new SpannableString(code);
+
+        // Comentarios bloque
+        Pattern commentBlock = Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL);
+        Matcher mBlock = commentBlock.matcher(code);
+        while (mBlock.find()) {
+            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#6A737D")),
+                    mBlock.start(), mBlock.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
-        // Palabras clave (instrucciones)
-        String[] keywords = { "movlw", "movwf", "goto", "call", "return", "banksel",
-                "bsf", "bcf", "decfsz", "LIST", "ORG", "CBLOCK", "ENDC", "__CONFIG" };
+        // Comentarios línea
+        Pattern commentLine = Pattern.compile("//.*");
+        Matcher mLine = commentLine.matcher(code);
+        while (mLine.find()) {
+            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#6A737D")),
+                    mLine.start(), mLine.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
 
-        for (String keyword : keywords) {
-            Pattern pattern = Pattern.compile("\\b" + keyword + "\\b", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(line);
-            while (matcher.find()) {
-                spannable.setSpan(new ForegroundColorSpan(COLOR_KEYWORD),
-                        matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // Directivas
+        Pattern directive = Pattern.compile("^\\s*#\\w+", Pattern.MULTILINE);
+        Matcher mDir = directive.matcher(code);
+        while (mDir.find()) {
+            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#D73A49")),
+                    mDir.start(), mDir.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        // Keywords
+        String[] keywords = { "void", "main", "while", "for", "if", "return", "int", "uint16_t", "uint8_t", "volatile",
+                "__code", "__at" };
+        for (String kw : keywords) {
+            Pattern p = Pattern.compile("\\b" + kw + "\\b");
+            Matcher m = p.matcher(code);
+            while (m.find()) {
+                // Verificar que no sea parte de un comentario (aproximado)
+                spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#D73A49")),
+                        m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
+        }
+
+        // Cadenas
+        Pattern strings = Pattern.compile("\".*?\"");
+        Matcher mStr = strings.matcher(code);
+        while (mStr.find()) {
+            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#032F62")),
+                    mStr.start(), mStr.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
         return spannable;
@@ -457,10 +461,11 @@ public class TutorialContentRenderer {
     private void addClickableLink(String text) {
         TextView linkView = new TextView(context);
         linkView.setTextSize(14);
-        linkView.setPadding(0, dpToPx(4), 0, dpToPx(4));
+        linkView.setPadding(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4));
+        linkView.setLineSpacing(0, 1.2f);
 
         // Extraer URL
-        Pattern urlPattern = Pattern.compile("(https?://[^\\s]+)");
+        Pattern urlPattern = Pattern.compile("(https?://[^\\s\\)\\]]+)");
         Matcher matcher = urlPattern.matcher(text);
 
         SpannableString spannable = new SpannableString(text);
@@ -480,7 +485,7 @@ public class TutorialContentRenderer {
                 @Override
                 public void updateDrawState(TextPaint ds) {
                     super.updateDrawState(ds);
-                    ds.setColor(COLOR_LINK);
+                    ds.setColor(Color.parseColor("#0366D6"));
                     ds.setUnderlineText(true);
                 }
             };
@@ -491,28 +496,32 @@ public class TutorialContentRenderer {
         linkView.setText(spannable);
         linkView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, dpToPx(4), 0, dpToPx(4));
-        linkView.setLayoutParams(params);
-
         container.addView(linkView);
     }
 
     private void addNormalText(String text) {
         TextView textView = new TextView(context);
-        textView.setText(text);
         textView.setTextSize(14);
-        textView.setTextColor(Color.parseColor("#424242"));
-        textView.setTextIsSelectable(true);
-        textView.setPadding(0, dpToPx(4), 0, dpToPx(4));
+        textView.setTextColor(Color.parseColor("#24292E"));
+        textView.setLineSpacing(0, 1.3f);
+        textView.setPadding(dpToPx(4), dpToPx(2), dpToPx(4), dpToPx(2));
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, dpToPx(2), 0, dpToPx(2));
-        textView.setLayoutParams(params);
+        // Soporte básico para negrita y viñetas
+        String processedText = text;
+        if (text.startsWith("- ") || text.startsWith("* ")) {
+            processedText = "  • " + text.substring(2);
+        }
+
+        SpannableString ss = new SpannableString(processedText);
+        Pattern boldPattern = Pattern.compile("\\*\\*(.*?)\\*\\*");
+        Matcher mBold = boldPattern.matcher(processedText);
+        while (mBold.find()) {
+            ss.setSpan(new StyleSpan(Typeface.BOLD), mBold.start(), mBold.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            // Podríamos quitar las asteriscos aquí si quisiéramos ser más estrictos
+        }
+
+        textView.setText(ss);
+        textView.setTextIsSelectable(true);
 
         container.addView(textView);
     }
@@ -525,160 +534,13 @@ public class TutorialContentRenderer {
         container.addView(spacer);
     }
 
-    private void addCCodeBlock(String code) {
-        // Contenedor principal
-        LinearLayout blockLayout = new LinearLayout(context);
-        blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setBackgroundColor(COLOR_CODE_BG);
-        blockLayout.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
-
-        LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        blockParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
-        blockLayout.setLayoutParams(blockParams);
-
-        // Header con título y botón
-        LinearLayout headerLayout = new LinearLayout(context);
-        headerLayout.setOrientation(LinearLayout.HORIZONTAL);
-        headerLayout.setGravity(Gravity.CENTER_VERTICAL);
-
-        TextView titleView = new TextView(context);
-        titleView.setText("💻 " + (currentLanguage.equals("es") ? "Código C" : "C Code"));
-        titleView.setTextSize(12);
-        titleView.setTextColor(Color.parseColor("#98C379"));
-        titleView.setTypeface(null, Typeface.BOLD);
-
-        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-        titleView.setLayoutParams(titleParams);
-
-        headerLayout.addView(titleView);
-
-        // Botón copiar
-        Button copyBtn = new Button(context);
-        copyBtn.setText(currentLanguage.equals("es") ? "📋 Copiar" : "📋 Copy");
-        copyBtn.setTextSize(10);
-        copyBtn.setTextColor(Color.WHITE);
-        copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
-        copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
-
-        final String codeText = code;
-        copyBtn.setOnClickListener(v -> copyToClipboard(codeText));
-
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        copyBtn.setLayoutParams(btnParams);
-
-        headerLayout.addView(copyBtn);
-        blockLayout.addView(headerLayout);
-
-        // Separador
-        View separator = new View(context);
-        separator.setBackgroundColor(Color.parseColor("#3E4451"));
-        LinearLayout.LayoutParams sepParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-        sepParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
-        separator.setLayoutParams(sepParams);
-        blockLayout.addView(separator);
-
-        // Código con numeración
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        LinearLayout codeContainer = new LinearLayout(context);
-        codeContainer.setOrientation(LinearLayout.HORIZONTAL);
-
-        // Columna de números de línea
-        LinearLayout lineNumberLayout = new LinearLayout(context);
-        lineNumberLayout.setOrientation(LinearLayout.VERTICAL);
-        lineNumberLayout.setPadding(dpToPx(8), 0, dpToPx(8), 0);
-
-        // Columna de código
-        LinearLayout codeLineLayout = new LinearLayout(context);
-        codeLineLayout.setOrientation(LinearLayout.VERTICAL);
-
-        String[] lines = code.split("\\n");
-        int lineNumber = 1;
-
-        for (String line : lines) {
-            // Número de línea
-            TextView lineNumView = new TextView(context);
-            lineNumView.setText(String.format("%3d", lineNumber));
-            lineNumView.setTextColor(COLOR_LINE_NUMBER);
-            lineNumView.setTypeface(Typeface.MONOSPACE);
-            lineNumView.setTextSize(11);
-            lineNumView.setGravity(Gravity.END);
-            lineNumberLayout.addView(lineNumView);
-
-            // Línea de código con resaltado de sintaxis
-            TextView codeLineView = new TextView(context);
-            codeLineView.setText(highlightCSyntax(line));
-            codeLineView.setTextColor(COLOR_CODE_TEXT);
-            codeLineView.setTypeface(Typeface.MONOSPACE);
-            codeLineView.setTextSize(11);
-            codeLineView.setTextIsSelectable(true);
-            codeLineLayout.addView(codeLineView);
-
-            lineNumber++;
-        }
-
-        codeContainer.addView(lineNumberLayout);
-        codeContainer.addView(codeLineLayout);
-        scrollView.addView(codeContainer);
-        blockLayout.addView(scrollView);
-
-        container.addView(blockLayout);
-    }
-
-    private SpannableString highlightCSyntax(String line) {
-        SpannableString spannable = new SpannableString(line);
-
-        // Comentarios (//)
-        int commentIndex = line.indexOf("//");
-        if (commentIndex != -1) {
-            spannable.setSpan(new ForegroundColorSpan(COLOR_COMMENT),
-                    commentIndex, line.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            // Reducimos la línea para no resaltar palabras clave dentro de comentarios
-            line = line.substring(0, commentIndex);
-        }
-
-        // Directivas preprocesador (#include, #define)
-        if (line.trim().startsWith("#")) {
-            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#D19A66")),
-                    0, line.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        // Palabras clave de C
-        String[] keywords = { "void", "main", "if", "while", "for", "return", "int", "char", "float",
-                "double", "static", "volatile", "uint8_t", "uint16_t", "uint32_t", "__code", "__at" };
-
-        for (String keyword : keywords) {
-            Pattern pattern = Pattern.compile("\\b" + keyword + "\\b");
-            Matcher matcher = pattern.matcher(line);
-            while (matcher.find()) {
-                spannable.setSpan(new ForegroundColorSpan(COLOR_KEYWORD),
-                        matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
-
-        // Cadenas de texto
-        Pattern stringPattern = Pattern.compile("\".*?\"");
-        Matcher stringMatcher = stringPattern.matcher(line);
-        while (stringMatcher.find()) {
-            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#98C379")),
-                    stringMatcher.start(), stringMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        return spannable;
-    }
-
     private void copyToClipboard(String text) {
         android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context
                 .getSystemService(Context.CLIPBOARD_SERVICE);
         android.content.ClipData clip = android.content.ClipData.newPlainText("code", text);
         clipboard.setPrimaryClip(clip);
 
-        String message = currentLanguage.equals("es") ? "Código copiado al portapapeles" : "Code copied to clipboard";
+        String message = currentLanguage.equals("es") ? "Copiado al portapapeles" : "Copied to clipboard";
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
