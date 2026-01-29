@@ -24,31 +24,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Clase que renderiza el contenido del tutorial con formato profesional
- * Incluye: comandos en cajas negras, código ensamblador numerado, enlaces
- * clickeables
+ * Clase que renderiza el contenido del tutorial en formato Markdown (.md)
+ * Optimizada para el tutorial de SDCC.
  */
 public class TutorialContentRenderer {
 
     private Context context;
     private LinearLayout container;
     private String currentLanguage = "es";
-    private boolean isMarkdownEnabled = false;
-
-    // Colores del tema Legacy (GPUTILS)
-    private static final int COLOR_TITLE_LEGACY = Color.parseColor("#2196F3");
-    private static final int COLOR_SUBTITLE_LEGACY = Color.parseColor("#424242");
-
-    // Colores del tema
-    private static final int COLOR_COMMAND_BG = Color.parseColor("#1E1E1E");
-    private static final int COLOR_COMMAND_TEXT = Color.parseColor("#00FF00");
-    private static final int COLOR_CODE_BG = Color.parseColor("#282C34");
-    private static final int COLOR_CODE_TEXT = Color.parseColor("#ABB2BF");
-    private static final int COLOR_LINE_NUMBER = Color.parseColor("#5C6370");
-    private static final int COLOR_TITLE = Color.parseColor("#2196F3");
-    private static final int COLOR_LINK = Color.parseColor("#2196F3");
-    private static final int COLOR_COMMENT = Color.parseColor("#5C6370");
-    private static final int COLOR_KEYWORD = Color.parseColor("#C678DD");
 
     public TutorialContentRenderer(Context context, LinearLayout container) {
         this.context = context;
@@ -59,8 +42,10 @@ public class TutorialContentRenderer {
         this.currentLanguage = language;
     }
 
+    // Método mantenido por compatibilidad de firma si se requiere, pero ignorado
+    // internamente
     public void setMarkdownEnabled(boolean enabled) {
-        this.isMarkdownEnabled = enabled;
+        // Siempre habilitado en esta clase
     }
 
     public void renderTutorial(String tutorialText) {
@@ -95,10 +80,8 @@ public class TutorialContentRenderer {
                     addAssemblyCodeBlock(code);
                 } else if (language.equals("c") || language.equals("cpp")) {
                     addCCodeBlock(code);
-                } else if (language.equals("bash") || language.equals("shell") || language.isEmpty()) {
-                    addCommandBlock(code);
                 } else {
-                    addCommandBlock(code); // Fallback
+                    addCommandBlock(code);
                 }
 
                 if (i < lines.length)
@@ -107,81 +90,45 @@ public class TutorialContentRenderer {
             }
 
             // Detectar encabezados Markdown
-            if (isMarkdownEnabled) {
-                if (trimmedLine.startsWith("# ")) {
-                    addTitle(trimmedLine.substring(2).trim(), 20, true);
-                    i++;
-                    continue;
-                } else if (trimmedLine.startsWith("## ")) {
-                    addSectionTitle(trimmedLine.substring(3).trim());
-                    i++;
-                    continue;
-                } else if (trimmedLine.startsWith("### ")) {
-                    addSubtitle(trimmedLine.substring(4).trim());
-                    i++;
-                    continue;
-                } else if (trimmedLine.startsWith("#### ")) {
-                    addSmallHeader(trimmedLine.substring(5).trim());
-                    i++;
-                    continue;
-                }
-
-                if (trimmedLine.equals("---") || trimmedLine.equals("***")) {
-                    addSeparator();
-                    i++;
-                    continue;
-                }
-
-                // Detectar Tablas Markdown (| Celda | Celda |)
-                if (trimmedLine.startsWith("|") && i + 1 < lines.length
-                        && (lines[i + 1].trim().contains("|-") || lines[i + 1].trim().contains("|"))) {
-                    java.util.List<String> tableLines = new java.util.ArrayList<>();
-                    while (i < lines.length && lines[i].trim().startsWith("|")) {
-                        tableLines.add(lines[i].trim());
-                        i++;
-                    }
-                    if (tableLines.size() > 1) {
-                        addTable(tableLines);
-                        continue;
-                    }
-                }
+            if (trimmedLine.startsWith("# ")) {
+                addTitle(trimmedLine.substring(2).trim(), 20);
+                i++;
+                continue;
+            } else if (trimmedLine.startsWith("## ")) {
+                addSectionTitle(trimmedLine.substring(3).trim());
+                i++;
+                continue;
+            } else if (trimmedLine.startsWith("### ")) {
+                addSubtitle(trimmedLine.substring(4).trim());
+                i++;
+                continue;
+            } else if (trimmedLine.startsWith("#### ")) {
+                addSmallHeader(trimmedLine.substring(5).trim());
+                i++;
+                continue;
             }
 
-            // Lógica diferenciada para GPUTILS (Legacy)
-            if (!isMarkdownEnabled) {
-                // Agrupar bloques de comandos o ensamblador en modo Legacy
-                if (isCommandLine(line) || isAssemblyCode(line)) {
-                    StringBuilder block = new StringBuilder();
-                    boolean isAsm = isAssemblyCode(line);
-                    while (i < lines.length && (isCommandLine(lines[i]) || isAssemblyCode(lines[i])
-                            || (lines[i].trim().startsWith(";") || lines[i].startsWith("    ")))) {
-                        block.append(lines[i]).append("\n");
-                        i++;
-                    }
-                    if (isAsm) {
-                        addAssemblyCodeBlock(block.toString().trim());
-                    } else {
-                        addCommandBlock(block.toString().trim());
-                    }
-                    continue;
-                }
+            if (trimmedLine.equals("---") || trimmedLine.equals("***")) {
+                addSeparator();
+                i++;
+                continue;
+            }
 
-                if (line.contains("PASO") || line.contains("STEP") ||
-                        line.contains("📋") || line.contains("ℹ️") || line.contains("⚠️") ||
-                        line.contains("✨") || line.contains("📝") || line.contains("📂") ||
-                        line.contains("⏱️") || line.contains("💡") || line.contains("💾") ||
-                        line.contains("🔨")) {
-                    if (line.length() < 60) {
-                        addTitle(line.trim(), 18, true);
-                    } else {
-                        addNormalText(line.trim());
-                    }
+            // Detectar Tablas Markdown (| Celda | Celda |)
+            if (trimmedLine.startsWith("|") && i + 1 < lines.length
+                    && (lines[i + 1].trim().contains("|-") || lines[i + 1].trim().contains("|"))) {
+                java.util.List<String> tableLines = new java.util.ArrayList<>();
+                while (i < lines.length && lines[i].trim().startsWith("|")) {
+                    tableLines.add(lines[i].trim());
                     i++;
+                }
+                if (tableLines.size() > 1) {
+                    addTable(tableLines);
                     continue;
                 }
             }
 
-            // Texto normal (SDCC o GPUTILS)
+            // Texto normal
             addNormalText(line);
             i++;
         }
@@ -199,7 +146,6 @@ public class TutorialContentRenderer {
 
     private boolean isCommandLine(String line) {
         String trimmed = line.trim();
-        // Detectar si la línea empieza con un comando conocido
         return trimmed.startsWith("pkg ") || trimmed.startsWith("wget ") ||
                 trimmed.startsWith("tar ") || trimmed.startsWith("cd ") ||
                 trimmed.startsWith("./") || trimmed.startsWith("make") ||
@@ -212,97 +158,50 @@ public class TutorialContentRenderer {
                 trimmed.startsWith("termux-setup-storage");
     }
 
-    private boolean isAssemblyCode(String line) {
-        // Mantenemos esto por compatibilidad
-        String trimmed = line.trim();
-        if (trimmed.isEmpty())
-            return false;
-        return trimmed.startsWith(";") || trimmed.startsWith("LIST ") ||
-                trimmed.startsWith("#include") || trimmed.startsWith("__CONFIG");
-    }
+    private void addTitle(String text, int textSize) {
+        TextView titleView = new TextView(context);
+        titleView.setText(processMarkdownSpans(text));
+        titleView.setTextSize(textSize + 4);
+        titleView.setTextColor(Color.BLACK);
+        titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        titleView.setPadding(0, dpToPx(24), 0, dpToPx(8));
+        container.addView(titleView);
 
-    private void addTitle(String text, int textSize, boolean bold) {
-        if (isMarkdownEnabled) {
-            TextView titleView = new TextView(context);
-            titleView.setText(processMarkdownSpans(text)); // [FIX]: Soporte para negritas en títulos
-            titleView.setTextSize(textSize + 4);
-            titleView.setTextColor(Color.BLACK);
-            titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-            titleView.setPadding(0, dpToPx(24), 0, dpToPx(8));
-            container.addView(titleView);
-
-            // Línea divisoria debajo del título estilo GitHub
-            View divider = new View(context);
-            divider.setBackgroundColor(Color.parseColor("#EEEEEE"));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(2));
-            params.setMargins(0, 0, 0, dpToPx(16));
-            divider.setLayoutParams(params);
-            container.addView(divider);
-        } else {
-            // Estilo Original GPUTILS
-            TextView titleView = new TextView(context);
-            titleView.setText(text);
-            titleView.setTextSize(textSize);
-            titleView.setTextColor(COLOR_TITLE_LEGACY);
-            if (bold) {
-                titleView.setTypeface(null, Typeface.BOLD);
-            }
-            titleView.setPadding(0, dpToPx(16), 0, dpToPx(8));
-            titleView.setGravity(Gravity.CENTER);
-            container.addView(titleView);
-        }
+        View divider = new View(context);
+        divider.setBackgroundColor(Color.parseColor("#EEEEEE"));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(2));
+        params.setMargins(0, 0, 0, dpToPx(16));
+        divider.setLayoutParams(params);
+        container.addView(divider);
     }
 
     private void addSectionTitle(String text) {
-        if (isMarkdownEnabled) {
-            TextView sectionView = new TextView(context);
-            sectionView.setText(processMarkdownSpans(text)); // [FIX]: Soporte para negritas en secciones
-            sectionView.setTextSize(20);
-            sectionView.setTextColor(Color.parseColor("#24292E"));
-            sectionView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-            sectionView.setPadding(0, dpToPx(20), 0, dpToPx(8));
-            container.addView(sectionView);
+        TextView sectionView = new TextView(context);
+        sectionView.setText(processMarkdownSpans(text));
+        sectionView.setTextSize(20);
+        sectionView.setTextColor(Color.parseColor("#24292E"));
+        sectionView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        sectionView.setPadding(0, dpToPx(20), 0, dpToPx(8));
+        container.addView(sectionView);
 
-            // Línea fina estilo GitHub
-            View divider = new View(context);
-            divider.setBackgroundColor(Color.parseColor("#E1E4E8"));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-            params.setMargins(0, 0, 0, dpToPx(12));
-            divider.setLayoutParams(params);
-            container.addView(divider);
-        } else {
-            // Estilo Original GPUTILS
-            TextView sectionView = new TextView(context);
-            sectionView.setText(text);
-            sectionView.setTextSize(18);
-            sectionView.setTextColor(COLOR_TITLE_LEGACY);
-            sectionView.setTypeface(null, Typeface.BOLD);
-            sectionView.setPadding(0, dpToPx(16), 0, dpToPx(8));
-            container.addView(sectionView);
-        }
+        View divider = new View(context);
+        divider.setBackgroundColor(Color.parseColor("#E1E4E8"));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
+        params.setMargins(0, 0, 0, dpToPx(12));
+        divider.setLayoutParams(params);
+        container.addView(divider);
     }
 
     private void addSubtitle(String text) {
-        if (isMarkdownEnabled) {
-            TextView subtitleView = new TextView(context);
-            subtitleView.setText(processMarkdownSpans(text)); // [FIX]: Soporte para negritas en subtítulos
-            subtitleView.setTextSize(16);
-            subtitleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-            subtitleView.setTextColor(Color.parseColor("#24292E"));
-            subtitleView.setPadding(0, dpToPx(12), 0, dpToPx(4));
-            container.addView(subtitleView);
-        } else {
-            // Estilo Original GPUTILS
-            TextView subtitleView = new TextView(context);
-            subtitleView.setText(text);
-            subtitleView.setTextSize(14);
-            subtitleView.setTypeface(null, Typeface.BOLD);
-            subtitleView.setTextColor(COLOR_SUBTITLE_LEGACY);
-            subtitleView.setPadding(0, dpToPx(8), 0, dpToPx(4));
-            container.addView(subtitleView);
-        }
+        TextView subtitleView = new TextView(context);
+        subtitleView.setText(processMarkdownSpans(text));
+        subtitleView.setTextSize(16);
+        subtitleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        subtitleView.setTextColor(Color.parseColor("#24292E"));
+        subtitleView.setPadding(0, dpToPx(12), 0, dpToPx(4));
+        container.addView(subtitleView);
     }
 
     private void addSmallHeader(String text) {
@@ -316,31 +215,21 @@ public class TutorialContentRenderer {
     }
 
     private void addCommandBlock(String command) {
-        // En modo Legacy (GPUTILS), NUNCA ocultar el botón de copiar.
-        // Solo en Markdown (SDCC) ocultamos si parece un log extenso, info de versión o
-        // lista de argumentos.
         String[] lines = command.split("\n");
         String firstLine = lines[0].trim();
 
-        // Detección de Logs y Documentación técnica
-        boolean isLogContent = isMarkdownEnabled && (firstLine.startsWith("SDCC :") || // Versión de SDCC
+        boolean isLogContent = firstLine.startsWith("SDCC :") ||
                 firstLine.contains("published under GNU") ||
                 command.contains("warning:") || command.contains("error:") ||
-                command.contains("Message[") || // Mensajes del compilador
-                (firstLine.startsWith("-") && !isCommandLine(firstLine)) || // Lista de argumentos (-mpic14, etc)
-                (firstLine.startsWith("#") && lines.length > 2) || // Comentarios extensos
-                firstLine.startsWith("-rw") || firstLine.startsWith("drwx") || firstLine.startsWith("total ") // ls -l
-                                                                                                              // output
-        );
+                command.contains("Message[") ||
+                (firstLine.startsWith("-") && !isCommandLine(firstLine)) ||
+                (firstLine.startsWith("#") && lines.length > 2) ||
+                firstLine.startsWith("-rw") || firstLine.startsWith("drwx") || firstLine.startsWith("total ");
 
-        // Si es Markdown y tiene más de 5 líneas y NO empieza como comando, tratar como
-        // log
-        if (isMarkdownEnabled && !isLogContent && lines.length > 5 && !isCommandLine(firstLine)) {
+        if (!isLogContent && lines.length > 5 && !isCommandLine(firstLine)) {
             isLogContent = true;
         }
 
-        // [FIX]: Si el comando de la primera línea es un ejecutable conocido, FORZAR
-        // que NO sea log
         if (isCommandLine(firstLine)) {
             isLogContent = false;
         }
@@ -350,13 +239,10 @@ public class TutorialContentRenderer {
         blockLayout.setBackgroundColor(Color.parseColor("#1E1E1E"));
         blockLayout.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
-        LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        blockParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
-        blockLayout.setLayoutParams(blockParams);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
+        params.setMargins(0, dpToPx(8), 0, dpToPx(8));
+        blockLayout.setLayoutParams(params);
 
-        // Header (Botón copiar)
         if (!isLogContent) {
             LinearLayout header = new LinearLayout(context);
             header.setOrientation(LinearLayout.HORIZONTAL);
@@ -366,112 +252,83 @@ public class TutorialContentRenderer {
             TextView titleView = new TextView(context);
             titleView.setText("💻 " + (currentLanguage.equals("es") ? "Comando" : "Command"));
             titleView.setTextSize(11);
-            titleView.setTextColor(Color.parseColor("#00FF00"));
+            titleView.setTextColor(Color.GREEN);
             titleView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
-
-            LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(0, -2, 1f);
-            titleView.setLayoutParams(titleParams);
-            header.addView(titleView);
+            header.addView(titleView, new LinearLayout.LayoutParams(0, -2, 1f));
 
             Button copyBtn = new Button(context);
             copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
             copyBtn.setTextSize(10);
             copyBtn.setTextColor(Color.WHITE);
             copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
-            copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
-            copyBtn.setMinimumHeight(0);
-            copyBtn.setMinimumWidth(0);
             copyBtn.setOnClickListener(v -> copyToClipboard(command));
-            header.addView(copyBtn);
+            header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(80), dpToPx(36)));
 
             blockLayout.addView(header);
         }
 
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        TextView commandView = new TextView(context);
-        commandView.setText(command);
-        commandView.setTextColor(isLogContent ? Color.parseColor("#ABB2BF") : Color.parseColor("#00FF00"));
-        commandView.setTypeface(Typeface.MONOSPACE);
-        commandView.setTextSize(12);
-        commandView.setTextIsSelectable(true);
-
-        scrollView.addView(commandView);
-        blockLayout.addView(scrollView);
-
+        HorizontalScrollView scroll = new HorizontalScrollView(context);
+        TextView tv = new TextView(context);
+        tv.setText(command);
+        tv.setTextColor(isLogContent ? Color.parseColor("#ABB2BF") : Color.GREEN);
+        tv.setTypeface(Typeface.MONOSPACE);
+        tv.setTextSize(12);
+        scroll.addView(tv);
+        blockLayout.addView(scroll);
         container.addView(blockLayout);
     }
 
     private void addAssemblyCodeBlock(String code) {
-        renderCodeBlock(code, "ASM", Color.WHITE, Color.parseColor("#1E1E1E"));
+        renderCodeBlock(code, "ASM", highlightAssemblySyntax(code));
     }
 
     private void addCCodeBlock(String code) {
-        renderCodeBlock(code, "C", Color.WHITE, Color.parseColor("#1E1E1E"));
+        renderCodeBlock(code, "C", highlightCSyntax(code));
     }
 
-    private void renderCodeBlock(String code, String languageLabel, int textColor, int bgColor) {
+    private void renderCodeBlock(String code, String label, android.text.SpannableStringBuilder coloredCode) {
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
-        blockLayout.setBackgroundColor(bgColor);
+        blockLayout.setBackgroundColor(Color.parseColor("#1E1E1E"));
         blockLayout.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
 
-        LinearLayout.LayoutParams blockParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        blockParams.setMargins(0, dpToPx(12), 0, dpToPx(12));
-        blockLayout.setLayoutParams(blockParams);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
+        params.setMargins(0, dpToPx(12), 0, dpToPx(12));
+        blockLayout.setLayoutParams(params);
 
-        // Header
         LinearLayout header = new LinearLayout(context);
         header.setOrientation(LinearLayout.HORIZONTAL);
         header.setPadding(0, 0, 0, dpToPx(8));
 
         TextView langView = new TextView(context);
-        langView.setText(languageLabel);
+        langView.setText(label);
         langView.setTextSize(10);
         langView.setTextColor(Color.parseColor("#C678DD"));
         langView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
-
-        LinearLayout.LayoutParams langParams = new LinearLayout.LayoutParams(0, -2, 1f);
-        langView.setLayoutParams(langParams);
-        header.addView(langView);
+        header.addView(langView, new LinearLayout.LayoutParams(0, -2, 1f));
 
         Button copyBtn = new Button(context);
         copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
         copyBtn.setTextSize(10);
         copyBtn.setTextColor(Color.WHITE);
         copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
-        copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
-        copyBtn.setMinimumHeight(0);
-        copyBtn.setMinimumWidth(0);
         copyBtn.setOnClickListener(v -> copyToClipboard(code));
-        header.addView(copyBtn);
+        header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(80), dpToPx(36)));
 
         blockLayout.addView(header);
 
-        HorizontalScrollView scrollView = new HorizontalScrollView(context);
-        TextView codeView = new TextView(context);
-        if (languageLabel.equals("C")) {
-            codeView.setText(highlightCSyntax(code));
-        } else if (languageLabel.equals("ASM")) {
-            codeView.setText(highlightAssemblySyntax(code));
-        } else {
-            codeView.setText(code);
-        }
-        codeView.setTextColor(textColor);
-        codeView.setTypeface(Typeface.MONOSPACE);
-        codeView.setTextSize(12);
-
-        scrollView.addView(codeView);
-        blockLayout.addView(scrollView);
-
+        HorizontalScrollView scroll = new HorizontalScrollView(context);
+        TextView tv = new TextView(context);
+        tv.setText(coloredCode);
+        tv.setTypeface(Typeface.MONOSPACE);
+        tv.setTextColor(Color.WHITE);
+        tv.setTextSize(12);
+        scroll.addView(tv);
+        blockLayout.addView(scroll);
         container.addView(blockLayout);
     }
 
     private void addTable(java.util.List<String> tableLines) {
-        if (tableLines.size() < 2)
-            return;
-
         android.widget.TableLayout tableLayout = new android.widget.TableLayout(context);
         tableLayout.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
         tableLayout.setPadding(0, dpToPx(8), 0, dpToPx(16));
@@ -486,26 +343,24 @@ public class TutorialContentRenderer {
 
             for (String cell : cells) {
                 String trimmed = cell.trim();
-                if (trimmed.isEmpty() && cell.equals(cells[0]))
-                    continue;
-                if (trimmed.isEmpty() && cell.equals(cells[cells.length - 1]))
+                if (trimmed.isEmpty() && (cell.equals(cells[0]) || cell.equals(cells[cells.length - 1])))
                     continue;
 
-                TextView cellView = new TextView(context);
-                cellView.setText(processMarkdownSpans(trimmed)); // [FIX]: Procesar negritas y código dentro de celdas
-                cellView.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-                cellView.setTextSize(12);
-                cellView.setBackgroundResource(android.R.drawable.edit_text); // Borde simple
-                cellView.setMovementMethod(LinkMovementMethod.getInstance()); // Permitir enlaces si los hay
+                TextView tv = new TextView(context);
+                tv.setText(processMarkdownSpans(trimmed));
+                tv.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+                tv.setTextSize(12);
+                tv.setBackgroundResource(android.R.drawable.edit_text);
+                tv.setMovementMethod(LinkMovementMethod.getInstance());
 
                 if (rowIdx == 0) {
-                    cellView.setTypeface(null, Typeface.BOLD);
-                    cellView.setTextColor(Color.WHITE);
-                    cellView.setBackgroundColor(Color.parseColor("#24292E"));
+                    tv.setTypeface(null, Typeface.BOLD);
+                    tv.setTextColor(Color.WHITE);
+                    tv.setBackgroundColor(Color.parseColor("#24292E"));
                 } else {
-                    cellView.setTextColor(Color.BLACK);
+                    tv.setTextColor(Color.BLACK);
                 }
-                tableRow.addView(cellView);
+                tableRow.addView(tv);
             }
             tableLayout.addView(tableRow);
         }
@@ -515,132 +370,29 @@ public class TutorialContentRenderer {
         container.addView(hsv);
     }
 
-    private SpannableString highlightAssemblySyntax(String code) {
-        SpannableString spannable = new SpannableString(code);
-
-        // Colores One Dark Pro
-        int keywordColor = Color.parseColor("#C678DD");
-        int commentColor = Color.parseColor("#5C6370");
-
-        // Comentarios (;)
-        Pattern commentPattern = Pattern.compile(";.*");
-        Matcher cm = commentPattern.matcher(code);
-        while (cm.find()) {
-            spannable.setSpan(new ForegroundColorSpan(commentColor),
-                    cm.start(), cm.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        // Instrucciones
-        String[] commonInstr = { "movlw", "movwf", "goto", "call", "return", "bsf", "bcf", "decfsz", "banksel",
-                "clrf" };
-        for (String instr : commonInstr) {
-            Pattern p = Pattern.compile("\\b" + instr + "\\b", Pattern.CASE_INSENSITIVE);
-            Matcher m = p.matcher(code);
-            while (m.find()) {
-                spannable.setSpan(new ForegroundColorSpan(keywordColor),
-                        m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
-        return spannable;
-    }
-
-    private SpannableString highlightCSyntax(String code) {
-        SpannableString spannable = new SpannableString(code);
-
-        int keywordColor = Color.parseColor("#C678DD"); // Púrpura
-        int stringColor = Color.parseColor("#98C379"); // Verde
-        int commentColor = Color.parseColor("#5C6370"); // Gris
-        int directiveColor = Color.parseColor("#D19A66"); // Naranja
-
-        // Comentarios bloque
-        Pattern commentBlock = Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL);
-        Matcher mBlock = commentBlock.matcher(code);
-        while (mBlock.find()) {
-            spannable.setSpan(new ForegroundColorSpan(commentColor),
-                    mBlock.start(), mBlock.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        // Comentarios línea
-        Pattern commentLine = Pattern.compile("//.*");
-        Matcher mLine = commentLine.matcher(code);
-        while (mLine.find()) {
-            spannable.setSpan(new ForegroundColorSpan(commentColor),
-                    mLine.start(), mLine.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        // Directivas
-        Pattern directive = Pattern.compile("^\\s*#\\w+", Pattern.MULTILINE);
-        Matcher mDir = directive.matcher(code);
-        while (mDir.find()) {
-            spannable.setSpan(new ForegroundColorSpan(directiveColor),
-                    mDir.start(), mDir.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        // Keywords
-        String[] keywords = { "void", "main", "while", "for", "if", "return", "int", "uint16_t", "uint8_t", "volatile",
-                "__code", "__at" };
-        for (String kw : keywords) {
-            Pattern p = Pattern.compile("\\b" + kw + "\\b");
-            Matcher m = p.matcher(code);
-            while (m.find()) {
-                spannable.setSpan(new ForegroundColorSpan(keywordColor),
-                        m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
-
-        // Cadenas
-        Pattern strings = Pattern.compile("\".*?\"");
-        Matcher mStr = strings.matcher(code);
-        while (mStr.find()) {
-            spannable.setSpan(new ForegroundColorSpan(stringColor),
-                    mStr.start(), mStr.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        return spannable;
-    }
-
     private void addNormalText(String text) {
-        TextView textView = new TextView(context);
-        textView.setTextSize(14);
-        textView.setTextColor(isMarkdownEnabled ? Color.parseColor("#24292E") : COLOR_SUBTITLE_LEGACY);
-        textView.setLineSpacing(0, 1.3f);
-        textView.setPadding(dpToPx(4), dpToPx(2), dpToPx(4), dpToPx(2));
+        TextView tv = new TextView(context);
+        tv.setTextSize(14);
+        tv.setTextColor(Color.parseColor("#24292E"));
+        tv.setLineSpacing(0, 1.3f);
+        tv.setPadding(dpToPx(4), dpToPx(2), dpToPx(4), dpToPx(2));
 
         String processedText = text;
-        if (isMarkdownEnabled) {
-            String temp = text.trim();
-            if (temp.startsWith("- ") || temp.startsWith("* ")) {
-                processedText = "  • " + temp.substring(2);
-            } else if (temp.matches("^\\d+\\.\\s.*")) {
-                processedText = "  " + temp;
-            }
-        } else {
-            // [FIX]: Mejorar distición de parámetros en modo Legacy (GPUTILS)
-            if (text.trim().startsWith("•")) {
-                textView.setTextColor(Color.parseColor("#1A73E8")); // Azul suave para parámetros
-                textView.setTypeface(null, Typeface.BOLD);
-            }
+        String temp = text.trim();
+        if (temp.startsWith("- ") || temp.startsWith("* ")) {
+            processedText = "  • " + temp.substring(2);
+        } else if (temp.matches("^\\d+\\.\\s.*")) {
+            processedText = "  " + temp;
         }
 
-        textView.setText(processMarkdownSpans(processedText));
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setTextIsSelectable(true);
-        container.addView(textView);
+        tv.setText(processMarkdownSpans(processedText));
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+        tv.setTextIsSelectable(true);
+        container.addView(tv);
     }
 
-    /**
-     * Motor unificado para procesar Markdown (Negritas, Código en línea, Enlaces)
-     * Funciona tanto para texto normal como para celdas de tabla.
-     */
     private android.text.SpannableStringBuilder processMarkdownSpans(String text) {
         android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder();
-
-        if (!isMarkdownEnabled) {
-            ssb.append(text);
-            return ssb;
-        }
-
-        // 1. Procesar Negritas **texto** o ***texto***
         Pattern boldPattern = Pattern.compile("\\*{2,3}(.*?)\\*{2,3}");
         Matcher mBold = boldPattern.matcher(text);
         int lastPos = 0;
@@ -653,7 +405,6 @@ public class TutorialContentRenderer {
         }
         ssb.append(text.substring(lastPos));
 
-        // 2. Procesar Código en línea (Inline Code) con fondo gris
         String tempText = ssb.toString();
         ssb.clear();
         Pattern codePattern = Pattern.compile("(`|')(.*?)(\\1)");
@@ -662,35 +413,26 @@ public class TutorialContentRenderer {
         while (mCode.find()) {
             ssb.append(tempText.substring(lastPos, mCode.start()));
             int start = ssb.length();
-            String content = mCode.group(2);
-            ssb.append(content);
-
+            ssb.append(mCode.group(2));
             ssb.setSpan(new TypefaceSpan("monospace"), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E4405F")), start, ssb.length(),
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             ssb.setSpan(new android.text.style.BackgroundColorSpan(Color.parseColor("#F3F3F3")), start, ssb.length(),
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
             lastPos = mCode.end();
         }
         ssb.append(tempText.substring(lastPos));
 
-        // 3. Enlaces clickeables
         String currentText = ssb.toString();
         Pattern urlPattern = Pattern.compile("(https?://[^\\s\\)\\]\\*\\,]+)");
         Matcher matcher = urlPattern.matcher(currentText);
-
         while (matcher.find()) {
             final String url = matcher.group(1);
-            int start = matcher.start(1);
-            int end = matcher.end(1);
-
-            ClickableSpan clickableSpan = new ClickableSpan() {
+            ssb.setSpan(new ClickableSpan() {
                 @Override
-                public void onClick(View widget) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
+                public void onClick(View w) {
+                    context.startActivity(
+                            new Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 }
 
                 @Override
@@ -699,19 +441,58 @@ public class TutorialContentRenderer {
                     ds.setColor(Color.parseColor("#2196F3"));
                     ds.setUnderlineText(true);
                 }
-            };
-            ssb.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }, matcher.start(1), matcher.end(1), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
+        return ssb;
+    }
+
+    private android.text.SpannableStringBuilder highlightAssemblySyntax(String code) {
+        android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder(code);
+        int commentColor = Color.parseColor("#5C6370");
+        int keywordColor = Color.parseColor("#C678DD");
+
+        Matcher cm = Pattern.compile(";.*").matcher(code);
+        while (cm.find())
+            ssb.setSpan(new ForegroundColorSpan(commentColor), cm.start(), cm.end(), 0);
+
+        String[] keywords = { "movlw", "movwf", "goto", "call", "return", "bsf", "bcf", "decfsz", "banksel", "clrf" };
+        for (String kw : keywords) {
+            Matcher m = Pattern.compile("\\b" + kw + "\\b", Pattern.CASE_INSENSITIVE).matcher(code);
+            while (m.find())
+                ssb.setSpan(new ForegroundColorSpan(keywordColor), m.start(), m.end(), 0);
+        }
+        return ssb;
+    }
+
+    private android.text.SpannableStringBuilder highlightCSyntax(String code) {
+        android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder(code);
+        int keywordColor = Color.parseColor("#C678DD");
+        int commentColor = Color.parseColor("#5C6370");
+        int stringColor = Color.parseColor("#98C379");
+
+        Matcher mBlock = Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL).matcher(code);
+        while (mBlock.find())
+            ssb.setSpan(new ForegroundColorSpan(commentColor), mBlock.start(), mBlock.end(), 0);
+
+        Matcher mLine = Pattern.compile("//.*").matcher(code);
+        while (mLine.find())
+            ssb.setSpan(new ForegroundColorSpan(commentColor), mLine.start(), mLine.end(), 0);
+
+        String[] keywords = { "void", "main", "while", "for", "if", "return", "int", "uint16_t", "uint8_t", "volatile",
+                "__code", "__at" };
+        for (String kw : keywords) {
+            Matcher m = Pattern.compile("\\b" + kw + "\\b").matcher(code);
+            while (m.find())
+                ssb.setSpan(new ForegroundColorSpan(keywordColor), m.start(), m.end(), 0);
+        }
+
+        Matcher mStr = Pattern.compile("\".*?\"").matcher(code);
+        while (mStr.find())
+            ssb.setSpan(new ForegroundColorSpan(stringColor), mStr.start(), mStr.end(), 0);
 
         return ssb;
     }
 
-    private void addClickableLink(String text) {
-        // Redirigir a addNormalText para que use el mismo motor de parseo unificado
-        addNormalText(text);
-    }
-
-    // Clase auxiliar para Monoespacio en API antiguas
     private static class TypefaceSpan extends android.text.style.MetricAffectingSpan {
         private final Typeface typeface;
 
@@ -732,24 +513,16 @@ public class TutorialContentRenderer {
 
     private void addSpacer(int heightDp) {
         View spacer = new View(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(heightDp));
-        spacer.setLayoutParams(params);
-        container.addView(spacer);
+        container.addView(spacer, new LinearLayout.LayoutParams(-1, dpToPx(heightDp)));
     }
 
     private void copyToClipboard(String text) {
-        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context
-                .getSystemService(Context.CLIPBOARD_SERVICE);
-        android.content.ClipData clip = android.content.ClipData.newPlainText("code", text);
-        clipboard.setPrimaryClip(clip);
-
-        String message = currentLanguage.equals("es") ? "Copiado al portapapeles" : "Copied to clipboard";
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        ((android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE))
+                .setPrimaryClip(android.content.ClipData.newPlainText("code", text));
+        Toast.makeText(context, currentLanguage.equals("es") ? "Copiado" : "Copied", Toast.LENGTH_SHORT).show();
     }
 
     private int dpToPx(int dp) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return Math.round(dp * density);
+        return Math.round(dp * context.getResources().getDisplayMetrics().density);
     }
 }
