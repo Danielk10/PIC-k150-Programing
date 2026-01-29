@@ -12,6 +12,8 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -410,8 +412,15 @@ public class TutorialContentRenderer {
         }
 
         tv.setText(processMarkdownSpans(processedText));
+
+        // Configuración de Links y Selección
         tv.setMovementMethod(LinkMovementMethod.getInstance());
         tv.setTextIsSelectable(true);
+        tv.setLinksClickable(true);
+
+        // Forzar detección de links adicionales no Markdown
+        Linkify.addLinks(tv, Linkify.WEB_URLS);
+
         container.addView(tv);
     }
 
@@ -452,11 +461,19 @@ public class TutorialContentRenderer {
         Matcher matcher = urlPattern.matcher(currentText);
         while (matcher.find()) {
             final String url = matcher.group(1);
+            int start = matcher.start(1);
+            int end = matcher.end(1);
+
+            // Verificamos que no haya ya spans en este rango para no duplicar Linkify
             ssb.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View w) {
-                    context.startActivity(
-                            new Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    try {
+                        context.startActivity(
+                                new Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    } catch (Exception e) {
+                        Toast.makeText(context, "Error al abrir link", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
@@ -465,7 +482,7 @@ public class TutorialContentRenderer {
                     ds.setColor(Color.parseColor("#2196F3"));
                     ds.setUnderlineText(true);
                 }
-            }, matcher.start(1), matcher.end(1), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         return ssb;
     }

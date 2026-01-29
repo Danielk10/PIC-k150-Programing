@@ -83,7 +83,25 @@ public class LegacyTutorialRenderer {
                         break;
                     } else {
                         // Lógica de agrupación de Comandos (Shell)
-                        if (isCommandLine(currentLine)) {
+                        // Incluimos líneas que empiezan como comando o que son continuación (\)
+                        if (isCommandLine(currentLine) || currentLine.startsWith("    ")
+                                || currentLine.startsWith("\t")) {
+                            blockBuilder.append(currentLine).append("\n");
+                            boolean hasContinuation = trimmedCurrent.endsWith("\\");
+                            i++;
+                            // Si la línea finaliza en \, forzamos la lectura de la siguiente línea como
+                            // parte del bloque
+                            if (hasContinuation && i < lines.length) {
+                                // No hacemos nada, el loop continuará con la siguiente i
+                                continue;
+                            }
+                            if (!isCommandLine(currentLine) && !trimmedCurrent.endsWith("\\")) {
+                                // Si no es comando y no tiene continuación, y la anterior no tenía \, paramos
+                                // (A menos que sea sangría, que ya cubrimos arriba)
+                            }
+                            continue;
+                        } else if (i > 0 && lines[i - 1].trim().endsWith("\\")) {
+                            // Línea de continuación pura (no parece comando por sí sola)
                             blockBuilder.append(currentLine).append("\n");
                             i++;
                             continue;
@@ -177,14 +195,16 @@ public class LegacyTutorialRenderer {
         TextView textView = new TextView(context);
         String trimmed = text.trim();
 
-        // Estilo especial para parámetros (•) - EXCLUIR emojis informativos
+        // Estilo especial para parámetros (•) - EXCLUIR emojis informativos y flags
+        // simples como -y
         boolean isInfoNote = trimmed.startsWith("ℹ️") || trimmed.startsWith("📋") ||
                 trimmed.startsWith("📝") || trimmed.startsWith("⚠️") ||
                 trimmed.startsWith("✨") || trimmed.startsWith("💡") ||
+                trimmed.startsWith("-y") || // Caso específico reportado
                 trimmed.contains("Notas Importantes") || trimmed.contains("Important Notes");
 
         if (!isInfoNote && (trimmed.startsWith("•") || (trimmed.contains(":") && trimmed.length() < 100
-                && (trimmed.startsWith("-") || trimmed.startsWith("*"))))) {
+                && (trimmed.startsWith("-") || trimmed.startsWith("*")) && !trimmed.startsWith("-y")))) {
             SpannableString ss = new SpannableString(text);
             int colonIndex = text.indexOf(":");
             if (colonIndex != -1) {
@@ -204,7 +224,12 @@ public class LegacyTutorialRenderer {
         textView.setTextSize(16);
         textView.setTextColor(isInfoNote ? Color.parseColor("#444444") : Color.BLACK);
         textView.setTextIsSelectable(true);
-        textView.setAutoLinkMask(Linkify.WEB_URLS);
+
+        // Configuración de Links robusta
+        textView.setAutoLinkMask(0); // Limpiar primero
+        textView.setText(textView.getText()); // Refrescar
+        Linkify.addLinks(textView, Linkify.WEB_URLS);
+
         textView.setLinksClickable(true);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         textView.setLinkTextColor(Color.parseColor("#1A73E8"));
@@ -216,12 +241,14 @@ public class LegacyTutorialRenderer {
 
     private void addCommandBlock(String command) {
         String label = lang.equals("es") ? "💻 Comando" : "💻 Command";
-        addGenericCodeBlock(command, "#1E1E1E", Color.GREEN, label, null);
+        String normalizedCode = command.replace("\t", "    ");
+        addGenericCodeBlock(normalizedCode, "#1E1E1E", Color.GREEN, label, null);
     }
 
     private void addAssemblyCodeBlock(String code) {
         String label = lang.equals("es") ? "📄 Código ASM" : "📄 ASM Code";
-        addGenericCodeBlock(code, "#121212", Color.WHITE, label, highlightAssemblySyntax(code));
+        String normalizedCode = code.replace("\t", "    ");
+        addGenericCodeBlock(normalizedCode, "#121212", Color.WHITE, label, highlightAssemblySyntax(normalizedCode));
     }
 
     private void addGenericCodeBlock(final String code, String bgColor, int textColor, String labelText,
