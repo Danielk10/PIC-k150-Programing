@@ -199,6 +199,7 @@ public class TutorialContentRenderer {
 
     private boolean isCommandLine(String line) {
         String trimmed = line.trim();
+        // Detectar si la línea empieza con un comando conocido
         return trimmed.startsWith("pkg ") || trimmed.startsWith("wget ") ||
                 trimmed.startsWith("tar ") || trimmed.startsWith("cd ") ||
                 trimmed.startsWith("./") || trimmed.startsWith("make") ||
@@ -207,7 +208,8 @@ public class TutorialContentRenderer {
                 trimmed.startsWith("ls ") || trimmed.startsWith("cp ") ||
                 trimmed.startsWith("chmod ") || trimmed.startsWith("export ") ||
                 trimmed.startsWith("echo ") || trimmed.startsWith("cat ") ||
-                trimmed.startsWith("adb ") || trimmed.startsWith("termux-setup-storage");
+                trimmed.startsWith("adb ") || trimmed.startsWith("sdcc ") ||
+                trimmed.startsWith("termux-setup-storage");
     }
 
     private boolean isAssemblyCode(String line) {
@@ -315,19 +317,31 @@ public class TutorialContentRenderer {
 
     private void addCommandBlock(String command) {
         // En modo Legacy (GPUTILS), NUNCA ocultar el botón de copiar.
-        // Solo en Markdown (SDCC) ocultamos si parece un log extenso o listado de
-        // archivos.
-        String firstLine = command.split("\n")[0].trim().toLowerCase();
-        boolean looksLikeFileListing = firstLine.startsWith("-rw") || firstLine.startsWith("drwx")
-                || firstLine.startsWith("total ");
+        // Solo en Markdown (SDCC) ocultamos si parece un log extenso, info de versión o
+        // lista de argumentos.
+        String[] lines = command.split("\n");
+        String firstLine = lines[0].trim();
 
-        boolean isLogContent = isMarkdownEnabled
-                && ((command.contains("\n") && command.split("\n").length > 5 && !isCommandLine(command))
-                        || looksLikeFileListing);
+        // Detección de Logs y Documentación técnica
+        boolean isLogContent = isMarkdownEnabled && (firstLine.startsWith("SDCC :") || // Versión de SDCC
+                firstLine.contains("published under GNU") ||
+                command.contains("warning:") || command.contains("error:") ||
+                command.contains("Message[") || // Mensajes del compilador
+                (firstLine.startsWith("-") && !isCommandLine(firstLine)) || // Lista de argumentos (-mpic14, etc)
+                (firstLine.startsWith("#") && lines.length > 2) || // Comentarios extensos
+                firstLine.startsWith("-rw") || firstLine.startsWith("drwx") || firstLine.startsWith("total ") // ls -l
+                                                                                                              // output
+        );
 
-        // [FIX]: Si el comando contiene palabras clave de comandos, FORZAR que NO sea
+        // Si es Markdown y tiene más de 5 líneas y NO empieza como comando, tratar como
         // log
-        if (isCommandLine(command.split("\n")[0])) {
+        if (isMarkdownEnabled && !isLogContent && lines.length > 5 && !isCommandLine(firstLine)) {
+            isLogContent = true;
+        }
+
+        // [FIX]: Si el comando de la primera línea es un ejecutable conocido, FORZAR
+        // que NO sea log
+        if (isCommandLine(firstLine)) {
             isLogContent = false;
         }
 
