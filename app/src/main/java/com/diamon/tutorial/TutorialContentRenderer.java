@@ -293,7 +293,7 @@ public class TutorialContentRenderer {
 
     private void addSmallHeader(String text) {
         TextView headerView = new TextView(context);
-        headerView.setText(text);
+        headerView.setText(processMarkdownSpans(text));
         headerView.setTextSize(14);
         headerView.setTypeface(Typeface.DEFAULT_BOLD);
         headerView.setTextColor(Color.parseColor("#444444"));
@@ -302,10 +302,11 @@ public class TutorialContentRenderer {
     }
 
     private void addCommandBlock(String command) {
-        // No mostrar botón de copiar si parece un LOG o resultado (más de 3 líneas o
-        // carece de prompt)
-        boolean isLogContent = command.contains("\n") && (command.split("\n").length > 4
-                || (!command.contains("gpasm") && !command.contains("sdcc") && !command.contains("pkg")));
+        // En modo Legacy (GPUTILS), NUNCA ocultar el botón de copiar.
+        // Solo en Markdown (SDCC) ocultamos si parece un log extenso.
+        boolean isLogContent = isMarkdownEnabled && command.contains("\n") && (command.split("\n").length > 5
+                || (!command.contains("gpasm") && !command.contains("sdcc") && !command.contains("pkg")
+                        && !command.contains("make")));
 
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
@@ -318,7 +319,7 @@ public class TutorialContentRenderer {
         blockParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
         blockLayout.setLayoutParams(blockParams);
 
-        // Header solo si NO es log
+        // Header (Botón copiar)
         if (!isLogContent) {
             LinearLayout header = new LinearLayout(context);
             header.setOrientation(LinearLayout.HORIZONTAL);
@@ -454,10 +455,11 @@ public class TutorialContentRenderer {
                     continue;
 
                 TextView cellView = new TextView(context);
-                cellView.setText(trimmed);
+                cellView.setText(processMarkdownSpans(trimmed)); // [FIX]: Procesar negritas y código dentro de celdas
                 cellView.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
                 cellView.setTextSize(12);
                 cellView.setBackgroundResource(android.R.drawable.edit_text); // Borde simple
+                cellView.setMovementMethod(LinkMovementMethod.getInstance()); // Permitir enlaces si los hay
 
                 if (rowIdx == 0) {
                     cellView.setTypeface(null, Typeface.BOLD);
@@ -577,50 +579,58 @@ public class TutorialContentRenderer {
             }
         }
 
+        textView.setText(processMarkdownSpans(processedText));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setTextIsSelectable(true);
+        container.addView(textView);
+    }
+
+    /**
+     * Motor unificado para procesar Markdown (Negritas, Código en línea, Enlaces)
+     * Funciona tanto para texto normal como para celdas de tabla.
+     */
+    private android.text.SpannableStringBuilder processMarkdownSpans(String text) {
         android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder();
 
-        // 1. Procesar Negritas **texto** o ***texto*** (Más robusto)
-        if (isMarkdownEnabled) {
-            Pattern boldPattern = Pattern.compile("\\*{2,3}(.*?)\\*{2,3}");
-            Matcher mBold = boldPattern.matcher(processedText);
-            int lastPos = 0;
-            while (mBold.find()) {
-                ssb.append(processedText.substring(lastPos, mBold.start()));
-                int start = ssb.length();
-                ssb.append(mBold.group(1));
-                ssb.setSpan(new StyleSpan(Typeface.BOLD), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                lastPos = mBold.end();
-            }
-            ssb.append(processedText.substring(lastPos));
-        } else {
-            ssb.append(processedText);
+        if (!isMarkdownEnabled) {
+            ssb.append(text);
+            return ssb;
         }
 
-        // 2. Procesar Código en línea (Inline Code) con fondo gris y bordes
-        if (isMarkdownEnabled) {
-            String tempText = ssb.toString();
-            ssb.clear();
-            // Soporta tanto ` como ' (este último solo si parece código corto)
-            Pattern codePattern = Pattern.compile("(`|')(.*?)(\\1)");
-            Matcher mCode = codePattern.matcher(tempText);
-            int lastPos = 0;
-            while (mCode.find()) {
-                ssb.append(tempText.substring(lastPos, mCode.start()));
-                int start = ssb.length();
-                String content = mCode.group(2);
-                ssb.append(content);
-
-                // Fondo gris suave con padding simulado vía Monoespace + Color
-                ssb.setSpan(new TypefaceSpan("monospace"), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E4405F")), start, ssb.length(),
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.setSpan(new android.text.style.BackgroundColorSpan(Color.parseColor("#F3F3F3")), start,
-                        ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                lastPos = mCode.end();
-            }
-            ssb.append(tempText.substring(lastPos));
+        // 1. Procesar Negritas **texto** o ***texto***
+        Pattern boldPattern = Pattern.compile("\\*{2,3}(.*?)\\*{2,3}");
+        Matcher mBold = boldPattern.matcher(text);
+        int lastPos = 0;
+        while (mBold.find()) {
+            ssb.append(text.substring(lastPos, mBold.start()));
+            int start = ssb.length();
+            ssb.append(mBold.group(1));
+            ssb.setSpan(new StyleSpan(Typeface.BOLD), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            lastPos = mBold.end();
         }
+        ssb.append(text.substring(lastPos));
+
+        // 2. Procesar Código en línea (Inline Code) con fondo gris
+        String tempText = ssb.toString();
+        ssb.clear();
+        Pattern codePattern = Pattern.compile("(`|')(.*?)(\\1)");
+        Matcher mCode = codePattern.matcher(tempText);
+        lastPos = 0;
+        while (mCode.find()) {
+            ssb.append(tempText.substring(lastPos, mCode.start()));
+            int start = ssb.length();
+            String content = mCode.group(2);
+            ssb.append(content);
+
+            ssb.setSpan(new TypefaceSpan("monospace"), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E4405F")), start, ssb.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ssb.setSpan(new android.text.style.BackgroundColorSpan(Color.parseColor("#F3F3F3")), start, ssb.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            lastPos = mCode.end();
+        }
+        ssb.append(tempText.substring(lastPos));
 
         // 3. Enlaces clickeables
         String currentText = ssb.toString();
@@ -650,10 +660,7 @@ public class TutorialContentRenderer {
             ssb.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
-        textView.setText(ssb);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setTextIsSelectable(true);
-        container.addView(textView);
+        return ssb;
     }
 
     private void addClickableLink(String text) {

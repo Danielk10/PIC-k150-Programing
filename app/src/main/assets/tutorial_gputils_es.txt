@@ -100,7 +100,9 @@ cd gputils-1.5.2
 
 Configura GPUTILS especificando dónde se instalará y qué herramientas usar:
 
-./configure AR=ar RANLIB=ranlib --prefix=$PREFIX
+./configure AR=ar RANLIB=ranlib --prefix=$PREFIX \
+            CFLAGS="-fPIC -fPIE" \
+            LDFLAGS="-pie"
 
 🔍 Opciones de Configuración:
 • ./configure: Script que prepara el proyecto para compilación
