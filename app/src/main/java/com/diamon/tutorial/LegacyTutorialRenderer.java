@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.ClipboardManager;
 import android.content.ClipData;
+import android.text.util.Linkify;
+import android.text.method.LinkMovementMethod;
+import android.widget.RelativeLayout;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -161,11 +164,12 @@ public class LegacyTutorialRenderer {
     private void addTitle(String text) {
         TextView titleView = new TextView(context);
         titleView.setText(text);
+        titleView.setTextIsSelectable(true);
         titleView.setTextSize(20);
         titleView.setTextColor(Color.parseColor("#1A73E8")); // Azul Google
         titleView.setTypeface(null, Typeface.BOLD);
         titleView.setGravity(Gravity.START);
-        titleView.setPadding(0, dpToPx(24), 0, dpToPx(8));
+        titleView.setPadding(0, dpToPx(32), 0, dpToPx(8)); // Más espacio arriba
         container.addView(titleView);
     }
 
@@ -198,9 +202,15 @@ public class LegacyTutorialRenderer {
         }
 
         textView.setTextSize(16);
-        textView.setTextColor(Color.BLACK);
+        textView.setTextColor(isInfoNote ? Color.parseColor("#444444") : Color.BLACK);
+        textView.setTextIsSelectable(true);
+        textView.setAutoLinkMask(Linkify.WEB_URLS);
+        textView.setLinksClickable(true);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setLinkTextColor(Color.parseColor("#1A73E8"));
+
         textView.setGravity(Gravity.START);
-        textView.setPadding(0, dpToPx(4), 0, dpToPx(4));
+        textView.setPadding(0, dpToPx(8), 0, dpToPx(8)); // Más padding para evitar mezcla
         container.addView(textView);
     }
 
@@ -226,10 +236,8 @@ public class LegacyTutorialRenderer {
         params.setMargins(0, dpToPx(8), 0, dpToPx(8));
         blockLayout.setLayoutParams(params);
 
-        // Header con botón
-        LinearLayout header = new LinearLayout(context);
-        header.setOrientation(LinearLayout.HORIZONTAL);
-        header.setGravity(Gravity.CENTER_VERTICAL);
+        // Header con botón - Mejorado con RelativeLayout para evitar solapamiento
+        RelativeLayout header = new RelativeLayout(context);
         header.setPadding(0, 0, 0, dpToPx(8));
 
         TextView label = new TextView(context);
@@ -238,9 +246,11 @@ public class LegacyTutorialRenderer {
         label.setTextSize(11);
         label.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
 
-        View spacer = new View(context);
-        header.addView(label);
-        header.addView(spacer, new LinearLayout.LayoutParams(0, 1, 1.0f));
+        RelativeLayout.LayoutParams labelParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        labelParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        labelParams.addRule(RelativeLayout.CENTER_VERTICAL);
+        header.addView(label, labelParams);
 
         Button copyBtn = new Button(context);
         copyBtn.setText(lang.equals("es") ? "COPIAR" : "COPY");
@@ -248,7 +258,10 @@ public class LegacyTutorialRenderer {
         copyBtn.setBackgroundColor(Color.parseColor("#2E7D32"));
         copyBtn.setTextColor(Color.WHITE);
         copyBtn.setOnClickListener(v -> copyToClipboard(code));
-        header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(80), dpToPx(36)));
+
+        RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(dpToPx(80), dpToPx(36));
+        btnParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        header.addView(copyBtn, btnParams);
 
         blockLayout.addView(header);
 
@@ -263,6 +276,7 @@ public class LegacyTutorialRenderer {
         }
         codeView.setTypeface(Typeface.MONOSPACE);
         codeView.setTextSize(13);
+        codeView.setTextIsSelectable(true);
         scroll.addView(codeView);
 
         blockLayout.addView(scroll);
