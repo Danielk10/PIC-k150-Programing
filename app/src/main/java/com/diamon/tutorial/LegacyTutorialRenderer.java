@@ -43,20 +43,34 @@ public class LegacyTutorialRenderer {
                 boolean isAsm = isAssemblyCode(line);
 
                 // Agrupar líneas consecutivas o líneas que pertenecen al contexto del bloque
-                while (i < lines.length && (isCommandLine(lines[i]) ||
-                        isAssemblyCode(lines[i]) ||
-                        lines[i].trim().startsWith(";") ||
-                        lines[i].startsWith("    ") ||
-                        lines[i].startsWith("\t") ||
-                        (isAsm && lines[i].trim().isEmpty() && i + 1 < lines.length && isAssemblyCode(lines[i + 1])) // Permitir
-                                                                                                                     // saltos
-                                                                                                                     // de
-                                                                                                                     // línea
-                                                                                                                     // en
-                                                                                                                     // ASM
-                )) {
-                    block.append(lines[i]).append("\n");
-                    i++;
+                while (i < lines.length) {
+                    String currentLine = lines[i];
+                    String trimmedCurrent = currentLine.trim();
+
+                    // Si estamos en un bloque de ASM, permitimos etiquetas, instrucciones,
+                    // comentarios y sangrías
+                    if (isAsm) {
+                        if (trimmedCurrent.isEmpty() && i + 1 < lines.length && isAssemblyCode(lines[i + 1])) {
+                            block.append("\n"); // Permitir una línea en blanco si sigue habiendo ensamblador
+                            i++;
+                            continue;
+                        }
+                        if (isAssemblyCode(currentLine) || currentLine.startsWith("    ")
+                                || currentLine.startsWith("\t") || trimmedCurrent.startsWith(";")) {
+                            block.append(currentLine).append("\n");
+                            i++;
+                            continue;
+                        }
+                        break; // Fin del bloque ASM
+                    } else {
+                        // Bloque de Comandos (Shell)
+                        if (isCommandLine(currentLine)) {
+                            block.append(currentLine).append("\n");
+                            i++;
+                            continue;
+                        }
+                        break; // Fin del bloque de Comandos
+                    }
                 }
 
                 String finalBlock = block.toString().trim();
@@ -109,13 +123,20 @@ public class LegacyTutorialRenderer {
         String trimmed = line.trim();
         if (trimmed.isEmpty())
             return false;
-        if (trimmed.startsWith(";") && line.length() > 5)
-            return true; // Comentario descriptivo
+
+        // Comentarios internos del código (con sangría o cortos después de instrucción)
+        if (trimmed.startsWith(";") && (line.startsWith(" ") || line.startsWith("\t") || line.length() < 50))
+            return true;
+
+        // Etiquetas (Etiqueta:)
+        if (trimmed.endsWith(":") && !trimmed.contains(" ") && trimmed.length() > 1)
+            return true;
+
         String u = line.toUpperCase();
         return u.contains(" LIST ") || u.contains("ORG ") || u.contains("GOTO ") ||
                 u.contains("BANKSEL ") || u.contains("MOVLW ") || u.contains("MOVWF ") ||
                 u.contains("BSF ") || u.contains("BCF ") || u.contains("CALL ") ||
-                u.contains("DECFSZ ") || u.contains("RETURN") || u.contains(" END") ||
+                u.contains("DECFSZ ") || u.contains("RETURN") || u.contains(" END") || u.equals("END") ||
                 u.contains("__CONFIG") || u.contains("CBLOCK") || u.contains("ENDC") ||
                 u.contains("#INCLUDE") || u.contains(" ENDC") || u.contains(" END ");
     }
@@ -135,9 +156,13 @@ public class LegacyTutorialRenderer {
         TextView textView = new TextView(context);
         String trimmed = text.trim();
 
-        // Estilo especial para parámetros (•) - Ahora más prominente
-        if (trimmed.startsWith("•") || (trimmed.contains(":") && trimmed.length() < 100
-                && (trimmed.startsWith("-") || trimmed.startsWith("*")))) {
+        // Estilo especial para parámetros (•) - EXCLUIR emojis informativos
+        boolean isInfoNote = trimmed.startsWith("ℹ️") || trimmed.startsWith("📋") ||
+                trimmed.startsWith("📝") || trimmed.startsWith("⚠️") ||
+                trimmed.startsWith("✨") || trimmed.startsWith("💡");
+
+        if (!isInfoNote && (trimmed.startsWith("•") || (trimmed.contains(":") && trimmed.length() < 100
+                && (trimmed.startsWith("-") || trimmed.startsWith("*"))))) {
             SpannableString ss = new SpannableString(text);
             int colonIndex = text.indexOf(":");
             if (colonIndex != -1) {

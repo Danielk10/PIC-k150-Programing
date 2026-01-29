@@ -219,6 +219,8 @@ public class TutorialContentRenderer {
         String firstLine = lines[0].trim();
 
         boolean isLogContent = firstLine.startsWith("SDCC :") ||
+                firstLine.startsWith("gpasm-") || firstLine.startsWith("gplink-") ||
+                firstLine.startsWith("gplib-") ||
                 firstLine.contains("published under GNU") ||
                 command.contains("warning:") || command.contains("error:") ||
                 command.contains("Message[") ||
