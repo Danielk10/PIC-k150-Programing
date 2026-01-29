@@ -133,22 +133,36 @@ public class TutorialContentRenderer {
                 }
 
                 // Detectar Tablas Markdown (| Celda | Celda |)
-                if (trimmedLine.startsWith("|") && i + 1 < lines.length && lines[i + 1].trim().contains("|-")) {
+                if (trimmedLine.startsWith("|") && i + 1 < lines.length
+                        && (lines[i + 1].trim().contains("|-") || lines[i + 1].trim().contains("|"))) {
                     java.util.List<String> tableLines = new java.util.ArrayList<>();
                     while (i < lines.length && lines[i].trim().startsWith("|")) {
                         tableLines.add(lines[i].trim());
                         i++;
                     }
-                    addTable(tableLines);
-                    continue;
+                    if (tableLines.size() > 1) {
+                        addTable(tableLines);
+                        continue;
+                    }
                 }
             }
 
             // Lógica diferenciada para GPUTILS (Legacy)
             if (!isMarkdownEnabled) {
-                if (isCommandLine(line)) {
-                    addCommandBlock(line.trim());
-                    i++;
+                // Agrupar bloques de comandos o ensamblador en modo Legacy
+                if (isCommandLine(line) || isAssemblyCode(line)) {
+                    StringBuilder block = new StringBuilder();
+                    boolean isAsm = isAssemblyCode(line);
+                    while (i < lines.length && (isCommandLine(lines[i]) || isAssemblyCode(lines[i])
+                            || (lines[i].trim().startsWith(";") || lines[i].startsWith("    ")))) {
+                        block.append(lines[i]).append("\n");
+                        i++;
+                    }
+                    if (isAsm) {
+                        addAssemblyCodeBlock(block.toString().trim());
+                    } else {
+                        addCommandBlock(block.toString().trim());
+                    }
                     continue;
                 }
 
@@ -184,18 +198,16 @@ public class TutorialContentRenderer {
     }
 
     private boolean isCommandLine(String line) {
-        // Mantenemos esto por compatibilidad si se llama desde otro lado,
-        // pero renderTutorial ya no lo usa directamente para bloques.
         String trimmed = line.trim();
         return trimmed.startsWith("pkg ") || trimmed.startsWith("wget ") ||
                 trimmed.startsWith("tar ") || trimmed.startsWith("cd ") ||
-                trimmed.startsWith("./configure") || trimmed.startsWith("make") ||
+                trimmed.startsWith("./") || trimmed.startsWith("make") ||
                 trimmed.startsWith("nano ") || trimmed.startsWith("gpasm ") ||
                 trimmed.startsWith("gplink ") || trimmed.startsWith("gplib ") ||
                 trimmed.startsWith("ls ") || trimmed.startsWith("cp ") ||
                 trimmed.startsWith("chmod ") || trimmed.startsWith("export ") ||
                 trimmed.startsWith("echo ") || trimmed.startsWith("cat ") ||
-                trimmed.startsWith("termux-setup-storage");
+                trimmed.startsWith("adb ") || trimmed.startsWith("termux-setup-storage");
     }
 
     private boolean isAssemblyCode(String line) {
@@ -210,7 +222,7 @@ public class TutorialContentRenderer {
     private void addTitle(String text, int textSize, boolean bold) {
         if (isMarkdownEnabled) {
             TextView titleView = new TextView(context);
-            titleView.setText(text);
+            titleView.setText(processMarkdownSpans(text)); // [FIX]: Soporte para negritas en títulos
             titleView.setTextSize(textSize + 4);
             titleView.setTextColor(Color.BLACK);
             titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
@@ -243,7 +255,7 @@ public class TutorialContentRenderer {
     private void addSectionTitle(String text) {
         if (isMarkdownEnabled) {
             TextView sectionView = new TextView(context);
-            sectionView.setText(text);
+            sectionView.setText(processMarkdownSpans(text)); // [FIX]: Soporte para negritas en secciones
             sectionView.setTextSize(20);
             sectionView.setTextColor(Color.parseColor("#24292E"));
             sectionView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
@@ -273,7 +285,7 @@ public class TutorialContentRenderer {
     private void addSubtitle(String text) {
         if (isMarkdownEnabled) {
             TextView subtitleView = new TextView(context);
-            subtitleView.setText(text);
+            subtitleView.setText(processMarkdownSpans(text)); // [FIX]: Soporte para negritas en subtítulos
             subtitleView.setTextSize(16);
             subtitleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
             subtitleView.setTextColor(Color.parseColor("#24292E"));
@@ -303,10 +315,21 @@ public class TutorialContentRenderer {
 
     private void addCommandBlock(String command) {
         // En modo Legacy (GPUTILS), NUNCA ocultar el botón de copiar.
-        // Solo en Markdown (SDCC) ocultamos si parece un log extenso.
-        boolean isLogContent = isMarkdownEnabled && command.contains("\n") && (command.split("\n").length > 5
-                || (!command.contains("gpasm") && !command.contains("sdcc") && !command.contains("pkg")
-                        && !command.contains("make")));
+        // Solo en Markdown (SDCC) ocultamos si parece un log extenso o listado de
+        // archivos.
+        String firstLine = command.split("\n")[0].trim().toLowerCase();
+        boolean looksLikeFileListing = firstLine.startsWith("-rw") || firstLine.startsWith("drwx")
+                || firstLine.startsWith("total ");
+
+        boolean isLogContent = isMarkdownEnabled
+                && ((command.contains("\n") && command.split("\n").length > 5 && !isCommandLine(command))
+                        || looksLikeFileListing);
+
+        // [FIX]: Si el comando contiene palabras clave de comandos, FORZAR que NO sea
+        // log
+        if (isCommandLine(command.split("\n")[0])) {
+            isLogContent = false;
+        }
 
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
@@ -576,6 +599,12 @@ public class TutorialContentRenderer {
                 processedText = "  • " + temp.substring(2);
             } else if (temp.matches("^\\d+\\.\\s.*")) {
                 processedText = "  " + temp;
+            }
+        } else {
+            // [FIX]: Mejorar distición de parámetros en modo Legacy (GPUTILS)
+            if (text.trim().startsWith("•")) {
+                textView.setTextColor(Color.parseColor("#1A73E8")); // Azul suave para parámetros
+                textView.setTypeface(null, Typeface.BOLD);
             }
         }
 
