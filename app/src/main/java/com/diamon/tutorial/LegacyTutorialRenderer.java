@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -17,13 +18,25 @@ import android.widget.Toast;
 import android.content.ClipboardManager;
 import android.content.ClipData;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Renderizador para tutoriales en formato texto (.txt).
+ * Optimizado para GPUTILS con resaltado de sintaxis y soporte multi-idioma.
+ */
 public class LegacyTutorialRenderer {
     private final Context context;
     private final LinearLayout container;
+    private String lang = "es";
 
     public LegacyTutorialRenderer(Context context, LinearLayout container) {
         this.context = context;
         this.container = container;
+    }
+
+    public void setLanguage(String lang) {
+        this.lang = lang;
     }
 
     public void renderTutorial(String content) {
@@ -39,49 +52,52 @@ public class LegacyTutorialRenderer {
 
             // Detección de Bloques de Código (Comandos o Ensamblador)
             if (isCommandLine(line) || isAssemblyCode(line)) {
-                StringBuilder block = new StringBuilder();
-                boolean isAsm = isAssemblyCode(line);
+                StringBuilder blockBuilder = new StringBuilder();
+                boolean isAsmBlock = false;
+
+                // Determinar si el bloque empieza como ensamblador
+                if (isAssemblyCode(line))
+                    isAsmBlock = true;
 
                 // Agrupar líneas consecutivas o líneas que pertenecen al contexto del bloque
                 while (i < lines.length) {
                     String currentLine = lines[i];
                     String trimmedCurrent = currentLine.trim();
 
-                    // Si estamos en un bloque de ASM, permitimos etiquetas, instrucciones,
-                    // comentarios y sangrías
-                    if (isAsm) {
+                    if (isAsmBlock) {
+                        // Lógica de agrupación de Ensamblador
                         if (trimmedCurrent.isEmpty() && i + 1 < lines.length && isAssemblyCode(lines[i + 1])) {
-                            block.append("\n"); // Permitir una línea en blanco si sigue habiendo ensamblador
+                            blockBuilder.append("\n");
                             i++;
                             continue;
                         }
                         if (isAssemblyCode(currentLine) || currentLine.startsWith("    ")
                                 || currentLine.startsWith("\t") || trimmedCurrent.startsWith(";")) {
-                            block.append(currentLine).append("\n");
+                            blockBuilder.append(currentLine).append("\n");
                             i++;
                             continue;
                         }
-                        break; // Fin del bloque ASM
+                        break;
                     } else {
-                        // Bloque de Comandos (Shell)
+                        // Lógica de agrupación de Comandos (Shell)
                         if (isCommandLine(currentLine)) {
-                            block.append(currentLine).append("\n");
+                            blockBuilder.append(currentLine).append("\n");
                             i++;
                             continue;
                         }
-                        break; // Fin del bloque de Comandos
+                        break;
                     }
                 }
 
-                String finalBlock = block.toString().trim();
+                String finalBlock = blockBuilder.toString().trim();
                 if (!finalBlock.isEmpty()) {
-                    if (isAsm) {
+                    if (isAsmBlock) {
                         addAssemblyCodeBlock(finalBlock);
                     } else {
                         addCommandBlock(finalBlock);
                     }
                 }
-                i--; // Ajustar índice por el bucle interno
+                i--; // Ajustar índice
                 continue;
             }
 
@@ -93,7 +109,7 @@ public class LegacyTutorialRenderer {
                     trimmedLine.contains("🔨") || trimmedLine.contains("📦") || trimmedLine.contains("🔧") ||
                     trimmedLine.contains("🔍") || trimmedLine.contains("✅") || trimmedLine.contains("🚀")) {
 
-                if (trimmedLine.length() < 70) {
+                if (trimmedLine.length() < 100) {
                     addTitle(trimmedLine);
                 } else {
                     addNormalText(trimmedLine);
@@ -125,11 +141,12 @@ public class LegacyTutorialRenderer {
             return false;
 
         // Comentarios internos del código (con sangría o cortos después de instrucción)
-        if (trimmed.startsWith(";") && (line.startsWith(" ") || line.startsWith("\t") || line.length() < 50))
+        if (trimmed.startsWith(";") && (line.startsWith(" ") || line.startsWith("\t") || line.length() < 80))
             return true;
 
-        // Etiquetas (Etiqueta:)
-        if (trimmed.endsWith(":") && !trimmed.contains(" ") && trimmed.length() > 1)
+        // Etiquetas (Etiqueta:) - No deben tener espacios y deben terminar en :
+        if (trimmed.endsWith(":") && !trimmed.contains(" ") && trimmed.length() > 1 && !trimmed.contains("PASO")
+                && !trimmed.contains("STEP"))
             return true;
 
         String u = line.toUpperCase();
@@ -159,14 +176,14 @@ public class LegacyTutorialRenderer {
         // Estilo especial para parámetros (•) - EXCLUIR emojis informativos
         boolean isInfoNote = trimmed.startsWith("ℹ️") || trimmed.startsWith("📋") ||
                 trimmed.startsWith("📝") || trimmed.startsWith("⚠️") ||
-                trimmed.startsWith("✨") || trimmed.startsWith("💡");
+                trimmed.startsWith("✨") || trimmed.startsWith("💡") ||
+                trimmed.contains("Notas Importantes") || trimmed.contains("Important Notes");
 
         if (!isInfoNote && (trimmed.startsWith("•") || (trimmed.contains(":") && trimmed.length() < 100
                 && (trimmed.startsWith("-") || trimmed.startsWith("*"))))) {
             SpannableString ss = new SpannableString(text);
             int colonIndex = text.indexOf(":");
             if (colonIndex != -1) {
-                // Resaltar hasta los dos puntos
                 ss.setSpan(new ForegroundColorSpan(Color.parseColor("#1A73E8")), 0, colonIndex + 1,
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 ss.setSpan(new StyleSpan(Typeface.BOLD), 0, colonIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -188,14 +205,17 @@ public class LegacyTutorialRenderer {
     }
 
     private void addCommandBlock(String command) {
-        addGenericCodeBlock(command, "#1E1E1E", Color.GREEN, "COMPARTIR/COPIAR");
+        String label = lang.equals("es") ? "💻 Comando" : "💻 Command";
+        addGenericCodeBlock(command, "#1E1E1E", Color.GREEN, label, null);
     }
 
     private void addAssemblyCodeBlock(String code) {
-        addGenericCodeBlock(code, "#121212", Color.parseColor("#BB86FC"), "COPIAR CÓDIGO");
+        String label = lang.equals("es") ? "📄 Código ASM" : "📄 ASM Code";
+        addGenericCodeBlock(code, "#121212", Color.WHITE, label, highlightAssemblySyntax(code));
     }
 
-    private void addGenericCodeBlock(final String code, String bgColor, int textColor, String btnText) {
+    private void addGenericCodeBlock(final String code, String bgColor, int textColor, String labelText,
+            CharSequence coloredContent) {
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
         blockLayout.setBackgroundColor(Color.parseColor(bgColor));
@@ -210,18 +230,20 @@ public class LegacyTutorialRenderer {
         LinearLayout header = new LinearLayout(context);
         header.setOrientation(LinearLayout.HORIZONTAL);
         header.setGravity(Gravity.CENTER_VERTICAL);
+        header.setPadding(0, 0, 0, dpToPx(8));
 
         TextView label = new TextView(context);
-        label.setText("💻 Bloque Técnico");
+        label.setText(labelText);
         label.setTextColor(Color.GRAY);
-        label.setTextSize(12);
+        label.setTextSize(11);
+        label.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
 
         View spacer = new View(context);
         header.addView(label);
         header.addView(spacer, new LinearLayout.LayoutParams(0, 1, 1.0f));
 
         Button copyBtn = new Button(context);
-        copyBtn.setText("COPIAR");
+        copyBtn.setText(lang.equals("es") ? "COPIAR" : "COPY");
         copyBtn.setTextSize(10);
         copyBtn.setBackgroundColor(Color.parseColor("#2E7D32"));
         copyBtn.setTextColor(Color.WHITE);
@@ -233,21 +255,82 @@ public class LegacyTutorialRenderer {
         // Contenido de código
         HorizontalScrollView scroll = new HorizontalScrollView(context);
         TextView codeView = new TextView(context);
-        codeView.setText(code);
+        if (coloredContent != null) {
+            codeView.setText(coloredContent);
+        } else {
+            codeView.setText(code);
+            codeView.setTextColor(textColor);
+        }
         codeView.setTypeface(Typeface.MONOSPACE);
-        codeView.setTextColor(textColor);
-        codeView.setTextSize(14);
+        codeView.setTextSize(13);
         scroll.addView(codeView);
 
         blockLayout.addView(scroll);
         container.addView(blockLayout);
     }
 
+    private CharSequence highlightAssemblySyntax(String code) {
+        SpannableStringBuilder ssb = new SpannableStringBuilder(code);
+
+        // Colores de sintaxis
+        int colorComment = Color.parseColor("#808080"); // Gris
+        int colorLabel = Color.parseColor("#DCDCAA"); // Amarillo claro
+        int colorKeyword = Color.parseColor("#C586C0"); // Púrpura
+        int colorNumber = Color.parseColor("#B5CEA8"); // Verde claro
+        int colorDirective = Color.parseColor("#569CD6"); // Azul
+
+        // 1. Comentarios (;)
+        Matcher mComments = Pattern.compile(";.*").matcher(code);
+        while (mComments.find()) {
+            ssb.setSpan(new ForegroundColorSpan(colorComment), mComments.start(), mComments.end(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        // 2. Etiquetas (Etiqueta:) al inicio de línea
+        Matcher mLabels = Pattern.compile("(?m)^[a-zA-Z_][a-zA-Z0-9_]*:").matcher(code);
+        while (mLabels.find()) {
+            ssb.setSpan(new ForegroundColorSpan(colorLabel), mLabels.start(), mLabels.end(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ssb.setSpan(new StyleSpan(Typeface.BOLD), mLabels.start(), mLabels.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        // 3. Instrucciones comunes
+        String[] keywords = { "movlw", "movwf", "goto", "call", "return", "bsf", "bcf", "decfsz", "banksel", "clrf",
+                "andlw", "iorlw", "sublw", "xorlw", "addlw" };
+        for (String kw : keywords) {
+            Matcher m = Pattern.compile("(?i)\\b" + kw + "\\b").matcher(code);
+            while (m.find()) {
+                ssb.setSpan(new ForegroundColorSpan(colorKeyword), m.start(), m.end(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+
+        // 4. Directivas
+        String[] directives = { "LIST", "ORG", "END", "CBLOCK", "ENDC", "#include", "__CONFIG" };
+        for (String dir : directives) {
+            Matcher m = Pattern.compile("(?i)\\b" + dir.replace("#", "#") + "\\b").matcher(code);
+            while (m.find()) {
+                ssb.setSpan(new ForegroundColorSpan(colorDirective), m.start(), m.end(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+
+        // 5. Números (h'FF', b'0101', 0xXX)
+        Matcher mNumbers = Pattern.compile("(?i)(0x[0-9A-F]+|[hb]'[01A-F]+'|[0-9]+)").matcher(code);
+        while (mNumbers.find()) {
+            ssb.setSpan(new ForegroundColorSpan(colorNumber), mNumbers.start(), mNumbers.end(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return ssb;
+    }
+
     private void copyToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("tutorial_code", text);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, "Copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, lang.equals("es") ? "Copiado al portapapeles" : "Copied to clipboard",
+                Toast.LENGTH_SHORT).show();
     }
 
     private int dpToPx(int dp) {

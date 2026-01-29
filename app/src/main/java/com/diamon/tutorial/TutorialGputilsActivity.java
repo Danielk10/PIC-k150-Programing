@@ -118,6 +118,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             tutorialText = new String(buffer, StandardCharsets.UTF_8);
 
             // Renderizar el tutorial con formato profesional
+            contentRenderer.setLanguage(language);
             contentRenderer.renderTutorial(tutorialText);
 
             // Cargar imagen
