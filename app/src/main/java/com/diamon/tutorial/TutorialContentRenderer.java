@@ -144,6 +144,21 @@ public class TutorialContentRenderer {
         container.addView(separator);
     }
 
+    private boolean isAssemblyCode(String line) {
+        String trimmed = line.trim();
+        if (trimmed.isEmpty())
+            return false;
+        if (trimmed.startsWith(";") || trimmed.endsWith(":"))
+            return true;
+        String u = line.toUpperCase();
+        return u.contains(" LIST ") || u.contains("ORG ") || u.contains("GOTO ") ||
+                u.contains("BANKSEL ") || u.contains("MOVLW ") || u.contains("MOVWF ") ||
+                u.contains("BSF ") || u.contains("BCF ") || u.contains("CALL ") ||
+                u.contains("DECFSZ ") || u.contains("RETURN") || u.contains(" END") ||
+                u.contains("__CONFIG") || u.contains("CBLOCK") || u.contains("ENDC") ||
+                u.contains("#INCLUDE");
+    }
+
     private boolean isCommandLine(String line) {
         String trimmed = line.trim();
         return trimmed.startsWith("pkg ") || trimmed.startsWith("wget ") ||
@@ -217,6 +232,7 @@ public class TutorialContentRenderer {
     private void addCommandBlock(String command) {
         String[] lines = command.split("\n");
         String firstLine = lines[0].trim();
+        boolean isAsm = isAssemblyCode(firstLine);
 
         boolean isLogContent = firstLine.startsWith("SDCC :") ||
                 firstLine.startsWith("gpasm-") || firstLine.startsWith("gplink-") ||
@@ -228,12 +244,10 @@ public class TutorialContentRenderer {
                 (firstLine.startsWith("#") && lines.length > 2) ||
                 firstLine.startsWith("-rw") || firstLine.startsWith("drwx") || firstLine.startsWith("total ");
 
-        if (!isLogContent && lines.length > 5 && !isCommandLine(firstLine)) {
-            isLogContent = true;
-        }
-
-        if (isCommandLine(firstLine)) {
+        if (isCommandLine(firstLine) || isAsm) {
             isLogContent = false;
+        } else if (!isLogContent && lines.length > 5) {
+            isLogContent = true;
         }
 
         LinearLayout blockLayout = new LinearLayout(context);
@@ -252,9 +266,12 @@ public class TutorialContentRenderer {
             header.setPadding(0, 0, 0, dpToPx(8));
 
             TextView titleView = new TextView(context);
-            titleView.setText("💻 " + (currentLanguage.equals("es") ? "Comando" : "Command"));
+            String labelText = isAsm ? (currentLanguage.equals("es") ? "📄 Código ASM" : "📄 ASM Code")
+                    : (currentLanguage.equals("es") ? "💻 Comando" : "💻 Command");
+
+            titleView.setText(labelText);
             titleView.setTextSize(11);
-            titleView.setTextColor(Color.GREEN);
+            titleView.setTextColor(isAsm ? Color.WHITE : Color.GREEN);
             titleView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
             header.addView(titleView, new LinearLayout.LayoutParams(0, -2, 1f));
 
@@ -270,12 +287,17 @@ public class TutorialContentRenderer {
         }
 
         HorizontalScrollView scroll = new HorizontalScrollView(context);
+        scroll.setFillViewport(true);
+
         TextView tv = new TextView(context);
         tv.setText(command);
-        tv.setTextColor(isLogContent ? Color.parseColor("#ABB2BF") : Color.GREEN);
+        tv.setTextColor(isLogContent ? Color.parseColor("#ABB2BF") : (isAsm ? Color.WHITE : Color.GREEN));
         tv.setTypeface(Typeface.MONOSPACE);
         tv.setTextSize(12);
-        scroll.addView(tv);
+        tv.setGravity(Gravity.START);
+        tv.setPadding(0, 0, dpToPx(20), 0); // Espacio para scroll
+
+        scroll.addView(tv, new HorizontalScrollView.LayoutParams(-2, -2));
         blockLayout.addView(scroll);
         container.addView(blockLayout);
     }
