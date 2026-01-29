@@ -45,7 +45,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     private String tutorialText = "";
     private PantallaCompleta pantallaCompleta;
 
-    private TutorialContentRenderer contentRenderer;
+    private LegacyTutorialRenderer contentRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
 
         // Inicializar cargador de archivos y renderizador
         fileLoader = new CargardorDeArchivos(this);
-        contentRenderer = new TutorialContentRenderer(this, tutorialContainer);
-        contentRenderer.setMarkdownEnabled(false);
+        contentRenderer = new LegacyTutorialRenderer(this, tutorialContainer);
 
         // Configurar spinner de idiomas
         setupLanguageSpinner();
@@ -119,7 +118,6 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             tutorialText = new String(buffer, StandardCharsets.UTF_8);
 
             // Renderizar el tutorial con formato profesional
-            contentRenderer.setLanguage(language);
             contentRenderer.renderTutorial(tutorialText);
 
             // Cargar imagen
