@@ -120,11 +120,26 @@ public class TutorialContentRenderer {
                     addSubtitle(trimmedLine.substring(4).trim());
                     i++;
                     continue;
+                } else if (trimmedLine.startsWith("#### ")) {
+                    addSmallHeader(trimmedLine.substring(5).trim());
+                    i++;
+                    continue;
                 }
 
                 if (trimmedLine.equals("---") || trimmedLine.equals("***")) {
                     addSeparator();
                     i++;
+                    continue;
+                }
+
+                // Detectar Tablas Markdown (| Celda | Celda |)
+                if (trimmedLine.startsWith("|") && i + 1 < lines.length && lines[i + 1].trim().contains("|-")) {
+                    java.util.List<String> tableLines = new java.util.ArrayList<>();
+                    while (i < lines.length && lines[i].trim().startsWith("|")) {
+                        tableLines.add(lines[i].trim());
+                        i++;
+                    }
+                    addTable(tableLines);
                     continue;
                 }
             }
@@ -276,8 +291,22 @@ public class TutorialContentRenderer {
         }
     }
 
+    private void addSmallHeader(String text) {
+        TextView headerView = new TextView(context);
+        headerView.setText(text);
+        headerView.setTextSize(14);
+        headerView.setTypeface(Typeface.DEFAULT_BOLD);
+        headerView.setTextColor(Color.parseColor("#444444"));
+        headerView.setPadding(0, dpToPx(10), 0, dpToPx(2));
+        container.addView(headerView);
+    }
+
     private void addCommandBlock(String command) {
-        // Estilo basado en GPUTILS: Caja negra, texto verde, botón verde
+        // No mostrar botón de copiar si parece un LOG o resultado (más de 3 líneas o
+        // carece de prompt)
+        boolean isLogContent = command.contains("\n") && (command.split("\n").length > 4
+                || (!command.contains("gpasm") && !command.contains("sdcc") && !command.contains("pkg")));
+
         LinearLayout blockLayout = new LinearLayout(context);
         blockLayout.setOrientation(LinearLayout.VERTICAL);
         blockLayout.setBackgroundColor(Color.parseColor("#1E1E1E"));
@@ -289,40 +318,41 @@ public class TutorialContentRenderer {
         blockParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
         blockLayout.setLayoutParams(blockParams);
 
-        // Header con título y botón verde
-        LinearLayout header = new LinearLayout(context);
-        header.setOrientation(LinearLayout.HORIZONTAL);
-        header.setGravity(Gravity.CENTER_VERTICAL);
-        header.setPadding(0, 0, 0, dpToPx(8));
+        // Header solo si NO es log
+        if (!isLogContent) {
+            LinearLayout header = new LinearLayout(context);
+            header.setOrientation(LinearLayout.HORIZONTAL);
+            header.setGravity(Gravity.CENTER_VERTICAL);
+            header.setPadding(0, 0, 0, dpToPx(8));
 
-        TextView titleView = new TextView(context);
-        titleView.setText("💻 " + (currentLanguage.equals("es") ? "Comando" : "Command"));
-        titleView.setTextSize(11);
-        titleView.setTextColor(Color.parseColor("#00FF00"));
-        titleView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
+            TextView titleView = new TextView(context);
+            titleView.setText("💻 " + (currentLanguage.equals("es") ? "Comando" : "Command"));
+            titleView.setTextSize(11);
+            titleView.setTextColor(Color.parseColor("#00FF00"));
+            titleView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
 
-        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(0, -2, 1f);
-        titleView.setLayoutParams(titleParams);
-        header.addView(titleView);
+            LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(0, -2, 1f);
+            titleView.setLayoutParams(titleParams);
+            header.addView(titleView);
 
-        Button copyBtn = new Button(context);
-        copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
-        copyBtn.setTextSize(10);
-        copyBtn.setTextColor(Color.WHITE);
-        copyBtn.setBackgroundColor(Color.parseColor("#4CAF50")); // Botón Verde
-        copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
-        copyBtn.setMinimumHeight(0);
-        copyBtn.setMinimumWidth(0);
-        copyBtn.setOnClickListener(v -> copyToClipboard(command));
-        header.addView(copyBtn);
+            Button copyBtn = new Button(context);
+            copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
+            copyBtn.setTextSize(10);
+            copyBtn.setTextColor(Color.WHITE);
+            copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
+            copyBtn.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
+            copyBtn.setMinimumHeight(0);
+            copyBtn.setMinimumWidth(0);
+            copyBtn.setOnClickListener(v -> copyToClipboard(command));
+            header.addView(copyBtn);
 
-        blockLayout.addView(header);
+            blockLayout.addView(header);
+        }
 
-        // Scroll para comandos largos
         HorizontalScrollView scrollView = new HorizontalScrollView(context);
         TextView commandView = new TextView(context);
         commandView.setText(command);
-        commandView.setTextColor(Color.parseColor("#00FF00"));
+        commandView.setTextColor(isLogContent ? Color.parseColor("#ABB2BF") : Color.parseColor("#00FF00"));
         commandView.setTypeface(Typeface.MONOSPACE);
         commandView.setTextSize(12);
         commandView.setTextIsSelectable(true);
@@ -398,6 +428,52 @@ public class TutorialContentRenderer {
         blockLayout.addView(scrollView);
 
         container.addView(blockLayout);
+    }
+
+    private void addTable(java.util.List<String> tableLines) {
+        if (tableLines.size() < 2)
+            return;
+
+        android.widget.TableLayout tableLayout = new android.widget.TableLayout(context);
+        tableLayout.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+        tableLayout.setPadding(0, dpToPx(8), 0, dpToPx(16));
+
+        for (int rowIdx = 0; rowIdx < tableLines.size(); rowIdx++) {
+            String line = tableLines.get(rowIdx);
+            if (line.contains("|-"))
+                continue;
+
+            android.widget.TableRow tableRow = new android.widget.TableRow(context);
+            String[] cells = line.split("\\|");
+
+            for (String cell : cells) {
+                String trimmed = cell.trim();
+                if (trimmed.isEmpty() && cell.equals(cells[0]))
+                    continue;
+                if (trimmed.isEmpty() && cell.equals(cells[cells.length - 1]))
+                    continue;
+
+                TextView cellView = new TextView(context);
+                cellView.setText(trimmed);
+                cellView.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+                cellView.setTextSize(12);
+                cellView.setBackgroundResource(android.R.drawable.edit_text); // Borde simple
+
+                if (rowIdx == 0) {
+                    cellView.setTypeface(null, Typeface.BOLD);
+                    cellView.setTextColor(Color.WHITE);
+                    cellView.setBackgroundColor(Color.parseColor("#24292E"));
+                } else {
+                    cellView.setTextColor(Color.BLACK);
+                }
+                tableRow.addView(cellView);
+            }
+            tableLayout.addView(tableRow);
+        }
+
+        HorizontalScrollView hsv = new HorizontalScrollView(context);
+        hsv.addView(tableLayout);
+        container.addView(hsv);
     }
 
     private SpannableString highlightAssemblySyntax(String code) {
@@ -493,16 +569,19 @@ public class TutorialContentRenderer {
 
         String processedText = text;
         if (isMarkdownEnabled) {
-            if (text.trim().startsWith("- ") || text.trim().startsWith("* ")) {
-                processedText = "  • " + text.trim().substring(2);
+            String temp = text.trim();
+            if (temp.startsWith("- ") || temp.startsWith("* ")) {
+                processedText = "  • " + temp.substring(2);
+            } else if (temp.matches("^\\d+\\.\\s.*")) {
+                processedText = "  " + temp;
             }
         }
 
         android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder();
 
-        // 1. Procesar Negritas **texto** (Solo si es Markdown)
+        // 1. Procesar Negritas **texto** o ***texto*** (Más robusto)
         if (isMarkdownEnabled) {
-            Pattern boldPattern = Pattern.compile("\\*\\*(.*?)\\*\\*");
+            Pattern boldPattern = Pattern.compile("\\*{2,3}(.*?)\\*{2,3}");
             Matcher mBold = boldPattern.matcher(processedText);
             int lastPos = 0;
             while (mBold.find()) {
@@ -517,28 +596,35 @@ public class TutorialContentRenderer {
             ssb.append(processedText);
         }
 
-        // 2. Procesar comillas simples 'texto' como monoespacio (Opcional para SDCC)
+        // 2. Procesar Código en línea (Inline Code) con fondo gris y bordes
         if (isMarkdownEnabled) {
             String tempText = ssb.toString();
-            ssb.clear(); // Re-procesar para aplicar sobre el resultado anterior
-            Pattern codePattern = Pattern.compile("'(.*?)'");
+            ssb.clear();
+            // Soporta tanto ` como ' (este último solo si parece código corto)
+            Pattern codePattern = Pattern.compile("(`|')(.*?)(\\1)");
             Matcher mCode = codePattern.matcher(tempText);
             int lastPos = 0;
             while (mCode.find()) {
                 ssb.append(tempText.substring(lastPos, mCode.start()));
                 int start = ssb.length();
-                ssb.append(mCode.group(1));
+                String content = mCode.group(2);
+                ssb.append(content);
+
+                // Fondo gris suave con padding simulado vía Monoespace + Color
                 ssb.setSpan(new TypefaceSpan("monospace"), start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E4405F")), start, ssb.length(),
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.setSpan(new android.text.style.BackgroundColorSpan(Color.parseColor("#F3F3F3")), start,
+                        ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
                 lastPos = mCode.end();
             }
             ssb.append(tempText.substring(lastPos));
         }
 
-        // 3. Procesar Enlaces (Ambos modos)
+        // 3. Enlaces clickeables
         String currentText = ssb.toString();
-        Pattern urlPattern = Pattern.compile("(https?://[^\\s\\)\\]\\*]+)");
+        Pattern urlPattern = Pattern.compile("(https?://[^\\s\\)\\]\\*\\,]+)");
         Matcher matcher = urlPattern.matcher(currentText);
 
         while (matcher.find()) {
