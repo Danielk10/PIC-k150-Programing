@@ -206,10 +206,6 @@ public class MainActivity extends AppCompatActivity
         FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
         if (bannerContainer != null && publicidad != null) {
             publicidad.cargarBanner(bannerContainer);
-
-            // NUEVO: Iniciar precarga de anuncios nativos para las ventanas emergentes
-            publicidad.precargarNativeAd(MostrarPublicidad.KEY_NATIVE_MEMORY);
-            publicidad.precargarNativeAd(MostrarPublicidad.KEY_NATIVE_PROGRAMMING);
         }
     }
 
