@@ -1,5 +1,6 @@
 package com.diamon.publicidad;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -55,6 +56,9 @@ public class MostrarPublicidad implements Publicidad {
 
     private AdView adView;
     private final Map<String, NativeAd> nativeAdsMap = new HashMap<>();
+    private final Map<String, Boolean> loadingAdsMap = new HashMap<>();
+    private static final Map<String, Long> lastRequestTimeMap = new HashMap<>();
+    private static final long MIN_REQUEST_INTERVAL = 10000; // 10 segundos entre peticiones para la misma unidad
 
     public MostrarPublicidad(AppCompatActivity actividad) {
         this.actividad = actividad;
@@ -116,7 +120,7 @@ public class MostrarPublicidad implements Publicidad {
 
                 AdRequest adRequest = new AdRequest.Builder().build();
                 adView.loadAd(adRequest);
-                Log.d(TAG, "Banner cargado correctamente");
+                Log.d(TAG, "Solicitud de Banner enviada");
 
             } catch (Exception e) {
                 Log.e(TAG, "Error cargando banner: " + e.getMessage());
@@ -154,22 +158,43 @@ public class MostrarPublicidad implements Publicidad {
                     return;
                 }
 
-                // Si ya está cargado, no duplicar trabajo a menos que se fuerce
-                if (nativeAdsMap.containsKey(key)) {
+                // Evitar peticiones si ya hay una en curso o si el anuncio ya existe
+                if (Boolean.TRUE.equals(loadingAdsMap.get(key))) {
+                    Log.d(TAG, "NativeAd (" + key + ") ya se está cargando. Ignorando...");
                     return;
                 }
+
+                if (nativeAdsMap.containsKey(key)) {
+                    Log.d(TAG, "NativeAd (" + key + ") ya disponible en caché.");
+                    return;
+                }
+
+                // Throttling: evitar peticiones consecutivas muy rápidas (por errores en bucle)
+                long now = System.currentTimeMillis();
+                long lastRequest = lastRequestTimeMap.getOrDefault(key, 0L);
+                if (now - lastRequest < MIN_REQUEST_INTERVAL) {
+                    Log.w(TAG, "Solicitud de NativeAd (" + key + ") muy frecuente. Esperando cooldown.");
+                    return;
+                }
+
+                Log.d(TAG, "Iniciando precarga de NativeAd: " + key);
+                loadingAdsMap.put(key, true);
+                lastRequestTimeMap.put(key, now);
 
                 AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
                         .forNativeAd(nativeAd -> {
                             NativeAd oldAd = nativeAdsMap.put(key, nativeAd);
                             if (oldAd != null)
                                 oldAd.destroy();
-                            Log.d(TAG, "NativeAd precargado: " + key);
+                            loadingAdsMap.put(key, false);
+                            Log.d(TAG, "NativeAd precargado con éxito: " + key);
                         })
                         .withAdListener(new AdListener() {
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                Log.e(TAG, "Fallo precarga NativeAd (" + key + "): " + adError.getMessage());
+                                loadingAdsMap.put(key, false);
+                                Log.e(TAG, "Fallo precarga NativeAd (" + key + "): " + adError.getMessage() + " Code: "
+                                        + adError.getCode());
                             }
                         })
                         .withNativeAdOptions(new NativeAdOptions.Builder()
@@ -179,6 +204,7 @@ public class MostrarPublicidad implements Publicidad {
 
                 adLoader.loadAd(new AdRequest.Builder().build());
             } catch (Exception e) {
+                loadingAdsMap.put(key, false);
                 Log.e(TAG, "Error en precarga NativeAd: " + e.getMessage());
             }
         });
@@ -194,9 +220,13 @@ public class MostrarPublicidad implements Publicidad {
             NativeAd ad = nativeAdsMap.get(key);
 
             if (ad != null) {
+                Log.d(TAG, "Mostrando NativeAd desde caché: " + key);
                 renderNativeAd(ad, container);
-                // Precargar el siguiente una vez usado
-                precargarNativeAd(key);
+                // Remover de la caché para que se use una sola vez
+                nativeAdsMap.remove(key);
+                // Iniciar precarga del SIQUIENTE anuncio para la próxima vez
+                // con un pequeño delay para no saturar si el usuario abre/cierra rápido
+                mainHandler.postDelayed(() -> precargarNativeAd(key), 3000);
             } else {
                 Log.w(TAG, "NativeAd no listo para: " + key + ". Cargando dinámicamente...");
                 loadAndShowNativeAd(key, container);
@@ -209,14 +239,27 @@ public class MostrarPublicidad implements Publicidad {
         if (adUnitId == null)
             return;
 
+        // Si ya se está cargando, esperar a que termine (el listener original se
+        // encargará)
+        // pero aquí necesitamos mostrarlo en ESTE contenedor.
+        // Por sencillez, si no está en caché pedimos uno nuevo asegurando el
+        // throttling.
+
+        loadingAdsMap.put(key, true);
+        lastRequestTimeMap.put(key, System.currentTimeMillis());
+
         AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
                 .forNativeAd(nativeAd -> {
+                    loadingAdsMap.put(key, false);
                     renderNativeAd(nativeAd, container);
                     Log.d(TAG, "NativeAd cargado y mostrado dinámicamente: " + key);
+                    // No lo guardamos en caché porque ya se está mostrando
                 })
                 .withAdListener(new AdListener() {
                     @Override
                     public void onAdFailedToLoad(LoadAdError adError) {
+                        loadingAdsMap.put(key, false);
+                        Log.e(TAG, "Fallo carga dinámica NativeAd (" + key + "): " + adError.getMessage());
                         showNativePlaceholder(container);
                     }
                 })
@@ -225,35 +268,46 @@ public class MostrarPublicidad implements Publicidad {
     }
 
     private void renderNativeAd(NativeAd nativeAd, ViewGroup container) {
-        NativeAdView adView = (NativeAdView) actividad.getLayoutInflater()
-                .inflate(R.layout.layout_native_ad, null);
+        try {
+            NativeAdView adView = (NativeAdView) actividad.getLayoutInflater()
+                    .inflate(R.layout.layout_native_ad, null);
 
-        adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
-        adView.setBodyView(adView.findViewById(R.id.ad_body));
-        adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
-        adView.setIconView(adView.findViewById(R.id.ad_app_icon));
-        adView.setMediaView(adView.findViewById(R.id.ad_media));
+            adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+            adView.setBodyView(adView.findViewById(R.id.ad_body));
+            adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+            adView.setIconView(adView.findViewById(R.id.ad_app_icon));
+            adView.setMediaView(adView.findViewById(R.id.ad_media));
 
-        ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
-        ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
-        ((TextView) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+            if (adView.getHeadlineView() != null)
+                ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
 
-        if (nativeAd.getIcon() != null) {
-            ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
-            adView.getIconView().setVisibility(View.VISIBLE);
-        } else {
-            adView.getIconView().setVisibility(View.GONE);
+            if (adView.getBodyView() != null)
+                ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
+
+            if (adView.getCallToActionView() != null)
+                ((TextView) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+
+            if (nativeAd.getIcon() != null && adView.getIconView() != null) {
+                ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
+                adView.getIconView().setVisibility(View.VISIBLE);
+            } else if (adView.getIconView() != null) {
+                adView.getIconView().setVisibility(View.GONE);
+            }
+
+            adView.setNativeAd(nativeAd);
+            container.addView(adView);
+        } catch (Exception e) {
+            Log.e(TAG, "Error al renderizar NativeAd: " + e.getMessage());
+            showNativePlaceholder(container);
         }
-
-        adView.setNativeAd(nativeAd);
-        container.addView(adView);
     }
 
     private void showNativePlaceholder(ViewGroup container) {
         container.removeAllViews();
         TextView placeholder = new TextView(actividad);
-        placeholder.setText("Anuncio no disponible");
-        placeholder.setPadding(32, 32, 32, 32);
+        placeholder.setText("Publicidad recomendada"); // Un texto más amigable
+        placeholder.setPadding(30, 30, 30, 30);
+        placeholder.setTextColor(Color.GRAY);
         container.addView(placeholder);
     }
 
@@ -268,6 +322,7 @@ public class MostrarPublicidad implements Publicidad {
                 ad.destroy();
             }
             nativeAdsMap.clear();
+            loadingAdsMap.clear();
         });
     }
 }

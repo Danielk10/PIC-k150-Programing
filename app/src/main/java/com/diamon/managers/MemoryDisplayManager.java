@@ -121,9 +121,17 @@ public class MemoryDisplayManager {
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
+
+        // No ocultamos el adContainer inmediatamente, solo bajamos su peso visual si es
+        // necesario
+        // o lo mantenemos para que la impresión se cuente.
         if (adContainer != null) {
-            adContainer.setVisibility(View.GONE);
-            adContainer.removeAllViews();
+            // adContainer.setVisibility(View.GONE); // COMENTADO: Mantener visible
+            // Podríamos reducir su altura para dar más espacio a los datos si fuera
+            // necesario
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) adContainer.getLayoutParams();
+            lp.height = dpToPx(200); // Reducir un poco para que quepan los datos
+            adContainer.setLayoutParams(lp);
         }
 
         if (statusTextView != null) {
