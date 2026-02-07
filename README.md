@@ -292,7 +292,7 @@ PIC-k150-Programing/
   </tr>
   <tr>
     <td align="center">
-      <img src="captura5.jpg" width="350" alt="Configuración">
+      <img src="captura5.jpg" width="350" alt="Leer Memoria">
       <br>
       <em>Configuración</em>
     </td>
@@ -306,7 +306,7 @@ PIC-k150-Programing/
     <td align="center" colspan="2">
       <img src="captura7.jpg" width="350" alt="Programación exitosa">
       <br>
-      <em>Leer Memoria</em>
+      <em>ICSP</em>
     </td>
   </tr>
 </table>
