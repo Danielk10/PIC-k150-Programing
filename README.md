@@ -270,7 +270,7 @@ PIC-k150-Programing/
     <td align="center">
       <img src="captura1.jpg" width="350" alt="Pantalla principal">
       <br>
-      <em>Pantalla principal</em>
+      <em>   Pantalla principal   </em>
     </td>
     <td align="center">
       <img src="captura2.jpg" width="350" alt="Selección de dispositivos">
