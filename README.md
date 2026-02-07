@@ -275,14 +275,14 @@ PIC-k150-Programing/
     <td align="center">
       <img src="captura2.jpg" width="350" alt="Selección de archivo">
       <br>
-      <em>Selección de archivo</em>
+      <em>Selección de dispositivos</em>
     </td>
   </tr>
   <tr>
     <td align="center">
       <img src="captura3.jpg" width="350" alt="Permisos USB">
       <br>
-      <em>Permisos USB</em>
+      <em>Menú</em>
     </td>
     <td align="center">
       <img src="captura4.jpg" width="350" alt="Proceso de programación">
@@ -306,7 +306,7 @@ PIC-k150-Programing/
     <td align="center" colspan="2">
       <img src="captura7.jpg" width="350" alt="Programación exitosa">
       <br>
-      <em>Programación exitosa</em>
+      <em>Leer Memoria</em>
     </td>
   </tr>
 </table>
