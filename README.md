@@ -1,6 +1,6 @@
 <div align="center">
 
-# PIC k150 Programming
+# 📱 PIC k150 Programming
 
 ### Programa microcontroladores PIC desde tu dispositivo Android
 
@@ -263,7 +263,55 @@ PIC-k150-Programing/
 
 ## 📱 Capturas de pantalla
 
-*Las capturas de pantalla se actualizarán en futuras versiones*
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="captura1.jpg" width="350" alt="Pantalla principal">
+      <br>
+      <em>Pantalla principal</em>
+    </td>
+    <td align="center">
+      <img src="captura2.jpg" width="350" alt="Selección de archivo">
+      <br>
+      <em>Selección de archivo</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="captura3.jpg" width="350" alt="Permisos USB">
+      <br>
+      <em>Permisos USB</em>
+    </td>
+    <td align="center">
+      <img src="captura4.jpg" width="350" alt="Proceso de programación">
+      <br>
+      <em>Proceso de programación</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="captura5.jpg" width="350" alt="Configuración">
+      <br>
+      <em>Configuración</em>
+    </td>
+    <td align="center">
+      <img src="captura6.jpg" width="350" alt="Opciones avanzadas">
+      <br>
+      <em>Opciones avanzadas</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="captura7.jpg" width="350" alt="Programación exitosa">
+      <br>
+      <em>Programación exitosa</em>
+    </td>
+  </tr>
+</table>
+
+</div>
 
 ## 🔮 Roadmap
 
