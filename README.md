@@ -228,7 +228,7 @@ Para más detalles, consulta el archivo [LICENSE.txt](LICENSE.txt).
 |----------|----------|---------|
 | usb-serial-for-android | MIT | Google Inc. / Mike Wakerly |
 | picpro | LGPL-3.0 | Adam Schubert (Salamek) |
-| picprogrammer | Varies | Proyecto comunitario |
+| picprogrammer | LGPL-2.0 | Proyecto comunitario |
 
 ## 🛠️ Especificaciones técnicas
 
