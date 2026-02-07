@@ -273,14 +273,14 @@ PIC-k150-Programing/
       <em>Pantalla principal</em>
     </td>
     <td align="center">
-      <img src="captura2.jpg" width="350" alt="Selección de archivo">
+      <img src="captura2.jpg" width="350" alt="Selección de dispositivos">
       <br>
       <em>Selección de dispositivos</em>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="captura3.jpg" width="350" alt="Permisos USB">
+      <img src="captura3.jpg" width="350" alt="Menú">
       <br>
       <em>Menú</em>
     </td>
@@ -292,9 +292,9 @@ PIC-k150-Programing/
   </tr>
   <tr>
     <td align="center">
-      <img src="captura5.jpg" width="350" alt="Leer Memoria">
+      <img src="captura5.jpg" width="350" alt="Leer memoria">
       <br>
-      <em>Configuración</em>
+      <em>Leer memoria</em>
     </td>
     <td align="center">
       <img src="captura6.jpg" width="350" alt="Opciones avanzadas">
@@ -304,7 +304,7 @@ PIC-k150-Programing/
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <img src="captura7.jpg" width="350" alt="Programación exitosa">
+      <img src="captura7.jpg" width="350" alt="ISCP">
       <br>
       <em>ICSP</em>
     </td>
