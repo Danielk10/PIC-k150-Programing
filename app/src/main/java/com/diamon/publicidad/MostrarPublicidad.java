@@ -171,7 +171,8 @@ public class MostrarPublicidad implements Publicidad {
 
                 // Throttling: evitar peticiones consecutivas muy rápidas (por errores en bucle)
                 long now = System.currentTimeMillis();
-                long lastRequest = lastRequestTimeMap.getOrDefault(key, 0L);
+                Long ultimoRegistro = lastRequestTimeMap.get(key);
+                long lastRequest = ultimoRegistro != null ? ultimoRegistro : 0L;
                 if (now - lastRequest < MIN_REQUEST_INTERVAL) {
                     Log.w(TAG, "Solicitud de NativeAd (" + key + ") muy frecuente. Esperando cooldown.");
                     return;
