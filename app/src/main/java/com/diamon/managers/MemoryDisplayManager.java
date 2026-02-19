@@ -77,18 +77,20 @@ public class MemoryDisplayManager {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
-        int popupWidth = (int) (screenWidth * 0.92);
-        int popupHeight = (int) (screenHeight * 0.85);
 
-        LinearLayout mainContainer = createMainContainer(popupWidth, popupHeight);
+        LinearLayout mainContainer = createMainContainer(screenWidth, screenHeight);
 
         if (memoryPopup != null && memoryPopup.isShowing()) {
             memoryPopup.dismiss();
         }
 
-        memoryPopup = new PopupWindow(mainContainer, popupWidth, popupHeight, true);
+        memoryPopup = new PopupWindow(
+                mainContainer,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                true);
         memoryPopup.setOutsideTouchable(false);
-        memoryPopup.setAnimationStyle(0);
+        memoryPopup.setAnimationStyle(R.style.PopupAnimation);
 
         View rootView;
         if (context instanceof android.app.Activity) {
@@ -130,7 +132,7 @@ public class MemoryDisplayManager {
             // Podríamos reducir su altura para dar más espacio a los datos si fuera
             // necesario
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) adContainer.getLayoutParams();
-            lp.height = dpToPx(200); // Reducir un poco para que quepan los datos
+            lp.height = dpToPx(220); // Mantener anuncio visible y liberar espacio para el visor HEX
             adContainer.setLayoutParams(lp);
         }
 
@@ -190,7 +192,7 @@ public class MemoryDisplayManager {
         shape.setColor(COLOR_BACKGROUND);
         shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E"));
         container.setBackground(shape);
-        container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        container.setPadding(dpToPx(16), dpToPx(24), dpToPx(16), dpToPx(16));
 
         TextView title = new TextView(context);
         title.setText("Datos de Memoria");
@@ -232,10 +234,10 @@ public class MemoryDisplayManager {
 
         adContainer = new FrameLayout(context);
         LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(380));
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(240));
         adParams.setMargins(0, 0, 0, dpToPx(8));
         adContainer.setLayoutParams(adParams);
-        adContainer.setMinimumHeight(dpToPx(350));
+        adContainer.setMinimumHeight(dpToPx(200));
         container.addView(adContainer);
 
         LinearLayout contentContainer = new LinearLayout(context);

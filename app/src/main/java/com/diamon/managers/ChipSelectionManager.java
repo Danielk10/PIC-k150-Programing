@@ -6,6 +6,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.chip.ChipinfoEntry;
@@ -157,11 +158,7 @@ public class ChipSelectionManager {
                 sb.append(context.getString(R.string.pin_1)).append(" ").append(currentChip.getUbicacionPin1DelPic());
             }
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                return android.text.Html.fromHtml(sb.toString(), android.text.Html.FROM_HTML_MODE_LEGACY);
-            } else {
-                return android.text.Html.fromHtml(sb.toString());
-            }
+            return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY);
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }

@@ -12,6 +12,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
@@ -68,17 +69,19 @@ public class ProgrammingDialogManager {
     private void createPopupWindow() {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
 
-        int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
-        int popupHeight = (int) (screenHeight * 0.85);
 
-        LinearLayout popupContainer = createPopupContainer(popupHeight);
+        LinearLayout popupContainer = createPopupContainer(screenHeight);
 
-        popupWindow = new PopupWindow(popupContainer, (int) (screenWidth * 0.92), popupHeight, true);
+        popupWindow = new PopupWindow(
+                popupContainer,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                true);
         popupWindow.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
         popupWindow.setElevation(24);
         popupWindow.setOutsideTouchable(false);
-        popupWindow.setAnimationStyle(0);
+        popupWindow.setAnimationStyle(R.style.PopupAnimation);
 
         View rootView;
         if (context instanceof android.app.Activity) {
@@ -104,7 +107,7 @@ public class ProgrammingDialogManager {
         shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E"));
         container.setBackground(shape);
         container.setElevation(16f);
-        container.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        container.setPadding(dpToPx(16), dpToPx(24), dpToPx(16), dpToPx(16));
 
         container.addView(createTopContent());
 
