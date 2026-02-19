@@ -1,11 +1,9 @@
 package com.diamon.utilidades;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsetsController;
-import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,16 +43,8 @@ public class PantallaCompleta {
      */
     public void habilitarEdgeToEdge() {
         try {
-            if (Build.VERSION.SDK_INT >= 35) {
-                // En Android 15+ (API 35), Edge-to-Edge es el comportamiento por defecto.
-                // EdgeToEdge.enable() llama a métodos deprecados (setStatusBarColor),
-                // así que lo configuramos manualmente para evitar advertencias.
-                Window window = actividad.getWindow();
-                WindowCompat.setDecorFitsSystemWindows(window, false);
-            } else {
-                // Para versiones anteriores, usar la librería de compatibilidad
-                EdgeToEdge.enable(actividad);
-            }
+            // API oficial recomendada por AndroidX Activity 1.9+ para Android 15+
+            EdgeToEdge.enable(actividad);
         } catch (Exception e) {
             // Fallback manual si algo falla
             Window window = actividad.getWindow();
@@ -76,7 +66,7 @@ public class PantallaCompleta {
             // sistema
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
 
-            return WindowInsetsCompat.CONSUMED;
+            return windowInsets;
         });
     }
 
@@ -97,7 +87,7 @@ public class PantallaCompleta {
                     v.getPaddingRight(),
                     insets.bottom);
 
-            return WindowInsetsCompat.CONSUMED;
+            return windowInsets;
         });
     }
 

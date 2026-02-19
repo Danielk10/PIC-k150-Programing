@@ -156,8 +156,9 @@ public class FuseConfigPopup {
             window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
             window.setElevation(24f);
             window.setLayout(
-                    (int) (context.getResources().getDisplayMetrics().widthPixels * 0.95),
-                    (int) (context.getResources().getDisplayMetrics().heightPixels * 0.90));
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            window.setWindowAnimations(com.diamon.pic.R.style.PopupAnimation);
         }
 
         // Animación de entrada
