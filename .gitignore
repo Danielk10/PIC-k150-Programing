@@ -1,25 +1,29 @@
-*.iml
-.gradle
-.acside
-.androidide/
-.idea/
-.acside/
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-/app/google-services.json
-.externalNativeBuild
-.cxx
-.kilocode
-.vscode
-.mvn/wrapper/
-local.properties
-/.acside/
+# --- Android & Gradle ---
+.gradle/
+build/
 /app/build/
+captures/
+local.properties
+/local.properties
+
+# --- Archivos Sensibles (IMPORTANTE) ---
+/app/google-services.json
+
+# --- IDEs (Android Studio, IntelliJ, VS Code) ---
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# --- AndroidIDE & ACSide (Específicos de tu entorno) ---
+.androidide/
+.acside/
+/.acside/
+
+# --- Compilación Nativa (C/C++ & NDK) ---
+.externalNativeBuild/
+.cxx/
+
+# --- Otros ---
+.kilocode/
+.mvn/wrapper/
