@@ -131,6 +131,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Aplicar insets del sistema al layout raíz para evitar solapes
+        View vistaPrincipal = findViewById(R.id.main);
+        if (vistaPrincipal != null) {
+            pantallaCompleta.aplicarWindowInsets(vistaPrincipal);
+        }
+
         // Ocultar barras de navegación para modo inmersivo
         pantallaCompleta.ocultarBotonesVirtuales();
 
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity
                 }
             } catch (Exception e) {
                 Analytics.trackEvent("USB: Init Error",
-                        Map.of("Message", e.getMessage() != null ? e.getMessage() : "unknown"));
+                        crearMapaAnalitica("Message", e.getMessage() != null ? e.getMessage() : "unknown"));
             }
         }, "UsbInitializer").start();
 
@@ -298,7 +304,7 @@ public class MainActivity extends AppCompatActivity
                         // se traduzca R.string.fusibles_aplicados_correctamente
                         Toast.makeText(
                                 MainActivity.this,
-                                "Fusibles aplicados correctamente",
+                                getString(R.string.fusibles_aplicados_correctamente),
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }
@@ -308,6 +314,13 @@ public class MainActivity extends AppCompatActivity
                         // No hacer nada
                     }
                 });
+    }
+
+    /** Crea un mapa simple para eventos de analítica compatible con API 23+. */
+    private Map<String, String> crearMapaAnalitica(String clave, String valor) {
+        java.util.HashMap<String, String> propiedades = new java.util.HashMap<>();
+        propiedades.put(clave, valor);
+        return propiedades;
     }
 
     private void setupListeners() {
@@ -340,7 +353,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onConnectionError(String errorMessage) {
-        Analytics.trackEvent("USB: Error", Map.of("Message", errorMessage));
+        Analytics.trackEvent("USB: Error", crearMapaAnalitica("Message", errorMessage));
         runOnUiThread(() -> {
             connectionStatusTextView.setTextColor(Color.RED);
             connectionStatusTextView.setText(getString(R.string.desconectado));
@@ -362,7 +375,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProgrammingCompleted(boolean success) {
-        Analytics.trackEvent("Prog: Completed", Map.of("Success", String.valueOf(success)));
+        Analytics.trackEvent("Prog: Completed", crearMapaAnalitica("Success", String.valueOf(success)));
         runOnUiThread(() -> {
             if (success) {
                 processStatusTextView.setText(getString(R.string.pic_programado_exitosamente));
@@ -374,7 +387,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProgrammingError(String errorMessage) {
-        Analytics.trackEvent("Prog: Error", Map.of("Message", errorMessage));
+        Analytics.trackEvent("Prog: Error", crearMapaAnalitica("Message", errorMessage));
         runOnUiThread(() -> {
             processStatusTextView.setText("Error: " + errorMessage);
             Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
