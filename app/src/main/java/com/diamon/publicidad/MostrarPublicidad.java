@@ -340,6 +340,16 @@ public class MostrarPublicidad implements Publicidad {
             // Registrar el anuncio con la vista
             adView.setNativeAd(nativeAd);
 
+            // Escalar imagenes para llenar el espacio del MediaView
+            if (mediaView != null) {
+                mediaView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+
+            // Forzar que el NativeAdView llene su contenedor completamente
+            adView.setLayoutParams(new android.widget.FrameLayout.LayoutParams(
+                    android.widget.FrameLayout.LayoutParams.MATCH_PARENT,
+                    android.widget.FrameLayout.LayoutParams.MATCH_PARENT));
+
             // Agregar al contenedor
             container.addView(adView);
         } catch (Exception e) {

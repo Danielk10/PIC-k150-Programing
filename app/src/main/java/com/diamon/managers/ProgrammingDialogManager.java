@@ -138,7 +138,7 @@ public class ProgrammingDialogManager {
 
         titleTextView = new TextView(context);
         titleTextView.setText(R.string.grabando_pic);
-        titleTextView.setTextSize(16);
+        titleTextView.setTextSize(18);
         titleTextView.setTextColor(Color.WHITE);
         titleTextView.setGravity(Gravity.CENTER);
         topContent.addView(titleTextView);
@@ -152,7 +152,7 @@ public class ProgrammingDialogManager {
         statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
         statusProgressBar.getIndeterminateDrawable().setColorFilter(
                 new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
-        LinearLayout.LayoutParams progressSizeParams = new LinearLayout.LayoutParams(dpToPx(28), dpToPx(28));
+        LinearLayout.LayoutParams progressSizeParams = new LinearLayout.LayoutParams(dpToPx(35), dpToPx(35));
         statusProgressBar.setLayoutParams(progressSizeParams);
         statusProgressBar.setVisibility(View.VISIBLE);
         statusContainer.addView(statusProgressBar);
@@ -165,7 +165,7 @@ public class ProgrammingDialogManager {
 
         descriptionTextView = new TextView(context);
         descriptionTextView.setText(R.string.espere_grabacion_pic);
-        descriptionTextView.setTextSize(14);
+        descriptionTextView.setTextSize(16);
         descriptionTextView.setTextColor(Color.LTGRAY);
         descriptionTextView.setGravity(Gravity.CENTER);
         topContent.addView(descriptionTextView);
