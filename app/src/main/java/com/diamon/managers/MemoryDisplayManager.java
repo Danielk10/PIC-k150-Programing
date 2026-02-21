@@ -236,7 +236,7 @@ public class MemoryDisplayManager {
 
         adContainer = new FrameLayout(context);
         LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(250));
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(300));
         adParams.setMargins(0, dpToPx(4), 0, dpToPx(4));
         adContainer.setLayoutParams(adParams);
         // Sin padding para que los assets del anuncio no se salgan del NativeAdView
