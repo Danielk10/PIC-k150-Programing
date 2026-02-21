@@ -134,7 +134,7 @@ public class ProgrammingDialogManager {
         LinearLayout topContent = new LinearLayout(context);
         topContent.setOrientation(LinearLayout.VERTICAL);
         topContent.setGravity(Gravity.CENTER);
-        topContent.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        topContent.setPadding(dpToPx(12), dpToPx(8), dpToPx(12), dpToPx(4));
 
         titleTextView = new TextView(context);
         titleTextView.setText(R.string.grabando_pic);
@@ -147,7 +147,7 @@ public class ProgrammingDialogManager {
         LinearLayout.LayoutParams statusParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        statusParams.setMargins(0, dpToPx(12), 0, dpToPx(12));
+        statusParams.setMargins(0, dpToPx(6), 0, dpToPx(6));
 
         statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
         statusProgressBar.getIndeterminateDrawable().setColorFilter(
@@ -189,13 +189,13 @@ public class ProgrammingDialogManager {
         LinearLayout buttonContainer = new LinearLayout(context);
         buttonContainer.setOrientation(LinearLayout.VERTICAL);
         buttonContainer.setGravity(Gravity.CENTER_HORIZONTAL);
-        buttonContainer.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
+        buttonContainer.setPadding(dpToPx(16), dpToPx(8), dpToPx(16), dpToPx(8));
 
         actionButton = new Button(context);
         actionButton.setText(R.string.cancelar);
         actionButton.setTextColor(Color.WHITE);
         actionButton.setBackgroundResource(R.drawable.button_background_red);
-        actionButton.setPadding(dpToPx(50), dpToPx(20), dpToPx(50), dpToPx(20));
+        actionButton.setPadding(dpToPx(50), dpToPx(14), dpToPx(50), dpToPx(14));
         actionButton.setOnClickListener(v -> dismissWithAnimation());
 
         buttonContainer.addView(actionButton);
