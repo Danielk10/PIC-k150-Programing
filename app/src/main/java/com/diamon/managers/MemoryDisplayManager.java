@@ -132,7 +132,7 @@ public class MemoryDisplayManager {
             // Podríamos reducir su altura para dar más espacio a los datos si fuera
             // necesario
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) adContainer.getLayoutParams();
-            lp.height = dpToPx(220); // Mantener anuncio visible y liberar espacio para el visor HEX
+            lp.height = dpToPx(280); // Mantener minimo 280dp para cumplir el requisito de 120x120dp del MediaView
             adContainer.setLayoutParams(lp);
         }
 
