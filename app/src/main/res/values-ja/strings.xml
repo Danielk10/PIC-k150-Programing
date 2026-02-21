@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">選択したファイルは空です</string>
     <string name="error_leyendo_el_archivo">ファイルの読み取り中にエラーが発生しました</string>
     <string name="error_inesperado_leyendo_el_ar">ファイルの読み取り中に予期しないエラーが発生しました</string>
-    <string name="datos_de_memoria">メモリデータ</string>
-    <string name="memoria_rom">ROMメモリ</string>
-    <string name="memoria_eeprom">EEPROMメモリ</string>
-    <string name="cerrar">閉じる</string>
     <string name="protocolo_no_inicializado">プロトコルが初期化されていません</string>
     <string name="datos_invalidos_para_programac">プログラミングのための無効なデータ</string>
     <string name="borrando_memorias">メモリを消去中...</string>

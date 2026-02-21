@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Ifayela elikhethiwe alinandaba</string>
     <string name="error_leyendo_el_archivo">Iphutha lokufunda ifayela</string>
     <string name="error_inesperado_leyendo_el_ar">Iphutha elingalindelekile lokufunda ifayela</string>
-    <string name="datos_de_memoria">Idatha Yenkumbulo</string>
-    <string name="memoria_rom">Inkumbulo ye-ROM</string>
-    <string name="memoria_eeprom">Inkumbulo ye-EEPROM</string>
-    <string name="cerrar">Vala</string>
     <string name="protocolo_no_inicializado">I-Protocol ayiqalisiwe</string>
     <string name="datos_invalidos_para_programac">Idatha engavumelekile yokuhlelwa</string>
     <string name="borrando_memorias">Kususa inkumbulo...</string>

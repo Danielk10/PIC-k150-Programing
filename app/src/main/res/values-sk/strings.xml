@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Vybraný súbor je prázdny</string>
     <string name="error_leyendo_el_archivo">Chyba čítania súboru</string>
     <string name="error_inesperado_leyendo_el_ar">Neočakávaná chyba čítania súboru</string>
-    <string name="datos_de_memoria">Dáta Pamäte</string>
-    <string name="memoria_rom">ROM Pamäť</string>
-    <string name="memoria_eeprom">EEPROM Pamäť</string>
-    <string name="cerrar">Zatvoriť</string>
     <string name="protocolo_no_inicializado">Protokol nie je inicializovaný</string>
     <string name="datos_invalidos_para_programac">Neplatné dáta pre programovanie</string>
     <string name="borrando_memorias">Mazanie pamäte...</string>

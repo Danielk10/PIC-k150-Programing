@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">선택한 파일이 비어 있습니다</string>
     <string name="error_leyendo_el_archivo">파일 읽기 오류</string>
     <string name="error_inesperado_leyendo_el_ar">파일을 읽는 중 예기치 않은 오류 발생</string>
-    <string name="datos_de_memoria">메모리 데이터</string>
-    <string name="memoria_rom">ROM 메모리</string>
-    <string name="memoria_eeprom">EEPROM 메모리</string>
-    <string name="cerrar">닫기</string>
     <string name="protocolo_no_inicializado">프로토콜이 초기화되지 않았습니다</string>
     <string name="datos_invalidos_para_programac">프로그래밍에 유효하지 않은 데이터</string>
     <string name="borrando_memorias">메모리 지우는 중...</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">El fitxer seleccionat està buit</string>
     <string name="error_leyendo_el_archivo">Error llegint el fitxer</string>
     <string name="error_inesperado_leyendo_el_ar">Error inesperat llegint el fitxer</string>
-    <string name="datos_de_memoria">Dades de Memòria</string>
-    <string name="memoria_rom">Memòria ROM</string>
-    <string name="memoria_eeprom">Memòria EEPROM</string>
-    <string name="cerrar">Tancar</string>
     <string name="protocolo_no_inicializado">Protocol no inicialitzat</string>
     <string name="datos_invalidos_para_programac">Dades no vàlides per a la programació</string>
     <string name="borrando_memorias">Esborrant memòries...</string>

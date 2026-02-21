@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">ไฟล์ที่เลือกว่างเปล่า</string>
     <string name="error_leyendo_el_archivo">ข้อผิดพลาดในการอ่านไฟล์</string>
     <string name="error_inesperado_leyendo_el_ar">ข้อผิดพลาดที่ไม่คาดคิดในการอ่านไฟล์</string>
-    <string name="datos_de_memoria">ข้อมูลหน่วยความจำ</string>
-    <string name="memoria_rom">หน่วยความจำ ROM</string>
-    <string name="memoria_eeprom">หน่วยความจำ EEPROM</string>
-    <string name="cerrar">ปิด</string>
     <string name="protocolo_no_inicializado">โปรโตคอลไม่ได้เริ่มต้น</string>
     <string name="datos_invalidos_para_programac">ข้อมูลไม่ถูกต้องสำหรับการเขียนโปรแกรม</string>
     <string name="borrando_memorias">กำลังลบหน่วยความจำ...</string>

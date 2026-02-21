@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Het geselecteerde bestand is leeg</string>
     <string name="error_leyendo_el_archivo">Fout bij lezen bestand</string>
     <string name="error_inesperado_leyendo_el_ar">Onverwachte fout bij lezen bestand</string>
-    <string name="datos_de_memoria">Geheugengegevens</string>
-    <string name="memoria_rom">ROM-geheugen</string>
-    <string name="memoria_eeprom">EEPROM-geheugen</string>
-    <string name="cerrar">Sluiten</string>
     <string name="protocolo_no_inicializado">Protocol niet geïnitialiseerd</string>
     <string name="datos_invalidos_para_programac">Ongeldige gegevens voor programmeren</string>
     <string name="borrando_memorias">Geheugen wissen...</string>

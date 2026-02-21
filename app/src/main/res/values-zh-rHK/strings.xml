@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">所選檔案為空</string>
     <string name="error_leyendo_el_archivo">讀取檔案時發生錯誤</string>
     <string name="error_inesperado_leyendo_el_ar">讀取檔案時發生意外錯誤</string>
-    <string name="datos_de_memoria">記憶體資料</string>
-    <string name="memoria_rom">ROM 記憶體</string>
-    <string name="memoria_eeprom">EEPROM 記憶體</string>
-    <string name="cerrar">關閉</string>
     <string name="protocolo_no_inicializado">協議未初始化</string>
     <string name="datos_invalidos_para_programac">編程資料無效</string>
     <string name="borrando_memorias">正在清除記憶體...</string>

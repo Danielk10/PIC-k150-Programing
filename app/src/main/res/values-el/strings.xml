@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Το επιλεγμένο αρχείο είναι κενό</string>
     <string name="error_leyendo_el_archivo">Σφάλμα ανάγνωσης αρχείου</string>
     <string name="error_inesperado_leyendo_el_ar">Απροσδόκητο σφάλμα ανάγνωσης αρχείου</string>
-    <string name="datos_de_memoria">Δεδομένα Μνήμης</string>
-    <string name="memoria_rom">Μνήμη ROM</string>
-    <string name="memoria_eeprom">Μνήμη EEPROM</string>
-    <string name="cerrar">Κλείσιμο</string>
     <string name="protocolo_no_inicializado">Το πρωτόκολλο δεν έχει αρχικοποιηθεί</string>
     <string name="datos_invalidos_para_programac">Μη έγκυρα δεδομένα για προγραμματισμό</string>
     <string name="borrando_memorias">Διαγραφή μνήμης...</string>

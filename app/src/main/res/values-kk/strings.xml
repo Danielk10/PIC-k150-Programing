@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Таңдалған файл бос</string>
     <string name="error_leyendo_el_archivo">Файлды оқу қатесі</string>
     <string name="error_inesperado_leyendo_el_ar">Файлды оқу кезінде күтпеген қате</string>
-    <string name="datos_de_memoria">Жад Деректері</string>
-    <string name="memoria_rom">ROM Жады</string>
-    <string name="memoria_eeprom">EEPROM Жады</string>
-    <string name="cerrar">Жабу</string>
     <string name="protocolo_no_inicializado">Протокол инициализацияланбаған</string>
     <string name="datos_invalidos_para_programac">Бағдарламалау үшін жарамсыз деректер</string>
     <string name="borrando_memorias">Жад өшірілуде...</string>

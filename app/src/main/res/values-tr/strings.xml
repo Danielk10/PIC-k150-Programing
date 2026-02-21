@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Seçili dosya boş</string>
     <string name="error_leyendo_el_archivo">Dosya okunurken hata oluştu</string>
     <string name="error_inesperado_leyendo_el_ar">Dosya okunurken beklenmeyen hata oluştu</string>
-    <string name="datos_de_memoria">Bellek Verileri</string>
-    <string name="memoria_rom">ROM Belleği</string>
-    <string name="memoria_eeprom">EEPROM Belleği</string>
-    <string name="cerrar">Kapat</string>
     <string name="protocolo_no_inicializado">Protokol başlatılmadı</string>
     <string name="datos_invalidos_para_programac">Programlama için geçersiz veriler</string>
     <string name="borrando_memorias">Bellekler siliniyor...</string>

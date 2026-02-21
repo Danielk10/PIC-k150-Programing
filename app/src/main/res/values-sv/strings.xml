@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Den valda filen är tom</string>
     <string name="error_leyendo_el_archivo">Fel vid läsning av fil</string>
     <string name="error_inesperado_leyendo_el_ar">Oväntat fel vid läsning av fil</string>
-    <string name="datos_de_memoria">Minnesdata</string>
-    <string name="memoria_rom">ROM-minne</string>
-    <string name="memoria_eeprom">EEPROM-minne</string>
-    <string name="cerrar">Stäng</string>
     <string name="protocolo_no_inicializado">Protokoll inte initierat</string>
     <string name="datos_invalidos_para_programac">Ogiltiga data för programmering</string>
     <string name="borrando_memorias">Raderar minne...</string>

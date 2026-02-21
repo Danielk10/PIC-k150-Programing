@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">فایل انتخاب شده خالی است</string>
     <string name="error_leyendo_el_archivo">خطا در خواندن فایل</string>
     <string name="error_inesperado_leyendo_el_ar">خطای غیرمنتظره در خواندن فایل</string>
-    <string name="datos_de_memoria">داده‌های حافظه</string>
-    <string name="memoria_rom">حافظه ROM</string>
-    <string name="memoria_eeprom">حافظه EEPROM</string>
-    <string name="cerrar">بستن</string>
     <string name="protocolo_no_inicializado">پروتکل راه‌اندازی نشده</string>
     <string name="datos_invalidos_para_programac">داده‌های نامعتبر برای برنامه‌ریزی</string>
     <string name="borrando_memorias">در حال پاک کردن حافظه...</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Den valgte fil er tom</string>
     <string name="error_leyendo_el_archivo">Fejl ved læsning af fil</string>
     <string name="error_inesperado_leyendo_el_ar">Uventet fejl ved læsning af fil</string>
-    <string name="datos_de_memoria">Hukommelsesdata</string>
-    <string name="memoria_rom">ROM-hukommelse</string>
-    <string name="memoria_eeprom">EEPROM-hukommelse</string>
-    <string name="cerrar">Luk</string>
     <string name="protocolo_no_inicializado">Protokol ikke initialiseret</string>
     <string name="datos_invalidos_para_programac">Ugyldige data til programmering</string>
     <string name="borrando_memorias">Sletter hukommelse...</string>

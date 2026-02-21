@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">The selected file is empty</string>
     <string name="error_leyendo_el_archivo">Error reading the file</string>
     <string name="error_inesperado_leyendo_el_ar">Unexpected error reading the file</string>
-    <string name="datos_de_memoria">Memory Data</string>
-    <string name="memoria_rom">ROM Memory</string>
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    <string name="cerrar">Close</string>
     <string name="protocolo_no_inicializado">Protocol not initialized</string>
     <string name="datos_invalidos_para_programac">Invalid data for programming</string>
     <string name="borrando_memorias">Erasing memories...</string>

@@ -60,10 +60,7 @@
     <string name="el_archivo_seleccionado_esta_v">El archivo seleccionado esta vacio</string>
     <string name="error_leyendo_el_archivo">Error leyendo el archivo</string>
     <string name="error_inesperado_leyendo_el_ar">Error inesperado leyendo el archivo</string>
-    <string name="datos_de_memoria">Datos de Memoria</string>
-    <string name="memoria_rom">Memoria ROM</string>
-    <string name="memoria_eeprom">Memoria EEPROM</string>
-    <string name="cerrar">Cerrar</string>
+
     <string name="protocolo_no_inicializado">Protocolo no inicializado</string>
     <string name="datos_invalidos_para_programac">Datos invalidos para programacion</string>
     <string name="borrando_memorias">Borrando memorias...</string>
@@ -104,7 +101,5 @@
     
     <!-- Nuevos strings para popup de memoria mejorado -->
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
-    <string name="espere_lectura_memoria" translatable="false">Por favor, espere. Leyendo datos del PIC.</string>
-    <string name="lectura_completada" translatable="false">Lectura Completa</string>
     <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
 </resources>

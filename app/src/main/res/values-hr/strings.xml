@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Odabrana datoteka je prazna</string>
     <string name="error_leyendo_el_archivo">Greška pri čitanju datoteke</string>
     <string name="error_inesperado_leyendo_el_ar">Neočekivana greška pri čitanju datoteke</string>
-    <string name="datos_de_memoria">Podaci memorije</string>
-    <string name="memoria_rom">ROM memorija</string>
-    <string name="memoria_eeprom">EEPROM memorija</string>
-    <string name="cerrar">Zatvori</string>
     <string name="protocolo_no_inicializado">Protokol nije inicijaliziran</string>
     <string name="datos_invalidos_para_programac">Nevaljani podaci za programiranje</string>
     <string name="borrando_memorias">Brisanje memorija...</string>

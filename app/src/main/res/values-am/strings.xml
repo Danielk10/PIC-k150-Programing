@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">የተመረጠው ፋይል ባዶ ነው</string>
     <string name="error_leyendo_el_archivo">ፋይል ሲነበብ ስህተት</string>
     <string name="error_inesperado_leyendo_el_ar">ፋይል ሲነበብ ያልተጠበቀ ስህተት</string>
-    <string name="datos_de_memoria">ማህደር ውሂብ</string>
-    <string name="memoria_rom">ROM ማህደር</string>
-    <string name="memoria_eeprom">EEPROM ማህደር</string>
-    <string name="cerrar">ዝጋ</string>
     <string name="protocolo_no_inicializado">ፕሮቶኮል ሲጀምር አልተሳተፈም</string>
     <string name="datos_invalidos_para_programac">ፕሮግራሚንግ ዋጋ የሌለበት ውሂብ</string>
     <string name="borrando_memorias">ማህደርን ሰርዝ...</string>

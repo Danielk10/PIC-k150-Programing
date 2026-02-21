@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programing</string>
@@ -60,10 +60,6 @@
     <string name="el_archivo_seleccionado_esta_v">Valittu tiedosto on tyhjä</string>
     <string name="error_leyendo_el_archivo">Virhe tiedoston lukemisessa</string>
     <string name="error_inesperado_leyendo_el_ar">Odottamaton virhe tiedoston lukemisessa</string>
-    <string name="datos_de_memoria">Muistitiedot</string>
-    <string name="memoria_rom">ROM-muisti</string>
-    <string name="memoria_eeprom">EEPROM-muisti</string>
-    <string name="cerrar">Sulje</string>
     <string name="protocolo_no_inicializado">Protokollaa ei alustettu</string>
     <string name="datos_invalidos_para_programac">Virheelliset tiedot ohjelmointiin</string>
     <string name="borrando_memorias">Tyhjennetään muistia...</string>
