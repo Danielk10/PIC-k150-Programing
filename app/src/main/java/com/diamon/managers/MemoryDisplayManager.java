@@ -192,7 +192,9 @@ public class MemoryDisplayManager {
         shape.setColor(COLOR_BACKGROUND);
         shape.setStroke(dpToPx(2), Color.parseColor("#3A3A4E"));
         container.setBackground(shape);
-        container.setPadding(dpToPx(16), dpToPx(24), dpToPx(16), dpToPx(16));
+        container.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(8));
+        container.setClipChildren(true);
+        container.setClipToPadding(true);
 
         TextView title = new TextView(context);
         title.setText("Datos de Memoria");
@@ -200,13 +202,13 @@ public class MemoryDisplayManager {
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);
         title.setGravity(Gravity.CENTER);
-        title.setPadding(0, 0, 0, dpToPx(12));
+        title.setPadding(0, 0, 0, dpToPx(4));
         container.addView(title);
 
         LinearLayout statusContainer = new LinearLayout(context);
         statusContainer.setOrientation(LinearLayout.VERTICAL);
         statusContainer.setGravity(Gravity.CENTER);
-        statusContainer.setPadding(dpToPx(16), dpToPx(8), dpToPx(16), dpToPx(8));
+        statusContainer.setPadding(dpToPx(8), dpToPx(4), dpToPx(8), dpToPx(4));
 
         progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
         progressBar.setIndeterminate(true);
@@ -234,13 +236,12 @@ public class MemoryDisplayManager {
 
         adContainer = new FrameLayout(context);
         LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(280));
-        adParams.setMargins(0, 0, 0, dpToPx(8));
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(250));
+        adParams.setMargins(0, dpToPx(4), 0, dpToPx(4));
         adContainer.setLayoutParams(adParams);
         // Sin padding para que los assets del anuncio no se salgan del NativeAdView
         adContainer.setClipChildren(true);
         adContainer.setClipToPadding(true);
-        adContainer.setMinimumHeight(dpToPx(200));
         container.addView(adContainer);
 
         LinearLayout contentContainer = new LinearLayout(context);
@@ -322,7 +323,7 @@ public class MemoryDisplayManager {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         buttonParams.gravity = Gravity.CENTER;
-        buttonParams.setMargins(0, dpToPx(12), 0, 0);
+        buttonParams.setMargins(0, dpToPx(4), 0, 0);
         closeButton.setLayoutParams(buttonParams);
         closeButton.setOnClickListener(v -> dismissWithAnimation());
 
