@@ -270,32 +270,77 @@ public class MostrarPublicidad implements Publicidad {
 
     private void renderNativeAd(NativeAd nativeAd, ViewGroup container) {
         try {
+            // Limpiar vistas previas para evitar duplicados
+            container.removeAllViews();
+
+            // Inflar CON parent para que los LayoutParams se apliquen correctamente
             NativeAdView adView = (NativeAdView) actividad.getLayoutInflater()
-                    .inflate(R.layout.layout_native_ad, null);
+                    .inflate(R.layout.layout_native_ad, container, false);
 
-            adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
-            adView.setBodyView(adView.findViewById(R.id.ad_body));
-            adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
-            adView.setIconView(adView.findViewById(R.id.ad_app_icon));
-            adView.setMediaView(adView.findViewById(R.id.ad_media));
+            // Registrar vistas de assets con el NativeAdView
+            TextView headlineView = adView.findViewById(R.id.ad_headline);
+            TextView bodyView = adView.findViewById(R.id.ad_body);
+            TextView ctaView = adView.findViewById(R.id.ad_call_to_action);
+            ImageView iconView = adView.findViewById(R.id.ad_app_icon);
+            com.google.android.gms.ads.nativead.MediaView mediaView = adView.findViewById(R.id.ad_media);
+            TextView advertiserView = adView.findViewById(R.id.ad_advertiser);
 
-            if (adView.getHeadlineView() != null)
-                ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
+            adView.setHeadlineView(headlineView);
+            adView.setBodyView(bodyView);
+            adView.setCallToActionView(ctaView);
+            adView.setIconView(iconView);
+            adView.setMediaView(mediaView);
+            adView.setAdvertiserView(advertiserView);
 
-            if (adView.getBodyView() != null)
-                ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
-
-            if (adView.getCallToActionView() != null)
-                ((TextView) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
-
-            if (nativeAd.getIcon() != null && adView.getIconView() != null) {
-                ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
-                adView.getIconView().setVisibility(View.VISIBLE);
-            } else if (adView.getIconView() != null) {
-                adView.getIconView().setVisibility(View.GONE);
+            // Rellenar titulo (obligatorio)
+            if (headlineView != null && nativeAd.getHeadline() != null) {
+                headlineView.setText(nativeAd.getHeadline());
             }
 
+            // Rellenar cuerpo (recomendado)
+            if (bodyView != null) {
+                if (nativeAd.getBody() != null) {
+                    bodyView.setText(nativeAd.getBody());
+                    bodyView.setVisibility(View.VISIBLE);
+                } else {
+                    bodyView.setVisibility(View.GONE);
+                }
+            }
+
+            // Rellenar boton de accion (obligatorio)
+            if (ctaView != null) {
+                if (nativeAd.getCallToAction() != null) {
+                    ctaView.setText(nativeAd.getCallToAction());
+                    ctaView.setVisibility(View.VISIBLE);
+                } else {
+                    ctaView.setVisibility(View.GONE);
+                }
+            }
+
+            // Rellenar icono (obligatorio si se proporciona)
+            if (iconView != null) {
+                if (nativeAd.getIcon() != null) {
+                    iconView.setImageDrawable(nativeAd.getIcon().getDrawable());
+                    iconView.setVisibility(View.VISIBLE);
+                } else {
+                    iconView.setVisibility(View.GONE);
+                }
+            }
+
+            // Rellenar nombre del anunciante (recomendado)
+            if (advertiserView != null) {
+                if (nativeAd.getAdvertiser() != null) {
+                    advertiserView.setText(nativeAd.getAdvertiser());
+                    advertiserView.setVisibility(View.VISIBLE);
+                } else {
+                    advertiserView.setVisibility(View.GONE);
+                }
+            }
+
+            // Registrar el anuncio con la vista
             adView.setNativeAd(nativeAd);
+
+            // Agregar al contenedor
             container.addView(adView);
         } catch (Exception e) {
             Log.e(TAG, "Error al renderizar NativeAd: " + e.getMessage());

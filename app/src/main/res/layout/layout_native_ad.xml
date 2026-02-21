@@ -2,13 +2,16 @@
 <com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:clipChildren="true"
+    android:clipToPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/native_ad_background"
+        android:clipChildren="true"
+        android:clipToPadding="true"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -16,16 +19,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="6dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/ad_app_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
-                android:background="#E0E0E0"
+                android:adjustViewBounds="true"
                 android:scaleType="centerCrop" />
 
             <LinearLayout
@@ -36,24 +39,27 @@
 
                 <TextView
                     android:id="@+id/ad_headline"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    tools:text="Farmatodo Venezuela" />
+                    tools:text="Titulo del Anuncio" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#FFCC80"
                         android:paddingHorizontal="4dp"
+                        android:paddingVertical="1dp"
                         android:text="Ad"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp"
@@ -64,45 +70,48 @@
                         android:id="@+id/ad_advertiser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:textColor="@color/ad_text_grey"
                         android:textSize="12sp"
-                        tools:text="Farmatodo" />
+                        tools:text="Anunciante" />
                 </LinearLayout>
 
             </LinearLayout>
-            
-           
-        </LinearLayout>
-        
-        <TextView
-             android:id="@+id/ad_body"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginBottom="8dp"
-             android:textColor="@color/ad_text_grey"
-             android:textSize="13sp"
-             android:maxLines="2"
-             android:ellipsize="end"
-             tools:text="Download the app now for exclusive offers."
-             />
 
-        <!-- Media View -->
+        </LinearLayout>
+
+        <!-- Body text -->
+        <TextView
+            android:id="@+id/ad_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/ad_text_grey"
+            android:textSize="13sp"
+            tools:text="Descarga ahora para ofertas exclusivas." />
+
+        <!-- Media View - adaptativo, no altura fija -->
         <com.google.android.gms.ads.nativead.MediaView
             android:id="@+id/ad_media"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="6dp"
+            android:minHeight="120dp" />
 
         <!-- Footer: CTA Button -->
         <Button
             android:id="@+id/ad_call_to_action"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
             android:backgroundTint="@color/ad_green"
             android:text="Instalar"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textAllCaps="false"
             android:textStyle="bold" />
 
     </LinearLayout>

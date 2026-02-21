@@ -178,8 +178,10 @@ public class ProgrammingDialogManager {
         LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,
                 1.0f);
         adContainer.setLayoutParams(adParams);
-        adContainer.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-        adContainer.setMinimumHeight(dpToPx(350));
+        // Sin padding para que los assets del anuncio no se salgan del NativeAdView
+        adContainer.setClipChildren(true);
+        adContainer.setClipToPadding(true);
+        adContainer.setMinimumHeight(dpToPx(250));
         return adContainer;
     }
 
