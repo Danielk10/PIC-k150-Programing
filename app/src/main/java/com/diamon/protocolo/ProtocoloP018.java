@@ -498,9 +498,7 @@ public class ProtocoloP018 extends Protocolo {
             // Obtener tipo de núcleo
             int tipoNucleo = chipPIC.getTipoDeNucleoBit();
 
-            // ============================================================
-            // NUEVO: Determinar si usar datos del usuario o del HEX
-            // ============================================================
+            // Determinar si se usarán datos ingresados por el usuario o extraídos del HEX.
             byte[] id;
             int[] fuses;
 
@@ -510,9 +508,7 @@ public class ProtocoloP018 extends Protocolo {
             boolean usuarioConfiguroID = IDPic != null && IDPic.length > 1 && !(IDPic.length == 1 && IDPic[0] == 0);
 
             if (usuarioConfiguroFuses || usuarioConfiguroID) {
-                // ============================================================
-                // USAR DATOS DEL USUARIO
-                // ============================================================
+                // Usar datos del usuario.
 
                 // ID: Usar del usuario si existe, sino del HEX
                 if (usuarioConfiguroID) {
@@ -533,16 +529,12 @@ public class ProtocoloP018 extends Protocolo {
                 }
 
             } else {
-                // ============================================================
-                // USAR DATOS DEL HEX (comportamiento original)
-                // ============================================================
+                // Usar datos del HEX (comportamiento original).
                 id = datosPic.obtenerVsloresBytesHexIDPocesado();
                 fuses = datosPic.obtenerValoresIntHexFusesPocesado();
             }
 
-            // ============================================================
-            // Validar datos según tipo de núcleo
-            // ============================================================
+            // Validar datos según tipo de núcleo.
             if (tipoNucleo == 16) {
                 if (id.length != 8) {
                     return false;
@@ -621,102 +613,6 @@ public class ProtocoloP018 extends Protocolo {
         }
     }
 
-    /*
-     * @Override
-     * public boolean programarFusesIDDelPic(
-     * ChipPic chipPIC, String firware, byte[] IDPic, List<Integer> fusesUsuario) {
-     * 
-     * try {
-     * // Procesar datos
-     * DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
-     * datosPic.iniciarProcesamientoDeDatos();
-     * 
-     * // Obtener tipo de núcleo, ID y valores de FUSES
-     * int tipoNucleo = chipPIC.getTipoDeNucleoBit();
-     * byte[] id = datosPic.obtenerVsloresBytesHexIDPocesado();
-     * int[] fuses = datosPic.obtenerValoresIntHexFusesPocesado();
-     * // Validar datos según tipo de núcleo
-     * if (tipoNucleo == 16) {
-     * if (id.length != 8) {
-     * return false;
-     * }
-     * if (fuses.length != 7) {
-     * return false;
-     * }
-     * } else if (tipoNucleo == 14) {
-     * if (id.length != 4) {
-     * return false;
-     * }
-     * if (fuses.length < 1 || fuses.length > 2) {
-     * return false;
-     * }
-     * } else {
-     * return false;
-     * }
-     * 
-     * // Reiniciar comandos y activar voltajes de programación
-     * researComandos();
-     * activarVoltajesDeProgramacion();
-     * 
-     * // Enviar comando para programar FUSES e ID
-     * usbSerialPort.write(new byte[] {0x09}, 10);
-     * 
-     * // Preparar cuerpo del comando
-     * ByteArrayOutputStream commandBody = new ByteArrayOutputStream();
-     * commandBody.write(new byte[] {0x30, 0x30}); // '0' '0' en ASCII
-     * 
-     * if (tipoNucleo == 16) {
-     * commandBody.write(id);
-     * for (int fuse : fuses) {
-     * commandBody.write(
-     * ByteBuffer.allocate(2)
-     * .order(ByteOrder.LITTLE_ENDIAN)
-     * .putShort((short) fuse)
-     * .array());
-     * }
-     * } else { // tipoNucleo == 14
-     * commandBody.write(id);
-     * commandBody.write(new byte[] {'F', 'F', 'F', 'F'}); // 'FFFF' en ASCII
-     * commandBody.write(
-     * ByteBuffer.allocate(2)
-     * .order(ByteOrder.LITTLE_ENDIAN)
-     * .putShort((short) fuses[0])
-     * .array());
-     * for (int i = 0; i < 6; i++) {
-     * commandBody.write(new byte[] {(byte) 0xFF, (byte) 0xFF});
-     * }
-     * }
-     * 
-     * // Enviar comando preparado
-     * usbSerialPort.write(commandBody.toByteArray(), 100);
-     * 
-     * // Leer respuesta
-     * byte[] response = new byte[1];
-     * usbSerialPort.read(response, 100);
-     * 
-     * // Desactivar voltajes y limpiar comandos
-     * desactivarVoltajesDeProgramacion();
-     * researComandos();
-     * 
-     * // Validar respuesta
-     * if (response[0] == 'Y') {
-     * 
-     * return true;
-     * 
-     * } else if (response[0] == 'N') {
-     * 
-     * return false;
-     * } else {
-     * return false;
-     * }
-     * 
-     * } catch (IOException e) {
-     * return false;
-     * } catch (Exception e) {
-     * return false;
-     * }
-     * }
-     */
 
     @Override
     public boolean programarCalibracionDelPic(ChipPic chipPIC, String firware) {
