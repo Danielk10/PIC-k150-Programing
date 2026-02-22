@@ -305,6 +305,11 @@ public class ChipPic {
     public boolean isICSPonly() throws ChipConfigurationException {
 
         try {
+            String socketImage = "" + variablesDeChip.get("SocketImage");
+            if ("0pin".equalsIgnoreCase(socketImage.trim())) {
+                return true;
+            }
+
             String icspOnlyStr = variablesDeChip.get("ICSPonly").toString().toLowerCase();
 
             Boolean valor = respuestas.get(icspOnlyStr);
