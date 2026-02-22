@@ -103,7 +103,8 @@ public class DatosPicProcesados {
             final int configWordBase = 0x4000;
             final int eepromWordBase = 0x4200;
             final int romWordEnd = configWordBase;
-            final int configWordEnd = 0x4010;
+            final int configWordEnd = 0x4020;
+
             final int eepromWordEnd = 0xFFFF;
 
             // Procesar archivo HEX

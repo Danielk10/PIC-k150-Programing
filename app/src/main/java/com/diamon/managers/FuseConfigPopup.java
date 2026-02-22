@@ -627,7 +627,7 @@ public class FuseConfigPopup {
                         .getFusesMap();
 
                 if (chipFusesMap != null) {
-                    int expectedFuseCount = chipFusesMap.size();
+                    int expectedFuseCount = currentChip.getFuseBlank().length;
 
                     if (hexFuses.length != expectedFuseCount) {
                         logMessage("⚠️ ADVERTENCIA: Cantidad de fusibles no coincide");
