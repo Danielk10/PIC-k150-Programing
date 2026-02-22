@@ -565,8 +565,7 @@ public class ChipPic {
      * @return Array con los valores blank de fuses
      * @throws ChipConfigurationException Si hay un error al procesar los fuses
      */
-    public int[] getFuseBlack() throws ChipConfigurationException {
-
+    public int[] getFuseBlank() throws ChipConfigurationException {
         try {
             String[] fusesTexto = (String[]) variablesDeChip.get("FUSEblank");
 
@@ -720,7 +719,7 @@ public class ChipPic {
         // Base: copiar los valores blank de fuses
         int[] fuseBlankArr;
         try {
-            fuseBlankArr = getFuseBlack();
+            fuseBlankArr = getFuseBlank();
         } catch (ChipConfigurationException e) {
             throw new FuseError("No se pudo obtener FUSEblank: " + e.getMessage());
         }

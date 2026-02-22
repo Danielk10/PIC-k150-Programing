@@ -248,7 +248,7 @@ public class ChipinfoReader {
             return;
 
         // FUSEblank: separar por espacios en blanco → String[]
-        // ChipPic.getFuseBlack() los parsea como hex internamente.
+        // ChipPic.getFuseBlank() los parsea como hex internamente.
         String fuseBlankRaw = block.get("FUSEblank");
         String[] fuseBlankArr = null;
         if (fuseBlankRaw != null && !fuseBlankRaw.isEmpty()) {

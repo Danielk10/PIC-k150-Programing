@@ -340,7 +340,7 @@ public class DatosPicProcesados {
             List<HexFileUtils.Pair<Integer, String>> configRecordsFuses = HexFileUtils.rangeFilterRecords(configRecords,
                     0x400E, 0x4010);
 
-            byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlack());
+            byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlank());
             this.fuseData = HexFileUtils.mergeRecords(configRecordsFuses, fusesBytes, 0x400E);
             int[] fuseINT = HexFileUtils.decodeFromBytes(fuseData);
             this.fuseValues = HexFileUtils.decodeFromBytes(fuseData);
