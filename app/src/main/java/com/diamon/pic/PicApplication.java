@@ -34,8 +34,8 @@ public class PicApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // ✅ REGLA CRÍTICA: Definir el sufijo del directorio de datos del WebView
-        // ANTES de cualquier inicialización de SDKs que usen WebView (como AdMob)
+        // Definir el sufijo del directorio de datos de WebView
+        // antes de inicializar SDKs que dependan de WebView (por ejemplo, AdMob).
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             try {
                 String processName = getProcessName();
@@ -128,7 +128,7 @@ public class PicApplication extends Application {
     private void preloadWebViewAsync() {
         new Thread(() -> {
             try {
-                // ✅ Aumentar el delay a 5 segundos.
+                // Aumentar el delay a 5 segundos.
                 // Los crashes en libmonochrome (SIGTRAP) suelen ocurrir por inicialización
                 // prematura o colisiones de recursos durante el arranque intenso.
                 Thread.sleep(5000);
@@ -168,7 +168,7 @@ public class PicApplication extends Application {
         if (mobileAdsInitialized)
             return;
 
-        // ✅ CORRECCIÓN CRÍTICA PARA ANR (Unsafe.park):
+        // Corrección para evitar bloqueos asociados a ANR (Unsafe.park).
         // Iniciar un HILO DE FONDO real para la inicialización pesada de
         // AdMob/StartApp.
         // Esto evita que el main thread se bloquee esperando mediadores sincronizados.

@@ -99,7 +99,7 @@ public class UsbConnectionManager {
      * Esta funcion puede llamarse desde cualquier hilo.
      */
     public void initialize() {
-        // PASO 1: Registrar el BroadcastReceiver en el main thread (evita ANR binder)
+        // Registrar el BroadcastReceiver en el hilo principal para evitar bloqueos del binder
         mainHandler.post(() -> {
             IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
             boolean registered = broadcastManager.registerReceiver(usbReceiver, filter, false);
@@ -108,10 +108,10 @@ public class UsbConnectionManager {
             }
         });
 
-        // PASO 2: Escanear drivers (puede tomar tiempo, seguro en background)
+        // Escanear drivers USB en segundo plano
         drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
 
-        // PASO 3: Solicitar permisos si hay dispositivos (desde el hilo actual,
+        // Solicitar permisos si hay dispositivos detectados (desde el hilo actual,
         // ya que requestPermission solo lanza un Intent)
         requestPermissionsIfNeeded();
     }

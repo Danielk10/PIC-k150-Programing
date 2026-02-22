@@ -119,7 +119,6 @@ public class ProtocoloP018 extends Protocolo {
             boolean flagSinglePanelAccessMode = chipPIC.isFlag18fSingle();
             boolean flagVccVppDelay = chipPIC.isFlagVccVppDelay();
             int programDelay = chipPIC.getProgramDelay();
-            // int powerSequence = chipPIC.getPowerSequence();
             int powerSequence = chipPIC.getSecuenciaDeEncendido();
             int eraseMode = chipPIC.getEraseMode();
             int programRetries = chipPIC.getProgramTries();
@@ -261,7 +260,7 @@ public class ProtocoloP018 extends Protocolo {
 
         try {
 
-            // ✅ CORRECCIÓN: Manejo robusto de excepciones como Python
+            // Procesar y validar el contenido HEX antes de iniciar la programación.
             DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
 
             try {
@@ -279,13 +278,10 @@ public class ProtocoloP018 extends Protocolo {
             int wordCount = romData.length / 2;
             // Validación crítica de tamaño
             if (wordCount > chipPIC.getTamanoROM()) {
-                String mensaje = String.format(
-                        "Datos ROM exceden capacidad del chip: %d > %d words",
-                        wordCount, chipPIC.getTamanoROM());
                 return false;
             }
 
-            // ✅ CORRECCIÓN BASADA EN PYTHON: Padding automático
+            // Ajustar el buffer a bloques de 32 bytes exigidos por el protocolo.
             int totalSize = wordCount * 2;
             if (totalSize % 32 != 0) {
                 int paddingNeeded = 32 - (totalSize % 32);
@@ -300,7 +296,7 @@ public class ProtocoloP018 extends Protocolo {
                 wordCount = romData.length / 2;
             }
 
-            // ✅ SIGUIENDO EL PROTOCOLO PYTHON EXACTO
+            // Iniciar secuencia de comandos del programador.
             if (!researComandos()) {
                 return false;
             }
@@ -309,14 +305,14 @@ public class ProtocoloP018 extends Protocolo {
                 return false;
             }
 
-            // Comando para programar ROM (0x07) - IGUAL QUE PYTHON
+            // Comando para programar ROM (0x07).
             escribirDatosUSB(new byte[] { 0x07 }, 10, "comando_programar_ROM");
 
-            // Enviar cantidad de palabras - IGUAL QUE PYTHON
+            // Enviar cantidad de palabras a programar.
             byte[] wordCountMessage = ByteUtils.shortToBytes((short) wordCount, true);
             escribirDatosUSB(wordCountMessage, TIMEOUT_DEFAULT, "tamaño_palabras_ROM");
 
-            // Validar respuesta inicial 'Y' - IGUAL QUE PYTHON
+            // Validar respuesta inicial 'Y'.
             byte[] response = new byte[1];
             if (!leerRespuesta(
                     response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
@@ -325,7 +321,7 @@ public class ProtocoloP018 extends Protocolo {
                 return false;
             }
 
-            // ✅ ENVIAR DATOS EN BLOQUES DE 32 BYTES - EXACTAMENTE COMO PYTHON
+            // Enviar datos en bloques de 32 bytes.
             int bloquesEnviados = 0;
             try {
                 for (int i = 0; i < romData.length; i += 32) {
@@ -334,7 +330,7 @@ public class ProtocoloP018 extends Protocolo {
 
                     escribirDatosUSB(chunk, 10, String.format("bloque_ROM_%d", bloquesEnviados));
 
-                    // ✅ TIMEOUT EXTENDIDO COMO PYTHON (timeout=20)
+                    // Timeout extendido para operaciones de programación masivas.
                     if (!leerRespuesta(
                             response,
                             'Y',
@@ -346,7 +342,7 @@ public class ProtocoloP018 extends Protocolo {
                     }
                 }
 
-                // ✅ TIMEOUT EXTENDIDO COMO PYTHON para respuesta final
+                // Timeout extendido para confirmación final de programación.
                 if (!leerRespuesta(
                         response,
                         'P',
@@ -358,24 +354,21 @@ public class ProtocoloP018 extends Protocolo {
                 }
 
             } catch (Exception e) {
-                // ✅ MANEJO DE EXCEPCIONES DURANTE PROGRAMACIÓN COMO PYTHON
+                // Ante error en transmisión, limpiar estado y finalizar con error.
                 desactivarVoltajesDeProgramacion();
                 researComandos();
                 return false;
             }
 
             // Finalizar secuencia
-            if (!desactivarVoltajesDeProgramacion()) {
-            }
+            desactivarVoltajesDeProgramacion();
+            researComandos();
 
-            if (!researComandos()) {
-            }
-
-            // ✅ AGREGAR VERIFICACIÓN COMO PYTHON
+            // Verificación de lectura posterior sin afectar el resultado principal.
             try {
                 String romLeida = leerMemoriaROMDelPic(chipPIC);
-                if (romLeida != null && !romLeida.startsWith("Error")) {
-                } else {
+                if (romLeida == null || romLeida.startsWith("Error")) {
+                    // Sin impacto funcional: la verificación es informativa.
                 }
             } catch (Exception e) {
                 // No fallar por esto, solo advertir
@@ -481,11 +474,8 @@ public class ProtocoloP018 extends Protocolo {
             }
 
             // Finalizar secuencia
-            if (!desactivarVoltajesDeProgramacion()) {
-            }
-
-            if (!researComandos()) {
-            }
+            desactivarVoltajesDeProgramacion();
+            researComandos();
 
             return true;
 
@@ -891,11 +881,8 @@ public class ProtocoloP018 extends Protocolo {
             byte[] bytes = readBytes(1, TIMEOUT_EXTENDED); // Usar timeout extendido para borrado
 
             // Finalizar secuencia
-            if (!desactivarVoltajesDeProgramacion()) {
-            }
-
-            if (!researComandos()) {
-            }
+            desactivarVoltajesDeProgramacion();
+            researComandos();
 
             // Validar respuesta
             String respuesta = new String(bytes, StandardCharsets.US_ASCII);
@@ -1248,7 +1235,7 @@ public class ProtocoloP018 extends Protocolo {
     @Override
     public boolean programarVectorDeDepuracionDelPic(ChipPic chipPIC) {
 
-        int address = 0; // No va
+        int address = 0;
         try {
             // Comando 22 (0x16)
             byte cmd = 0x16;
