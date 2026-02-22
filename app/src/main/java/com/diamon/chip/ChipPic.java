@@ -150,6 +150,8 @@ public class ChipPic {
 
         socketImagen = new HashMap<String, String>();
 
+        socketImagen.put("0pin", "ICSP"); // PIC10xxx y chips solo-ICSP
+
         socketImagen.put("8pin", "socket pin 13");
 
         socketImagen.put("14pin", "socket pin 13");
@@ -379,19 +381,19 @@ public class ChipPic {
     }
 
     public boolean isFlagCalibration() {
-        boolean valor = respuestas.get(
-                variablesDeChip
-                        .get("flag_calibration_value_in_ROM")
-                        .toString()
-                        .toLowerCase());
-
-        return valor;
+        Object raw = variablesDeChip.get("flag_calibration_value_in_ROM");
+        if (raw == null)
+            return false;
+        Boolean valor = respuestas.get(raw.toString().toLowerCase());
+        return valor != null && valor;
     }
 
     public boolean isFlagBandGap() {
-        boolean valor = respuestas.get(variablesDeChip.get("flag_band_gap_fuse").toString().toLowerCase());
-
-        return valor;
+        Object raw = variablesDeChip.get("flag_band_gap_fuse");
+        if (raw == null)
+            return false;
+        Boolean valor = respuestas.get(raw.toString().toLowerCase());
+        return valor != null && valor;
     }
 
     public boolean isFlag18fSingle() {
@@ -507,9 +509,14 @@ public class ChipPic {
 
     public boolean isTamanoValidoDeEEPROM() {
 
-        boolean valido = (Integer.parseInt("" + variablesDeChip.get("eeprom_size")) != 0);
-
-        return valido;
+        try {
+            // EEPROMsize en chipinfo.cid esta en hexadecimal: 00000080 = 128 bytes
+            int tamano = Integer.parseUnsignedInt(
+                    variablesDeChip.get("eeprom_size").toString().trim(), 16);
+            return tamano != 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
