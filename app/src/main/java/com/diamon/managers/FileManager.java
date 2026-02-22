@@ -15,7 +15,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import com.diamon.pic.R;
 
-/** FileManager CORREGIDO - Filtro EXACTO del original */
+/**
+ * Gestiona la selección y lectura de archivos HEX/BIN desde el selector del sistema.
+ */
 public class FileManager {
 
     private final Context context;
@@ -50,20 +52,19 @@ public class FileManager {
         this.fileLoadListener = listener;
     }
 
-    /** Filtro EXACTO del original */
+    /** Abre el selector de documentos con los MIME types soportados. */
     public void openFilePicker() {
         if (filePickerLauncher == null) {
             notifyError(context.getString(R.string.filemanager_no_inicializado));
             return;
         }
 
-        // FILTROS EXACTOS del codigo original
         String[] mimeTypes = {"application/octet-stream", "application/x-binary"};
 
         filePickerLauncher.launch(mimeTypes);
     }
 
-    /** Procesa archivo seleccionado - LOGICA EXACTA del original */
+    /** Valida el archivo seleccionado y dispara la lectura de contenido. */
     private void processSelectedFile(Uri uri) {
         String fileName = getFileName(uri);
 
@@ -72,18 +73,17 @@ public class FileManager {
             return;
         }
 
-        // Validar extension .hex o .bin (case-insensitive)
+        // Validar extensión .hex o .bin.
         String lowerFileName = fileName.toLowerCase();
         if (!lowerFileName.endsWith(".bin") && !lowerFileName.endsWith(".hex")) {
             notifyError(context.getString(R.string.seleccione_un_archivo_binario_));
             return;
         }
 
-        // Leer archivo
         hexFileContent = readHexFile(uri);
     }
 
-    /** Lee archivo HEX - LOGICA EXACTA del original */
+    /** Lee el archivo seleccionado hasta encontrar comentario o EOF. */
     private String readHexFile(Uri uri) {
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
@@ -98,7 +98,7 @@ public class FileManager {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                // Parar en comentarios (lineas con ';')
+                // En formato HEX, una línea iniciada con ';' se considera comentario.
                 if (line.length() > 0 && line.charAt(0) == ';') {
                     break;
                 }
@@ -115,7 +115,6 @@ public class FileManager {
                 return "";
             }
 
-            // Notificar exito
             String fileName = getFileName(uri);
             notifyFileLoaded(content, fileName);
 

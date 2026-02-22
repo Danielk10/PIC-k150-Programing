@@ -132,13 +132,8 @@ public class MemoryDisplayManager {
             progressBar.setVisibility(View.GONE);
         }
 
-        // No ocultamos el adContainer inmediatamente, solo bajamos su peso visual si es
-        // necesario
-        // o lo mantenemos para que la impresión se cuente.
+        // Ajustar el contenedor del anuncio para mantener visibilidad sin invadir el área de datos.
         if (adContainer != null) {
-            // adContainer.setVisibility(View.GONE); // COMENTADO: Mantener visible
-            // Podríamos reducir su altura para dar más espacio a los datos si fuera
-            // necesario
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) adContainer.getLayoutParams();
             lp.height = dpToPx(280); // Mantener minimo 280dp para cumplir el requisito de 120x120dp del MediaView
             adContainer.setLayoutParams(lp);

@@ -77,7 +77,6 @@ public abstract class Protocolo {
                 totalLimpiado += bytesLeidos;
             }
 
-            if (totalLimpiado > 0) {}
         } catch (IOException e) {
             throw new UsbCommunicationException("Error limpiando buffer USB", e);
         }
@@ -199,10 +198,6 @@ public abstract class Protocolo {
             byte recibido = response[0];
             boolean coincide = (recibido == (byte) esperado);
 
-            if (coincide) {
-            } else {
-            }
-
             return coincide;
 
         } catch (IOException e) {
@@ -214,12 +209,10 @@ public abstract class Protocolo {
             byte[] response, char expected, String errorMessage, int timeoutMs)
             throws UsbCommunicationException {
         try {
-            byte[] respuestaBytes = readBytes(1, timeoutMs); // ✅ Timeout personalizado
+            byte[] respuestaBytes = readBytes(1, timeoutMs);
             response[0] = respuestaBytes[0];
 
             boolean valida = (respuestaBytes[0] == expected);
-
-            if (!valida) {}
 
             return valida;
 
