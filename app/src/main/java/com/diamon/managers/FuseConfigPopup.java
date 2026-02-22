@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diamon.chip.ChipPic;
-import com.diamon.chip.ChipinfoEntry;
 import com.diamon.datos.DatosPicProcesados;
 
 import java.text.SimpleDateFormat;
@@ -55,7 +54,6 @@ public class FuseConfigPopup {
 
     // Referencias a componentes
     private ChipPic currentChip;
-    private ChipinfoEntry currentChipFuses;
     private DatosPicProcesados hexData;
 
     // Vistas
@@ -84,7 +82,6 @@ public class FuseConfigPopup {
     /** Muestra el popup de configuracion de fusibles */
     public void show(
             ChipPic chip,
-            ChipinfoEntry chipFuses,
             DatosPicProcesados hexData,
             Map<String, String> lastConfig) {
         if (!isActivityValid()) {
@@ -93,7 +90,6 @@ public class FuseConfigPopup {
         }
 
         this.currentChip = chip;
-        this.currentChipFuses = chipFuses;
         this.hexData = hexData;
         this.lastConfiguration = lastConfig;
 
@@ -592,8 +588,8 @@ public class FuseConfigPopup {
 
     /** Carga los datos iniciales */
     private void loadInitialData() {
-        if (currentChip == null || currentChipFuses == null) {
-            logMessage("❌ Error: No hay chip seleccionado");
+        if (currentChip == null || currentChip.getFusesMap() == null) {
+            logMessage("❌ Error: No hay chip seleccionado o sin fuses disponibles");
             return;
         }
 
@@ -626,19 +622,20 @@ public class FuseConfigPopup {
                 return;
             }
 
-            @SuppressWarnings("unchecked")
-            Map<String, Map<String, List<Integer>>> chipFuses = (Map<String, Map<String, List<Integer>>>) currentChipFuses
-                    .getVar("fuses");
+            if (hexFuses != null) {
+                java.util.Map<String, java.util.Map<String, java.util.List<ChipPic.FuseValue>>> chipFusesMap = currentChip
+                        .getFusesMap();
 
-            if (chipFuses != null) {
-                int expectedFuseCount = chipFuses.size();
+                if (chipFusesMap != null) {
+                    int expectedFuseCount = chipFusesMap.size();
 
-                if (hexFuses.length != expectedFuseCount) {
-                    logMessage("⚠️ ADVERTENCIA: Cantidad de fusibles no coincide");
-                    logMessage("  HEX: " + hexFuses.length + " fusibles");
-                    logMessage("  Chip espera: " + expectedFuseCount);
-                } else {
-                    logMessage("✓ HEX compatible");
+                    if (hexFuses.length != expectedFuseCount) {
+                        logMessage("⚠️ ADVERTENCIA: Cantidad de fusibles no coincide");
+                        logMessage("  HEX: " + hexFuses.length + " fusibles");
+                        logMessage("  Chip espera: " + expectedFuseCount);
+                    } else {
+                        logMessage("✓ HEX compatible");
+                    }
                 }
             }
 
@@ -670,14 +667,12 @@ public class FuseConfigPopup {
     }
 
     /** Construye el editor de fusibles dinamicamente */
-    @SuppressWarnings("unchecked")
     private void buildFuseEditor() {
         fuseContainer.removeAllViews();
         fuseSpinners.clear();
         customFuses.clear();
 
-        Map<String, Map<String, List<Integer>>> fuses = (Map<String, Map<String, List<Integer>>>) currentChipFuses
-                .getVar("fuses");
+        java.util.Map<String, java.util.Map<String, List<ChipPic.FuseValue>>> fuses = currentChip.getFusesMap();
 
         if (fuses == null || fuses.isEmpty()) {
             TextView empty = new TextView(context);
@@ -690,9 +685,9 @@ public class FuseConfigPopup {
             return;
         }
 
-        for (Map.Entry<String, Map<String, List<Integer>>> entry : fuses.entrySet()) {
+        for (java.util.Map.Entry<String, java.util.Map<String, List<ChipPic.FuseValue>>> entry : fuses.entrySet()) {
             String fuseName = entry.getKey();
-            Map<String, List<Integer>> fuseOptions = entry.getValue();
+            java.util.Map<String, List<ChipPic.FuseValue>> fuseOptions = entry.getValue();
             addFuseRow(fuseName, new ArrayList<>(fuseOptions.keySet()));
         }
 
@@ -793,7 +788,7 @@ public class FuseConfigPopup {
                 fuseList.add(fuse);
             }
 
-            Map<String, String> decodedFuses = currentChipFuses.decodeFuseData(fuseList);
+            Map<String, String> decodedFuses = currentChip.decodeFuseData(fuseList);
             restoreConfiguration(decodedFuses);
 
             if (hexID != null && hexID.length > 0) {
@@ -848,7 +843,7 @@ public class FuseConfigPopup {
 
             fuseConfig.putAll(customFuses);
 
-            List<Integer> encodedFuses = currentChipFuses.encodeFuseData(fuseConfig);
+            List<Integer> encodedFuses = currentChip.encodeFuseData(fuseConfig);
             byte[] idData = parseCustomId();
 
             logMessage("✅ Aplicado exitosamente");

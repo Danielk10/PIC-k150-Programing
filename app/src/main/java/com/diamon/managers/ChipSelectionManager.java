@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 
 import com.diamon.chip.ChipPic;
-import com.diamon.chip.ChipinfoEntry;
 import com.diamon.datos.ChipinfoReader;
-import com.diamon.datos.ChipFusesReader;
 import com.diamon.pic.R;
 
 import java.util.ArrayList;
@@ -26,7 +24,6 @@ public class ChipSelectionManager {
     private final AppCompatActivity activity;
     private final Context context;
     private ChipinfoReader chipReader;
-    private ChipFusesReader chipfuses;
     private List<String> chipModels;
     private ChipSelectionListener selectionListener;
     private ChipPic currentChip;
@@ -52,7 +49,6 @@ public class ChipSelectionManager {
         new Thread(() -> {
             try {
                 chipReader = new ChipinfoReader(activity);
-                chipfuses = new ChipFusesReader(activity, "chipinfo.cid");
                 List<String> models = chipReader.getModelosPic();
 
                 activity.runOnUiThread(() -> {
@@ -108,14 +104,14 @@ public class ChipSelectionManager {
         }
     }
 
-    public ChipinfoEntry getSelectedChipFuses() {
-        if (currentChip == null || chipfuses == null)
-            return null;
-        try {
-            return chipfuses.getChip(currentChip.getNombreDelPic());
-        } catch (Exception e) {
-            return null;
-        }
+    /**
+     * Devuelve el chip actualmente seleccionado (que ya incluye la informacion de
+     * fuses).
+     * Reemplaza a getSelectedChipFuses() + ChipinfoEntry, ahora todo esta en
+     * ChipPic.
+     */
+    public ChipPic getSelectedChipFuses() {
+        return currentChip;
     }
 
     public CharSequence getSelectedChipInfoColored() {

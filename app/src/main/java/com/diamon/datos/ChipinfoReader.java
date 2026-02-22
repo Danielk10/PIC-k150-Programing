@@ -6,16 +6,30 @@ import com.diamon.chip.ChipPic;
 import com.diamon.excepciones.ChipConfigurationException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Clase para leer y procesar información de chips PIC desde archivos de configuración. Parsea
+ * Clase para leer y procesar información de chips PIC desde archivos de
+ * configuración. Parsea
  * archivos de configuración de chips y crea objetos ChipPic con la información.
  */
 public class ChipinfoReader {
 
     private static final int NUMERO_DE_REGISTROS_DATOS = 6617;
+
+    // Patron para lineas LIST de fusibles: LIST\d+ FUSE\d "nombre" valores...
+    // Grupos: (1)=numero_fuse, (2)=nombre_fuse, (3)=valores
+    private static final Pattern FUSE_LIST_REGEXP = Pattern.compile("^LIST\\d+\\s+FUSE(\\d)\\s+\"([^\"]*)\"\\s*(.*)$");
+
+    // Patron para pares "opcion"=valor hexadecimal (puede tener & entre valores)
+    private static final Pattern FUSE_VALUE_REGEXP = Pattern
+            .compile("\"([^\"]*)\"\\s*=\\s*([0-9a-fA-F]+(?:&[0-9a-fA-F]+)*)");
 
     private Map<String, ChipPic> chipEntries;
 
@@ -55,9 +69,9 @@ public class ChipinfoReader {
 
     private String ChipID;
 
-    private Map<String, Object> fuses;
-
-    private ArrayList<String[]> listaFuses;
+    // Fuses estructurados para el chip actual
+    // Map: nombre_fuse -> (opcion -> List<FuseValue>)
+    private Map<String, Map<String, List<ChipPic.FuseValue>>> currentFusesMap;
 
     private ArrayList<String> modelosPic;
 
@@ -65,7 +79,8 @@ public class ChipinfoReader {
      * Constructor que inicializa el lector de información de chips.
      *
      * @param actividad Actividad Android para acceder a recursos
-     * @throws ChipConfigurationException Si hay un error al leer la información de los chips
+     * @throws ChipConfigurationException Si hay un error al leer la información de
+     *                                    los chips
      */
     public ChipinfoReader(Activity actividad) throws ChipConfigurationException {
 
@@ -75,7 +90,7 @@ public class ChipinfoReader {
 
         chipEntries = new HashMap<String, ChipPic>();
         modelosPic = new ArrayList<String>();
-        listaFuses = new ArrayList<String[]>();
+        currentFusesMap = new HashMap<>();
 
         try {
             final DatosDePic datos = new DatosDePic(actividad);
@@ -93,12 +108,15 @@ public class ChipinfoReader {
                     if (te.equals("")) {
                         cargarDatos();
                         chipsProcesados++;
+                        // Reiniciar fuses para el proximo chip
+                        currentFusesMap = new HashMap<>();
                     }
 
                     // Ultimo registro
                     if (numeroRegistro == ChipinfoReader.NUMERO_DE_REGISTROS_DATOS) {
                         cargarDatos();
                         chipsProcesados++;
+                        currentFusesMap = new HashMap<>();
                     }
 
                 } catch (Exception e) {
@@ -115,7 +133,7 @@ public class ChipinfoReader {
     /**
      * Procesa una línea del archivo de configuración de chips.
      *
-     * @param te Línea a procesar
+     * @param te             Línea a procesar
      * @param numeroRegistro Número de registro actual
      */
     private void procesarLinea(String te, int numeroRegistro) throws ChipConfigurationException {
@@ -238,37 +256,55 @@ public class ChipinfoReader {
     }
 
     /**
-     * Procesa la línea LIST.
-     *
-     * @param listData Datos de LIST
+     * Procesa la linea LIST y construye el mapa estructurado de fuses.
+     * Formato: LIST\d+ FUSE\d "nombre" "opcion1"=val1 "opcion2"=val2 ...
+     * Compatible con el formato chipinfo.txt/chipinfo.cid.
      */
     private void procesarLIST(String listData) throws ChipConfigurationException {
-
         try {
-            ArrayList<String> dato = new ArrayList<String>();
-            StringBuffer letra = new StringBuffer();
+            Matcher listMatcher = FUSE_LIST_REGEXP.matcher(listData);
+            if (!listMatcher.matches()) {
+                // Formato no reconocido, ignorar silenciosamente
+                return;
+            }
 
-            for (int con = 0; con < listData.length(); con++) {
-                if (!("" + listData.charAt(con)).equals(" ")) {
-                    letra.append(listData.charAt(con));
-                } else {
-                    if (letra.length() > 0) {
-                        dato.add(letra.toString());
-                        letra.setLength(0);
+            String fuseIndexStr = listMatcher.group(1); // numero del fuse (1, 2...)
+            String fuseName = listMatcher.group(2); // nombre del fuse
+            String valuesStr = listMatcher.group(3); // resto con "opcion"=valor
+
+            if (fuseName == null || fuseName.isEmpty())
+                return;
+
+            // Obtener o crear el mapa de opciones para este fuse
+            Map<String, List<ChipPic.FuseValue>> fuseSettings = currentFusesMap.get(fuseName);
+            if (fuseSettings == null) {
+                fuseSettings = new HashMap<>();
+                currentFusesMap.put(fuseName, fuseSettings);
+            }
+
+            int fuseIndex = Integer.parseInt(fuseIndexStr) - 1; // base 0
+
+            // Parsear todos los pares "opcion"=valor en la linea
+            Matcher valueMatcher = FUSE_VALUE_REGEXP.matcher(valuesStr != null ? valuesStr : "");
+            while (valueMatcher.find()) {
+                String setting = valueMatcher.group(1);
+                String valPart = valueMatcher.group(2);
+                if (setting == null || valPart == null)
+                    continue;
+
+                // Valores multiples separados por & (multiples palabras de config)
+                String[] parts = valPart.split("&");
+                List<ChipPic.FuseValue> fuseValues = new ArrayList<>();
+                for (int i = 0; i < parts.length; i++) {
+                    try {
+                        int val = Integer.parseInt(parts[i].trim(), 16);
+                        fuseValues.add(new ChipPic.FuseValue(fuseIndex + i, val));
+                    } catch (NumberFormatException ignored) {
                     }
                 }
 
-                if (con == (listData.length() - 1) && letra.length() > 0) {
-                    dato.add(letra.toString());
-                }
+                fuseSettings.put(setting, fuseValues);
             }
-
-            String[] datosFuses = new String[dato.size()];
-            for (int i = 0; i < datosFuses.length; i++) {
-                datosFuses[i] = dato.get(i);
-            }
-
-            listaFuses.add(datosFuses);
 
         } catch (Exception e) {
             throw new ChipConfigurationException("Error al procesar LIST: " + e.getMessage());
@@ -285,49 +321,50 @@ public class ChipinfoReader {
         try {
             // Validar datos obligatorios
             if (CHIPname == null || CHIPname.trim().isEmpty()) {
-                throw new ChipConfigurationException("CHIPname no puede ser nulo o vacío");
+                throw new ChipConfigurationException("CHIPname no puede ser nulo o vacio");
             }
 
             if (ROMsize == null || ROMsize.trim().isEmpty()) {
                 throw new ChipConfigurationException(
-                        "ROMsize no puede ser nulo o vacío para chip: " + CHIPname);
+                        "ROMsize no puede ser nulo o vacio para chip: " + CHIPname);
             }
 
             if (CoreType == null || CoreType.trim().isEmpty()) {
                 throw new ChipConfigurationException(
-                        "CoreType no puede ser nulo o vacío para chip: " + CHIPname);
+                        "CoreType no puede ser nulo o vacio para chip: " + CHIPname);
             }
 
-            // Se vuelve a construir un objeto cada ciclo
-            fuses = new HashMap<String, Object>();
-            fuses.put("FUSES", listaFuses);
-
-            // Se vuelve a construir un objeto para llenar de nuevo
-            listaFuses = new ArrayList<String[]>();
+            // Construir el mapa de fuses legado (compatibilidad con el constructor)
+            Map<String, Object> fusesLegacy = new HashMap<String, Object>();
+            fusesLegacy.put("FUSES", new ArrayList<String[]>()); // vacio, se usa setFusesMap
 
             modelosPic.add(CHIPname);
 
-            ChipPic chipPic =
-                    new ChipPic(
-                            CHIPname,
-                            INCLUDEr,
-                            SocketImage,
-                            EraseMode,
-                            FlashChip,
-                            PowerSequence,
-                            ProgramDelay,
-                            ProgramTries,
-                            OverProgram,
-                            CoreType,
-                            ROMsize,
-                            EEPROMsize,
-                            FUSEblank,
-                            CPwarn,
-                            CALword,
-                            BandGap,
-                            ICSPonly,
-                            ChipID,
-                            fuses);
+            ChipPic chipPic = new ChipPic(
+                    CHIPname,
+                    INCLUDEr,
+                    SocketImage,
+                    EraseMode,
+                    FlashChip,
+                    PowerSequence,
+                    ProgramDelay,
+                    ProgramTries,
+                    OverProgram,
+                    CoreType,
+                    ROMsize,
+                    EEPROMsize,
+                    FUSEblank,
+                    CPwarn,
+                    CALword,
+                    BandGap,
+                    ICSPonly,
+                    ChipID,
+                    fusesLegacy);
+
+            // Inyectar el mapa estructurado de fuses (para encode/decode)
+            if (!currentFusesMap.isEmpty()) {
+                chipPic.setFusesMap(new HashMap<>(currentFusesMap));
+            }
 
             chipEntries.put(CHIPname, chipPic);
 
@@ -359,11 +396,58 @@ public class ChipinfoReader {
     }
 
     /**
-     * Obtiene la lista de modelos PIC disponibles.
+     * Obtiene la lista de modelos PIC disponibles, ordenada alfabetica y
+     * numericamente.
+     * Orden: primero por familia (PIC10 < PIC12 < PIC16 < PIC18),
+     * luego por numero de modelo de menor a mayor.
      *
      * @return Lista con los nombres de los modelos PIC
      */
     public ArrayList<String> getModelosPic() {
+        Collections.sort(modelosPic, new Comparator<String>() {
+            @Override
+            public int compare(String a, String b) {
+                return comparePicNames(a, b);
+            }
+        });
         return this.modelosPic;
+    }
+
+    /**
+     * Compara dos nombres de PICs para ordenamiento alfabetico-numerico.
+     * Estrategia: comparar caracter a caracter; cuando se encuentra una
+     * secuencia de digitos, compararla como numero entero.
+     */
+    private int comparePicNames(String a, String b) {
+        int ia = 0, ib = 0;
+        while (ia < a.length() && ib < b.length()) {
+            char ca = a.charAt(ia);
+            char cb = b.charAt(ib);
+            boolean aDigit = Character.isDigit(ca);
+            boolean bDigit = Character.isDigit(cb);
+
+            if (aDigit && bDigit) {
+                // Extraer los numeros completos y compararlos numericamente
+                int startA = ia, startB = ib;
+                while (ia < a.length() && Character.isDigit(a.charAt(ia)))
+                    ia++;
+                while (ib < b.length() && Character.isDigit(b.charAt(ib)))
+                    ib++;
+                int numA = Integer.parseInt(a.substring(startA, ia));
+                int numB = Integer.parseInt(b.substring(startB, ib));
+                if (numA != numB)
+                    return Integer.compare(numA, numB);
+            } else {
+                // Comparar caracteres textuales (case-insensitive)
+                int cmp = Character.compare(
+                        Character.toUpperCase(ca),
+                        Character.toUpperCase(cb));
+                if (cmp != 0)
+                    return cmp;
+                ia++;
+                ib++;
+            }
+        }
+        return Integer.compare(a.length(), b.length());
     }
 }

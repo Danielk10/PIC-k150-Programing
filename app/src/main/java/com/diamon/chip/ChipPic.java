@@ -2,8 +2,11 @@ package com.diamon.chip;
 
 import com.diamon.excepciones.ChipConfigurationException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Clase para manejar la configuración y propiedades de chips PIC. Proporciona
@@ -12,6 +15,31 @@ import java.util.Map;
  * fuses.
  */
 public class ChipPic {
+
+    // --- Clases internas para manejo de fuses ---
+
+    /** Error en operacion de fuses */
+    public static class FuseError extends Exception {
+        public FuseError(String message) {
+            super(message);
+        }
+    }
+
+    /**
+     * Par (indice, valor) que representa el efecto de una opcion de fuse
+     * sobre la palabra de configuracion del PIC.
+     */
+    public static class FuseValue {
+        public final int index;
+        public final int value;
+
+        public FuseValue(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
+    }
+
+    // --- Campos internos ---
 
     private Map<String, Object> variablesDeChip;
 
@@ -633,5 +661,216 @@ public class ChipPic {
             return 8;
 
         return 0;
+    }
+
+    // -------------------------------------------------------------------------
+    // Metodos de fuses (unificados desde ChipinfoEntry)
+    // -------------------------------------------------------------------------
+
+    /**
+     * Devuelve el conjunto de nombres de fuses disponibles para este chip.
+     * Requiere que los fuses hayan sido cargados como mapa estructurado
+     * por ChipinfoReader.
+     */
+    @SuppressWarnings("unchecked")
+    public Set<String> getFuseNames() {
+        Object fusesObj = variablesDeChip.get("fuses");
+        if (!(fusesObj instanceof Map))
+            return new java.util.HashSet<>();
+        Map<String, Map<String, List<FuseValue>>> fuses = (Map<String, Map<String, List<FuseValue>>>) fusesObj;
+        return fuses.keySet();
+    }
+
+    /**
+     * Devuelve un mapa estructurado de fuses: nombre → (opcion → List<FuseValue>).
+     * Puede ser null si los fuses no se cargaron con el formato estructurado.
+     */
+    @SuppressWarnings("unchecked")
+    public Map<String, Map<String, List<FuseValue>>> getFusesMap() {
+        Object fusesObj = variablesDeChip.get("fuses");
+        if (!(fusesObj instanceof Map))
+            return null;
+        return (Map<String, Map<String, List<FuseValue>>>) fusesObj;
+    }
+
+    /**
+     * Establece el mapa estructurado de fuses (lo llama ChipinfoReader).
+     */
+    public void setFusesMap(Map<String, Map<String, List<FuseValue>>> fusesMap) {
+        variablesDeChip.put("fuses", fusesMap);
+    }
+
+    /**
+     * Codifica un mapa nombre→opcion en una lista de palabras de configuracion
+     * listas para enviar al programador.
+     *
+     * @param fuseDict Mapa con la configuracion deseada: nombre_fuse → opcion
+     * @return Lista de enteros (palabras de config con los bits de fuse aplicados)
+     * @throws FuseError Si algun fusible o valor es desconocido
+     */
+    @SuppressWarnings("unchecked")
+    public List<Integer> encodeFuseData(Map<String, String> fuseDict) throws FuseError {
+        // Base: copiar los valores blank de fuses
+        int[] fuseBlankArr;
+        try {
+            fuseBlankArr = getFuseBlack();
+        } catch (ChipConfigurationException e) {
+            throw new FuseError("No se pudo obtener FUSEblank: " + e.getMessage());
+        }
+        List<Integer> result = new ArrayList<>();
+        for (int v : fuseBlankArr)
+            result.add(v);
+
+        Map<String, Map<String, List<FuseValue>>> fuseParamList = getFusesMap();
+        if (fuseParamList == null || fuseParamList.isEmpty()) {
+            throw new FuseError("No hay configuraciones de fusibles disponibles para " + getNombreDelPic());
+        }
+
+        for (Map.Entry<String, String> entry : fuseDict.entrySet()) {
+            String fuse = entry.getKey();
+            String fuseValue = entry.getValue();
+
+            String actualFuseName = findFuseName(fuseParamList, fuse);
+            if (actualFuseName == null) {
+                StringBuilder sb = new StringBuilder("Fusible desconocido: \"").append(fuse)
+                        .append("\". Fusibles disponibles: ");
+                int count = 0;
+                for (String key : fuseParamList.keySet()) {
+                    if (count++ > 0)
+                        sb.append(", ");
+                    sb.append(key);
+                    if (count >= 10) {
+                        sb.append("...");
+                        break;
+                    }
+                }
+                throw new FuseError(sb.toString());
+            }
+
+            Map<String, List<FuseValue>> fuseSettings = fuseParamList.get(actualFuseName);
+            if (!fuseSettings.containsKey(fuseValue)) {
+                StringBuilder sb = new StringBuilder("Valor invalido '").append(fuseValue)
+                        .append("' para fuse '").append(actualFuseName)
+                        .append("'. Valores disponibles: ");
+                int count = 0;
+                for (String key : fuseSettings.keySet()) {
+                    if (count++ > 0)
+                        sb.append(", ");
+                    sb.append(key);
+                }
+                throw new FuseError(sb.toString());
+            }
+
+            result = indexwiseAnd(result, fuseSettings.get(fuseValue));
+        }
+
+        return result;
+    }
+
+    /**
+     * Decodifica una lista de palabras de configuracion a su representacion
+     * simbolica (nombre_fuse → opcion_activa).
+     *
+     * @param fuseValues Lista de enteros leidos del PIC
+     * @return Mapa nombre_fuse → opcion_activa
+     * @throws FuseError Si no hay fuses disponibles
+     */
+    @SuppressWarnings("unchecked")
+    public Map<String, String> decodeFuseData(List<Integer> fuseValues) throws FuseError {
+        Map<String, Map<String, List<FuseValue>>> fuseParamList = getFusesMap();
+        if (fuseParamList == null || fuseParamList.isEmpty()) {
+            throw new FuseError("No hay configuraciones de fusibles disponibles para " + getNombreDelPic());
+        }
+
+        Map<String, String> result = new HashMap<>();
+
+        for (Map.Entry<String, Map<String, List<FuseValue>>> fuseParamEntry : fuseParamList.entrySet()) {
+            String fuseParam = fuseParamEntry.getKey();
+            Map<String, List<FuseValue>> fuseSettings = fuseParamEntry.getValue();
+
+            String bestSetting = null;
+            int bestScore = -1;
+
+            for (Map.Entry<String, List<FuseValue>> settingEntry : fuseSettings.entrySet()) {
+                int score = calculateMatchScore(fuseValues, settingEntry.getValue());
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestSetting = settingEntry.getKey();
+                }
+            }
+
+            result.put(fuseParam, bestSetting != null ? bestSetting : "Unknown");
+        }
+
+        return result;
+    }
+
+    /**
+     * Devuelve documentacion de los fuses disponibles para este chip.
+     */
+    @SuppressWarnings("unchecked")
+    public String getFuseDoc() {
+        Map<String, Map<String, List<FuseValue>>> fuseParamList = getFusesMap();
+        if (fuseParamList == null || fuseParamList.isEmpty()) {
+            return "No hay fusibles disponibles para " + getNombreDelPic();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, Map<String, List<FuseValue>>> entry : fuseParamList.entrySet()) {
+            sb.append("'").append(entry.getKey()).append("' : (");
+            boolean first = true;
+            for (String setting : entry.getValue().keySet()) {
+                if (!first)
+                    sb.append(", ");
+                sb.append("'").append(setting).append("'");
+                first = false;
+            }
+            sb.append(")\n");
+        }
+        return sb.toString();
+    }
+
+    /** Busqueda flexible de nombre de fuse: exacta, case-insensitive, parcial. */
+    private String findFuseName(
+            Map<String, Map<String, List<FuseValue>>> fuseConfigs,
+            String fuseName) {
+        if (fuseConfigs.containsKey(fuseName))
+            return fuseName;
+        for (String key : fuseConfigs.keySet()) {
+            if (key.equalsIgnoreCase(fuseName))
+                return key;
+        }
+        String search = fuseName.toLowerCase();
+        for (String key : fuseConfigs.keySet()) {
+            String kl = key.toLowerCase();
+            if (kl.contains(search) || search.contains(kl))
+                return key;
+        }
+        return null;
+    }
+
+    /** Calcula cuantos bits coinciden entre fuseValues y settingValues. */
+    private int calculateMatchScore(List<Integer> fuseValues, List<FuseValue> settingValues) {
+        int score = 0;
+        for (FuseValue fv : settingValues) {
+            if (fv.index < fuseValues.size()) {
+                score += Integer.bitCount(fuseValues.get(fv.index) & fv.value);
+            }
+        }
+        return score;
+    }
+
+    /**
+     * Aplica un AND por posicion entre la lista de fuses y los valores de la
+     * opcion.
+     */
+    private List<Integer> indexwiseAnd(List<Integer> fuses, List<FuseValue> settingValues) {
+        List<Integer> result = new ArrayList<>(fuses);
+        for (FuseValue fv : settingValues) {
+            if (fv.index < result.size()) {
+                result.set(fv.index, result.get(fv.index) & fv.value);
+            }
+        }
+        return result;
     }
 }

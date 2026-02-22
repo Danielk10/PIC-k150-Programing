@@ -36,7 +36,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 
 import com.diamon.chip.ChipPic;
-import com.diamon.chip.ChipinfoEntry;
 import com.diamon.datos.DatosPicProcesados;
 import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.managers.ChipSelectionManager;
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity
 
     private String firmware = "";
     private ChipPic currentChip;
-    private ChipinfoEntry currentChipFuses;
 
     // NUEVAS VARIABLES PARA FUSES
     private boolean fusesConfigured = false;
@@ -236,7 +234,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onChipSelected(ChipPic chip, String model) {
                 currentChip = chip;
-                currentChipFuses = chipSelectionManager.getSelectedChipFuses();
                 chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
 
                 updateSwitchColors();
@@ -877,15 +874,14 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        if (currentChipFuses == null) {
+        if (currentChip.getFusesMap() == null || currentChip.getFusesMap().isEmpty()) {
             Toast.makeText(this, "No hay datos de fusibles para este chip", Toast.LENGTH_SHORT)
                     .show();
             return;
         }
 
-        // Mostrar popup con última configuración si existe
-        fuseConfigPopup.show(
-                currentChip, currentChipFuses, datosPicProcesados, lastFuseConfiguration);
+        // Mostrar popup con ultima configuracion si existe
+        fuseConfigPopup.show(currentChip, datosPicProcesados, lastFuseConfiguration);
     }
 
     /** NUEVO: Limpia la configuración de fusibles */
