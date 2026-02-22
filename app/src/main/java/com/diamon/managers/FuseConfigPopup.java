@@ -87,17 +87,34 @@ public class FuseConfigPopup {
             ChipinfoEntry chipFuses,
             DatosPicProcesados hexData,
             Map<String, String> lastConfig) {
+        if (!isActivityValid()) {
+            android.util.Log.w("FuseConfigPopup", "show: Activity no valida, ignorando");
+            return;
+        }
+
         this.currentChip = chip;
         this.currentChipFuses = chipFuses;
         this.hexData = hexData;
         this.lastConfiguration = lastConfig;
 
         createDialog();
-        dialog.show();
+
+        if (dialog != null) {
+            try {
+                dialog.show();
+            } catch (android.view.WindowManager.BadTokenException e) {
+                android.util.Log.e("FuseConfigPopup", "BadTokenException al mostrar dialog: " + e.getMessage());
+            }
+        }
     }
 
     /** Crea y configura el dialogo - DISENO SIMPLIFICADO */
     private void createDialog() {
+        if (!isActivityValid()) {
+            android.util.Log.w("FuseConfigPopup", "createDialog: Activity no valida");
+            return;
+        }
+
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -855,7 +872,10 @@ public class FuseConfigPopup {
 
         Window window = dialog.getWindow();
         if (window == null) {
-            dialog.dismiss();
+            try {
+                dialog.dismiss();
+            } catch (Exception ignored) {
+            }
             return;
         }
 
@@ -874,7 +894,15 @@ public class FuseConfigPopup {
         animator.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
-                dialog.dismiss();
+                try {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                } catch (IllegalArgumentException e) {
+                    android.util.Log.w("FuseConfigPopup", "dismissWithAnimation: View no attached: " + e.getMessage());
+                } catch (Exception e) {
+                    android.util.Log.w("FuseConfigPopup", "dismissWithAnimation: Error: " + e.getMessage());
+                }
             }
         });
 
@@ -934,10 +962,25 @@ public class FuseConfigPopup {
         logTextView.setText(newText.toString());
     }
 
+    /** Verifica si la Activity del contexto esta activa y no fue destruida. */
+    private boolean isActivityValid() {
+        if (!(context instanceof android.app.Activity)) {
+            return false;
+        }
+        android.app.Activity activity = (android.app.Activity) context;
+        return !activity.isFinishing() && !activity.isDestroyed();
+    }
+
     /** Cierra el dialogo */
     public void dismiss() {
         if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
+            try {
+                dialog.dismiss();
+            } catch (IllegalArgumentException e) {
+                android.util.Log.w("FuseConfigPopup", "dismiss: View no attached: " + e.getMessage());
+            } catch (Exception e) {
+                android.util.Log.w("FuseConfigPopup", "dismiss: Error: " + e.getMessage());
+            }
         }
     }
 }

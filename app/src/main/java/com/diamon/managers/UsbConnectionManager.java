@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.diamon.protocolo.ProtocoloP018;
@@ -37,6 +39,7 @@ public class UsbConnectionManager {
 
     private final Context context;
     private final SafeBroadcastManager broadcastManager;
+    private final Handler mainHandler;
     private UsbManager usbManager;
     private UsbSerialPort usbSerialPort;
     private List<UsbSerialDriver> drivers;
@@ -59,7 +62,8 @@ public class UsbConnectionManager {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ACTION_USB_PERMISSION.equals(intent.getAction())) {
-                if (!drivers.isEmpty()) {
+                // Verificar que drivers no sea null antes de acceder
+                if (drivers != null && !drivers.isEmpty()) {
                     UsbSerialDriver driver = drivers.get(0);
                     connectToDevice(driver);
                 }
@@ -76,6 +80,7 @@ public class UsbConnectionManager {
         this.context = context;
         this.usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
         this.broadcastManager = new SafeBroadcastManager(context);
+        this.mainHandler = new Handler(Looper.getMainLooper());
     }
 
     /**
@@ -87,23 +92,27 @@ public class UsbConnectionManager {
         this.connectionListener = listener;
     }
 
-    /** Inicializa el gestor USB y registra el BroadcastReceiver */
+    /**
+     * Inicializa el gestor USB.
+     * NOTA: El registro del BroadcastReceiver DEBE hacerse en el main thread,
+     * pero el escaneo de drivers puede estar en background.
+     * Esta funcion puede llamarse desde cualquier hilo.
+     */
     public void initialize() {
-        // Detectar dispositivos USB conectados
+        // PASO 1: Registrar el BroadcastReceiver en el main thread (evita ANR binder)
+        mainHandler.post(() -> {
+            IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+            boolean registered = broadcastManager.registerReceiver(usbReceiver, filter, false);
+            if (!registered) {
+                Log.w(TAG, "Failed to register USB receiver");
+            }
+        });
+
+        // PASO 2: Escanear drivers (puede tomar tiempo, seguro en background)
         drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
 
-        // Registrar el BroadcastReceiver para permisos USB usando SafeBroadcastManager
-        IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
-
-        // Usar SafeBroadcastManager para registro seguro
-        // El receiver NO es exportado (solo recibe broadcasts internos de la app)
-        boolean registered = broadcastManager.registerReceiver(usbReceiver, filter, false);
-
-        if (!registered) {
-            Log.w(TAG, "Failed to register USB receiver");
-        }
-
-        // Solicitar permisos si hay dispositivos conectados
+        // PASO 3: Solicitar permisos si hay dispositivos (desde el hilo actual,
+        // ya que requestPermission solo lanza un Intent)
         requestPermissionsIfNeeded();
     }
 

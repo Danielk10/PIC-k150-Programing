@@ -74,6 +74,11 @@ public class MemoryDisplayManager {
      * Llamar ANTES de iniciar la lectura de memoria.
      */
     public void showLoadingState() {
+        if (!isActivityValid()) {
+            android.util.Log.w("MemoryDisplayManager", "showLoadingState: Activity no valida, ignorando");
+            return;
+        }
+
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
@@ -81,7 +86,10 @@ public class MemoryDisplayManager {
         LinearLayout mainContainer = createMainContainer(screenWidth, screenHeight);
 
         if (memoryPopup != null && memoryPopup.isShowing()) {
-            memoryPopup.dismiss();
+            try {
+                memoryPopup.dismiss();
+            } catch (Exception ignored) {
+            }
         }
 
         memoryPopup = new PopupWindow(
@@ -92,21 +100,21 @@ public class MemoryDisplayManager {
         memoryPopup.setOutsideTouchable(false);
         memoryPopup.setAnimationStyle(R.style.PopupAnimation);
 
-        View rootView;
-        if (context instanceof android.app.Activity) {
-            android.app.Activity activity = (android.app.Activity) context;
-            rootView = activity.getWindow().getDecorView();
-        } else {
-            rootView = ((android.app.Activity) context).findViewById(android.R.id.content);
-        }
+        android.app.Activity activity = (android.app.Activity) context;
+        View rootView = activity.getWindow().getDecorView();
 
-        memoryPopup.showAtLocation(rootView, Gravity.CENTER, 0, 0);
-        applyShowAnimation(mainContainer);
+        try {
+            memoryPopup.showAtLocation(rootView, Gravity.CENTER, 0, 0);
+            applyShowAnimation(mainContainer);
+        } catch (android.view.WindowManager.BadTokenException e) {
+            android.util.Log.e("MemoryDisplayManager", "BadTokenException al mostrar popup: " + e.getMessage());
+            return;
+        }
 
         // Cargar o mostrar anuncio nativo usando el gestor centralizado
         if (context instanceof com.diamon.pic.MainActivity) {
-            com.diamon.pic.MainActivity activity = (com.diamon.pic.MainActivity) context;
-            activity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY,
+            com.diamon.pic.MainActivity mainActivity = (com.diamon.pic.MainActivity) context;
+            mainActivity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY,
                     adContainer);
         }
     }
@@ -507,8 +515,23 @@ public class MemoryDisplayManager {
 
     public void dismiss() {
         if (memoryPopup != null && memoryPopup.isShowing()) {
-            memoryPopup.dismiss();
+            try {
+                memoryPopup.dismiss();
+            } catch (IllegalArgumentException e) {
+                android.util.Log.w("MemoryDisplayManager", "dismiss: View no attached: " + e.getMessage());
+            } catch (Exception e) {
+                android.util.Log.w("MemoryDisplayManager", "dismiss: Error inesperado: " + e.getMessage());
+            }
         }
+    }
+
+    /** Verifica si la Activity del contexto esta activa y no fue destruida. */
+    private boolean isActivityValid() {
+        if (!(context instanceof android.app.Activity)) {
+            return false;
+        }
+        android.app.Activity activity = (android.app.Activity) context;
+        return !activity.isFinishing() && !activity.isDestroyed();
     }
 
     public void dismissAllPopups() {

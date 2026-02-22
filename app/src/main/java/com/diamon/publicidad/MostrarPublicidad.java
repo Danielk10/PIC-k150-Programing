@@ -30,6 +30,7 @@ import com.google.android.gms.ads.nativead.NativeAdView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Gestor CENTRALIZADO de publicidad de Google Mobile Ads.
@@ -55,9 +56,9 @@ public class MostrarPublicidad implements Publicidad {
     private final Handler mainHandler;
 
     private AdView adView;
-    private final Map<String, NativeAd> nativeAdsMap = new HashMap<>();
-    private final Map<String, Boolean> loadingAdsMap = new HashMap<>();
-    private static final Map<String, Long> lastRequestTimeMap = new HashMap<>();
+    private final Map<String, NativeAd> nativeAdsMap = new ConcurrentHashMap<>();
+    private final Map<String, Boolean> loadingAdsMap = new ConcurrentHashMap<>();
+    private static final Map<String, Long> lastRequestTimeMap = new ConcurrentHashMap<>();
     private static final long MIN_REQUEST_INTERVAL = 10000; // 10 segundos entre peticiones para la misma unidad
 
     public MostrarPublicidad(AppCompatActivity actividad) {

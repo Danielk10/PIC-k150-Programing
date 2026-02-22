@@ -55,6 +55,11 @@ public class ProgrammingDialogManager {
         this.onProgrammingStartCallback = onStart;
         this.onDismissCallback = onDismiss;
 
+        if (!isActivityValid()) {
+            android.util.Log.w("ProgrammingDialogManager", "showProgrammingDialog: Activity no valida, ignorando");
+            return;
+        }
+
         createPopupWindow();
 
         if (onProgrammingStartCallback != null) {
@@ -83,16 +88,21 @@ public class ProgrammingDialogManager {
         popupWindow.setOutsideTouchable(false);
         popupWindow.setAnimationStyle(R.style.PopupAnimation);
 
-        View rootView;
-        if (context instanceof android.app.Activity) {
-            android.app.Activity activity = (android.app.Activity) context;
-            rootView = activity.getWindow().getDecorView();
-        } else {
-            rootView = ((android.app.Activity) context).findViewById(android.R.id.content);
+        if (!isActivityValid()) {
+            android.util.Log.w("ProgrammingDialogManager", "createPopupWindow: Activity no valida, abortando show");
+            return;
         }
 
-        popupWindow.showAtLocation(rootView, Gravity.CENTER, 0, 0);
-        applyShowAnimation(popupContainer);
+        View rootView;
+        android.app.Activity activity = (android.app.Activity) context;
+        rootView = activity.getWindow().getDecorView();
+
+        try {
+            popupWindow.showAtLocation(rootView, Gravity.CENTER, 0, 0);
+            applyShowAnimation(popupContainer);
+        } catch (android.view.WindowManager.BadTokenException e) {
+            android.util.Log.e("ProgrammingDialogManager", "BadTokenException al mostrar popup: " + e.getMessage());
+        }
     }
 
     private LinearLayout createPopupContainer(int height) {
@@ -289,12 +299,27 @@ public class ProgrammingDialogManager {
 
     public void dismiss() {
         if (popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
+            try {
+                popupWindow.dismiss();
+            } catch (IllegalArgumentException e) {
+                android.util.Log.w("ProgrammingDialogManager", "dismiss: View no attached: " + e.getMessage());
+            } catch (Exception e) {
+                android.util.Log.w("ProgrammingDialogManager", "dismiss: Error inesperado: " + e.getMessage());
+            }
         }
 
         if (onDismissCallback != null) {
             onDismissCallback.run();
         }
+    }
+
+    /** Verifica si la Activity del contexto esta activa y no fue destruida. */
+    private boolean isActivityValid() {
+        if (!(context instanceof android.app.Activity)) {
+            return false;
+        }
+        android.app.Activity activity = (android.app.Activity) context;
+        return !activity.isFinishing() && !activity.isDestroyed();
     }
 
     private int dpToPx(int dp) {
