@@ -235,7 +235,7 @@ public class ChipPic {
 
         tipoDeNucleo.put("bit16_c", 13);
 
-        tipoDeNucleo.put("newf12b", 0); // No esta en la documentacion
+        tipoDeNucleo.put("newf12b", 11); // No esta en la documentacion
 
         respuestas = new HashMap<String, Boolean>();
 
@@ -281,8 +281,6 @@ public class ChipPic {
                 nucleo = 14;
             } else if (nucleo == 4 || nucleo == 11) {
                 nucleo = 12;
-            } else if (nucleo == 0) {
-                nucleo = 14;
             } else {
                 throw new ChipConfigurationException("Tipo de núcleo inválido: " + nucleo);
             }
