@@ -40,8 +40,6 @@ public class DatosPicProcesados {
     private final String firware;
 
     /** Información del chip PIC objetivo */
-    // private final ChipPic chipPIC;
-
     private ChipPic chipPIC;
 
     /** Datos de memoria ROM procesados */
@@ -131,13 +129,11 @@ public class DatosPicProcesados {
                     chipPIC.getTipoDeNucleoBit(), chipPIC.getTamanoROM());
             byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
 
-            // Detectar endianness de los datos ROM
-            // Detectar endianness con manejo robusto
+            // Detectar endianness de los datos ROM con manejo robusto
             boolean swapBytes;
             try {
                 swapBytes = detectarEndianness(romRecords, romBlank);
             } catch (IllegalArgumentException e) {
-                // ✅ SOLUCIÓN: Manejar error de endianness
                 swapBytes = false; // Valor por defecto
             }
 
@@ -184,7 +180,7 @@ public class DatosPicProcesados {
 
         for (int i = 0; i < procesado.getRecords().size(); i++) {
             HexProcesado.HexRecord registro = procesado.getRecords().get(i);
-            // ✅ Optimizado: Usar ByteUtils para conversión rápida
+            // Convertir a hexadecimal para reutilizar la infraestructura de fusión.
             String datosHex = ByteUtils.bytesToHex(registro.data);
             records.add(new HexFileUtils.Pair<>(registro.address, datosHex));
         }
@@ -205,16 +201,15 @@ public class DatosPicProcesados {
         int romBlankWord = ByteUtils.bytesToInt(romBlank);
 
         for (HexFileUtils.Pair<Integer, String> record : romRecords) {
-            // ✅ CORRECCIÓN BASADA EN PYTHON: Solo validar si hay datos suficientes
+            // Ignorar direcciones impares, equivalente al parser de referencia.
             if (record.first % 2 != 0) {
-                continue; // ✅ Continuar como Python
+                continue;
             }
 
             String data = record.second;
-            // ✅ CORRECCIÓN BASADA EN PYTHON: Solo procesar si hay datos completos
+            // Procesar palabras completas de 16 bits (4 caracteres hex).
             for (int x = 0; x < data.length(); x += 4) {
-                // ✅ VERIFICAR que hay suficientes caracteres (como Python hace con x+2 < len)
-                if ((x + 4) <= data.length()) { // ✅ Solo si hay datos suficientes
+                if ((x + 4) <= data.length()) {
                     String wordHex = data.substring(x, x + 4);
                     int BE_word = Integer.parseInt(wordHex, 16);
                     int LE_word = Integer.reverseBytes(BE_word) >>> 16;
@@ -231,7 +226,6 @@ public class DatosPicProcesados {
                         swapBytesDetected = true;
                         break;
                     } else if (!BE_ok && !LE_ok) {
-                        // ✅ COMO PYTHON: Solo fallar en casos realmente inválidos
                         continue;
                     }
                 }
@@ -242,7 +236,6 @@ public class DatosPicProcesados {
             }
         }
 
-        // ✅ COMO PYTHON: Valor por defecto si no se detecta
         if (!swapBytesDetected) {
             swapBytes = false;
         }
@@ -302,9 +295,6 @@ public class DatosPicProcesados {
         try {
             byte[] resultado = HexFileUtils.mergeRecords(records, blankData, baseAddress);
 
-            // Generar estadísticas de los datos fusionados
-            String estadisticas = ByteUtils.obtenerEstadisticas(resultado);
-
             return resultado;
         } catch (Exception e) {
 
@@ -343,7 +333,6 @@ public class DatosPicProcesados {
 
             byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlank());
             this.fuseData = HexFileUtils.mergeRecords(configRecordsFuses, fusesBytes, 0x400E);
-            int[] fuseINT = HexFileUtils.decodeFromBytes(fuseData);
             this.fuseValues = HexFileUtils.decodeFromBytes(fuseData);
 
         } catch (Exception e) {
@@ -399,8 +388,4 @@ public class DatosPicProcesados {
         return this.IDData;
     }
 
-    public ChipPic obtenerChipProcesado() {
-
-        return chipPIC;
-    }
 }

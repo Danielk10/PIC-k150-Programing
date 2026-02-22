@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         // Ocultar barras de navegación para modo inmersivo
         pantallaCompleta.ocultarBotonesVirtuales();
 
-        // Inicializar el Switch de ICSP (Agregar esta línea)
+        // Inicializar el switch de modo ICSP
         swModeICSP = findViewById(R.id.swModeICSP);
 
         updateSwitchColors();
@@ -152,9 +152,7 @@ public class MainActivity extends AppCompatActivity
         initializeManagers();
         setupListeners();
         setupToolbar();
-        // CORRECCIÓN PARA ANR en inicio:
-        // Mover la inicialización de USB (escaneo de drivers y apertura de protocolo)
-        // a un hilo secundario para no bloquear el onCreate.
+        // Inicializar USB en un hilo secundario para no bloquear el onCreate.
         new Thread(() -> {
             try {
                 if (usbManager != null) {
