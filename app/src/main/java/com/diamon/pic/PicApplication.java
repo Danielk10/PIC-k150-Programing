@@ -52,9 +52,6 @@ public class PicApplication extends Application {
         // Configurar handler para excepciones del sistema que no podemos controlar
         setupUncaughtExceptionHandler();
 
-        // Pre-cargar WebView en background para reducir bloqueo en primera instancia
-        preloadWebViewAsync();
-
         // Diferir inicialización de MobileAds
         initializeMobileAdsDeferred();
     }
@@ -112,6 +109,17 @@ public class PicApplication extends Application {
             return true;
         }
 
+        // BadTokenException - Intento de mostrar ventana cuando la Activity ya no es
+        // valida
+        // Ocurre al desplegar el menu de desbordamiento (overflow) en una Activity que
+        // ya fue destruida
+        if (throwable instanceof android.view.WindowManager.BadTokenException) {
+            String msg = throwable.getMessage();
+            if (msg != null && msg.contains("is not valid")) {
+                return true;
+            }
+        }
+
         // Verificar causa recursivamente
         Throwable cause = throwable.getCause();
         if (cause != null && cause != throwable) {
@@ -119,45 +127,6 @@ public class PicApplication extends Application {
         }
 
         return false;
-    }
-
-    /**
-     * Pre-carga WebView en un thread background para reducir el tiempo
-     * de inicialización cuando se muestre el primer anuncio.
-     */
-    private void preloadWebViewAsync() {
-        new Thread(() -> {
-            try {
-                // Aumentar el delay a 5 segundos.
-                // Los crashes en libmonochrome (SIGTRAP) suelen ocurrir por inicialización
-                // prematura o colisiones de recursos durante el arranque intenso.
-                Thread.sleep(5000);
-
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    try {
-                        // Pre-cargar el motor de renderizado de forma segura.
-                        // Usar una instancia global persistente o destruirla después de un tiempo
-                        // es opcional, pero aquí simplemente forzamos la carga.
-                        WebView webView = new WebView(getApplicationContext());
-                        webView.loadUrl("about:blank"); // Forzar carga mínima
-
-                        // Diferir destrucción para asegurar que el motor se asiente
-                        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                            try {
-                                webView.destroy();
-                                Log.d(TAG, "WebView preloaded and settled successfully");
-                            } catch (Exception ignored) {
-                            }
-                        }, 1000);
-
-                    } catch (Exception e) {
-                        Log.w(TAG, "Failed to preload WebView: " + e.getMessage());
-                    }
-                });
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }, "WebViewPreloader").start();
     }
 
     /**
