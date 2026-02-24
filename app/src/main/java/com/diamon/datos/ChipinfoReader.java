@@ -106,6 +106,16 @@ public class ChipinfoReader {
     private final ArrayList<String> modelosPic;
 
     /**
+     * Obtiene el valor de un mapa o un valor por defecto si la clave no existe o es
+     * nula.
+     * Alternativa a Map.getOrDefault que requiere API nivel 24.
+     */
+    private String getMapValueOrDefault(Map<String, String> map, String key, String defaultValue) {
+        String value = map.get(key);
+        return value != null ? value : defaultValue;
+    }
+
+    /**
      * Constructor: lee el archivo chipinfo.cid desde los assets de Android
      * y construye el mapa de chips.
      *
@@ -263,23 +273,23 @@ public class ChipinfoReader {
         try {
             ChipPic chipPic = new ChipPic(
                     chipName,
-                    block.getOrDefault("INCLUDE", "Y"),
-                    block.getOrDefault("SocketImage", "0pin"),
-                    block.getOrDefault("EraseMode", "0"),
-                    block.getOrDefault("FlashChip", "N"),
-                    block.getOrDefault("PowerSequence", "VccVpp1"),
-                    block.getOrDefault("ProgramDelay", "1"),
-                    block.getOrDefault("ProgramTries", "1"),
-                    block.getOrDefault("OverProgram", "0"),
+                    getMapValueOrDefault(block, "INCLUDE", "Y"),
+                    getMapValueOrDefault(block, "SocketImage", "0pin"),
+                    getMapValueOrDefault(block, "EraseMode", "0"),
+                    getMapValueOrDefault(block, "FlashChip", "N"),
+                    getMapValueOrDefault(block, "PowerSequence", "VccVpp1"),
+                    getMapValueOrDefault(block, "ProgramDelay", "1"),
+                    getMapValueOrDefault(block, "ProgramTries", "1"),
+                    getMapValueOrDefault(block, "OverProgram", "0"),
                     coreType,
                     romSize,
-                    block.getOrDefault("EEPROMsize", "00000000"),
+                    getMapValueOrDefault(block, "EEPROMsize", "00000000"),
                     fuseBlankArr,
-                    block.getOrDefault("CPwarn", "N"),
-                    block.getOrDefault("CALword", "N"),
-                    block.getOrDefault("BandGap", "N"),
-                    block.getOrDefault("ICSPonly", "N"),
-                    block.getOrDefault("ChipID", "FFFF"),
+                    getMapValueOrDefault(block, "CPwarn", "N"),
+                    getMapValueOrDefault(block, "CALword", "N"),
+                    getMapValueOrDefault(block, "BandGap", "N"),
+                    getMapValueOrDefault(block, "ICSPonly", "N"),
+                    getMapValueOrDefault(block, "ChipID", "FFFF"),
                     fusesLegacy);
 
             // Inyectar el mapa estructurado de fusibles para encode/decode

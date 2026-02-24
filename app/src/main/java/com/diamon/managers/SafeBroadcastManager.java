@@ -61,15 +61,9 @@ public class SafeBroadcastManager {
         }
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                // Android 13 (API 33) y superior requiere especificar el flag de exportacion
-                int flag = exported ? ContextCompat.RECEIVER_EXPORTED : ContextCompat.RECEIVER_NOT_EXPORTED;
-
-                ContextCompat.registerReceiver(context, receiver, filter, flag);
-            } else {
-                // Versiones anteriores a Android 13
-                context.registerReceiver(receiver, filter);
-            }
+            // ContextCompat maneja la compatibilidad con todas las versiones de Android
+            int flag = exported ? ContextCompat.RECEIVER_EXPORTED : ContextCompat.RECEIVER_NOT_EXPORTED;
+            ContextCompat.registerReceiver(context, receiver, filter, flag);
 
             isRegistered = true;
             currentReceiver = receiver;

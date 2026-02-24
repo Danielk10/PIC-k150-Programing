@@ -196,7 +196,7 @@
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
-                        <Switch
+                        <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/swModeICSP"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

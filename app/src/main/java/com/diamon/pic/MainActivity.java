@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout eepromDataContainer;
     private Spinner chipSpinner;
     private android.widget.ImageView chipSocketImageView; // NUEVO
-    private Switch swModeICSP;
+    private androidx.appcompat.widget.SwitchCompat swModeICSP;
 
     private android.widget.Button btnSelectHex;
     private android.widget.Button btnProgramarPic;
@@ -1206,6 +1206,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @SuppressLint("Wakelock")
     @Override
     protected void onDestroy() {
         try {
