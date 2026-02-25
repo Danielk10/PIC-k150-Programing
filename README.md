@@ -6,7 +6,7 @@
 
 [![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=com.diamon.pic)
 
-![Version](https://img.shields.io/badge/version-2.7.4-blue.svg)
+![Version](https://img.shields.io/badge/version-2.7.6-blue.svg)
 ![API Level](https://img.shields.io/badge/API-23%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange.svg)
 ![Target SDK](https://img.shields.io/badge/Target%20SDK-36-blueviolet.svg)
