@@ -847,7 +847,7 @@ public class MainActivity extends AppCompatActivity
                         runOnUiThread(
                                 () -> {
                                     processStatusTextView.setText(
-                                            "HEX procesado correctamente");
+                                            getString(R.string.hex_procesado_correctamente));
                                 });
 
                     } catch (Exception e) {
@@ -855,7 +855,8 @@ public class MainActivity extends AppCompatActivity
                                 () -> {
                                     Toast.makeText(
                                             MainActivity.this,
-                                            "Error procesando HEX: "
+                                            getString(R.string.error_procesando_hex)
+                                                    + ": "
                                                     + e.getMessage(),
                                             Toast.LENGTH_LONG)
                                             .show();
@@ -868,12 +869,12 @@ public class MainActivity extends AppCompatActivity
     /** NUEVO: Abre el popup de configuración de fusibles */
     private void openFuseConfiguration() {
         if (currentChip == null) {
-            Toast.makeText(this, "Selecciona un chip primero", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.selecciona_chip_primero), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (currentChip.getFusesMap() == null || currentChip.getFusesMap().isEmpty()) {
-            Toast.makeText(this, "No hay datos de fusibles para este chip", Toast.LENGTH_SHORT)
+            Toast.makeText(this, getString(R.string.no_hay_fusibles_para_chip), Toast.LENGTH_SHORT)
                     .show();
             return;
         }
@@ -895,11 +896,11 @@ public class MainActivity extends AppCompatActivity
     /** NUEVO: Actualiza el indicador de estado de fusibles */
     private void updateFuseStatus(boolean configured) {
         if (configured) {
-            fuseStatusTextView.setText("✓ Configurados");
+            fuseStatusTextView.setText("✓ " + getString(R.string.fuses_configurados));
             fuseStatusTextView.setTextColor(Color.WHITE);
             fuseStatusTextView.setBackgroundColor(Color.parseColor("#4CAF50"));
         } else {
-            fuseStatusTextView.setText("No configurados");
+            fuseStatusTextView.setText(getString(R.string.fuses_no_configurados));
             fuseStatusTextView.setTextColor(Color.parseColor("#757575"));
             fuseStatusTextView.setBackgroundColor(Color.parseColor("#3A3A3A"));
         }
@@ -1066,19 +1067,66 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void executeVerifyMemory() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        processStatusTextView.setText(getString(R.string.verificando_memoria));
+
         new Thread(
                 () -> {
-                    boolean isEmpty = programmingManager.verifyMemoryErased();
-                    runOnUiThread(
-                            () -> {
-                                if (isEmpty) {
-                                    processStatusTextView.setText(
-                                            getString(R.string.memoria_vacia));
-                                } else {
-                                    processStatusTextView.setText(
-                                            getString(R.string.memoria_contiene_datos));
-                                }
-                            });
+                    try {
+                        // Usar VerificationManager para verificación real
+                        com.diamon.managers.VerificationManager.VerificationResult result = com.diamon.managers.VerificationManager
+                                .verify(
+                                        programmingManager.getProtocolo(),
+                                        currentChip,
+                                        firmware, // ROM esperada (del HEX cargado)
+                                        null); // EEPROM (null = no verificar aún)
+
+                        runOnUiThread(
+                                () -> {
+                                    StringBuilder statusMsg = new StringBuilder();
+                                    statusMsg.append(getString(R.string.verificacion_completa));
+                                    statusMsg.append("\n");
+
+                                    // ROM
+                                    if (result.romVerified) {
+                                        statusMsg.append(getString(R.string.verificacion_rom_ok));
+                                    } else if (result.romMaybeLocked) {
+                                        statusMsg.append(getString(R.string.verificacion_rom_fallo))
+                                                .append(" — ")
+                                                .append(getString(R.string.rom_posible_locked));
+                                    } else {
+                                        statusMsg.append(getString(R.string.verificacion_rom_fallo));
+                                    }
+
+                                    // Chip config info
+                                    if (result.chipIdHex != null) {
+                                        statusMsg.append("\nChip ID: ").append(result.chipIdHex);
+                                    }
+
+                                    // Fuses decodificados
+                                    if (result.decodedFuses != null && !result.decodedFuses.isEmpty()) {
+                                        statusMsg.append("\n").append(getString(R.string.fuses_decodificados))
+                                                .append(":");
+                                        for (java.util.Map.Entry<String, String> fuse : result.decodedFuses
+                                                .entrySet()) {
+                                            statusMsg.append("\n  ").append(fuse.getKey())
+                                                    .append(" = ").append(fuse.getValue());
+                                        }
+                                    }
+
+                                    processStatusTextView.setText(statusMsg.toString());
+                                });
+
+                    } catch (Exception e) {
+                        runOnUiThread(
+                                () -> processStatusTextView.setText(
+                                        getString(R.string.error_verificando_memoria)
+                                                + ": " + e.getMessage()));
+                    }
                 })
                 .start();
     }
@@ -1118,7 +1166,7 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
         menu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
         // Aquí va el recurso string: R.string.sdcc_termux_tutorial
-        menu.add(Menu.NONE, 5, 4, "📚 " + "SDCC en Termux Compilador C Android");
+        menu.add(Menu.NONE, 5, 4, "📚 " + getString(R.string.sdcc_termux_tutorial));
         menu.add(Menu.NONE, 4, 5, getString(R.string.politica_de_privacidad));
         return true;
     }
@@ -1151,7 +1199,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, TutorialGputilsActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(this, "Error al abrir tutorial: " + e.getMessage(), Toast.LENGTH_LONG)
+            Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
                     .show();
         }
     }
@@ -1161,7 +1209,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, com.diamon.tutorial.TutorialSdccActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(this, "Error al abrir tutorial: " + e.getMessage(), Toast.LENGTH_LONG)
+            Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
                     .show();
         }
     }

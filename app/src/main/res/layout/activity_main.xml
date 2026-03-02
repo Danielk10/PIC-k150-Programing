@@ -160,7 +160,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Estado de Fusibles:"
+                            android:text="@string/estado_fusibles"
                             android:textColor="#E0E0E0"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -169,7 +169,7 @@
                             android:id="@+id/fuseStatusTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No configurados"
+                            android:text="@string/fuses_no_configurados"
                             android:textColor="#757575"
                             android:textSize="14sp"
                             android:textStyle="bold"
@@ -191,7 +191,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Modo ICSP"
+                            android:text="@string/modo_icsp"
                             android:textColor="#E0E0E0"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -249,7 +249,7 @@
                         android:layout_marginBottom="8dp"
                         android:backgroundTint="#555555"
                         android:enabled="false"
-                        android:text="⚙️ Configurar Fusibles"
+                        android:text="@string/configurar_fusibles"
                         android:textColor="#AAAAAA" />
 
                     <!-- Programar -->

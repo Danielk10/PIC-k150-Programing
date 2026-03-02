@@ -102,4 +102,31 @@
     <!-- Nuevos strings para popup de memoria mejorado -->
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
     <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
+
+    <!-- Strings para botón de configurar fusibles -->
+    <string name="configurar_fusibles">Configurar Fusibles</string>
+    <string name="selecciona_chip_primero">Selecciona un chip primero</string>
+    <string name="no_hay_fusibles_para_chip">No hay datos de fusibles para este chip</string>
+    <string name="fuses_configurados">Configurados</string>
+    <string name="fuses_no_configurados">No configurados</string>
+    <string name="estado_fusibles">Estado de Fusibles:</string>
+    <string name="modo_icsp">Modo ICSP</string>
+
+    <!-- Strings para verificación mejorada -->
+    <string name="verificando_memoria">Verificando memoria…</string>
+    <string name="verificacion_rom_ok">ROM verificada correctamente</string>
+    <string name="verificacion_rom_fallo">ROM verificación falló</string>
+    <string name="verificacion_eeprom_ok">EEPROM verificada correctamente</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verificación falló</string>
+    <string name="rom_posible_locked">Posiblemente locked para lectura</string>
+    <string name="verificacion_completa">Verificación completa</string>
+    <string name="fuses_decodificados">Fuses decodificados</string>
+
+    <!-- Strings para procesamiento HEX -->
+    <string name="hex_procesado_correctamente">HEX procesado correctamente</string>
+    <string name="error_procesando_hex">Error procesando HEX</string>
+
+    <!-- Strings para tutoriales -->
+    <string name="sdcc_termux_tutorial">SDCC en Termux Compilador C Android</string>
+    <string name="error_abriendo_tutorial">Error al abrir tutorial</string>
 </resources>

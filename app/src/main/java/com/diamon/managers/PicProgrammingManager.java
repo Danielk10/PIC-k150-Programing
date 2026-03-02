@@ -62,6 +62,15 @@ public class PicProgrammingManager {
     }
 
     /**
+     * Obtiene el protocolo de comunicación actual.
+     *
+     * @return Instancia del protocolo, o null si no está configurado
+     */
+    public ProtocoloP18A getProtocolo() {
+        return protocolo;
+    }
+
+    /**
      * Establece el listener para eventos de programacion
      *
      * @param listener Listener que sera notificado de eventos
