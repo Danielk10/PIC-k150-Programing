@@ -73,7 +73,7 @@ public abstract class Protocolo {
 }
 
 // Implementación específica
-public class ProtocoloP018 extends Protocolo {
+public class ProtocoloP18A extends Protocolo {
     @Override
     public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firmware) {
         // Implementación específica del protocolo P018
@@ -164,7 +164,7 @@ private DatosFuses parseLine(String line)
 ```java
 // PascalCase, nombres descriptivos en español
 public class ChipPic { }
-public class ProtocoloP018 { }
+public class ProtocoloP18A { }
 public class DatosPicProcesados { }
 public class MostrarPublicidad { }
 public class ChipinfoReader { }

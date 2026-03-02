@@ -3,19 +3,21 @@ package com.diamon.managers;
 import android.content.Context;
 
 import com.diamon.chip.ChipPic;
-import com.diamon.protocolo.ProtocoloP018;
+import com.diamon.protocolo.ProtocoloP18A;
 import com.diamon.pic.R;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gestor de operaciones de programacion de microcontroladores PIC. Encapsula todas las operaciones
- * relacionadas con la programacion, lectura, borrado y verificacion de memoria de chips PIC.
+ * Gestor de operaciones de programacion de microcontroladores PIC. Encapsula
+ * todas las operaciones
+ * relacionadas con la programacion, lectura, borrado y verificacion de memoria
+ * de chips PIC.
  */
 public class PicProgrammingManager {
 
     private final Context context;
-    private ProtocoloP018 protocolo;
+    private ProtocoloP18A protocolo;
 
     // Interfaz para notificar el progreso de operaciones
     private ProgrammingListener programmingListener;
@@ -55,7 +57,7 @@ public class PicProgrammingManager {
      *
      * @param protocolo Instancia del protocolo P018
      */
-    public void setProtocolo(ProtocoloP018 protocolo) {
+    public void setProtocolo(ProtocoloP18A protocolo) {
         this.protocolo = protocolo;
     }
 
@@ -71,7 +73,7 @@ public class PicProgrammingManager {
     /**
      * Programa completamente un chip PIC con el firmware especificado
      *
-     * @param chipPIC Chip PIC a programar
+     * @param chipPIC  Chip PIC a programar
      * @param firmware Contenido del archivo HEX
      * @return true si la programacion fue exitosa, false en caso contrario
      */
@@ -255,7 +257,7 @@ public class PicProgrammingManager {
     /**
      * Notifica el progreso de la programacion
      *
-     * @param message Mensaje descriptivo del paso actual
+     * @param message  Mensaje descriptivo del paso actual
      * @param progress Progreso en porcentaje (0-100)
      */
     private void notifyProgress(String message, int progress) {

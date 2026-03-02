@@ -19,10 +19,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Implementación del protocolo P018 para programadores PIC K150.
+ * Implementación del protocolo P18A para programadores PIC K150.
  *
  * <p>
- * Esta clase implementa el protocolo de comunicación P018 específico para
+ * Esta clase implementa el protocolo de comunicación P18A específico para
  * programadores KITSRUS,
  * incluyendo todas las operaciones de programación, lectura, borrado y
  * verificación de chips PIC.
@@ -43,10 +43,10 @@ import java.util.List;
  * @version 2.0 - Integrado con sistema de logging y excepciones mejoradas
  * @since 2025
  */
-public class ProtocoloP018 extends Protocolo {
+public class ProtocoloP18A extends Protocolo {
 
-    /** Versión del protocolo P018 implementado */
-    private static final String VERSION_PROTOCOLO = "P018 v2.0";
+    /** Versión del protocolo P18A implementado */
+    private static final String VERSION_PROTOCOLO = "P18A v2.0";
 
     /** Timeout por defecto para operaciones USB en milisegundos */
     private static final int TIMEOUT_DEFAULT = 100;
@@ -55,12 +55,12 @@ public class ProtocoloP018 extends Protocolo {
     private static final int TIMEOUT_EXTENDED = 500;
 
     /**
-     * Constructor del protocolo P018.
+     * Constructor del protocolo P18A.
      *
      * @param contexto      Contexto de la aplicación Android
      * @param usbSerialPort Puerto serie USB configurado para el programador
      */
-    public ProtocoloP018(Context contexto, UsbSerialPort usbSerialPort) {
+    public ProtocoloP18A(Context contexto, UsbSerialPort usbSerialPort) {
         super(contexto, usbSerialPort);
     }
 
@@ -613,11 +613,62 @@ public class ProtocoloP018 extends Protocolo {
         }
     }
 
-
     @Override
     public boolean programarCalibracionDelPic(ChipPic chipPIC, String firware) {
+        if (chipPIC == null) {
+            return false;
+        }
 
-        return false;
+        try {
+            // Procesar datos para obtener info de calibración
+            DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
+            datosPic.iniciarProcesamientoDeDatos();
+
+            // Obtener valores de calibración y fuse del chip
+            int[] fusesHex = datosPic.obtenerValoresIntHexFusesPocesado();
+            if (fusesHex == null || fusesHex.length < 1) {
+                return false;
+            }
+
+            int calibrate = 0; // Valor de calibración leído del chip
+            int fuse = fusesHex[0]; // Primer valor de fuse
+
+            // Iniciar secuencia de comandos
+            if (!researComandos()) {
+                return false;
+            }
+
+            if (!activarVoltajesDeProgramacion()) {
+                return false;
+            }
+
+            // Comando 10 (0x0A) para programar calibración
+            escribirDatosUSB(new byte[] { 0x0A }, 10, "comando_calibracion");
+
+            // Construir payload: Calibration High, Calibration Low, Fuse High, Fuse Low
+            byte calibHigh = (byte) ((calibrate >> 8) & 0xFF);
+            byte calibLow = (byte) (calibrate & 0xFF);
+            byte fuseHigh = (byte) ((fuse >> 8) & 0xFF);
+            byte fuseLow = (byte) (fuse & 0xFF);
+
+            byte[] calibrationData = new byte[] { calibHigh, calibLow, fuseHigh, fuseLow };
+            escribirDatosUSB(calibrationData, TIMEOUT_DEFAULT, "datos_calibracion");
+
+            // Leer respuesta: C=calibration fail, F=Fuse fail, Y=OK
+            byte[] respuestaBytes = readBytes(1, TIMEOUT_EXTENDED);
+            String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
+
+            // Finalizar secuencia
+            desactivarVoltajesDeProgramacion();
+            researComandos();
+
+            return respuesta.equals("Y");
+
+        } catch (UsbCommunicationException e) {
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -753,8 +804,23 @@ public class ProtocoloP018 extends Protocolo {
 
     @Override
     public String leerDatosDeCalibracionDelPic() {
+        // La calibración se obtiene del mismo comando de lectura de config (cmd 13)
+        // Los últimos 2 bytes de los 26 bytes de config contienen el valor de
+        // calibración
+        String configData = leerDatosDeConfiguracionDelPic();
 
-        return null;
+        if (configData == null || configData.startsWith("Error") || configData.length() < 52) {
+            return null;
+        }
+
+        // El valor de calibración está en los últimos 2 bytes (4 caracteres hex)
+        // de la respuesta de 26 bytes (52 caracteres hex)
+        try {
+            String calibrationHex = configData.substring(configData.length() - 4);
+            return calibrationHex;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

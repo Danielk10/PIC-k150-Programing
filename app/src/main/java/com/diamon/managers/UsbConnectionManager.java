@@ -10,7 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.diamon.protocolo.ProtocoloP018;
+import com.diamon.protocolo.ProtocoloP18A;
 import com.diamon.pic.R;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -43,7 +43,7 @@ public class UsbConnectionManager {
     private UsbManager usbManager;
     private UsbSerialPort usbSerialPort;
     private List<UsbSerialDriver> drivers;
-    private ProtocoloP018 protocolo;
+    private ProtocoloP18A protocolo;
 
     // Interfaz para notificar eventos de conexion
     private UsbConnectionListener connectionListener;
@@ -99,7 +99,8 @@ public class UsbConnectionManager {
      * Esta funcion puede llamarse desde cualquier hilo.
      */
     public void initialize() {
-        // Registrar el BroadcastReceiver en el hilo principal para evitar bloqueos del binder
+        // Registrar el BroadcastReceiver en el hilo principal para evitar bloqueos del
+        // binder
         mainHandler.post(() -> {
             IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
             boolean registered = broadcastManager.registerReceiver(usbReceiver, filter, false);
@@ -164,7 +165,7 @@ public class UsbConnectionManager {
             usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
 
             // Crear e inicializar protocolo
-            protocolo = new ProtocoloP018(context, usbSerialPort);
+            protocolo = new ProtocoloP18A(context, usbSerialPort);
             boolean protocoloIniciado = protocolo.iniciarProtocolo();
 
             if (!protocoloIniciado) {
@@ -213,11 +214,11 @@ public class UsbConnectionManager {
     }
 
     /**
-     * Obtiene el protocolo de comunicacion P018
+     * Obtiene el protocolo de comunicacion P18A
      *
      * @return Instancia del protocolo o null si no esta conectado
      */
-    public ProtocoloP018 getProtocolo() {
+    public ProtocoloP18A getProtocolo() {
         return protocolo;
     }
 
