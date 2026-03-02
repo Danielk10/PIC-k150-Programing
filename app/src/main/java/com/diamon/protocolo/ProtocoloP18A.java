@@ -54,14 +54,34 @@ public class ProtocoloP18A extends Protocolo {
     /** Timeout extendido para operaciones largas en milisegundos */
     private static final int TIMEOUT_EXTENDED = 500;
 
+    /** Tipo de protocolo activo (define los command numbers de conexión) */
+    private final TipoProtocolo tipoProtocolo;
+
     /**
-     * Constructor del protocolo P18A.
+     * Constructor del protocolo con tipo por defecto (P18A).
      *
      * @param contexto      Contexto de la aplicación Android
      * @param usbSerialPort Puerto serie USB configurado para el programador
      */
     public ProtocoloP18A(Context contexto, UsbSerialPort usbSerialPort) {
+        this(contexto, usbSerialPort, TipoProtocolo.P18A);
+    }
+
+    /**
+     * Constructor del protocolo con tipo de protocolo específico.
+     *
+     * @param contexto      Contexto de la aplicación Android
+     * @param usbSerialPort Puerto serie USB configurado para el programador
+     * @param tipoProtocolo Tipo de protocolo a usar (P014, P016, P018, P18A)
+     */
+    public ProtocoloP18A(Context contexto, UsbSerialPort usbSerialPort, TipoProtocolo tipoProtocolo) {
         super(contexto, usbSerialPort);
+        this.tipoProtocolo = tipoProtocolo;
+    }
+
+    /** Retorna el tipo de protocolo activo. */
+    public TipoProtocolo getTipoProtocolo() {
+        return tipoProtocolo;
     }
 
     @Override
@@ -1018,8 +1038,8 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos previos
             researComandos();
 
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("18") }, 10); // 0x10 es 16 en decimal
+            // Enviar comando para detectar chip en socket
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 10);
 
             byte[] response = new byte[1];
 
@@ -1056,8 +1076,8 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos previos
             researComandos();
 
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("19") }, 10); // 0x10 es 16 en decimal
+            // Enviar comando para detectar chip fuera del socket
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 10);
 
             byte[] response = new byte[1];
 
@@ -1094,8 +1114,8 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos previos
             researComandos();
 
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("20") }, 10); // 0x15 es 21 en decimal
+            // Enviar comando para obtener versión del programador
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdVersion() }, 10);
 
             int size = 1; // Convertir palabras a bytes
 
@@ -1155,8 +1175,8 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos previos
             researComandos();
 
-            // Enviar comando para obtener protocolo
-            usbSerialPort.write(new byte[] { Byte.parseByte("21") }, 10); // 0x16 es 22 en decimal
+            // Enviar comando para obtener protocolo del programador
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdProtocolo() }, 10);
 
             int size = 4; // Convertir palabras a bytes
 

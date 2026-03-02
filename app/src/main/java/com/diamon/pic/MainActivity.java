@@ -46,6 +46,7 @@ import com.diamon.managers.MemoryDisplayManager;
 import com.diamon.managers.PicProgrammingManager;
 import com.diamon.managers.ProgrammingDialogManager;
 import com.diamon.managers.UsbConnectionManager;
+import com.diamon.protocolo.TipoProtocolo;
 import com.diamon.politicas.Politicas;
 import com.diamon.publicidad.MostrarPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
@@ -1321,14 +1322,41 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showProtocolDialog() {
+        String currentProto = usbManager.getTipoProtocolo().getNombre();
+        String detected = "";
         if (usbManager.isConnected()) {
-            String protocol = usbManager.getProtocolo().obtenerProtocoloDelProgramador();
-            new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.protocolo_del_programador))
-                    .setMessage(protocol)
-                    .setPositiveButton(getString(R.string.aceptar), null)
-                    .show();
+            detected = usbManager.getProtocolo().obtenerProtocoloDelProgramador();
         }
+
+        String[] protocolos = TipoProtocolo.getNombres();
+        int currentIndex = 0;
+        for (int i = 0; i < protocolos.length; i++) {
+            if (protocolos[i].equals(currentProto)) {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        final int[] selectedIndex = { currentIndex };
+        String title = getString(R.string.protocolo_del_programador);
+        if (!detected.isEmpty()) {
+            title += " (" + detected.trim() + ")";
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setSingleChoiceItems(protocolos, currentIndex, (dialog, which) -> {
+                    selectedIndex[0] = which;
+                })
+                .setPositiveButton(getString(R.string.aceptar), (dialog, which) -> {
+                    TipoProtocolo selected = TipoProtocolo.values()[selectedIndex[0]];
+                    usbManager.setTipoProtocolo(selected);
+                    Toast.makeText(this,
+                            getString(R.string.protocolo) + ": " + selected.getNombre(),
+                            Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
     }
 
     @Override

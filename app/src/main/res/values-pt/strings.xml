@@ -97,4 +97,34 @@
     <string name="seleccionar_chip_pic">Selecionar Chip PIC</string>
     <!-- values-pt/strings.xml (Portugués) -->
     <string name="gputils_termux_asm">GPUTILS no Termux Compilador ASM Android</string>
+
+    <!-- Strings para fusibles y verificacion -->
+    <string name="configurar_fusibles">Configurar Fusíveis</string>
+    <string name="selecciona_chip_primero">Selecione um chip primeiro</string>
+    <string name="no_hay_fusibles_para_chip">Sem dados de fusíveis para este chip</string>
+    <string name="fuses_configurados">Configurados</string>
+    <string name="fuses_no_configurados">Não configurados</string>
+    <string name="estado_fusibles">Estado dos Fusíveis:</string>
+    <string name="modo_icsp">Modo ICSP</string>
+    <string name="verificando_memoria">Verificando memória…</string>
+    <string name="verificacion_rom_ok">ROM verificada com sucesso</string>
+    <string name="verificacion_rom_fallo">Falha na verificação da ROM</string>
+    <string name="verificacion_eeprom_ok">EEPROM verificada com sucesso</string>
+    <string name="verificacion_eeprom_fallo">Falha na verificação da EEPROM</string>
+    <string name="rom_posible_locked">Possivelmente bloqueada para leitura</string>
+    <string name="verificacion_completa">Verificação completa</string>
+    <string name="fuses_decodificados">Fusíveis decodificados</string>
+    <string name="hex_procesado_correctamente">HEX processado com sucesso</string>
+    <string name="error_procesando_hex">Erro ao processar HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC no Termux Compilador C Android</string>
+    <string name="error_abriendo_tutorial">Erro ao abrir tutorial</string>
+    <string name="exportar_memoria">Exportar Memória</string>
+    <string name="exportar_rom_hex">Exportar ROM como HEX</string>
+    <string name="exportar_eeprom_hex">Exportar EEPROM como HEX</string>
+    <string name="exportar_rom_bin">Exportar ROM como BIN</string>
+    <string name="exportar_eeprom_bin">Exportar EEPROM como BIN</string>
+    <string name="exportacion_exitosa">Arquivo exportado com sucesso</string>
+    <string name="error_exportando">Erro ao exportar</string>
+    <string name="no_hay_datos_para_exportar">Sem dados para exportar. Leia a memória primeiro.</string>
+    <string name="chip_info_json">Info do Chip (JSON)</string>
 </resources>

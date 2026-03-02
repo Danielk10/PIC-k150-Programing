@@ -97,4 +97,34 @@
     <string name="seleccionar_chip_pic">Sélectionner la puce PIC</string>
     <!-- values-fr/strings.xml (Francés) -->
     <string name="gputils_termux_asm">GPUTILS dans Termux Compilateur ASM Android</string>
+
+    <!-- Strings para fusibles y verificacion -->
+    <string name="configurar_fusibles">Configurer les fusibles</string>
+    <string name="selecciona_chip_primero">Sélectionnez d\'abord une puce</string>
+    <string name="no_hay_fusibles_para_chip">Pas de données de fusibles pour cette puce</string>
+    <string name="fuses_configurados">Configurés</string>
+    <string name="fuses_no_configurados">Non configurés</string>
+    <string name="estado_fusibles">État des fusibles :</string>
+    <string name="modo_icsp">Mode ICSP</string>
+    <string name="verificando_memoria">Vérification de la mémoire…</string>
+    <string name="verificacion_rom_ok">ROM vérifiée avec succès</string>
+    <string name="verificacion_rom_fallo">Échec de la vérification ROM</string>
+    <string name="verificacion_eeprom_ok">EEPROM vérifiée avec succès</string>
+    <string name="verificacion_eeprom_fallo">Échec de la vérification EEPROM</string>
+    <string name="rom_posible_locked">Possiblement verrouillée en lecture</string>
+    <string name="verificacion_completa">Vérification terminée</string>
+    <string name="fuses_decodificados">Fusibles décodés</string>
+    <string name="hex_procesado_correctamente">HEX traité avec succès</string>
+    <string name="error_procesando_hex">Erreur de traitement HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC dans Termux Compilateur C Android</string>
+    <string name="error_abriendo_tutorial">Erreur lors de l\'ouverture du tutoriel</string>
+    <string name="exportar_memoria">Exporter la mémoire</string>
+    <string name="exportar_rom_hex">Exporter ROM en HEX</string>
+    <string name="exportar_eeprom_hex">Exporter EEPROM en HEX</string>
+    <string name="exportar_rom_bin">Exporter ROM en BIN</string>
+    <string name="exportar_eeprom_bin">Exporter EEPROM en BIN</string>
+    <string name="exportacion_exitosa">Fichier exporté avec succès</string>
+    <string name="error_exportando">Erreur d\'exportation</string>
+    <string name="no_hay_datos_para_exportar">Pas de données à exporter. Lisez la mémoire d\'abord.</string>
+    <string name="chip_info_json">Info puce (JSON)</string>
 </resources>

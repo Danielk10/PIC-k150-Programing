@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.diamon.protocolo.ProtocoloP18A;
+import com.diamon.protocolo.TipoProtocolo;
 import com.diamon.pic.R;
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -44,6 +45,7 @@ public class UsbConnectionManager {
     private UsbSerialPort usbSerialPort;
     private List<UsbSerialDriver> drivers;
     private ProtocoloP18A protocolo;
+    private TipoProtocolo tipoProtocolo = TipoProtocolo.P18A;
 
     // Interfaz para notificar eventos de conexion
     private UsbConnectionListener connectionListener;
@@ -165,7 +167,7 @@ public class UsbConnectionManager {
             usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
 
             // Crear e inicializar protocolo
-            protocolo = new ProtocoloP18A(context, usbSerialPort);
+            protocolo = new ProtocoloP18A(context, usbSerialPort, tipoProtocolo);
             boolean protocoloIniciado = protocolo.iniciarProtocolo();
 
             if (!protocoloIniciado) {
@@ -220,6 +222,16 @@ public class UsbConnectionManager {
      */
     public ProtocoloP18A getProtocolo() {
         return protocolo;
+    }
+
+    /** Establece el tipo de protocolo a usar en la próxima conexión. */
+    public void setTipoProtocolo(TipoProtocolo tipo) {
+        this.tipoProtocolo = tipo;
+    }
+
+    /** Retorna el tipo de protocolo actual. */
+    public TipoProtocolo getTipoProtocolo() {
+        return tipoProtocolo;
     }
 
     /**

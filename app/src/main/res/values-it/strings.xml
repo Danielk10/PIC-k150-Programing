@@ -97,4 +97,34 @@
     <string name="seleccionar_chip_pic">Seleziona Chip PIC</string>
     <!-- values-it/strings.xml (Italiano) -->
     <string name="gputils_termux_asm">GPUTILS in Termux Compilatore ASM Android</string>
+
+    <!-- Strings para fusibles y verificacion -->
+    <string name="configurar_fusibles">Configura Fusibili</string>
+    <string name="selecciona_chip_primero">Seleziona prima un chip</string>
+    <string name="no_hay_fusibles_para_chip">Nessun dato fusibili per questo chip</string>
+    <string name="fuses_configurados">Configurati</string>
+    <string name="fuses_no_configurados">Non configurati</string>
+    <string name="estado_fusibles">Stato Fusibili:</string>
+    <string name="modo_icsp">Modalità ICSP</string>
+    <string name="verificando_memoria">Verifica memoria…</string>
+    <string name="verificacion_rom_ok">ROM verificata con successo</string>
+    <string name="verificacion_rom_fallo">Verifica ROM fallita</string>
+    <string name="verificacion_eeprom_ok">EEPROM verificata con successo</string>
+    <string name="verificacion_eeprom_fallo">Verifica EEPROM fallita</string>
+    <string name="rom_posible_locked">Possibilmente bloccata in lettura</string>
+    <string name="verificacion_completa">Verifica completata</string>
+    <string name="fuses_decodificados">Fusibili decodificati</string>
+    <string name="hex_procesado_correctamente">HEX elaborato con successo</string>
+    <string name="error_procesando_hex">Errore nell\'elaborazione HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux Compilatore C Android</string>
+    <string name="error_abriendo_tutorial">Errore nell\'apertura del tutorial</string>
+    <string name="exportar_memoria">Esporta Memoria</string>
+    <string name="exportar_rom_hex">Esporta ROM come HEX</string>
+    <string name="exportar_eeprom_hex">Esporta EEPROM come HEX</string>
+    <string name="exportar_rom_bin">Esporta ROM come BIN</string>
+    <string name="exportar_eeprom_bin">Esporta EEPROM come BIN</string>
+    <string name="exportacion_exitosa">File esportato con successo</string>
+    <string name="error_exportando">Errore nell\'esportazione</string>
+    <string name="no_hay_datos_para_exportar">Nessun dato da esportare. Leggi prima la memoria.</string>
+    <string name="chip_info_json">Info Chip (JSON)</string>
 </resources>
