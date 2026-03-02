@@ -129,4 +129,15 @@
     <!-- Strings para tutoriales -->
     <string name="sdcc_termux_tutorial">SDCC en Termux Compilador C Android</string>
     <string name="error_abriendo_tutorial">Error al abrir tutorial</string>
+
+    <!-- Strings para exportación HEX -->
+    <string name="exportar_memoria">Exportar Memoria</string>
+    <string name="exportar_rom_hex">Exportar ROM como HEX</string>
+    <string name="exportar_eeprom_hex">Exportar EEPROM como HEX</string>
+    <string name="exportar_rom_bin">Exportar ROM como BIN</string>
+    <string name="exportar_eeprom_bin">Exportar EEPROM como BIN</string>
+    <string name="exportacion_exitosa">Archivo exportado correctamente</string>
+    <string name="error_exportando">Error al exportar</string>
+    <string name="no_hay_datos_para_exportar">No hay datos leídos para exportar. Lee la memoria primero.</string>
+    <string name="chip_info_json">Info del Chip (JSON)</string>
 </resources>

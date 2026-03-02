@@ -41,6 +41,7 @@ import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.managers.ChipSelectionManager;
 import com.diamon.managers.FileManager;
 import com.diamon.managers.FuseConfigPopup;
+import com.diamon.managers.HexExportManager;
 import com.diamon.managers.MemoryDisplayManager;
 import com.diamon.managers.PicProgrammingManager;
 import com.diamon.managers.ProgrammingDialogManager;
@@ -106,8 +107,11 @@ public class MainActivity extends AppCompatActivity
     private PowerManager.WakeLock wakeLock;
 
     private FuseConfigPopup fuseConfigPopup; // NUEVO
+    private HexExportManager hexExportManager; // NUEVO: Export manager
 
     private String firmware = "";
+    private String lastReadRomData = ""; // Últimos datos ROM leídos
+    private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
     private ChipPic currentChip;
 
     // NUEVAS VARIABLES PARA FUSES
@@ -270,6 +274,25 @@ public class MainActivity extends AppCompatActivity
 
         memoryDisplayManager = new MemoryDisplayManager(this);
         dialogManager = new ProgrammingDialogManager(this);
+
+        // NUEVO: Inicializar export manager
+        hexExportManager = new HexExportManager(this);
+        hexExportManager.initialize();
+        hexExportManager.setExportListener(new HexExportManager.ExportListener() {
+            @Override
+            public void onExportSuccess(String fileName) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                        getString(R.string.exportacion_exitosa) + ": " + fileName,
+                        Toast.LENGTH_SHORT).show());
+            }
+
+            @Override
+            public void onExportError(String errorMessage) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                        getString(R.string.error_exportando) + ": " + errorMessage,
+                        Toast.LENGTH_LONG).show());
+            }
+        });
 
         // NUEVO: Diferir la precarga para evitar ANR durante la inicialización
         new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
@@ -1011,21 +1034,29 @@ public class MainActivity extends AppCompatActivity
                     String romData = programmingManager.readRomMemory(currentChip);
                     String eepromData = programmingManager.readEepromMemory(currentChip);
 
+                    // NUEVO: Guardar datos para exportación posterior
+                    final String romResult = romData;
+                    final String eepromResult = eepromData;
+
                     runOnUiThread(
                             () -> {
                                 try {
+                                    // Guardar datos leídos para exportación
+                                    lastReadRomData = romResult != null ? romResult : "";
+                                    lastReadEepromData = eepromResult != null ? eepromResult : "";
+
                                     int romSize = currentChip.getTamanoROM();
                                     int eepromSize = currentChip.isTamanoValidoDeEEPROM()
                                             ? currentChip.getTamanoEEPROM()
                                             : 0;
                                     boolean hasEeprom = currentChip.isTamanoValidoDeEEPROM()
-                                            && !eepromData.isEmpty();
+                                            && !lastReadEepromData.isEmpty();
 
                                     // Actualizar popup con los datos leídos
                                     memoryDisplayManager.updateWithData(
-                                            romData != null ? romData : "",
+                                            lastReadRomData,
                                             romSize,
-                                            eepromData != null ? eepromData : "",
+                                            lastReadEepromData,
                                             eepromSize,
                                             hasEeprom);
 
@@ -1037,7 +1068,8 @@ public class MainActivity extends AppCompatActivity
                                 } catch (ChipConfigurationException e) {
                                     Toast.makeText(
                                             MainActivity.this,
-                                            "Error: " + e.getMessage(),
+                                            getString(R.string.error_obteniendo_datos_del_chi)
+                                                    + ": " + e.getMessage(),
                                             Toast.LENGTH_LONG)
                                             .show();
                                     publicidad.mostrarBanner();
@@ -1164,10 +1196,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
-        menu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
-        // Aquí va el recurso string: R.string.sdcc_termux_tutorial
-        menu.add(Menu.NONE, 5, 4, "📚 " + getString(R.string.sdcc_termux_tutorial));
-        menu.add(Menu.NONE, 4, 5, getString(R.string.politica_de_privacidad));
+        menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
+        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_json));
+        menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm));
+        menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial));
+        menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad));
         return true;
     }
 
@@ -1179,6 +1212,12 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case 2:
                 showProtocolDialog();
+                return true;
+            case 6:
+                showExportDialog();
+                return true;
+            case 7:
+                showChipInfoJson();
                 return true;
             case 3:
                 openTutorialGputils();
@@ -1192,6 +1231,62 @@ public class MainActivity extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /** NUEVO: Muestra diálogo para exportar memoria leída */
+    private void showExportDialog() {
+        if (lastReadRomData.isEmpty() && lastReadEepromData.isEmpty()) {
+            Toast.makeText(this, getString(R.string.no_hay_datos_para_exportar),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String chipName = (currentChip != null) ? currentChip.getNombreDelPic() : "PIC";
+        java.util.List<String> options = new java.util.ArrayList<>();
+
+        if (!lastReadRomData.isEmpty()) {
+            options.add(getString(R.string.exportar_rom_hex));
+            options.add(getString(R.string.exportar_rom_bin));
+        }
+        if (!lastReadEepromData.isEmpty()) {
+            options.add(getString(R.string.exportar_eeprom_hex));
+            options.add(getString(R.string.exportar_eeprom_bin));
+        }
+
+        String[] items = options.toArray(new String[0]);
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.exportar_memoria))
+                .setItems(items, (dialog, which) -> {
+                    String selected = items[which];
+                    if (selected.equals(getString(R.string.exportar_rom_hex))) {
+                        hexExportManager.exportHexStringAsFile(lastReadRomData, chipName + "_ROM");
+                    } else if (selected.equals(getString(R.string.exportar_rom_bin))) {
+                        hexExportManager.exportHexStringAsFile(lastReadRomData, chipName + "_ROM");
+                    } else if (selected.equals(getString(R.string.exportar_eeprom_hex))) {
+                        hexExportManager.exportHexStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+                    } else if (selected.equals(getString(R.string.exportar_eeprom_bin))) {
+                        hexExportManager.exportHexStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
+    }
+
+    /** NUEVO: Muestra info del chip actual como JSON */
+    private void showChipInfoJson() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.selecciona_chip_primero),
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String json = currentChip.toJson();
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.chip_info_json) + " - " + currentChip.getNombreDelPic())
+                .setMessage(json)
+                .setPositiveButton(getString(R.string.aceptar), null)
+                .show();
     }
 
     private void openTutorialGputils() {
