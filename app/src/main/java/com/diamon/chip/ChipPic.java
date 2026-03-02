@@ -882,4 +882,159 @@ public class ChipPic {
         }
         return result;
     }
+
+    // -------------------------------------------------------------------------
+    // Exposición de info del chip (equivalente a Python to_dict() + chip_info)
+    // -------------------------------------------------------------------------
+
+    /**
+     * Retorna toda la información del chip como un mapa estructurado.
+     * Equivalente a Python ChipInfoEntry.to_dict().
+     *
+     * @return HashMap con toda la configuración del chip
+     */
+    public Map<String, Object> toDict() {
+        Map<String, Object> dict = new HashMap<>();
+        dict.put("chip_name", variablesDeChip.get("CHIPname"));
+        dict.put("include", variablesDeChip.get("INCLUDE"));
+        dict.put("socket_image", variablesDeChip.get("SocketImage"));
+        dict.put("erase_mode", variablesDeChip.get("erase_mode"));
+        dict.put("flash_chip", variablesDeChip.get("FlashChip"));
+        dict.put("power_sequence", variablesDeChip.get("power_sequence_str"));
+        dict.put("program_delay", variablesDeChip.get("program_delay"));
+        dict.put("program_tries", variablesDeChip.get("program_tries"));
+        dict.put("over_program", variablesDeChip.get("over_program"));
+        dict.put("core_type", variablesDeChip.get("core_type"));
+        dict.put("rom_size", variablesDeChip.get("rom_size"));
+        dict.put("eeprom_size", variablesDeChip.get("eeprom_size"));
+        dict.put("fuse_blank", variablesDeChip.get("FUSEblank"));
+        dict.put("cp_warn", variablesDeChip.get("CPwarn"));
+        dict.put("cal_word", variablesDeChip.get("flag_calibration_value_in_ROM"));
+        dict.put("band_gap", variablesDeChip.get("flag_band_gap_fuse"));
+        dict.put("icsp_only", variablesDeChip.get("ICSPonly"));
+        dict.put("chip_id", variablesDeChip.get("ChipID"));
+        dict.put("pin1_location", getUbicacionPin1DelPic());
+        try {
+            dict.put("core_bits", getTipoDeNucleoBit());
+        } catch (ChipConfigurationException e) {
+            dict.put("core_bits", "unknown");
+        }
+        dict.put("has_eeprom", isTamanoValidoDeEEPROM());
+
+        // Info de fuses disponibles
+        Map<String, Map<String, List<FuseValue>>> fusesMap = getFusesMap();
+        if (fusesMap != null) {
+            Map<String, List<String>> fusesInfo = new HashMap<>();
+            for (Map.Entry<String, Map<String, List<FuseValue>>> entry : fusesMap.entrySet()) {
+                fusesInfo.put(entry.getKey(), new ArrayList<>(entry.getValue().keySet()));
+            }
+            dict.put("fuses", fusesInfo);
+        }
+
+        return dict;
+    }
+
+    /**
+     * Retorna la información del chip como string JSON formateado.
+     * Equivalente a Python json.dumps(chip_info.to_dict()).
+     *
+     * @return String JSON con toda la configuración del chip
+     */
+    public String toJson() {
+        Map<String, Object> dict = toDict();
+        StringBuilder json = new StringBuilder();
+        json.append("{\n");
+        boolean first = true;
+        for (Map.Entry<String, Object> entry : dict.entrySet()) {
+            if (!first)
+                json.append(",\n");
+            json.append("  \"").append(entry.getKey()).append("\": ");
+            Object value = entry.getValue();
+            if (value == null) {
+                json.append("null");
+            } else if (value instanceof Number || value instanceof Boolean) {
+                json.append(value);
+            } else if (value instanceof String[]) {
+                json.append("[");
+                String[] arr = (String[]) value;
+                for (int i = 0; i < arr.length; i++) {
+                    if (i > 0)
+                        json.append(", ");
+                    json.append("\"").append(arr[i]).append("\"");
+                }
+                json.append("]");
+            } else if (value instanceof Map) {
+                json.append(formatMapAsJson((Map<?, ?>) value));
+            } else if (value instanceof List) {
+                json.append(formatListAsJson((List<?>) value));
+            } else {
+                json.append("\"").append(value.toString().replace("\"", "\\\"")).append("\"");
+            }
+            first = false;
+        }
+        json.append("\n}");
+        return json.toString();
+    }
+
+    private String formatMapAsJson(Map<?, ?> map) {
+        StringBuilder sb = new StringBuilder("{");
+        boolean first = true;
+        for (Map.Entry<?, ?> entry : map.entrySet()) {
+            if (!first)
+                sb.append(", ");
+            sb.append("\"").append(entry.getKey()).append("\": ");
+            Object val = entry.getValue();
+            if (val instanceof List) {
+                sb.append(formatListAsJson((List<?>) val));
+            } else if (val instanceof Map) {
+                sb.append(formatMapAsJson((Map<?, ?>) val));
+            } else {
+                sb.append("\"").append(val).append("\"");
+            }
+            first = false;
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private String formatListAsJson(List<?> list) {
+        StringBuilder sb = new StringBuilder("[");
+        boolean first = true;
+        for (Object item : list) {
+            if (!first)
+                sb.append(", ");
+            if (item instanceof Number) {
+                sb.append(item);
+            } else {
+                sb.append("\"").append(item).append("\"");
+            }
+            first = false;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    /**
+     * Indica si el chip es de tipo flash (puede ser borrado).
+     * Equivalente a Python ChipInfoEntry.flash_chip.
+     */
+    public boolean isFlashChip() {
+        Object flashChip = variablesDeChip.get("FlashChip");
+        if (flashChip == null)
+            return false;
+        Boolean valor = respuestas.get(flashChip.toString().toLowerCase());
+        return valor != null && valor;
+    }
+
+    /**
+     * Indica si el chip tiene advertencia de protección de código.
+     * Equivalente a Python ChipInfoEntry.cp_warn.
+     */
+    public boolean isCPWarn() {
+        Object cpWarn = variablesDeChip.get("CPwarn");
+        if (cpWarn == null)
+            return false;
+        Boolean valor = respuestas.get(cpWarn.toString().toLowerCase());
+        return valor != null && valor;
+    }
 }
