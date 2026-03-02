@@ -25,9 +25,9 @@ public enum TipoProtocolo {
 
     /**
      * Protocolo P018 - Variante intermedia.
-     * Comandos de conexión: 18-21 (idénticos a P18A)
+     * Comandos de conexión: 19-22 (idénticos a P014/P016)
      */
-    P018("P018", 18, 19, 20, 21),
+    P018("P018", 19, 20, 21, 22),
 
     /**
      * Protocolo P016 - Versión anterior.

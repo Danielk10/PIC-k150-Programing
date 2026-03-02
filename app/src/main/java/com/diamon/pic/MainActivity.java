@@ -1263,11 +1263,11 @@ public class MainActivity extends AppCompatActivity
                     if (selected.equals(getString(R.string.exportar_rom_hex))) {
                         hexExportManager.exportHexStringAsFile(lastReadRomData, chipName + "_ROM");
                     } else if (selected.equals(getString(R.string.exportar_rom_bin))) {
-                        hexExportManager.exportHexStringAsFile(lastReadRomData, chipName + "_ROM");
+                        hexExportManager.exportBinStringAsFile(lastReadRomData, chipName + "_ROM");
                     } else if (selected.equals(getString(R.string.exportar_eeprom_hex))) {
                         hexExportManager.exportHexStringAsFile(lastReadEepromData, chipName + "_EEPROM");
                     } else if (selected.equals(getString(R.string.exportar_eeprom_bin))) {
-                        hexExportManager.exportHexStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+                        hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
                     }
                 })
                 .setNegativeButton(getString(R.string.cancelar), null)

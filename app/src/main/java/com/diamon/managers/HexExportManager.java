@@ -130,6 +130,27 @@ public class HexExportManager {
     }
 
     /**
+     * Exporta un string hexadecimal como archivo binario crudo.
+     *
+     * @param hexString     String hexadecimal con los datos de memoria
+     * @param suggestedName Nombre sugerido para el archivo
+     */
+    public void exportBinStringAsFile(String hexString, String suggestedName) {
+        if (hexString == null || hexString.isEmpty() || hexString.startsWith("Error")) {
+            notifyError("No hay datos válidos para exportar");
+            return;
+        }
+
+        byte[] data = hexStringToBytes(hexString);
+        if (data == null) {
+            notifyError("Error convirtiendo datos hexadecimales");
+            return;
+        }
+
+        exportAsBinary(data, suggestedName);
+    }
+
+    /**
      * Escribe los datos al URI seleccionado por el usuario.
      */
     private void writeDataToUri(Uri uri, byte[] data, boolean asBinary) {
