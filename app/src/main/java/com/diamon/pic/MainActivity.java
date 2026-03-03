@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.view.Gravity;
@@ -505,18 +506,20 @@ public class MainActivity extends AppCompatActivity
             swModeICSP.setOnCheckedChangeListener(null);
 
             if (isIcspOnly) {
-                // ICSP only: switch habilitado pero siempre activado y deshabilitado
+                // ICSP only: siempre activado e inmodificable por usuario
+                currentChip.setActivarICSP(true);
                 swModeICSP.setChecked(true);
                 swModeICSP.setEnabled(false);
-                swModeICSP.setAlpha(0.5f); // Visual de deshabilitado
+                swModeICSP.setAlpha(0.6f);
             } else {
-                // Compatible con ambos: switch habilitado y usuario puede controlar
+                // Compatible con ambos: restaurar estado guardado en el chip
                 swModeICSP.setChecked(currentMode);
                 swModeICSP.setEnabled(true);
                 swModeICSP.setAlpha(1.0f);
             }
 
             // Restaurar listener
+            setupICSPSwitchListener();
             setupICSPSwitchListener();
 
         } catch (ChipConfigurationException e) {
@@ -1272,7 +1275,8 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
         menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
-        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_json));
+        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_profesional));
+        menu.add(Menu.NONE, 8, 5, "📝 " + getString(R.string.chip_info_json));
         menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm));
         menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial));
         menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad));
@@ -1292,6 +1296,9 @@ public class MainActivity extends AppCompatActivity
                 showExportDialog();
                 return true;
             case 7:
+                showChipInfoDialog();
+                return true;
+            case 8:
                 showChipInfoJson();
                 return true;
             case 3:
@@ -1419,7 +1426,57 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /** NUEVO: Muestra info del chip actual como JSON */
+    /** Muestra info del chip actual de forma profesional en una tabla */
+    private void showChipInfoDialog() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.selecciona_chip_primero),
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_chip_info, null);
+        android.widget.TableLayout table = dialogView.findViewById(R.id.chipInfoTable);
+        android.widget.TextView title = dialogView.findViewById(R.id.dialogTitle);
+        android.widget.Button btnOk = dialogView.findViewById(R.id.btnOk);
+
+        title.setText(getString(R.string.chip_info_titulo) + ": " + currentChip.getNombreDelPic());
+
+        Map<String, Object> data = currentChip.toDict();
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            addRowToTable(table, entry.getKey(), String.valueOf(entry.getValue()));
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        btnOk.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    private void addRowToTable(android.widget.TableLayout table, String key, String value) {
+        android.widget.TableRow row = new android.widget.TableRow(this);
+        row.setPadding(0, 8, 0, 8);
+
+        android.widget.TextView tvKey = new android.widget.TextView(this);
+        tvKey.setText(key);
+        tvKey.setTextColor(Color.parseColor("#FF6600"));
+        tvKey.setTextSize(14);
+        tvKey.setPadding(8, 0, 16, 0);
+        tvKey.setTypeface(null, Typeface.BOLD);
+
+        android.widget.TextView tvValue = new android.widget.TextView(this);
+        tvValue.setText(value);
+        tvValue.setTextColor(Color.WHITE);
+        tvValue.setTextSize(14);
+        tvValue.setPadding(8, 0, 8, 0);
+
+        row.addView(tvKey);
+        row.addView(tvValue);
+        table.addView(row);
+    }
+
+    /** Muestra info del chip actual como JSON (para depuración) */
     private void showChipInfoJson() {
         if (currentChip == null) {
             Toast.makeText(this, getString(R.string.selecciona_chip_primero),
@@ -1428,9 +1485,19 @@ public class MainActivity extends AppCompatActivity
         }
 
         String json = currentChip.toJson();
+        android.widget.ScrollView scrollView = new android.widget.ScrollView(this);
+        android.widget.TextView textView = new android.widget.TextView(this);
+        textView.setText(json);
+        textView.setPadding(32, 32, 32, 32);
+        textView.setTextSize(12);
+        textView.setTypeface(android.graphics.Typeface.MONOSPACE);
+        textView.setTextColor(Color.GREEN);
+        textView.setBackgroundColor(Color.BLACK);
+        scrollView.addView(textView);
+
         new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.chip_info_json) + " - " + currentChip.getNombreDelPic())
-                .setMessage(json)
+                .setTitle(getString(R.string.chip_info_json))
+                .setView(scrollView)
                 .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
     }

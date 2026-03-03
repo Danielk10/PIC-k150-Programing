@@ -113,18 +113,34 @@
     <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Verification complete</string>
-    <string name="fuses_decodificados">Decoded fuses</string>
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    <string name="error_procesando_hex">Error processing HEX</string>
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="fuses_decodificados">Decoded Fuses</string>
+    <string name="hex_procesado_correctamente">HEX file processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX file</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux Tutorial (C)</string>
+    <string name="error_abriendo_tutorial">Failed to open tutorial</string>
+
     <string name="exportar_memoria">Export Memory</string>
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportacion_exitosa">File exported successfully</string>
-    <string name="error_exportando">Error exporting</string>
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    <string name="chip_info_json">Chip Info (JSON)</string>
+    <string name="exportar_rom_hex">Export ROM (.hex)</string>
+    <string name="exportar_eeprom_hex">Export EEPROM (.hex)</string>
+    <string name="exportar_rom_bin">Export ROM (.bin)</string>
+    <string name="exportar_eeprom_bin">Export EEPROM (.bin)</string>
+    <string name="exportar_config_hex">Export CONFIG (.hex)</string>
+    <string name="exportar_config_bin">Export CONFIG (.bin)</string>
+    <string name="exportar_dump_completo">Export Full Dump (.hex)</string>
+    
+    <string name="programar_todo">Program All</string>
+    <string name="programar_solo_rom">Program ROM only</string>
+    <string name="programar_solo_eeprom">Program EEPROM only</string>
+    <string name="programar_solo_config">Program CONFIG only</string>
+    <string name="seleccionar_operacion">Select Operation</string>
+    <string name="config_leida">Configuration read</string>
+
+    <string name="exportacion_exitosa">Export Successful!</string>
+    <string name="error_exportando">Error during export</string>
+    <string name="no_hay_datos_para_exportar">No data in memory to export. Read chip first.</string>
+    <string name="chip_info_json">View Chip JSON (Debug)</string>
+    <string name="chip_info_titulo">Technical Chip Information</string>
+    <string name="propiedad">Property</string>
+    <string name="valor">Value</string>
+    <string name="chip_info_profesional">Chip Info</string>
 </resources>

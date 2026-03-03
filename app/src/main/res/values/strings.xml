@@ -122,33 +122,39 @@
     <string name="verificacion_completa">Verificación completa</string>
     <string name="fuses_decodificados">Fuses decodificados</string>
 
+    <!-- Títulos de Diálogos y Menús -->
+    <string name="chip_info_titulo">Información Técnica del Chip</string>
+    <string name="propiedad">Propiedad</string>
+    <string name="valor">Valor</string>
+    <string name="chip_info_profesional">Información del Chip</string>
+    
     <!-- Strings para procesamiento HEX -->
-    <string name="hex_procesado_correctamente">HEX procesado correctamente</string>
-    <string name="error_procesando_hex">Error procesando HEX</string>
+    <string name="hex_procesado_correctamente">Archivo HEX procesado correctamente</string>
+    <string name="error_procesando_hex">Error al procesar el archivo HEX</string>
 
     <!-- Strings para tutoriales -->
-    <string name="sdcc_termux_tutorial">SDCC en Termux Compilador C Android</string>
-    <string name="error_abriendo_tutorial">Error al abrir tutorial</string>
+    <string name="sdcc_termux_tutorial">Tutorial SDCC en Termux (C)</string>
+    <string name="error_abriendo_tutorial">No se pudo abrir el tutorial</string>
 
     <!-- Strings para exportación HEX -->
     <string name="exportar_memoria">Exportar Memoria</string>
-    <string name="exportar_rom_hex">Exportar ROM como HEX</string>
-    <string name="exportar_eeprom_hex">Exportar EEPROM como HEX</string>
-    <string name="exportar_rom_bin">Exportar ROM como BIN</string>
-    <string name="exportar_eeprom_bin">Exportar EEPROM como BIN</string>
-    <string name="exportar_config_hex">Exportar CONFIG como HEX</string>
-    <string name="exportar_config_bin">Exportar CONFIG como BIN</string>
-    <string name="exportar_dump_completo">Exportar Dump Completo (HEX)</string>
+    <string name="exportar_rom_hex">Exportar ROM (.hex)</string>
+    <string name="exportar_eeprom_hex">Exportar EEPROM (.hex)</string>
+    <string name="exportar_rom_bin">Exportar ROM (.bin)</string>
+    <string name="exportar_eeprom_bin">Exportar EEPROM (.bin)</string>
+    <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
+    <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
+    <string name="exportar_dump_completo">Exportar Volcado Completo (.hex)</string>
     
     <string name="programar_todo">Programar Todo</string>
     <string name="programar_solo_rom">Programar solo ROM</string>
     <string name="programar_solo_eeprom">Programar solo EEPROM</string>
-    <string name="programar_solo_config">Programar solo CONFIG/Fuses</string>
+    <string name="programar_solo_config">Programar solo CONFIG</string>
     <string name="seleccionar_operacion">Seleccionar Operación</string>
     <string name="config_leida">Configuración leída</string>
 
-    <string name="exportacion_exitosa">Archivo exportado correctamente</string>
-    <string name="error_exportando">Error al exportar</string>
-    <string name="no_hay_datos_para_exportar">No hay datos leídos para exportar. Lee la memoria primero.</string>
-    <string name="chip_info_json">Info del Chip (JSON)</string>
+    <string name="exportacion_exitosa">¡Exportación Exitosa!</string>
+    <string name="error_exportando">Error durante la exportación</string>
+    <string name="no_hay_datos_para_exportar">No hay datos en memoria para exportar. Lea el chip primero.</string>
+    <string name="chip_info_json">Ver JSON del Chip (Debug)</string>
 </resources>
