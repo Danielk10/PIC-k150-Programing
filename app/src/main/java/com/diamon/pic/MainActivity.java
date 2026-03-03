@@ -419,7 +419,7 @@ public class MainActivity extends AppCompatActivity
 
     /** Configura el listener para el switch de ICSP */
     private void setupICSPSwitchListener() {
-        btnConfigureFuses.setOnClickListener(v -> abrirDialogoFuses());
+        btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration());
 
         if (btnBlankCheck != null) {
             btnBlankCheck.setOnClickListener(v -> ejecutarBlankCheck());
@@ -980,14 +980,14 @@ public class MainActivity extends AppCompatActivity
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
                                     Color.parseColor("#F44336")));
-                } else {
-                    btn.setBackgroundTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#9C27B0")));
                 } else if (btn == btnBlankCheck) {
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
                                     Color.parseColor("#4CAF50"))); // Verde para Blank Check
+                } else {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#9C27B0")));
                 }
                 btn.setTextColor(Color.WHITE);
             } else {

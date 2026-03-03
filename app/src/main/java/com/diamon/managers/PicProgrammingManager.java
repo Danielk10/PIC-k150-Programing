@@ -371,7 +371,7 @@ public class PicProgrammingManager {
         }
 
         try {
-            return protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+            return protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
         } catch (Exception e) {
             notifyError(
                     context.getString(R.string.error_verificando_memoria) + ": " + e.getMessage());

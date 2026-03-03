@@ -164,8 +164,10 @@
     <string name="configuraciones_de_fusibles">Configuraciones de Fusibles</string>
     <string name="chip_seleccionado">Chip Seleccionado</string>
     <string name="configuracion_de_fusibles">Configuración de Fusibles</string>
-    <string name="agregar_fusible_personalizado">➕ Agregar Fusible Personalizado</string>
-    <string name="id_personalizado_hex">ID Personalizado (hex)</string>
+    <string name="id_personalizado_hex">ID Personalizado (HEX)</string>
+    <string name="hint_id_personalizado">Ejemplo: 1A 2B 3C 4D (4 u 8 bytes)</string>
+    <string name="hint_nombre_fusible">Nombre (ej: WDT, FOSC, MCLRE)</string>
+    <string name="hint_valor_fusible">Valor (ej: ON, OFF, HS, 0x3F)</string>
     <string name="log_de_operaciones">Log de Operaciones</string>
     <string name="restaurar_desde_bd">Restaurar desde BD</string>
     <string name="restaurar_desde_hex">Restaurar desde HEX</string>
@@ -174,8 +176,8 @@
     <string name="valor_ejemplo_on_off">Valor (ejemplo: ON, OFF, 0x3FFF)</string>
     
     <!-- Ayuda para Fuses e ID -->
-    <string name="ayuda_id_personalizado">ID de 4 o 8 bytes según el chip para identificación (versión o número de serie).</string>
-    <string name="ayuda_fuses_personalizados">Permite sobreescribir fuses específicos. Se ignorará el valor que venga en el HEX para estos nombres.</string>
+    <string name="ayuda_id_personalizado">ID de usuario en formato HEX. Use 4 bytes (8 dígitos) para PIC12/16 o 8 bytes (16 dígitos) para PIC18.</string>
+    <string name="ayuda_fuses_personalizados">Sobreescribe los fusibles del HEX. Use el nombre técnico (ej: WDT) y el valor (ej: OFF o 0x01).</string>
     <string name="ayuda_chip_info">Datos técnicos detallados extraídos del archivo de definición del PIC.</string>
 
     <string name="seleccionar_operacion">Seleccionar Operación</string>

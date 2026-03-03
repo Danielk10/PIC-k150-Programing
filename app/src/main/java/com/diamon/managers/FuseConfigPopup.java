@@ -353,12 +353,18 @@ public class FuseConfigPopup {
         layout.setPadding(50, 40, 50, 10);
 
         final EditText nameInput = new EditText(context);
-        nameInput.setHint("Nombre del fusible");
+        nameInput.setHint(context.getString(com.diamon.pic.R.string.hint_nombre_fusible));
         layout.addView(nameInput);
 
         final EditText valueInput = new EditText(context);
-        valueInput.setHint("Valor (ejemplo: ON, OFF, 0x3FFF)");
+        valueInput.setHint(context.getString(com.diamon.pic.R.string.hint_valor_fusible));
         layout.addView(valueInput);
+
+        TextView helpText = new TextView(context);
+        helpText.setText(context.getString(com.diamon.pic.R.string.ayuda_fuses_personalizados));
+        helpText.setTextSize(12);
+        helpText.setPadding(0, 20, 0, 0);
+        layout.addView(helpText);
 
         builder.setView(layout);
 
@@ -404,15 +410,38 @@ public class FuseConfigPopup {
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
+        LinearLayout header = new LinearLayout(context);
+        header.setOrientation(LinearLayout.HORIZONTAL);
+        header.setGravity(Gravity.CENTER_VERTICAL);
+
         TextView label = new TextView(context);
-        label.setText("ID Personalizado (hex)");
+        label.setText(context.getString(com.diamon.pic.R.string.id_personalizado_hex));
         label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(14);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
-        section.addView(label);
+
+        LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.0f);
+        header.addView(label, labelParams);
+
+        // Boton de ayuda
+        TextView helpIcon = new TextView(context);
+        helpIcon.setText("ⓘ");
+        helpIcon.setTextColor(Color.parseColor("#4CAF50"));
+        helpIcon.setPadding(20, 0, 20, 0);
+        helpIcon.setOnClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle(context.getString(com.diamon.pic.R.string.id_personalizado_hex))
+                    .setMessage(context.getString(com.diamon.pic.R.string.ayuda_id_personalizado))
+                    .setPositiveButton(context.getString(com.diamon.pic.R.string.aceptar), null)
+                    .show();
+        });
+        header.addView(helpIcon);
+
+        section.addView(header);
 
         customIdEditText = new EditText(context);
-        customIdEditText.setHint("Ejemplo: 00 01 02 03 04 05 06 07");
+        customIdEditText.setHint(context.getString(com.diamon.pic.R.string.hint_id_personalizado));
         customIdEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         customIdEditText.setBackgroundColor(Color.parseColor("#1A1A2E"));
         customIdEditText.setPadding(12, 12, 12, 12);

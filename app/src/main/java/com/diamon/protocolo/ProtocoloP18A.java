@@ -57,6 +57,9 @@ public class ProtocoloP18A extends Protocolo {
     /** Tipo de protocolo activo (define los command numbers de conexión) */
     private final TipoProtocolo tipoProtocolo;
 
+    /** Información del chip cargada para la sesión actual */
+    private ChipPic currentChipInfo;
+
     /**
      * Constructor del protocolo con tipo por defecto (P18A).
      *
@@ -122,6 +125,8 @@ public class ProtocoloP18A extends Protocolo {
         if (chipPIC == null) {
             throw new IllegalArgumentException("ChipPIC no puede ser null");
         }
+
+        this.currentChipInfo = chipPIC;
 
         StringBuilder respuesta = new StringBuilder();
 
