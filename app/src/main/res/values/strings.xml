@@ -150,6 +150,10 @@
     <string name="programar_solo_rom">Programar solo ROM</string>
     <string name="programar_solo_eeprom">Programar solo EEPROM</string>
     <string name="programar_solo_config">Programar solo CONFIG</string>
+    <string name="verificar_borrado">Verificar Borrado</string>
+    <string name="chip_esta_borrado">El chip está borrado (Blank)</string>
+    <string name="chip_no_esta_borrado">El chip NO está borrado</string>
+    <string name="verificando_borrado">Verificando borrado...</string>
     <string name="seleccionar_operacion">Seleccionar Operación</string>
     <string name="config_leida">Configuración leída</string>
 
