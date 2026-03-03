@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#1A1A2E"
     android:padding="16dp">
 
     <LinearLayout
@@ -11,32 +10,34 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dialogTitle"
+            android:id="@+id/tvChipDialogTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/chip_info_titulo"
-            android:textColor="#FF6600"
+            android:text="Información del Chip"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
 
         <TableLayout
-            android:id="@+id/chipInfoTable"
+            android:id="@+id/tlChipInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="1">
-            <!-- Las filas se añadirán programáticamente en MainActivity.java -->
+            
+            <!-- Rows will be added programmatically or defined here -->
+            
         </TableLayout>
 
         <Button
-            android:id="@+id/btnOk"
+            android:id="@+id/btnDialogClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:text="Cerrar"
+            android:layout_gravity="right"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#4CAF50"
-            android:text="@string/aceptar"
-            android:textColor="#FFFFFF" />
-
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+            
     </LinearLayout>
 </ScrollView>

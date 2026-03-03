@@ -150,13 +150,14 @@ public class MainActivity extends AppCompatActivity
         swModeICSP = findViewById(R.id.swModeICSP);
 
         updateSwitchColors();
-        // Configurar listener para el switch
-        setupICSPSwitchListener();
-
         initializeAppCenter();
         initializeBasicComponents();
         findViews();
         setupBanner();
+
+        // Configurar listener para el switch después de findViews
+        setupICSPSwitchListener();
+
         initializeManagers();
         setupListeners();
         setupToolbar();
@@ -1447,22 +1448,43 @@ public class MainActivity extends AppCompatActivity
         }
 
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_chip_info, null);
-        android.widget.TableLayout table = dialogView.findViewById(R.id.chipInfoTable);
-        android.widget.TextView title = dialogView.findViewById(R.id.dialogTitle);
-        android.widget.Button btnOk = dialogView.findViewById(R.id.btnOk);
+        android.widget.TableLayout table = dialogView.findViewById(R.id.tlChipInfo);
+        android.widget.TextView title = dialogView.findViewById(R.id.tvChipDialogTitle);
+        android.widget.Button btnClose = dialogView.findViewById(R.id.btnDialogClose);
 
         title.setText(getString(R.string.chip_info_titulo) + ": " + currentChip.getNombreDelPic());
 
         Map<String, Object> data = currentChip.toDict();
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            addRowToTable(table, entry.getKey(), String.valueOf(entry.getValue()));
+
+        // Ordenar las claves para que se vean mejor (alfabéticamente o por importancia)
+        java.util.List<String> sortedKeys = new java.util.ArrayList<>(data.keySet());
+        java.util.Collections.sort(sortedKeys);
+
+        for (String key : sortedKeys) {
+            Object value = data.get(key);
+            if (value instanceof String[] || value instanceof int[]) {
+                // Manejar arrays de forma legible
+                String valStr;
+                if (value instanceof String[])
+                    valStr = java.util.Arrays.toString((String[]) value);
+                else
+                    valStr = java.util.Arrays.toString((int[]) value);
+                addRowToTable(table, key, valStr);
+            } else if (value instanceof Map) {
+                // Fuses info - simplificar para la tabla general
+                addRowToTable(table, key, "Click 'Configure Fuses' for details");
+            } else {
+                addRowToTable(table, key, String.valueOf(value));
+            }
         }
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .create();
 
-        btnOk.setOnClickListener(v -> dialog.dismiss());
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> dialog.dismiss());
+        }
         dialog.show();
     }
 

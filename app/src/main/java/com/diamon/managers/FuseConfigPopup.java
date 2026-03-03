@@ -295,13 +295,36 @@ public class FuseConfigPopup {
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
 
+        LinearLayout header = new LinearLayout(context);
+        header.setOrientation(LinearLayout.HORIZONTAL);
+        header.setGravity(Gravity.CENTER_VERTICAL);
+        header.setPadding(0, 0, 0, 12);
+
         TextView label = new TextView(context);
         label.setText("Configuracion de Fusibles");
         label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(16);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
-        label.setPadding(0, 0, 0, 12);
-        section.addView(label);
+
+        LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.0f);
+        header.addView(label, labelParams);
+
+        // Boton de ayuda
+        TextView helpIcon = new TextView(context);
+        helpIcon.setText("ⓘ");
+        helpIcon.setTextColor(Color.parseColor("#4CAF50"));
+        helpIcon.setPadding(20, 0, 20, 0);
+        helpIcon.setOnClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Configuración de Fusibles")
+                    .setMessage(context.getString(com.diamon.pic.R.string.ayuda_fuses_personalizados))
+                    .setPositiveButton(context.getString(com.diamon.pic.R.string.aceptar), null)
+                    .show();
+        });
+        header.addView(helpIcon);
+
+        section.addView(header);
 
         // Container de fusibles SIN ScrollView - se ajusta naturalmente
         fuseContainer = new LinearLayout(context);

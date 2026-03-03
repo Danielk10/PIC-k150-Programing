@@ -60,6 +60,9 @@ public class ProtocoloP18A extends Protocolo {
     /** Información del chip cargada para la sesión actual */
     private ChipPic currentChipInfo;
 
+    /** Últimos fusibles programados (necesarios para el commit en core 16) */
+    private int[] lastFuses;
+
     /**
      * Constructor del protocolo con tipo por defecto (P18A).
      *
@@ -559,6 +562,9 @@ public class ProtocoloP18A extends Protocolo {
                 fuses = datosPic.obtenerValoresIntHexFusesPocesado();
             }
 
+            // Guardar para uso en programarFusesDePics18F si es necesario
+            this.lastFuses = fuses;
+
             // Validar datos según tipo de núcleo.
             if (tipoNucleo == 16) {
                 if (id.length != 8) {
@@ -945,54 +951,42 @@ public class ProtocoloP18A extends Protocolo {
 
     @Override
     public boolean programarFusesDePics18F() {
+        if (lastFuses == null || lastFuses.length != 7) {
+            return false;
+        }
 
         try {
             // Resetear comandos previos
             researComandos();
+            activarVoltajesDeProgramacion();
 
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("17") }, 10);
+            // Enviar comando para programar FUSES 18F (Commit)
+            usbSerialPort.write(new byte[] { 17 }, 10);
 
-            int size = 1; // Convertir palabras a bytes
-
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            byte[] bytes = new byte[size];
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        bytes[i] = buffer[i];
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
+            // Preparar cuerpo del comando (24 bytes)
+            ByteArrayOutputStream commandBody = new ByteArrayOutputStream();
+            // 10 bytes de zero (donde iría el ID)
+            commandBody.write(new byte[10]);
+            // 7 fuses de 16 bits cada uno (Little Endian)
+            for (int fuse : lastFuses) {
+                commandBody.write(
+                        ByteBuffer.allocate(2)
+                                .order(ByteOrder.LITTLE_ENDIAN)
+                                .putShort((short) fuse)
+                                .array());
             }
+
+            // Enviar payload
+            usbSerialPort.write(commandBody.toByteArray(), 100);
+
+            // Leer respuesta
+            byte[] response = readBytes(1, 200);
+
+            desactivarVoltajesDeProgramacion();
             researComandos();
 
-            if (new String(bytes, "US-ASCII").equals("Y")) {
-
-                return true;
-
-            } else if (new String(bytes, "US-ASCII").equals("B")) {
-
-                return false;
-
-            } else {
-
-                return false;
-            }
-
-        } catch (IOException e) {
-
+            return response.length > 0 && response[0] == 'Y';
+        } catch (IOException | UsbCommunicationException e) {
             return false;
         }
     }
