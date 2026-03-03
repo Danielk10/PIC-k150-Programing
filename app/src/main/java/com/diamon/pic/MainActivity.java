@@ -1292,7 +1292,7 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
         menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
         menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_profesional));
-        menu.add(Menu.NONE, 8, 5, "📝 " + getString(R.string.chip_info_json));
+        menu.add(Menu.NONE, 4, 5, "📜 " + getString(R.string.politica_de_privacidad));
 
         // Submenu Ayuda
         android.view.SubMenu helpMenu = menu.addSubMenu(Menu.NONE, 9, 6, "❓ " + getString(R.string.menu_ayuda));
@@ -1300,7 +1300,6 @@ public class MainActivity extends AppCompatActivity
         helpMenu.add(Menu.NONE, 11, 2, "⚙️ " + getString(R.string.ayuda_fuses_label));
         helpMenu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
         helpMenu.add(Menu.NONE, 5, 4, "📚 " + getString(R.string.sdcc_termux_tutorial));
-        helpMenu.add(Menu.NONE, 4, 5, "📜 " + getString(R.string.politica_de_privacidad));
 
         return true;
     }
@@ -1319,9 +1318,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case 7:
                 showChipInfoDialog();
-                return true;
-            case 8:
-                // Eliminado: showChipInfoJson();
                 return true;
             case 10:
                 showIcspHelpDialog();

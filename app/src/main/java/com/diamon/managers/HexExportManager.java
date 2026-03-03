@@ -29,9 +29,6 @@ public class HexExportManager {
     private final AppCompatActivity activity;
     private ExportListener exportListener;
     private ActivityResultLauncher<String> createDocumentLauncher;
-    private byte[] pendingExportDataBinary;
-    private String pendingExportDataText;
-    private boolean pendingIsBinaryFile;
 
     /** Interfaz para manejar eventos de exportación */
     public interface ExportListener {
@@ -46,23 +43,11 @@ public class HexExportManager {
     }
 
     /**
-     * Inicializa el launcher para crear documentos.
-     * DEBE llamarse antes de onStart() de la Activity.
+     * Inicializa el gestor.
      */
     public void initialize() {
-        createDocumentLauncher = activity.registerForActivityResult(
-                new ActivityResultContracts.CreateDocument("application/octet-stream"),
-                uri -> {
-                    if (uri != null) {
-                        if (pendingIsBinaryFile && pendingExportDataBinary != null) {
-                            writeDataToUri(uri, pendingExportDataBinary, null);
-                        } else if (!pendingIsBinaryFile && pendingExportDataText != null) {
-                            writeDataToUri(uri, null, pendingExportDataText);
-                        }
-                    }
-                    pendingExportDataBinary = null;
-                    pendingExportDataText = null;
-                });
+        // Ya no se requiere inicializar ActionDocument porque usamos modo archivo
+        // directo
     }
 
     public void setExportListener(ExportListener listener) {
@@ -89,15 +74,8 @@ public class HexExportManager {
             return;
         }
 
-        if (createDocumentLauncher == null) {
-            notifyError("HexExportManager no inicializado");
-            return;
-        }
-
-        pendingExportDataText = convertToIntelHexWithAddress(data, startAddress);
-        pendingExportDataBinary = null;
-        pendingIsBinaryFile = false;
-        createDocumentLauncher.launch(suggestedName + ".hex");
+        String hexText = convertToIntelHexWithAddress(data, startAddress);
+        saveWithDialog(suggestedName, ".hex", null, hexText);
     }
 
     /**
@@ -105,11 +83,6 @@ public class HexExportManager {
      */
     public void exportFullDumpAsHex(byte[] romData, byte[] eepromData, byte[] configData,
             int eepromAddress, int configAddress, String suggestedName) {
-
-        if (createDocumentLauncher == null) {
-            notifyError("HexExportManager no inicializado");
-            return;
-        }
 
         StringBuilder fullHex = new StringBuilder();
 
@@ -128,11 +101,7 @@ public class HexExportManager {
         // End of File Record
         fullHex.append(":00000001FF\r\n");
 
-        pendingExportDataText = fullHex.toString();
-        pendingExportDataBinary = null;
-        pendingIsBinaryFile = false;
-
-        createDocumentLauncher.launch(suggestedName + ".hex");
+        saveWithDialog(suggestedName, ".hex", null, fullHex.toString());
     }
 
     /**
@@ -147,15 +116,7 @@ public class HexExportManager {
             return;
         }
 
-        if (createDocumentLauncher == null) {
-            notifyError("HexExportManager no inicializado");
-            return;
-        }
-
-        pendingExportDataBinary = data;
-        pendingExportDataText = null;
-        pendingIsBinaryFile = true;
-        createDocumentLauncher.launch(suggestedName + ".bin");
+        saveWithDialog(suggestedName, ".bin", data, null);
     }
 
     /**
@@ -201,32 +162,69 @@ public class HexExportManager {
         exportAsBinary(data, suggestedName);
     }
 
-    /**
-     * Escribe los datos al URI seleccionado por el usuario.
-     */
-    private void writeDataToUri(Uri uri, byte[] binData, String txtData) {
-        try {
-            OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
-            if (outputStream == null) {
-                notifyError("Error abriendo archivo para escritura");
+    private void saveWithDialog(String defaultName, String extension, final byte[] binData, final String txtData) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+        builder.setTitle(context.getString(com.diamon.pic.R.string.exportar_memoria) + " (" + extension + ")");
+
+        final android.widget.EditText input = new android.widget.EditText(context);
+        input.setText(defaultName);
+        input.setSingleLine(true);
+        // padding
+        int padding = (int) (16 * context.getResources().getDisplayMetrics().density);
+        input.setPadding(padding, padding, padding, padding);
+        builder.setView(input);
+
+        builder.setPositiveButton(context.getString(com.diamon.pic.R.string.aceptar), (dialog, which) -> {
+            String fileName = input.getText().toString().trim();
+            if (fileName.isEmpty()) {
+                notifyError("El nombre no puede estar vacío");
                 return;
             }
-
-            if (binData != null) {
-                // Escritura binaria directa
-                outputStream.write(binData);
-            } else if (txtData != null) {
-                // Formato de texto (HEX)
-                outputStream.write(txtData.getBytes(StandardCharsets.US_ASCII));
+            if (!fileName.toLowerCase().endsWith(extension)) {
+                fileName += extension;
             }
 
-            outputStream.flush();
-            outputStream.close();
+            java.io.File dir = android.os.Environment
+                    .getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            final java.io.File file = new java.io.File(dir, fileName);
+
+            if (file.exists()) {
+                new android.app.AlertDialog.Builder(activity)
+                        .setTitle("Reemplazar archivo")
+                        .setMessage("El archivo '" + fileName + "' ya existe. ¿Desea reemplazarlo?")
+                        .setPositiveButton("Sí", (d, w) -> writeToFile(file, binData, txtData))
+                        .setNegativeButton("No", null)
+                        .show();
+            } else {
+                writeToFile(file, binData, txtData);
+            }
+        });
+        builder.setNegativeButton(context.getString(com.diamon.pic.R.string.cancelar), null);
+        builder.show();
+    }
+
+    private void writeToFile(java.io.File file, byte[] binData, String txtData) {
+        try {
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(file);
+            if (binData != null) {
+                fos.write(binData);
+            } else if (txtData != null) {
+                fos.write(txtData.getBytes(StandardCharsets.US_ASCII));
+            }
+            fos.flush();
+            fos.close();
+
+            // Notificar a MediaScanner para que aparezca rápido
+            android.media.MediaScannerConnection.scanFile(context, new String[] { file.getAbsolutePath() }, null, null);
 
             if (exportListener != null) {
-                exportListener.onExportSuccess(uri.getLastPathSegment());
+                exportListener.onExportSuccess(file.getName());
             }
-
+            android.widget.Toast.makeText(context, "Archivo guardado en Descargas: " + file.getName(),
+                    android.widget.Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             notifyError("Error escribiendo archivo: " + e.getMessage());
         } catch (Exception e) {
