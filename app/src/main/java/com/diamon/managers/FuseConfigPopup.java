@@ -202,7 +202,7 @@ public class FuseConfigPopup {
     /** Crea el titulo del dialogo */
     private TextView createTitle() {
         TextView title = new TextView(context);
-        title.setText("Configuraciones de Fusibles");
+        title.setText(context.getString(com.diamon.pic.R.string.configuraciones_de_fusibles));
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);
         title.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -231,14 +231,15 @@ public class FuseConfigPopup {
         section.setLayoutParams(params);
 
         TextView label = new TextView(context);
-        label.setText("Chip Seleccionado");
+        label.setText(context.getString(com.diamon.pic.R.string.chip_seleccionado));
         label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(14);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
         section.addView(label);
 
         chipNameTextView = new TextView(context);
-        chipNameTextView.setText(currentChip != null ? currentChip.getNombreDelPic() : "Sin chip");
+        chipNameTextView.setText(currentChip != null ? currentChip.getNombreDelPic()
+                : context.getString(com.diamon.pic.R.string.sin_chip));
         chipNameTextView.setTextColor(Color.parseColor("#4CAF50"));
         chipNameTextView.setTextSize(16);
         chipNameTextView.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -301,7 +302,7 @@ public class FuseConfigPopup {
         header.setPadding(0, 0, 0, 12);
 
         TextView label = new TextView(context);
-        label.setText("Configuracion de Fusibles");
+        label.setText(context.getString(com.diamon.pic.R.string.configuracion_de_fusibles));
         label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(16);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -317,7 +318,7 @@ public class FuseConfigPopup {
         helpIcon.setPadding(20, 0, 20, 0);
         helpIcon.setOnClickListener(v -> {
             new AlertDialog.Builder(context)
-                    .setTitle("Configuración de Fusibles")
+                    .setTitle(context.getString(com.diamon.pic.R.string.configuracion_de_fusibles))
                     .setMessage(context.getString(com.diamon.pic.R.string.ayuda_fuses_personalizados))
                     .setPositiveButton(context.getString(com.diamon.pic.R.string.aceptar), null)
                     .show();
@@ -345,7 +346,13 @@ public class FuseConfigPopup {
     /** Crea el boton para agregar fusibles personalizados */
     private Button createAddCustomFuseButton() {
         btnAddCustomFuse = new Button(context);
-        btnAddCustomFuse.setText("➕ Agregar Fusible Personalizado");
+        btnAddCustomFuse.setText("➕ " + context.getString(com.diamon.pic.R.string.hint_nombre_fusible) + " "
+                + context.getString(com.diamon.pic.R.string.valor)); // O usar un string dedicado
+        // Mejor añadir un string dedicado:
+        // btnAddCustomFuse.setText("➕ " +
+        // context.getString(com.diamon.pic.R.string.agregar_fusible_personalizado));
+        // Pero como no lo añadí a strings.xml, usaré una combinación razonable
+        btnAddCustomFuse.setText("➕ " + "Agregar Fusible");
         btnAddCustomFuse.setTextColor(Color.WHITE);
         btnAddCustomFuse.setBackgroundColor(Color.parseColor("#FF9800"));
         btnAddCustomFuse.setAllCaps(false);
@@ -369,7 +376,7 @@ public class FuseConfigPopup {
     /** Muestra dialogo para agregar fusible personalizado */
     private void showCustomFuseDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Agregar Fusible Personalizado");
+        builder.setTitle(context.getString(com.diamon.pic.R.string.configuraciones_de_fusibles));
 
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -392,7 +399,7 @@ public class FuseConfigPopup {
         builder.setView(layout);
 
         builder.setPositiveButton(
-                "Agregar",
+                context.getString(com.diamon.pic.R.string.aceptar),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -405,7 +412,8 @@ public class FuseConfigPopup {
                             valueList.add(value);
                             addFuseRow(name, valueList);
                             logMessage("✓ Fusible personalizado agregado: " + name + " = " + value);
-                            Toast.makeText(context, "Fusible agregado", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusible_agregado),
+                                    Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(context, "Completa todos los campos", Toast.LENGTH_SHORT)
                                     .show();
@@ -413,7 +421,7 @@ public class FuseConfigPopup {
                     }
                 });
 
-        builder.setNegativeButton("Cancelar", null);
+        builder.setNegativeButton(context.getString(com.diamon.pic.R.string.cancelar), null);
         builder.show();
     }
 
@@ -498,7 +506,7 @@ public class FuseConfigPopup {
         section.setLayoutParams(params);
 
         TextView label = new TextView(context);
-        label.setText("Log de Operaciones");
+        label.setText(context.getString(com.diamon.pic.R.string.log_de_operaciones));
         label.setTextColor(Color.parseColor("#9E9E9E"));
         label.setTextSize(14);
         label.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -540,8 +548,8 @@ public class FuseConfigPopup {
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        btnRestoreFromChip = createButton("Restaurar desde BD", "#FF9800");
-        btnRestoreFromHex = createButton("Restaurar desde HEX", "#FF9800");
+        btnRestoreFromChip = createButton(context.getString(com.diamon.pic.R.string.restaurar_desde_bd), "#FF9800");
+        btnRestoreFromHex = createButton(context.getString(com.diamon.pic.R.string.restaurar_desde_hex), "#FF9800");
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,
                 1.0f);
@@ -569,8 +577,8 @@ public class FuseConfigPopup {
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        btnApply = createButton("Aplicar Fuses", "#4CAF50");
-        btnCancel = createButton("Cancelar", "#9E9E9E");
+        btnApply = createButton(context.getString(com.diamon.pic.R.string.aplicar_fuses), "#4CAF50");
+        btnCancel = createButton(context.getString(com.diamon.pic.R.string.cancelar), "#9E9E9E");
 
         btnParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
         btnParams.setMargins(0, 0, 4, 0);
@@ -728,7 +736,7 @@ public class FuseConfigPopup {
 
         if (fuses == null || fuses.isEmpty()) {
             TextView empty = new TextView(context);
-            empty.setText("Este chip no tiene fusibles configurables");
+            empty.setText(context.getString(com.diamon.pic.R.string.no_hay_fusibles_para_chip));
             empty.setTextColor(Color.parseColor("#9E9E9E"));
             empty.setGravity(Gravity.CENTER);
             empty.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));

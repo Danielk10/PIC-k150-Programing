@@ -187,4 +187,40 @@
     <string name="error_exportando">Error durante la exportación</string>
     <string name="no_hay_datos_para_exportar">No hay datos en memoria para exportar. Lea el chip primero.</string>
     <string name="chip_info_json">Ver JSON del Chip (Debug)</string>
+
+    <!-- Hardcoded strings localized -->
+    <string name="publicidad_recomendada">Publicidad recomendada</string>
+    <string name="lectura_completa">Lectura Completa</string>
+    <string name="sin_chip">Sin chip</string>
+    <string name="fusible_agregado">Fusible agregado</string>
+    <string name="fusibles_restaurados">Fusibles restaurados</string>
+    <string name="fusibles_aplicados">Fusibles aplicados</string>
+    <string name="procesamiento_hex">Procesamiento HEX</string>
+    <string name="rom_ok_blank">ROM: OK (En blanco)</string>
+    <string name="rom_not_blank">ROM: NO ESTÁ EN BLANCO</string>
+    <string name="eeprom_ok_blank">EEPROM: OK (En blanco)</string>
+    <string name="eeprom_not_blank">EEPROM: NO ESTÁ EN BLANCO</string>
+
+    <!-- Ayuda y Menu -->
+    <string name="menu_ayuda">Ayuda</string>
+    <string name="ayuda_icsp">Conexión ICSP</string>
+    <string name="ayuda_fuses_label">Configuración de Fuses</string>
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    <!-- Tutorial specific strings -->
+    <string name="idioma_espanol">Español</string>
+    <string name="idioma_ingles">English</string>
+    <string name="idioma_label">Idioma: %s</string>
+    <string name="copiar_todo">📋 Copiar Todo</string>
+    <string name="tutorial_copiado">Tutorial copiado al portapapeles</string>
+    <string name="error_cargar_tutorial">Error al cargar tutorial</string>
+    <string name="codigo_asm">📄 Código ASM</string>
+    <string name="comando_label">💻 Comando</string>
+    <string name="copiar_btn">Copiar</string>
+    <string name="copiado_msg">Copiado</string>
+    <string name="error_abrir_link">Error al abrir link</string>
+    <string name="copiado_portapapeles">Copiado al portapapeles</string>
 </resources>

@@ -1285,14 +1285,23 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // menu.clear(); // Removed as it might be unnecessary and potentially
+        // problematic
+
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
         menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
         menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
         menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_profesional));
         menu.add(Menu.NONE, 8, 5, "📝 " + getString(R.string.chip_info_json));
-        menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm));
-        menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial));
-        menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad));
+
+        // Submenu Ayuda
+        android.view.SubMenu helpMenu = menu.addSubMenu(Menu.NONE, 9, 6, "❓ " + getString(R.string.menu_ayuda));
+        helpMenu.add(Menu.NONE, 10, 1, "🔌 " + getString(R.string.ayuda_icsp));
+        helpMenu.add(Menu.NONE, 11, 2, "⚙️ " + getString(R.string.ayuda_fuses_label));
+        helpMenu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
+        helpMenu.add(Menu.NONE, 5, 4, "📚 " + getString(R.string.sdcc_termux_tutorial));
+        helpMenu.add(Menu.NONE, 4, 5, "📜 " + getString(R.string.politica_de_privacidad));
+
         return true;
     }
 
@@ -1313,6 +1322,12 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case 8:
                 // Eliminado: showChipInfoJson();
+                return true;
+            case 10:
+                showIcspHelpDialog();
+                return true;
+            case 11:
+                showFusesHelpDialog();
                 return true;
             case 3:
                 openTutorialGputils();
@@ -1472,7 +1487,7 @@ public class MainActivity extends AppCompatActivity
                 addRowToTable(table, key, valStr);
             } else if (value instanceof Map) {
                 // Fuses info - simplificar para la tabla general
-                addRowToTable(table, key, "Click 'Configure Fuses' for details");
+                addRowToTable(table, key, getString(R.string.configurar_fusibles));
             } else {
                 addRowToTable(table, key, String.valueOf(value));
             }
@@ -1537,9 +1552,12 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(() -> {
                     StringBuilder sb = new StringBuilder();
                     sb.append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
-                    sb.append("ROM: ").append(finalRomBlank ? "OK (BLANK)" : "NOT BLANK").append("\n");
+                    sb.append("ROM: ").append(
+                            finalRomBlank ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
+                            .append("\n");
                     if (currentChip.isTamanoValidoDeEEPROM()) {
-                        sb.append("EEPROM: ").append(finalEepromBlank ? "OK (BLANK)" : "NOT BLANK");
+                        sb.append("EEPROM: ").append(finalEepromBlank ? getString(R.string.eeprom_ok_blank)
+                                : getString(R.string.eeprom_not_blank));
                     }
                     processStatusTextView.setText(sb.toString());
 
@@ -1575,6 +1593,26 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
                     .show();
         }
+    }
+
+    /** Muestra ayuda sobre conexión ICSP */
+    private void showIcspHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.ayuda_icsp))
+                .setMessage(android.text.Html.fromHtml(getString(R.string.ayuda_icsp_content),
+                        android.text.Html.FROM_HTML_MODE_LEGACY))
+                .setPositiveButton(getString(R.string.aceptar), null)
+                .show();
+    }
+
+    /** Muestra ayuda sobre configuración de Fuses */
+    private void showFusesHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.ayuda_fuses_label))
+                .setMessage(android.text.Html.fromHtml(getString(R.string.ayuda_fuses_content),
+                        android.text.Html.FROM_HTML_MODE_LEGACY))
+                .setPositiveButton(getString(R.string.aceptar), null)
+                .show();
     }
 
     private void showProgrammerModelDialog() {

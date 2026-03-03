@@ -21,6 +21,8 @@ import android.text.util.Linkify;
 import android.text.method.LinkMovementMethod;
 import android.widget.RelativeLayout;
 
+import com.diamon.pic.R;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -240,13 +242,13 @@ public class LegacyTutorialRenderer {
     }
 
     private void addCommandBlock(String command) {
-        String label = lang.equals("es") ? "💻 Comando" : "💻 Command";
+        String label = context.getString(R.string.comando_label);
         String normalizedCode = command.replace("\t", "    ");
         addGenericCodeBlock(normalizedCode, "#1E1E1E", Color.GREEN, label, null);
     }
 
     private void addAssemblyCodeBlock(String code) {
-        String label = lang.equals("es") ? "📄 Código ASM" : "📄 ASM Code";
+        String label = context.getString(R.string.codigo_asm);
         String normalizedCode = code.replace("\t", "    ");
         addGenericCodeBlock(normalizedCode, "#121212", Color.WHITE, label, highlightAssemblySyntax(normalizedCode));
     }
@@ -280,7 +282,7 @@ public class LegacyTutorialRenderer {
         header.addView(label, labelParams);
 
         Button copyBtn = new Button(context);
-        copyBtn.setText(lang.equals("es") ? "COPIAR" : "COPY");
+        copyBtn.setText(context.getString(R.string.copiar_btn).toUpperCase());
         copyBtn.setTextSize(10);
         copyBtn.setBackgroundColor(Color.parseColor("#2E7D32"));
         copyBtn.setTextColor(Color.WHITE);
@@ -370,7 +372,7 @@ public class LegacyTutorialRenderer {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("tutorial_code", text);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, lang.equals("es") ? "Copiado al portapapeles" : "Copied to clipboard",
+        Toast.makeText(context, context.getString(R.string.copiado_portapapeles),
                 Toast.LENGTH_SHORT).show();
     }
 

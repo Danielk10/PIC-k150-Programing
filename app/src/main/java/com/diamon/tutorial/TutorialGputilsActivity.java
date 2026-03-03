@@ -83,7 +83,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     }
 
     private void setupLanguageSpinner() {
-        String[] languages = { "Español", "English" };
+        String[] languages = { getString(R.string.idioma_espanol), getString(R.string.idioma_ingles) };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -125,7 +125,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             loadTutorialImage();
 
         } catch (IOException e) {
-            Toast.makeText(this, "Error al cargar tutorial: " + e.getMessage(),
+            Toast.makeText(this, getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
@@ -144,19 +144,13 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     }
 
     private void updateLanguageInfo(String language) {
-        if (language.equals("es")) {
-            languageInfoTextView.setText("Idioma: Español");
-        } else {
-            languageInfoTextView.setText("Language: English");
-        }
+        String label = getString(R.string.idioma_label,
+                language.equals("es") ? getString(R.string.idioma_espanol) : getString(R.string.idioma_ingles));
+        languageInfoTextView.setText(label);
     }
 
     private void updateCopyButtonText(String language) {
-        if (language.equals("es")) {
-            copyButton.setText("📋 Copiar Todo");
-        } else {
-            copyButton.setText("📋 Copy All");
-        }
+        copyButton.setText(getString(R.string.copiar_todo));
     }
 
     private void copyTutorialText() {
@@ -167,8 +161,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
                     "tutorial", tutorialText);
             clipboard.setPrimaryClip(clip);
 
-            Toast.makeText(this,
-                    currentLanguage.equals("es") ? "Tutorial copiado al portapapeles" : "Tutorial copied to clipboard",
+            Toast.makeText(this, getString(R.string.tutorial_copiado),
                     Toast.LENGTH_SHORT).show();
         }
     }

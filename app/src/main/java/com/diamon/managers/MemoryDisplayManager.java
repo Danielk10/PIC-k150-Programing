@@ -132,7 +132,8 @@ public class MemoryDisplayManager {
             progressBar.setVisibility(View.GONE);
         }
 
-        // Ajustar el contenedor del anuncio para mantener visibilidad sin invadir el área de datos.
+        // Ajustar el contenedor del anuncio para mantener visibilidad sin invadir el
+        // área de datos.
         if (adContainer != null) {
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) adContainer.getLayoutParams();
             lp.height = dpToPx(280); // Mantener minimo 280dp para cumplir el requisito de 120x120dp del MediaView
@@ -140,7 +141,7 @@ public class MemoryDisplayManager {
         }
 
         if (statusTextView != null) {
-            statusTextView.setText("Lectura Completa");
+            statusTextView.setText(context.getString(R.string.lectura_completa));
             statusTextView.setTextColor(COLOR_DATA_LOADED);
         }
 
@@ -200,7 +201,9 @@ public class MemoryDisplayManager {
         container.setClipToPadding(true);
 
         TextView title = new TextView(context);
-        title.setText("Datos de Memoria");
+        title.setText(context.getString(R.string.operaciones)); // Or use a more specific title if available
+        // title.setText("Datos de Memoria"); // Original
+        title.setText(context.getString(R.string.memoria_leida_exitosamente));
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);
@@ -222,7 +225,7 @@ public class MemoryDisplayManager {
         statusContainer.addView(progressBar);
 
         statusTextView = new TextView(context);
-        statusTextView.setText("Leyendo memoria...");
+        statusTextView.setText(context.getString(R.string.leyendo_memoria));
         statusTextView.setTextColor(COLOR_TEXT_SECONDARY);
         statusTextView.setTextSize(14);
         statusTextView.setGravity(Gravity.CENTER);
@@ -254,7 +257,7 @@ public class MemoryDisplayManager {
         contentContainer.setLayoutParams(contentParams);
 
         romLabel = new TextView(context);
-        romLabel.setText("▶ Memoria ROM");
+        romLabel.setText("▶ " + context.getString(R.string.palabras_rom));
         romLabel.setTextColor(COLOR_DATA_LOADED);
         romLabel.setTextSize(14);
         romLabel.setTypeface(null, Typeface.BOLD);
@@ -284,7 +287,7 @@ public class MemoryDisplayManager {
         contentContainer.addView(romScrollView);
 
         eepromLabel = new TextView(context);
-        eepromLabel.setText("▶ Memoria EEPROM");
+        eepromLabel.setText("▶ " + context.getString(R.string.eeprom));
         eepromLabel.setTextColor(COLOR_DATA_LOADED);
         eepromLabel.setTextSize(14);
         eepromLabel.setTypeface(null, Typeface.BOLD);
@@ -312,7 +315,7 @@ public class MemoryDisplayManager {
         container.addView(contentContainer);
 
         Button closeButton = new Button(context);
-        closeButton.setText("Cerrar");
+        closeButton.setText(context.getString(R.string.aceptar));
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(14);
 
