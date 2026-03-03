@@ -126,7 +126,7 @@ public class HexExportManager {
         }
 
         // End of File Record
-        fullHex.append(":00000001FF\n");
+        fullHex.append(":00000001FF\r\n");
 
         pendingExportDataText = fullHex.toString();
         pendingExportDataBinary = null;
@@ -254,7 +254,7 @@ public class HexExportManager {
 
     public static String convertToIntelHexWithAddress(byte[] data, int startAddress) {
         String segments = convertSegmentToIntelHex(data, startAddress);
-        return segments + ":00000001FF\n";
+        return segments + ":00000001FF\r\n";
     }
 
     /**
@@ -347,7 +347,7 @@ public class HexExportManager {
         int checksum = byteCount + (address >> 8) + (address & 0xFF) + recordType + hi + lo;
         checksum = (~checksum + 1) & 0xFF;
 
-        return String.format(":%02X%04X%02X%02X%02X%02X\n",
+        return String.format(":%02X%04X%02X%02X%02X%02X\r\n",
                 byteCount, address, recordType, hi, lo, checksum);
     }
 
@@ -369,7 +369,7 @@ public class HexExportManager {
         }
 
         checksum = (~checksum + 1) & 0xFF;
-        record.append(String.format("%02X\n", checksum));
+        record.append(String.format("%02X\r\n", checksum));
 
         return record.toString();
     }

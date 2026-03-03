@@ -131,11 +131,13 @@ public class DatosPicProcesados {
             byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
 
             // Detectar endianness de los datos ROM con manejo robusto
+            // Por defecto, asumimos Little Endian (swapBytes=true) para pics de 12/14 bits.
+            boolean is14bit = (chipPIC.getTipoDeNucleoBit() == 12 || chipPIC.getTipoDeNucleoBit() == 14);
             boolean swapBytes;
             try {
-                swapBytes = detectarEndianness(romRecords, romBlank);
+                swapBytes = detectarEndianness(romRecords, romBlank, is14bit);
             } catch (IllegalArgumentException e) {
-                swapBytes = false; // Valor por defecto
+                swapBytes = is14bit; // Valor por defecto si hay corrupcion
             }
 
             // Ajustar registros según endianness detectado
@@ -196,8 +198,8 @@ public class DatosPicProcesados {
      * @return true si es little-endian, false si es big-endian
      */
     private boolean detectarEndianness(
-            List<HexFileUtils.Pair<Integer, String>> romRecords, byte[] romBlank) {
-        boolean swapBytes = false;
+            List<HexFileUtils.Pair<Integer, String>> romRecords, byte[] romBlank, boolean defaultSwap) {
+        boolean swapBytes = defaultSwap;
         boolean swapBytesDetected = false;
         int romBlankWord = ByteUtils.bytesToInt(romBlank);
 
@@ -238,7 +240,7 @@ public class DatosPicProcesados {
         }
 
         if (!swapBytesDetected) {
-            swapBytes = false;
+            swapBytes = defaultSwap;
         }
 
         return swapBytes;
