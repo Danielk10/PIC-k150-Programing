@@ -29,8 +29,9 @@ public class HexExportManager {
     private final AppCompatActivity activity;
     private ExportListener exportListener;
     private ActivityResultLauncher<String> createDocumentLauncher;
-    private byte[] pendingExportData;
-    private boolean pendingAsBinary;
+    private byte[] pendingExportDataBinary;
+    private String pendingExportDataText;
+    private boolean pendingIsBinaryFile;
 
     /** Interfaz para manejar eventos de exportación */
     public interface ExportListener {
@@ -52,10 +53,15 @@ public class HexExportManager {
         createDocumentLauncher = activity.registerForActivityResult(
                 new ActivityResultContracts.CreateDocument("application/octet-stream"),
                 uri -> {
-                    if (uri != null && pendingExportData != null) {
-                        writeDataToUri(uri, pendingExportData, pendingAsBinary);
+                    if (uri != null) {
+                        if (pendingIsBinaryFile && pendingExportDataBinary != null) {
+                            writeDataToUri(uri, pendingExportDataBinary, null);
+                        } else if (!pendingIsBinaryFile && pendingExportDataText != null) {
+                            writeDataToUri(uri, null, pendingExportDataText);
+                        }
                     }
-                    pendingExportData = null;
+                    pendingExportDataBinary = null;
+                    pendingExportDataText = null;
                 });
     }
 
@@ -70,6 +76,14 @@ public class HexExportManager {
      * @param suggestedName Nombre sugerido para el archivo (sin extensión)
      */
     public void exportAsHex(byte[] data, String suggestedName) {
+        exportAsHexWithAddress(data, 0, suggestedName);
+    }
+
+    /**
+     * Exporta datos de memoria como archivo Intel HEX iniciando en una direccion
+     * específica.
+     */
+    public void exportAsHexWithAddress(byte[] data, int startAddress, String suggestedName) {
         if (data == null || data.length == 0) {
             notifyError("No hay datos para exportar");
             return;
@@ -80,8 +94,44 @@ public class HexExportManager {
             return;
         }
 
-        pendingExportData = data;
-        pendingAsBinary = false;
+        pendingExportDataText = convertToIntelHexWithAddress(data, startAddress);
+        pendingExportDataBinary = null;
+        pendingIsBinaryFile = false;
+        createDocumentLauncher.launch(suggestedName + ".hex");
+    }
+
+    /**
+     * Exporta ROM, EEPROM y Config en un único dump HEX.
+     */
+    public void exportFullDumpAsHex(byte[] romData, byte[] eepromData, byte[] configData,
+            int eepromAddress, int configAddress, String suggestedName) {
+
+        if (createDocumentLauncher == null) {
+            notifyError("HexExportManager no inicializado");
+            return;
+        }
+
+        StringBuilder fullHex = new StringBuilder();
+
+        if (romData != null && romData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(romData, 0));
+        }
+
+        if (configData != null && configData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(configData, configAddress));
+        }
+
+        if (eepromData != null && eepromData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(eepromData, eepromAddress));
+        }
+
+        // End of File Record
+        fullHex.append(":00000001FF\n");
+
+        pendingExportDataText = fullHex.toString();
+        pendingExportDataBinary = null;
+        pendingIsBinaryFile = false;
+
         createDocumentLauncher.launch(suggestedName + ".hex");
     }
 
@@ -102,8 +152,9 @@ public class HexExportManager {
             return;
         }
 
-        pendingExportData = data;
-        pendingAsBinary = true;
+        pendingExportDataBinary = data;
+        pendingExportDataText = null;
+        pendingIsBinaryFile = true;
         createDocumentLauncher.launch(suggestedName + ".bin");
     }
 
@@ -153,7 +204,7 @@ public class HexExportManager {
     /**
      * Escribe los datos al URI seleccionado por el usuario.
      */
-    private void writeDataToUri(Uri uri, byte[] data, boolean asBinary) {
+    private void writeDataToUri(Uri uri, byte[] binData, String txtData) {
         try {
             OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
             if (outputStream == null) {
@@ -161,13 +212,12 @@ public class HexExportManager {
                 return;
             }
 
-            if (asBinary) {
+            if (binData != null) {
                 // Escritura binaria directa
-                outputStream.write(data);
-            } else {
-                // Formato Intel HEX
-                String hexContent = convertToIntelHex(data);
-                outputStream.write(hexContent.getBytes(StandardCharsets.US_ASCII));
+                outputStream.write(binData);
+            } else if (txtData != null) {
+                // Formato de texto (HEX)
+                outputStream.write(txtData.getBytes(StandardCharsets.US_ASCII));
             }
 
             outputStream.flush();
@@ -199,12 +249,27 @@ public class HexExportManager {
      * @return String en formato Intel HEX
      */
     public static String convertToIntelHex(byte[] data) {
+        return convertToIntelHexWithAddress(data, 0);
+    }
+
+    /**
+     * Convierte un array de bytes a formato Intel HEX especificando startAddress.
+     */
+    public static String convertToIntelHexWithAddress(byte[] data, int startAddress) {
+        String segments = convertSegmentToIntelHex(data, startAddress);
+        return segments + ":00000001FF\n";
+    }
+
+    /**
+     * Convierte un array de bytes a formato Intel HEX sin el EOF record.
+     */
+    public static String convertSegmentToIntelHex(byte[] data, int startAddress) {
         StringBuilder hex = new StringBuilder();
         int bytesPerLine = 16;
-        int currentExtendedAddress = 0;
+        int currentExtendedAddress = -1; // -1 to force writing on first run if startAddress > 0xFFFF
 
         for (int offset = 0; offset < data.length; offset += bytesPerLine) {
-            int fullAddress = offset;
+            int fullAddress = startAddress + offset;
             int extendedAddress = (fullAddress >> 16) & 0xFFFF;
 
             // Emitir Extended Linear Address record si cambió
@@ -220,9 +285,6 @@ public class HexExportManager {
             // Construir Data Record (tipo 00)
             hex.append(buildDataRecord(lineAddress, data, offset, count));
         }
-
-        // End of File Record
-        hex.append(":00000001FF\n");
 
         return hex.toString();
     }

@@ -136,6 +136,17 @@
     <string name="exportar_eeprom_hex">Exportar EEPROM como HEX</string>
     <string name="exportar_rom_bin">Exportar ROM como BIN</string>
     <string name="exportar_eeprom_bin">Exportar EEPROM como BIN</string>
+    <string name="exportar_config_hex">Exportar CONFIG como HEX</string>
+    <string name="exportar_config_bin">Exportar CONFIG como BIN</string>
+    <string name="exportar_dump_completo">Exportar Dump Completo (HEX)</string>
+    
+    <string name="programar_todo">Programar Todo</string>
+    <string name="programar_solo_rom">Programar solo ROM</string>
+    <string name="programar_solo_eeprom">Programar solo EEPROM</string>
+    <string name="programar_solo_config">Programar solo CONFIG/Fuses</string>
+    <string name="seleccionar_operacion">Seleccionar Operación</string>
+    <string name="config_leida">Configuración leída</string>
+
     <string name="exportacion_exitosa">Archivo exportado correctamente</string>
     <string name="error_exportando">Error al exportar</string>
     <string name="no_hay_datos_para_exportar">No hay datos leídos para exportar. Lee la memoria primero.</string>

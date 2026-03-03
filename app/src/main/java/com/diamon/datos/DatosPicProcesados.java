@@ -7,6 +7,7 @@ import com.diamon.utilidades.ByteUtils;
 import com.diamon.utilidades.HexFileUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -366,6 +367,76 @@ public class DatosPicProcesados {
         }
 
         return resumen.toString();
+    }
+
+    /**
+     * Verifica si la PROM procesada contiene datos no en blanco.
+     * 
+     * @return true si tiene código a programar, false si está vacía.
+     */
+    public boolean tieneRomData() {
+        if (romData == null || chipPIC == null)
+            return false;
+        try {
+            byte[] romBlank = HexFileUtils.generateRomBlank(chipPIC.getTipoDeNucleoBit(), chipPIC.getTamanoROM());
+            return !Arrays.equals(romData, romBlank);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Verifica si la EEPROM procesada contiene datos no en blanco.
+     * 
+     * @return true si tiene datos, false si está vacía.
+     */
+    public boolean tieneEepromData() {
+        if (eepromData == null || chipPIC == null || !chipPIC.isTamanoValidoDeEEPROM())
+            return false;
+        try {
+            byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
+            return !Arrays.equals(eepromData, eepromBlank);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Verifica si la configuración (Fuses o ID) procesada no es igual a su valor en
+     * blanco.
+     * 
+     * @return true si tiene Fuses/ID reales.
+     */
+    public boolean tieneConfigData() {
+        if (fuseValues == null || IDData == null || chipPIC == null)
+            return false;
+
+        // Verificar ID (esperamos no todos 0s si hubo data)
+        boolean hasID = false;
+        for (byte b : IDData) {
+            if (b != 0) {
+                hasID = true;
+                break;
+            }
+        }
+
+        // Verificar Fuses
+        boolean hasFuses = false;
+        try {
+            int[] blankFuses = chipPIC.getFuseBlank();
+            if (fuseValues.length == blankFuses.length) {
+                for (int i = 0; i < fuseValues.length; i++) {
+                    if (fuseValues[i] != blankFuses[i]) {
+                        hasFuses = true;
+                        break;
+                    }
+                }
+            }
+        } catch (com.diamon.excepciones.ChipConfigurationException e) {
+            hasFuses = true; // Si hay error, asumimos que tiene fuses para evitar bloquear al usuario
+        }
+
+        return hasID || hasFuses;
     }
 
     public byte[] obtenerBytesHexROMPocesado() {

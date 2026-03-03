@@ -21,7 +21,7 @@ import java.util.Map;
  * </ul>
  *
  * @author Danielk10
- * @version 1.0
+ * @version 2.0 - Corregida verificación para comparar bytes procesados
  * @since 2025
  */
 public class VerificationManager {
@@ -97,16 +97,19 @@ public class VerificationManager {
      * Ejecuta la pipeline de verificación post-programación.
      * Equivalente a Python _verify_pipeline() + _print_chip_config().
      *
-     * @param protocolo      Protocolo de comunicación activo
-     * @param chipPIC        Configuración del chip
-     * @param expectedRom    ROM que fue programada (string hex), null para saltar
-     *                       verificación ROM
-     * @param expectedEeprom EEPROM que fue programada (string hex), null para
-     *                       saltar verificación EEPROM
+     * CORREGIDO: Ahora recibe byte[] procesados del HEX (como hace Python).
+     * Python compara: read_rom() bytes == flash_data.rom_data bytes
+     * Android ahora: leerMemoriaROMDelPic() → bytes == DatosPicProcesados.romData
+     * bytes
+     *
+     * @param protocolo           Protocolo de comunicación activo
+     * @param chipPIC             Configuración del chip
+     * @param expectedRomBytes    ROM procesada del HEX (bytes), null para saltar
+     * @param expectedEepromBytes EEPROM procesada del HEX (bytes), null para saltar
      * @return Resultado de la verificación
      */
     public static VerificationResult verify(Protocolo protocolo, ChipPic chipPIC,
-            String expectedRom, String expectedEeprom) {
+            byte[] expectedRomBytes, byte[] expectedEepromBytes) {
 
         List<String> messages = new ArrayList<>();
         boolean romVerified = false;
@@ -133,8 +136,6 @@ public class VerificationManager {
 
                 // Intentar decodificar fuses desde la config leída
                 try {
-                    // Extraer valores de fuse de los bytes de config
-                    // Bytes 10-23 contienen los 7 fuses (cada uno 2 bytes LE)
                     if (configData.length() >= 48) {
                         List<Integer> fuseValues = new ArrayList<>();
                         int tipoNucleo = chipPIC.getTipoDeNucleoBit();
@@ -163,37 +164,52 @@ public class VerificationManager {
             messages.add("Error leyendo configuración: " + e.getMessage());
         }
 
-        // 2. Verificar ROM (equivalente a _verify_pipeline ROM section)
-        if (expectedRom != null && !expectedRom.isEmpty()) {
+        // 2. Verificar ROM (equivalente a Python _verify_pipeline ROM section)
+        // Python: pic_rom_data = programming_interface.read_rom()
+        // if pic_rom_data == flash_data.rom_data: print('ROM verified.')
+        if (expectedRomBytes != null && expectedRomBytes.length > 0) {
             try {
                 messages.add("Verificando ROM...");
-                String actualRom = protocolo.leerMemoriaROMDelPic(chipPIC);
+                String actualRomHex = protocolo.leerMemoriaROMDelPic(chipPIC);
 
-                if (actualRom != null && !actualRom.startsWith("Error")) {
-                    // Normalizar para comparar
-                    String normalizedExpected = expectedRom.toUpperCase().trim();
-                    String normalizedActual = actualRom.toUpperCase().trim();
+                if (actualRomHex != null && !actualRomHex.startsWith("Error")) {
+                    // Convertir hex string leído del chip a byte[]
+                    byte[] actualRomBytes = hexStringToBytes(actualRomHex);
 
-                    if (normalizedExpected.equals(normalizedActual)) {
-                        romVerified = true;
-                        messages.add("ROM verificada correctamente ✓");
+                    if (actualRomBytes != null) {
+                        // Comparar byte-a-byte (como Python)
+                        if (bytesEqual(expectedRomBytes, actualRomBytes)) {
+                            romVerified = true;
+                            messages.add("ROM verificada correctamente ✓");
+                        } else {
+                            // Detectar si está locked (todo ceros) — como Python:
+                            // no_of_zeros = pic_rom_data.count(b'\x00')
+                            // is_maybe_locked = pic_rom_data_len == no_of_zeros
+                            int zeroCount = 0;
+                            for (byte b : actualRomBytes) {
+                                if (b == 0)
+                                    zeroCount++;
+                            }
+                            boolean calWord = chipPIC.isFlagCalibration();
+
+                            if (calWord) {
+                                // Si tiene cal_word, los últimos 2 bytes no serán cero
+                                romMaybeLocked = (actualRomBytes.length - 2) == zeroCount;
+                            } else {
+                                romMaybeLocked = actualRomBytes.length == zeroCount;
+                            }
+
+                            if (romMaybeLocked) {
+                                messages.add("ROM verificación falló — posiblemente locked para lectura");
+                            } else {
+                                // Agregar info de mismatch para debug
+                                int mismatchCount = countMismatches(expectedRomBytes, actualRomBytes);
+                                messages.add("ROM verificación falló — " + mismatchCount
+                                        + " bytes no coinciden de " + expectedRomBytes.length);
+                            }
+                        }
                     } else {
-                        // Detectar si está locked (todo ceros)
-                        String allZeros = normalizedActual.replace("0", "");
-                        boolean calWord = chipPIC.isFlagCalibration();
-
-                        if (calWord) {
-                            // Si tiene cal_word, los últimos 2 bytes no serán cero
-                            romMaybeLocked = allZeros.length() <= 4; // solo cal word no es cero
-                        } else {
-                            romMaybeLocked = allZeros.isEmpty();
-                        }
-
-                        if (romMaybeLocked) {
-                            messages.add("ROM verificación falló — posiblemente locked para lectura");
-                        } else {
-                            messages.add("ROM verificación falló — datos no coinciden");
-                        }
+                        messages.add("Error convirtiendo datos ROM leídos");
                     }
                 } else {
                     messages.add("Error leyendo ROM para verificación");
@@ -203,22 +219,27 @@ public class VerificationManager {
             }
         }
 
-        // 3. Verificar EEPROM (equivalente a _verify_pipeline EEPROM section)
-        if (expectedEeprom != null && !expectedEeprom.isEmpty()) {
+        // 3. Verificar EEPROM (equivalente a Python _verify_pipeline EEPROM section)
+        if (expectedEepromBytes != null && expectedEepromBytes.length > 0) {
             try {
                 if (chipPIC.isTamanoValidoDeEEPROM()) {
                     messages.add("Verificando EEPROM...");
-                    String actualEeprom = protocolo.leerMemoriaEEPROMDelPic(chipPIC);
+                    String actualEepromHex = protocolo.leerMemoriaEEPROMDelPic(chipPIC);
 
-                    if (actualEeprom != null && !actualEeprom.startsWith("Error")) {
-                        String normalizedExpected = expectedEeprom.toUpperCase().trim();
-                        String normalizedActual = actualEeprom.toUpperCase().trim();
+                    if (actualEepromHex != null && !actualEepromHex.startsWith("Error")) {
+                        byte[] actualEepromBytes = hexStringToBytes(actualEepromHex);
 
-                        if (normalizedExpected.equals(normalizedActual)) {
-                            eepromVerified = true;
-                            messages.add("EEPROM verificada correctamente ✓");
+                        if (actualEepromBytes != null) {
+                            if (bytesEqual(expectedEepromBytes, actualEepromBytes)) {
+                                eepromVerified = true;
+                                messages.add("EEPROM verificada correctamente ✓");
+                            } else {
+                                int mismatchCount = countMismatches(expectedEepromBytes, actualEepromBytes);
+                                messages.add("EEPROM verificación falló — " + mismatchCount
+                                        + " bytes no coinciden de " + expectedEepromBytes.length);
+                            }
                         } else {
-                            messages.add("EEPROM verificación falló — datos no coinciden");
+                            messages.add("Error convirtiendo datos EEPROM leídos");
                         }
                     } else {
                         messages.add("Error leyendo EEPROM para verificación");
@@ -236,6 +257,66 @@ public class VerificationManager {
 
         return new VerificationResult(romVerified, eepromVerified, romMaybeLocked,
                 chipIdHex, calibrationHex, decodedFuses, messages);
+    }
+
+    /**
+     * Compara dos arrays de bytes teniendo en cuenta que pueden tener tamaños
+     * ligeramente distintos.
+     * Compara hasta el tamaño del menor.
+     */
+    private static boolean bytesEqual(byte[] expected, byte[] actual) {
+        int compareLength = Math.min(expected.length, actual.length);
+        for (int i = 0; i < compareLength; i++) {
+            if (expected[i] != actual[i]) {
+                return false;
+            }
+        }
+        // Si los tamaños difieren, verificar que los bytes extra son blancos (0xFF)
+        if (expected.length != actual.length) {
+            byte[] longer = expected.length > actual.length ? expected : actual;
+            for (int i = compareLength; i < longer.length; i++) {
+                if (longer[i] != (byte) 0xFF && longer[i] != 0x00) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Cuenta los bytes que no coinciden entre dos arrays.
+     */
+    private static int countMismatches(byte[] expected, byte[] actual) {
+        int mismatches = 0;
+        int maxLen = Math.max(expected.length, actual.length);
+        for (int i = 0; i < maxLen; i++) {
+            byte e = i < expected.length ? expected[i] : (byte) 0xFF;
+            byte a = i < actual.length ? actual[i] : (byte) 0xFF;
+            if (e != a)
+                mismatches++;
+        }
+        return mismatches;
+    }
+
+    /**
+     * Convierte un hex string a byte array.
+     */
+    private static byte[] hexStringToBytes(String hexStr) {
+        if (hexStr == null)
+            return null;
+        String clean = hexStr.replaceAll("\\s+", "");
+        if (clean.length() % 2 != 0)
+            return null;
+
+        try {
+            byte[] result = new byte[clean.length() / 2];
+            for (int i = 0; i < result.length; i++) {
+                result[i] = (byte) Integer.parseInt(clean.substring(i * 2, i * 2 + 2), 16);
+            }
+            return result;
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     /**

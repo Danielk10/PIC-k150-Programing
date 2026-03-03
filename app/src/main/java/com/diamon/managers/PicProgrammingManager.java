@@ -103,7 +103,8 @@ public class PicProgrammingManager {
         try {
             // Paso 1: Borrar memorias
             notifyProgress(context.getString(R.string.borrando_memorias), 10);
-            if (!protocolo.borrarMemoriasDelPic()) {
+            boolean eraseOk = protocolo.borrarMemoriasDelPic();
+            if (!eraseOk) {
                 notifyError(context.getString(R.string.error_borrando_memorias));
                 return false;
             }
@@ -132,6 +133,127 @@ public class PicProgrammingManager {
             }
 
             // Paso 5: Programar Fuses adicionales para PIC18F
+            if (chipPIC.getTipoDeNucleoBit() == 16) {
+                notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
+                if (!protocolo.programarFusesDePics18F()) {
+                    notifyError(context.getString(R.string.error_programando_fuses_18f));
+                    return false;
+                }
+            }
+
+            // Completado
+            notifyProgress(context.getString(R.string.programacion_completada), 100);
+            notifyCompleted(true);
+            return true;
+
+        } catch (Exception e) {
+            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Programa solo la memoria ROM del chip PIC con borrado previo
+     *
+     * @param chipPIC  Chip PIC a programar
+     * @param firmware Contenido del archivo HEX
+     * @return true si la programacion fue exitosa, false en caso contrario
+     */
+    public boolean programRomOnly(ChipPic chipPIC, String firmware) {
+        if (protocolo == null || chipPIC == null || firmware == null) {
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
+            return false;
+        }
+
+        try {
+            notifyStarted();
+
+            // Paso 1: Borrar chip (siempre requerido para escribir ROM)
+            notifyProgress(context.getString(R.string.borrando_memorias), 10);
+            if (!protocolo.borrarMemoriasDelPic()) {
+                notifyError(context.getString(R.string.error_borrando_memoria));
+                return false;
+            }
+
+            // Paso 2: Programar ROM
+            notifyProgress(context.getString(R.string.programando_memoria_rom), 50);
+            if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
+                notifyError(context.getString(R.string.error_programando_rom));
+                return false;
+            }
+
+            // Completado
+            notifyProgress(context.getString(R.string.programacion_completada), 100);
+            notifyCompleted(true);
+            return true;
+
+        } catch (Exception e) {
+            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Programa solo la memoria EEPROM del chip PIC sin borrar la ROM
+     *
+     * @param chipPIC  Chip PIC a programar
+     * @param firmware Contenido del archivo HEX
+     * @return true si la programacion fue exitosa, false en caso contrario
+     */
+    public boolean programEepromOnly(ChipPic chipPIC, String firmware) {
+        if (protocolo == null || chipPIC == null || firmware == null) {
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
+            return false;
+        }
+
+        if (!chipPIC.isTamanoValidoDeEEPROM()) {
+            notifyError("Chip no tiene memoria EEPROM");
+            return false;
+        }
+
+        try {
+            notifyStarted();
+
+            // Programar EEPROM
+            notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
+            if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, firmware)) {
+                notifyError(context.getString(R.string.error_programando_eeprom));
+                return false;
+            }
+
+            // Completado
+            notifyProgress(context.getString(R.string.programacion_completada), 100);
+            notifyCompleted(true);
+            return true;
+
+        } catch (Exception e) {
+            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Programa solo la configuración (Fuses e ID) del chip PIC sin borrar la ROM
+     *
+     * @return true si la programacion fue exitosa, false en caso contrario
+     */
+    public boolean programConfigOnly(ChipPic chipPIC, String firmware, byte[] IDPic, List<Integer> fusesUsuario) {
+        if (protocolo == null || chipPIC == null || firmware == null) {
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
+            return false;
+        }
+
+        try {
+            notifyStarted();
+
+            // Programar Fuses e ID
+            notifyProgress(context.getString(R.string.programando_fuses_id), 50);
+            if (!protocolo.programarFusesIDDelPic(chipPIC, firmware, IDPic, fusesUsuario)) {
+                notifyError(context.getString(R.string.error_programando_fuses));
+                return false;
+            }
+
+            // Programar Fuses adicionales para PIC18F
             if (chipPIC.getTipoDeNucleoBit() == 16) {
                 notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
                 if (!protocolo.programarFusesDePics18F()) {
@@ -194,6 +316,26 @@ public class PicProgrammingManager {
                     context.getString(R.string.error_leyendo_memoria_eeprom)
                             + ": "
                             + e.getMessage());
+            return "";
+        }
+    }
+
+    /**
+     * Lee la memoria de configuración del chip PIC
+     *
+     * @param chipPIC Chip PIC del cual leer
+     * @return Contenido de la memoria de configuración como string
+     */
+    public String readConfigData(ChipPic chipPIC) {
+        if (protocolo == null || chipPIC == null) {
+            notifyError(context.getString(R.string.protocolo_no_inicializado));
+            return "";
+        }
+
+        try {
+            return protocolo.leerDatosDeConfiguracionDelPic();
+        } catch (Exception e) {
+            notifyError("Error leyendo datos de configuración: " + e.getMessage());
             return "";
         }
     }

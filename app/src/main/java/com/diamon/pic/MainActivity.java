@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity
     private String firmware = "";
     private String lastReadRomData = ""; // Últimos datos ROM leídos
     private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
+    private String lastReadConfigData = ""; // Últimos datos Config leídos
     private ChipPic currentChip;
 
     // NUEVAS VARIABLES PARA FUSES
@@ -982,7 +983,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /** MODIFICADO: Ahora usa los fusibles configurados */
+    /**
+     * MODIFICADO: Ahora usa los fusibles configurados y permite programación
+     * parcial
+     */
     private void executeProgram() {
         if (currentChip == null || firmware.isEmpty()) {
             Toast.makeText(
@@ -993,9 +997,52 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        if (datosPicProcesados == null) {
+            Toast.makeText(this, "Debe procesar el archivo HEX primero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Determinar qué regiones tienen datos
+        boolean hasRom = datosPicProcesados.tieneRomData();
+        boolean hasEeprom = datosPicProcesados.tieneEepromData();
+        boolean hasConfig = datosPicProcesados.tieneConfigData();
+
+        java.util.List<String> options = new java.util.ArrayList<>();
+
+        // Siempre ofrecemos Programar Todo (comportamiento clásico)
+        options.add(getString(R.string.programar_todo));
+
+        if (hasRom) {
+            options.add(getString(R.string.programar_solo_rom));
+        }
+        if (hasEeprom) {
+            options.add(getString(R.string.programar_solo_eeprom));
+        }
+        if (hasConfig || fusesConfigured) {
+            options.add(getString(R.string.programar_solo_config));
+        }
+
+        // Si solo hay una opción (Programar Todo) o el usuario no configuró
+        // fuses/regiones, lo hacemos directo
+        if (options.size() <= 1) {
+            doProgrammingFlow(getString(R.string.programar_todo));
+            return;
+        }
+
+        String[] items = options.toArray(new String[0]);
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.seleccionar_operacion))
+                .setItems(items, (dialog, which) -> {
+                    String selected = items[which];
+                    doProgrammingFlow(selected);
+                })
+                .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
+    }
+
+    private void doProgrammingFlow(String operationType) {
         publicidad.ocultarBanner();
 
-        // MODIFICADO: Usar fusibles y ID configurados si existen
         final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
         final List<Integer> fusesToUse = fusesConfigured ? new ArrayList<>(configuredFuses) : new ArrayList<>();
 
@@ -1003,11 +1050,25 @@ public class MainActivity extends AppCompatActivity
                 () -> {
                     new Thread(
                             () -> {
-                                boolean success = programmingManager.programChip(
-                                        currentChip, firmware, idToUse, fusesToUse);
+                                boolean success = false;
+
+                                if (operationType.equals(getString(R.string.programar_solo_rom))) {
+                                    success = programmingManager.programRomOnly(currentChip, firmware);
+                                } else if (operationType.equals(getString(R.string.programar_solo_eeprom))) {
+                                    success = programmingManager.programEepromOnly(currentChip, firmware);
+                                } else if (operationType.equals(getString(R.string.programar_solo_config))) {
+                                    success = programmingManager.programConfigOnly(currentChip, firmware, idToUse,
+                                            fusesToUse);
+                                } else {
+                                    // Default: Programar todo
+                                    success = programmingManager.programChip(currentChip, firmware, idToUse,
+                                            fusesToUse);
+                                }
+
+                                final boolean finalSuccess = success;
                                 runOnUiThread(
                                         () -> {
-                                            dialogManager.updateProgrammingResult(success);
+                                            dialogManager.updateProgrammingResult(finalSuccess);
                                         });
                             })
                             .start();
@@ -1034,10 +1095,12 @@ public class MainActivity extends AppCompatActivity
                 () -> {
                     String romData = programmingManager.readRomMemory(currentChip);
                     String eepromData = programmingManager.readEepromMemory(currentChip);
+                    String configData = programmingManager.readConfigData(currentChip);
 
                     // NUEVO: Guardar datos para exportación posterior
                     final String romResult = romData;
                     final String eepromResult = eepromData;
+                    final String configResult = configData;
 
                     runOnUiThread(
                             () -> {
@@ -1045,6 +1108,7 @@ public class MainActivity extends AppCompatActivity
                                     // Guardar datos leídos para exportación
                                     lastReadRomData = romResult != null ? romResult : "";
                                     lastReadEepromData = eepromResult != null ? eepromResult : "";
+                                    lastReadConfigData = configResult != null ? configResult : "";
 
                                     int romSize = currentChip.getTamanoROM();
                                     int eepromSize = currentChip.isTamanoValidoDeEEPROM()
@@ -1110,13 +1174,23 @@ public class MainActivity extends AppCompatActivity
         new Thread(
                 () -> {
                     try {
-                        // Usar VerificationManager para verificación real
+                        // Procesar el HEX cargado (firmware) a bytes si es necesario
+                        if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
+                            runOnUiThread(() -> processStatusTextView.setText(
+                                    getString(R.string.error_verificando_memoria) + ": No hay firmware válido"));
+                            return;
+                        }
+
+                        // Usar VerificationManager para verificación real con bytes procesados
+                        byte[] expectedRomBytes = datosPicProcesados.obtenerBytesHexROMPocesado();
+                        byte[] expectedEepromBytes = datosPicProcesados.obtenerBytesHexEEPROMPocesado();
+
                         com.diamon.managers.VerificationManager.VerificationResult result = com.diamon.managers.VerificationManager
                                 .verify(
                                         programmingManager.getProtocolo(),
                                         currentChip,
-                                        firmware, // ROM esperada (del HEX cargado)
-                                        null); // EEPROM (null = no verificar aún)
+                                        expectedRomBytes,
+                                        expectedEepromBytes);
 
                         runOnUiThread(
                                 () -> {
@@ -1236,7 +1310,7 @@ public class MainActivity extends AppCompatActivity
 
     /** NUEVO: Muestra diálogo para exportar memoria leída */
     private void showExportDialog() {
-        if (lastReadRomData.isEmpty() && lastReadEepromData.isEmpty()) {
+        if (lastReadRomData.isEmpty() && lastReadEepromData.isEmpty() && lastReadConfigData.isEmpty()) {
             Toast.makeText(this, getString(R.string.no_hay_datos_para_exportar),
                     Toast.LENGTH_LONG).show();
             return;
@@ -1253,6 +1327,15 @@ public class MainActivity extends AppCompatActivity
             options.add(getString(R.string.exportar_eeprom_hex));
             options.add(getString(R.string.exportar_eeprom_bin));
         }
+        if (!lastReadConfigData.isEmpty()) {
+            options.add(getString(R.string.exportar_config_hex));
+            options.add(getString(R.string.exportar_config_bin));
+        }
+
+        // Si hay al menos ROM y (EEPROM o Config), ofrecer un volcado completo
+        if (!lastReadRomData.isEmpty() && (!lastReadEepromData.isEmpty() || !lastReadConfigData.isEmpty())) {
+            options.add(getString(R.string.exportar_dump_completo));
+        }
 
         String[] items = options.toArray(new String[0]);
 
@@ -1268,10 +1351,66 @@ public class MainActivity extends AppCompatActivity
                         hexExportManager.exportHexStringAsFile(lastReadEepromData, chipName + "_EEPROM");
                     } else if (selected.equals(getString(R.string.exportar_eeprom_bin))) {
                         hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+                    } else if (selected.equals(getString(R.string.exportar_config_hex))) {
+                        int configAddr = 0x4000;
+                        try {
+                            configAddr = (currentChip.getTipoDeNucleoBit() == 16) ? 0x300000 : 0x4000;
+                        } catch (com.diamon.excepciones.ChipConfigurationException e) {
+                            // Default 14-bit
+                        }
+                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+                        if (configBytes != null && configBytes.length > 0) {
+                            hexExportManager.exportAsHexWithAddress(configBytes, configAddr, chipName + "_CONFIG");
+                        }
+                    } else if (selected.equals(getString(R.string.exportar_config_bin))) {
+                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+                        if (configBytes != null && configBytes.length > 0) {
+                            hexExportManager.exportAsBinary(configBytes, chipName + "_CONFIG");
+                        }
+                    } else if (selected.equals(getString(R.string.exportar_dump_completo))) {
+                        byte[] romBytes = stringHexToByteArray(lastReadRomData);
+                        byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
+                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+
+                        int eepromAddr = 0x4200; // default 14-bit
+                        int configAddr = 0x4000; // default 14-bit
+
+                        if (currentChip != null) {
+                            try {
+                                if (currentChip.getTipoDeNucleoBit() == 16) {
+                                    eepromAddr = 0xF00000;
+                                    configAddr = 0x300000;
+                                } else {
+                                    // Para 14-bit la EEPROM empieza en 0x4200 (2100 in words)
+                                    eepromAddr = 0x4200;
+                                }
+                            } catch (com.diamon.excepciones.ChipConfigurationException e) {
+                                // Default 14-bit (0x4200 y 0x4000 ya seteados)
+                            }
+                        }
+
+                        hexExportManager.exportFullDumpAsHex(romBytes, eepromBytes, configBytes, eepromAddr, configAddr,
+                                chipName + "_FULL");
                     }
                 })
                 .setNegativeButton(getString(R.string.cancelar), null)
                 .show();
+    }
+
+    private byte[] stringHexToByteArray(String s) {
+        if (s == null || s.isEmpty())
+            return new byte[0];
+        try {
+            int len = s.length();
+            byte[] data = new byte[len / 2];
+            for (int i = 0; i < len; i += 2) {
+                data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                        + Character.digit(s.charAt(i + 1), 16));
+            }
+            return data;
+        } catch (Exception e) {
+            return new byte[0];
+        }
     }
 
     /** NUEVO: Muestra info del chip actual como JSON */
