@@ -488,7 +488,7 @@ public class FuseConfigPopup {
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        btnRestoreFromChip = createButton("Restaurar desde PIC", "#FF9800");
+        btnRestoreFromChip = createButton("Restaurar desde BD", "#FF9800");
         btnRestoreFromHex = createButton("Restaurar desde HEX", "#FF9800");
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,

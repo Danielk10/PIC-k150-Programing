@@ -252,12 +252,57 @@ public class HexExportManager {
         return convertToIntelHexWithAddress(data, 0);
     }
 
-    /**
-     * Convierte un array de bytes a formato Intel HEX especificando startAddress.
-     */
     public static String convertToIntelHexWithAddress(byte[] data, int startAddress) {
         String segments = convertSegmentToIntelHex(data, startAddress);
         return segments + ":00000001FF\n";
+    }
+
+    /**
+     * Formatea los datos devueltos por ProtocoloP18A al estándar Little Endian de
+     * Microchip
+     * requerido por los archivos Intel HEX.
+     * 
+     * @param data     Datos crudos
+     * @param coreBits 14 o 16 (bits del núcleo)
+     * @param isEeprom Si es verdadero, aplica el padding necesario para EEPROM de
+     *                 14-bit
+     * @return Arreglo de bytes listo para exportar a HEX
+     */
+    public static byte[] formatForHexExport(byte[] data, int coreBits, boolean isEeprom) {
+        if (data == null || data.length == 0)
+            return data;
+
+        if (isEeprom) {
+            if (coreBits == 16) {
+                // PIC18: EEPROM es byte oriented, no necesita padding/swabbing
+                return data.clone();
+            } else {
+                // PIC14: EEPROM usa 1 byte de dato por cada palabra de 16-bits en el .hex
+                // Estándar Microchip Little Endian: [Dato, 0x00]
+                byte[] padded = new byte[data.length * 2];
+                for (int i = 0; i < data.length; i++) {
+                    padded[i * 2] = data[i]; // LSB (Dato útil)
+                    padded[i * 2 + 1] = 0x00; // MSB (Padding)
+                }
+                return padded;
+            }
+        } else {
+            // ROM y Configuración:
+            // K150 devuelve los datos en orden Big Endian aparente [MSB, LSB] con respecto
+            // a la
+            // codificación esperada en el Hex de Microchip (Little Endian [LSB, MSB]).
+            // Hacemos swap.
+            byte[] swapped = new byte[data.length];
+            for (int i = 0; i < data.length; i += 2) {
+                if (i + 1 < data.length) {
+                    swapped[i] = data[i + 1];
+                    swapped[i + 1] = data[i];
+                } else {
+                    swapped[i] = data[i];
+                }
+            }
+            return swapped;
+        }
     }
 
     /**

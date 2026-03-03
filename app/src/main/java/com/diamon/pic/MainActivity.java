@@ -1343,23 +1343,38 @@ public class MainActivity extends AppCompatActivity
                 .setTitle(getString(R.string.exportar_memoria))
                 .setItems(items, (dialog, which) -> {
                     String selected = items[which];
+                    int coreBits = 14;
+                    if (currentChip != null) {
+                        try {
+                            coreBits = currentChip.getTipoDeNucleoBit();
+                        } catch (com.diamon.excepciones.ChipConfigurationException e) {
+                        }
+                    }
+
                     if (selected.equals(getString(R.string.exportar_rom_hex))) {
-                        hexExportManager.exportHexStringAsFile(lastReadRomData, chipName + "_ROM");
+                        byte[] romBytes = stringHexToByteArray(lastReadRomData);
+                        if (romBytes != null && romBytes.length > 0) {
+                            romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
+                            hexExportManager.exportAsHex(romBytes, chipName + "_ROM");
+                        }
                     } else if (selected.equals(getString(R.string.exportar_rom_bin))) {
                         hexExportManager.exportBinStringAsFile(lastReadRomData, chipName + "_ROM");
+
                     } else if (selected.equals(getString(R.string.exportar_eeprom_hex))) {
-                        hexExportManager.exportHexStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+                        int eepromAddr = (coreBits == 16) ? 0xF00000 : 0x4200;
+                        byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
+                        if (eepromBytes != null && eepromBytes.length > 0) {
+                            eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
+                            hexExportManager.exportAsHexWithAddress(eepromBytes, eepromAddr, chipName + "_EEPROM");
+                        }
                     } else if (selected.equals(getString(R.string.exportar_eeprom_bin))) {
                         hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+
                     } else if (selected.equals(getString(R.string.exportar_config_hex))) {
-                        int configAddr = 0x4000;
-                        try {
-                            configAddr = (currentChip.getTipoDeNucleoBit() == 16) ? 0x300000 : 0x4000;
-                        } catch (com.diamon.excepciones.ChipConfigurationException e) {
-                            // Default 14-bit
-                        }
+                        int configAddr = (coreBits == 16) ? 0x300000 : 0x4000;
                         byte[] configBytes = stringHexToByteArray(lastReadConfigData);
                         if (configBytes != null && configBytes.length > 0) {
+                            configBytes = HexExportManager.formatForHexExport(configBytes, coreBits, false);
                             hexExportManager.exportAsHexWithAddress(configBytes, configAddr, chipName + "_CONFIG");
                         }
                     } else if (selected.equals(getString(R.string.exportar_config_bin))) {
@@ -1367,27 +1382,18 @@ public class MainActivity extends AppCompatActivity
                         if (configBytes != null && configBytes.length > 0) {
                             hexExportManager.exportAsBinary(configBytes, chipName + "_CONFIG");
                         }
+
                     } else if (selected.equals(getString(R.string.exportar_dump_completo))) {
                         byte[] romBytes = stringHexToByteArray(lastReadRomData);
                         byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
                         byte[] configBytes = stringHexToByteArray(lastReadConfigData);
 
-                        int eepromAddr = 0x4200; // default 14-bit
-                        int configAddr = 0x4000; // default 14-bit
+                        int eepromAddr = (coreBits == 16) ? 0xF00000 : 0x4200;
+                        int configAddr = (coreBits == 16) ? 0x300000 : 0x4000;
 
-                        if (currentChip != null) {
-                            try {
-                                if (currentChip.getTipoDeNucleoBit() == 16) {
-                                    eepromAddr = 0xF00000;
-                                    configAddr = 0x300000;
-                                } else {
-                                    // Para 14-bit la EEPROM empieza en 0x4200 (2100 in words)
-                                    eepromAddr = 0x4200;
-                                }
-                            } catch (com.diamon.excepciones.ChipConfigurationException e) {
-                                // Default 14-bit (0x4200 y 0x4000 ya seteados)
-                            }
-                        }
+                        romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
+                        eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
+                        configBytes = HexExportManager.formatForHexExport(configBytes, coreBits, false);
 
                         hexExportManager.exportFullDumpAsHex(romBytes, eepromBytes, configBytes, eepromAddr, configAddr,
                                 chipName + "_FULL");
