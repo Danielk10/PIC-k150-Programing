@@ -17,18 +17,22 @@ import java.util.List;
 /**
  * Clase abstracta base para protocolos de comunicación con programadores PIC.
  *
- * <p>Esta clase proporciona funcionalidad común para todos los protocolos de comunicación con
- * programadores PIC, incluyendo manejo de conexión USB, operaciones básicas de comunicación y
+ * <p>
+ * Esta clase proporciona funcionalidad común para todos los protocolos de
+ * comunicación con
+ * programadores PIC, incluyendo manejo de conexión USB, operaciones básicas de
+ * comunicación y
  * logging estructurado de todas las operaciones.
  *
- * <p>Características principales:
+ * <p>
+ * Características principales:
  *
  * <ul>
- *   <li>Logging integrado de todas las operaciones USB
- *   <li>Manejo robusto de excepciones específicas del dominio
- *   <li>Operaciones seguras de bytes con validación automática
- *   <li>Timeouts configurables y manejo de errores
- *   <li>Trazabilidad completa de comandos y respuestas
+ * <li>Logging integrado de todas las operaciones USB
+ * <li>Manejo robusto de excepciones específicas del dominio
+ * <li>Operaciones seguras de bytes con validación automática
+ * <li>Timeouts configurables y manejo de errores
+ * <li>Trazabilidad completa de comandos y respuestas
  * </ul>
  *
  * @author Danielk10
@@ -49,7 +53,7 @@ public abstract class Protocolo {
     /**
      * Constructor de la clase base Protocolo.
      *
-     * @param contexto Contexto de la aplicación Android
+     * @param contexto      Contexto de la aplicación Android
      * @param usbSerialPort Puerto serie USB configurado
      */
     public Protocolo(Context contexto, UsbSerialPort usbSerialPort) {
@@ -83,9 +87,10 @@ public abstract class Protocolo {
     }
 
     /**
-     * Lee un número específico de bytes del puerto serie con timeout y logging detallado.
+     * Lee un número específico de bytes del puerto serie con timeout y logging
+     * detallado.
      *
-     * @param count Número de bytes a leer (debe ser mayor que 0)
+     * @param count         Número de bytes a leer (debe ser mayor que 0)
      * @param timeoutMillis Tiempo máximo de espera en milisegundos
      * @return Array con los bytes leídos
      * @throws UsbCommunicationException Si ocurre error de comunicación o timeout
@@ -105,7 +110,8 @@ public abstract class Protocolo {
             ByteBuffer byteBuffer = ByteBuffer.allocate(count);
             long startTime = System.currentTimeMillis();
 
-            // Mientras no se hayan leído todos los bytes y el tiempo de espera no haya expirado
+            // Mientras no se hayan leído todos los bytes y el tiempo de espera no haya
+            // expirado
             while (byteBuffer.position() < count
                     && (System.currentTimeMillis() - startTime) < timeoutMillis) {
 
@@ -132,10 +138,9 @@ public abstract class Protocolo {
             // Verificar si se leyeron todos los bytes
             if (byteBuffer.position() < count) {
                 long tiempoTranscurrido = System.currentTimeMillis() - startTime;
-                String mensaje =
-                        String.format(
-                                "Timeout leyendo bytes: esperados=%d, leídos=%d, tiempo=%dms",
-                                count, byteBuffer.position(), tiempoTranscurrido);
+                String mensaje = String.format(
+                        "Timeout leyendo bytes: esperados=%d, leídos=%d, tiempo=%dms",
+                        count, byteBuffer.position(), tiempoTranscurrido);
                 throw UsbCommunicationException.crearTimeoutError("lectura", timeoutMillis);
             }
 
@@ -152,7 +157,7 @@ public abstract class Protocolo {
     /**
      * Espera una respuesta específica del dispositivo USB con logging detallado.
      *
-     * @param expected Array con la respuesta esperada
+     * @param expected      Array con la respuesta esperada
      * @param timeoutMillis Tiempo máximo de espera en milisegundos
      * @throws UsbCommunicationException Si la respuesta no coincide o hay timeout
      */
@@ -174,8 +179,9 @@ public abstract class Protocolo {
     /**
      * Lee una respuesta y valida contra un carácter esperado con logging detallado.
      *
-     * @param response Array donde se almacenará la respuesta (debe tener al menos 1 byte)
-     * @param esperado Carácter esperado en la respuesta
+     * @param response     Array donde se almacenará la respuesta (debe tener al
+     *                     menos 1 byte)
+     * @param esperado     Carácter esperado en la respuesta
      * @param mensajeError Mensaje de error personalizado
      * @return true si la respuesta coincide, false en caso contrario
      * @throws UsbCommunicationException Si ocurre error de comunicación
@@ -245,27 +251,25 @@ public abstract class Protocolo {
                     data[i] = Byte.parseByte(comando);
                 }
             } catch (NumberFormatException e) {
-                String mensaje =
-                        String.format("Comando inválido: '%s' - no es un número válido", comando);
+                String mensaje = String.format("Comando inválido: '%s' - no es un número válido", comando);
                 throw new IllegalArgumentException(mensaje, e);
             }
 
             // Paso 1: Enviar 0x01 para inicializar
-            byte[] inicializacion = ByteUtils.prepararDatosUSB(new byte[] {0x01}, "inicializacion");
+            byte[] inicializacion = ByteUtils.prepararDatosUSB(new byte[] { 0x01 }, "inicializacion");
             usbSerialPort.write(inicializacion, 100);
             // Paso 2: Esperar respuesta 'Q'
-            expectResponse(new byte[] {'Q'}, 500);
+            expectResponse(new byte[] { 'Q' }, 500);
 
             // Paso 3: Enviar 'P' para ir a la tabla de salto
-            byte[] salto = ByteUtils.prepararDatosUSB(new byte[] {'P'}, "salto_tabla");
+            byte[] salto = ByteUtils.prepararDatosUSB(new byte[] { 'P' }, "salto_tabla");
             usbSerialPort.write(salto, 100);
 
             // Paso 4: Leer acknowledgment 'P'
             byte[] ack = readBytes(1, 100);
             if (ack[0] != 'P') {
-                String mensaje =
-                        String.format(
-                                "Acknowledgment inválido: esperado 'P', recibido 0x%02X", ack[0]);
+                String mensaje = String.format(
+                        "Acknowledgment inválido: esperado 'P', recibido 0x%02X", ack[0]);
                 throw UsbCommunicationException.crearRespuestaInesperada(
                         "P", String.format("0x%02X", ack[0]), "enviarComando");
             }
@@ -297,9 +301,8 @@ public abstract class Protocolo {
         try {
 
             // Preparar comando de inicialización
-            byte[] data =
-                    ByteUtils.prepararDatosUSB(
-                            comando.getBytes(StandardCharsets.US_ASCII), "inicializacion");
+            byte[] data = ByteUtils.prepararDatosUSB(
+                    comando.getBytes(StandardCharsets.US_ASCII), "inicializacion");
             usbSerialPort.write(data, 100);
 
             // Leer respuesta
@@ -341,7 +344,7 @@ public abstract class Protocolo {
 
         try {
 
-            byte[] data = ByteUtils.prepararDatosUSB(new byte[] {0}, "sincronizacion");
+            byte[] data = ByteUtils.prepararDatosUSB(new byte[] { 0 }, "sincronizacion");
             usbSerialPort.write(data, 100);
 
             return true;
@@ -368,9 +371,9 @@ public abstract class Protocolo {
     /**
      * Escribe datos al puerto USB con validación y logging automático.
      *
-     * @param datos Array de bytes a escribir
+     * @param datos         Array de bytes a escribir
      * @param timeoutMillis Timeout para la operación de escritura
-     * @param descripcion Descripción de los datos para logging
+     * @param descripcion   Descripción de los datos para logging
      * @throws UsbCommunicationException Si ocurre error de comunicación
      */
     protected void escribirDatosUSB(byte[] datos, int timeoutMillis, String descripcion)
@@ -424,9 +427,9 @@ public abstract class Protocolo {
 
     public abstract boolean borrarMemoriasDelPic();
 
-    public abstract boolean verificarSiEstaBarradaLaMemoriaROMDelDelPic(ChipPic chipPIC);
+    public abstract boolean verificarSiEstaBorradaLaMemoriaROMDelPic() throws Exception;
 
-    public abstract boolean verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+    public abstract boolean verificarSiEstaBorradaLaMemoriaEEPROMDelPic() throws Exception;
 
     public abstract boolean programarFusesDePics18F();
 

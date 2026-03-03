@@ -477,6 +477,22 @@ public class ChipPic {
         return nucleo;
     }
 
+    /**
+     * Retorna el número de bits del núcleo (12, 14 o 16).
+     * Útil para decidir el high_byte en verificaciones de borrado.
+     */
+    public int getCoreBits() {
+        Object coreTypeObj = variablesDeChip.get("core_type");
+        if (coreTypeObj == null)
+            return 14;
+        String coreType = coreTypeObj.toString().toLowerCase();
+        if (coreType.contains("bit16"))
+            return 16;
+        if (coreType.contains("bit12"))
+            return 12;
+        return 14; // Default para la gran mayoría de PIC12/16
+    }
+
     public void setActivarICSP(boolean activar) {
 
         this.icsp = activar;

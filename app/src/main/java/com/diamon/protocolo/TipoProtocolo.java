@@ -21,25 +21,25 @@ public enum TipoProtocolo {
      * Protocolo P18A - Usado por programadores K150 modernos.
      * Comandos de conexión: 18-21
      */
-    P18A("P18A", 18, 19, 20, 21),
+    P18A("P18A", 18, 19, 20, 21, 14, 15, 16),
 
     /**
      * Protocolo P018 - Variante intermedia.
      * Comandos de conexión: 19-22 (idénticos a P014/P016)
      */
-    P018("P018", 19, 20, 21, 22),
+    P018("P018", 19, 20, 21, 22, 15, 16, 17),
 
     /**
      * Protocolo P016 - Versión anterior.
      * Comandos de conexión: 19-22
      */
-    P016("P016", 19, 20, 21, 22),
+    P016("P016", 19, 20, 21, 22, 15, 16, 17),
 
     /**
      * Protocolo P014 - Versión más antigua.
      * Comandos de conexión: 19-22
      */
-    P014("P014", 19, 20, 21, 22);
+    P014("P014", 19, 20, 21, 22, 15, 16, 17);
 
     /** Nombre del protocolo en formato texto (e.g. "P18A") */
     private final String nombre;
@@ -56,13 +56,26 @@ public enum TipoProtocolo {
     /** Número de comando para obtener protocolo del programador */
     private final int cmdProtocolo;
 
+    /** Número de comando para borrar chip */
+    private final int cmdBorrarChip;
+
+    /** Número de comando para Blank Check ROM */
+    private final int cmdBlankCheckROM;
+
+    /** Número de comando para Blank Check EEPROM */
+    private final int cmdBlankCheckEEPROM;
+
     TipoProtocolo(String nombre, int cmdDetectarEnSocket,
-            int cmdDetectarFueraSocket, int cmdVersion, int cmdProtocolo) {
+            int cmdDetectarFueraSocket, int cmdVersion, int cmdProtocolo,
+            int cmdBorrarChip, int cmdBlankCheckROM, int cmdBlankCheckEEPROM) {
         this.nombre = nombre;
         this.cmdDetectarEnSocket = cmdDetectarEnSocket;
         this.cmdDetectarFueraSocket = cmdDetectarFueraSocket;
         this.cmdVersion = cmdVersion;
         this.cmdProtocolo = cmdProtocolo;
+        this.cmdBorrarChip = cmdBorrarChip;
+        this.cmdBlankCheckROM = cmdBlankCheckROM;
+        this.cmdBlankCheckEEPROM = cmdBlankCheckEEPROM;
     }
 
     public String getNombre() {
@@ -83,6 +96,18 @@ public enum TipoProtocolo {
 
     public int getCmdProtocolo() {
         return cmdProtocolo;
+    }
+
+    public int getCmdBorrarChip() {
+        return cmdBorrarChip;
+    }
+
+    public int getCmdBlankCheckROM() {
+        return cmdBlankCheckROM;
+    }
+
+    public int getCmdBlankCheckEEPROM() {
+        return cmdBlankCheckEEPROM;
     }
 
     /**

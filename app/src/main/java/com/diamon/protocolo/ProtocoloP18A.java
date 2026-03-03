@@ -884,95 +884,58 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean verificarSiEstaBarradaLaMemoriaROMDelDelPic(ChipPic chipPIC) {
+    public boolean verificarSiEstaBorradaLaMemoriaROMDelPic() throws Exception {
+        if (currentChipInfo == null)
+            return false;
 
-        try {
-            // Resetear comandos
-            researComandos();
+        researComandos();
 
-            // Comando ERASE CHECK ROM
-            usbSerialPort.write(
-                    new byte[] { 0x10, (byte) 0x3F },
-                    10); // 0x10 es 16 en decimal, y 0x3F es el valor del high_byte
+        int cmd = tipoProtocolo.getCmdBlankCheckROM();
+        byte highByte = (byte) (currentChipInfo.getCoreBits() == 16 ? 0xFF : 0x3F);
 
-            while (true) {
-                byte[] buffer = new byte[1];
-                int leidos = usbSerialPort.read(buffer, 100);
+        usbSerialPort.write(new byte[] { (byte) cmd, highByte }, TIMEOUT_DEFAULT);
 
-                if (leidos > 0) {
-                    switch (buffer[0]) {
-                        case (byte) 0xFF: // ROM aún no revisada por completo
-                            continue;
-                        case 'Y': // ROM está en blanco
-                            researComandos();
-                            return true;
-                        case 'N': // ROM no está en blanco
-                        case 'C': // ROM no está en blanco (alternativa)
-                            researComandos();
-                            return false;
-                        default: // Error inesperado
-                            researComandos();
-                            return false;
-                    }
-                }
+        while (true) {
+            byte[] response = readBytes(1, TIMEOUT_DEFAULT);
+            if (response.length == 0)
+                throw new Exception("Timeout esperando respuesta de Blank Check ROM");
+
+            byte b = response[0];
+            if (b == 'Y') {
+                researComandos();
+                return true;
             }
-        } catch (IOException e) {
+            if (b == 'N' || b == 'C') {
+                researComandos();
+                return false;
+            }
+            if (b == 'B') {
+                // Bloque de 256 palabras vacío, continuar
+                continue;
+            }
+            // Respuesta inesperada
+            researComandos();
             return false;
         }
     }
 
     @Override
-    public boolean verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic() {
-
-        try {
-            // Resetear comandos previos
-            researComandos();
-
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("16") }, 10); // 0x10 es 16 en decimal
-
-            int size = 1; // Convertir palabras a bytes
-
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            byte[] bytes = new byte[size];
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        bytes[i] = buffer[i];
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
-            }
-            researComandos();
-
-            if (new String(bytes, "US-ASCII").equals("Y")) {
-
-                return true;
-
-            } else if (new String(bytes, "US-ASCII").equals("N")) {
-
-                return false;
-
-            } else {
-
-                return false;
-            }
-
-        } catch (IOException e) {
-
+    public boolean verificarSiEstaBorradaLaMemoriaEEPROMDelPic() throws Exception {
+        if (currentChipInfo == null)
             return false;
-        }
+
+        researComandos();
+
+        int cmd = tipoProtocolo.getCmdBlankCheckEEPROM();
+        usbSerialPort.write(new byte[] { (byte) cmd }, TIMEOUT_DEFAULT);
+
+        byte[] response = readBytes(1, TIMEOUT_DEFAULT);
+        researComandos();
+
+        if (response.length == 0)
+            throw new Exception("Timeout esperando respuesta de Blank Check EEPROM");
+
+        return response[0] == 'Y';
     }
 
     @Override

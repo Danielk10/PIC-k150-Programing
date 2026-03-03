@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
-    <string name="app_name">PIC k150 Programing</string>
+    <string name="app_name">PIC k150 Programming</string>
     <string name="politicas">Politicas de Privacidad</string>
 
     <!-- Ventana de grabacion del PIC -->
@@ -115,10 +115,10 @@
     <!-- Strings para verificación mejorada -->
     <string name="verificando_memoria">Verificando memoria…</string>
     <string name="verificacion_rom_ok">ROM verificada correctamente</string>
-    <string name="verificacion_rom_fallo">ROM verificación falló</string>
+    <string name="verificacion_rom_fallo">Fallo en la verificación de ROM</string>
     <string name="verificacion_eeprom_ok">EEPROM verificada correctamente</string>
-    <string name="verificacion_eeprom_fallo">EEPROM verificación falló</string>
-    <string name="rom_posible_locked">Posiblemente locked para lectura</string>
+    <string name="verificacion_eeprom_fallo">Fallo en la verificación de EEPROM</string>
+    <string name="rom_posible_locked">Posiblemente bloqueada (Locked) para lectura</string>
     <string name="verificacion_completa">Verificación completa</string>
     <string name="fuses_decodificados">Fuses decodificados</string>
 
@@ -145,15 +145,39 @@
     <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
     <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exportar Volcado Completo (.hex)</string>
-    
+
+    <!-- Programación Parcial -->
     <string name="programar_todo">Programar Todo</string>
     <string name="programar_solo_rom">Programar solo ROM</string>
     <string name="programar_solo_eeprom">Programar solo EEPROM</string>
     <string name="programar_solo_config">Programar solo CONFIG</string>
+    
+    <!-- Blank Check (Verificación de Borrado) -->
     <string name="verificar_borrado">Verificar Borrado</string>
     <string name="chip_esta_borrado">El chip está borrado (Blank)</string>
     <string name="chip_no_esta_borrado">El chip NO está borrado</string>
     <string name="verificando_borrado">Verificando borrado...</string>
+    <string name="resultado_verificacion_borrado">Resultado de Verificación de Borrado</string>
+    <string name="error_verificando_borrado">Error verificando borrado</string>
+    
+    <!-- Fuse Config Popup -->
+    <string name="configuraciones_de_fusibles">Configuraciones de Fusibles</string>
+    <string name="chip_seleccionado">Chip Seleccionado</string>
+    <string name="configuracion_de_fusibles">Configuración de Fusibles</string>
+    <string name="agregar_fusible_personalizado">➕ Agregar Fusible Personalizado</string>
+    <string name="id_personalizado_hex">ID Personalizado (hex)</string>
+    <string name="log_de_operaciones">Log de Operaciones</string>
+    <string name="restaurar_desde_bd">Restaurar desde BD</string>
+    <string name="restaurar_desde_hex">Restaurar desde HEX</string>
+    <string name="aplicar_fuses">Aplicar Fuses</string>
+    <string name="nombre_del_fusible">Nombre del fusible</string>
+    <string name="valor_ejemplo_on_off">Valor (ejemplo: ON, OFF, 0x3FFF)</string>
+    
+    <!-- Ayuda para Fuses e ID -->
+    <string name="ayuda_id_personalizado">ID de 4 o 8 bytes según el chip para identificación (versión o número de serie).</string>
+    <string name="ayuda_fuses_personalizados">Permite sobreescribir fuses específicos. Se ignorará el valor que venga en el HEX para estos nombres.</string>
+    <string name="ayuda_chip_info">Datos técnicos detallados extraídos del archivo de definición del PIC.</string>
+
     <string name="seleccionar_operacion">Seleccionar Operación</string>
     <string name="config_leida">Configuración leída</string>
 

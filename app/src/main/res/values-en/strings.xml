@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titulos de Actividades -->
-    <string name="app_name">PIC k150 Programing</string>
+    <string name="app_name">PIC k150 Programming</string>
     <string name="politicas">Politicas de Privacidad</string>
 
     <!-- Ventana de grabacion del PIC -->
@@ -132,6 +132,31 @@
     <string name="programar_solo_rom">Program ROM only</string>
     <string name="programar_solo_eeprom">Program EEPROM only</string>
     <string name="programar_solo_config">Program CONFIG only</string>
+
+    <!-- Blank Check -->
+    <string name="verificar_borrado">Blank Check</string>
+    <string name="chip_esta_borrado">Chip is blank</string>
+    <string name="chip_no_esta_borrado">Chip is NOT blank</string>
+    <string name="verificando_borrado">Performing blank check...</string>
+
+    <!-- Fuse Config Popup -->
+    <string name="configuraciones_de_fusibles">Fuse Configurations</string>
+    <string name="chip_seleccionado">Selected Chip</string>
+    <string name="configuracion_de_fusibles">Fuse Configuration</string>
+    <string name="agregar_fusible_personalizado">➕ Add Custom Fuse</string>
+    <string name="id_personalizado_hex">Custom ID (hex)</string>
+    <string name="log_de_operaciones">Operation Log</string>
+    <string name="restaurar_desde_bd">Restore from DB</string>
+    <string name="restaurar_desde_hex">Restore from HEX</string>
+    <string name="aplicar_fuses">Apply Fuses</string>
+    <string name="nombre_del_fusible">Fuse Name</string>
+    <string name="valor_ejemplo_on_off">Value (e.g., ON, OFF, 0x3FFF)</string>
+
+    <!-- Help for Fuses and ID -->
+    <string name="ayuda_id_personalizado">4 or 8 byte ID depending on chip for identification (version or serial number).</string>
+    <string name="ayuda_fuses_personalizados">Allows overriding specific fuses. The value from the HEX file will be ignored for these names.</string>
+    <string name="ayuda_chip_info">Detailed technical data extracted from the PIC definition file.</string>
+
     <string name="seleccionar_operacion">Select Operation</string>
     <string name="config_leida">Configuration read</string>
 

@@ -241,16 +241,35 @@
                         android:text="@string/cargar_archivo_hex"
                         android:textColor="#FFFFFF" />
 
-                    <!-- Configurar Fuses (NUEVO) -->
-                    <Button
-                        android:id="@+id/btnConfigureFuses"
+                    <!-- Fila: Configurar Fuses y Blank Check -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:backgroundTint="#555555"
-                        android:enabled="false"
-                        android:text="@string/configurar_fusibles"
-                        android:textColor="#AAAAAA" />
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnConfigureFuses"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#555555"
+                            android:enabled="false"
+                            android:text="@string/configurar_fusibles"
+                            android:textColor="#AAAAAA" />
+
+                        <Button
+                            android:id="@+id/btnBlankCheck"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#555555"
+                            android:enabled="false"
+                            android:text="@string/verificar_borrado"
+                            android:textColor="#AAAAAA" />
+                    </LinearLayout>
 
                     <!-- Programar -->
                     <Button

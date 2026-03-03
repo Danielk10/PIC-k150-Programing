@@ -87,16 +87,17 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout romDataContainer;
     private LinearLayout eepromDataContainer;
     private Spinner chipSpinner;
-    private android.widget.ImageView chipSocketImageView; // NUEVO
+    private ImageView chipSocketImageView; // NUEVO
     private androidx.appcompat.widget.SwitchCompat swModeICSP;
 
-    private android.widget.Button btnSelectHex;
-    private android.widget.Button btnProgramarPic;
-    private android.widget.Button btnLeerMemoriaDeLPic;
-    private android.widget.Button btnVerificarMemoriaDelPic;
-    private android.widget.Button btnBorrarMemoriaDeLPic;
-    private android.widget.Button btnDetectarPic;
-    private android.widget.Button btnConfigureFuses; // NUEVO
+    private Button btnSelectHex;
+    private Button btnProgramarPic;
+    private Button btnLeerMemoriaDeLPic;
+    private Button btnVerificarMemoriaDelPic;
+    private Button btnBorrarMemoriaDeLPic;
+    private Button btnDetectarPic;
+    private Button btnConfigureFuses; // NUEVO
+    private Button btnBlankCheck; // NUEVO
 
     private UsbConnectionManager usbManager;
     private PicProgrammingManager programmingManager;
@@ -206,6 +207,7 @@ public class MainActivity extends AppCompatActivity
         btnBorrarMemoriaDeLPic = findViewById(R.id.btnBorrarMemoriaDeLPic);
         btnDetectarPic = findViewById(R.id.btnDetectarPic);
         btnConfigureFuses = findViewById(R.id.btnConfigureFuses); // NUEVO
+        btnBlankCheck = findViewById(R.id.btnBlankCheck); // NUEVO
 
         romDataContainer = findViewById(R.id.romDataContainer);
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
@@ -417,6 +419,12 @@ public class MainActivity extends AppCompatActivity
 
     /** Configura el listener para el switch de ICSP */
     private void setupICSPSwitchListener() {
+        btnConfigureFuses.setOnClickListener(v -> abrirDialogoFuses());
+
+        if (btnBlankCheck != null) {
+            btnBlankCheck.setOnClickListener(v -> ejecutarBlankCheck());
+        }
+
         swModeICSP.setOnCheckedChangeListener(
                 (buttonView, isChecked) -> {
                     if (currentChip == null) {
@@ -519,7 +527,6 @@ public class MainActivity extends AppCompatActivity
             }
 
             // Restaurar listener
-            setupICSPSwitchListener();
             setupICSPSwitchListener();
 
         } catch (ChipConfigurationException e) {
@@ -954,7 +961,8 @@ public class MainActivity extends AppCompatActivity
                 btnLeerMemoriaDeLPic,
                 btnVerificarMemoriaDelPic,
                 btnBorrarMemoriaDeLPic,
-                btnDetectarPic
+                btnDetectarPic,
+                btnBlankCheck
         };
 
         for (android.widget.Button btn : buttons) {
@@ -976,6 +984,10 @@ public class MainActivity extends AppCompatActivity
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
                                     Color.parseColor("#9C27B0")));
+                } else if (btn == btnBlankCheck) {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#4CAF50"))); // Verde para Blank Check
                 }
                 btn.setTextColor(Color.WHITE);
             } else {
@@ -1299,7 +1311,7 @@ public class MainActivity extends AppCompatActivity
                 showChipInfoDialog();
                 return true;
             case 8:
-                showChipInfoJson();
+                // Eliminado: showChipInfoJson();
                 return true;
             case 3:
                 openTutorialGputils();
@@ -1476,30 +1488,51 @@ public class MainActivity extends AppCompatActivity
         table.addView(row);
     }
 
-    /** Muestra info del chip actual como JSON (para depuración) */
-    private void showChipInfoJson() {
+    /** Ejecuta la verificación de borrado (Blank Check) */
+    private void ejecutarBlankCheck() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.selecciona_chip_primero),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String json = currentChip.toJson();
-        android.widget.ScrollView scrollView = new android.widget.ScrollView(this);
-        android.widget.TextView textView = new android.widget.TextView(this);
-        textView.setText(json);
-        textView.setPadding(32, 32, 32, 32);
-        textView.setTextSize(12);
-        textView.setTypeface(android.graphics.Typeface.MONOSPACE);
-        textView.setTextColor(Color.GREEN);
-        textView.setBackgroundColor(Color.BLACK);
-        scrollView.addView(textView);
+        processStatusTextView.setText(getString(R.string.verificando_borrado) + "...");
 
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.chip_info_json))
-                .setView(scrollView)
-                .setPositiveButton(getString(R.string.aceptar), null)
-                .show();
+        new Thread(() -> {
+            try {
+                com.diamon.nucleo.Protocolo protocolo = usbManager.getProtocolo();
+                if (protocolo == null)
+                    return;
+
+                boolean romBlank = protocolo.verificarSiEstaBorradaLaMemoriaROMDelPic();
+                boolean eepromBlank = true;
+                if (currentChip.isTamanoValidoDeEEPROM()) {
+                    eepromBlank = protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
+                }
+
+                final boolean finalRomBlank = romBlank;
+                final boolean finalEepromBlank = eepromBlank;
+
+                runOnUiThread(() -> {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
+                    sb.append("ROM: ").append(finalRomBlank ? "OK (BLANK)" : "NOT BLANK").append("\n");
+                    if (currentChip.isTamanoValidoDeEEPROM()) {
+                        sb.append("EEPROM: ").append(finalEepromBlank ? "OK (BLANK)" : "NOT BLANK");
+                    }
+                    processStatusTextView.setText(sb.toString());
+
+                    if (finalRomBlank && finalEepromBlank) {
+                        Toast.makeText(MainActivity.this, R.string.chip_esta_borrado, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, R.string.chip_no_esta_borrado, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            } catch (Exception e) {
+                runOnUiThread(() -> processStatusTextView
+                        .setText(getString(R.string.error_verificando_borrado) + ": " + e.getMessage()));
+            }
+        }).start();
     }
 
     private void openTutorialGputils() {
