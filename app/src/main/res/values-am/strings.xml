@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">የግላዊነት ፖሊሲዎች</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">ተቀበል</string>
     <string name="cancelar">ሰርዝ</string>
     <string name="conectado">ተገናኝቷል</string>
@@ -52,7 +52,7 @@
     <string name="error_obteniendo_datos_del_chi">ቹ ውሂብ ሲገኝ ስህተት</string>
     <string name="modo">ሁኔታ</string>
     <string name="icsp_solamente">ICSP ብቻ</string>
-    <string name="pin_1">Pin 1</string>
+    <string name="pin_1">ፒን 1</string>
     <string name="filemanager_no_inicializado">FileManager ሲጀምር አልተሳተፈም</string>
     <string name="no_se_pudo_obtener_el_nombre_d">ፋይል ስም ሊገኝ አልቻለም</string>
     <string name="seleccione_un_archivo_binario_">የሚሰራ ባይናሪ ፋይል ይምረጡ (.hex ወይም .bin)</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB ግንኙነት ስህተት</string>
     <string name="error_inesperado_durante_la_co">ግንኙነት ሲሆን ያልተጠበቀ ስህተት</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">ስራዎች</string>
     <string name="cargar_archivo_hex">HEX ፋይል ይጫኑ</string>
     <string name="programar_pic">PIC ከተመን</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">ሥራ እየተጠበቀ...</string>
     <string name="esperando_seleccion">ምርጫ እየተጠበቀ...</string>
     <string name="seleccionar_chip_pic">PIC ቹ ይምረጡ</string>
-    <!-- values-am/strings.xml (Amárico) -->
+    
     <string name="gputils_termux_asm">GPUTILS በTermux Compiler ASM Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">የማስታወስ ችሎታ ማንበብ...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">በትክክል የተተገበሩ ፊውዝ</string>
+
+    
+    
+    <string name="chip_info_titulo">ቺፕ ቴክኒካዊ መረጃ</string>
+    
+    <string name="propiedad">ንብረት</string>
+    
+    <string name="valor">ዋጋ ያለው</string>
+    
+    <string name="chip_info_profesional">ቺፕ መረጃ</string>
+    
+    
+    
+    <string name="exportar_config_hex">CONFIG ወደ ውጪ ላክ (.hex)</string>
+    
+    <string name="exportar_config_bin">CONFIG (.ቢን) ወደ ውጪ ላክ</string>
+    
+    <string name="exportar_dump_completo">ሙሉ ቆሻሻ ወደ ውጪ ላክ (.hex)</string>
+
+    
+    
+    <string name="programar_todo">ሁሉንም ነገር ያቅዱ</string>
+    
+    <string name="programar_solo_rom">ፕሮግራም ROM ብቻ</string>
+    
+    <string name="programar_solo_eeprom">ፕሮግራም EEPROM ብቻ</string>
+    
+    <string name="programar_solo_config">ፕሮግራም ብቻ CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">ስረዛን ያረጋግጡ</string>
+    
+    <string name="chip_esta_borrado">ቺፕው ተሰርዟል (ባዶ)</string>
+    
+    <string name="chip_no_esta_borrado">ቺፕው አልተሰረዘም</string>
+    
+    <string name="verificando_borrado">ስረዛን በማረጋገጥ ላይ...</string>
+    
+    <string name="resultado_verificacion_borrado">የማረጋገጫ ስረዛ ውጤት</string>
+    
+    <string name="error_verificando_borrado">መሰረዙን ማረጋገጥ ላይ ስህተት</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">ፊውዝ ውቅሮች</string>
+    
+    <string name="chip_seleccionado">የተመረጠ ቺፕ</string>
+    
+    <string name="configuracion_de_fusibles">ፊውዝ ውቅር</string>
+    
+    <string name="id_personalizado_hex">ብጁ መታወቂያ (HEX)</string>
+    
+    <string name="hint_id_personalizado">ምሳሌ፡ 1A 2B 3C 4D (4 ወይም 8 ባይት)</string>
+    
+    <string name="hint_nombre_fusible">ስም (ለምሳሌ፡ WDT፣ FOSC፣ MCLRE)</string>
+    
+    <string name="hint_valor_fusible">ዋጋ (ለምሳሌ፡ በርቷል፣ ጠፍቷል፣ HS፣ 0x3F)</string>
+    
+    <string name="log_de_operaciones">የክወናዎች ምዝግብ ማስታወሻ</string>
+    
+    <string name="restaurar_desde_bd">ከዲቢ እነበረበት መልስ</string>
+    
+    <string name="restaurar_desde_hex">ከHEX እነበረበት መልስ</string>
+    
+    <string name="aplicar_fuses">ፊውዝ ተግብር</string>
+    
+    <string name="nombre_del_fusible">ፊውዝ ስም</string>
+    
+    <string name="valor_ejemplo_on_off">ዋጋ (ለምሳሌ፡ በርቷል፣ ጠፍቷል፣ 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">የተጠቃሚ መታወቂያ በHEX ቅርጸት። ለPIC12/16 ወይም 8 ባይት (16 አሃዞች) ለPIC18 4 ባይት (8 አሃዞች) ተጠቀም።</string>
+    
+    <string name="ayuda_fuses_personalizados">የHEX ፊውዝዎችን ይሽራል። ቴክኒካዊ ስሙን (ለምሳሌ፡ WDT) እና እሴቱን (ለምሳሌ፡ OFF ወይም 0x01) ይጠቀሙ።</string>
+    
+    <string name="ayuda_chip_info">ከPIC ፍቺ ፋይል የወጣ ዝርዝር ቴክኒካዊ መረጃ።</string>
+
+    
+    <string name="seleccionar_operacion">ኦፕሬሽንን ይምረጡ</string>
+    
+    <string name="config_leida">ውቅረት ተነቧል</string>
+
+    
+    <string name="publicidad_recomendada">የሚመከር ማስታወቂያ</string>
+    
+    <string name="lectura_completa">የተሟላ ንባብ</string>
+    
+    <string name="sin_chip">ያለ ቺፕ</string>
+    
+    <string name="fusible_agregado">የተጨመረው ፊውዝ</string>
+    
+    <string name="fusibles_restaurados">የተመለሱ ፊውዝ</string>
+    
+    <string name="fusibles_aplicados">የተተገበሩ ፊውዝ</string>
+    
+    <string name="procesamiento_hex">HEX ሂደት</string>
+    
+    <string name="rom_ok_blank">ROM: እሺ (ባዶ)</string>
+    
+    <string name="rom_not_blank">ሮም: ባዶ አይደለም</string>
+    
+    <string name="eeprom_ok_blank">EEPROM፡ እሺ (ባዶ)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: ባዶ አይደለም</string>
+
+    
+    
+    <string name="menu_ayuda">እርዳታ</string>
+    
+    <string name="ayuda_icsp">የ ICSP ግንኙነት</string>
+    
+    <string name="ayuda_fuses_label">ፊውዝ ውቅር</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">ስፓንኛ</string>
+    
+    <string name="idioma_ingles">እንግሊዝኛ</string>
+    
+    <string name="idioma_label">ቋንቋ፡ %s</string>
+    
+    <string name="copiar_todo">📋 ሁሉንም ይቅዱ</string>
+    
+    <string name="tutorial_copiado">አጋዥ ስልጠና ወደ ቅንጥብ ሰሌዳ ተቀድቷል።</string>
+    
+    <string name="error_cargar_tutorial">አጋዥ ስልጠናን መጫን ላይ ስህተት</string>
+    
+    <string name="codigo_asm">📄 ASM ኮድ</string>
+    
+    <string name="comando_label">💻 ትእዛዝ</string>
+    
+    <string name="copiar_btn">ቅዳ</string>
+    
+    <string name="copiado_msg">ተገልብጧል</string>
+    
+    <string name="error_abrir_link">አገናኝ መክፈት ላይ ስህተት</string>
+    
+    <string name="copiado_portapapeles">ወደ ቅንጥብ ሰሌዳ ተቀድቷል።</string>
+    
+    <string name="error_generico_detalle">ስህተት፡%1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ የተዋቀረ</string>
+    
+    <string name="debe_procesar_hex_primero">መጀመሪያ የ HEX ፋይልን ማካሄድ አለብዎት</string>
+
+    
+    <string name="error_exportador_no_inicializado">ላኪ አልተጀመረም።</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">በመጠባበቅ ላይ ያለ ወደ ውጭ መላክ የለም።</string>
+    
+    <string name="seleccion_carpeta_cancelada">የአቃፊ ምርጫ ተሰርዟል።</string>
+    
+    <string name="error_carpeta_no_accesible">የተመረጠው አቃፊ ሊደረስበት አልቻለም</string>
+    
+    <string name="reemplazar_archivo_titulo">ፋይል ተካ</string>
+    
+    <string name="reemplazar_archivo_mensaje">ፋይሉ \'%1$s\' አስቀድሞ አለ። እሱን መተካት ይፈልጋሉ?</string>
+    
+    <string name="error_reemplazando_archivo">ያለውን ፋይል መተካት አልተቻለም</string>
+    
+    <string name="si">አዎ</string>
+    
+    <string name="no">አይ</string>
+    
+    <string name="archivo_guardado">የተቀመጠ ፋይል፡ %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">ፊውዝ ይጨምሩ</string>
+    
+    <string name="agregar_fusible_personalizado">➕ ብጁ ፊውዝ ያክሉ</string>
+    
+    <string name="completa_todos_los_campos">ሁሉንም መስኮች ያጠናቅቁ</string>
+    
+    <string name="log_iniciado">ምዝግብ ማስታወሻ ተጀምሯል...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">ከHEX የተመለሱ ፊውዝ</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux አጋዥ</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux አጋዥ</string>
+    
+    <string name="codigo_copiado_portapapeles">ኮድ ወደ ቅንጥብ ሰሌዳ ተቀድቷል።</string>
+    
+    <string name="texto_copiado_portapapeles">ጽሑፍ ወደ ቅንጥብ ሰሌዳ ተቀድቷል።</string>
+    
+    <string name="termino_no_encontrado">ውል አልተገኘም: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">ወደ ውጭ የሚላክ ምንም ውሂብ የለም።</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">ወደ ውጭ ለመላክ ምንም ትክክለኛ ውሂብ የለም።</string>
+    
+    <string name="error_convirtiendo_datos_hex">ሄክሳዴሲማል ውሂብን መቀየር ላይ ስህተት</string>
+    
+    <string name="error_nombre_archivo_vacio">ስሙ ባዶ ሊሆን አይችልም።</string>
+    
+    <string name="error_creando_archivo_salida">የውጤት ፋይል መፍጠር አልተቻለም</string>
+    
+    <string name="error_abriendo_archivo_escritura">ለመጻፍ ፋይል መክፈት አልተቻለም</string>
+    
+    <string name="error_escribiendo_archivo_detalle">ፋይል መጻፍ ላይ ስህተት፡%1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">ወደ ውጭ በመላክ ላይ ያልተጠበቀ ስህተት፦ %1$s</string>
+
+
+
 </resources>

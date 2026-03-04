@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Persónuverndarstefnur</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Samþykkja</string>
     <string name="cancelar">Hætta við</string>
     <string name="conectado">Tengt</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB tengingarvilla</string>
     <string name="error_inesperado_durante_la_co">Óvænt villa við tengingu</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Aðgerðir</string>
     <string name="cargar_archivo_hex">Hlaða HEX Skrá</string>
     <string name="programar_pic">Forrita PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Bíð eftir aðgerð...</string>
     <string name="esperando_seleccion">Bíð eftir vali...</string>
     <string name="seleccionar_chip_pic">Velja PIC Flögu</string>
-    <!-- values-is/strings.xml (Islandés) -->
+    
     <string name="gputils_termux_asm">GPUTILS í Termux ASM Þýðandi Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Les minni...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Rétt sett öryggi</string>
+
+    
+    
+    <string name="chip_info_titulo">Tæknilegar upplýsingar um flís</string>
+    
+    <string name="propiedad">Eign</string>
+    
+    <string name="valor">Virði</string>
+    
+    <string name="chip_info_profesional">Chip Upplýsingar</string>
+    
+    
+    
+    <string name="exportar_config_hex">Flytja út CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Flytja út CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Flytja út fullt sorp (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Skipuleggðu allt</string>
+    
+    <string name="programar_solo_rom">Aðeins forrit ROM</string>
+    
+    <string name="programar_solo_eeprom">Forrit aðeins EEPROM</string>
+    
+    <string name="programar_solo_config">Aðeins forrit CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Staðfestu eyðingu</string>
+    
+    <string name="chip_esta_borrado">Flísið er eytt (Autt)</string>
+    
+    <string name="chip_no_esta_borrado">Kubburinn er EKKI eytt</string>
+    
+    <string name="verificando_borrado">Staðfestir eyðingu...</string>
+    
+    <string name="resultado_verificacion_borrado">Niðurstaða staðfestingar á eyðingu</string>
+    
+    <string name="error_verificando_borrado">Villa við að staðfesta eyðingu</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Öryggisstillingar</string>
+    
+    <string name="chip_seleccionado">Valinn Chip</string>
+    
+    <string name="configuracion_de_fusibles">Öryggisstillingar</string>
+    
+    <string name="id_personalizado_hex">Sérsniðið auðkenni (HEX)</string>
+    
+    <string name="hint_id_personalizado">Dæmi: 1A 2B 3C 4D (4 eða 8 bæti)</string>
+    
+    <string name="hint_nombre_fusible">Nafn (td: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Gildi (td: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Rekstrarskrá</string>
+    
+    <string name="restaurar_desde_bd">Endurheimta frá DB</string>
+    
+    <string name="restaurar_desde_hex">Endurheimta frá HEX</string>
+    
+    <string name="aplicar_fuses">Notaðu öryggi</string>
+    
+    <string name="nombre_del_fusible">Fuse nafn</string>
+    
+    <string name="valor_ejemplo_on_off">Gildi (dæmi: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Notandaauðkenni á HEX sniði. Notaðu 4 bæti (8 tölustafir) fyrir PIC12/16 eða 8 bæti (16 tölustafir) fyrir PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Hnekir HEX öryggi. Notaðu tæknilega heitið (td: WDT) og gildið (td: OFF eða 0x01).</string>
+    
+    <string name="ayuda_chip_info">Ítarleg tæknigögn dregin út úr PIC skilgreiningarskránni.</string>
+
+    
+    <string name="seleccionar_operacion">Veldu Operation</string>
+    
+    <string name="config_leida">Stillingar lesin</string>
+
+    
+    <string name="publicidad_recomendada">Mælt er með auglýsingum</string>
+    
+    <string name="lectura_completa">Heill lestur</string>
+    
+    <string name="sin_chip">án flís</string>
+    
+    <string name="fusible_agregado">Bætt við öryggi</string>
+    
+    <string name="fusibles_restaurados">Endurheimt öryggi</string>
+    
+    <string name="fusibles_aplicados">Notuð öryggi</string>
+    
+    <string name="procesamiento_hex">HEX vinnsla</string>
+    
+    <string name="rom_ok_blank">ROM: OK (Autt)</string>
+    
+    <string name="rom_not_blank">ROM: EKKI AUT</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (Autt)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: EKKI AUT</string>
+
+    
+    
+    <string name="menu_ayuda">Aðstoð</string>
+    
+    <string name="ayuda_icsp">ICSP tenging</string>
+    
+    <string name="ayuda_fuses_label">Öryggisstillingar</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">spænska</string>
+    
+    <string name="idioma_ingles">ensku</string>
+    
+    <string name="idioma_label">Tungumál: %s</string>
+    
+    <string name="copiar_todo">📋 Afritaðu allt</string>
+    
+    <string name="tutorial_copiado">Kennsla afrituð á klippiborð</string>
+    
+    <string name="error_cargar_tutorial">Villa við að hlaða kennsluefni</string>
+    
+    <string name="codigo_asm">📄 ASM kóða</string>
+    
+    <string name="comando_label">💻 Skipun</string>
+    
+    <string name="copiar_btn">Afrita</string>
+    
+    <string name="copiado_msg">Afritað</string>
+    
+    <string name="error_abrir_link">Villa við að opna tengil</string>
+    
+    <string name="copiado_portapapeles">Afritað á klippiborð</string>
+    
+    <string name="error_generico_detalle">Villa: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Stillt</string>
+    
+    <string name="debe_procesar_hex_primero">Þú verður að vinna úr HEX skránni fyrst</string>
+
+    
+    <string name="error_exportador_no_inicializado">Útflytjandi er ekki frumstilltur</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Það er enginn útflutningur í bið</string>
+    
+    <string name="seleccion_carpeta_cancelada">Hætt við val á möppu</string>
+    
+    <string name="error_carpeta_no_accesible">Ekki var hægt að opna völdu möppuna</string>
+    
+    <string name="reemplazar_archivo_titulo">Skiptu um skrá</string>
+    
+    <string name="reemplazar_archivo_mensaje">Skráin \'%1$s\' er þegar til. Viltu skipta um það?</string>
+    
+    <string name="error_reemplazando_archivo">Ekki tókst að skipta út núverandi skrá</string>
+    
+    <string name="si">Já</string>
+    
+    <string name="no">Nei</string>
+    
+    <string name="archivo_guardado">Vistað skrá: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Bættu við öryggi</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Bættu við sérsniðnu öryggi</string>
+    
+    <string name="completa_todos_los_campos">Fylltu út alla reiti</string>
+    
+    <string name="log_iniciado">Innskráning hafin...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Endurgerð öryggi frá HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux kennsluefni</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux kennsluefni</string>
+    
+    <string name="codigo_copiado_portapapeles">Kóði afritaður á klemmuspjald</string>
+    
+    <string name="texto_copiado_portapapeles">Texti afritaður á klippiborð</string>
+    
+    <string name="termino_no_encontrado">Hugtak fannst ekki: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Það eru engin gögn til að flytja út</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Það eru engin gild gögn til að flytja út</string>
+    
+    <string name="error_convirtiendo_datos_hex">Villa við að umbreyta sextándu gögnum</string>
+    
+    <string name="error_nombre_archivo_vacio">Nafnið má ekki vera autt</string>
+    
+    <string name="error_creando_archivo_salida">Gat ekki búið til úttaksskrá</string>
+    
+    <string name="error_abriendo_archivo_escritura">Gat ekki opnað skrá til að skrifa</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Villa við að skrifa skrá: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Óvænt villa við útflutning: %1$s</string>
+
+
+
 </resources>

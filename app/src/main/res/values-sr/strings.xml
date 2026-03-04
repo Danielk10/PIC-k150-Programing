@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Политика приватности</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Прихвати</string>
     <string name="cancelar">Откажи</string>
     <string name="conectado">Повезано</string>
@@ -46,7 +46,7 @@
     <string name="modelo">Модел</string>
     <string name="palabras_rom">ROM речи</string>
     <string name="tamano_rom">ROM величина</string>
-    <string name="eeprom">EEPROM</string>
+    <string name="eeprom">ЕЕПРОМ</string>
     <string name="no_disponible">Није доступно</string>
     <string name="tipo_de_nucleo">Тип језгра</string>
     <string name="error_obteniendo_datos_del_chi">Грешка при добијању података о чипу</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB грешка повезивања</string>
     <string name="error_inesperado_durante_la_co">Неочекивана грешка током повезивања</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Операције</string>
     <string name="cargar_archivo_hex">Учитај HEX датотеку</string>
     <string name="programar_pic">Програмирај PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Чекање операције...</string>
     <string name="esperando_seleccion">Чекање избора...</string>
     <string name="seleccionar_chip_pic">Изабери PIC чип</string>
-    <!-- values-sr/strings.xml (Serbio) -->
+    
     <string name="gputils_termux_asm">GPUTILS у Termux-у ASM Компајлер Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Читање меморије...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Правилно постављени осигурачи</string>
+
+    
+    
+    <string name="chip_info_titulo">Техничке информације о чипу</string>
+    
+    <string name="propiedad">Имовина</string>
+    
+    <string name="valor">Вриједи</string>
+    
+    <string name="chip_info_profesional">Информације о чипу</string>
+    
+    
+    
+    <string name="exportar_config_hex">Извези ЦОНФИГ (.хек)</string>
+    
+    <string name="exportar_config_bin">Извези ЦОНФИГ (.бин)</string>
+    
+    <string name="exportar_dump_completo">Извези пуни думп (.хек)</string>
+
+    
+    
+    <string name="programar_todo">Закажите све</string>
+    
+    <string name="programar_solo_rom">Само РОМ програма</string>
+    
+    <string name="programar_solo_eeprom">Програмирајте само ЕЕПРОМ</string>
+    
+    <string name="programar_solo_config">Програм само ЦОНФИГ</string>
+    
+    
+    
+    <string name="verificar_borrado">Потврдите брисање</string>
+    
+    <string name="chip_esta_borrado">Чип је обрисан (празан)</string>
+    
+    <string name="chip_no_esta_borrado">Чип се НЕ брише</string>
+    
+    <string name="verificando_borrado">Верификација брисања...</string>
+    
+    <string name="resultado_verificacion_borrado">Резултат верификације брисања</string>
+    
+    <string name="error_verificando_borrado">Грешка при верификацији брисања</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Конфигурације осигурача</string>
+    
+    <string name="chip_seleccionado">Изабрани чип</string>
+    
+    <string name="configuracion_de_fusibles">Конфигурација осигурача</string>
+    
+    <string name="id_personalizado_hex">Прилагођени ИД (ХЕКС)</string>
+    
+    <string name="hint_id_personalizado">Пример: 1А 2Б 3Ц 4Д (4 или 8 бајтова)</string>
+    
+    <string name="hint_nombre_fusible">Име (нпр.: ВДТ, ФОСЦ, МЦЛРЕ)</string>
+    
+    <string name="hint_valor_fusible">Вредност (нпр.: УКЉУЧЕНО, ИСКЉУЧЕНО, ХС, 0к3Ф)</string>
+    
+    <string name="log_de_operaciones">Оперативни дневник</string>
+    
+    <string name="restaurar_desde_bd">Враћање из ДБ-а</string>
+    
+    <string name="restaurar_desde_hex">Вратите из ХЕКС-а</string>
+    
+    <string name="aplicar_fuses">Примените осигураче</string>
+    
+    <string name="nombre_del_fusible">Назив осигурача</string>
+    
+    <string name="valor_ejemplo_on_off">Вредност (пример: ОН, ОФФ, 0к3ФФФ)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">ИД корисника у ХЕКС формату. Користите 4 бајта (8 цифара) за ПИЦ12/16 или 8 бајтова (16 цифара) за ПИЦ18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Поништава ХЕКС осигураче. Користите технички назив (нпр. ВДТ) и вредност (нпр. ОФФ или 0к01).</string>
+    
+    <string name="ayuda_chip_info">Детаљни технички подаци екстраховани из ПИЦ датотеке дефиниције.</string>
+
+    
+    <string name="seleccionar_operacion">Изаберите Операција</string>
+    
+    <string name="config_leida">Прочитана конфигурација</string>
+
+    
+    <string name="publicidad_recomendada">Препоручено оглашавање</string>
+    
+    <string name="lectura_completa">Комплетно читање</string>
+    
+    <string name="sin_chip">без чипа</string>
+    
+    <string name="fusible_agregado">Додати осигурач</string>
+    
+    <string name="fusibles_restaurados">Обновљени осигурачи</string>
+    
+    <string name="fusibles_aplicados">Примењени осигурачи</string>
+    
+    <string name="procesamiento_hex">ХЕКС обрада</string>
+    
+    <string name="rom_ok_blank">РОМ: ОК (празан)</string>
+    
+    <string name="rom_not_blank">РОМ: НИЈЕ ПРАЗНО</string>
+    
+    <string name="eeprom_ok_blank">ЕЕПРОМ: ОК (празно)</string>
+    
+    <string name="eeprom_not_blank">ЕЕПРОМ: НИЈЕ ПРАЗАН</string>
+
+    
+    
+    <string name="menu_ayuda">Аид</string>
+    
+    <string name="ayuda_icsp">ИЦСП веза</string>
+    
+    <string name="ayuda_fuses_label">Конфигурација осигурача</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">шпански</string>
+    
+    <string name="idioma_ingles">енглески</string>
+    
+    <string name="idioma_label">Језик: __ПХ0__</string>
+    
+    <string name="copiar_todo">📋 Копирај све</string>
+    
+    <string name="tutorial_copiado">Водич је копиран у међуспремник</string>
+    
+    <string name="error_cargar_tutorial">Грешка при учитавању водича</string>
+    
+    <string name="codigo_asm">📄 АСМ код</string>
+    
+    <string name="comando_label">💻 Команда</string>
+    
+    <string name="copiar_btn">Копирај</string>
+    
+    <string name="copiado_msg">Копирано</string>
+    
+    <string name="error_abrir_link">Грешка при отварању везе</string>
+    
+    <string name="copiado_portapapeles">Копирано у међуспремник</string>
+    
+    <string name="error_generico_detalle">Грешка: __ПХ0__</string>
+    
+    <string name="fuses_configurados_marcado">✓ Конфигурисано</string>
+    
+    <string name="debe_procesar_hex_primero">Прво морате обрадити ХЕКС датотеку</string>
+
+    
+    <string name="error_exportador_no_inicializado">Извозник није иницијализован</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Нема извоза на чекању</string>
+    
+    <string name="seleccion_carpeta_cancelada">Избор директоријума је отказан</string>
+    
+    <string name="error_carpeta_no_accesible">Није могуће приступити изабраном фолдеру</string>
+    
+    <string name="reemplazar_archivo_titulo">Замените датотеку</string>
+    
+    <string name="reemplazar_archivo_mensaje">Датотека __ПХ0____ПХ1____ПХ2__ већ постоји. Да ли желите да га замените?</string>
+    
+    <string name="error_reemplazando_archivo">Није могуће заменити постојећу датотеку</string>
+    
+    <string name="si">Да</string>
+    
+    <string name="no">бр</string>
+    
+    <string name="archivo_guardado">Сачувана датотека: __ПХ0__</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Додајте осигурач</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Додајте прилагођени осигурач</string>
+    
+    <string name="completa_todos_los_campos">Попуните сва поља</string>
+    
+    <string name="log_iniciado">Дневник је започео...__ПХ0__</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Обновљени осигурачи из ХЕКС-а</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">СДЦЦ 4.5.0 - Термук Туториал</string>
+    
+    <string name="titulo_tutorial_sdcc_en">СДЦЦ 4.5.0 - Термук Туториал</string>
+    
+    <string name="codigo_copiado_portapapeles">Код је копиран у међуспремник</string>
+    
+    <string name="texto_copiado_portapapeles">Текст је копиран у међуспремник</string>
+    
+    <string name="termino_no_encontrado">Термин није пронађен: __ПХ0__</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Нема података за извоз</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Нема важећих података за извоз</string>
+    
+    <string name="error_convirtiendo_datos_hex">Грешка при конверзији хексадецималних података</string>
+    
+    <string name="error_nombre_archivo_vacio">Име не може бити празно</string>
+    
+    <string name="error_creando_archivo_salida">Није могуће креирати излазну датотеку</string>
+    
+    <string name="error_abriendo_archivo_escritura">Није могуће отворити датотеку за писање</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Грешка при писању датотеке: __ПХ0__</string>
+    
+    <string name="error_inesperado_exportar_detalle">Неочекивана грешка при извозу: __ПХ0__</string>
+
+
+
 </resources>

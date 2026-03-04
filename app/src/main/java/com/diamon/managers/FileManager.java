@@ -9,11 +9,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diamon.pic.R;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import com.diamon.pic.R;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 /**
  * Gestiona la selección y lectura de archivos HEX/BIN desde el selector del sistema.
@@ -52,19 +56,24 @@ public class FileManager {
         this.fileLoadListener = listener;
     }
 
-    /** Abre el selector de documentos con los MIME types soportados. */
+    /** Abre el selector de documentos con tipos HEX/BIN compatibles. */
     public void openFilePicker() {
         if (filePickerLauncher == null) {
             notifyError(context.getString(R.string.filemanager_no_inicializado));
             return;
         }
 
-        String[] mimeTypes = {"application/octet-stream", "application/x-binary"};
+        String[] mimeTypes = {
+                "application/octet-stream",
+                "application/x-binary",
+                "text/plain",
+                "application/hex"
+        };
 
         filePickerLauncher.launch(mimeTypes);
     }
 
-    /** Valida el archivo seleccionado y dispara la lectura de contenido. */
+    /** Valida extensión y carga el contenido según tipo de archivo. */
     private void processSelectedFile(Uri uri) {
         String fileName = getFileName(uri);
 
@@ -73,52 +82,81 @@ public class FileManager {
             return;
         }
 
-        // Validar extensión .hex o .bin.
-        String lowerFileName = fileName.toLowerCase();
+        String lowerFileName = fileName.toLowerCase(Locale.ROOT);
         if (!lowerFileName.endsWith(".bin") && !lowerFileName.endsWith(".hex")) {
             notifyError(context.getString(R.string.seleccione_un_archivo_binario_));
             return;
         }
 
-        hexFileContent = readHexFile(uri);
+        if (lowerFileName.endsWith(".hex")) {
+            hexFileContent = leerArchivoHex(uri, fileName);
+        } else {
+            hexFileContent = leerArchivoBinarioComoHex(uri, fileName);
+        }
     }
 
-    /** Lee el archivo seleccionado hasta encontrar comentario o EOF. */
-    private String readHexFile(Uri uri) {
-        try {
-            InputStream inputStream = context.getContentResolver().openInputStream(uri);
-
+    /** Lee un archivo HEX ignorando líneas de comentario iniciadas con ';'. */
+    private String leerArchivoHex(Uri uri, String fileName) {
+        try (InputStream inputStream = context.getContentResolver().openInputStream(uri)) {
             if (inputStream == null) {
                 notifyError(context.getString(R.string.error_abriendo_el_archivo_sele));
                 return "";
             }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder fileContent = new StringBuilder();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                // En formato HEX, una línea iniciada con ';' se considera comentario.
-                if (line.length() > 0 && line.charAt(0) == ';') {
-                    break;
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.length() > 0 && line.charAt(0) == ';') {
+                        continue;
+                    }
+                    fileContent.append(line).append("\n");
                 }
-                fileContent.append(line).append("\n");
             }
 
-            reader.close();
-            inputStream.close();
-
             String content = fileContent.toString();
-
             if (content.trim().isEmpty()) {
                 notifyError(context.getString(R.string.el_archivo_seleccionado_esta_v));
                 return "";
             }
 
-            String fileName = getFileName(uri);
             notifyFileLoaded(content, fileName);
-
             return content;
+
+        } catch (IOException e) {
+            notifyError(context.getString(R.string.error_leyendo_el_archivo) + ": " + e.getMessage());
+            return "";
+        } catch (Exception e) {
+            notifyError(context.getString(R.string.error_inesperado_leyendo_el_ar));
+            return "";
+        }
+    }
+
+    /** Lee un BIN y lo convierte a Intel HEX para el flujo de procesado existente. */
+    private String leerArchivoBinarioComoHex(Uri uri, String fileName) {
+        try (InputStream inputStream = context.getContentResolver().openInputStream(uri)) {
+            if (inputStream == null) {
+                notifyError(context.getString(R.string.error_abriendo_el_archivo_sele));
+                return "";
+            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int leidos;
+            while ((leidos = inputStream.read(buffer)) != -1) {
+                baos.write(buffer, 0, leidos);
+            }
+
+            byte[] rawData = baos.toByteArray();
+            if (rawData.length == 0) {
+                notifyError(context.getString(R.string.el_archivo_seleccionado_esta_v));
+                return "";
+            }
+
+            String intelHex = HexExportManager.convertToIntelHex(rawData);
+            notifyFileLoaded(intelHex, fileName);
+            return intelHex;
 
         } catch (IOException e) {
             notifyError(context.getString(R.string.error_leyendo_el_archivo) + ": " + e.getMessage());
@@ -131,17 +169,21 @@ public class FileManager {
 
     private String getFileName(Uri uri) {
         String fileName = null;
+        Cursor cursor = null;
         try {
-            Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+            cursor = context.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
                 int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                 if (nameIndex != -1) {
                     fileName = cursor.getString(nameIndex);
                 }
-                cursor.close();
             }
         } catch (Exception e) {
             fileName = uri.getLastPathSegment();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
         return fileName;
     }

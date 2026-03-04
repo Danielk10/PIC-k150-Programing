@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Privaatsuspoliitika</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Nõustu</string>
     <string name="cancelar">Tühista</string>
     <string name="conectado">Ühendatud</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB-ühenduse viga</string>
     <string name="error_inesperado_durante_la_co">Ootamatu viga ühenduse ajal</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operatsioonid</string>
     <string name="cargar_archivo_hex">Laadige HEX-fail</string>
     <string name="programar_pic">Programmeeri PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Operatsiooni ootamine...</string>
     <string name="esperando_seleccion">Valikut ootama...</string>
     <string name="seleccionar_chip_pic">Valige Chip PIC</string>
-    <!-- values-et/strings.xml (Estonio) -->
+    
     <string name="gputils_termux_asm">GPUTILS Termuxis ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Mälu lugemine...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Õigesti rakendatud kaitsmed</string>
+
+    
+    
+    <string name="chip_info_titulo">Kiibi tehniline teave</string>
+    
+    <string name="propiedad">Kinnisvara</string>
+    
+    <string name="valor">Väärt</string>
+    
+    <string name="chip_info_profesional">Kiibi teave</string>
+    
+    
+    
+    <string name="exportar_config_hex">Ekspordi CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Ekspordi CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Ekspordi täielik tühjendus (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Ajasta kõik</string>
+    
+    <string name="programar_solo_rom">Ainult programmi ROM</string>
+    
+    <string name="programar_solo_eeprom">Programmeerige ainult EEPROM</string>
+    
+    <string name="programar_solo_config">Programm ainult CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Kinnitage kustutamine</string>
+    
+    <string name="chip_esta_borrado">Kiip on kustutatud (tühi)</string>
+    
+    <string name="chip_no_esta_borrado">Kiipi EI kustutata</string>
+    
+    <string name="verificando_borrado">Kustutamise kinnitamine...</string>
+    
+    <string name="resultado_verificacion_borrado">Kustutamise kontrollimise tulemus</string>
+    
+    <string name="error_verificando_borrado">Viga kustutamise kinnitamisel</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Kaitsmete konfiguratsioonid</string>
+    
+    <string name="chip_seleccionado">Valitud kiip</string>
+    
+    <string name="configuracion_de_fusibles">Kaitsme konfiguratsioon</string>
+    
+    <string name="id_personalizado_hex">Kohandatud ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Näide: 1A 2B 3C 4D (4 või 8 baiti)</string>
+    
+    <string name="hint_nombre_fusible">Nimi (nt: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Väärtus (nt: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Toimingute logi</string>
+    
+    <string name="restaurar_desde_bd">Taasta DB-st</string>
+    
+    <string name="restaurar_desde_hex">Taastage HEX-ist</string>
+    
+    <string name="aplicar_fuses">Rakendage kaitsmed</string>
+    
+    <string name="nombre_del_fusible">Kaitsme nimi</string>
+    
+    <string name="valor_ejemplo_on_off">Väärtus (näide: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Kasutaja ID HEX-vormingus. Kasutage PIC12/16 jaoks 4 baiti (8 numbrit) või PIC18 jaoks 8 baiti (16 numbrit).</string>
+    
+    <string name="ayuda_fuses_personalizados">Alistab HEX-kaitsmed. Kasutage tehnilist nimetust (nt: WDT) ja väärtust (nt: OFF või 0x01).</string>
+    
+    <string name="ayuda_chip_info">Üksikasjalikud tehnilised andmed on välja võetud PIC-definitsioonifailist.</string>
+
+    
+    <string name="seleccionar_operacion">Valige Operatsioon</string>
+    
+    <string name="config_leida">Konfiguratsiooni lugemine</string>
+
+    
+    <string name="publicidad_recomendada">Soovitatav reklaam</string>
+    
+    <string name="lectura_completa">Täielik lugemine</string>
+    
+    <string name="sin_chip">ilma kiibita</string>
+    
+    <string name="fusible_agregado">Lisatud kaitse</string>
+    
+    <string name="fusibles_restaurados">Taastatud kaitsmed</string>
+    
+    <string name="fusibles_aplicados">Rakendatud kaitsmed</string>
+    
+    <string name="procesamiento_hex">HEX töötlemine</string>
+    
+    <string name="rom_ok_blank">ROM: OK (tühi)</string>
+    
+    <string name="rom_not_blank">ROM: EI OLE TÜHI</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (tühi)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: EI OLE TÜHI</string>
+
+    
+    
+    <string name="menu_ayuda">Abi</string>
+    
+    <string name="ayuda_icsp">ICSP ühendus</string>
+    
+    <string name="ayuda_fuses_label">Kaitsme konfiguratsioon</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">hispaania keel</string>
+    
+    <string name="idioma_ingles">inglise keel</string>
+    
+    <string name="idioma_label">Keel: %s</string>
+    
+    <string name="copiar_todo">📋 Kopeeri kõik</string>
+    
+    <string name="tutorial_copiado">Õpetus kopeeriti lõikelauale</string>
+    
+    <string name="error_cargar_tutorial">Viga õpetuse laadimisel</string>
+    
+    <string name="codigo_asm">📄 ASM kood</string>
+    
+    <string name="comando_label">💻 käsk</string>
+    
+    <string name="copiar_btn">Kopeeri</string>
+    
+    <string name="copiado_msg">Kopeeritud</string>
+    
+    <string name="error_abrir_link">Viga lingi avamisel</string>
+    
+    <string name="copiado_portapapeles">Kopeeriti lõikelauale</string>
+    
+    <string name="error_generico_detalle">Viga: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfigureeritud</string>
+    
+    <string name="debe_procesar_hex_primero">Kõigepealt peate töötlema HEX-faili</string>
+
+    
+    <string name="error_exportador_no_inicializado">Eksportija ei ole lähtestatud</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Ootel eksporti pole</string>
+    
+    <string name="seleccion_carpeta_cancelada">Kausta valik tühistati</string>
+    
+    <string name="error_carpeta_no_accesible">Valitud kaustale ei pääsenud juurde</string>
+    
+    <string name="reemplazar_archivo_titulo">Asenda fail</string>
+    
+    <string name="reemplazar_archivo_mensaje">Fail \'%1$s\' on juba olemas. Kas soovite selle välja vahetada?</string>
+    
+    <string name="error_reemplazando_archivo">Olemasolevat faili ei saanud asendada</string>
+    
+    <string name="si">Jah</string>
+    
+    <string name="no">Ei</string>
+    
+    <string name="archivo_guardado">Salvestatud fail: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Lisage kaitse</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Lisage kohandatud kaitse</string>
+    
+    <string name="completa_todos_los_campos">Täitke kõik väljad</string>
+    
+    <string name="log_iniciado">Logi algas...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Taastatud kaitsmed firmalt HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Termuxi õpetus</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Termuxi õpetus</string>
+    
+    <string name="codigo_copiado_portapapeles">Kood kopeeriti lõikelauale</string>
+    
+    <string name="texto_copiado_portapapeles">Tekst kopeeriti lõikelauale</string>
+    
+    <string name="termino_no_encontrado">Terminit ei leitud: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Eksportimiseks pole andmeid</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Eksportimiseks pole kehtivaid andmeid</string>
+    
+    <string name="error_convirtiendo_datos_hex">Viga kuueteistkümnendsüsteemi andmete teisendamisel</string>
+    
+    <string name="error_nombre_archivo_vacio">Nimi ei tohi olla tühi</string>
+    
+    <string name="error_creando_archivo_salida">Väljundfaili ei saanud luua</string>
+    
+    <string name="error_abriendo_archivo_escritura">Faili ei saanud kirjutamiseks avada</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Viga faili kirjutamisel: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Ootamatu viga eksportimisel: %1$s</string>
+
+
+
 </resources>

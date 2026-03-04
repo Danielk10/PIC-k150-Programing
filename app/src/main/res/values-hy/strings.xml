@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Գաղտնիության քաղաքականություն</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Ընդունել</string>
     <string name="cancelar">Չեղարկել</string>
     <string name="conectado">Միացված</string>
@@ -52,7 +52,7 @@
     <string name="error_obteniendo_datos_del_chi">Չիպի տվյալներ ստանալու ժամանակ սխալ</string>
     <string name="modo">Ռեժիմ</string>
     <string name="icsp_solamente">Միայն ICSP</string>
-    <string name="pin_1">Pin 1</string>
+    <string name="pin_1">Փին 1</string>
     <string name="filemanager_no_inicializado">FileManager-ը նախաստորագրված չէ</string>
     <string name="no_se_pudo_obtener_el_nombre_d">Չի կարող ստանալ ֆայլի անունը</string>
     <string name="seleccione_un_archivo_binario_">Ընտրեք վավեր հիմնական ֆայլ (.hex կամ .bin)</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB միացման սխալ</string>
     <string name="error_inesperado_durante_la_co">Միացման ժամանակ անակնկալ սխալ</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Գործառություններ</string>
     <string name="cargar_archivo_hex">Բեռնել HEX ֆայլ</string>
     <string name="programar_pic">Ծրագրավորել PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Սպասում գործործարկման...</string>
     <string name="esperando_seleccion">Ընտրություն սպասում...</string>
     <string name="seleccionar_chip_pic">Ընտրեք PIC չիպ</string>
-    <!-- values-hy/strings.xml (Armenio) -->
+    
     <string name="gputils_termux_asm">GPUTILS-ը Termux-ում ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Ընթերցանության հիշողություն...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Ճիշտ կիրառվող ապահովիչներ</string>
+
+    
+    
+    <string name="chip_info_titulo">Չիպի տեխնիկական տեղեկատվություն</string>
+    
+    <string name="propiedad">Սեփականություն</string>
+    
+    <string name="valor">Արժեք</string>
+    
+    <string name="chip_info_profesional">Չիպային տեղեկատվություն</string>
+    
+    
+    
+    <string name="exportar_config_hex">Արտահանել CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Արտահանել CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Արտահանել Full Dump (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Ժամանակացույց ամեն ինչ</string>
+    
+    <string name="programar_solo_rom">Միայն ծրագրի ROM-ը</string>
+    
+    <string name="programar_solo_eeprom">Ծրագիր միայն EEPROM</string>
+    
+    <string name="programar_solo_config">Ծրագիր միայն CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Ստուգեք ջնջումը</string>
+    
+    <string name="chip_esta_borrado">Չիպը ջնջված է (դատարկ)</string>
+    
+    <string name="chip_no_esta_borrado">Չիպը ՉԻ ջնջվում</string>
+    
+    <string name="verificando_borrado">Ջնջման ստուգում...</string>
+    
+    <string name="resultado_verificacion_borrado">Ջնջման ստուգման արդյունքը</string>
+    
+    <string name="error_verificando_borrado">Սխալ՝ ջնջումը հաստատելիս</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Ապահովիչների կոնֆիգուրացիաներ</string>
+    
+    <string name="chip_seleccionado">Ընտրված չիպ</string>
+    
+    <string name="configuracion_de_fusibles">Ապահովիչների կոնֆիգուրացիա</string>
+    
+    <string name="id_personalizado_hex">Հատուկ ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Օրինակ՝ 1A 2B 3C 4D (4 կամ 8 բայթ)</string>
+    
+    <string name="hint_nombre_fusible">Անունը (օրինակ՝ WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Արժեքը (օրինակ՝ ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Գործառնությունների մատյան</string>
+    
+    <string name="restaurar_desde_bd">Վերականգնել DB-ից</string>
+    
+    <string name="restaurar_desde_hex">Վերականգնել HEX-ից</string>
+    
+    <string name="aplicar_fuses">Կիրառեք ապահովիչներ</string>
+    
+    <string name="nombre_del_fusible">Ապահովիչի անվանումը</string>
+    
+    <string name="valor_ejemplo_on_off">Արժեք (օրինակ՝ ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Օգտագործողի ID HEX ձևաչափով: Օգտագործեք 4 բայթ (8 նիշ) PIC12/16-ի համար կամ 8 բայթ (16 նիշ) PIC18-ի համար:</string>
+    
+    <string name="ayuda_fuses_personalizados">Անտեսում է HEX ապահովիչները: Օգտագործեք տեխնիկական անվանումը (օրինակ՝ WDT) և արժեքը (օրինակ՝ OFF կամ 0x01):</string>
+    
+    <string name="ayuda_chip_info">Մանրամասն տեխնիկական տվյալներ՝ արդյունահանված PIC սահմանման ֆայլից:</string>
+
+    
+    <string name="seleccionar_operacion">Ընտրեք Գործողություն</string>
+    
+    <string name="config_leida">Կարդացված է կոնֆիգուրացիա</string>
+
+    
+    <string name="publicidad_recomendada">Առաջարկվող գովազդ</string>
+    
+    <string name="lectura_completa">Ամբողջական ընթերցում</string>
+    
+    <string name="sin_chip">առանց չիպի</string>
+    
+    <string name="fusible_agregado">Ավելացված ապահովիչ</string>
+    
+    <string name="fusibles_restaurados">Վերականգնված ապահովիչներ</string>
+    
+    <string name="fusibles_aplicados">Կիրառված ապահովիչներ</string>
+    
+    <string name="procesamiento_hex">HEX մշակում</string>
+    
+    <string name="rom_ok_blank">ROM: Լավ (դատարկ)</string>
+    
+    <string name="rom_not_blank">ROM. ՉԻ ԴԱՏԱՐԿ</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: Լավ (Դատարկ)</string>
+    
+    <string name="eeprom_not_blank">EEPROM. ՉԻ ԴԱՏԱՐԿ</string>
+
+    
+    
+    <string name="menu_ayuda">Օգնություն</string>
+    
+    <string name="ayuda_icsp">ICSP կապ</string>
+    
+    <string name="ayuda_fuses_label">Ապահովիչների կոնֆիգուրացիա</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">իսպաներեն</string>
+    
+    <string name="idioma_ingles">Անգլերեն</string>
+    
+    <string name="idioma_label">Լեզուն՝ %s</string>
+    
+    <string name="copiar_todo">📋 Պատճենել բոլորը</string>
+    
+    <string name="tutorial_copiado">Ձեռնարկը պատճենվեց clipboard-ում</string>
+    
+    <string name="error_cargar_tutorial">Չհաջողվեց բեռնել ձեռնարկը</string>
+    
+    <string name="codigo_asm">📄 ASM կոդ</string>
+    
+    <string name="comando_label">💻 Հրաման</string>
+    
+    <string name="copiar_btn">Պատճենել</string>
+    
+    <string name="copiado_msg">Պատճենվել է</string>
+    
+    <string name="error_abrir_link">Չհաջողվեց բացել հղումը</string>
+    
+    <string name="copiado_portapapeles">Պատճենվել է սեղմատախտակում</string>
+    
+    <string name="error_generico_detalle">Սխալ՝ %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Կազմաձևված է</string>
+    
+    <string name="debe_procesar_hex_primero">Նախ պետք է մշակեք HEX ֆայլը</string>
+
+    
+    <string name="error_exportador_no_inicializado">Արտահանողը նախաստորագրված չէ</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Սպասվող արտահանում չկա</string>
+    
+    <string name="seleccion_carpeta_cancelada">Թղթապանակի ընտրությունը չեղարկվել է</string>
+    
+    <string name="error_carpeta_no_accesible">Չհաջողվեց մուտք գործել ընտրված թղթապանակ</string>
+    
+    <string name="reemplazar_archivo_titulo">Փոխարինել ֆայլը</string>
+    
+    <string name="reemplazar_archivo_mensaje">\'%1$s\' ֆայլն արդեն գոյություն ունի: Ցանկանու՞մ եք այն փոխարինել:</string>
+    
+    <string name="error_reemplazando_archivo">Չհաջողվեց փոխարինել գոյություն ունեցող ֆայլը</string>
+    
+    <string name="si">Այո՛</string>
+    
+    <string name="no">Ոչ</string>
+    
+    <string name="archivo_guardado">Պահված ֆայլ՝ %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Ավելացնել ապահովիչ</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Ավելացնել անհատական ապահովիչ</string>
+    
+    <string name="completa_todos_los_campos">Լրացրեք բոլոր դաշտերը</string>
+    
+    <string name="log_iniciado">Մատյան սկսվել է...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Վերականգնված ապահովիչներ HEX-ից</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux ձեռնարկ</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux ձեռնարկ</string>
+    
+    <string name="codigo_copiado_portapapeles">Կոդը պատճենվեց clipboard-ում</string>
+    
+    <string name="texto_copiado_portapapeles">Տեքստը պատճենվեց սեղմատախտակին</string>
+    
+    <string name="termino_no_encontrado">Ժամկետը չի գտնվել՝ %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Արտահանելու համար տվյալներ չկան</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Արտահանման համար վավեր տվյալներ չկան</string>
+    
+    <string name="error_convirtiendo_datos_hex">Սխալ՝ տասնվեցական տվյալների փոխակերպման ժամանակ</string>
+    
+    <string name="error_nombre_archivo_vacio">Անունը չի կարող դատարկ լինել</string>
+    
+    <string name="error_creando_archivo_salida">Չհաջողվեց ստեղծել ելքային ֆայլ</string>
+    
+    <string name="error_abriendo_archivo_escritura">Չհաջողվեց բացել ֆայլը գրելու համար</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Ֆայլը գրելու սխալ՝ %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Արտահանման ժամանակ անսպասելի սխալ՝ %1$s</string>
+
+
+
 </resources>

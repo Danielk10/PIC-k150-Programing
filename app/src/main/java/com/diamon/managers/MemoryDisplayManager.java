@@ -201,8 +201,6 @@ public class MemoryDisplayManager {
         container.setClipToPadding(true);
 
         TextView title = new TextView(context);
-        title.setText(context.getString(R.string.operaciones)); // Or use a more specific title if available
-        // title.setText("Datos de Memoria"); // Original
         title.setText(context.getString(R.string.memoria_leida_exitosamente));
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);

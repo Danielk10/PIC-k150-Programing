@@ -120,7 +120,6 @@ public class TutorialSdccActivity extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(this, getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
             fullTutorialContent = getString(R.string.error_cargar_tutorial);
         }
     }
@@ -141,9 +140,9 @@ public class TutorialSdccActivity extends AppCompatActivity {
 
         // Actualizar título según idioma si es necesario
         if (language.equals("es")) {
-            titleTextView.setText("SDCC 4.5.0 - Tutorial en Termux");
+            titleTextView.setText(getString(R.string.titulo_tutorial_sdcc_es));
         } else {
-            titleTextView.setText("SDCC 4.5.0 - Termux Tutorial");
+            titleTextView.setText(getString(R.string.titulo_tutorial_sdcc_en));
         }
     }
 

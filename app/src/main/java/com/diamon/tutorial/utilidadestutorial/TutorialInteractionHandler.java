@@ -68,7 +68,8 @@ public class TutorialInteractionHandler {
             }
         }
 
-        android.widget.Toast.makeText(context, "Texto copiado al portapapeles",
+        android.widget.Toast.makeText(context,
+                context.getString(com.diamon.pic.R.string.texto_copiado_portapapeles),
                 android.widget.Toast.LENGTH_SHORT).show();
     }
 
@@ -129,7 +130,8 @@ public class TutorialInteractionHandler {
             return true;
         }
 
-        android.widget.Toast.makeText(context, "Término no encontrado: " + searchTerm,
+        android.widget.Toast.makeText(context,
+                context.getString(com.diamon.pic.R.string.termino_no_encontrado, searchTerm),
                 android.widget.Toast.LENGTH_SHORT).show();
         return false;
     }
