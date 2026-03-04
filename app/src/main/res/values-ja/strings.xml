@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">プライバシーポリシー</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">承認</string>
     <string name="cancelar">キャンセル</string>
     <string name="conectado">接続済み</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB接続エラー</string>
     <string name="error_inesperado_durante_la_co">接続中に予期しないエラーが発生しました</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">操作</string>
     <string name="cargar_archivo_hex">HEXファイルを読み込む</string>
     <string name="programar_pic">PICをプログラム</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">操作を待っています...</string>
     <string name="esperando_seleccion">選択を待っています...</string>
     <string name="seleccionar_chip_pic">PICチップを選択</string>
-    <!-- values-ja/strings.xml (Japonés) -->
+    
     <string name="gputils_termux_asm">Termux の GPUTILS ASM コンパイラ Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">メモリを読み取っています...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">正しく適用されたヒューズ</string>
+
+    
+    
+    <string name="chip_info_titulo">チップ技術情報</string>
+    
+    <string name="propiedad">財産</string>
+    
+    <string name="valor">価値</string>
+    
+    <string name="chip_info_profesional">チップ情報</string>
+    
+    
+    
+    <string name="exportar_config_hex">設定をエクスポート (.hex)</string>
+    
+    <string name="exportar_config_bin">設定をエクスポート (.bin)</string>
+    
+    <string name="exportar_dump_completo">フルダンプ (.hex) をエクスポート</string>
+
+    
+    
+    <string name="programar_todo">すべてをスケジュールする</string>
+    
+    <string name="programar_solo_rom">プログラムROMのみ</string>
+    
+    <string name="programar_solo_eeprom">プログラムEEPROMのみ</string>
+    
+    <string name="programar_solo_config">プログラムのみ CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">削除の確認</string>
+    
+    <string name="chip_esta_borrado">チップは消去済み（ブランク）</string>
+    
+    <string name="chip_no_esta_borrado">チップは消去されていません</string>
+    
+    <string name="verificando_borrado">削除を確認しています...</string>
+    
+    <string name="resultado_verificacion_borrado">削除検証結果</string>
+    
+    <string name="error_verificando_borrado">削除の検証中にエラーが発生しました</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">ヒューズの構成</string>
+    
+    <string name="chip_seleccionado">選択されたチップ</string>
+    
+    <string name="configuracion_de_fusibles">ヒューズの構成</string>
+    
+    <string name="id_personalizado_hex">カスタム ID (16 進数)</string>
+    
+    <string name="hint_id_personalizado">例: 1A 2B 3C 4D (4 または 8 バイト)</string>
+    
+    <string name="hint_nombre_fusible">名前 (例: WDT、FOSC、MCLRE)</string>
+    
+    <string name="hint_valor_fusible">値 (例: ON、OFF、HS、0x3F)</string>
+    
+    <string name="log_de_operaciones">操作ログ</string>
+    
+    <string name="restaurar_desde_bd">DBから復元</string>
+    
+    <string name="restaurar_desde_hex">HEXから復元</string>
+    
+    <string name="aplicar_fuses">ヒューズの適用</string>
+    
+    <string name="nombre_del_fusible">ヒューズ名</string>
+    
+    <string name="valor_ejemplo_on_off">値 (例: ON、OFF、0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">16 進形式のユーザー ID。 PIC12/16 の場合は 4 バイト (8 桁)、PIC18 の場合は 8 バイト (16 桁) を使用します。</string>
+    
+    <string name="ayuda_fuses_personalizados">HEX ヒューズをオーバーライドします。技術名 (例: WDT) と値 (例: OFF または 0x01) を使用します。</string>
+    
+    <string name="ayuda_chip_info">PIC 定義ファイルから抽出された詳細な技術データ。</string>
+
+    
+    <string name="seleccionar_operacion">選択操作</string>
+    
+    <string name="config_leida">構成の読み取り</string>
+
+    
+    <string name="publicidad_recomendada">おすすめの広告</string>
+    
+    <string name="lectura_completa">完読</string>
+    
+    <string name="sin_chip">チップなし</string>
+    
+    <string name="fusible_agregado">追加されたヒューズ</string>
+    
+    <string name="fusibles_restaurados">復元されたヒューズ</string>
+    
+    <string name="fusibles_aplicados">適用ヒューズ</string>
+    
+    <string name="procesamiento_hex">HEX処理</string>
+    
+    <string name="rom_ok_blank">ROM：OK（ブランク）</string>
+    
+    <string name="rom_not_blank">ROM: ブランクではありません</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (ブランク)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: ブランクではありません</string>
+
+    
+    
+    <string name="menu_ayuda">援助</string>
+    
+    <string name="ayuda_icsp">ICSP接続</string>
+    
+    <string name="ayuda_fuses_label">ヒューズの構成</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">スペイン語</string>
+    
+    <string name="idioma_ingles">英語</string>
+    
+    <string name="idioma_label">言語: %s</string>
+    
+    <string name="copiar_todo">📋 すべてコピー</string>
+    
+    <string name="tutorial_copiado">チュートリアルをクリップボードにコピーしました</string>
+    
+    <string name="error_cargar_tutorial">チュートリアルの読み込みエラー</string>
+    
+    <string name="codigo_asm">📄 ASMコード</string>
+    
+    <string name="comando_label">💻コマンド</string>
+    
+    <string name="copiar_btn">コピー</string>
+    
+    <string name="copiado_msg">コピーされました</string>
+    
+    <string name="error_abrir_link">リンクを開くときにエラーが発生しました</string>
+    
+    <string name="copiado_portapapeles">クリップボードにコピーされました</string>
+    
+    <string name="error_generico_detalle">エラー: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ 設定済み</string>
+    
+    <string name="debe_procesar_hex_primero">最初に HEX ファイルを処理する必要があります</string>
+
+    
+    <string name="error_exportador_no_inicializado">エクスポーターが初期化されていません</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">保留中のエクスポートはありません</string>
+    
+    <string name="seleccion_carpeta_cancelada">フォルダーの選択がキャンセルされました</string>
+    
+    <string name="error_carpeta_no_accesible">選択したフォルダーにアクセスできませんでした</string>
+    
+    <string name="reemplazar_archivo_titulo">ファイルを置き換える</string>
+    
+    <string name="reemplazar_archivo_mensaje">ファイル \'%1$s\' はすでに存在します。交換しますか?</string>
+    
+    <string name="error_reemplazando_archivo">既存のファイルを置き換えられませんでした</string>
+    
+    <string name="si">うん</string>
+    
+    <string name="no">いいえ</string>
+    
+    <string name="archivo_guardado">保存されたファイル: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ ヒューズの追加</string>
+    
+    <string name="agregar_fusible_personalizado">➕ カスタムヒューズの追加</string>
+    
+    <string name="completa_todos_los_campos">すべてのフィールドに入力します</string>
+    
+    <string name="log_iniciado">ログが開始されました...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">HEXから復元されたヒューズ</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux チュートリアル</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux チュートリアル</string>
+    
+    <string name="codigo_copiado_portapapeles">コードをクリップボードにコピーしました</string>
+    
+    <string name="texto_copiado_portapapeles">クリップボードにコピーされたテキスト</string>
+    
+    <string name="termino_no_encontrado">用語が見つかりません: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">エクスポートするデータがありません</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">エクスポートする有効なデータがありません</string>
+    
+    <string name="error_convirtiendo_datos_hex">16 進データの変換エラー</string>
+    
+    <string name="error_nombre_archivo_vacio">名前を空にすることはできません</string>
+    
+    <string name="error_creando_archivo_salida">出力ファイルを作成できませんでした</string>
+    
+    <string name="error_abriendo_archivo_escritura">書き込み用にファイルを開けませんでした</string>
+    
+    <string name="error_escribiendo_archivo_detalle">ファイルの書き込みエラー: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">エクスポート中に予期しないエラーが発生しました: %1$s</string>
+
+
+
 </resources>

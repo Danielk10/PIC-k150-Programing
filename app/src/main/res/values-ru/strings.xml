@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Политика конфиденциальности</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Принять</string>
     <string name="cancelar">Отмена</string>
     <string name="conectado">Подключено</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Ошибка USB-подключения</string>
     <string name="error_inesperado_durante_la_co">Неожиданная ошибка во время подключения</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Операции</string>
     <string name="cargar_archivo_hex">Загрузить файл HEX</string>
     <string name="programar_pic">Программировать PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Ожидание операции...</string>
     <string name="esperando_seleccion">Ожидание выбора...</string>
     <string name="seleccionar_chip_pic">Выбрать чип PIC</string>
-    <!-- values-ru/strings.xml (Ruso) -->
+    
     <string name="gputils_termux_asm">GPUTILS в Termux ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Чтение памяти...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Предохранители установлены правильно</string>
+
+    
+    
+    <string name="chip_info_titulo">Техническая информация о чипе</string>
+    
+    <string name="propiedad">Свойство</string>
+    
+    <string name="valor">Значение</string>
+    
+    <string name="chip_info_profesional">Информация о чипе</string>
+    
+    
+    
+    <string name="exportar_config_hex">Экспортировать CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Экспортировать CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Экспортировать полный дамп (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Программа Все</string>
+    
+    <string name="programar_solo_rom">Программа только ROM</string>
+    
+    <string name="programar_solo_eeprom">Программа только EEPROM</string>
+    
+    <string name="programar_solo_config">Только программа CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Проверка удаления</string>
+    
+    <string name="chip_esta_borrado">Чип стерт (пусто)</string>
+    
+    <string name="chip_no_esta_borrado">Чип НЕ стерт</string>
+    
+    <string name="verificando_borrado">Проверка стирания...</string>
+    
+    <string name="resultado_verificacion_borrado">Результат проверки стирания</string>
+    
+    <string name="error_verificando_borrado">Ошибка проверки стирания</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Конфигурации предохранителей</string>
+    
+    <string name="chip_seleccionado">Выбрана микросхема</string>
+    
+    <string name="configuracion_de_fusibles">Конфигурация предохранителя</string>
+    
+    <string name="id_personalizado_hex">Пользовательский идентификатор (HEX)</string>
+    
+    <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байт)</string>
+    
+    <string name="hint_nombre_fusible">Имя (например: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Значение (например: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Журнал операций</string>
+    
+    <string name="restaurar_desde_bd">Восстановление из БД</string>
+    
+    <string name="restaurar_desde_hex">Восстановление из HEX</string>
+    
+    <string name="aplicar_fuses">Применение фьюзов</string>
+    
+    <string name="nombre_del_fusible">Имя фьюза</string>
+    
+    <string name="valor_ejemplo_on_off">Значение (пример: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Идентификатор пользователя в формате HEX. Используйте 4 байта (8 цифр) для PIC12/16 или 8 байтов (16 цифр) для PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Перезаписывает HEX-предохранители. Используйте техническое имя (например: WDT) и значение (например: OFF или 0x01).</string>
+    
+    <string name="ayuda_chip_info">Подробные технические данные, извлеченные из файла определения PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Выберите операцию</string>
+    
+    <string name="config_leida">Чтение конфигурации</string>
+
+    
+    <string name="publicidad_recomendada">Рекомендуемая реклама</string>
+    
+    <string name="lectura_completa">Полный текст</string>
+    
+    <string name="sin_chip">Без чипа</string>
+    
+    <string name="fusible_agregado">Добавлен предохранитель</string>
+    
+    <string name="fusibles_restaurados">Предохранители восстановлены</string>
+    
+    <string name="fusibles_aplicados">Предохранители установлены</string>
+    
+    <string name="procesamiento_hex">HEX Обработка</string>
+    
+    <string name="rom_ok_blank">ROM: OK (пусто)</string>
+    
+    <string name="rom_not_blank">ROM: НЕ ПУСТОЕ</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (пусто)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: НЕ ПУСТОЕ</string>
+
+    
+    
+    <string name="menu_ayuda">Справка</string>
+    
+    <string name="ayuda_icsp">Соединение ICSP</string>
+    
+    <string name="ayuda_fuses_label">Конфигурация предохранителей</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Испанский</string>
+    
+    <string name="idioma_ingles">Английский</string>
+    
+    <string name="idioma_label">Язык: %s</string>
+    
+    <string name="copiar_todo">📋 Копировать все</string>
+    
+    <string name="tutorial_copiado">Учебное пособие скопировано в буфер обмена</string>
+    
+    <string name="error_cargar_tutorial">Ошибка при загрузке учебного пособия</string>
+    
+    <string name="codigo_asm">📄 Код ASM</string>
+    
+    <string name="comando_label">💻 Команда</string>
+    
+    <string name="copiar_btn">Копировать</string>
+    
+    <string name="copiado_msg">Скопировано</string>
+    
+    <string name="error_abrir_link">Ошибка открытия ссылки</string>
+    
+    <string name="copiado_portapapeles">Скопировано в буфер обмена</string>
+    
+    <string name="error_generico_detalle">Ошибка: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Настроено</string>
+    
+    <string name="debe_procesar_hex_primero">Необходимо сначала обработать HEX-файл</string>
+
+    
+    <string name="error_exportador_no_inicializado">Экспортер не инициализирован</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Экспорт не ожидается</string>
+    
+    <string name="seleccion_carpeta_cancelada">Выбор папки отменен</string>
+    
+    <string name="error_carpeta_no_accesible">Невозможно получить доступ к выбранной папке</string>
+    
+    <string name="reemplazar_archivo_titulo">Заменить файл</string>
+    
+    <string name="reemplazar_archivo_mensaje">Файл \'%1$s\' уже существует. Вы хотите заменить его?</string>
+    
+    <string name="error_reemplazando_archivo">Невозможно заменить существующий файл</string>
+    
+    <string name="si">Да</string>
+    
+    <string name="no">Нет</string>
+    
+    <string name="archivo_guardado">Сохраненный файл: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Добавить предохранитель</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Добавить пользовательский предохранитель</string>
+    
+    <string name="completa_todos_los_campos">Заполните все поля</string>
+    
+    <string name="log_iniciado">Журнал началось...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Предохранители восстановлены из HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Учебное пособие по Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Учебное пособие по Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Код скопирован в буфер обмена</string>
+    
+    <string name="texto_copiado_portapapeles">Текст скопирован в буфер обмена</string>
+    
+    <string name="termino_no_encontrado">Термин не найден: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Нет данных для экспорта</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Нет допустимых данных для экспорта</string>
+    
+    <string name="error_convirtiendo_datos_hex">Ошибка преобразования шестнадцатеричных данных</string>
+    
+    <string name="error_nombre_archivo_vacio">Имя не может быть пустым</string>
+    
+    <string name="error_creando_archivo_salida">Не удалось создать выходной файл</string>
+    
+    <string name="error_abriendo_archivo_escritura">Не удалось открыть файл для записи</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Ошибка записи файла: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Непредвиденная ошибка экспорта: %1$s.</string>
+
+
+
 </resources>

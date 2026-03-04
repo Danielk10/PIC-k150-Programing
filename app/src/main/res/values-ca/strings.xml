@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Politiques de Privadesa</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Acceptar</string>
     <string name="cancelar">Cancel\u00b7lar</string>
     <string name="conectado">Connectat</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Error de connexió USB</string>
     <string name="error_inesperado_durante_la_co">Error inesperat durant la connexió</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operacions</string>
     <string name="cargar_archivo_hex">Carregar Fitxer HEX</string>
     <string name="programar_pic">Programar PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Esperant operació...</string>
     <string name="esperando_seleccion">Esperant selecció...</string>
     <string name="seleccionar_chip_pic">Seleccionar Xip PIC</string>
-    <!-- values-ca/strings.xml (Catalán) -->
-    <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
+    
+    <string name="gputils_termux_asm">GPUTILS a Termux Compilador ASM Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Llegint memòria...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicats correctament</string>
+
+    
+    
+    <string name="chip_info_titulo">Informació Tècnica del Xip</string>
+    
+    <string name="propiedad">Propietat</string>
+    
+    <string name="valor">Valor</string>
+    
+    <string name="chip_info_profesional">Informació del Xip</string>
+    
+    
+    
+    <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Exportar Bolcat Complet (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Programar Tot</string>
+    
+    <string name="programar_solo_rom">Programar només ROM</string>
+    
+    <string name="programar_solo_eeprom">Programar només EEPROM</string>
+    
+    <string name="programar_solo_config">Programar només CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Verificar Esborrat</string>
+    
+    <string name="chip_esta_borrado">El xip està esborrat (Blank)</string>
+    
+    <string name="chip_no_esta_borrado">El xip NO està esborrat</string>
+    
+    <string name="verificando_borrado">Verificant esborrat...</string>
+    
+    <string name="resultado_verificacion_borrado">Resultat de Verificació d\'Esborrat</string>
+    
+    <string name="error_verificando_borrado">Error verificant esborrat</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Configuracions de Fusibles</string>
+    
+    <string name="chip_seleccionado">Xip Seleccionat</string>
+    
+    <string name="configuracion_de_fusibles">Configuració de Fusibles</string>
+    
+    <string name="id_personalizado_hex">ID Personalitzat (HEX)</string>
+    
+    <string name="hint_id_personalizado">Exemple: 1A 2B 3C 4D (4 o 8 bytes)</string>
+    
+    <string name="hint_nombre_fusible">Nom (ex: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Valor (ex: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Log d\'operacions</string>
+    
+    <string name="restaurar_desde_bd">Restaurar des de BD</string>
+    
+    <string name="restaurar_desde_hex">Restaurar des de HEX</string>
+    
+    <string name="aplicar_fuses">Aplicar Fusos</string>
+    
+    <string name="nombre_del_fusible">Nom del fusible</string>
+    
+    <string name="valor_ejemplo_on_off">Valor (exemple: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">ID d\'usuari en format HEX. Utilitzeu 4 bytes (8 dígits) per a PIC12/16 o 8 bytes (16 dígits) per a PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Sobreescriu els fusibles de l\'HEX. Utilitzeu el nom tècnic (ex: WDT) i el valor (ex: OFF o 0x01).</string>
+    
+    <string name="ayuda_chip_info">Dades tècniques detallades extretes del fitxer de definició del PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Seleccionar Operació</string>
+    
+    <string name="config_leida">Configuració llegida</string>
+
+    
+    <string name="publicidad_recomendada">Publicitat recomanada</string>
+    
+    <string name="lectura_completa">Lectura completa</string>
+    
+    <string name="sin_chip">Sense xip</string>
+    
+    <string name="fusible_agregado">Fusible agregat</string>
+    
+    <string name="fusibles_restaurados">Fusibles restaurats</string>
+    
+    <string name="fusibles_aplicados">Fusibles aplicats</string>
+    
+    <string name="procesamiento_hex">Processament HEX</string>
+    
+    <string name="rom_ok_blank">ROM: OK (En blanc)</string>
+    
+    <string name="rom_not_blank">ROM: NO ESTÀ EN BLANC</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (En blanc)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NO ESTÀ EN BLANC</string>
+
+    
+    
+    <string name="menu_ayuda">Ajuda</string>
+    
+    <string name="ayuda_icsp">Connexió ICSP</string>
+    
+    <string name="ayuda_fuses_label">Configuració de Fusos</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Espanyol</string>
+    
+    <string name="idioma_ingles">English</string>
+    
+    <string name="idioma_label">Idioma: %s</string>
+    
+    <string name="copiar_todo">📋 Copiar Tot</string>
+    
+    <string name="tutorial_copiado">Tutorial copiat al porta-retalls</string>
+    
+    <string name="error_cargar_tutorial">Error en carregar tutorial</string>
+    
+    <string name="codigo_asm">📄 Codi ASM</string>
+    
+    <string name="comando_label">💻 Comando</string>
+    
+    <string name="copiar_btn">Copiar</string>
+    
+    <string name="copiado_msg">Copiat</string>
+    
+    <string name="error_abrir_link">Error en obrir link</string>
+    
+    <string name="copiado_portapapeles">Copiat al porta-retalls</string>
+    
+    <string name="error_generico_detalle">Error: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Configurats</string>
+    
+    <string name="debe_procesar_hex_primero">Heu de processar el fitxer HEX primer</string>
+
+    
+    <string name="error_exportador_no_inicializado">L\'exportador no està inicialitzat</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">No hi ha una exportació pendent</string>
+    
+    <string name="seleccion_carpeta_cancelada">Selecció de carpeta cancel·lada</string>
+    
+    <string name="error_carpeta_no_accesible">No s\'ha pogut accedir a la carpeta seleccionada</string>
+    
+    <string name="reemplazar_archivo_titulo">Reemplaçar fitxer</string>
+    
+    <string name="reemplazar_archivo_mensaje">El fitxer \'%1$s\' ja existeix. Voleu reemplaçar-lo?</string>
+    
+    <string name="error_reemplazando_archivo">No s\'ha pogut reemplaçar el fitxer existent</string>
+    
+    <string name="si">Sí</string>
+    
+    <string name="no">No</string>
+    
+    <string name="archivo_guardado">Arxiu desat: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Afegeix Fusible</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Afegeix Fusible Personalitzat</string>
+    
+    <string name="completa_todos_los_campos">Completa tots els camps</string>
+    
+    <string name="log_iniciado">Log iniciat...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Fusibles restaurats des de HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial a Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="codigo_copiado_portapapeles">Codi copiat al porta-retalls</string>
+    
+    <string name="texto_copiado_portapapeles">Text copiat al porta-retalls</string>
+    
+    <string name="termino_no_encontrado">Terme no trobat: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">No hi ha dades per exportar</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">No hi ha dades vàlides per exportar</string>
+    
+    <string name="error_convirtiendo_datos_hex">Error convertint dades hexadecimals</string>
+    
+    <string name="error_nombre_archivo_vacio">El nom no pot estar buit</string>
+    
+    <string name="error_creando_archivo_salida">No s\'ha pogut crear el fitxer de sortida</string>
+    
+    <string name="error_abriendo_archivo_escritura">No s\'ha pogut obrir el fitxer per a escriptura</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Error escrivint fitxer: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Error inesperat en exportar: %1$s</string>
+
+
+
 </resources>

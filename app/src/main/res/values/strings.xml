@@ -223,4 +223,40 @@
     <string name="copiado_msg">Copiado</string>
     <string name="error_abrir_link">Error al abrir link</string>
     <string name="copiado_portapapeles">Copiado al portapapeles</string>
+    <string name="error_generico_detalle">Error: %1$s</string>
+    <string name="fuses_configurados_marcado">✓ Configurados</string>
+    <string name="debe_procesar_hex_primero">Debe procesar el archivo HEX primero</string>
+
+    <string name="error_exportador_no_inicializado">El exportador no está inicializado</string>
+    <string name="error_no_hay_exportacion_pendiente">No hay una exportación pendiente</string>
+    <string name="seleccion_carpeta_cancelada">Selección de carpeta cancelada</string>
+    <string name="error_carpeta_no_accesible">No se pudo acceder a la carpeta seleccionada</string>
+    <string name="reemplazar_archivo_titulo">Reemplazar archivo</string>
+    <string name="reemplazar_archivo_mensaje">El archivo \'%1$s\' ya existe. ¿Desea reemplazarlo?</string>
+    <string name="error_reemplazando_archivo">No se pudo reemplazar el archivo existente</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="archivo_guardado">Archivo guardado: %1$s</string>
+
+    <string name="agregar_fusible_boton">➕ Agregar Fusible</string>
+    <string name="agregar_fusible_personalizado">➕ Agregar Fusible Personalizado</string>
+    <string name="completa_todos_los_campos">Completa todos los campos</string>
+    <string name="log_iniciado">Log iniciado...\n</string>
+    <string name="fusibles_restaurados_desde_hex">Fusibles restaurados desde HEX</string>
+
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial en Termux</string>
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
+    <string name="codigo_copiado_portapapeles">Código copiado al portapapeles</string>
+    <string name="texto_copiado_portapapeles">Texto copiado al portapapeles</string>
+    <string name="termino_no_encontrado">Término no encontrado: %1$s</string>
+
+    <string name="no_hay_datos_para_exportar_archivo">No hay datos para exportar</string>
+    <string name="no_hay_datos_validos_para_exportar">No hay datos válidos para exportar</string>
+    <string name="error_convirtiendo_datos_hex">Error convirtiendo datos hexadecimales</string>
+    <string name="error_nombre_archivo_vacio">El nombre no puede estar vacío</string>
+    <string name="error_creando_archivo_salida">No se pudo crear el archivo de salida</string>
+    <string name="error_abriendo_archivo_escritura">No se pudo abrir el archivo para escritura</string>
+    <string name="error_escribiendo_archivo_detalle">Error escribiendo archivo: %1$s</string>
+    <string name="error_inesperado_exportar_detalle">Error inesperado al exportar: %1$s</string>
+
 </resources>

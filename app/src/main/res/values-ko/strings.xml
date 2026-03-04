@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">개인 정보 보호 정책</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">수락</string>
     <string name="cancelar">취소</string>
     <string name="conectado">연결됨</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB 연결 오류</string>
     <string name="error_inesperado_durante_la_co">연결 중 예기치 않은 오류 발생</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">작업</string>
     <string name="cargar_archivo_hex">HEX 파일 로드</string>
     <string name="programar_pic">PIC 프로그래밍</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">작업 대기 중...</string>
     <string name="esperando_seleccion">선택 대기 중...</string>
     <string name="seleccionar_chip_pic">PIC 칩 선택</string>
-    <!-- values-ko/strings.xml (Coreano) -->
+    
     <string name="gputils_termux_asm">Termux의 GPUTILS ASM 컴파일러 Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,224 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">메모리 읽기...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">퓨즈가 올바르게 적용됨</string>
+
+    
+    
+    <string name="chip_info_titulo">칩 기술 정보</string>
+    
+    <string name="propiedad">속성</string>
+    
+    <string name="valor">값</string>
+    
+    <string name="chip_info_profesional">칩 정보</string>
+    
+    
+    
+    <string name="exportar_config_hex">CONFIG 내보내기(.hex)</string>
+    
+    <string name="exportar_config_bin">CONFIG 내보내기(.bin)</string>
+    
+    <string name="exportar_dump_completo">전체 덤프 내보내기(.hex)</string>
+
+    
+    
+    <string name="programar_todo">전체 프로그램</string>
+    
+    <string name="programar_solo_rom">ROM만 프로그램</string>
+    
+    <string name="programar_solo_eeprom">EEPROM만 프로그램</string>
+    
+    <string name="programar_solo_config">CONFIG만 프로그램</string>
+    
+    
+    
+    <string name="verificar_borrado">삭제 확인</string>
+    
+    <string name="chip_esta_borrado">칩이 지워졌습니다(공백)</string>
+    
+    <string name="chip_no_esta_borrado">칩이 지워지지 않았습니다</string>
+    
+    <string name="verificando_borrado">삭제 확인 중...</string>
+    
+    <string name="resultado_verificacion_borrado">지우기 확인 결과</string>
+    
+    <string name="error_verificando_borrado">삭제 확인 오류</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">퓨즈 구성</string>
+    
+    <string name="chip_seleccionado">선택한 칩</string>
+    
+    <string name="configuracion_de_fusibles">퓨즈 구성</string>
+    
+    <string name="id_personalizado_hex">사용자 정의 ID(HEX)</string>
+    
+    <string name="hint_id_personalizado">예: 1A 2B 3C 4D(4 또는 8바이트)</string>
+    
+    <string name="hint_nombre_fusible">이름(예: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">값(예: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">작업 로그</string>
+    
+    <string name="restaurar_desde_bd">DB에서 복원</string>
+    
+    <string name="restaurar_desde_hex">HEX에서 복원</string>
+    
+    <string name="aplicar_fuses">퓨즈 적용</string>
+    
+    <string name="nombre_del_fusible">퓨즈 이름</string>
+    
+    <string name="valor_ejemplo_on_off">값(예: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">HEX 형식의 사용자 ID. PIC12/16에는 4바이트(8자리), PIC18에는 8바이트(16자리)를 사용합니다.</string>
+    
+    <string name="ayuda_fuses_personalizados">HEX 퓨즈를 무시합니다. 기술명(예: WDT)과 값(예: OFF 또는 0x01)을 사용하세요.</string>
+    
+    <string name="ayuda_chip_info">PIC 정의 파일에서 추출된 자세한 기술 데이터입니다.</string>
+
+    
+    <string name="seleccionar_operacion">작업 선택</string>
+    
+    <string name="config_leida">설정 읽기</string>
+
+    
+    <string name="publicidad_recomendada">추천 광고</string>
+    
+    <string name="lectura_completa">읽기 완료</string>
+    
+    <string name="sin_chip">칩 없음</string>
+    
+    <string name="fusible_agregado">퓨즈 추가</string>
+    
+    <string name="fusibles_restaurados">퓨즈 재설정</string>
+    
+    <string name="fusibles_aplicados">퓨즈 적용</string>
+    
+    <string name="procesamiento_hex">HEX 처리</string>
+    
+    <string name="rom_ok_blank">ROM: OK(공백)</string>
+    
+    <string name="rom_not_blank">ROM: 비어 있지 않음</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK(공백)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: 비어 있지 않음 흰색</string>
+
+    
+    
+    <string name="menu_ayuda">도움말</string>
+    
+    <string name="ayuda_icsp">ICSP 연결</string>
+    
+    <string name="ayuda_fuses_label">퓨즈 구성</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">스페인어</string>
+    
+    <string name="idioma_ingles">영어</string>
+    
+    <string name="idioma_label">언어: %s</string>
+    
+    <string name="copiar_todo">📋 모두 복사</string>
+    
+    <string name="tutorial_copiado">튜토리얼이 클립보드에 복사됨</string>
+    
+    <string name="error_cargar_tutorial">튜토리얼 로드 오류</string>
+    
+    <string name="codigo_asm">📄 ASM 코드</string>
+    
+    <string name="comando_label">💻 명령</string>
+    
+    <string name="copiar_btn">복사</string>
+    
+    <string name="copiado_msg">복사됨</string>
+    
+    <string name="error_abrir_link">링크 열기 오류</string>
+    
+    <string name="copiado_portapapeles">클립보드에 복사됨</string>
+    
+    <string name="error_generico_detalle">오류: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ 구성됨</string>
+    
+    <string name="debe_procesar_hex_primero">먼저 HEX 파일을 처리해야 합니다.</string>
+
+    
+    <string name="error_exportador_no_inicializado">내보내기가 초기화되지 않았습니다.</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">보류 중인 내보내기가 없습니다.</string>
+    
+    <string name="seleccion_carpeta_cancelada">폴더 선택이 취소되었습니다.</string>
+    
+    <string name="error_carpeta_no_accesible">선택한 폴더에 접근할 수 없습니다.</string>
+    
+    <string name="reemplazar_archivo_titulo">파일 교체</string>
+    
+    <string name="reemplazar_archivo_mensaje">\'%1$s\' 파일이 이미 존재합니다. 교체하시겠습니까?</string>
+    
+    <string name="error_reemplazando_archivo">기존 파일을 교체할 수 없습니다.</string>
+    
+    <string name="si">예</string>
+    
+    <string name="no">아니요</string>
+    
+    <string name="archivo_guardado">저장된 파일: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ 퓨즈 추가</string>
+    
+    <string name="agregar_fusible_personalizado">➕ 사용자 정의 퓨즈 추가</string>
+    
+    <string name="completa_todos_los_campos">모든 필드 완료</string>
+    
+    <string name="log_iniciado">로그 시작됨...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">HEX에서 복원된 퓨즈</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux 자습서</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux 자습서</string>
+    
+    <string name="codigo_copiado_portapapeles">클립보드에 복사된 코드</string>
+    
+    <string name="texto_copiado_portapapeles">클립보드에 복사된 텍스트</string>
+    
+    <string name="termino_no_encontrado">용어를 찾을 수 없음: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">내보낼 데이터 없음</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">내보낼 유효한 데이터가 없습니다.</string>
+    
+    <string name="error_convirtiendo_datos_hex">16진수 데이터 변환 중 오류가 발생했습니다.</string>
+    
+    <string name="error_nombre_archivo_vacio">이름은 비워둘 수 없습니다.</string>
+    
+    <string name="error_creando_archivo_salida">출력 파일을 생성할 수 없습니다.</string>
+    
+    <string name="error_abriendo_archivo_escritura">쓰기용 파일을 열 수 없습니다.</string>
+    
+    <string name="error_escribiendo_archivo_detalle">파일 쓰기 오류: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">내보내는 동안 예기치 않은 오류: %1$s</string>
+
+
+
 </resources>

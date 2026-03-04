@@ -104,7 +104,7 @@ public class FuseConfigPopup {
         }
     }
 
-    /** Crea y configura el dialogo - DISENO SIMPLIFICADO */
+    /** Crea y configura el diálogo principal de fusibles. */
     private void createDialog() {
         if (!isActivityValid()) {
             android.util.Log.w("FuseConfigPopup", "createDialog: Activity no valida");
@@ -114,11 +114,11 @@ public class FuseConfigPopup {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        // Layout principal (VERTICAL)
+        // Layout principal en orientación vertical.
         LinearLayout mainLayout = new LinearLayout(context);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
 
-        // Estilo Premium: Fondo oscuro y bordes redondeados
+        // Estilo visual del diálogo: fondo oscuro y bordes redondeados.
         android.graphics.drawable.GradientDrawable shape = new android.graphics.drawable.GradientDrawable();
         shape.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
         shape.setCornerRadius(dpToPx(16));
@@ -127,11 +127,11 @@ public class FuseConfigPopup {
         mainLayout.setBackground(shape);
         mainLayout.setPadding(dpToPx(16), dpToPx(16), dpToPx(16), dpToPx(16));
 
-        // ========== TITULO (FIJO ARRIBA) ==========
+        // Título fijo en la parte superior.
         TextView titleView = createTitle();
         mainLayout.addView(titleView);
 
-        // ========== SCROLL PRINCIPAL (WEIGHT=1) - TODO FLUYE AQUI ==========
+        // Contenedor principal desplazable para el contenido del diálogo.
         ScrollView mainScrollView = new ScrollView(context);
         LinearLayout.LayoutParams scrollParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         scrollParams.weight = 1;
@@ -141,7 +141,7 @@ public class FuseConfigPopup {
         scrollContent.setOrientation(LinearLayout.VERTICAL);
         scrollContent.setPadding(0, dpToPx(8), 0, dpToPx(8));
 
-        // Informacion del chip
+        // Información del chip seleccionado.
         scrollContent.addView(createChipInfoSection());
 
         // Editor de fusibles (SIN ScrollView interno, solo crece/encoge)
@@ -159,10 +159,10 @@ public class FuseConfigPopup {
         mainScrollView.addView(scrollContent);
         mainLayout.addView(mainScrollView);
 
-        // ========== BOTONES (FIJOS ABAJO) ==========
+        // Botonera fija en la parte inferior.
         mainLayout.addView(createButtonBar());
 
-        // Configurar dialogo
+        // Configurar diálogo.
         dialog.setContentView(mainLayout);
         Window window = dialog.getWindow();
         if (window != null) {
@@ -291,7 +291,7 @@ public class FuseConfigPopup {
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT // SE AJUSTA SEGUN CONTENIDO
+                ViewGroup.LayoutParams.WRAP_CONTENT
         );
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
@@ -335,7 +335,7 @@ public class FuseConfigPopup {
 
         LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT // SE AJUSTA SEGUN CONTENIDO
+                ViewGroup.LayoutParams.WRAP_CONTENT
         );
         fuseContainer.setLayoutParams(containerParams);
 
@@ -346,13 +346,7 @@ public class FuseConfigPopup {
     /** Crea el boton para agregar fusibles personalizados */
     private Button createAddCustomFuseButton() {
         btnAddCustomFuse = new Button(context);
-        btnAddCustomFuse.setText("➕ " + context.getString(com.diamon.pic.R.string.hint_nombre_fusible) + " "
-                + context.getString(com.diamon.pic.R.string.valor)); // O usar un string dedicado
-        // Mejor añadir un string dedicado:
-        // btnAddCustomFuse.setText("➕ " +
-        // context.getString(com.diamon.pic.R.string.agregar_fusible_personalizado));
-        // Pero como no lo añadí a strings.xml, usaré una combinación razonable
-        btnAddCustomFuse.setText("➕ " + "Agregar Fusible");
+        btnAddCustomFuse.setText(context.getString(com.diamon.pic.R.string.agregar_fusible_boton));
         btnAddCustomFuse.setTextColor(Color.WHITE);
         btnAddCustomFuse.setBackgroundColor(Color.parseColor("#FF9800"));
         btnAddCustomFuse.setAllCaps(false);
@@ -415,7 +409,7 @@ public class FuseConfigPopup {
                             Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusible_agregado),
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(context, "Completa todos los campos", Toast.LENGTH_SHORT)
+                            Toast.makeText(context, context.getString(com.diamon.pic.R.string.completa_todos_los_campos), Toast.LENGTH_SHORT)
                                     .show();
                         }
                     }
@@ -485,11 +479,7 @@ public class FuseConfigPopup {
         return section;
     }
 
-    /**
-     * SIMPLIFICADO: Crea la seccion de log SIN ScrollView Solo muestra ultimos 5
-     * mensajes (trunca
-     * automaticamente)
-     */
+    /** Crea la sección de log de operaciones con vista resumida. */
     private LinearLayout createLogSection() {
         LinearLayout section = new LinearLayout(context);
         section.setOrientation(LinearLayout.VERTICAL);
@@ -517,14 +507,14 @@ public class FuseConfigPopup {
         logTextView.setTextSize(10);
         logTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
         logTextView.setTextColor(Color.parseColor("#AAAAAA"));
-        logTextView.setText("Log iniciado...\n");
+        logTextView.setText(context.getString(com.diamon.pic.R.string.log_iniciado));
         logTextView.setPadding(8, 8, 8, 8);
         logTextView.setBackgroundColor(Color.parseColor("#1A1A2E"));
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         logTextView.setLayoutParams(textParams);
-        logTextView.setMaxLines(5); // Solo muestra maximo 5 lineas
+        logTextView.setMaxLines(5);
         logTextView.setEllipsize(android.text.TextUtils.TruncateAt.END);
 
         section.addView(logTextView);
@@ -818,7 +808,7 @@ public class FuseConfigPopup {
             currentIDData = new byte[] { 0 };
 
             logMessage("✓ Restaurado desde chip");
-            Toast.makeText(context, "Fusibles restaurados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -861,7 +851,7 @@ public class FuseConfigPopup {
             }
 
             logMessage("✓ Restaurado desde HEX");
-            Toast.makeText(context, "Fusibles restaurados desde HEX", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados_desde_hex), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -912,7 +902,7 @@ public class FuseConfigPopup {
                 listener.onFusesApplied(encodedFuses, idData, fuseConfig);
             }
 
-            Toast.makeText(context, "Fusibles aplicados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_aplicados), Toast.LENGTH_SHORT).show();
             dismissWithAnimation(); // Usar animación al cerrar
 
         } catch (Exception e) {

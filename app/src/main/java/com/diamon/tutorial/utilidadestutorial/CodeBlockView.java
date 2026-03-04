@@ -122,7 +122,7 @@ public class CodeBlockView {
                         Context.CLIPBOARD_SERVICE);
         android.content.ClipData clip = android.content.ClipData.newPlainText("code", code);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, "Código copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(com.diamon.pic.R.string.codigo_copiado_portapapeles), Toast.LENGTH_SHORT).show();
     }
 
     /**
