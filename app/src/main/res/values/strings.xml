@@ -26,7 +26,7 @@
     <string name="memoria_vacia">Memoria vacia</string>
     <string name="error_borrando_memoria">Error borrando memoria</string>
     <string name="memoria_borrada_exitosamente">Memoria borrada exitosamente</string>
-    <string name="memoria_leida_exitosamente">Memoria leida exitosamente</string>
+    <string name="memoria_leida_exitosamente">Lectura Completa</string>
     <string name="seleccione_un_chip">Seleccione un chip</string>
     <string name="seleccione_un_chip_y_cargue_un">Seleccione un chip y cargue un archivo HEX</string>
     <string name="error_programando_pic">Error programando PIC</string>
@@ -97,7 +97,7 @@
     <string name="esperando_seleccion">Esperando seleccion...</string>
     <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
     <!-- values/strings.xml (Español genérico) -->
-    <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
+    <string name="gputils_termux_asm">Compilar GPUUTILS en Termux esamblador ASM</string>
     
     <!-- Nuevos strings para popup de memoria mejorado -->
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
@@ -133,7 +133,7 @@
     <string name="error_procesando_hex">Error al procesar el archivo HEX</string>
 
     <!-- Strings para tutoriales -->
-    <string name="sdcc_termux_tutorial">Tutorial SDCC en Termux (C)</string>
+    <string name="sdcc_termux_tutorial">Compilar SDCC en Termux compilador C</string>
     <string name="error_abriendo_tutorial">No se pudo abrir el tutorial</string>
 
     <!-- Strings para exportación HEX -->
