@@ -111,7 +111,7 @@ public class HexExportManager {
      * Exporta ROM, EEPROM y Config en un único dump HEX.
      */
     public void exportFullDumpAsHex(byte[] romData, byte[] eepromData, byte[] configData,
-            int eepromAddress, int configAddress, String suggestedName) {
+            int eepromAddress, int coreBits, String suggestedName) {
 
         StringBuilder fullHex = new StringBuilder();
 
@@ -120,7 +120,7 @@ public class HexExportManager {
         }
 
         if (configData != null && configData.length > 0) {
-            fullHex.append(convertSegmentToIntelHex(configData, configAddress));
+            fullHex.append(convertConfigSegmentToIntelHex(configData, coreBits));
         }
 
         if (eepromData != null && eepromData.length > 0) {
@@ -195,7 +195,7 @@ public class HexExportManager {
      * Lanza el explorador de archivos del sistema con ACTION_CREATE_DOCUMENT.
      * El usuario puede cambiar el nombre sugerido y elegir la carpeta destino.
      */
-    private void lanzarSelectorArchivo(String baseName, String extension, byte[] binData, String txtData) {
+    public void lanzarSelectorArchivo(String baseName, String extension, byte[] binData, String txtData) {
         if (crearDocumentoLauncher == null) {
             notifyError(context.getString(com.diamon.pic.R.string.error_exportador_no_inicializado));
             return;
@@ -343,6 +343,54 @@ public class HexExportManager {
             }
             return swapped;
         }
+    }
+
+    /**
+     * Convierte el bloque de configuración de 26 bytes del K150
+     * a registros Intel HEX en sus direcciones correctas.
+     * Estructura K150: [0-1] chip_id, [2-9] user_id (4 words), [10-23] fuses (7
+     * words), [24-25] calibrate
+     */
+    public static String convertConfigSegmentToIntelHex(byte[] configBytes, int coreBits) {
+        if (configBytes == null || configBytes.length < 26) {
+            return "";
+        }
+
+        StringBuilder hex = new StringBuilder();
+
+        if (coreBits == 14 || coreBits == 12) {
+            // User ID (4 words) -> a partir de 0x4000
+            byte[] userIds = new byte[8];
+            System.arraycopy(configBytes, 2, userIds, 0, 8);
+            // K150 devuelve Big Endian [MSB, LSB], para el HEX necesitamos Little Endian
+            // [LSB, MSB]
+            userIds = formatForHexExport(userIds, coreBits, false);
+            hex.append(buildDataRecord(0x4000, userIds, 0, 8));
+
+            // Fuses (típicamente 1 word en 0x2007 -> 0x400E para 14-bit)
+            // Extraer solo la primera palabra de fuse (que corresponde a 0x2007)
+            byte[] fuse0 = new byte[2];
+            System.arraycopy(configBytes, 10, fuse0, 0, 2);
+            fuse0 = formatForHexExport(fuse0, coreBits, false);
+            hex.append(buildDataRecord(0x400E, fuse0, 0, 2));
+
+        } else if (coreBits == 16) {
+            // User IDs PIC18 -> 0x200000 (8 bytes)
+            hex.append(buildExtendedAddressRecord(0x0020));
+            byte[] userIds = new byte[8];
+            System.arraycopy(configBytes, 2, userIds, 0, 8);
+            userIds = formatForHexExport(userIds, coreBits, false);
+            hex.append(buildDataRecord(0x0000, userIds, 0, 8));
+
+            // Config words PIC18 -> 0x300000 (14 bytes)
+            hex.append(buildExtendedAddressRecord(0x0030));
+            byte[] fuses = new byte[14];
+            System.arraycopy(configBytes, 10, fuses, 0, 14);
+            fuses = formatForHexExport(fuses, coreBits, false);
+            hex.append(buildDataRecord(0x0000, fuses, 0, 14));
+        }
+
+        return hex.toString();
     }
 
     /**

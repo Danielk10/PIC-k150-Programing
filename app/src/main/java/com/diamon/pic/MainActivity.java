@@ -1388,11 +1388,12 @@ public class MainActivity extends AppCompatActivity
                         hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
 
                     } else if (selected.equals(getString(R.string.exportar_config_hex))) {
-                        int configAddr = obtenerDireccionConfigParaExportacion(coreBits);
                         byte[] configBytes = stringHexToByteArray(lastReadConfigData);
                         if (configBytes != null && configBytes.length > 0) {
-                            configBytes = HexExportManager.formatForHexExport(configBytes, coreBits, false);
-                            hexExportManager.exportAsHexWithAddress(configBytes, configAddr, chipName + "_CONFIG");
+                            String configHexStr = com.diamon.managers.HexExportManager
+                                    .convertConfigSegmentToIntelHex(configBytes, coreBits);
+                            configHexStr += ":00000001FF\r\n"; // EOF
+                            hexExportManager.lanzarSelectorArchivo(chipName + "_CONFIG", ".hex", null, configHexStr);
                         }
                     } else if (selected.equals(getString(R.string.exportar_config_bin))) {
                         byte[] configBytes = stringHexToByteArray(lastReadConfigData);
@@ -1406,13 +1407,11 @@ public class MainActivity extends AppCompatActivity
                         byte[] configBytes = stringHexToByteArray(lastReadConfigData);
 
                         int eepromAddr = obtenerDireccionEepromParaExportacion(coreBits);
-                        int configAddr = obtenerDireccionConfigParaExportacion(coreBits);
 
                         romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
                         eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
-                        configBytes = HexExportManager.formatForHexExport(configBytes, coreBits, false);
 
-                        hexExportManager.exportFullDumpAsHex(romBytes, eepromBytes, configBytes, eepromAddr, configAddr,
+                        hexExportManager.exportFullDumpAsHex(romBytes, eepromBytes, configBytes, eepromAddr, coreBits,
                                 chipName + "_FULL");
                     }
                 })
