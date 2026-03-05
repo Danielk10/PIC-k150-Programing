@@ -99,34 +99,34 @@
     <string name="gputils_termux_asm">GPUTILS en Termux Compilador ASM Android</string>
 
     <!-- Strings para fusibles y verificacion -->
-    <string name="configurar_fusibles">Configure Fuses</string>
-    <string name="selecciona_chip_primero">Select a chip first</string>
-    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    <string name="fuses_configurados">Configured</string>
-    <string name="fuses_no_configurados">Not configured</string>
-    <string name="estado_fusibles">Fuse Status:</string>
-    <string name="modo_icsp">ICSP Mode</string>
-    <string name="verificando_memoria">Verifying memory...</string>
-    <string name="verificacion_rom_ok">ROM verified successfully</string>
-    <string name="verificacion_rom_fallo">ROM verification failed</string>
-    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
-    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    <string name="verificacion_completa">Verification complete</string>
-    <string name="fuses_decodificados">Decoded fuses</string>
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    <string name="error_procesando_hex">Error processing HEX</string>
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    <string name="exportar_memoria">Export Memory</string>
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportacion_exitosa">File exported successfully</string>
-    <string name="error_exportando">Error exporting</string>
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    <string name="chip_info_json">Chip Info (JSON)</string>
+    <string name="configurar_fusibles">Configurar Fusibles</string>
+    <string name="selecciona_chip_primero">Selecciona un chip primero</string>
+    <string name="no_hay_fusibles_para_chip">No hay datos de fusibles para este chip</string>
+    <string name="fuses_configurados">Configurados</string>
+    <string name="fuses_no_configurados">No configurados</string>
+    <string name="estado_fusibles">Estado de Fusibles:</string>
+    <string name="modo_icsp">Modo ICSP</string>
+    <string name="verificando_memoria">Verificando memoria…</string>
+    <string name="verificacion_rom_ok">ROM verificada correctamente</string>
+    <string name="verificacion_rom_fallo">Fallo en la verificación de ROM</string>
+    <string name="verificacion_eeprom_ok">EEPROM verificada correctamente</string>
+    <string name="verificacion_eeprom_fallo">Fallo en la verificación de EEPROM</string>
+    <string name="rom_posible_locked">Posiblemente bloqueada (Locked) para lectura</string>
+    <string name="verificacion_completa">Verificación completa</string>
+    <string name="fuses_decodificados">Fuses decodificados</string>
+    <string name="hex_procesado_correctamente">Archivo HEX procesado correctamente</string>
+    <string name="error_procesando_hex">Error al procesar el archivo HEX</string>
+    <string name="sdcc_termux_tutorial">Tutorial SDCC en Termux (C)</string>
+    <string name="error_abriendo_tutorial">No se pudo abrir el tutorial</string>
+    <string name="exportar_memoria">Exportar Memoria</string>
+    <string name="exportar_rom_hex">Exportar ROM (.hex)</string>
+    <string name="exportar_eeprom_hex">Exportar EEPROM (.hex)</string>
+    <string name="exportar_rom_bin">Exportar ROM (.bin)</string>
+    <string name="exportar_eeprom_bin">Exportar EEPROM (.bin)</string>
+    <string name="exportacion_exitosa">¡Exportación Exitosa!</string>
+    <string name="error_exportando">Error durante la exportación</string>
+    <string name="no_hay_datos_para_exportar">No hay datos en memoria para exportar. Lea el chip primero.</string>
+    <string name="chip_info_json">Ver JSON del Chip (Debug)</string>
 
     <!-- Cadenas agregadas para mantener paridad con values/strings.xml -->
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
@@ -345,6 +345,9 @@
     
     <string name="error_inesperado_exportar_detalle">Error inesperado al exportar: %1$s</string>
 
-
+    <!-- Etiquetas para popup de lectura de memoria -->
+    <string name="memoria_rom">Memoria ROM</string>
+    <string name="memoria_eeprom">Memoria EEPROM</string>
 
 </resources>
+

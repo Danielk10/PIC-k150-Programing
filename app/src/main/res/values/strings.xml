@@ -259,4 +259,8 @@
     <string name="error_escribiendo_archivo_detalle">Error escribiendo archivo: %1$s</string>
     <string name="error_inesperado_exportar_detalle">Error inesperado al exportar: %1$s</string>
 
+    <!-- Etiquetas para popup de lectura de memoria -->
+    <string name="memoria_rom">Memoria ROM</string>
+    <string name="memoria_eeprom">Memoria EEPROM</string>
+
 </resources>

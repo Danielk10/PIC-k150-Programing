@@ -255,7 +255,7 @@ public class MemoryDisplayManager {
         contentContainer.setLayoutParams(contentParams);
 
         romLabel = new TextView(context);
-        romLabel.setText("▶ " + context.getString(R.string.palabras_rom));
+        romLabel.setText("▶ " + context.getString(R.string.memoria_rom));
         romLabel.setTextColor(COLOR_DATA_LOADED);
         romLabel.setTextSize(14);
         romLabel.setTypeface(null, Typeface.BOLD);
@@ -285,7 +285,7 @@ public class MemoryDisplayManager {
         contentContainer.addView(romScrollView);
 
         eepromLabel = new TextView(context);
-        eepromLabel.setText("▶ " + context.getString(R.string.eeprom));
+        eepromLabel.setText("▶ " + context.getString(R.string.memoria_eeprom));
         eepromLabel.setTextColor(COLOR_DATA_LOADED);
         eepromLabel.setTextSize(14);
         eepromLabel.setTypeface(null, Typeface.BOLD);

@@ -1,13 +1,12 @@
 package com.diamon.managers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
-import android.widget.EditText;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.documentfile.provider.DocumentFile;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,11 +16,14 @@ import java.nio.charset.StandardCharsets;
  * Gestor de exportación de archivos HEX/BIN al almacenamiento del dispositivo.
  *
  * <p>
- * Permite exportar datos leídos de la memoria del PIC (ROM, EEPROM, Config)
- * como archivos Intel HEX o binarios al directorio que el usuario elija.
+ * Utiliza el Storage Access Framework (SAF) de Android con
+ * ACTION_CREATE_DOCUMENT
+ * para abrir el explorador de archivos del sistema, permitiendo al usuario
+ * elegir
+ * la ubicación y modificar el nombre del archivo antes de guardar.
  *
  * @author Danielk10
- * @version 1.0
+ * @version 2.0
  * @since 2025
  */
 public class HexExportManager {
@@ -30,18 +32,18 @@ public class HexExportManager {
     private final AppCompatActivity activity;
     private ExportListener exportListener;
     private PendingExportData pendingExportData;
-    private ActivityResultLauncher<Uri> selectorCarpetaLauncher;
+    private ActivityResultLauncher<Intent> crearDocumentoLauncher;
 
-    /** Estructura temporal para completar la exportación después de elegir carpeta. */
+    /**
+     * Estructura temporal para completar la exportación después de elegir archivo.
+     */
     private static class PendingExportData {
-        final String baseName;
-        final String extension;
+        final String fileName;
         final byte[] binaryData;
         final String textData;
 
-        PendingExportData(String baseName, String extension, byte[] binaryData, String textData) {
-            this.baseName = baseName;
-            this.extension = extension;
+        PendingExportData(String fileName, byte[] binaryData, String textData) {
+            this.fileName = fileName;
             this.binaryData = binaryData;
             this.textData = textData;
         }
@@ -60,12 +62,21 @@ public class HexExportManager {
     }
 
     /**
-     * Inicializa el gestor.
+     * Inicializa el gestor registrando el launcher para ACTION_CREATE_DOCUMENT.
      */
     public void initialize() {
-        selectorCarpetaLauncher = activity.registerForActivityResult(
-                new ActivityResultContracts.OpenDocumentTree(),
-                this::procesarCarpetaSeleccionada);
+        crearDocumentoLauncher = activity.registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == android.app.Activity.RESULT_OK
+                            && result.getData() != null) {
+                        Uri fileUri = result.getData().getData();
+                        procesarArchivoCreado(fileUri);
+                    } else {
+                        // Usuario canceló
+                        pendingExportData = null;
+                    }
+                });
     }
 
     public void setExportListener(ExportListener listener) {
@@ -83,7 +94,7 @@ public class HexExportManager {
     }
 
     /**
-     * Exporta datos de memoria como archivo Intel HEX iniciando en una direccion
+     * Exporta datos de memoria como archivo Intel HEX iniciando en una dirección
      * específica.
      */
     public void exportAsHexWithAddress(byte[] data, int startAddress, String suggestedName) {
@@ -93,7 +104,7 @@ public class HexExportManager {
         }
 
         String hexText = convertToIntelHexWithAddress(data, startAddress);
-        saveWithDialog(suggestedName, ".hex", null, hexText);
+        lanzarSelectorArchivo(suggestedName, ".hex", null, hexText);
     }
 
     /**
@@ -119,7 +130,7 @@ public class HexExportManager {
         // Registro de fin de archivo (EOF).
         fullHex.append(":00000001FF\r\n");
 
-        saveWithDialog(suggestedName, ".hex", null, fullHex.toString());
+        lanzarSelectorArchivo(suggestedName, ".hex", null, fullHex.toString());
     }
 
     /**
@@ -134,7 +145,7 @@ public class HexExportManager {
             return;
         }
 
-        saveWithDialog(suggestedName, ".bin", data, null);
+        lanzarSelectorArchivo(suggestedName, ".bin", data, null);
     }
 
     /**
@@ -180,115 +191,57 @@ public class HexExportManager {
         exportAsBinary(data, suggestedName);
     }
 
-    private void saveWithDialog(String defaultName, String extension, final byte[] binData, final String txtData) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
-        builder.setTitle(context.getString(com.diamon.pic.R.string.exportar_memoria) + " (" + extension + ")");
-
-        final EditText input = new EditText(context);
-        input.setText(defaultName);
-        input.setSingleLine(true);
-        // padding
-        int padding = (int) (16 * context.getResources().getDisplayMetrics().density);
-        input.setPadding(padding, padding, padding, padding);
-        builder.setView(input);
-
-        builder.setPositiveButton(context.getString(com.diamon.pic.R.string.aceptar), (dialog, which) -> {
-            String baseName = input.getText().toString().trim();
-            if (baseName.isEmpty()) {
-                notifyError(context.getString(com.diamon.pic.R.string.error_nombre_archivo_vacio));
-                return;
-            }
-            pendingExportData = new PendingExportData(baseName, extension, binData, txtData);
-            abrirSelectorDeCarpeta();
-        });
-        builder.setNegativeButton(context.getString(com.diamon.pic.R.string.cancelar), null);
-        builder.show();
-    }
-
-    /** Abre el selector de carpeta del sistema para exportación. */
-    private void abrirSelectorDeCarpeta() {
-        if (selectorCarpetaLauncher == null) {
+    /**
+     * Lanza el explorador de archivos del sistema con ACTION_CREATE_DOCUMENT.
+     * El usuario puede cambiar el nombre sugerido y elegir la carpeta destino.
+     */
+    private void lanzarSelectorArchivo(String baseName, String extension, byte[] binData, String txtData) {
+        if (crearDocumentoLauncher == null) {
             notifyError(context.getString(com.diamon.pic.R.string.error_exportador_no_inicializado));
-            pendingExportData = null;
             return;
         }
-        selectorCarpetaLauncher.launch(null);
+
+        // Construir el nombre completo con extensión
+        String fullName = baseName;
+        if (!fullName.toLowerCase().endsWith(extension.toLowerCase())) {
+            fullName += extension;
+        }
+
+        // Guardar datos pendientes
+        pendingExportData = new PendingExportData(fullName, binData, txtData);
+
+        // Determinar MIME type correcto para evitar extensión doble
+        String mimeType;
+        if (extension.equalsIgnoreCase(".hex")) {
+            mimeType = "application/octet-stream";
+        } else {
+            mimeType = "application/octet-stream";
+        }
+
+        // Crear intent para ACTION_CREATE_DOCUMENT
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType(mimeType);
+        intent.putExtra(Intent.EXTRA_TITLE, fullName);
+
+        crearDocumentoLauncher.launch(intent);
     }
 
-    /** Procesa la carpeta elegida por el usuario y completa la exportación pendiente. */
-    private void procesarCarpetaSeleccionada(Uri treeUri) {
+    /** Procesa el URI del archivo creado por el usuario y escribe los datos. */
+    private void procesarArchivoCreado(Uri fileUri) {
         if (pendingExportData == null) {
             notifyError(context.getString(com.diamon.pic.R.string.error_no_hay_exportacion_pendiente));
             return;
         }
 
-        if (treeUri == null) {
+        if (fileUri == null) {
             notifyError(context.getString(com.diamon.pic.R.string.seleccion_carpeta_cancelada));
             pendingExportData = null;
             return;
         }
 
-        try {
-            context.getContentResolver().takePersistableUriPermission(
-                    treeUri,
-                    android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            | android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        } catch (SecurityException ignored) {
-            // Algunos proveedores no permiten persistir permisos; continuamos con permiso temporal.
-        }
-
-        DocumentFile carpeta = DocumentFile.fromTreeUri(context, treeUri);
-        if (carpeta == null || !carpeta.canWrite()) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_carpeta_no_accesible));
-            pendingExportData = null;
-            return;
-        }
-
-        String fileName = pendingExportData.baseName;
-        if (!fileName.toLowerCase().endsWith(pendingExportData.extension)) {
-            fileName += pendingExportData.extension;
-        }
-
-        DocumentFile archivoExistente = carpeta.findFile(fileName);
-        if (archivoExistente != null) {
-            final String finalFileName = fileName;
-            new android.app.AlertDialog.Builder(activity)
-                    .setTitle(context.getString(com.diamon.pic.R.string.reemplazar_archivo_titulo))
-                    .setMessage(context.getString(com.diamon.pic.R.string.reemplazar_archivo_mensaje, finalFileName))
-                    .setPositiveButton(context.getString(com.diamon.pic.R.string.si), (dialog, which) -> {
-                        if (!archivoExistente.delete()) {
-                            notifyError(context.getString(com.diamon.pic.R.string.error_reemplazando_archivo));
-                            pendingExportData = null;
-                            return;
-                        }
-                        crearYEscribirArchivo(carpeta, finalFileName);
-                    })
-                    .setNegativeButton(context.getString(com.diamon.pic.R.string.no), (dialog, which) -> pendingExportData = null)
-                    .show();
-            return;
-        }
-
-        crearYEscribirArchivo(carpeta, fileName);
-    }
-
-    private void crearYEscribirArchivo(DocumentFile carpeta, String fileName) {
-        if (pendingExportData == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_no_hay_exportacion_pendiente));
-            return;
-        }
-
-        String mimeType = pendingExportData.extension.equalsIgnoreCase(".hex")
-                ? "text/plain"
-                : "application/octet-stream";
-
-        DocumentFile nuevoArchivo = carpeta.createFile(mimeType, fileName);
-        if (nuevoArchivo == null || nuevoArchivo.getUri() == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_creando_archivo_salida));
-            pendingExportData = null;
-            return;
-        }
-
-        writeToUri(nuevoArchivo.getUri(), pendingExportData.binaryData, pendingExportData.textData, fileName);
+        writeToUri(fileUri, pendingExportData.binaryData, pendingExportData.textData,
+                pendingExportData.fileName);
         pendingExportData = null;
     }
 
@@ -307,8 +260,6 @@ public class HexExportManager {
             }
             outputStream.flush();
             outputStream.close();
-
-            // No se requiere MediaScanner al usar SAF.
 
             if (exportListener != null) {
                 exportListener.onExportSuccess(fileName);

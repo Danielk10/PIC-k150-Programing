@@ -314,6 +314,8 @@
     
     <string name="error_inesperado_exportar_detalle">Unexpected error while exporting: %1$s</string>
 
-
+    <!-- Memory popup labels -->
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
 
 </resources>

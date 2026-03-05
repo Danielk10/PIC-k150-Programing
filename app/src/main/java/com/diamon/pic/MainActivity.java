@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupListeners() {
-        
+
         setupFileManagerListeners();
         setupButtonListeners();
         setupPersistentLayoutListener(); // Registramos el vigilante de tamaño desde el inicio
@@ -1524,7 +1524,54 @@ public class MainActivity extends AppCompatActivity
     }
 
     private String formatearEtiquetaChip(String clave) {
-        return clave.replace("_", " ").toUpperCase(java.util.Locale.ROOT);
+        switch (clave) {
+            case "chip_name":
+                return "Nombre";
+            case "chip_id":
+                return "Chip ID";
+            case "include":
+                return "Include";
+            case "core_type":
+                return "Tipo de Núcleo";
+            case "core_bits":
+                return "Bits de Núcleo";
+            case "rom_size":
+                return "Tamaño ROM";
+            case "eeprom_size":
+                return "Tamaño EEPROM";
+            case "has_eeprom":
+                return "Tiene EEPROM";
+            case "flash_chip":
+                return "Flash Chip";
+            case "erase_mode":
+                return "Modo Borrado";
+            case "power_sequence":
+                return "Secuencia Energía";
+            case "program_delay":
+                return "Retardo Programación";
+            case "program_tries":
+                return "Intentos Programación";
+            case "over_program":
+                return "Sobre-Programación";
+            case "fuse_blank":
+                return "Fuse en Blanco";
+            case "cp_warn":
+                return "Aviso CP";
+            case "cal_word":
+                return "Palabra Calibración";
+            case "band_gap":
+                return "Band Gap";
+            case "icsp_only":
+                return "Solo ICSP";
+            case "pin1_location":
+                return "Ubicación Pin 1";
+            case "socket_image":
+                return "Imagen Socket";
+            case "fuses":
+                return "Fusibles";
+            default:
+                return clave.replace("_", " ").toUpperCase(java.util.Locale.ROOT);
+        }
     }
 
     private String formatearValorChip(Object valor) {
@@ -1577,18 +1624,30 @@ public class MainActivity extends AppCompatActivity
         android.widget.TableRow row = new android.widget.TableRow(this);
         row.setPadding(0, 8, 0, 8);
 
+        android.widget.TableRow.LayoutParams keyParams = new android.widget.TableRow.LayoutParams(
+                android.widget.TableRow.LayoutParams.WRAP_CONTENT,
+                android.widget.TableRow.LayoutParams.WRAP_CONTENT);
+        keyParams.column = 0;
+
         android.widget.TextView tvKey = new android.widget.TextView(this);
         tvKey.setText(key);
         tvKey.setTextColor(Color.parseColor("#FF6600"));
         tvKey.setTextSize(14);
-        tvKey.setPadding(8, 0, 16, 0);
+        tvKey.setPadding(8, 4, 16, 4);
         tvKey.setTypeface(null, Typeface.BOLD);
+        tvKey.setLayoutParams(keyParams);
+
+        android.widget.TableRow.LayoutParams valueParams = new android.widget.TableRow.LayoutParams(
+                0,
+                android.widget.TableRow.LayoutParams.WRAP_CONTENT, 1f);
+        valueParams.column = 1;
 
         android.widget.TextView tvValue = new android.widget.TextView(this);
         tvValue.setText(value);
         tvValue.setTextColor(Color.WHITE);
         tvValue.setTextSize(14);
-        tvValue.setPadding(8, 0, 8, 0);
+        tvValue.setPadding(8, 4, 8, 4);
+        tvValue.setLayoutParams(valueParams);
 
         row.addView(tvKey);
         row.addView(tvValue);
