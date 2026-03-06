@@ -347,4 +347,9 @@
 
 
 
+
+    <string name="datos_de_memoria">मेमोरी सफलतापूर्वक पढ़ी गई</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

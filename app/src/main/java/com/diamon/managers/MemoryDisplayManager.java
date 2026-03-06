@@ -201,7 +201,7 @@ public class MemoryDisplayManager {
         container.setClipToPadding(true);
 
         TextView title = new TextView(context);
-        title.setText(context.getString(R.string.memoria_leida_exitosamente));
+        title.setText(context.getString(R.string.datos_de_memoria));
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);

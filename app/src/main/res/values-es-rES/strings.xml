@@ -349,5 +349,8 @@
     <string name="memoria_rom">Memoria ROM</string>
     <string name="memoria_eeprom">Memoria EEPROM</string>
 
+
+    <string name="datos_de_memoria">Datos de Memoria</string>
+
 </resources>
 

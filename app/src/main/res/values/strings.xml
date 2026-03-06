@@ -191,6 +191,7 @@
     <!-- Hardcoded strings localized -->
     <string name="publicidad_recomendada">Publicidad recomendada</string>
     <string name="lectura_completa">Lectura Completa</string>
+    <string name="datos_de_memoria">Datos de Memoria</string>
     <string name="sin_chip">Sin chip</string>
     <string name="fusible_agregado">Fusible agregado</string>
     <string name="fusibles_restaurados">Fusibles restaurados</string>

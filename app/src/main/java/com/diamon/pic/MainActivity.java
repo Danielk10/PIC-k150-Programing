@@ -1664,38 +1664,38 @@ public class MainActivity extends AppCompatActivity
 
         new Thread(() -> {
             try {
-                com.diamon.nucleo.Protocolo protocolo = usbManager.getProtocolo();
-                if (protocolo == null)
+                PicProgrammingManager.ResultadoVerificacionBorrado resultado = programmingManager
+                        .verificarBorradoCompleto(currentChip);
+
+                if (resultado.error != null && !resultado.error.isEmpty()) {
+                    runOnUiThread(() -> processStatusTextView
+                            .setText(getString(R.string.error_verificando_borrado) + ": " + resultado.error));
                     return;
-
-                boolean romBlank = protocolo.verificarSiEstaBorradaLaMemoriaROMDelPic();
-                boolean eepromBlank = true;
-                if (currentChip.isTamanoValidoDeEEPROM()) {
-                    eepromBlank = protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
                 }
-
-                final boolean finalRomBlank = romBlank;
-                final boolean finalEepromBlank = eepromBlank;
 
                 runOnUiThread(() -> {
                     StringBuilder sb = new StringBuilder();
                     sb.append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
                     sb.append("ROM: ").append(
-                            finalRomBlank ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
+                            resultado.romEnBlanco ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
                             .append("\n");
+
                     if (currentChip.isTamanoValidoDeEEPROM()) {
-                        sb.append("EEPROM: ").append(finalEepromBlank ? getString(R.string.eeprom_ok_blank)
-                                : getString(R.string.eeprom_not_blank));
+                        sb.append("EEPROM: ")
+                                .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
+                                        : getString(R.string.eeprom_not_blank))
+                                .append("\n");
                     }
+
+                    sb.append("Método: ").append(resultado.metodoUtilizado);
                     processStatusTextView.setText(sb.toString());
 
-                    if (finalRomBlank && finalEepromBlank) {
+                    if (resultado.chipEnBlanco()) {
                         Toast.makeText(MainActivity.this, R.string.chip_esta_borrado, Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(MainActivity.this, R.string.chip_no_esta_borrado, Toast.LENGTH_SHORT).show();
                     }
                 });
-
             } catch (Exception e) {
                 runOnUiThread(() -> processStatusTextView
                         .setText(getString(R.string.error_verificando_borrado) + ": " + e.getMessage()));

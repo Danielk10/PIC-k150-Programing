@@ -347,4 +347,9 @@
 
 
 
+
+    <string name="datos_de_memoria">Mälu loeti edukalt</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>
