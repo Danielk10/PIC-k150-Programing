@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Mga Patakaran sa Privacy</string>
+
+    
+    <string name="aceptar">Tanggapin</string>
+    <string name="cancelar">Kanselahin</string>
+    <string name="conectado">Nakakonekta</string>
+    <string name="desconectado">Nakadiskonekta</string>
+    <string name="grabando_pic">Pinoprogram ang PIC...</string>
+    <string name="espere_grabacion_pic">Maghintay lamang. Huwag idiskonekta ang device.</string>
+    <string name="grabacion_completada_pic">Kumpleto na ang Programming</string>
+    <string name="grabacion_correcta_pic">Matagumpay na naisulat ang firmware sa PIC.</string>
+    <string name="fallo_grabacion_pic">Nabigo ang Programming</string>
+    <string name="proceso_no_completado">Hindi nakumpleto ang proseso. Suriin ang koneksyon.</string>
+    <string name="protocolo_del_programador">Protocol ng Programmer</string>
+    <string name="modelo_del_programador">Modelo ng Programmer</string>
+    <string name="modelo_programador">Modelo ng Programmer</string>
+    <string name="protocolo">Protocol</string>
+    <string name="politica_de_privacidad">Patakaran sa Privacy</string>
+    <string name="no_se_detecto_pic_en_socket">Hindi nakita ang PIC sa socket</string>
+    <string name="pic_detectado_en_socket">Nakita ang PIC sa socket</string>
+    <string name="memoria_contiene_datos">May laman ang memory</string>
+    <string name="memoria_vacia">Walang laman ang memory</string>
+    <string name="error_borrando_memoria">Error sa pagbura ng memory</string>
+    <string name="memoria_borrada_exitosamente">Matagumpay na nabura ang memory</string>
+    <string name="memoria_leida_exitosamente">Matagumpay na nabasa ang memory</string>
+    <string name="seleccione_un_chip">Pumili ng chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Pumili ng chip at mag-load ng HEX file</string>
+    <string name="error_programando_pic">Error sa pag-program ng PIC</string>
+    <string name="pic_programado_exitosamente">Matagumpay na naprogram ang PIC</string>
+    <string name="iniciando_programacion">Sinisimulan ang programming...</string>
+    <string name="error_cargando_archivo">Error sa pag-load ng file</string>
+    <string name="archivo_hex_cargado_exitosamen">Matagumpay na na-load ang HEX file</string>
+    <string name="archivo_cargado">Na-load ang file</string>
+    <string name="error_inicializando_chip">Error sa pag-initialize ng chip</string>
+    <string name="conectado_al_programador">Nakakonekta sa programmer</string>
+    <string name="error_inicializando_base_de_da">Error sa pag-initialize ng chip database</string>
+    <string name="no_hay_modelos_de_chips_dispon">Walang available na mga chip model</string>
+    <string name="modelo_de_chip_invalido">Hindi valid ang chip model</string>
+    <string name="chip_no_encontrado_en_base_de_">Hindi nakita ang chip sa database</string>
+    <string name="error_procesando_chip">Error sa pagproseso ng chip</string>
+    <string name="no_hay_chip_seleccionado">Walang napiling chip</string>
+    <string name="modelo">modelo</string>
+    <string name="palabras_rom">ROM words</string>
+    <string name="tamano_rom">Laki ng ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Hindi available</string>
+    <string name="tipo_de_nucleo">Uri ng Core</string>
+    <string name="error_obteniendo_datos_del_chi">Error sa pagkuha ng chip data</string>
+    <string name="modo">Mode</string>
+    <string name="icsp_solamente">ICSP lang</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">Hindi na-initialize ang FileManager</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Hindi makuha ang pangalan ng file</string>
+    <string name="seleccione_un_archivo_binario_">Pumili ng valid na binary file (.hex o .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Error sa pagbukas ng napiling file</string>
+    <string name="el_archivo_seleccionado_esta_v">Walang laman ang napiling file</string>
+    <string name="error_leyendo_el_archivo">Error sa pagbasa ng file</string>
+    <string name="error_inesperado_leyendo_el_ar">Hindi inaasahang error sa pagbasa ng file</string>
+    <string name="protocolo_no_inicializado">Hindi na-initialize ang protocol</string>
+    <string name="datos_invalidos_para_programac">Hindi valid ang data para sa programming</string>
+    <string name="borrando_memorias">Binubura ang memory...</string>
+    <string name="error_borrando_memorias">Error sa pagbura ng memory</string>
+    <string name="programando_memoria_rom">Pinoprogram ang ROM memory...</string>
+    <string name="error_programando_rom">Error sa pag-program ng ROM</string>
+    <string name="programando_memoria_eeprom">Pinoprogram ang EEPROM memory...</string>
+    <string name="error_programando_eeprom">Error sa pag-program ng EEPROM</string>
+    <string name="programando_fuses_id">Pinoprogram ang Fuses ID...</string>
+    <string name="error_programando_fuses">Error sa pag-program ng Fuses</string>
+    <string name="programando_fuses_18f">Pinoprogram ang 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Error sa pag-program ng 18F Fuses</string>
+    <string name="programacion_completada">Kumpleto na ang programming</string>
+    <string name="error_inesperado">Hindi inaasahang error</string>
+    <string name="error_leyendo_memoria_rom">Error sa pagbasa ng ROM memory</string>
+    <string name="error_leyendo_memoria_eeprom">Error sa pagbasa ng EEPROM memory</string>
+    <string name="error_verificando_memoria">Error sa pag-verify ng memory</string>
+    <string name="error_detectando_chip">Error sa pag-detect ng chip</string>
+    <string name="driver_usb_no_disponible">Hindi available ang USB driver</string>
+    <string name="dispositivo_sin_puertos_usb_di">Walang available na USB ports ang device</string>
+    <string name="error_inicializando_protocolo_">Error sa pag-initialize ng communication protocol</string>
+    <string name="error_de_conexion_usb">Error sa USB connection</string>
+    <string name="error_inesperado_durante_la_co">Hindi inaasahang error habang kumokonekta</string>
+
+    
+    <string name="operaciones">Mga Operasyon</string>
+    <string name="cargar_archivo_hex">Mag-load ng HEX File</string>
+    <string name="programar_pic">I-program ang PIC</string>
+    <string name="leer_memoria">Basahin ang Memory</string>
+    <string name="verificar">I-verify</string>
+    <string name="borrar_memoria">Burahin ang Memory</string>
+    <string name="detectar_pic">Detect ang PIC</string>
+    <string name="esperando_operacion">Naghihintay ng operasyon...</string>
+    <string name="esperando_seleccion">Naghihintay ng pagpili...</string>
+    <string name="seleccionar_chip_pic">Pumili ng PIC Chip</string>
+    
+    <string name="gputils_termux_asm">GPUTILS sa Termux ASM Compiler Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Binabasa ang memorya...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Tamang inilapat na mga piyus</string>
+
+    
+    
+    <string name="chip_info_titulo">Impormasyong Teknikal ng Chip</string>
+    
+    <string name="propiedad">Ari-arian</string>
+    
+    <string name="valor">Worth</string>
+    
+    <string name="chip_info_profesional">Impormasyon ng Chip</string>
+    
+    
+    
+    <string name="exportar_config_hex">I-export ang CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">I-export ang CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">I-export ang Buong Dump (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Iskedyul ang Lahat</string>
+    
+    <string name="programar_solo_rom">Program ROM lamang</string>
+    
+    <string name="programar_solo_eeprom">Programang EEPROM lamang</string>
+    
+    <string name="programar_solo_config">Programa lang ang CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">I-verify ang Pagtanggal</string>
+    
+    <string name="chip_esta_borrado">Ang chip ay nabura (Blanko)</string>
+    
+    <string name="chip_no_esta_borrado">HINDI nabubura ang chip</string>
+    
+    <string name="verificando_borrado">Bine-verify ang pagtanggal...</string>
+    
+    <string name="resultado_verificacion_borrado">Resulta ng Pagpapatunay ng Pagtanggal</string>
+    
+    <string name="error_verificando_borrado">Error sa pag-verify ng pagtanggal</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Mga Configuration ng Fuse</string>
+    
+    <string name="chip_seleccionado">Napiling Chip</string>
+    
+    <string name="configuracion_de_fusibles">Configuration ng piyus</string>
+    
+    <string name="id_personalizado_hex">Custom ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Halimbawa: 1A 2B 3C 4D (4 o 8 byte)</string>
+    
+    <string name="hint_nombre_fusible">Pangalan (hal: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Halaga (hal: NAKA-ON, NAKA-OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Log ng Operasyon</string>
+    
+    <string name="restaurar_desde_bd">Ibalik mula sa DB</string>
+    
+    <string name="restaurar_desde_hex">I-restore mula sa HEX</string>
+    
+    <string name="aplicar_fuses">Ilapat ang mga piyus</string>
+    
+    <string name="nombre_del_fusible">Pangalan ng fuse</string>
+    
+    <string name="valor_ejemplo_on_off">Halaga (halimbawa: NAKA-ON, NAKA-OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">User ID sa format na HEX. Gumamit ng 4 byte (8 digit) para sa PIC12/16 o 8 byte (16 digit) para sa PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Ino-override ang HEX fuse. Gamitin ang teknikal na pangalan (hal: WDT) at ang halaga (hal: OFF o 0x01).</string>
+    
+    <string name="ayuda_chip_info">Detalyadong teknikal na data na kinuha mula sa PIC definition file.</string>
+
+    
+    <string name="seleccionar_operacion">Piliin ang Operation</string>
+    
+    <string name="config_leida">Binasa ang configuration</string>
+
+    
+    <string name="publicidad_recomendada">Inirerekomenda ang advertising</string>
+    
+    <string name="lectura_completa">Ganap na Pagbasa</string>
+    
+    <string name="sin_chip">walang chip</string>
+    
+    <string name="fusible_agregado">Nagdagdag ng fuse</string>
+    
+    <string name="fusibles_restaurados">Ibinalik ang mga piyus</string>
+    
+    <string name="fusibles_aplicados">Inilapat na piyus</string>
+    
+    <string name="procesamiento_hex">Pagproseso ng HEX</string>
+    
+    <string name="rom_ok_blank">ROM: OK (Blanko)</string>
+    
+    <string name="rom_not_blank">ROM: HINDI BLANKO</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (Blanko)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: HINDI BLANKO</string>
+
+    
+    
+    <string name="menu_ayuda">Tulong</string>
+    
+    <string name="ayuda_icsp">Koneksyon sa ICSP</string>
+    
+    <string name="ayuda_fuses_label">Configuration ng piyus</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Espanyol</string>
+    
+    <string name="idioma_ingles">Ingles</string>
+    
+    <string name="idioma_label">Wika: %s</string>
+    
+    <string name="copiar_todo">📋 Kopyahin Lahat</string>
+    
+    <string name="tutorial_copiado">Nakopya ang tutorial sa clipboard</string>
+    
+    <string name="error_cargar_tutorial">Error sa paglo-load ng tutorial</string>
+    
+    <string name="codigo_asm">📄 ASM code</string>
+    
+    <string name="comando_label">💻 Utos</string>
+    
+    <string name="copiar_btn">Kopyahin</string>
+    
+    <string name="copiado_msg">Kinopya</string>
+    
+    <string name="error_abrir_link">Error sa pagbubukas ng link</string>
+    
+    <string name="copiado_portapapeles">Kinopya sa clipboard</string>
+    
+    <string name="error_generico_detalle">Error: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Na-configure</string>
+    
+    <string name="debe_procesar_hex_primero">Dapat mo munang iproseso ang HEX file</string>
+
+    
+    <string name="error_exportador_no_inicializado">Ang exporter ay hindi nasimulan</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Walang nakabinbing pag-export</string>
+    
+    <string name="seleccion_carpeta_cancelada">Kinansela ang pagpili ng folder</string>
+    
+    <string name="error_carpeta_no_accesible">Hindi ma-access ang napiling folder</string>
+    
+    <string name="reemplazar_archivo_titulo">Palitan ang file</string>
+    
+    <string name="reemplazar_archivo_mensaje">Umiiral na ang file na \'%1$s\'. Gusto mo bang palitan ito?</string>
+    
+    <string name="error_reemplazando_archivo">Hindi mapalitan ang kasalukuyang file</string>
+    
+    <string name="si">Oo</string>
+    
+    <string name="no">Hindi</string>
+    
+    <string name="archivo_guardado">Naka-save na file: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Magdagdag ng Fuse</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Magdagdag ng Custom Fuse</string>
+    
+    <string name="completa_todos_los_campos">Kumpletuhin ang lahat ng mga patlang</string>
+    
+    <string name="log_iniciado">Nagsimula ang log...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Ibinalik ang mga piyus mula sa HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial sa Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Tutorial sa Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Nakopya ang code sa clipboard</string>
+    
+    <string name="texto_copiado_portapapeles">Nakopya ang teksto sa clipboard</string>
+    
+    <string name="termino_no_encontrado">Hindi nahanap ang termino: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Walang data na ie-export</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Walang wastong data na ie-export</string>
+    
+    <string name="error_convirtiendo_datos_hex">Error sa pag-convert ng hexadecimal data</string>
+    
+    <string name="error_nombre_archivo_vacio">Hindi maaaring walang laman ang pangalan</string>
+    
+    <string name="error_creando_archivo_salida">Hindi makalikha ng output file</string>
+    
+    <string name="error_abriendo_archivo_escritura">Hindi mabuksan ang file para sa pagsusulat</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Error sa pagsulat ng file: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Hindi inaasahang error habang nag-e-export: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Matagumpay na nabasa ang memory</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

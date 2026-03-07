@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Privaatheidsbeleide</string>
+
+    
+    <string name="aceptar">Aanvaar</string>
+    <string name="cancelar">Kanselleer</string>
+    <string name="conectado">Gekoppel</string>
+    <string name="desconectado">Ontkoppel</string>
+    <string name="grabando_pic">Skryf na PIC...</string>
+    <string name="espere_grabacion_pic">Wag asseblief. Moenie die toestel ontkoppel nie.</string>
+    <string name="grabacion_completada_pic">Skryf voltooi</string>
+    <string name="grabacion_correcta_pic">Die firmware is suksesvol na die PIC geskryf.</string>
+    <string name="fallo_grabacion_pic">Skryf misluk</string>
+    <string name="proceso_no_completado">Kon nie die proses voltooi nie. Gaan die verbinding na.</string>
+    <string name="protocolo_del_programador">Programmeerderprotokol</string>
+    <string name="modelo_del_programador">Programmeerder Gemaak</string>
+    <string name="modelo_programador">Programmeerder Gemaak</string>
+    <string name="protocolo">Protokol</string>
+    <string name="politica_de_privacidad">Privaatheidsbeleid</string>
+    <string name="no_se_detecto_pic_en_socket">Geen PIC in sok opgespoor nie</string>
+    <string name="pic_detectado_en_socket">PIC in sok opgespoor</string>
+    <string name="memoria_contiene_datos">Geheue bevat data</string>
+    <string name="memoria_vacia">Geheue leeg</string>
+    <string name="error_borrando_memoria">Fout tydens uitvee van geheue</string>
+    <string name="memoria_borrada_exitosamente">Geheue suksesvol uitgevee</string>
+    <string name="memoria_leida_exitosamente">Geheue suksesvol gelees</string>
+    <string name="seleccione_un_chip">Kies \'n skyfie</string>
+    <string name="seleccione_un_chip_y_cargue_un">Kies \'n skyfie en laai \'n HEX-lêer</string>
+    <string name="error_programando_pic">Fout tydens programmering van PIC</string>
+    <string name="pic_programado_exitosamente">PIC suksesvol geprogrammeer</string>
+    <string name="iniciando_programacion">Begin programmering...</string>
+    <string name="error_cargando_archivo">Fout tydens laai van lêer</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-lêer suksesvol gelaai</string>
+    <string name="archivo_cargado">Lêer gelaai</string>
+    <string name="error_inicializando_chip">Fout tydens initialisering van skyfie</string>
+    <string name="conectado_al_programador">Gekoppel aan programmeerder</string>
+    <string name="error_inicializando_base_de_da">Fout tydens initialisering van skyfiedatabasis</string>
+    <string name="no_hay_modelos_de_chips_dispon">Geen skyfiemodelle beskikbaar nie</string>
+    <string name="modelo_de_chip_invalido">Ongeldige skyfiemodel</string>
+    <string name="chip_no_encontrado_en_base_de_">Skyfie nie in databasis gevind nie</string>
+    <string name="error_procesando_chip">Fout tydens verwerking van skyfie</string>
+    <string name="no_hay_chip_seleccionado">Geen skyfie gekies nie</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">ROM Woorde</string>
+    <string name="tamano_rom">ROM Grootte</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Nie beskikbaar nie</string>
+    <string name="tipo_de_nucleo">Kern Tipe</string>
+    <string name="error_obteniendo_datos_del_chi">Fout tydens verkryging van skyfiedata</string>
+    <string name="modo">Modus</string>
+    <string name="icsp_solamente">Slegs ICSP</string>
+    <string name="pin_1">Pen 1</string>
+    <string name="filemanager_no_inicializado">FileManager nie geïnisialiseer nie</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Kon nie lêernaam kry nie</string>
+    <string name="seleccione_un_archivo_binario_">Kies \'n geldige binêre lêer (.hex of .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Fout tydens oopmaak van geselekteerde lêer</string>
+    <string name="el_archivo_seleccionado_esta_v">Die geselekteerde lêer is leeg</string>
+    <string name="error_leyendo_el_archivo">Fout tydens lees van lêer</string>
+    <string name="error_inesperado_leyendo_el_ar">Onverwagte fout tydens lees van lêer</string>
+    <string name="protocolo_no_inicializado">Protokol nie geïnisialiseer nie</string>
+    <string name="datos_invalidos_para_programac">Ongeldige data vir programmering</string>
+    <string name="borrando_memorias">Vee geheue uit...</string>
+    <string name="error_borrando_memorias">Fout tydens uitvee van geheue</string>
+    <string name="programando_memoria_rom">Programmeer ROM-geheue...</string>
+    <string name="error_programando_rom">Fout tydens programmering van ROM</string>
+    <string name="programando_memoria_eeprom">Programmeer EEPROM-geheue...</string>
+    <string name="error_programando_eeprom">Fout tydens programmering van EEPROM</string>
+    <string name="programando_fuses_id">Programmeer Fuses ID...</string>
+    <string name="error_programando_fuses">Fout tydens programmering van Fuses</string>
+    <string name="programando_fuses_18f">Programmeer Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Fout tydens programmering van Fuses 18F</string>
+    <string name="programacion_completada">Programmering voltooi</string>
+    <string name="error_inesperado">Onverwagte fout</string>
+    <string name="error_leyendo_memoria_rom">Fout tydens lees van ROM-geheue</string>
+    <string name="error_leyendo_memoria_eeprom">Fout tydens lees van EEPROM-geheue</string>
+    <string name="error_verificando_memoria">Fout tydens verifiëring van geheue</string>
+    <string name="error_detectando_chip">Fout tydens opsporing van skyfie</string>
+    <string name="driver_usb_no_disponible">USB-bestuurder nie beskikbaar nie</string>
+    <string name="dispositivo_sin_puertos_usb_di">Toestel het geen beskikbare USB-poorte nie</string>
+    <string name="error_inicializando_protocolo_">Fout tydens initialisering van kommunikasieprotokol</string>
+    <string name="error_de_conexion_usb">USB-verbindingsfout</string>
+    <string name="error_inesperado_durante_la_co">Onverwagte fout tydens verbinding</string>
+
+    
+    <string name="operaciones">Bewerkings</string>
+    <string name="cargar_archivo_hex">Laai HEX-lêer</string>
+    <string name="programar_pic">Programmeer PIC</string>
+    <string name="leer_memoria">Lees Geheue</string>
+    <string name="verificar">Verifieer</string>
+    <string name="borrar_memoria">Vee Geheue uit</string>
+    <string name="detectar_pic">Bespeur PIC</string>
+    <string name="esperando_operacion">Wag vir bewerking...</string>
+    <string name="esperando_seleccion">Wag vir keuse...</string>
+    <string name="seleccionar_chip_pic">Kies PIC-skyfie</string>
+    
+    <string name="gputils_termux_asm">GPUTILS in Termux ASM Compiler Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Lees tans geheue...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Korrek aangewende versmeltings</string>
+
+    
+    
+    <string name="chip_info_titulo">Chip Tegniese Inligting</string>
+    
+    <string name="propiedad">Eiendom</string>
+    
+    <string name="valor">Die moeite werd</string>
+    
+    <string name="chip_info_profesional">Chip inligting</string>
+    
+    
+    
+    <string name="exportar_config_hex">Voer CONFIG (.hex) uit</string>
+    
+    <string name="exportar_config_bin">Voer CONFIG (.bin) uit</string>
+    
+    <string name="exportar_dump_completo">Voer volledige storting uit (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Skeduleer alles</string>
+    
+    <string name="programar_solo_rom">Program slegs ROM</string>
+    
+    <string name="programar_solo_eeprom">Program slegs EEPROM</string>
+    
+    <string name="programar_solo_config">Program slegs CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Verifieer uitvee</string>
+    
+    <string name="chip_esta_borrado">Die skyfie is uitgevee (leeg)</string>
+    
+    <string name="chip_no_esta_borrado">Die skyfie word NIE uitgevee nie</string>
+    
+    <string name="verificando_borrado">Verifieer tans uitvee …</string>
+    
+    <string name="resultado_verificacion_borrado">Uitvee verifikasie resultaat</string>
+    
+    <string name="error_verificando_borrado">Kon nie uitvee verifieer nie</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Sit konfigurasies</string>
+    
+    <string name="chip_seleccionado">Geselekteerde chip</string>
+    
+    <string name="configuracion_de_fusibles">Sekering konfigurasie</string>
+    
+    <string name="id_personalizado_hex">Gepasmaakte ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Voorbeeld: 1A 2B 3C 4D (4 of 8 grepe)</string>
+    
+    <string name="hint_nombre_fusible">Naam (bv: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Waarde (byvoorbeeld: AAN, AF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Bedryfslogboek</string>
+    
+    <string name="restaurar_desde_bd">Herstel vanaf DB</string>
+    
+    <string name="restaurar_desde_hex">Herstel vanaf HEX</string>
+    
+    <string name="aplicar_fuses">Sit sekerings aan</string>
+    
+    <string name="nombre_del_fusible">Sit naam</string>
+    
+    <string name="valor_ejemplo_on_off">Waarde (voorbeeld: AAN, AF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Gebruikers-ID in HEX-formaat. Gebruik 4 grepe (8 syfers) vir PIC12/16 of 8 grepe (16 syfers) vir PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Ignoreer die HEX-versekerings. Gebruik die tegniese naam (bv: WDT) en die waarde (bv: OFF of 0x01).</string>
+    
+    <string name="ayuda_chip_info">Gedetailleerde tegniese data onttrek uit die PIC-definisielêer.</string>
+
+    
+    <string name="seleccionar_operacion">Kies Operasie</string>
+    
+    <string name="config_leida">Konfigurasie gelees</string>
+
+    
+    <string name="publicidad_recomendada">Aanbevole advertensies</string>
+    
+    <string name="lectura_completa">Voltooi lees</string>
+    
+    <string name="sin_chip">sonder chip</string>
+    
+    <string name="fusible_agregado">Bygevoeg lont</string>
+    
+    <string name="fusibles_restaurados">Herstel lont</string>
+    
+    <string name="fusibles_aplicados">Versekerings toegepas</string>
+    
+    <string name="procesamiento_hex">HEX verwerking</string>
+    
+    <string name="rom_ok_blank">ROM: OK (leeg)</string>
+    
+    <string name="rom_not_blank">ROM: NIE BLANK NIE</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (leeg)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NIE BLANK NIE</string>
+
+    
+    
+    <string name="menu_ayuda">Hulp</string>
+    
+    <string name="ayuda_icsp">ICSP-verbinding</string>
+    
+    <string name="ayuda_fuses_label">Sekering konfigurasie</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Spaans</string>
+    
+    <string name="idioma_ingles">Engels</string>
+    
+    <string name="idioma_label">Taal: %s</string>
+    
+    <string name="copiar_todo">📋 Kopieer alles</string>
+    
+    <string name="tutorial_copiado">Tutoriaal na knipbord gekopieer</string>
+    
+    <string name="error_cargar_tutorial">Kon nie tutoriaal laai nie</string>
+    
+    <string name="codigo_asm">📄 ASM-kode</string>
+    
+    <string name="comando_label">💻 Bevel</string>
+    
+    <string name="copiar_btn">Kopieer</string>
+    
+    <string name="copiado_msg">Gekopieer</string>
+    
+    <string name="error_abrir_link">Kon nie skakel oopmaak nie</string>
+    
+    <string name="copiado_portapapeles">Gekopieer na knipbord</string>
+    
+    <string name="error_generico_detalle">Fout: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Gekonfigureer</string>
+    
+    <string name="debe_procesar_hex_primero">Jy moet eers die HEX-lêer verwerk</string>
+
+    
+    <string name="error_exportador_no_inicializado">Uitvoerder is nie geïnisialiseer nie</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Daar is geen hangende uitvoer nie</string>
+    
+    <string name="seleccion_carpeta_cancelada">Vouerkeuse gekanselleer</string>
+    
+    <string name="error_carpeta_no_accesible">Die geselekteerde vouer kon nie verkry word nie</string>
+    
+    <string name="reemplazar_archivo_titulo">Vervang lêer</string>
+    
+    <string name="reemplazar_archivo_mensaje">Die lêer \'%1$s\' bestaan ​​reeds. Wil jy dit vervang?</string>
+    
+    <string name="error_reemplazando_archivo">Kon nie bestaande lêer vervang nie</string>
+    
+    <string name="si">Ja</string>
+    
+    <string name="no">Nee</string>
+    
+    <string name="archivo_guardado">Gestoorde lêer: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Voeg lont by</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Voeg pasgemaakte lont by</string>
+    
+    <string name="completa_todos_los_campos">Voltooi alle velde</string>
+    
+    <string name="log_iniciado">Log het begin...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Herstel sekerings van HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux-tutoriaal</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux-tutoriaal</string>
+    
+    <string name="codigo_copiado_portapapeles">Kode na knipbord gekopieer</string>
+    
+    <string name="texto_copiado_portapapeles">Teks is na knipbord gekopieer</string>
+    
+    <string name="termino_no_encontrado">Term nie gevind nie: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Daar is geen data om uit te voer nie</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Daar is geen geldige data om uit te voer nie</string>
+    
+    <string name="error_convirtiendo_datos_hex">Kon nie heksadesimale data omskakel nie</string>
+    
+    <string name="error_nombre_archivo_vacio">Die naam kan nie leeg wees nie</string>
+    
+    <string name="error_creando_archivo_salida">Kon nie uitvoerlêer skep nie</string>
+    
+    <string name="error_abriendo_archivo_escritura">Kon nie lêer oopmaak vir skryf nie</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Kon nie lêer skryf nie: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Onverwagte fout tydens uitvoer: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Geheue suksesvol gelees</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

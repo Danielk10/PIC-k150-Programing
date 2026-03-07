@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Политика конфиденциальности</string>
+
+    
+    <string name="aceptar">Принять</string>
+    <string name="cancelar">Отмена</string>
+    <string name="conectado">Подключено</string>
+    <string name="desconectado">Отключено</string>
+    <string name="grabando_pic">Запись PIC...</string>
+    <string name="espere_grabacion_pic">Пожалуйста, подождите. Не отключайте устройство.</string>
+    <string name="grabacion_completada_pic">Запись завершена</string>
+    <string name="grabacion_correcta_pic">Прошивка успешно записана в PIC.</string>
+    <string name="fallo_grabacion_pic">Ошибка записи</string>
+    <string name="proceso_no_completado">Не удалось завершить процесс. Проверьте соединение.</string>
+    <string name="protocolo_del_programador">Протокол программатора</string>
+    <string name="modelo_del_programador">Модель программатора</string>
+    <string name="modelo_programador">Модель программатора</string>
+    <string name="protocolo">Протокол</string>
+    <string name="politica_de_privacidad">Политика конфиденциальности</string>
+    <string name="no_se_detecto_pic_en_socket">PIC в сокете не обнаружен</string>
+    <string name="pic_detectado_en_socket">PIC в сокете обнаружен</string>
+    <string name="memoria_contiene_datos">Память содержит данные</string>
+    <string name="memoria_vacia">Память пуста</string>
+    <string name="error_borrando_memoria">Ошибка при стирании памяти</string>
+    <string name="memoria_borrada_exitosamente">Память успешно стерта</string>
+    <string name="memoria_leida_exitosamente">Память успешно прочитана</string>
+    <string name="seleccione_un_chip">Выберите чип</string>
+    <string name="seleccione_un_chip_y_cargue_un">Выберите чип и загрузите HEX-файл</string>
+    <string name="error_programando_pic">Ошибка программирования PIC</string>
+    <string name="pic_programado_exitosamente">PIC успешно запрограммирован</string>
+    <string name="iniciando_programacion">Начало программирования...</string>
+    <string name="error_cargando_archivo">Ошибка загрузки файла</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-файл успешно загружен</string>
+    <string name="archivo_cargado">Файл загружен</string>
+    <string name="error_inicializando_chip">Ошибка инициализации чипа</string>
+    <string name="conectado_al_programador">Подключено к программатору</string>
+    <string name="error_inicializando_base_de_da">Ошибка инициализации базы данных чипов</string>
+    <string name="no_hay_modelos_de_chips_dispon">Нет доступных моделей чипов</string>
+    <string name="modelo_de_chip_invalido">Недопустимая модель чипа</string>
+    <string name="chip_no_encontrado_en_base_de_">Чип не найден в базе данных</string>
+    <string name="error_procesando_chip">Ошибка обработки чипа</string>
+    <string name="no_hay_chip_seleccionado">Чип не выбран</string>
+    <string name="modelo">Модель</string>
+    <string name="palabras_rom">Слова ROM</string>
+    <string name="tamano_rom">Размер ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Недоступно</string>
+    <string name="tipo_de_nucleo">"Тип ядра"</string>
+    <string name="error_obteniendo_datos_del_chi">Ошибка получения данных о чипе</string>
+    <string name="modo">Режим</string>
+    <string name="icsp_solamente">Только ICSP</string>
+    <string name="pin_1">Контакт 1</string>
+    <string name="filemanager_no_inicializado">FileManager не инициализирован</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Не удалось получить имя файла</string>
+    <string name="seleccione_un_archivo_binario_">Выберите действительный двоичный файл (.hex или .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Ошибка при открытии выбранного файла</string>
+    <string name="el_archivo_seleccionado_esta_v">Выбранный файл пуст</string>
+    <string name="error_leyendo_el_archivo">Ошибка чтения файла</string>
+    <string name="error_inesperado_leyendo_el_ar">Неожиданная ошибка при чтении файла</string>
+    <string name="protocolo_no_inicializado">Протокол не инициализирован</string>
+    <string name="datos_invalidos_para_programac">Неверные данные для программирования</string>
+    <string name="borrando_memorias">Стирание памяти...</string>
+    <string name="error_borrando_memorias">Ошибка при стирании памяти</string>
+    <string name="programando_memoria_rom">Программирование памяти ROM...</string>
+    <string name="error_programando_rom">Ошибка программирования ROM</string>
+    <string name="programando_memoria_eeprom">Программирование памяти EEPROM...</string>
+    <string name="error_programando_eeprom">Ошибка программирования EEPROM</string>
+    <string name="programando_fuses_id">Программирование Fuses ID...</string>
+    <string name="error_programando_fuses">Ошибка программирования Fuses</string>
+    <string name="programando_fuses_18f">Программирование Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Ошибка программирования Fuses 18F</string>
+    <string name="programacion_completada">Программирование завершено</string>
+    <string name="error_inesperado">Неожиданная ошибка</string>
+    <string name="error_leyendo_memoria_rom">Ошибка чтения памяти ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Ошибка чтения памяти EEPROM</string>
+    <string name="error_verificando_memoria">Ошибка проверки памяти</string>
+    <string name="error_detectando_chip">Ошибка обнаружения чипа</string>
+    <string name="driver_usb_no_disponible">Драйвер USB недоступен</string>
+    <string name="dispositivo_sin_puertos_usb_di">На устройстве нет доступных USB-портов</string>
+    <string name="error_inicializando_protocolo_">Ошибка инициализации протокола связи</string>
+    <string name="error_de_conexion_usb">Ошибка USB-подключения</string>
+    <string name="error_inesperado_durante_la_co">Неожиданная ошибка во время подключения</string>
+
+    
+    <string name="operaciones">Операции</string>
+    <string name="cargar_archivo_hex">Загрузить файл HEX</string>
+    <string name="programar_pic">Программировать PIC</string>
+    <string name="leer_memoria">Читать память</string>
+    <string name="verificar">Проверить</string>
+    <string name="borrar_memoria">Стереть память</string>
+    <string name="detectar_pic">Обнаружить PIC</string>
+    <string name="esperando_operacion">Ожидание операции...</string>
+    <string name="esperando_seleccion">Ожидание выбора...</string>
+    <string name="seleccionar_chip_pic">Выбрать чип PIC</string>
+    
+    <string name="gputils_termux_asm">GPUTILS в Termux ASM Compiler Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Чтение памяти...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Предохранители установлены правильно</string>
+
+    
+    
+    <string name="chip_info_titulo">Техническая информация о чипе</string>
+    
+    <string name="propiedad">Свойство</string>
+    
+    <string name="valor">Значение</string>
+    
+    <string name="chip_info_profesional">Информация о чипе</string>
+    
+    
+    
+    <string name="exportar_config_hex">Экспортировать CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Экспортировать CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Экспортировать полный дамп (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Программа Все</string>
+    
+    <string name="programar_solo_rom">Программа только ROM</string>
+    
+    <string name="programar_solo_eeprom">Программа только EEPROM</string>
+    
+    <string name="programar_solo_config">Только программа CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Проверка удаления</string>
+    
+    <string name="chip_esta_borrado">Чип стерт (пусто)</string>
+    
+    <string name="chip_no_esta_borrado">Чип НЕ стерт</string>
+    
+    <string name="verificando_borrado">Проверка стирания...</string>
+    
+    <string name="resultado_verificacion_borrado">Результат проверки стирания</string>
+    
+    <string name="error_verificando_borrado">Ошибка проверки стирания</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Конфигурации предохранителей</string>
+    
+    <string name="chip_seleccionado">Выбрана микросхема</string>
+    
+    <string name="configuracion_de_fusibles">Конфигурация предохранителя</string>
+    
+    <string name="id_personalizado_hex">Пользовательский идентификатор (HEX)</string>
+    
+    <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байт)</string>
+    
+    <string name="hint_nombre_fusible">Имя (например: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Значение (например: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Журнал операций</string>
+    
+    <string name="restaurar_desde_bd">Восстановление из БД</string>
+    
+    <string name="restaurar_desde_hex">Восстановление из HEX</string>
+    
+    <string name="aplicar_fuses">Применение фьюзов</string>
+    
+    <string name="nombre_del_fusible">Имя фьюза</string>
+    
+    <string name="valor_ejemplo_on_off">Значение (пример: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Идентификатор пользователя в формате HEX. Используйте 4 байта (8 цифр) для PIC12/16 или 8 байтов (16 цифр) для PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Перезаписывает HEX-предохранители. Используйте техническое имя (например: WDT) и значение (например: OFF или 0x01).</string>
+    
+    <string name="ayuda_chip_info">Подробные технические данные, извлеченные из файла определения PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Выберите операцию</string>
+    
+    <string name="config_leida">Чтение конфигурации</string>
+
+    
+    <string name="publicidad_recomendada">Рекомендуемая реклама</string>
+    
+    <string name="lectura_completa">Полный текст</string>
+    
+    <string name="sin_chip">Без чипа</string>
+    
+    <string name="fusible_agregado">Добавлен предохранитель</string>
+    
+    <string name="fusibles_restaurados">Предохранители восстановлены</string>
+    
+    <string name="fusibles_aplicados">Предохранители установлены</string>
+    
+    <string name="procesamiento_hex">HEX Обработка</string>
+    
+    <string name="rom_ok_blank">ROM: OK (пусто)</string>
+    
+    <string name="rom_not_blank">ROM: НЕ ПУСТОЕ</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (пусто)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: НЕ ПУСТОЕ</string>
+
+    
+    
+    <string name="menu_ayuda">Справка</string>
+    
+    <string name="ayuda_icsp">Соединение ICSP</string>
+    
+    <string name="ayuda_fuses_label">Конфигурация предохранителей</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Испанский</string>
+    
+    <string name="idioma_ingles">Английский</string>
+    
+    <string name="idioma_label">Язык: %s</string>
+    
+    <string name="copiar_todo">📋 Копировать все</string>
+    
+    <string name="tutorial_copiado">Учебное пособие скопировано в буфер обмена</string>
+    
+    <string name="error_cargar_tutorial">Ошибка при загрузке учебного пособия</string>
+    
+    <string name="codigo_asm">📄 Код ASM</string>
+    
+    <string name="comando_label">💻 Команда</string>
+    
+    <string name="copiar_btn">Копировать</string>
+    
+    <string name="copiado_msg">Скопировано</string>
+    
+    <string name="error_abrir_link">Ошибка открытия ссылки</string>
+    
+    <string name="copiado_portapapeles">Скопировано в буфер обмена</string>
+    
+    <string name="error_generico_detalle">Ошибка: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Настроено</string>
+    
+    <string name="debe_procesar_hex_primero">Необходимо сначала обработать HEX-файл</string>
+
+    
+    <string name="error_exportador_no_inicializado">Экспортер не инициализирован</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Экспорт не ожидается</string>
+    
+    <string name="seleccion_carpeta_cancelada">Выбор папки отменен</string>
+    
+    <string name="error_carpeta_no_accesible">Невозможно получить доступ к выбранной папке</string>
+    
+    <string name="reemplazar_archivo_titulo">Заменить файл</string>
+    
+    <string name="reemplazar_archivo_mensaje">Файл \'%1$s\' уже существует. Вы хотите заменить его?</string>
+    
+    <string name="error_reemplazando_archivo">Невозможно заменить существующий файл</string>
+    
+    <string name="si">Да</string>
+    
+    <string name="no">Нет</string>
+    
+    <string name="archivo_guardado">Сохраненный файл: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Добавить предохранитель</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Добавить пользовательский предохранитель</string>
+    
+    <string name="completa_todos_los_campos">Заполните все поля</string>
+    
+    <string name="log_iniciado">Журнал началось...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Предохранители восстановлены из HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Учебное пособие по Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Учебное пособие по Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Код скопирован в буфер обмена</string>
+    
+    <string name="texto_copiado_portapapeles">Текст скопирован в буфер обмена</string>
+    
+    <string name="termino_no_encontrado">Термин не найден: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Нет данных для экспорта</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Нет допустимых данных для экспорта</string>
+    
+    <string name="error_convirtiendo_datos_hex">Ошибка преобразования шестнадцатеричных данных</string>
+    
+    <string name="error_nombre_archivo_vacio">Имя не может быть пустым</string>
+    
+    <string name="error_creando_archivo_salida">Не удалось создать выходной файл</string>
+    
+    <string name="error_abriendo_archivo_escritura">Не удалось открыть файл для записи</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Ошибка записи файла: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Непредвиденная ошибка экспорта: %1$s.</string>
+
+
+
+
+    <string name="datos_de_memoria">Память успешно прочитана</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

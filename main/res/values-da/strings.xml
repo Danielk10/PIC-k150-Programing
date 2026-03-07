@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Privatlivspolitikker</string>
+
+    
+    <string name="aceptar">Accepter</string>
+    <string name="cancelar">Annuller</string>
+    <string name="conectado">Tilsluttet</string>
+    <string name="desconectado">Frakoblet</string>
+    <string name="grabando_pic">Programmerer PIC...</string>
+    <string name="espere_grabacion_pic">Vent venligst. Afbryd ikke enheden.</string>
+    <string name="grabacion_completada_pic">Programmering Fuldført</string>
+    <string name="grabacion_correcta_pic">Firmware er skrevet korrekt til PIC.</string>
+    <string name="fallo_grabacion_pic">Programmering Mislykkedes</string>
+    <string name="proceso_no_completado">Processen kunne ikke fuldføres. Kontroller forbindelsen.</string>
+    <string name="protocolo_del_programador">Programmer Protokol</string>
+    <string name="modelo_del_programador">Programmer Model</string>
+    <string name="modelo_programador">Programmer Model</string>
+    <string name="protocolo">Protokol</string>
+    <string name="politica_de_privacidad">Privatlivspolitik</string>
+    <string name="no_se_detecto_pic_en_socket">PIC ikke registreret i sokkel</string>
+    <string name="pic_detectado_en_socket">PIC registreret i sokkel</string>
+    <string name="memoria_contiene_datos">Hukommelse indeholder data</string>
+    <string name="memoria_vacia">Hukommelse tom</string>
+    <string name="error_borrando_memoria">Fejl ved sletning af hukommelse</string>
+    <string name="memoria_borrada_exitosamente">Hukommelse slettet med succes</string>
+    <string name="memoria_leida_exitosamente">Hukommelse læst med succes</string>
+    <string name="seleccione_un_chip">Vælg en chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Vælg en chip og indlæs en HEX-fil</string>
+    <string name="error_programando_pic">Fejl ved programmering af PIC</string>
+    <string name="pic_programado_exitosamente">PIC programmeret med succes</string>
+    <string name="iniciando_programacion">Starter programmering...</string>
+    <string name="error_cargando_archivo">Fejl ved indlæsning af fil</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX-fil indlæst med succes</string>
+    <string name="archivo_cargado">Fil indlæst</string>
+    <string name="error_inicializando_chip">Fejl ved initialisering af chip</string>
+    <string name="conectado_al_programador">Tilsluttet programmer</string>
+    <string name="error_inicializando_base_de_da">Fejl ved initialisering af chip-database</string>
+    <string name="no_hay_modelos_de_chips_dispon">Ingen chip-modeller tilgængelige</string>
+    <string name="modelo_de_chip_invalido">Ugyldig chip-model</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip ikke fundet i database</string>
+    <string name="error_procesando_chip">Fejl ved behandling af chip</string>
+    <string name="no_hay_chip_seleccionado">Ingen chip valgt</string>
+    <string name="modelo">Model</string>
+    <string name="palabras_rom">ROM-ord</string>
+    <string name="tamano_rom">ROM-størrelse</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Ikke tilgængelig</string>
+    <string name="tipo_de_nucleo">Kernetype</string>
+    <string name="error_obteniendo_datos_del_chi">Fejl ved hentning af chip-data</string>
+    <string name="modo">Tilstand</string>
+    <string name="icsp_solamente">Kun ICSP</string>
+    <string name="pin_1">Pin 1</string>
+    <string name="filemanager_no_inicializado">FileManager ikke initialiseret</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Kunne ikke hente filnavn</string>
+    <string name="seleccione_un_archivo_binario_">Vælg en gyldig binær fil (.hex eller .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Fejl ved åbning af valgt fil</string>
+    <string name="el_archivo_seleccionado_esta_v">Den valgte fil er tom</string>
+    <string name="error_leyendo_el_archivo">Fejl ved læsning af fil</string>
+    <string name="error_inesperado_leyendo_el_ar">Uventet fejl ved læsning af fil</string>
+    <string name="protocolo_no_inicializado">Protokol ikke initialiseret</string>
+    <string name="datos_invalidos_para_programac">Ugyldige data til programmering</string>
+    <string name="borrando_memorias">Sletter hukommelse...</string>
+    <string name="error_borrando_memorias">Fejl ved sletning af hukommelse</string>
+    <string name="programando_memoria_rom">Programmerer ROM-hukommelse...</string>
+    <string name="error_programando_rom">Fejl ved programmering af ROM</string>
+    <string name="programando_memoria_eeprom">Programmerer EEPROM-hukommelse...</string>
+    <string name="error_programando_eeprom">Fejl ved programmering af EEPROM</string>
+    <string name="programando_fuses_id">Programmerer Fuses ID...</string>
+    <string name="error_programando_fuses">Fejl ved programmering af Fuses</string>
+    <string name="programando_fuses_18f">Programmerer 18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Fejl ved programmering af 18F Fuses</string>
+    <string name="programacion_completada">Programmering fuldført</string>
+    <string name="error_inesperado">Uventet fejl</string>
+    <string name="error_leyendo_memoria_rom">Fejl ved læsning af ROM-hukommelse</string>
+    <string name="error_leyendo_memoria_eeprom">Fejl ved læsning af EEPROM-hukommelse</string>
+    <string name="error_verificando_memoria">Fejl ved verifikation af hukommelse</string>
+    <string name="error_detectando_chip">Fejl ved detektering af chip</string>
+    <string name="driver_usb_no_disponible">USB-driver ikke tilgængelig</string>
+    <string name="dispositivo_sin_puertos_usb_di">Enhed uden tilgængelige USB-porte</string>
+    <string name="error_inicializando_protocolo_">Fejl ved initialisering af kommunikationsprotokol</string>
+    <string name="error_de_conexion_usb">USB-forbindelsesfejl</string>
+    <string name="error_inesperado_durante_la_co">Uventet fejl under forbindelse</string>
+
+    
+    <string name="operaciones">Handlinger</string>
+    <string name="cargar_archivo_hex">Indlæs HEX-fil</string>
+    <string name="programar_pic">Programmer PIC</string>
+    <string name="leer_memoria">Læs Hukommelse</string>
+    <string name="verificar">Verificer</string>
+    <string name="borrar_memoria">Slet Hukommelse</string>
+    <string name="detectar_pic">Detekter PIC</string>
+    <string name="esperando_operacion">Venter på handling...</string>
+    <string name="esperando_seleccion">Venter på valg...</string>
+    <string name="seleccionar_chip_pic">Vælg PIC Chip</string>
+    
+    <string name="gputils_termux_asm">GPUTILS i Termux ASM Compiler Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Læser hukommelse...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Korrekt påsatte sikringer</string>
+
+    
+    
+    <string name="chip_info_titulo">Chip teknisk information</string>
+    
+    <string name="propiedad">Ejendom</string>
+    
+    <string name="valor">Værdi</string>
+    
+    <string name="chip_info_profesional">Chip information</string>
+    
+    
+    
+    <string name="exportar_config_hex">Eksporter CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Eksporter CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Eksporter fuld dump (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Planlæg alt</string>
+    
+    <string name="programar_solo_rom">Kun programmer ROM</string>
+    
+    <string name="programar_solo_eeprom">Programmer kun EEPROM</string>
+    
+    <string name="programar_solo_config">Program kun CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Bekræft sletning</string>
+    
+    <string name="chip_esta_borrado">Chippen er slettet (tom)</string>
+    
+    <string name="chip_no_esta_borrado">Chippen er IKKE slettet</string>
+    
+    <string name="verificando_borrado">Bekræfter sletning...</string>
+    
+    <string name="resultado_verificacion_borrado">Resultat af bekræftelse af sletning</string>
+    
+    <string name="error_verificando_borrado">Fejl ved bekræftelse af sletning</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Sikringskonfigurationer</string>
+    
+    <string name="chip_seleccionado">Udvalgt chip</string>
+    
+    <string name="configuracion_de_fusibles">Sikringskonfiguration</string>
+    
+    <string name="id_personalizado_hex">Tilpasset ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Eksempel: 1A 2B 3C 4D (4 eller 8 bytes)</string>
+    
+    <string name="hint_nombre_fusible">Navn (eks.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Værdi (f.eks.: TIL, FRA, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Driftslog</string>
+    
+    <string name="restaurar_desde_bd">Gendan fra DB</string>
+    
+    <string name="restaurar_desde_hex">Gendan fra HEX</string>
+    
+    <string name="aplicar_fuses">Sæt sikringer på</string>
+    
+    <string name="nombre_del_fusible">Sikringsnavn</string>
+    
+    <string name="valor_ejemplo_on_off">Værdi (eksempel: TIL, FRA, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Bruger-id i HEX-format. Brug 4 bytes (8 cifre) til PIC12/16 eller 8 bytes (16 cifre) til PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Tilsidesætter HEX-sikringerne. Brug det tekniske navn (eks.: WDT) og værdien (eks.: OFF eller 0x01).</string>
+    
+    <string name="ayuda_chip_info">Detaljerede tekniske data udtrukket fra PIC-definitionsfilen.</string>
+
+    
+    <string name="seleccionar_operacion">Vælg Operation</string>
+    
+    <string name="config_leida">Konfiguration læst</string>
+
+    
+    <string name="publicidad_recomendada">Anbefalet annoncering</string>
+    
+    <string name="lectura_completa">Fuldstændig læsning</string>
+    
+    <string name="sin_chip">uden chip</string>
+    
+    <string name="fusible_agregado">Tilføjet sikring</string>
+    
+    <string name="fusibles_restaurados">Restaurerede sikringer</string>
+    
+    <string name="fusibles_aplicados">Påsat sikringer</string>
+    
+    <string name="procesamiento_hex">HEX-behandling</string>
+    
+    <string name="rom_ok_blank">ROM: OK (tom)</string>
+    
+    <string name="rom_not_blank">ROM: IKKE BLANK</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (tom)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: IKKE BLANK</string>
+
+    
+    
+    <string name="menu_ayuda">Hjælpe</string>
+    
+    <string name="ayuda_icsp">ICSP forbindelse</string>
+    
+    <string name="ayuda_fuses_label">Sikringskonfiguration</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">spansk</string>
+    
+    <string name="idioma_ingles">engelsk</string>
+    
+    <string name="idioma_label">Sprog: %s</string>
+    
+    <string name="copiar_todo">📋 Kopier alle</string>
+    
+    <string name="tutorial_copiado">Selvstudium kopieret til udklipsholder</string>
+    
+    <string name="error_cargar_tutorial">Fejl ved indlæsning af selvstudiet</string>
+    
+    <string name="codigo_asm">📄 ASM kode</string>
+    
+    <string name="comando_label">💻 Kommando</string>
+    
+    <string name="copiar_btn">Kopi</string>
+    
+    <string name="copiado_msg">Kopieret</string>
+    
+    <string name="error_abrir_link">Fejl ved åbning af link</string>
+    
+    <string name="copiado_portapapeles">Kopieret til udklipsholder</string>
+    
+    <string name="error_generico_detalle">Fejl: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfigureret</string>
+    
+    <string name="debe_procesar_hex_primero">Du skal først behandle HEX-filen</string>
+
+    
+    <string name="error_exportador_no_inicializado">Eksportøren er ikke initialiseret</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Der er ingen afventende eksport</string>
+    
+    <string name="seleccion_carpeta_cancelada">Mappevalg annulleret</string>
+    
+    <string name="error_carpeta_no_accesible">Den valgte mappe kunne ikke tilgås</string>
+    
+    <string name="reemplazar_archivo_titulo">Erstat fil</string>
+    
+    <string name="reemplazar_archivo_mensaje">Filen \'%1$s\' eksisterer allerede. Vil du udskifte den?</string>
+    
+    <string name="error_reemplazando_archivo">Den eksisterende fil kunne ikke erstattes</string>
+    
+    <string name="si">Ja</string>
+    
+    <string name="no">Ingen</string>
+    
+    <string name="archivo_guardado">Gemt fil: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Tilføj sikring</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Tilføj brugerdefineret sikring</string>
+    
+    <string name="completa_todos_los_campos">Udfyld alle felter</string>
+    
+    <string name="log_iniciado">Log startet...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Restaurerede sikringer fra HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="codigo_copiado_portapapeles">Kode kopieret til udklipsholder</string>
+    
+    <string name="texto_copiado_portapapeles">Tekst kopieret til udklipsholder</string>
+    
+    <string name="termino_no_encontrado">Term ikke fundet: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Der er ingen data at eksportere</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Der er ingen gyldige data at eksportere</string>
+    
+    <string name="error_convirtiendo_datos_hex">Fejl ved konvertering af hexadecimale data</string>
+    
+    <string name="error_nombre_archivo_vacio">Navnet må ikke være tomt</string>
+    
+    <string name="error_creando_archivo_salida">Kunne ikke oprette outputfil</string>
+    
+    <string name="error_abriendo_archivo_escritura">Kunne ikke åbne filen til skrivning</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Fejl ved skrivning af fil: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Uventet fejl under eksport: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Hukommelse læst med succes</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

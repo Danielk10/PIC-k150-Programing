@@ -1,0 +1,1869 @@
+package com.diamon.pic;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.os.PowerManager;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+
+import com.diamon.chip.ChipPic;
+import com.diamon.datos.DatosPicProcesados;
+import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.managers.ChipSelectionManager;
+import com.diamon.managers.FileManager;
+import com.diamon.managers.FuseConfigPopup;
+import com.diamon.managers.HexExportManager;
+import com.diamon.managers.MemoryDisplayManager;
+import com.diamon.managers.PicProgrammingManager;
+import com.diamon.managers.ProgrammingDialogManager;
+import com.diamon.managers.UsbConnectionManager;
+import com.diamon.protocolo.TipoProtocolo;
+import com.diamon.politicas.Politicas;
+import com.diamon.publicidad.MostrarPublicidad;
+import com.diamon.tutorial.TutorialGputilsActivity;
+import com.diamon.utilidades.PantallaCompleta;
+import com.diamon.utilidades.Recurso;
+
+import com.diamon.graficos.Graficos2D;
+import com.diamon.graficos.Textura2D;
+import com.diamon.nucleo.Graficos;
+import com.diamon.nucleo.Textura;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Actividad principal de la aplicación para conexión USB, carga de firmware,
+ * operaciones de programación y gestión de fusibles/exportación.
+ */
+public class MainActivity extends AppCompatActivity
+        implements UsbConnectionManager.UsbConnectionListener,
+        PicProgrammingManager.ProgrammingListener {
+
+    private TextView connectionStatusTextView;
+    private TextView processStatusTextView;
+    private TextView chipInfoTextView;
+    private TextView fuseStatusTextView;
+    private LinearLayout romDataContainer;
+    private LinearLayout eepromDataContainer;
+    private Spinner chipSpinner;
+    private ImageView chipSocketImageView;
+    private androidx.appcompat.widget.SwitchCompat swModeICSP;
+
+    private Button btnSelectHex;
+    private Button btnProgramarPic;
+    private Button btnLeerMemoriaDeLPic;
+    private Button btnVerificarMemoriaDelPic;
+    private Button btnBorrarMemoriaDeLPic;
+    private Button btnDetectarPic;
+    private Button btnConfigureFuses;
+    private Button btnBlankCheck;
+
+    private UsbConnectionManager usbManager;
+    private PicProgrammingManager programmingManager;
+    private FileManager fileManager;
+    private ChipSelectionManager chipSelectionManager;
+    private MemoryDisplayManager memoryDisplayManager;
+    private ProgrammingDialogManager dialogManager;
+    private MostrarPublicidad publicidad;
+    private Recurso recurso;
+    private PowerManager.WakeLock wakeLock;
+
+    private FuseConfigPopup fuseConfigPopup;
+    private HexExportManager hexExportManager;
+
+    private String firmware = "";
+    private String lastReadRomData = ""; // Últimos datos ROM leídos
+    private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
+    private String lastReadConfigData = ""; // Últimos datos Config leídos
+    private ChipPic currentChip;
+
+    // Variables de estado para fusibles
+    private boolean fusesConfigured = false;
+    private List<Integer> configuredFuses = new ArrayList<>();
+    private byte[] configuredID = new byte[] { 0 };
+    private Map<String, String> lastFuseConfiguration = null;
+    private DatosPicProcesados datosPicProcesados = null;
+
+    private PantallaCompleta pantallaCompleta;
+
+    @SuppressLint({ "InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag" })
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Habilitar Edge-to-Edge ANTES de setContentView (requerido por Android 15)
+        pantallaCompleta = new PantallaCompleta(this);
+        pantallaCompleta.habilitarEdgeToEdge();
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Aplicar insets del sistema al layout raíz para evitar solapes
+        View vistaPrincipal = findViewById(R.id.main);
+        if (vistaPrincipal != null) {
+            pantallaCompleta.aplicarWindowInsets(vistaPrincipal);
+        }
+
+        // Ocultar barras de navegación para modo inmersivo
+        pantallaCompleta.ocultarBotonesVirtuales();
+
+        // Inicializar el switch de modo ICSP
+        swModeICSP = findViewById(R.id.swModeICSP);
+
+        updateSwitchColors();
+        initializeAppCenter();
+        initializeBasicComponents();
+        findViews();
+        setupBanner();
+
+        // Configurar listener para el switch después de findViews
+        setupICSPSwitchListener();
+
+        initializeManagers();
+        setupListeners();
+        setupToolbar();
+        // Inicializar USB en un hilo secundario para no bloquear el onCreate.
+        new Thread(() -> {
+            try {
+                if (usbManager != null) {
+                    usbManager.initialize();
+                }
+            } catch (Exception e) {
+                Analytics.trackEvent("USB: Init Error",
+                        crearMapaAnalitica("Message", e.getMessage() != null ? e.getMessage() : "unknown"));
+            }
+        }, "UsbInitializer").start();
+
+        setupWakeLock();
+    }
+
+    private void initializeAppCenter() {
+        AppCenter.start(
+                getApplication(),
+                "c9a1ef1a-bbfb-443a-863e-1c1d77e49c18",
+                Analytics.class,
+                Crashes.class);
+    }
+
+    private void initializeBasicComponents() {
+        Analytics.trackEvent("Init: Basic Components");
+        recurso = new Recurso(this);
+        publicidad = new MostrarPublicidad(this);
+    }
+
+    private void findViews() {
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        connectionStatusTextView = findViewById(R.id.connectionStatusTextView);
+        processStatusTextView = findViewById(R.id.processStatusTextView);
+        chipInfoTextView = findViewById(R.id.chipInfoTextView);
+        chipSocketImageView = findViewById(R.id.chipSocketImageView);
+        fuseStatusTextView = findViewById(R.id.fuseStatusTextView);
+        chipSpinner = findViewById(R.id.chipSpinner);
+
+        btnSelectHex = findViewById(R.id.btnSelectHex);
+        btnProgramarPic = findViewById(R.id.btnProgramarPic);
+        btnLeerMemoriaDeLPic = findViewById(R.id.btnLeerMemoriaDeLPic);
+        btnVerificarMemoriaDelPic = findViewById(R.id.btnVerificarMemoriaDelPic);
+        btnBorrarMemoriaDeLPic = findViewById(R.id.btnBorrarMemoriaDeLPic);
+        btnDetectarPic = findViewById(R.id.btnDetectarPic);
+        btnConfigureFuses = findViewById(R.id.btnConfigureFuses);
+        btnBlankCheck = findViewById(R.id.btnBlankCheck);
+
+        romDataContainer = findViewById(R.id.romDataContainer);
+        eepromDataContainer = findViewById(R.id.eepromDataContainer);
+    }
+
+    private void setupBanner() {
+        FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
+        if (bannerContainer != null && publicidad != null) {
+            publicidad.cargarBanner(bannerContainer);
+        }
+    }
+
+    private void setupToolbar() {
+        // Ya configurado en findViews()
+    }
+
+    private void initializeManagers() {
+        Analytics.trackEvent("Init: Managers");
+        usbManager = new UsbConnectionManager(this);
+        programmingManager = new PicProgrammingManager(this);
+
+        // Configurar listeners
+        usbManager.setConnectionListener(this);
+        programmingManager.setProgrammingListener(this);
+
+        fileManager = new FileManager(this);
+        fileManager.initialize();
+
+        chipSelectionManager = new ChipSelectionManager(this);
+        chipSelectionManager.setSelectionListener(new ChipSelectionManager.ChipSelectionListener() {
+            @Override
+            public void onChipSelected(ChipPic chip, String model) {
+                currentChip = chip;
+                chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
+
+                updateSwitchColors();
+                updateICSPSwitchState();
+                updateChipImage(chip);
+                clearFuseConfiguration();
+
+                if (usbManager.isConnected()) {
+                    try {
+                        usbManager.getProtocolo().iniciarVariablesDeProgramacion(chip);
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, getString(R.string.error_inicializando_chip),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onChipSelectionError(String errorMessage) {
+                Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                swModeICSP.setEnabled(false);
+                swModeICSP.setChecked(false);
+            }
+
+            @Override
+            public void onDatabaseLoaded() {
+                if (chipSpinner != null) {
+                    chipSelectionManager.setupSpinner(chipSpinner);
+                }
+                Analytics.trackEvent("Chips Loaded: Success");
+            }
+        });
+
+        // Iniciar carga asíncrona de chips
+        chipSelectionManager.initializeAsync();
+
+        memoryDisplayManager = new MemoryDisplayManager(this);
+        dialogManager = new ProgrammingDialogManager(this);
+
+        hexExportManager = new HexExportManager(this);
+        hexExportManager.initialize();
+        hexExportManager.setExportListener(new HexExportManager.ExportListener() {
+            @Override
+            public void onExportSuccess(String fileName) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                        getString(R.string.exportacion_exitosa) + ": " + fileName,
+                        Toast.LENGTH_SHORT).show());
+            }
+
+            @Override
+            public void onExportError(String errorMessage) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                        getString(R.string.error_exportando) + ": " + errorMessage,
+                        Toast.LENGTH_LONG).show());
+            }
+        });
+
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            if (publicidad != null) {
+                publicidad.precargarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY);
+                publicidad.precargarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_PROGRAMMING);
+            }
+        }, 3000); // Esperar 3 segundos para asegurar que MobileAds esté listo
+
+        fuseConfigPopup = new FuseConfigPopup(
+                this,
+                new FuseConfigPopup.FuseConfigListener() {
+                    @Override
+                    public void onFusesApplied(
+                            List<Integer> fuses,
+                            byte[] idData,
+                            Map<String, String> configuration) {
+                        // Guardar configuración en las variables de la actividad
+                        configuredFuses = new ArrayList<>(fuses);
+                        configuredID = idData;
+                        lastFuseConfiguration = configuration;
+                        fusesConfigured = true;
+
+                        updateFuseStatus(true);
+                        // Se usa literal para evitar errores de compilación en otros idiomas hasta que
+                        // se traduzca R.string.fusibles_aplicados_correctamente
+                        Toast.makeText(
+                                MainActivity.this,
+                                getString(R.string.fusibles_aplicados_correctamente),
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
+
+                    @Override
+                    public void onFusesCancelled() {
+                        // No hacer nada
+                    }
+                });
+    }
+
+    /** Crea un mapa simple para eventos de analítica compatible con API 23+. */
+    private Map<String, String> crearMapaAnalitica(String clave, String valor) {
+        java.util.HashMap<String, String> propiedades = new java.util.HashMap<>();
+        propiedades.put(clave, valor);
+        return propiedades;
+    }
+
+    private void setupListeners() {
+
+        setupFileManagerListeners();
+        setupButtonListeners();
+        setupPersistentLayoutListener(); // Registramos el vigilante de tamaño desde el inicio
+    }
+
+    // IMPLEMENTACIÓN DE UsbConnectionListener
+    @Override
+    public void onConnected() {
+        Analytics.trackEvent("USB: Connected");
+        runOnUiThread(() -> {
+            connectionStatusTextView.setTextColor(Color.GREEN);
+            connectionStatusTextView.setText(getString(R.string.conectado));
+            programmingManager.setProtocolo(usbManager.getProtocolo());
+            Toast.makeText(this, getString(R.string.conectado_al_programador), Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    @Override
+    public void onDisconnected() {
+        Analytics.trackEvent("USB: Disconnected");
+        runOnUiThread(() -> {
+            connectionStatusTextView.setTextColor(Color.RED);
+            connectionStatusTextView.setText(getString(R.string.desconectado));
+        });
+    }
+
+    @Override
+    public void onConnectionError(String errorMessage) {
+        Analytics.trackEvent("USB: Error", crearMapaAnalitica("Message", errorMessage));
+        runOnUiThread(() -> {
+            connectionStatusTextView.setTextColor(Color.RED);
+            connectionStatusTextView.setText(getString(R.string.desconectado));
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        });
+    }
+
+    // IMPLEMENTACIÓN DE ProgrammingListener
+    @Override
+    public void onProgrammingStarted() {
+        Analytics.trackEvent("Prog: Started");
+        runOnUiThread(() -> processStatusTextView.setText(getString(R.string.iniciando_programacion)));
+    }
+
+    @Override
+    public void onProgrammingProgress(String message, int progress) {
+        runOnUiThread(() -> processStatusTextView.setText(message + " (" + progress + "%)"));
+    }
+
+    @Override
+    public void onProgrammingCompleted(boolean success) {
+        Analytics.trackEvent("Prog: Completed", crearMapaAnalitica("Success", String.valueOf(success)));
+        runOnUiThread(() -> {
+            if (success) {
+                processStatusTextView.setText(getString(R.string.pic_programado_exitosamente));
+            } else {
+                processStatusTextView.setText(getString(R.string.error_programando_pic));
+            }
+        });
+    }
+
+    @Override
+    public void onProgrammingError(String errorMessage) {
+        Analytics.trackEvent("Prog: Error", crearMapaAnalitica("Message", errorMessage));
+        runOnUiThread(() -> {
+            processStatusTextView.setText(getString(R.string.error_generico_detalle, errorMessage));
+            Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+        });
+    }
+
+    /** Configura el listener para el switch de ICSP */
+    private void setupICSPSwitchListener() {
+        btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration());
+
+        if (btnBlankCheck != null) {
+            btnBlankCheck.setOnClickListener(v -> ejecutarBlankCheck());
+        }
+
+        swModeICSP.setOnCheckedChangeListener(
+                (buttonView, isChecked) -> {
+                    if (currentChip == null) {
+                        swModeICSP.setChecked(false);
+                        return;
+                    }
+
+                    updateSwitchColors();
+
+                    try {
+                        // Si el chip es ONLY ICSP, no permitir desactivar
+                        if (currentChip.isICSPOnlyCompatible()) {
+                            swModeICSP.setChecked(true);
+                        } else {
+                            // Si el chip soporta ambos modos, permitir cambio
+                            currentChip.setActivarICSP(isChecked);
+                        }
+
+                        // ACTUALIZAR IMAGEN SEGUN ESTADO DEL SWITCH
+                        updateChipImage(currentChip);
+
+                    } catch (ChipConfigurationException e) {
+                        swModeICSP.setChecked(false);
+                        Toast.makeText(
+                                MainActivity.this,
+                                "Error al cambiar modo: " + e.getMessage(),
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });
+    }
+
+    private void updateSwitchColors() {
+
+        try {
+            // Obtén el chip actual seleccionado
+            boolean isICSPCompatible = currentChip != null && currentChip.isICSPOnlyCompatible();
+            boolean isDualMode = currentChip != null && (!currentChip.isICSPonly());
+
+            if (isICSPCompatible && !isDualMode) {
+                // PIC SOLO COMPATIBLE CON ICSP
+                // Tanto en ON como en OFF, usa el mismo verde claro
+                swModeICSP.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#90EE90")));
+                swModeICSP.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                swModeICSP.setEnabled(true);
+            } else if (isDualMode) {
+                // PIC COMPATIBLE CON AMBOS MODOS
+                boolean isChecked = swModeICSP.isChecked();
+
+                if (isChecked) {
+                    // Switch ACTIVADO - Verde claro
+                    swModeICSP.setTrackTintList(
+                            ColorStateList.valueOf(Color.parseColor("#90EE90")));
+                    swModeICSP.setThumbTintList(
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                } else {
+                    // Switch DESACTIVADO - Gris oscuro
+                    swModeICSP.setTrackTintList(
+                            ColorStateList.valueOf(Color.parseColor("#90EE90")));
+                    swModeICSP.setThumbTintList(
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+                }
+                swModeICSP.setEnabled(true);
+            } else {
+                // PIC NO COMPATIBLE CON ICSP
+                swModeICSP.setTrackTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
+                swModeICSP.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#999999")));
+                swModeICSP.setEnabled(false);
+            }
+        } catch (ChipConfigurationException e) {
+        }
+    }
+
+    /** Actualiza el estado del switch cuando se selecciona un nuevo chip */
+    private void updateICSPSwitchState() {
+        if (currentChip == null) {
+            swModeICSP.setEnabled(false);
+            swModeICSP.setChecked(false);
+            return;
+        }
+
+        try {
+            boolean isIcspOnly = currentChip.isICSPOnlyCompatible();
+            boolean currentMode = currentChip.getICSPModoActual();
+
+            // Desactivar listener temporalmente para evitar recursión
+            swModeICSP.setOnCheckedChangeListener(null);
+
+            if (isIcspOnly) {
+                // ICSP only: siempre activado e inmodificable por usuario
+                currentChip.setActivarICSP(true);
+                swModeICSP.setChecked(true);
+                swModeICSP.setEnabled(false);
+                swModeICSP.setAlpha(0.6f);
+            } else {
+                // Compatible con ambos: restaurar estado guardado en el chip
+                swModeICSP.setChecked(currentMode);
+                swModeICSP.setEnabled(true);
+                swModeICSP.setAlpha(1.0f);
+            }
+
+            // Restaurar listener
+            setupICSPSwitchListener();
+
+        } catch (ChipConfigurationException e) {
+            swModeICSP.setEnabled(false);
+            swModeICSP.setChecked(false);
+        }
+    }
+
+    /** Actualiza la imagen del socket según el chip seleccionado. */
+    private void updateChipImage(ChipPic chip) {
+        if (chip == null) {
+            chipSocketImageView.setVisibility(View.GONE);
+            return;
+        }
+
+        chipSocketImageView.setVisibility(View.VISIBLE);
+        int numPines = chip.getNumeroDePines();
+
+        boolean isIcspOnly = false;
+        try {
+            isIcspOnly = chip.isICSPOnlyCompatible();
+        } catch (ChipConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        // MOSTRAR ICSP SI: Es ICSP-only O el switch esta activado manualmente
+        boolean isIcspActive = swModeICSP != null && swModeICSP.isChecked();
+
+        if (isIcspOnly || isIcspActive || numPines == 0) {
+            chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            dibujarICSP();
+            return;
+        }
+
+        // Para ZIF Sockets usamos el mismo ratio que ICSP y mantenemos el dibujo nitido
+        chipSocketImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        dibujarSocketZIF(chip);
+    }
+
+    private void dibujarSocketZIF(ChipPic chip) {
+        int width = chipSocketImageView.getWidth();
+        int height = chipSocketImageView.getHeight();
+
+        if (width <= 0 || height <= 0)
+            return;
+
+        Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
+        Graficos g = new Graficos2D(textura);
+
+        // Colores originales del vector
+        int colorTeal = Color.parseColor("#005F5F");
+        int colorBlueFrame = Color.parseColor("#1565C0");
+        int colorInnerRecess = Color.parseColor("#0D47A1");
+        int colorPinGreen = Color.parseColor("#4CAF50");
+        int colorPinGold = Color.parseColor("#FFD700");
+
+        // Fondo Teal
+        g.limpiar(colorTeal);
+
+        float scaleX = width / 300f;
+        float scaleY = height / 360f;
+
+        // 1. Marco del Socket (BLUE)
+        g.dibujarRectangulo(40 * scaleX, 10 * scaleY, 220 * scaleX, 340 * scaleY, colorBlueFrame);
+        Paint lapiz = g.getLapiz();
+        lapiz.setStyle(Paint.Style.STROKE);
+        lapiz.setStrokeWidth(1 * scaleX);
+        lapiz.setColor(Color.WHITE);
+        g.getCanvas().drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, lapiz);
+
+        // 2. Hueco Central (Inner Recess)
+        g.dibujarRectangulo(90 * scaleX, 20 * scaleY, 120 * scaleX, 320 * scaleY, colorInnerRecess);
+
+        // 3. Pines (Grid de 20x2)
+        lapiz.setStyle(Paint.Style.FILL);
+        for (int i = 0; i < 20; i++) {
+            float rowY = (30 + i * 16) * scaleY;
+
+            // Columna Izquierda
+            g.dibujarRectangulo(50 * scaleX, rowY, 30 * scaleX, 10 * scaleY, colorPinGreen);
+            g.dibujarRectangulo(70 * scaleX, rowY + 2 * scaleY, 6 * scaleX, 6 * scaleY, colorPinGold);
+
+            // Columna Derecha
+            g.dibujarRectangulo(220 * scaleX, rowY, 30 * scaleX, 10 * scaleY, colorPinGreen);
+            g.dibujarRectangulo(224 * scaleX, rowY + 2 * scaleY, 6 * scaleX, 6 * scaleY, colorPinGold);
+        }
+
+        // 4. Indicadores (Numero y Flecha)
+        String pinLocation = chip.getUbicacionPin1DelPic();
+        int pinStartRow = 0;
+        String indicatorText = "1";
+
+        if ("socket pin 2".equalsIgnoreCase(pinLocation)) {
+            pinStartRow = 1;
+            indicatorText = "2";
+        } else if ("socket pin 13".equalsIgnoreCase(pinLocation)) {
+            pinStartRow = 12;
+            indicatorText = "13";
+        }
+
+        float indicatorY = (30 + pinStartRow * 16) * scaleY; // Y coord of the first pin row
+        float rowCenterY = indicatorY + (5 * scaleY); // Center of the 10-unit high pin
+
+        // Flecha Blanca - Tamaño moderado para evitar solape
+        lapiz.setColor(Color.WHITE);
+        android.graphics.Path path = new android.graphics.Path();
+        float arrowWidth = 12 * scaleX;
+        float arrowHeight = 10 * scaleY;
+        path.moveTo(22 * scaleX, rowCenterY - arrowHeight);
+        path.lineTo(40 * scaleX, rowCenterY);
+        path.lineTo(22 * scaleX, rowCenterY + arrowHeight);
+        path.close();
+        g.getCanvas().drawPath(path, lapiz);
+
+        // Texto del indicador - Resuelto solapamiento
+        lapiz.setTextSize(24 * scaleY);
+        lapiz.setFakeBoldText(true);
+        // Desplazado para evitar la flecha si es de dos dígitos
+        g.dibujarTexto(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, Color.WHITE);
+
+        // Brillo sutil en el texto
+        lapiz.setStyle(Paint.Style.STROKE);
+        lapiz.setStrokeWidth(0.5f * scaleX);
+        lapiz.setColor(Color.LTGRAY);
+        g.getCanvas().drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, lapiz);
+        lapiz.setStyle(Paint.Style.FILL);
+
+        // 5. Cuerpo del Chip (Negro)
+        int numPines = chip.getNumeroDePines();
+        if (numPines > 0) {
+            float left = 90 * scaleX;
+            float right = 210 * scaleX;
+
+            // Calculo exacto para que el chip coincida con los pines (2 unidades de margen
+            // arriba/abajo)
+            float top = (30 + pinStartRow * 16 - 2) * scaleY;
+            int numFilas = numPines / 2;
+            float chipHeight = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
+            float bottom = top + chipHeight;
+
+            int colorChipBody = Color.parseColor("#151515");
+            int colorChipBorder = Color.parseColor("#404040");
+            int colorNotch = Color.parseColor("#8B4513"); // Marrón
+            int colorLegs = Color.parseColor("#BDBDBD"); // Plateado metálico
+
+            // A. PATAS del Chip (debajo del cuerpo)
+            lapiz.setStyle(Paint.Style.FILL);
+            for (int i = 0; i < numFilas; i++) {
+                float legY = (30 + (pinStartRow + i) * 16 + 3) * scaleY;
+                // Pata Izquierda
+                g.dibujarRectangulo(80 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
+                // Pata Derecha
+                g.dibujarRectangulo(208 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
+            }
+
+            // B. Cuerpo
+            g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
+
+            // C. Modelo del Chip (Texto grabado) - Horizontal y más grande
+            String chipName = chip.getNombreDelPic();
+            lapiz.setStyle(Paint.Style.FILL);
+            lapiz.setColor(Color.parseColor("#D0D0D0")); // Gris claro láser
+            lapiz.setTextSize(24 * scaleY); // Aumentado
+            lapiz.setFakeBoldText(true);
+
+            float chipCenterX = (left + right) / 2f;
+            float chipCenterY = (top + bottom) / 2f;
+            float textWidth = lapiz.measureText(chipName);
+
+            // Dibujar centrado horizontalmente y verticalmente
+            g.getCanvas().drawText(chipName, chipCenterX - textWidth / 2f, chipCenterY + (8 * scaleY), lapiz);
+
+            // Borde del chip
+            lapiz.setStyle(Paint.Style.STROKE);
+            lapiz.setStrokeWidth(1.2f * scaleX);
+            lapiz.setColor(colorChipBorder);
+            g.getCanvas().drawRect(left, top, right, bottom, lapiz);
+
+            // D. Muesca (Notch)
+            lapiz.setStyle(Paint.Style.FILL);
+            lapiz.setColor(colorNotch);
+            float notchWidth = 40 * scaleX;
+            float notchHeight = 18 * scaleY;
+            g.getCanvas().drawArc(
+                    (300 / 2f - notchWidth / 2f) * scaleX,
+                    top - notchHeight / 2f,
+                    (300 / 2f + notchWidth / 2f) * scaleX,
+                    top + notchHeight / 2f,
+                    0, 180, true, lapiz);
+
+            // Sombra interna notch
+            lapiz.setStyle(Paint.Style.STROKE);
+            lapiz.setStrokeWidth(0.8f * scaleX);
+            lapiz.setColor(Color.BLACK);
+            g.getCanvas().drawArc(
+                    (300 / 2f - notchWidth / 2f) * scaleX,
+                    top - notchHeight / 2f,
+                    (300 / 2f + notchWidth / 2f) * scaleX,
+                    top + notchHeight / 2f,
+                    0, 180, false, lapiz);
+        }
+
+        chipSocketImageView.setImageBitmap(textura.getBipmap());
+    }
+
+    private void dibujarICSP() {
+        // Obtenemos el tamaño del ImageView
+        int width = chipSocketImageView.getWidth();
+        int height = chipSocketImageView.getHeight();
+
+        // IMPORTANTE: Si las dimensiones son 0 (durante el inflado), NO dibujamos.
+        // El listener registrado en setupListeners se encargara de llamar
+        // a este metodo cuando el layout sea real.
+        if (width <= 0 || height <= 0) {
+            return;
+        }
+
+        Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
+        Graficos g = new Graficos2D(textura);
+
+        // 1. Fondo PURPURA
+        g.limpiar(Color.parseColor("#800080"));
+
+        float scaleX = width / 200f;
+        float scaleY = height / 240f;
+
+        // 2. Conector Gris
+        // Añadimos un margen vertical interno (padding) para evitar que el texto
+        // superior (VPP1) se corte
+        float vPadding = height * 0.05f; // 5% de margen
+        float effectiveHeight = height - (2 * vPadding);
+
+        float rectWidth = 35 * scaleX;
+        float rectX = 10 * scaleX;
+        float rectY = vPadding;
+        float rectHeight = effectiveHeight;
+        g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
+
+        // Borde del conector
+        Paint lapiz = g.getLapiz();
+        lapiz.setStyle(Paint.Style.STROKE);
+        lapiz.setStrokeWidth(2f * scaleX);
+        g.getCanvas().drawRect(rectX, rectY, rectX + rectWidth, rectY + rectHeight, lapiz);
+
+        // 3. Cables y Etiquetas
+        String[] labels = { "VPP1", "LOW", "DAT", "CLK", "VCC", "GND" };
+        int[] colors = {
+                Color.WHITE,
+                Color.BLUE,
+                Color.parseColor("#008000"), // Verde oscuro
+                Color.RED,
+                Color.BLACK,
+                Color.YELLOW
+        };
+
+        lapiz.setStyle(Paint.Style.FILL);
+        lapiz.setAntiAlias(true);
+        lapiz.setFakeBoldText(true);
+
+        float lineStartX = rectX + rectWidth;
+        float lineEndX = width - (2 * scaleX);
+
+        // Distribucion sobre el alto EFECTIVO (con padding)
+        float lineSpacing = effectiveHeight / labels.length;
+
+        for (int i = 0; i < labels.length; i++) {
+            float currentY = rectY + (i * lineSpacing) + (lineSpacing / 2f);
+
+            // Dibujar Cable
+            lapiz.setColor(colors[i]);
+            float strokeWidth = effectiveHeight / (labels.length * 4f); // Un poco mas fino para dar aire
+            lapiz.setStrokeWidth(strokeWidth);
+            g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
+
+            // Dibujar Etiqueta CLARAMENTE arriba del cable (evita solapamiento y clipping)
+            lapiz.setColor(Color.WHITE);
+            lapiz.setTextSize(strokeWidth * 1.8f);
+            float textX = lineStartX + (6 * scaleX);
+            float textY = currentY - (strokeWidth / 1.2f); // Mas separacion
+            g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
+        }
+
+        chipSocketImageView.setImageBitmap(textura.getBipmap());
+    }
+
+    private void setupPersistentLayoutListener() {
+        chipSocketImageView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                    int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                // Si el tamaño real cambió y es valido, redibujamos
+                if ((right - left) > 0 && (bottom - top) > 0 &&
+                        (left != oldLeft || top != oldTop || right != oldRight || bottom != oldBottom)) {
+                    updateChipImage(currentChip);
+                }
+            }
+        });
+    }
+
+    private void setupFileManagerListeners() {
+        fileManager.setFileLoadListener(
+                new FileManager.FileLoadListener() {
+                    @Override
+                    public void onFileLoaded(String content, String fileName) {
+                        firmware = content;
+                        // Reiniciar configuración previa para evitar mezclar fusibles entre archivos.
+                        clearFuseConfiguration();
+                        processStatusTextView.setText(
+                                getString(R.string.archivo_cargado) + ": " + fileName);
+                        enableOperationButtons(true);
+
+                        enableFuseConfigButton(true);
+
+                        procesarDatosHex();
+
+                        Toast.makeText(
+                                MainActivity.this,
+                                getString(R.string.archivo_hex_cargado_exitosamen),
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
+
+                    @Override
+                    public void onFileLoadError(String errorMessage) {
+                        processStatusTextView.setText(getString(R.string.error_cargando_archivo));
+                        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void setupButtonListeners() {
+        btnSelectHex.setOnClickListener(v -> fileManager.openFilePicker());
+        btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration());
+        btnProgramarPic.setOnClickListener(v -> executeProgram());
+        btnLeerMemoriaDeLPic.setOnClickListener(v -> executeReadMemory());
+        btnBorrarMemoriaDeLPic.setOnClickListener(v -> executeEraseMemory());
+        btnVerificarMemoriaDelPic.setOnClickListener(v -> executeVerifyMemory());
+        btnDetectarPic.setOnClickListener(v -> executeDetectChip());
+    }
+
+    /** Procesa los datos del archivo HEX cargado. */
+    private void procesarDatosHex() {
+        if (currentChip == null || firmware.isEmpty()) {
+            return;
+        }
+
+        new Thread(
+                () -> {
+                    try {
+                        datosPicProcesados = new DatosPicProcesados(firmware, currentChip);
+                        datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                        runOnUiThread(
+                                () -> {
+                                    processStatusTextView.setText(
+                                            getString(R.string.hex_procesado_correctamente));
+                                });
+
+                    } catch (Exception e) {
+                        runOnUiThread(
+                                () -> {
+                                    Toast.makeText(
+                                            MainActivity.this,
+                                            getString(R.string.error_procesando_hex)
+                                                    + ": "
+                                                    + e.getMessage(),
+                                            Toast.LENGTH_LONG)
+                                            .show();
+                                });
+                    }
+                })
+                .start();
+    }
+
+    /** Abre el diálogo de configuración de fusibles. */
+    private void openFuseConfiguration() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.selecciona_chip_primero), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (currentChip.getFusesMap() == null || currentChip.getFusesMap().isEmpty()) {
+            Toast.makeText(this, getString(R.string.no_hay_fusibles_para_chip), Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
+        // Mostrar popup con ultima configuracion si existe
+        fuseConfigPopup.show(currentChip, datosPicProcesados, lastFuseConfiguration);
+    }
+
+    /** Limpia la configuración de fusibles en memoria. */
+    private void clearFuseConfiguration() {
+        fusesConfigured = false;
+        configuredFuses = new ArrayList<>();
+        configuredID = new byte[] { 0 };
+        lastFuseConfiguration = null;
+        datosPicProcesados = null;
+        updateFuseStatus(false);
+    }
+
+    /** Actualiza el indicador visual del estado de fusibles. */
+    private void updateFuseStatus(boolean configured) {
+        if (configured) {
+            fuseStatusTextView.setText(getString(R.string.fuses_configurados_marcado));
+            fuseStatusTextView.setTextColor(Color.WHITE);
+            fuseStatusTextView.setBackgroundColor(Color.parseColor("#4CAF50"));
+        } else {
+            fuseStatusTextView.setText(getString(R.string.fuses_no_configurados));
+            fuseStatusTextView.setTextColor(Color.parseColor("#757575"));
+            fuseStatusTextView.setBackgroundColor(Color.parseColor("#3A3A3A"));
+        }
+    }
+
+    /** Habilita o deshabilita el botón de configuración de fusibles. */
+    private void enableFuseConfigButton(boolean enabled) {
+        btnConfigureFuses.setEnabled(enabled);
+        if (enabled) {
+            btnConfigureFuses.setBackgroundTintList(
+                    android.content.res.ColorStateList.valueOf(Color.parseColor("#9C27B0")));
+            btnConfigureFuses.setTextColor(Color.WHITE);
+        } else {
+            btnConfigureFuses.setBackgroundTintList(
+                    android.content.res.ColorStateList.valueOf(Color.parseColor("#555555")));
+            btnConfigureFuses.setTextColor(Color.parseColor("#AAAAAA"));
+        }
+    }
+
+    private void enableOperationButtons(boolean enabled) {
+        android.widget.Button[] buttons = {
+                btnProgramarPic,
+                btnLeerMemoriaDeLPic,
+                btnVerificarMemoriaDelPic,
+                btnBorrarMemoriaDeLPic,
+                btnDetectarPic,
+                btnBlankCheck
+        };
+
+        for (android.widget.Button btn : buttons) {
+            btn.setEnabled(enabled);
+            if (enabled) {
+                if (btn == btnProgramarPic) {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#FF6600")));
+                } else if (btn == btnLeerMemoriaDeLPic || btn == btnVerificarMemoriaDelPic) {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#2196F3")));
+                } else if (btn == btnBorrarMemoriaDeLPic) {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#F44336")));
+                } else if (btn == btnBlankCheck) {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#4CAF50"))); // Verde para Blank Check
+                } else {
+                    btn.setBackgroundTintList(
+                            android.content.res.ColorStateList.valueOf(
+                                    Color.parseColor("#9C27B0")));
+                }
+                btn.setTextColor(Color.WHITE);
+            } else {
+                btn.setBackgroundTintList(
+                        android.content.res.ColorStateList.valueOf(Color.parseColor("#555555")));
+                btn.setTextColor(Color.parseColor("#AAAAAA"));
+            }
+        }
+    }
+
+    /**
+     * Ejecuta el flujo de programación permitiendo operación completa o parcial.
+     */
+    private void executeProgram() {
+        if (currentChip == null || firmware.isEmpty()) {
+            Toast.makeText(
+                    this,
+                    getString(R.string.seleccione_un_chip_y_cargue_un),
+                    Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
+        if (datosPicProcesados == null) {
+            Toast.makeText(this, getString(R.string.debe_procesar_hex_primero), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Determinar qué regiones tienen datos
+        boolean hasRom = datosPicProcesados.tieneRomData();
+        boolean hasEeprom = datosPicProcesados.tieneEepromData();
+        boolean hasConfig = datosPicProcesados.tieneConfigData();
+
+        java.util.List<String> options = new java.util.ArrayList<>();
+
+        // Siempre ofrecemos Programar Todo (comportamiento clásico)
+        options.add(getString(R.string.programar_todo));
+
+        if (hasRom) {
+            options.add(getString(R.string.programar_solo_rom));
+        }
+        if (hasEeprom) {
+            options.add(getString(R.string.programar_solo_eeprom));
+        }
+        if (hasConfig || fusesConfigured) {
+            options.add(getString(R.string.programar_solo_config));
+        }
+
+        // Si solo hay una opción (Programar Todo) o el usuario no configuró
+        // fuses/regiones, lo hacemos directo
+        if (options.size() <= 1) {
+            doProgrammingFlow(getString(R.string.programar_todo));
+            return;
+        }
+
+        String[] items = options.toArray(new String[0]);
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.seleccionar_operacion))
+                .setItems(items, (dialog, which) -> {
+                    String selected = items[which];
+                    doProgrammingFlow(selected);
+                })
+                .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
+    }
+
+    private void doProgrammingFlow(String operationType) {
+        publicidad.ocultarBanner();
+
+        final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
+        final List<Integer> fusesToUse = fusesConfigured ? new ArrayList<>(configuredFuses) : new ArrayList<>();
+
+        dialogManager.showProgrammingDialog(
+                () -> {
+                    new Thread(
+                            () -> {
+                                boolean success = false;
+
+                                if (operationType.equals(getString(R.string.programar_solo_rom))) {
+                                    success = programmingManager.programRomOnly(currentChip, firmware);
+                                } else if (operationType.equals(getString(R.string.programar_solo_eeprom))) {
+                                    success = programmingManager.programEepromOnly(currentChip, firmware);
+                                } else if (operationType.equals(getString(R.string.programar_solo_config))) {
+                                    success = programmingManager.programConfigOnly(currentChip, firmware, idToUse,
+                                            fusesToUse);
+                                } else {
+                                    // Default: Programar todo
+                                    success = programmingManager.programChip(currentChip, firmware, idToUse,
+                                            fusesToUse);
+                                }
+
+                                final boolean finalSuccess = success;
+                                runOnUiThread(
+                                        () -> {
+                                            dialogManager.updateProgrammingResult(finalSuccess);
+                                        });
+                            })
+                            .start();
+                },
+                () -> {
+                    publicidad.mostrarBanner();
+                });
+    }
+
+    private void executeReadMemory() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Ocultar banner mientras se muestra el popup
+        publicidad.ocultarBanner();
+
+        // Mostrar popup con estado de carga ANTES de leer (no bloquea UI)
+        memoryDisplayManager.showLoadingState();
+
+        // Leer memoria en hilo secundario
+        new Thread(
+                () -> {
+                    String romData = programmingManager.readRomMemory(currentChip);
+                    String eepromData = programmingManager.readEepromMemory(currentChip);
+                    String configData = programmingManager.readConfigData(currentChip);
+
+                    final String romResult = romData;
+                    final String eepromResult = eepromData;
+                    final String configResult = configData;
+
+                    runOnUiThread(
+                            () -> {
+                                try {
+                                    // Guardar datos leídos para exportación
+                                    lastReadRomData = romResult != null ? romResult : "";
+                                    lastReadEepromData = eepromResult != null ? eepromResult : "";
+                                    lastReadConfigData = configResult != null ? configResult : "";
+
+                                    int romSize = currentChip.getTamanoROM();
+                                    int eepromSize = currentChip.isTamanoValidoDeEEPROM()
+                                            ? currentChip.getTamanoEEPROM()
+                                            : 0;
+                                    boolean hasEeprom = currentChip.isTamanoValidoDeEEPROM()
+                                            && !lastReadEepromData.isEmpty();
+
+                                    // Actualizar popup con los datos leídos
+                                    memoryDisplayManager.updateWithData(
+                                            lastReadRomData,
+                                            romSize,
+                                            lastReadEepromData,
+                                            eepromSize,
+                                            hasEeprom);
+
+                                    processStatusTextView.setText(
+                                            getString(R.string.memoria_leida_exitosamente));
+
+                                    // Mostrar banner de nuevo
+                                    publicidad.mostrarBanner();
+                                } catch (ChipConfigurationException e) {
+                                    Toast.makeText(
+                                            MainActivity.this,
+                                            getString(R.string.error_obteniendo_datos_del_chi)
+                                                    + ": " + e.getMessage(),
+                                            Toast.LENGTH_LONG)
+                                            .show();
+                                    publicidad.mostrarBanner();
+                                }
+                            });
+                })
+                .start();
+    }
+
+    private void executeEraseMemory() {
+        new Thread(
+                () -> {
+                    boolean success = programmingManager.eraseMemory();
+                    runOnUiThread(
+                            () -> {
+                                if (success) {
+                                    processStatusTextView.setText(
+                                            getString(
+                                                    R.string.memoria_borrada_exitosamente));
+                                } else {
+                                    processStatusTextView.setText(
+                                            getString(R.string.error_borrando_memoria));
+                                }
+                            });
+                })
+                .start();
+    }
+
+    private void executeVerifyMemory() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        processStatusTextView.setText(getString(R.string.verificando_memoria));
+
+        new Thread(
+                () -> {
+                    try {
+                        // Procesar el HEX cargado (firmware) a bytes si es necesario
+                        if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
+                            runOnUiThread(() -> processStatusTextView.setText(
+                                    getString(R.string.error_verificando_memoria) + ": No hay firmware válido"));
+                            return;
+                        }
+
+                        // Usar VerificationManager para verificación real con bytes procesados
+                        byte[] expectedRomBytes = datosPicProcesados.obtenerBytesHexROMPocesado();
+                        byte[] expectedEepromBytes = datosPicProcesados.obtenerBytesHexEEPROMPocesado();
+
+                        com.diamon.managers.VerificationManager.VerificationResult result = com.diamon.managers.VerificationManager
+                                .verify(
+                                        programmingManager.getProtocolo(),
+                                        currentChip,
+                                        expectedRomBytes,
+                                        expectedEepromBytes);
+
+                        runOnUiThread(
+                                () -> {
+                                    StringBuilder statusMsg = new StringBuilder();
+                                    statusMsg.append(getString(R.string.verificacion_completa));
+                                    statusMsg.append("\n");
+
+                                    // ROM
+                                    if (result.romVerified) {
+                                        statusMsg.append(getString(R.string.verificacion_rom_ok));
+                                    } else if (result.romMaybeLocked) {
+                                        statusMsg.append(getString(R.string.verificacion_rom_fallo))
+                                                .append(" — ")
+                                                .append(getString(R.string.rom_posible_locked));
+                                    } else {
+                                        statusMsg.append(getString(R.string.verificacion_rom_fallo));
+                                    }
+
+                                    // Chip config info
+                                    if (result.chipIdHex != null) {
+                                        statusMsg.append("\nChip ID: ").append(result.chipIdHex);
+                                    }
+
+                                    // Fuses decodificados
+                                    if (result.decodedFuses != null && !result.decodedFuses.isEmpty()) {
+                                        statusMsg.append("\n").append(getString(R.string.fuses_decodificados))
+                                                .append(":");
+                                        for (java.util.Map.Entry<String, String> fuse : result.decodedFuses
+                                                .entrySet()) {
+                                            statusMsg.append("\n  ").append(fuse.getKey())
+                                                    .append(" = ").append(fuse.getValue());
+                                        }
+                                    }
+
+                                    processStatusTextView.setText(statusMsg.toString());
+                                });
+
+                    } catch (Exception e) {
+                        runOnUiThread(
+                                () -> processStatusTextView.setText(
+                                        getString(R.string.error_verificando_memoria)
+                                                + ": " + e.getMessage()));
+                    }
+                })
+                .start();
+    }
+
+    private void executeDetectChip() {
+        new Thread(
+                () -> {
+                    boolean detected = programmingManager.detectChipInSocket();
+                    runOnUiThread(
+                            () -> {
+                                if (detected) {
+                                    processStatusTextView.setText(
+                                            getString(R.string.pic_detectado_en_socket));
+                                } else {
+                                    processStatusTextView.setText(
+                                            getString(
+                                                    R.string.no_se_detecto_pic_en_socket));
+                                }
+                            });
+                })
+                .start();
+    }
+
+    @SuppressLint("InvalidWakeLockTag")
+    private void setupWakeLock() {
+        // CORREGIDO: FULL_WAKE_LOCK está deprecado.
+        // Usamos FLAG_KEEP_SCREEN_ON para la pantalla y PARTIAL_WAKE_LOCK para la CPU.
+        getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PICProgramming:Proceso");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
+        menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
+        menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
+        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_profesional));
+        menu.add(Menu.NONE, 4, 5, "📜 " + getString(R.string.politica_de_privacidad));
+
+        // Submenu Ayuda
+        android.view.SubMenu helpMenu = menu.addSubMenu(Menu.NONE, 9, 6, "❓ " + getString(R.string.menu_ayuda));
+        helpMenu.add(Menu.NONE, 10, 1, "🔌 " + getString(R.string.ayuda_icsp));
+        helpMenu.add(Menu.NONE, 11, 2, "⚙️ " + getString(R.string.ayuda_fuses_label));
+        helpMenu.add(Menu.NONE, 3, 3, "📚 " + getString(R.string.gputils_termux_asm));
+        helpMenu.add(Menu.NONE, 5, 4, "📚 " + getString(R.string.sdcc_termux_tutorial));
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                showProgrammerModelDialog();
+                return true;
+            case 2:
+                showProtocolDialog();
+                return true;
+            case 6:
+                showExportDialog();
+                return true;
+            case 7:
+                showChipInfoDialog();
+                return true;
+            case 10:
+                showIcspHelpDialog();
+                return true;
+            case 11:
+                showFusesHelpDialog();
+                return true;
+            case 3:
+                openTutorialGputils();
+                return true;
+            case 5:
+                openTutorialSdcc();
+                return true;
+            case 4:
+                startActivity(new Intent(this, Politicas.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /** Muestra el diálogo para exportar memoria leída. */
+    private void showExportDialog() {
+        if (lastReadRomData.isEmpty() && lastReadEepromData.isEmpty() && lastReadConfigData.isEmpty()) {
+            Toast.makeText(this, getString(R.string.no_hay_datos_para_exportar),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String chipName = (currentChip != null) ? currentChip.getNombreDelPic() : "PIC";
+        java.util.List<String> options = new java.util.ArrayList<>();
+
+        if (!lastReadRomData.isEmpty()) {
+            options.add(getString(R.string.exportar_rom_hex));
+            options.add(getString(R.string.exportar_rom_bin));
+        }
+        if (!lastReadEepromData.isEmpty()) {
+            options.add(getString(R.string.exportar_eeprom_hex));
+            options.add(getString(R.string.exportar_eeprom_bin));
+        }
+        if (!lastReadConfigData.isEmpty()) {
+            options.add(getString(R.string.exportar_config_hex));
+            options.add(getString(R.string.exportar_config_bin));
+        }
+
+        // Si hay al menos ROM y (EEPROM o Config), ofrecer un volcado completo
+        if (!lastReadRomData.isEmpty() && (!lastReadEepromData.isEmpty() || !lastReadConfigData.isEmpty())) {
+            options.add(getString(R.string.exportar_dump_completo));
+        }
+
+        String[] items = options.toArray(new String[0]);
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.exportar_memoria))
+                .setItems(items, (dialog, which) -> {
+                    String selected = items[which];
+                    int coreBits = 14;
+                    if (currentChip != null) {
+                        try {
+                            coreBits = currentChip.getTipoDeNucleoBit();
+                        } catch (com.diamon.excepciones.ChipConfigurationException e) {
+                        }
+                    }
+
+                    if (selected.equals(getString(R.string.exportar_rom_hex))) {
+                        byte[] romBytes = stringHexToByteArray(lastReadRomData);
+                        if (romBytes != null && romBytes.length > 0) {
+                            romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
+                            hexExportManager.exportAsHex(romBytes, chipName + "_ROM");
+                        }
+                    } else if (selected.equals(getString(R.string.exportar_rom_bin))) {
+                        hexExportManager.exportBinStringAsFile(lastReadRomData, chipName + "_ROM");
+
+                    } else if (selected.equals(getString(R.string.exportar_eeprom_hex))) {
+                        int eepromAddr = obtenerDireccionEepromParaExportacion(coreBits);
+                        byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
+                        if (eepromBytes != null && eepromBytes.length > 0) {
+                            eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
+                            hexExportManager.exportAsHexWithAddress(eepromBytes, eepromAddr, chipName + "_EEPROM");
+                        }
+                    } else if (selected.equals(getString(R.string.exportar_eeprom_bin))) {
+                        hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
+
+                    } else if (selected.equals(getString(R.string.exportar_config_hex))) {
+                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+                        if (configBytes != null && configBytes.length > 0) {
+                            String configHexStr = com.diamon.managers.HexExportManager
+                                    .convertConfigSegmentToIntelHex(configBytes, coreBits);
+                            configHexStr += ":00000001FF\r\n"; // EOF
+                            hexExportManager.lanzarSelectorArchivo(chipName + "_CONFIG", ".hex", null, configHexStr);
+                        }
+                    } else if (selected.equals(getString(R.string.exportar_config_bin))) {
+                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+                        if (configBytes != null && configBytes.length > 0) {
+                            hexExportManager.exportAsBinary(configBytes, chipName + "_CONFIG");
+                        }
+
+                    } else if (selected.equals(getString(R.string.exportar_dump_completo))) {
+                        byte[] romBytes = stringHexToByteArray(lastReadRomData);
+                        byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
+                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+
+                        int eepromAddr = obtenerDireccionEepromParaExportacion(coreBits);
+
+                        romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
+                        eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
+
+                        hexExportManager.exportFullDumpAsHex(romBytes, eepromBytes, configBytes, eepromAddr, coreBits,
+                                chipName + "_FULL");
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
+    }
+
+    /**
+     * Calcula la dirección base de EEPROM para exportación HEX según familia.
+     */
+    private int obtenerDireccionEepromParaExportacion(int coreBits) {
+        return (coreBits == 16) ? 0xF00000 : 0x4200;
+    }
+
+    /**
+     * Calcula la dirección base de configuración para exportación HEX.
+     *
+     * Referencia de compatibilidad con picpro:
+     * - 16 bits: CONFIG en 0x300000
+     * - 14 bits: CONFIG en 0x4000
+     * - 12 bits: CONFIG/ID inmediatamente después de ROM
+     */
+    private int obtenerDireccionConfigParaExportacion(int coreBits) {
+        if (coreBits == 16) {
+            return 0x300000;
+        }
+        if (coreBits == 12 && currentChip != null) {
+            try {
+                return currentChip.getTamanoROM() * 2;
+            } catch (ChipConfigurationException e) {
+                return 0x4000;
+            }
+        }
+        return 0x4000;
+    }
+
+    private byte[] stringHexToByteArray(String s) {
+        if (s == null || s.isEmpty())
+            return new byte[0];
+        try {
+            int len = s.length();
+            byte[] data = new byte[len / 2];
+            for (int i = 0; i < len; i += 2) {
+                data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                        + Character.digit(s.charAt(i + 1), 16));
+            }
+            return data;
+        } catch (Exception e) {
+            return new byte[0];
+        }
+    }
+
+    /** Muestra información técnica del chip con formato legible y orden estable. */
+    private void showChipInfoDialog() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.selecciona_chip_primero),
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_chip_info, null);
+        android.widget.TableLayout table = dialogView.findViewById(R.id.tlChipInfo);
+        android.widget.TextView title = dialogView.findViewById(R.id.tvChipDialogTitle);
+        android.widget.Button btnClose = dialogView.findViewById(R.id.btnDialogClose);
+
+        title.setText(getString(R.string.chip_info_titulo) + ": " + currentChip.getNombreDelPic());
+        addRowToTable(table, getString(R.string.propiedad), getString(R.string.valor));
+
+        Map<String, Object> datosCrudos = currentChip.toDict();
+        java.util.LinkedHashMap<String, Object> datosFormateados = new java.util.LinkedHashMap<>();
+
+        datosFormateados.put("chip_name", datosCrudos.get("chip_name"));
+        datosFormateados.put("chip_id", datosCrudos.get("chip_id"));
+        datosFormateados.put("include", datosCrudos.get("include"));
+        datosFormateados.put("core_type", datosCrudos.get("core_type"));
+        datosFormateados.put("core_bits", datosCrudos.get("core_bits"));
+        datosFormateados.put("rom_size", datosCrudos.get("rom_size"));
+        datosFormateados.put("eeprom_size", datosCrudos.get("eeprom_size"));
+        datosFormateados.put("has_eeprom", datosCrudos.get("has_eeprom"));
+        datosFormateados.put("flash_chip", datosCrudos.get("flash_chip"));
+        datosFormateados.put("erase_mode", datosCrudos.get("erase_mode"));
+        datosFormateados.put("power_sequence", datosCrudos.get("power_sequence"));
+        datosFormateados.put("program_delay", datosCrudos.get("program_delay"));
+        datosFormateados.put("program_tries", datosCrudos.get("program_tries"));
+        datosFormateados.put("over_program", datosCrudos.get("over_program"));
+        datosFormateados.put("fuse_blank", datosCrudos.get("fuse_blank"));
+        datosFormateados.put("cp_warn", datosCrudos.get("cp_warn"));
+        datosFormateados.put("cal_word", datosCrudos.get("cal_word"));
+        datosFormateados.put("band_gap", datosCrudos.get("band_gap"));
+        datosFormateados.put("icsp_only", datosCrudos.get("icsp_only"));
+        datosFormateados.put("pin1_location", datosCrudos.get("pin1_location"));
+        datosFormateados.put("socket_image", datosCrudos.get("socket_image"));
+        datosFormateados.put("fuses", datosCrudos.get("fuses"));
+
+        for (Map.Entry<String, Object> entrada : datosFormateados.entrySet()) {
+            String etiqueta = formatearEtiquetaChip(entrada.getKey());
+            String valor = formatearValorChip(entrada.getValue());
+            addRowToTable(table, etiqueta, valor);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> dialog.dismiss());
+        }
+        dialog.show();
+    }
+
+    private String formatearEtiquetaChip(String clave) {
+        switch (clave) {
+            case "chip_name":
+                return "Nombre";
+            case "chip_id":
+                return "Chip ID";
+            case "include":
+                return "Include";
+            case "core_type":
+                return "Tipo de Núcleo";
+            case "core_bits":
+                return "Bits de Núcleo";
+            case "rom_size":
+                return "Tamaño ROM";
+            case "eeprom_size":
+                return "Tamaño EEPROM";
+            case "has_eeprom":
+                return "Tiene EEPROM";
+            case "flash_chip":
+                return "Flash Chip";
+            case "erase_mode":
+                return "Modo Borrado";
+            case "power_sequence":
+                return "Secuencia Energía";
+            case "program_delay":
+                return "Retardo Programación";
+            case "program_tries":
+                return "Intentos Programación";
+            case "over_program":
+                return "Sobre-Programación";
+            case "fuse_blank":
+                return "Fuse en Blanco";
+            case "cp_warn":
+                return "Aviso CP";
+            case "cal_word":
+                return "Palabra Calibración";
+            case "band_gap":
+                return "Band Gap";
+            case "icsp_only":
+                return "Solo ICSP";
+            case "pin1_location":
+                return "Ubicación Pin 1";
+            case "socket_image":
+                return "Imagen Socket";
+            case "fuses":
+                return "Fusibles";
+            default:
+                return clave.replace("_", " ").toUpperCase(java.util.Locale.ROOT);
+        }
+    }
+
+    private String formatearValorChip(Object valor) {
+        if (valor == null) {
+            return getString(R.string.no_disponible);
+        }
+
+        if (valor instanceof Boolean) {
+            return ((Boolean) valor) ? getString(R.string.si) : getString(R.string.no);
+        }
+
+        if (valor instanceof String[]) {
+            return java.util.Arrays.toString((String[]) valor);
+        }
+
+        if (valor instanceof int[]) {
+            return java.util.Arrays.toString((int[]) valor);
+        }
+
+        if (valor instanceof java.util.Collection) {
+            return valor.toString();
+        }
+
+        if (valor instanceof Map) {
+            Map<?, ?> mapa = (Map<?, ?>) valor;
+            if (mapa.isEmpty()) {
+                return getString(R.string.no_disponible);
+            }
+            StringBuilder resumen = new StringBuilder();
+            for (Map.Entry<?, ?> entry : mapa.entrySet()) {
+                if (resumen.length() > 0) {
+                    resumen.append("\n");
+                }
+                Object opciones = entry.getValue();
+                int cantidadOpciones = 0;
+                if (opciones instanceof java.util.Map) {
+                    cantidadOpciones = ((java.util.Map<?, ?>) opciones).size();
+                } else if (opciones instanceof java.util.Collection) {
+                    cantidadOpciones = ((java.util.Collection<?>) opciones).size();
+                }
+                resumen.append(entry.getKey()).append(": ").append(cantidadOpciones);
+            }
+            return resumen.toString();
+        }
+
+        return String.valueOf(valor);
+    }
+
+    private void addRowToTable(android.widget.TableLayout table, String key, String value) {
+        android.widget.TableRow row = new android.widget.TableRow(this);
+        row.setPadding(0, 8, 0, 8);
+
+        android.widget.TableRow.LayoutParams keyParams = new android.widget.TableRow.LayoutParams(
+                android.widget.TableRow.LayoutParams.WRAP_CONTENT,
+                android.widget.TableRow.LayoutParams.WRAP_CONTENT);
+        keyParams.column = 0;
+
+        android.widget.TextView tvKey = new android.widget.TextView(this);
+        tvKey.setText(key);
+        tvKey.setTextColor(Color.parseColor("#FF6600"));
+        tvKey.setTextSize(14);
+        tvKey.setPadding(8, 4, 16, 4);
+        tvKey.setTypeface(null, Typeface.BOLD);
+        tvKey.setLayoutParams(keyParams);
+
+        android.widget.TableRow.LayoutParams valueParams = new android.widget.TableRow.LayoutParams(
+                0,
+                android.widget.TableRow.LayoutParams.WRAP_CONTENT, 1f);
+        valueParams.column = 1;
+
+        android.widget.TextView tvValue = new android.widget.TextView(this);
+        tvValue.setText(value);
+        tvValue.setTextColor(Color.WHITE);
+        tvValue.setTextSize(14);
+        tvValue.setPadding(8, 4, 8, 4);
+        tvValue.setLayoutParams(valueParams);
+
+        row.addView(tvKey);
+        row.addView(tvValue);
+        table.addView(row);
+    }
+
+    /** Ejecuta la verificación de borrado (Blank Check) */
+    private void ejecutarBlankCheck() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        processStatusTextView.setText(getString(R.string.verificando_borrado) + "...");
+
+        new Thread(() -> {
+            try {
+                PicProgrammingManager.ResultadoVerificacionBorrado resultado = programmingManager
+                        .verificarBorradoCompleto(currentChip);
+
+                if (resultado.error != null && !resultado.error.isEmpty()) {
+                    runOnUiThread(() -> processStatusTextView
+                            .setText(getString(R.string.error_verificando_borrado) + ": " + resultado.error));
+                    return;
+                }
+
+                runOnUiThread(() -> {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
+                    sb.append("ROM: ").append(
+                            resultado.romEnBlanco ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
+                            .append("\n");
+
+                    if (currentChip.isTamanoValidoDeEEPROM()) {
+                        sb.append("EEPROM: ")
+                                .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
+                                        : getString(R.string.eeprom_not_blank))
+                                .append("\n");
+                    }
+
+                    sb.append("Método: ").append(resultado.metodoUtilizado);
+                    processStatusTextView.setText(sb.toString());
+
+                    if (resultado.chipEnBlanco()) {
+                        Toast.makeText(MainActivity.this, R.string.chip_esta_borrado, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, R.string.chip_no_esta_borrado, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                runOnUiThread(() -> processStatusTextView
+                        .setText(getString(R.string.error_verificando_borrado) + ": " + e.getMessage()));
+            }
+        }).start();
+    }
+
+    private void openTutorialGputils() {
+        try {
+            Intent intent = new Intent(MainActivity.this, TutorialGputilsActivity.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    private void openTutorialSdcc() {
+        try {
+            Intent intent = new Intent(MainActivity.this, com.diamon.tutorial.TutorialSdccActivity.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    /** Muestra ayuda sobre conexión ICSP */
+    private void showIcspHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.ayuda_icsp))
+                .setMessage(android.text.Html.fromHtml(getString(R.string.ayuda_icsp_content),
+                        android.text.Html.FROM_HTML_MODE_LEGACY))
+                .setPositiveButton(getString(R.string.aceptar), null)
+                .show();
+    }
+
+    /** Muestra ayuda sobre configuración de Fuses */
+    private void showFusesHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.ayuda_fuses_label))
+                .setMessage(android.text.Html.fromHtml(getString(R.string.ayuda_fuses_content),
+                        android.text.Html.FROM_HTML_MODE_LEGACY))
+                .setPositiveButton(getString(R.string.aceptar), null)
+                .show();
+    }
+
+    private void showProgrammerModelDialog() {
+        if (usbManager.isConnected()) {
+            String model = usbManager.getProtocolo().obtenerVersionOModeloDelProgramador();
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.modelo_del_programador))
+                    .setMessage(model)
+                    .setPositiveButton(getString(R.string.aceptar), null)
+                    .show();
+        }
+    }
+
+    private void showProtocolDialog() {
+        String currentProto = usbManager.getTipoProtocolo().getNombre();
+        String detected = "";
+        if (usbManager.isConnected()) {
+            detected = usbManager.getProtocolo().obtenerProtocoloDelProgramador();
+        }
+
+        String[] protocolos = TipoProtocolo.getNombres();
+        int currentIndex = 0;
+        for (int i = 0; i < protocolos.length; i++) {
+            if (protocolos[i].equals(currentProto)) {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        final int[] selectedIndex = { currentIndex };
+        String title = getString(R.string.protocolo_del_programador);
+        if (!detected.isEmpty()) {
+            title += " (" + detected.trim() + ")";
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setSingleChoiceItems(protocolos, currentIndex, (dialog, which) -> {
+                    selectedIndex[0] = which;
+                })
+                .setPositiveButton(getString(R.string.aceptar), (dialog, which) -> {
+                    TipoProtocolo selected = TipoProtocolo.values()[selectedIndex[0]];
+                    usbManager.setTipoProtocolo(selected);
+                    Toast.makeText(this,
+                            getString(R.string.protocolo) + ": " + selected.getNombre(),
+                            Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
+    }
+
+    @Override
+    protected void onPause() {
+        publicidad.pausarBanner();
+        super.onPause();
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        publicidad.resumenBanner();
+        if (wakeLock != null) {
+            wakeLock.acquire(10 * 60 * 1000L);
+        }
+    }
+
+    @SuppressLint("Wakelock")
+    @Override
+    protected void onDestroy() {
+        try {
+            if (publicidad != null) {
+                publicidad.destruirPublicidad();
+            }
+
+            if (usbManager != null) {
+                usbManager.release();
+            }
+
+            if (dialogManager != null) {
+                dialogManager.dismiss();
+            }
+
+            if (memoryDisplayManager != null) {
+                memoryDisplayManager.dismissAllPopups();
+            }
+
+            if (fuseConfigPopup != null) {
+                fuseConfigPopup.dismiss();
+            }
+
+            if (wakeLock != null && wakeLock.isHeld()) {
+                wakeLock.release();
+            }
+
+        } catch (Exception e) {
+            // Manejo de excepciones
+        }
+
+        super.onDestroy();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (hasFocus) {
+
+            pantallaCompleta.ocultarBotonesVirtuales();
+        }
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+        pantallaCompleta.ocultarBotonesVirtuales();
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+    public MostrarPublicidad getPublicidad() {
+        return publicidad;
+    }
+}

@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">隐私政策</string>
+
+    
+    <string name="aceptar">接受</string>
+    <string name="cancelar">取消</string>
+    <string name="conectado">已连接</string>
+    <string name="desconectado">已断开</string>
+    <string name="grabando_pic">正在烧录 PIC...</string>
+    <string name="espere_grabacion_pic">请稍候。请勿断开设备连接。</string>
+    <string name="grabacion_completada_pic">烧录完成</string>
+    <string name="grabacion_correcta_pic">固件已成功烧录到 PIC。</string>
+    <string name="fallo_grabacion_pic">烧录失败</string>
+    <string name="proceso_no_completado">无法完成该过程。请检查连接。</string>
+    <string name="protocolo_del_programador">编程器协议</string>
+    <string name="modelo_del_programador">编程器型号</string>
+    <string name="modelo_programador">编程器型号</string>
+    <string name="protocolo">协议</string>
+    <string name="politica_de_privacidad">隐私政策</string>
+    <string name="no_se_detecto_pic_en_socket">在插槽中未检测到 PIC</string>
+    <string name="pic_detectado_en_socket">在插槽中检测到 PIC</string>
+    <string name="memoria_contiene_datos">内存包含数据</string>
+    <string name="memoria_vacia">内存为空</string>
+    <string name="error_borrando_memoria">擦除内存时出错</string>
+    <string name="memoria_borrada_exitosamente">内存已成功擦除</string>
+    <string name="memoria_leida_exitosamente">内存已成功读取</string>
+    <string name="seleccione_un_chip">选择一个芯片</string>
+    <string name="seleccione_un_chip_y_cargue_un">选择一个芯片并加载一个 HEX 文件</string>
+    <string name="error_programando_pic">编程 PIC 时出错</string>
+    <string name="pic_programado_exitosamente">PIC 已成功编程</string>
+    <string name="iniciando_programacion">正在开始编程...</string>
+    <string name="error_cargando_archivo">加载文件时出错</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX 文件已成功加载</string>
+    <string name="archivo_cargado">文件已加载</string>
+    <string name="error_inicializando_chip">初始化芯片时出错</string>
+    <string name="conectado_al_programador">已连接到编程器</string>
+    <string name="error_inicializando_base_de_da">初始化芯片数据库时出错</string>
+    <string name="no_hay_modelos_de_chips_dispon">没有可用的芯片型号</string>
+    <string name="modelo_de_chip_invalido">芯片型号无效</string>
+    <string name="chip_no_encontrado_en_base_de_">在数据库中找不到芯片</string>
+    <string name="error_procesando_chip">处理芯片时出错</string>
+    <string name="no_hay_chip_seleccionado">未选择芯片</string>
+    <string name="modelo">型号</string>
+    <string name="palabras_rom">ROM 字</string>
+    <string name="tamano_rom">ROM 大小</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">不可用</string>
+    <string name="tipo_de_nucleo">"核心类型"</string>
+    <string name="error_obteniendo_datos_del_chi">获取芯片数据时出错</string>
+    <string name="modo">模式</string>
+    <string name="icsp_solamente">仅 ICSP</string>
+    <string name="pin_1">引脚 1</string>
+    <string name="filemanager_no_inicializado">FileManager 未初始化</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">无法获取文件名</string>
+    <string name="seleccione_un_archivo_binario_">选择一个有效的二进制文件（.hex 或 .bin）</string>
+    <string name="error_abriendo_el_archivo_sele">打开所选文件时出错</string>
+    <string name="el_archivo_seleccionado_esta_v">所选文件为空</string>
+    <string name="error_leyendo_el_archivo">读取文件时出错</string>
+    <string name="error_inesperado_leyendo_el_ar">读取文件时出现意外错误</string>
+    <string name="protocolo_no_inicializado">协议未初始化</string>
+    <string name="datos_invalidos_para_programac">编程数据无效</string>
+    <string name="borrando_memorias">正在擦除内存...</string>
+    <string name="error_borrando_memorias">擦除内存时出错</string>
+    <string name="programando_memoria_rom">正在编程 ROM 内存...</string>
+    <string name="error_programando_rom">编程 ROM 时出错</string>
+    <string name="programando_memoria_eeprom">正在编程 EEPROM 内存...</string>
+    <string name="error_programando_eeprom">编程 EEPROM 时出错</string>
+    <string name="programando_fuses_id">正在编程熔丝 ID...</string>
+    <string name="error_programando_fuses">编程熔丝时出错</string>
+    <string name="programando_fuses_18f">正在编程 18F 熔丝...</string>
+    <string name="error_programando_fuses_18f">编程 18F 熔丝时出错</string>
+    <string name="programacion_completada">编程完成</string>
+    <string name="error_inesperado">意外错误</string>
+    <string name="error_leyendo_memoria_rom">读取 ROM 内存时出错</string>
+    <string name="error_leyendo_memoria_eeprom">读取 EEPROM 内存时出错</string>
+    <string name="error_verificando_memoria">验证内存时出错</string>
+    <string name="error_detectando_chip">检测芯片时出错</string>
+    <string name="driver_usb_no_disponible">USB 驱动程序不可用</string>
+    <string name="dispositivo_sin_puertos_usb_di">设备没有可用的 USB 端口</string>
+    <string name="error_inicializando_protocolo_">初始化通信协议时出错</string>
+    <string name="error_de_conexion_usb">USB 连接错误</string>
+    <string name="error_inesperado_durante_la_co">连接期间出现意外错误</string>
+
+    
+    <string name="operaciones">操作</string>
+    <string name="cargar_archivo_hex">加载 HEX 文件</string>
+    <string name="programar_pic">编程 PIC</string>
+    <string name="leer_memoria">读取内存</string>
+    <string name="verificar">验证</string>
+    <string name="borrar_memoria">擦除内存</string>
+    <string name="detectar_pic">检测 PIC</string>
+    <string name="esperando_operacion">等待操作...</string>
+    <string name="esperando_seleccion">等待选择...</string>
+    <string name="seleccionar_chip_pic">选择 PIC 芯片</string>
+    
+    <string name="gputils_termux_asm">Termux 中的 GPUTILS ASM 编译器 Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">读取存储器...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">正确应用保险丝</string>
+
+    
+    
+    <string name="chip_info_titulo">芯片技术信息</string>
+    
+    <string name="propiedad">属性</string>
+    
+    <string name="valor">值</string>
+    
+    <string name="chip_info_profesional">芯片信息</string>
+    
+    
+    
+    <string name="exportar_config_hex">导出配置 (.hex)</string>
+    
+    <string name="exportar_config_bin">导出配置 (.bin)</string>
+    
+    <string name="exportar_dump_completo">导出完整转储 (.hex)</string>
+
+    
+    
+    <string name="programar_todo">全部编程</string>
+    
+    <string name="programar_solo_rom">仅对 ROM 进行编程</string>
+    
+    <string name="programar_solo_eeprom">仅对 EEPROM 进行编程</string>
+    
+    <string name="programar_solo_config">仅对 CONFIG 进行编程</string>
+    
+    
+    
+    <string name="verificar_borrado">验证擦除</string>
+    
+    <string name="chip_esta_borrado">芯片已已擦除（空白）</string>
+    
+    <string name="chip_no_esta_borrado">芯片未擦除</string>
+    
+    <string name="verificando_borrado">正在验证擦除...</string>
+    
+    <string name="resultado_verificacion_borrado">擦除验证结果</string>
+    
+    <string name="error_verificando_borrado">验证擦除时出错</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">保险丝配置</string>
+    
+    <string name="chip_seleccionado">所选芯片</string>
+    
+    <string name="configuracion_de_fusibles">保险丝配置</string>
+    
+    <string name="id_personalizado_hex">自定义 ID（十六进制）</string>
+    
+    <string name="hint_id_personalizado">示例：1A 2B 3C 4D（4 或 8 字节）</string>
+    
+    <string name="hint_nombre_fusible">名称（例如：WDT、FOSC、MCLRE）</string>
+    
+    <string name="hint_valor_fusible">值（例如：ON、OFF、HS、0x3F）</string>
+    
+    <string name="log_de_operaciones">操作日志</string>
+    
+    <string name="restaurar_desde_bd">从数据库恢复</string>
+    
+    <string name="restaurar_desde_hex">从十六进制恢复</string>
+    
+    <string name="aplicar_fuses">应用保险丝</string>
+    
+    <string name="nombre_del_fusible">保险丝名称</string>
+    
+    <string name="valor_ejemplo_on_off">值（例如：ON、OFF、0x3FFF）</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">十六进制格式的用户ID。对于 PIC12/16 使用 4 个字节（8 位数字），对于 PIC18 使用 8 个字节（16 位数字）。</string>
+    
+    <string name="ayuda_fuses_personalizados">覆盖 HEX 保险丝。使用技术名称（例如：WDT）和值（例如：OFF 或 0x01）。</string>
+    
+    <string name="ayuda_chip_info">从 PIC 定义文件中提取的详细技术数据。</string>
+
+    
+    <string name="seleccionar_operacion">选择操作</string>
+    
+    <string name="config_leida">配置读取</string>
+
+    
+    <string name="publicidad_recomendada">推荐广告</string>
+    
+    <string name="lectura_completa">完整读取</string>
+    
+    <string name="sin_chip">无芯片</string>
+    
+    <string name="fusible_agregado">添加保险丝</string>
+    
+    <string name="fusibles_restaurados">恢复保险丝</string>
+    
+    <string name="fusibles_aplicados">应用保险丝</string>
+    
+    <string name="procesamiento_hex">十六进制处理</string>
+    
+    <string name="rom_ok_blank">ROM：正常（空白）</string>
+    
+    <string name="rom_not_blank">ROM：非空白</string>
+    
+    <string name="eeprom_ok_blank">EEPROM：正常（空白）</string>
+    
+    <string name="eeprom_not_blank">EEPROM：非空白</string>
+
+    
+    
+    <string name="menu_ayuda">帮助</string>
+    
+    <string name="ayuda_icsp">连接 ICSP</string>
+    
+    <string name="ayuda_fuses_label">保险丝配置</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">西班牙语</string>
+    
+    <string name="idioma_ingles">英语</string>
+    
+    <string name="idioma_label">语言：%s</string>
+    
+    <string name="copiar_todo">📋 全部复制</string>
+    
+    <string name="tutorial_copiado">教程已复制到剪贴板</string>
+    
+    <string name="error_cargar_tutorial">加载教程时出错</string>
+    
+    <string name="codigo_asm">📄 ASM 代码</string>
+    
+    <string name="comando_label">💻 命令</string>
+    
+    <string name="copiar_btn">复制</string>
+    
+    <string name="copiado_msg">已复制</string>
+    
+    <string name="error_abrir_link">打开链接时出错</string>
+    
+    <string name="copiado_portapapeles">已复制到剪贴板</string>
+    
+    <string name="error_generico_detalle">错误：%1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ 已配置</string>
+    
+    <string name="debe_procesar_hex_primero">必须先处理 HEX 文件</string>
+
+    
+    <string name="error_exportador_no_inicializado">导出器未初始化</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">没有等待导出</string>
+    
+    <string name="seleccion_carpeta_cancelada">文件夹选择已取消</string>
+    
+    <string name="error_carpeta_no_accesible">无法访问所选文件夹</string>
+    
+    <string name="reemplazar_archivo_titulo">替换文件</string>
+    
+    <string name="reemplazar_archivo_mensaje">文件 \'%1$s\' 已存在。你想更换它吗？</string>
+    
+    <string name="error_reemplazando_archivo">无法替换现有文件</string>
+    
+    <string name="si">是</string>
+    
+    <string name="no">否</string>
+    
+    <string name="archivo_guardado">保存的文件：%1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ 添加保险丝</string>
+    
+    <string name="agregar_fusible_personalizado">➕ 添加自定义保险丝</string>
+    
+    <string name="completa_todos_los_campos">填写所有字段</string>
+    
+    <string name="log_iniciado">日志开始...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">从十六进制恢复的保险丝</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux 教程</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux 教程</string>
+    
+    <string name="codigo_copiado_portapapeles">代码复制到剪贴板</string>
+    
+    <string name="texto_copiado_portapapeles">文本复制到剪贴板</string>
+    
+    <string name="termino_no_encontrado">未找到术语：%1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">没有要导出的数据</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">没有要导出的有效数据</string>
+    
+    <string name="error_convirtiendo_datos_hex">转换十六进制数据时出错</string>
+    
+    <string name="error_nombre_archivo_vacio">名称不能为空</string>
+    
+    <string name="error_creando_archivo_salida">无法创建输出文件</string>
+    
+    <string name="error_abriendo_archivo_escritura">无法打开文件进行写入</string>
+    
+    <string name="error_escribiendo_archivo_detalle">写入文件时出错：%1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">导出时出现意外错误：%1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">内存已成功读取</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

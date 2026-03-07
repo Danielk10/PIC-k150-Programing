@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">سياسات الخصوصية</string>
+
+    
+    <string name="aceptar">قبول</string>
+    <string name="cancelar">إلغاء</string>
+    <string name="conectado">متصل</string>
+    <string name="desconectado">غير متصل</string>
+    <string name="grabando_pic">...جاري كتابة PIC</string>
+    <string name="espere_grabacion_pic">رجاء الإنتظار. لا تقم بفصل الجهاز.</string>
+    <string name="grabacion_completada_pic">اكتملت الكتابة</string>
+    <string name="grabacion_correcta_pic">تمت كتابة البرنامج الثابت (firmware) على PIC بنجاح.</string>
+    <string name="fallo_grabacion_pic">فشل في الكتابة</string>
+    <string name="proceso_no_completado">لم يتم إكمال العملية. تحقق من الاتصال.</string>
+    <string name="protocolo_del_programador">بروتوكول المبرمج</string>
+    <string name="modelo_del_programador">طراز المبرمج</string>
+    <string name="modelo_programador">طراز المبرمج</string>
+    <string name="protocolo">البروتوكول</string>
+    <string name="politica_de_privacidad">سياسة الخصوصية</string>
+    <string name="no_se_detecto_pic_en_socket">لم يتم الكشف عن PIC في المقبس</string>
+    <string name="pic_detectado_en_socket">تم الكشف عن PIC في المقبس</string>
+    <string name="memoria_contiene_datos">الذاكرة تحتوي على بيانات</string>
+    <string name="memoria_vacia">الذاكرة فارغة</string>
+    <string name="error_borrando_memoria">خطأ أثناء مسح الذاكرة</string>
+    <string name="memoria_borrada_exitosamente">تم مسح الذاكرة بنجاح</string>
+    <string name="memoria_leida_exitosamente">تمت قراءة الذاكرة بنجاح</string>
+    <string name="seleccione_un_chip">اختر شريحة</string>
+    <string name="seleccione_un_chip_y_cargue_un">اختر شريحة وقم بتحميل ملف HEX</string>
+    <string name="error_programando_pic">خطأ أثناء برمجة PIC</string>
+    <string name="pic_programado_exitosamente">تمت برمجة PIC بنجاح</string>
+    <string name="iniciando_programacion">...بدء البرمجة</string>
+    <string name="error_cargando_archivo">خطأ أثناء تحميل الملف</string>
+    <string name="archivo_hex_cargado_exitosamen">تم تحميل ملف HEX بنجاح</string>
+    <string name="archivo_cargado">تم تحميل الملف</string>
+    <string name="error_inicializando_chip">خطأ في تهيئة الشريحة</string>
+    <string name="conectado_al_programador">متصل بالـمبرمج</string>
+    <string name="error_inicializando_base_de_da">خطأ في تهيئة قاعدة بيانات الشرائح</string>
+    <string name="no_hay_modelos_de_chips_dispon">لا توجد طرازات شرائح متاحة</string>
+    <string name="modelo_de_chip_invalido">طراز شريحة غير صالح</string>
+    <string name="chip_no_encontrado_en_base_de_">الشريحة غير موجودة في قاعدة البيانات</string>
+    <string name="error_procesando_chip">خطأ أثناء معالجة الشريحة</string>
+    <string name="no_hay_chip_seleccionado">لم يتم اختيار شريحة</string>
+    <string name="modelo">الطراز</string>
+    <string name="palabras_rom">كلمات ROM</string>
+    <string name="tamano_rom">حجم ROM</string>
+    <string name="eeprom">إيبروم</string>
+    <string name="no_disponible">غير متاح</string>
+    <string name="tipo_de_nucleo">نوع النواة</string>
+    <string name="error_obteniendo_datos_del_chi">خطأ في الحصول على بيانات الشريحة</string>
+    <string name="modo">الوضع</string>
+    <string name="icsp_solamente">ICSP فقط</string>
+    <string name="pin_1">الدبوس 1</string>
+    <string name="filemanager_no_inicializado">لم تتم تهيئة مدير الملفات (FileManager)</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">تعذر الحصول على اسم الملف</string>
+    <string name="seleccione_un_archivo_binario_">اختر ملفًا ثنائيًا صالحًا (.hex أو .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">خطأ أثناء فتح الملف المختار</string>
+    <string name="el_archivo_seleccionado_esta_v">الملف المختار فارغ</string>
+    <string name="error_leyendo_el_archivo">خطأ أثناء قراءة الملف</string>
+    <string name="error_inesperado_leyendo_el_ar">خطأ غير متوقع أثناء قراءة الملف</string>
+    <string name="protocolo_no_inicializado">لم تتم تهيئة البروتوكول</string>
+    <string name="datos_invalidos_para_programac">بيانات غير صالحة للبرمجة</string>
+    <string name="borrando_memorias">...جاري مسح الذاكرات</string>
+    <string name="error_borrando_memorias">خطأ أثناء مسح الذاكرات</string>
+    <string name="programando_memoria_rom">...جاري برمجة ذاكرة ROM</string>
+    <string name="error_programando_rom">خطأ أثناء برمجة ROM</string>
+    <string name="programando_memoria_eeprom">...جاري برمجة ذاكرة EEPROM</string>
+    <string name="error_programando_eeprom">خطأ أثناء برمجة EEPROM</string>
+    <string name="programando_fuses_id">...جاري برمجة Fuses ID</string>
+    <string name="error_programando_fuses">خطأ أثناء برمجة Fuses</string>
+    <string name="programando_fuses_18f">...جاري برمجة Fuses 18F</string>
+    <string name="error_programando_fuses_18f">خطأ أثناء برمجة Fuses 18F</string>
+    <string name="programacion_completada">اكتملت البرمجة</string>
+    <string name="error_inesperado">خطأ غير متوقع</string>
+    <string name="error_leyendo_memoria_rom">خطأ أثناء قراءة ذاكرة ROM</string>
+    <string name="error_leyendo_memoria_eeprom">خطأ أثناء قراءة ذاكرة EEPROM</string>
+    <string name="error_verificando_memoria">خطأ أثناء التحقق من الذاكرة</string>
+    <string name="error_detectando_chip">خطأ أثناء الكشف عن الشريحة</string>
+    <string name="driver_usb_no_disponible">برنامج تشغيل USB غير متاح</string>
+    <string name="dispositivo_sin_puertos_usb_di">الجهاز لا يحتوي على منافذ USB متاحة</string>
+    <string name="error_inicializando_protocolo_">خطأ في تهيئة بروتوكول الاتصال</string>
+    <string name="error_de_conexion_usb">خطأ في اتصال USB</string>
+    <string name="error_inesperado_durante_la_co">خطأ غير متوقع أثناء الاتصال</string>
+
+    
+    <string name="operaciones">العمليات</string>
+    <string name="cargar_archivo_hex">تحميل ملف HEX</string>
+    <string name="programar_pic">برمجة PIC</string>
+    <string name="leer_memoria">قراءة الذاكرة</string>
+    <string name="verificar">التحقق</string>
+    <string name="borrar_memoria">مسح الذاكرة</string>
+    <string name="detectar_pic">كشف PIC</string>
+    <string name="esperando_operacion">في انتظار العملية...</string>
+    <string name="esperando_seleccion">في انتظار الاختيار...</string>
+    <string name="seleccionar_chip_pic">اختيار شريحة PIC</string>
+    
+    <string name="gputils_termux_asm">GPUTILS في Termux محرر ASM Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">ذاكرة القراءة...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">الصمامات المطبقة بشكل صحيح</string>
+
+    
+    
+    <string name="chip_info_titulo">المعلومات التقنية للرقاقة</string>
+    
+    <string name="propiedad">ملكية</string>
+    
+    <string name="valor">يستحق</string>
+    
+    <string name="chip_info_profesional">معلومات الشريحة</string>
+    
+    
+    
+    <string name="exportar_config_hex">تصدير التكوين (.عرافة)</string>
+    
+    <string name="exportar_config_bin">تصدير التكوين (.bin)</string>
+    
+    <string name="exportar_dump_completo">تصدير التفريغ الكامل (.hex)</string>
+
+    
+    
+    <string name="programar_todo">جدولة كل شيء</string>
+    
+    <string name="programar_solo_rom">روم البرنامج فقط</string>
+    
+    <string name="programar_solo_eeprom">برنامج إيبروم فقط</string>
+    
+    <string name="programar_solo_config">برنامج التكوين فقط</string>
+    
+    
+    
+    <string name="verificar_borrado">التحقق من الحذف</string>
+    
+    <string name="chip_esta_borrado">تم مسح الشريحة (فارغة)</string>
+    
+    <string name="chip_no_esta_borrado">لا يتم مسح الشريحة</string>
+    
+    <string name="verificando_borrado">جارٍ التحقق من الحذف...</string>
+    
+    <string name="resultado_verificacion_borrado">نتيجة التحقق من الحذف</string>
+    
+    <string name="error_verificando_borrado">خطأ في التحقق من الحذف</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">تكوينات الصمامات</string>
+    
+    <string name="chip_seleccionado">شريحة مختارة</string>
+    
+    <string name="configuracion_de_fusibles">تكوين الصمامات</string>
+    
+    <string name="id_personalizado_hex">معرف مخصص (ست عشري)</string>
+    
+    <string name="hint_id_personalizado">مثال: 1A 2B 3C 4D (4 أو 8 بايت)</string>
+    
+    <string name="hint_nombre_fusible">الاسم (على سبيل المثال: WDT، FOSC، MCLRE)</string>
+    
+    <string name="hint_valor_fusible">القيمة (على سبيل المثال: ON، OFF، HS، 0x3F)</string>
+    
+    <string name="log_de_operaciones">سجل العمليات</string>
+    
+    <string name="restaurar_desde_bd">استعادة من قاعدة البيانات</string>
+    
+    <string name="restaurar_desde_hex">استعادة من HEX</string>
+    
+    <string name="aplicar_fuses">تطبيق الصمامات</string>
+    
+    <string name="nombre_del_fusible">اسم الصمامات</string>
+    
+    <string name="valor_ejemplo_on_off">القيمة (مثال: ON، OFF، 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">معرف المستخدم بتنسيق HEX. استخدم 4 بايت (8 أرقام) لـ PIC12/16 أو 8 بايت (16 رقم) لـ PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">يتجاوز الصمامات HEX. استخدم الاسم الفني (على سبيل المثال: WDT) والقيمة (على سبيل المثال: OFF أو 0x01).</string>
+    
+    <string name="ayuda_chip_info">البيانات الفنية التفصيلية المستخرجة من ملف تعريف PIC.</string>
+
+    
+    <string name="seleccionar_operacion">حدد العملية</string>
+    
+    <string name="config_leida">قراءة التكوين</string>
+
+    
+    <string name="publicidad_recomendada">الإعلانات الموصى بها</string>
+    
+    <string name="lectura_completa">قراءة كاملة</string>
+    
+    <string name="sin_chip">بدون شريحة</string>
+    
+    <string name="fusible_agregado">وأضاف الصمامات</string>
+    
+    <string name="fusibles_restaurados">استعادة الصمامات</string>
+    
+    <string name="fusibles_aplicados">الصمامات التطبيقية</string>
+    
+    <string name="procesamiento_hex">معالجة سداسية</string>
+    
+    <string name="rom_ok_blank">ROM: موافق (فارغ)</string>
+    
+    <string name="rom_not_blank">ذاكرة القراءة فقط: ليست فارغة</string>
+    
+    <string name="eeprom_ok_blank">إيبروم: موافق (فارغ)</string>
+    
+    <string name="eeprom_not_blank">إيبروم: ليس فارغًا</string>
+
+    
+    
+    <string name="menu_ayuda">يساعد</string>
+    
+    <string name="ayuda_icsp">اتصال ICSP</string>
+    
+    <string name="ayuda_fuses_label">تكوين الصمامات</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">الأسبانية</string>
+    
+    <string name="idioma_ingles">إنجليزي</string>
+    
+    <string name="idioma_label">اللغة: %s</string>
+    
+    <string name="copiar_todo">📋 نسخ الكل</string>
+    
+    <string name="tutorial_copiado">تم نسخ البرنامج التعليمي إلى الحافظة</string>
+    
+    <string name="error_cargar_tutorial">حدث خطأ أثناء تحميل البرنامج التعليمي</string>
+    
+    <string name="codigo_asm">📄 كود ASM</string>
+    
+    <string name="comando_label">💻 الأمر</string>
+    
+    <string name="copiar_btn">ينسخ</string>
+    
+    <string name="copiado_msg">منقول</string>
+    
+    <string name="error_abrir_link">حدث خطأ أثناء فتح الرابط</string>
+    
+    <string name="copiado_portapapeles">تم النسخ إلى الحافظة</string>
+    
+    <string name="error_generico_detalle">خطأ: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ تم تكوينه</string>
+    
+    <string name="debe_procesar_hex_primero">يجب عليك معالجة ملف HEX أولاً</string>
+
+    
+    <string name="error_exportador_no_inicializado">لم تتم تهيئة المصدر</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">لا يوجد تصدير معلق</string>
+    
+    <string name="seleccion_carpeta_cancelada">تم إلغاء اختيار المجلد</string>
+    
+    <string name="error_carpeta_no_accesible">لا يمكن الوصول إلى المجلد المحدد</string>
+    
+    <string name="reemplazar_archivo_titulo">استبدال الملف</string>
+    
+    <string name="reemplazar_archivo_mensaje">الملف \'%1$s\' موجود بالفعل. هل تريد استبداله؟</string>
+    
+    <string name="error_reemplazando_archivo">لا يمكن استبدال الملف الموجود</string>
+    
+    <string name="si">نعم</string>
+    
+    <string name="no">لا</string>
+    
+    <string name="archivo_guardado">الملف المحفوظ: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ إضافة فيوز</string>
+    
+    <string name="agregar_fusible_personalizado">➕ إضافة فيوز مخصص</string>
+    
+    <string name="completa_todos_los_campos">أكمل كافة الحقول</string>
+    
+    <string name="log_iniciado">بدأ السجل...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">استعادة الصمامات من HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - برنامج Termux التعليمي</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - برنامج Termux التعليمي</string>
+    
+    <string name="codigo_copiado_portapapeles">تم نسخ الرمز إلى الحافظة</string>
+    
+    <string name="texto_copiado_portapapeles">تم نسخ النص إلى الحافظة</string>
+    
+    <string name="termino_no_encontrado">لم يتم العثور على المصطلح: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">لا توجد بيانات للتصدير</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">لا توجد بيانات صالحة للتصدير</string>
+    
+    <string name="error_convirtiendo_datos_hex">خطأ في تحويل البيانات الست عشرية</string>
+    
+    <string name="error_nombre_archivo_vacio">لا يمكن أن يكون الاسم فارغًا</string>
+    
+    <string name="error_creando_archivo_salida">لا يمكن إنشاء ملف الإخراج</string>
+    
+    <string name="error_abriendo_archivo_escritura">لا يمكن فتح الملف للكتابة</string>
+    
+    <string name="error_escribiendo_archivo_detalle">خطأ في كتابة الملف: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">خطأ غير متوقع أثناء التصدير: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">تمت قراءة الذاكرة بنجاح</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

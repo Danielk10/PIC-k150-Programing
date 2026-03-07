@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">מדיניות פרטיות</string>
+
+    
+    <string name="aceptar">אישור</string>
+    <string name="cancelar">ביטול</string>
+    <string name="conectado">מחובר</string>
+    <string name="desconectado">מנותק</string>
+    <string name="grabando_pic">צריבת PIC...</string>
+    <string name="espere_grabacion_pic">אנא המתן. אל תנתק את ההתקן.</string>
+    <string name="grabacion_completada_pic">הצריבה הושלמה</string>
+    <string name="grabacion_correcta_pic">הקושחה נצרבה בהצלחה ב-PIC.</string>
+    <string name="fallo_grabacion_pic">כשל בצריבה</string>
+    <string name="proceso_no_completado">לא ניתן להשלים את התהליך. בדוק את החיבור.</string>
+    <string name="protocolo_del_programador">פרוטוקול מתכנת</string>
+    <string name="modelo_del_programador">דגם מתכנת</string>
+    <string name="modelo_programador">דגם מתכנת</string>
+    <string name="protocolo">פרוטוקול</string>
+    <string name="politica_de_privacidad">מדיניות פרטיות</string>
+    <string name="no_se_detecto_pic_en_socket">לא זוהה PIC בתושבת</string>
+    <string name="pic_detectado_en_socket">PIC זוהה בתושבת</string>
+    <string name="memoria_contiene_datos">הזיכרון מכיל נתונים</string>
+    <string name="memoria_vacia">הזיכרון ריק</string>
+    <string name="error_borrando_memoria">שגיאה במחיקת הזיכרון</string>
+    <string name="memoria_borrada_exitosamente">הזיכרון נמחק בהצלחה</string>
+    <string name="memoria_leida_exitosamente">הזיכרון נקרא בהצלחה</string>
+    <string name="seleccione_un_chip">בחר שבב</string>
+    <string name="seleccione_un_chip_y_cargue_un">בחר שבב וטען קובץ HEX</string>
+    <string name="error_programando_pic">שגיאה בצריבת PIC</string>
+    <string name="pic_programado_exitosamente">PIC נצרב בהצלחה</string>
+    <string name="iniciando_programacion">מתחיל צריבה...</string>
+    <string name="error_cargando_archivo">שגיאה בטעינת הקובץ</string>
+    <string name="archivo_hex_cargado_exitosamen">קובץ HEX נטען בהצלחה</string>
+    <string name="archivo_cargado">הקובץ נטען</string>
+    <string name="error_inicializando_chip">שגיאה באתחול השבב</string>
+    <string name="conectado_al_programador">מחובר למתכנת</string>
+    <string name="error_inicializando_base_de_da">שגיאה באתחול מסד הנתונים של השבבים</string>
+    <string name="no_hay_modelos_de_chips_dispon">אין דגמי שבבים זמינים</string>
+    <string name="modelo_de_chip_invalido">דגם שבב לא חוקי</string>
+    <string name="chip_no_encontrado_en_base_de_">השבב לא נמצא במסד הנתונים</string>
+    <string name="error_procesando_chip">שגיאה בעיבוד השבב</string>
+    <string name="no_hay_chip_seleccionado">לא נבחר שבב</string>
+    <string name="modelo">דגם</string>
+    <string name="palabras_rom">מילות ROM</string>
+    <string name="tamano_rom">גודל ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">לא זמין</string>
+    <string name="tipo_de_nucleo">סוג ליבה</string>
+    <string name="error_obteniendo_datos_del_chi">שגיאה בקבלת נתוני השבב</string>
+    <string name="modo">מצב</string>
+    <string name="icsp_solamente">ICSP בלבד</string>
+    <string name="pin_1">פין 1</string>
+    <string name="filemanager_no_inicializado">FileManager לא אותחל</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">לא ניתן לקבל את שם הקובץ</string>
+    <string name="seleccione_un_archivo_binario_">בחר קובץ בינארי חוקי (.hex או .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">שגיאה בפתיחת הקובץ שנבחר</string>
+    <string name="el_archivo_seleccionado_esta_v">הקובץ שנבחר ריק</string>
+    <string name="error_leyendo_el_archivo">שגיאה בקריאת הקובץ</string>
+    <string name="error_inesperado_leyendo_el_ar">שגיאה בלתי צפויה בקריאת הקובץ</string>
+    <string name="protocolo_no_inicializado">הפרוטוקול לא אותחל</string>
+    <string name="datos_invalidos_para_programac">נתונים לא חוקיים לצריבה</string>
+    <string name="borrando_memorias">מוחק זיכרונות...</string>
+    <string name="error_borrando_memorias">שגיאה במחיקת זיכרונות</string>
+    <string name="programando_memoria_rom">צורב זיכרון ROM...</string>
+    <string name="error_programando_rom">שגיאה בצריבת ROM</string>
+    <string name="programando_memoria_eeprom">צורב זיכרון EEPROM...</string>
+    <string name="error_programando_eeprom">שגיאה בצריבת EEPROM</string>
+    <string name="programando_fuses_id">צורב Fuses ID...</string>
+    <string name="error_programando_fuses">שגיאה בצריבת Fuses</string>
+    <string name="programando_fuses_18f">צורב Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">שגיאה בצריבת Fuses 18F</string>
+    <string name="programacion_completada">הצריבה הושלמה</string>
+    <string name="error_inesperado">שגיאה בלתי צפויה</string>
+    <string name="error_leyendo_memoria_rom">שגיאה בקריאת זיכרון ROM</string>
+    <string name="error_leyendo_memoria_eeprom">שגיאה בקריאת זיכרון EEPROM</string>
+    <string name="error_verificando_memoria">שגיאה באימות הזיכרון</string>
+    <string name="error_detectando_chip">שגיאה בזיהוי השבב</string>
+    <string name="driver_usb_no_disponible">דרייבר USB לא זמין</string>
+    <string name="dispositivo_sin_puertos_usb_di">להתקן אין יציאות USB זמינות</string>
+    <string name="error_inicializando_protocolo_">שגיאה באתחול פרוטוקול התקשורת</string>
+    <string name="error_de_conexion_usb">שגיאת חיבור USB</string>
+    <string name="error_inesperado_durante_la_co">שגיאה בלתי צפויה במהלך החיבור</string>
+
+    
+    <string name="operaciones">פעולות</string>
+    <string name="cargar_archivo_hex">טען קובץ HEX</string>
+    <string name="programar_pic">תכנת PIC</string>
+    <string name="leer_memoria">קרא זיכרון</string>
+    <string name="verificar">אמת</string>
+    <string name="borrar_memoria">מחק זיכרון</string>
+    <string name="detectar_pic">זהה PIC</string>
+    <string name="esperando_operacion">ממתין לפעולה...</string>
+    <string name="esperando_seleccion">ממתין לבחירה...</string>
+    <string name="seleccionar_chip_pic">בחר שבב PIC</string>
+    
+    <string name="gputils_termux_asm">GPUTILS ב-Termux ASM Compiler Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">קורא זיכרון...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">נתיכים שהופעלו נכון</string>
+
+    
+    
+    <string name="chip_info_titulo">מידע טכני של שבב</string>
+    
+    <string name="propiedad">נֶכֶס</string>
+    
+    <string name="valor">שִׁוּוּי</string>
+    
+    <string name="chip_info_profesional">מידע על שבב</string>
+    
+    
+    
+    <string name="exportar_config_hex">ייצוא CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">ייצוא CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">ייצא dump מלא (.hex)</string>
+
+    
+    
+    <string name="programar_todo">תזמן הכל</string>
+    
+    <string name="programar_solo_rom">תוכנית ROM בלבד</string>
+    
+    <string name="programar_solo_eeprom">תוכנית EEPROM בלבד</string>
+    
+    <string name="programar_solo_config">תכנת רק CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">אמת את המחיקה</string>
+    
+    <string name="chip_esta_borrado">השבב נמחק (ריק)</string>
+    
+    <string name="chip_no_esta_borrado">השבב לא נמחק</string>
+    
+    <string name="verificando_borrado">מאמת את המחיקה...</string>
+    
+    <string name="resultado_verificacion_borrado">תוצאת אימות מחיקה</string>
+    
+    <string name="error_verificando_borrado">שגיאה באימות המחיקה</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">תצורות נתיך</string>
+    
+    <string name="chip_seleccionado">צ\'יפ נבחר</string>
+    
+    <string name="configuracion_de_fusibles">תצורת נתיך</string>
+    
+    <string name="id_personalizado_hex">מזהה מותאם אישית (HEX)</string>
+    
+    <string name="hint_id_personalizado">דוגמה: 1A 2B 3C 4D (4 או 8 בתים)</string>
+    
+    <string name="hint_nombre_fusible">שם (לדוגמה: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">ערך (לדוגמה: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">יומן פעולות</string>
+    
+    <string name="restaurar_desde_bd">שחזר מ-DB</string>
+    
+    <string name="restaurar_desde_hex">שחזר מ-HEX</string>
+    
+    <string name="aplicar_fuses">החל פיוזים</string>
+    
+    <string name="nombre_del_fusible">שם נתיך</string>
+    
+    <string name="valor_ejemplo_on_off">ערך (לדוגמה: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">מזהה משתמש בפורמט HEX. השתמש ב-4 בתים (8 ספרות) עבור PIC12/16 או 8 בתים (16 ספרות) עבור PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">עוקף את נתיכים HEX. השתמש בשם הטכני (לדוגמה: WDT) ובערך (לדוגמה: OFF או 0x01).</string>
+    
+    <string name="ayuda_chip_info">נתונים טכניים מפורטים שחולצו מקובץ ההגדרות של PIC.</string>
+
+    
+    <string name="seleccionar_operacion">בחר פעולה</string>
+    
+    <string name="config_leida">קריאת תצורה</string>
+
+    
+    <string name="publicidad_recomendada">פרסום מומלץ</string>
+    
+    <string name="lectura_completa">קריאה מלאה</string>
+    
+    <string name="sin_chip">ללא שבב</string>
+    
+    <string name="fusible_agregado">הוסיף פיוז</string>
+    
+    <string name="fusibles_restaurados">נתיכים משוחזרים</string>
+    
+    <string name="fusibles_aplicados">הפעילו נתיכים</string>
+    
+    <string name="procesamiento_hex">עיבוד HEX</string>
+    
+    <string name="rom_ok_blank">ROM: בסדר (ריק)</string>
+    
+    <string name="rom_not_blank">רום: לא ריק</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: בסדר (ריק)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: לא ריק</string>
+
+    
+    
+    <string name="menu_ayuda">סִיוּעַ</string>
+    
+    <string name="ayuda_icsp">חיבור ICSP</string>
+    
+    <string name="ayuda_fuses_label">תצורת נתיך</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">סְפָרַדִית</string>
+    
+    <string name="idioma_ingles">אַנגְלִית</string>
+    
+    <string name="idioma_label">שפה: %s</string>
+    
+    <string name="copiar_todo">📋 העתק הכל</string>
+    
+    <string name="tutorial_copiado">המדריך הועתק ללוח</string>
+    
+    <string name="error_cargar_tutorial">שגיאה בטעינת המדריך</string>
+    
+    <string name="codigo_asm">📄 קוד ASM</string>
+    
+    <string name="comando_label">💻 פקודה</string>
+    
+    <string name="copiar_btn">לְהַעְתִיק</string>
+    
+    <string name="copiado_msg">מוּעֲתָק</string>
+    
+    <string name="error_abrir_link">שגיאה בפתיחת הקישור</string>
+    
+    <string name="copiado_portapapeles">הועתק ללוח</string>
+    
+    <string name="error_generico_detalle">שגיאה: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ מוגדר</string>
+    
+    <string name="debe_procesar_hex_primero">תחילה עליך לעבד את קובץ ה-HEX</string>
+
+    
+    <string name="error_exportador_no_inicializado">היצואן אינו מאותחל</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">אין ייצוא ממתין</string>
+    
+    <string name="seleccion_carpeta_cancelada">בחירת התיקיה בוטלה</string>
+    
+    <string name="error_carpeta_no_accesible">לא ניתן היה לגשת לתיקיה שנבחרה</string>
+    
+    <string name="reemplazar_archivo_titulo">החלף קובץ</string>
+    
+    <string name="reemplazar_archivo_mensaje">הקובץ \'%1$s\' כבר קיים. האם אתה רוצה להחליף אותו?</string>
+    
+    <string name="error_reemplazando_archivo">לא ניתן להחליף את הקובץ הקיים</string>
+    
+    <string name="si">כֵּן</string>
+    
+    <string name="no">לֹא</string>
+    
+    <string name="archivo_guardado">קובץ שמור: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ הוסף פיוז</string>
+    
+    <string name="agregar_fusible_personalizado">➕ הוסף נתיך מותאם אישית</string>
+    
+    <string name="completa_todos_los_campos">השלם את כל השדות</string>
+    
+    <string name="log_iniciado">יומן התחיל...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">נתיכים משוחזרים מבית HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - הדרכה של Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - הדרכה של Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">הקוד הועתק ללוח</string>
+    
+    <string name="texto_copiado_portapapeles">הטקסט הועתק ללוח</string>
+    
+    <string name="termino_no_encontrado">המונח לא נמצא: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">אין נתונים לייצא</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">אין נתונים חוקיים לייצא</string>
+    
+    <string name="error_convirtiendo_datos_hex">שגיאה בהמרת נתונים הקסדצימליים</string>
+    
+    <string name="error_nombre_archivo_vacio">השם לא יכול להיות ריק</string>
+    
+    <string name="error_creando_archivo_salida">לא ניתן ליצור קובץ פלט</string>
+    
+    <string name="error_abriendo_archivo_escritura">לא ניתן היה לפתוח את הקובץ לכתיבה</string>
+    
+    <string name="error_escribiendo_archivo_detalle">שגיאה בכתיבת קובץ: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">שגיאה לא צפויה במהלך הייצוא: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">הזיכרון נקרא בהצלחה</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>

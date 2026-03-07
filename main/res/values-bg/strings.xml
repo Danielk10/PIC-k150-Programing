@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    
+    <string name="app_name">PIC k150 Programing</string>
+    <string name="politicas">Правила за поверителност</string>
+
+    
+    <string name="aceptar">Приемам</string>
+    <string name="cancelar">Отмяна</string>
+    <string name="conectado">Свързан</string>
+    <string name="desconectado">Отключен</string>
+    <string name="grabando_pic">Записване на PIC...</string>
+    <string name="espere_grabacion_pic">Моля, изчакайте. Не отключвайте устройството.</string>
+    <string name="grabacion_completada_pic">Записване завършено</string>
+    <string name="grabacion_correcta_pic">Фърмуерът е записан успешно в PIC.</string>
+    <string name="fallo_grabacion_pic">Грешка при записване</string>
+    <string name="proceso_no_completado">Не можа да се завърши процесът. Проверете връзката.</string>
+    <string name="protocolo_del_programador">Протокол на програмиста</string>
+    <string name="modelo_del_programador">Модел на програмиста</string>
+    <string name="modelo_programador">Модел на програмиста</string>
+    <string name="protocolo">Протокол</string>
+    <string name="politica_de_privacidad">Политика за поверителност</string>
+    <string name="no_se_detecto_pic_en_socket">PIC не е открит в гнездото</string>
+    <string name="pic_detectado_en_socket">PIC е открит в гнездото</string>
+    <string name="memoria_contiene_datos">Памятта съдържа данни</string>
+    <string name="memoria_vacia">Паметта е празна</string>
+    <string name="error_borrando_memoria">Грешка при изтриване на памятта</string>
+    <string name="memoria_borrada_exitosamente">Памятта е изтрита успешно</string>
+    <string name="memoria_leida_exitosamente">Памятта е прочетена успешно</string>
+    <string name="seleccione_un_chip">Изберете чип</string>
+    <string name="seleccione_un_chip_y_cargue_un">Изберете чип и заредете HEX файл</string>
+    <string name="error_programando_pic">Грешка при програмиране на PIC</string>
+    <string name="pic_programado_exitosamente">PIC е програмиран успешно</string>
+    <string name="iniciando_programacion">Начало на програмирането...</string>
+    <string name="error_cargando_archivo">Грешка при зареждане на файл</string>
+    <string name="archivo_hex_cargado_exitosamen">HEX файлът е зареден успешно</string>
+    <string name="archivo_cargado">Файлът е зареден</string>
+    <string name="error_inicializando_chip">Грешка при инициализация на чип</string>
+    <string name="conectado_al_programador">Свързан към програмиста</string>
+    <string name="error_inicializando_base_de_da">Грешка при инициализация на базата данни на чипове</string>
+    <string name="no_hay_modelos_de_chips_dispon">Няма налични модели на чипове</string>
+    <string name="modelo_de_chip_invalido">Невалиден модел на чип</string>
+    <string name="chip_no_encontrado_en_base_de_">Чипът не е намерен в базата данни</string>
+    <string name="error_procesando_chip">Грешка при обработка на чип</string>
+    <string name="no_hay_chip_seleccionado">Няма избран чип</string>
+    <string name="modelo">Модел</string>
+    <string name="palabras_rom">ROM думи</string>
+    <string name="tamano_rom">Размер ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Не е налично</string>
+    <string name="tipo_de_nucleo">Тип на ядро</string>
+    <string name="error_obteniendo_datos_del_chi">Грешка при получаване на данни от чип</string>
+    <string name="modo">Режим</string>
+    <string name="icsp_solamente">Само ICSP</string>
+    <string name="pin_1">Щифт 1</string>
+    <string name="filemanager_no_inicializado">FileManager не е инициализиран</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Не можа да се получи име на файл</string>
+    <string name="seleccione_un_archivo_binario_">Изберете валиден двоичен файл (.hex или .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Грешка при отваряне на избрания файл</string>
+    <string name="el_archivo_seleccionado_esta_v">Избраният файл е празен</string>
+    <string name="error_leyendo_el_archivo">Грешка при четене на файл</string>
+    <string name="error_inesperado_leyendo_el_ar">Неочаквана грешка при четене на файл</string>
+    <string name="protocolo_no_inicializado">Протокол не е инициализиран</string>
+    <string name="datos_invalidos_para_programac">Невалидни данни за програмиране</string>
+    <string name="borrando_memorias">Изтриване на памяти...</string>
+    <string name="error_borrando_memorias">Грешка при изтриване на памяти</string>
+    <string name="programando_memoria_rom">Програмиране на ROM памят...</string>
+    <string name="error_programando_rom">Грешка при програмиране на ROM</string>
+    <string name="programando_memoria_eeprom">Програмиране на EEPROM памят...</string>
+    <string name="error_programando_eeprom">Грешка при програмиране на EEPROM</string>
+    <string name="programando_fuses_id">Програмиране на Fuses ID...</string>
+    <string name="error_programando_fuses">Грешка при програмиране на Fuses</string>
+    <string name="programando_fuses_18f">Програмиране на Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Грешка при програмиране на Fuses 18F</string>
+    <string name="programacion_completada">Програмирането е завършено</string>
+    <string name="error_inesperado">Неочаквана грешка</string>
+    <string name="error_leyendo_memoria_rom">Грешка при четене на ROM памят</string>
+    <string name="error_leyendo_memoria_eeprom">Грешка при четене на EEPROM памят</string>
+    <string name="error_verificando_memoria">Грешка при проверка на памятта</string>
+    <string name="error_detectando_chip">Грешка при откриване на чип</string>
+    <string name="driver_usb_no_disponible">USB драйвер не е налице</string>
+    <string name="dispositivo_sin_puertos_usb_di">Устройство без налични USB портове</string>
+    <string name="error_inicializando_protocolo_">Грешка при инициализация на протокол за комуникация</string>
+    <string name="error_de_conexion_usb">Грешка при USB връзка</string>
+    <string name="error_inesperado_durante_la_co">Неочаквана грешка при връзката</string>
+
+    
+    <string name="operaciones">Операции</string>
+    <string name="cargar_archivo_hex">Заредете HEX файл</string>
+    <string name="programar_pic">Програмирайте PIC</string>
+    <string name="leer_memoria">Прочетете памятта</string>
+    <string name="verificar">Проверете</string>
+    <string name="borrar_memoria">Изтрийте памятта</string>
+    <string name="detectar_pic">Откройте PIC</string>
+    <string name="esperando_operacion">Очаква операция...</string>
+    <string name="esperando_seleccion">Очаква избор...</string>
+    <string name="seleccionar_chip_pic">Изберете Chip PIC</string>
+    
+    <string name="gputils_termux_asm">GPUTILS в Termux Compiler ASM Android</string>
+
+    
+    <string name="configurar_fusibles">Configure Fuses</string>
+    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM verified successfully</string>
+    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_eeprom_ok">EEPROM verified successfully</string>
+    <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="verificacion_completa">Verification complete</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Четене на паметта...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Правилно поставени предпазители</string>
+
+    
+    
+    <string name="chip_info_titulo">Техническа информация за чипа</string>
+    
+    <string name="propiedad">Собственост</string>
+    
+    <string name="valor">струва си</string>
+    
+    <string name="chip_info_profesional">Информация за чипа</string>
+    
+    
+    
+    <string name="exportar_config_hex">Експортиране на CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Експортиране на CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Експортиране на пълен дъмп (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Планирайте всичко</string>
+    
+    <string name="programar_solo_rom">Програмирайте само ROM</string>
+    
+    <string name="programar_solo_eeprom">Програмирайте само EEPROM</string>
+    
+    <string name="programar_solo_config">Програма само CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Потвърдете изтриването</string>
+    
+    <string name="chip_esta_borrado">Чипът е изтрит (празен)</string>
+    
+    <string name="chip_no_esta_borrado">Чипа НЕ е изтрит</string>
+    
+    <string name="verificando_borrado">Проверка на изтриването...</string>
+    
+    <string name="resultado_verificacion_borrado">Резултат от проверката на изтриването</string>
+    
+    <string name="error_verificando_borrado">Грешка при проверката на изтриването</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Конфигурации на предпазители</string>
+    
+    <string name="chip_seleccionado">Избран чип</string>
+    
+    <string name="configuracion_de_fusibles">Конфигурация на предпазител</string>
+    
+    <string name="id_personalizado_hex">Персонализиран идентификатор (HEX)</string>
+    
+    <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байта)</string>
+    
+    <string name="hint_nombre_fusible">Име (напр.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Стойност (напр.: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Дневник на операциите</string>
+    
+    <string name="restaurar_desde_bd">Възстановяване от DB</string>
+    
+    <string name="restaurar_desde_hex">Възстановяване от HEX</string>
+    
+    <string name="aplicar_fuses">Нанесете предпазители</string>
+    
+    <string name="nombre_del_fusible">Име на предпазител</string>
+    
+    <string name="valor_ejemplo_on_off">Стойност (пример: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Потребителско име в HEX формат. Използвайте 4 байта (8 цифри) за PIC12/16 или 8 байта (16 цифри) за PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Отменя предпазителите HEX. Използвайте техническото име (напр.: WDT) и стойността (напр.: OFF или 0x01).</string>
+    
+    <string name="ayuda_chip_info">Подробни технически данни, извлечени от PIC дефиниционния файл.</string>
+
+    
+    <string name="seleccionar_operacion">Изберете Операция</string>
+    
+    <string name="config_leida">Прочетена конфигурация</string>
+
+    
+    <string name="publicidad_recomendada">Препоръчителна реклама</string>
+    
+    <string name="lectura_completa">Пълно четене</string>
+    
+    <string name="sin_chip">без чип</string>
+    
+    <string name="fusible_agregado">Добавен предпазител</string>
+    
+    <string name="fusibles_restaurados">Реставрирани предпазители</string>
+    
+    <string name="fusibles_aplicados">Приложени предпазители</string>
+    
+    <string name="procesamiento_hex">HEX обработка</string>
+    
+    <string name="rom_ok_blank">ROM: OK (празен)</string>
+    
+    <string name="rom_not_blank">ROM: НЕ ПРАЗЕН</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (празен)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: НЕ ПРАЗЕН</string>
+
+    
+    
+    <string name="menu_ayuda">Помощ</string>
+    
+    <string name="ayuda_icsp">ICSP връзка</string>
+    
+    <string name="ayuda_fuses_label">Конфигурация на предпазител</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">испански</string>
+    
+    <string name="idioma_ingles">английски</string>
+    
+    <string name="idioma_label">Език: %s</string>
+    
+    <string name="copiar_todo">📋 Копиране на всички</string>
+    
+    <string name="tutorial_copiado">Урокът е копиран в клипборда</string>
+    
+    <string name="error_cargar_tutorial">Грешка при зареждането на урока</string>
+    
+    <string name="codigo_asm">📄 ASM код</string>
+    
+    <string name="comando_label">💻 Командване</string>
+    
+    <string name="copiar_btn">копие</string>
+    
+    <string name="copiado_msg">Копирано</string>
+    
+    <string name="error_abrir_link">Грешка при отваряне на връзката</string>
+    
+    <string name="copiado_portapapeles">Копирано в клипборда</string>
+    
+    <string name="error_generico_detalle">Грешка: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Конфигуриран</string>
+    
+    <string name="debe_procesar_hex_primero">Първо трябва да обработите HEX файла</string>
+
+    
+    <string name="error_exportador_no_inicializado">Износителят не е инициализиран</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Няма чакащ експорт</string>
+    
+    <string name="seleccion_carpeta_cancelada">Изборът на папка е отменен</string>
+    
+    <string name="error_carpeta_no_accesible">Избраната папка не може да бъде достъпна</string>
+    
+    <string name="reemplazar_archivo_titulo">Заменете файла</string>
+    
+    <string name="reemplazar_archivo_mensaje">Файлът \'%1$s\' вече съществува. Искате ли да го замените?</string>
+    
+    <string name="error_reemplazando_archivo">Не може да се замени съществуващ файл</string>
+    
+    <string name="si">да</string>
+    
+    <string name="no">не</string>
+    
+    <string name="archivo_guardado">Записан файл: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Добавете предпазител</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Добавете персонализиран предпазител</string>
+    
+    <string name="completa_todos_los_campos">Попълнете всички полета</string>
+    
+    <string name="log_iniciado">Регистърът започна...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Възстановени предпазители от HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Урок за Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Урок за Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Кодът е копиран в клипборда</string>
+    
+    <string name="texto_copiado_portapapeles">Текстът е копиран в клипборда</string>
+    
+    <string name="termino_no_encontrado">Терминът не е намерен: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Няма данни за експортиране</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Няма валидни данни за експортиране</string>
+    
+    <string name="error_convirtiendo_datos_hex">Грешка при конвертиране на шестнадесетични данни</string>
+    
+    <string name="error_nombre_archivo_vacio">Името не може да бъде празно</string>
+    
+    <string name="error_creando_archivo_salida">Не можа да се създаде изходен файл</string>
+    
+    <string name="error_abriendo_archivo_escritura">Не може да се отвори файл за запис</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Грешка при запис на файл: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Неочаквана грешка при експортиране: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Памятта е прочетена успешно</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+</resources>
