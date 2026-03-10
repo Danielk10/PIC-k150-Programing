@@ -441,7 +441,7 @@ public class MainActivity extends AppCompatActivity
                         swModeICSP.setChecked(false);
                         Toast.makeText(
                                 MainActivity.this,
-                                "Error al cambiar modo: " + e.getMessage(),
+                                getString(R.string.error_al_cambiar_modo_) + e.getMessage(),
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }
@@ -998,7 +998,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (datosPicProcesados == null) {
-            Toast.makeText(this, "Debe procesar el archivo HEX primero", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.debe_procesar_el_archivo_hex_p), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -1211,7 +1211,7 @@ public class MainActivity extends AppCompatActivity
 
                                     // Chip config info
                                     if (result.chipIdHex != null) {
-                                        statusMsg.append("\nChip ID: ").append(result.chipIdHex);
+                                        statusMsg.append("\n" + getString(R.string.chip_id) + " ").append(result.chipIdHex);
                                     }
 
                                     // Fuses decodificados

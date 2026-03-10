@@ -140,7 +140,7 @@ public class MemoryDisplayManager {
         }
 
         if (statusTextView != null) {
-            statusTextView.setText("Lectura Completa");
+            statusTextView.setText(context.getString(com.diamon.pic.R.string.lectura_completa));
             statusTextView.setTextColor(COLOR_DATA_LOADED);
         }
 
@@ -200,7 +200,7 @@ public class MemoryDisplayManager {
         container.setClipToPadding(true);
 
         TextView title = new TextView(context);
-        title.setText("Datos de Memoria");
+        title.setText(context.getString(com.diamon.pic.R.string.datos_de_memoria));
         title.setTextColor(Color.WHITE);
         title.setTextSize(20);
         title.setTypeface(null, Typeface.BOLD);
@@ -222,7 +222,7 @@ public class MemoryDisplayManager {
         statusContainer.addView(progressBar);
 
         statusTextView = new TextView(context);
-        statusTextView.setText("Leyendo memoria...");
+        statusTextView.setText(context.getString(com.diamon.pic.R.string.leyendo_memoria_pun_pun));
         statusTextView.setTextColor(COLOR_TEXT_SECONDARY);
         statusTextView.setTextSize(14);
         statusTextView.setGravity(Gravity.CENTER);
@@ -254,7 +254,7 @@ public class MemoryDisplayManager {
         contentContainer.setLayoutParams(contentParams);
 
         romLabel = new TextView(context);
-        romLabel.setText("▶ Memoria ROM");
+        romLabel.setText("▶ " + context.getString(com.diamon.pic.R.string.memoria_rom));
         romLabel.setTextColor(COLOR_DATA_LOADED);
         romLabel.setTextSize(14);
         romLabel.setTypeface(null, Typeface.BOLD);
@@ -284,7 +284,7 @@ public class MemoryDisplayManager {
         contentContainer.addView(romScrollView);
 
         eepromLabel = new TextView(context);
-        eepromLabel.setText("▶ Memoria EEPROM");
+        eepromLabel.setText("▶ " + context.getString(com.diamon.pic.R.string.memoria_eepromn));
         eepromLabel.setTextColor(COLOR_DATA_LOADED);
         eepromLabel.setTextSize(14);
         eepromLabel.setTypeface(null, Typeface.BOLD);
@@ -312,7 +312,7 @@ public class MemoryDisplayManager {
         container.addView(contentContainer);
 
         Button closeButton = new Button(context);
-        closeButton.setText("Cerrar");
+        closeButton.setText(context.getString(com.diamon.pic.R.string.cerrasrrrs));
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(14);
 

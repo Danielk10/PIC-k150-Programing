@@ -85,12 +85,12 @@ public class HexExportManager {
      */
     public void exportAsHexWithAddress(byte[] data, int startAddress, String suggestedName) {
         if (data == null || data.length == 0) {
-            notifyError("No hay datos para exportar");
+            notifyError(context.getString(com.diamon.pic.R.string.no_hay_datos_para_exportar));
             return;
         }
 
         if (createDocumentLauncher == null) {
-            notifyError("HexExportManager no inicializado");
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
             return;
         }
 
@@ -107,7 +107,7 @@ public class HexExportManager {
             int eepromAddress, int configAddress, String suggestedName) {
 
         if (createDocumentLauncher == null) {
-            notifyError("HexExportManager no inicializado");
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
             return;
         }
 
@@ -143,12 +143,12 @@ public class HexExportManager {
      */
     public void exportAsBinary(byte[] data, String suggestedName) {
         if (data == null || data.length == 0) {
-            notifyError("No hay datos para exportar");
+            notifyError(context.getString(com.diamon.pic.R.string.no_hay_datos_para_exportar));
             return;
         }
 
         if (createDocumentLauncher == null) {
-            notifyError("HexExportManager no inicializado");
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
             return;
         }
 
@@ -167,13 +167,13 @@ public class HexExportManager {
      */
     public void exportHexStringAsFile(String hexString, String suggestedName) {
         if (hexString == null || hexString.isEmpty() || hexString.startsWith("Error")) {
-            notifyError("No hay datos válidos para exportar");
+            notifyError(context.getString(com.diamon.pic.R.string.no_hay_datos_validos_para_exportar));
             return;
         }
 
         byte[] data = hexStringToBytes(hexString);
         if (data == null) {
-            notifyError("Error convirtiendo datos hexadecimales");
+            notifyError(context.getString(com.diamon.pic.R.string.error_convirtiendo_datos_hex));
             return;
         }
 
@@ -188,13 +188,13 @@ public class HexExportManager {
      */
     public void exportBinStringAsFile(String hexString, String suggestedName) {
         if (hexString == null || hexString.isEmpty() || hexString.startsWith("Error")) {
-            notifyError("No hay datos válidos para exportar");
+            notifyError(context.getString(com.diamon.pic.R.string.no_hay_datos_validos_para_exportar));
             return;
         }
 
         byte[] data = hexStringToBytes(hexString);
         if (data == null) {
-            notifyError("Error convirtiendo datos hexadecimales");
+            notifyError(context.getString(com.diamon.pic.R.string.error_convirtiendo_datos_hex));
             return;
         }
 
@@ -208,7 +208,7 @@ public class HexExportManager {
         try {
             OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
             if (outputStream == null) {
-                notifyError("Error abriendo archivo para escritura");
+                notifyError(context.getString(com.diamon.pic.R.string.error_creando_archivo_salida));
                 return;
             }
 
@@ -228,9 +228,9 @@ public class HexExportManager {
             }
 
         } catch (IOException e) {
-            notifyError("Error escribiendo archivo: " + e.getMessage());
+            notifyError(context.getString(com.diamon.pic.R.string.error_escribiendo_archivo_detalle, e.getMessage()));
         } catch (Exception e) {
-            notifyError("Error inesperado al exportar: " + e.getMessage());
+            notifyError(context.getString(com.diamon.pic.R.string.error_inesperado_leyendo_el_ar) + ": " + e.getMessage());
         }
     }
 
