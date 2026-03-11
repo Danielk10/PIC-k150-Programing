@@ -264,4 +264,72 @@
     <string name="memoria_rom">Memoria ROM</string>
     <string name="memoria_eeprom">Memoria EEPROM</string>
 
+    <string name="ad_label">Publicidad</string>
+    <string name="instalar">Instalar</string>
+    <string name="not_available">No disponible</string>
+    
+    <!-- Etiquetas de Información Técnica -->
+    <string name="seccion_identificacion">IDENTIFICACIÓN</string>
+    <string name="seccion_memoria">ESPECIFICACIONES DE MEMORIA</string>
+    <string name="seccion_hardware">ARQUITECTURA Y PINES</string>
+    <string name="seccion_programacion">PARÁMETROS DE PROGRAMACIÓN</string>
+    <string name="seccion_fuses">FUSIBLES DISPONIBLES</string>
+    
+    <string name="chip_id_label">Chip ID:</string>
+    <string name="include_file_label">Archivo Include:</string>
+    <string name="rom_capacity_label">Capacidad ROM:</string>
+    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    <string name="eeprom_capacity_label">Capacidad EEPROM:</string>
+    <string name="eeprom_bytes">%1$,d Bytes</string>
+    <string name="fuse_blank_value_label">Valor FUSE en Blanco:</string>
+    <string name="flash_technology_label">Tecnología Flash:</string>
+    <string name="core_architecture_label">Arquitectura Núcleo:</string>
+    <string name="core_bits_val">%1$d bits</string>
+    <string name="core_type_id_label">ID Tipo de Núcleo:</string>
+    <string name="pines_totales_label">Pines Totales:</string>
+    <string name="pines_val">%1$d pines</string>
+    <string name="pin_1_location_label">Ubicación Pin 1:</string>
+    <string name="socket_image_id_label">ID Imagen Socket:</string>
+    <string name="icsp_required_label">ICSP Requerido:</string>
+    <string name="erase_algorithm_label">Algoritmo de Borrado:</string>
+    <string name="power_sequence_label">Secuencia Encendido:</string>
+    <string name="prog_delay_label">Retraso Prog. (ms):</string>
+    <string name="prog_retries_label">Reintentos Prog.:</string>
+    <string name="over_prog_factor_label">Factor Over-prog.:</string>
+    <string name="cp_warn_label">Aviso Code Protect:</string>
+    <string name="memory_error_label">Error de Memoria:</string>
+    
+    <string name="cargando_tutorial">Cargando tutorial…</string>
+    <string name="error_cargando_tutorial_prefijo">Error al cargar tutorial:</string>
+    <string name="paso_prefijo">PASO </string>
+    <string name="error_prefijo">❌ ERROR: </string>
+    <string name="exito_prefijo">✅ ÉXITO: </string>
+    <string name="advertencia_prefijo">⚠️ ADVERTENCIA: </string>
+    <string name="nota_label">Nota:</string>
+    <string name="coincidencias_encontradas">Se encontraron %1$d coincidencias</string>
+    <string name="resultado_verificacion">Resultado de Verificación</string>
+    <string name="verificada">Verificada</string>
+    <string name="fallo">Fallo</string>
+    <string name="posiblemente_locked">Posiblemente bloqueada / Locked</string>
+    <string name="yes">Sí</string>
+    <string name="no_label">No</string>
+    <string name="seleccionar_idioma">Seleccionar Idioma</string>
+    <string name="tutorial_instalacion">Tutorial de Instalacion</string>
+    <string name="copiar_todo_en">Copy All</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="error_no_chip">Error: No hay chip seleccionado o sin fuses disponibles</string>
+    <string name="advertencia_cantidad_fuses">ADVERTENCIA: Cantidad de fusibles no coincide</string>
+    <string name="hex_compatible">HEX compatible</string>
+    <string name="error_verificando_hex">Error verificando HEX</string>
+    <string name="label_chip">Chip: </string>
+    <string name="editor_construido">Editor construido</string>
+    <string name="restaurando_chip">Restaurando desde chip...</string>
+    <string name="restaurado_chip">Restaurado desde chip</string>
+    <string name="restaurando_hex">Restaurando desde HEX...</string>
+    <string name="restaurado_hex">Restaurado desde HEX</string>
+    <string name="hex_sin_fuses">HEX sin fusibles</string>
+    <string name="aplicando">Aplicando...</string>
+    <string name="aplicado_exito">Aplicado exitosamente</string>
+    <string name="error_parse_id">Error parseando ID</string>
+
 </resources>

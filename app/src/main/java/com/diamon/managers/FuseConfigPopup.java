@@ -1,4 +1,5 @@
 package com.diamon.managers;
+import com.diamon.pic.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -457,7 +458,7 @@ public class FuseConfigPopup {
         logTextView.setTextSize(10);
         logTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
         logTextView.setTextColor(Color.parseColor("#AAAAAA"));
-        logTextView.setText("Log iniciado...\n");
+        logTextView.setText(context.getString(R.string.log_iniciado));
         logTextView.setPadding(8, 8, 8, 8);
         logTextView.setBackgroundColor(Color.parseColor("#1A1A2E"));
 
@@ -589,7 +590,7 @@ public class FuseConfigPopup {
     /** Carga los datos iniciales */
     private void loadInitialData() {
         if (currentChip == null || currentChip.getFusesMap() == null) {
-            logMessage("❌ Error: No hay chip seleccionado o sin fuses disponibles");
+            logMessage(context.getString(R.string.error_no_chip));
             return;
         }
 
@@ -630,24 +631,24 @@ public class FuseConfigPopup {
                     int expectedFuseCount = currentChip.getFuseBlank().length;
 
                     if (hexFuses.length != expectedFuseCount) {
-                        logMessage("⚠️ ADVERTENCIA: Cantidad de fusibles no coincide");
+                        logMessage(context.getString(R.string.advertencia_cantidad_fuses));
                         logMessage("  HEX: " + hexFuses.length + " fusibles");
                         logMessage("  Chip espera: " + expectedFuseCount);
                     } else {
-                        logMessage("✓ HEX compatible");
+                        logMessage(context.getString(R.string.hex_compatible));
                     }
                 }
             }
 
         } catch (Exception e) {
-            logMessage("⚠ Error verificando HEX: " + e.getMessage());
+            logMessage(context.getString(R.string.error_verificando_hex) + ": " + e.getMessage());
         }
     }
 
     /** Muestra la informacion del chip */
     private void displayChipInfo() {
         StringBuilder info = new StringBuilder();
-        info.append("Chip: ").append(currentChip.getNombreDelPic()).append("\n");
+        info.append(context.getString(R.string.label_chip)).append(currentChip.getNombreDelPic()).append("\n");
 
         try {
             info.append("ROM: 0x")
@@ -691,7 +692,7 @@ public class FuseConfigPopup {
             addFuseRow(fuseName, new ArrayList<>(fuseOptions.keySet()));
         }
 
-        logMessage("✓ Editor construido: " + fuses.size() + " fusibles");
+        logMessage(context.getString(R.string.editor_construido) + ": " + fuses.size());
     }
 
     /** Agrega una fila de fusible al editor */
@@ -745,7 +746,7 @@ public class FuseConfigPopup {
     /** Restaura fusibles desde los datos del chip */
     private void restoreFromChip() {
         try {
-            logMessage("⏳ Restaurando desde chip...");
+            logMessage(context.getString(R.string.restaurando_chip));
 
             for (Map.Entry<String, Spinner> entry : fuseSpinners.entrySet()) {
                 Spinner spinner = entry.getValue();
@@ -757,7 +758,7 @@ public class FuseConfigPopup {
             customIdEditText.setText("");
             currentIDData = new byte[] { 0 };
 
-            logMessage("✓ Restaurado desde chip");
+            logMessage(context.getString(R.string.restaurado_chip));
             Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
@@ -773,13 +774,13 @@ public class FuseConfigPopup {
                 return;
             }
 
-            logMessage("⏳ " + context.getString(com.diamon.pic.R.string.restaurar_desde_hex) + "...");
+            logMessage(context.getString(R.string.restaurando_hex));
 
             int[] hexFuses = hexData.obtenerValoresIntHexFusesPocesado();
             byte[] hexID = hexData.obtenerVsloresBytesHexIDPocesado();
 
             if (hexFuses == null || hexFuses.length == 0) {
-                logMessage("⚠ HEX sin fusibles");
+                logMessage(context.getString(R.string.hex_sin_fuses));
                 return;
             }
 
@@ -800,7 +801,7 @@ public class FuseConfigPopup {
                 customIdEditText.setText(idStr.toString().trim());
             }
 
-            logMessage("✓ Restaurado desde HEX");
+            logMessage(context.getString(R.string.restaurado_hex));
             Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados_desde_hex), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
@@ -830,7 +831,7 @@ public class FuseConfigPopup {
     /** Aplica los fusibles configurados */
     private void applyFuses() {
         try {
-            logMessage("⏳ Aplicando...");
+            logMessage(context.getString(R.string.aplicando));
 
             Map<String, String> fuseConfig = new HashMap<>();
             for (Map.Entry<String, Spinner> entry : fuseSpinners.entrySet()) {
@@ -846,7 +847,7 @@ public class FuseConfigPopup {
             List<Integer> encodedFuses = currentChip.encodeFuseData(fuseConfig);
             byte[] idData = parseCustomId();
 
-            logMessage("✅ Aplicado exitosamente");
+            logMessage(context.getString(R.string.aplicado_exito));
 
             if (listener != null) {
                 listener.onFusesApplied(encodedFuses, idData, fuseConfig);
@@ -922,7 +923,7 @@ public class FuseConfigPopup {
 
             return result;
         } catch (Exception e) {
-            logMessage("⚠ Error parseando ID");
+            logMessage(context.getString(R.string.error_parse_id));
             return currentIDData != null ? currentIDData : new byte[] { 0 };
         }
     }

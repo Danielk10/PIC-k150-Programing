@@ -1,6 +1,7 @@
 package com.diamon.tutorial.utilidadestutorial;
 
 import android.content.Context;
+import com.diamon.pic.R;
 
 /**
  * Clase para gestionar la carga y visualización de tutoriales en múltiples idiomas
@@ -57,19 +58,19 @@ public class TutorialManager {
     private String getSpanishTranslation(String key) {
         switch (key) {
             case "copy_button":
-                return "📋 Copiar";
+                return context.getString(R.string.copiar_btn);
             case "copy_success":
-                return "Código copiado al portapapeles";
+                return context.getString(R.string.codigo_copiado_portapapeles);
             case "language_label":
-                return "🌐 Idioma:";
+                return context.getString(R.string.idioma_label).replace(": %s", ":");
             case "spanish":
-                return "Español";
+                return context.getString(R.string.idioma_espanol);
             case "english":
-                return "English";
+                return context.getString(R.string.idioma_ingles);
             case "loading":
-                return "Cargando tutorial...";
+                return context.getString(R.string.cargando_tutorial);
             case "error_loading":
-                return "Error al cargar tutorial:";
+                return context.getString(R.string.error_cargar_tutorial) + ":";
             case "step":
                 return "PASO";
             case "note":
@@ -88,6 +89,9 @@ public class TutorialManager {
     }
 
     private String getEnglishTranslation(String key) {
+        // Por ahora, como el archivo strings.xml solo tiene español, 
+        // mantendremos estos hardcodeados para inglés o usaremos una estrategia de traducción si existe.
+        // Dado que el usuario pidió "en español", priorizamos la lógica de recursos para español.
         switch (key) {
             case "copy_button":
                 return "📋 Copy";
@@ -96,13 +100,13 @@ public class TutorialManager {
             case "language_label":
                 return "🌐 Language:";
             case "spanish":
-                return "Español";
+                return "Spanish";
             case "english":
                 return "English";
             case "loading":
                 return "Loading tutorial...";
             case "error_loading":
-                return "Error loading tutorial:";
+                return context.getString(R.string.error_cargando_tutorial_prefijo);
             case "step":
                 return "STEP";
             case "note":

@@ -1,5 +1,6 @@
 package com.diamon.managers;
 
+import com.diamon.pic.R;
 import com.diamon.chip.ChipPic;
 import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.nucleo.Protocolo;
@@ -58,27 +59,27 @@ public class VerificationManager {
         /**
          * Genera un resumen de la verificación legible por el usuario.
          */
-        public String toSummary() {
+        public String toSummary(android.content.Context context) {
             StringBuilder sb = new StringBuilder();
-            sb.append("=== Resultado de Verificación ===\n");
+            sb.append("=== ").append(context.getString(R.string.resultado_verificacion)).append(" ===\n");
 
             if (chipIdHex != null) {
-                sb.append("Chip ID: ").append(chipIdHex).append("\n");
+                sb.append(context.getString(R.string.chip_id_label)).append(" ").append(chipIdHex).append("\n");
             }
             if (calibrationHex != null) {
                 sb.append("Calibración: ").append(calibrationHex).append("\n");
             }
 
-            sb.append("ROM: ").append(romVerified ? "✓ Verificada" : "✗ Falló");
+            sb.append("ROM: ").append(romVerified ? "✓ " + context.getString(R.string.verificada) : "✗ " + context.getString(R.string.fallo));
             if (romMaybeLocked) {
-                sb.append(" (posiblemente locked para lectura)");
+                sb.append(" (").append(context.getString(R.string.posiblemente_locked)).append(")");
             }
             sb.append("\n");
 
-            sb.append("EEPROM: ").append(eepromVerified ? "✓ Verificada" : "N/A").append("\n");
+            sb.append("EEPROM: ").append(eepromVerified ? "✓ " + context.getString(R.string.verificada) : context.getString(R.string.not_available)).append("\n");
 
             if (decodedFuses != null && !decodedFuses.isEmpty()) {
-                sb.append("\nFuses decodificados:\n");
+                sb.append("\n").append(context.getString(R.string.seccion_fuses)).append(":\n");
                 for (Map.Entry<String, String> entry : decodedFuses.entrySet()) {
                     sb.append("  ").append(entry.getKey())
                             .append(" = ").append(entry.getValue()).append("\n");

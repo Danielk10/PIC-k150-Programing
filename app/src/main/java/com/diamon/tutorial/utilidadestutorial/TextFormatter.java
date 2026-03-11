@@ -1,6 +1,7 @@
 package com.diamon.tutorial.utilidadestutorial;
 
 import android.content.Context;
+import com.diamon.pic.R;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -169,7 +170,7 @@ public class TextFormatter {
      * @return SpannableString formateado
      */
     public SpannableString formatStepTitle(int stepNumber, String stepTitle, String emoji) {
-        String fullText = emoji + " PASO " + stepNumber + ": " + stepTitle;
+        String fullText = emoji + " " + context.getString(R.string.paso_prefijo) + stepNumber + ": " + stepTitle;
         SpannableStringBuilder builder = new SpannableStringBuilder(fullText);
 
         // Colorear número del paso
@@ -201,7 +202,8 @@ public class TextFormatter {
      * @return SpannableString formateado
      */
     public SpannableString formatError(String errorMessage) {
-        SpannableString spannable = new SpannableString("❌ ERROR: " + errorMessage);
+        String prefix = context.getString(R.string.error_prefijo);
+        SpannableString spannable = new SpannableString(prefix + errorMessage);
         spannable.setSpan(
                 new ForegroundColorSpan(COLOR_ERROR),
                 0,
@@ -211,7 +213,7 @@ public class TextFormatter {
         spannable.setSpan(
                 new StyleSpan(android.graphics.Typeface.BOLD),
                 0,
-                9, // "❌ ERROR:"
+                prefix.length(), // Dinámico según el prefijo
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 
@@ -224,7 +226,8 @@ public class TextFormatter {
      * @return SpannableString formateado
      */
     public SpannableString formatSuccess(String successMessage) {
-        SpannableString spannable = new SpannableString("✅ ÉXITO: " + successMessage);
+        String prefix = context.getString(R.string.exito_prefijo);
+        SpannableString spannable = new SpannableString(prefix + successMessage);
         spannable.setSpan(
                 new ForegroundColorSpan(COLOR_SUCCESS),
                 0,
@@ -234,7 +237,7 @@ public class TextFormatter {
         spannable.setSpan(
                 new StyleSpan(android.graphics.Typeface.BOLD),
                 0,
-                9, // "✅ ÉXITO:"
+                prefix.length(), // Dinámico
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 
@@ -247,7 +250,8 @@ public class TextFormatter {
      * @return SpannableString formateado
      */
     public SpannableString formatWarning(String warningMessage) {
-        SpannableString spannable = new SpannableString("⚠️ ADVERTENCIA: " + warningMessage);
+        String prefix = context.getString(R.string.advertencia_prefijo);
+        SpannableString spannable = new SpannableString(prefix + warningMessage);
         spannable.setSpan(
                 new ForegroundColorSpan(COLOR_WARNING),
                 0,
@@ -257,7 +261,7 @@ public class TextFormatter {
         spannable.setSpan(
                 new StyleSpan(android.graphics.Typeface.BOLD),
                 0,
-                15, // "⚠️ ADVERTENCIA:"
+                prefix.length(), // Dinámico
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
 

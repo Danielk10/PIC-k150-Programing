@@ -1525,7 +1525,7 @@ public class MainActivity extends AppCompatActivity
         // Función auxiliar para añadir filas
         java.util.function.BiConsumer<String, String> addRow = (labelStr, valueStr) -> {
             if (valueStr == null || valueStr.isEmpty() || valueStr.equalsIgnoreCase("null")) {
-                valueStr = "N/A";
+                valueStr = getString(R.string.not_available);
             }
             
             TableRow row = new TableRow(this);
@@ -1591,10 +1591,10 @@ public class MainActivity extends AppCompatActivity
         };
 
         // --- SECCIÓN: IDENTIFICACIÓN ---
-        addHeader.accept("IDENTIFICACIÓN");
+        addHeader.accept(getString(R.string.seccion_identificacion));
         addRow.accept(getString(R.string.modelo) + ":", String.valueOf(allData.get("chip_name")));
         Object chipId = allData.get("chip_id");
-        String hexId = "N/A";
+        String hexId = getString(R.string.not_available);
         if (chipId != null) {
             try {
                 long idVal = (chipId instanceof Number) ? ((Number)chipId).longValue() : Long.parseLong(String.valueOf(chipId), 16);
@@ -1603,48 +1603,47 @@ public class MainActivity extends AppCompatActivity
                 hexId = String.valueOf(chipId);
             }
         }
-        addRow.accept("Chip ID:", hexId);
-        addRow.accept("Include File:", String.valueOf(allData.get("include")));
+        addRow.accept(getString(R.string.chip_id_label), hexId);
+        addRow.accept(getString(R.string.include_file_label), String.valueOf(allData.get("include")));
 
         // --- SECCIÓN: MEMORIA ---
-        addHeader.accept("ESPECIFICACIONES DE MEMORIA");
+        addHeader.accept(getString(R.string.seccion_memoria));
         try {
-            // Nota Técnica: En PICs, la ROM se mide en Words. En el archivo HEX y programación, 1 Word = 2 Bytes.
             int words = currentChip.getTamanoROM();
-            addRow.accept("ROM Capacity:", String.format("%,d Words (%,d Bytes)", words, words * 2));
-            addRow.accept("EEPROM Capacity:", currentChip.isTamanoValidoDeEEPROM() ? 
-                    String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
-            addRow.accept("FUSE Blank Value:", formatFuseBlank.apply(allData.get("fuse_blank")));
+            addRow.accept(getString(R.string.rom_capacity_label), getString(R.string.rom_words_bytes, words, words * 2));
+            addRow.accept(getString(R.string.eeprom_capacity_label), currentChip.isTamanoValidoDeEEPROM() ? 
+                    getString(R.string.eeprom_bytes, currentChip.getTamanoEEPROM()) : getString(R.string.not_available));
+            addRow.accept(getString(R.string.fuse_blank_value_label), formatFuseBlank.apply(allData.get("fuse_blank")));
         } catch (Exception e) {
-            addRow.accept("Memory Error:", e.getMessage());
+            addRow.accept(getString(R.string.memory_error_label), e.getMessage());
         }
-        addRow.accept("Flash Technology:", isTrue.test(allData.get("flash_chip")) ? "YES" : "NO");
+        addRow.accept(getString(R.string.flash_technology_label), isTrue.test(allData.get("flash_chip")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: HARDWARE ---
-        addHeader.accept("ARQUITECTURA Y PINES");
-        addRow.accept("Core Architecture:", allData.get("core_bits") + " bits");
-        addRow.accept("Core Type ID:", String.valueOf(allData.get("core_type")));
-        addRow.accept("Pines Totales:", currentChip.getNumeroDePines() + " pines");
-        addRow.accept("Pin 1 Location:", String.valueOf(allData.get("pin1_location")));
-        addRow.accept("Socket Image ID:", String.valueOf(allData.get("socket_image")));
-        addRow.accept("ICSP Required:", isTrue.test(allData.get("icsp_only")) ? "YES" : "NO");
+        addHeader.accept(getString(R.string.seccion_hardware));
+        addRow.accept(getString(R.string.core_architecture_label), getString(R.string.core_bits_val, (int)allData.get("core_bits")));
+        addRow.accept(getString(R.string.core_type_id_label), String.valueOf(allData.get("core_type")));
+        addRow.accept(getString(R.string.pines_totales_label), getString(R.string.pines_val, currentChip.getNumeroDePines()));
+        addRow.accept(getString(R.string.pin_1_location_label), String.valueOf(allData.get("pin1_location")));
+        addRow.accept(getString(R.string.socket_image_id_label), String.valueOf(allData.get("socket_image")));
+        addRow.accept(getString(R.string.icsp_required_label), isTrue.test(allData.get("icsp_only")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: PROGRAMACIÓN ---
-        addHeader.accept("PARÁMETROS DE PROGRAMACIÓN");
-        addRow.accept("Erase Algorithm:", String.valueOf(allData.get("erase_mode")));
-        addRow.accept("Power Sequence:", String.valueOf(allData.get("power_sequence")));
-        addRow.accept("Prog. Delay (ms):", String.valueOf(allData.get("program_delay")));
-        addRow.accept("Prog. Retries:", String.valueOf(allData.get("program_tries")));
-        addRow.accept("Over-prog. Factor:", String.valueOf(allData.get("over_program")));
-        addRow.accept("Code Protect Warn:", isTrue.test(allData.get("cp_warn")) ? "YES" : "NO");
+        addHeader.accept(getString(R.string.seccion_programacion));
+        addRow.accept(getString(R.string.erase_algorithm_label), String.valueOf(allData.get("erase_mode")));
+        addRow.accept(getString(R.string.power_sequence_label), String.valueOf(allData.get("power_sequence")));
+        addRow.accept(getString(R.string.prog_delay_label), String.valueOf(allData.get("program_delay")));
+        addRow.accept(getString(R.string.prog_retries_label), String.valueOf(allData.get("program_tries")));
+        addRow.accept(getString(R.string.over_prog_factor_label), String.valueOf(allData.get("over_program")));
+        addRow.accept(getString(R.string.cp_warn_label), isTrue.test(allData.get("cp_warn")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: FUSES ---
         Map<String, ?> fuses = (Map<String, ?>) allData.get("fuses");
         if (fuses != null && !fuses.isEmpty()) {
-            addHeader.accept("FUSIBLES DISPONIBLES");
+            addHeader.accept(getString(R.string.seccion_fuses));
             for (Map.Entry<String, ?> entry : fuses.entrySet()) {
                 String fuseName = entry.getKey();
-                String options = "N/A";
+                String options = getString(R.string.not_available);
                 if (entry.getValue() instanceof List) {
                     options = String.join(" | ", (List<String>) entry.getValue());
                 }

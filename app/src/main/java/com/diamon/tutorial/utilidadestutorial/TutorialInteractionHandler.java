@@ -1,6 +1,7 @@
 package com.diamon.tutorial.utilidadestutorial;
 
 import android.content.Context;
+import com.diamon.pic.R;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
@@ -68,7 +69,7 @@ public class TutorialInteractionHandler {
             }
         }
 
-        android.widget.Toast.makeText(context, "Texto copiado al portapapeles",
+        android.widget.Toast.makeText(context, context.getString(R.string.texto_copiado_portapapeles),
                 android.widget.Toast.LENGTH_SHORT).show();
     }
 
@@ -77,7 +78,7 @@ public class TutorialInteractionHandler {
      * @param stepNumber Número del paso a que desplazarse
      */
     public void scrollToStep(int stepNumber) {
-        String searchText = "PASO " + stepNumber;
+        String searchText = context.getString(R.string.paso_prefijo) + stepNumber;
         CharSequence tutorialContent = tutorialTextView.getText();
         String content = tutorialContent.toString();
         int startPos = content.indexOf(searchText);
@@ -129,7 +130,7 @@ public class TutorialInteractionHandler {
             return true;
         }
 
-        android.widget.Toast.makeText(context, "Término no encontrado: " + searchTerm,
+        android.widget.Toast.makeText(context, context.getString(R.string.termino_no_encontrado, searchTerm),
                 android.widget.Toast.LENGTH_SHORT).show();
         return false;
     }
@@ -166,11 +167,11 @@ public class TutorialInteractionHandler {
         if (count > 0) {
             tutorialTextView.setText(builder);
             android.widget.Toast.makeText(context,
-                    "Se encontraron " + count + " coincidencias",
+                    context.getString(R.string.coincidencias_encontradas, count),
                     android.widget.Toast.LENGTH_SHORT).show();
         } else {
             android.widget.Toast.makeText(context,
-                    "Término no encontrado: " + searchTerm,
+                    context.getString(R.string.termino_no_encontrado, searchTerm),
                     android.widget.Toast.LENGTH_SHORT).show();
         }
 

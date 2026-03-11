@@ -362,7 +362,7 @@ public class MostrarPublicidad implements Publicidad {
     private void showNativePlaceholder(ViewGroup container) {
         container.removeAllViews();
         TextView placeholder = new TextView(actividad);
-        placeholder.setText("Publicidad recomendada"); // Un texto más amigable
+        placeholder.setText(actividad.getString(R.string.publicidad_recomendada)); // Un texto más amigable
         placeholder.setPadding(30, 30, 30, 30);
         placeholder.setTextColor(Color.GRAY);
         container.addView(placeholder);

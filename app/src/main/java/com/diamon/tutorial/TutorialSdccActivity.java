@@ -84,7 +84,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
     }
 
     private void setupLanguageSpinner() {
-        String[] languages = { "Español", "English" };
+        String[] languages = { getString(R.string.idioma_espanol), getString(R.string.idioma_ingles) };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -118,7 +118,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
             inputStream.close();
             fullTutorialContent = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            Toast.makeText(this, "Error al cargar tutorial: " + e.getMessage(),
+            Toast.makeText(this, getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
             e.printStackTrace();
             fullTutorialContent = "Error loading tutorial.";
@@ -141,9 +141,9 @@ public class TutorialSdccActivity extends AppCompatActivity {
 
         // Actualizar título según idioma si es necesario
         if (language.equals("es")) {
-            titleTextView.setText("SDCC 4.5.0 - Tutorial en Termux");
+            titleTextView.setText(R.string.titulo_tutorial_sdcc_es);
         } else {
-            titleTextView.setText("SDCC 4.5.0 - Termux Tutorial");
+            titleTextView.setText(R.string.titulo_tutorial_sdcc_en);
         }
     }
 
@@ -162,17 +162,17 @@ public class TutorialSdccActivity extends AppCompatActivity {
 
     private void updateLanguageInfo(String language) {
         if (language.equals("es")) {
-            languageInfoTextView.setText("Idioma: Español");
+            languageInfoTextView.setText(getString(R.string.idioma_espanol));
         } else {
-            languageInfoTextView.setText("Language: English");
+            languageInfoTextView.setText(getString(R.string.idioma_ingles));
         }
     }
 
     private void updateCopyButtonText(String language) {
         if (language.equals("es")) {
-            copyButton.setText("📋 Copiar Todo");
+            copyButton.setText(R.string.copiar_todo);
         } else {
-            copyButton.setText("📋 Copy All");
+            copyButton.setText(R.string.copiar_todo_en);
         }
     }
 
@@ -185,7 +185,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
             clipboard.setPrimaryClip(clip);
 
             Toast.makeText(this,
-                    currentLanguage.equals("es") ? "Tutorial copiado al portapapeles" : "Tutorial copied to clipboard",
+                    currentLanguage.equals("es") ? getString(R.string.tutorial_copiado) : "Tutorial copied to clipboard",
                     Toast.LENGTH_SHORT).show();
         }
     }

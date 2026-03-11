@@ -1,6 +1,7 @@
 package com.diamon.tutorial.utilidadestutorial;
 
 import android.content.Context;
+import com.diamon.pic.R;
 import android.graphics.Typeface;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -122,7 +123,7 @@ public class CodeBlockView {
                         Context.CLIPBOARD_SERVICE);
         android.content.ClipData clip = android.content.ClipData.newPlainText("code", code);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, "Código copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.codigo_copiado_portapapeles), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -143,7 +144,7 @@ public class CodeBlockView {
         noteLayout.setLayoutParams(noteParams);
 
         TextView noteTitle = new TextView(context);
-        noteTitle.setText(emoji + " Nota:");
+        noteTitle.setText(emoji + " " + context.getString(R.string.nota_label));
         noteTitle.setTextSize(13);
         noteTitle.setTypeface(null, Typeface.BOLD);
         noteTitle.setTextColor(0xFF2E7D32);

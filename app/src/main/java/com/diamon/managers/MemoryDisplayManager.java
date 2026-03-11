@@ -312,7 +312,7 @@ public class MemoryDisplayManager {
         container.addView(contentContainer);
 
         Button closeButton = new Button(context);
-        closeButton.setText("Cerrar");
+        closeButton.setText(context.getString(R.string.cerrar));
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(14);
 
