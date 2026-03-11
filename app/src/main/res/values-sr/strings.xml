@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -23,7 +23,7 @@
     <string name="no_se_detecto_pic_en_socket">PIC није детектован у утичници</string>
     <string name="pic_detectado_en_socket">PIC детектован у утичници</string>
     <string name="memoria_contiene_datos">Меморија садржи податке</string>
-    <string name="memoria_vacia">Меморија празна</string>
+    <string name="memoria_vacia">Празна меморија</string>
     <string name="error_borrando_memoria">Грешка при брисању меморије</string>
     <string name="memoria_borrada_exitosamente">Меморија успешно обрисана</string>
     <string name="memoria_leida_exitosamente">Меморија успешно прочитана</string>
@@ -137,9 +137,9 @@
     
     <string name="chip_info_titulo">Техничке информације о чипу</string>
     
-    <string name="propiedad">Имовина</string>
+    <string name="propiedad">Својство</string>
     
-    <string name="valor">Вриједи</string>
+    <string name="valor">Вредност</string>
     
     <string name="chip_info_profesional">Информације о чипу</string>
     
@@ -229,7 +229,7 @@
     
     <string name="fusibles_aplicados">Примењени осигурачи</string>
     
-    <string name="procesamiento_hex">ХЕКС обрада</string>
+    <string name="procesamiento_hex">HEX обрада</string>
     
     <string name="rom_ok_blank">РОМ: ОК (празан)</string>
     
@@ -241,7 +241,7 @@
 
     
     
-    <string name="menu_ayuda">Аид</string>
+    <string name="menu_ayuda">Помоћ</string>
     
     <string name="ayuda_icsp">ИЦСП веза</string>
     
@@ -277,7 +277,7 @@
     
     <string name="error_abrir_link">Грешка при отварању везе</string>
     
-    <string name="copiado_portapapeles">Копирано у међуспремник</string>
+    <string name="copiado_portapapeles">Копирано у привремену меморију</string>
     
     <string name="error_generico_detalle">Грешка: __ПХ0__</string>
     
@@ -304,7 +304,7 @@
     
     <string name="no">бр</string>
     
-    <string name="archivo_guardado">Сачувана датотека: __ПХ0__</string>
+    <string name="archivo_guardado">Фајл сачуван: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Додајте осигурач</string>
@@ -351,5 +351,123 @@
     <string name="datos_de_memoria">Меморија успешно прочитана</string>
     <string name="memoria_rom">ROM Memory</string>
     <string name="memoria_eeprom">EEPROM Memory</string>
+
+
+    <!-- Strings sincronizados -->
+    <string name="cargando_tutorial">Loading tutorial…</string>
+    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
+    <string name="paso_prefijo">STEP </string>
+    <string name="error_prefijo">❌ ERROR: </string>
+    <string name="exito_prefijo">✅ SUCCESS: </string>
+    <string name="advertencia_prefijo">⚠️ WARNING: </string>
+    <string name="coincidencias_encontradas">%1$d matches found</string>
+    <string name="resultado_verificacion">Verification Result</string>
+    <string name="verificada">Верификовано</string>
+    <string name="fallo">Неуспех</string>
+    <string name="yes">Да</string>
+    <string name="no_label">Не</string>
+    <string name="seleccionar_idioma">Изаберите језик</string>
+    <string name="tutorial_instalacion">Installation Tutorial</string>
+    <string name="copiar_todo_en">Copy All</string>
+    <string name="cerrar">Затвори</string>
+    <string name="error_no_chip">Error: No chip selected or no fuses available</string>
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    <string name="hex_compatible">HEX compatible</string>
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    <string name="label_chip">Chip: </string>
+    <string name="editor_construido">Editor built</string>
+    <string name="restaurando_chip">Restoring from chip…</string>
+    <string name="restaurado_chip">Restored from chip</string>
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    <string name="restaurado_hex">Restored from HEX</string>
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    <string name="aplicando">Примена…</string>
+    <string name="aplicado_exito">Успешно примењено</string>
+    <string name="error_parse_id">Error parsing ID</string>
+    <string name="seccion_identificacion">IDENTIFICATION</string>
+    <string name="seccion_memoria">MEMORY SPECIFICATIONS</string>
+    <string name="seccion_hardware">ARCHITECTURE &amp; PINS</string>
+    <string name="seccion_programacion">PROGRAMMING PARAMETERS</string>
+    <string name="seccion_fuses">AVAILABLE FUSES</string>
+    <string name="chip_id_label">Chip ID:</string>
+    <string name="include_file_label">Include File:</string>
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    <string name="eeprom_bytes">%1$,d Bytes</string>
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    <string name="flash_technology_label">Flash Technology:</string>
+    <string name="core_architecture_label">Core Architecture:</string>
+    <string name="core_bits_val">%1$d bits</string>
+    <string name="core_type_id_label">Core Type ID:</string>
+    <string name="pines_totales_label">Total Pins:</string>
+    <string name="pines_val">%1$d pins</string>
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    <string name="icsp_required_label">ICSP Required:</string>
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    <string name="power_sequence_label">Power Sequence:</string>
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    <string name="prog_retries_label">Prog. Retries:</string>
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    <string name="memory_error_label">Memory Error:</string>
+    <string name="ad_label">Реклама</string>
+    <string name="instalar">Инсталирај</string>
+    <string name="not_available">Није доступно</string>
+    <string name="calibracion_label">Calibration: %1$s</string>
+    <string name="rom_label">ROM: %1$s</string>
+    <string name="eeprom_label">EEPROM: %1$s</string>
+    <string name="fuses_decodificados_exito">Fuses decoded successfully</string>
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    <string name="error_leer_config">Could not read chip configuration</string>
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    <string name="verificando_rom_label">Verifying ROM…</string>
+    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
+    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
+    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
+    <string name="chip_label_info">Chip: %1$s</string>
+    <string name="core_info">Core: %1$d bits</string>
+    <string name="pin1_info">Pin 1: %1$s</string>
+    <string name="flash_info">Flash: %1$s</string>
+    <string name="icsp_only_info">ICSP only: %1$s</string>
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    <string name="palabra_palabras">%1$d words</string>
+    <string name="byte_bytes">%1$d bytes</string>
+    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    <string name="error_vacio">Empty array</string>
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    <string name="paso_label">КОРАК</string>
+    <string name="nota_label">Напомена</string>
+    <string name="importante_label">Важно</string>
+    <string name="advertencia_label">Упозорење</string>
+    <string name="ejemplo_label">Пример</string>
+    <string name="explicacion_label">Објашњење</string>
 
 </resources>

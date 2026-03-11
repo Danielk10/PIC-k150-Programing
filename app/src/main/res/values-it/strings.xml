@@ -38,10 +38,10 @@
     <string name="error_inicializando_chip">Errore durante l\'inizializzazione del chip</string>
     <string name="conectado_al_programador">Connesso al programmatore</string>
     <string name="error_inicializando_base_de_da">Errore durante l\'inizializzazione del database dei chip</string>
-    <string name="no_hay_modelos_de_chips_dispon">Nessun modello di chip disponibile</string>
-    <string name="modelo_de_chip_invalido">Modello di chip non valido</string>
+    <string name="no_hay_modelos_de_chips_dispon">Nessun modello chip disponibile</string>
+    <string name="modelo_de_chip_invalido">Modello chip non valido</string>
     <string name="chip_no_encontrado_en_base_de_">Chip non trovato nel database</string>
-    <string name="error_procesando_chip">Errore durante l\'elaborazione del chip</string>
+    <string name="error_procesando_chip">Errore elaborazione chip</string>
     <string name="no_hay_chip_seleccionado">Nessun chip selezionato</string>
     <string name="modelo">Modello</string>
     <string name="palabras_rom">Parole ROM</string>
@@ -139,9 +139,9 @@
     
     <string name="propiedad">Proprietà</string>
     
-    <string name="valor">Di valore</string>
+    <string name="valor">Valore</string>
     
-    <string name="chip_info_profesional">Informazioni sul chip</string>
+    <string name="chip_info_profesional">Informazioni Chip</string>
     
     
     
@@ -177,7 +177,7 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Configurazioni dei fusibili</string>
+    <string name="configuraciones_de_fusibles">Configurazioni Fuse</string>
     
     <string name="chip_seleccionado">Chip selezionato</string>
     
@@ -245,7 +245,7 @@
     
     <string name="ayuda_icsp">Connessione ICSP</string>
     
-    <string name="ayuda_fuses_label">Configurazione del fusibile</string>
+    <string name="ayuda_fuses_label">Configurazione Fuse</string>
     
     
     <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
@@ -281,7 +281,7 @@
     
     <string name="error_generico_detalle">Errore: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Configurato</string>
+    <string name="fuses_configurados_marcado">✓ Configurati</string>
     
     <string name="debe_procesar_hex_primero">È necessario prima elaborare il file HEX</string>
 
@@ -290,7 +290,7 @@
     
     <string name="error_no_hay_exportacion_pendiente">Non c\'è alcuna esportazione in sospeso</string>
     
-    <string name="seleccion_carpeta_cancelada">Selezione della cartella annullata</string>
+    <string name="seleccion_carpeta_cancelada">Selezione cartella annullata</string>
     
     <string name="error_carpeta_no_accesible">Non è stato possibile accedere alla cartella selezionata</string>
     
@@ -329,7 +329,7 @@
     <string name="termino_no_encontrado">Termine non trovato: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Non ci sono dati da esportare</string>
+    <string name="no_hay_datos_para_exportar_archivo">Nessun dato da esportare</string>
     
     <string name="no_hay_datos_validos_para_exportar">Non ci sono dati validi da esportare</string>
     
@@ -351,5 +351,123 @@
     <string name="datos_de_memoria">Memoria letta con successo</string>
     <string name="memoria_rom">ROM Memory</string>
     <string name="memoria_eeprom">EEPROM Memory</string>
+
+
+    <!-- Strings sincronizados -->
+    <string name="cargando_tutorial">Caricamento tutorial…</string>
+    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
+    <string name="paso_prefijo">PASSO </string>
+    <string name="error_prefijo">❌ ERRORE: </string>
+    <string name="exito_prefijo">✅ SUCCESSO: </string>
+    <string name="advertencia_prefijo">⚠️ AVVISO: </string>
+    <string name="coincidencias_encontradas">%1$d corrispondenze trovate</string>
+    <string name="resultado_verificacion">Risultato Verifica</string>
+    <string name="verificada">Verificata</string>
+    <string name="fallo">Fallito</string>
+    <string name="yes">Sì</string>
+    <string name="no_label">No</string>
+    <string name="seleccionar_idioma">Seleziona Lingua</string>
+    <string name="tutorial_instalacion">Tutorial Installazione</string>
+    <string name="copiar_todo_en">Copia Tutto</string>
+    <string name="cerrar">Chiudi</string>
+    <string name="error_no_chip">Errore: Nessun chip selezionato o nessun fuse disponibile</string>
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    <string name="hex_compatible">HEX compatibile</string>
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    <string name="label_chip">Chip: </string>
+    <string name="editor_construido">Editor built</string>
+    <string name="restaurando_chip">Ripristino dal chip…</string>
+    <string name="restaurado_chip">Ripristinato dal chip</string>
+    <string name="restaurando_hex">Ripristino da HEX…</string>
+    <string name="restaurado_hex">Ripristinato da HEX</string>
+    <string name="hex_sin_fuses">HEX senza fuse</string>
+    <string name="aplicando">Applicazione…</string>
+    <string name="aplicado_exito">Applicato con successo</string>
+    <string name="error_parse_id">Error parsing ID</string>
+    <string name="seccion_identificacion">IDENTIFICAZIONE</string>
+    <string name="seccion_memoria">SPECIFICHE MEMORIA</string>
+    <string name="seccion_hardware">ARCHITETTURA E PIN</string>
+    <string name="seccion_programacion">PARAMETRI DI PROGRAMMAZIONE</string>
+    <string name="seccion_fuses">FUSE DISPONIBILI</string>
+    <string name="chip_id_label">ID Chip:</string>
+    <string name="include_file_label">File Include:</string>
+    <string name="rom_capacity_label">Capacità ROM:</string>
+    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    <string name="eeprom_capacity_label">Capacità EEPROM:</string>
+    <string name="eeprom_bytes">%1$,d Bytes</string>
+    <string name="fuse_blank_value_label">Valore FUSE Vuoto:</string>
+    <string name="flash_technology_label">Tecnologia Flash:</string>
+    <string name="core_architecture_label">Architettura Core:</string>
+    <string name="core_bits_val">%1$d bits</string>
+    <string name="core_type_id_label">Core Type ID:</string>
+    <string name="pines_totales_label">Pin Totali:</string>
+    <string name="pines_val">%1$d pin</string>
+    <string name="pin_1_location_label">Posizione Pin 1:</string>
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    <string name="icsp_required_label">ICSP Richiesto:</string>
+    <string name="erase_algorithm_label">Algoritmo Cancellazione:</string>
+    <string name="power_sequence_label">Sequenza Avvio:</string>
+    <string name="prog_delay_label">Ritardo Prog. (ms):</string>
+    <string name="prog_retries_label">Tentativi Prog.:</string>
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    <string name="cp_warn_label">Avviso Code Protect:</string>
+    <string name="memory_error_label">Errore Memoria:</string>
+    <string name="ad_label">Annuncio</string>
+    <string name="instalar">Installa</string>
+    <string name="not_available">Non disponibile</string>
+    <string name="calibracion_label">Calibrazione: %1$s</string>
+    <string name="rom_label">ROM: %1$s</string>
+    <string name="eeprom_label">EEPROM: %1$s</string>
+    <string name="fuses_decodificados_exito">Fuse decodificati con successo</string>
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    <string name="error_leer_config">Could not read chip configuration</string>
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    <string name="verificando_rom_label">Verifica ROM…</string>
+    <string name="rom_verificada_exito">ROM verificata con successo ✓</string>
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    <string name="verificando_eeprom_label">Verifica EEPROM…</string>
+    <string name="eeprom_verificada_exito">EEPROM verificata con successo ✓</string>
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
+    <string name="eeprom_no_disponible">EEPROM: Non disponibile su questo chip</string>
+    <string name="chip_label_info">Chip: %1$s</string>
+    <string name="core_info">Core: %1$d bits</string>
+    <string name="pin1_info">Pin 1: %1$s</string>
+    <string name="flash_info">Flash: %1$s</string>
+    <string name="icsp_only_info">ICSP only: %1$s</string>
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    <string name="palabra_palabras">%1$d parole</string>
+    <string name="byte_bytes">%1$d bytes</string>
+    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    <string name="error_vacio">Empty array</string>
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    <string name="paso_label">PASSO</string>
+    <string name="nota_label">Nota</string>
+    <string name="importante_label">Importante</string>
+    <string name="advertencia_label">Avviso</string>
+    <string name="ejemplo_label">Esempio</string>
+    <string name="explicacion_label">Spiegazione</string>
 
 </resources>
