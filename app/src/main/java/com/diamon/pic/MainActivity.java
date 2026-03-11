@@ -1493,6 +1493,7 @@ public class MainActivity extends AppCompatActivity
 
         // Crear contenedor principal con scroll
         ScrollView scrollView = new ScrollView(this);
+        scrollView.setBackgroundColor(Color.parseColor("#1A1A1A")); // Fondo oscuro premium
         scrollView.setPadding(40, 40, 40, 40);
 
         // Crear tabla
