@@ -1575,34 +1575,59 @@ public class MainActivity extends AppCompatActivity
             tableLayout.addView(divider);
         };
 
+        // Función auxiliar para convertir valores de la DB (Y/N/1/0/true/false) a booleano real
+        java.util.function.Predicate<Object> isTrue = (val) -> {
+            if (val == null) return false;
+            String s = String.valueOf(val).trim().toLowerCase();
+            return s.equals("y") || s.equals("1") || s.equals("true");
+        };
+
+        // Función auxiliar para formatear FUSEblank (String[]) a texto legible
+        java.util.function.Function<Object, String> formatFuseBlank = (val) -> {
+            if (val instanceof String[]) {
+                return String.join(" ", (String[]) val);
+            }
+            return String.valueOf(val);
+        };
+
         // --- SECCIÓN: IDENTIFICACIÓN ---
         addHeader.accept("IDENTIFICACIÓN");
         addRow.accept(getString(R.string.modelo) + ":", String.valueOf(allData.get("chip_name")));
         Object chipId = allData.get("chip_id");
-        String hexId = (chipId instanceof Number) ? 
-                "0x" + Integer.toHexString(((Number)chipId).intValue()).toUpperCase() : String.valueOf(chipId);
+        String hexId = "N/A";
+        if (chipId != null) {
+            try {
+                long idVal = (chipId instanceof Number) ? ((Number)chipId).longValue() : Long.parseLong(String.valueOf(chipId), 16);
+                hexId = "0x" + Long.toHexString(idVal).toUpperCase();
+            } catch (Exception e) {
+                hexId = String.valueOf(chipId);
+            }
+        }
         addRow.accept("Chip ID:", hexId);
         addRow.accept("Include File:", String.valueOf(allData.get("include")));
 
         // --- SECCIÓN: MEMORIA ---
         addHeader.accept("ESPECIFICACIONES DE MEMORIA");
         try {
-            addRow.accept("ROM (Sustituto):", String.valueOf(allData.get("rom_size")));
-            addRow.accept("ROM Real (Bytes):", String.format("%,d B", currentChip.getTamanoROM()));
-            addRow.accept("EEPROM Real (Bytes):", currentChip.isTamanoValidoDeEEPROM() ? 
-                    String.format("%,d B", currentChip.getTamanoEEPROM()) : "N/A");
-            addRow.accept("FUSE Blank Value:", String.valueOf(allData.get("fuse_blank")));
-        } catch (Exception e) {}
-        addRow.accept("Flash Technology:", String.valueOf(allData.get("flash_chip")).equalsIgnoreCase("true") ? "YES" : "NO");
+            // Nota Técnica: En PICs de 12/14 bits, la ROM se mide en Words (instrucciones)
+            addRow.accept("ROM Size (DB):", String.valueOf(allData.get("rom_size")));
+            addRow.accept("ROM Capacity:", String.format("%,d Words", currentChip.getTamanoROM()));
+            addRow.accept("EEPROM Capacity:", currentChip.isTamanoValidoDeEEPROM() ? 
+                    String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
+            addRow.accept("FUSE Blank Value:", formatFuseBlank.apply(allData.get("fuse_blank")));
+        } catch (Exception e) {
+            addRow.accept("Memory Error:", e.getMessage());
+        }
+        addRow.accept("Flash Technology:", isTrue.test(allData.get("flash_chip")) ? "YES" : "NO");
 
         // --- SECCIÓN: HARDWARE ---
         addHeader.accept("ARQUITECTURA Y PINES");
-        addRow.accept("Core Bits:", allData.get("core_bits") + " bits");
-        addRow.accept("Core Type:", String.valueOf(allData.get("core_type")));
+        addRow.accept("Core Architecture:", allData.get("core_bits") + " bits");
+        addRow.accept("Core Type ID:", String.valueOf(allData.get("core_type")));
         addRow.accept("Pines Totales:", currentChip.getNumeroDePines() + " pines");
-        addRow.accept("Pin 1 Pos:", String.valueOf(allData.get("pin1_location")));
+        addRow.accept("Pin 1 Location:", String.valueOf(allData.get("pin1_location")));
         addRow.accept("Socket Image ID:", String.valueOf(allData.get("socket_image")));
-        addRow.accept("ICSP Required:", String.valueOf(allData.get("icsp_only")).equalsIgnoreCase("true") ? "YES" : "NO");
+        addRow.accept("ICSP Required:", isTrue.test(allData.get("icsp_only")) ? "YES" : "NO");
 
         // --- SECCIÓN: PROGRAMACIÓN ---
         addHeader.accept("PARÁMETROS DE PROGRAMACIÓN");
@@ -1611,7 +1636,7 @@ public class MainActivity extends AppCompatActivity
         addRow.accept("Prog. Delay (ms):", String.valueOf(allData.get("program_delay")));
         addRow.accept("Prog. Retries:", String.valueOf(allData.get("program_tries")));
         addRow.accept("Over-prog. Factor:", String.valueOf(allData.get("over_program")));
-        addRow.accept("Code Protection Warn:", String.valueOf(allData.get("cp_warn")));
+        addRow.accept("Code Protect Warn:", isTrue.test(allData.get("cp_warn")) ? "YES" : "NO");
 
         // --- SECCIÓN: FUSES ---
         Map<String, ?> fuses = (Map<String, ?>) allData.get("fuses");
@@ -1619,7 +1644,7 @@ public class MainActivity extends AppCompatActivity
             addHeader.accept("FUSIBLES DISPONIBLES");
             for (Map.Entry<String, ?> entry : fuses.entrySet()) {
                 String fuseName = entry.getKey();
-                String options = "";
+                String options = "N/A";
                 if (entry.getValue() instanceof List) {
                     options = String.join(" | ", (List<String>) entry.getValue());
                 }
