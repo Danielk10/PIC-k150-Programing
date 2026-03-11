@@ -1609,8 +1609,9 @@ public class MainActivity extends AppCompatActivity
         // --- SECCIÓN: MEMORIA ---
         addHeader.accept("ESPECIFICACIONES DE MEMORIA");
         try {
-            // Nota Técnica: En PICs de 12/14 bits, la ROM se mide en Words (instrucciones)
-            addRow.accept("ROM Capacity:", String.format("%,d Words", currentChip.getTamanoROM()));
+            // Nota Técnica: En PICs, la ROM se mide en Words. En el archivo HEX y programación, 1 Word = 2 Bytes.
+            int words = currentChip.getTamanoROM();
+            addRow.accept("ROM Capacity:", String.format("%,d Words (%,d Bytes)", words, words * 2));
             addRow.accept("EEPROM Capacity:", currentChip.isTamanoValidoDeEEPROM() ? 
                     String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
             addRow.accept("FUSE Blank Value:", formatFuseBlank.apply(allData.get("fuse_blank")));
