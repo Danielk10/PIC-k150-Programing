@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
     <color name="ad_green">#4CAF50</color>
     <color name="ad_text_grey">#757575</color>
 </resources>

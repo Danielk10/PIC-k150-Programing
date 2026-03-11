@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Privātuma politikas</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Pieņemt</string>
     <string name="cancelar">Atcelt</string>
     <string name="conectado">Savienots</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB savienojuma kļūda</string>
     <string name="error_inesperado_durante_la_co">Neparedzēta kļūda savienošanas laikā</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Darbības</string>
     <string name="cargar_archivo_hex">Ielādēt HEX Failu</string>
     <string name="programar_pic">Programmēt PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Gaida darbību...</string>
     <string name="esperando_seleccion">Gaida izvēli...</string>
     <string name="seleccionar_chip_pic">Izvēlēties PIC Mikroshēmu</string>
-    <!-- values-lv/strings.xml (Letón) -->
+    
     <string name="gputils_termux_asm">GPUTILS Termux ASM Kompilators Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Notiek atmiņas lasīšana...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Pareizi uzlikti drošinātāji</string>
+
+    
+    
+    <string name="chip_info_titulo">Mikroshēmas tehniskā informācija</string>
+    
+    <string name="propiedad">Īpašums</string>
+    
+    <string name="valor">Vērts</string>
+    
+    <string name="chip_info_profesional">Informācija par mikroshēmu</string>
+    
+    
+    
+    <string name="exportar_config_hex">Eksportēt CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Eksportēt CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Eksportēt pilnu izdruku (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Ieplānojiet visu</string>
+    
+    <string name="programar_solo_rom">Programma tikai ROM</string>
+    
+    <string name="programar_solo_eeprom">Programmējiet tikai EEPROM</string>
+    
+    <string name="programar_solo_config">Programma tikai CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Apstipriniet dzēšanu</string>
+    
+    <string name="chip_esta_borrado">Mikroshēma ir izdzēsta (tukša)</string>
+    
+    <string name="chip_no_esta_borrado">Mikroshēma NAV izdzēsta</string>
+    
+    <string name="verificando_borrado">Notiek dzēšanas pārbaude...</string>
+    
+    <string name="resultado_verificacion_borrado">Dzēšanas pārbaudes rezultāts</string>
+    
+    <string name="error_verificando_borrado">Pārbaudot dzēšanu, radās kļūda</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Drošinātāju konfigurācijas</string>
+    
+    <string name="chip_seleccionado">Atlasītā mikroshēma</string>
+    
+    <string name="configuracion_de_fusibles">Drošinātāja konfigurācija</string>
+    
+    <string name="id_personalizado_hex">Pielāgots ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Piemērs: 1A 2B 3C 4D (4 vai 8 baiti)</string>
+    
+    <string name="hint_nombre_fusible">Nosaukums (piemēram, WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Vērtība (piemēram: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Operāciju žurnāls</string>
+    
+    <string name="restaurar_desde_bd">Atjaunot no DB</string>
+    
+    <string name="restaurar_desde_hex">Atjaunot no HEX</string>
+    
+    <string name="aplicar_fuses">Uzlieciet drošinātājus</string>
+    
+    <string name="nombre_del_fusible">Drošinātāja nosaukums</string>
+    
+    <string name="valor_ejemplo_on_off">Vērtība (piemērs: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Lietotāja ID HEX formātā. Izmantojiet 4 baitus (8 cipari) PIC12/16 vai 8 baitus (16 cipari) PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Ignorē HEX drošinātājus. Izmantojiet tehnisko nosaukumu (piemēram, WDT) un vērtību (piemēram, OFF vai 0x01).</string>
+    
+    <string name="ayuda_chip_info">Detalizēti tehniskie dati iegūti no PIC definīcijas faila.</string>
+
+    
+    <string name="seleccionar_operacion">Izvēlieties Darbība</string>
+    
+    <string name="config_leida">Nolasīta konfigurācija</string>
+
+    
+    <string name="publicidad_recomendada">Ieteicamā reklāma</string>
+    
+    <string name="lectura_completa">Pilnīga lasīšana</string>
+    
+    <string name="sin_chip">bez mikroshēmas</string>
+    
+    <string name="fusible_agregado">Pievienots drošinātājs</string>
+    
+    <string name="fusibles_restaurados">Atjaunoti drošinātāji</string>
+    
+    <string name="fusibles_aplicados">Uzlikti drošinātāji</string>
+    
+    <string name="procesamiento_hex">HEX apstrāde</string>
+    
+    <string name="rom_ok_blank">ROM: labi (tukšs)</string>
+    
+    <string name="rom_not_blank">ROM: NAV TUŠS</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: labi (tukšs)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NAV TUŠS</string>
+
+    
+    
+    <string name="menu_ayuda">Palīdzība</string>
+    
+    <string name="ayuda_icsp">ICSP savienojums</string>
+    
+    <string name="ayuda_fuses_label">Drošinātāja konfigurācija</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">spāņu valoda</string>
+    
+    <string name="idioma_ingles">angļu valoda</string>
+    
+    <string name="idioma_label">Valoda: %s</string>
+    
+    <string name="copiar_todo">📋 Kopēt visu</string>
+    
+    <string name="tutorial_copiado">Apmācība ir kopēta starpliktuvē</string>
+    
+    <string name="error_cargar_tutorial">Ielādējot apmācību, radās kļūda</string>
+    
+    <string name="codigo_asm">📄 ASM kods</string>
+    
+    <string name="comando_label">💻 Komanda</string>
+    
+    <string name="copiar_btn">Kopēt</string>
+    
+    <string name="copiado_msg">Kopēts</string>
+    
+    <string name="error_abrir_link">Atverot saiti, radās kļūda</string>
+    
+    <string name="copiado_portapapeles">Kopēts starpliktuvē</string>
+    
+    <string name="error_generico_detalle">Kļūda: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfigurēts</string>
+    
+    <string name="debe_procesar_hex_primero">Vispirms ir jāapstrādā HEX fails</string>
+
+    
+    <string name="error_exportador_no_inicializado">Eksportētājs nav inicializēts</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Nav neapstiprināta eksporta</string>
+    
+    <string name="seleccion_carpeta_cancelada">Mapes atlase ir atcelta</string>
+    
+    <string name="error_carpeta_no_accesible">Atlasītajai mapei nevarēja piekļūt</string>
+    
+    <string name="reemplazar_archivo_titulo">Aizstāt failu</string>
+    
+    <string name="reemplazar_archivo_mensaje">Fails \'%1$s\' jau pastāv. Vai vēlaties to nomainīt?</string>
+    
+    <string name="error_reemplazando_archivo">Esošo failu nevarēja aizstāt</string>
+    
+    <string name="si">Jā</string>
+    
+    <string name="no">Nē</string>
+    
+    <string name="archivo_guardado">Saglabātais fails: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Pievienojiet drošinātāju</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Pievienojiet pielāgotu drošinātāju</string>
+    
+    <string name="completa_todos_los_campos">Aizpildiet visus laukus</string>
+    
+    <string name="log_iniciado">Žurnāls sākts...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Atjaunoti drošinātāji no HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 — Termux apmācība</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 — Termux apmācība</string>
+    
+    <string name="codigo_copiado_portapapeles">Kods ir kopēts starpliktuvē</string>
+    
+    <string name="texto_copiado_portapapeles">Teksts ir kopēts starpliktuvē</string>
+    
+    <string name="termino_no_encontrado">Termins nav atrasts: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Nav datu, ko eksportēt</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Nav derīgu datu, ko eksportēt</string>
+    
+    <string name="error_convirtiendo_datos_hex">Kļūda, konvertējot heksadecimālos datus</string>
+    
+    <string name="error_nombre_archivo_vacio">Nosaukuma lauks nedrīkst būt tukšs</string>
+    
+    <string name="error_creando_archivo_salida">Nevarēja izveidot izvades failu</string>
+    
+    <string name="error_abriendo_archivo_escritura">Nevarēja atvērt failu rakstīšanai</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Kļūda, rakstot failu: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Negaidīta kļūda eksportēšanas laikā: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Atmiņa veiksmīgi nolasīta</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

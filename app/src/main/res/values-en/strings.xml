@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
-    <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    
+    <string name="app_name">PIC k150 Programming</string>
+    <string name="politicas">Privacy Policies</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Accept</string>
     <string name="cancelar">Cancel</string>
     <string name="conectado">Connected</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB connection error</string>
     <string name="error_inesperado_durante_la_co">Unexpected error during connection</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operations</string>
     <string name="cargar_archivo_hex">Load HEX File</string>
     <string name="programar_pic">Program PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Waiting for operation...</string>
     <string name="esperando_seleccion">Waiting for selection...</string>
     <string name="seleccionar_chip_pic">Select PIC Chip</string>
-    <!-- values-en/strings.xml (Inglés) -->
+    
     <string name="gputils_termux_asm">GPUTILS in Termux ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -113,18 +113,212 @@
     <string name="verificacion_eeprom_fallo">EEPROM verification failed</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Verification complete</string>
-    <string name="fuses_decodificados">Decoded fuses</string>
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    <string name="error_procesando_hex">Error processing HEX</string>
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="fuses_decodificados">Decoded Fuses</string>
+    <string name="hex_procesado_correctamente">HEX file processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX file</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux Tutorial (C)</string>
+    <string name="error_abriendo_tutorial">Failed to open tutorial</string>
+
     <string name="exportar_memoria">Export Memory</string>
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportacion_exitosa">File exported successfully</string>
-    <string name="error_exportando">Error exporting</string>
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    <string name="chip_info_json">Chip Info (JSON)</string>
+    <string name="exportar_rom_hex">Export ROM (.hex)</string>
+    <string name="exportar_eeprom_hex">Export EEPROM (.hex)</string>
+    <string name="exportar_rom_bin">Export ROM (.bin)</string>
+    <string name="exportar_eeprom_bin">Export EEPROM (.bin)</string>
+    <string name="exportar_config_hex">Export CONFIG (.hex)</string>
+    <string name="exportar_config_bin">Export CONFIG (.bin)</string>
+    <string name="exportar_dump_completo">Export Full Dump (.hex)</string>
+    
+    <string name="programar_todo">Program All</string>
+    <string name="programar_solo_rom">Program ROM only</string>
+    <string name="programar_solo_eeprom">Program EEPROM only</string>
+    <string name="programar_solo_config">Program CONFIG only</string>
+
+    
+    <string name="verificar_borrado">Blank Check</string>
+    <string name="chip_esta_borrado">Chip is blank</string>
+    <string name="chip_no_esta_borrado">Chip is NOT blank</string>
+    <string name="verificando_borrado">Performing blank check...</string>
+
+    
+    <string name="configuraciones_de_fusibles">Fuse Configurations</string>
+    <string name="chip_seleccionado">Selected Chip</string>
+    <string name="configuracion_de_fusibles">Fuse Configuration</string>
+    <string name="agregar_fusible_personalizado">➕ Add Custom Fuse</string>
+    <string name="id_personalizado_hex">Custom ID (hex)</string>
+    <string name="log_de_operaciones">Operation Log</string>
+    <string name="restaurar_desde_bd">Restore from DB</string>
+    <string name="restaurar_desde_hex">Restore from HEX</string>
+    <string name="aplicar_fuses">Apply Fuses</string>
+    <string name="nombre_del_fusible">Fuse Name</string>
+    <string name="valor_ejemplo_on_off">Value (e.g., ON, OFF, 0x3FFF)</string>
+
+    
+    <string name="ayuda_id_personalizado">4 or 8 byte ID depending on chip for identification (version or serial number).</string>
+    <string name="ayuda_fuses_personalizados">Allows overriding specific fuses. The value from the HEX file will be ignored for these names.</string>
+    <string name="ayuda_chip_info">Detailed technical data extracted from the PIC definition file.</string>
+
+    <string name="seleccionar_operacion">Select Operation</string>
+    <string name="config_leida">Configuration read</string>
+
+    <string name="exportacion_exitosa">Export Successful!</string>
+    <string name="error_exportando">Error during export</string>
+    <string name="no_hay_datos_para_exportar">No data in memory to export. Read chip first.</string>
+    <string name="chip_info_json">View Chip JSON (Debug)</string>
+    <string name="chip_info_titulo">Technical Chip Information</string>
+    <string name="propiedad">Property</string>
+    <string name="valor">Value</string>
+    <string name="chip_info_profesional">Chip Info</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Reading memory...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Correctly applied fuses</string>
+
+    
+    
+    <string name="resultado_verificacion_borrado">Deletion Verification Result</string>
+    
+    <string name="error_verificando_borrado">Error verifying deletion</string>
+    
+    
+    
+    <string name="hint_id_personalizado">Example: 1A 2B 3C 4D (4 or 8 bytes)</string>
+    
+    <string name="hint_nombre_fusible">Name (ex: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Value (ex: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="publicidad_recomendada">Recommended advertising</string>
+    
+    <string name="lectura_completa">Complete Reading</string>
+    
+    <string name="sin_chip">without chip</string>
+    
+    <string name="fusible_agregado">Added fuse</string>
+    
+    <string name="fusibles_restaurados">Restored fuses</string>
+    
+    <string name="fusibles_aplicados">Applied fuses</string>
+    
+    <string name="procesamiento_hex">HEX processing</string>
+    
+    <string name="rom_ok_blank">ROM: OK (Blank)</string>
+    
+    <string name="rom_not_blank">ROM: NOT BLANK</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (Blank)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NOT BLANK</string>
+
+    
+    
+    <string name="menu_ayuda">Help</string>
+    
+    <string name="ayuda_icsp">ICSP connection</string>
+    
+    <string name="ayuda_fuses_label">Fuse Configuration</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Spanish</string>
+    
+    <string name="idioma_ingles">English</string>
+    
+    <string name="idioma_label">Language: %s</string>
+    
+    <string name="copiar_todo">📋 Copy All</string>
+    
+    <string name="tutorial_copiado">Tutorial copied to clipboard</string>
+    
+    <string name="error_cargar_tutorial">Error loading tutorial</string>
+    
+    <string name="codigo_asm">📄 ASM code</string>
+    
+    <string name="comando_label">💻 Command</string>
+    
+    <string name="copiar_btn">Copy</string>
+    
+    <string name="copiado_msg">Copied</string>
+    
+    <string name="error_abrir_link">Error opening link</string>
+    
+    <string name="copiado_portapapeles">Copied to clipboard</string>
+    
+    <string name="error_generico_detalle">Error: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Configured</string>
+    
+    <string name="debe_procesar_hex_primero">You must process the HEX file first</string>
+
+    
+    <string name="error_exportador_no_inicializado">Exporter is not initialized</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">There is no pending export</string>
+    
+    <string name="seleccion_carpeta_cancelada">Folder selection canceled</string>
+    
+    <string name="error_carpeta_no_accesible">The selected folder could not be accessed</string>
+    
+    <string name="reemplazar_archivo_titulo">Replace file</string>
+    
+    <string name="reemplazar_archivo_mensaje">The file \'%1$s\' already exists. Do you want to replace it?</string>
+    
+    <string name="error_reemplazando_archivo">Could not replace existing file</string>
+    
+    <string name="si">Yes</string>
+    
+    <string name="no">No</string>
+    
+    <string name="archivo_guardado">Saved file: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Add Fuse</string>
+    
+    <string name="completa_todos_los_campos">Complete all fields</string>
+    
+    <string name="log_iniciado">Log started...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Restored fuses from HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="codigo_copiado_portapapeles">Code copied to clipboard</string>
+    
+    <string name="texto_copiado_portapapeles">Text copied to clipboard</string>
+    
+    <string name="termino_no_encontrado">Term not found: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">There is no data to export</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">There is no valid data to export</string>
+    
+    <string name="error_convirtiendo_datos_hex">Error converting hexadecimal data</string>
+    
+    <string name="error_nombre_archivo_vacio">The name cannot be empty</string>
+    
+    <string name="error_creando_archivo_salida">Could not create output file</string>
+    
+    <string name="error_abriendo_archivo_escritura">Could not open file for writing</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Error writing file: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Unexpected error while exporting: %1$s</string>
+
+    <!-- Memory popup labels -->
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
+
+    <string name="datos_de_memoria">Memory Data</string>
+
 </resources>

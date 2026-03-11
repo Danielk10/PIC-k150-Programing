@@ -11,10 +11,10 @@
     <string name="desconectado">Desconectado</string>
     <string name="grabando_pic">Grabando PIC...</string>
     <string name="espere_grabacion_pic">Por favor, espere. No desconecte el dispositivo.</string>
-    <string name="grabacion_completada_pic">GrabaciÃ³n Completa</string>
+    <string name="grabacion_completada_pic">Grabación Completa</string>
     <string name="grabacion_correcta_pic">El firmware se ha grabado correctamente en el PIC.</string>
-    <string name="fallo_grabacion_pic">Fallo en la GrabaciÃ³n</string>
-    <string name="proceso_no_completado">No se pudo completar el proceso. Verifique la conexiÃ³n.</string>
+    <string name="fallo_grabacion_pic">Fallo en la Grabación</string>
+    <string name="proceso_no_completado">No se pudo completar el proceso. Verifique la conexión.</string>
     <string name="protocolo_del_programador">Protocolo del Programador</string>
     <string name="modelo_del_programador">Modelo del Programador</string>
     <string name="modelo_programador">Modelo Programador</string>
@@ -96,14 +96,14 @@
     <string name="esperando_operacion">Esperando operacion...</string>
     <string name="esperando_seleccion">Esperando seleccion...</string>
     <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
-    <!-- values/strings.xml (EspaÃ±ol genÃ©rico) -->
+    <!-- values/strings.xml (Español genérico) -->
     <string name="gputils_termux_asm">Compilar GPUUTILS en Termux esamblador ASM</string>
     
     <!-- Nuevos strings para popup de memoria mejorado -->
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
     <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
 
-    <!-- Strings para botÃ³n de configurar fusibles -->
+    <!-- Strings para botón de configurar fusibles -->
     <string name="configurar_fusibles">Configurar Fusibles</string>
     <string name="selecciona_chip_primero">Selecciona un chip primero</string>
     <string name="no_hay_fusibles_para_chip">No hay datos de fusibles para este chip</string>
@@ -112,21 +112,21 @@
     <string name="estado_fusibles">Estado de Fusibles:</string>
     <string name="modo_icsp">Modo ICSP</string>
 
-    <!-- Strings para verificaciÃ³n mejorada -->
-    <string name="verificando_memoria">Verificando memoriaâ€¦</string>
+    <!-- Strings para verificación mejorada -->
+    <string name="verificando_memoria">Verificando memoria…</string>
     <string name="verificacion_rom_ok">ROM verificada correctamente</string>
-    <string name="verificacion_rom_fallo">Fallo en la verificaciÃ³n de ROM</string>
+    <string name="verificacion_rom_fallo">Fallo en la verificación de ROM</string>
     <string name="verificacion_eeprom_ok">EEPROM verificada correctamente</string>
-    <string name="verificacion_eeprom_fallo">Fallo en la verificaciÃ³n de EEPROM</string>
+    <string name="verificacion_eeprom_fallo">Fallo en la verificación de EEPROM</string>
     <string name="rom_posible_locked">Posiblemente bloqueada (Locked) para lectura</string>
-    <string name="verificacion_completa">VerificaciÃ³n completa</string>
+    <string name="verificacion_completa">Verificación completa</string>
     <string name="fuses_decodificados">Fuses decodificados</string>
 
-    <!-- TÃ­tulos de DiÃ¡logos y MenÃºs -->
-    <string name="chip_info_titulo">InformaciÃ³n TÃ©cnica del Chip</string>
+    <!-- Títulos de Diálogos y Menús -->
+    <string name="chip_info_titulo">Información Técnica del Chip</string>
     <string name="propiedad">Propiedad</string>
     <string name="valor">Valor</string>
-    <string name="chip_info_profesional">InformaciÃ³n del Chip</string>
+    <string name="chip_info_profesional">Información del Chip</string>
     
     <!-- Strings para procesamiento HEX -->
     <string name="hex_procesado_correctamente">Archivo HEX procesado correctamente</string>
@@ -136,7 +136,7 @@
     <string name="sdcc_termux_tutorial">Compilar SDCC en Termux compilador C</string>
     <string name="error_abriendo_tutorial">No se pudo abrir el tutorial</string>
 
-    <!-- Strings para exportaciÃ³n HEX -->
+    <!-- Strings para exportación HEX -->
     <string name="exportar_memoria">Exportar Memoria</string>
     <string name="exportar_rom_hex">Exportar ROM (.hex)</string>
     <string name="exportar_eeprom_hex">Exportar EEPROM (.hex)</string>
@@ -146,24 +146,24 @@
     <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exportar Volcado Completo (.hex)</string>
 
-    <!-- ProgramaciÃ³n Parcial -->
+    <!-- Programación Parcial -->
     <string name="programar_todo">Programar Todo</string>
     <string name="programar_solo_rom">Programar solo ROM</string>
     <string name="programar_solo_eeprom">Programar solo EEPROM</string>
     <string name="programar_solo_config">Programar solo CONFIG</string>
     
-    <!-- Blank Check (VerificaciÃ³n de Borrado) -->
+    <!-- Blank Check (Verificación de Borrado) -->
     <string name="verificar_borrado">Verificar Borrado</string>
-    <string name="chip_esta_borrado">El chip estÃ¡ borrado (Blank)</string>
-    <string name="chip_no_esta_borrado">El chip NO estÃ¡ borrado</string>
+    <string name="chip_esta_borrado">El chip está borrado (Blank)</string>
+    <string name="chip_no_esta_borrado">El chip NO está borrado</string>
     <string name="verificando_borrado">Verificando borrado...</string>
-    <string name="resultado_verificacion_borrado">Resultado de VerificaciÃ³n de Borrado</string>
+    <string name="resultado_verificacion_borrado">Resultado de Verificación de Borrado</string>
     <string name="error_verificando_borrado">Error verificando borrado</string>
     
     <!-- Fuse Config Popup -->
     <string name="configuraciones_de_fusibles">Configuraciones de Fusibles</string>
     <string name="chip_seleccionado">Chip Seleccionado</string>
-    <string name="configuracion_de_fusibles">ConfiguraciÃ³n de Fusibles</string>
+    <string name="configuracion_de_fusibles">Configuración de Fusibles</string>
     <string name="id_personalizado_hex">ID Personalizado (HEX)</string>
     <string name="hint_id_personalizado">Ejemplo: 1A 2B 3C 4D (4 u 8 bytes)</string>
     <string name="hint_nombre_fusible">Nombre (ej: WDT, FOSC, MCLRE)</string>
@@ -176,15 +176,15 @@
     <string name="valor_ejemplo_on_off">Valor (ejemplo: ON, OFF, 0x3FFF)</string>
     
     <!-- Ayuda para Fuses e ID -->
-    <string name="ayuda_id_personalizado">ID de usuario en formato HEX. Use 4 bytes (8 dÃ­gitos) para PIC12/16 o 8 bytes (16 dÃ­gitos) para PIC18.</string>
-    <string name="ayuda_fuses_personalizados">Sobreescribe los fusibles del HEX. Use el nombre tÃ©cnico (ej: WDT) y el valor (ej: OFF o 0x01).</string>
-    <string name="ayuda_chip_info">Datos tÃ©cnicos detallados extraÃ­dos del archivo de definiciÃ³n del PIC.</string>
+    <string name="ayuda_id_personalizado">ID de usuario en formato HEX. Use 4 bytes (8 dígitos) para PIC12/16 o 8 bytes (16 dígitos) para PIC18.</string>
+    <string name="ayuda_fuses_personalizados">Sobreescribe los fusibles del HEX. Use el nombre técnico (ej: WDT) y el valor (ej: OFF o 0x01).</string>
+    <string name="ayuda_chip_info">Datos técnicos detallados extraídos del archivo de definición del PIC.</string>
 
-    <string name="seleccionar_operacion">Seleccionar OperaciÃ³n</string>
-    <string name="config_leida">ConfiguraciÃ³n leÃ­da</string>
+    <string name="seleccionar_operacion">Seleccionar Operación</string>
+    <string name="config_leida">Configuración leída</string>
 
-    <string name="exportacion_exitosa">Â¡ExportaciÃ³n Exitosa!</string>
-    <string name="error_exportando">Error durante la exportaciÃ³n</string>
+    <string name="exportacion_exitosa">¡Exportación Exitosa!</string>
+    <string name="error_exportando">Error durante la exportación</string>
     <string name="no_hay_datos_para_exportar">No hay datos en memoria para exportar. Lea el chip primero.</string>
     <string name="chip_info_json">Ver JSON del Chip (Debug)</string>
 
@@ -198,63 +198,63 @@
     <string name="fusibles_aplicados">Fusibles aplicados</string>
     <string name="procesamiento_hex">Procesamiento HEX</string>
     <string name="rom_ok_blank">ROM: OK (En blanco)</string>
-    <string name="rom_not_blank">ROM: NO ESTÃ EN BLANCO</string>
+    <string name="rom_not_blank">ROM: NO ESTÁ EN BLANCO</string>
     <string name="eeprom_ok_blank">EEPROM: OK (En blanco)</string>
-    <string name="eeprom_not_blank">EEPROM: NO ESTÃ EN BLANCO</string>
+    <string name="eeprom_not_blank">EEPROM: NO ESTÁ EN BLANCO</string>
 
     <!-- Ayuda y Menu -->
     <string name="menu_ayuda">Ayuda</string>
-    <string name="ayuda_icsp">ConexiÃ³n ICSP</string>
-    <string name="ayuda_fuses_label">ConfiguraciÃ³n de Fuses</string>
+    <string name="ayuda_icsp">Conexión ICSP</string>
+    <string name="ayuda_fuses_label">Configuración de Fuses</string>
     
-    <string name="ayuda_icsp_content"><b>GuÃ­a de ConexiÃ³n ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programaciÃ³n (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> AlimentaciÃ³n positiva (5V o 3.3V segÃºn el PIC).\n3. <b>VSS:</b> Tierra comÃºn (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programaciÃ³n.\n5. <b>ICSPCLK/PGC:</b> Reloj de programaciÃ³n.\n\n<b>Nota:</b> AsegÃºrese de que el circuito externo no interfiera con las seÃ±ales de programaciÃ³n (use resistencias de aislamiento si es necesario).</string>
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
-    <string name="ayuda_fuses_content"><b>ConfiguraciÃ³n de Fuses (Palabras de ConfiguraciÃ³n):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\nâ€¢ <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\nâ€¢ <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\nâ€¢ <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\nâ€¢ <b>Code Protection (CP):</b> Protege el cÃ³digo contra lectura.\n\nEn esta aplicaciÃ³n puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
     
     <!-- Tutorial specific strings -->
-    <string name="idioma_espanol">EspaÃ±ol</string>
+    <string name="idioma_espanol">Español</string>
     <string name="idioma_ingles">English</string>
     <string name="idioma_label">Idioma: %s</string>
-    <string name="copiar_todo">ðŸ“‹ Copiar Todo</string>
+    <string name="copiar_todo">📋 Copiar Todo</string>
     <string name="tutorial_copiado">Tutorial copiado al portapapeles</string>
     <string name="error_cargar_tutorial">Error al cargar tutorial</string>
-    <string name="codigo_asm">ðŸ“„ CÃ³digo ASM</string>
-    <string name="comando_label">ðŸ’» Comando</string>
+    <string name="codigo_asm">📄 Código ASM</string>
+    <string name="comando_label">💻 Comando</string>
     <string name="copiar_btn">Copiar</string>
     <string name="copiado_msg">Copiado</string>
     <string name="error_abrir_link">Error al abrir link</string>
     <string name="copiado_portapapeles">Copiado al portapapeles</string>
     <string name="error_generico_detalle">Error: %1$s</string>
-    <string name="fuses_configurados_marcado">âœ“ Configurados</string>
+    <string name="fuses_configurados_marcado">✓ Configurados</string>
     <string name="debe_procesar_hex_primero">Debe procesar el archivo HEX primero</string>
 
-    <string name="error_exportador_no_inicializado">El exportador no estÃ¡ inicializado</string>
-    <string name="error_no_hay_exportacion_pendiente">No hay una exportaciÃ³n pendiente</string>
-    <string name="seleccion_carpeta_cancelada">SelecciÃ³n de carpeta cancelada</string>
+    <string name="error_exportador_no_inicializado">El exportador no está inicializado</string>
+    <string name="error_no_hay_exportacion_pendiente">No hay una exportación pendiente</string>
+    <string name="seleccion_carpeta_cancelada">Selección de carpeta cancelada</string>
     <string name="error_carpeta_no_accesible">No se pudo acceder a la carpeta seleccionada</string>
     <string name="reemplazar_archivo_titulo">Reemplazar archivo</string>
-    <string name="reemplazar_archivo_mensaje">El archivo \'%1$s\' ya existe. Â¿Desea reemplazarlo?</string>
+    <string name="reemplazar_archivo_mensaje">El archivo \'%1$s\' ya existe. ¿Desea reemplazarlo?</string>
     <string name="error_reemplazando_archivo">No se pudo reemplazar el archivo existente</string>
-    <string name="si">SÃ­</string>
+    <string name="si">Sí</string>
     <string name="no">No</string>
     <string name="archivo_guardado">Archivo guardado: %1$s</string>
 
-    <string name="agregar_fusible_boton">âž• Agregar Fusible</string>
-    <string name="agregar_fusible_personalizado">âž• Agregar Fusible Personalizado</string>
+    <string name="agregar_fusible_boton">➕ Agregar Fusible</string>
+    <string name="agregar_fusible_personalizado">➕ Agregar Fusible Personalizado</string>
     <string name="completa_todos_los_campos">Completa todos los campos</string>
     <string name="log_iniciado">Log iniciado...\n</string>
     <string name="fusibles_restaurados_desde_hex">Fusibles restaurados desde HEX</string>
 
     <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial en Termux</string>
     <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
-    <string name="codigo_copiado_portapapeles">CÃ³digo copiado al portapapeles</string>
+    <string name="codigo_copiado_portapapeles">Código copiado al portapapeles</string>
     <string name="texto_copiado_portapapeles">Texto copiado al portapapeles</string>
-    <string name="termino_no_encontrado">TÃ©rmino no encontrado: %1$s</string>
+    <string name="termino_no_encontrado">Término no encontrado: %1$s</string>
 
     <string name="no_hay_datos_para_exportar_archivo">No hay datos para exportar</string>
-    <string name="no_hay_datos_validos_para_exportar">No hay datos vÃ¡lidos para exportar</string>
+    <string name="no_hay_datos_validos_para_exportar">No hay datos válidos para exportar</string>
     <string name="error_convirtiendo_datos_hex">Error convirtiendo datos hexadecimales</string>
-    <string name="error_nombre_archivo_vacio">El nombre no puede estar vacÃ­o</string>
+    <string name="error_nombre_archivo_vacio">El nombre no puede estar vacío</string>
     <string name="error_creando_archivo_salida">No se pudo crear el archivo de salida</string>
     <string name="error_abriendo_archivo_escritura">No se pudo abrir el archivo para escritura</string>
     <string name="error_escribiendo_archivo_detalle">Error escribiendo archivo: %1$s</string>
@@ -262,25 +262,6 @@
 
     <!-- Etiquetas para popup de lectura de memoria -->
     <string name="memoria_rom">Memoria ROM</string>
-    <string name="memoria_eepromn">Memoria EEPROM</string>
-    <string name="cerrasrrrs">Cerrar</string>
-    <string name="leyendo_memoria_pun_pun">Leyendo memoria...</string>
-
-    <string name="no_hay_datos_mostrar">No hay datos que mostrar</string>
-    <string name="restaurados_los_fusibles_desde">Se han restaurado los fusibles desde el archivo HEX cargado</string>
-    <string name="error_al_restaurar_los_fusibles">Error al restaurar los fusibles desde el archivo HEX</string>
-    <string name="no_hay_archivo_hex_cargado">No hay archivo HEX cargado. Cargue un archivo antes de restaurar.</string>
-    <string name="restaurados_los_fusibles_desde_bd">Se han restaurado los fusibles desde la base de datos de chips</string>
-    <string name="error_al_restaurar_los_fusibles_bd">Error al restaurar los fusibles desde la base de datos de chips</string>
-    <string name="configurar_fused">Configurar Fuses</string>
-    <string name="valor_del_fusible">Valor del fusible (Hex o bin)</string>
-    <string name="ingrese_nombres_valores_fusibles">Por favor, ingrese nombres y valores para los fusibles</string>
-    <string name="no_hay_cambios_que_aplicar">No hay cambios que aplicar</string>
-
-    <string name="error_al_cambiar_modo_">Error al cambiar modo: </string>
-    <string name="debe_procesar_el_archivo_hex_p">Debe procesar el archivo HEX primero</string>
-    <string name="chip_id">Chip ID:</string>
-
     <string name="memoria_eeprom">Memoria EEPROM</string>
 
 </resources>

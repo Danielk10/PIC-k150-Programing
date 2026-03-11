@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Pravila privatnosti</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Prihvati</string>
     <string name="cancelar">Odustani</string>
     <string name="conectado">Povezan</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Greška USB veze</string>
     <string name="error_inesperado_durante_la_co">Neočekivana greška tijekom veze</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operacije</string>
     <string name="cargar_archivo_hex">Učitaj HEX datoteku</string>
     <string name="programar_pic">Programiraj PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Čekam operaciju...</string>
     <string name="esperando_seleccion">Čekam odabir...</string>
     <string name="seleccionar_chip_pic">Odaberite PIC čip</string>
-    <!-- values-hr/strings.xml (Croata) -->
+    
     <string name="gputils_termux_asm">GPUTILS u Termux Compiler ASM Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Čitanje memorije...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Ispravno postavljeni osigurači</string>
+
+    
+    
+    <string name="chip_info_titulo">Tehničke informacije o čipu</string>
+    
+    <string name="propiedad">Vlasništvo</string>
+    
+    <string name="valor">Vrijednost</string>
+    
+    <string name="chip_info_profesional">Informacije o čipu</string>
+    
+    
+    
+    <string name="exportar_config_hex">Izvezi KONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Izvezi KONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Izvezi cijeli dump (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Zakažite sve</string>
+    
+    <string name="programar_solo_rom">Programirajte samo ROM</string>
+    
+    <string name="programar_solo_eeprom">Programirajte samo EEPROM</string>
+    
+    <string name="programar_solo_config">Program samo CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Potvrdi brisanje</string>
+    
+    <string name="chip_esta_borrado">Čip je izbrisan (prazan)</string>
+    
+    <string name="chip_no_esta_borrado">Čip se NE briše</string>
+    
+    <string name="verificando_borrado">Provjera brisanja...</string>
+    
+    <string name="resultado_verificacion_borrado">Rezultat provjere brisanja</string>
+    
+    <string name="error_verificando_borrado">Pogreška prilikom provjere brisanja</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Konfiguracije osigurača</string>
+    
+    <string name="chip_seleccionado">Odabrani čip</string>
+    
+    <string name="configuracion_de_fusibles">Konfiguracija osigurača</string>
+    
+    <string name="id_personalizado_hex">Prilagođeni ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Primjer: 1A 2B 3C 4D (4 ili 8 bajtova)</string>
+    
+    <string name="hint_nombre_fusible">Naziv (npr.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Vrijednost (npr.: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Dnevnik operacija</string>
+    
+    <string name="restaurar_desde_bd">Vrati iz baze podataka</string>
+    
+    <string name="restaurar_desde_hex">Vrati iz HEX-a</string>
+    
+    <string name="aplicar_fuses">Primjena osigurača</string>
+    
+    <string name="nombre_del_fusible">Naziv osigurača</string>
+    
+    <string name="valor_ejemplo_on_off">Vrijednost (primjer: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">ID korisnika u HEX formatu. Koristite 4 bajta (8 znamenki) za PIC12/16 ili 8 bajta (16 znamenki) za PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Zaobilazi HEX osigurače. Koristite tehnički naziv (npr. WDT) i vrijednost (npr. OFF ili 0x01).</string>
+    
+    <string name="ayuda_chip_info">Detaljni tehnički podaci izvučeni iz PIC definicijske datoteke.</string>
+
+    
+    <string name="seleccionar_operacion">Odaberite Operacija</string>
+    
+    <string name="config_leida">Čitanje konfiguracije</string>
+
+    
+    <string name="publicidad_recomendada">Preporučeno oglašavanje</string>
+    
+    <string name="lectura_completa">Kompletno čitanje</string>
+    
+    <string name="sin_chip">bez čipa</string>
+    
+    <string name="fusible_agregado">Dodan osigurač</string>
+    
+    <string name="fusibles_restaurados">Restaurirani osigurači</string>
+    
+    <string name="fusibles_aplicados">Primijenjeni osigurači</string>
+    
+    <string name="procesamiento_hex">HEX obrada</string>
+    
+    <string name="rom_ok_blank">ROM: OK (prazno)</string>
+    
+    <string name="rom_not_blank">ROM: NIJE PRAZNO</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (prazno)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NIJE PRAZNO</string>
+
+    
+    
+    <string name="menu_ayuda">pomoć</string>
+    
+    <string name="ayuda_icsp">ICSP veza</string>
+    
+    <string name="ayuda_fuses_label">Konfiguracija osigurača</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">španjolski</string>
+    
+    <string name="idioma_ingles">engleski</string>
+    
+    <string name="idioma_label">Jezik: %s</string>
+    
+    <string name="copiar_todo">📋 Kopiraj sve</string>
+    
+    <string name="tutorial_copiado">Vodič je kopiran u međuspremnik</string>
+    
+    <string name="error_cargar_tutorial">Pogreška pri učitavanju vodiča</string>
+    
+    <string name="codigo_asm">📄 ASM kod</string>
+    
+    <string name="comando_label">💻 Naredba</string>
+    
+    <string name="copiar_btn">Kopiraj</string>
+    
+    <string name="copiado_msg">Kopirano</string>
+    
+    <string name="error_abrir_link">Pogreška pri otvaranju veze</string>
+    
+    <string name="copiado_portapapeles">Kopirano u međuspremnik</string>
+    
+    <string name="error_generico_detalle">Greška: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfigurirano</string>
+    
+    <string name="debe_procesar_hex_primero">Prvo morate obraditi HEX datoteku</string>
+
+    
+    <string name="error_exportador_no_inicializado">Izvoznik nije inicijaliziran</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Nema izvoza na čekanju</string>
+    
+    <string name="seleccion_carpeta_cancelada">Odabir mape otkazan</string>
+    
+    <string name="error_carpeta_no_accesible">Nije moguće pristupiti odabranoj mapi</string>
+    
+    <string name="reemplazar_archivo_titulo">Zamijeni datoteku</string>
+    
+    <string name="reemplazar_archivo_mensaje">Datoteka \'%1$s\' već postoji. Želite li ga zamijeniti?</string>
+    
+    <string name="error_reemplazando_archivo">Nije moguće zamijeniti postojeću datoteku</string>
+    
+    <string name="si">da</string>
+    
+    <string name="no">br</string>
+    
+    <string name="archivo_guardado">Spremljena datoteka: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Dodajte osigurač</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Dodajte prilagođeni osigurač</string>
+    
+    <string name="completa_todos_los_campos">Ispunite sva polja</string>
+    
+    <string name="log_iniciado">Zapis je započeo...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Restaurirani osigurači od HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Vodič za Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Vodič za Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Kod je kopiran u međuspremnik</string>
+    
+    <string name="texto_copiado_portapapeles">Tekst je kopiran u međuspremnik</string>
+    
+    <string name="termino_no_encontrado">Pojam nije pronađen: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Nema podataka za izvoz</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Nema valjanih podataka za izvoz</string>
+    
+    <string name="error_convirtiendo_datos_hex">Pogreška pri pretvaranju heksadecimalnih podataka</string>
+    
+    <string name="error_nombre_archivo_vacio">Ime ne može biti prazno</string>
+    
+    <string name="error_creando_archivo_salida">Nije moguće stvoriti izlaznu datoteku</string>
+    
+    <string name="error_abriendo_archivo_escritura">Nije moguće otvoriti datoteku za pisanje</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Pogreška pri pisanju datoteke: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Neočekivana pogreška prilikom izvoza: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Memorija je uspješno pročitana</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

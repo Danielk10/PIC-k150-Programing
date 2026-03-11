@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Sekretesspolicyer</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Acceptera</string>
     <string name="cancelar">Avbryt</string>
     <string name="conectado">Ansluten</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB-anslutningsfel</string>
     <string name="error_inesperado_durante_la_co">Oväntat fel under anslutning</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Åtgärder</string>
     <string name="cargar_archivo_hex">Ladda HEX-fil</string>
     <string name="programar_pic">Programmera PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Väntar på åtgärd...</string>
     <string name="esperando_seleccion">Väntar på val...</string>
     <string name="seleccionar_chip_pic">Välj PIC Chip</string>
-    <!-- values-sv/strings.xml (Sueco) -->
+    
     <string name="gputils_termux_asm">GPUTILS i Termux ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Läser minne...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Korrekt påsatta säkringar</string>
+
+    
+    
+    <string name="chip_info_titulo">Chip teknisk information</string>
+    
+    <string name="propiedad">Egendom</string>
+    
+    <string name="valor">Värde</string>
+    
+    <string name="chip_info_profesional">Chipinformation</string>
+    
+    
+    
+    <string name="exportar_config_hex">Exportera CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Exportera CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Exportera full dump (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Schemalägg allt</string>
+    
+    <string name="programar_solo_rom">Endast program-ROM</string>
+    
+    <string name="programar_solo_eeprom">Programmera endast EEPROM</string>
+    
+    <string name="programar_solo_config">Program endast CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Verifiera borttagning</string>
+    
+    <string name="chip_esta_borrado">Chippet är raderat (tomt)</string>
+    
+    <string name="chip_no_esta_borrado">Chipet raderas INTE</string>
+    
+    <string name="verificando_borrado">Verifierar borttagning...</string>
+    
+    <string name="resultado_verificacion_borrado">Resultat för verifiering av borttagning</string>
+    
+    <string name="error_verificando_borrado">Det gick inte att verifiera borttagningen</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Säkringskonfigurationer</string>
+    
+    <string name="chip_seleccionado">Valt chip</string>
+    
+    <string name="configuracion_de_fusibles">Säkringskonfiguration</string>
+    
+    <string name="id_personalizado_hex">Anpassat ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Exempel: 1A 2B 3C 4D (4 eller 8 byte)</string>
+    
+    <string name="hint_nombre_fusible">Namn (ex: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Värde (ex: PÅ, AV, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Driftlogg</string>
+    
+    <string name="restaurar_desde_bd">Återställ från DB</string>
+    
+    <string name="restaurar_desde_hex">Återställ från HEX</string>
+    
+    <string name="aplicar_fuses">Sätt på säkringar</string>
+    
+    <string name="nombre_del_fusible">Säkringsnamn</string>
+    
+    <string name="valor_ejemplo_on_off">Värde (exempel: PÅ, AV, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Användar-ID i HEX-format. Använd 4 byte (8 siffror) för PIC12/16 eller 8 byte (16 siffror) för PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Åsidosätter HEX-säkringarna. Använd det tekniska namnet (ex: WDT) och värdet (ex: OFF eller 0x01).</string>
+    
+    <string name="ayuda_chip_info">Detaljerad teknisk data extraherad från PIC-definitionsfilen.</string>
+
+    
+    <string name="seleccionar_operacion">Välj Operation</string>
+    
+    <string name="config_leida">Konfiguration läst</string>
+
+    
+    <string name="publicidad_recomendada">Rekommenderad reklam</string>
+    
+    <string name="lectura_completa">Fullständig läsning</string>
+    
+    <string name="sin_chip">utan chip</string>
+    
+    <string name="fusible_agregado">Tillsatt säkring</string>
+    
+    <string name="fusibles_restaurados">Återställda säkringar</string>
+    
+    <string name="fusibles_aplicados">Tillsatta säkringar</string>
+    
+    <string name="procesamiento_hex">HEX-bearbetning</string>
+    
+    <string name="rom_ok_blank">ROM: OK (tom)</string>
+    
+    <string name="rom_not_blank">ROM: INTE BLANKT</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (tom)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: INTE BLANKT</string>
+
+    
+    
+    <string name="menu_ayuda">Hjälpa</string>
+    
+    <string name="ayuda_icsp">ICSP-anslutning</string>
+    
+    <string name="ayuda_fuses_label">Säkringskonfiguration</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">spanska</string>
+    
+    <string name="idioma_ingles">engelska</string>
+    
+    <string name="idioma_label">Språk: %s</string>
+    
+    <string name="copiar_todo">📋 Kopiera alla</string>
+    
+    <string name="tutorial_copiado">Handledningen har kopierats till urklipp</string>
+    
+    <string name="error_cargar_tutorial">Det gick inte att läsa in handledning</string>
+    
+    <string name="codigo_asm">📄 ASM-kod</string>
+    
+    <string name="comando_label">💻 Kommando</string>
+    
+    <string name="copiar_btn">Kopiera</string>
+    
+    <string name="copiado_msg">Kopierade</string>
+    
+    <string name="error_abrir_link">Det gick inte att öppna länken</string>
+    
+    <string name="copiado_portapapeles">Kopierade till urklipp</string>
+    
+    <string name="error_generico_detalle">Fel: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfigurerad</string>
+    
+    <string name="debe_procesar_hex_primero">Du måste bearbeta HEX-filen först</string>
+
+    
+    <string name="error_exportador_no_inicializado">Exportören är inte initierad</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Det finns ingen väntande export</string>
+    
+    <string name="seleccion_carpeta_cancelada">Mappval avbröts</string>
+    
+    <string name="error_carpeta_no_accesible">Det gick inte att komma åt den valda mappen</string>
+    
+    <string name="reemplazar_archivo_titulo">Byt ut fil</string>
+    
+    <string name="reemplazar_archivo_mensaje">Filen \'%1$s\' finns redan. Vill du byta ut den?</string>
+    
+    <string name="error_reemplazando_archivo">Kunde inte ersätta befintlig fil</string>
+    
+    <string name="si">Ja</string>
+    
+    <string name="no">Inga</string>
+    
+    <string name="archivo_guardado">Sparad fil: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Lägg till säkring</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Lägg till anpassad säkring</string>
+    
+    <string name="completa_todos_los_campos">Fyll i alla fält</string>
+    
+    <string name="log_iniciado">Loggen startade...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Återställda säkringar från HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="codigo_copiado_portapapeles">Koden har kopierats till urklipp</string>
+    
+    <string name="texto_copiado_portapapeles">Text kopierad till urklipp</string>
+    
+    <string name="termino_no_encontrado">Termen hittades inte: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Det finns ingen data att exportera</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Det finns inga giltiga data att exportera</string>
+    
+    <string name="error_convirtiendo_datos_hex">Fel vid konvertering av hexadecimala data</string>
+    
+    <string name="error_nombre_archivo_vacio">Namnet får inte vara tomt</string>
+    
+    <string name="error_creando_archivo_salida">Det gick inte att skapa utdatafil</string>
+    
+    <string name="error_abriendo_archivo_escritura">Det gick inte att öppna filen för skrivning</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Fel vid skrivning av fil: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Oväntat fel vid export: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Minnet lästes framgångsrikt</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

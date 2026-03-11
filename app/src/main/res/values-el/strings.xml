@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Πολιτικές Απορρήτου</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Αποδοχή</string>
     <string name="cancelar">Ακύρωση</string>
     <string name="conectado">Συνδεδεμένο</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Σφάλμα σύνδεσης USB</string>
     <string name="error_inesperado_durante_la_co">Απροσδόκητο σφάλμα κατά τη σύνδεση</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Ενέργειες</string>
     <string name="cargar_archivo_hex">Φόρτωση Αρχείου HEX</string>
     <string name="programar_pic">Προγραμματισμός PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Αναμονή ενέργειας...</string>
     <string name="esperando_seleccion">Αναμονή επιλογής...</string>
     <string name="seleccionar_chip_pic">Επιλογή PIC Chip</string>
-    <!-- values-el/strings.xml (Griego) -->
+    
     <string name="gputils_termux_asm">GPUTILS σε Termux ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Ανάγνωση μνήμης...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Σωστά τοποθετημένες ασφάλειες</string>
+
+    
+    
+    <string name="chip_info_titulo">Τεχνικές Πληροφορίες Chip</string>
+    
+    <string name="propiedad">ιδιοκτησία</string>
+    
+    <string name="valor">Αξία</string>
+    
+    <string name="chip_info_profesional">Πληροφορίες Chip</string>
+    
+    
+    
+    <string name="exportar_config_hex">Εξαγωγή CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Εξαγωγή CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Εξαγωγή Full Dump (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Προγραμματίστε τα πάντα</string>
+    
+    <string name="programar_solo_rom">Μόνο ROM προγράμματος</string>
+    
+    <string name="programar_solo_eeprom">Πρόγραμμα μόνο EEPROM</string>
+    
+    <string name="programar_solo_config">Πρόγραμμα μόνο CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Επαλήθευση διαγραφής</string>
+    
+    <string name="chip_esta_borrado">Το τσιπ διαγράφεται (Κενό)</string>
+    
+    <string name="chip_no_esta_borrado">Το τσιπ ΔΕΝ σβήνεται</string>
+    
+    <string name="verificando_borrado">Επαλήθευση διαγραφής...</string>
+    
+    <string name="resultado_verificacion_borrado">Αποτέλεσμα επαλήθευσης διαγραφής</string>
+    
+    <string name="error_verificando_borrado">Σφάλμα κατά την επαλήθευση της διαγραφής</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Διαμορφώσεις ασφαλειών</string>
+    
+    <string name="chip_seleccionado">Επιλεγμένο Chip</string>
+    
+    <string name="configuracion_de_fusibles">Διαμόρφωση ασφαλειών</string>
+    
+    <string name="id_personalizado_hex">Προσαρμοσμένο αναγνωριστικό (HEX)</string>
+    
+    <string name="hint_id_personalizado">Παράδειγμα: 1A 2B 3C 4D (4 ή 8 byte)</string>
+    
+    <string name="hint_nombre_fusible">Όνομα (π.χ.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Τιμή (π.χ.: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Μητρώο λειτουργιών</string>
+    
+    <string name="restaurar_desde_bd">Επαναφορά από το DB</string>
+    
+    <string name="restaurar_desde_hex">Επαναφορά από HEX</string>
+    
+    <string name="aplicar_fuses">Εφαρμόστε Ασφάλειες</string>
+    
+    <string name="nombre_del_fusible">Όνομα ασφάλειας</string>
+    
+    <string name="valor_ejemplo_on_off">Τιμή (παράδειγμα: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">ID χρήστη σε μορφή HEX. Χρησιμοποιήστε 4 byte (8 ψηφία) για PIC12/16 ή 8 byte (16 ψηφία) για PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Αντικαθιστά τις ασφάλειες HEX. Χρησιμοποιήστε την τεχνική ονομασία (π.χ.: WDT) και την τιμή (π.χ.: OFF ή 0x01).</string>
+    
+    <string name="ayuda_chip_info">Λεπτομερή τεχνικά δεδομένα εξάγονται από το αρχείο ορισμού PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Επιλέξτε Λειτουργία</string>
+    
+    <string name="config_leida">Διαμόρφωση ανάγνωσης</string>
+
+    
+    <string name="publicidad_recomendada">Προτεινόμενη διαφήμιση</string>
+    
+    <string name="lectura_completa">Ολοκληρωμένη ανάγνωση</string>
+    
+    <string name="sin_chip">χωρίς τσιπ</string>
+    
+    <string name="fusible_agregado">Προστέθηκε ασφάλεια</string>
+    
+    <string name="fusibles_restaurados">Αποκατεστημένες ασφάλειες</string>
+    
+    <string name="fusibles_aplicados">Εφαρμοσμένες ασφάλειες</string>
+    
+    <string name="procesamiento_hex">Επεξεργασία HEX</string>
+    
+    <string name="rom_ok_blank">ROM: ΟΚ (Κενό)</string>
+    
+    <string name="rom_not_blank">ROM: ΟΧΙ ΚΕΝΟ</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (Κενό)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: ΟΧΙ ΚΕΝΟ</string>
+
+    
+    
+    <string name="menu_ayuda">Βοήθεια</string>
+    
+    <string name="ayuda_icsp">Σύνδεση ICSP</string>
+    
+    <string name="ayuda_fuses_label">Διαμόρφωση ασφαλειών</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Ισπανικά</string>
+    
+    <string name="idioma_ingles">Αγγλικά</string>
+    
+    <string name="idioma_label">Γλώσσα: %s</string>
+    
+    <string name="copiar_todo">📋 Αντιγραφή όλων</string>
+    
+    <string name="tutorial_copiado">Το σεμινάριο αντιγράφηκε στο πρόχειρο</string>
+    
+    <string name="error_cargar_tutorial">Σφάλμα κατά τη φόρτωση του οδηγού</string>
+    
+    <string name="codigo_asm">📄 Κωδικός ASM</string>
+    
+    <string name="comando_label">💻 Εντολή</string>
+    
+    <string name="copiar_btn">Αντιγραφή</string>
+    
+    <string name="copiado_msg">Αντιγράφηκε</string>
+    
+    <string name="error_abrir_link">Σφάλμα ανοίγματος συνδέσμου</string>
+    
+    <string name="copiado_portapapeles">Αντιγράφηκε στο πρόχειρο</string>
+    
+    <string name="error_generico_detalle">Σφάλμα: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Διαμόρφωση</string>
+    
+    <string name="debe_procesar_hex_primero">Πρέπει πρώτα να επεξεργαστείτε το αρχείο HEX</string>
+
+    
+    <string name="error_exportador_no_inicializado">Ο εξαγωγέας δεν έχει αρχικοποιηθεί</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Δεν υπάρχει καμία εξαγωγή σε εκκρεμότητα</string>
+    
+    <string name="seleccion_carpeta_cancelada">Η επιλογή φακέλου ακυρώθηκε</string>
+    
+    <string name="error_carpeta_no_accesible">Δεν ήταν δυνατή η πρόσβαση στον επιλεγμένο φάκελο</string>
+    
+    <string name="reemplazar_archivo_titulo">Αντικατάσταση αρχείου</string>
+    
+    <string name="reemplazar_archivo_mensaje">Το αρχείο \'%1$s\' υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</string>
+    
+    <string name="error_reemplazando_archivo">Δεν ήταν δυνατή η αντικατάσταση του υπάρχοντος αρχείου</string>
+    
+    <string name="si">Ναι</string>
+    
+    <string name="no">Όχι</string>
+    
+    <string name="archivo_guardado">Αποθηκευμένο αρχείο: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Προσθέστε ασφάλεια</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Προσθήκη προσαρμοσμένης ασφάλειας</string>
+    
+    <string name="completa_todos_los_campos">Συμπληρώστε όλα τα πεδία</string>
+    
+    <string name="log_iniciado">Το αρχείο καταγραφής ξεκίνησε...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Αποκατεστημένες ασφάλειες από HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
+    
+    <string name="codigo_copiado_portapapeles">Ο κώδικας αντιγράφηκε στο πρόχειρο</string>
+    
+    <string name="texto_copiado_portapapeles">Το κείμενο αντιγράφηκε στο πρόχειρο</string>
+    
+    <string name="termino_no_encontrado">Ο όρος δεν βρέθηκε: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Δεν υπάρχουν δεδομένα για εξαγωγή</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Δεν υπάρχουν έγκυρα δεδομένα για εξαγωγή</string>
+    
+    <string name="error_convirtiendo_datos_hex">Σφάλμα μετατροπής δεκαεξαδικών δεδομένων</string>
+    
+    <string name="error_nombre_archivo_vacio">Το όνομα δεν μπορεί να είναι κενό</string>
+    
+    <string name="error_creando_archivo_salida">Δεν ήταν δυνατή η δημιουργία αρχείου εξόδου</string>
+    
+    <string name="error_abriendo_archivo_escritura">Δεν ήταν δυνατό το άνοιγμα του αρχείου για εγγραφή</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Σφάλμα κατά την εγγραφή του αρχείου: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Μη αναμενόμενο σφάλμα κατά την εξαγωγή: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Η μνήμη διαβάστηκε επιτυχώς</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

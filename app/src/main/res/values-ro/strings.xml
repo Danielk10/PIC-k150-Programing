@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Politici de confidențialitate</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Accepta</string>
     <string name="cancelar">Anulare</string>
     <string name="conectado">Conectat</string>
@@ -52,7 +52,7 @@
     <string name="error_obteniendo_datos_del_chi">Eroare la obținerea datelor cipului</string>
     <string name="modo">Mod</string>
     <string name="icsp_solamente">Doar ICSP</string>
-    <string name="pin_1">Pin 1</string>
+    <string name="pin_1">Pinul 1</string>
     <string name="filemanager_no_inicializado">FileManager nu a fost inițializat</string>
     <string name="no_se_pudo_obtener_el_nombre_d">Nu a putut obține numele fișierului</string>
     <string name="seleccione_un_archivo_binario_">Selectați un fișier binar valid (.hex sau .bin)</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Eroare de conexiune USB</string>
     <string name="error_inesperado_durante_la_co">Eroare neașteptată în timpul conexiunii</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operații</string>
     <string name="cargar_archivo_hex">Încarcă fișier HEX</string>
     <string name="programar_pic">Programează PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Se așteaptă operație...</string>
     <string name="esperando_seleccion">Se așteaptă selecție...</string>
     <string name="seleccionar_chip_pic">Selectați Chip PIC</string>
-    <!-- values-ro/strings.xml (Rumano) -->
+    
     <string name="gputils_termux_asm">GPUTILS în Termux Compiler ASM Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Citirea memoriei...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Siguranțe corect aplicate</string>
+
+    
+    
+    <string name="chip_info_titulo">Informații tehnice despre cip</string>
+    
+    <string name="propiedad">Proprietate</string>
+    
+    <string name="valor">Valoare</string>
+    
+    <string name="chip_info_profesional">Informații despre cip</string>
+    
+    
+    
+    <string name="exportar_config_hex">Exportați CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Exportați CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Exportați descărcarea completă (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Programează totul</string>
+    
+    <string name="programar_solo_rom">Numai programul ROM</string>
+    
+    <string name="programar_solo_eeprom">Program doar EEPROM</string>
+    
+    <string name="programar_solo_config">Program numai CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Verificați ștergerea</string>
+    
+    <string name="chip_esta_borrado">Cipul este șters (Alb)</string>
+    
+    <string name="chip_no_esta_borrado">Cipul NU este șters</string>
+    
+    <string name="verificando_borrado">Se verifică ștergerea...</string>
+    
+    <string name="resultado_verificacion_borrado">Rezultatul verificării ștergerii</string>
+    
+    <string name="error_verificando_borrado">Eroare la verificarea ștergerii</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Configurații siguranțe</string>
+    
+    <string name="chip_seleccionado">Chip selectat</string>
+    
+    <string name="configuracion_de_fusibles">Configurația siguranței</string>
+    
+    <string name="id_personalizado_hex">ID personalizat (HEX)</string>
+    
+    <string name="hint_id_personalizado">Exemplu: 1A 2B 3C 4D (4 sau 8 octeți)</string>
+    
+    <string name="hint_nombre_fusible">Nume (ex: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Valoare (ex: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Jurnalul de operațiuni</string>
+    
+    <string name="restaurar_desde_bd">Restaurare din DB</string>
+    
+    <string name="restaurar_desde_hex">Restaurați din HEX</string>
+    
+    <string name="aplicar_fuses">Aplicați siguranțe</string>
+    
+    <string name="nombre_del_fusible">Numele siguranței</string>
+    
+    <string name="valor_ejemplo_on_off">Valoare (exemplu: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">ID utilizator în format HEX. Utilizați 4 octeți (8 cifre) pentru PIC12/16 sau 8 octeți (16 cifre) pentru PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Depășește siguranțele HEX. Utilizați numele tehnic (ex: WDT) și valoarea (ex: OFF sau 0x01).</string>
+    
+    <string name="ayuda_chip_info">Date tehnice detaliate extrase din fișierul de definiție PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Selectați Operație</string>
+    
+    <string name="config_leida">Configurație citită</string>
+
+    
+    <string name="publicidad_recomendada">Reclamă recomandată</string>
+    
+    <string name="lectura_completa">Lectură completă</string>
+    
+    <string name="sin_chip">fara cip</string>
+    
+    <string name="fusible_agregado">Siguranță adăugată</string>
+    
+    <string name="fusibles_restaurados">Siguranțe restaurate</string>
+    
+    <string name="fusibles_aplicados">Siguranțe aplicate</string>
+    
+    <string name="procesamiento_hex">Prelucrare HEX</string>
+    
+    <string name="rom_ok_blank">ROM: OK (alb)</string>
+    
+    <string name="rom_not_blank">ROM: NU GOL</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (alb)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NU GOL</string>
+
+    
+    
+    <string name="menu_ayuda">Ajuta</string>
+    
+    <string name="ayuda_icsp">conexiune ICSP</string>
+    
+    <string name="ayuda_fuses_label">Configurația siguranței</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">spaniolă</string>
+    
+    <string name="idioma_ingles">engleză</string>
+    
+    <string name="idioma_label">Limba: %s</string>
+    
+    <string name="copiar_todo">📋 Copiați tot</string>
+    
+    <string name="tutorial_copiado">Tutorialul a fost copiat în clipboard</string>
+    
+    <string name="error_cargar_tutorial">Eroare la încărcarea tutorialului</string>
+    
+    <string name="codigo_asm">📄Cod ASM</string>
+    
+    <string name="comando_label">💻 Comanda</string>
+    
+    <string name="copiar_btn">Copie</string>
+    
+    <string name="copiado_msg">Copiat</string>
+    
+    <string name="error_abrir_link">Eroare la deschiderea linkului</string>
+    
+    <string name="copiado_portapapeles">Copiat în clipboard</string>
+    
+    <string name="error_generico_detalle">Eroare: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Configurat</string>
+    
+    <string name="debe_procesar_hex_primero">Mai întâi trebuie să procesați fișierul HEX</string>
+
+    
+    <string name="error_exportador_no_inicializado">Exportatorul nu este inițializat</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Nu există niciun export în așteptare</string>
+    
+    <string name="seleccion_carpeta_cancelada">Selectarea folderului a fost anulată</string>
+    
+    <string name="error_carpeta_no_accesible">Dosarul selectat nu a putut fi accesat</string>
+    
+    <string name="reemplazar_archivo_titulo">Înlocuiți fișierul</string>
+    
+    <string name="reemplazar_archivo_mensaje">Fișierul \'%1$s\' există deja. Doriți să-l înlocuiți?</string>
+    
+    <string name="error_reemplazando_archivo">Nu s-a putut înlocui fișierul existent</string>
+    
+    <string name="si">Da</string>
+    
+    <string name="no">Nu</string>
+    
+    <string name="archivo_guardado">Fișier salvat: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Adăugați siguranța</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Adăugați siguranța personalizată</string>
+    
+    <string name="completa_todos_los_campos">Completați toate câmpurile</string>
+    
+    <string name="log_iniciado">Jurnalul a început...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Siguranțe restaurate de la HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Tutorial Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Cod copiat în clipboard</string>
+    
+    <string name="texto_copiado_portapapeles">Text copiat în clipboard</string>
+    
+    <string name="termino_no_encontrado">Termenul nu a fost găsit: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Nu există date de exportat</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Nu există date valide de exportat</string>
+    
+    <string name="error_convirtiendo_datos_hex">Eroare la conversia datelor hexazecimale</string>
+    
+    <string name="error_nombre_archivo_vacio">Numele nu poate fi gol</string>
+    
+    <string name="error_creando_archivo_salida">Nu s-a putut crea fișierul de ieșire</string>
+    
+    <string name="error_abriendo_archivo_escritura">Nu s-a putut deschide fișierul pentru scriere</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Eroare la scrierea fișierului: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Eroare neașteptată la export: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Memorie citită cu succes</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

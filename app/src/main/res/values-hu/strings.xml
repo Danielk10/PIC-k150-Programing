@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Adatvédelmi szabályzat</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Elfogadás</string>
     <string name="cancelar">Mégse</string>
     <string name="conectado">Csatlakoztatva</string>
@@ -52,7 +52,7 @@
     <string name="error_obteniendo_datos_del_chi">Hiba a chip adatok lekérése közben</string>
     <string name="modo">Mód</string>
     <string name="icsp_solamente">Csak ICSP</string>
-    <string name="pin_1">Pin 1</string>
+    <string name="pin_1">1. tű</string>
     <string name="filemanager_no_inicializado">FileManager nincs inicializálva</string>
     <string name="no_se_pudo_obtener_el_nombre_d">Nem sikerült lekérni a fájlnevet</string>
     <string name="seleccione_un_archivo_binario_">Válasszon érvényes bináris fájlt (.hex vagy .bin)</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB csatlakozási hiba</string>
     <string name="error_inesperado_durante_la_co">Váratlan hiba a csatlakozás közben</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Műveletek</string>
     <string name="cargar_archivo_hex">HEX fájl betöltése</string>
     <string name="programar_pic">PIC programozása</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Művelet várakozása...</string>
     <string name="esperando_seleccion">Kiválasztás várakozása...</string>
     <string name="seleccionar_chip_pic">PIC chip kiválasztása</string>
-    <!-- values-hu/strings.xml (Húngaro) -->
+    
     <string name="gputils_termux_asm">GPUTILS Termux-ban ASM Fordító Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Memória olvasása...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Megfelelően alkalmazott biztosítékok</string>
+
+    
+    
+    <string name="chip_info_titulo">Chip műszaki információ</string>
+    
+    <string name="propiedad">Ingatlan</string>
+    
+    <string name="valor">Érdemes</string>
+    
+    <string name="chip_info_profesional">Chip információk</string>
+    
+    
+    
+    <string name="exportar_config_hex">CONFIG (.hex) exportálása</string>
+    
+    <string name="exportar_config_bin">CONFIG exportálása (.bin)</string>
+    
+    <string name="exportar_dump_completo">Teljes kiírat exportálása (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Ütemezze be mindent</string>
+    
+    <string name="programar_solo_rom">Csak program ROM</string>
+    
+    <string name="programar_solo_eeprom">Csak az EEPROM programozása</string>
+    
+    <string name="programar_solo_config">Csak program CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Ellenőrizze a törlést</string>
+    
+    <string name="chip_esta_borrado">A chip törlődik (Üres)</string>
+    
+    <string name="chip_no_esta_borrado">A chip NEM törlődik</string>
+    
+    <string name="verificando_borrado">Törlés ellenőrzése...</string>
+    
+    <string name="resultado_verificacion_borrado">A törlés ellenőrzésének eredménye</string>
+    
+    <string name="error_verificando_borrado">Hiba a törlés ellenőrzésekor</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Biztosíték konfigurációk</string>
+    
+    <string name="chip_seleccionado">Kiválasztott chip</string>
+    
+    <string name="configuracion_de_fusibles">Biztosíték konfiguráció</string>
+    
+    <string name="id_personalizado_hex">Egyéni azonosító (HEX)</string>
+    
+    <string name="hint_id_personalizado">Példa: 1A 2B 3C 4D (4 vagy 8 bájt)</string>
+    
+    <string name="hint_nombre_fusible">Név (pl.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Érték (pl.: BE, KI, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Műveleti napló</string>
+    
+    <string name="restaurar_desde_bd">Visszaállítás DB-ből</string>
+    
+    <string name="restaurar_desde_hex">Visszaállítás HEX-ről</string>
+    
+    <string name="aplicar_fuses">Alkalmazzon biztosítékokat</string>
+    
+    <string name="nombre_del_fusible">Biztosíték neve</string>
+    
+    <string name="valor_ejemplo_on_off">Érték (például: BE, KI, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Felhasználói azonosító HEX formátumban. Használjon 4 bájtot (8 számjegy) a PIC12/16-hoz, vagy 8 bájtot (16 számjegyet) a PIC18-hoz.</string>
+    
+    <string name="ayuda_fuses_personalizados">Felülbírálja a HEX biztosítékokat. Használja a műszaki nevet (pl.: WDT) és az értéket (pl.: OFF vagy 0x01).</string>
+    
+    <string name="ayuda_chip_info">Részletes műszaki adatok a PIC definíciós fájlból kinyerve.</string>
+
+    
+    <string name="seleccionar_operacion">Válassza a Művelet lehetőséget</string>
+    
+    <string name="config_leida">Konfiguráció beolvasása</string>
+
+    
+    <string name="publicidad_recomendada">Ajánlott reklám</string>
+    
+    <string name="lectura_completa">Teljes olvasás</string>
+    
+    <string name="sin_chip">chip nélkül</string>
+    
+    <string name="fusible_agregado">Hozzáadott biztosíték</string>
+    
+    <string name="fusibles_restaurados">Felújított biztosítékok</string>
+    
+    <string name="fusibles_aplicados">Alkalmazott biztosítékok</string>
+    
+    <string name="procesamiento_hex">HEX feldolgozás</string>
+    
+    <string name="rom_ok_blank">ROM: OK (üres)</string>
+    
+    <string name="rom_not_blank">ROM: NEM ÜRES</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (Üres)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NEM ÜRES</string>
+
+    
+    
+    <string name="menu_ayuda">Támogatás</string>
+    
+    <string name="ayuda_icsp">ICSP kapcsolat</string>
+    
+    <string name="ayuda_fuses_label">Biztosíték konfiguráció</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">spanyol</string>
+    
+    <string name="idioma_ingles">angol</string>
+    
+    <string name="idioma_label">Nyelv: %s</string>
+    
+    <string name="copiar_todo">📋 Minden másolása</string>
+    
+    <string name="tutorial_copiado">Az oktatóanyag a vágólapra másolva</string>
+    
+    <string name="error_cargar_tutorial">Hiba az oktatóanyag betöltésekor</string>
+    
+    <string name="codigo_asm">📄 ASM kód</string>
+    
+    <string name="comando_label">💻 Parancs</string>
+    
+    <string name="copiar_btn">Másolat</string>
+    
+    <string name="copiado_msg">Másolva</string>
+    
+    <string name="error_abrir_link">Hiba a link megnyitásakor</string>
+    
+    <string name="copiado_portapapeles">Vágólapra másolva</string>
+    
+    <string name="error_generico_detalle">Hiba: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfigurálva</string>
+    
+    <string name="debe_procesar_hex_primero">Először a HEX fájlt kell feldolgoznia</string>
+
+    
+    <string name="error_exportador_no_inicializado">Az exportőr nincs inicializálva</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Nincs függőben lévő export</string>
+    
+    <string name="seleccion_carpeta_cancelada">A mappa kiválasztása megszakítva</string>
+    
+    <string name="error_carpeta_no_accesible">A kiválasztott mappához nem lehetett hozzáférni</string>
+    
+    <string name="reemplazar_archivo_titulo">Cserélje ki a fájlt</string>
+    
+    <string name="reemplazar_archivo_mensaje">A \'%1$s\' fájl már létezik. Le akarod cserélni?</string>
+    
+    <string name="error_reemplazando_archivo">Nem sikerült lecserélni a meglévő fájlt</string>
+    
+    <string name="si">Igen</string>
+    
+    <string name="no">Nem</string>
+    
+    <string name="archivo_guardado">Mentett fájl: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Adja hozzá a biztosítékot</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Adjon hozzá egyéni biztosítékot</string>
+    
+    <string name="completa_todos_los_campos">Töltse ki az összes mezőt</string>
+    
+    <string name="log_iniciado">A napló elindult...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Helyreállított HEX biztosítékok</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Termux oktatóanyag</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Termux oktatóanyag</string>
+    
+    <string name="codigo_copiado_portapapeles">A kód a vágólapra másolva</string>
+    
+    <string name="texto_copiado_portapapeles">A szöveg a vágólapra másolva</string>
+    
+    <string name="termino_no_encontrado">Nem található kifejezés: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Nincsenek exportálandó adatok</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Nincsenek érvényes adatok az exportálásra</string>
+    
+    <string name="error_convirtiendo_datos_hex">Hiba a hexadecimális adatok konvertálásakor</string>
+    
+    <string name="error_nombre_archivo_vacio">A név nem lehet üres</string>
+    
+    <string name="error_creando_archivo_salida">Nem sikerült létrehozni a kimeneti fájlt</string>
+    
+    <string name="error_abriendo_archivo_escritura">Nem sikerült megnyitni a fájlt írásra</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Hiba a fájl írása közben: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Váratlan hiba az exportálás során: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Memória sikeresen olvasva</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

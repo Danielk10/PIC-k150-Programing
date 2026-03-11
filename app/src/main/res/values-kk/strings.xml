@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Құпиялық саясаты</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Қабылдау</string>
     <string name="cancelar">Болдырмау</string>
     <string name="conectado">Қосылған</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB қосылу қатесі</string>
     <string name="error_inesperado_durante_la_co">Қосылу кезінде күтпеген қате</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Әрекеттер</string>
     <string name="cargar_archivo_hex">HEX Файлын Жүктеу</string>
     <string name="programar_pic">PIC Бағдарламалау</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Әрекетті күтуде...</string>
     <string name="esperando_seleccion">Таңдауды күтуде...</string>
     <string name="seleccionar_chip_pic">PIC Чипін Таңдау</string>
-    <!-- values-kk/strings.xml (Kazajo) -->
+    
     <string name="gputils_termux_asm">GPUTILS Termux ASM Компилятор Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Оқу жады...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Дұрыс қолданылған сақтандырғыштар</string>
+
+    
+    
+    <string name="chip_info_titulo">Чиптің техникалық ақпараты</string>
+    
+    <string name="propiedad">Меншік</string>
+    
+    <string name="valor">тұр</string>
+    
+    <string name="chip_info_profesional">Чип туралы ақпарат</string>
+    
+    
+    
+    <string name="exportar_config_hex">CONFIG (.hex) экспорттау</string>
+    
+    <string name="exportar_config_bin">CONFIG (.bin) экспорттау</string>
+    
+    <string name="exportar_dump_completo">Толық демпті экспорттау (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Барлығын жоспарлаңыз</string>
+    
+    <string name="programar_solo_rom">Тек бағдарлама ROM</string>
+    
+    <string name="programar_solo_eeprom">Тек EEPROM бағдарламасы</string>
+    
+    <string name="programar_solo_config">Бағдарлама тек CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Жоюды растау</string>
+    
+    <string name="chip_esta_borrado">Чип өшірілді (бос)</string>
+    
+    <string name="chip_no_esta_borrado">Чип ӨШІРІЛМЕЙДІ</string>
+    
+    <string name="verificando_borrado">Жою тексерілуде...</string>
+    
+    <string name="resultado_verificacion_borrado">Жоюды тексеру нәтижесі</string>
+    
+    <string name="error_verificando_borrado">Жоюды растау қатесі</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Сақтандырғыш конфигурациялары</string>
+    
+    <string name="chip_seleccionado">Таңдалған чип</string>
+    
+    <string name="configuracion_de_fusibles">Сақтандырғыш конфигурациясы</string>
+    
+    <string name="id_personalizado_hex">Арнаулы идентификатор (HEX)</string>
+    
+    <string name="hint_id_personalizado">Мысал: 1A 2B 3C 4D (4 немесе 8 байт)</string>
+    
+    <string name="hint_nombre_fusible">Атауы (мысалы: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Мән (мысалы: ҚОСУ, ӨШІРУ, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Операциялар журналы</string>
+    
+    <string name="restaurar_desde_bd">ДБ-дан қалпына келтіру</string>
+    
+    <string name="restaurar_desde_hex">HEX жүйесінен қалпына келтіру</string>
+    
+    <string name="aplicar_fuses">Сақтандырғыштарды қолданыңыз</string>
+    
+    <string name="nombre_del_fusible">Сақтандырғыш атауы</string>
+    
+    <string name="valor_ejemplo_on_off">Мән (мысалы: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">HEX пішіміндегі пайдаланушы идентификаторы. PIC12/16 үшін 4 байт (8 сан) немесе PIC18 үшін 8 байт (16 сан) пайдаланыңыз.</string>
+    
+    <string name="ayuda_fuses_personalizados">HEX сақтандырғыштарын қайта анықтайды. Техникалық атауды (мысалы: WDT) және мәнді (мысалы: OFF немесе 0x01) пайдаланыңыз.</string>
+    
+    <string name="ayuda_chip_info">PIC анықтамасы файлынан алынған егжей-тегжейлі техникалық деректер.</string>
+
+    
+    <string name="seleccionar_operacion">Операция таңдаңыз</string>
+    
+    <string name="config_leida">Конфигурация оқылды</string>
+
+    
+    <string name="publicidad_recomendada">Ұсынылатын жарнама</string>
+    
+    <string name="lectura_completa">Толық оқу</string>
+    
+    <string name="sin_chip">чипсіз</string>
+    
+    <string name="fusible_agregado">Қосылған сақтандырғыш</string>
+    
+    <string name="fusibles_restaurados">Қалпына келтірілген сақтандырғыштар</string>
+    
+    <string name="fusibles_aplicados">Қолданбалы сақтандырғыштар</string>
+    
+    <string name="procesamiento_hex">HEX өңдеу</string>
+    
+    <string name="rom_ok_blank">ROM: Жарайды (бос)</string>
+    
+    <string name="rom_not_blank">ROM: БОС ЕМЕС</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: Жарайды (бос)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: БОС ЕМЕС</string>
+
+    
+    
+    <string name="menu_ayuda">Көмек</string>
+    
+    <string name="ayuda_icsp">ICSP қосылымы</string>
+    
+    <string name="ayuda_fuses_label">Сақтандырғыш конфигурациясы</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">испан</string>
+    
+    <string name="idioma_ingles">Ағылшын</string>
+    
+    <string name="idioma_label">Тіл: %s</string>
+    
+    <string name="copiar_todo">📋 Барлығын көшіру</string>
+    
+    <string name="tutorial_copiado">Оқулық алмасу буферіне көшірілді</string>
+    
+    <string name="error_cargar_tutorial">Оқулықты жүктеу қатесі</string>
+    
+    <string name="codigo_asm">📄 ASM коды</string>
+    
+    <string name="comando_label">💻 Бұйрық</string>
+    
+    <string name="copiar_btn">Көшіру</string>
+    
+    <string name="copiado_msg">Көшірілген</string>
+    
+    <string name="error_abrir_link">Сілтемені ашу қатесі</string>
+    
+    <string name="copiado_portapapeles">Буферге көшірілді</string>
+    
+    <string name="error_generico_detalle">Қате: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Конфигурацияланған</string>
+    
+    <string name="debe_procesar_hex_primero">Алдымен HEX файлын өңдеу керек</string>
+
+    
+    <string name="error_exportador_no_inicializado">Экспорттаушы инициализацияланбаған</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Күтудегі экспорт жоқ</string>
+    
+    <string name="seleccion_carpeta_cancelada">Қалта таңдаудан бас тартылды</string>
+    
+    <string name="error_carpeta_no_accesible">Таңдалған қалтаға кіру мүмкін болмады</string>
+    
+    <string name="reemplazar_archivo_titulo">Файлды ауыстырыңыз</string>
+    
+    <string name="reemplazar_archivo_mensaje">\'%1$s\' файлы бұрыннан бар. Оны ауыстырғыңыз келе ме?</string>
+    
+    <string name="error_reemplazando_archivo">Бар файлды ауыстыру мүмкін болмады</string>
+    
+    <string name="si">Иә</string>
+    
+    <string name="no">Жоқ</string>
+    
+    <string name="archivo_guardado">Сақталған файл: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Сақтандырғышты қосыңыз</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Арнайы сақтандырғышты қосыңыз</string>
+    
+    <string name="completa_todos_los_campos">Барлық өрістерді толтырыңыз</string>
+    
+    <string name="log_iniciado">Журнал басталды...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">HEX-тен қалпына келтірілген сақтандырғыштар</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux оқу құралы</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux оқу құралы</string>
+    
+    <string name="codigo_copiado_portapapeles">Код алмасу буферіне көшірілді</string>
+    
+    <string name="texto_copiado_portapapeles">Мәтін алмасу буферіне көшірілді</string>
+    
+    <string name="termino_no_encontrado">Термин табылмады: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Экспортталатын деректер жоқ</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Экспорттау үшін жарамды деректер жоқ</string>
+    
+    <string name="error_convirtiendo_datos_hex">Он алтылық деректерді түрлендіру қатесі</string>
+    
+    <string name="error_nombre_archivo_vacio">Атау бос болмауы керек</string>
+    
+    <string name="error_creando_archivo_salida">Шығару файлын жасау мүмкін емес</string>
+    
+    <string name="error_abriendo_archivo_escritura">Файлды жазу үшін ашу мүмкін болмады</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Файлды жазу қатесі: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Экспорттау кезінде күтпеген қате: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Жад сәтті оқылды</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Tietosuojakäytännöt</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Hyväksy</string>
     <string name="cancelar">Peruuta</string>
     <string name="conectado">Yhdistetty</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB-yhteysvirhe</string>
     <string name="error_inesperado_durante_la_co">Odottamaton virhe yhteyden aikana</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Toiminnot</string>
     <string name="cargar_archivo_hex">Lataa HEX-tiedosto</string>
     <string name="programar_pic">Ohjelmoi PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Odotetaan toimintoa...</string>
     <string name="esperando_seleccion">Odotetaan valintaa...</string>
     <string name="seleccionar_chip_pic">Valitse PIC Siru</string>
-    <!-- values-fi/strings.xml (Finlandés) -->
+    
     <string name="gputils_termux_asm">GPUTILS Termuxissa ASM Kääntäjä Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Muistia luetaan...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Oikein asennettu sulakkeet</string>
+
+    
+    
+    <string name="chip_info_titulo">Sirun tekniset tiedot</string>
+    
+    <string name="propiedad">Omaisuus</string>
+    
+    <string name="valor">Arvo</string>
+    
+    <string name="chip_info_profesional">Sirun tiedot</string>
+    
+    
+    
+    <string name="exportar_config_hex">Vie CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Vie CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Vie koko vedos (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Aikatauluta kaikki</string>
+    
+    <string name="programar_solo_rom">Ohjelma vain ROM</string>
+    
+    <string name="programar_solo_eeprom">Ohjelmoi vain EEPROM</string>
+    
+    <string name="programar_solo_config">Ohjelma vain CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Vahvista poisto</string>
+    
+    <string name="chip_esta_borrado">Siru on poistettu (tyhjä)</string>
+    
+    <string name="chip_no_esta_borrado">Sirua EI poisteta</string>
+    
+    <string name="verificando_borrado">Vahvistetaan poistoa...</string>
+    
+    <string name="resultado_verificacion_borrado">Poiston vahvistustulos</string>
+    
+    <string name="error_verificando_borrado">Virhe poiston vahvistamisessa</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Sulakkeiden kokoonpanot</string>
+    
+    <string name="chip_seleccionado">Valittu siru</string>
+    
+    <string name="configuracion_de_fusibles">Sulakkeen kokoonpano</string>
+    
+    <string name="id_personalizado_hex">Muokattu tunnus (HEX)</string>
+    
+    <string name="hint_id_personalizado">Esimerkki: 1A 2B 3C 4D (4 tai 8 tavua)</string>
+    
+    <string name="hint_nombre_fusible">Nimi (esim.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Arvo (esim. ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Toimintaloki</string>
+    
+    <string name="restaurar_desde_bd">Palauta DB:stä</string>
+    
+    <string name="restaurar_desde_hex">Palauta HEX:stä</string>
+    
+    <string name="aplicar_fuses">Aseta sulakkeet</string>
+    
+    <string name="nombre_del_fusible">Sulakkeen nimi</string>
+    
+    <string name="valor_ejemplo_on_off">Arvo (esimerkki: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Käyttäjätunnus HEX-muodossa. Käytä 4 tavua (8 numeroa) PIC12/16:lle tai 8 tavua (16 numeroa) PIC18:lle.</string>
+    
+    <string name="ayuda_fuses_personalizados">Ohittaa HEX-sulakkeet. Käytä teknistä nimeä (esim. WDT) ja arvoa (esim. OFF tai 0x01).</string>
+    
+    <string name="ayuda_chip_info">Yksityiskohtaiset tekniset tiedot poimittu PIC-määrittelytiedostosta.</string>
+
+    
+    <string name="seleccionar_operacion">Valitse Käyttö</string>
+    
+    <string name="config_leida">Konfiguraatio luettu</string>
+
+    
+    <string name="publicidad_recomendada">Suositeltu mainonta</string>
+    
+    <string name="lectura_completa">Täydellinen lukeminen</string>
+    
+    <string name="sin_chip">ilman sirua</string>
+    
+    <string name="fusible_agregado">Lisätty sulake</string>
+    
+    <string name="fusibles_restaurados">Palautetut sulakkeet</string>
+    
+    <string name="fusibles_aplicados">Käytetyt sulakkeet</string>
+    
+    <string name="procesamiento_hex">HEX-käsittely</string>
+    
+    <string name="rom_ok_blank">ROM: OK (tyhjä)</string>
+    
+    <string name="rom_not_blank">ROM: EI TYHJÄ</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (tyhjä)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: EI TYHJÄ</string>
+
+    
+    
+    <string name="menu_ayuda">Apua</string>
+    
+    <string name="ayuda_icsp">ICSP-yhteys</string>
+    
+    <string name="ayuda_fuses_label">Sulakkeen kokoonpano</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">espanja</string>
+    
+    <string name="idioma_ingles">englanti</string>
+    
+    <string name="idioma_label">Kieli: %s</string>
+    
+    <string name="copiar_todo">📋 Kopioi kaikki</string>
+    
+    <string name="tutorial_copiado">Opetusohjelma kopioitu leikepöydälle</string>
+    
+    <string name="error_cargar_tutorial">Virhe ladattaessa opetusohjelmaa</string>
+    
+    <string name="codigo_asm">📄 ASM-koodi</string>
+    
+    <string name="comando_label">💻 Komento</string>
+    
+    <string name="copiar_btn">Kopioi</string>
+    
+    <string name="copiado_msg">Kopioitu</string>
+    
+    <string name="error_abrir_link">Virhe avattaessa linkkiä</string>
+    
+    <string name="copiado_portapapeles">Kopioitu leikepöydälle</string>
+    
+    <string name="error_generico_detalle">Virhe: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Konfiguroitu</string>
+    
+    <string name="debe_procesar_hex_primero">Sinun on ensin käsiteltävä HEX-tiedosto</string>
+
+    
+    <string name="error_exportador_no_inicializado">Vientiä ei ole alustettu</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Ei odottavaa vientiä</string>
+    
+    <string name="seleccion_carpeta_cancelada">Kansion valinta peruutettu</string>
+    
+    <string name="error_carpeta_no_accesible">Valittua kansiota ei voitu käyttää</string>
+    
+    <string name="reemplazar_archivo_titulo">Vaihda tiedosto</string>
+    
+    <string name="reemplazar_archivo_mensaje">Tiedosto \'%1$s\' on jo olemassa. Haluatko vaihtaa sen?</string>
+    
+    <string name="error_reemplazando_archivo">Olemassa olevaa tiedostoa ei voitu korvata</string>
+    
+    <string name="si">Kyllä</string>
+    
+    <string name="no">Ei</string>
+    
+    <string name="archivo_guardado">Tallennettu tiedosto: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Lisää sulake</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Lisää mukautettu sulake</string>
+    
+    <string name="completa_todos_los_campos">Täytä kaikki kentät</string>
+    
+    <string name="log_iniciado">Loki aloitettu...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Palautetut HEX-sulakkeet</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux opetusohjelma</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux opetusohjelma</string>
+    
+    <string name="codigo_copiado_portapapeles">Koodi kopioitu leikepöydälle</string>
+    
+    <string name="texto_copiado_portapapeles">Teksti kopioitu leikepöydälle</string>
+    
+    <string name="termino_no_encontrado">Termiä ei löydy: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Vietäviä tietoja ei ole</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Ei kelvollisia vietäviä tietoja</string>
+    
+    <string name="error_convirtiendo_datos_hex">Virhe muunnettaessa heksadesimaalitietoja</string>
+    
+    <string name="error_nombre_archivo_vacio">Nimi ei voi olla tyhjä</string>
+    
+    <string name="error_creando_archivo_salida">Tulostiedostoa ei voitu luoda</string>
+    
+    <string name="error_abriendo_archivo_escritura">Tiedostoa ei voitu avata kirjoittamista varten</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Virhe kirjoitettaessa tiedostoa: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Odottamaton virhe viennissä: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Muisti luettu onnistuneesti</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

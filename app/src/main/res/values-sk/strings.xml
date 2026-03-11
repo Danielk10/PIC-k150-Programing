@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Zásady ochrany osobných údajov</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Prijať</string>
     <string name="cancelar">Zrušiť</string>
     <string name="conectado">Pripojené</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Chyba USB pripojenia</string>
     <string name="error_inesperado_durante_la_co">Neočakávaná chyba počas pripojenia</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operácie</string>
     <string name="cargar_archivo_hex">Načítať Súbor HEX</string>
     <string name="programar_pic">Naprogramovať PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Čakanie na operáciu...</string>
     <string name="esperando_seleccion">Čakanie na výber...</string>
     <string name="seleccionar_chip_pic">Vybrať PIC Čip</string>
-    <!-- values-sk/strings.xml (Eslovaco) -->
+    
     <string name="gputils_termux_asm">GPUTILS v Termux ASM Kompilátor Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Čítanie pamäte...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Správne aplikované poistky</string>
+
+    
+    
+    <string name="chip_info_titulo">Technické informácie o čipe</string>
+    
+    <string name="propiedad">Nehnuteľnosť</string>
+    
+    <string name="valor">Worth</string>
+    
+    <string name="chip_info_profesional">Informácie o čipe</string>
+    
+    
+    
+    <string name="exportar_config_hex">Exportovať CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Exportovať CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Exportovať úplný výpis (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Naplánujte si všetko</string>
+    
+    <string name="programar_solo_rom">Len program ROM</string>
+    
+    <string name="programar_solo_eeprom">Naprogramujte iba EEPROM</string>
+    
+    <string name="programar_solo_config">Program len CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Overte vymazanie</string>
+    
+    <string name="chip_esta_borrado">Čip je vymazaný (prázdny)</string>
+    
+    <string name="chip_no_esta_borrado">Čip NIE JE vymazaný</string>
+    
+    <string name="verificando_borrado">Overuje sa odstránenie...</string>
+    
+    <string name="resultado_verificacion_borrado">Výsledok overenia vymazania</string>
+    
+    <string name="error_verificando_borrado">Chyba pri overovaní odstránenia</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Konfigurácie poistiek</string>
+    
+    <string name="chip_seleccionado">Vybraný čip</string>
+    
+    <string name="configuracion_de_fusibles">Konfigurácia poistky</string>
+    
+    <string name="id_personalizado_hex">Vlastné ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Príklad: 1A 2B 3C 4D (4 alebo 8 bajtov)</string>
+    
+    <string name="hint_nombre_fusible">Názov (napr.: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Hodnota (napr.: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Operačný denník</string>
+    
+    <string name="restaurar_desde_bd">Obnoviť z DB</string>
+    
+    <string name="restaurar_desde_hex">Obnoviť z HEX</string>
+    
+    <string name="aplicar_fuses">Použite poistky</string>
+    
+    <string name="nombre_del_fusible">Názov poistky</string>
+    
+    <string name="valor_ejemplo_on_off">Hodnota (príklad: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">ID používateľa v HEX formáte. Použite 4 bajty (8 číslic) pre PIC12/16 alebo 8 bajtov (16 číslic) pre PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Prepíše HEX poistky. Použite technický názov (napr.: WDT) a hodnotu (napr.: OFF alebo 0x01).</string>
+    
+    <string name="ayuda_chip_info">Podrobné technické údaje získané z definičného súboru PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Vyberte položku Operácia</string>
+    
+    <string name="config_leida">Konfigurácia prečítaná</string>
+
+    
+    <string name="publicidad_recomendada">Odporúčaná reklama</string>
+    
+    <string name="lectura_completa">Kompletné čítanie</string>
+    
+    <string name="sin_chip">bez čipu</string>
+    
+    <string name="fusible_agregado">Pridaná poistka</string>
+    
+    <string name="fusibles_restaurados">Obnovené poistky</string>
+    
+    <string name="fusibles_aplicados">Použité poistky</string>
+    
+    <string name="procesamiento_hex">HEX spracovanie</string>
+    
+    <string name="rom_ok_blank">ROM: OK (prázdne)</string>
+    
+    <string name="rom_not_blank">ROM: NIE JE PRÁZDNA</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (prázdne)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NIE JE PRÁZDNA</string>
+
+    
+    
+    <string name="menu_ayuda">Pomoc</string>
+    
+    <string name="ayuda_icsp">ICSP pripojenie</string>
+    
+    <string name="ayuda_fuses_label">Konfigurácia poistky</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">španielčina</string>
+    
+    <string name="idioma_ingles">angličtina</string>
+    
+    <string name="idioma_label">Jazyk: %s</string>
+    
+    <string name="copiar_todo">📋 Skopírovať všetko</string>
+    
+    <string name="tutorial_copiado">Návod bol skopírovaný do schránky</string>
+    
+    <string name="error_cargar_tutorial">Chyba pri načítavaní návodu</string>
+    
+    <string name="codigo_asm">📄 ASM kód</string>
+    
+    <string name="comando_label">💻 Príkaz</string>
+    
+    <string name="copiar_btn">Kopírovať</string>
+    
+    <string name="copiado_msg">Skopírované</string>
+    
+    <string name="error_abrir_link">Chyba pri otváraní odkazu</string>
+    
+    <string name="copiado_portapapeles">Skopírované do schránky</string>
+    
+    <string name="error_generico_detalle">Chyba: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Nakonfigurované</string>
+    
+    <string name="debe_procesar_hex_primero">Najprv musíte spracovať HEX súbor</string>
+
+    
+    <string name="error_exportador_no_inicializado">Exportér nie je inicializovaný</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Neexistuje žiadny čakajúci export</string>
+    
+    <string name="seleccion_carpeta_cancelada">Výber priečinka bol zrušený</string>
+    
+    <string name="error_carpeta_no_accesible">K vybratému priečinku sa nepodarilo získať prístup</string>
+    
+    <string name="reemplazar_archivo_titulo">Nahradiť súbor</string>
+    
+    <string name="reemplazar_archivo_mensaje">Súbor \'%1$s\' už existuje. Chcete ho vymeniť?</string>
+    
+    <string name="error_reemplazando_archivo">Existujúci súbor sa nepodarilo nahradiť</string>
+    
+    <string name="si">Áno</string>
+    
+    <string name="no">Nie</string>
+    
+    <string name="archivo_guardado">Uložený súbor: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Pridať poistku</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Pridať vlastnú poistku</string>
+    
+    <string name="completa_todos_los_campos">Vyplňte všetky polia</string>
+    
+    <string name="log_iniciado">Denník bol spustený...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Obnovené poistky od HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Výukový program pre Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Výukový program pre Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Kód bol skopírovaný do schránky</string>
+    
+    <string name="texto_copiado_portapapeles">Text bol skopírovaný do schránky</string>
+    
+    <string name="termino_no_encontrado">Výraz sa nenašiel: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Neexistujú žiadne údaje na export</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Neexistujú žiadne platné údaje na export</string>
+    
+    <string name="error_convirtiendo_datos_hex">Chyba pri prevode hexadecimálnych údajov</string>
+    
+    <string name="error_nombre_archivo_vacio">Názov nemôže byť prázdny</string>
+    
+    <string name="error_creando_archivo_salida">Nepodarilo sa vytvoriť výstupný súbor</string>
+    
+    <string name="error_abriendo_archivo_escritura">Nepodarilo sa otvoriť súbor na zápis</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Chyba pri zápise súboru: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Neočakávaná chyba pri exporte: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Pamäť úspešne prečítaná</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

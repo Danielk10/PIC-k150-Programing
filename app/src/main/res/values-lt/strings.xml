@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Privatumo politika</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Priimti</string>
     <string name="cancelar">Atšaukti</string>
     <string name="conectado">Prisijungta</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB ryšio klaida</string>
     <string name="error_inesperado_durante_la_co">Netikėta klaida prijungiant</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Operacijos</string>
     <string name="cargar_archivo_hex">Įkelkite HEX failą</string>
     <string name="programar_pic">Programuoti PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Laukiama operacijos...</string>
     <string name="esperando_seleccion">Laukiama pasirinkimo...</string>
     <string name="seleccionar_chip_pic">Pasirinkite PIC lustą</string>
-    <!-- values-lt/strings.xml (Lituano) -->
+    
     <string name="gputils_termux_asm">GPUTILS Termuxe ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Skaitoma atmintis...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Teisingai uždėti saugikliai</string>
+
+    
+    
+    <string name="chip_info_titulo">Chip techninė informacija</string>
+    
+    <string name="propiedad">Turtas</string>
+    
+    <string name="valor">Verta</string>
+    
+    <string name="chip_info_profesional">Informacija apie lustą</string>
+    
+    
+    
+    <string name="exportar_config_hex">Eksportuoti CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Eksportuoti CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Eksportuoti visą išrašymą (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Suplanuokite viską</string>
+    
+    <string name="programar_solo_rom">Tik programos ROM</string>
+    
+    <string name="programar_solo_eeprom">Programuoti tik EEPROM</string>
+    
+    <string name="programar_solo_config">Tik programa CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Patvirtinkite ištrynimą</string>
+    
+    <string name="chip_esta_borrado">Lustas ištrintas (tuščias)</string>
+    
+    <string name="chip_no_esta_borrado">Lustas NĖRA ištrintas</string>
+    
+    <string name="verificando_borrado">Tikrinamas ištrynimas...</string>
+    
+    <string name="resultado_verificacion_borrado">Ištrynimo patvirtinimo rezultatas</string>
+    
+    <string name="error_verificando_borrado">Klaida tikrinant ištrynimą</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Saugiklių konfigūracijos</string>
+    
+    <string name="chip_seleccionado">Pasirinktas lustas</string>
+    
+    <string name="configuracion_de_fusibles">Saugiklio konfigūracija</string>
+    
+    <string name="id_personalizado_hex">Tinkintas ID (HEX)</string>
+    
+    <string name="hint_id_personalizado">Pavyzdys: 1A 2B 3C 4D (4 arba 8 baitai)</string>
+    
+    <string name="hint_nombre_fusible">Vardas (pvz., WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Reikšmė (pvz.: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Operacijų žurnalas</string>
+    
+    <string name="restaurar_desde_bd">Atkurti iš DB</string>
+    
+    <string name="restaurar_desde_hex">Atkurti iš HEX</string>
+    
+    <string name="aplicar_fuses">Uždėkite saugiklius</string>
+    
+    <string name="nombre_del_fusible">Saugiklio pavadinimas</string>
+    
+    <string name="valor_ejemplo_on_off">Reikšmė (pavyzdys: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Vartotojo ID HEX formatu. Naudokite 4 baitus (8 skaitmenis) PIC12/16 arba 8 baitus (16 skaitmenų) PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Nepaiso HEX saugiklių. Naudokite techninį pavadinimą (pvz., WDT) ir reikšmę (pvz., OFF arba 0x01).</string>
+    
+    <string name="ayuda_chip_info">Išsamūs techniniai duomenys ištraukti iš PIC apibrėžimo failo.</string>
+
+    
+    <string name="seleccionar_operacion">Pasirinkite Operacija</string>
+    
+    <string name="config_leida">Nuskaityta konfigūracija</string>
+
+    
+    <string name="publicidad_recomendada">Rekomenduojama reklama</string>
+    
+    <string name="lectura_completa">Pilnas skaitymas</string>
+    
+    <string name="sin_chip">be lusto</string>
+    
+    <string name="fusible_agregado">Pridėtas saugiklis</string>
+    
+    <string name="fusibles_restaurados">Restauruoti saugikliai</string>
+    
+    <string name="fusibles_aplicados">Pritaikyti saugikliai</string>
+    
+    <string name="procesamiento_hex">HEX apdorojimas</string>
+    
+    <string name="rom_ok_blank">ROM: gerai (tuščia)</string>
+    
+    <string name="rom_not_blank">ROM: NETUŠTA</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: gerai (tuščia)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: NETUŠTA</string>
+
+    
+    
+    <string name="menu_ayuda">Pagalba</string>
+    
+    <string name="ayuda_icsp">ICSP ryšys</string>
+    
+    <string name="ayuda_fuses_label">Saugiklio konfigūracija</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">ispanų</string>
+    
+    <string name="idioma_ingles">anglų kalba</string>
+    
+    <string name="idioma_label">Kalba: %s</string>
+    
+    <string name="copiar_todo">📋 Nukopijuoti viską</string>
+    
+    <string name="tutorial_copiado">Mokymo programa nukopijuota į mainų sritį</string>
+    
+    <string name="error_cargar_tutorial">Įkeliant mokymo programą įvyko klaida</string>
+    
+    <string name="codigo_asm">📄 ASM kodas</string>
+    
+    <string name="comando_label">💻 Komanda</string>
+    
+    <string name="copiar_btn">Kopijuoti</string>
+    
+    <string name="copiado_msg">Nukopijuota</string>
+    
+    <string name="error_abrir_link">Klaida atidarant nuorodą</string>
+    
+    <string name="copiado_portapapeles">Nukopijuota į mainų sritį</string>
+    
+    <string name="error_generico_detalle">Klaida: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Sukonfigūruota</string>
+    
+    <string name="debe_procesar_hex_primero">Pirmiausia turite apdoroti HEX failą</string>
+
+    
+    <string name="error_exportador_no_inicializado">Eksportuotojas nėra inicijuotas</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Laukiamo eksporto nėra</string>
+    
+    <string name="seleccion_carpeta_cancelada">Aplanko pasirinkimas atšauktas</string>
+    
+    <string name="error_carpeta_no_accesible">Nepavyko pasiekti pasirinkto aplanko</string>
+    
+    <string name="reemplazar_archivo_titulo">Pakeisti failą</string>
+    
+    <string name="reemplazar_archivo_mensaje">Failas \'%1$s\' jau yra. Ar norite jį pakeisti?</string>
+    
+    <string name="error_reemplazando_archivo">Nepavyko pakeisti esamo failo</string>
+    
+    <string name="si">Taip</string>
+    
+    <string name="no">Nr</string>
+    
+    <string name="archivo_guardado">Išsaugotas failas: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Pridėkite saugiklį</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Pridėkite pasirinktinį saugiklį</string>
+    
+    <string name="completa_todos_los_campos">Užpildykite visus laukus</string>
+    
+    <string name="log_iniciado">Žurnalas pradėtas...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Restauruoti saugikliai iš HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Termux mokymo programa</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Termux mokymo programa</string>
+    
+    <string name="codigo_copiado_portapapeles">Kodas nukopijuotas į mainų sritį</string>
+    
+    <string name="texto_copiado_portapapeles">Tekstas nukopijuotas į mainų sritį</string>
+    
+    <string name="termino_no_encontrado">Terminas nerastas: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Eksportuotinų duomenų nėra</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Nėra galiojančių eksportuotinų duomenų</string>
+    
+    <string name="error_convirtiendo_datos_hex">Klaida konvertuojant šešioliktainius duomenis</string>
+    
+    <string name="error_nombre_archivo_vacio">Pavadinimas negali būti tuščias</string>
+    
+    <string name="error_creando_archivo_salida">Nepavyko sukurti išvesties failo</string>
+    
+    <string name="error_abriendo_archivo_escritura">Nepavyko atidaryti failo rašyti</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Klaida rašant failą: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Netikėta klaida eksportuojant: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Atmintis sėkmingai nuskaitytas</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Політика конфіденційності</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Прийняти</string>
     <string name="cancelar">Скасувати</string>
     <string name="conectado">Підключено</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Помилка USB-з\'єднання</string>
     <string name="error_inesperado_durante_la_co">Несподівана помилка під час підключення</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Операції</string>
     <string name="cargar_archivo_hex">Завантажити файл HEX</string>
     <string name="programar_pic">Програмувати PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Очікування операції...</string>
     <string name="esperando_seleccion">Очікування вибору...</string>
     <string name="seleccionar_chip_pic">Вибрати чіп PIC</string>
-    <!-- values-uk/strings.xml (Ucraniano) -->
+    
     <string name="gputils_termux_asm">GPUTILS у Termux ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Читання пам’яті...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Запобіжники застосовані правильно</string>
+
+    
+    
+    <string name="chip_info_titulo">Технічна інформація про мікросхему</string>
+    
+    <string name="propiedad">Властивість</string>
+    
+    <string name="valor">Значення</string>
+    
+    <string name="chip_info_profesional">Інформація про мікросхему</string>
+    
+    
+    
+    <string name="exportar_config_hex">Експорт CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Експортувати CONFIG (.bin)</string>
+    
+    <string name="exportar_dump_completo">Експортувати повний дамп (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Програмувати все</string>
+    
+    <string name="programar_solo_rom">Програмувати лише ROM</string>
+    
+    <string name="programar_solo_eeprom">Програмувати лише EEPROM</string>
+    
+    <string name="programar_solo_config">Програмувати лише CONFIG</string>
+    
+    
+    
+    <string name="verificar_borrado">Перевірити Erase</string>
+    
+    <string name="chip_esta_borrado">Чіп стерто (пустий)</string>
+    
+    <string name="chip_no_esta_borrado">Чіп НЕ стерто</string>
+    
+    <string name="verificando_borrado">Перевірка стирання...</string>
+    
+    <string name="resultado_verificacion_borrado">Результат перевірки стирання</string>
+    
+    <string name="error_verificando_borrado">Помилка перевірки стирання</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Конфігурації запобіжників</string>
+    
+    <string name="chip_seleccionado">Вибрано мікросхему</string>
+    
+    <string name="configuracion_de_fusibles">Конфігурація запобіжника</string>
+    
+    <string name="id_personalizado_hex">Користувацький ідентифікатор (HEX)</string>
+    
+    <string name="hint_id_personalizado">Приклад: 1A 2B 3C 4D (4 або 8 байтів)</string>
+    
+    <string name="hint_nombre_fusible">Назва (наприклад: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Значення (наприклад: ON, OFF, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Журнал операцій</string>
+    
+    <string name="restaurar_desde_bd">Відновити з БД</string>
+    
+    <string name="restaurar_desde_hex">Відновити з HEX</string>
+    
+    <string name="aplicar_fuses">Застосувати запобіжники</string>
+    
+    <string name="nombre_del_fusible">Назва запобіжника</string>
+    
+    <string name="valor_ejemplo_on_off">Значення (приклад: ON, OFF, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Ідентифікатор користувача у форматі HEX. Використовуйте 4 байти (8 цифр) для PIC12/16 або 8 байтів (16 цифр) для PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Перезаписує шестигранні запобіжники. Використовуйте технічну назву (наприклад: WDT) і значення (наприклад: OFF або 0x01).</string>
+    
+    <string name="ayuda_chip_info">Детальні технічні дані, отримані з файлу визначення PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Виберіть операцію</string>
+    
+    <string name="config_leida">Конфігурація Читання</string>
+
+    
+    <string name="publicidad_recomendada">Рекомендована реклама</string>
+    
+    <string name="lectura_completa">Повне читання</string>
+    
+    <string name="sin_chip">Без мікросхеми</string>
+    
+    <string name="fusible_agregado">Запобіжник додано</string>
+    
+    <string name="fusibles_restaurados">Запобіжники відновлені</string>
+    
+    <string name="fusibles_aplicados">Запобіжники застосовані</string>
+    
+    <string name="procesamiento_hex">Шістнадцяткова обробка</string>
+    
+    <string name="rom_ok_blank">ROM: OK (Пусто)</string>
+    
+    <string name="rom_not_blank">ROM: НЕ ПУСТИЙ</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: OK (Пустий)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: НЕ ПУСТИЙ</string>
+
+    
+    
+    <string name="menu_ayuda">Довідка</string>
+    
+    <string name="ayuda_icsp">Підключення ICSP</string>
+    
+    <string name="ayuda_fuses_label">Конфігурація запобіжника</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Іспанська</string>
+    
+    <string name="idioma_ingles">Англійська</string>
+    
+    <string name="idioma_label">Мова: %s</string>
+    
+    <string name="copiar_todo">📋 Копіювати все</string>
+    
+    <string name="tutorial_copiado">Підручник скопійовано в буфер обміну</string>
+    
+    <string name="error_cargar_tutorial">Помилка завантаження підручника</string>
+    
+    <string name="codigo_asm">📄 Код ASM</string>
+    
+    <string name="comando_label">💻 Команда</string>
+    
+    <string name="copiar_btn">Копіювати</string>
+    
+    <string name="copiado_msg">Скопійовано</string>
+    
+    <string name="error_abrir_link">Помилка відкриття посилання</string>
+    
+    <string name="copiado_portapapeles">Скопійовано в буфер обміну</string>
+    
+    <string name="error_generico_detalle">Помилка: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Налаштовано</string>
+    
+    <string name="debe_procesar_hex_primero">Спочатку потрібно обробити файл HEX</string>
+
+    
+    <string name="error_exportador_no_inicializado">Експортер не ініціалізовано</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Експорт не очікується</string>
+    
+    <string name="seleccion_carpeta_cancelada">Вибір папки скасовано</string>
+    
+    <string name="error_carpeta_no_accesible">Не вдалося отримати доступ до вибраної папки</string>
+    
+    <string name="reemplazar_archivo_titulo">Замінити файл</string>
+    
+    <string name="reemplazar_archivo_mensaje">Файл \'%1$s\' вже існує. Ви хочете його замінити?</string>
+    
+    <string name="error_reemplazando_archivo">Не вдалося замінити існуючий файл</string>
+    
+    <string name="si">Так</string>
+    
+    <string name="no">Ні</string>
+    
+    <string name="archivo_guardado">Збережений файл: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Додати запобіжник</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Додати спеціальний запобіжник</string>
+    
+    <string name="completa_todos_los_campos">Заповніть усі поля</string>
+    
+    <string name="log_iniciado">Журнал розпочато...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Запобіжники відновлено з HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Підручник Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Підручник Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Код скопійовано в буфер обміну</string>
+    
+    <string name="texto_copiado_portapapeles">Текст скопійовано в буфер обміну</string>
+    
+    <string name="termino_no_encontrado">Термін не знайдено: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Немає даних для експорту</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Немає дійсних даних для експорту</string>
+    
+    <string name="error_convirtiendo_datos_hex">Помилка перетворення шістнадцяткових даних</string>
+    
+    <string name="error_nombre_archivo_vacio">Ім’я не може бути пустим</string>
+    
+    <string name="error_creando_archivo_salida">Не вдалося створити вихідний файл</string>
+    
+    <string name="error_abriendo_archivo_escritura">Не вдалося відкрити файл для запис</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Помилка запису файлу: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Неочікувана помилка експорту: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Пам\'ять успішно прочитано</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

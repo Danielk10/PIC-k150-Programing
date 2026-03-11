@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">गोपनीयता पालिसी</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">स्वीकार करें</string>
     <string name="cancelar">रद्द करें</string>
     <string name="conectado">कनेक्टेड</string>
@@ -46,7 +46,7 @@
     <string name="modelo">मॉडल</string>
     <string name="palabras_rom">ROM शब्द</string>
     <string name="tamano_rom">ROM आकार</string>
-    <string name="eeprom">EEPROM</string>
+    <string name="eeprom">ईईपीरोम</string>
     <string name="no_disponible">उपलब्ध नहीं है</string>
     <string name="tipo_de_nucleo">कोर का प्रकार</string>
     <string name="error_obteniendo_datos_del_chi">चिप डेटा प्राप्त करने में त्रुटि</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">USB कनेक्शन त्रुटि</string>
     <string name="error_inesperado_durante_la_co">कनेक्शन के दौरान अप्रत्याशित त्रुटि</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">संचालन</string>
     <string name="cargar_archivo_hex">HEX फ़ाइल लोड करें</string>
     <string name="programar_pic">PIC प्रोग्राम करें</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">संचालन की प्रतीक्षा में...</string>
     <string name="esperando_seleccion">चयन की प्रतीक्षा में...</string>
     <string name="seleccionar_chip_pic">PIC चिप चुनें</string>
-    <!-- values-hi/strings.xml (Hindi) -->
+    
     <string name="gputils_termux_asm">Termux में GPUTILS ASM कंपाइलर Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">स्मृति पढ़ना...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">सही ढंग से लगाए गए फ़्यूज़</string>
+
+    
+    
+    <string name="chip_info_titulo">चिप तकनीकी जानकारी</string>
+    
+    <string name="propiedad">संपत्ति</string>
+    
+    <string name="valor">लायक</string>
+    
+    <string name="chip_info_profesional">चिप सूचना</string>
+    
+    
+    
+    <string name="exportar_config_hex">कॉन्फ़िग निर्यात करें (.hex)</string>
+    
+    <string name="exportar_config_bin">कॉन्फ़िग निर्यात करें (.bin)</string>
+    
+    <string name="exportar_dump_completo">पूर्ण डंप निर्यात करें (.hex)</string>
+
+    
+    
+    <string name="programar_todo">सब कुछ शेड्यूल करें</string>
+    
+    <string name="programar_solo_rom">केवल प्रोग्राम ROM</string>
+    
+    <string name="programar_solo_eeprom">प्रोग्राम केवल EEPROM</string>
+    
+    <string name="programar_solo_config">प्रोग्राम केवल कॉन्फ़िग</string>
+    
+    
+    
+    <string name="verificar_borrado">विलोपन सत्यापित करें</string>
+    
+    <string name="chip_esta_borrado">चिप मिट गई है (खाली)</string>
+    
+    <string name="chip_no_esta_borrado">चिप मिटती नहीं है</string>
+    
+    <string name="verificando_borrado">विलोपन का सत्यापन किया जा रहा है...</string>
+    
+    <string name="resultado_verificacion_borrado">विलोपन सत्यापन परिणाम</string>
+    
+    <string name="error_verificando_borrado">हटाने की पुष्टि करने में त्रुटि</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">फ़्यूज़ कॉन्फ़िगरेशन</string>
+    
+    <string name="chip_seleccionado">चयनित चिप</string>
+    
+    <string name="configuracion_de_fusibles">फ़्यूज़ कॉन्फ़िगरेशन</string>
+    
+    <string name="id_personalizado_hex">कस्टम आईडी (हेक्स)</string>
+    
+    <string name="hint_id_personalizado">उदाहरण: 1ए 2बी 3सी 4डी (4 या 8 बाइट्स)</string>
+    
+    <string name="hint_nombre_fusible">नाम (उदा: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">मान (उदा: चालू, बंद, एचएस, 0x3F)</string>
+    
+    <string name="log_de_operaciones">संचालन लॉग</string>
+    
+    <string name="restaurar_desde_bd">डीबी से पुनर्स्थापित करें</string>
+    
+    <string name="restaurar_desde_hex">HEX से पुनर्स्थापित करें</string>
+    
+    <string name="aplicar_fuses">फ़्यूज़ लगाएं</string>
+    
+    <string name="nombre_del_fusible">फ़्यूज़ का नाम</string>
+    
+    <string name="valor_ejemplo_on_off">मान (उदाहरण: चालू, बंद, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">HEX प्रारूप में उपयोगकर्ता आईडी. PIC12/16 के लिए 4 बाइट्स (8 अंक) या PIC18 के लिए 8 बाइट्स (16 अंक) का उपयोग करें।</string>
+    
+    <string name="ayuda_fuses_personalizados">HEX फ़्यूज़ को ओवरराइड करता है। तकनीकी नाम (उदा: WDT) और मान (उदा: OFF या 0x01) का उपयोग करें।</string>
+    
+    <string name="ayuda_chip_info">PIC परिभाषा फ़ाइल से विस्तृत तकनीकी डेटा निकाला गया।</string>
+
+    
+    <string name="seleccionar_operacion">ऑपरेशन का चयन करें</string>
+    
+    <string name="config_leida">कॉन्फ़िगरेशन पढ़ें</string>
+
+    
+    <string name="publicidad_recomendada">अनुशंसित विज्ञापन</string>
+    
+    <string name="lectura_completa">पूरा पढ़ना</string>
+    
+    <string name="sin_chip">बिना चिप के</string>
+    
+    <string name="fusible_agregado">फ़्यूज़ जोड़ा गया</string>
+    
+    <string name="fusibles_restaurados">पुनर्स्थापित फ़्यूज़</string>
+    
+    <string name="fusibles_aplicados">लागू फ़्यूज़</string>
+    
+    <string name="procesamiento_hex">हेक्स प्रसंस्करण</string>
+    
+    <string name="rom_ok_blank">ROM: ठीक है (रिक्त)</string>
+    
+    <string name="rom_not_blank">ROM: खाली नहीं</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: ठीक है (रिक्त)</string>
+    
+    <string name="eeprom_not_blank">ईईपीरोम: खाली नहीं</string>
+
+    
+    
+    <string name="menu_ayuda">सहायता</string>
+    
+    <string name="ayuda_icsp">आईसीएसपी कनेक्शन</string>
+    
+    <string name="ayuda_fuses_label">फ़्यूज़ कॉन्फ़िगरेशन</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">स्पैनिश</string>
+    
+    <string name="idioma_ingles">अंग्रेज़ी</string>
+    
+    <string name="idioma_label">भाषा: %s</string>
+    
+    <string name="copiar_todo">📋 सभी को कॉपी करें</string>
+    
+    <string name="tutorial_copiado">ट्यूटोरियल को क्लिपबोर्ड पर कॉपी किया गया</string>
+    
+    <string name="error_cargar_tutorial">ट्यूटोरियल लोड करने में त्रुटि</string>
+    
+    <string name="codigo_asm">📄एएसएम कोड</string>
+    
+    <string name="comando_label">💻आदेश</string>
+    
+    <string name="copiar_btn">प्रतिलिपि</string>
+    
+    <string name="copiado_msg">कॉपी किया गया</string>
+    
+    <string name="error_abrir_link">लिंक खोलने में त्रुटि</string>
+    
+    <string name="copiado_portapapeles">क्लिपबोर्ड पर कॉपी किया गया</string>
+    
+    <string name="error_generico_detalle">त्रुटि: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ कॉन्फ़िगर किया गया</string>
+    
+    <string name="debe_procesar_hex_primero">आपको पहले HEX फ़ाइल को संसाधित करना होगा</string>
+
+    
+    <string name="error_exportador_no_inicializado">निर्यातक प्रारंभ नहीं किया गया है</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">कोई निर्यात लंबित नहीं है</string>
+    
+    <string name="seleccion_carpeta_cancelada">फ़ोल्डर चयन रद्द कर दिया गया</string>
+    
+    <string name="error_carpeta_no_accesible">चयनित फ़ोल्डर तक नहीं पहुंचा जा सका</string>
+    
+    <string name="reemplazar_archivo_titulo">फ़ाइल बदलें</string>
+    
+    <string name="reemplazar_archivo_mensaje">फ़ाइल \'%1$s\' पहले से मौजूद है। क्या आप इसे रिप्लेस करना चाहते हैं?</string>
+    
+    <string name="error_reemplazando_archivo">मौजूदा फ़ाइल को प्रतिस्थापित नहीं किया जा सका</string>
+    
+    <string name="si">हाँ</string>
+    
+    <string name="no">नहीं</string>
+    
+    <string name="archivo_guardado">सहेजी गई फ़ाइल: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ फ़्यूज़ जोड़ें</string>
+    
+    <string name="agregar_fusible_personalizado">➕ कस्टम फ़्यूज़ जोड़ें</string>
+    
+    <string name="completa_todos_los_campos">सभी फ़ील्ड पूर्ण करें</string>
+    
+    <string name="log_iniciado">लॉग प्रारंभ हुआ...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">HEX से फ़्यूज़ को पुनर्स्थापित किया गया</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">एसडीसीसी 4.5.0 - टर्मक्स ट्यूटोरियल</string>
+    
+    <string name="titulo_tutorial_sdcc_en">एसडीसीसी 4.5.0 - टर्मक्स ट्यूटोरियल</string>
+    
+    <string name="codigo_copiado_portapapeles">कोड क्लिपबोर्ड पर कॉपी किया गया</string>
+    
+    <string name="texto_copiado_portapapeles">पाठ को क्लिपबोर्ड पर कॉपी किया गया</string>
+    
+    <string name="termino_no_encontrado">शब्द नहीं मिला: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">निर्यात करने के लिए कोई डेटा नहीं है</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">निर्यात करने के लिए कोई वैध डेटा नहीं है</string>
+    
+    <string name="error_convirtiendo_datos_hex">हेक्साडेसिमल डेटा परिवर्तित करने में त्रुटि</string>
+    
+    <string name="error_nombre_archivo_vacio">नाम खाली नहीं हो सकता</string>
+    
+    <string name="error_creando_archivo_salida">आउटपुट फ़ाइल नहीं बनाई जा सकी</string>
+    
+    <string name="error_abriendo_archivo_escritura">लिखने के लिए फ़ाइल नहीं खोली जा सकी</string>
+    
+    <string name="error_escribiendo_archivo_detalle">फ़ाइल लिखने में त्रुटि: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">निर्यात करते समय अप्रत्याशित त्रुटि: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">मेमोरी सफलतापूर्वक पढ़ी गई</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>

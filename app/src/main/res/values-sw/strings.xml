@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <!-- Titulos de Actividades -->
+    
     <string name="app_name">PIC k150 Programing</string>
-    <string name="politicas">Politicas de Privacidad</string>
+    <string name="politicas">Sera za Faragha</string>
 
-    <!-- Ventana de grabacion del PIC -->
+    
     <string name="aceptar">Kubali</string>
     <string name="cancelar">Ghairi</string>
     <string name="conectado">Imeunganishwa</string>
@@ -52,7 +52,7 @@
     <string name="error_obteniendo_datos_del_chi">Hitilafu ya kupata data ya chip</string>
     <string name="modo">Hali</string>
     <string name="icsp_solamente">ICSP pekee</string>
-    <string name="pin_1">Pin 1</string>
+    <string name="pin_1">Pini 1</string>
     <string name="filemanager_no_inicializado">FileManager haijaanzishwa</string>
     <string name="no_se_pudo_obtener_el_nombre_d">Haikuweza kupata jina la faili</string>
     <string name="seleccione_un_archivo_binario_">Chagua faili halali ya binary (.hex au .bin)</string>
@@ -84,7 +84,7 @@
     <string name="error_de_conexion_usb">Hitilafu ya muunganisho wa USB</string>
     <string name="error_inesperado_durante_la_co">Hitilafu isiyotarajiwa wakati wa muunganisho</string>
 
-    <!-- Strings adicionales necesarios para UI -->
+    
     <string name="operaciones">Shughuli</string>
     <string name="cargar_archivo_hex">Pakia Faili ya HEX</string>
     <string name="programar_pic">Programu PIC</string>
@@ -95,10 +95,10 @@
     <string name="esperando_operacion">Inasubiri operesheni...</string>
     <string name="esperando_seleccion">Inasubiri uchaguzi...</string>
     <string name="seleccionar_chip_pic">Chagua Chip ya PIC</string>
-    <!-- values-sw/strings.xml (Swahili) -->
+    
     <string name="gputils_termux_asm">GPUTILS katika Termux ASM Compiler Android</string>
 
-    <!-- Strings para fusibles y verificacion -->
+    
     <string name="configurar_fusibles">Configure Fuses</string>
     <string name="selecciona_chip_primero">Select a chip first</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
@@ -127,4 +127,229 @@
     <string name="error_exportando">Error exporting</string>
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
     <string name="chip_info_json">Chip Info (JSON)</string>
+
+    
+    <string name="leyendo_memoria" translatable="false">Kusoma kumbukumbu...</string>
+    
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fuse zilizowekwa kwa usahihi</string>
+
+    
+    
+    <string name="chip_info_titulo">Taarifa ya Kiufundi ya Chip</string>
+    
+    <string name="propiedad">Mali</string>
+    
+    <string name="valor">Thamani</string>
+    
+    <string name="chip_info_profesional">Habari ya Chip</string>
+    
+    
+    
+    <string name="exportar_config_hex">Hamisha CONFIG (.hex)</string>
+    
+    <string name="exportar_config_bin">Hamisha MFUNGO (.bin)</string>
+    
+    <string name="exportar_dump_completo">Hamisha Taka Kamili (.hex)</string>
+
+    
+    
+    <string name="programar_todo">Panga Kila Kitu</string>
+    
+    <string name="programar_solo_rom">Programu ya ROM pekee</string>
+    
+    <string name="programar_solo_eeprom">Mpango wa EEPROM pekee</string>
+    
+    <string name="programar_solo_config">Mpango wa CONFIG pekee</string>
+    
+    
+    
+    <string name="verificar_borrado">Thibitisha Ufutaji</string>
+    
+    <string name="chip_esta_borrado">Chip imefutwa (Tupu)</string>
+    
+    <string name="chip_no_esta_borrado">Chip HAIJAFUTWA</string>
+    
+    <string name="verificando_borrado">Inathibitisha ufutaji...</string>
+    
+    <string name="resultado_verificacion_borrado">Matokeo ya Uthibitishaji wa Kufuta</string>
+    
+    <string name="error_verificando_borrado">Hitilafu katika kuthibitisha ufutaji</string>
+    
+    
+    
+    <string name="configuraciones_de_fusibles">Mipangilio ya Fuse</string>
+    
+    <string name="chip_seleccionado">Chip iliyochaguliwa</string>
+    
+    <string name="configuracion_de_fusibles">Usanidi wa Fuse</string>
+    
+    <string name="id_personalizado_hex">Kitambulisho Maalum (HEX)</string>
+    
+    <string name="hint_id_personalizado">Mfano: 1A 2B 3C 4D (baiti 4 au 8)</string>
+    
+    <string name="hint_nombre_fusible">Jina (mfano: WDT, FOSC, MCLRE)</string>
+    
+    <string name="hint_valor_fusible">Thamani (mfano: IMEWASHA, IMEZIMWA, HS, 0x3F)</string>
+    
+    <string name="log_de_operaciones">Kumbukumbu ya Uendeshaji</string>
+    
+    <string name="restaurar_desde_bd">Rejesha kutoka kwa DB</string>
+    
+    <string name="restaurar_desde_hex">Rejesha kutoka kwa HEX</string>
+    
+    <string name="aplicar_fuses">Weka Fusi</string>
+    
+    <string name="nombre_del_fusible">Jina la Fuse</string>
+    
+    <string name="valor_ejemplo_on_off">Thamani (mfano: IMEWASHA, IMEZIMWA, 0x3FFF)</string>
+    
+    
+    
+    <string name="ayuda_id_personalizado">Kitambulisho cha Mtumiaji katika umbizo la HEX. Tumia baiti 4 (tarakimu 8) kwa PIC12/16 au baiti 8 (tarakimu 16) kwa PIC18.</string>
+    
+    <string name="ayuda_fuses_personalizados">Inabatilisha fuse za HEX. Tumia jina la kiufundi (mfano: WDT) na thamani (mfano: ZIMWA au 0x01).</string>
+    
+    <string name="ayuda_chip_info">Data ya kina ya kiufundi iliyotolewa kutoka kwa faili ya ufafanuzi ya PIC.</string>
+
+    
+    <string name="seleccionar_operacion">Chagua Operesheni</string>
+    
+    <string name="config_leida">Usanidi umesoma</string>
+
+    
+    <string name="publicidad_recomendada">Utangazaji uliopendekezwa</string>
+    
+    <string name="lectura_completa">Kusoma Kamili</string>
+    
+    <string name="sin_chip">bila chip</string>
+    
+    <string name="fusible_agregado">Fuse iliyoongezwa</string>
+    
+    <string name="fusibles_restaurados">Fuse zilizorejeshwa</string>
+    
+    <string name="fusibles_aplicados">Fuse zilizowekwa</string>
+    
+    <string name="procesamiento_hex">Usindikaji wa HEX</string>
+    
+    <string name="rom_ok_blank">ROM: Sawa (Tupu)</string>
+    
+    <string name="rom_not_blank">ROM: SI TUPU</string>
+    
+    <string name="eeprom_ok_blank">EEPROM: Sawa (Tupu)</string>
+    
+    <string name="eeprom_not_blank">EEPROM: SI TUPU</string>
+
+    
+    
+    <string name="menu_ayuda">Msaada</string>
+    
+    <string name="ayuda_icsp">Muunganisho wa ICSP</string>
+    
+    <string name="ayuda_fuses_label">Usanidi wa Fuse</string>
+    
+    
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    
+    
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
+    
+    <string name="idioma_espanol">Kihispania</string>
+    
+    <string name="idioma_ingles">Kiingereza</string>
+    
+    <string name="idioma_label">Lugha: %s</string>
+    
+    <string name="copiar_todo">📋 Nakili Zote</string>
+    
+    <string name="tutorial_copiado">Mafunzo yamenakiliwa kwenye ubao wa kunakili</string>
+    
+    <string name="error_cargar_tutorial">Hitilafu katika kupakia mafunzo</string>
+    
+    <string name="codigo_asm">📄 msimbo wa ASM</string>
+    
+    <string name="comando_label">💻 Amri</string>
+    
+    <string name="copiar_btn">Nakili</string>
+    
+    <string name="copiado_msg">Imenakiliwa</string>
+    
+    <string name="error_abrir_link">Hitilafu katika kufungua kiungo</string>
+    
+    <string name="copiado_portapapeles">Imenakiliwa kwenye ubao wa kunakili</string>
+    
+    <string name="error_generico_detalle">Hitilafu: %1$s</string>
+    
+    <string name="fuses_configurados_marcado">✓ Imesanidiwa</string>
+    
+    <string name="debe_procesar_hex_primero">Lazima uchakata faili ya HEX kwanza</string>
+
+    
+    <string name="error_exportador_no_inicializado">Kisafirishaji hakijaanzishwa</string>
+    
+    <string name="error_no_hay_exportacion_pendiente">Hakuna uhamishaji unaosubiri</string>
+    
+    <string name="seleccion_carpeta_cancelada">Uteuzi wa folda umeghairiwa</string>
+    
+    <string name="error_carpeta_no_accesible">Folda iliyochaguliwa haikuweza kufikiwa</string>
+    
+    <string name="reemplazar_archivo_titulo">Badilisha faili</string>
+    
+    <string name="reemplazar_archivo_mensaje">Faili \'PH1\' tayari ipo. Je, ungependa kuibadilisha?</string>
+    
+    <string name="error_reemplazando_archivo">Haikuweza kuchukua nafasi ya faili iliyopo</string>
+    
+    <string name="si">Ndiyo</string>
+    
+    <string name="no">Hapana</string>
+    
+    <string name="archivo_guardado">Faili iliyohifadhiwa: %1$s</string>
+
+    
+    <string name="agregar_fusible_boton">➕ Ongeza Fuse</string>
+    
+    <string name="agregar_fusible_personalizado">➕ Ongeza Fuse Maalum</string>
+    
+    <string name="completa_todos_los_campos">Kamilisha nyanja zote</string>
+    
+    <string name="log_iniciado">Kumbukumbu imeanza...\n</string>
+    
+    <string name="fusibles_restaurados_desde_hex">Fuse zilizorejeshwa kutoka kwa HEX</string>
+
+    
+    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Mafunzo ya Termux</string>
+    
+    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Mafunzo ya Termux</string>
+    
+    <string name="codigo_copiado_portapapeles">Msimbo umenakiliwa kwenye ubao wa kunakili</string>
+    
+    <string name="texto_copiado_portapapeles">Maandishi yamenakiliwa kwenye ubao wa kunakili</string>
+    
+    <string name="termino_no_encontrado">Muda haujapatikana: %1$s</string>
+
+    
+    <string name="no_hay_datos_para_exportar_archivo">Hakuna data ya kusafirisha</string>
+    
+    <string name="no_hay_datos_validos_para_exportar">Hakuna data halali ya kusafirisha</string>
+    
+    <string name="error_convirtiendo_datos_hex">Hitilafu katika kubadilisha data ya heksadesimali</string>
+    
+    <string name="error_nombre_archivo_vacio">Jina haliwezi kuwa tupu</string>
+    
+    <string name="error_creando_archivo_salida">Haikuweza kuunda faili towe</string>
+    
+    <string name="error_abriendo_archivo_escritura">Haikuweza kufungua faili kwa ajili ya kuandika</string>
+    
+    <string name="error_escribiendo_archivo_detalle">Hitilafu katika kuandika faili: %1$s</string>
+    
+    <string name="error_inesperado_exportar_detalle">Hitilafu isiyotarajiwa wakati wa kuhamisha: %1$s</string>
+
+
+
+
+    <string name="datos_de_memoria">Kumbukumbu imesomwa kwa mafanikio</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+
 </resources>
