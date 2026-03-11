@@ -1483,7 +1483,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * MODIFICADO: Muestra la información del chip en un formato de tabla profesional.
+     * MODIFICADO: Muestra la información completa del chip en un formato de tabla profesional.
      */
     private void showChipInfoJson() {
         if (currentChip == null) {
@@ -1508,40 +1508,27 @@ public class MainActivity extends AppCompatActivity
         int paddingTopBottom = 16;
         int textColorLabel = Color.parseColor("#BBBBBB");
         int textColorValue = Color.WHITE;
+        int textColorHeader = Color.parseColor("#9C27B0"); // Púrpura para secciones
         float textSize = 15f;
+        float textSizeHeader = 17f;
 
-        // Datos del chip
-        Map<String, String> info = new LinkedHashMap<>();
-        info.put(getString(R.string.modelo) + ":", currentChip.getNombreDelPic());
-        try {
-            info.put("Chip ID:", "0x" + Integer.toHexString(currentChip.getIDPIC()).toUpperCase());
-            info.put("Memoria ROM:", String.format("%,d Bytes", currentChip.getTamanoROM()));
-            info.put("Memoria EEPROM:", currentChip.isTamanoValidoDeEEPROM() ? 
-                    String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
-            info.put(getString(R.string.tipo_de_nucleo) + ":", currentChip.getTipoDeNucleoBit() + " bits");
-            boolean isIcspOnly = currentChip.isICSPOnlyCompatible();
-            info.put("Modo ICSP:", isIcspOnly ? "SÓLO ICSP" : "SOPORTADO");
-        } catch (Exception e) {
-            info.put("Error:", "Error leyendo especificaciones");
-        }
-        info.put("Pines detectados:", currentChip.getNumeroDePines() + " pines");
-        info.put("Primer Pin:", currentChip.getUbicacionPin1DelPic());
-
-        // Añadir filas
-        for (Map.Entry<String, String> entry : info.entrySet()) {
+        Map<String, Object> allData = currentChip.toDict();
+        
+        // Función auxiliar para añadir filas
+        java.util.function.BiConsumer<String, String> addRow = (labelStr, valueStr) -> {
             TableRow row = new TableRow(this);
             row.setPadding(0, 8, 0, 8);
             row.setGravity(Gravity.CENTER_VERTICAL);
 
             TextView label = new TextView(this);
-            label.setText(entry.getKey());
+            label.setText(labelStr);
             label.setTextColor(textColorLabel);
             label.setTextSize(textSize);
             label.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
             label.setTypeface(null, Typeface.BOLD);
 
             TextView value = new TextView(this);
-            value.setText(entry.getValue());
+            value.setText(valueStr);
             value.setTextColor(textColorValue);
             value.setTextSize(textSize);
             value.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
@@ -1550,19 +1537,80 @@ public class MainActivity extends AppCompatActivity
             row.addView(label);
             row.addView(value);
 
-            // Línea separadora sutil
             View divider = new View(this);
             divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 1));
             divider.setBackgroundColor(Color.parseColor("#444444"));
 
             tableLayout.addView(row);
             tableLayout.addView(divider);
+        };
+
+        // Función auxiliar para añadir encabezados de sección
+        java.util.function.Consumer<String> addHeader = (title) -> {
+            TextView header = new TextView(this);
+            header.setText(title);
+            header.setTextColor(textColorHeader);
+            header.setTextSize(textSizeHeader);
+            header.setTypeface(null, Typeface.BOLD);
+            header.setPadding(paddingSide, 40, paddingSide, 10);
+            tableLayout.addView(header);
+            
+            View divider = new View(this);
+            divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 2));
+            divider.setBackgroundColor(textColorHeader);
+            tableLayout.addView(divider);
+        };
+
+        // --- SECCIÓN: IDENTIFICACIÓN ---
+        addHeader.accept("IDENTIFICACIÓN");
+        addRow.accept(getString(R.string.modelo) + ":", String.valueOf(allData.get("chip_name")));
+        addRow.accept("Chip ID:", "0x" + String.valueOf(allData.get("chip_id")));
+        addRow.accept("Incluye:", String.valueOf(allData.get("include")));
+
+        // --- SECCIÓN: MEMORIA ---
+        addHeader.accept("MEMORIA");
+        try {
+            addRow.accept("Memoria ROM:", String.format("%,d Bytes", currentChip.getTamanoROM()));
+            addRow.accept("Memoria EEPROM:", currentChip.isTamanoValidoDeEEPROM() ? 
+                    String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
+        } catch (Exception e) {}
+        addRow.accept("Flash Chip:", String.valueOf(allData.get("flash_chip")));
+
+        // --- SECCIÓN: HARDWARE ---
+        addHeader.accept("HARDWARE");
+        addRow.accept(getString(R.string.tipo_de_nucleo) + ":", allData.get("core_bits") + " bits (" + allData.get("core_type") + ")");
+        addRow.accept("Pines:", currentChip.getNumeroDePines() + " pines");
+        addRow.accept("Ubicación Pin 1:", String.valueOf(allData.get("pin1_location")));
+        addRow.accept("Imagen Socket:", String.valueOf(allData.get("socket_image")));
+        addRow.accept("Modo ICSP Only:", String.valueOf(allData.get("icsp_only")));
+
+        // --- SECCIÓN: PROGRAMACIÓN ---
+        addHeader.accept("PARÁMETROS DE GRABACIÓN");
+        addRow.accept("Erase Mode:", String.valueOf(allData.get("erase_mode")));
+        addRow.accept("Power Sequence:", String.valueOf(allData.get("power_sequence")));
+        addRow.accept("Program Delay:", String.valueOf(allData.get("program_delay")));
+        addRow.accept("Program Tries:", String.valueOf(allData.get("program_tries")));
+        addRow.accept("Over Program:", String.valueOf(allData.get("over_program")));
+        addRow.accept("CP Warn:", String.valueOf(allData.get("cp_warn")));
+
+        // --- SECCIÓN: FUSES ---
+        Map<String, ?> fuses = (Map<String, ?>) allData.get("fuses");
+        if (fuses != null && !fuses.isEmpty()) {
+            addHeader.accept("FUSIBLES (CONFIGURACIÓN)");
+            for (Map.Entry<String, ?> entry : fuses.entrySet()) {
+                String fuseName = entry.getKey();
+                String options = "";
+                if (entry.getValue() instanceof List) {
+                    options = String.join(", ", (List<String>) entry.getValue());
+                }
+                addRow.accept(fuseName, options);
+            }
         }
 
         scrollView.addView(tableLayout);
 
         new AlertDialog.Builder(this)
-                .setTitle("Especificaciones Técnicas")
+                .setTitle(getString(R.string.chip_info_json))
                 .setView(scrollView)
                 .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
