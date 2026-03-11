@@ -24,6 +24,7 @@ import android.widget.Toast;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.ScrollView;
+import android.widget.HorizontalScrollView;
 import android.graphics.Typeface;
 import java.util.LinkedHashMap;
 
@@ -1491,33 +1492,44 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        // Crear contenedor principal con scroll
-        ScrollView scrollView = new ScrollView(this);
-        scrollView.setBackgroundColor(Color.parseColor("#1A1A1A")); // Fondo oscuro premium
-        scrollView.setPadding(40, 40, 40, 40);
+        // Crear contenedor principal con scroll vertical
+        ScrollView verticalScrollView = new ScrollView(this);
+        verticalScrollView.setBackgroundColor(Color.parseColor("#1A1A1A")); // Fondo oscuro premium
+        verticalScrollView.setPadding(30, 30, 30, 30);
+
+        // Crear scroll horizontal para evitar que las tablas anchas se corten
+        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(this);
+        horizontalScrollView.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
 
         // Crear tabla
         TableLayout tableLayout = new TableLayout(this);
-        tableLayout.setLayoutParams(new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
-        tableLayout.setStretchAllColumns(true);
+        tableLayout.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT));
+        // No estiramos columnas para que el scroll horizontal tenga sentido
+        tableLayout.setStretchAllColumns(false);
 
         // Estilo de celdas
-        int paddingSide = 20;
-        int paddingTopBottom = 16;
-        int textColorLabel = Color.parseColor("#BBBBBB");
+        int paddingSide = 25;
+        int paddingTopBottom = 12;
+        int textColorLabel = Color.parseColor("#A0A0A0"); // Gris medio para etiquetas
         int textColorValue = Color.WHITE;
-        int textColorHeader = Color.parseColor("#9C27B0"); // Púrpura para secciones
-        float textSize = 15f;
-        float textSizeHeader = 17f;
+        int textColorHeader = Color.parseColor("#E91E63"); // Rosa vibrante para secciones
+        float textSize = 14f;
+        float textSizeHeader = 16f;
 
         Map<String, Object> allData = currentChip.toDict();
         
         // Función auxiliar para añadir filas
         java.util.function.BiConsumer<String, String> addRow = (labelStr, valueStr) -> {
+            if (valueStr == null || valueStr.isEmpty() || valueStr.equalsIgnoreCase("null")) {
+                valueStr = "N/A";
+            }
+            
             TableRow row = new TableRow(this);
-            row.setPadding(0, 8, 0, 8);
+            row.setPadding(0, 4, 0, 4);
             row.setGravity(Gravity.CENTER_VERTICAL);
 
             TextView label = new TextView(this);
@@ -1532,14 +1544,16 @@ public class MainActivity extends AppCompatActivity
             value.setTextColor(textColorValue);
             value.setTextSize(textSize);
             value.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
-            value.setGravity(Gravity.END);
+            // Si el valor es largo, permitimos que ocupe espacio, pero no wrap para forzar horizontal scroll si necesario
+            value.setSingleLine(false); 
+            value.setGravity(Gravity.START);
 
             row.addView(label);
             row.addView(value);
 
             View divider = new View(this);
             divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 1));
-            divider.setBackgroundColor(Color.parseColor("#444444"));
+            divider.setBackgroundColor(Color.parseColor("#333333"));
 
             tableLayout.addView(row);
             tableLayout.addView(divider);
@@ -1552,11 +1566,11 @@ public class MainActivity extends AppCompatActivity
             header.setTextColor(textColorHeader);
             header.setTextSize(textSizeHeader);
             header.setTypeface(null, Typeface.BOLD);
-            header.setPadding(paddingSide, 40, paddingSide, 10);
+            header.setPadding(paddingSide, 50, paddingSide, 15);
             tableLayout.addView(header);
             
             View divider = new View(this);
-            divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 2));
+            divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 3));
             divider.setBackgroundColor(textColorHeader);
             tableLayout.addView(divider);
         };
@@ -1564,54 +1578,61 @@ public class MainActivity extends AppCompatActivity
         // --- SECCIÓN: IDENTIFICACIÓN ---
         addHeader.accept("IDENTIFICACIÓN");
         addRow.accept(getString(R.string.modelo) + ":", String.valueOf(allData.get("chip_name")));
-        addRow.accept("Chip ID:", "0x" + String.valueOf(allData.get("chip_id")));
-        addRow.accept("Incluye:", String.valueOf(allData.get("include")));
+        Object chipId = allData.get("chip_id");
+        String hexId = (chipId instanceof Number) ? 
+                "0x" + Integer.toHexString(((Number)chipId).intValue()).toUpperCase() : String.valueOf(chipId);
+        addRow.accept("Chip ID:", hexId);
+        addRow.accept("Include File:", String.valueOf(allData.get("include")));
 
         // --- SECCIÓN: MEMORIA ---
-        addHeader.accept("MEMORIA");
+        addHeader.accept("ESPECIFICACIONES DE MEMORIA");
         try {
-            addRow.accept("Memoria ROM:", String.format("%,d Bytes", currentChip.getTamanoROM()));
-            addRow.accept("Memoria EEPROM:", currentChip.isTamanoValidoDeEEPROM() ? 
-                    String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
+            addRow.accept("ROM (Sustituto):", String.valueOf(allData.get("rom_size")));
+            addRow.accept("ROM Real (Bytes):", String.format("%,d B", currentChip.getTamanoROM()));
+            addRow.accept("EEPROM Real (Bytes):", currentChip.isTamanoValidoDeEEPROM() ? 
+                    String.format("%,d B", currentChip.getTamanoEEPROM()) : "N/A");
+            addRow.accept("FUSE Blank Value:", String.valueOf(allData.get("fuse_blank")));
         } catch (Exception e) {}
-        addRow.accept("Flash Chip:", String.valueOf(allData.get("flash_chip")));
+        addRow.accept("Flash Technology:", String.valueOf(allData.get("flash_chip")).equalsIgnoreCase("true") ? "YES" : "NO");
 
         // --- SECCIÓN: HARDWARE ---
-        addHeader.accept("HARDWARE");
-        addRow.accept(getString(R.string.tipo_de_nucleo) + ":", allData.get("core_bits") + " bits (" + allData.get("core_type") + ")");
-        addRow.accept("Pines:", currentChip.getNumeroDePines() + " pines");
-        addRow.accept("Ubicación Pin 1:", String.valueOf(allData.get("pin1_location")));
-        addRow.accept("Imagen Socket:", String.valueOf(allData.get("socket_image")));
-        addRow.accept("Modo ICSP Only:", String.valueOf(allData.get("icsp_only")));
+        addHeader.accept("ARQUITECTURA Y PINES");
+        addRow.accept("Core Bits:", allData.get("core_bits") + " bits");
+        addRow.accept("Core Type:", String.valueOf(allData.get("core_type")));
+        addRow.accept("Pines Totales:", currentChip.getNumeroDePines() + " pines");
+        addRow.accept("Pin 1 Pos:", String.valueOf(allData.get("pin1_location")));
+        addRow.accept("Socket Image ID:", String.valueOf(allData.get("socket_image")));
+        addRow.accept("ICSP Required:", String.valueOf(allData.get("icsp_only")).equalsIgnoreCase("true") ? "YES" : "NO");
 
         // --- SECCIÓN: PROGRAMACIÓN ---
-        addHeader.accept("PARÁMETROS DE GRABACIÓN");
-        addRow.accept("Erase Mode:", String.valueOf(allData.get("erase_mode")));
+        addHeader.accept("PARÁMETROS DE PROGRAMACIÓN");
+        addRow.accept("Erase Algorithm:", String.valueOf(allData.get("erase_mode")));
         addRow.accept("Power Sequence:", String.valueOf(allData.get("power_sequence")));
-        addRow.accept("Program Delay:", String.valueOf(allData.get("program_delay")));
-        addRow.accept("Program Tries:", String.valueOf(allData.get("program_tries")));
-        addRow.accept("Over Program:", String.valueOf(allData.get("over_program")));
-        addRow.accept("CP Warn:", String.valueOf(allData.get("cp_warn")));
+        addRow.accept("Prog. Delay (ms):", String.valueOf(allData.get("program_delay")));
+        addRow.accept("Prog. Retries:", String.valueOf(allData.get("program_tries")));
+        addRow.accept("Over-prog. Factor:", String.valueOf(allData.get("over_program")));
+        addRow.accept("Code Protection Warn:", String.valueOf(allData.get("cp_warn")));
 
         // --- SECCIÓN: FUSES ---
         Map<String, ?> fuses = (Map<String, ?>) allData.get("fuses");
         if (fuses != null && !fuses.isEmpty()) {
-            addHeader.accept("FUSIBLES (CONFIGURACIÓN)");
+            addHeader.accept("FUSIBLES DISPONIBLES");
             for (Map.Entry<String, ?> entry : fuses.entrySet()) {
                 String fuseName = entry.getKey();
                 String options = "";
                 if (entry.getValue() instanceof List) {
-                    options = String.join(", ", (List<String>) entry.getValue());
+                    options = String.join(" | ", (List<String>) entry.getValue());
                 }
                 addRow.accept(fuseName, options);
             }
         }
 
-        scrollView.addView(tableLayout);
+        horizontalScrollView.addView(tableLayout);
+        verticalScrollView.addView(horizontalScrollView);
 
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.chip_info_json))
-                .setView(scrollView)
+                .setView(verticalScrollView)
                 .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
     }
