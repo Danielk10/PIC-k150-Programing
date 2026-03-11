@@ -99,26 +99,26 @@
     <string name="gputils_termux_asm">Termux 中的 GPUTILS ASM 编译器 Android</string>
 
     
-    <string name="configurar_fusibles">Configure Fuses</string>
-    <string name="selecciona_chip_primero">Select a chip first</string>
+    <string name="configurar_fusibles">配置熔丝</string>
+    <string name="selecciona_chip_primero">请先选择芯片</string>
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
     <string name="fuses_configurados">Configured</string>
     <string name="fuses_no_configurados">Not configured</string>
-    <string name="estado_fusibles">Fuse Status:</string>
+    <string name="estado_fusibles">熔丝状态：</string>
     <string name="modo_icsp">ICSP Mode</string>
     <string name="verificando_memoria">Verifying memory...</string>
-    <string name="verificacion_rom_ok">ROM verified successfully</string>
-    <string name="verificacion_rom_fallo">ROM verification failed</string>
+    <string name="verificacion_rom_ok">ROM验证成功</string>
+    <string name="verificacion_rom_fallo">ROM验证失败</string>
     <string name="verificacion_eeprom_ok">EEPROM验证成功</string>
     <string name="verificacion_eeprom_fallo">EEPROM验证失败</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
-    <string name="verificacion_completa">Verification complete</string>
+    <string name="verificacion_completa">验证完成</string>
     <string name="fuses_decodificados">Decoded fuses</string>
     <string name="hex_procesado_correctamente">HEX processed successfully</string>
     <string name="error_procesando_hex">Error processing HEX</string>
     <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
     <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    <string name="exportar_memoria">Export Memory</string>
+    <string name="exportar_memoria">导出内存</string>
     <string name="exportar_rom_hex">Export ROM as HEX</string>
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
@@ -367,10 +367,10 @@
     <string name="yes">是</string>
     <string name="no_label">否</string>
     <string name="seleccionar_idioma">选择语言</string>
-    <string name="tutorial_instalacion">Installation Tutorial</string>
-    <string name="copiar_todo_en">Copy All</string>
+    <string name="tutorial_instalacion">安装教程</string>
+    <string name="copiar_todo_en">全部复制</string>
     <string name="cerrar">关闭</string>
-    <string name="error_no_chip">Error: No chip selected or no fuses available</string>
+    <string name="error_no_chip">错误：未选择芯片或无熔丝</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX compatible</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
@@ -418,7 +418,7 @@
     <string name="calibracion_label">校准：%1$s</string>
     <string name="rom_label">ROM: %1$s</string>
     <string name="eeprom_label">EEPROM: %1$s</string>
-    <string name="fuses_decodificados_exito">Fuses decoded successfully</string>
+    <string name="fuses_decodificados_exito">熔丝解码成功</string>
     <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
     <string name="error_leer_config">Could not read chip configuration</string>
     <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>

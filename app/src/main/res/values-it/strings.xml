@@ -370,7 +370,7 @@
     <string name="tutorial_instalacion">Tutorial Installazione</string>
     <string name="copiar_todo_en">Copia Tutto</string>
     <string name="cerrar">Chiudi</string>
-    <string name="error_no_chip">Errore: Nessun chip selezionato o nessun fuse disponibile</string>
+    <string name="error_no_chip">Errore: Nessun chip selezionato o nessun fuse</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX compatibile</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
@@ -386,7 +386,7 @@
     <string name="error_parse_id">Error parsing ID</string>
     <string name="seccion_identificacion">IDENTIFICAZIONE</string>
     <string name="seccion_memoria">SPECIFICHE MEMORIA</string>
-    <string name="seccion_hardware">ARCHITETTURA E PIN</string>
+    <string name="seccion_hardware">ARCHITETTURA &amp; PIN</string>
     <string name="seccion_programacion">PARAMETRI DI PROGRAMMAZIONE</string>
     <string name="seccion_fuses">FUSE DISPONIBILI</string>
     <string name="chip_id_label">ID Chip:</string>

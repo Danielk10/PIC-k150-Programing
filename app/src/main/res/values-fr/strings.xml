@@ -100,17 +100,17 @@
 
     
     <string name="configurar_fusibles">Configurer les fusibles</string>
-    <string name="selecciona_chip_primero">Sélectionnez d\'abord une puce</string>
+    <string name="selecciona_chip_primero">Sélectionnez d\'abord un chip</string>
     <string name="no_hay_fusibles_para_chip">Pas de données de fusibles pour cette puce</string>
     <string name="fuses_configurados">Configurés</string>
     <string name="fuses_no_configurados">Non configurés</string>
     <string name="estado_fusibles">État des fusibles :</string>
     <string name="modo_icsp">Mode ICSP</string>
     <string name="verificando_memoria">Vérification de la mémoire…</string>
-    <string name="verificacion_rom_ok">ROM vérifiée avec succès</string>
-    <string name="verificacion_rom_fallo">Échec de la vérification ROM</string>
-    <string name="verificacion_eeprom_ok">EEPROM vérifiée avec succès</string>
-    <string name="verificacion_eeprom_fallo">Échec de la vérification EEPROM</string>
+    <string name="verificacion_rom_ok">ROM vérifiée correctement</string>
+    <string name="verificacion_rom_fallo">Échec vérification ROM</string>
+    <string name="verificacion_eeprom_ok">EEPROM vérifiée correctement</string>
+    <string name="verificacion_eeprom_fallo">Échec vérification EEPROM</string>
     <string name="rom_posible_locked">Possiblement verrouillée en lecture</string>
     <string name="verificacion_completa">Vérification terminée</string>
     <string name="fuses_decodificados">Fusibles décodés</string>
@@ -370,7 +370,7 @@
     <string name="tutorial_instalacion">Tutoriel d\'installation</string>
     <string name="copiar_todo_en">Tout copier</string>
     <string name="cerrar">Fermer</string>
-    <string name="error_no_chip">Erreur : Aucun chip sélectionné ou pas de fuses disponibles</string>
+    <string name="error_no_chip">Erreur : Aucun chip sélectionné ou pas de fuses</string>
     <string name="advertencia_cantidad_fuses">AVERTISSEMENT : Le nombre de fuses ne correspond pas</string>
     <string name="hex_compatible">HEX compatible</string>
     <string name="error_verificando_hex">Erreur lors de la vérification HEX</string>
@@ -386,9 +386,9 @@
     <string name="error_parse_id">Erreur d\'analyse de l\'ID</string>
     <string name="seccion_identificacion">IDENTIFICATION</string>
     <string name="seccion_memoria">SPÉCIFICATIONS MÉMOIRE</string>
-    <string name="seccion_hardware">ARCHITECTURE ET BROCHES</string>
+    <string name="seccion_hardware">ARCHITECTURE &amp; BROCHES</string>
     <string name="seccion_programacion">PARAMÈTRES DE PROGRAMMATION</string>
-    <string name="seccion_fuses">FUSES DISPONIBLES</string>
+    <string name="seccion_fuses">FUSIBLES DISPONIBLES</string>
     <string name="chip_id_label">ID du Chip :</string>
     <string name="include_file_label">Fichier Include :</string>
     <string name="rom_capacity_label">Capacité ROM :</string>

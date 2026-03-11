@@ -91,7 +91,7 @@
     <string name="leer_memoria">Ler Memória</string>
     <string name="verificar">Verificar</string>
     <string name="borrar_memoria">Apagar Memória</string>
-    <string name="detectar_pic">Detectar PIC</string>
+    <string name="detectar_pic">Detetar PIC</string>
     <string name="esperando_operacion">Aguardando operação...</string>
     <string name="esperando_seleccion">Aguardando seleção...</string>
     <string name="seleccionar_chip_pic">Selecionar Chip PIC</string>
@@ -108,11 +108,11 @@
     <string name="modo_icsp">Modo ICSP</string>
     <string name="verificando_memoria">Verificando memória…</string>
     <string name="verificacion_rom_ok">ROM verificada com sucesso</string>
-    <string name="verificacion_rom_fallo">Falha na verificação da ROM</string>
+    <string name="verificacion_rom_fallo">Falha na verificação ROM</string>
     <string name="verificacion_eeprom_ok">EEPROM verificada com sucesso</string>
-    <string name="verificacion_eeprom_fallo">Falha na verificação da EEPROM</string>
+    <string name="verificacion_eeprom_fallo">Falha na verificação EEPROM</string>
     <string name="rom_posible_locked">Possivelmente bloqueada para leitura</string>
-    <string name="verificacion_completa">Verificação completa</string>
+    <string name="verificacion_completa">Verificação concluída</string>
     <string name="fuses_decodificados">Fusíveis decodificados</string>
     <string name="hex_procesado_correctamente">HEX processado com sucesso</string>
     <string name="error_procesando_hex">Erro ao processar HEX</string>
@@ -370,7 +370,7 @@
     <string name="tutorial_instalacion">Tutorial de Instalação</string>
     <string name="copiar_todo_en">Copiar Tudo</string>
     <string name="cerrar">Fechar</string>
-    <string name="error_no_chip">Erro: Nenhum chip selecionado ou sem fuses disponíveis</string>
+    <string name="error_no_chip">Erro: Nenhum chip selecionado ou sem fuses</string>
     <string name="advertencia_cantidad_fuses">AVISO: Quantidade de fuses não corresponde</string>
     <string name="hex_compatible">HEX compatível</string>
     <string name="error_verificando_hex">Erro ao verificar HEX</string>
@@ -386,9 +386,9 @@
     <string name="error_parse_id">Erro ao analisar ID</string>
     <string name="seccion_identificacion">IDENTIFICAÇÃO</string>
     <string name="seccion_memoria">ESPECIFICAÇÕES DE MEMÓRIA</string>
-    <string name="seccion_hardware">ARQUITETURA E PINOS</string>
+    <string name="seccion_hardware">ARQUITETURA &amp; PINOS</string>
     <string name="seccion_programacion">PARÂMETROS DE PROGRAMAÇÃO</string>
-    <string name="seccion_fuses">FUSES DISPONÍVEIS</string>
+    <string name="seccion_fuses">FUSÍVEIS DISPONÍVEIS</string>
     <string name="chip_id_label">ID do Chip:</string>
     <string name="include_file_label">Arquivo Include:</string>
     <string name="rom_capacity_label">Capacidade ROM:</string>

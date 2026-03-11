@@ -100,7 +100,7 @@
 
     
     <string name="configurar_fusibles">Fuses konfigurieren</string>
-    <string name="selecciona_chip_primero">Zuerst einen Chip auswählen</string>
+    <string name="selecciona_chip_primero">Wählen Sie zuerst einen Chip</string>
     <string name="no_hay_fusibles_para_chip">Keine Fuse-Daten für diesen Chip verfügbar</string>
     <string name="fuses_configurados">Konfiguriert</string>
     <string name="fuses_no_configurados">Nicht konfiguriert</string>
@@ -108,11 +108,11 @@
     <string name="modo_icsp">ICSP-Modus</string>
     <string name="verificando_memoria">Speicher wird überprüft…</string>
     <string name="verificacion_rom_ok">ROM erfolgreich verifiziert</string>
-    <string name="verificacion_rom_fallo">ROM-Verifizierung fehlgeschlagen</string>
+    <string name="verificacion_rom_fallo">ROM-Überprüfung fehlgeschlagen</string>
     <string name="verificacion_eeprom_ok">EEPROM erfolgreich verifiziert</string>
-    <string name="verificacion_eeprom_fallo">EEPROM-Verifizierung fehlgeschlagen</string>
+    <string name="verificacion_eeprom_fallo">EEPROM-Überprüfung fehlgeschlagen</string>
     <string name="rom_posible_locked">Möglicherweise lesegeschützt</string>
-    <string name="verificacion_completa">Verifizierung abgeschlossen</string>
+    <string name="verificacion_completa">Überprüfung abgeschlossen</string>
     <string name="fuses_decodificados">Dekodierte Fuses</string>
     <string name="hex_procesado_correctamente">HEX erfolgreich verarbeitet</string>
     <string name="error_procesando_hex">Fehler beim Verarbeiten der HEX</string>
@@ -386,7 +386,7 @@
     <string name="error_parse_id">Fehler beim Parsen der ID</string>
     <string name="seccion_identificacion">IDENTIFIKATION</string>
     <string name="seccion_memoria">SPEICHERSPEZIFIKATIONEN</string>
-    <string name="seccion_hardware">ARCHITEKTUR UND PINS</string>
+    <string name="seccion_hardware">ARCHITEKTUR &amp; PINS</string>
     <string name="seccion_programacion">PROGRAMMIERPARAMETER</string>
     <string name="seccion_fuses">VERFÜGBARE FUSES</string>
     <string name="chip_id_label">Chip-ID:</string>
