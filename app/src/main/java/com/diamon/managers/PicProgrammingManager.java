@@ -43,6 +43,32 @@ public class PicProgrammingManager {
         COMPLETED
     }
 
+    /** Resultado de la verificación de borrado del chip. */
+    public static class ResultadoVerificacionBorrado {
+        public final boolean romEnBlanco;
+        public final boolean eepromEnBlanco;
+        public final boolean fallbackUsado;
+        public final String metodoUtilizado;
+        public final String error;
+
+        public ResultadoVerificacionBorrado(
+                boolean romEnBlanco,
+                boolean eepromEnBlanco,
+                boolean fallbackUsado,
+                String metodoUtilizado,
+                String error) {
+            this.romEnBlanco = romEnBlanco;
+            this.eepromEnBlanco = eepromEnBlanco;
+            this.fallbackUsado = fallbackUsado;
+            this.metodoUtilizado = metodoUtilizado;
+            this.error = error;
+        }
+
+        public boolean chipEnBlanco() {
+            return romEnBlanco && eepromEnBlanco;
+        }
+    }
+
     /**
      * Constructor del gestor de programacion
      *
@@ -394,6 +420,137 @@ public class PicProgrammingManager {
             return protocolo.detectarPicEnElSocket();
         } catch (Exception e) {
             notifyError(context.getString(R.string.error_detectando_chip) + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Verifica si el chip está realmente en blanco.
+     *
+     * Estrategia actual:
+     * 1) Siempre realiza lectura comparativa independiente (ROM/EEPROM/FUSEblank).
+     * 2) Ejecuta blank-check nativo solo como diagnóstico, sin afectar el veredicto.
+     *
+     * Nota: este flujo no persiste ni mezcla datos con la lectura de memoria para UI.
+     */
+    public ResultadoVerificacionBorrado verificarBorradoCompleto(ChipPic chipPIC) {
+        if (protocolo == null) {
+            String error = context.getString(R.string.protocolo_no_inicializado);
+            notifyError(error);
+            return new ResultadoVerificacionBorrado(false, false, true, "Sin protocolo", error);
+        }
+
+        if (chipPIC == null) {
+            String error = context.getString(R.string.no_hay_chip_seleccionado);
+            notifyError(error);
+            return new ResultadoVerificacionBorrado(false, false, true, "Sin chip", error);
+        }
+
+        // Veredicto principal: lectura comparativa independiente.
+        boolean romBlankLectura = verificarRomVaciaPorLectura(chipPIC);
+        boolean eepromBlankLectura = true;
+        if (chipPIC.isTamanoValidoDeEEPROM()) {
+            eepromBlankLectura = verificarEepromVaciaPorLectura(chipPIC);
+        }
+        boolean configBlankLectura = verificarConfiguracionVaciaPorLectura(chipPIC);
+        boolean romFinal = romBlankLectura && configBlankLectura;
+
+        // Diagnóstico opcional del blank-check nativo (no bloqueante).
+        String diagnosticoNativo = "nativo no ejecutado";
+        try {
+            boolean romBlankNativo = protocolo.verificarSiEstaBarradaLaMemoriaROMDelDelPic(chipPIC);
+            boolean eepromBlankNativo = true;
+            if (chipPIC.isTamanoValidoDeEEPROM()) {
+                eepromBlankNativo = protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+            }
+            diagnosticoNativo = (romBlankNativo && eepromBlankNativo)
+                    ? "nativo=blanco"
+                    : "nativo=con_datos";
+        } catch (Exception e) {
+            diagnosticoNativo = "nativo_error=" + e.getMessage();
+        }
+
+        String metodo = "Lectura comparativa aislada (ROM/EEPROM/FUSEblank), " + diagnosticoNativo;
+        return new ResultadoVerificacionBorrado(romFinal, eepromBlankLectura, true, metodo, null);
+    }
+
+    /** Verifica ROM vacía por lectura comparando palabra blank por núcleo. */
+    private boolean verificarRomVaciaPorLectura(ChipPic chipPic) {
+        try {
+            String romHex = protocolo.leerMemoriaROMDelPic(chipPic);
+            if (romHex == null || romHex.startsWith("Error") || romHex.isEmpty()) {
+                return false;
+            }
+
+            int coreBits = chipPic.getTipoDeNucleoBit();
+            int blankWord = (~(0xFFFF << coreBits)) & 0xFFFF;
+            String blankWordHex = String.format("%04X", blankWord);
+
+            String romNormalizada = romHex.replaceAll("\\s+", "").toUpperCase();
+            int max = romNormalizada.length() - (romNormalizada.length() % 4);
+            for (int i = 0; i < max; i += 4) {
+                String palabra = romNormalizada.substring(i, i + 4);
+                if (!blankWordHex.equals(palabra)) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /** Verifica EEPROM vacía por lectura comprobando bytes 0xFF. */
+    private boolean verificarEepromVaciaPorLectura(ChipPic chipPic) {
+        try {
+            String eepromHex = protocolo.leerMemoriaEEPROMDelPic(chipPic);
+            if (eepromHex == null || eepromHex.startsWith("Error") || eepromHex.isEmpty()) {
+                return false;
+            }
+
+            String eepromNormalizada = eepromHex.replaceAll("\\s+", "").toUpperCase();
+            int max = eepromNormalizada.length() - (eepromNormalizada.length() % 2);
+            for (int i = 0; i < max; i += 2) {
+                String byteHex = eepromNormalizada.substring(i, i + 2);
+                if (!"FF".equals(byteHex)) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /** Verifica que configuración/fuses coincidan con FUSEblank del chip. */
+    private boolean verificarConfiguracionVaciaPorLectura(ChipPic chipPic) {
+        try {
+            String configData = protocolo.leerDatosDeConfiguracionDelPic();
+            if (configData == null || configData.startsWith("Error") || configData.length() < 24) {
+                return false;
+            }
+
+            int[] fusesBlank = chipPic.getFuseBlank();
+            if (fusesBlank == null || fusesBlank.length == 0) {
+                return true;
+            }
+
+            String configNormalizada = configData.replaceAll("\\s+", "").toUpperCase();
+            int maxFuses = Math.min(fusesBlank.length, 7);
+            for (int i = 0; i < maxFuses; i++) {
+                int inicio = 20 + (i * 4);
+                if (inicio + 4 > configNormalizada.length()) {
+                    break;
+                }
+                String fuseLeidoLE = configNormalizada.substring(inicio, inicio + 4);
+                String fuseLeido = fuseLeidoLE.substring(2, 4) + fuseLeidoLE.substring(0, 2);
+                String fuseBlankHex = String.format("%04X", fusesBlank[i]);
+                if (!fuseBlankHex.equals(fuseLeido)) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }

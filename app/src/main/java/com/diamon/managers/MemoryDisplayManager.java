@@ -222,7 +222,7 @@ public class MemoryDisplayManager {
         statusContainer.addView(progressBar);
 
         statusTextView = new TextView(context);
-        statusTextView.setText(context.getString(com.diamon.pic.R.string.leyendo_memoria_pun_pun));
+        statusTextView.setText(context.getString(com.diamon.pic.R.string.leyendo_memoria));
         statusTextView.setTextColor(COLOR_TEXT_SECONDARY);
         statusTextView.setTextSize(14);
         statusTextView.setGravity(Gravity.CENTER);
@@ -284,7 +284,7 @@ public class MemoryDisplayManager {
         contentContainer.addView(romScrollView);
 
         eepromLabel = new TextView(context);
-        eepromLabel.setText("▶ " + context.getString(com.diamon.pic.R.string.memoria_eepromn));
+        eepromLabel.setText("▶ " + context.getString(com.diamon.pic.R.string.memoria_eeprom));
         eepromLabel.setTextColor(COLOR_DATA_LOADED);
         eepromLabel.setTextSize(14);
         eepromLabel.setTypeface(null, Typeface.BOLD);
@@ -312,7 +312,7 @@ public class MemoryDisplayManager {
         container.addView(contentContainer);
 
         Button closeButton = new Button(context);
-        closeButton.setText(context.getString(com.diamon.pic.R.string.cerrasrrrs));
+        closeButton.setText("Cerrar");
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(14);
 

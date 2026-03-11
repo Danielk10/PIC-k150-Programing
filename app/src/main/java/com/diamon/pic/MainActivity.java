@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity
     private android.widget.Button btnBorrarMemoriaDeLPic;
     private android.widget.Button btnDetectarPic;
     private android.widget.Button btnConfigureFuses; // NUEVO
+    private android.widget.Button btnBlankCheck; // Verificar Borrado
 
     private UsbConnectionManager usbManager;
     private PicProgrammingManager programmingManager;
@@ -205,6 +206,7 @@ public class MainActivity extends AppCompatActivity
         btnBorrarMemoriaDeLPic = findViewById(R.id.btnBorrarMemoriaDeLPic);
         btnDetectarPic = findViewById(R.id.btnDetectarPic);
         btnConfigureFuses = findViewById(R.id.btnConfigureFuses); // NUEVO
+        btnBlankCheck = findViewById(R.id.btnBlankCheck); // Verificar Borrado
 
         romDataContainer = findViewById(R.id.romDataContainer);
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
@@ -441,7 +443,7 @@ public class MainActivity extends AppCompatActivity
                         swModeICSP.setChecked(false);
                         Toast.makeText(
                                 MainActivity.this,
-                                getString(R.string.error_al_cambiar_modo_) + e.getMessage(),
+                                "Error al cambiar modo: " + e.getMessage(),
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }
@@ -855,6 +857,7 @@ public class MainActivity extends AppCompatActivity
         btnBorrarMemoriaDeLPic.setOnClickListener(v -> executeEraseMemory());
         btnVerificarMemoriaDelPic.setOnClickListener(v -> executeVerifyMemory());
         btnDetectarPic.setOnClickListener(v -> executeDetectChip());
+        btnBlankCheck.setOnClickListener(v -> ejecutarBlankCheck());
     }
 
     /** NUEVO: Procesa los datos del archivo HEX */
@@ -951,7 +954,8 @@ public class MainActivity extends AppCompatActivity
                 btnLeerMemoriaDeLPic,
                 btnVerificarMemoriaDelPic,
                 btnBorrarMemoriaDeLPic,
-                btnDetectarPic
+                btnDetectarPic,
+                btnBlankCheck
         };
 
         for (android.widget.Button btn : buttons) {
@@ -998,7 +1002,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (datosPicProcesados == null) {
-            Toast.makeText(this, getString(R.string.debe_procesar_el_archivo_hex_p), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.debe_procesar_hex_primero), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -1211,7 +1215,7 @@ public class MainActivity extends AppCompatActivity
 
                                     // Chip config info
                                     if (result.chipIdHex != null) {
-                                        statusMsg.append("\n" + getString(R.string.chip_id) + " ").append(result.chipIdHex);
+                                        statusMsg.append("\nChip ID: ").append(result.chipIdHex);
                                     }
 
                                     // Fuses decodificados
@@ -1255,6 +1259,56 @@ public class MainActivity extends AppCompatActivity
                             });
                 })
                 .start();
+    }
+
+    /** Ejecuta la verificación de borrado (Blank Check) */
+    private void ejecutarBlankCheck() {
+        if (currentChip == null) {
+            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        processStatusTextView.setText(getString(R.string.verificando_borrado) + "...");
+
+        new Thread(() -> {
+            try {
+                PicProgrammingManager.ResultadoVerificacionBorrado resultado = programmingManager
+                        .verificarBorradoCompleto(currentChip);
+
+                if (resultado.error != null && !resultado.error.isEmpty()) {
+                    runOnUiThread(() -> processStatusTextView
+                            .setText(getString(R.string.error_verificando_borrado) + ": " + resultado.error));
+                    return;
+                }
+
+                runOnUiThread(() -> {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
+                    sb.append("ROM: ").append(
+                            resultado.romEnBlanco ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
+                            .append("\n");
+
+                    if (currentChip.isTamanoValidoDeEEPROM()) {
+                        sb.append("EEPROM: ")
+                                .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
+                                        : getString(R.string.eeprom_not_blank))
+                                .append("\n");
+                    }
+
+                    sb.append(getString(R.string.protocolo)).append(": ").append(resultado.metodoUtilizado);
+                    processStatusTextView.setText(sb.toString());
+
+                    if (resultado.chipEnBlanco()) {
+                        Toast.makeText(MainActivity.this, R.string.chip_esta_borrado, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, R.string.chip_no_esta_borrado, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                runOnUiThread(() -> processStatusTextView
+                        .setText(getString(R.string.error_verificando_borrado) + ": " + e.getMessage()));
+            }
+        }).start();
     }
 
     @SuppressLint("InvalidWakeLockTag")

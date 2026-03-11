@@ -758,7 +758,7 @@ public class FuseConfigPopup {
             currentIDData = new byte[] { 0 };
 
             logMessage("✓ Restaurado desde chip");
-            Toast.makeText(context, "Fusibles restaurados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -769,7 +769,7 @@ public class FuseConfigPopup {
     private void restoreFromHex() {
         try {
             if (hexData == null) {
-                logMessage("⚠ " + context.getString(com.diamon.pic.R.string.no_hay_archivo_hex_cargado));
+                logMessage("⚠ No hay archivo HEX cargado");
                 return;
             }
 
@@ -801,7 +801,7 @@ public class FuseConfigPopup {
             }
 
             logMessage("✓ Restaurado desde HEX");
-            Toast.makeText(context, "Fusibles restaurados desde HEX", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados_desde_hex), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -852,7 +852,7 @@ public class FuseConfigPopup {
                 listener.onFusesApplied(encodedFuses, idData, fuseConfig);
             }
 
-            Toast.makeText(context, "Fusibles aplicados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_aplicados), Toast.LENGTH_SHORT).show();
             dismissWithAnimation(); // Usar animación al cerrar
 
         } catch (Exception e) {
