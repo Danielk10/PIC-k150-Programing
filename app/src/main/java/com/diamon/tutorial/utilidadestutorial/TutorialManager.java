@@ -48,80 +48,31 @@ public class TutorialManager {
      * @return Texto traducido
      */
     public String getTranslation(String key) {
-        if (currentLanguage.equals("es")) {
-            return getSpanishTranslation(key);
-        } else {
-            return getEnglishTranslation(key);
-        }
-    }
-
-    private String getSpanishTranslation(String key) {
+        int resId = -1;
         switch (key) {
-            case "copy_button":
-                return context.getString(R.string.copiar_btn);
-            case "copy_success":
-                return context.getString(R.string.codigo_copiado_portapapeles);
-            case "language_label":
-                return context.getString(R.string.idioma_label).replace(": %s", ":");
-            case "spanish":
-                return context.getString(R.string.idioma_espanol);
-            case "english":
-                return context.getString(R.string.idioma_ingles);
-            case "loading":
-                return context.getString(R.string.cargando_tutorial);
-            case "error_loading":
-                return context.getString(R.string.error_cargar_tutorial) + ":";
-            case "step":
-                return context.getString(R.string.paso_label);
-            case "note":
-                return context.getString(R.string.nota_label);
-            case "important":
-                return context.getString(R.string.importante_label);
-            case "warning":
-                return context.getString(R.string.advertencia_label);
-            case "example":
-                return context.getString(R.string.ejemplo_label);
-            case "explanation":
-                return context.getString(R.string.explicacion_label);
-            default:
-                return key;
+            case "copy_button": resId = R.string.copiar_btn; break;
+            case "copy_success": resId = R.string.codigo_copiado_portapapeles; break;
+            case "language_label": 
+                String label = context.getString(R.string.idioma_label);
+                return label.replace(": %s", ":");
+            case "spanish": resId = R.string.idioma_espanol; break;
+            case "english": resId = R.string.idioma_ingles; break;
+            case "loading": resId = R.string.cargando_tutorial; break;
+            case "error_loading": resId = R.string.error_cargar_tutorial; break;
+            case "step": resId = R.string.paso_label; break;
+            case "note": resId = R.string.nota_label; break;
+            case "important": resId = R.string.importante_label; break;
+            case "warning": resId = R.string.advertencia_label; break;
+            case "example": resId = R.string.ejemplo_label; break;
+            case "explanation": resId = R.string.explicacion_label; break;
         }
-    }
 
-    private String getEnglishTranslation(String key) {
-        // Por ahora, como el archivo strings.xml solo tiene español, 
-        // mantendremos estos hardcodeados para inglés o usaremos una estrategia de traducción si existe.
-        // Dado que el usuario pidió "en español", priorizamos la lógica de recursos para español.
-        switch (key) {
-            case "copy_button":
-                return "📋 Copy";
-            case "copy_success":
-                return "Code copied to clipboard";
-            case "language_label":
-                return "🌐 Language:";
-            case "spanish":
-                return "Spanish";
-            case "english":
-                return "English";
-            case "loading":
-                return "Loading tutorial...";
-            case "error_loading":
-                return context.getString(R.string.error_cargando_tutorial_prefijo);
-            case "step":
-                return context.getString(R.string.paso_label);
-            case "note":
-                return context.getString(R.string.nota_label);
-            case "important":
-                return context.getString(R.string.importante_label);
-            case "warning":
-                return context.getString(R.string.advertencia_label);
-            case "example":
-                return context.getString(R.string.ejemplo_label);
-            case "explanation":
-                return context.getString(R.string.explicacion_label);
-            default:
-                return key;
+        if (resId != -1) {
+            String s = context.getString(resId);
+            if (key.equals("error_loading")) return s + ":";
+            return s;
         }
+        return key;
     }
 
     /**

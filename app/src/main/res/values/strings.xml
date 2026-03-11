@@ -321,5 +321,44 @@
     <string name="advertencia_label">Advertencia</string>
     <string name="ejemplo_label">Ejemplo</string>
     <string name="explicacion_label">Explicación</string>
+    
+    <string name="archivo_guardado">Archivo guardado: %1$s</string>
+    <string name="ayuda_chip_info">Datos técnicos detallados extraídos del archivo de definición del PIC.</string>
+    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    <string name="ayuda_fuses_label">Configuración de Fusibles</string>
+    <string name="ayuda_fuses_personalizados">Permite sobrescribir fusibles específicos. El valor del archivo HEX será ignorado para estos nombres.</string>
+    <string name="ayuda_icsp">Conexión ICSP</string>
+    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
+    <string name="ayuda_id_personalizado">ID de 4 u 8 bytes dependiendo del chip para identificación (versión o número de serie).</string>
+    <string name="chip_info_profesional">Información del Chip</string>
+    <string name="chip_no_encontrado_en_base_de_">Chip no encontrado en la base de datos</string>
+    <string name="config_leida">Configuración leída</string>
+    <string name="configuraciones_de_fusibles">Configuraciones de Fusibles</string>
+    <string name="copiado_portapapeles">Copiado al portapapeles</string>
+    <string name="error_abriendo_archivo_escritura">No se pudo abrir el archivo para escritura</string>
+    <string name="error_carpeta_no_accesible">No se pudo acceder a la carpeta seleccionada</string>
+    <string name="error_exportador_no_inicializado">El exportador no está inicializado</string>
+    <string name="error_inesperado_exportar_detalle">Error inesperado al exportar: %1$s</string>
+    <string name="error_no_hay_exportacion_pendiente">No hay ninguna exportación pendiente</string>
+    <string name="error_nombre_archivo_vacio">El nombre no puede estar vacío</string>
+    <string name="error_procesando_chip">Error procesando el chip</string>
+    <string name="error_reemplazando_archivo">No se pudo reemplazar el archivo existente</string>
+    <string name="fuses_configurados_marcado">✓ Configurados</string>
+    <string name="hint_nombre_fusible">Nombre (ej: WDT, FOSC, MCLRE)</string>
+    <string name="hint_valor_fusible">Valor (ej: ON, OFF, HS, 0x3F)</string>
+    <string name="memoria_contiene_datos">La memoria contiene datos</string>
+    <string name="memoria_vacia">Memoria vacía</string>
+    <string name="menu_ayuda">Ayuda</string>
+    <string name="modelo_de_chip_invalido">Modelo de chip inválido</string>
+    <string name="no_hay_datos_para_exportar_archivo">No hay datos para exportar</string>
+    <string name="no_hay_modelos_de_chips_dispon">No hay modelos de chips disponibles</string>
+    <string name="procesamiento_hex">Procesamiento HEX</string>
+    <string name="propiedad">Propiedad</string>
+    <string name="reemplazar_archivo_mensaje">El archivo \'%1$s\' ya existe. ¿Desea reemplazarlo?</string>
+    <string name="reemplazar_archivo_titulo">Reemplazar archivo</string>
+    <string name="seleccion_carpeta_cancelada">Selección de carpeta cancelada</string>
+    <string name="valor">Valor</string>
+    <string name="verificacion_eeprom_fallo">Fallo en la verificación de EEPROM</string>
+    <string name="verificacion_eeprom_ok">EEPROM verificada correctamente</string>
 
 </resources>
