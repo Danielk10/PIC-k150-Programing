@@ -292,8 +292,7 @@ public class HexExportManager {
      * Escribe los datos al URI seleccionado por el usuario.
      */
     private void writeDataToUri(Uri uri, byte[] binData, String txtData) {
-        try {
-            OutputStream outputStream = context.getContentResolver().openOutputStream(uri);
+        try (OutputStream outputStream = context.getContentResolver().openOutputStream(uri)) {
             if (outputStream == null) {
                 notifyError(context.getString(com.diamon.pic.R.string.error_creando_archivo_salida));
                 return;
@@ -308,7 +307,6 @@ public class HexExportManager {
             }
 
             outputStream.flush();
-            outputStream.close();
 
             if (exportListener != null) {
                 exportListener.onExportSuccess(uri.getLastPathSegment());
