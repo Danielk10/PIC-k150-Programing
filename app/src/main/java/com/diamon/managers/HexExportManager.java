@@ -136,6 +136,93 @@ public class HexExportManager {
     }
 
     /**
+     * Exporta ROM, EEPROM y Config (con segmentos separados de ID y Fuses)
+     * en un único dump HEX. Esta versión escribe User ID y Fuses en sus
+     * direcciones correctas del mapa de memoria PIC, en vez de como un
+     * bloque contiguo.
+     *
+     * @param romData       Datos ROM ya formateados
+     * @param eepromData    Datos EEPROM ya formateados
+     * @param idData        Datos User ID ya formateados (byte-swapped)
+     * @param idAddress     Dirección base de User ID (0x4000 para 14-bit, 0x200000 para 16-bit)
+     * @param fuseData      Datos de fuses ya formateados (byte-swapped)
+     * @param fuseAddress   Dirección base de fuses (0x400E para 14-bit, 0x300000 para 16-bit)
+     * @param eepromAddress Dirección base de EEPROM
+     * @param suggestedName Nombre sugerido del archivo
+     */
+    public void exportFullDumpAsHexWithSplitConfig(byte[] romData, byte[] eepromData,
+            byte[] idData, int idAddress, byte[] fuseData, int fuseAddress,
+            int eepromAddress, String suggestedName) {
+
+        if (createDocumentLauncher == null) {
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            return;
+        }
+
+        StringBuilder fullHex = new StringBuilder();
+
+        // ROM
+        if (romData != null && romData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(romData, 0));
+        }
+
+        // User ID en su dirección correcta
+        if (idData != null && idData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(idData, idAddress));
+        }
+
+        // Fuses en su dirección correcta
+        if (fuseData != null && fuseData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(fuseData, fuseAddress));
+        }
+
+        // EEPROM
+        if (eepromData != null && eepromData.length > 0) {
+            fullHex.append(convertSegmentToIntelHex(eepromData, eepromAddress));
+        }
+
+        // End of File Record
+        fullHex.append(":00000001FF\r\n");
+
+        pendingExportDataText = fullHex.toString();
+        pendingExportDataBinary = null;
+        pendingIsBinaryFile = false;
+
+        createDocumentLauncher.launch(suggestedName + ".hex");
+    }
+
+    /**
+     * Exporta datos de configuración como HEX con segmentos separados
+     * de User ID y Fuses en sus direcciones correctas.
+     */
+    public void exportConfigAsHexSplit(byte[] idData, int idAddress,
+            byte[] fuseData, int fuseAddress, String suggestedName) {
+
+        if (createDocumentLauncher == null) {
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            return;
+        }
+
+        StringBuilder hexContent = new StringBuilder();
+
+        if (idData != null && idData.length > 0) {
+            hexContent.append(convertSegmentToIntelHex(idData, idAddress));
+        }
+
+        if (fuseData != null && fuseData.length > 0) {
+            hexContent.append(convertSegmentToIntelHex(fuseData, fuseAddress));
+        }
+
+        hexContent.append(":00000001FF\r\n");
+
+        pendingExportDataText = hexContent.toString();
+        pendingExportDataBinary = null;
+        pendingIsBinaryFile = false;
+
+        createDocumentLauncher.launch(suggestedName + ".hex");
+    }
+
+    /**
      * Exporta datos de memoria como archivo binario.
      *
      * @param data          Bytes crudos de la memoria leída

@@ -69,6 +69,7 @@ import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -1436,11 +1437,34 @@ public class MainActivity extends AppCompatActivity
                         hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
 
                     } else if (selected.equals(getString(R.string.exportar_config_hex))) {
-                        int configAddr = (coreBits == 16) ? 0x300000 : 0x4000;
-                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
-                        if (configBytes != null && configBytes.length > 0) {
-                            configBytes = HexExportManager.formatForHexExport(configBytes, coreBits, false);
-                            hexExportManager.exportAsHexWithAddress(configBytes, configAddr, chipName + "_CONFIG");
+                        // Separar datos K150 en User ID y Fuses con direcciones correctas
+                        byte[] rawConfig = stringHexToByteArray(lastReadConfigData);
+                        if (rawConfig != null && rawConfig.length >= 12) {
+                            int fuseCount = 1;
+                            if (currentChip != null) {
+                                try {
+                                    fuseCount = currentChip.getFuseBlank().length;
+                                } catch (Exception e) { /* usar 1 por defecto */ }
+                            }
+
+                            // User ID: bytes 0-7 del response K150
+                            int idLen = (coreBits == 16) ? 8 : 8;
+                            byte[] idBytes = Arrays.copyOfRange(rawConfig, 0, Math.min(idLen, rawConfig.length));
+                            idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
+
+                            // Fuses: a partir del byte 10 del response K150
+                            int fuseByteLen = fuseCount * 2;
+                            int fuseStart = 10;
+                            byte[] fuseBytes = Arrays.copyOfRange(rawConfig, fuseStart,
+                                    Math.min(fuseStart + fuseByteLen, rawConfig.length));
+                            fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
+
+                            int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
+                            int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
+
+                            hexExportManager.exportConfigAsHexSplit(
+                                    idBytes, idAddr, fuseBytes, fuseAddr,
+                                    chipName + "_CONFIG");
                         }
                     } else if (selected.equals(getString(R.string.exportar_config_bin))) {
                         byte[] configBytes = stringHexToByteArray(lastReadConfigData);
@@ -1451,17 +1475,45 @@ public class MainActivity extends AppCompatActivity
                     } else if (selected.equals(getString(R.string.exportar_dump_completo))) {
                         byte[] romBytes = stringHexToByteArray(lastReadRomData);
                         byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
-                        byte[] configBytes = stringHexToByteArray(lastReadConfigData);
+                        byte[] rawConfig = stringHexToByteArray(lastReadConfigData);
 
                         int eepromAddr = (coreBits == 16) ? 0xF00000 : 0x4200;
-                        int configAddr = (coreBits == 16) ? 0x300000 : 0x4000;
 
                         romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
                         eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
-                        configBytes = HexExportManager.formatForHexExport(configBytes, coreBits, false);
 
-                        hexExportManager.exportFullDumpAsHex(romBytes, eepromBytes, configBytes, eepromAddr, configAddr,
-                                chipName + "_FULL");
+                        if (rawConfig != null && rawConfig.length >= 12) {
+                            int fuseCount = 1;
+                            if (currentChip != null) {
+                                try {
+                                    fuseCount = currentChip.getFuseBlank().length;
+                                } catch (Exception e) { /* usar 1 por defecto */ }
+                            }
+
+                            // User ID: bytes 0-7
+                            byte[] idBytes = Arrays.copyOfRange(rawConfig, 0, Math.min(8, rawConfig.length));
+                            idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
+
+                            // Fuses: a partir del byte 10
+                            int fuseByteLen = fuseCount * 2;
+                            int fuseStart = 10;
+                            byte[] fuseBytes = Arrays.copyOfRange(rawConfig, fuseStart,
+                                    Math.min(fuseStart + fuseByteLen, rawConfig.length));
+                            fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
+
+                            int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
+                            int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
+
+                            hexExportManager.exportFullDumpAsHexWithSplitConfig(
+                                    romBytes, eepromBytes,
+                                    idBytes, idAddr, fuseBytes, fuseAddr,
+                                    eepromAddr, chipName + "_FULL");
+                        } else {
+                            // Fallback: sin datos de config, exportar solo ROM y EEPROM
+                            hexExportManager.exportFullDumpAsHex(
+                                    romBytes, eepromBytes, null,
+                                    eepromAddr, 0x4000, chipName + "_FULL");
+                        }
                     }
                 })
                 .setNegativeButton(getString(R.string.cancelar), null)
