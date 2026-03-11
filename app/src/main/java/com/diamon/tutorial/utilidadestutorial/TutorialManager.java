@@ -72,17 +72,17 @@ public class TutorialManager {
             case "error_loading":
                 return context.getString(R.string.error_cargar_tutorial) + ":";
             case "step":
-                return "PASO";
+                return context.getString(R.string.paso_label);
             case "note":
-                return "Nota";
+                return context.getString(R.string.nota_label);
             case "important":
-                return "Importante";
+                return context.getString(R.string.importante_label);
             case "warning":
-                return "Advertencia";
+                return context.getString(R.string.advertencia_label);
             case "example":
-                return "Ejemplo";
+                return context.getString(R.string.ejemplo_label);
             case "explanation":
-                return "Explicación";
+                return context.getString(R.string.explicacion_label);
             default:
                 return key;
         }
@@ -108,17 +108,17 @@ public class TutorialManager {
             case "error_loading":
                 return context.getString(R.string.error_cargando_tutorial_prefijo);
             case "step":
-                return "STEP";
+                return context.getString(R.string.paso_label);
             case "note":
-                return "Note";
+                return context.getString(R.string.nota_label);
             case "important":
-                return "Important";
+                return context.getString(R.string.importante_label);
             case "warning":
-                return "Warning";
+                return context.getString(R.string.advertencia_label);
             case "example":
-                return "Example";
+                return context.getString(R.string.ejemplo_label);
             case "explanation":
-                return "Explanation";
+                return context.getString(R.string.explicacion_label);
             default:
                 return key;
         }

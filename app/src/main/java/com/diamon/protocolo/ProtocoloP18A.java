@@ -94,7 +94,7 @@ public class ProtocoloP18A extends Protocolo {
             StringBuilder response = new StringBuilder();
 
             // Enviar byte de eco
-            byte[] byteEco = ByteUtils.prepararDatosUSB(new byte[] { (byte) 2 }, "eco");
+            byte[] byteEco = ByteUtils.prepararDatosUSB(contexto, new byte[] { (byte) 2 }, "eco");
             escribirDatosUSB(byteEco, TIMEOUT_DEFAULT, "byte_eco");
 
             // Leer respuesta
@@ -281,7 +281,7 @@ public class ProtocoloP18A extends Protocolo {
         try {
 
             // Procesar y validar el contenido HEX antes de iniciar la programación.
-            DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
+            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
 
             try {
                 datosPic.iniciarProcesamientoDeDatos();
@@ -418,7 +418,7 @@ public class ProtocoloP18A extends Protocolo {
         try {
 
             // Procesar datos HEX
-            DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
+            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
             datosPic.iniciarProcesamientoDeDatos();
             byte[] eepromData = datosPic.obtenerBytesHexEEPROMPocesado();
 
@@ -512,7 +512,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Procesar datos
-            DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
+            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
             datosPic.iniciarProcesamientoDeDatos();
 
             // Obtener tipo de núcleo
@@ -641,7 +641,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Procesar datos para obtener info de calibración
-            DatosPicProcesados datosPic = new DatosPicProcesados(firware, chipPIC);
+            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
             datosPic.iniciarProcesamientoDeDatos();
 
             // Obtener valores de calibración y fuse del chip

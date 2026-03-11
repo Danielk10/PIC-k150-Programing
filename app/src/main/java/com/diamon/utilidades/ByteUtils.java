@@ -1,6 +1,9 @@
 package com.diamon.utilidades;
 
 import com.diamon.excepciones.UsbCommunicationException;
+import com.diamon.pic.R;
+
+import android.content.Context;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -63,23 +66,19 @@ public final class ByteUtils {
      * @param nombreParametro Nombre del parámetro para mensajes de error
      * @throws IllegalArgumentException Si la validación falla
      */
-    public static void validarArray(byte[] datos, int tamanoEsperado, String nombreParametro) {
+    public static void validarArray(android.content.Context context, byte[] datos, int tamanoEsperado, String nombreParametro) {
         if (datos == null) {
-            String mensaje = String.format("Parámetro '%s' no puede ser null", nombreParametro);
+            String mensaje = context.getString(R.string.error_argumento_null, nombreParametro);
             throw new IllegalArgumentException(mensaje);
         }
 
         if (tamanoEsperado >= 0 && datos.length != tamanoEsperado) {
-            String mensaje = String.format(
-                    "Parámetro '%s' debe tener %d bytes, pero tiene %d",
-                    nombreParametro, tamanoEsperado, datos.length);
+            String mensaje = context.getString(R.string.error_tamano_esperado, nombreParametro, tamanoEsperado, datos.length);
             throw new IllegalArgumentException(mensaje);
         }
 
         if (datos.length > MAX_BUFFER_SIZE) {
-            String mensaje = String.format(
-                    "Parámetro '%s' excede el tamaño máximo permitido (%d bytes)",
-                    nombreParametro, MAX_BUFFER_SIZE);
+            String mensaje = context.getString(R.string.error_tamano_maximo, nombreParametro, MAX_BUFFER_SIZE);
             throw new IllegalArgumentException(mensaje);
         }
     }
@@ -92,11 +91,9 @@ public final class ByteUtils {
      * @param longitud Longitud de datos
      * @throws IndexOutOfBoundsException Si los índices están fuera de rango
      */
-    public static void validarRango(byte[] array, int offset, int longitud) {
+    public static void validarRango(android.content.Context context, byte[] array, int offset, int longitud) {
         if (offset < 0 || longitud < 0 || offset + longitud > array.length) {
-            String mensaje = String.format(
-                    "Rango inválido: offset=%d, longitud=%d, arraySize=%d",
-                    offset, longitud, array.length);
+            String mensaje = context.getString(R.string.error_rango_invalido, offset, longitud, array.length);
             throw new IndexOutOfBoundsException(mensaje);
         }
     }
@@ -155,22 +152,22 @@ public final class ByteUtils {
      * @return Array de bytes
      * @throws IllegalArgumentException Si el string hexadecimal es inválido
      */
-    public static byte[] hexToBytes(String hex) {
+    public static byte[] hexToBytes(android.content.Context context, String hex) {
         if (hex == null) {
-            throw new IllegalArgumentException("String hexadecimal no puede ser null");
+            throw new IllegalArgumentException(context.getString(R.string.error_hex_null));
         }
 
         // Limpiar espacios y normalizar
         hex = hex.replaceAll("\\s+", "").toUpperCase();
 
         if (hex.length() % 2 != 0) {
-            throw new IllegalArgumentException("String hexadecimal debe tener longitud par");
+            throw new IllegalArgumentException(context.getString(R.string.error_hex_longitud));
         }
 
         // Validar caracteres hexadecimales
         for (char c : hex.toCharArray()) {
             if (HEX_CHARS.indexOf(c) == -1) {
-                throw new IllegalArgumentException("Carácter hexadecimal inválido: " + c);
+                throw new IllegalArgumentException(context.getString(R.string.error_hex_caracter, String.valueOf(c)));
             }
         }
 
@@ -223,8 +220,8 @@ public final class ByteUtils {
      * @param bigEndian true para big-endian, false para little-endian
      * @return Valor entero
      */
-    public static int bytesToInt(byte[] datos, boolean bigEndian) {
-        validarArray(datos, 4, "datos");
+    public static int bytesToInt(android.content.Context context, byte[] datos, boolean bigEndian) {
+        validarArray(context, datos, 4, "datos");
 
         ByteBuffer buffer = ByteBuffer.wrap(datos);
         buffer.order(bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
@@ -240,8 +237,8 @@ public final class ByteUtils {
      * @param bigEndian true para big-endian, false para little-endian
      * @return Valor short
      */
-    public static short bytesToShort(byte[] datos, boolean bigEndian) {
-        validarArray(datos, 2, "datos");
+    public static short bytesToShort(android.content.Context context, byte[] datos, boolean bigEndian) {
+        validarArray(context, datos, 2, "datos");
 
         ByteBuffer buffer = ByteBuffer.wrap(datos);
         buffer.order(bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
@@ -263,11 +260,11 @@ public final class ByteUtils {
      * @return Número de bytes copiados efectivamente
      */
     public static int copiarBytes(
-            byte[] origen, int offsetOrigen, byte[] destino, int offsetDestino, int longitud) {
-        validarArray(origen, -1, "origen");
-        validarArray(destino, -1, "destino");
-        validarRango(origen, offsetOrigen, longitud);
-        validarRango(destino, offsetDestino, longitud);
+            android.content.Context context, byte[] origen, int offsetOrigen, byte[] destino, int offsetDestino, int longitud) {
+        validarArray(context, origen, -1, "origen");
+        validarArray(context, destino, -1, "destino");
+        validarRango(context, origen, offsetOrigen, longitud);
+        validarRango(context, destino, offsetDestino, longitud);
 
         System.arraycopy(origen, offsetOrigen, destino, offsetDestino, longitud);
 
@@ -282,9 +279,9 @@ public final class ByteUtils {
      * @param offset   Índice de inicio
      * @param longitud Número de bytes a rellenar
      */
-    public static void rellenarArray(byte[] array, byte valor, int offset, int longitud) {
-        validarArray(array, -1, "array");
-        validarRango(array, offset, longitud);
+    public static void rellenarArray(android.content.Context context, byte[] array, byte valor, int offset, int longitud) {
+        validarArray(context, array, -1, "array");
+        validarRango(context, array, offset, longitud);
 
         for (int i = offset; i < offset + longitud; i++) {
             array[i] = valor;
@@ -297,11 +294,11 @@ public final class ByteUtils {
      * @param datos Array original
      * @return Nuevo array con bytes intercambiados de a pares
      */
-    public static byte[] intercambiarBytes(byte[] datos) {
-        validarArray(datos, -1, "datos");
+    public static byte[] intercambiarBytes(android.content.Context context, byte[] datos) {
+        validarArray(context, datos, -1, "datos");
 
         if (datos.length % 2 != 0) {
-            throw new IllegalArgumentException("Array debe tener longitud par para intercambio");
+            throw new IllegalArgumentException(context.getString(R.string.error_intercambio_par));
         }
 
         byte[] resultado = new byte[datos.length];
@@ -323,9 +320,9 @@ public final class ByteUtils {
      * @param longitud Número de bytes a incluir
      * @return Checksum calculado
      */
-    public static int calcularChecksum(byte[] datos, int offset, int longitud) {
-        validarArray(datos, -1, "datos");
-        validarRango(datos, offset, longitud);
+    public static int calcularChecksum(android.content.Context context, byte[] datos, int offset, int longitud) {
+        validarArray(context, datos, -1, "datos");
+        validarRango(context, datos, offset, longitud);
 
         int checksum = 0;
         for (int i = offset; i < offset + longitud; i++) {
@@ -341,12 +338,12 @@ public final class ByteUtils {
      * @param datos Array incluyendo checksum al final
      * @return true si el checksum es válido
      */
-    public static boolean verificarChecksum(byte[] datos) {
+    public static boolean verificarChecksum(android.content.Context context, byte[] datos) {
         if (datos.length < 2) {
             return false;
         }
 
-        int checksumCalculado = calcularChecksum(datos, 0, datos.length - 1);
+        int checksumCalculado = calcularChecksum(context, datos, 0, datos.length - 1);
         int checksumEsperado = datos[datos.length - 1] & 0xFF;
 
         boolean valido = checksumCalculado == checksumEsperado;
@@ -359,8 +356,8 @@ public final class ByteUtils {
      * @param datos Array de bytes
      * @return Hash MD5 como string hexadecimal
      */
-    public static String calcularHashMD5(byte[] datos) {
-        validarArray(datos, -1, "datos");
+    public static String calcularHashMD5(android.content.Context context, byte[] datos) {
+        validarArray(context, datos, -1, "datos");
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -369,7 +366,7 @@ public final class ByteUtils {
 
             return resultado;
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("MD5 no disponible", e);
+            throw new RuntimeException(context.getString(R.string.error_md5_no_disponible), e);
         }
     }
 
@@ -384,9 +381,9 @@ public final class ByteUtils {
      * @return true si la respuesta es correcta
      * @throws UsbCommunicationException Si la respuesta no coincide
      */
-    public static boolean validarRespuestaUSB(byte[] respuesta, byte esperado, String comando)
+    public static boolean validarRespuestaUSB(android.content.Context context, byte[] respuesta, byte esperado, String comando)
             throws UsbCommunicationException {
-        validarArray(respuesta, -1, "respuesta");
+        validarArray(context, respuesta, -1, "respuesta");
 
         if (respuesta.length == 0) {
             throw UsbCommunicationException.crearRespuestaInesperada(
@@ -412,12 +409,12 @@ public final class ByteUtils {
      * @param comando Nombre del comando para logging
      * @return Array validado listo para envío
      */
-    public static byte[] prepararDatosUSB(byte[] datos, String comando) {
-        validarArray(datos, -1, "datos");
+    public static byte[] prepararDatosUSB(android.content.Context context, byte[] datos, String comando) {
+        validarArray(context, datos, -1, "datos");
 
         // Crear copia para evitar modificaciones accidentales
         byte[] copia = new byte[datos.length];
-        copiarBytes(datos, 0, copia, 0, datos.length);
+        copiarBytes(context, datos, 0, copia, 0, datos.length);
 
         return copia;
     }
@@ -433,8 +430,8 @@ public final class ByteUtils {
      * @return String formateado para visualización
      */
     public static String formatearParaVisualizacion(
-            byte[] datos, int bytesPorLinea, boolean mostrarAscii) {
-        validarArray(datos, -1, "datos");
+            android.content.Context context, byte[] datos, int bytesPorLinea, boolean mostrarAscii) {
+        validarArray(context, datos, -1, "datos");
 
         if (bytesPorLinea <= 0) {
             bytesPorLinea = 16;
@@ -479,11 +476,11 @@ public final class ByteUtils {
      * @param datos Array de bytes
      * @return String con estadísticas del array
      */
-    public static String obtenerEstadisticas(byte[] datos) {
-        validarArray(datos, -1, "datos");
+    public static String obtenerEstadisticas(android.content.Context context, byte[] datos) {
+        validarArray(context, datos, -1, "datos");
 
         if (datos.length == 0) {
-            return "Array vacío";
+            return context.getString(R.string.error_vacio);
         }
 
         int ceros = 0, unos = 0;
@@ -500,8 +497,7 @@ public final class ByteUtils {
                 max = b;
         }
 
-        return String.format(
-                "Tamaño: %d bytes, Min: 0x%02X, Max: 0x%02X, Ceros: %d, 0xFF: %d",
+        return context.getString(R.string.stats_format,
                 datos.length, min & 0xFF, max & 0xFF, ceros, unos);
     }
 

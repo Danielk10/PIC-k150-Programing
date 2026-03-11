@@ -37,6 +37,9 @@ import java.util.List;
  */
 public class DatosPicProcesados {
 
+    /** Contexto para localización */
+    private final android.content.Context context;
+
     /** Firmware HEX a procesar */
     private final String firware;
 
@@ -67,7 +70,10 @@ public class DatosPicProcesados {
      * @param firware Contenido del archivo HEX
      * @param chipPIC Información del chip PIC objetivo
      */
-    public DatosPicProcesados(String firware, ChipPic chipPIC) throws ChipConfigurationException {
+    public DatosPicProcesados(android.content.Context context, String firware, ChipPic chipPIC) throws ChipConfigurationException {
+        if (context == null) {
+            throw new IllegalArgumentException("Context no puede ser null");
+        }
         if (firware == null || firware.trim().isEmpty()) {
             throw new IllegalArgumentException("Firmware no puede ser null o vacío");
         }
@@ -76,6 +82,7 @@ public class DatosPicProcesados {
             throw new IllegalArgumentException("ChipPIC no puede ser null");
         }
 
+        this.context = context;
         this.firware = firware;
         this.chipPIC = chipPIC;
     }
@@ -109,7 +116,7 @@ public class DatosPicProcesados {
             // Procesar archivo HEX
             HexProcesado procesado;
             try {
-                procesado = new HexProcesado(firware);
+                procesado = new HexProcesado(context, firware);
             } catch (HexProcessingException e) {
                 throw e;
             }
@@ -296,7 +303,7 @@ public class DatosPicProcesados {
             String tipoMemoria)
             throws HexProcessingException {
         try {
-            byte[] resultado = HexFileUtils.mergeRecords(records, blankData, baseAddress);
+            byte[] resultado = HexFileUtils.mergeRecords(context, records, blankData, baseAddress);
 
             return resultado;
         } catch (Exception e) {
@@ -321,12 +328,12 @@ public class DatosPicProcesados {
                     0x4000, 0x4008);
 
             byte[] IDBlanco = HexFileUtils.generarArrayDeDatos((byte) 0x00, 8);
-            this.IDData = HexFileUtils.mergeRecords(configRecordsID, IDBlanco, configWordBase);
+            this.IDData = HexFileUtils.mergeRecords(context, configRecordsID, IDBlanco, configWordBase);
 
             // Ajustar ID para chips de 14 bits
             if (chipPIC.getTipoDeNucleoBit() != 16) {
                 byte[] IDTemporal = new byte[IDData.length / 2];
-                ByteUtils.copiarBytes(IDData, 0, IDTemporal, 0, IDTemporal.length);
+                ByteUtils.copiarBytes(context, IDData, 0, IDTemporal, 0, IDTemporal.length);
                 this.IDData = IDTemporal;
             }
 
@@ -335,8 +342,8 @@ public class DatosPicProcesados {
                     0x400E, 0x4010);
 
             byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlank());
-            this.fuseData = HexFileUtils.mergeRecords(configRecordsFuses, fusesBytes, 0x400E);
-            this.fuseValues = HexFileUtils.decodeFromBytes(fuseData);
+            this.fuseData = HexFileUtils.mergeRecords(context, configRecordsFuses, fusesBytes, 0x400E);
+            this.fuseValues = HexFileUtils.decodeFromBytes(context, fuseData);
 
         } catch (Exception e) {
             throw new HexProcessingException("Error procesando ID y fuses del chip", e);

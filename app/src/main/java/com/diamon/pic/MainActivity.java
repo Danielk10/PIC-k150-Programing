@@ -879,7 +879,7 @@ public class MainActivity extends AppCompatActivity
         new Thread(
                 () -> {
                     try {
-                        datosPicProcesados = new DatosPicProcesados(firmware, currentChip);
+                        datosPicProcesados = new DatosPicProcesados(MainActivity.this, firmware, currentChip);
                         datosPicProcesados.iniciarProcesamientoDeDatos();
 
                         runOnUiThread(
@@ -1201,6 +1201,7 @@ public class MainActivity extends AppCompatActivity
 
                         com.diamon.managers.VerificationManager.VerificationResult result = com.diamon.managers.VerificationManager
                                 .verify(
+                                        MainActivity.this,
                                         programmingManager.getProtocolo(),
                                         currentChip,
                                         expectedRomBytes,

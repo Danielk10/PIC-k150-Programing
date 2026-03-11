@@ -37,6 +37,9 @@ import java.util.regex.Pattern;
  */
 public class HexProcesado {
 
+    /** Contexto para localización */
+    private final android.content.Context context;
+
     // ========== PROCESAMIENTO HEX ==========
 
     // Clase para representar un registro HEX
@@ -62,7 +65,10 @@ public class HexProcesado {
      * @param fileContent Contenido del archivo HEX como string
      * @throws HexProcessingException Si ocurre error durante el procesamiento
      */
-    public HexProcesado(String fileContent) throws HexProcessingException {
+    public HexProcesado(android.content.Context context, String fileContent) throws HexProcessingException {
+        if (context == null) {
+            throw new IllegalArgumentException("Context no puede ser null");
+        }
         if (fileContent == null || fileContent.trim().isEmpty()) {
             throw new IllegalArgumentException(
                     "Contenido del archivo HEX no puede ser null o vacío");
@@ -77,6 +83,7 @@ public class HexProcesado {
         int registrosValidos = 0;
 
         // Expresiones regulares optimizadas para validación
+        this.context = context;
         Pattern hexRecordPattern = Pattern.compile("^:[0-9A-Fa-f]+$");
         Pattern hexRecordChopper = Pattern.compile(
                 "^:([0-9A-Fa-f]{2})([0-9A-Fa-f]{4})([0-9A-Fa-f]{2})([0-9A-Fa-f]*)([0-9A-Fa-f]{2})$");
@@ -192,7 +199,7 @@ public class HexProcesado {
      *                                conflictos
      */
     public byte[] merge(byte[] dataBuffer) throws HexProcessingException {
-        ByteUtils.validarArray(dataBuffer, -1, "dataBuffer");
+        ByteUtils.validarArray(context, dataBuffer, -1, "dataBuffer");
 
         try {
 
@@ -213,7 +220,7 @@ public class HexProcesado {
                 }
 
                 // Fusionar datos usando ByteUtils
-                ByteUtils.copiarBytes(data, 0, dataBuffer, address, data.length);
+                ByteUtils.copiarBytes(context, data, 0, dataBuffer, address, data.length);
                 registrosFusionados++;
                 bytesFusionados += data.length;
             }
@@ -270,7 +277,7 @@ public class HexProcesado {
      */
     private byte[] hexStringToByteArraySeguro(String hexStr) throws HexProcessingException {
         try {
-            return ByteUtils.hexToBytes(hexStr);
+            return ByteUtils.hexToBytes(context, hexStr);
         } catch (IllegalArgumentException e) {
             throw new HexProcessingException("Error en datos hexadecimales: " + hexStr, e);
         }

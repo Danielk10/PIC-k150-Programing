@@ -158,7 +158,7 @@ public abstract class Protocolo {
      */
     private void expectResponse(byte[] expected, int timeoutMillis)
             throws UsbCommunicationException {
-        ByteUtils.validarArray(expected, -1, "expected");
+        ByteUtils.validarArray(contexto, expected, -1, "expected");
 
         String esperadoHex = ByteUtils.bytesToHex(expected);
 
@@ -182,7 +182,7 @@ public abstract class Protocolo {
      */
     protected boolean leerRespuesta(byte[] response, char esperado, String mensajeError)
             throws UsbCommunicationException {
-        ByteUtils.validarArray(response, -1, "response");
+        ByteUtils.validarArray(contexto, response, -1, "response");
 
         if (response.length == 0) {
             throw new IllegalArgumentException("Array de respuesta debe tener al menos 1 byte");
@@ -251,13 +251,13 @@ public abstract class Protocolo {
             }
 
             // Paso 1: Enviar 0x01 para inicializar
-            byte[] inicializacion = ByteUtils.prepararDatosUSB(new byte[] {0x01}, "inicializacion");
+            byte[] inicializacion = ByteUtils.prepararDatosUSB(contexto, new byte[] {0x01}, "inicializacion");
             usbSerialPort.write(inicializacion, 100);
             // Paso 2: Esperar respuesta 'Q'
             expectResponse(new byte[] {'Q'}, 500);
 
             // Paso 3: Enviar 'P' para ir a la tabla de salto
-            byte[] salto = ByteUtils.prepararDatosUSB(new byte[] {'P'}, "salto_tabla");
+            byte[] salto = ByteUtils.prepararDatosUSB(contexto, new byte[] {'P'}, "salto_tabla");
             usbSerialPort.write(salto, 100);
 
             // Paso 4: Leer acknowledgment 'P'
@@ -272,7 +272,7 @@ public abstract class Protocolo {
 
             // Paso 5: Enviar el número del comando, si es necesario
             if (data[0] != 0) {
-                byte[] comandoFinal = ByteUtils.prepararDatosUSB(data, "comando_final");
+                byte[] comandoFinal = ByteUtils.prepararDatosUSB(contexto, data, "comando_final");
                 usbSerialPort.write(comandoFinal, 100);
             } else {
             }
@@ -299,6 +299,7 @@ public abstract class Protocolo {
             // Preparar comando de inicialización
             byte[] data =
                     ByteUtils.prepararDatosUSB(
+                            contexto,
                             comando.getBytes(StandardCharsets.US_ASCII), "inicializacion");
             usbSerialPort.write(data, 100);
 
@@ -341,7 +342,7 @@ public abstract class Protocolo {
 
         try {
 
-            byte[] data = ByteUtils.prepararDatosUSB(new byte[] {0}, "sincronizacion");
+            byte[] data = ByteUtils.prepararDatosUSB(contexto, new byte[] {0}, "sincronizacion");
             usbSerialPort.write(data, 100);
 
             return true;
@@ -379,7 +380,7 @@ public abstract class Protocolo {
             throw new UsbCommunicationException("Puerto USB no inicializado");
         }
 
-        ByteUtils.validarArray(datos, -1, "datos");
+        ByteUtils.validarArray(contexto, datos, -1, "datos");
 
         try {
 

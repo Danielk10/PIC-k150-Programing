@@ -67,16 +67,16 @@ public class VerificationManager {
                 sb.append(context.getString(R.string.chip_id_label)).append(" ").append(chipIdHex).append("\n");
             }
             if (calibrationHex != null) {
-                sb.append("Calibración: ").append(calibrationHex).append("\n");
+                sb.append(context.getString(R.string.calibracion_label, calibrationHex)).append("\n");
             }
 
-            sb.append("ROM: ").append(romVerified ? "✓ " + context.getString(R.string.verificada) : "✗ " + context.getString(R.string.fallo));
+            sb.append(context.getString(R.string.rom_label, romVerified ? "✓ " + context.getString(R.string.verificada) : "✗ " + context.getString(R.string.fallo)));
             if (romMaybeLocked) {
-                sb.append(" (").append(context.getString(R.string.posiblemente_locked)).append(")");
+                sb.append(" (").append(context.getString(R.string.rom_posible_locked)).append(")");
             }
             sb.append("\n");
 
-            sb.append("EEPROM: ").append(eepromVerified ? "✓ " + context.getString(R.string.verificada) : context.getString(R.string.not_available)).append("\n");
+            sb.append(context.getString(R.string.eeprom_label, eepromVerified ? "✓ " + context.getString(R.string.verificada) : context.getString(R.string.not_available))).append("\n");
 
             if (decodedFuses != null && !decodedFuses.isEmpty()) {
                 sb.append("\n").append(context.getString(R.string.seccion_fuses)).append(":\n");
@@ -109,7 +109,7 @@ public class VerificationManager {
      * @param expectedEepromBytes EEPROM procesada del HEX (bytes), null para saltar
      * @return Resultado de la verificación
      */
-    public static VerificationResult verify(Protocolo protocolo, ChipPic chipPIC,
+    public static VerificationResult verify(android.content.Context context, Protocolo protocolo, ChipPic chipPIC,
             byte[] expectedRomBytes, byte[] expectedEepromBytes) {
 
         List<String> messages = new ArrayList<>();
@@ -152,17 +152,17 @@ public class VerificationManager {
 
                         if (!fuseValues.isEmpty()) {
                             decodedFuses = chipPIC.decodeFuseData(fuseValues);
-                            messages.add("Fuses decodificados correctamente");
+                            messages.add(context.getString(R.string.fuses_decodificados_exito));
                         }
                     }
                 } catch (Exception e) {
-                    messages.add("No se pudieron decodificar fuses: " + e.getMessage());
+                    messages.add(context.getString(R.string.error_decodificar_fuses, e.getMessage()));
                 }
             } else {
-                messages.add("No se pudo leer la configuración del chip");
+                messages.add(context.getString(R.string.error_leer_config));
             }
         } catch (Exception e) {
-            messages.add("Error leyendo configuración: " + e.getMessage());
+            messages.add(context.getString(R.string.error_leyendo_config_detalle, e.getMessage()));
         }
 
         // 2. Verificar ROM (equivalente a Python _verify_pipeline ROM section)
@@ -170,7 +170,7 @@ public class VerificationManager {
         // if pic_rom_data == flash_data.rom_data: print('ROM verified.')
         if (expectedRomBytes != null && expectedRomBytes.length > 0) {
             try {
-                messages.add("Verificando ROM...");
+                messages.add(context.getString(R.string.verificando_rom_label));
                 String actualRomHex = protocolo.leerMemoriaROMDelPic(chipPIC);
 
                 if (actualRomHex != null && !actualRomHex.startsWith("Error")) {
@@ -181,7 +181,7 @@ public class VerificationManager {
                         // Comparar byte-a-byte (como Python)
                         if (bytesEqual(expectedRomBytes, actualRomBytes)) {
                             romVerified = true;
-                            messages.add("ROM verificada correctamente ✓");
+                            messages.add(context.getString(R.string.rom_verificada_exito));
                         } else {
                             // Detectar si está locked (todo ceros) — como Python:
                             // no_of_zeros = pic_rom_data.count(b'\x00')
@@ -201,22 +201,21 @@ public class VerificationManager {
                             }
 
                             if (romMaybeLocked) {
-                                messages.add("ROM verificación falló — posiblemente locked para lectura");
+                                messages.add(context.getString(R.string.rom_fallo_locked_label));
                             } else {
                                 // Agregar info de mismatch para debug
                                 int mismatchCount = countMismatches(expectedRomBytes, actualRomBytes);
-                                messages.add("ROM verificación falló — " + mismatchCount
-                                        + " bytes no coinciden de " + expectedRomBytes.length);
+                                messages.add(context.getString(R.string.rom_fallo_mismatch, mismatchCount, expectedRomBytes.length));
                             }
                         }
                     } else {
-                        messages.add("Error convirtiendo datos ROM leídos");
+                        messages.add(context.getString(R.string.error_convertir_rom));
                     }
                 } else {
-                    messages.add("Error leyendo ROM para verificación");
+                    messages.add(context.getString(R.string.error_leyendo_rom_verif));
                 }
             } catch (Exception e) {
-                messages.add("Error en verificación ROM: " + e.getMessage());
+                messages.add(context.getString(R.string.error_verif_rom_detalle, e.getMessage()));
             }
         }
 
@@ -224,7 +223,7 @@ public class VerificationManager {
         if (expectedEepromBytes != null && expectedEepromBytes.length > 0) {
             try {
                 if (chipPIC.isTamanoValidoDeEEPROM()) {
-                    messages.add("Verificando EEPROM...");
+                    messages.add(context.getString(R.string.verificando_eeprom_label));
                     String actualEepromHex = protocolo.leerMemoriaEEPROMDelPic(chipPIC);
 
                     if (actualEepromHex != null && !actualEepromHex.startsWith("Error")) {
@@ -233,24 +232,23 @@ public class VerificationManager {
                         if (actualEepromBytes != null) {
                             if (bytesEqual(expectedEepromBytes, actualEepromBytes)) {
                                 eepromVerified = true;
-                                messages.add("EEPROM verificada correctamente ✓");
+                                messages.add(context.getString(R.string.eeprom_verificada_exito));
                             } else {
                                 int mismatchCount = countMismatches(expectedEepromBytes, actualEepromBytes);
-                                messages.add("EEPROM verificación falló — " + mismatchCount
-                                        + " bytes no coinciden de " + expectedEepromBytes.length);
+                                messages.add(context.getString(R.string.eeprom_fallo_mismatch, mismatchCount, expectedEepromBytes.length));
                             }
                         } else {
-                            messages.add("Error convirtiendo datos EEPROM leídos");
+                            messages.add(context.getString(R.string.error_convertir_eeprom));
                         }
                     } else {
-                        messages.add("Error leyendo EEPROM para verificación");
+                        messages.add(context.getString(R.string.error_leyendo_eeprom_verif));
                     }
                 } else {
                     eepromVerified = true; // No EEPROM = OK
-                    messages.add("Chip sin EEPROM, verificación no aplica");
+                    messages.add(context.getString(R.string.chip_sin_eeprom_verif));
                 }
             } catch (Exception e) {
-                messages.add("Error en verificación EEPROM: " + e.getMessage());
+                messages.add(context.getString(R.string.error_verif_eeprom_detalle, e.getMessage()));
             }
         } else {
             eepromVerified = true; // No se esperaba EEPROM
@@ -329,9 +327,9 @@ public class VerificationManager {
      * @param eepromData Datos EEPROM procesados (bytes), puede ser null
      * @return String con información detallada del HEX
      */
-    public static String getHexInfo(ChipPic chipPIC, byte[] romData, byte[] eepromData) {
+    public static String getHexInfo(android.content.Context context, ChipPic chipPIC, byte[] romData, byte[] eepromData) {
         StringBuilder info = new StringBuilder();
-        info.append("=== Información del HEX ===\n");
+        info.append(context.getString(R.string.titulo_info_hex)).append("\n");
 
         try {
             int romSizeChip = chipPIC.getTamanoROM();
@@ -340,31 +338,28 @@ public class VerificationManager {
             // ROM info
             int romWordsUsed = (romData != null) ? romData.length / 2 : 0;
             int romWordsFree = romSizeChip - romWordsUsed;
-            info.append(String.format("ROM: %d palabras usadas, %d palabras libres en chip\n",
-                    romWordsUsed, Math.max(0, romWordsFree)));
-            info.append(String.format("ROM total chip: %d palabras (%d bytes)\n",
-                    romSizeChip, romSizeChip * 2));
+            info.append(context.getString(R.string.rom_info_usage, romWordsUsed, Math.max(0, romWordsFree))).append("\n");
+            info.append(context.getString(R.string.rom_total_info, romSizeChip, romSizeChip * 2)).append("\n");
 
             // EEPROM info
             if (chipPIC.isTamanoValidoDeEEPROM()) {
                 int eepromBytesUsed = (eepromData != null) ? eepromData.length : 0;
                 int eepromBytesFree = eepromSizeChip - eepromBytesUsed;
-                info.append(String.format("EEPROM: %d bytes usados, %d bytes libres en chip\n",
-                        eepromBytesUsed, Math.max(0, eepromBytesFree)));
-                info.append(String.format("EEPROM total chip: %d bytes\n", eepromSizeChip));
+                info.append(context.getString(R.string.eeprom_info_usage, eepromBytesUsed, Math.max(0, eepromBytesFree))).append("\n");
+                info.append(context.getString(R.string.eeprom_total_info, eepromSizeChip)).append("\n");
             } else {
-                info.append("EEPROM: No disponible en este chip\n");
+                info.append(context.getString(R.string.eeprom_no_disponible)).append("\n");
             }
 
             // Chip info general
-            info.append(String.format("\nChip: %s\n", chipPIC.getNombreDelPic()));
-            info.append(String.format("Core: %d bits\n", chipPIC.getTipoDeNucleoBit()));
-            info.append(String.format("Pin 1: %s\n", chipPIC.getUbicacionPin1DelPic()));
-            info.append(String.format("Flash: %s\n", chipPIC.isFlashChip() ? "Sí" : "No"));
-            info.append(String.format("ICSP only: %s\n", chipPIC.isICSPonly() ? "Sí" : "No"));
+            info.append("\n").append(context.getString(R.string.chip_label_info, chipPIC.getNombreDelPic())).append("\n");
+            info.append(context.getString(R.string.core_info, chipPIC.getTipoDeNucleoBit())).append("\n");
+            info.append(context.getString(R.string.pin1_info, chipPIC.getUbicacionPin1DelPic())).append("\n");
+            info.append(context.getString(R.string.flash_info, chipPIC.isFlashChip() ? context.getString(R.string.si) : context.getString(R.string.no))).append("\n");
+            info.append(context.getString(R.string.icsp_only_info, chipPIC.isICSPonly() ? context.getString(R.string.si) : context.getString(R.string.no))).append("\n");
 
         } catch (ChipConfigurationException e) {
-            info.append("Error obteniendo info del chip: ").append(e.getMessage());
+            info.append(context.getString(R.string.error_info_chip_detalle, e.getMessage()));
         }
 
         return info.toString();

@@ -1,6 +1,7 @@
 package com.diamon.tutorial;
 
 import android.content.Context;
+import com.diamon.pic.R;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -268,8 +269,8 @@ public class TutorialContentRenderer {
             header.setPadding(0, 0, 0, dpToPx(8));
 
             TextView titleView = new TextView(context);
-            String labelText = isAsm ? (currentLanguage.equals("es") ? "📄 Código ASM" : "📄 ASM Code")
-                    : (currentLanguage.equals("es") ? "💻 Comando" : "💻 Command");
+            String labelText = isAsm ? context.getString(R.string.codigo_asm)
+                    : context.getString(R.string.comando_label);
 
             titleView.setText(labelText);
             titleView.setTextSize(11);
@@ -278,7 +279,7 @@ public class TutorialContentRenderer {
             header.addView(titleView, new LinearLayout.LayoutParams(0, -2, 1f));
 
             Button copyBtn = new Button(context);
-            copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
+            copyBtn.setText(context.getString(R.string.copiar_btn));
             copyBtn.setTextSize(10);
             copyBtn.setTextColor(Color.WHITE);
             copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
@@ -334,7 +335,7 @@ public class TutorialContentRenderer {
         header.addView(langView, new LinearLayout.LayoutParams(0, -2, 1f));
 
         Button copyBtn = new Button(context);
-        copyBtn.setText(currentLanguage.equals("es") ? "Copiar" : "Copy");
+        copyBtn.setText(context.getString(R.string.copiar_btn));
         copyBtn.setTextSize(10);
         copyBtn.setTextColor(Color.WHITE);
         copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
@@ -472,7 +473,7 @@ public class TutorialContentRenderer {
                         context.startActivity(
                                 new Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     } catch (Exception e) {
-                        Toast.makeText(context, "Error al abrir link", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getString(R.string.error_abrir_link), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -560,7 +561,7 @@ public class TutorialContentRenderer {
     private void copyToClipboard(String text) {
         ((android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE))
                 .setPrimaryClip(android.content.ClipData.newPlainText("code", text));
-        Toast.makeText(context, currentLanguage.equals("es") ? "Copiado" : "Copied", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.copiado_msg), Toast.LENGTH_SHORT).show();
     }
 
     private int dpToPx(int dp) {

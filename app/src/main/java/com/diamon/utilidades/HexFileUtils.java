@@ -1,5 +1,6 @@
 package com.diamon.utilidades;
 
+import com.diamon.pic.R;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +59,7 @@ public class HexFileUtils {
     }
 
     public static byte[] mergeRecords(
-            List<HexFileUtils.Pair<Integer, String>> records, byte[] defaultData, int baseAddress) {
+            android.content.Context context, List<HexFileUtils.Pair<Integer, String>> records, byte[] defaultData, int baseAddress) {
 
         // Clonamos el arreglo para no modificar el original
         byte[] dataArray = defaultData.clone();
@@ -71,7 +72,7 @@ public class HexFileUtils {
             int startIndex = address - baseAddress;
             if (startIndex < 0 || startIndex >= dataArray.length) {
                 throw new IndexOutOfBoundsException(
-                        "Record address " + address + " is outside the allowed range.");
+                        context.getString(R.string.record_address_error, String.valueOf(address)));
             }
 
             // Escribe los datos en la posición correcta
@@ -207,9 +208,9 @@ public class HexFileUtils {
         return buffer.array(); // Devolver el arreglo de bytes
     }
 
-    public static int[] decodeFromBytes(byte[] bytes) {
+    public static int[] decodeFromBytes(android.content.Context context, byte[] bytes) {
         if (bytes.length % 2 != 0) {
-            throw new IllegalArgumentException("El número de bytes no es múltiplo de 2");
+            throw new IllegalArgumentException(context.getString(R.string.error_no_multiplo_2));
         }
         ByteBuffer buffer = ByteBuffer.wrap(bytes);
         buffer.order(java.nio.ByteOrder.BIG_ENDIAN); // Leer como big-endian
