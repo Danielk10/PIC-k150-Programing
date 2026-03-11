@@ -21,6 +21,12 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.ScrollView;
+import android.graphics.Typeface;
+import java.util.LinkedHashMap;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -831,6 +837,9 @@ public class MainActivity extends AppCompatActivity
                         // NUEVO: Habilitar botón de configuración de fusibles
                         enableFuseConfigButton(true);
 
+                        // NUEVO: Resetear configuración de fusibles previa al cargar nuevo archivo
+                        clearFuseConfiguration();
+
                         // NUEVO: Procesar datos del HEX
                         procesarDatosHex();
 
@@ -1473,18 +1482,87 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /** NUEVO: Muestra info del chip actual como JSON */
+    /**
+     * MODIFICADO: Muestra la información del chip en un formato de tabla profesional.
+     */
     private void showChipInfoJson() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.selecciona_chip_primero),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.selecciona_chip_primero), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String json = currentChip.toJson();
+        // Crear contenedor principal con scroll
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.setPadding(40, 40, 40, 40);
+
+        // Crear tabla
+        TableLayout tableLayout = new TableLayout(this);
+        tableLayout.setLayoutParams(new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.MATCH_PARENT,
+                TableLayout.LayoutParams.WRAP_CONTENT));
+        tableLayout.setStretchAllColumns(true);
+
+        // Estilo de celdas
+        int paddingSide = 20;
+        int paddingTopBottom = 16;
+        int textColorLabel = Color.parseColor("#BBBBBB");
+        int textColorValue = Color.WHITE;
+        float textSize = 15f;
+
+        // Datos del chip
+        Map<String, String> info = new LinkedHashMap<>();
+        info.put(getString(R.string.modelo) + ":", currentChip.getNombreDelPic());
+        try {
+            info.put("Chip ID:", "0x" + Integer.toHexString(currentChip.getIDPIC()).toUpperCase());
+            info.put("Memoria ROM:", String.format("%,d Bytes", currentChip.getTamanoROM()));
+            info.put("Memoria EEPROM:", currentChip.isTamanoValidoDeEEPROM() ? 
+                    String.format("%,d Bytes", currentChip.getTamanoEEPROM()) : "N/A");
+            info.put(getString(R.string.tipo_de_nucleo) + ":", currentChip.getTipoDeNucleoBit() + " bits");
+            boolean isIcspOnly = currentChip.isICSPOnlyCompatible();
+            info.put("Modo ICSP:", isIcspOnly ? "SÓLO ICSP" : "SOPORTADO");
+        } catch (Exception e) {
+            info.put("Error:", "Error leyendo especificaciones");
+        }
+        info.put("Pines detectados:", currentChip.getNumeroDePines() + " pines");
+        info.put("Primer Pin:", currentChip.getUbicacionPin1DelPic());
+
+        // Añadir filas
+        for (Map.Entry<String, String> entry : info.entrySet()) {
+            TableRow row = new TableRow(this);
+            row.setPadding(0, 8, 0, 8);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+
+            TextView label = new TextView(this);
+            label.setText(entry.getKey());
+            label.setTextColor(textColorLabel);
+            label.setTextSize(textSize);
+            label.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
+            label.setTypeface(null, Typeface.BOLD);
+
+            TextView value = new TextView(this);
+            value.setText(entry.getValue());
+            value.setTextColor(textColorValue);
+            value.setTextSize(textSize);
+            value.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
+            value.setGravity(Gravity.END);
+
+            row.addView(label);
+            row.addView(value);
+
+            // Línea separadora sutil
+            View divider = new View(this);
+            divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 1));
+            divider.setBackgroundColor(Color.parseColor("#444444"));
+
+            tableLayout.addView(row);
+            tableLayout.addView(divider);
+        }
+
+        scrollView.addView(tableLayout);
+
         new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.chip_info_json) + " - " + currentChip.getNombreDelPic())
-                .setMessage(json)
+                .setTitle("Especificaciones Técnicas")
+                .setView(scrollView)
                 .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
     }

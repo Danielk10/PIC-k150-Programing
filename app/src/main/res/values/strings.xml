@@ -186,7 +186,7 @@
     <string name="exportacion_exitosa">¡Exportación Exitosa!</string>
     <string name="error_exportando">Error durante la exportación</string>
     <string name="no_hay_datos_para_exportar">No hay datos en memoria para exportar. Lea el chip primero.</string>
-    <string name="chip_info_json">Ver JSON del Chip (Debug)</string>
+    <string name="chip_info_json">Especificaciones Técnicas</string>
 
     <!-- Hardcoded strings localized -->
     <string name="publicidad_recomendada">Publicidad recomendada</string>
