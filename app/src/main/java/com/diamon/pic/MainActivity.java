@@ -1691,14 +1691,20 @@ public class MainActivity extends AppCompatActivity
         addRow.accept(getString(R.string.cp_warn_label), isTrue.test(allData.get("cp_warn")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: FUSES ---
-        Map<String, ?> fuses = (Map<String, ?>) allData.get("fuses");
+        Object fusesObj = allData.get("fuses");
+        Map<?, ?> fuses = fusesObj instanceof Map ? (Map<?, ?>) fusesObj : null;
         if (fuses != null && !fuses.isEmpty()) {
             addHeader.accept(getString(R.string.seccion_fuses));
-            for (Map.Entry<String, ?> entry : fuses.entrySet()) {
-                String fuseName = entry.getKey();
+            for (Map.Entry<?, ?> entry : fuses.entrySet()) {
+                String fuseName = String.valueOf(entry.getKey());
                 String options = getString(R.string.not_available);
                 if (entry.getValue() instanceof List) {
-                    options = String.join(" | ", (List<String>) entry.getValue());
+                    List<?> list = (List<?>) entry.getValue();
+                    List<String> stringList = new ArrayList<>();
+                    for (Object item : list) {
+                        stringList.add(String.valueOf(item));
+                    }
+                    options = String.join(" | ", stringList);
                 }
                 addRow.accept(fuseName, options);
             }
