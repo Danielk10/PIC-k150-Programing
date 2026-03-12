@@ -184,13 +184,37 @@ public class DatosPicProcesados {
                 swapBytes = defaultSwap; // Valor por defecto si hay corrupción
             }
 
-            // Ajustar registros según endianness detectado
+            // Fallback para HEX de configuración (sin ROM): en 12/14-bit podemos
+            // inferir endianness desde la palabra de fuse usando su máscara blank.
+            // Esto evita interpretar fuses invertidos cuando se programa "solo config".
+            if (coreBits != 16 && romRecords.isEmpty() && !fuseRecords.isEmpty()) {
+                try {
+                    Boolean swapDesdeFuses = detectarEndiannessDesdeFuses(
+                            fuseRecords,
+                            chipPIC.getFuseBlank());
+                    if (swapDesdeFuses != null) {
+                        swapBytes = swapDesdeFuses;
+                    }
+                } catch (Exception ignored) {
+                    // Mantener valor previo si no se puede inferir de forma confiable.
+                }
+            }
+
+            // Ajustar registros según endianness detectado.
+            // Nota importante:
+            // - ID/Fuses deben intercambiarse para todos los núcleos cuando hay swap,
+            //   tal como hace la referencia picpro. Si no se hace en 12/14-bit,
+            //   los fuses se interpretan invertidos y pueden activarse bits de
+            //   protección no deseados (p.ej. afectar lectura de EEPROM).
+            // - EEPROM en 12/14-bit se trata más abajo con byte-picking específico,
+            //   por eso aquí solo se swabbea EEPROM para 16-bit.
             if (swapBytes) {
                 romRecords = HexFileUtils.swabRecords(romRecords);
+                idRecords = HexFileUtils.swabRecords(idRecords);
+                fuseRecords = HexFileUtils.swabRecords(fuseRecords);
+
                 if (coreBits == 16) {
                     eepromRecords = HexFileUtils.swabRecords(eepromRecords);
-                    idRecords = HexFileUtils.swabRecords(idRecords);
-                    fuseRecords = HexFileUtils.swabRecords(fuseRecords);
                 }
             }
 
@@ -292,6 +316,41 @@ public class DatosPicProcesados {
         }
 
         return swapBytes;
+    }
+
+    /**
+     * Intenta detectar endianness para HEX sin ROM usando la(s) palabra(s) fuse.
+     * Devuelve null si no es posible decidir de forma inequívoca.
+     */
+    private Boolean detectarEndiannessDesdeFuses(
+            List<HexFileUtils.Pair<Integer, String>> fuseRecords,
+            int[] fuseBlankValues) {
+
+        if (fuseBlankValues == null || fuseBlankValues.length == 0) {
+            return null;
+        }
+
+        int fuseMask = fuseBlankValues[0] & 0xFFFF;
+
+        for (HexFileUtils.Pair<Integer, String> record : fuseRecords) {
+            String data = record.second;
+            for (int x = 0; x + 4 <= data.length(); x += 4) {
+                int beWord = Integer.parseInt(data.substring(x, x + 4), 16) & 0xFFFF;
+                int leWord = Integer.reverseBytes(beWord) >>> 16;
+
+                boolean beOk = (beWord & fuseMask) == beWord;
+                boolean leOk = (leWord & fuseMask) == leWord;
+
+                if (beOk && !leOk) {
+                    return false;
+                }
+                if (leOk && !beOk) {
+                    return true;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
