@@ -141,6 +141,15 @@ public class ProtocoloP18A extends Protocolo {
         StringBuilder respuesta = new StringBuilder();
 
         try {
+            // BUG FIX: Limpiar el buffer antes de inicializar variables para el chip
+            // recién seleccionado. Si el chip anterior dejó bytes sin leer (p.ej. por
+            // selección incorrecta), esos residuos corromperían el handshake del cmd 3.
+            try {
+                clearBuffer();
+            } catch (UsbCommunicationException ignored) {
+                // Si no se puede limpiar, continuar igual; el peor caso es un fallo
+                // detectable en el handshake a continuación.
+            }
 
             // Enviar comando 3
             enviarComando("3");
@@ -747,7 +756,12 @@ public class ProtocoloP18A extends Protocolo {
         } catch (Exception e) {
             return "Error al leer Memoria ROM: " + e.getMessage();
         } finally {
-            // Asegurar limpieza de estado incluso si hay error
+            // BUG FIX: Limpiar el buffer antes de enviar comandos de limpieza.
+            // Si se seleccionó el chip incorrecto, romSize es erróneo y el bucle
+            // termina dejando bytes ROM residuales en el buffer. Sin clearBuffer(),
+            // desactivarVoltajesDeProgramacion() y researComandos() leerían esos
+            // bytes en lugar de la respuesta 'Q' esperada, rompiendo el protocolo.
+            try { clearBuffer(); } catch (Exception ignored) {}
             desactivarVoltajesDeProgramacion();
             researComandos();
         }
@@ -785,6 +799,9 @@ public class ProtocoloP18A extends Protocolo {
         } catch (Exception e) {
             return "Error al leer Memoria EEPROM: " + e.getMessage();
         } finally {
+            // BUG FIX: Igual que en leerMemoriaROMDelPic — limpiar residuos antes
+            // de los comandos de desactivación para evitar corrupción del protocolo.
+            try { clearBuffer(); } catch (Exception ignored) {}
             desactivarVoltajesDeProgramacion();
             researComandos();
         }
