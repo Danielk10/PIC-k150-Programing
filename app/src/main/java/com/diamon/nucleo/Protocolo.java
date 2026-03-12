@@ -61,9 +61,13 @@ public abstract class Protocolo {
     /**
      * Limpia el buffer de recepción USB consumiendo todos los datos pendientes.
      *
+     * <p>Cambiado de private a protected para permitir que las subclases lo invoquen
+     * antes de inicializar variables de programación tras un cambio de chip,
+     * evitando que bytes residuales corrompan el siguiente comando.
+     *
      * @throws UsbCommunicationException Si ocurre un error durante la limpieza
      */
-    private void clearBuffer() throws UsbCommunicationException {
+    protected void clearBuffer() throws UsbCommunicationException {
         if (usbSerialPort == null) {
             throw new UsbCommunicationException("Puerto USB no inicializado");
         }
