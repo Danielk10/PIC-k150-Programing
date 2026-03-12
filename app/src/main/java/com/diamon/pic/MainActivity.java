@@ -1017,10 +1017,11 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        // Determinar qué regiones tienen datos
-        boolean hasRom = datosPicProcesados.tieneRomData();
-        boolean hasEeprom = datosPicProcesados.tieneEepromData();
-        boolean hasConfig = datosPicProcesados.tieneConfigData();
+        // Determinar qué regiones están presentes en el HEX cargado
+        // (aunque su contenido sea blank) para mostrar opciones parciales coherentes.
+        boolean hasRom = datosPicProcesados.tieneRomEnHex() || datosPicProcesados.tieneRomData();
+        boolean hasEeprom = datosPicProcesados.tieneEepromEnHex() || datosPicProcesados.tieneEepromData();
+        boolean hasConfig = datosPicProcesados.tieneConfigEnHex() || datosPicProcesados.tieneConfigData();
 
         java.util.List<String> options = new java.util.ArrayList<>();
 
@@ -1427,7 +1428,7 @@ public class MainActivity extends AppCompatActivity
                         hexExportManager.exportBinStringAsFile(lastReadRomData, chipName + "_ROM");
 
                     } else if (selected.equals(getString(R.string.exportar_eeprom_hex))) {
-                        int eepromAddr = (coreBits == 16) ? 0xF00000 : 0x4200;
+                        int eepromAddr = (coreBits == 16) ? 0xF000 : 0x4200;
                         byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
                         if (eepromBytes != null && eepromBytes.length > 0) {
                             eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
@@ -1437,33 +1438,14 @@ public class MainActivity extends AppCompatActivity
                         hexExportManager.exportBinStringAsFile(lastReadEepromData, chipName + "_EEPROM");
 
                     } else if (selected.equals(getString(R.string.exportar_config_hex))) {
-                        // Separar datos K150 en User ID y Fuses con direcciones correctas
                         byte[] rawConfig = stringHexToByteArray(lastReadConfigData);
-                        if (rawConfig != null && rawConfig.length >= 12) {
-                            int fuseCount = 1;
-                            if (currentChip != null) {
-                                try {
-                                    fuseCount = currentChip.getFuseBlank().length;
-                                } catch (Exception e) { /* usar 1 por defecto */ }
-                            }
-
-                            // User ID: bytes 0-7 del response K150
-                            int idLen = (coreBits == 16) ? 8 : 8;
-                            byte[] idBytes = Arrays.copyOfRange(rawConfig, 0, Math.min(idLen, rawConfig.length));
-                            idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
-
-                            // Fuses: a partir del byte 10 del response K150
-                            int fuseByteLen = fuseCount * 2;
-                            int fuseStart = 10;
-                            byte[] fuseBytes = Arrays.copyOfRange(rawConfig, fuseStart,
-                                    Math.min(fuseStart + fuseByteLen, rawConfig.length));
-                            fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
-
-                            int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
-                            int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
-
+                        ConfigSplitData configSplitData = splitRawConfigForHex(rawConfig, coreBits);
+                        if (configSplitData != null) {
                             hexExportManager.exportConfigAsHexSplit(
-                                    idBytes, idAddr, fuseBytes, fuseAddr,
+                                    configSplitData.idBytes,
+                                    configSplitData.idAddress,
+                                    configSplitData.fuseBytes,
+                                    configSplitData.fuseAddress,
                                     chipName + "_CONFIG");
                         }
                     } else if (selected.equals(getString(R.string.exportar_config_bin))) {
@@ -1477,36 +1459,19 @@ public class MainActivity extends AppCompatActivity
                         byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
                         byte[] rawConfig = stringHexToByteArray(lastReadConfigData);
 
-                        int eepromAddr = (coreBits == 16) ? 0xF00000 : 0x4200;
+                        int eepromAddr = (coreBits == 16) ? 0xF000 : 0x4200;
 
                         romBytes = HexExportManager.formatForHexExport(romBytes, coreBits, false);
                         eepromBytes = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
 
-                        if (rawConfig != null && rawConfig.length >= 12) {
-                            int fuseCount = 1;
-                            if (currentChip != null) {
-                                try {
-                                    fuseCount = currentChip.getFuseBlank().length;
-                                } catch (Exception e) { /* usar 1 por defecto */ }
-                            }
-
-                            // User ID: bytes 0-7
-                            byte[] idBytes = Arrays.copyOfRange(rawConfig, 0, Math.min(8, rawConfig.length));
-                            idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
-
-                            // Fuses: a partir del byte 10
-                            int fuseByteLen = fuseCount * 2;
-                            int fuseStart = 10;
-                            byte[] fuseBytes = Arrays.copyOfRange(rawConfig, fuseStart,
-                                    Math.min(fuseStart + fuseByteLen, rawConfig.length));
-                            fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
-
-                            int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
-                            int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
-
+                        ConfigSplitData configSplitData = splitRawConfigForHex(rawConfig, coreBits);
+                        if (configSplitData != null) {
                             hexExportManager.exportFullDumpAsHexWithSplitConfig(
                                     romBytes, eepromBytes,
-                                    idBytes, idAddr, fuseBytes, fuseAddr,
+                                    configSplitData.idBytes,
+                                    configSplitData.idAddress,
+                                    configSplitData.fuseBytes,
+                                    configSplitData.fuseAddress,
                                     eepromAddr, chipName + "_FULL");
                         } else {
                             // Fallback: sin datos de config, exportar solo ROM y EEPROM
@@ -1533,6 +1498,54 @@ public class MainActivity extends AppCompatActivity
             return data;
         } catch (Exception e) {
             return new byte[0];
+        }
+    }
+
+    private ConfigSplitData splitRawConfigForHex(byte[] rawConfig, int coreBits) {
+        if (rawConfig == null || rawConfig.length == 0) {
+            return null;
+        }
+
+        int idLen = (coreBits == 16) ? 8 : 4;
+        int idStart = 2; // read_config devuelve primero chip_id (2 bytes).
+        int fuseCount = 1;
+        if (currentChip != null) {
+            try {
+                fuseCount = Math.max(1, currentChip.getFuseBlank().length);
+            } catch (Exception ignored) {
+            }
+        }
+
+        int fuseByteLen = fuseCount * 2;
+        int fuseStart = 10; // 2 bytes chip_id + 8 bytes user ID.
+        if (rawConfig.length < (idStart + idLen) || rawConfig.length <= fuseStart) {
+            return null;
+        }
+
+        byte[] idBytes = Arrays.copyOfRange(rawConfig, idStart, Math.min(idStart + idLen, rawConfig.length));
+        byte[] fuseBytes = Arrays.copyOfRange(rawConfig, fuseStart,
+                Math.min(fuseStart + fuseByteLen, rawConfig.length));
+
+        idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
+        fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
+
+        int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
+        int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
+
+        return new ConfigSplitData(idBytes, idAddr, fuseBytes, fuseAddr);
+    }
+
+    private static class ConfigSplitData {
+        final byte[] idBytes;
+        final int idAddress;
+        final byte[] fuseBytes;
+        final int fuseAddress;
+
+        ConfigSplitData(byte[] idBytes, int idAddress, byte[] fuseBytes, int fuseAddress) {
+            this.idBytes = idBytes;
+            this.idAddress = idAddress;
+            this.fuseBytes = fuseBytes;
+            this.fuseAddress = fuseAddress;
         }
     }
 
@@ -1574,78 +1587,80 @@ public class MainActivity extends AppCompatActivity
         float textSizeHeader = 16f;
 
         Map<String, Object> allData = currentChip.toDict();
-        
-        // Función auxiliar para añadir filas
-        java.util.function.BiConsumer<String, String> addRow = (labelStr, valueStr) -> {
-            if (valueStr == null || valueStr.isEmpty() || valueStr.equalsIgnoreCase("null")) {
-                valueStr = getString(R.string.not_available);
+
+        // Helper local compatible con minSdk 23 (sin java.util.function.*)
+        class ChipInfoTableHelper {
+            void addRow(String labelStr, String valueStr) {
+                if (valueStr == null || valueStr.isEmpty() || valueStr.equalsIgnoreCase("null")) {
+                    valueStr = getString(R.string.not_available);
+                }
+
+                TableRow row = new TableRow(MainActivity.this);
+                row.setPadding(0, 4, 0, 4);
+                row.setGravity(Gravity.CENTER_VERTICAL);
+
+                TextView label = new TextView(MainActivity.this);
+                label.setText(labelStr);
+                label.setTextColor(textColorLabel);
+                label.setTextSize(textSize);
+                label.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
+                label.setTypeface(null, Typeface.BOLD);
+
+                TextView value = new TextView(MainActivity.this);
+                value.setText(valueStr);
+                value.setTextColor(textColorValue);
+                value.setTextSize(textSize);
+                value.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
+                value.setSingleLine(false);
+                value.setGravity(Gravity.START);
+
+                row.addView(label);
+                row.addView(value);
+
+                View divider = new View(MainActivity.this);
+                divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 1));
+                divider.setBackgroundColor(Color.parseColor("#333333"));
+
+                tableLayout.addView(row);
+                tableLayout.addView(divider);
             }
-            
-            TableRow row = new TableRow(this);
-            row.setPadding(0, 4, 0, 4);
-            row.setGravity(Gravity.CENTER_VERTICAL);
 
-            TextView label = new TextView(this);
-            label.setText(labelStr);
-            label.setTextColor(textColorLabel);
-            label.setTextSize(textSize);
-            label.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
-            label.setTypeface(null, Typeface.BOLD);
+            void addHeader(String title) {
+                TextView header = new TextView(MainActivity.this);
+                header.setText(title);
+                header.setTextColor(textColorHeader);
+                header.setTextSize(textSizeHeader);
+                header.setTypeface(null, Typeface.BOLD);
+                header.setPadding(paddingSide, 50, paddingSide, 15);
+                tableLayout.addView(header);
 
-            TextView value = new TextView(this);
-            value.setText(valueStr);
-            value.setTextColor(textColorValue);
-            value.setTextSize(textSize);
-            value.setPadding(paddingSide, paddingTopBottom, paddingSide, paddingTopBottom);
-            // Si el valor es largo, permitimos que ocupe espacio, pero no wrap para forzar horizontal scroll si necesario
-            value.setSingleLine(false); 
-            value.setGravity(Gravity.START);
-
-            row.addView(label);
-            row.addView(value);
-
-            View divider = new View(this);
-            divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 1));
-            divider.setBackgroundColor(Color.parseColor("#333333"));
-
-            tableLayout.addView(row);
-            tableLayout.addView(divider);
-        };
-
-        // Función auxiliar para añadir encabezados de sección
-        java.util.function.Consumer<String> addHeader = (title) -> {
-            TextView header = new TextView(this);
-            header.setText(title);
-            header.setTextColor(textColorHeader);
-            header.setTextSize(textSizeHeader);
-            header.setTypeface(null, Typeface.BOLD);
-            header.setPadding(paddingSide, 50, paddingSide, 15);
-            tableLayout.addView(header);
-            
-            View divider = new View(this);
-            divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 3));
-            divider.setBackgroundColor(textColorHeader);
-            tableLayout.addView(divider);
-        };
-
-        // Función auxiliar para convertir valores de la DB (Y/N/1/0/true/false) a booleano real
-        java.util.function.Predicate<Object> isTrue = (val) -> {
-            if (val == null) return false;
-            String s = String.valueOf(val).trim().toLowerCase();
-            return s.equals("y") || s.equals("1") || s.equals("true");
-        };
-
-        // Función auxiliar para formatear FUSEblank (String[]) a texto legible
-        java.util.function.Function<Object, String> formatFuseBlank = (val) -> {
-            if (val instanceof String[]) {
-                return String.join(" ", (String[]) val);
+                View divider = new View(MainActivity.this);
+                divider.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 3));
+                divider.setBackgroundColor(textColorHeader);
+                tableLayout.addView(divider);
             }
-            return String.valueOf(val);
-        };
+
+            boolean isTrue(Object val) {
+                if (val == null) {
+                    return false;
+                }
+                String s = String.valueOf(val).trim().toLowerCase(java.util.Locale.ROOT);
+                return s.equals("y") || s.equals("1") || s.equals("true");
+            }
+
+            String formatFuseBlank(Object val) {
+                if (val instanceof String[]) {
+                    return String.join(" ", (String[]) val);
+                }
+                return String.valueOf(val);
+            }
+        }
+
+        ChipInfoTableHelper helper = new ChipInfoTableHelper();
 
         // --- SECCIÓN: IDENTIFICACIÓN ---
-        addHeader.accept(getString(R.string.seccion_identificacion));
-        addRow.accept(getString(R.string.modelo) + ":", String.valueOf(allData.get("chip_name")));
+        helper.addHeader(getString(R.string.seccion_identificacion));
+        helper.addRow(getString(R.string.modelo) + ":", String.valueOf(allData.get("chip_name")));
         Object chipId = allData.get("chip_id");
         String hexId = getString(R.string.not_available);
         if (chipId != null) {
@@ -1656,45 +1671,45 @@ public class MainActivity extends AppCompatActivity
                 hexId = String.valueOf(chipId);
             }
         }
-        addRow.accept(getString(R.string.chip_id_label), hexId);
-        addRow.accept(getString(R.string.include_file_label), String.valueOf(allData.get("include")));
+        helper.addRow(getString(R.string.chip_id_label), hexId);
+        helper.addRow(getString(R.string.include_file_label), String.valueOf(allData.get("include")));
 
         // --- SECCIÓN: MEMORIA ---
-        addHeader.accept(getString(R.string.seccion_memoria));
+        helper.addHeader(getString(R.string.seccion_memoria));
         try {
             int words = currentChip.getTamanoROM();
-            addRow.accept(getString(R.string.rom_capacity_label), getString(R.string.rom_words_bytes, words, words * 2));
-            addRow.accept(getString(R.string.eeprom_capacity_label), currentChip.isTamanoValidoDeEEPROM() ? 
+            helper.addRow(getString(R.string.rom_capacity_label), getString(R.string.rom_words_bytes, words, words * 2));
+            helper.addRow(getString(R.string.eeprom_capacity_label), currentChip.isTamanoValidoDeEEPROM() ? 
                     getString(R.string.eeprom_bytes, currentChip.getTamanoEEPROM()) : getString(R.string.not_available));
-            addRow.accept(getString(R.string.fuse_blank_value_label), formatFuseBlank.apply(allData.get("fuse_blank")));
+            helper.addRow(getString(R.string.fuse_blank_value_label), helper.formatFuseBlank(allData.get("fuse_blank")));
         } catch (Exception e) {
-            addRow.accept(getString(R.string.memory_error_label), e.getMessage());
+            helper.addRow(getString(R.string.memory_error_label), e.getMessage());
         }
-        addRow.accept(getString(R.string.flash_technology_label), isTrue.test(allData.get("flash_chip")) ? getString(R.string.yes) : getString(R.string.no_label));
+        helper.addRow(getString(R.string.flash_technology_label), helper.isTrue(allData.get("flash_chip")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: HARDWARE ---
-        addHeader.accept(getString(R.string.seccion_hardware));
-        addRow.accept(getString(R.string.core_architecture_label), getString(R.string.core_bits_val, (int)allData.get("core_bits")));
-        addRow.accept(getString(R.string.core_type_id_label), String.valueOf(allData.get("core_type")));
-        addRow.accept(getString(R.string.pines_totales_label), getString(R.string.pines_val, currentChip.getNumeroDePines()));
-        addRow.accept(getString(R.string.pin_1_location_label), String.valueOf(allData.get("pin1_location")));
-        addRow.accept(getString(R.string.socket_image_id_label), String.valueOf(allData.get("socket_image")));
-        addRow.accept(getString(R.string.icsp_required_label), isTrue.test(allData.get("icsp_only")) ? getString(R.string.yes) : getString(R.string.no_label));
+        helper.addHeader(getString(R.string.seccion_hardware));
+        helper.addRow(getString(R.string.core_architecture_label), getString(R.string.core_bits_val, (int)allData.get("core_bits")));
+        helper.addRow(getString(R.string.core_type_id_label), String.valueOf(allData.get("core_type")));
+        helper.addRow(getString(R.string.pines_totales_label), getString(R.string.pines_val, currentChip.getNumeroDePines()));
+        helper.addRow(getString(R.string.pin_1_location_label), String.valueOf(allData.get("pin1_location")));
+        helper.addRow(getString(R.string.socket_image_id_label), String.valueOf(allData.get("socket_image")));
+        helper.addRow(getString(R.string.icsp_required_label), helper.isTrue(allData.get("icsp_only")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: PROGRAMACIÓN ---
-        addHeader.accept(getString(R.string.seccion_programacion));
-        addRow.accept(getString(R.string.erase_algorithm_label), String.valueOf(allData.get("erase_mode")));
-        addRow.accept(getString(R.string.power_sequence_label), String.valueOf(allData.get("power_sequence")));
-        addRow.accept(getString(R.string.prog_delay_label), String.valueOf(allData.get("program_delay")));
-        addRow.accept(getString(R.string.prog_retries_label), String.valueOf(allData.get("program_tries")));
-        addRow.accept(getString(R.string.over_prog_factor_label), String.valueOf(allData.get("over_program")));
-        addRow.accept(getString(R.string.cp_warn_label), isTrue.test(allData.get("cp_warn")) ? getString(R.string.yes) : getString(R.string.no_label));
+        helper.addHeader(getString(R.string.seccion_programacion));
+        helper.addRow(getString(R.string.erase_algorithm_label), String.valueOf(allData.get("erase_mode")));
+        helper.addRow(getString(R.string.power_sequence_label), String.valueOf(allData.get("power_sequence")));
+        helper.addRow(getString(R.string.prog_delay_label), String.valueOf(allData.get("program_delay")));
+        helper.addRow(getString(R.string.prog_retries_label), String.valueOf(allData.get("program_tries")));
+        helper.addRow(getString(R.string.over_prog_factor_label), String.valueOf(allData.get("over_program")));
+        helper.addRow(getString(R.string.cp_warn_label), helper.isTrue(allData.get("cp_warn")) ? getString(R.string.yes) : getString(R.string.no_label));
 
         // --- SECCIÓN: FUSES ---
         Object fusesObj = allData.get("fuses");
         Map<?, ?> fuses = fusesObj instanceof Map ? (Map<?, ?>) fusesObj : null;
         if (fuses != null && !fuses.isEmpty()) {
-            addHeader.accept(getString(R.string.seccion_fuses));
+            helper.addHeader(getString(R.string.seccion_fuses));
             for (Map.Entry<?, ?> entry : fuses.entrySet()) {
                 String fuseName = String.valueOf(entry.getKey());
                 String options = getString(R.string.not_available);
@@ -1706,7 +1721,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     options = String.join(" | ", stringList);
                 }
-                addRow.accept(fuseName, options);
+                helper.addRow(fuseName, options);
             }
         }
 

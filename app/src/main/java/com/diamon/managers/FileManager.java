@@ -59,7 +59,12 @@ public class FileManager {
             return;
         }
 
-        String[] mimeTypes = {"application/octet-stream", "application/x-binary"};
+        String[] mimeTypes = {
+                "application/octet-stream",
+                "application/x-binary",
+                "text/plain",
+                "application/hex"
+        };
 
         filePickerLauncher.launch(mimeTypes);
     }
@@ -80,11 +85,19 @@ public class FileManager {
             return;
         }
 
-        hexFileContent = readHexFile(uri);
+        hexFileContent = readFileContent(uri, lowerFileName.endsWith(".bin"));
     }
 
-    /** Lee el archivo seleccionado hasta encontrar comentario o EOF. */
-    private String readHexFile(Uri uri) {
+    /** Lee archivo HEX o BIN y lo retorna en formato Intel HEX textual. */
+    private String readFileContent(Uri uri, boolean isBinary) {
+        if (isBinary) {
+            return readBinaryAsIntelHex(uri);
+        }
+        return readHexText(uri);
+    }
+
+    /** Lee archivo .hex de texto hasta comentario ';' o EOF. */
+    private String readHexText(Uri uri) {
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
 
@@ -127,6 +140,90 @@ public class FileManager {
             notifyError(context.getString(R.string.error_inesperado_leyendo_el_ar));
             return "";
         }
+    }
+
+    /** Lee archivo .bin y lo convierte a Intel HEX de forma segura. */
+    private String readBinaryAsIntelHex(Uri uri) {
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            if (inputStream == null) {
+                notifyError(context.getString(R.string.error_abriendo_el_archivo_sele));
+                return "";
+            }
+
+            byte[] data = readAllBytes(inputStream);
+            inputStream.close();
+
+            if (data.length == 0) {
+                notifyError(context.getString(R.string.el_archivo_seleccionado_esta_v));
+                return "";
+            }
+
+            String content = binaryToIntelHex(data);
+            String fileName = getFileName(uri);
+            notifyFileLoaded(content, fileName);
+            return content;
+
+        } catch (IOException e) {
+            notifyError(context.getString(R.string.error_leyendo_el_archivo) + ": " + e.getMessage());
+            return "";
+        } catch (Exception e) {
+            notifyError(context.getString(R.string.error_inesperado_leyendo_el_ar));
+            return "";
+        }
+    }
+
+    private byte[] readAllBytes(InputStream inputStream) throws IOException {
+        java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int read;
+        while ((read = inputStream.read(buffer)) != -1) {
+            baos.write(buffer, 0, read);
+        }
+        return baos.toByteArray();
+    }
+
+    private String binaryToIntelHex(byte[] data) {
+        StringBuilder out = new StringBuilder();
+        final int recordSize = 16;
+        int currentUpper = -1;
+
+        for (int address = 0; address < data.length; address += recordSize) {
+            int upper = (address >>> 16) & 0xFFFF;
+            if (upper != currentUpper) {
+                currentUpper = upper;
+                out.append(buildExtendedLinearAddressRecord(upper)).append('\n');
+            }
+
+            int count = Math.min(recordSize, data.length - address);
+            int lowAddress = address & 0xFFFF;
+            int checksum = count + ((lowAddress >> 8) & 0xFF) + (lowAddress & 0xFF);
+
+            StringBuilder line = new StringBuilder(11 + (count * 2));
+            line.append(':');
+            line.append(String.format("%02X%04X00", count, lowAddress));
+
+            for (int i = 0; i < count; i++) {
+                int b = data[address + i] & 0xFF;
+                line.append(String.format("%02X", b));
+                checksum += b;
+            }
+
+            int finalChecksum = ((~checksum + 1) & 0xFF);
+            line.append(String.format("%02X", finalChecksum));
+            out.append(line).append('\n');
+        }
+
+        out.append(":00000001FF\n");
+        return out.toString();
+    }
+
+    private String buildExtendedLinearAddressRecord(int upperAddress) {
+        int high = (upperAddress >> 8) & 0xFF;
+        int low = upperAddress & 0xFF;
+        int checksum = (2 + 0 + 0 + 4 + high + low) & 0xFF;
+        checksum = ((~checksum + 1) & 0xFF);
+        return String.format(":02000004%02X%02X%02X", high, low, checksum);
     }
 
     private String getFileName(Uri uri) {

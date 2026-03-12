@@ -3,6 +3,7 @@ package com.diamon.managers;
 import android.content.Context;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.datos.DatosPicProcesados;
 import com.diamon.protocolo.ProtocoloP18A;
 import com.diamon.pic.R;
 import java.util.ArrayList;
@@ -127,6 +128,24 @@ public class PicProgrammingManager {
         notifyStarted();
 
         try {
+            // Detectar qué regiones están presentes en el firmware cargado para soportar
+            // "Programar todo" también con HEX parciales.
+            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+            datosPicProcesados.iniciarProcesamientoDeDatos();
+
+            boolean hasRom = datosPicProcesados.tieneRomEnHex() || datosPicProcesados.tieneRomData();
+            boolean hasEeprom = chipPIC.isTamanoValidoDeEEPROM()
+                    && (datosPicProcesados.tieneEepromEnHex() || datosPicProcesados.tieneEepromData());
+            boolean usuarioConfiguroFuses = fusesUsuario != null && !fusesUsuario.isEmpty();
+            boolean usuarioConfiguroID = IDPic != null && IDPic.length > 1 && !(IDPic.length == 1 && IDPic[0] == 0);
+            boolean hasConfig = datosPicProcesados.tieneConfigEnHex() || datosPicProcesados.tieneConfigData()
+                    || usuarioConfiguroFuses || usuarioConfiguroID;
+
+            if (!hasRom && !hasEeprom && !hasConfig) {
+                notifyError(context.getString(R.string.error_programando_pic) + ": HEX sin regiones programables");
+                return false;
+            }
+
             // Paso 1: Borrar memorias
             notifyProgress(context.getString(R.string.borrando_memorias), 10);
             boolean eraseOk = protocolo.borrarMemoriasDelPic();
@@ -135,15 +154,17 @@ public class PicProgrammingManager {
                 return false;
             }
 
-            // Paso 2: Programar ROM
-            notifyProgress(context.getString(R.string.programando_memoria_rom), 30);
-            if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
-                notifyError(context.getString(R.string.error_programando_rom));
-                return false;
+            // Paso 2: Programar ROM si existe en HEX
+            if (hasRom) {
+                notifyProgress(context.getString(R.string.programando_memoria_rom), 30);
+                if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
+                    notifyError(context.getString(R.string.error_programando_rom));
+                    return false;
+                }
             }
 
-            // Paso 3: Programar EEPROM si es necesario
-            if (chipPIC.isTamanoValidoDeEEPROM()) {
+            // Paso 3: Programar EEPROM si existe en HEX
+            if (hasEeprom) {
                 notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
                 if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, firmware)) {
                     notifyError(context.getString(R.string.error_programando_eeprom));
@@ -151,15 +172,17 @@ public class PicProgrammingManager {
                 }
             }
 
-            // Paso 4: Programar Fuses
-            notifyProgress(context.getString(R.string.programando_fuses_id), 70);
-            if (!protocolo.programarFusesIDDelPic(chipPIC, firmware, IDPic, fusesUsuario)) {
-                notifyError(context.getString(R.string.error_programando_fuses));
-                return false;
+            // Paso 4: Programar Fuses/ID si existen en HEX o por usuario
+            if (hasConfig) {
+                notifyProgress(context.getString(R.string.programando_fuses_id), 70);
+                if (!protocolo.programarFusesIDDelPic(chipPIC, firmware, IDPic, fusesUsuario)) {
+                    notifyError(context.getString(R.string.error_programando_fuses));
+                    return false;
+                }
             }
 
-            // Paso 5: Programar Fuses adicionales para PIC18F
-            if (chipPIC.getTipoDeNucleoBit() == 16) {
+            // Paso 5: Programar Fuses adicionales para PIC18F (solo si hubo config)
+            if (hasConfig && chipPIC.getTipoDeNucleoBit() == 16) {
                 notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
                 if (!protocolo.programarFusesDePics18F()) {
                     notifyError(context.getString(R.string.error_programando_fuses_18f));
@@ -194,14 +217,8 @@ public class PicProgrammingManager {
         try {
             notifyStarted();
 
-            // Paso 1: Borrar chip (siempre requerido para escribir ROM)
-            notifyProgress(context.getString(R.string.borrando_memorias), 10);
-            if (!protocolo.borrarMemoriasDelPic()) {
-                notifyError(context.getString(R.string.error_borrando_memoria));
-                return false;
-            }
-
-            // Paso 2: Programar ROM
+            // Para modo "solo ROM" NO se fuerza chip erase global para no perder
+            // EEPROM/Fuses/ID existentes. Se intenta escritura directa de ROM.
             notifyProgress(context.getString(R.string.programando_memoria_rom), 50);
             if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
                 notifyError(context.getString(R.string.error_programando_rom));
@@ -427,9 +444,9 @@ public class PicProgrammingManager {
     /**
      * Verifica si el chip está realmente en blanco.
      *
-     * Estrategia actual:
-     * 1) Siempre realiza lectura comparativa independiente (ROM/EEPROM/FUSEblank).
-     * 2) Ejecuta blank-check nativo solo como diagnóstico, sin afectar el veredicto.
+     * Estrategia:
+     * 1) Intenta blank-check nativo del programador (rápido).
+     * 2) Si falla/no confiable, usa lectura comparativa independiente como fallback.
      *
      * Nota: este flujo no persiste ni mezcla datos con la lectura de memoria para UI.
      */
@@ -446,32 +463,45 @@ public class PicProgrammingManager {
             return new ResultadoVerificacionBorrado(false, false, true, "Sin chip", error);
         }
 
-        // Veredicto principal: lectura comparativa independiente.
+        // Siempre calculamos lectura comparativa (fallback seguro y diagnóstico).
         boolean romBlankLectura = verificarRomVaciaPorLectura(chipPIC);
         boolean eepromBlankLectura = true;
         if (chipPIC.isTamanoValidoDeEEPROM()) {
             eepromBlankLectura = verificarEepromVaciaPorLectura(chipPIC);
         }
         boolean configBlankLectura = verificarConfiguracionVaciaPorLectura(chipPIC);
-        boolean romFinal = romBlankLectura && configBlankLectura;
 
-        // Diagnóstico opcional del blank-check nativo (no bloqueante).
-        String diagnosticoNativo = "nativo no ejecutado";
+        // Intento nativo y resolución con fallback por comparación.
         try {
             boolean romBlankNativo = protocolo.verificarSiEstaBarradaLaMemoriaROMDelDelPic(chipPIC);
             boolean eepromBlankNativo = true;
             if (chipPIC.isTamanoValidoDeEEPROM()) {
                 eepromBlankNativo = protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
             }
-            diagnosticoNativo = (romBlankNativo && eepromBlankNativo)
-                    ? "nativo=blanco"
-                    : "nativo=con_datos";
-        } catch (Exception e) {
-            diagnosticoNativo = "nativo_error=" + e.getMessage();
-        }
 
-        String metodo = "Lectura comparativa aislada (ROM/EEPROM/FUSEblank), " + diagnosticoNativo;
-        return new ResultadoVerificacionBorrado(romFinal, eepromBlankLectura, true, metodo, null);
+            // ROM nativo se complementa con verificación comparativa de configuración.
+            boolean romFinalNativo = romBlankNativo && configBlankLectura;
+
+            // Si nativo marca "con datos" pero la lectura comparativa marca "en blanco",
+            // priorizamos comparación para evitar falsos negativos en firmwares inestables.
+            boolean romFinalLectura = romBlankLectura && configBlankLectura;
+            boolean eepromFinalLectura = eepromBlankLectura;
+            boolean chipBlankNativo = romFinalNativo && eepromBlankNativo;
+            boolean chipBlankLectura = romFinalLectura && eepromFinalLectura;
+
+            if (!chipBlankNativo && chipBlankLectura) {
+                String metodo = "Fallback lectura comparativa (nativo inconsistente)";
+                return new ResultadoVerificacionBorrado(
+                        romFinalLectura, eepromFinalLectura, true, metodo, null);
+            }
+
+            String metodo = "Nativo + validación config por comparación";
+            return new ResultadoVerificacionBorrado(romFinalNativo, eepromBlankNativo, false, metodo, null);
+        } catch (Exception e) {
+            boolean romFinal = romBlankLectura && configBlankLectura;
+            String metodo = "Fallback lectura comparativa (ROM/EEPROM/FUSEblank)";
+            return new ResultadoVerificacionBorrado(romFinal, eepromBlankLectura, true, metodo, e.getMessage());
+        }
     }
 
     /** Verifica ROM vacía por lectura comparando palabra blank por núcleo. */

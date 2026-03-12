@@ -64,6 +64,11 @@ public class DatosPicProcesados {
     /** Información del procesamiento para logging */
     private String informacionProcesamiento;
 
+    /** Indican si el HEX fuente trae registros de cada región (aunque sean blank). */
+    private boolean romPresenteEnHex;
+    private boolean eepromPresenteEnHex;
+    private boolean configPresenteEnHex;
+
     /**
      * Constructor para procesamiento de datos PIC.
      *
@@ -104,14 +109,38 @@ public class DatosPicProcesados {
             throws HexProcessingException, ChipConfigurationException {
 
         try {
-            // Definir rangos de memoria según especificación PIC
+            // Definir rangos de memoria según arquitectura del PIC
+            final int coreBits = chipPIC.getTipoDeNucleoBit();
             final int romWordBase = 0x0000;
-            final int configWordBase = 0x4000;
-            final int eepromWordBase = 0x4200;
-            final int romWordEnd = configWordBase;
-            final int configWordEnd = 0x4020;
+            final int romWordEnd = chipPIC.getTamanoROM() * 2;
 
+            final int eepromWordBase = (coreBits == 16) ? 0xF000 : 0x4200;
             final int eepromWordEnd = 0xFFFF;
+
+            final int idWordBase;
+            final int idWordEnd;
+            final int fuseWordBase;
+            final int fuseWordEnd;
+
+            if (coreBits == 16) {
+                idWordBase = 0x200000;
+                idWordEnd = 0x200010;
+                fuseWordBase = 0x300000;
+                fuseWordEnd = 0x30000E;
+            } else if (coreBits == 12) {
+                // Alineado con referencia picpro: para 12-bit el ID se toma desde
+                // el inicio del bloque config (justo después de ROM).
+                idWordBase = romWordEnd;
+                idWordEnd = Math.min(romWordEnd + 8, 0x2000);
+                // El área de fuse de programación sigue usándose en 0x400E para el flujo K150.
+                fuseWordBase = 0x400E;
+                fuseWordEnd = 0x4010;
+            } else {
+                idWordBase = 0x4000;
+                idWordEnd = 0x4008;
+                fuseWordBase = 0x400E;
+                fuseWordEnd = 0x4010;
+            }
 
             // Procesar archivo HEX
             HexProcesado procesado;
@@ -127,42 +156,54 @@ public class DatosPicProcesados {
             // Filtrar registros por rangos de memoria
             List<HexFileUtils.Pair<Integer, String>> romRecords = HexFileUtils.rangeFilterRecords(records, romWordBase,
                     romWordEnd);
-            List<HexFileUtils.Pair<Integer, String>> configRecords = HexFileUtils.rangeFilterRecords(records,
-                    configWordBase, configWordEnd);
             List<HexFileUtils.Pair<Integer, String>> eepromRecords = HexFileUtils.rangeFilterRecords(records,
                     eepromWordBase, eepromWordEnd);
+            List<HexFileUtils.Pair<Integer, String>> idRecords = HexFileUtils.rangeFilterRecords(records,
+                    idWordBase, idWordEnd);
+            List<HexFileUtils.Pair<Integer, String>> fuseRecords = HexFileUtils.rangeFilterRecords(records,
+                    fuseWordBase, fuseWordEnd);
+
+            this.romPresenteEnHex = !romRecords.isEmpty();
+            this.eepromPresenteEnHex = !eepromRecords.isEmpty();
+            this.configPresenteEnHex = !idRecords.isEmpty() || !fuseRecords.isEmpty();
 
             // Generar datos en blanco para cada tipo de memoria
             byte[] romBlank = HexFileUtils.generateRomBlank(
                     chipPIC.getTipoDeNucleoBit(), chipPIC.getTamanoROM());
             byte[] eepromBlank = HexFileUtils.generateEepromBlank(chipPIC.getTamanoEEPROM());
 
-            // Detectar endianness de los datos ROM con manejo robusto
-            // Por defecto, asumimos Little Endian (swapBytes=true) para pics de 12/14 bits.
-            boolean is14bit = (chipPIC.getTipoDeNucleoBit() == 12 || chipPIC.getTipoDeNucleoBit() == 14);
+            // Detectar endianness de los datos ROM con manejo robusto.
+            // Alineado con referencia picpro:
+            // - core 16 bits: little-endian por defecto (swap=true)
+            // - core 12/14 bits: big-endian por defecto (swap=false) si no se puede detectar.
+            boolean defaultSwap = (coreBits == 16);
             boolean swapBytes;
             try {
-                swapBytes = detectarEndianness(romRecords, romBlank, is14bit);
+                swapBytes = detectarEndianness(romRecords, romBlank, defaultSwap);
             } catch (IllegalArgumentException e) {
-                swapBytes = is14bit; // Valor por defecto si hay corrupcion
+                swapBytes = defaultSwap; // Valor por defecto si hay corrupción
             }
 
             // Ajustar registros según endianness detectado
             if (swapBytes) {
                 romRecords = HexFileUtils.swabRecords(romRecords);
-                configRecords = HexFileUtils.swabRecords(configRecords);
+                if (coreBits == 16) {
+                    eepromRecords = HexFileUtils.swabRecords(eepromRecords);
+                    idRecords = HexFileUtils.swabRecords(idRecords);
+                    fuseRecords = HexFileUtils.swabRecords(fuseRecords);
+                }
             }
 
             // Procesar EEPROM con byte picking según endianness
             List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = procesarRegistrosEEPROM(eepromRecords,
-                    eepromWordBase, swapBytes);
+                    eepromWordBase, swapBytes, coreBits);
 
             // Fusionar todos los datos
             this.romData = fusionarDatos(romRecords, romBlank, romWordBase, "ROM");
             this.eepromData = fusionarDatos(adjustedEepromRecords, eepromBlank, eepromWordBase, "EEPROM");
 
             // Procesar ID y fuses
-            procesarIDyFuses(configRecords, configWordBase);
+            procesarIDyFuses(idRecords, idWordBase, fuseRecords, fuseWordBase, coreBits);
 
             // Generar información de resumen
             this.informacionProcesamiento = generarResumenProcesamiento();
@@ -264,7 +305,12 @@ public class DatosPicProcesados {
     private List<HexFileUtils.Pair<Integer, String>> procesarRegistrosEEPROM(
             List<HexFileUtils.Pair<Integer, String>> eepromRecords,
             int eepromWordBase,
-            boolean swapBytes) {
+            boolean swapBytes,
+            int coreBits) {
+
+        if (coreBits == 16) {
+            return eepromRecords;
+        }
 
         // EEPROM está almacenado en el archivo HEX con un byte por palabra
         // Seleccionar el byte apropiado según el endianness detectado
@@ -319,30 +365,30 @@ public class DatosPicProcesados {
      * @param configWordBase Dirección base de configuración
      */
     private void procesarIDyFuses(
-            List<HexFileUtils.Pair<Integer, String>> configRecords, int configWordBase)
+            List<HexFileUtils.Pair<Integer, String>> idRecords,
+            int idWordBase,
+            List<HexFileUtils.Pair<Integer, String>> fuseRecords,
+            int fuseWordBase,
+            int coreBits)
             throws HexProcessingException {
 
         try {
-            // Procesar ID del chip (0x4000-0x4008)
-            List<HexFileUtils.Pair<Integer, String>> configRecordsID = HexFileUtils.rangeFilterRecords(configRecords,
-                    0x4000, 0x4008);
-
             byte[] IDBlanco = HexFileUtils.generarArrayDeDatos((byte) 0x00, 8);
-            this.IDData = HexFileUtils.mergeRecords(context, configRecordsID, IDBlanco, configWordBase);
+            this.IDData = HexFileUtils.mergeRecords(context, idRecords, IDBlanco, idWordBase);
 
             // Ajustar ID para chips de 14 bits
-            if (chipPIC.getTipoDeNucleoBit() != 16) {
+            if (coreBits != 16) {
+                // En 12/14-bit, User ID útil está en el byte alto de cada palabra de 16 bits
+                // (índices impares), alineado con referencia picpro (bytes 1,3,5,7).
                 byte[] IDTemporal = new byte[IDData.length / 2];
-                ByteUtils.copiarBytes(context, IDData, 0, IDTemporal, 0, IDTemporal.length);
+                for (int i = 0, j = 1; i < IDTemporal.length && j < IDData.length; i++, j += 2) {
+                    IDTemporal[i] = IDData[j];
+                }
                 this.IDData = IDTemporal;
             }
 
-            // Procesar fuses (0x400E-0x4010)
-            List<HexFileUtils.Pair<Integer, String>> configRecordsFuses = HexFileUtils.rangeFilterRecords(configRecords,
-                    0x400E, 0x4010);
-
             byte[] fusesBytes = HexFileUtils.encodeToBytes(chipPIC.getFuseBlank());
-            this.fuseData = HexFileUtils.mergeRecords(context, configRecordsFuses, fusesBytes, 0x400E);
+            this.fuseData = HexFileUtils.mergeRecords(context, fuseRecords, fusesBytes, fuseWordBase);
             this.fuseValues = HexFileUtils.decodeFromBytes(context, fuseData);
 
         } catch (Exception e) {
@@ -394,6 +440,11 @@ public class DatosPicProcesados {
         }
     }
 
+    /** Retorna true si el archivo HEX contiene registros en región ROM. */
+    public boolean tieneRomEnHex() {
+        return romPresenteEnHex;
+    }
+
     /**
      * Verifica si la EEPROM procesada contiene datos no en blanco.
      * 
@@ -408,6 +459,11 @@ public class DatosPicProcesados {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /** Retorna true si el archivo HEX contiene registros en región EEPROM. */
+    public boolean tieneEepromEnHex() {
+        return eepromPresenteEnHex;
     }
 
     /**
@@ -446,6 +502,11 @@ public class DatosPicProcesados {
         }
 
         return hasID || hasFuses;
+    }
+
+    /** Retorna true si el archivo HEX contiene registros de ID/Fuses. */
+    public boolean tieneConfigEnHex() {
+        return configPresenteEnHex;
     }
 
     public byte[] obtenerBytesHexROMPocesado() {

@@ -259,7 +259,7 @@
     
     <string name="idioma_ingles">енглески</string>
     
-    <string name="idioma_label">Језик: __ПХ0__</string>
+    <string name="idioma_label">Језик: %1$s</string>
     
     <string name="copiar_todo">📋 Копирај све</string>
     
@@ -279,7 +279,7 @@
     
     <string name="copiado_portapapeles">Копирано у привремену меморију</string>
     
-    <string name="error_generico_detalle">Грешка: __ПХ0__</string>
+    <string name="error_generico_detalle">Грешка: %1$s</string>
     
     <string name="fuses_configurados_marcado">✓ Конфигурисано</string>
     
@@ -296,7 +296,7 @@
     
     <string name="reemplazar_archivo_titulo">Замените датотеку</string>
     
-    <string name="reemplazar_archivo_mensaje">Датотека __ПХ0____ПХ1____ПХ2__ већ постоји. Да ли желите да га замените?</string>
+    <string name="reemplazar_archivo_mensaje">Датотека %1$s%2$s%3$s већ постоји. Да ли желите да га замените?</string>
     
     <string name="error_reemplazando_archivo">Није могуће заменити постојећу датотеку</string>
     
@@ -313,7 +313,7 @@
     
     <string name="completa_todos_los_campos">Попуните сва поља</string>
     
-    <string name="log_iniciado">Дневник је започео...__ПХ0__</string>
+    <string name="log_iniciado">Дневник је започео...%1$s</string>
     
     <string name="fusibles_restaurados_desde_hex">Обновљени осигурачи из ХЕКС-а</string>
 
@@ -326,7 +326,7 @@
     
     <string name="texto_copiado_portapapeles">Текст је копиран у међуспремник</string>
     
-    <string name="termino_no_encontrado">Термин није пронађен: __ПХ0__</string>
+    <string name="termino_no_encontrado">Термин није пронађен: %1$s</string>
 
     
     <string name="no_hay_datos_para_exportar_archivo">Нема података за извоз</string>
@@ -341,9 +341,9 @@
     
     <string name="error_abriendo_archivo_escritura">Није могуће отворити датотеку за писање</string>
     
-    <string name="error_escribiendo_archivo_detalle">Грешка при писању датотеке: __ПХ0__</string>
+    <string name="error_escribiendo_archivo_detalle">Грешка при писању датотеке: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Неочекивана грешка при извозу: __ПХ0__</string>
+    <string name="error_inesperado_exportar_detalle">Неочекивана грешка при извозу: %1$s</string>
 
 
 

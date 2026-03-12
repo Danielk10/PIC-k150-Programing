@@ -921,6 +921,26 @@ public class FuseConfigPopup {
                 result[i] = (byte) Integer.parseInt(bytes[i], 16);
             }
 
+            if (currentChip != null) {
+                int coreBits = currentChip.getTipoDeNucleoBit();
+                int expectedLen = (coreBits == 16) ? 8 : 4;
+
+                if (coreBits != 16 && result.length == 8) {
+                    // Permitir entrada de 8 bytes estilo dump de config (palabras ID)
+                    // y convertir a 4 bytes útiles (byte alto por palabra).
+                    byte[] compact = new byte[4];
+                    for (int i = 0, j = 1; i < 4 && j < result.length; i++, j += 2) {
+                        compact[i] = result[j];
+                    }
+                    result = compact;
+                }
+
+                if (result.length != expectedLen) {
+                    logMessage(context.getString(R.string.error_parse_id));
+                    return currentIDData != null ? currentIDData : new byte[] { 0 };
+                }
+            }
+
             return result;
         } catch (Exception e) {
             logMessage(context.getString(R.string.error_parse_id));
