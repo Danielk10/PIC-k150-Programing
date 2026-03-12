@@ -184,19 +184,48 @@ public class DatosPicProcesados {
                 swapBytes = defaultSwap; // Valor por defecto si hay corrupción
             }
 
-            // Ajustar registros según endianness detectado
+            // Fallback para HEX de configuración (sin ROM): en 12/14-bit podemos
+            // inferir endianness desde la palabra de fuse usando su máscara blank.
+            // Esto evita interpretar fuses invertidos cuando se programa "solo config".
+            if (coreBits != 16 && romRecords.isEmpty() && !fuseRecords.isEmpty()) {
+                try {
+                    Boolean swapDesdeFuses = detectarEndiannessDesdeFuses(
+                            fuseRecords,
+                            chipPIC.getFuseBlank());
+                    if (swapDesdeFuses != null) {
+                        swapBytes = swapDesdeFuses;
+                    }
+                } catch (Exception ignored) {
+                    // Mantener valor previo si no se puede inferir de forma confiable.
+                }
+            }
+
+            // Ajustar registros según endianness detectado.
+            // Nota importante:
+            // - ID/Fuses deben intercambiarse para todos los núcleos cuando hay swap,
+            //   tal como hace la referencia picpro. Si no se hace en 12/14-bit,
+            //   los fuses se interpretan invertidos y pueden activarse bits de
+            //   protección no deseados (p.ej. afectar lectura de EEPROM).
+            // - EEPROM en 12/14-bit se trata más abajo con byte-picking específico,
+            //   por eso aquí solo se swabbea EEPROM para 16-bit.
             if (swapBytes) {
                 romRecords = HexFileUtils.swabRecords(romRecords);
+                idRecords = HexFileUtils.swabRecords(idRecords);
+                fuseRecords = HexFileUtils.swabRecords(fuseRecords);
+
                 if (coreBits == 16) {
                     eepromRecords = HexFileUtils.swabRecords(eepromRecords);
-                    idRecords = HexFileUtils.swabRecords(idRecords);
-                    fuseRecords = HexFileUtils.swabRecords(fuseRecords);
                 }
+            }
+
+            Integer pickByteEepromForzado = null;
+            if (coreBits != 16 && romRecords.isEmpty() && !eepromRecords.isEmpty()) {
+                pickByteEepromForzado = detectarPickByteEepromSinRom(eepromRecords);
             }
 
             // Procesar EEPROM con byte picking según endianness
             List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = procesarRegistrosEEPROM(eepromRecords,
-                    eepromWordBase, swapBytes, coreBits);
+                    eepromWordBase, swapBytes, coreBits, pickByteEepromForzado);
 
             // Fusionar todos los datos
             this.romData = fusionarDatos(romRecords, romBlank, romWordBase, "ROM");
@@ -295,6 +324,41 @@ public class DatosPicProcesados {
     }
 
     /**
+     * Intenta detectar endianness para HEX sin ROM usando la(s) palabra(s) fuse.
+     * Devuelve null si no es posible decidir de forma inequívoca.
+     */
+    private Boolean detectarEndiannessDesdeFuses(
+            List<HexFileUtils.Pair<Integer, String>> fuseRecords,
+            int[] fuseBlankValues) {
+
+        if (fuseBlankValues == null || fuseBlankValues.length == 0) {
+            return null;
+        }
+
+        int fuseMask = fuseBlankValues[0] & 0xFFFF;
+
+        for (HexFileUtils.Pair<Integer, String> record : fuseRecords) {
+            String data = record.second;
+            for (int x = 0; x + 4 <= data.length(); x += 4) {
+                int beWord = Integer.parseInt(data.substring(x, x + 4), 16) & 0xFFFF;
+                int leWord = Integer.reverseBytes(beWord) >>> 16;
+
+                boolean beOk = (beWord & fuseMask) == beWord;
+                boolean leOk = (leWord & fuseMask) == leWord;
+
+                if (beOk && !leOk) {
+                    return false;
+                }
+                if (leOk && !beOk) {
+                    return true;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Procesa registros EEPROM aplicando byte picking según endianness.
      *
      * @param eepromRecords  Registros EEPROM originales
@@ -306,7 +370,8 @@ public class DatosPicProcesados {
             List<HexFileUtils.Pair<Integer, String>> eepromRecords,
             int eepromWordBase,
             boolean swapBytes,
-            int coreBits) {
+            int coreBits,
+            Integer pickByteForzado) {
 
         if (coreBits == 16) {
             return eepromRecords;
@@ -314,7 +379,7 @@ public class DatosPicProcesados {
 
         // EEPROM está almacenado en el archivo HEX con un byte por palabra
         // Seleccionar el byte apropiado según el endianness detectado
-        int pickByte = swapBytes ? 0 : 1;
+        int pickByte = (pickByteForzado != null) ? pickByteForzado : (swapBytes ? 0 : 1);
 
         List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = new ArrayList<>();
 
@@ -331,6 +396,61 @@ public class DatosPicProcesados {
         }
 
         return adjustedEepromRecords;
+    }
+
+    /**
+     * Para HEX sin ROM (p.ej. EEPROM exportada), intenta inferir qué byte de cada
+     * palabra contiene el dato útil.
+     *
+     * @return 0/1 si se pudo inferir, null si es ambiguo.
+     */
+    private Integer detectarPickByteEepromSinRom(
+            List<HexFileUtils.Pair<Integer, String>> eepromRecords) {
+
+        int strongScoreLane0 = 0;
+        int strongScoreLane1 = 0;
+        int weakScoreLane0 = 0;
+        int weakScoreLane1 = 0;
+
+        for (HexFileUtils.Pair<Integer, String> record : eepromRecords) {
+            String data = record.second;
+            for (int x = 0; x + 4 <= data.length(); x += 4) {
+                String b0 = data.substring(x, x + 2);
+                String b1 = data.substring(x + 2, x + 4);
+
+                // Señal fuerte: byte distinto de 00 y FF (típico dato real)
+                if (!"00".equals(b0) && !"FF".equals(b0)) {
+                    strongScoreLane0++;
+                }
+                if (!"00".equals(b1) && !"FF".equals(b1)) {
+                    strongScoreLane1++;
+                }
+
+                // Señal débil: byte distinto de FF (incluye 00 válido en EEPROM)
+                if (!"FF".equals(b0)) {
+                    weakScoreLane0++;
+                }
+                if (!"FF".equals(b1)) {
+                    weakScoreLane1++;
+                }
+            }
+        }
+
+        if (strongScoreLane0 > strongScoreLane1) {
+            return 0;
+        }
+        if (strongScoreLane1 > strongScoreLane0) {
+            return 1;
+        }
+
+        if (weakScoreLane0 > weakScoreLane1) {
+            return 0;
+        }
+        if (weakScoreLane1 > weakScoreLane0) {
+            return 1;
+        }
+
+        return null;
     }
 
     /**
