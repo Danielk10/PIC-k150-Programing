@@ -57,6 +57,9 @@ public class ProtocoloP18A extends Protocolo {
     /** Tipo de protocolo activo (define los command numbers de conexión) */
     private final TipoProtocolo tipoProtocolo;
 
+    /** Últimos fuses 18F cargados por cmd 0x09 para commit posterior con cmd 0x11. */
+    private int[] pendingFuses18fCommit;
+
     /**
      * Constructor del protocolo con tipo por defecto (P18A).
      *
@@ -82,6 +85,18 @@ public class ProtocoloP18A extends Protocolo {
     /** Retorna el tipo de protocolo activo. */
     public TipoProtocolo getTipoProtocolo() {
         return tipoProtocolo;
+    }
+
+    private int getCmdEraseChip() {
+        return (tipoProtocolo == TipoProtocolo.P18A) ? 0x0E : 0x0F;
+    }
+
+    private int getCmdRomBlankCheck() {
+        return (tipoProtocolo == TipoProtocolo.P18A) ? 0x0F : 0x10;
+    }
+
+    private int getCmdEepromBlankCheck() {
+        return (tipoProtocolo == TipoProtocolo.P18A) ? 0x10 : 0x11;
     }
 
     @Override
@@ -562,15 +577,21 @@ public class ProtocoloP18A extends Protocolo {
                 if (fuses.length != 7) {
                     return false;
                 }
-            } else if (tipoNucleo == 14) {
+            } else if (tipoNucleo == 14 || tipoNucleo == 12) {
                 if (id.length != 4) {
                     return false;
                 }
-                if (fuses.length < 1 || fuses.length > 2) {
+                if (fuses.length != 1) {
                     return false;
                 }
             } else {
                 return false;
+            }
+
+            if (tipoNucleo == 16) {
+                pendingFuses18fCommit = Arrays.copyOf(fuses, fuses.length);
+            } else {
+                pendingFuses18fCommit = null;
             }
 
             // Reiniciar comandos y activar voltajes de programación
@@ -609,19 +630,21 @@ public class ProtocoloP18A extends Protocolo {
             // Enviar comando preparado
             usbSerialPort.write(commandBody.toByteArray(), 100);
 
-            // Leer respuesta
-            byte[] response = new byte[1];
-            usbSerialPort.read(response, 100);
+            // Leer respuesta (algunas variantes antiguas pueden responder "00")
+            byte[] response = new byte[2];
+            int responseLen = usbSerialPort.read(response, 120);
 
             // Desactivar voltajes y limpiar comandos
             desactivarVoltajesDeProgramacion();
             researComandos();
 
             // Validar respuesta
-            if (response[0] == 'Y') {
+            if (responseLen >= 1 && response[0] == 'Y') {
                 return true;
-            } else if (response[0] == 'N') {
+            } else if (responseLen >= 1 && response[0] == 'N') {
                 return false;
+            } else if (responseLen >= 2 && response[0] == '0' && response[1] == '0') {
+                return true;
             } else {
                 return false;
             }
@@ -856,8 +879,8 @@ public class ProtocoloP18A extends Protocolo {
                 return false;
             }
 
-            // Comando para borrar memoria (0x0E = 14 decimal)
-            escribirDatosUSB(new byte[] { 0x0E }, 10, "comando_borrar_memorias");
+            // Comando para borrar memoria según protocolo activo.
+            escribirDatosUSB(new byte[] { (byte) getCmdEraseChip() }, 10, "comando_borrar_memorias");
 
             // Leer respuesta de confirmación
             byte[] bytes = readBytes(1, TIMEOUT_EXTENDED); // Usar timeout extendido para borrado
@@ -890,18 +913,20 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos
             researComandos();
 
-            // Comando ERASE CHECK ROM
-            usbSerialPort.write(
-                    new byte[] { 0x10, (byte) 0x3F },
-                    10); // 0x10 es 16 en decimal, y 0x3F es el valor del high_byte
+            // Comando ERASE CHECK ROM según protocolo activo.
+            // High-byte recomendado para núcleos de 14 bits: 0x3F
+            usbSerialPort.write(new byte[] { (byte) getCmdRomBlankCheck(), (byte) 0x3F }, 10);
 
+            int intentosSinDatos = 0;
             while (true) {
                 byte[] buffer = new byte[1];
                 int leidos = usbSerialPort.read(buffer, 100);
 
                 if (leidos > 0) {
+                    intentosSinDatos = 0;
                     switch (buffer[0]) {
-                        case (byte) 0xFF: // ROM aún no revisada por completo
+                        case (byte) 'B': // Variante observada en algunos firmwares
+                        case (byte) 0xFF: // Especificación KITSRUS/P018 oficial
                             continue;
                         case 'Y': // ROM está en blanco
                             researComandos();
@@ -914,9 +939,19 @@ public class ProtocoloP18A extends Protocolo {
                             researComandos();
                             return false;
                     }
+                } else {
+                    intentosSinDatos++;
+                    if (intentosSinDatos > 20) {
+                        researComandos();
+                        return false;
+                    }
                 }
             }
         } catch (IOException e) {
+            try {
+                researComandos();
+            } catch (Exception ignored) {
+            }
             return false;
         }
     }
@@ -928,48 +963,24 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos previos
             researComandos();
 
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("16") }, 10); // 0x10 es 16 en decimal
+            // Comando ERASE CHECK EEPROM según protocolo activo.
+            usbSerialPort.write(new byte[] { (byte) getCmdEepromBlankCheck() }, 10);
 
-            int size = 1; // Convertir palabras a bytes
-
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            byte[] bytes = new byte[size];
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        bytes[i] = buffer[i];
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
-            }
+            byte[] response = new byte[1];
+            int leidos = usbSerialPort.read(response, 300);
             researComandos();
 
-            if (new String(bytes, "US-ASCII").equals("Y")) {
-
-                return true;
-
-            } else if (new String(bytes, "US-ASCII").equals("N")) {
-
-                return false;
-
-            } else {
-
+            if (leidos != 1) {
                 return false;
             }
 
+            return response[0] == 'Y';
+
         } catch (IOException e) {
+            try {
+                researComandos();
+            } catch (Exception ignored) {
+            }
 
             return false;
         }
@@ -979,53 +990,46 @@ public class ProtocoloP18A extends Protocolo {
     public boolean programarFusesDePics18F() {
 
         try {
+            if (pendingFuses18fCommit == null || pendingFuses18fCommit.length != 7) {
+                return false;
+            }
+
             // Resetear comandos previos
-            researComandos();
-
-            // Enviar comando para obtener versión
-            usbSerialPort.write(new byte[] { Byte.parseByte("17") }, 10);
-
-            int size = 1; // Convertir palabras a bytes
-
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            byte[] bytes = new byte[size];
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        bytes[i] = buffer[i];
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
-            }
-            researComandos();
-
-            if (new String(bytes, "US-ASCII").equals("Y")) {
-
-                return true;
-
-            } else if (new String(bytes, "US-ASCII").equals("B")) {
-
+            if (!researComandos()) {
                 return false;
-
-            } else {
-
+            }
+            if (!activarVoltajesDeProgramacion()) {
                 return false;
             }
 
-        } catch (IOException e) {
+            // Comando 17: commit de fuses para 18F tras cmd 9
+            usbSerialPort.write(new byte[] { 0x11 }, 10);
 
+            ByteArrayOutputStream commandBody = new ByteArrayOutputStream();
+            // 10 bytes de ID en cero según referencia picpro (program_18fxxxx_fuse)
+            commandBody.write(new byte[10]);
+            for (int fuse : pendingFuses18fCommit) {
+                commandBody.write(ByteBuffer.allocate(2)
+                        .order(ByteOrder.LITTLE_ENDIAN)
+                        .putShort((short) fuse)
+                        .array());
+            }
+            usbSerialPort.write(commandBody.toByteArray(), 100);
+
+            byte[] response = readBytes(1, TIMEOUT_EXTENDED);
+            return response.length == 1 && response[0] == 'Y';
+
+        } catch (Exception e) {
             return false;
+        } finally {
+            try {
+                desactivarVoltajesDeProgramacion();
+            } catch (Exception ignored) {
+            }
+            try {
+                researComandos();
+            } catch (Exception ignored) {
+            }
         }
     }
 
