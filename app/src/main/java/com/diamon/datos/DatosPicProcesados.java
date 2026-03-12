@@ -218,9 +218,14 @@ public class DatosPicProcesados {
                 }
             }
 
+            Integer pickByteEepromForzado = null;
+            if (coreBits != 16 && romRecords.isEmpty() && !eepromRecords.isEmpty()) {
+                pickByteEepromForzado = detectarPickByteEepromSinRom(eepromRecords);
+            }
+
             // Procesar EEPROM con byte picking según endianness
             List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = procesarRegistrosEEPROM(eepromRecords,
-                    eepromWordBase, swapBytes, coreBits);
+                    eepromWordBase, swapBytes, coreBits, pickByteEepromForzado);
 
             // Fusionar todos los datos
             this.romData = fusionarDatos(romRecords, romBlank, romWordBase, "ROM");
@@ -365,7 +370,8 @@ public class DatosPicProcesados {
             List<HexFileUtils.Pair<Integer, String>> eepromRecords,
             int eepromWordBase,
             boolean swapBytes,
-            int coreBits) {
+            int coreBits,
+            Integer pickByteForzado) {
 
         if (coreBits == 16) {
             return eepromRecords;
@@ -373,7 +379,7 @@ public class DatosPicProcesados {
 
         // EEPROM está almacenado en el archivo HEX con un byte por palabra
         // Seleccionar el byte apropiado según el endianness detectado
-        int pickByte = swapBytes ? 0 : 1;
+        int pickByte = (pickByteForzado != null) ? pickByteForzado : (swapBytes ? 0 : 1);
 
         List<HexFileUtils.Pair<Integer, String>> adjustedEepromRecords = new ArrayList<>();
 
@@ -390,6 +396,61 @@ public class DatosPicProcesados {
         }
 
         return adjustedEepromRecords;
+    }
+
+    /**
+     * Para HEX sin ROM (p.ej. EEPROM exportada), intenta inferir qué byte de cada
+     * palabra contiene el dato útil.
+     *
+     * @return 0/1 si se pudo inferir, null si es ambiguo.
+     */
+    private Integer detectarPickByteEepromSinRom(
+            List<HexFileUtils.Pair<Integer, String>> eepromRecords) {
+
+        int strongScoreLane0 = 0;
+        int strongScoreLane1 = 0;
+        int weakScoreLane0 = 0;
+        int weakScoreLane1 = 0;
+
+        for (HexFileUtils.Pair<Integer, String> record : eepromRecords) {
+            String data = record.second;
+            for (int x = 0; x + 4 <= data.length(); x += 4) {
+                String b0 = data.substring(x, x + 2);
+                String b1 = data.substring(x + 2, x + 4);
+
+                // Señal fuerte: byte distinto de 00 y FF (típico dato real)
+                if (!"00".equals(b0) && !"FF".equals(b0)) {
+                    strongScoreLane0++;
+                }
+                if (!"00".equals(b1) && !"FF".equals(b1)) {
+                    strongScoreLane1++;
+                }
+
+                // Señal débil: byte distinto de FF (incluye 00 válido en EEPROM)
+                if (!"FF".equals(b0)) {
+                    weakScoreLane0++;
+                }
+                if (!"FF".equals(b1)) {
+                    weakScoreLane1++;
+                }
+            }
+        }
+
+        if (strongScoreLane0 > strongScoreLane1) {
+            return 0;
+        }
+        if (strongScoreLane1 > strongScoreLane0) {
+            return 1;
+        }
+
+        if (weakScoreLane0 > weakScoreLane1) {
+            return 0;
+        }
+        if (weakScoreLane1 > weakScoreLane0) {
+            return 1;
+        }
+
+        return null;
     }
 
     /**
