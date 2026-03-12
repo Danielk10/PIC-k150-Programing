@@ -184,9 +184,10 @@ public class DatosPicProcesados {
                 swapBytes = defaultSwap; // Valor por defecto si hay corrupción
             }
 
-            // Fallback para HEX de configuración (sin ROM): en 12/14-bit podemos
-            // inferir endianness desde la palabra de fuse usando su máscara blank.
-            // Esto evita interpretar fuses invertidos cuando se programa "solo config".
+            // Fallback para HEX sin ROM: en 12/14-bit inferir endianness desde la
+            // palabra de fuse usando su máscara blank. Solo modifica swapBytes (y con
+            // ello el swab de romRecords) cuando no hay ROM — es seguro porque en ese
+            // caso no hay datos ROM que proteger.
             if (coreBits != 16 && romRecords.isEmpty() && !fuseRecords.isEmpty()) {
                 try {
                     Boolean swapDesdeFuses = detectarEndiannessDesdeFuses(
@@ -200,26 +201,54 @@ public class DatosPicProcesados {
                 }
             }
 
+            // BUG FIX — dump completo con ROM + config:
+            // swapBytes es correcto para swabear romRecords (detectado desde la ROM).
+            // Para ID/fuses necesitamos una detección independiente basada en el
+            // contenido de los propios fuses: si swapBytes cayó al default (false)
+            // los fuses quedarían sin swabear → fuses invertidos → bits de protección
+            // activos → EEPROM se lee en ceros al grabar el dump.
+            // swapConfig se aplica SOLO a id/fuseRecords, nunca a romRecords, evitando
+            // la corrupción de ROM que introducía el fix anterior.
+            boolean swapConfig = swapBytes;
+            if (coreBits != 16 && !romRecords.isEmpty() && !fuseRecords.isEmpty()) {
+                try {
+                    Boolean swapDesdeFuses = detectarEndiannessDesdeFuses(
+                            fuseRecords,
+                            chipPIC.getFuseBlank());
+                    if (swapDesdeFuses != null) {
+                        swapConfig = swapDesdeFuses;
+                    }
+                } catch (Exception ignored) {
+                    // Mantener valor previo si no se puede inferir de forma confiable.
+                }
+            }
+
             // Ajustar registros según endianness detectado.
-            // Nota importante:
-            // - ID/Fuses deben intercambiarse para todos los núcleos cuando hay swap,
-            //   tal como hace la referencia picpro. Si no se hace en 12/14-bit,
-            //   los fuses se interpretan invertidos y pueden activarse bits de
-            //   protección no deseados (p.ej. afectar lectura de EEPROM).
+            // - romRecords usa swapBytes (detectado desde ROM) → nunca se contamina
+            //   con la detección de fuses.
+            // - idRecords / fuseRecords usan swapConfig, que en dump completo se
+            //   refina por contenido de fuses; en volcado parcial swapConfig == swapBytes.
             // - EEPROM en 12/14-bit se trata más abajo con byte-picking específico,
             //   por eso aquí solo se swabbea EEPROM para 16-bit.
             if (swapBytes) {
                 romRecords = HexFileUtils.swabRecords(romRecords);
-                idRecords = HexFileUtils.swabRecords(idRecords);
-                fuseRecords = HexFileUtils.swabRecords(fuseRecords);
-
                 if (coreBits == 16) {
                     eepromRecords = HexFileUtils.swabRecords(eepromRecords);
                 }
             }
+            if (swapConfig) {
+                idRecords = HexFileUtils.swabRecords(idRecords);
+                fuseRecords = HexFileUtils.swabRecords(fuseRecords);
+            }
 
+            // BUG FIX: Se eliminó la condición "romRecords.isEmpty()" para que la
+            // detección de byte-lane se ejecute siempre que haya registros EEPROM
+            // en núcleos de 12/14 bits, incluso en dumps completos (con ROM).
+            // Antes, cuando el dump incluía ROM, swapBytes podía caer al default
+            // false y elegir el byte de padding 0x00 en lugar del dato real,
+            // dejando la EEPROM toda en ceros al recargar.
             Integer pickByteEepromForzado = null;
-            if (coreBits != 16 && romRecords.isEmpty() && !eepromRecords.isEmpty()) {
+            if (coreBits != 16 && !eepromRecords.isEmpty()) {
                 pickByteEepromForzado = detectarPickByteEepromSinRom(eepromRecords);
             }
 
