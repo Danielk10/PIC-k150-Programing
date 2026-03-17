@@ -122,7 +122,7 @@ public class Graficos2D implements Graficos {
     @Override
     public Textura crearTextura(float ancho, float alto, FormatoTextura formatoTextura) {
 
-        textura = new Textura2D(alto, alto, formatoTextura);
+        textura = new Textura2D(ancho, alto, formatoTextura);
 
         return textura;
     }

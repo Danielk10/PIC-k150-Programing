@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity
     private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
     private String lastReadConfigData = ""; // Últimos datos Config leídos
     private ChipPic currentChip;
+    private Textura texturaChipSocket; // NUEVO: Para reciclaje de memoria
 
     // NUEVAS VARIABLES PARA FUSES
     private boolean fusesConfigured = false;
@@ -729,7 +730,13 @@ public class MainActivity extends AppCompatActivity
                     0, 180, false, lapiz);
         }
 
-        chipSocketImageView.setImageBitmap(textura.getBipmap());
+        if (texturaChipSocket != null) {
+            texturaChipSocket.dispose();
+            texturaChipSocket = null;
+        }
+
+        texturaChipSocket = textura;
+        chipSocketImageView.setImageBitmap(texturaChipSocket.getBipmap());
     }
 
     private void dibujarICSP() {
@@ -809,7 +816,13 @@ public class MainActivity extends AppCompatActivity
             g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
         }
 
-        chipSocketImageView.setImageBitmap(textura.getBipmap());
+        if (texturaChipSocket != null) {
+            texturaChipSocket.dispose();
+            texturaChipSocket = null;
+        }
+
+        texturaChipSocket = textura;
+        chipSocketImageView.setImageBitmap(texturaChipSocket.getBipmap());
     }
 
     private void setupPersistentLayoutListener() {
@@ -1808,6 +1821,14 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         publicidad.pausarBanner();
         super.onPause();
+
+        // NUEVO: Liberar recursos gráficos pesados al pausar para evitar ANR en otras actividades
+        if (texturaChipSocket != null) {
+            chipSocketImageView.setImageBitmap(null);
+            texturaChipSocket.dispose();
+            texturaChipSocket = null;
+        }
+
         if (wakeLock != null && wakeLock.isHeld()) {
             wakeLock.release();
         }
@@ -1817,6 +1838,12 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         publicidad.resumenBanner();
+
+        // NUEVO: Recrear la imagen del chip al volver
+        if (currentChip != null) {
+            updateChipImage(currentChip);
+        }
+
         if (wakeLock != null) {
             wakeLock.acquire(10 * 60 * 1000L);
         }
@@ -1845,6 +1872,11 @@ public class MainActivity extends AppCompatActivity
             // NUEVO: Limpiar popup de fusibles
             if (fuseConfigPopup != null) {
                 fuseConfigPopup.dismiss();
+            }
+
+            if (texturaChipSocket != null) {
+                texturaChipSocket.dispose();
+                texturaChipSocket = null;
             }
 
             if (wakeLock != null && wakeLock.isHeld()) {
