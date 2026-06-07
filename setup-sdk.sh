@@ -31,7 +31,7 @@ sdkmanager --sdk_root="${ANDROID_SDK_ROOT}" \
   "platforms;android-23" \
   "platforms;android-37.0" \
   "build-tools;37.0.0" \
-  "cmake;3.22.1" \
+  "cmake;4.1.2" \
   "ndk;30.0.14904198"
 
 printf 'sdk.dir=%s\n' "${ANDROID_SDK_ROOT}" > "${PROJECT_ROOT}/local.properties"

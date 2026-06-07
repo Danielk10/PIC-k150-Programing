@@ -10,7 +10,8 @@ En la sesión anterior se realizaron las siguientes acciones para configurar el 
     *   **Android Platform**: API 37.0 y API 23.
     *   **Build Tools**: 37.0.0.
     *   **NDK**: 30.0.14904198.
-4.  **Configuración Automática:** El script `setup-sdk.sh` gestiona la instalación y genera `local.properties`.
+    *   **CMake**: 4.1.2.
+    4.  **Configuración Automática**: El script `setup-sdk.sh` gestiona la instalación y genera `local.properties`.
 
 ---
 *Generado por Gemini CLI*
