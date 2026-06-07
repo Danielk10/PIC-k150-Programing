@@ -77,3 +77,4 @@ Run the included script to configure the Android SDK and NDK environment:
 - `guia_uso_sdk.md`: Reference guide for using Android SDK command-line tools (`sdkmanager`, `adb`, `avdmanager`).
 - `LICENSE.txt`: GPL-3.0 License details.
 - `resumen_instalacion.md`: Brief installation notes.
+- `AGENT_INSTRUCTIONS.md`: Mandatory workflow guidelines for AI agents working on this project.
