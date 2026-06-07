@@ -149,9 +149,9 @@ El proyecto se basa en las siguientes tecnologías y recursos de código abierto
 
 3. **Configura el entorno**:
    - **JDK**: Java 11
-   - **NDK**: 29.0.13599879 rc2
-   - **Build Tools**: 36.0.0
-   - **Compile SDK**: 36
+   - **NDK**: 30.0.14904198 (instalado en `/tmp/android-sdk` por defecto)
+   - **Build Tools**: 37.0.0
+   - **Compile SDK**: 37
 
 4. **Compila y prueba**:
    ```bash
