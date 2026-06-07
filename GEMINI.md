@@ -8,6 +8,7 @@ An Android professional application that allows programming PIC microcontrollers
 - **Protocol**: Implements the **Protocol P018** of **KITSRUS Programmer Firmware Protocol** (August 2004).
 - **Core Library**: Uses `usb-serial-for-android` for reliable USB-Serial communication.
 - **Target Platform**: Android (API 23 to 37).
+- **Current Version**: 2.8.0 (Code 47).
 - **Language**: Java 11.
 - **Architecture**: Native Android application.
 
@@ -15,9 +16,13 @@ An Android professional application that allows programming PIC microcontrollers
 
 - **Android SDK**: Target SDK 37, Minimum SDK 23.
 - **Languages**: Java 11.
-- **Build System**: Gradle 8.x.
+- **Build System**: Gradle 8.x (v9.5.1 wrapper).
 - **USB Communication**: Android USB Host API + `usb-serial-for-android`.
-- **Versions**: API 37.0, Build Tools 37.0.0, NDK 30.0.14904198.
+- **Versions**: API 37.0, Build Tools 37.0.0, NDK 30.0.14904198 (rc1).
+- **Services**:
+    - **Firebase**: Crashlytics, Analytics and Cloud Messaging.
+    - **App Center**: Analytics and Crashes (v5.0.6).
+    - **Google AdMob**: Monetization and Mediation.
 - **Supported Architectures**: `armeabi-v7a`, `arm64-v8a`, `x86`, `x86_64`.
 
 ## 🚀 Building and Running
