@@ -14,7 +14,7 @@ El `sdkmanager` es la herramienta principal para instalar, actualizar y listar c
     ```bash
     sdkmanager "nombre_del_paquete"
     ```
-    *(Ejemplo: `sdkmanager "platforms;android-34" "build-tools;34.0.0"`)
+    *(Ejemplo: `sdkmanager "platforms;android-37.0" "build-tools;37.0.0"`)
 *   **Actualizar todos los paquetes:**
     ```bash
     sdkmanager --update
@@ -45,7 +45,7 @@ El `sdkmanager` es la herramienta principal para instalar, actualizar y listar c
     ```
 *   **Crear un nuevo AVD:**
     ```bash
-    avdmanager create avd -n nombre_avd -k "system-images;android-34;google_apis;x86_64"
+    avdmanager create avd -n nombre_avd -k "system-images;android-37.0;google_apis;x86_64"
     ```
 
 ---
