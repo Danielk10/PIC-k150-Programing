@@ -29,5 +29,13 @@ Cada cambio en el código o configuración **DEBE** verse reflejado inmediatamen
 - **Mensajes de Commit**: Claros, concisos y con prefijos (e.g., `feat:`, `fix:`, `docs:`, `chore:`).
 - **Sincronización**: Realizar `git push origin main` inmediatamente después de cada commit verificado. No dejar cambios pendientes localmente.
 
+## 6. Publicación de Prelanzamiento (GitHub)
+- Antes de realizar un prelanzamiento, **preguntar siempre al usuario** si desea subir la APK a GitHub.
+- Si el usuario acepta, usar el comando de `gh release create` incrementando la versión (vX.Y.Z-beta) según corresponda:
+  - **Comando Android Nativo**:
+    ```bash
+    gh release create v0.1.0-beta app/build/outputs/apk/debug/app-debug.apk --title "Versión Alfa 0.1.0" --notes "Primera compilación de prueba del juego." --prerelease
+    ```
+
 ---
 *Esta guía es un mandato para garantizar que el proyecto se mantenga profesional, documentado y funcional en cada iteración.*

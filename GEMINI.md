@@ -52,6 +52,13 @@ Run the included script to configure the Android SDK and NDK environment:
   ./gradlew test
   ```
 
+### GitHub Releases (Prerelease)
+To create a new pre-release on GitHub:
+```bash
+gh release create v0.1.0-beta app/build/outputs/apk/debug/app-debug.apk --title "Versión Alfa 0.1.0" --notes "Primera compilación de prueba del juego." --prerelease
+```
+*Note: Always increment the version tag and title before running.*
+
 ## 📂 Project Structure
 
 - `app/src/main/java/com/diamon/pic/`:
