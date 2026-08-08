@@ -5,6 +5,9 @@ plugins {
 }
 
 android {
+    // Redirigir la carpeta build a /tmp
+    project.layout.buildDirectory.set(file("/tmp/k150"))
+
     namespace 'com.diamon.pic'
     compileSdk 37
 

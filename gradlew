@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Force Gradle User Home to be in /tmp to save home disk space
+export GRADLE_USER_HOME="/tmp/.gradle"
+
 #
 # Copyright 2015 the original author or authors.
 #
@@ -182,4 +185,4 @@ APP_ARGS=`save "$@"`
 # Collect all arguments for the java command, following the shell quoting and substitution rules
 eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS "\"-Dorg.gradle.appname=$APP_BASE_NAME\"" -classpath "\"$CLASSPATH\"" org.gradle.wrapper.GradleWrapperMain "$APP_ARGS"
 
-exec "$JAVACMD" "$@"
+exec "$JAVACMD" "$@" --project-cache-dir "/tmp/gradle-cache-$(basename "$APP_HOME")"
