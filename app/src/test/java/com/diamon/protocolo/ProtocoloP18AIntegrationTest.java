@@ -39,6 +39,8 @@ public class ProtocoloP18AIntegrationTest {
     private Context mockContext;
     private ProtocoloP18A protocolo;
     private ChipPic chip16f628a;
+    private ChipPic chip18f2550;
+    private ChipPic chip12f675;
 
     @Before
     public void setUp() throws Exception {
@@ -131,6 +133,52 @@ public class ProtocoloP18AIntegrationTest {
                 "N",
                 "1060",
                 fuses);
+
+        // Crear configuración de ChipPic para PIC18F2550
+        Map<String, Object> fuses18f = new HashMap<>();
+        chip18f2550 = new ChipPic(
+                "18F2550",
+                "Y",
+                "28pin",
+                "4",
+                "Y",
+                "VccVpp1",
+                "10",
+                "1",
+                "05",
+                "bit16_B",
+                "004000",
+                "00000100",
+                new String[] { "CF3F", "1F3F", "8700", "00E5", "C00F", "E00F", "400F" },
+                "N",
+                "N",
+                "N",
+                "N",
+                "1240",
+                fuses18f);
+
+        // Crear configuración de ChipPic para PIC12F675
+        Map<String, Object> fuses12f = new HashMap<>();
+        chip12f675 = new ChipPic(
+                "12F675",
+                "Y",
+                "8pin",
+                "2",
+                "Y",
+                "Vpp2Vcc",
+                "80",
+                "1",
+                "0",
+                "bit14_B",
+                "000400",
+                "00000080",
+                new String[] { "31FF" },
+                "N",
+                "Y",
+                "Y",
+                "N",
+                "0FC0",
+                fuses12f);
     }
 
     @After
@@ -410,5 +458,155 @@ public class ProtocoloP18AIntegrationTest {
         String config = protocolo.leerDatosDeConfiguracionDelPic();
         assertNotNull(config);
         assertTrue("La configuración debe contener el ID grabado mediante el manager", config.contains("11223344"));
+    }
+
+    @Test
+    public void testPIC18F2550ProgramacionYLectura() throws Exception {
+        // 1. Crear configuración de ChipPic para PIC18F2550
+        Map<String, Object> fusesMap = new HashMap<>();
+        ChipPic chip18f2550 = new ChipPic(
+                "18F2550",
+                "Y",
+                "28Npin",
+                "4",
+                "Y",
+                "VccVpp1",
+                "10",
+                "1",
+                "05",
+                "bit16_B",
+                "004000",
+                "00000100",
+                new String[] { "CF3F", "1F3F", "8700", "00E5", "C00F", "E00F", "400F" },
+                "N",
+                "N",
+                "N",
+                "N",
+                "1240",
+                fusesMap);
+
+        // 2. Iniciar variables de programación del chip
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip18f2550));
+
+        // 3. Borrar chip
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        // 4. Leer y programar archivo HEX real de PIC18F2550
+        String hexPath = "/home/danielpdiamon/PIC-k150-Programing/waw_pic18f2550.hex";
+        File hexFile = new File(hexPath);
+        assertTrue("El archivo HEX de PIC18F2550 no existe", hexFile.exists());
+        String hexContent = new String(Files.readAllBytes(Paths.get(hexPath)), StandardCharsets.UTF_8);
+
+        com.diamon.datos.DatosPicProcesados datosPic = new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip18f2550);
+        datosPic.iniciarProcesamientoDeDatos();
+
+        // 5. Programar ROM
+        boolean romOk = protocolo.programarMemoriaROMDelPic(chip18f2550, datosPic);
+        assertTrue("Fallo al programar ROM para PIC18F2550", romOk);
+
+        // 6. Leer ROM y verificar que coincida o no esté vacía
+        String romLeida = protocolo.leerMemoriaROMDelPic(chip18f2550);
+        assertNotNull(romLeida);
+        assertFalse(romLeida.startsWith("Error"));
+        assertTrue(romLeida.length() > 0);
+
+        // 7. Programar EEPROM
+        boolean eepromOk = protocolo.programarMemoriaEEPROMDelPic(chip18f2550, datosPic);
+        assertTrue("Fallo al programar EEPROM para PIC18F2550", eepromOk);
+
+        // 8. Leer EEPROM y verificar
+        String eepromLeida = protocolo.leerMemoriaEEPROMDelPic(chip18f2550);
+        assertNotNull(eepromLeida);
+        assertFalse(eepromLeida.startsWith("Error"));
+        assertTrue(eepromLeida.length() > 0);
+
+        // 9. Programar ID y Fuses
+        byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44, (byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88 };
+        java.util.List<Integer> fusesList = java.util.Arrays.asList(0xCF3F, 0x1F3F, 0x8700, 0x00E5, 0xC00F, 0xE00F, 0x400F);
+        boolean fusesOk = protocolo.programarFusesIDDelPic(chip18f2550, datosPic, idPic, fusesList);
+        assertTrue("Fallo al programar Fuses e ID para PIC18F2550", fusesOk);
+
+        // 10. Leer Configuración
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+        // El emulador reporta ChipID = 4640 (0x1220 en LE = 2012)
+        assertTrue("Config debe reportar ChipID", config.toLowerCase().startsWith("2012"));
+        assertTrue("Config debe contener el ID grabado", config.contains("1122334455667788"));
+    }
+
+    @Test
+    public void testPIC12F675ProgramacionYLectura() throws Exception {
+        // 1. Crear configuración de ChipPic para PIC12F675
+        Map<String, Object> fusesMap = new HashMap<>();
+        ChipPic chip12f675 = new ChipPic(
+                "12F675",
+                "Y",
+                "8pin",
+                "2",
+                "Y",
+                "Vpp2Vcc",
+                "80",
+                "1",
+                "0",
+                "bit14_B",
+                "000400",
+                "00000080",
+                new String[] { "31FF" },
+                "N",
+                "N",
+                "N",
+                "N",
+                "0FC0",
+                fusesMap);
+
+        // 2. Iniciar variables de programación del chip
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip12f675));
+
+        // 3. Borrar chip
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        // 4. Leer y programar archivo HEX real de PIC12F675
+        String hexPath = "/home/danielpdiamon/PIC-k150-Programing/32x-autohz_12f675.hex";
+        File hexFile = new File(hexPath);
+        assertTrue("El archivo HEX de PIC12F675 no existe", hexFile.exists());
+        String hexContent = new String(Files.readAllBytes(Paths.get(hexPath)), StandardCharsets.UTF_8);
+
+        com.diamon.datos.DatosPicProcesados datosPic = new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip12f675);
+        datosPic.iniciarProcesamientoDeDatos();
+
+        // 5. Programar ROM
+        boolean romOk = protocolo.programarMemoriaROMDelPic(chip12f675, datosPic);
+        assertTrue("Fallo al programar ROM para PIC12F675", romOk);
+
+        // 6. Leer ROM y verificar
+        String romLeida = protocolo.leerMemoriaROMDelPic(chip12f675);
+        assertNotNull(romLeida);
+        assertFalse(romLeida.startsWith("Error"));
+        assertTrue(romLeida.length() > 0);
+
+        // 7. Programar EEPROM
+        boolean eepromOk = protocolo.programarMemoriaEEPROMDelPic(chip12f675, datosPic);
+        assertTrue("Fallo al programar EEPROM para PIC12F675", eepromOk);
+
+        // 8. Leer EEPROM y verificar
+        String eepromLeida = protocolo.leerMemoriaEEPROMDelPic(chip12f675);
+        assertNotNull(eepromLeida);
+        assertFalse(eepromLeida.startsWith("Error"));
+        assertTrue(eepromLeida.length() > 0);
+
+        // 9. Programar ID y Fuses
+        byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44 };
+        java.util.List<Integer> fusesList = java.util.Arrays.asList(0x31FF);
+        boolean fusesOk = protocolo.programarFusesIDDelPic(chip12f675, datosPic, idPic, fusesList);
+        assertTrue("Fallo al programar Fuses e ID para PIC12F675", fusesOk);
+
+        // 10. Leer Configuración
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+        // El emulador reporta ChipID = 4032 (0x0FC0 en LE = C00F)
+        assertTrue("Config debe reportar ChipID", config.toLowerCase().startsWith("c00f"));
+        assertTrue("Config debe contener el ID grabado", config.contains("11223344"));
     }
 }

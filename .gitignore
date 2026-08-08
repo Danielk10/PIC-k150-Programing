@@ -27,3 +27,11 @@ local.properties
 # --- Otros ---
 .kilocode/
 .mvn/wrapper/
+
+# --- Firma y Compilados ---
+keystore.properties
+*.jks
+*.keystore
+*.apk
+*.aab
+
