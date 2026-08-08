@@ -99,6 +99,10 @@ public class ProtocoloP18A extends Protocolo {
         return (tipoProtocolo == TipoProtocolo.P18A) ? 0x10 : 0x11;
     }
 
+    private int getCmdCommitFuses18f() {
+        return (tipoProtocolo == TipoProtocolo.P18A) ? 0x11 : 0x12;
+    }
+
     @Override
     public String hacerUnEco() {
         try {
@@ -999,8 +1003,8 @@ public class ProtocoloP18A extends Protocolo {
                 return false;
             }
 
-            // Comando 17: commit de fuses para 18F tras cmd 9
-            usbSerialPort.write(new byte[] { 0x11 }, 10);
+            // Comando 17 (0x11 para P18A) o 18 (0x12 para otros): commit de fuses para 18F tras cmd 9
+            usbSerialPort.write(new byte[] { (byte) getCmdCommitFuses18f() }, 10);
 
             ByteArrayOutputStream commandBody = new ByteArrayOutputStream();
             // 10 bytes de ID en cero según referencia picpro (program_18fxxxx_fuse)
@@ -1217,8 +1221,8 @@ public class ProtocoloP18A extends Protocolo {
 
         int address = 0;
         try {
-            // Comando 22 (0x16)
-            byte cmd = 0x16;
+            // Comando 22 (0x16 para P18A) o 23 (0x17 para otros): programar vector de depuración
+            byte cmd = (byte) ((tipoProtocolo == TipoProtocolo.P18A) ? 0x16 : 0x17);
 
             // Dividir la dirección en bytes
             byte[] BE4_address = ByteBuffer.allocate(4).putInt(address).array();
@@ -1255,8 +1259,8 @@ public class ProtocoloP18A extends Protocolo {
             // Resetear comandos previos
             researComandos();
 
-            // Enviar comando (23 en decimal o 0x17 en hexadecimal)
-            usbSerialPort.write(new byte[] { 0x17 }, 10);
+            // Enviar comando (23/0x17 para P18A o 24/0x18 para otros): leer vector de depuración
+            usbSerialPort.write(new byte[] { (byte) ((tipoProtocolo == TipoProtocolo.P18A) ? 0x17 : 0x18) }, 10);
 
             // Leer la respuesta (4 bytes)
             byte[] response = new byte[4];
