@@ -291,27 +291,18 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware)
+    public boolean programarMemoriaROMDelPic(ChipPic chipPIC, DatosPicProcesados datosPic)
             throws ChipConfigurationException {
         // Validaciones de entrada
         if (chipPIC == null) {
             throw new IllegalArgumentException("ChipPIC no puede ser null");
         }
 
-        if (firware == null || firware.trim().isEmpty()) {
-            throw new IllegalArgumentException("Firmware no puede ser null o vacío");
+        if (datosPic == null) {
+            throw new IllegalArgumentException("DatosPicProcesados no puede ser null");
         }
 
         try {
-
-            // Procesar y validar el contenido HEX antes de iniciar la programación.
-            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
-
-            try {
-                datosPic.iniciarProcesamientoDeDatos();
-            } catch (Exception e) {
-                return false;
-            }
 
             byte[] romData = datosPic.obtenerBytesHexROMPocesado();
 
@@ -428,22 +419,19 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware)
+    public boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, DatosPicProcesados datosPic)
             throws ChipConfigurationException {
         // Validaciones de entrada
         if (chipPIC == null) {
             throw new IllegalArgumentException("ChipPIC no puede ser null");
         }
 
-        if (firware == null || firware.trim().isEmpty()) {
-            throw new IllegalArgumentException("Firmware no puede ser null o vacío");
+        if (datosPic == null) {
+            throw new IllegalArgumentException("DatosPicProcesados no puede ser null");
         }
 
         try {
 
-            // Procesar datos HEX
-            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
-            datosPic.iniciarProcesamientoDeDatos();
             byte[] eepromData = datosPic.obtenerBytesHexEEPROMPocesado();
 
             if (eepromData == null) {
@@ -532,12 +520,12 @@ public class ProtocoloP18A extends Protocolo {
 
     @Override
     public boolean programarFusesIDDelPic(
-            ChipPic chipPIC, String firware, byte[] IDPic, List<Integer> fusesUsuario) {
+            ChipPic chipPIC, DatosPicProcesados datosPic, byte[] IDPic, List<Integer> fusesUsuario) {
 
         try {
-            // Procesar datos
-            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
-            datosPic.iniciarProcesamientoDeDatos();
+            if (datosPic == null) {
+                return false;
+            }
 
             // Obtener tipo de núcleo
             int tipoNucleo = chipPIC.getTipoDeNucleoBit();
@@ -666,16 +654,12 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean programarCalibracionDelPic(ChipPic chipPIC, String firware) {
-        if (chipPIC == null) {
+    public boolean programarCalibracionDelPic(ChipPic chipPIC, DatosPicProcesados datosPic) {
+        if (chipPIC == null || datosPic == null) {
             return false;
         }
 
         try {
-            // Procesar datos para obtener info de calibración
-            DatosPicProcesados datosPic = new DatosPicProcesados(contexto, firware, chipPIC);
-            datosPic.iniciarProcesamientoDeDatos();
-
             // Obtener valores de calibración y fuse del chip
             int[] fusesHex = datosPic.obtenerValoresIntHexFusesPocesado();
             if (fusesHex == null || fusesHex.length < 1) {

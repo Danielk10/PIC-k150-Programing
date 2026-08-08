@@ -68,17 +68,17 @@ public final class ByteUtils {
      */
     public static void validarArray(android.content.Context context, byte[] datos, int tamanoEsperado, String nombreParametro) {
         if (datos == null) {
-            String mensaje = context.getString(R.string.error_argumento_null, nombreParametro);
+            String mensaje = getString(context, R.string.error_argumento_null, nombreParametro);
             throw new IllegalArgumentException(mensaje);
         }
 
         if (tamanoEsperado >= 0 && datos.length != tamanoEsperado) {
-            String mensaje = context.getString(R.string.error_tamano_esperado, nombreParametro, tamanoEsperado, datos.length);
+            String mensaje = getString(context, R.string.error_tamano_esperado, nombreParametro, tamanoEsperado, datos.length);
             throw new IllegalArgumentException(mensaje);
         }
 
         if (datos.length > MAX_BUFFER_SIZE) {
-            String mensaje = context.getString(R.string.error_tamano_maximo, nombreParametro, MAX_BUFFER_SIZE);
+            String mensaje = getString(context, R.string.error_tamano_maximo, nombreParametro, MAX_BUFFER_SIZE);
             throw new IllegalArgumentException(mensaje);
         }
     }
@@ -93,7 +93,7 @@ public final class ByteUtils {
      */
     public static void validarRango(android.content.Context context, byte[] array, int offset, int longitud) {
         if (offset < 0 || longitud < 0 || offset + longitud > array.length) {
-            String mensaje = context.getString(R.string.error_rango_invalido, offset, longitud, array.length);
+            String mensaje = getString(context, R.string.error_rango_invalido, offset, longitud, array.length);
             throw new IndexOutOfBoundsException(mensaje);
         }
     }
@@ -154,20 +154,20 @@ public final class ByteUtils {
      */
     public static byte[] hexToBytes(android.content.Context context, String hex) {
         if (hex == null) {
-            throw new IllegalArgumentException(context.getString(R.string.error_hex_null));
+            throw new IllegalArgumentException(getString(context, R.string.error_hex_null));
         }
 
         // Limpiar espacios y normalizar
         hex = hex.replaceAll("\\s+", "").toUpperCase();
 
         if (hex.length() % 2 != 0) {
-            throw new IllegalArgumentException(context.getString(R.string.error_hex_longitud));
+            throw new IllegalArgumentException(getString(context, R.string.error_hex_longitud));
         }
 
         // Validar caracteres hexadecimales
         for (char c : hex.toCharArray()) {
             if (HEX_CHARS.indexOf(c) == -1) {
-                throw new IllegalArgumentException(context.getString(R.string.error_hex_caracter, String.valueOf(c)));
+                throw new IllegalArgumentException(getString(context, R.string.error_hex_caracter, String.valueOf(c)));
             }
         }
 
@@ -298,7 +298,7 @@ public final class ByteUtils {
         validarArray(context, datos, -1, "datos");
 
         if (datos.length % 2 != 0) {
-            throw new IllegalArgumentException(context.getString(R.string.error_intercambio_par));
+            throw new IllegalArgumentException(getString(context, R.string.error_intercambio_par));
         }
 
         byte[] resultado = new byte[datos.length];
@@ -366,7 +366,7 @@ public final class ByteUtils {
 
             return resultado;
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(context.getString(R.string.error_md5_no_disponible), e);
+            throw new RuntimeException(getString(context, R.string.error_md5_no_disponible), e);
         }
     }
 
@@ -480,7 +480,7 @@ public final class ByteUtils {
         validarArray(context, datos, -1, "datos");
 
         if (datos.length == 0) {
-            return context.getString(R.string.error_vacio);
+            return getString(context, R.string.error_vacio);
         }
 
         int ceros = 0, unos = 0;
@@ -497,7 +497,7 @@ public final class ByteUtils {
                 max = b;
         }
 
-        return context.getString(R.string.stats_format,
+        return getString(context, R.string.stats_format,
                 datos.length, min & 0xFF, max & 0xFF, ceros, unos);
     }
 
@@ -505,5 +505,35 @@ public final class ByteUtils {
         ByteBuffer buffer = ByteBuffer.wrap(bytes);
         buffer.order(ByteOrder.BIG_ENDIAN); // o LITTLE_ENDIAN según tu caso
         return buffer.getInt();
+    }
+
+    private static String getString(android.content.Context context, int resId, Object... formatArgs) {
+        if (context != null) {
+            return context.getString(resId, formatArgs);
+        }
+        if (resId == R.string.error_argumento_null) {
+            return "El argumento " + (formatArgs.length > 0 ? formatArgs[0] : "") + " no puede ser null";
+        } else if (resId == R.string.error_tamano_esperado) {
+            return "El tamaño de " + (formatArgs.length > 0 ? formatArgs[0] : "") + " esperado es " + (formatArgs.length > 1 ? formatArgs[1] : "") + ", pero fue " + (formatArgs.length > 2 ? formatArgs[2] : "");
+        } else if (resId == R.string.error_tamano_maximo) {
+            return "El tamaño de " + (formatArgs.length > 0 ? formatArgs[0] : "") + " excede el máximo de " + (formatArgs.length > 1 ? formatArgs[1] : "");
+        } else if (resId == R.string.error_rango_invalido) {
+            return "Rango inválido: offset=" + (formatArgs.length > 0 ? formatArgs[0] : "") + ", long=" + (formatArgs.length > 1 ? formatArgs[1] : "") + ", size=" + (formatArgs.length > 2 ? formatArgs[2] : "");
+        } else if (resId == R.string.error_hex_null) {
+            return "Cadena HEX nula";
+        } else if (resId == R.string.error_hex_longitud) {
+            return "Cadena HEX con longitud impar";
+        } else if (resId == R.string.error_hex_caracter) {
+            return "Carácter HEX inválido: " + (formatArgs.length > 0 ? formatArgs[0] : "");
+        } else if (resId == R.string.error_intercambio_par) {
+            return "La longitud del array de datos debe ser par para intercambiar bytes";
+        } else if (resId == R.string.error_md5_no_disponible) {
+            return "Algoritmo MD5 no disponible";
+        } else if (resId == R.string.error_vacio) {
+            return "Datos vacíos";
+        } else if (resId == R.string.stats_format) {
+            return String.format("Estadísticas: %d bytes, min=%d, max=%d, ceros=%d, unos=%d", formatArgs);
+        }
+        return "Error (" + resId + ")";
     }
 }

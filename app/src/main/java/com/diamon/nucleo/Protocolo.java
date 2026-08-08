@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.datos.DatosPicProcesados;
 import com.diamon.excepciones.UsbCommunicationException;
 import com.diamon.utilidades.ByteUtils;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -408,16 +409,16 @@ public abstract class Protocolo {
 
     public abstract boolean reiniciarVoltajesDeProgramacion();
 
-    public abstract boolean programarMemoriaROMDelPic(ChipPic chipPIC, String firware)
+    public abstract boolean programarMemoriaROMDelPic(ChipPic chipPIC, DatosPicProcesados datosPic)
             throws ChipConfigurationException;
 
-    public abstract boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, String firware)
+    public abstract boolean programarMemoriaEEPROMDelPic(ChipPic chipPIC, DatosPicProcesados datosPic)
             throws ChipConfigurationException;
 
     public abstract boolean programarFusesIDDelPic(
-            ChipPic chipPIC, String firware, byte[] IDPic, List<Integer> fusesUsuario);
+            ChipPic chipPIC, DatosPicProcesados datosPic, byte[] IDPic, List<Integer> fusesUsuario);
 
-    public abstract boolean programarCalibracionDelPic(ChipPic chipPIC, String firware);
+    public abstract boolean programarCalibracionDelPic(ChipPic chipPIC, DatosPicProcesados datosPic);
 
     public abstract String leerMemoriaROMDelPic(ChipPic chipPIC);
 

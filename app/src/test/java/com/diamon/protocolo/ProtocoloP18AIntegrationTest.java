@@ -191,7 +191,7 @@ public class ProtocoloP18AIntegrationTest {
         com.diamon.datos.DatosPicProcesados datosPic = new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
         datosPic.iniciarProcesamientoDeDatos(); // Esto lanzará la excepción real si falla el parseo
         
-        boolean programOk = protocolo.programarMemoriaROMDelPic(chip16f628a, hexContent);
+        boolean programOk = protocolo.programarMemoriaROMDelPic(chip16f628a, datosPic);
         assertTrue("Fallo al programar la memoria ROM", programOk);
 
         // Leer ROM programada
@@ -210,7 +210,9 @@ public class ProtocoloP18AIntegrationTest {
         String hexContent = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
 
         // Programar EEPROM
-        boolean programOk = protocolo.programarMemoriaEEPROMDelPic(chip16f628a, hexContent);
+        com.diamon.datos.DatosPicProcesados datosPic = new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
+        datosPic.iniciarProcesamientoDeDatos();
+        boolean programOk = protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPic);
         assertTrue("Fallo al programar la memoria EEPROM", programOk);
 
         // Leer EEPROM programada
@@ -229,9 +231,11 @@ public class ProtocoloP18AIntegrationTest {
         String hexContent = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
 
         // Programar Fuses e ID (VID, PID o config del PIC)
+        com.diamon.datos.DatosPicProcesados datosPic = new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
+        datosPic.iniciarProcesamientoDeDatos();
         byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44 };
         java.util.List<Integer> fuses = java.util.Arrays.asList(0x3F74);
-        boolean fusesOk = protocolo.programarFusesIDDelPic(chip16f628a, hexContent, idPic, fuses);
+        boolean fusesOk = protocolo.programarFusesIDDelPic(chip16f628a, datosPic, idPic, fuses);
         assertTrue("Fallo al programar Fuses e ID", fusesOk);
 
         // Leer configuración

@@ -76,9 +76,6 @@ public class DatosPicProcesados {
      * @param chipPIC Información del chip PIC objetivo
      */
     public DatosPicProcesados(android.content.Context context, String firware, ChipPic chipPIC) throws ChipConfigurationException {
-        if (context == null) {
-            throw new IllegalArgumentException("Context no puede ser null");
-        }
         if (firware == null || firware.trim().isEmpty()) {
             throw new IllegalArgumentException("Firmware no puede ser null o vacío");
         }

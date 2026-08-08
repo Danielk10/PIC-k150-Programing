@@ -157,7 +157,7 @@ public class PicProgrammingManager {
             // Paso 2: Programar ROM si existe en HEX
             if (hasRom) {
                 notifyProgress(context.getString(R.string.programando_memoria_rom), 30);
-                if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
+                if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
                     notifyError(context.getString(R.string.error_programando_rom));
                     return false;
                 }
@@ -166,7 +166,7 @@ public class PicProgrammingManager {
             // Paso 3: Programar EEPROM si existe en HEX
             if (hasEeprom) {
                 notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
-                if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, firmware)) {
+                if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
                     notifyError(context.getString(R.string.error_programando_eeprom));
                     return false;
                 }
@@ -175,7 +175,7 @@ public class PicProgrammingManager {
             // Paso 4: Programar Fuses/ID si existen en HEX o por usuario
             if (hasConfig) {
                 notifyProgress(context.getString(R.string.programando_fuses_id), 70);
-                if (!protocolo.programarFusesIDDelPic(chipPIC, firmware, IDPic, fusesUsuario)) {
+                if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
                     notifyError(context.getString(R.string.error_programando_fuses));
                     return false;
                 }
@@ -219,8 +219,11 @@ public class PicProgrammingManager {
 
             // Para modo "solo ROM" NO se fuerza chip erase global para no perder
             // EEPROM/Fuses/ID existentes. Se intenta escritura directa de ROM.
+            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+            datosPicProcesados.iniciarProcesamientoDeDatos();
+
             notifyProgress(context.getString(R.string.programando_memoria_rom), 50);
-            if (!protocolo.programarMemoriaROMDelPic(chipPIC, firmware)) {
+            if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
                 notifyError(context.getString(R.string.error_programando_rom));
                 return false;
             }
@@ -258,8 +261,11 @@ public class PicProgrammingManager {
             notifyStarted();
 
             // Programar EEPROM
+            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+            datosPicProcesados.iniciarProcesamientoDeDatos();
+
             notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
-            if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, firmware)) {
+            if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
                 notifyError(context.getString(R.string.error_programando_eeprom));
                 return false;
             }
@@ -290,8 +296,11 @@ public class PicProgrammingManager {
             notifyStarted();
 
             // Programar Fuses e ID
+            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+            datosPicProcesados.iniciarProcesamientoDeDatos();
+
             notifyProgress(context.getString(R.string.programando_fuses_id), 50);
-            if (!protocolo.programarFusesIDDelPic(chipPIC, firmware, IDPic, fusesUsuario)) {
+            if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
                 notifyError(context.getString(R.string.error_programando_fuses));
                 return false;
             }

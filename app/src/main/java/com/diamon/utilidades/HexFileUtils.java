@@ -72,7 +72,7 @@ public class HexFileUtils {
             int startIndex = address - baseAddress;
             if (startIndex < 0 || startIndex >= dataArray.length) {
                 throw new IndexOutOfBoundsException(
-                        context.getString(R.string.record_address_error, String.valueOf(address)));
+                        getString(context, R.string.record_address_error, String.valueOf(address)));
             }
 
             // Escribe los datos en la posición correcta
@@ -210,7 +210,7 @@ public class HexFileUtils {
 
     public static int[] decodeFromBytes(android.content.Context context, byte[] bytes) {
         if (bytes.length % 2 != 0) {
-            throw new IllegalArgumentException(context.getString(R.string.error_no_multiplo_2));
+            throw new IllegalArgumentException(getString(context, R.string.error_no_multiplo_2));
         }
         ByteBuffer buffer = ByteBuffer.wrap(bytes);
         buffer.order(java.nio.ByteOrder.BIG_ENDIAN); // Leer como big-endian
@@ -219,5 +219,17 @@ public class HexFileUtils {
             integers[i] = buffer.getShort() & 0xFFFF; // Leer 2 bytes y convertir a entero sin signo
         }
         return integers;
+    }
+
+    private static String getString(android.content.Context context, int resId, Object... formatArgs) {
+        if (context != null) {
+            return context.getString(resId, formatArgs);
+        }
+        if (resId == R.string.record_address_error) {
+            return "Dirección de registro incorrecta: " + (formatArgs.length > 0 ? formatArgs[0] : "");
+        } else if (resId == R.string.error_no_multiplo_2) {
+            return "La longitud de bytes no es múltiplo de 2";
+        }
+        return "Error (" + resId + ")";
     }
 }
