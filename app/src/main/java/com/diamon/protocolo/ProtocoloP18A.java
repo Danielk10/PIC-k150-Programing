@@ -838,12 +838,8 @@ public class ProtocoloP18A extends Protocolo {
             while (bytesLeidos < size) {
                 int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
                 if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-
-                        datos.append(String.format("%02X", buffer[i]));
-                    }
+                    ByteUtils.appendHexToBuilder(buffer, leidos, datos);
                     bytesLeidos += leidos;
-
                 } else {
                     // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
                     break;
@@ -1212,13 +1208,10 @@ public class ProtocoloP18A extends Protocolo {
                 int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
                 if (leidos > 0) {
                     for (int i = 0; i < leidos; i++) {
-
-                        bytes[i] = buffer[i];
-
-                        datos.append(String.format("%02X", buffer[i]));
+                        bytes[bytesLeidos + i] = buffer[i];
+                        datos.append(String.format("%02X", buffer[i] & 0xFF));
                     }
                     bytesLeidos += leidos;
-
                 } else {
                     // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
                     break;
@@ -1295,7 +1288,7 @@ public class ProtocoloP18A extends Protocolo {
                         "Vector de depuración leído: 0x%02X%02X%02X",
                         highAddress, midAddress, lowAddress);
             } else {
-                return "Respuesta inesperada: " + String.format("%02X", response[0]);
+                return "Respuesta inesperada: " + String.format("%02X", response[0] & 0xFF);
             }
         } catch (IOException e) {
             return "Error al leer el vector de depuración: " + e.getMessage();

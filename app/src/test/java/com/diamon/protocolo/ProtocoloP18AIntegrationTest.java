@@ -200,4 +200,44 @@ public class ProtocoloP18AIntegrationTest {
         assertFalse("La ROM leída no debe contener error", romLeida.startsWith("Error"));
         assertTrue("La ROM leída no debe estar vacía", romLeida.length() > 0);
     }
+
+    @Test
+    public void testEEPROMProgramacionYLectura() throws Exception {
+        // Iniciar variables de programación del chip
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+
+        // Leer archivo HEX de prueba
+        String hexContent = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
+
+        // Programar EEPROM
+        boolean programOk = protocolo.programarMemoriaEEPROMDelPic(chip16f628a, hexContent);
+        assertTrue("Fallo al programar la memoria EEPROM", programOk);
+
+        // Leer EEPROM programada
+        String eepromLeida = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+        assertNotNull("La EEPROM leída no puede ser null", eepromLeida);
+        assertFalse("La EEPROM leída no debe contener error", eepromLeida.startsWith("Error"));
+        assertTrue("La EEPROM leída no debe estar vacía", eepromLeida.length() > 0);
+    }
+
+    @Test
+    public void testFusesYConfiguracion() throws Exception {
+        // Iniciar variables de programación del chip
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+
+        // Leer archivo HEX de prueba
+        String hexContent = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
+
+        // Programar Fuses e ID (VID, PID o config del PIC)
+        byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44 };
+        java.util.List<Integer> fuses = java.util.Arrays.asList(0x3F74);
+        boolean fusesOk = protocolo.programarFusesIDDelPic(chip16f628a, hexContent, idPic, fuses);
+        assertTrue("Fallo al programar Fuses e ID", fusesOk);
+
+        // Leer configuración
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull("La configuración leída no puede ser null", config);
+        assertFalse("La configuración leída no debe contener error", config.startsWith("Error"));
+        assertTrue("La configuración leída debe contener el ID grabado", config.contains("11223344"));
+    }
 }
