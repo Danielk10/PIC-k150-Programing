@@ -158,6 +158,13 @@ El proyecto se basa en las siguientes tecnologías y recursos de código abierto
    ./gradlew assembleDebug
    ```
 
+    *   **Pruebas de Integración con Emulador Local:**
+        Puedes validar la lógica de comunicación Java (`ProtocoloP18A.java`) contra el emulador virtual K150 en tu máquina local:
+        ```bash
+        ./run_java_emulator_tests.sh
+        ```
+        *(Este script inicia el emulador K150 en segundo plano, ejecuta las pruebas JUnit de `ProtocoloP18AIntegrationTest` mediante Gradle, y detiene el emulador al finalizar).*
+
 5. **Instala en dispositivo**:
    - Conecta tu dispositivo Android con depuración USB habilitada
    - Ejecuta desde Android Studio o:

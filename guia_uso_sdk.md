@@ -48,5 +48,14 @@ El `sdkmanager` es la herramienta principal para instalar, actualizar y listar c
     avdmanager create avd -n nombre_avd -k "system-images;android-37.0;google_apis;x86_64"
     ```
 
+## 4. Ejecución de Pruebas de Integración con el Emulador K150
+
+Puedes ejecutar las pruebas de integración en local para validar el protocolo de comunicación Java con el programador virtual K150:
+
+*   **Ejecutar pruebas completas (inicia emulador + ejecuta Gradle + detiene emulador):**
+    ```bash
+    ./run_java_emulator_tests.sh
+    ```
+
 ---
 *Generado por Gemini CLI*

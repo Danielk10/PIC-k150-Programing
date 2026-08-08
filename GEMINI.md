@@ -36,3 +36,16 @@ El programador K150 (protocolo P18A) y el microcontrolador PIC16F628A están emu
   - `probar_emulacion.sh`: Script bash de prueba para validar el ciclo de vida completo (`./probar_emulacion.sh cpp` o `python`).
 * **Guía Detallada de Emulación y Familias (PIC12/16/18):**
   - Consultar: [`/home/danielpdiamon/emulador_picpro/guia_emulacion_k150.md`](file:///home/danielpdiamon/emulador_picpro/guia_emulacion_k150.md)
+
+---
+
+## 🧪 4. Pruebas de Integración de Lógica Java con Emulador
+Se implementó un entorno de pruebas integradas para validar la lógica del protocolo Java (`ProtocoloP18A.java`) contra el emulador K150 en local usando puertos virtuales (PTY):
+* **Clase de Prueba:** [`ProtocoloP18AIntegrationTest.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/test/java/com/diamon/protocolo/ProtocoloP18AIntegrationTest.java)
+  - Valida el ciclo completo de vida (handshake, eco, lectura/escritura de ROM, borrado del chip y detección en socket).
+* **Script de Ejecución Automatizado:** [`run_java_emulator_tests.sh`](file:///home/danielpdiamon/PIC-k150-Programing/run_java_emulator_tests.sh)
+  - Levanta el emulador en segundo plano, realiza las pruebas en Gradle (`testDebugUnitTest`) y detiene el emulador al finalizar de forma segura.
+* **Comando para Ejecutar:**
+  ```bash
+  ./run_java_emulator_tests.sh
+  ```

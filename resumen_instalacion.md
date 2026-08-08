@@ -12,6 +12,7 @@ En la sesión anterior se realizaron las siguientes acciones para configurar el 
     *   **NDK**: 30.0.14904198.
     *   **CMake**: 4.1.2.
     4.  **Configuración Automática**: El script `setup-sdk.sh` gestiona la instalación y genera `local.properties`.
+5.  **Entorno de Pruebas de Integración**: Se implementó `ProtocoloP18AIntegrationTest.java` y el script `run_java_emulator_tests.sh` para ejecutar y validar de forma automatizada toda la comunicación Java de la app (`ProtocoloP18A`) contra el emulador virtual K150 local.
 
 ---
 *Generado por Gemini CLI*
