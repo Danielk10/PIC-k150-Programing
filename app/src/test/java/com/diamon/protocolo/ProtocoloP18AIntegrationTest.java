@@ -337,7 +337,6 @@ public class ProtocoloP18AIntegrationTest {
         // La dirección base de EEPROM para el PIC16F628A es 0x2100 (dirección de palabras, que es 0x4200 byte-address)
         String eepromGeneratedHex = com.diamon.managers.HexExportManager.convertToIntelHexWithAddress(eepromExportReady, 0x4200);
 
-        // 4. Importar y parsear los HEX generados para asegurar que el formato es 100% válido y mantiene integridad
         com.diamon.datos.DatosPicProcesados datosPicROMGenerado = new com.diamon.datos.DatosPicProcesados(null, romGeneratedHex, chip16f628a);
         datosPicROMGenerado.iniciarProcesamientoDeDatos();
         byte[] romParseadoGenerado = datosPicROMGenerado.obtenerBytesHexROMPocesado();
@@ -349,5 +348,67 @@ public class ProtocoloP18AIntegrationTest {
         byte[] eepromParseadoGenerado = datosPicEEPROMGenerado.obtenerBytesHexEEPROMPocesado();
 
         assertArrayEquals("La EEPROM exportada e importada de vuelta no coincide con la original", eepromOriginal, eepromParseadoGenerado);
+    }
+
+    @Test
+    public void testManagerProgramacionCompleta() throws Exception {
+        // 1. Instanciar PicProgrammingManager
+        com.diamon.managers.PicProgrammingManager manager = new com.diamon.managers.PicProgrammingManager(mockContext);
+        manager.setProtocolo(protocolo);
+
+        // Configurar un listener para capturar eventos y verificar que se disparen
+        final boolean[] startedCalled = {false};
+        final boolean[] progressCalled = {false};
+        final boolean[] completedCalled = {false};
+        
+        manager.setProgrammingListener(new com.diamon.managers.PicProgrammingManager.ProgrammingListener() {
+            @Override
+            public void onProgrammingStarted() {
+                startedCalled[0] = true;
+            }
+
+            @Override
+            public void onProgrammingProgress(String message, int progress) {
+                progressCalled[0] = true;
+            }
+
+            @Override
+            public void onProgrammingCompleted(boolean success) {
+                completedCalled[0] = success;
+            }
+
+            @Override
+            public void onProgrammingError(String errorMessage) {
+                fail("No debería ocurrir error de programación: " + errorMessage);
+            }
+        });
+
+        // 2. Leer archivo HEX completo
+        String hexContent = new String(Files.readAllBytes(Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")), StandardCharsets.UTF_8);
+
+        // 3. Ejecutar programación completa (ROM + EEPROM + Config)
+        byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44 };
+        java.util.List<Integer> fuses = java.util.Arrays.asList(0x3F74);
+        
+        boolean success = manager.programChip(chip16f628a, hexContent, idPic, fuses);
+        assertTrue("La programación completa del manager debería ser exitosa", success);
+        
+        // Verificar disparadores del listener
+        assertTrue("onProgrammingStarted debería ser llamado", startedCalled[0]);
+        assertTrue("onProgrammingProgress debería ser llamado", progressCalled[0]);
+        assertTrue("onProgrammingCompleted debería ser llamado con éxito", completedCalled[0]);
+
+        // 4. Leer de vuelta de la memoria simulada del emulador para verificar el grabado completo
+        String rom = protocolo.leerMemoriaROMDelPic(chip16f628a);
+        assertNotNull(rom);
+        assertFalse(rom.startsWith("Error"));
+
+        String eeprom = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+        assertNotNull(eeprom);
+        assertFalse(eeprom.startsWith("Error"));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertTrue("La configuración debe contener el ID grabado mediante el manager", config.contains("11223344"));
     }
 }
