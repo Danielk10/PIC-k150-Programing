@@ -31,7 +31,7 @@ import java.util.Map;
 public class ProtocoloP18AIntegrationTest {
 
     private static final String VTTY_PATH = "/home/danielpdiamon/emulador_picpro/vtty";
-    private static final String HEX_FILE_PATH = "/home/danielpdiamon/PIC-k150-Programing/pwmc_main107_628A.HEX";
+    private static final String HEX_FILE_PATH = "/home/danielpdiamon/pwmc_main107_628A.HEX";
 
     private FileInputStream in;
     private FileOutputStream out;
@@ -188,6 +188,9 @@ public class ProtocoloP18AIntegrationTest {
         String hexContent = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
 
         // Programar ROM
+        com.diamon.datos.DatosPicProcesados datosPic = new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
+        datosPic.iniciarProcesamientoDeDatos(); // Esto lanzará la excepción real si falla el parseo
+        
         boolean programOk = protocolo.programarMemoriaROMDelPic(chip16f628a, hexContent);
         assertTrue("Fallo al programar la memoria ROM", programOk);
 

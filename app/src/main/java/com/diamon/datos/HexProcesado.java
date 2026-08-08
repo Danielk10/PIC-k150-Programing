@@ -90,11 +90,11 @@ public class HexProcesado {
 
         try {
             for (int numeroLinea = 0; numeroLinea < lineas.length; numeroLinea++) {
-                String line = lineas[numeroLinea];
+                String line = lineas[numeroLinea].trim();
                 lineasProcesadas++;
 
                 // Ignorar líneas vacías
-                if (line.trim().isEmpty()) {
+                if (line.isEmpty()) {
                     continue;
                 }
 
