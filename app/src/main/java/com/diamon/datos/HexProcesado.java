@@ -66,9 +66,6 @@ public class HexProcesado {
      * @throws HexProcessingException Si ocurre error durante el procesamiento
      */
     public HexProcesado(android.content.Context context, String fileContent) throws HexProcessingException {
-        if (context == null) {
-            throw new IllegalArgumentException("Context no puede ser null");
-        }
         if (fileContent == null || fileContent.trim().isEmpty()) {
             throw new IllegalArgumentException(
                     "Contenido del archivo HEX no puede ser null o vacío");
@@ -93,8 +90,8 @@ public class HexProcesado {
                 String line = lineas[numeroLinea].trim();
                 lineasProcesadas++;
 
-                // Ignorar líneas vacías
-                if (line.isEmpty()) {
+                // Ignorar líneas vacías o comentarios (comunes en algunos compiladores/IDE)
+                if (line.isEmpty() || line.startsWith(";") || line.startsWith("#")) {
                     continue;
                 }
 
