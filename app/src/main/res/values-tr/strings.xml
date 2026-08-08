@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Gizlilik Politikası</string>
     <string name="no_se_detecto_pic_en_socket">Sokette PIC algılanmadı</string>
     <string name="pic_detectado_en_socket">Sokette PIC algılandı</string>
-    <string name="memoria_contiene_datos">Bellek veri içerir</string>
-    <string name="memoria_vacia">Boş bellek</string>
     <string name="error_borrando_memoria">Bellek silinirken hata oluştu</string>
     <string name="memoria_borrada_exitosamente">Bellek başarıyla silindi</string>
     <string name="memoria_leida_exitosamente">Bellek başarıyla okundu</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Çip başlatılırken hata oluştu</string>
     <string name="conectado_al_programador">Programcıya bağlı</string>
     <string name="error_inicializando_base_de_da">Çip veritabanı başlatılırken hata oluştu</string>
-    <string name="no_hay_modelos_de_chips_dispon">Kullanılabilir çip modeli yok</string>
-    <string name="modelo_de_chip_invalido">Geçersiz çip modeli</string>
-    <string name="chip_no_encontrado_en_base_de_">Çip veritabanında bulunamadı</string>
-    <string name="error_procesando_chip">Çip işlenirken hata oluştu</string>
     <string name="no_hay_chip_seleccionado">Seçili çip yok</string>
     <string name="modelo">Model</string>
     <string name="palabras_rom">ROM Sözcükleri</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM başarıyla doğrulandı</string>
     <string name="verificacion_rom_fallo">ROM doğrulaması başarısız</string>
-    <string name="verificacion_eeprom_ok">EEPROM başarıyla doğrulandı</string>
-    <string name="verificacion_eeprom_fallo">EEPROM doğrulaması başarısız</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Doğrulama tamamlandı</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Çip Teknik Bilgisi</string>
     
-    <string name="propiedad">Özellik</string>
     
-    <string name="valor">Değer</string>
     
-    <string name="chip_info_profesional">Çip Bilgisi</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Yapılandırma Sigortaları</string>
     
     <string name="chip_seleccionado">Seçilen Çip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Örnek: 1A 2B 3C 4D (4 veya 8 bayt)</string>
     
-    <string name="hint_nombre_fusible">Ad (örn: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Değer (örn: AÇIK, KAPALI, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Çalışma Günlüğü</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">HEX formatında Kullanıcı Kimliği. PIC12/16 için 4 bayt (8 basamak) veya PIC18 için 8 bayt (16 basamak) kullanın.</string>
     
-    <string name="ayuda_fuses_personalizados">HEX sigortalarının üzerine yazar. Teknik adı (ör. WDT) ve değeri (ör. KAPALI veya 0x01) kullanın.</string>
     
-    <string name="ayuda_chip_info">PIC tanım dosyasından çıkarılan detaylı teknik veriler.</string>
 
     
     <string name="seleccionar_operacion">İşlemi Seçin</string>
     
-    <string name="config_leida">Yapılandırma Okuması</string>
 
     
     <string name="publicidad_recomendada">Önerilen Reklam</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Sigortalar Uygulandı</string>
     
-    <string name="procesamiento_hex">HEX İşleme</string>
     
     <string name="rom_ok_blank">ROM: Tamam (Boş)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Yardım</string>
-    
-    <string name="ayuda_icsp">Bağlantı ICSP</string>
-    
-    <string name="ayuda_fuses_label">Sigorta Yapılandırması</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Bağlantı açılırken hata oluştu</string>
     
-    <string name="copiado_portapapeles">Panoya kopyalandı</string>
     
     <string name="error_generico_detalle">Hata: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Yapılandırıldı</string>
     
     <string name="debe_procesar_hex_primero">Önce HEX dosyasını işlemeli</string>
 
     
-    <string name="error_exportador_no_inicializado">Dışa aktarıcı başlatılmadı</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Dışa aktarma beklemede değil</string>
     
-    <string name="seleccion_carpeta_cancelada">Klasör seçimi iptal edildi</string>
     
-    <string name="error_carpeta_no_accesible">Seçilen klasöre erişilemedi</string>
     
-    <string name="reemplazar_archivo_titulo">Dosyayı değiştir</string>
     
-    <string name="reemplazar_archivo_mensaje">\'%1$s\' dosyası zaten mevcut. Değiştirmek istiyor musunuz?</string>
     
-    <string name="error_reemplazando_archivo">Mevcut dosya değiştirilemedi</string>
     
     <string name="si">Evet</string>
     
     <string name="no">Hayır</string>
     
-    <string name="archivo_guardado">Dosya kaydedildi: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Sigorta Ekle</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Terim bulunamadı: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Dışa aktarılacak veri yok</string>
     
     <string name="no_hay_datos_validos_para_exportar">Dışa aktarılacak geçerli veri yok</string>
     
     <string name="error_convirtiendo_datos_hex">Onaltılı veri dönüştürülürken hata oluştu</string>
     
-    <string name="error_nombre_archivo_vacio">Ad boş olamaz</string>
     
     <string name="error_creando_archivo_salida">Çıkış dosyası oluşturulamadı</string>
     
-    <string name="error_abriendo_archivo_escritura">Dosya yazmak için açılamadı</string>
     
     <string name="error_escribiendo_archivo_detalle">Dosya yazma hatası: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Dışa aktarmada beklenmeyen hata oluştu: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Öğretici yükleniyor…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">ADIM </string>
     <string name="error_prefijo">❌ HATA: </string>
     <string name="exito_prefijo">✅ BAŞARILI: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

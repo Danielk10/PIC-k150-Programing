@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">سياسة الخصوصية</string>
     <string name="no_se_detecto_pic_en_socket">لم يتم الكشف عن PIC في المقبس</string>
     <string name="pic_detectado_en_socket">تم الكشف عن PIC في المقبس</string>
-    <string name="memoria_contiene_datos">الذاكرة تحتوي على بيانات</string>
-    <string name="memoria_vacia">ذاكرة فارغة</string>
     <string name="error_borrando_memoria">خطأ أثناء مسح الذاكرة</string>
     <string name="memoria_borrada_exitosamente">تم مسح الذاكرة بنجاح</string>
     <string name="memoria_leida_exitosamente">تمت قراءة الذاكرة بنجاح</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">خطأ في تهيئة الشريحة</string>
     <string name="conectado_al_programador">متصل بالـمبرمج</string>
     <string name="error_inicializando_base_de_da">خطأ في تهيئة قاعدة بيانات الشرائح</string>
-    <string name="no_hay_modelos_de_chips_dispon">لا توجد طرازات شرائح متاحة</string>
-    <string name="modelo_de_chip_invalido">طراز شريحة غير صالح</string>
-    <string name="chip_no_encontrado_en_base_de_">الشريحة غير موجودة في قاعدة البيانات</string>
-    <string name="error_procesando_chip">خطأ أثناء معالجة الشريحة</string>
     <string name="no_hay_chip_seleccionado">لم يتم اختيار شريحة</string>
     <string name="modelo">الطراز</string>
     <string name="palabras_rom">كلمات ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">تم التحقق من ROM بنجاح</string>
     <string name="verificacion_rom_fallo">فشل التحقق من ROM</string>
-    <string name="verificacion_eeprom_ok">تم التحقق من EEPROM بنجاح</string>
-    <string name="verificacion_eeprom_fallo">فشل التحقق من EEPROM</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">اكتمل التحقق</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">المعلومات التقنية للرقاقة</string>
     
-    <string name="propiedad">خاصية</string>
     
-    <string name="valor">قيمة</string>
     
-    <string name="chip_info_profesional">معلومات الشريحة</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">تكوينات الصمامات</string>
     
     <string name="chip_seleccionado">شريحة مختارة</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">مثال: 1A 2B 3C 4D (4 أو 8 بايت)</string>
     
-    <string name="hint_nombre_fusible">الاسم (على سبيل المثال: WDT، FOSC، MCLRE)</string>
     
-    <string name="hint_valor_fusible">القيمة (على سبيل المثال: ON، OFF، HS، 0x3F)</string>
     
     <string name="log_de_operaciones">سجل العمليات</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">معرف المستخدم بتنسيق HEX. استخدم 4 بايت (8 أرقام) لـ PIC12/16 أو 8 بايت (16 رقم) لـ PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">يتجاوز الصمامات HEX. استخدم الاسم الفني (على سبيل المثال: WDT) والقيمة (على سبيل المثال: OFF أو 0x01).</string>
     
-    <string name="ayuda_chip_info">البيانات الفنية التفصيلية المستخرجة من ملف تعريف PIC.</string>
 
     
     <string name="seleccionar_operacion">حدد العملية</string>
     
-    <string name="config_leida">قراءة التكوين</string>
 
     
     <string name="publicidad_recomendada">الإعلانات الموصى بها</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">الصمامات التطبيقية</string>
     
-    <string name="procesamiento_hex">معالجة HEX</string>
     
     <string name="rom_ok_blank">ROM: موافق (فارغ)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">مساعدة</string>
-    
-    <string name="ayuda_icsp">اتصال ICSP</string>
-    
-    <string name="ayuda_fuses_label">تكوين الصمامات</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">حدث خطأ أثناء فتح الرابط</string>
     
-    <string name="copiado_portapapeles">تم النسخ إلى الحافظة</string>
     
     <string name="error_generico_detalle">خطأ: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ تم تكوينه</string>
     
     <string name="debe_procesar_hex_primero">يجب عليك معالجة ملف HEX أولاً</string>
 
     
-    <string name="error_exportador_no_inicializado">لم تتم تهيئة المصدر</string>
     
-    <string name="error_no_hay_exportacion_pendiente">لا يوجد تصدير معلق</string>
     
-    <string name="seleccion_carpeta_cancelada">تم إلغاء اختيار المجلد</string>
     
-    <string name="error_carpeta_no_accesible">لا يمكن الوصول إلى المجلد المحدد</string>
     
-    <string name="reemplazar_archivo_titulo">استبدال الملف</string>
     
-    <string name="reemplazar_archivo_mensaje">الملف \'%1$s\' موجود بالفعل. هل تريد استبداله؟</string>
     
-    <string name="error_reemplazando_archivo">لا يمكن استبدال الملف الموجود</string>
     
     <string name="si">نعم</string>
     
     <string name="no">لا</string>
     
-    <string name="archivo_guardado">تم حفظ الملف: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ إضافة فيوز</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">لم يتم العثور على المصطلح: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">لا توجد بيانات للتصدير</string>
     
     <string name="no_hay_datos_validos_para_exportar">لا توجد بيانات صالحة للتصدير</string>
     
     <string name="error_convirtiendo_datos_hex">خطأ في تحويل البيانات الست عشرية</string>
     
-    <string name="error_nombre_archivo_vacio">لا يمكن أن يكون الاسم فارغًا</string>
     
     <string name="error_creando_archivo_salida">لا يمكن إنشاء ملف الإخراج</string>
     
-    <string name="error_abriendo_archivo_escritura">لا يمكن فتح الملف للكتابة</string>
     
     <string name="error_escribiendo_archivo_detalle">خطأ في كتابة الملف: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">خطأ غير متوقع أثناء التصدير: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">جارٍ تحميل الدليل…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">خطوة </string>
     <string name="error_prefijo">❌ خطأ: </string>
     <string name="exito_prefijo">✅ نجاح: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Политика Приватности</string>
     <string name="no_se_detecto_pic_en_socket">PIC није детектован у утичници</string>
     <string name="pic_detectado_en_socket">PIC детектован у утичници</string>
-    <string name="memoria_contiene_datos">Меморија садржи податке</string>
-    <string name="memoria_vacia">Празна меморија</string>
     <string name="error_borrando_memoria">Грешка при брисању меморије</string>
     <string name="memoria_borrada_exitosamente">Меморија успешно обрисана</string>
     <string name="memoria_leida_exitosamente">Меморија успешно прочитана</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Грешка при иницијализацији чипа</string>
     <string name="conectado_al_programador">Повезано са програматором</string>
     <string name="error_inicializando_base_de_da">Грешка при иницијализацији базе података чипова</string>
-    <string name="no_hay_modelos_de_chips_dispon">Нема доступних модела чипова</string>
-    <string name="modelo_de_chip_invalido">Неважећи модел чипа</string>
-    <string name="chip_no_encontrado_en_base_de_">Чип није пронађен у бази података</string>
-    <string name="error_procesando_chip">Грешка при обради чипа</string>
     <string name="no_hay_chip_seleccionado">Није изабран чип</string>
     <string name="modelo">Модел</string>
     <string name="palabras_rom">ROM речи</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM успешно проверена</string>
     <string name="verificacion_rom_fallo">Провера ROM неуспешна</string>
-    <string name="verificacion_eeprom_ok">EEPROM успешно проверена</string>
-    <string name="verificacion_eeprom_fallo">Провера EEPROM неуспешна</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Провера завршена</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Техничке информације о чипу</string>
     
-    <string name="propiedad">Својство</string>
     
-    <string name="valor">Вредност</string>
     
-    <string name="chip_info_profesional">Информације о чипу</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Конфигурације осигурача</string>
     
     <string name="chip_seleccionado">Изабрани чип</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Пример: 1А 2Б 3Ц 4Д (4 или 8 бајтова)</string>
     
-    <string name="hint_nombre_fusible">Име (нпр.: ВДТ, ФОСЦ, МЦЛРЕ)</string>
     
-    <string name="hint_valor_fusible">Вредност (нпр.: УКЉУЧЕНО, ИСКЉУЧЕНО, ХС, 0к3Ф)</string>
     
     <string name="log_de_operaciones">Оперативни дневник</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">ИД корисника у ХЕКС формату. Користите 4 бајта (8 цифара) за ПИЦ12/16 или 8 бајтова (16 цифара) за ПИЦ18.</string>
     
-    <string name="ayuda_fuses_personalizados">Поништава ХЕКС осигураче. Користите технички назив (нпр. ВДТ) и вредност (нпр. ОФФ или 0к01).</string>
     
-    <string name="ayuda_chip_info">Детаљни технички подаци екстраховани из ПИЦ датотеке дефиниције.</string>
 
     
     <string name="seleccionar_operacion">Изаберите Операција</string>
     
-    <string name="config_leida">Прочитана конфигурација</string>
 
     
     <string name="publicidad_recomendada">Препоручено оглашавање</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Примењени осигурачи</string>
     
-    <string name="procesamiento_hex">HEX обрада</string>
     
     <string name="rom_ok_blank">РОМ: ОК (празан)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Помоћ</string>
-    
-    <string name="ayuda_icsp">ИЦСП веза</string>
-    
-    <string name="ayuda_fuses_label">Конфигурација осигурача</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Грешка при отварању везе</string>
     
-    <string name="copiado_portapapeles">Копирано у привремену меморију</string>
     
     <string name="error_generico_detalle">Грешка: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Конфигурисано</string>
     
     <string name="debe_procesar_hex_primero">Прво морате обрадити ХЕКС датотеку</string>
 
     
-    <string name="error_exportador_no_inicializado">Извозник није иницијализован</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Нема извоза на чекању</string>
     
-    <string name="seleccion_carpeta_cancelada">Избор директоријума је отказан</string>
     
-    <string name="error_carpeta_no_accesible">Није могуће приступити изабраном фолдеру</string>
     
-    <string name="reemplazar_archivo_titulo">Замените датотеку</string>
     
-    <string name="reemplazar_archivo_mensaje">Датотека %1$s%2$s%3$s већ постоји. Да ли желите да га замените?</string>
     
-    <string name="error_reemplazando_archivo">Није могуће заменити постојећу датотеку</string>
     
     <string name="si">Да</string>
     
     <string name="no">бр</string>
     
-    <string name="archivo_guardado">Фајл сачуван: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Додајте осигурач</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Термин није пронађен: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Нема података за извоз</string>
     
     <string name="no_hay_datos_validos_para_exportar">Нема важећих података за извоз</string>
     
     <string name="error_convirtiendo_datos_hex">Грешка при конверзији хексадецималних података</string>
     
-    <string name="error_nombre_archivo_vacio">Име не може бити празно</string>
     
     <string name="error_creando_archivo_salida">Није могуће креирати излазну датотеку</string>
     
-    <string name="error_abriendo_archivo_escritura">Није могуће отворити датотеку за писање</string>
     
     <string name="error_escribiendo_archivo_detalle">Грешка при писању датотеке: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Неочекивана грешка при извозу: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

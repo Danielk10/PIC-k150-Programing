@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Chính sách bảo mật</string>
     <string name="no_se_detecto_pic_en_socket">Không phát hiện được PIC trong ổ cắm</string>
     <string name="pic_detectado_en_socket">Phát hiện PIC trong ổ cắm</string>
-    <string name="memoria_contiene_datos">Bộ nhớ chứa dữ liệu</string>
-    <string name="memoria_vacia">Bộ nhớ trống</string>
     <string name="error_borrando_memoria">Lỗi xóa bộ nhớ</string>
     <string name="memoria_borrada_exitosamente">Bộ nhớ đã xóa thành công</string>
     <string name="memoria_leida_exitosamente">Bộ nhớ đã đọc thành công</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Lỗi khởi tạo chip</string>
     <string name="conectado_al_programador">Đã kết nối với lập trình viên</string>
     <string name="error_inicializando_base_de_da">Lỗi khởi tạo cơ sở dữ liệu chip</string>
-    <string name="no_hay_modelos_de_chips_dispon">Không có mô hình chip nào khả dụng</string>
-    <string name="modelo_de_chip_invalido">Mô hình chip không hợp lệ</string>
-    <string name="chip_no_encontrado_en_base_de_">Chip không tìm thấy trong cơ sở dữ liệu</string>
-    <string name="error_procesando_chip">Lỗi xử lý chip</string>
     <string name="no_hay_chip_seleccionado">Không có chip nào được chọn</string>
     <string name="modelo">Model</string>
     <string name="palabras_rom">Từ ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">Xác minh ROM thành công</string>
     <string name="verificacion_rom_fallo">Xác minh ROM thất bại</string>
-    <string name="verificacion_eeprom_ok">Xác minh EEPROM thành công</string>
-    <string name="verificacion_eeprom_fallo">Xác minh EEPROM thất bại</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Xác minh hoàn tất</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Thông tin kỹ thuật chip</string>
     
-    <string name="propiedad">Thuộc tính</string>
     
-    <string name="valor">Giá trị</string>
     
-    <string name="chip_info_profesional">Thông tin chip</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Cấu hình cầu chì</string>
     
     <string name="chip_seleccionado">Chip đã chọn</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Ví dụ: 1A 2B 3C 4D (4 hoặc 8 byte)</string>
     
-    <string name="hint_nombre_fusible">Tên (ví dụ: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Giá trị (ví dụ: BẬT, TẮT, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Nhật ký hoạt động</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">ID người dùng ở định dạng HEX. Sử dụng 4 byte (8 chữ số) cho PIC12/16 hoặc 8 byte (16 chữ số) cho PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Ghi đè cầu chì HEX. Sử dụng tên kỹ thuật (ví dụ: WDT) và giá trị (ví dụ: TẮT hoặc 0x01).</string>
     
-    <string name="ayuda_chip_info">Dữ liệu kỹ thuật chi tiết được trích xuất từ ​​tệp định nghĩa PIC.</string>
 
     
     <string name="seleccionar_operacion">Chọn Thao tác</string>
     
-    <string name="config_leida">Đọc cấu hình</string>
 
     
     <string name="publicidad_recomendada">Quảng cáo được đề xuất</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Cầu chì được áp dụng</string>
     
-    <string name="procesamiento_hex">Xử lý HEX</string>
     
     <string name="rom_ok_blank">ROM: OK (Trống)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Trợ giúp</string>
-    
-    <string name="ayuda_icsp">Kết nối ICSP</string>
-    
-    <string name="ayuda_fuses_label">Cấu hình cầu chì</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Lỗi khi mở liên kết</string>
     
-    <string name="copiado_portapapeles">Đã sao chép vào bộ nhớ tạm</string>
     
     <string name="error_generico_detalle">Lỗi: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Đã định cấu hình</string>
     
     <string name="debe_procesar_hex_primero">Phải xử lý tệp HEX trước</string>
 
     
-    <string name="error_exportador_no_inicializado">Trình xuất chưa được khởi tạo</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Không xuất đang chờ xử lý</string>
     
-    <string name="seleccion_carpeta_cancelada">Lựa chọn thư mục đã bị hủy</string>
     
-    <string name="error_carpeta_no_accesible">Không thể truy cập thư mục đã chọn</string>
     
-    <string name="reemplazar_archivo_titulo">Thay thế tệp</string>
     
-    <string name="reemplazar_archivo_mensaje">Tệp \'%1$s\' đã tồn tại. Bạn có muốn thay thế nó?</string>
     
-    <string name="error_reemplazando_archivo">Không thể thay thế tệp hiện có</string>
     
     <string name="si">Có</string>
     
     <string name="no">Không</string>
     
-    <string name="archivo_guardado">File đã lưu: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Thêm cầu chì</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Không tìm thấy thuật ngữ: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Không có dữ liệu để xuất</string>
     
     <string name="no_hay_datos_validos_para_exportar">Không có dữ liệu hợp lệ để xuất</string>
     
     <string name="error_convirtiendo_datos_hex">Lỗi chuyển đổi dữ liệu thập lục phân</string>
     
-    <string name="error_nombre_archivo_vacio">Tên không được để trống</string>
     
     <string name="error_creando_archivo_salida">Không thể tạo tệp đầu ra</string>
     
-    <string name="error_abriendo_archivo_escritura">Không thể mở tệp để ghi</string>
     
     <string name="error_escribiendo_archivo_detalle">Lỗi ghi tệp: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Xuất lỗi không mong muốn: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

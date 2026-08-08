@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Politica de confidențialitate</string>
     <string name="no_se_detecto_pic_en_socket">PIC nu a fost detectat în soclu</string>
     <string name="pic_detectado_en_socket">PIC detectat în soclu</string>
-    <string name="memoria_contiene_datos">Memoria conține date</string>
-    <string name="memoria_vacia">Memorie goală</string>
     <string name="error_borrando_memoria">Eroare la ștergerea memoriei</string>
     <string name="memoria_borrada_exitosamente">Memorie ștearsă cu succes</string>
     <string name="memoria_leida_exitosamente">Memorie citită cu succes</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Eroare la inițializarea cipului</string>
     <string name="conectado_al_programador">Conectat la programator</string>
     <string name="error_inicializando_base_de_da">Eroare la inițializarea bazei de date a cipurilor</string>
-    <string name="no_hay_modelos_de_chips_dispon">Nu sunt disponibile modele de cipuri</string>
-    <string name="modelo_de_chip_invalido">Model de cip nevalid</string>
-    <string name="chip_no_encontrado_en_base_de_">Cipul nu a fost găsit în baza de date</string>
-    <string name="error_procesando_chip">Eroare la prelucrarea cipului</string>
     <string name="no_hay_chip_seleccionado">Niciun cip selectat</string>
     <string name="modelo">Model</string>
     <string name="palabras_rom">Cuvinte ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM verificată cu succes</string>
     <string name="verificacion_rom_fallo">Verificare ROM eșuată</string>
-    <string name="verificacion_eeprom_ok">EEPROM verificată cu succes</string>
-    <string name="verificacion_eeprom_fallo">Verificare EEPROM eșuată</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Verificare finalizată</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Informații tehnice despre cip</string>
     
-    <string name="propiedad">Proprietate</string>
     
-    <string name="valor">Valoare</string>
     
-    <string name="chip_info_profesional">Informații chip</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Configurații siguranțe</string>
     
     <string name="chip_seleccionado">Chip selectat</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Exemplu: 1A 2B 3C 4D (4 sau 8 octeți)</string>
     
-    <string name="hint_nombre_fusible">Nume (ex: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Valoare (ex: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Jurnalul de operațiuni</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">ID utilizator în format HEX. Utilizați 4 octeți (8 cifre) pentru PIC12/16 sau 8 octeți (16 cifre) pentru PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Depășește siguranțele HEX. Utilizați numele tehnic (ex: WDT) și valoarea (ex: OFF sau 0x01).</string>
     
-    <string name="ayuda_chip_info">Date tehnice detaliate extrase din fișierul de definiție PIC.</string>
 
     
     <string name="seleccionar_operacion">Selectați Operație</string>
     
-    <string name="config_leida">Configurație citită</string>
 
     
     <string name="publicidad_recomendada">Reclamă recomandată</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Siguranțe aplicate</string>
     
-    <string name="procesamiento_hex">Procesare HEX</string>
     
     <string name="rom_ok_blank">ROM: OK (alb)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Ajutor</string>
-    
-    <string name="ayuda_icsp">conexiune ICSP</string>
-    
-    <string name="ayuda_fuses_label">Configurația siguranței</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Eroare la deschiderea linkului</string>
     
-    <string name="copiado_portapapeles">Copiat în clipboard</string>
     
     <string name="error_generico_detalle">Eroare: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Configurat</string>
     
     <string name="debe_procesar_hex_primero">Mai întâi trebuie să procesați fișierul HEX</string>
 
     
-    <string name="error_exportador_no_inicializado">Exportatorul nu este inițializat</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Nu există niciun export în așteptare</string>
     
-    <string name="seleccion_carpeta_cancelada">Selectarea folderului a fost anulată</string>
     
-    <string name="error_carpeta_no_accesible">Dosarul selectat nu a putut fi accesat</string>
     
-    <string name="reemplazar_archivo_titulo">Înlocuiți fișierul</string>
     
-    <string name="reemplazar_archivo_mensaje">Fișierul \'%1$s\' există deja. Doriți să-l înlocuiți?</string>
     
-    <string name="error_reemplazando_archivo">Nu s-a putut înlocui fișierul existent</string>
     
     <string name="si">Da</string>
     
     <string name="no">Nu</string>
     
-    <string name="archivo_guardado">Fișier salvat: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Adăugați siguranța</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Termenul nu a fost găsit: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Nu există date de exportat</string>
     
     <string name="no_hay_datos_validos_para_exportar">Nu există date valide de exportat</string>
     
     <string name="error_convirtiendo_datos_hex">Eroare la conversia datelor hexazecimale</string>
     
-    <string name="error_nombre_archivo_vacio">Numele nu poate fi gol</string>
     
     <string name="error_creando_archivo_salida">Nu s-a putut crea fișierul de ieșire</string>
     
-    <string name="error_abriendo_archivo_escritura">Nu s-a putut deschide fișierul pentru scriere</string>
     
     <string name="error_escribiendo_archivo_detalle">Eroare la scrierea fișierului: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Eroare neașteptată la export: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

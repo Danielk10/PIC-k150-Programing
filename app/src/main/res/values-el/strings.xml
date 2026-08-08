@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Πολιτική Απορρήτου</string>
     <string name="no_se_detecto_pic_en_socket">Δεν εντοπίστηκε PIC στην υποδοχή</string>
     <string name="pic_detectado_en_socket">PIC εντοπίστηκε στην υποδοχή</string>
-    <string name="memoria_contiene_datos">Η μνήμη περιέχει δεδομένα</string>
-    <string name="memoria_vacia">Κενή μνήμη</string>
     <string name="error_borrando_memoria">Σφάλμα διαγραφής μνήμης</string>
     <string name="memoria_borrada_exitosamente">Η μνήμη διαγράφηκε επιτυχώς</string>
     <string name="memoria_leida_exitosamente">Η μνήμη διαβάστηκε επιτυχώς</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Σφάλμα αρχικοποίησης chip</string>
     <string name="conectado_al_programador">Συνδεδεμένο στον προγραμματιστή</string>
     <string name="error_inicializando_base_de_da">Σφάλμα αρχικοποίησης βάσης δεδομένων chip</string>
-    <string name="no_hay_modelos_de_chips_dispon">Δεν υπάρχουν διαθέσιμα μοντέλα chip</string>
-    <string name="modelo_de_chip_invalido">Μη έγκυρο μοντέλο chip</string>
-    <string name="chip_no_encontrado_en_base_de_">Το chip δεν βρέθηκε στη βάση δεδομένων</string>
-    <string name="error_procesando_chip">Σφάλμα επεξεργασίας chip</string>
     <string name="no_hay_chip_seleccionado">Δεν έχει επιλεγεί chip</string>
     <string name="modelo">Μοντέλο</string>
     <string name="palabras_rom">Λέξεις ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM επαληθεύτηκε</string>
     <string name="verificacion_rom_fallo">Αποτυχία επαλήθευσης ROM</string>
-    <string name="verificacion_eeprom_ok">EEPROM επαληθεύτηκε</string>
-    <string name="verificacion_eeprom_fallo">Αποτυχία επαλήθευσης EEPROM</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Επαλήθευση ολοκληρώθηκε</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Τεχνικές Πληροφορίες Chip</string>
     
-    <string name="propiedad">Ιδιότητα</string>
     
-    <string name="valor">Τιμή</string>
     
-    <string name="chip_info_profesional">Πληροφορίες Chip</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Διαμορφώσεις ασφαλειών</string>
     
     <string name="chip_seleccionado">Επιλεγμένο Chip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Παράδειγμα: 1A 2B 3C 4D (4 ή 8 byte)</string>
     
-    <string name="hint_nombre_fusible">Όνομα (π.χ.: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Τιμή (π.χ.: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Μητρώο λειτουργιών</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">ID χρήστη σε μορφή HEX. Χρησιμοποιήστε 4 byte (8 ψηφία) για PIC12/16 ή 8 byte (16 ψηφία) για PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Αντικαθιστά τις ασφάλειες HEX. Χρησιμοποιήστε την τεχνική ονομασία (π.χ.: WDT) και την τιμή (π.χ.: OFF ή 0x01).</string>
     
-    <string name="ayuda_chip_info">Λεπτομερή τεχνικά δεδομένα εξάγονται από το αρχείο ορισμού PIC.</string>
 
     
     <string name="seleccionar_operacion">Επιλέξτε Λειτουργία</string>
     
-    <string name="config_leida">Διαμόρφωση ανάγνωσης</string>
 
     
     <string name="publicidad_recomendada">Προτεινόμενη διαφήμιση</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Εφαρμοσμένες ασφάλειες</string>
     
-    <string name="procesamiento_hex">Επεξεργασία HEX</string>
     
     <string name="rom_ok_blank">ROM: ΟΚ (Κενό)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Βοήθεια</string>
-    
-    <string name="ayuda_icsp">Σύνδεση ICSP</string>
-    
-    <string name="ayuda_fuses_label">Διαμόρφωση ασφαλειών</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Σφάλμα ανοίγματος συνδέσμου</string>
     
-    <string name="copiado_portapapeles">Αντιγράφηκε στο πρόχειρο</string>
     
     <string name="error_generico_detalle">Σφάλμα: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Διαμόρφωση</string>
     
     <string name="debe_procesar_hex_primero">Πρέπει πρώτα να επεξεργαστείτε το αρχείο HEX</string>
 
     
-    <string name="error_exportador_no_inicializado">Ο εξαγωγέας δεν έχει αρχικοποιηθεί</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Δεν υπάρχει καμία εξαγωγή σε εκκρεμότητα</string>
     
-    <string name="seleccion_carpeta_cancelada">Η επιλογή φακέλου ακυρώθηκε</string>
     
-    <string name="error_carpeta_no_accesible">Δεν ήταν δυνατή η πρόσβαση στον επιλεγμένο φάκελο</string>
     
-    <string name="reemplazar_archivo_titulo">Αντικατάσταση αρχείου</string>
     
-    <string name="reemplazar_archivo_mensaje">Το αρχείο \'%1$s\' υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</string>
     
-    <string name="error_reemplazando_archivo">Δεν ήταν δυνατή η αντικατάσταση του υπάρχοντος αρχείου</string>
     
     <string name="si">Ναι</string>
     
     <string name="no">Όχι</string>
     
-    <string name="archivo_guardado">Αρχείο αποθηκεύτηκε: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Προσθέστε ασφάλεια</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Ο όρος δεν βρέθηκε: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Δεν υπάρχουν δεδομένα για εξαγωγή</string>
     
     <string name="no_hay_datos_validos_para_exportar">Δεν υπάρχουν έγκυρα δεδομένα για εξαγωγή</string>
     
     <string name="error_convirtiendo_datos_hex">Σφάλμα μετατροπής δεκαεξαδικών δεδομένων</string>
     
-    <string name="error_nombre_archivo_vacio">Το όνομα δεν μπορεί να είναι κενό</string>
     
     <string name="error_creando_archivo_salida">Δεν ήταν δυνατή η δημιουργία αρχείου εξόδου</string>
     
-    <string name="error_abriendo_archivo_escritura">Δεν ήταν δυνατό το άνοιγμα του αρχείου για εγγραφή</string>
     
     <string name="error_escribiendo_archivo_detalle">Σφάλμα κατά την εγγραφή του αρχείου: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Μη αναμενόμενο σφάλμα κατά την εξαγωγή: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

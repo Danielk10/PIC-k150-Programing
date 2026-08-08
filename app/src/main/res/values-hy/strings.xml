@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Գոկտայնության քաղաք</string>
     <string name="no_se_detecto_pic_en_socket">PIC-ը հայտնաբերված չէ վարդակում</string>
     <string name="pic_detectado_en_socket">PIC հայտնաբերված վարդակում</string>
-    <string name="memoria_contiene_datos">Հիշողությունը պարունակում է տվյալներ</string>
-    <string name="memoria_vacia">Հիշողությունը դատարկ է</string>
     <string name="error_borrando_memoria">Հիշողությունը ջնջելու ժամանակ սխալ</string>
     <string name="memoria_borrada_exitosamente">Հիշողությունը հաջողությամբ ջնջվել է</string>
     <string name="memoria_leida_exitosamente">Հիշողությունը հաջողությամբ կարդացվել է</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Չիպ նախաստորագրելու ժամանակ սխալ</string>
     <string name="conectado_al_programador">Միացված ծրագրավորիչին</string>
     <string name="error_inicializando_base_de_da">Չիպերի տվյալների բազան նախաստորագրելու ժամանակ սխալ</string>
-    <string name="no_hay_modelos_de_chips_dispon">Չիպերի մոդելներ չկան</string>
-    <string name="modelo_de_chip_invalido">Չափազանց չիպ մոդել</string>
-    <string name="chip_no_encontrado_en_base_de_">Չիպը չի հայտնաբերվել տվյալների բազայում</string>
-    <string name="error_procesando_chip">Չիպ մշակելու ժամանակ սխալ</string>
     <string name="no_hay_chip_seleccionado">Ընտրված չիպ չկա</string>
     <string name="modelo">Մոդել</string>
     <string name="palabras_rom">ROM բառեր</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM ստուգվել է</string>
     <string name="verificacion_rom_fallo">ROM ստուգման սխալ</string>
-    <string name="verificacion_eeprom_ok">EEPROM ստուգվել է</string>
-    <string name="verificacion_eeprom_fallo">EEPROM ստուգման սխալ</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Ստուգումը ավարտվել է</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Չիպի տեխնիկական տեղեկատվություն</string>
     
-    <string name="propiedad">Սեփականություն</string>
     
-    <string name="valor">Արժեք</string>
     
-    <string name="chip_info_profesional">Չիպային տեղեկատվություն</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Ապահովիչների կոնֆիգուրացիաներ</string>
     
     <string name="chip_seleccionado">Ընտրված չիպ</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Օրինակ՝ 1A 2B 3C 4D (4 կամ 8 բայթ)</string>
     
-    <string name="hint_nombre_fusible">Անունը (օրինակ՝ WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Արժեքը (օրինակ՝ ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Գործառնությունների մատյան</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Օգտագործողի ID HEX ձևաչափով: Օգտագործեք 4 բայթ (8 նիշ) PIC12/16-ի համար կամ 8 բայթ (16 նիշ) PIC18-ի համար:</string>
     
-    <string name="ayuda_fuses_personalizados">Անտեսում է HEX ապահովիչները: Օգտագործեք տեխնիկական անվանումը (օրինակ՝ WDT) և արժեքը (օրինակ՝ OFF կամ 0x01):</string>
     
-    <string name="ayuda_chip_info">Մանրամասն տեխնիկական տվյալներ՝ արդյունահանված PIC սահմանման ֆայլից:</string>
 
     
     <string name="seleccionar_operacion">Ընտրեք Գործողություն</string>
     
-    <string name="config_leida">Կարդացված է կոնֆիգուրացիա</string>
 
     
     <string name="publicidad_recomendada">Առաջարկվող գովազդ</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Կիրառված ապահովիչներ</string>
     
-    <string name="procesamiento_hex">HEX մշակում</string>
     
     <string name="rom_ok_blank">ROM: Լավ (դատարկ)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Օգնություն</string>
-    
-    <string name="ayuda_icsp">ICSP կապ</string>
-    
-    <string name="ayuda_fuses_label">Ապահովիչների կոնֆիգուրացիա</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Չհաջողվեց բացել հղումը</string>
     
-    <string name="copiado_portapapeles">Պատճենվել է սեղմատախտակում</string>
     
     <string name="error_generico_detalle">Սխալ՝ %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Կազմաձևված է</string>
     
     <string name="debe_procesar_hex_primero">Նախ պետք է մշակեք HEX ֆայլը</string>
 
     
-    <string name="error_exportador_no_inicializado">Արտահանողը նախաստորագրված չէ</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Սպասվող արտահանում չկա</string>
     
-    <string name="seleccion_carpeta_cancelada">Թղթապանակի ընտրությունը չեղարկվել է</string>
     
-    <string name="error_carpeta_no_accesible">Չհաջողվեց մուտք գործել ընտրված թղթապանակ</string>
     
-    <string name="reemplazar_archivo_titulo">Փոխարինել ֆայլը</string>
     
-    <string name="reemplazar_archivo_mensaje">\'%1$s\' ֆայլն արդեն գոյություն ունի: Ցանկանու՞մ եք այն փոխարինել:</string>
     
-    <string name="error_reemplazando_archivo">Չհաջողվեց փոխարինել գոյություն ունեցող ֆայլը</string>
     
     <string name="si">Այո՛</string>
     
     <string name="no">Ոչ</string>
     
-    <string name="archivo_guardado">Պահված ֆայլ՝ %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Ավելացնել ապահովիչ</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Ժամկետը չի գտնվել՝ %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Արտահանելու համար տվյալներ չկան</string>
     
     <string name="no_hay_datos_validos_para_exportar">Արտահանման համար վավեր տվյալներ չկան</string>
     
     <string name="error_convirtiendo_datos_hex">Սխալ՝ տասնվեցական տվյալների փոխակերպման ժամանակ</string>
     
-    <string name="error_nombre_archivo_vacio">Անունը չի կարող դատարկ լինել</string>
     
     <string name="error_creando_archivo_salida">Չհաջողվեց ստեղծել ելքային ֆայլ</string>
     
-    <string name="error_abriendo_archivo_escritura">Չհաջողվեց բացել ֆայլը գրելու համար</string>
     
     <string name="error_escribiendo_archivo_detalle">Ֆայլը գրելու սխալ՝ %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Արտահանման ժամանակ անսպասելի սխալ՝ %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

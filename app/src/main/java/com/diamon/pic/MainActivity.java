@@ -58,12 +58,7 @@ import com.diamon.politicas.Politicas;
 import com.diamon.publicidad.MostrarPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
 import com.diamon.utilidades.PantallaCompleta;
-import com.diamon.utilidades.Recurso;
-
-import com.diamon.graficos.Graficos2D;
-import com.diamon.graficos.Textura2D;
-import com.diamon.nucleo.Graficos;
-import com.diamon.nucleo.Textura;
+import android.graphics.Bitmap;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -113,7 +108,6 @@ public class MainActivity extends AppCompatActivity
     private MemoryDisplayManager memoryDisplayManager;
     private ProgrammingDialogManager dialogManager;
     private MostrarPublicidad publicidad;
-    private Recurso recurso;
     private PowerManager.WakeLock wakeLock;
 
     private FuseConfigPopup fuseConfigPopup; // NUEVO
@@ -124,7 +118,7 @@ public class MainActivity extends AppCompatActivity
     private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
     private String lastReadConfigData = ""; // Últimos datos Config leídos
     private ChipPic currentChip;
-    private Textura texturaChipSocket; // NUEVO: Para reciclaje de memoria
+    private Bitmap texturaChipSocket; // NUEVO: Para reciclaje de memoria
 
     // NUEVAS VARIABLES PARA FUSES
     private boolean fusesConfigured = false;
@@ -132,6 +126,7 @@ public class MainActivity extends AppCompatActivity
     private byte[] configuredID = new byte[] { 0 };
     private Map<String, String> lastFuseConfiguration = null;
     private DatosPicProcesados datosPicProcesados = null;
+    private final List<String> logHistory = new ArrayList<>();
 
     private PantallaCompleta pantallaCompleta;
 
@@ -193,8 +188,38 @@ public class MainActivity extends AppCompatActivity
 
     private void initializeBasicComponents() {
         Analytics.trackEvent("Init: Basic Components");
-        recurso = new Recurso(this);
         publicidad = new MostrarPublicidad(this);
+        appendLog("⚙ " + getString(R.string.esperando_operacion));
+    }
+
+    private void appendLog(String message) {
+        runOnUiThread(() -> {
+            if (message.contains("%") && !logHistory.isEmpty()) {
+                String lastLog = logHistory.get(logHistory.size() - 1);
+                if (lastLog.contains("%") || lastLog.startsWith("⏳")) {
+                    logHistory.set(logHistory.size() - 1, message);
+                    updateLogUI();
+                    return;
+                }
+            }
+            if (logHistory.size() >= 8) {
+                logHistory.remove(0);
+            }
+            logHistory.add(message);
+            updateLogUI();
+        });
+    }
+
+    private void updateLogUI() {
+        if (processStatusTextView == null) return;
+        StringBuilder sb = new StringBuilder();
+        for (String log : logHistory) {
+            sb.append(log).append("\n");
+        }
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 1);
+        }
+        processStatusTextView.setText(sb.toString());
     }
 
     private void findViews() {
@@ -260,15 +285,14 @@ public class MainActivity extends AppCompatActivity
                     try {
                         usbManager.getProtocolo().iniciarVariablesDeProgramacion(chip);
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, getString(R.string.error_inicializando_chip),
-                                Toast.LENGTH_SHORT).show();
+                        appendLog("❌ " + getString(R.string.error_inicializando_chip));
                     }
                 }
             }
 
             @Override
             public void onChipSelectionError(String errorMessage) {
-                Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                appendLog("❌ " + errorMessage);
                 swModeICSP.setEnabled(false);
                 swModeICSP.setChecked(false);
             }
@@ -294,16 +318,12 @@ public class MainActivity extends AppCompatActivity
         hexExportManager.setExportListener(new HexExportManager.ExportListener() {
             @Override
             public void onExportSuccess(String fileName) {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this,
-                        getString(R.string.exportacion_exitosa) + ": " + fileName,
-                        Toast.LENGTH_SHORT).show());
+                appendLog("✓ " + getString(R.string.exportacion_exitosa) + ": " + fileName);
             }
 
             @Override
             public void onExportError(String errorMessage) {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this,
-                        getString(R.string.error_exportando) + ": " + errorMessage,
-                        Toast.LENGTH_LONG).show());
+                appendLog("❌ " + getString(R.string.error_exportando) + ": " + errorMessage);
             }
         });
 
@@ -331,13 +351,7 @@ public class MainActivity extends AppCompatActivity
                         fusesConfigured = true;
 
                         updateFuseStatus(true);
-                        // Se usa literal para evitar errores de compilación en otros idiomas hasta que
-                        // se traduzca R.string.fusibles_aplicados_correctamente
-                        Toast.makeText(
-                                MainActivity.this,
-                                getString(R.string.fusibles_aplicados_correctamente),
-                                Toast.LENGTH_SHORT)
-                                .show();
+                        appendLog("✓ " + getString(R.string.fusibles_aplicados_correctamente));
                     }
 
                     @Override
@@ -369,7 +383,7 @@ public class MainActivity extends AppCompatActivity
             connectionStatusTextView.setTextColor(Color.GREEN);
             connectionStatusTextView.setText(getString(R.string.conectado));
             programmingManager.setProtocolo(usbManager.getProtocolo());
-            Toast.makeText(this, getString(R.string.conectado_al_programador), Toast.LENGTH_SHORT).show();
+            appendLog("🔌 " + getString(R.string.conectado_al_programador));
         });
     }
 
@@ -379,6 +393,7 @@ public class MainActivity extends AppCompatActivity
         runOnUiThread(() -> {
             connectionStatusTextView.setTextColor(Color.RED);
             connectionStatusTextView.setText(getString(R.string.desconectado));
+            appendLog("❌ " + getString(R.string.desconectado));
         });
     }
 
@@ -388,7 +403,7 @@ public class MainActivity extends AppCompatActivity
         runOnUiThread(() -> {
             connectionStatusTextView.setTextColor(Color.RED);
             connectionStatusTextView.setText(getString(R.string.desconectado));
-            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+            appendLog("❌ " + errorMessage);
         });
     }
 
@@ -396,12 +411,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onProgrammingStarted() {
         Analytics.trackEvent("Prog: Started");
-        runOnUiThread(() -> processStatusTextView.setText(getString(R.string.iniciando_programacion)));
+        appendLog("⏳ " + getString(R.string.iniciando_programacion));
     }
 
     @Override
     public void onProgrammingProgress(String message, int progress) {
-        runOnUiThread(() -> processStatusTextView.setText(message + " (" + progress + "%)"));
+        appendLog("⏳ " + message + " (" + progress + "%)");
     }
 
     @Override
@@ -409,9 +424,9 @@ public class MainActivity extends AppCompatActivity
         Analytics.trackEvent("Prog: Completed", crearMapaAnalitica("Success", String.valueOf(success)));
         runOnUiThread(() -> {
             if (success) {
-                processStatusTextView.setText(getString(R.string.pic_programado_exitosamente));
+                appendLog("✓ " + getString(R.string.pic_programado_exitosamente));
             } else {
-                processStatusTextView.setText(getString(R.string.error_programando_pic));
+                appendLog("❌ " + getString(R.string.error_programando_pic));
             }
         });
     }
@@ -420,8 +435,7 @@ public class MainActivity extends AppCompatActivity
     public void onProgrammingError(String errorMessage) {
         Analytics.trackEvent("Prog: Error", crearMapaAnalitica("Message", errorMessage));
         runOnUiThread(() -> {
-            processStatusTextView.setText("Error: " + errorMessage);
-            Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+            appendLog("❌ " + errorMessage);
         });
     }
 
@@ -450,11 +464,7 @@ public class MainActivity extends AppCompatActivity
 
                     } catch (ChipConfigurationException e) {
                         swModeICSP.setChecked(false);
-                        Toast.makeText(
-                                MainActivity.this,
-                                "Error al cambiar modo: " + e.getMessage(),
-                                Toast.LENGTH_SHORT)
-                                .show();
+                        appendLog("❌ Error al cambiar modo: " + e.getMessage());
                     }
                 });
     }
@@ -574,8 +584,8 @@ public class MainActivity extends AppCompatActivity
         if (width <= 0 || height <= 0)
             return;
 
-        Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
-        Graficos g = new Graficos2D(textura);
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
 
         // Colores originales del vector
         int colorTeal = Color.parseColor("#005F5F");
@@ -585,34 +595,43 @@ public class MainActivity extends AppCompatActivity
         int colorPinGold = Color.parseColor("#FFD700");
 
         // Fondo Teal
-        g.limpiar(colorTeal);
+        canvas.drawColor(colorTeal);
 
         float scaleX = width / 300f;
         float scaleY = height / 360f;
 
         // 1. Marco del Socket (BLUE)
-        g.dibujarRectangulo(40 * scaleX, 10 * scaleY, 220 * scaleX, 340 * scaleY, colorBlueFrame);
-        Paint lapiz = g.getLapiz();
-        lapiz.setStyle(Paint.Style.STROKE);
-        lapiz.setStrokeWidth(1 * scaleX);
-        lapiz.setColor(Color.WHITE);
-        g.getCanvas().drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, lapiz);
+        Paint paint = new Paint();
+        paint.setColor(colorBlueFrame);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, paint);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1 * scaleX);
+        paint.setColor(Color.WHITE);
+        canvas.drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, paint);
 
         // 2. Hueco Central (Inner Recess)
-        g.dibujarRectangulo(90 * scaleX, 20 * scaleY, 120 * scaleX, 320 * scaleY, colorInnerRecess);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(colorInnerRecess);
+        canvas.drawRect(90 * scaleX, 20 * scaleY, 210 * scaleX, 340 * scaleY, paint);
 
         // 3. Pines (Grid de 20x2)
-        lapiz.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.FILL);
         for (int i = 0; i < 20; i++) {
             float rowY = (30 + i * 16) * scaleY;
 
             // Columna Izquierda
-            g.dibujarRectangulo(50 * scaleX, rowY, 30 * scaleX, 10 * scaleY, colorPinGreen);
-            g.dibujarRectangulo(70 * scaleX, rowY + 2 * scaleY, 6 * scaleX, 6 * scaleY, colorPinGold);
+            paint.setColor(colorPinGreen);
+            canvas.drawRect(50 * scaleX, rowY, 80 * scaleX, rowY + 10 * scaleY, paint);
+            paint.setColor(colorPinGold);
+            canvas.drawRect(70 * scaleX, rowY + 2 * scaleY, 76 * scaleX, rowY + 8 * scaleY, paint);
 
             // Columna Derecha
-            g.dibujarRectangulo(220 * scaleX, rowY, 30 * scaleX, 10 * scaleY, colorPinGreen);
-            g.dibujarRectangulo(224 * scaleX, rowY + 2 * scaleY, 6 * scaleX, 6 * scaleY, colorPinGold);
+            paint.setColor(colorPinGreen);
+            canvas.drawRect(220 * scaleX, rowY, 250 * scaleX, rowY + 10 * scaleY, paint);
+            paint.setColor(colorPinGold);
+            canvas.drawRect(224 * scaleX, rowY + 2 * scaleY, 230 * scaleX, rowY + 8 * scaleY, paint);
         }
 
         // 4. Indicadores (Numero y Flecha)
@@ -632,7 +651,7 @@ public class MainActivity extends AppCompatActivity
         float rowCenterY = indicatorY + (5 * scaleY); // Center of the 10-unit high pin
 
         // Flecha Blanca - Tamaño moderado para evitar solape
-        lapiz.setColor(Color.WHITE);
+        paint.setColor(Color.WHITE);
         android.graphics.Path path = new android.graphics.Path();
         float arrowWidth = 12 * scaleX;
         float arrowHeight = 10 * scaleY;
@@ -640,20 +659,21 @@ public class MainActivity extends AppCompatActivity
         path.lineTo(40 * scaleX, rowCenterY);
         path.lineTo(22 * scaleX, rowCenterY + arrowHeight);
         path.close();
-        g.getCanvas().drawPath(path, lapiz);
+        canvas.drawPath(path, paint);
 
         // Texto del indicador - Resuelto solapamiento
-        lapiz.setTextSize(24 * scaleY);
-        lapiz.setFakeBoldText(true);
+        paint.setTextSize(24 * scaleY);
+        paint.setFakeBoldText(true);
         // Desplazado para evitar la flecha si es de dos dígitos
-        g.dibujarTexto(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, Color.WHITE);
+        paint.setColor(Color.WHITE);
+        canvas.drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, paint);
 
         // Brillo sutil en el texto
-        lapiz.setStyle(Paint.Style.STROKE);
-        lapiz.setStrokeWidth(0.5f * scaleX);
-        lapiz.setColor(Color.LTGRAY);
-        g.getCanvas().drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, lapiz);
-        lapiz.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(0.5f * scaleX);
+        paint.setColor(Color.LTGRAY);
+        canvas.drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, paint);
+        paint.setStyle(Paint.Style.FILL);
 
         // 5. Cuerpo del Chip (Negro)
         int numPines = chip.getNumeroDePines();
@@ -661,8 +681,7 @@ public class MainActivity extends AppCompatActivity
             float left = 90 * scaleX;
             float right = 210 * scaleX;
 
-            // Calculo exacto para que el chip coincida con los pines (2 unidades de margen
-            // arriba/abajo)
+            // Calculo exacto para que el chip coincida con los pines (2 unidades de margen arriba/abajo)
             float top = (30 + pinStartRow * 16 - 2) * scaleY;
             int numFilas = numPines / 2;
             float chipHeight = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
@@ -674,69 +693,71 @@ public class MainActivity extends AppCompatActivity
             int colorLegs = Color.parseColor("#BDBDBD"); // Plateado metálico
 
             // A. PATAS del Chip (debajo del cuerpo)
-            lapiz.setStyle(Paint.Style.FILL);
+            paint.setStyle(Paint.Style.FILL);
             for (int i = 0; i < numFilas; i++) {
                 float legY = (30 + (pinStartRow + i) * 16 + 3) * scaleY;
                 // Pata Izquierda
-                g.dibujarRectangulo(80 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
+                paint.setColor(colorLegs);
+                canvas.drawRect(80 * scaleX, legY, 92 * scaleX, legY + 4 * scaleY, paint);
                 // Pata Derecha
-                g.dibujarRectangulo(208 * scaleX, legY, 12 * scaleX, 4 * scaleY, colorLegs);
+                canvas.drawRect(208 * scaleX, legY, 220 * scaleX, legY + 4 * scaleY, paint);
             }
 
             // B. Cuerpo
-            g.dibujarRectangulo(left, top, right - left, bottom - top, colorChipBody);
+            paint.setColor(colorChipBody);
+            canvas.drawRect(left, top, right, bottom, paint);
 
             // C. Modelo del Chip (Texto grabado) - Horizontal y más grande
             String chipName = chip.getNombreDelPic();
-            lapiz.setStyle(Paint.Style.FILL);
-            lapiz.setColor(Color.parseColor("#D0D0D0")); // Gris claro láser
-            lapiz.setTextSize(24 * scaleY); // Aumentado
-            lapiz.setFakeBoldText(true);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(Color.parseColor("#D0D0D0")); // Gris claro láser
+            paint.setTextSize(24 * scaleY); // Aumentado
+            paint.setFakeBoldText(true);
 
             float chipCenterX = (left + right) / 2f;
             float chipCenterY = (top + bottom) / 2f;
-            float textWidth = lapiz.measureText(chipName);
+            float textWidth = paint.measureText(chipName);
 
             // Dibujar centrado horizontalmente y verticalmente
-            g.getCanvas().drawText(chipName, chipCenterX - textWidth / 2f, chipCenterY + (8 * scaleY), lapiz);
+            canvas.drawText(chipName, chipCenterX - textWidth / 2f, chipCenterY + (8 * scaleY), paint);
 
             // Borde del chip
-            lapiz.setStyle(Paint.Style.STROKE);
-            lapiz.setStrokeWidth(1.2f * scaleX);
-            lapiz.setColor(colorChipBorder);
-            g.getCanvas().drawRect(left, top, right, bottom, lapiz);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(1.2f * scaleX);
+            paint.setColor(colorChipBorder);
+            canvas.drawRect(left, top, right, bottom, paint);
 
             // D. Muesca (Notch)
-            lapiz.setStyle(Paint.Style.FILL);
-            lapiz.setColor(colorNotch);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(colorNotch);
             float notchWidth = 40 * scaleX;
             float notchHeight = 18 * scaleY;
-            g.getCanvas().drawArc(
+            canvas.drawArc(
                     (300 / 2f - notchWidth / 2f) * scaleX,
                     top - notchHeight / 2f,
                     (300 / 2f + notchWidth / 2f) * scaleX,
                     top + notchHeight / 2f,
-                    0, 180, true, lapiz);
+                    0, 180, true, paint);
 
             // Sombra interna notch
-            lapiz.setStyle(Paint.Style.STROKE);
-            lapiz.setStrokeWidth(0.8f * scaleX);
-            lapiz.setColor(Color.BLACK);
-            g.getCanvas().drawArc(
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(0.8f * scaleX);
+            paint.setColor(Color.BLACK);
+            canvas.drawArc(
                     (300 / 2f - notchWidth / 2f) * scaleX,
                     top - notchHeight / 2f,
                     (300 / 2f + notchWidth / 2f) * scaleX,
                     top + notchHeight / 2f,
-                    0, 180, false, lapiz);
+                    0, 180, false, paint);
         }
 
         if (texturaChipSocket != null) {
-            texturaChipSocket.dispose();
+            texturaChipSocket.recycle();
             texturaChipSocket = null;
         }
 
-        texturaChipSocket = textura;
-        chipSocketImageView.setImageBitmap(texturaChipSocket.getBipmap());
+        texturaChipSocket = bitmap;
+        chipSocketImageView.setImageBitmap(texturaChipSocket);
     }
 
     private void dibujarICSP() {
@@ -751,11 +772,11 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        Textura textura = new Textura2D(width, height, Graficos.FormatoTextura.ARGB8888);
-        Graficos g = new Graficos2D(textura);
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
 
         // 1. Fondo PURPURA
-        g.limpiar(Color.parseColor("#800080"));
+        canvas.drawColor(Color.parseColor("#800080"));
 
         float scaleX = width / 200f;
         float scaleY = height / 240f;
@@ -770,13 +791,17 @@ public class MainActivity extends AppCompatActivity
         float rectX = 10 * scaleX;
         float rectY = vPadding;
         float rectHeight = effectiveHeight;
-        g.dibujarRectangulo(rectX, rectY, rectWidth, rectHeight, Color.parseColor("#808080"));
+        
+        Paint paint = new Paint();
+        paint.setColor(Color.parseColor("#808080"));
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(rectX, rectY, rectX + rectWidth, rectY + rectHeight, paint);
 
         // Borde del conector
-        Paint lapiz = g.getLapiz();
-        lapiz.setStyle(Paint.Style.STROKE);
-        lapiz.setStrokeWidth(2f * scaleX);
-        g.getCanvas().drawRect(rectX, rectY, rectX + rectWidth, rectY + rectHeight, lapiz);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(2f * scaleX);
+        paint.setColor(Color.BLACK); // O el color original del borde
+        canvas.drawRect(rectX, rectY, rectX + rectWidth, rectY + rectHeight, paint);
 
         // 3. Cables y Etiquetas
         String[] labels = { "VPP1", "LOW", "DAT", "CLK", "VCC", "GND" };
@@ -789,9 +814,9 @@ public class MainActivity extends AppCompatActivity
                 Color.YELLOW
         };
 
-        lapiz.setStyle(Paint.Style.FILL);
-        lapiz.setAntiAlias(true);
-        lapiz.setFakeBoldText(true);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setAntiAlias(true);
+        paint.setFakeBoldText(true);
 
         float lineStartX = rectX + rectWidth;
         float lineEndX = width - (2 * scaleX);
@@ -803,26 +828,26 @@ public class MainActivity extends AppCompatActivity
             float currentY = rectY + (i * lineSpacing) + (lineSpacing / 2f);
 
             // Dibujar Cable
-            lapiz.setColor(colors[i]);
+            paint.setColor(colors[i]);
             float strokeWidth = effectiveHeight / (labels.length * 4f); // Un poco mas fino para dar aire
-            lapiz.setStrokeWidth(strokeWidth);
-            g.dibujarLinea(lineStartX, currentY, lineEndX, currentY, colors[i]);
+            paint.setStrokeWidth(strokeWidth);
+            canvas.drawLine(lineStartX, currentY, lineEndX, currentY, paint);
 
             // Dibujar Etiqueta CLARAMENTE arriba del cable (evita solapamiento y clipping)
-            lapiz.setColor(Color.WHITE);
-            lapiz.setTextSize(strokeWidth * 1.8f);
+            paint.setColor(Color.WHITE);
+            paint.setTextSize(strokeWidth * 1.8f);
             float textX = lineStartX + (6 * scaleX);
             float textY = currentY - (strokeWidth / 1.2f); // Mas separacion
-            g.dibujarTexto(labels[i], textX, textY, Color.WHITE);
+            canvas.drawText(labels[i], textX, textY, paint);
         }
 
         if (texturaChipSocket != null) {
-            texturaChipSocket.dispose();
+            texturaChipSocket.recycle();
             texturaChipSocket = null;
         }
 
-        texturaChipSocket = textura;
-        chipSocketImageView.setImageBitmap(texturaChipSocket.getBipmap());
+        texturaChipSocket = bitmap;
+        chipSocketImageView.setImageBitmap(texturaChipSocket);
     }
 
     private void setupPersistentLayoutListener() {
@@ -845,8 +870,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onFileLoaded(String content, String fileName) {
                         firmware = content;
-                        processStatusTextView.setText(
-                                getString(R.string.archivo_cargado) + ": " + fileName);
+                        appendLog("ℹ " + getString(R.string.archivo_cargado) + ": " + fileName);
                         enableOperationButtons(true);
 
                         // NUEVO: Habilitar botón de configuración de fusibles
@@ -858,17 +882,12 @@ public class MainActivity extends AppCompatActivity
                         // NUEVO: Procesar datos del HEX
                         procesarDatosHex();
 
-                        Toast.makeText(
-                                MainActivity.this,
-                                getString(R.string.archivo_hex_cargado_exitosamen),
-                                Toast.LENGTH_SHORT)
-                                .show();
+                        appendLog("✓ " + getString(R.string.archivo_hex_cargado_exitosamen));
                     }
 
                     @Override
                     public void onFileLoadError(String errorMessage) {
-                        processStatusTextView.setText(getString(R.string.error_cargando_archivo));
-                        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                        appendLog("❌ " + getString(R.string.error_cargando_archivo) + ": " + errorMessage);
                     }
                 });
     }
@@ -898,20 +917,20 @@ public class MainActivity extends AppCompatActivity
 
                         runOnUiThread(
                                 () -> {
-                                    processStatusTextView.setText(
-                                            getString(R.string.hex_procesado_correctamente));
+                                    byte[] romBytes = datosPicProcesados.obtenerBytesHexROMPocesado();
+                                    byte[] eepromBytes = datosPicProcesados.obtenerBytesHexEEPROMPocesado();
+                                    int romLen = (romBytes != null) ? romBytes.length : 0;
+                                    int eepromLen = (eepromBytes != null) ? eepromBytes.length : 0;
+
+                                    String detailMsg = getString(R.string.hex_procesado_correctamente)
+                                            + "\n  ROM: " + romLen + " B, EEPROM: " + eepromLen + " B";
+                                    appendLog("✓ " + detailMsg);
                                 });
 
                     } catch (Exception e) {
                         runOnUiThread(
                                 () -> {
-                                    Toast.makeText(
-                                            MainActivity.this,
-                                            getString(R.string.error_procesando_hex)
-                                                    + ": "
-                                                    + e.getMessage(),
-                                            Toast.LENGTH_LONG)
-                                            .show();
+                                    appendLog("❌ " + getString(R.string.error_procesando_hex) + ": " + e.getMessage());
                                 });
                     }
                 })
@@ -921,13 +940,12 @@ public class MainActivity extends AppCompatActivity
     /** NUEVO: Abre el popup de configuración de fusibles */
     private void openFuseConfiguration() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.selecciona_chip_primero), Toast.LENGTH_SHORT).show();
+            appendLog("⚠ " + getString(R.string.selecciona_chip_primero));
             return;
         }
 
         if (currentChip.getFusesMap() == null || currentChip.getFusesMap().isEmpty()) {
-            Toast.makeText(this, getString(R.string.no_hay_fusibles_para_chip), Toast.LENGTH_SHORT)
-                    .show();
+            appendLog("⚠ " + getString(R.string.no_hay_fusibles_para_chip));
             return;
         }
 
@@ -1017,16 +1035,12 @@ public class MainActivity extends AppCompatActivity
      */
     private void executeProgram() {
         if (currentChip == null || firmware.isEmpty()) {
-            Toast.makeText(
-                    this,
-                    getString(R.string.seleccione_un_chip_y_cargue_un),
-                    Toast.LENGTH_SHORT)
-                    .show();
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip_y_cargue_un));
             return;
         }
 
         if (datosPicProcesados == null) {
-            Toast.makeText(this, getString(R.string.debe_procesar_hex_primero), Toast.LENGTH_SHORT).show();
+            appendLog("⚠ " + getString(R.string.debe_procesar_hex_primero));
             return;
         }
 
@@ -1109,7 +1123,7 @@ public class MainActivity extends AppCompatActivity
 
     private void executeReadMemory() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
             return;
         }
 
@@ -1154,18 +1168,13 @@ public class MainActivity extends AppCompatActivity
                                             eepromSize,
                                             hasEeprom);
 
-                                    processStatusTextView.setText(
-                                            getString(R.string.memoria_leida_exitosamente));
+                                    appendLog("✓ " + getString(R.string.memoria_leida_exitosamente));
 
                                     // Mostrar banner de nuevo
                                     publicidad.mostrarBanner();
                                 } catch (ChipConfigurationException e) {
-                                    Toast.makeText(
-                                            MainActivity.this,
-                                            getString(R.string.error_obteniendo_datos_del_chi)
-                                                    + ": " + e.getMessage(),
-                                            Toast.LENGTH_LONG)
-                                            .show();
+                                    appendLog("❌ " + getString(R.string.error_obteniendo_datos_del_chi)
+                                            + ": " + e.getMessage());
                                     publicidad.mostrarBanner();
                                 }
                             });
@@ -1180,12 +1189,10 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(
                             () -> {
                                 if (success) {
-                                    processStatusTextView.setText(
-                                            getString(
-                                                    R.string.memoria_borrada_exitosamente));
+                                    appendLog("✓ " + getString(
+                                            R.string.memoria_borrada_exitosamente));
                                 } else {
-                                    processStatusTextView.setText(
-                                            getString(R.string.error_borrando_memoria));
+                                    appendLog("❌ " + getString(R.string.error_borrando_memoria));
                                 }
                             });
                 })
@@ -1194,18 +1201,18 @@ public class MainActivity extends AppCompatActivity
 
     private void executeVerifyMemory() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
             return;
         }
 
-        processStatusTextView.setText(getString(R.string.verificando_memoria));
+        appendLog("⏳ " + getString(R.string.verificando_memoria));
 
         new Thread(
                 () -> {
                     try {
                         // Procesar el HEX cargado (firmware) a bytes si es necesario
                         if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
-                            runOnUiThread(() -> processStatusTextView.setText(
+                            runOnUiThread(() -> appendLog("❌ " +
                                     getString(R.string.error_verificando_memoria) + ": No hay firmware válido"));
                             return;
                         }
@@ -1225,42 +1232,42 @@ public class MainActivity extends AppCompatActivity
                         runOnUiThread(
                                 () -> {
                                     StringBuilder statusMsg = new StringBuilder();
-                                    statusMsg.append(getString(R.string.verificacion_completa));
+                                    statusMsg.append("✓ ").append(getString(R.string.verificacion_completa));
                                     statusMsg.append("\n");
 
                                     // ROM
                                     if (result.romVerified) {
-                                        statusMsg.append(getString(R.string.verificacion_rom_ok));
+                                        statusMsg.append("  ").append(getString(R.string.verificacion_rom_ok));
                                     } else if (result.romMaybeLocked) {
-                                        statusMsg.append(getString(R.string.verificacion_rom_fallo))
+                                        statusMsg.append("  ").append(getString(R.string.verificacion_rom_fallo))
                                                 .append(" — ")
                                                 .append(getString(R.string.rom_posible_locked));
                                     } else {
-                                        statusMsg.append(getString(R.string.verificacion_rom_fallo));
+                                        statusMsg.append("  ").append(getString(R.string.verificacion_rom_fallo));
                                     }
 
                                     // Chip config info
                                     if (result.chipIdHex != null) {
-                                        statusMsg.append("\nChip ID: ").append(result.chipIdHex);
+                                        statusMsg.append("\n  Chip ID: ").append(result.chipIdHex);
                                     }
 
                                     // Fuses decodificados
                                     if (result.decodedFuses != null && !result.decodedFuses.isEmpty()) {
-                                        statusMsg.append("\n").append(getString(R.string.fuses_decodificados))
+                                        statusMsg.append("\n  ").append(getString(R.string.fuses_decodificados))
                                                 .append(":");
                                         for (java.util.Map.Entry<String, String> fuse : result.decodedFuses
                                                 .entrySet()) {
-                                            statusMsg.append("\n  ").append(fuse.getKey())
+                                            statusMsg.append("\n    ").append(fuse.getKey())
                                                     .append(" = ").append(fuse.getValue());
                                         }
                                     }
 
-                                    processStatusTextView.setText(statusMsg.toString());
+                                    appendLog(statusMsg.toString());
                                 });
 
                     } catch (Exception e) {
                         runOnUiThread(
-                                () -> processStatusTextView.setText(
+                                () -> appendLog("❌ " +
                                         getString(R.string.error_verificando_memoria)
                                                 + ": " + e.getMessage()));
                     }
@@ -1275,12 +1282,10 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(
                             () -> {
                                 if (detected) {
-                                    processStatusTextView.setText(
-                                            getString(R.string.pic_detectado_en_socket));
+                                    appendLog("✓ " + getString(R.string.pic_detectado_en_socket));
                                 } else {
-                                    processStatusTextView.setText(
-                                            getString(
-                                                    R.string.no_se_detecto_pic_en_socket));
+                                    appendLog("⚠ " + getString(
+                                            R.string.no_se_detecto_pic_en_socket));
                                 }
                             });
                 })
@@ -1290,11 +1295,11 @@ public class MainActivity extends AppCompatActivity
     /** Ejecuta la verificación de borrado (Blank Check) */
     private void ejecutarBlankCheck() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.seleccione_un_chip), Toast.LENGTH_SHORT).show();
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
             return;
         }
 
-        processStatusTextView.setText(getString(R.string.verificando_borrado) + "...");
+        appendLog("⏳ " + getString(R.string.verificando_borrado) + "...");
 
         new Thread(() -> {
             try {
@@ -1302,37 +1307,35 @@ public class MainActivity extends AppCompatActivity
                         .verificarBorradoCompleto(currentChip);
 
                 if (resultado.error != null && !resultado.error.isEmpty()) {
-                    runOnUiThread(() -> processStatusTextView
-                            .setText(getString(R.string.error_verificando_borrado) + ": " + resultado.error));
+                    runOnUiThread(() -> appendLog("❌ " + getString(R.string.error_verificando_borrado) + ": " + resultado.error));
                     return;
                 }
 
                 runOnUiThread(() -> {
                     StringBuilder sb = new StringBuilder();
-                    sb.append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
-                    sb.append("ROM: ").append(
+                    sb.append("✓ ").append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
+                    sb.append("  ROM: ").append(
                             resultado.romEnBlanco ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
                             .append("\n");
 
                     if (currentChip.isTamanoValidoDeEEPROM()) {
-                        sb.append("EEPROM: ")
+                        sb.append("  EEPROM: ")
                                 .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
                                         : getString(R.string.eeprom_not_blank))
                                 .append("\n");
                     }
 
-                    sb.append(getString(R.string.protocolo)).append(": ").append(resultado.metodoUtilizado);
-                    processStatusTextView.setText(sb.toString());
+                    sb.append("  ").append(getString(R.string.protocolo)).append(": ").append(resultado.metodoUtilizado);
+                    appendLog(sb.toString());
 
                     if (resultado.chipEnBlanco()) {
-                        Toast.makeText(MainActivity.this, R.string.chip_esta_borrado, Toast.LENGTH_SHORT).show();
+                        appendLog("✓ " + getString(R.string.chip_esta_borrado));
                     } else {
-                        Toast.makeText(MainActivity.this, R.string.chip_no_esta_borrado, Toast.LENGTH_SHORT).show();
+                        appendLog("⚠ " + getString(R.string.chip_no_esta_borrado));
                     }
                 });
             } catch (Exception e) {
-                runOnUiThread(() -> processStatusTextView
-                        .setText(getString(R.string.error_verificando_borrado) + ": " + e.getMessage()));
+                runOnUiThread(() -> appendLog("❌ " + getString(R.string.error_verificando_borrado) + ": " + e.getMessage()));
             }
         }).start();
     }
@@ -1567,7 +1570,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void showChipInfoJson() {
         if (currentChip == null) {
-            Toast.makeText(this, getString(R.string.selecciona_chip_primero), Toast.LENGTH_SHORT).show();
+            appendLog("⚠ " + getString(R.string.selecciona_chip_primero));
             return;
         }
 
@@ -1753,8 +1756,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, TutorialGputilsActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
-                    .show();
+            appendLog("❌ " + getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage());
         }
     }
 
@@ -1763,8 +1765,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, com.diamon.tutorial.TutorialSdccActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(this, getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage(), Toast.LENGTH_LONG)
-                    .show();
+            appendLog("❌ " + getString(R.string.error_abriendo_tutorial) + ": " + e.getMessage());
         }
     }
 
@@ -1809,9 +1810,7 @@ public class MainActivity extends AppCompatActivity
                 .setPositiveButton(getString(R.string.aceptar), (dialog, which) -> {
                     TipoProtocolo selected = TipoProtocolo.values()[selectedIndex[0]];
                     usbManager.setTipoProtocolo(selected);
-                    Toast.makeText(this,
-                            getString(R.string.protocolo) + ": " + selected.getNombre(),
-                            Toast.LENGTH_SHORT).show();
+                    appendLog("ℹ " + getString(R.string.protocolo) + ": " + selected.getNombre());
                 })
                 .setNegativeButton(getString(R.string.cancelar), null)
                 .show();
@@ -1825,7 +1824,7 @@ public class MainActivity extends AppCompatActivity
         // NUEVO: Liberar recursos gráficos pesados al pausar para evitar ANR en otras actividades
         if (texturaChipSocket != null) {
             chipSocketImageView.setImageBitmap(null);
-            texturaChipSocket.dispose();
+            texturaChipSocket.recycle();
             texturaChipSocket = null;
         }
 
@@ -1875,7 +1874,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             if (texturaChipSocket != null) {
-                texturaChipSocket.dispose();
+                texturaChipSocket.recycle();
                 texturaChipSocket = null;
             }
 

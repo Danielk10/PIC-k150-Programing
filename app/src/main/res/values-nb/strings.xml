@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Personvernpolicy</string>
     <string name="no_se_detecto_pic_en_socket">PIC ikke oppdaget i sokkel</string>
     <string name="pic_detectado_en_socket">PIC oppdaget i sokkel</string>
-    <string name="memoria_contiene_datos">Minne inneholder data</string>
-    <string name="memoria_vacia">Tomt minne</string>
     <string name="error_borrando_memoria">Feil ved sletting av minne</string>
     <string name="memoria_borrada_exitosamente">Minne slettet</string>
     <string name="memoria_leida_exitosamente">Minne lest</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Feil ved initialisering av brikke</string>
     <string name="conectado_al_programador">Tilkoblet programmer</string>
     <string name="error_inicializando_base_de_da">Feil ved initialisering av brikkedatabase</string>
-    <string name="no_hay_modelos_de_chips_dispon">Ingen brikke-modeller tilgjengelige</string>
-    <string name="modelo_de_chip_invalido">Ugyldig brikke-modell</string>
-    <string name="chip_no_encontrado_en_base_de_">Brikke ikke funnet i database</string>
-    <string name="error_procesando_chip">Feil ved behandling av brikke</string>
     <string name="no_hay_chip_seleccionado">Ingen brikke valgt</string>
     <string name="modelo">Modell</string>
     <string name="palabras_rom">ROM-ord</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM verifisert</string>
     <string name="verificacion_rom_fallo">ROM-verifisering feilet</string>
-    <string name="verificacion_eeprom_ok">EEPROM verifisert</string>
-    <string name="verificacion_eeprom_fallo">EEPROM-verifisering feilet</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Verifisering fullført</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Chip teknisk informasjon</string>
     
-    <string name="propiedad">Egenskap</string>
     
-    <string name="valor">Verdi</string>
     
-    <string name="chip_info_profesional">Chipinformasjon</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Sikringskonfigurasjoner</string>
     
     <string name="chip_seleccionado">Valgt chip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Eksempel: 1A 2B 3C 4D (4 eller 8 byte)</string>
     
-    <string name="hint_nombre_fusible">Navn (eks: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Verdi (f.eks. PÅ, AV, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Driftslogg</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Bruker-ID i HEX-format. Bruk 4 byte (8 sifre) for PIC12/16 eller 8 byte (16 sifre) for PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Overstyrer HEX-sikringene. Bruk det tekniske navnet (eks: WDT) og verdien (eks: AV eller 0x01).</string>
     
-    <string name="ayuda_chip_info">Detaljerte tekniske data hentet fra PIC-definisjonsfilen.</string>
 
     
     <string name="seleccionar_operacion">Velg Drift</string>
     
-    <string name="config_leida">Konfigurasjonslest</string>
 
     
     <string name="publicidad_recomendada">Anbefalt reklame</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Påsatt sikringer</string>
     
-    <string name="procesamiento_hex">HEX-behandling</string>
     
     <string name="rom_ok_blank">ROM: OK (tom)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Hjelp</string>
-    
-    <string name="ayuda_icsp">ICSP-tilkobling</string>
-    
-    <string name="ayuda_fuses_label">Sikringskonfigurasjon</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Feil ved åpning av link</string>
     
-    <string name="copiado_portapapeles">Kopiert til utklippstavle</string>
     
     <string name="error_generico_detalle">Feil: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Konfigurert</string>
     
     <string name="debe_procesar_hex_primero">Du må behandle HEX-filen først</string>
 
     
-    <string name="error_exportador_no_inicializado">Eksportøren er ikke initialisert</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Det er ingen ventende eksport</string>
     
-    <string name="seleccion_carpeta_cancelada">Mappevalg avbrutt</string>
     
-    <string name="error_carpeta_no_accesible">Den valgte mappen fikk ikke tilgang</string>
     
-    <string name="reemplazar_archivo_titulo">Erstatt fil</string>
     
-    <string name="reemplazar_archivo_mensaje">Filen \'%1$s\' eksisterer allerede. Vil du erstatte den?</string>
     
-    <string name="error_reemplazando_archivo">Kunne ikke erstatte eksisterende fil</string>
     
     <string name="si">Ja</string>
     
     <string name="no">Ingen</string>
     
-    <string name="archivo_guardado">Fil lagret: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Legg til sikring</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Term ikke funnet: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Det er ingen data å eksportere</string>
     
     <string name="no_hay_datos_validos_para_exportar">Det er ingen gyldige data å eksportere</string>
     
     <string name="error_convirtiendo_datos_hex">Feil ved konvertering av heksadesimale data</string>
     
-    <string name="error_nombre_archivo_vacio">Navnet kan ikke være tomt</string>
     
     <string name="error_creando_archivo_salida">Kunne ikke opprette utdatafil</string>
     
-    <string name="error_abriendo_archivo_escritura">Kunne ikke åpne filen for skriving</string>
     
     <string name="error_escribiendo_archivo_detalle">Feil ved skriving av fil: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Uventet feil under eksport: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

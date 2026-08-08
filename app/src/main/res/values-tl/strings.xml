@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Patakaran sa Privacy</string>
     <string name="no_se_detecto_pic_en_socket">Hindi nakita ang PIC sa socket</string>
     <string name="pic_detectado_en_socket">Nakita ang PIC sa socket</string>
-    <string name="memoria_contiene_datos">May laman ang memory</string>
-    <string name="memoria_vacia">Walang laman ang memorya</string>
     <string name="error_borrando_memoria">Error sa pagbura ng memory</string>
     <string name="memoria_borrada_exitosamente">Matagumpay na nabura ang memory</string>
     <string name="memoria_leida_exitosamente">Matagumpay na nabasa ang memory</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Error sa pag-initialize ng chip</string>
     <string name="conectado_al_programador">Nakakonekta sa programmer</string>
     <string name="error_inicializando_base_de_da">Error sa pag-initialize ng chip database</string>
-    <string name="no_hay_modelos_de_chips_dispon">Walang available na mga chip model</string>
-    <string name="modelo_de_chip_invalido">Hindi valid ang chip model</string>
-    <string name="chip_no_encontrado_en_base_de_">Hindi nakita ang chip sa database</string>
-    <string name="error_procesando_chip">Error sa pagproseso ng chip</string>
     <string name="no_hay_chip_seleccionado">Walang napiling chip</string>
     <string name="modelo">Modelo</string>
     <string name="palabras_rom">ROM words</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">Matagumpay na na-verify ang ROM</string>
     <string name="verificacion_rom_fallo">Nabigong i-verify ang ROM</string>
-    <string name="verificacion_eeprom_ok">Matagumpay na na-verify ang EEPROM</string>
-    <string name="verificacion_eeprom_fallo">Nabigong i-verify ang EEPROM</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Kumpleto na ang pag-verify</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Impormasyong Teknikal ng Chip</string>
     
-    <string name="propiedad">Katangian</string>
     
-    <string name="valor">Halaga</string>
     
-    <string name="chip_info_profesional">Impormasyon ng Chip</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Mga Configuration ng Fuse</string>
     
     <string name="chip_seleccionado">Napiling Chip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Halimbawa: 1A 2B 3C 4D (4 o 8 byte)</string>
     
-    <string name="hint_nombre_fusible">Pangalan (hal: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Halaga (hal: NAKA-ON, NAKA-OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Log ng Operasyon</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">User ID sa format na HEX. Gumamit ng 4 byte (8 digit) para sa PIC12/16 o 8 byte (16 digit) para sa PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Ino-override ang HEX fuse. Gamitin ang teknikal na pangalan (hal: WDT) at ang halaga (hal: OFF o 0x01).</string>
     
-    <string name="ayuda_chip_info">Detalyadong teknikal na data na kinuha mula sa PIC definition file.</string>
 
     
     <string name="seleccionar_operacion">Piliin ang Operation</string>
     
-    <string name="config_leida">Binasa ang configuration</string>
 
     
     <string name="publicidad_recomendada">Inirerekomenda ang advertising</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Inilapat na piyus</string>
     
-    <string name="procesamiento_hex">Pagpoproseso ng HEX</string>
     
     <string name="rom_ok_blank">ROM: OK (Blanko)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Tulong</string>
-    
-    <string name="ayuda_icsp">Koneksyon sa ICSP</string>
-    
-    <string name="ayuda_fuses_label">Configuration ng piyus</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Error sa pagbubukas ng link</string>
     
-    <string name="copiado_portapapeles">Nakopya sa clipboard</string>
     
     <string name="error_generico_detalle">Error: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Na-configure</string>
     
     <string name="debe_procesar_hex_primero">Dapat mo munang iproseso ang HEX file</string>
 
     
-    <string name="error_exportador_no_inicializado">Ang exporter ay hindi nasimulan</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Walang nakabinbing pag-export</string>
     
-    <string name="seleccion_carpeta_cancelada">Kinansela ang pagpili ng folder</string>
     
-    <string name="error_carpeta_no_accesible">Hindi ma-access ang napiling folder</string>
     
-    <string name="reemplazar_archivo_titulo">Palitan ang file</string>
     
-    <string name="reemplazar_archivo_mensaje">Umiiral na ang file na \'%1$s\'. Gusto mo bang palitan ito?</string>
     
-    <string name="error_reemplazando_archivo">Hindi mapalitan ang kasalukuyang file</string>
     
     <string name="si">Oo</string>
     
     <string name="no">Hindi</string>
     
-    <string name="archivo_guardado">Na-save ang file: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Magdagdag ng Fuse</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Hindi nahanap ang termino: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Walang data na ie-export</string>
     
     <string name="no_hay_datos_validos_para_exportar">Walang wastong data na ie-export</string>
     
     <string name="error_convirtiendo_datos_hex">Error sa pag-convert ng hexadecimal data</string>
     
-    <string name="error_nombre_archivo_vacio">Hindi maaaring walang laman ang pangalan</string>
     
     <string name="error_creando_archivo_salida">Hindi makalikha ng output file</string>
     
-    <string name="error_abriendo_archivo_escritura">Hindi mabuksan ang file para sa pagsusulat</string>
     
     <string name="error_escribiendo_archivo_detalle">Error sa pagsulat ng file: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Hindi inaasahang error habang nag-e-export: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

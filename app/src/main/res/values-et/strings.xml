@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Privaatsuspoliitika</string>
     <string name="no_se_detecto_pic_en_socket">PIC-i soklisse ei avastatud</string>
     <string name="pic_detectado_en_socket">PIC avastati soklisse</string>
-    <string name="memoria_contiene_datos">Mälus on andmeid</string>
-    <string name="memoria_vacia">Tühi mälu</string>
     <string name="error_borrando_memoria">Mälu kustutamise viga</string>
     <string name="memoria_borrada_exitosamente">Mälu kustutati edukalt</string>
     <string name="memoria_leida_exitosamente">Mälu loeti edukalt</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Kiibistamise viga</string>
     <string name="conectado_al_programador">Programmeerija külge ühendatud</string>
     <string name="error_inicializando_base_de_da">Kiipide andmebaasi lähtestamise viga</string>
-    <string name="no_hay_modelos_de_chips_dispon">Saadaolevaid kiipide mudeleid pole</string>
-    <string name="modelo_de_chip_invalido">Vigane kiibimudel</string>
-    <string name="chip_no_encontrado_en_base_de_">Kiipet andmebaasist ei leitud</string>
-    <string name="error_procesando_chip">Kiibide töötlemise viga</string>
     <string name="no_hay_chip_seleccionado">Ühtegi kiipot pole valitud</string>
     <string name="modelo">Mudel</string>
     <string name="palabras_rom">ROM-sõnad</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM edukalt kontrollitud</string>
     <string name="verificacion_rom_fallo">ROM kontrollimine ebaõnnestus</string>
-    <string name="verificacion_eeprom_ok">EEPROM edukalt kontrollitud</string>
-    <string name="verificacion_eeprom_fallo">EEPROM kontrollimine ebaõnnestus</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Kontrollimine lõpetatud</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Kiibi tehniline teave</string>
     
-    <string name="propiedad">Omadus</string>
     
-    <string name="valor">Väärtus</string>
     
-    <string name="chip_info_profesional">Kiibi teave</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Kaitsmete konfiguratsioonid</string>
     
     <string name="chip_seleccionado">Valitud kiip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Näide: 1A 2B 3C 4D (4 või 8 baiti)</string>
     
-    <string name="hint_nombre_fusible">Nimi (nt: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Väärtus (nt: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Toimingute logi</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Kasutaja ID HEX-vormingus. Kasutage PIC12/16 jaoks 4 baiti (8 numbrit) või PIC18 jaoks 8 baiti (16 numbrit).</string>
     
-    <string name="ayuda_fuses_personalizados">Alistab HEX-kaitsmed. Kasutage tehnilist nimetust (nt: WDT) ja väärtust (nt: OFF või 0x01).</string>
     
-    <string name="ayuda_chip_info">Üksikasjalikud tehnilised andmed on välja võetud PIC-definitsioonifailist.</string>
 
     
     <string name="seleccionar_operacion">Valige Operatsioon</string>
     
-    <string name="config_leida">Konfiguratsiooni lugemine</string>
 
     
     <string name="publicidad_recomendada">Soovitatav reklaam</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Rakendatud kaitsmed</string>
     
-    <string name="procesamiento_hex">HEX töötlemine</string>
     
     <string name="rom_ok_blank">ROM: OK (tühi)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Abi</string>
-    
-    <string name="ayuda_icsp">ICSP ühendus</string>
-    
-    <string name="ayuda_fuses_label">Kaitsme konfiguratsioon</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Viga lingi avamisel</string>
     
-    <string name="copiado_portapapeles">Kopeeritud lõikelauale</string>
     
     <string name="error_generico_detalle">Viga: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Konfigureeritud</string>
     
     <string name="debe_procesar_hex_primero">Kõigepealt peate töötlema HEX-faili</string>
 
     
-    <string name="error_exportador_no_inicializado">Eksportija ei ole lähtestatud</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Ootel eksporti pole</string>
     
-    <string name="seleccion_carpeta_cancelada">Kausta valik tühistati</string>
     
-    <string name="error_carpeta_no_accesible">Valitud kaustale ei pääsenud juurde</string>
     
-    <string name="reemplazar_archivo_titulo">Asenda fail</string>
     
-    <string name="reemplazar_archivo_mensaje">Fail \'%1$s\' on juba olemas. Kas soovite selle välja vahetada?</string>
     
-    <string name="error_reemplazando_archivo">Olemasolevat faili ei saanud asendada</string>
     
     <string name="si">Jah</string>
     
     <string name="no">Ei</string>
     
-    <string name="archivo_guardado">Fail salvestatud: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Lisage kaitse</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Terminit ei leitud: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Eksportimiseks pole andmeid</string>
     
     <string name="no_hay_datos_validos_para_exportar">Eksportimiseks pole kehtivaid andmeid</string>
     
     <string name="error_convirtiendo_datos_hex">Viga kuueteistkümnendsüsteemi andmete teisendamisel</string>
     
-    <string name="error_nombre_archivo_vacio">Nimi ei tohi olla tühi</string>
     
     <string name="error_creando_archivo_salida">Väljundfaili ei saanud luua</string>
     
-    <string name="error_abriendo_archivo_escritura">Faili ei saanud kirjutamiseks avada</string>
     
     <string name="error_escribiendo_archivo_detalle">Viga faili kirjutamisel: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Ootamatu viga eksportimisel: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

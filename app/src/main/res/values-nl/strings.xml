@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Privacybeleid</string>
     <string name="no_se_detecto_pic_en_socket">Geen PIC gedetecteerd in socket</string>
     <string name="pic_detectado_en_socket">PIC gedetecteerd in socket</string>
-    <string name="memoria_contiene_datos">Geheugen bevat gegevens</string>
-    <string name="memoria_vacia">Leeg geheugen</string>
     <string name="error_borrando_memoria">Fout bij wissen geheugen</string>
     <string name="memoria_borrada_exitosamente">Geheugen succesvol gewist</string>
     <string name="memoria_leida_exitosamente">Geheugen succesvol gelezen</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Fout bij initialiseren chip</string>
     <string name="conectado_al_programador">Verbonden met programmeur</string>
     <string name="error_inicializando_base_de_da">Fout bij initialiseren chipdatabase</string>
-    <string name="no_hay_modelos_de_chips_dispon">Geen chipmodellen beschikbaar</string>
-    <string name="modelo_de_chip_invalido">Ongeldig chipmodel</string>
-    <string name="chip_no_encontrado_en_base_de_">Chip niet gevonden in database</string>
-    <string name="error_procesando_chip">Fout bij verwerken chip</string>
     <string name="no_hay_chip_seleccionado">Geen chip geselecteerd</string>
     <string name="modelo">Model</string>
     <string name="palabras_rom">ROM-woorden</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM succesvol geverifieerd</string>
     <string name="verificacion_rom_fallo">ROM-verificatie mislukt</string>
-    <string name="verificacion_eeprom_ok">EEPROM succesvol geverifieerd</string>
-    <string name="verificacion_eeprom_fallo">EEPROM-verificatie mislukt</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Verificatie voltooid</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Technische informatie chip</string>
     
-    <string name="propiedad">Eigenschap</string>
     
-    <string name="valor">Waarde</string>
     
-    <string name="chip_info_profesional">Chipinformatie</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Configuraties Zekeringen</string>
     
     <string name="chip_seleccionado">Geselecteerde chip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Voorbeeld: 1A 2B 3C 4D (4 of 8 bytes)</string>
     
-    <string name="hint_nombre_fusible">Naam (bijvoorbeeld: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Waarde (bijvoorbeeld: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Bedieningslogboek</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Gebruikers-ID in HEX-formaat. Gebruik 4 bytes (8 cijfers) voor PIC12/16 of 8 bytes (16 cijfers) voor PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Overschrijft de HEX-zekeringen. Gebruik de technische naam (bijvoorbeeld: WDT) en de waarde (bijvoorbeeld: OFF of 0x01).</string>
     
-    <string name="ayuda_chip_info">Gedetailleerde technische gegevens geëxtraheerd uit het PIC-definitiebestand.</string>
 
     
     <string name="seleccionar_operacion">Selecteer bewerking</string>
     
-    <string name="config_leida">Configuratie gelezen</string>
 
     
     <string name="publicidad_recomendada">Aanbevolen reclame</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Zekeringen toegepast</string>
     
-    <string name="procesamiento_hex">HEX-verwerking</string>
     
     <string name="rom_ok_blank">ROM: OK (leeg)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Help</string>
-    
-    <string name="ayuda_icsp">Verbinding ICSP</string>
-    
-    <string name="ayuda_fuses_label">Zekeringconfiguratie</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Fout bij het openen van link</string>
     
-    <string name="copiado_portapapeles">Gekopieerd naar klembord</string>
     
     <string name="error_generico_detalle">Fout: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Geconfigureerd</string>
     
     <string name="debe_procesar_hex_primero">Moet eerst het HEX-bestand verwerken</string>
 
     
-    <string name="error_exportador_no_inicializado">Exporteur niet geïnitialiseerd</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Geen export in behandeling</string>
     
-    <string name="seleccion_carpeta_cancelada">Mapselectie geannuleerd</string>
     
-    <string name="error_carpeta_no_accesible">Kan geselecteerde map</string>
     
-    <string name="reemplazar_archivo_titulo">niet openen Vervang bestand</string>
     
-    <string name="reemplazar_archivo_mensaje">Het bestand \'%1$s\' bestaat al. Wilt u deze vervangen?</string>
     
-    <string name="error_reemplazando_archivo">Kan bestaand bestand</string>
     
     <string name="si">niet vervangen Ja</string>
     
     <string name="no">Nee</string>
     
-    <string name="archivo_guardado">Bestand opgeslagen: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Zekering toevoegen</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Term niet gevonden: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Geen gegevens om te exporteren</string>
     
     <string name="no_hay_datos_validos_para_exportar">Geen geldige gegevens om te exporteren</string>
     
     <string name="error_convirtiendo_datos_hex">Fout bij het converteren van hexadecimale gegevens</string>
     
-    <string name="error_nombre_archivo_vacio">Naam mag niet leeg zijn</string>
     
     <string name="error_creando_archivo_salida">Kan uitvoerbestand niet maken</string>
     
-    <string name="error_abriendo_archivo_escritura">Kan bestand niet openen om te schrijven</string>
     
     <string name="error_escribiendo_archivo_detalle">Fout bij schrijven van bestand: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Onverwachte fout bij het exporteren: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Tutorial laden…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STAP </string>
     <string name="error_prefijo">❌ FOUT: </string>
     <string name="exito_prefijo">✅ SUCCES: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

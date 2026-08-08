@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">개인정보 처리방침</string>
     <string name="no_se_detecto_pic_en_socket">소켓에서 PIC가 감지되지 않았습니다</string>
     <string name="pic_detectado_en_socket">소켓에서 PIC가 감지되었습니다</string>
-    <string name="memoria_contiene_datos">메모리에 데이터가 있습니다</string>
-    <string name="memoria_vacia">빈 메모리</string>
     <string name="error_borrando_memoria">메모리 지우기 오류</string>
     <string name="memoria_borrada_exitosamente">메모리가 성공적으로 지워졌습니다</string>
     <string name="memoria_leida_exitosamente">메모리를 성공적으로 읽었습니다</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">칩 초기화 오류</string>
     <string name="conectado_al_programador">프로그래머에 연결됨</string>
     <string name="error_inicializando_base_de_da">칩 데이터베이스 초기화 오류</string>
-    <string name="no_hay_modelos_de_chips_dispon">사용 가능한 칩 모델이 없습니다</string>
-    <string name="modelo_de_chip_invalido">잘못된 칩 모델</string>
-    <string name="chip_no_encontrado_en_base_de_">데이터베이스에서 칩을 찾을 수 없습니다</string>
-    <string name="error_procesando_chip">칩 처리 오류</string>
     <string name="no_hay_chip_seleccionado">선택된 칩이 없습니다</string>
     <string name="modelo">모델</string>
     <string name="palabras_rom">ROM 워드</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM 검증 성공</string>
     <string name="verificacion_rom_fallo">ROM 검증 실패</string>
-    <string name="verificacion_eeprom_ok">EEPROM 검증 성공</string>
-    <string name="verificacion_eeprom_fallo">EEPROM 검증 실패</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">검증 완료</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">칩 기술 정보</string>
     
-    <string name="propiedad">속성</string>
     
-    <string name="valor">값</string>
     
-    <string name="chip_info_profesional">칩 정보</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">퓨즈 구성</string>
     
     <string name="chip_seleccionado">선택한 칩</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">예: 1A 2B 3C 4D(4 또는 8바이트)</string>
     
-    <string name="hint_nombre_fusible">이름(예: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">값(예: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">작업 로그</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">HEX 형식의 사용자 ID. PIC12/16에는 4바이트(8자리), PIC18에는 8바이트(16자리)를 사용합니다.</string>
     
-    <string name="ayuda_fuses_personalizados">HEX 퓨즈를 무시합니다. 기술명(예: WDT)과 값(예: OFF 또는 0x01)을 사용하세요.</string>
     
-    <string name="ayuda_chip_info">PIC 정의 파일에서 추출된 자세한 기술 데이터입니다.</string>
 
     
     <string name="seleccionar_operacion">작업 선택</string>
     
-    <string name="config_leida">설정 읽기</string>
 
     
     <string name="publicidad_recomendada">추천 광고</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">퓨즈 적용</string>
     
-    <string name="procesamiento_hex">HEX 처리</string>
     
     <string name="rom_ok_blank">ROM: OK(공백)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">도움말</string>
-    
-    <string name="ayuda_icsp">ICSP 연결</string>
-    
-    <string name="ayuda_fuses_label">퓨즈 구성</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">링크 열기 오류</string>
     
-    <string name="copiado_portapapeles">클립보드에 복사됨</string>
     
     <string name="error_generico_detalle">오류: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ 구성됨</string>
     
     <string name="debe_procesar_hex_primero">먼저 HEX 파일을 처리해야 합니다.</string>
 
     
-    <string name="error_exportador_no_inicializado">내보내기가 초기화되지 않았습니다.</string>
     
-    <string name="error_no_hay_exportacion_pendiente">보류 중인 내보내기가 없습니다.</string>
     
-    <string name="seleccion_carpeta_cancelada">폴더 선택이 취소되었습니다.</string>
     
-    <string name="error_carpeta_no_accesible">선택한 폴더에 접근할 수 없습니다.</string>
     
-    <string name="reemplazar_archivo_titulo">파일 교체</string>
     
-    <string name="reemplazar_archivo_mensaje">\'%1$s\' 파일이 이미 존재합니다. 교체하시겠습니까?</string>
     
-    <string name="error_reemplazando_archivo">기존 파일을 교체할 수 없습니다.</string>
     
     <string name="si">예</string>
     
     <string name="no">아니요</string>
     
-    <string name="archivo_guardado">파일 저장됨: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ 퓨즈 추가</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">용어를 찾을 수 없음: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">내보낼 데이터 없음</string>
     
     <string name="no_hay_datos_validos_para_exportar">내보낼 유효한 데이터가 없습니다.</string>
     
     <string name="error_convirtiendo_datos_hex">16진수 데이터 변환 중 오류가 발생했습니다.</string>
     
-    <string name="error_nombre_archivo_vacio">이름은 비워둘 수 없습니다.</string>
     
     <string name="error_creando_archivo_salida">출력 파일을 생성할 수 없습니다.</string>
     
-    <string name="error_abriendo_archivo_escritura">쓰기용 파일을 열 수 없습니다.</string>
     
     <string name="error_escribiendo_archivo_detalle">파일 쓰기 오류: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">내보내는 동안 예기치 않은 오류: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">튜토리얼 로딩 중…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">단계 </string>
     <string name="error_prefijo">❌ 오류: </string>
     <string name="exito_prefijo">✅ 성공: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

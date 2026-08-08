@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">የግላዊነት ፖሊሲ</string>
     <string name="no_se_detecto_pic_en_socket">PIC በሶኬት ላይ ታይቷል</string>
     <string name="pic_detectado_en_socket">PIC በሶኬት ላይ ታይቷል</string>
-    <string name="memoria_contiene_datos">ማህደር መረጃ ይዟል</string>
-    <string name="memoria_vacia">ባዶ ማህደረ ትውስታ</string>
     <string name="error_borrando_memoria">ማህደር ሲጠፋ ስህተት</string>
     <string name="memoria_borrada_exitosamente">ማህደር በተሳካ ሁኔታ ተጠፍቷል</string>
     <string name="memoria_leida_exitosamente">ማህደር በተሳካ ሁኔታ ተነበበ</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">ቹ ሲጀምር ስህተት</string>
     <string name="conectado_al_programador">ፕሮግራምተርን ተገናኝቷል</string>
     <string name="error_inicializando_base_de_da">የቹ ውሂብ ቤት ሲጀምር ስህተት</string>
-    <string name="no_hay_modelos_de_chips_dispon">ምንም ሞዴሎች አሉ</string>
-    <string name="modelo_de_chip_invalido">ትክክል ያልሆነ ቹ ሞዴል</string>
-    <string name="chip_no_encontrado_en_base_de_">ቹ በውሂብ ቤት ውስጥ አልተገኘም</string>
-    <string name="error_procesando_chip">ቹ ሲሠራ ስህተት</string>
     <string name="no_hay_chip_seleccionado">ምንም ቹ አልተመረጠም</string>
     <string name="modelo">ሞዴል</string>
     <string name="palabras_rom">ROM ቃላት</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM በተሳካ ሁኔታ ተረጋግጧል</string>
     <string name="verificacion_rom_fallo">ROM ማረጋገጫ አልተሳካም</string>
-    <string name="verificacion_eeprom_ok">EEPROM በተሳካ ሁኔታ ተረጋግጧል</string>
-    <string name="verificacion_eeprom_fallo">EEPROM ማረጋገጫ አልተሳካም</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">ማረጋገጫ ተጠናቋል</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">ቺፕ ቴክኒካዊ መረጃ</string>
     
-    <string name="propiedad">ባህሪ</string>
     
-    <string name="valor">ዋጋ</string>
     
-    <string name="chip_info_profesional">የቺፕ መረጃ</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">ፊውዝ ውቅሮች</string>
     
     <string name="chip_seleccionado">የተመረጠ ቺፕ</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">ምሳሌ፡ 1A 2B 3C 4D (4 ወይም 8 ባይት)</string>
     
-    <string name="hint_nombre_fusible">ስም (ለምሳሌ፡ WDT፣ FOSC፣ MCLRE)</string>
     
-    <string name="hint_valor_fusible">ዋጋ (ለምሳሌ፡ በርቷል፣ ጠፍቷል፣ HS፣ 0x3F)</string>
     
     <string name="log_de_operaciones">የክወናዎች ምዝግብ ማስታወሻ</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">የተጠቃሚ መታወቂያ በHEX ቅርጸት። ለPIC12/16 ወይም 8 ባይት (16 አሃዞች) ለPIC18 4 ባይት (8 አሃዞች) ተጠቀም።</string>
     
-    <string name="ayuda_fuses_personalizados">የHEX ፊውዝዎችን ይሽራል። ቴክኒካዊ ስሙን (ለምሳሌ፡ WDT) እና እሴቱን (ለምሳሌ፡ OFF ወይም 0x01) ይጠቀሙ።</string>
     
-    <string name="ayuda_chip_info">ከPIC ፍቺ ፋይል የወጣ ዝርዝር ቴክኒካዊ መረጃ።</string>
 
     
     <string name="seleccionar_operacion">ኦፕሬሽንን ይምረጡ</string>
     
-    <string name="config_leida">ውቅረት ተነቧል</string>
 
     
     <string name="publicidad_recomendada">የሚመከር ማስታወቂያ</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">የተተገበሩ ፊውዝ</string>
     
-    <string name="procesamiento_hex">HEX ማቀናበር</string>
     
     <string name="rom_ok_blank">ROM: እሺ (ባዶ)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">እገዛ</string>
-    
-    <string name="ayuda_icsp">የ ICSP ግንኙነት</string>
-    
-    <string name="ayuda_fuses_label">ፊውዝ ውቅር</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">አገናኝ መክፈት ላይ ስህተት</string>
     
-    <string name="copiado_portapapeles">ወደ ቅንጥብ ሰሌዳ ተቀድቷል</string>
     
     <string name="error_generico_detalle">ስህተት፡%1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ የተዋቀረ</string>
     
     <string name="debe_procesar_hex_primero">መጀመሪያ የ HEX ፋይልን ማካሄድ አለብዎት</string>
 
     
-    <string name="error_exportador_no_inicializado">ላኪ አልተጀመረም።</string>
     
-    <string name="error_no_hay_exportacion_pendiente">በመጠባበቅ ላይ ያለ ወደ ውጭ መላክ የለም።</string>
     
-    <string name="seleccion_carpeta_cancelada">የአቃፊ ምርጫ ተሰርዟል።</string>
     
-    <string name="error_carpeta_no_accesible">የተመረጠው አቃፊ ሊደረስበት አልቻለም</string>
     
-    <string name="reemplazar_archivo_titulo">ፋይል ተካ</string>
     
-    <string name="reemplazar_archivo_mensaje">ፋይሉ \'%1$s\' አስቀድሞ አለ። እሱን መተካት ይፈልጋሉ?</string>
     
-    <string name="error_reemplazando_archivo">ያለውን ፋይል መተካት አልተቻለም</string>
     
     <string name="si">አዎ</string>
     
     <string name="no">አይ</string>
     
-    <string name="archivo_guardado">ፋይል ተቀምጧል: %1$s</string>
 
     
     <string name="agregar_fusible_boton">ፊውዝ ይጨምሩ</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">ውል አልተገኘም: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">ወደ ውጭ የሚላክ ምንም ውሂብ የለም።</string>
     
     <string name="no_hay_datos_validos_para_exportar">ወደ ውጭ ለመላክ ምንም ትክክለኛ ውሂብ የለም።</string>
     
     <string name="error_convirtiendo_datos_hex">ሄክሳዴሲማል ውሂብን መቀየር ላይ ስህተት</string>
     
-    <string name="error_nombre_archivo_vacio">ስሙ ባዶ ሊሆን አይችልም።</string>
     
     <string name="error_creando_archivo_salida">የውጤት ፋይል መፍጠር አልተቻለም</string>
     
-    <string name="error_abriendo_archivo_escritura">ለመጻፍ ፋይል መክፈት አልተቻለም</string>
     
     <string name="error_escribiendo_archivo_detalle">ፋይል መጻፍ ላይ ስህተት፡%1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">ወደ ውጭ በመላክ ላይ ያልተጠበቀ ስህተት፦ %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

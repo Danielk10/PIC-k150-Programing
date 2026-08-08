@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Política de Privacidade</string>
     <string name="no_se_detecto_pic_en_socket">Nenhum PIC detectado no soquete</string>
     <string name="pic_detectado_en_socket">PIC detectado no soquete</string>
-    <string name="memoria_contiene_datos">A memória contém dados</string>
-    <string name="memoria_vacia">Memória vazia</string>
     <string name="error_borrando_memoria">Erro ao apagar a memória</string>
     <string name="memoria_borrada_exitosamente">Memória apagada com sucesso</string>
     <string name="memoria_leida_exitosamente">Memória lida com sucesso</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Erro ao inicializar o chip</string>
     <string name="conectado_al_programador">Conectado ao programador</string>
     <string name="error_inicializando_base_de_da">Erro ao inicializar o banco de dados de chips</string>
-    <string name="no_hay_modelos_de_chips_dispon">Nenhum modelo de chip disponível</string>
-    <string name="modelo_de_chip_invalido">Modelo de chip inválido</string>
-    <string name="chip_no_encontrado_en_base_de_">Chip não encontrado no banco de dados</string>
-    <string name="error_procesando_chip">Erro ao processar o chip</string>
     <string name="no_hay_chip_seleccionado">Nenhum chip selecionado</string>
     <string name="modelo">Modelo</string>
     <string name="palabras_rom">Palavras ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verificando memória…</string>
     <string name="verificacion_rom_ok">ROM verificada com sucesso</string>
     <string name="verificacion_rom_fallo">Falha na verificação ROM</string>
-    <string name="verificacion_eeprom_ok">EEPROM verificada com sucesso</string>
-    <string name="verificacion_eeprom_fallo">Falha na verificação EEPROM</string>
     <string name="rom_posible_locked">Possivelmente bloqueada para leitura</string>
     <string name="verificacion_completa">Verificação concluída</string>
     <string name="fuses_decodificados">Fusíveis decodificados</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Informações técnicas do chip</string>
     
-    <string name="propiedad">Propriedade</string>
     
-    <string name="valor">Valor</string>
     
-    <string name="chip_info_profesional">Informações do chip</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Configurações de fusíveis</string>
     
     <string name="chip_seleccionado">Chip selecionado</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Exemplo: 1A 2B 3C 4D (4 ou 8 bytes)</string>
     
-    <string name="hint_nombre_fusible">Nome (ex: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Valor (ex: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Log de operação</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">ID do usuário em formato HEX. Use 4 bytes (8 dígitos) para PIC12/16 ou 8 bytes (16 dígitos) para PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Substitui os fusíveis HEX. Utilize o nome técnico (ex: WDT) e o valor (ex: OFF ou 0x01).</string>
     
-    <string name="ayuda_chip_info">Dados técnicos detalhados extraídos do arquivo de definição PIC.</string>
 
     
     <string name="seleccionar_operacion">Selecione a operação</string>
     
-    <string name="config_leida">Configuração lida</string>
 
     
     <string name="publicidad_recomendada">Publicidade recomendada</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Fusíveis aplicados</string>
     
-    <string name="procesamiento_hex">HEX Processando</string>
     
     <string name="rom_ok_blank">ROM: OK (em branco)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Ajuda</string>
-    
-    <string name="ayuda_icsp">Conexão ICSP</string>
-    
-    <string name="ayuda_fuses_label">Configuração de fusível</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Erro ao abrir link</string>
     
-    <string name="copiado_portapapeles">Copiado para a área de transferência</string>
     
     <string name="error_generico_detalle">Erro: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓</string>
     
     <string name="debe_procesar_hex_primero">Configurado Deve processar o arquivo HEX primeiro</string>
 
     
-    <string name="error_exportador_no_inicializado">Exportador não inicializado</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Nenhuma exportação pendente</string>
     
-    <string name="seleccion_carpeta_cancelada">Seleção de pasta cancelada</string>
     
-    <string name="error_carpeta_no_accesible">Não foi possível acessar a pasta selecionada</string>
     
-    <string name="reemplazar_archivo_titulo">Substituir arquivo</string>
     
-    <string name="reemplazar_archivo_mensaje">O arquivo \'%1$s\' já existe. Você quer substituí-lo?</string>
     
-    <string name="error_reemplazando_archivo">Não foi possível substituir o arquivo existente</string>
     
     <string name="si">Sim</string>
     
     <string name="no">Não</string>
     
-    <string name="archivo_guardado">Arquivo salvo: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Adicionar fusível</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Termo não encontrado: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Nenhum dado para exportar</string>
     
     <string name="no_hay_datos_validos_para_exportar">Nenhum dado válido para exportar</string>
     
     <string name="error_convirtiendo_datos_hex">Erro ao converter dados hexadecimais</string>
     
-    <string name="error_nombre_archivo_vacio">O nome não pode estar vazio</string>
     
     <string name="error_creando_archivo_salida">Não foi possível criar o arquivo de saída</string>
     
-    <string name="error_abriendo_archivo_escritura">Não foi possível abrir o arquivo para gravação</string>
     
     <string name="error_escribiendo_archivo_detalle">Erro ao gravar o arquivo: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Erro inesperado ao exportar: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Carregando tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Erro ao carregar tutorial:</string>
     <string name="paso_prefijo">PASSO </string>
     <string name="error_prefijo">❌ ERRO: </string>
     <string name="exito_prefijo">✅ SUCESSO: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">Apenas ICSP: %1$s</string>
     <string name="error_info_chip_detalle">Erro ao obter info do chip: %1$s</string>
-    <string name="palabra_palabras">%1$d palavras</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Endereço de registro %1$s está fora do intervalo permitido.</string>
     <string name="error_argumento_null">Parâmetro %1$s não pode ser nulo</string>
     <string name="error_tamano_esperado">Parâmetro %1$s deve ter %2$d bytes, mas tem %3$d</string>

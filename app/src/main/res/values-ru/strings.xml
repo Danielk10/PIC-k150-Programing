@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Политика конфиденциальности</string>
     <string name="no_se_detecto_pic_en_socket">PIC в сокете не обнаружен</string>
     <string name="pic_detectado_en_socket">PIC в сокете обнаружен</string>
-    <string name="memoria_contiene_datos">Память содержит данные</string>
-    <string name="memoria_vacia">Пустая память</string>
     <string name="error_borrando_memoria">Ошибка при стирании памяти</string>
     <string name="memoria_borrada_exitosamente">Память успешно стерта</string>
     <string name="memoria_leida_exitosamente">Память успешно прочитана</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Ошибка инициализации чипа</string>
     <string name="conectado_al_programador">Подключено к программатору</string>
     <string name="error_inicializando_base_de_da">Ошибка инициализации базы данных чипов</string>
-    <string name="no_hay_modelos_de_chips_dispon">Нет доступных моделей чипов</string>
-    <string name="modelo_de_chip_invalido">Недопустимая модель чипа</string>
-    <string name="chip_no_encontrado_en_base_de_">Чип не найден в базе данных</string>
-    <string name="error_procesando_chip">Ошибка обработки чипа</string>
     <string name="no_hay_chip_seleccionado">Чип не выбран</string>
     <string name="modelo">Модель</string>
     <string name="palabras_rom">Слова ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM проверена успешно</string>
     <string name="verificacion_rom_fallo">Ошибка проверки ROM</string>
-    <string name="verificacion_eeprom_ok">EEPROM проверена успешно</string>
-    <string name="verificacion_eeprom_fallo">Ошибка проверки EEPROM</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Проверка завершена</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Техническая информация о чипе</string>
     
-    <string name="propiedad">Свойство</string>
     
-    <string name="valor">Значение</string>
     
-    <string name="chip_info_profesional">Информация о чипе</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Конфигурации предохранителей</string>
     
     <string name="chip_seleccionado">Выбрана микросхема</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байт)</string>
     
-    <string name="hint_nombre_fusible">Имя (например: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Значение (например: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Журнал операций</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Идентификатор пользователя в формате HEX. Используйте 4 байта (8 цифр) для PIC12/16 или 8 байтов (16 цифр) для PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Перезаписывает HEX-предохранители. Используйте техническое имя (например: WDT) и значение (например: OFF или 0x01).</string>
     
-    <string name="ayuda_chip_info">Подробные технические данные, извлеченные из файла определения PIC.</string>
 
     
     <string name="seleccionar_operacion">Выберите операцию</string>
     
-    <string name="config_leida">Конфигурация прочитана</string>
 
     
     <string name="publicidad_recomendada">Рекомендуемая реклама</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Предохранители установлены</string>
     
-    <string name="procesamiento_hex">Обработка HEX</string>
     
     <string name="rom_ok_blank">ROM: OK (пусто)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Справка</string>
-    
-    <string name="ayuda_icsp">Соединение ICSP</string>
-    
-    <string name="ayuda_fuses_label">Конфигурация предохранителей</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Ошибка открытия ссылки</string>
     
-    <string name="copiado_portapapeles">Скопировано в буфер обмена</string>
     
     <string name="error_generico_detalle">Ошибка: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Настроено</string>
     
     <string name="debe_procesar_hex_primero">Необходимо сначала обработать HEX-файл</string>
 
     
-    <string name="error_exportador_no_inicializado">Экспортер не инициализирован</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Экспорт не ожидается</string>
     
-    <string name="seleccion_carpeta_cancelada">Выбор папки отменён</string>
     
-    <string name="error_carpeta_no_accesible">Невозможно получить доступ к выбранной папке</string>
     
-    <string name="reemplazar_archivo_titulo">Заменить файл</string>
     
-    <string name="reemplazar_archivo_mensaje">Файл \'%1$s\' уже существует. Вы хотите заменить его?</string>
     
-    <string name="error_reemplazando_archivo">Невозможно заменить существующий файл</string>
     
     <string name="si">Да</string>
     
     <string name="no">Нет</string>
     
-    <string name="archivo_guardado">Файл сохранён: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Добавить предохранитель</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Термин не найден: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Нет данных для экспорта</string>
     
     <string name="no_hay_datos_validos_para_exportar">Нет допустимых данных для экспорта</string>
     
     <string name="error_convirtiendo_datos_hex">Ошибка преобразования шестнадцатеричных данных</string>
     
-    <string name="error_nombre_archivo_vacio">Имя не может быть пустым</string>
     
     <string name="error_creando_archivo_salida">Не удалось создать выходной файл</string>
     
-    <string name="error_abriendo_archivo_escritura">Не удалось открыть файл для записи</string>
     
     <string name="error_escribiendo_archivo_detalle">Ошибка записи файла: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Непредвиденная ошибка экспорта: %1$s.</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Загрузка руководства…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">ШАГ </string>
     <string name="error_prefijo">❌ ОШИБКА: </string>
     <string name="exito_prefijo">✅ УСПЕХ: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d слов</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

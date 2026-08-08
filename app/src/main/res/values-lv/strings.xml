@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Privātuma Politika</string>
     <string name="no_se_detecto_pic_en_socket">PIC nav konstatēts ligzdā</string>
     <string name="pic_detectado_en_socket">PIC konstatēts ligzdā</string>
-    <string name="memoria_contiene_datos">Atmiņa satur datus</string>
-    <string name="memoria_vacia">Tukša atmiņa</string>
     <string name="error_borrando_memoria">Kļūda dzēšot atmiņu</string>
     <string name="memoria_borrada_exitosamente">Atmiņa veiksmīgi dzēsta</string>
     <string name="memoria_leida_exitosamente">Atmiņa veiksmīgi nolasīta</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Kļūda inicializējot mikroshēmu</string>
     <string name="conectado_al_programador">Savienots ar programmētāju</string>
     <string name="error_inicializando_base_de_da">Kļūda inicializējot mikroshēmu datubāzi</string>
-    <string name="no_hay_modelos_de_chips_dispon">Nav pieejamu mikroshēmu modeļu</string>
-    <string name="modelo_de_chip_invalido">Nederīgs mikroshēmas modelis</string>
-    <string name="chip_no_encontrado_en_base_de_">Mikroshēma nav atrasta datubāzē</string>
-    <string name="error_procesando_chip">Kļūda apstrādājot mikroshēmu</string>
     <string name="no_hay_chip_seleccionado">Mikroshēma nav izvēlēta</string>
     <string name="modelo">Modelis</string>
     <string name="palabras_rom">ROM vārdi</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM veiksmīgi pārbaudīta</string>
     <string name="verificacion_rom_fallo">ROM pārbaude neizdevās</string>
-    <string name="verificacion_eeprom_ok">EEPROM veiksmīgi pārbaudīta</string>
-    <string name="verificacion_eeprom_fallo">EEPROM pārbaude neizdevās</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Pārbaude pabeigta</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Mikroshēmas tehniskā informācija</string>
     
-    <string name="propiedad">Īpašums</string>
     
-    <string name="valor">Vērtība</string>
     
-    <string name="chip_info_profesional">Mikroshēmas informācija</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Drošinātāju konfigurācijas</string>
     
     <string name="chip_seleccionado">Atlasītā mikroshēma</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Piemērs: 1A 2B 3C 4D (4 vai 8 baiti)</string>
     
-    <string name="hint_nombre_fusible">Nosaukums (piemēram, WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Vērtība (piemēram: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Operāciju žurnāls</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Lietotāja ID HEX formātā. Izmantojiet 4 baitus (8 cipari) PIC12/16 vai 8 baitus (16 cipari) PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Ignorē HEX drošinātājus. Izmantojiet tehnisko nosaukumu (piemēram, WDT) un vērtību (piemēram, OFF vai 0x01).</string>
     
-    <string name="ayuda_chip_info">Detalizēti tehniskie dati iegūti no PIC definīcijas faila.</string>
 
     
     <string name="seleccionar_operacion">Izvēlieties Darbība</string>
     
-    <string name="config_leida">Nolasīta konfigurācija</string>
 
     
     <string name="publicidad_recomendada">Ieteicamā reklāma</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Uzlikti drošinātāji</string>
     
-    <string name="procesamiento_hex">HEX apstrāde</string>
     
     <string name="rom_ok_blank">ROM: labi (tukšs)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Palīdzība</string>
-    
-    <string name="ayuda_icsp">ICSP savienojums</string>
-    
-    <string name="ayuda_fuses_label">Drošinātāja konfigurācija</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Atverot saiti, radās kļūda</string>
     
-    <string name="copiado_portapapeles">Nokopēts starpliktuvē</string>
     
     <string name="error_generico_detalle">Kļūda: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Konfigurēts</string>
     
     <string name="debe_procesar_hex_primero">Vispirms ir jāapstrādā HEX fails</string>
 
     
-    <string name="error_exportador_no_inicializado">Eksportētājs nav inicializēts</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Nav neapstiprināta eksporta</string>
     
-    <string name="seleccion_carpeta_cancelada">Mapes atlase ir atcelta</string>
     
-    <string name="error_carpeta_no_accesible">Atlasītajai mapei nevarēja piekļūt</string>
     
-    <string name="reemplazar_archivo_titulo">Aizstāt failu</string>
     
-    <string name="reemplazar_archivo_mensaje">Fails \'%1$s\' jau pastāv. Vai vēlaties to nomainīt?</string>
     
-    <string name="error_reemplazando_archivo">Esošo failu nevarēja aizstāt</string>
     
     <string name="si">Jā</string>
     
     <string name="no">Nē</string>
     
-    <string name="archivo_guardado">Fails saglabāts: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Pievienojiet drošinātāju</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Termins nav atrasts: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Nav datu, ko eksportēt</string>
     
     <string name="no_hay_datos_validos_para_exportar">Nav derīgu datu, ko eksportēt</string>
     
     <string name="error_convirtiendo_datos_hex">Kļūda, konvertējot heksadecimālos datus</string>
     
-    <string name="error_nombre_archivo_vacio">Nosaukuma lauks nedrīkst būt tukšs</string>
     
     <string name="error_creando_archivo_salida">Nevarēja izveidot izvades failu</string>
     
-    <string name="error_abriendo_archivo_escritura">Nevarēja atvērt failu rakstīšanai</string>
     
     <string name="error_escribiendo_archivo_detalle">Kļūda, rakstot failu: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Negaidīta kļūda eksportēšanas laikā: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

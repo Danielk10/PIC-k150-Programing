@@ -348,7 +348,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="#2A2A3E"
+                app:cardBackgroundColor="#101018"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="8dp">
 
@@ -356,11 +356,12 @@
                     android:id="@+id/processStatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:fontFamily="monospace"
+                    android:gravity="start"
                     android:padding="16dp"
                     android:text="@string/esperando_operacion"
-                    android:textColor="#E0E0E0"
-                    android:textSize="14sp" />
+                    android:textColor="#00FFCC"
+                    android:textSize="12sp" />
             </androidx.cardview.widget.CardView>
 
             <!-- Contenedores ocultos para compatibilidad -->

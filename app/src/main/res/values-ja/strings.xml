@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">プライバシーポリシー</string>
     <string name="no_se_detecto_pic_en_socket">ソケットにPICが検出されませんでした</string>
     <string name="pic_detectado_en_socket">ソケットにPICが検出されました</string>
-    <string name="memoria_contiene_datos">メモリにデータがあります</string>
-    <string name="memoria_vacia">空のメモリ</string>
     <string name="error_borrando_memoria">メモリの消去中にエラーが発生しました</string>
     <string name="memoria_borrada_exitosamente">メモリは正常に消去されました</string>
     <string name="memoria_leida_exitosamente">メモリは正常に読み取られました</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">チップの初期化中にエラーが発生しました</string>
     <string name="conectado_al_programador">プログラマに接続しました</string>
     <string name="error_inicializando_base_de_da">チップデータベースの初期化中にエラーが発生しました</string>
-    <string name="no_hay_modelos_de_chips_dispon">利用可能なチップモデルはありません</string>
-    <string name="modelo_de_chip_invalido">無効なチップモデル</string>
-    <string name="chip_no_encontrado_en_base_de_">データベースにチップが見つかりません</string>
-    <string name="error_procesando_chip">チップの処理中にエラーが発生しました</string>
     <string name="no_hay_chip_seleccionado">チップが選択されていません</string>
     <string name="modelo">モデル</string>
     <string name="palabras_rom">ROMワード</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM検証成功</string>
     <string name="verificacion_rom_fallo">ROM検証失敗</string>
-    <string name="verificacion_eeprom_ok">EEPROM検証成功</string>
-    <string name="verificacion_eeprom_fallo">EEPROM検証失敗</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">検証完了</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">チップ技術情報</string>
     
-    <string name="propiedad">プロパティ</string>
     
-    <string name="valor">値</string>
     
-    <string name="chip_info_profesional">チップ情報</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">ヒューズの構成</string>
     
     <string name="chip_seleccionado">選択されたチップ</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">例: 1A 2B 3C 4D (4 または 8 バイト)</string>
     
-    <string name="hint_nombre_fusible">名前 (例: WDT、FOSC、MCLRE)</string>
     
-    <string name="hint_valor_fusible">値 (例: ON、OFF、HS、0x3F)</string>
     
     <string name="log_de_operaciones">操作ログ</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">16 進形式のユーザー ID。 PIC12/16 の場合は 4 バイト (8 桁)、PIC18 の場合は 8 バイト (16 桁) を使用します。</string>
     
-    <string name="ayuda_fuses_personalizados">HEX ヒューズをオーバーライドします。技術名 (例: WDT) と値 (例: OFF または 0x01) を使用します。</string>
     
-    <string name="ayuda_chip_info">PIC 定義ファイルから抽出された詳細な技術データ。</string>
 
     
     <string name="seleccionar_operacion">選択操作</string>
     
-    <string name="config_leida">構成の読み取り</string>
 
     
     <string name="publicidad_recomendada">おすすめの広告</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">適用ヒューズ</string>
     
-    <string name="procesamiento_hex">HEX処理</string>
     
     <string name="rom_ok_blank">ROM：OK（ブランク）</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">ヘルプ</string>
-    
-    <string name="ayuda_icsp">ICSP接続</string>
-    
-    <string name="ayuda_fuses_label">ヒューズの構成</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">リンクを開くときにエラーが発生しました</string>
     
-    <string name="copiado_portapapeles">クリップボードにコピーしました</string>
     
     <string name="error_generico_detalle">エラー: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ 設定済み</string>
     
     <string name="debe_procesar_hex_primero">最初に HEX ファイルを処理する必要があります</string>
 
     
-    <string name="error_exportador_no_inicializado">エクスポーターが初期化されていません</string>
     
-    <string name="error_no_hay_exportacion_pendiente">保留中のエクスポートはありません</string>
     
-    <string name="seleccion_carpeta_cancelada">フォルダーの選択がキャンセルされました</string>
     
-    <string name="error_carpeta_no_accesible">選択したフォルダーにアクセスできませんでした</string>
     
-    <string name="reemplazar_archivo_titulo">ファイルを置き換える</string>
     
-    <string name="reemplazar_archivo_mensaje">ファイル \'%1$s\' はすでに存在します。交換しますか?</string>
     
-    <string name="error_reemplazando_archivo">既存のファイルを置き換えられませんでした</string>
     
     <string name="si">うん</string>
     
     <string name="no">いいえ</string>
     
-    <string name="archivo_guardado">ファイル保存: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ ヒューズの追加</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">用語が見つかりません: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">エクスポートするデータがありません</string>
     
     <string name="no_hay_datos_validos_para_exportar">エクスポートする有効なデータがありません</string>
     
     <string name="error_convirtiendo_datos_hex">16 進データの変換エラー</string>
     
-    <string name="error_nombre_archivo_vacio">名前を空にすることはできません</string>
     
     <string name="error_creando_archivo_salida">出力ファイルを作成できませんでした</string>
     
-    <string name="error_abriendo_archivo_escritura">書き込み用にファイルを開けませんでした</string>
     
     <string name="error_escribiendo_archivo_detalle">ファイルの書き込みエラー: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">エクスポート中に予期しないエラーが発生しました: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">チュートリアルを読み込み中…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">ステップ </string>
     <string name="error_prefijo">❌ エラー: </string>
     <string name="exito_prefijo">✅ 成功: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d ワード</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

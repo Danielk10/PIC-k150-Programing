@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">私隱政策</string>
     <string name="no_se_detecto_pic_en_socket">在插槽中未偵測到 PIC</string>
     <string name="pic_detectado_en_socket">在插槽中偵測到 PIC</string>
-    <string name="memoria_contiene_datos">内存包含数据</string>
-    <string name="memoria_vacia">空内存</string>
     <string name="error_borrando_memoria">清除記憶體時發生錯誤</string>
     <string name="memoria_borrada_exitosamente">記憶體已成功清除</string>
     <string name="memoria_leida_exitosamente">記憶體已成功讀取</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">初始化晶片時發生錯誤</string>
     <string name="conectado_al_programador">已連接到編程器</string>
     <string name="error_inicializando_base_de_da">初始化晶片資料庫時發生錯誤</string>
-    <string name="no_hay_modelos_de_chips_dispon">沒有可用的晶片型號</string>
-    <string name="modelo_de_chip_invalido">晶片型號無效</string>
-    <string name="chip_no_encontrado_en_base_de_">在資料庫中找不到晶片</string>
-    <string name="error_procesando_chip">處理晶片時發生錯誤</string>
     <string name="no_hay_chip_seleccionado">未選擇晶片</string>
     <string name="modelo">型號</string>
     <string name="palabras_rom">ROM 字</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM驗證成功</string>
     <string name="verificacion_rom_fallo">ROM驗證失敗</string>
-    <string name="verificacion_eeprom_ok">EEPROM驗證成功</string>
-    <string name="verificacion_eeprom_fallo">EEPROM驗證失敗</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">驗證完成</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">晶片技術資料</string>
     
-    <string name="propiedad">属性</string>
     
-    <string name="valor">值</string>
     
-    <string name="chip_info_profesional">芯片信息</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">保險絲配置</string>
     
     <string name="chip_seleccionado">選定晶片</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">範例：1A 2B 3C 4D（4 或 8 位元組）</string>
     
-    <string name="hint_nombre_fusible">名稱（例如：WDT、FOSC、MCLRE）</string>
     
-    <string name="hint_valor_fusible">值（例如：ON、OFF、HS、0x3F）</string>
     
     <string name="log_de_operaciones">操作日誌</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">十六進位格式的使用者 ID。對於 PIC12/16 使用 4 個位元組（8 位元數字），對於 PIC18 使用 8 個位元組（16 位元數字）。</string>
     
-    <string name="ayuda_fuses_personalizados">覆蓋 HEX 保險絲。使用技術名稱（例如：WDT）和值（例如：OFF 或 0x01）。</string>
     
-    <string name="ayuda_chip_info">從 PIC 定義檔中提取的詳細技術資料。</string>
 
     
     <string name="seleccionar_operacion">選擇操作</string>
     
-    <string name="config_leida">配置讀取</string>
 
     
     <string name="publicidad_recomendada">推薦廣告</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">應用保險絲</string>
     
-    <string name="procesamiento_hex">HEX处理</string>
     
     <string name="rom_ok_blank">ROM：正常（空白）</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">帮助</string>
-    
-    <string name="ayuda_icsp">ICSP連接</string>
-    
-    <string name="ayuda_fuses_label">保險絲配置</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">開啟連結時出錯</string>
     
-    <string name="copiado_portapapeles">已复制到剪贴板</string>
     
     <string name="error_generico_detalle">錯誤：%1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ 已配置</string>
     
     <string name="debe_procesar_hex_primero">您必須先處理 HEX 文件</string>
 
     
-    <string name="error_exportador_no_inicializado">導出器未初始化</string>
     
-    <string name="error_no_hay_exportacion_pendiente">沒有待處理的出口</string>
     
-    <string name="seleccion_carpeta_cancelada">資料夾選擇已取消</string>
     
-    <string name="error_carpeta_no_accesible">無法存取所選資料夾</string>
     
-    <string name="reemplazar_archivo_titulo">替換文件</string>
     
-    <string name="reemplazar_archivo_mensaje">文件 \'%1$s\' 已存在。你想更換它嗎？</string>
     
-    <string name="error_reemplazando_archivo">無法替換現有文件</string>
     
     <string name="si">是的</string>
     
     <string name="no">不</string>
     
-    <string name="archivo_guardado">文件已保存：%1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ 添加保險絲</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">未找到術語：%1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">沒有數據可匯出</string>
     
     <string name="no_hay_datos_validos_para_exportar">沒有有效數據可供匯出</string>
     
     <string name="error_convirtiendo_datos_hex">轉換十六進位資料時出錯</string>
     
-    <string name="error_nombre_archivo_vacio">名稱不能為空</string>
     
     <string name="error_creando_archivo_salida">No se pudo crear el archivo de salida</string>
     
-    <string name="error_abriendo_archivo_escritura">No se pudo abrir el archivo para escritura</string>
     
     <string name="error_escribiendo_archivo_detalle">寫入檔案時發生錯誤：%1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">匯出時出現意外錯誤：%1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">加载教程…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">步骤 </string>
     <string name="error_prefijo">❌ 错误：</string>
     <string name="exito_prefijo">✅ 成功：</string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d 字</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

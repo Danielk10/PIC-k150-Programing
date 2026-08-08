@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Adatvédelmi Irányelvek</string>
     <string name="no_se_detecto_pic_en_socket">Nem található PIC a foglalatban</string>
     <string name="pic_detectado_en_socket">PIC észlelve a foglalatban</string>
-    <string name="memoria_contiene_datos">A memória adatokat tartalmaz</string>
-    <string name="memoria_vacia">Üres memória</string>
     <string name="error_borrando_memoria">Hiba a memória törlése közben</string>
     <string name="memoria_borrada_exitosamente">Memória sikeresen törölve</string>
     <string name="memoria_leida_exitosamente">Memória sikeresen olvasva</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Hiba a chip inicializálása közben</string>
     <string name="conectado_al_programador">Csatlakoztatva a programozóhoz</string>
     <string name="error_inicializando_base_de_da">Hiba a chip adatbázis inicializálása közben</string>
-    <string name="no_hay_modelos_de_chips_dispon">Nincsenek elérhető chip modellek</string>
-    <string name="modelo_de_chip_invalido">Érvénytelen chip modell</string>
-    <string name="chip_no_encontrado_en_base_de_">Chip nem található az adatbázisban</string>
-    <string name="error_procesando_chip">Hiba a chip feldolgozása közben</string>
     <string name="no_hay_chip_seleccionado">Nincs chip kiválasztva</string>
     <string name="modelo">Modell</string>
     <string name="palabras_rom">ROM szavak</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM sikeresen ellenőrizve</string>
     <string name="verificacion_rom_fallo">ROM ellenőrzés sikertelen</string>
-    <string name="verificacion_eeprom_ok">EEPROM sikeresen ellenőrizve</string>
-    <string name="verificacion_eeprom_fallo">EEPROM ellenőrzés sikertelen</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Ellenőrzés befejezve</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Chip műszaki információ</string>
     
-    <string name="propiedad">Tulajdonság</string>
     
-    <string name="valor">Érték</string>
     
-    <string name="chip_info_profesional">Chip információ</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Biztosíték konfigurációk</string>
     
     <string name="chip_seleccionado">Kiválasztott chip</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Példa: 1A 2B 3C 4D (4 vagy 8 bájt)</string>
     
-    <string name="hint_nombre_fusible">Név (pl.: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Érték (pl.: BE, KI, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Műveleti napló</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Felhasználói azonosító HEX formátumban. Használjon 4 bájtot (8 számjegy) a PIC12/16-hoz, vagy 8 bájtot (16 számjegyet) a PIC18-hoz.</string>
     
-    <string name="ayuda_fuses_personalizados">Felülbírálja a HEX biztosítékokat. Használja a műszaki nevet (pl.: WDT) és az értéket (pl.: OFF vagy 0x01).</string>
     
-    <string name="ayuda_chip_info">Részletes műszaki adatok a PIC definíciós fájlból kinyerve.</string>
 
     
     <string name="seleccionar_operacion">Válassza a Művelet lehetőséget</string>
     
-    <string name="config_leida">Konfiguráció beolvasása</string>
 
     
     <string name="publicidad_recomendada">Ajánlott reklám</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Alkalmazott biztosítékok</string>
     
-    <string name="procesamiento_hex">HEX feldolgozás</string>
     
     <string name="rom_ok_blank">ROM: OK (üres)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Súgó</string>
-    
-    <string name="ayuda_icsp">ICSP kapcsolat</string>
-    
-    <string name="ayuda_fuses_label">Biztosíték konfiguráció</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Hiba a link megnyitásakor</string>
     
-    <string name="copiado_portapapeles">Vágólapra másolva</string>
     
     <string name="error_generico_detalle">Hiba: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Konfigurálva</string>
     
     <string name="debe_procesar_hex_primero">Először a HEX fájlt kell feldolgoznia</string>
 
     
-    <string name="error_exportador_no_inicializado">Az exportőr nincs inicializálva</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Nincs függőben lévő export</string>
     
-    <string name="seleccion_carpeta_cancelada">A mappa kiválasztása megszakítva</string>
     
-    <string name="error_carpeta_no_accesible">A kiválasztott mappához nem lehetett hozzáférni</string>
     
-    <string name="reemplazar_archivo_titulo">Cserélje ki a fájlt</string>
     
-    <string name="reemplazar_archivo_mensaje">A \'%1$s\' fájl már létezik. Le akarod cserélni?</string>
     
-    <string name="error_reemplazando_archivo">Nem sikerült lecserélni a meglévő fájlt</string>
     
     <string name="si">Igen</string>
     
     <string name="no">Nem</string>
     
-    <string name="archivo_guardado">Fájl mentve: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Adja hozzá a biztosítékot</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Nem található kifejezés: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Nincsenek exportálandó adatok</string>
     
     <string name="no_hay_datos_validos_para_exportar">Nincsenek érvényes adatok az exportálásra</string>
     
     <string name="error_convirtiendo_datos_hex">Hiba a hexadecimális adatok konvertálásakor</string>
     
-    <string name="error_nombre_archivo_vacio">A név nem lehet üres</string>
     
     <string name="error_creando_archivo_salida">Nem sikerült létrehozni a kimeneti fájlt</string>
     
-    <string name="error_abriendo_archivo_escritura">Nem sikerült megnyitni a fájlt írásra</string>
     
     <string name="error_escribiendo_archivo_detalle">Hiba a fájl írása közben: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Váratlan hiba az exportálás során: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

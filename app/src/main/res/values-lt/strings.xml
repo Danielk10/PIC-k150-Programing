@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Privatumo politika</string>
     <string name="no_se_detecto_pic_en_socket">PIC neaptikta lizdoje</string>
     <string name="pic_detectado_en_socket">PIC aptikta lizdoje</string>
-    <string name="memoria_contiene_datos">Atmintis turi duomenis</string>
-    <string name="memoria_vacia">Tuščia atmintis</string>
     <string name="error_borrando_memoria">Klaida trinant atmintį</string>
     <string name="memoria_borrada_exitosamente">Atmintis sėkmingai ištrinta</string>
     <string name="memoria_leida_exitosamente">Atmintis sėkmingai nuskaitytas</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Klaida inicijuojant lustą</string>
     <string name="conectado_al_programador">Prisijungta prie programuotojo</string>
     <string name="error_inicializando_base_de_da">Klaida inicijuojant lustų duomenų bazę</string>
-    <string name="no_hay_modelos_de_chips_dispon">Nėra jokių prieinamų lustų modelių</string>
-    <string name="modelo_de_chip_invalido">Negaliotas lusto modelis</string>
-    <string name="chip_no_encontrado_en_base_de_">Lustas nerastas duomenų bazėje</string>
-    <string name="error_procesando_chip">Klaida apdorojant lustą</string>
     <string name="no_hay_chip_seleccionado">Nėra pasirinkto lusto</string>
     <string name="modelo">Modelis</string>
     <string name="palabras_rom">ROM žodžiai</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM sėkmingai patikrinta</string>
     <string name="verificacion_rom_fallo">ROM patikrinimas nepavyko</string>
-    <string name="verificacion_eeprom_ok">EEPROM sėkmingai patikrinta</string>
-    <string name="verificacion_eeprom_fallo">EEPROM patikrinimas nepavyko</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Patikrinimas baigtas</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Chip techninė informacija</string>
     
-    <string name="propiedad">Savybė</string>
     
-    <string name="valor">Reikšmė</string>
     
-    <string name="chip_info_profesional">Lusto informacija</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Saugiklių konfigūracijos</string>
     
     <string name="chip_seleccionado">Pasirinktas lustas</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Pavyzdys: 1A 2B 3C 4D (4 arba 8 baitai)</string>
     
-    <string name="hint_nombre_fusible">Vardas (pvz., WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Reikšmė (pvz.: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Operacijų žurnalas</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Vartotojo ID HEX formatu. Naudokite 4 baitus (8 skaitmenis) PIC12/16 arba 8 baitus (16 skaitmenų) PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Nepaiso HEX saugiklių. Naudokite techninį pavadinimą (pvz., WDT) ir reikšmę (pvz., OFF arba 0x01).</string>
     
-    <string name="ayuda_chip_info">Išsamūs techniniai duomenys ištraukti iš PIC apibrėžimo failo.</string>
 
     
     <string name="seleccionar_operacion">Pasirinkite Operacija</string>
     
-    <string name="config_leida">Nuskaityta konfigūracija</string>
 
     
     <string name="publicidad_recomendada">Rekomenduojama reklama</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Pritaikyti saugikliai</string>
     
-    <string name="procesamiento_hex">HEX apdorojimas</string>
     
     <string name="rom_ok_blank">ROM: gerai (tuščia)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Pagalba</string>
-    
-    <string name="ayuda_icsp">ICSP ryšys</string>
-    
-    <string name="ayuda_fuses_label">Saugiklio konfigūracija</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Klaida atidarant nuorodą</string>
     
-    <string name="copiado_portapapeles">Nukopijuota į mainų sritį</string>
     
     <string name="error_generico_detalle">Klaida: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Sukonfigūruota</string>
     
     <string name="debe_procesar_hex_primero">Pirmiausia turite apdoroti HEX failą</string>
 
     
-    <string name="error_exportador_no_inicializado">Eksportuotojas nėra inicijuotas</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Laukiamo eksporto nėra</string>
     
-    <string name="seleccion_carpeta_cancelada">Aplanko pasirinkimas atšauktas</string>
     
-    <string name="error_carpeta_no_accesible">Nepavyko pasiekti pasirinkto aplanko</string>
     
-    <string name="reemplazar_archivo_titulo">Pakeisti failą</string>
     
-    <string name="reemplazar_archivo_mensaje">Failas \'%1$s\' jau yra. Ar norite jį pakeisti?</string>
     
-    <string name="error_reemplazando_archivo">Nepavyko pakeisti esamo failo</string>
     
     <string name="si">Taip</string>
     
     <string name="no">Nr</string>
     
-    <string name="archivo_guardado">Failas išsaugotas: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Pridėkite saugiklį</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Terminas nerastas: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Eksportuotinų duomenų nėra</string>
     
     <string name="no_hay_datos_validos_para_exportar">Nėra galiojančių eksportuotinų duomenų</string>
     
     <string name="error_convirtiendo_datos_hex">Klaida konvertuojant šešioliktainius duomenis</string>
     
-    <string name="error_nombre_archivo_vacio">Pavadinimas negali būti tuščias</string>
     
     <string name="error_creando_archivo_salida">Nepavyko sukurti išvesties failo</string>
     
-    <string name="error_abriendo_archivo_escritura">Nepavyko atidaryti failo rašyti</string>
     
     <string name="error_escribiendo_archivo_detalle">Klaida rašant failą: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Netikėta klaida eksportuojant: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

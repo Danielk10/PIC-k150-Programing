@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Палітыка Канфідэнцыяльнасці</string>
     <string name="no_se_detecto_pic_en_socket">PIC не выяўлены ў раздыме</string>
     <string name="pic_detectado_en_socket">PIC выяўлены ў раздыме</string>
-    <string name="memoria_contiene_datos">Памяць утрымлівае дадзеныя</string>
-    <string name="memoria_vacia">Пустая памяць</string>
     <string name="error_borrando_memoria">Памылка выдалення памяці</string>
     <string name="memoria_borrada_exitosamente">Памяць паспяхова выдалена</string>
     <string name="memoria_leida_exitosamente">Памяць паспяхова прачытана</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Памылка ініцыялізацыі чыпа</string>
     <string name="conectado_al_programador">Падключана да праграматара</string>
     <string name="error_inicializando_base_de_da">Памылка ініцыялізацыі базы дадзеных чыпаў</string>
-    <string name="no_hay_modelos_de_chips_dispon">Няма даступных мадэляў чыпаў</string>
-    <string name="modelo_de_chip_invalido">Няправільная мадэль чыпа</string>
-    <string name="chip_no_encontrado_en_base_de_">Чып не знойдзены ў базе дадзеных</string>
-    <string name="error_procesando_chip">Памылка апрацоўкі чыпа</string>
     <string name="no_hay_chip_seleccionado">Чып не выбраны</string>
     <string name="modelo">Мадэль</string>
     <string name="palabras_rom">Словы ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM праверана паспяхова</string>
     <string name="verificacion_rom_fallo">Памылка праверкі ROM</string>
-    <string name="verificacion_eeprom_ok">EEPROM праверана паспяхова</string>
-    <string name="verificacion_eeprom_fallo">Памылка праверкі EEPROM</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Праверка завершана</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Тэхнічная інфармацыя аб чыпе</string>
     
-    <string name="propiedad">Уласцівасць</string>
     
-    <string name="valor">Значэнне</string>
     
-    <string name="chip_info_profesional">Інфармацыя пра чып</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Канфігурацыі засцерагальніка</string>
     
     <string name="chip_seleccionado">Абраны Чып</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Прыклад: 1A 2B 3C 4D (4 ці 8 байтаў)</string>
     
-    <string name="hint_nombre_fusible">Назва (напрыклад: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Значэнне (напрыклад: ON, OFF, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Журнал аперацый</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">Ідэнтыфікатар карыстальніка ў фармаце HEX. Выкарыстоўвайце 4 байты (8 лічбаў) для PIC12/16 або 8 байтаў (16 лічбаў) для PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Перакрывае шасцігранныя засцерагальнікі. Выкарыстоўвайце тэхнічную назву (напрыклад: WDT) і значэнне (напрыклад: OFF або 0x01).</string>
     
-    <string name="ayuda_chip_info">Падрабязныя тэхнічныя дадзеныя, вынятыя з файла вызначэння PIC.</string>
 
     
     <string name="seleccionar_operacion">Выберыце Аперацыя</string>
     
-    <string name="config_leida">Чытанне канфігурацыі</string>
 
     
     <string name="publicidad_recomendada">Рэкамендаваная рэклама</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Прымяняюцца засцерагальнікі</string>
     
-    <string name="procesamiento_hex">Апрацоўка HEX</string>
     
     <string name="rom_ok_blank">ПЗУ: ОК (Пусты)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Даведка</string>
-    
-    <string name="ayuda_icsp">ICSP злучэнне</string>
-    
-    <string name="ayuda_fuses_label">Канфігурацыя засцерагальніка</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Памылка адкрыцця спасылкі</string>
     
-    <string name="copiado_portapapeles">Скапіявана ў буфер абмену</string>
     
     <string name="error_generico_detalle">Памылка: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Наладжана</string>
     
     <string name="debe_procesar_hex_primero">Вы павінны спачатку апрацаваць файл HEX</string>
 
     
-    <string name="error_exportador_no_inicializado">Экспарцёр не ініцыялізаваны</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Няма чаканага экспарту</string>
     
-    <string name="seleccion_carpeta_cancelada">Выбар папкі адменены</string>
     
-    <string name="error_carpeta_no_accesible">Немагчыма атрымаць доступ да выбранай папкі</string>
     
-    <string name="reemplazar_archivo_titulo">Замяніць файл</string>
     
-    <string name="reemplazar_archivo_mensaje">Файл \'%1$s\' ужо існуе. Вы хочаце замяніць яго?</string>
     
-    <string name="error_reemplazando_archivo">Немагчыма замяніць існуючы файл</string>
     
     <string name="si">ага</string>
     
     <string name="no">няма</string>
     
-    <string name="archivo_guardado">Файл захаваны: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Дадаць засцерагальнік</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Тэрмін не знойдзены: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Няма даных для экспарту</string>
     
     <string name="no_hay_datos_validos_para_exportar">Няма сапраўдных даных для экспарту</string>
     
     <string name="error_convirtiendo_datos_hex">Памылка пераўтварэння шаснаццатковых даных</string>
     
-    <string name="error_nombre_archivo_vacio">Імя не можа быць пустым</string>
     
     <string name="error_creando_archivo_salida">Немагчыма стварыць выходны файл</string>
     
-    <string name="error_abriendo_archivo_escritura">Немагчыма адкрыць файл для запісу</string>
     
     <string name="error_escribiendo_archivo_detalle">Памылка запісу файла: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Нечаканая памылка падчас экспарту: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>

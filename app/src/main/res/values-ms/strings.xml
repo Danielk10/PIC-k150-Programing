@@ -22,8 +22,6 @@
     <string name="politica_de_privacidad">Dasar Privasi</string>
     <string name="no_se_detecto_pic_en_socket">Tiada PIC dikesan di soket</string>
     <string name="pic_detectado_en_socket">PIC dikesan di soket</string>
-    <string name="memoria_contiene_datos">Memori mengandungi data</string>
-    <string name="memoria_vacia">Memori kosong</string>
     <string name="error_borrando_memoria">Ralat semasa memadamkan memori</string>
     <string name="memoria_borrada_exitosamente">Memori dipadamkan dengan berjaya</string>
     <string name="memoria_leida_exitosamente">Memori dibaca dengan berjaya</string>
@@ -38,10 +36,6 @@
     <string name="error_inicializando_chip">Ralat memulakan cip</string>
     <string name="conectado_al_programador">Bersambung ke pengatur program</string>
     <string name="error_inicializando_base_de_da">Ralat memulakan pangkalan data cip</string>
-    <string name="no_hay_modelos_de_chips_dispon">Tiada model cip tersedia</string>
-    <string name="modelo_de_chip_invalido">Model cip tidak sah</string>
-    <string name="chip_no_encontrado_en_base_de_">Cip tidak ditemui dalam pangkalan data</string>
-    <string name="error_procesando_chip">Ralat memproses cip</string>
     <string name="no_hay_chip_seleccionado">Tiada cip dipilih</string>
     <string name="modelo">Model</string>
     <string name="palabras_rom">Kata ROM</string>
@@ -109,8 +103,6 @@
     <string name="verificando_memoria">Verifying memory...</string>
     <string name="verificacion_rom_ok">ROM berjaya disahkan</string>
     <string name="verificacion_rom_fallo">Pengesahan ROM gagal</string>
-    <string name="verificacion_eeprom_ok">EEPROM berjaya disahkan</string>
-    <string name="verificacion_eeprom_fallo">Pengesahan EEPROM gagal</string>
     <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="verificacion_completa">Pengesahan selesai</string>
     <string name="fuses_decodificados">Decoded fuses</string>
@@ -137,11 +129,8 @@
     
     <string name="chip_info_titulo">Maklumat Teknikal Cip</string>
     
-    <string name="propiedad">Sifat</string>
     
-    <string name="valor">Nilai</string>
     
-    <string name="chip_info_profesional">Maklumat Cip</string>
     
     
     
@@ -177,7 +166,6 @@
     
     
     
-    <string name="configuraciones_de_fusibles">Konfigurasi Fius</string>
     
     <string name="chip_seleccionado">Cip Terpilih</string>
     
@@ -187,9 +175,7 @@
     
     <string name="hint_id_personalizado">Contoh: 1A 2B 3C 4D (4 atau 8 bait)</string>
     
-    <string name="hint_nombre_fusible">Nama (cth: WDT, FOSC, MCLRE)</string>
     
-    <string name="hint_valor_fusible">Nilai (cth: HIDUP, MATI, HS, 0x3F)</string>
     
     <string name="log_de_operaciones">Log Operasi</string>
     
@@ -205,16 +191,12 @@
     
     
     
-    <string name="ayuda_id_personalizado">ID pengguna dalam format HEX. Gunakan 4 bait (8 digit) untuk PIC12/16 atau 8 bait (16 digit) untuk PIC18.</string>
     
-    <string name="ayuda_fuses_personalizados">Mengatasi fius HEX. Gunakan nama teknikal (cth: WDT) dan nilai (cth: OFF atau 0x01).</string>
     
-    <string name="ayuda_chip_info">Data teknikal terperinci yang diekstrak daripada fail definisi PIC.</string>
 
     
     <string name="seleccionar_operacion">Pilih Operasi</string>
     
-    <string name="config_leida">Konfigurasi dibaca</string>
 
     
     <string name="publicidad_recomendada">Pengiklanan yang disyorkan</string>
@@ -229,7 +211,6 @@
     
     <string name="fusibles_aplicados">Fius terpakai</string>
     
-    <string name="procesamiento_hex">Pemprosesan HEX</string>
     
     <string name="rom_ok_blank">ROM: OK (Kosong)</string>
     
@@ -241,17 +222,12 @@
 
     
     
-    <string name="menu_ayuda">Bantuan</string>
-    
-    <string name="ayuda_icsp">sambungan ICSP</string>
-    
-    <string name="ayuda_fuses_label">Konfigurasi Fius</string>
     
     
-    <string name="ayuda_icsp_content"><b>Guía de Conexión ICSP (In-Circuit Serial Programming):</b>\n\n1. <b>VPP:</b> Voltaje de programación (12V-13V). Conecte al pin MCLR del PIC.\n2. <b>VDD:</b> Alimentación positiva (5V o 3.3V según el PIC).\n3. <b>VSS:</b> Tierra común (GND).\n4. <b>ICSPDAT/PGD:</b> Datos de programación.\n5. <b>ICSPCLK/PGC:</b> Reloj de programación.\n\n<b>Nota:</b> Asegúrese de que el circuito externo no interfiera con las señales de programación (use resistencias de aislamiento si es necesario).</string>
     
     
-    <string name="ayuda_fuses_content"><b>Configuración de Fuses (Palabras de Configuración):</b>\n\nLos fuses definen el comportamiento fundamental del microcontrolador:\n\n• <b>Oscilador (FOSC):</b> Selecciona el tipo de reloj (XT, HS, INTOSC, etc.).\n• <b>Watchdog Timer (WDT):</b> Reinicia el chip si el software se bloquea.\n• <b>Master Clear (MCLRE):</b> Habilita/Deshabilita el pin de reset externo.\n• <b>Code Protection (CP):</b> Protege el código contra lectura.\n\nEn esta aplicación puede editar los fuses individualmente o cargarlos desde el archivo HEX.</string>
+    
+    
     
     
     
@@ -277,34 +253,24 @@
     
     <string name="error_abrir_link">Ralat membuka pautan</string>
     
-    <string name="copiado_portapapeles">Disalin ke papan keratan</string>
     
     <string name="error_generico_detalle">Ralat: %1$s</string>
     
-    <string name="fuses_configurados_marcado">✓ Dikonfigurasikan</string>
     
     <string name="debe_procesar_hex_primero">Anda mesti memproses fail HEX terlebih dahulu</string>
 
     
-    <string name="error_exportador_no_inicializado">Pengeksport tidak dimulakan</string>
     
-    <string name="error_no_hay_exportacion_pendiente">Tiada eksport yang belum selesai</string>
     
-    <string name="seleccion_carpeta_cancelada">Pemilihan folder dibatalkan</string>
     
-    <string name="error_carpeta_no_accesible">Folder yang dipilih tidak dapat diakses</string>
     
-    <string name="reemplazar_archivo_titulo">Gantikan fail</string>
     
-    <string name="reemplazar_archivo_mensaje">Fail \'%1$s\' sudah wujud. Adakah anda mahu menggantikannya?</string>
     
-    <string name="error_reemplazando_archivo">Tidak dapat menggantikan fail sedia ada</string>
     
     <string name="si">Ya</string>
     
     <string name="no">Tidak</string>
     
-    <string name="archivo_guardado">Fail disimpan: %1$s</string>
 
     
     <string name="agregar_fusible_boton">➕ Tambah Fius</string>
@@ -329,21 +295,17 @@
     <string name="termino_no_encontrado">Istilah tidak ditemui: %1$s</string>
 
     
-    <string name="no_hay_datos_para_exportar_archivo">Tiada data untuk dieksport</string>
     
     <string name="no_hay_datos_validos_para_exportar">Tiada data yang sah untuk dieksport</string>
     
     <string name="error_convirtiendo_datos_hex">Ralat menukar data perenambelasan</string>
     
-    <string name="error_nombre_archivo_vacio">Nama tidak boleh kosong</string>
     
     <string name="error_creando_archivo_salida">Tidak dapat mencipta fail output</string>
     
-    <string name="error_abriendo_archivo_escritura">Tidak dapat membuka fail untuk menulis</string>
     
     <string name="error_escribiendo_archivo_detalle">Ralat menulis fail: %1$s</string>
     
-    <string name="error_inesperado_exportar_detalle">Ralat tidak dijangka semasa mengeksport: %1$s</string>
 
 
 
@@ -355,7 +317,6 @@
 
     <!-- Strings sincronizados -->
     <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="error_cargando_tutorial_prefijo">Error loading tutorial:</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
@@ -448,8 +409,6 @@
     <string name="flash_info">Flash: %1$s</string>
     <string name="icsp_only_info">ICSP only: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="palabra_palabras">%1$d words</string>
-    <string name="byte_bytes">%1$d bytes</string>
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
