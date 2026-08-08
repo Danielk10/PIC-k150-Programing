@@ -7,6 +7,7 @@ set -euo pipefail
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EMULATOR_DIR="/home/danielpdiamon/emulador_picpro"
 VTTY="${EMULATOR_DIR}/vtty"
+MODE="${1:-python}" # 'python' o 'cpp'
 
 echo "=== 1. Limpiando procesos previos y terminales virtuales ==="
 # Matar instancias previas del emulador si existen
@@ -14,9 +15,19 @@ pkill -f "emulador_k150.py" || true
 pkill -f "emulador_k150_cpp" || true
 rm -f "$VTTY"
 
-echo "=== 2. Iniciando el emulador K150 (Python) en segundo plano ==="
-PYTHONUNBUFFERED=1 python3 "${EMULATOR_DIR}/emulador_k150.py" &
-EMU_PID=$!
+if [ "$MODE" = "cpp" ]; then
+    echo "=== 2. Iniciando el emulador K150 (C++) en segundo plano ==="
+    if [ ! -f "${EMULATOR_DIR}/emulador_k150_cpp" ]; then
+        echo "Compilando emulador C++..."
+        g++ -O2 "${EMULATOR_DIR}/emulador_k150.cpp" -o "${EMULATOR_DIR}/emulador_k150_cpp"
+    fi
+    "${EMULATOR_DIR}/emulador_k150_cpp" &
+    EMU_PID=$!
+else
+    echo "=== 2. Iniciando el emulador K150 (Python) en segundo plano ==="
+    PYTHONUNBUFFERED=1 python3 "${EMULATOR_DIR}/emulador_k150.py" &
+    EMU_PID=$!
+fi
 
 # Asegurar que el emulador se cierre cuando termine el script
 cleanup() {
