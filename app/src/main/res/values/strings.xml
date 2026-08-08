@@ -125,6 +125,7 @@
     <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
     <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exportar Volcado Completo (.hex)</string>
+    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
 
     <string name="programar_todo">Programar Todo</string>
     <string name="programar_solo_rom">Programar solo ROM</string>

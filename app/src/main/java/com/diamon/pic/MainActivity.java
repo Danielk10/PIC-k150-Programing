@@ -276,6 +276,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onChipSelected(ChipPic chip, String model) {
                 currentChip = chip;
+                fileManager.setCurrentChip(chip);
                 chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
 
                 updateSwitchColors();
@@ -1142,6 +1143,7 @@ public class MainActivity extends AppCompatActivity
         // Si hay al menos ROM y (EEPROM o Config), ofrecer un volcado completo
         if (!lastReadRomData.isEmpty() && (!lastReadEepromData.isEmpty() || !lastReadConfigData.isEmpty())) {
             options.add(getString(R.string.exportar_dump_completo));
+            options.add(getString(R.string.exportar_dump_completo_bin));
         }
 
         String[] items = options.toArray(new String[0]);
@@ -1219,10 +1221,60 @@ public class MainActivity extends AppCompatActivity
                                     romBytes, eepromBytes, null,
                                     eepromAddr, 0x4000, chipName + "_FULL");
                         }
+                    } else if (selected.equals(getString(R.string.exportar_dump_completo_bin))) {
+                        byte[] romBytes = stringHexToByteArray(lastReadRomData);
+                        byte[] eepromBytes = stringHexToByteArray(lastReadEepromData);
+                        byte[] rawConfig = stringHexToByteArray(lastReadConfigData);
+
+                        byte[] fullBinData = buildFullBinaryDump(romBytes, eepromBytes, rawConfig, coreBits);
+                        if (fullBinData != null && fullBinData.length > 0) {
+                            hexExportManager.exportAsBinary(fullBinData, chipName + "_FULL");
+                        }
                     }
                 })
                 .setNegativeButton(getString(R.string.cancelar), null)
                 .show();
+    }
+
+    private byte[] buildFullBinaryDump(byte[] romBytes, byte[] eepromBytes, byte[] rawConfig, int coreBits) {
+        int romLen = (romBytes != null) ? romBytes.length : 0;
+        int eepromLen = (eepromBytes != null) ? eepromBytes.length : 0;
+        int configLen = 26;
+
+        if (romLen == 0) {
+            return new byte[0];
+        }
+
+        byte[] fullBin = new byte[romLen + configLen + eepromLen];
+
+        System.arraycopy(romBytes, 0, fullBin, 0, romLen);
+
+        if (rawConfig != null && rawConfig.length == 26) {
+            System.arraycopy(rawConfig, 0, fullBin, romLen, 26);
+        } else {
+            byte[] dummyConfig = new byte[26];
+            Arrays.fill(dummyConfig, (byte) 0xFF);
+            if (currentChip != null) {
+                try {
+                    int chipId = currentChip.getIDPIC();
+                    dummyConfig[0] = (byte) (chipId & 0xFF);
+                    dummyConfig[1] = (byte) ((chipId >> 8) & 0xFF);
+                    int[] fuseBlank = currentChip.getFuseBlank();
+                    for (int i = 0; i < Math.min(fuseBlank.length, 7); i++) {
+                        int fb = fuseBlank[i];
+                        dummyConfig[10 + i * 2] = (byte) (fb & 0xFF);
+                        dummyConfig[11 + i * 2] = (byte) ((fb >> 8) & 0xFF);
+                    }
+                } catch (Exception ignored) {}
+            }
+            System.arraycopy(dummyConfig, 0, fullBin, romLen, 26);
+        }
+
+        if (eepromBytes != null && eepromLen > 0) {
+            System.arraycopy(eepromBytes, 0, fullBin, romLen + configLen, eepromLen);
+        }
+
+        return fullBin;
     }
 
     private byte[] stringHexToByteArray(String s) {
