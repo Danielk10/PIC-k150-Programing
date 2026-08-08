@@ -187,6 +187,12 @@ public abstract class Protocolo {
      */
     protected boolean leerRespuesta(byte[] response, char esperado, String mensajeError)
             throws UsbCommunicationException {
+        return leerRespuesta(response, esperado, mensajeError, 500);
+    }
+
+    protected boolean leerRespuesta(
+            byte[] response, char expected, String errorMessage, int timeoutMs)
+            throws UsbCommunicationException {
         ByteUtils.validarArray(contexto, response, -1, "response");
 
         if (response.length == 0) {
@@ -194,35 +200,11 @@ public abstract class Protocolo {
         }
 
         try {
-
-            int bytesLeidos = usbSerialPort.read(response, 100);
-            if (bytesLeidos == 0) {
-                return false;
-            }
-
-            byte recibido = response[0];
-            boolean coincide = (recibido == (byte) esperado);
-
-            return coincide;
-
-        } catch (IOException e) {
-            throw new UsbCommunicationException("Error leyendo respuesta USB", e);
-        }
-    }
-
-    protected boolean leerRespuesta(
-            byte[] response, char expected, String errorMessage, int timeoutMs)
-            throws UsbCommunicationException {
-        try {
             byte[] respuestaBytes = readBytes(1, timeoutMs);
             response[0] = respuestaBytes[0];
-
-            boolean valida = (respuestaBytes[0] == expected);
-
-            return valida;
-
+            return (respuestaBytes[0] == expected);
         } catch (Exception e) {
-            throw new UsbCommunicationException("Error leyendo respuesta USB", e);
+            throw new UsbCommunicationException("Error leyendo respuesta USB: " + errorMessage, e);
         }
     }
 
