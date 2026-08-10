@@ -29,357 +29,420 @@
             app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- ScrollView principal -->
-    <ScrollView
-        android:id="@+id/mainScrollView"
+    <!-- Layout principal compacto (SIN ScrollView externo) -->
+    <LinearLayout
+        android:id="@+id/mainContentLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintBottom_toTopOf="@+id/bannerContainer"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Fila 1: Estado de conexión + Fuse Status + ICSP -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp"
+            android:gravity="center_vertical">
 
-            <!-- Estado de conexion -->
+            <!-- Estado de conexión -->
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
                 app:cardBackgroundColor="#2A2A3E"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
                 <TextView
                     android:id="@+id/connectionStatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="16dp"
+                    android:padding="8dp"
                     android:text="@string/desconectado"
                     android:textColor="#E0E0E0"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
-            <!-- Selector de Chip -->
+            <!-- Estado de Fuses -->
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 app:cardBackgroundColor="#2A2A3E"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/estado_fusibles"
+                        android:textColor="#E0E0E0"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fuseStatusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fuses_no_configurados"
+                        android:textColor="#757575"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#3A3A3A" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Modo ICSP -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:cardBackgroundColor="#2A2A3E"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:text="@string/modo_icsp"
+                        android:textColor="#E0E0E0"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="4dp" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/swModeICSP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:thumbTint="#FFFFFF"
+                        android:trackTint="#90EE90" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Fila 2: Selector de Chip + Imagen Socket -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:cardBackgroundColor="#2A2A3E"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:baselineAligned="false"
+                android:gravity="center_vertical">
+
+                <!-- Columna izq: Label + Spinner + ChipInfo -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:text="@string/seleccionar_chip_pic"
                         android:textColor="#FF6600"
-                        android:textSize="16sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/chipSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="4dp"
                         android:background="@android:drawable/btn_dropdown"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:spinnerMode="dropdown" />
 
-                    <!-- Contenedor Horizontal para Info e Imagen -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#1A1A2E"
-                        android:baselineAligned="false">
-
-                        <TextView
-                            android:id="@+id/chipInfoTextView"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="monospace"
-                            android:padding="12dp"
-                            android:text="@string/esperando_seleccion"
-                            android:textColor="#4CAF50"
-                            android:textSize="12sp" />
-
-                        <!-- Imagen del Socket -->
-                        <ImageView
-                            android:id="@+id/chipSocketImageView"
-                            android:layout_width="125dp"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Socket Diagram"
-                            android:scaleType="fitCenter"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Indicador de estado de fuses + Modo ICSP -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="#2A2A3E"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <!-- Fila 1: Estado de Fusibles -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/estado_fusibles"
-                            android:textColor="#E0E0E0"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/fuseStatusTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fuses_no_configurados"
-                            android:textColor="#757575"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:background="#3A3A3A" />
-                    </LinearLayout>
-
-                    <!-- Fila 2: Modo ICSP -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/modo_icsp"
-                            android:textColor="#E0E0E0"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/swModeICSP"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:thumbTint="#FFFFFF"
-                            android:trackTint="#90EE90" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Botones de operacion -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="#2A2A3E"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/operaciones"
-                        android:textColor="#FF6600"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <!-- Cargar archivo -->
-                    <Button
-                        android:id="@+id/btnSelectHex"
+                        android:id="@+id/chipInfoTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#4CAF50"
-                        android:text="@string/cargar_archivo_hex"
-                        android:textColor="#FFFFFF" />
-
-                    <!-- Fila: Configurar Fuses y Blank Check -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnConfigureFuses"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#555555"
-                            android:enabled="false"
-                            android:text="@string/configurar_fusibles"
-                            android:textColor="#AAAAAA" />
-
-                        <Button
-                            android:id="@+id/btnBlankCheck"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#555555"
-                            android:enabled="false"
-                            android:text="@string/verificar_borrado"
-                            android:textColor="#AAAAAA" />
-                    </LinearLayout>
-
-                    <!-- Programar -->
-                    <Button
-                        android:id="@+id/btnProgramarPic"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#555555"
-                        android:enabled="false"
-                        android:text="@string/programar_pic"
-                        android:textColor="#AAAAAA" />
-
-                    <!-- Fila: Leer y Verificar -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnLeerMemoriaDeLPic"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#555555"
-                            android:enabled="false"
-                            android:text="@string/leer_memoria"
-                            android:textColor="#AAAAAA" />
-
-                        <Button
-                            android:id="@+id/btnVerificarMemoriaDelPic"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#555555"
-                            android:enabled="false"
-                            android:text="@string/verificar"
-                            android:textColor="#AAAAAA" />
-                    </LinearLayout>
-
-                    <!-- Fila: Borrar y Detectar -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnBorrarMemoriaDeLPic"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#555555"
-                            android:enabled="false"
-                            android:text="@string/borrar_memoria"
-                            android:textColor="#AAAAAA" />
-
-                        <Button
-                            android:id="@+id/btnDetectarPic"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#555555"
-                            android:enabled="false"
-                            android:text="@string/detectar_pic"
-                            android:textColor="#AAAAAA" />
-                    </LinearLayout>
+                        android:fontFamily="monospace"
+                        android:padding="4dp"
+                        android:text="@string/esperando_seleccion"
+                        android:textColor="#4CAF50"
+                        android:textSize="10sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- Estado del proceso -->
-            <androidx.cardview.widget.CardView
+                <!-- Imagen del Socket -->
+                <ImageView
+                    android:id="@+id/chipSocketImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Socket Diagram"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Fila 3: Botones de operación (compactos en grid) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:cardBackgroundColor="#2A2A3E"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="#101018"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/processStatusTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/operaciones"
+                    android:textColor="#FF6600"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- Fila A: Cargar archivo -->
+                <Button
+                    android:id="@+id/btnSelectHex"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="4dp"
+                    android:backgroundTint="#4CAF50"
+                    android:text="@string/cargar_archivo_hex"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp" />
+
+                <!-- Fila B: Config Fuses + Blank Check -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="monospace"
-                    android:gravity="start"
-                    android:padding="16dp"
-                    android:text="@string/esperando_operacion"
-                    android:textColor="#00FFCC"
-                    android:textSize="12sp" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
 
-            <!-- Contenedores ocultos para compatibilidad -->
-            <LinearLayout
-                android:id="@+id/romDataContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone" />
+                    <Button
+                        android:id="@+id/btnConfigureFuses"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="@string/configurar_fusibles"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
 
-            <LinearLayout
-                android:id="@+id/eepromDataContainer"
+                    <Button
+                        android:id="@+id/btnBlankCheck"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="@string/verificar_borrado"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+                </LinearLayout>
+
+                <!-- Fila C: Programar -->
+                <Button
+                    android:id="@+id/btnProgramarPic"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="4dp"
+                    android:backgroundTint="#555555"
+                    android:enabled="false"
+                    android:text="@string/programar_pic"
+                    android:textColor="#AAAAAA"
+                    android:textSize="12sp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp" />
+
+                <!-- Fila D: Leer + Verificar -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnLeerMemoriaDeLPic"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="@string/leer_memoria"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnVerificarMemoriaDelPic"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="@string/verificar"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+                </LinearLayout>
+
+                <!-- Fila E: Borrar + Detectar -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnBorrarMemoriaDeLPic"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="@string/borrar_memoria"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnDetectarPic"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#555555"
+                        android:enabled="false"
+                        android:text="@string/detectar_pic"
+                        android:textColor="#AAAAAA"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Fila 4: LOG con scroll propio (ocupa el espacio restante) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#101018"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <!-- FrameLayout para superponer el botón limpiar sobre el scroll -->
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone" />
-        </LinearLayout>
-    </ScrollView>
+                android:layout_height="match_parent">
+
+                <!-- ScrollView del log -->
+                <ScrollView
+                    android:id="@+id/logScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    android:scrollbars="vertical">
+
+                    <TextView
+                        android:id="@+id/processStatusTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:gravity="start|top"
+                        android:padding="10dp"
+                        android:paddingBottom="48dp"
+                        android:text="@string/esperando_operacion"
+                        android:textColor="#00FFCC"
+                        android:textSize="11sp" />
+                </ScrollView>
+
+                <!-- Botón limpiar log (esquina inferior derecha) -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnLimpiarLog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="8dp"
+                    android:contentDescription="Limpiar log"
+                    app:srcCompat="@android:drawable/ic_menu_delete"
+                    app:backgroundTint="#CC333355"
+                    app:fabSize="mini"
+                    app:tint="#FF6666" />
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Contenedores ocultos para compatibilidad -->
+        <LinearLayout
+            android:id="@+id/romDataContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/eepromDataContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
     <!-- Banner de publicidad ABAJO -->
     <FrameLayout

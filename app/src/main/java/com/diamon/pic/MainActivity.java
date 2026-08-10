@@ -27,6 +27,10 @@ import android.widget.ScrollView;
 import android.widget.HorizontalScrollView;
 import android.graphics.Typeface;
 import java.util.LinkedHashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 import androidx.annotation.NonNull;
@@ -92,6 +96,8 @@ public class MainActivity extends AppCompatActivity
     private Spinner chipSpinner;
     private android.widget.ImageView chipSocketImageView; // NUEVO
     private androidx.appcompat.widget.SwitchCompat swModeICSP;
+    private ScrollView logScrollView;
+    private FloatingActionButton btnLimpiarLog;
 
     private android.widget.Button btnSelectHex;
     private android.widget.Button btnProgramarPic;
@@ -193,21 +199,34 @@ public class MainActivity extends AppCompatActivity
         appendLog("⚙ " + getString(R.string.esperando_operacion));
     }
 
+    private static final SimpleDateFormat LOG_DATE_FORMAT =
+            new SimpleDateFormat("dd/MM HH:mm:ss", Locale.getDefault());
+
     private void appendLog(String message) {
         runOnUiThread(() -> {
+            String timestamp = "[" + LOG_DATE_FORMAT.format(new Date()) + "] ";
+            String fullMessage = timestamp + message;
+
+            // Si el mensaje anterior era de progreso (%), reemplazarlo en lugar de acumularlo
             if (message.contains("%") && !logHistory.isEmpty()) {
                 String lastLog = logHistory.get(logHistory.size() - 1);
-                if (lastLog.contains("%") || lastLog.startsWith("⏳")) {
-                    logHistory.set(logHistory.size() - 1, message);
+                if (lastLog.contains("%") || lastLog.contains("⏳")) {
+                    logHistory.set(logHistory.size() - 1, fullMessage);
                     updateLogUI();
                     return;
                 }
             }
-            if (logHistory.size() >= 8) {
-                logHistory.remove(0);
-            }
-            logHistory.add(message);
+            logHistory.add(fullMessage);
             updateLogUI();
+        });
+    }
+
+    private void clearLog() {
+        runOnUiThread(() -> {
+            logHistory.clear();
+            if (processStatusTextView != null) {
+                processStatusTextView.setText("");
+            }
         });
     }
 
@@ -221,6 +240,10 @@ public class MainActivity extends AppCompatActivity
             sb.setLength(sb.length() - 1);
         }
         processStatusTextView.setText(sb.toString());
+        // Auto-scroll al final del log
+        if (logScrollView != null) {
+            logScrollView.post(() -> logScrollView.fullScroll(ScrollView.FOCUS_DOWN));
+        }
     }
 
     private void findViews() {
@@ -230,9 +253,11 @@ public class MainActivity extends AppCompatActivity
         connectionStatusTextView = findViewById(R.id.connectionStatusTextView);
         processStatusTextView = findViewById(R.id.processStatusTextView);
         chipInfoTextView = findViewById(R.id.chipInfoTextView);
-        chipSocketImageView = findViewById(R.id.chipSocketImageView); // NUEVO
-        fuseStatusTextView = findViewById(R.id.fuseStatusTextView); // NUEVO
+        chipSocketImageView = findViewById(R.id.chipSocketImageView);
+        fuseStatusTextView = findViewById(R.id.fuseStatusTextView);
         chipSpinner = findViewById(R.id.chipSpinner);
+        logScrollView = findViewById(R.id.logScrollView);
+        btnLimpiarLog = findViewById(R.id.btnLimpiarLog);
 
         btnSelectHex = findViewById(R.id.btnSelectHex);
         btnProgramarPic = findViewById(R.id.btnProgramarPic);
@@ -240,8 +265,8 @@ public class MainActivity extends AppCompatActivity
         btnVerificarMemoriaDelPic = findViewById(R.id.btnVerificarMemoriaDelPic);
         btnBorrarMemoriaDeLPic = findViewById(R.id.btnBorrarMemoriaDeLPic);
         btnDetectarPic = findViewById(R.id.btnDetectarPic);
-        btnConfigureFuses = findViewById(R.id.btnConfigureFuses); // NUEVO
-        btnBlankCheck = findViewById(R.id.btnBlankCheck); // Verificar Borrado
+        btnConfigureFuses = findViewById(R.id.btnConfigureFuses);
+        btnBlankCheck = findViewById(R.id.btnBlankCheck);
 
         romDataContainer = findViewById(R.id.romDataContainer);
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
@@ -595,19 +620,25 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onFileLoaded(String content, String fileName) {
                         firmware = content;
-                        appendLog("ℹ " + getString(R.string.archivo_cargado) + ": " + fileName);
-                        enableOperationButtons(true);
 
-                        // NUEVO: Habilitar botón de configuración de fusibles
+                        // Detectar tipo de archivo para mensaje coherente
+                        boolean esBin = fileName != null && fileName.toLowerCase().endsWith(".bin");
+                        String tipoArchivo = esBin ? ".BIN" : ".HEX";
+                        appendLog("📂 Cargando " + tipoArchivo + ": " + fileName);
+
+                        enableOperationButtons(true);
                         enableFuseConfigButton(true);
 
-                        // NUEVO: Resetear configuración de fusibles previa al cargar nuevo archivo
+                        // Resetear configuración de fusibles al cargar nuevo archivo
                         clearFuseConfiguration();
 
-                        // NUEVO: Procesar datos del HEX
+                        // Procesar datos del archivo
+                        if (esBin) {
+                            appendLog("⏳ Procesando archivo " + tipoArchivo + "...");
+                        } else {
+                            appendLog("⏳ Procesando archivo " + tipoArchivo + "...");
+                        }
                         procesarDatosHex();
-
-                        appendLog("✓ " + getString(R.string.archivo_hex_cargado_exitosamen));
                     }
 
                     @Override
@@ -619,13 +650,16 @@ public class MainActivity extends AppCompatActivity
 
     private void setupButtonListeners() {
         btnSelectHex.setOnClickListener(v -> fileManager.openFilePicker());
-        btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration()); // NUEVO
+        btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration());
         btnProgramarPic.setOnClickListener(v -> executeProgram());
         btnLeerMemoriaDeLPic.setOnClickListener(v -> executeReadMemory());
         btnBorrarMemoriaDeLPic.setOnClickListener(v -> executeEraseMemory());
         btnVerificarMemoriaDelPic.setOnClickListener(v -> executeVerifyMemory());
         btnDetectarPic.setOnClickListener(v -> executeDetectChip());
         btnBlankCheck.setOnClickListener(v -> ejecutarBlankCheck());
+        if (btnLimpiarLog != null) {
+            btnLimpiarLog.setOnClickListener(v -> clearLog());
+        }
     }
 
     /** NUEVO: Procesa los datos del archivo HEX */
