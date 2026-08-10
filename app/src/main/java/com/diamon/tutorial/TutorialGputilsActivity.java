@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.diamon.datos.CargadorDeArchivos;
 import com.diamon.pic.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -125,9 +126,9 @@ public class TutorialGputilsActivity extends AppCompatActivity {
 
         } catch (IOException e) {
             android.view.View rootView = findViewById(android.R.id.content);
-            com.google.android.material.snackbar.Snackbar.make(rootView,
+            Snackbar.make(rootView,
                     getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
-                    com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show();
+                    Snackbar.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -169,9 +170,9 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             clipboard.setPrimaryClip(clip);
 
             android.view.View rootView = findViewById(android.R.id.content);
-            com.google.android.material.snackbar.Snackbar.make(rootView,
+            Snackbar.make(rootView,
                     currentLanguage.equals("es") ? getString(R.string.tutorial_copiado) : "Tutorial copied to clipboard",
-                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+                    Snackbar.LENGTH_SHORT).show();
         }
     }
 

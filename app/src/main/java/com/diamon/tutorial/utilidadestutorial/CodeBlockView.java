@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageButton;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * Clase para manejar bloques de código con capacidad de copiar
@@ -122,9 +123,9 @@ public class CodeBlockView {
                         Context.CLIPBOARD_SERVICE);
         android.content.ClipData clip = android.content.ClipData.newPlainText("code", code);
         clipboard.setPrimaryClip(clip);
-        com.google.android.material.snackbar.Snackbar.make(this,
+        Snackbar.make(codeContainer,
                 context.getString(R.string.codigo_copiado_portapapeles),
-                com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+                Snackbar.LENGTH_SHORT).show();
     }
 
     /**

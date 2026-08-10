@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -474,9 +475,9 @@ public class TutorialContentRenderer {
                     } catch (Exception e) {
                         try {
                             android.view.View decorView = ((android.app.Activity) context).getWindow().getDecorView();
-                            com.google.android.material.snackbar.Snackbar.make(decorView,
+                            Snackbar.make(decorView,
                                     context.getString(R.string.error_abrir_link),
-                                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.LENGTH_SHORT).show();
                         } catch (Exception ignored) {}
                     }
                 }
@@ -567,9 +568,9 @@ public class TutorialContentRenderer {
                 .setPrimaryClip(android.content.ClipData.newPlainText("code", text));
         try {
             android.view.View decorView = ((android.app.Activity) context).getWindow().getDecorView();
-            com.google.android.material.snackbar.Snackbar.make(decorView,
+            Snackbar.make(decorView,
                     context.getString(R.string.copiado_msg),
-                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+                    Snackbar.LENGTH_SHORT).show();
         } catch (Exception ignored) {}
     }
 
