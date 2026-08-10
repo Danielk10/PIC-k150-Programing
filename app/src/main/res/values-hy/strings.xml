@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC-ը հաջողությամբ ծրագրավորվել է</string>
     <string name="iniciando_programacion">Ծրագրավորման մեկնարկ...</string>
     <string name="error_cargando_archivo">Ֆայլ բեռնելու ժամանակ սխալ</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX ֆայլը հաջողությամբ բեռնված է</string>
-    <string name="archivo_cargado">Ֆայլը բեռնված է</string>
     <string name="error_inicializando_chip">Չիպ նախաստորագրելու ժամանակ սխալ</string>
     <string name="conectado_al_programador">Միացված ծրագրավորիչին</string>
     <string name="error_inicializando_base_de_da">Չիպերի տվյալների բազան նախաստորագրելու ժամանակ սխալ</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Գործառնությունների մատյան</string>
     
     <string name="restaurar_desde_bd">Վերականգնել DB-ից</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Կիրառեք ապահովիչներ</string>
     
-    <string name="nombre_del_fusible">Ապահովիչի անվանումը</string>
     
-    <string name="valor_ejemplo_on_off">Արժեք (օրինակ՝ ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">առանց չիպի</string>
     
-    <string name="fusible_agregado">Ավելացված ապահովիչ</string>
     
-    <string name="fusibles_restaurados">Վերականգնված ապահովիչներ</string>
     
-    <string name="fusibles_aplicados">Կիրառված ապահովիչներ</string>
     
     
     <string name="rom_ok_blank">ROM: Լավ (դատարկ)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Ավելացնել ապահովիչ</string>
     
-    <string name="agregar_fusible_personalizado">➕ Ավելացնել անհատական ապահովիչ</string>
     
-    <string name="completa_todos_los_campos">Լրացրեք բոլոր դաշտերը</string>
     
-    <string name="log_iniciado">Մատյան սկսվել է...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Վերականգնված ապահովիչներ HEX-ից</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux ձեռնարկ</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux ձեռնարկ</string>
     
     <string name="codigo_copiado_portapapeles">Կոդը պատճենվեց clipboard-ում</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Օրինակ</string>
     <string name="explicacion_label">Բացատրություն</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC forritað</string>
     <string name="iniciando_programacion">Byrja forritun...</string>
     <string name="error_cargando_archivo">Villa við að hlaða skrá</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX skrá hlaðin</string>
-    <string name="archivo_cargado">Skrá hlaðin</string>
     <string name="error_inicializando_chip">Villa við að ræsa flögu</string>
     <string name="conectado_al_programador">Tengt við forritara</string>
     <string name="error_inicializando_base_de_da">Villa við að ræsa flögugagnagrunn</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Rekstrarskrá</string>
     
     <string name="restaurar_desde_bd">Endurheimta frá DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Notaðu öryggi</string>
     
-    <string name="nombre_del_fusible">Fuse nafn</string>
     
-    <string name="valor_ejemplo_on_off">Gildi (dæmi: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">án flís</string>
     
-    <string name="fusible_agregado">Bætt við öryggi</string>
     
-    <string name="fusibles_restaurados">Endurheimt öryggi</string>
     
-    <string name="fusibles_aplicados">Notuð öryggi</string>
     
     
     <string name="rom_ok_blank">ROM: OK (Autt)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Bættu við öryggi</string>
     
-    <string name="agregar_fusible_personalizado">➕ Bættu við sérsniðnu öryggi</string>
     
-    <string name="completa_todos_los_campos">Fylltu út alla reiti</string>
     
-    <string name="log_iniciado">Innskráning hafin...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Endurgerð öryggi frá HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux kennsluefni</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux kennsluefni</string>
     
     <string name="codigo_copiado_portapapeles">Kóði afritaður á klemmuspjald</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Dæmi</string>
     <string name="explicacion_label">Útskýring</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

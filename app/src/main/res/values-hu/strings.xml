@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC sikeresen programozva</string>
     <string name="iniciando_programacion">Programozás indítása...</string>
     <string name="error_cargando_archivo">Hiba a fájl betöltése közben</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX fájl sikeresen betöltve</string>
-    <string name="archivo_cargado">Fájl betöltve</string>
     <string name="error_inicializando_chip">Hiba a chip inicializálása közben</string>
     <string name="conectado_al_programador">Csatlakoztatva a programozóhoz</string>
     <string name="error_inicializando_base_de_da">Hiba a chip adatbázis inicializálása közben</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Műveleti napló</string>
     
     <string name="restaurar_desde_bd">Visszaállítás DB-ből</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Alkalmazzon biztosítékokat</string>
     
-    <string name="nombre_del_fusible">Biztosíték neve</string>
     
-    <string name="valor_ejemplo_on_off">Érték (például: BE, KI, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">chip nélkül</string>
     
-    <string name="fusible_agregado">Hozzáadott biztosíték</string>
     
-    <string name="fusibles_restaurados">Felújított biztosítékok</string>
     
-    <string name="fusibles_aplicados">Alkalmazott biztosítékok</string>
     
     
     <string name="rom_ok_blank">ROM: OK (üres)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Adja hozzá a biztosítékot</string>
     
-    <string name="agregar_fusible_personalizado">➕ Adjon hozzá egyéni biztosítékot</string>
     
-    <string name="completa_todos_los_campos">Töltse ki az összes mezőt</string>
     
-    <string name="log_iniciado">A napló elindult...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Helyreállított HEX biztosítékok</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Termux oktatóanyag</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Termux oktatóanyag</string>
     
     <string name="codigo_copiado_portapapeles">A kód a vágólapra másolva</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Példa</string>
     <string name="explicacion_label">Magyarázat</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

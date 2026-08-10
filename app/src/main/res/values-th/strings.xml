@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">เขียนโปรแกรม PIC สำเร็จ</string>
     <string name="iniciando_programacion">กำลังเริ่มการเขียนโปรแกรม...</string>
     <string name="error_cargando_archivo">ข้อผิดพลาดในการโหลดไฟล์</string>
-    <string name="archivo_hex_cargado_exitosamen">โหลดไฟล์ HEX สำเร็จ</string>
-    <string name="archivo_cargado">ไฟล์ที่โหลดแล้ว</string>
     <string name="error_inicializando_chip">ข้อผิดพลาดในการเริ่มต้นชิป</string>
     <string name="conectado_al_programador">เชื่อมต่อกับโปรแกรมเมอร์แล้ว</string>
     <string name="error_inicializando_base_de_da">ข้อผิดพลาดในการเริ่มต้นฐานข้อมูลชิป</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">บันทึกการดำเนินงาน</string>
     
     <string name="restaurar_desde_bd">กู้คืนจาก DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">ใช้ฟิวส์</string>
     
-    <string name="nombre_del_fusible">ชื่อฟิวส์</string>
     
-    <string name="valor_ejemplo_on_off">ค่า (ตัวอย่าง: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">ไม่มีชิป</string>
     
-    <string name="fusible_agregado">เพิ่มฟิวส์</string>
     
-    <string name="fusibles_restaurados">กู้คืนฟิวส์แล้ว</string>
     
-    <string name="fusibles_aplicados">ฟิวส์นำไปใช้</string>
     
     
     <string name="rom_ok_blank">ROM: ตกลง (ว่างเปล่า)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ เพิ่มฟิวส์</string>
     
-    <string name="agregar_fusible_personalizado">➕ เพิ่มฟิวส์ที่กำหนดเอง</string>
     
-    <string name="completa_todos_los_campos">กรอกทุกช่อง</string>
     
-    <string name="log_iniciado">บันทึก เริ่มต้นแล้ว...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">กู้คืนฟิวส์จาก HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - การสอน Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - การสอน Termux</string>
     
     <string name="codigo_copiado_portapapeles">คัดลอกโค้ดไปยังคลิปบอร์ด</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">ตัวอย่าง</string>
     <string name="explicacion_label">คำอธิบาย</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

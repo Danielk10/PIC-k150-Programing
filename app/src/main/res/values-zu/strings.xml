@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">I-PIC ihlelwe ngempumelelo</string>
     <string name="iniciando_programacion">Kuqalwa ukuhlela...</string>
     <string name="error_cargando_archivo">Iphutha lokulayisha ifayela</string>
-    <string name="archivo_hex_cargado_exitosamen">Ifayela le-HEX lilayishiwe ngempumelelo</string>
-    <string name="archivo_cargado">Ifayela lilayishiwe</string>
     <string name="error_inicializando_chip">Iphutha lokuqalisa i-chip</string>
     <string name="conectado_al_programador">Kuxhunywe kumhleli</string>
     <string name="error_inicializando_base_de_da">Iphutha lokuqalisa idathabeyisi ye-chip</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Ilogi Yokusebenza</string>
     
     <string name="restaurar_desde_bd">Buyisela kusuka ku-DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Faka amaFuse</string>
     
-    <string name="nombre_del_fusible">Igama le-Fuse</string>
     
-    <string name="valor_ejemplo_on_off">Inani (isibonelo: VULIWE, VALIWE, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">ngaphandle kwe-chip</string>
     
-    <string name="fusible_agregado">I-fuse eyengeziwe</string>
     
-    <string name="fusibles_restaurados">Amafuse abuyiselwe</string>
     
-    <string name="fusibles_aplicados">Amafuse asetshenzisiwe</string>
     
     
     <string name="rom_ok_blank">I-ROM: Kulungile (Akunalutho)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Engeza i-Fuse</string>
     
-    <string name="agregar_fusible_personalizado">➕ Engeza i-Fuse yangokwezifiso</string>
     
-    <string name="completa_todos_los_campos">Qedela zonke izinkambu</string>
     
-    <string name="log_iniciado">Ilogi iqalile...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Amafuse abuyiselwe asuka ku-HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">I-SDCC 4.5.0 - Isifundo se-Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">I-SDCC 4.5.0 - Isifundo se-Termux</string>
     
     <string name="codigo_copiado_portapapeles">Ikhodi ikopishelwe ebhodini lokunamathisela</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Isibonelo</string>
     <string name="explicacion_label">Incazelo</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

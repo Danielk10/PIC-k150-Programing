@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC programat correctament</string>
     <string name="iniciando_programacion">Iniciant la programació...</string>
     <string name="error_cargando_archivo">Error en carregar el fitxer</string>
-    <string name="archivo_hex_cargado_exitosamen">Fitxer HEX carregat correctament</string>
-    <string name="archivo_cargado">Fitxer carregat</string>
     <string name="error_inicializando_chip">Error inicialitzant el xip</string>
     <string name="conectado_al_programador">Connectat al programador</string>
     <string name="error_inicializando_base_de_da">Error inicialitzant la base de dades de xips</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Log d\'operacions</string>
     
     <string name="restaurar_desde_bd">Restaurar des de BD</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Aplicar Fusos</string>
     
-    <string name="nombre_del_fusible">Nom del fusible</string>
     
-    <string name="valor_ejemplo_on_off">Valor (exemple: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">Sense xip</string>
     
-    <string name="fusible_agregado">Fusible agregat</string>
     
-    <string name="fusibles_restaurados">Fusibles restaurats</string>
     
-    <string name="fusibles_aplicados">Fusibles aplicats</string>
     
     
     <string name="rom_ok_blank">ROM: OK (En blanc)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Afegeix Fusible</string>
     
-    <string name="agregar_fusible_personalizado">➕ Afegeix Fusible Personalitzat</string>
     
-    <string name="completa_todos_los_campos">Completa tots els camps</string>
     
-    <string name="log_iniciado">Log iniciat...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Fusibles restaurats des de HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial a Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
     
     <string name="codigo_copiado_portapapeles">Codi copiat al porta-retalls</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Exemple</string>
     <string name="explicacion_label">Explicació</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC با موفقیت برنامه‌ریزی شد</string>
     <string name="iniciando_programacion">شروع برنامه‌ریزی...</string>
     <string name="error_cargando_archivo">خطا در بارگذاری فایل</string>
-    <string name="archivo_hex_cargado_exitosamen">فایل HEX با موفقیت بارگذاری شد</string>
-    <string name="archivo_cargado">فایل بارگذاری شد</string>
     <string name="error_inicializando_chip">خطا در راه‌اندازی تراشه</string>
     <string name="conectado_al_programador">متصل به برنامه‌نویس</string>
     <string name="error_inicializando_base_de_da">خطا در راه‌اندازی پایگاه داده تراشه</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">گزارش عملیات</string>
     
     <string name="restaurar_desde_bd">بازیابی از DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">فیوزها را اعمال کنید</string>
     
-    <string name="nombre_del_fusible">نام فیوز</string>
     
-    <string name="valor_ejemplo_on_off">مقدار (به عنوان مثال: ON، OFF، 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">بدون تراشه</string>
     
-    <string name="fusible_agregado">فیوز اضافه شد</string>
     
-    <string name="fusibles_restaurados">فیوزهای بازسازی شده</string>
     
-    <string name="fusibles_aplicados">فیوزهای کاربردی</string>
     
     
     <string name="rom_ok_blank">رام: خوب (خالی)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ فیوز اضافه کنید</string>
     
-    <string name="agregar_fusible_personalizado">➕ فیوز سفارشی را اضافه کنید</string>
     
-    <string name="completa_todos_los_campos">تمام فیلدها را تکمیل کنید</string>
     
-    <string name="log_iniciado">گزارش شروع شد...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">فیوزهای بازسازی شده از HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - آموزش Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - آموزش Termux</string>
     
     <string name="codigo_copiado_portapapeles">کد در کلیپ بورد کپی شد</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">مثال</string>
     <string name="explicacion_label">توضیح</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

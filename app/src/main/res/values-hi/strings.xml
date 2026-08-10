@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC सफलतापूर्वक प्रोग्राम किया गया</string>
     <string name="iniciando_programacion">प्रोग्रामिंग शुरू हो रही है...</string>
     <string name="error_cargando_archivo">फ़ाइल लोड करने में त्रुटि</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX फ़ाइल सफलतापूर्वक लोड हो गई</string>
-    <string name="archivo_cargado">फ़ाइल लोड हो गई</string>
     <string name="error_inicializando_chip">चिप शुरू करने में त्रुटि</string>
     <string name="conectado_al_programador">प्रोग्रामर से कनेक्टेड</string>
     <string name="error_inicializando_base_de_da">चिप डेटाबेस शुरू करने में त्रुटि</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">संचालन लॉग</string>
     
     <string name="restaurar_desde_bd">डीबी से पुनर्स्थापित करें</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">फ़्यूज़ लगाएं</string>
     
-    <string name="nombre_del_fusible">फ़्यूज़ का नाम</string>
     
-    <string name="valor_ejemplo_on_off">मान (उदाहरण: चालू, बंद, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">बिना चिप के</string>
     
-    <string name="fusible_agregado">फ़्यूज़ जोड़ा गया</string>
     
-    <string name="fusibles_restaurados">पुनर्स्थापित फ़्यूज़</string>
     
-    <string name="fusibles_aplicados">लागू फ़्यूज़</string>
     
     
     <string name="rom_ok_blank">ROM: ठीक है (रिक्त)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ फ़्यूज़ जोड़ें</string>
     
-    <string name="agregar_fusible_personalizado">➕ कस्टम फ़्यूज़ जोड़ें</string>
     
-    <string name="completa_todos_los_campos">सभी फ़ील्ड पूर्ण करें</string>
     
-    <string name="log_iniciado">लॉग प्रारंभ हुआ...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">HEX से फ़्यूज़ को पुनर्स्थापित किया गया</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">एसडीसीसी 4.5.0 - टर्मक्स ट्यूटोरियल</string>
-    
-    <string name="titulo_tutorial_sdcc_en">एसडीसीसी 4.5.0 - टर्मक्स ट्यूटोरियल</string>
     
     <string name="codigo_copiado_portapapeles">कोड क्लिपबोर्ड पर कॉपी किया गया</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">ट्यूटोरियल लोड हो रहा है…</string>
     <string name="paso_prefijo">चरण </string>
     <string name="error_prefijo">❌ त्रुटि: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">उदाहरण</string>
     <string name="explicacion_label">व्याख्या</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

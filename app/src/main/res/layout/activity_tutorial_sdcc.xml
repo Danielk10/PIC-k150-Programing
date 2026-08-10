@@ -17,7 +17,7 @@
         android:background="#2196F3"
         android:elevation="4dp"
         android:padding="16dp"
-        android:text="@string/titulo_tutorial_sdcc_es"
+        android:text="@string/sdcc_termux_tutorial"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"

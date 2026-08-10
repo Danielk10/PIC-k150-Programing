@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">Matagumpay na naprogram ang PIC</string>
     <string name="iniciando_programacion">Sinisimulan ang programming...</string>
     <string name="error_cargando_archivo">Error sa pag-load ng file</string>
-    <string name="archivo_hex_cargado_exitosamen">Matagumpay na na-load ang HEX file</string>
-    <string name="archivo_cargado">Na-load ang file</string>
     <string name="error_inicializando_chip">Error sa pag-initialize ng chip</string>
     <string name="conectado_al_programador">Nakakonekta sa programmer</string>
     <string name="error_inicializando_base_de_da">Error sa pag-initialize ng chip database</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Log ng Operasyon</string>
     
     <string name="restaurar_desde_bd">Ibalik mula sa DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Ilapat ang mga piyus</string>
     
-    <string name="nombre_del_fusible">Pangalan ng fuse</string>
     
-    <string name="valor_ejemplo_on_off">Halaga (halimbawa: NAKA-ON, NAKA-OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">walang chip</string>
     
-    <string name="fusible_agregado">Nagdagdag ng fuse</string>
     
-    <string name="fusibles_restaurados">Ibinalik ang mga piyus</string>
     
-    <string name="fusibles_aplicados">Inilapat na piyus</string>
     
     
     <string name="rom_ok_blank">ROM: OK (Blanko)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Magdagdag ng Fuse</string>
     
-    <string name="agregar_fusible_personalizado">➕ Magdagdag ng Custom Fuse</string>
     
-    <string name="completa_todos_los_campos">Kumpletuhin ang lahat ng mga patlang</string>
     
-    <string name="log_iniciado">Nagsimula ang log...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Ibinalik ang mga piyus mula sa HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial sa Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Tutorial sa Termux</string>
     
     <string name="codigo_copiado_portapapeles">Nakopya ang code sa clipboard</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Halimbawa</string>
     <string name="explicacion_label">Paliwanag</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

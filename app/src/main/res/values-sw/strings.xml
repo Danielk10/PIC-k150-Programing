@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC imeprogramiwa kwa mafanikio</string>
     <string name="iniciando_programacion">Inaanza kuprogramu...</string>
     <string name="error_cargando_archivo">Hitilafu ya kupakia faili</string>
-    <string name="archivo_hex_cargado_exitosamen">Faili ya HEX imepakiwa kwa mafanikio</string>
-    <string name="archivo_cargado">Faili imepakiwa</string>
     <string name="error_inicializando_chip">Hitilafu ya kuanzisha chip</string>
     <string name="conectado_al_programador">Imeunganishwa na kiprogramu</string>
     <string name="error_inicializando_base_de_da">Hitilafu ya kuanzisha hifadhidata ya chip</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Kumbukumbu ya Uendeshaji</string>
     
     <string name="restaurar_desde_bd">Rejesha kutoka kwa DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Weka Fusi</string>
     
-    <string name="nombre_del_fusible">Jina la Fuse</string>
     
-    <string name="valor_ejemplo_on_off">Thamani (mfano: IMEWASHA, IMEZIMWA, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">bila chip</string>
     
-    <string name="fusible_agregado">Fuse iliyoongezwa</string>
     
-    <string name="fusibles_restaurados">Fuse zilizorejeshwa</string>
     
-    <string name="fusibles_aplicados">Fuse zilizowekwa</string>
     
     
     <string name="rom_ok_blank">ROM: Sawa (Tupu)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Ongeza Fuse</string>
     
-    <string name="agregar_fusible_personalizado">➕ Ongeza Fuse Maalum</string>
     
-    <string name="completa_todos_los_campos">Kamilisha nyanja zote</string>
     
-    <string name="log_iniciado">Kumbukumbu imeanza...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Fuse zilizorejeshwa kutoka kwa HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Mafunzo ya Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Mafunzo ya Termux</string>
     
     <string name="codigo_copiado_portapapeles">Msimbo umenakiliwa kwenye ubao wa kunakili</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Mfano</string>
     <string name="explicacion_label">Maelezo</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

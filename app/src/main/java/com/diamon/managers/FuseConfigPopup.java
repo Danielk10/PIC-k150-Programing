@@ -248,15 +248,15 @@ public class FuseConfigPopup {
         if (currentChip != null) {
             StringBuilder sb = new StringBuilder();
             try {
-                sb.append("ROM:    ").append(currentChip.getTamanoROM()).append(" bytes\n");
+                sb.append(context.getString(R.string.label_rom) + "    ").append(currentChip.getTamanoROM()).append(" " + context.getString(R.string.label_bytes) + "\n");
 
                 if (currentChip.isTamanoValidoDeEEPROM()) {
-                    sb.append("EEPROM: ").append(currentChip.getTamanoEEPROM()).append(" bytes\n");
+                    sb.append(context.getString(R.string.label_eeprom) + " ").append(currentChip.getTamanoEEPROM()).append(" " + context.getString(R.string.label_bytes) + "\n");
                 }
 
-                sb.append("ID:     ").append(String.format("0x%04X", currentChip.getIDPIC()));
+                sb.append(context.getString(R.string.label_id) + "     ").append(String.format("0x%04X", currentChip.getIDPIC()));
             } catch (Exception e) {
-                sb.append("Error leyendo info chip");
+                sb.append(context.getString(R.string.error_leyendo_info_chip));
             }
             chipInfoTextView.setText(sb.toString());
         }
@@ -530,17 +530,17 @@ public class FuseConfigPopup {
         info.append(context.getString(R.string.label_chip)).append(currentChip.getNombreDelPic()).append("\n");
 
         try {
-            info.append("ROM: 0x")
+            info.append(context.getString(R.string.label_rom) + " 0x")
                     .append(Integer.toHexString(currentChip.getTamanoROM()).toUpperCase())
                     .append("\n");
 
             if (currentChip.isTamanoValidoDeEEPROM()) {
-                info.append("EEPROM: 0x")
+                info.append(context.getString(R.string.label_eeprom) + " 0x")
                         .append(Integer.toHexString(currentChip.getTamanoEEPROM()).toUpperCase())
                         .append("\n");
             }
         } catch (Exception e) {
-            info.append("Error: ").append(e.getMessage());
+            info.append(context.getString(R.string.error_generico_detalle, e.getMessage()));
         }
 
         chipInfoTextView.setText(info.toString());

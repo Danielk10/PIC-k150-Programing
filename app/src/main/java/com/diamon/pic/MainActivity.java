@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         implements UsbConnectionManager.UsbConnectionListener,
         PicProgrammingManager.ProgrammingListener {
 
-    private TextView connectionStatusTextView;
+    private View connectionIndicator;
     private TextView processStatusTextView;
     private TextView chipInfoTextView;
     private TextView fuseStatusTextView; // NUEVO
@@ -249,7 +249,10 @@ public class MainActivity extends AppCompatActivity
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        connectionStatusTextView = findViewById(R.id.connectionStatusTextView);
+        connectionIndicator = findViewById(R.id.connectionIndicator);
+        if (connectionIndicator != null) {
+            connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
         processStatusTextView = findViewById(R.id.processStatusTextView);
         chipInfoTextView = findViewById(R.id.chipInfoTextView);
         chipSocketImageView = findViewById(R.id.chipSocketImageView);
@@ -412,8 +415,9 @@ public class MainActivity extends AppCompatActivity
     public void onConnected() {
         Analytics.trackEvent("USB: Connected");
         runOnUiThread(() -> {
-            connectionStatusTextView.setTextColor(Color.GREEN);
-            connectionStatusTextView.setText(getString(R.string.conectado));
+            if (connectionIndicator != null) {
+                connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            }
             programmingManager.setProtocolo(usbManager.getProtocolo());
             appendLog("🔌 " + getString(R.string.conectado_al_programador));
         });
@@ -423,8 +427,9 @@ public class MainActivity extends AppCompatActivity
     public void onDisconnected() {
         Analytics.trackEvent("USB: Disconnected");
         runOnUiThread(() -> {
-            connectionStatusTextView.setTextColor(Color.RED);
-            connectionStatusTextView.setText(getString(R.string.desconectado));
+            if (connectionIndicator != null) {
+                connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            }
             appendLog("❌ " + getString(R.string.desconectado));
         });
     }
@@ -433,8 +438,9 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionError(String errorMessage) {
         Analytics.trackEvent("USB: Error", crearMapaAnalitica("Message", errorMessage));
         runOnUiThread(() -> {
-            connectionStatusTextView.setTextColor(Color.RED);
-            connectionStatusTextView.setText(getString(R.string.desconectado));
+            if (connectionIndicator != null) {
+                connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            }
             appendLog("❌ " + errorMessage);
         });
     }
@@ -728,15 +734,23 @@ public class MainActivity extends AppCompatActivity
 
     /** NUEVO: Actualiza el indicador de estado de fusibles */
     private void updateFuseStatus(boolean configured) {
+        android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+        gd.setCornerRadius(dpToPx(4));
+        
         if (configured) {
             fuseStatusTextView.setText("✓ " + getString(R.string.fuses_configurados));
             fuseStatusTextView.setTextColor(Color.WHITE);
-            fuseStatusTextView.setBackgroundColor(Color.parseColor("#4CAF50"));
+            gd.setColor(Color.parseColor("#4CAF50"));
         } else {
             fuseStatusTextView.setText(getString(R.string.fuses_no_configurados));
             fuseStatusTextView.setTextColor(Color.parseColor("#757575"));
-            fuseStatusTextView.setBackgroundColor(Color.parseColor("#3A3A3A"));
+            gd.setColor(Color.parseColor("#3A3A3A"));
         }
+        fuseStatusTextView.setBackground(gd);
+    }
+
+    private int dpToPx(int dp) {
+        return Math.round(dp * getResources().getDisplayMetrics().density);
     }
 
     /** NUEVO: Habilita/deshabilita el botón de configuración de fusibles */

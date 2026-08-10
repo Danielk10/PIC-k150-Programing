@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC sėkmingai naprogramuota</string>
     <string name="iniciando_programacion">Pradedamas programavimas...</string>
     <string name="error_cargando_archivo">Klaida įkeliant failą</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX failas sėkmingai įkeltas</string>
-    <string name="archivo_cargado">Failas įkeltas</string>
     <string name="error_inicializando_chip">Klaida inicijuojant lustą</string>
     <string name="conectado_al_programador">Prisijungta prie programuotojo</string>
     <string name="error_inicializando_base_de_da">Klaida inicijuojant lustų duomenų bazę</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Operacijų žurnalas</string>
     
     <string name="restaurar_desde_bd">Atkurti iš DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Uždėkite saugiklius</string>
     
-    <string name="nombre_del_fusible">Saugiklio pavadinimas</string>
     
-    <string name="valor_ejemplo_on_off">Reikšmė (pavyzdys: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">be lusto</string>
     
-    <string name="fusible_agregado">Pridėtas saugiklis</string>
     
-    <string name="fusibles_restaurados">Restauruoti saugikliai</string>
     
-    <string name="fusibles_aplicados">Pritaikyti saugikliai</string>
     
     
     <string name="rom_ok_blank">ROM: gerai (tuščia)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Pridėkite saugiklį</string>
     
-    <string name="agregar_fusible_personalizado">➕ Pridėkite pasirinktinį saugiklį</string>
     
-    <string name="completa_todos_los_campos">Užpildykite visus laukus</string>
     
-    <string name="log_iniciado">Žurnalas pradėtas...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Restauruoti saugikliai iš HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Termux mokymo programa</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Termux mokymo programa</string>
     
     <string name="codigo_copiado_portapapeles">Kodas nukopijuotas į mainų sritį</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Pavyzdys</string>
     <string name="explicacion_label">Paaiškinimas</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

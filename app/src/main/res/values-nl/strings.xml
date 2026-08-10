@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC succesvol geprogrammeerd</string>
     <string name="iniciando_programacion">Programmeren starten...</string>
     <string name="error_cargando_archivo">Fout bij laden bestand</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX-bestand succesvol geladen</string>
-    <string name="archivo_cargado">Bestand geladen</string>
     <string name="error_inicializando_chip">Fout bij initialiseren chip</string>
     <string name="conectado_al_programador">Verbonden met programmeur</string>
     <string name="error_inicializando_base_de_da">Fout bij initialiseren chipdatabase</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Bedieningslogboek</string>
     
     <string name="restaurar_desde_bd">Herstellen vanuit DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Zekeringen toepassen</string>
     
-    <string name="nombre_del_fusible">Naam zekering</string>
     
-    <string name="valor_ejemplo_on_off">Waarde (voorbeeld: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">Geen chip</string>
     
-    <string name="fusible_agregado">Zekering toegevoegd</string>
     
-    <string name="fusibles_restaurados">Zekeringen hersteld</string>
     
-    <string name="fusibles_aplicados">Zekeringen toegepast</string>
     
     
     <string name="rom_ok_blank">ROM: OK (leeg)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Zekering toevoegen</string>
     
-    <string name="agregar_fusible_personalizado">➕ Aangepaste zekering toevoegen</string>
     
-    <string name="completa_todos_los_campos">Vul alle velden in</string>
     
-    <string name="log_iniciado">Logboek gestart...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Zekeringen hersteld van HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux-zelfstudie</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux-zelfstudie</string>
     
     <string name="codigo_copiado_portapapeles">Code gekopieerd naar klembord</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Tutorial laden…</string>
     <string name="paso_prefijo">STAP </string>
     <string name="error_prefijo">❌ FOUT: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Voorbeeld</string>
     <string name="explicacion_label">Uitleg</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

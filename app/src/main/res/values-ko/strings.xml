@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC가 성공적으로 프로그래밍되었습니다</string>
     <string name="iniciando_programacion">프로그래밍 시작 중...</string>
     <string name="error_cargando_archivo">파일 로드 오류</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX 파일이 성공적으로 로드되었습니다</string>
-    <string name="archivo_cargado">파일 로드됨</string>
     <string name="error_inicializando_chip">칩 초기화 오류</string>
     <string name="conectado_al_programador">프로그래머에 연결됨</string>
     <string name="error_inicializando_base_de_da">칩 데이터베이스 초기화 오류</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">작업 로그</string>
     
     <string name="restaurar_desde_bd">DB에서 복원</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">퓨즈 적용</string>
     
-    <string name="nombre_del_fusible">퓨즈 이름</string>
     
-    <string name="valor_ejemplo_on_off">값(예: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">칩 없음</string>
     
-    <string name="fusible_agregado">퓨즈 추가</string>
     
-    <string name="fusibles_restaurados">퓨즈 재설정</string>
     
-    <string name="fusibles_aplicados">퓨즈 적용</string>
     
     
     <string name="rom_ok_blank">ROM: OK(공백)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ 퓨즈 추가</string>
     
-    <string name="agregar_fusible_personalizado">➕ 사용자 정의 퓨즈 추가</string>
     
-    <string name="completa_todos_los_campos">모든 필드 완료</string>
     
-    <string name="log_iniciado">로그 시작됨...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">HEX에서 복원된 퓨즈</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux 자습서</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux 자습서</string>
     
     <string name="codigo_copiado_portapapeles">클립보드에 복사된 코드</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">튜토리얼 로딩 중…</string>
     <string name="paso_prefijo">단계 </string>
     <string name="error_prefijo">❌ 오류: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">예제</string>
     <string name="explicacion_label">설명</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

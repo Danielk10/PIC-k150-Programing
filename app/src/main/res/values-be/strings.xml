@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC паспяхова запраграмаваны</string>
     <string name="iniciando_programacion">Пачатак праграмавання...</string>
     <string name="error_cargando_archivo">Памылка загрузкі файла</string>
-    <string name="archivo_hex_cargado_exitosamen">Файл HEX паспяхова загружаны</string>
-    <string name="archivo_cargado">Файл загружаны</string>
     <string name="error_inicializando_chip">Памылка ініцыялізацыі чыпа</string>
     <string name="conectado_al_programador">Падключана да праграматара</string>
     <string name="error_inicializando_base_de_da">Памылка ініцыялізацыі базы дадзеных чыпаў</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Журнал аперацый</string>
     
     <string name="restaurar_desde_bd">Аднавіць з БД</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Ужыць засцерагальнікі</string>
     
-    <string name="nombre_del_fusible">Назва засцерагальніка</string>
     
-    <string name="valor_ejemplo_on_off">Значэнне (прыклад: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">без чыпа</string>
     
-    <string name="fusible_agregado">Дададзены засцерагальнік</string>
     
-    <string name="fusibles_restaurados">Адноўленыя засцерагальнікі</string>
     
-    <string name="fusibles_aplicados">Прымяняюцца засцерагальнікі</string>
     
     
     <string name="rom_ok_blank">ПЗУ: ОК (Пусты)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Дадаць засцерагальнік</string>
     
-    <string name="agregar_fusible_personalizado">➕ Дадаць уласны засцерагальнік</string>
     
-    <string name="completa_todos_los_campos">Запоўніце ўсе палі</string>
     
-    <string name="log_iniciado">Журнал пачаўся...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Адноўлены засцерагальнікі ад HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Падручнік Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Падручнік Termux</string>
     
     <string name="codigo_copiado_portapapeles">Код скапіраваны ў буфер абмену</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Прыклад</string>
     <string name="explicacion_label">Тлумачэнне</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

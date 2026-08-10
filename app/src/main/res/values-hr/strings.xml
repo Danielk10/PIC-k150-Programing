@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC je uspješno programiran</string>
     <string name="iniciando_programacion">Započinjanje programiranja...</string>
     <string name="error_cargando_archivo">Greška pri učitavanju datoteke</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX datoteka je uspješno učitana</string>
-    <string name="archivo_cargado">Datoteka je učitana</string>
     <string name="error_inicializando_chip">Greška pri inicijalizaciji čipa</string>
     <string name="conectado_al_programador">Povezan na programer</string>
     <string name="error_inicializando_base_de_da">Greška pri inicijalizaciji baze podataka čipova</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Dnevnik operacija</string>
     
     <string name="restaurar_desde_bd">Vrati iz baze podataka</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Primjena osigurača</string>
     
-    <string name="nombre_del_fusible">Naziv osigurača</string>
     
-    <string name="valor_ejemplo_on_off">Vrijednost (primjer: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">bez čipa</string>
     
-    <string name="fusible_agregado">Dodan osigurač</string>
     
-    <string name="fusibles_restaurados">Restaurirani osigurači</string>
     
-    <string name="fusibles_aplicados">Primijenjeni osigurači</string>
     
     
     <string name="rom_ok_blank">ROM: OK (prazno)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Dodajte osigurač</string>
     
-    <string name="agregar_fusible_personalizado">➕ Dodajte prilagođeni osigurač</string>
     
-    <string name="completa_todos_los_campos">Ispunite sva polja</string>
     
-    <string name="log_iniciado">Zapis je započeo...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Restaurirani osigurači od HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Vodič za Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Vodič za Termux</string>
     
     <string name="codigo_copiado_portapapeles">Kod je kopiran u međuspremnik</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Primjer</string>
     <string name="explicacion_label">Objašnjenje</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

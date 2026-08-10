@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC programat cu succes</string>
     <string name="iniciando_programacion">Inițierea programării...</string>
     <string name="error_cargando_archivo">Eroare la încărcarea fișierului</string>
-    <string name="archivo_hex_cargado_exitosamen">Fișierul HEX încărcat cu succes</string>
-    <string name="archivo_cargado">Fișier încărcat</string>
     <string name="error_inicializando_chip">Eroare la inițializarea cipului</string>
     <string name="conectado_al_programador">Conectat la programator</string>
     <string name="error_inicializando_base_de_da">Eroare la inițializarea bazei de date a cipurilor</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Jurnalul de operațiuni</string>
     
     <string name="restaurar_desde_bd">Restaurare din DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Aplicați siguranțe</string>
     
-    <string name="nombre_del_fusible">Numele siguranței</string>
     
-    <string name="valor_ejemplo_on_off">Valoare (exemplu: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">fara cip</string>
     
-    <string name="fusible_agregado">Siguranță adăugată</string>
     
-    <string name="fusibles_restaurados">Siguranțe restaurate</string>
     
-    <string name="fusibles_aplicados">Siguranțe aplicate</string>
     
     
     <string name="rom_ok_blank">ROM: OK (alb)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Adăugați siguranța</string>
     
-    <string name="agregar_fusible_personalizado">➕ Adăugați siguranța personalizată</string>
     
-    <string name="completa_todos_los_campos">Completați toate câmpurile</string>
     
-    <string name="log_iniciado">Jurnalul a început...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Siguranțe restaurate de la HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Tutorial Termux</string>
     
     <string name="codigo_copiado_portapapeles">Cod copiat în clipboard</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Exemplu</string>
     <string name="explicacion_label">Explicație</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

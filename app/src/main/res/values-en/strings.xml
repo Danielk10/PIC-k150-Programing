@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programming</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC programmed successfully</string>
     <string name="iniciando_programacion">Starting programming...</string>
     <string name="error_cargando_archivo">Error loading file</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX file loaded successfully</string>
-    <string name="archivo_cargado">File loaded</string>
     <string name="error_inicializando_chip">Error initializing chip</string>
     <string name="conectado_al_programador">Connected to programmer</string>
     <string name="error_inicializando_base_de_da">Error initializing chips database</string>
@@ -134,14 +132,10 @@
     
     <string name="chip_seleccionado">Selected Chip</string>
     <string name="configuracion_de_fusibles">Fuse Configuration</string>
-    <string name="agregar_fusible_personalizado">➕ Add Custom Fuse</string>
     <string name="id_personalizado_hex">Custom ID (hex)</string>
-    <string name="log_de_operaciones">Operation Log</string>
     <string name="restaurar_desde_bd">Restore from DB</string>
     <string name="restaurar_desde_hex">Restore from HEX</string>
     <string name="aplicar_fuses">Apply Fuses</string>
-    <string name="nombre_del_fusible">Fuse Name</string>
-    <string name="valor_ejemplo_on_off">Value (e.g., ON, OFF, 0x3FFF)</string>
 
     
 
@@ -176,11 +170,8 @@
     
     <string name="sin_chip">without chip</string>
     
-    <string name="fusible_agregado">Added fuse</string>
     
-    <string name="fusibles_restaurados">Restored fuses</string>
     
-    <string name="fusibles_aplicados">Applied fuses</string>
     
     
     <string name="rom_ok_blank">ROM: OK (Blank)</string>
@@ -244,18 +235,12 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Add Fuse</string>
     
-    <string name="completa_todos_los_campos">Complete all fields</string>
     
-    <string name="log_iniciado">Log started...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Restored fuses from HEX</string>
 
     
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
     
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
     
     <string name="codigo_copiado_portapapeles">Code copied to clipboard</string>
     
@@ -276,7 +261,7 @@
     <string name="error_escribiendo_archivo_detalle">Error writing file: %1$s</string>
     
 
-    <!-- Memory popup labels -->
+    
     <string name="memoria_rom">ROM Memory</string>
     <string name="memoria_eeprom">EEPROM Memory</string>
 
@@ -284,7 +269,7 @@
     <string name="datos_de_memoria">Memory Data</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -398,4 +383,4 @@
     <string name="ejemplo_label">Example</string>
     <string name="explicacion_label">Explanation</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

@@ -90,7 +90,7 @@ public class HexExportManager {
         }
 
         if (createDocumentLauncher == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, context.getString(com.diamon.pic.R.string.error_export_manager_not_initialized)));
             return;
         }
 
@@ -107,7 +107,7 @@ public class HexExportManager {
             int eepromAddress, int configAddress, String suggestedName) {
 
         if (createDocumentLauncher == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, context.getString(com.diamon.pic.R.string.error_export_manager_not_initialized)));
             return;
         }
 
@@ -155,7 +155,7 @@ public class HexExportManager {
             int eepromAddress, String suggestedName) {
 
         if (createDocumentLauncher == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, context.getString(com.diamon.pic.R.string.error_export_manager_not_initialized)));
             return;
         }
 
@@ -199,7 +199,7 @@ public class HexExportManager {
             byte[] fuseData, int fuseAddress, String suggestedName) {
 
         if (createDocumentLauncher == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, context.getString(com.diamon.pic.R.string.error_export_manager_not_initialized)));
             return;
         }
 
@@ -235,7 +235,7 @@ public class HexExportManager {
         }
 
         if (createDocumentLauncher == null) {
-            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, "HexExportManager no inicializado"));
+            notifyError(context.getString(com.diamon.pic.R.string.error_generico_detalle, context.getString(com.diamon.pic.R.string.error_export_manager_not_initialized)));
             return;
         }
 

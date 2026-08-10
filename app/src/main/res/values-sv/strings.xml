@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC programmerades framgångsrikt</string>
     <string name="iniciando_programacion">Startar programmering...</string>
     <string name="error_cargando_archivo">Fel vid laddning av fil</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX-fil laddades framgångsrikt</string>
-    <string name="archivo_cargado">Fil laddad</string>
     <string name="error_inicializando_chip">Fel vid initiering av chip</string>
     <string name="conectado_al_programador">Ansluten till programmerare</string>
     <string name="error_inicializando_base_de_da">Fel vid initiering av chipdatabas</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Driftlogg</string>
     
     <string name="restaurar_desde_bd">Återställ från DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Sätt på säkringar</string>
     
-    <string name="nombre_del_fusible">Säkringsnamn</string>
     
-    <string name="valor_ejemplo_on_off">Värde (exempel: PÅ, AV, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">utan chip</string>
     
-    <string name="fusible_agregado">Tillsatt säkring</string>
     
-    <string name="fusibles_restaurados">Återställda säkringar</string>
     
-    <string name="fusibles_aplicados">Tillsatta säkringar</string>
     
     
     <string name="rom_ok_blank">ROM: OK (tom)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Lägg till säkring</string>
     
-    <string name="agregar_fusible_personalizado">➕ Lägg till anpassad säkring</string>
     
-    <string name="completa_todos_los_campos">Fyll i alla fält</string>
     
-    <string name="log_iniciado">Loggen startade...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Återställda säkringar från HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
     
     <string name="codigo_copiado_portapapeles">Koden har kopierats till urklipp</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Exempel</string>
     <string name="explicacion_label">Förklaring</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

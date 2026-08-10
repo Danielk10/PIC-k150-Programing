@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC berhasil diprogram</string>
     <string name="iniciando_programacion">Memulai pemrograman...</string>
     <string name="error_cargando_archivo">Error memuat file</string>
-    <string name="archivo_hex_cargado_exitosamen">File HEX berhasil dimuat</string>
-    <string name="archivo_cargado">File dimuat</string>
     <string name="error_inicializando_chip">Error menginisialisasi chip</string>
     <string name="conectado_al_programador">Terhubung ke programmer</string>
     <string name="error_inicializando_base_de_da">Error menginisialisasi database chip</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Catatan Operasi</string>
     
     <string name="restaurar_desde_bd">Pulihkan dari DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Terapkan Sekring</string>
     
-    <string name="nombre_del_fusible">Nama sekering</string>
     
-    <string name="valor_ejemplo_on_off">Nilai (contoh: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">tanpa chip</string>
     
-    <string name="fusible_agregado">Menambahkan sekering</string>
     
-    <string name="fusibles_restaurados">Sekring yang dipulihkan</string>
     
-    <string name="fusibles_aplicados">Sekering yang diterapkan</string>
     
     
     <string name="rom_ok_blank">ROM: Oke (Kosong)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Tambahkan Sekering</string>
     
-    <string name="agregar_fusible_personalizado">➕ Tambahkan Sekring Khusus</string>
     
-    <string name="completa_todos_los_campos">Lengkapi semua bidang</string>
     
-    <string name="log_iniciado">Pencatatan dimulai...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Sekering yang dipulihkan dari HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Tutorial Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Tutorial Termux</string>
     
     <string name="codigo_copiado_portapapeles">Kode disalin ke papan klip</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Contoh</string>
     <string name="explicacion_label">Penerangan</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

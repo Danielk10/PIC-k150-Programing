@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC programmeret med succes</string>
     <string name="iniciando_programacion">Starter programmering...</string>
     <string name="error_cargando_archivo">Fejl ved indlæsning af fil</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX-fil indlæst med succes</string>
-    <string name="archivo_cargado">Fil indlæst</string>
     <string name="error_inicializando_chip">Fejl ved initialisering af chip</string>
     <string name="conectado_al_programador">Tilsluttet programmer</string>
     <string name="error_inicializando_base_de_da">Fejl ved initialisering af chip-database</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Driftslog</string>
     
     <string name="restaurar_desde_bd">Gendan fra DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Sæt sikringer på</string>
     
-    <string name="nombre_del_fusible">Sikringsnavn</string>
     
-    <string name="valor_ejemplo_on_off">Værdi (eksempel: TIL, FRA, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">uden chip</string>
     
-    <string name="fusible_agregado">Tilføjet sikring</string>
     
-    <string name="fusibles_restaurados">Restaurerede sikringer</string>
     
-    <string name="fusibles_aplicados">Påsat sikringer</string>
     
     
     <string name="rom_ok_blank">ROM: OK (tom)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Tilføj sikring</string>
     
-    <string name="agregar_fusible_personalizado">➕ Tilføj brugerdefineret sikring</string>
     
-    <string name="completa_todos_los_campos">Udfyld alle felter</string>
     
-    <string name="log_iniciado">Log startet...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Restaurerede sikringer fra HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
     
     <string name="codigo_copiado_portapapeles">Kode kopieret til udklipsholder</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Eksempel</string>
     <string name="explicacion_label">Forklaring</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

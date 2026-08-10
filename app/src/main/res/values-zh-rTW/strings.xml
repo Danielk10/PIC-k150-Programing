@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC 已成功編程</string>
     <string name="iniciando_programacion">正在開始編程...</string>
     <string name="error_cargando_archivo">載入檔案時發生錯誤</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX 檔案已成功載入</string>
-    <string name="archivo_cargado">檔案已載入</string>
     <string name="error_inicializando_chip">初始化晶片時發生錯誤</string>
     <string name="conectado_al_programador">已連線至編程器</string>
     <string name="error_inicializando_base_de_da">初始化晶片資料庫時發生錯誤</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">操作日誌</string>
     
     <string name="restaurar_desde_bd">從資料庫恢復</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">應用保險絲</string>
     
-    <string name="nombre_del_fusible">保險絲名稱</string>
     
-    <string name="valor_ejemplo_on_off">值（範例：ON、OFF、0x3FFF）</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">無晶片</string>
     
-    <string name="fusible_agregado">添加保險絲</string>
     
-    <string name="fusibles_restaurados">恢復保險絲</string>
     
-    <string name="fusibles_aplicados">應用保險絲</string>
     
     
     <string name="rom_ok_blank">ROM：正常（空白）</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ 添加保險絲</string>
     
-    <string name="agregar_fusible_personalizado">➕ 新增自訂保險絲</string>
     
-    <string name="completa_todos_los_campos">填寫所有字段</string>
     
-    <string name="log_iniciado">日誌開始...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">從 HEX 恢復保險絲</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux 教程</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux 教程</string>
     
     <string name="codigo_copiado_portapapeles">代碼已複製到剪貼簿</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">載入教學…</string>
     <string name="paso_prefijo">步驟 </string>
     <string name="error_prefijo">❌ 錯誤：</string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">範例</string>
     <string name="explicacion_label">說明</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC erfolgreich programmiert</string>
     <string name="iniciando_programacion">Starte Programmierung...</string>
     <string name="error_cargando_archivo">Fehler beim Laden der Datei</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX-Datei erfolgreich geladen</string>
-    <string name="archivo_cargado">Datei geladen</string>
     <string name="error_inicializando_chip">Fehler beim Initialisieren des Chips</string>
     <string name="conectado_al_programador">Mit Programmierer verbunden</string>
     <string name="error_inicializando_base_de_da">Fehler beim Initialisieren der Chip-Datenbank</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Betriebsprotokoll</string>
     
     <string name="restaurar_desde_bd">Aus der Datenbank wiederherstellen</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Wenden Sie Sicherungen an</string>
     
-    <string name="nombre_del_fusible">Sicherungsname</string>
     
-    <string name="valor_ejemplo_on_off">Wert (Beispiel: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">ohne Chip</string>
     
-    <string name="fusible_agregado">Sicherung hinzugefügt</string>
     
-    <string name="fusibles_restaurados">Sicherungen wiederhergestellt</string>
     
-    <string name="fusibles_aplicados">Angewandte Sicherungen</string>
     
     
     <string name="rom_ok_blank">ROM: OK (Leer)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Sicherung hinzufügen</string>
     
-    <string name="agregar_fusible_personalizado">➕ Benutzerdefinierte Sicherung hinzufügen</string>
     
-    <string name="completa_todos_los_campos">Füllen Sie alle Felder aus</string>
     
-    <string name="log_iniciado">Protokoll gestartet...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Sicherungen von HEX wiederhergestellt</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 – Termux-Tutorial</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 – Termux-Tutorial</string>
     
     <string name="codigo_copiado_portapapeles">Code in die Zwischenablage kopiert</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Tutorial wird geladen…</string>
     <string name="paso_prefijo">SCHRITT </string>
     <string name="error_prefijo">❌ FEHLER: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Beispiel</string>
     <string name="explicacion_label">Erklärung</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

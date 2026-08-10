@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">Το PIC προγραμματίστηκε επιτυχώς</string>
     <string name="iniciando_programacion">Έναρξη προγραμματισμού...</string>
     <string name="error_cargando_archivo">Σφάλμα φόρτωσης αρχείου</string>
-    <string name="archivo_hex_cargado_exitosamen">Το αρχείο HEX φορτώθηκε επιτυχώς</string>
-    <string name="archivo_cargado">Το αρχείο φορτώθηκε</string>
     <string name="error_inicializando_chip">Σφάλμα αρχικοποίησης chip</string>
     <string name="conectado_al_programador">Συνδεδεμένο στον προγραμματιστή</string>
     <string name="error_inicializando_base_de_da">Σφάλμα αρχικοποίησης βάσης δεδομένων chip</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Μητρώο λειτουργιών</string>
     
     <string name="restaurar_desde_bd">Επαναφορά από το DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Εφαρμόστε Ασφάλειες</string>
     
-    <string name="nombre_del_fusible">Όνομα ασφάλειας</string>
     
-    <string name="valor_ejemplo_on_off">Τιμή (παράδειγμα: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">χωρίς τσιπ</string>
     
-    <string name="fusible_agregado">Προστέθηκε ασφάλεια</string>
     
-    <string name="fusibles_restaurados">Αποκατεστημένες ασφάλειες</string>
     
-    <string name="fusibles_aplicados">Εφαρμοσμένες ασφάλειες</string>
     
     
     <string name="rom_ok_blank">ROM: ΟΚ (Κενό)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Προσθέστε ασφάλεια</string>
     
-    <string name="agregar_fusible_personalizado">➕ Προσθήκη προσαρμοσμένης ασφάλειας</string>
     
-    <string name="completa_todos_los_campos">Συμπληρώστε όλα τα πεδία</string>
     
-    <string name="log_iniciado">Το αρχείο καταγραφής ξεκίνησε...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Αποκατεστημένες ασφάλειες από HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux Tutorial</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux Tutorial</string>
     
     <string name="codigo_copiado_portapapeles">Ο κώδικας αντιγράφηκε στο πρόχειρο</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Παράδειγμα</string>
     <string name="explicacion_label">Εξήγηση</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

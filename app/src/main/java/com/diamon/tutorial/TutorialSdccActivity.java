@@ -142,11 +142,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
         loadTutorialImage();
 
         // Actualizar título según idioma si es necesario
-        if (language.equals("es")) {
-            titleTextView.setText(R.string.titulo_tutorial_sdcc_es);
-        } else {
-            titleTextView.setText(R.string.titulo_tutorial_sdcc_en);
-        }
+        titleTextView.setText(R.string.sdcc_termux_tutorial);
     }
 
     private void loadTutorialImage() {

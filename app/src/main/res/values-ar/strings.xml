@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">تمت برمجة PIC بنجاح</string>
     <string name="iniciando_programacion">...بدء البرمجة</string>
     <string name="error_cargando_archivo">خطأ أثناء تحميل الملف</string>
-    <string name="archivo_hex_cargado_exitosamen">تم تحميل ملف HEX بنجاح</string>
-    <string name="archivo_cargado">تم تحميل الملف</string>
     <string name="error_inicializando_chip">خطأ في تهيئة الشريحة</string>
     <string name="conectado_al_programador">متصل بالـمبرمج</string>
     <string name="error_inicializando_base_de_da">خطأ في تهيئة قاعدة بيانات الشرائح</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">سجل العمليات</string>
     
     <string name="restaurar_desde_bd">استعادة من قاعدة البيانات</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">تطبيق الصمامات</string>
     
-    <string name="nombre_del_fusible">اسم الصمامات</string>
     
-    <string name="valor_ejemplo_on_off">القيمة (مثال: ON، OFF، 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">بدون شريحة</string>
     
-    <string name="fusible_agregado">وأضاف الصمامات</string>
     
-    <string name="fusibles_restaurados">استعادة الصمامات</string>
     
-    <string name="fusibles_aplicados">الصمامات التطبيقية</string>
     
     
     <string name="rom_ok_blank">ROM: موافق (فارغ)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ إضافة فيوز</string>
     
-    <string name="agregar_fusible_personalizado">➕ إضافة فيوز مخصص</string>
     
-    <string name="completa_todos_los_campos">أكمل كافة الحقول</string>
     
-    <string name="log_iniciado">بدأ السجل...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">استعادة الصمامات من HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - برنامج Termux التعليمي</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - برنامج Termux التعليمي</string>
     
     <string name="codigo_copiado_portapapeles">تم نسخ الرمز إلى الحافظة</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">جارٍ تحميل الدليل…</string>
     <string name="paso_prefijo">خطوة </string>
     <string name="error_prefijo">❌ خطأ: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">مثال</string>
     <string name="explicacion_label">شرح</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

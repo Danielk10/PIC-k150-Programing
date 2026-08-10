@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC pomyślnie zaprogramowany</string>
     <string name="iniciando_programacion">Rozpoczynanie programowania...</string>
     <string name="error_cargando_archivo">Błąd ładowania pliku</string>
-    <string name="archivo_hex_cargado_exitosamen">Plik HEX pomyślnie załadowany</string>
-    <string name="archivo_cargado">Plik załadowany</string>
     <string name="error_inicializando_chip">Błąd inicjalizacji chipa</string>
     <string name="conectado_al_programador">Połączono z programatorem</string>
     <string name="error_inicializando_base_de_da">Błąd inicjalizacji bazy danych chipów</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Dziennik operacji</string>
     
     <string name="restaurar_desde_bd">Przywróć z bazy danych</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Zastosuj bezpieczniki</string>
     
-    <string name="nombre_del_fusible">Nazwa bezpiecznika</string>
     
-    <string name="valor_ejemplo_on_off">Wartość (przykład: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">Brak chipa</string>
     
-    <string name="fusible_agregado">Dodany bezpiecznik</string>
     
-    <string name="fusibles_restaurados">Bezpieczniki przywrócone</string>
     
-    <string name="fusibles_aplicados">Założone bezpieczniki</string>
     
     
     <string name="rom_ok_blank">ROM: OK (Pusty)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Dodaj bezpiecznik</string>
     
-    <string name="agregar_fusible_personalizado">➕ Dodaj niestandardowy bezpiecznik</string>
     
-    <string name="completa_todos_los_campos">Wypełnij wszystkie pola</string>
     
-    <string name="log_iniciado">Log rozpoczęty...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Bezpieczniki przywrócone z HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Samouczek Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Samouczek Termux</string>
     
     <string name="codigo_copiado_portapapeles">Kod skopiowany do schowka</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Ładowanie samouczka…</string>
     <string name="paso_prefijo">KROK </string>
     <string name="error_prefijo">❌ BŁĄD: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Przykład</string>
     <string name="explicacion_label">Wyjaśnienie</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

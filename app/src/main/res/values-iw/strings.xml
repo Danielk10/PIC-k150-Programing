@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC נצרב בהצלחה</string>
     <string name="iniciando_programacion">מתחיל צריבה...</string>
     <string name="error_cargando_archivo">שגיאה בטעינת הקובץ</string>
-    <string name="archivo_hex_cargado_exitosamen">קובץ HEX נטען בהצלחה</string>
-    <string name="archivo_cargado">הקובץ נטען</string>
     <string name="error_inicializando_chip">שגיאה באתחול השבב</string>
     <string name="conectado_al_programador">מחובר למתכנת</string>
     <string name="error_inicializando_base_de_da">שגיאה באתחול מסד הנתונים של השבבים</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">יומן פעולות</string>
     
     <string name="restaurar_desde_bd">שחזר מ-DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">החל פיוזים</string>
     
-    <string name="nombre_del_fusible">שם נתיך</string>
     
-    <string name="valor_ejemplo_on_off">ערך (לדוגמה: ON, OFF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">ללא שבב</string>
     
-    <string name="fusible_agregado">הוסיף פיוז</string>
     
-    <string name="fusibles_restaurados">נתיכים משוחזרים</string>
     
-    <string name="fusibles_aplicados">הפעילו נתיכים</string>
     
     
     <string name="rom_ok_blank">ROM: בסדר (ריק)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ הוסף פיוז</string>
     
-    <string name="agregar_fusible_personalizado">➕ הוסף נתיך מותאם אישית</string>
     
-    <string name="completa_todos_los_campos">השלם את כל השדות</string>
     
-    <string name="log_iniciado">יומן התחיל...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">נתיכים משוחזרים מבית HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - הדרכה של Termux</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - הדרכה של Termux</string>
     
     <string name="codigo_copiado_portapapeles">הקוד הועתק ללוח</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">דוגמה</string>
     <string name="explicacion_label">הסבר</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

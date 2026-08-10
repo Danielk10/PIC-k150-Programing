@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     
     <string name="app_name">PIC k150 Programing</string>
@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC suksesvol geprogrammeer</string>
     <string name="iniciando_programacion">Begin programmering...</string>
     <string name="error_cargando_archivo">Fout tydens laai van lêer</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX-lêer suksesvol gelaai</string>
-    <string name="archivo_cargado">Lêer gelaai</string>
     <string name="error_inicializando_chip">Fout tydens initialisering van skyfie</string>
     <string name="conectado_al_programador">Gekoppel aan programmeerder</string>
     <string name="error_inicializando_base_de_da">Fout tydens initialisering van skyfiedatabasis</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">Bedryfslogboek</string>
     
     <string name="restaurar_desde_bd">Herstel vanaf DB</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">Sit sekerings aan</string>
     
-    <string name="nombre_del_fusible">Sit naam</string>
     
-    <string name="valor_ejemplo_on_off">Waarde (voorbeeld: AAN, AF, 0x3FFF)</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">sonder chip</string>
     
-    <string name="fusible_agregado">Bygevoeg lont</string>
     
-    <string name="fusibles_restaurados">Herstel lont</string>
     
-    <string name="fusibles_aplicados">Versekerings toegepas</string>
     
     
     <string name="rom_ok_blank">ROM: OK (leeg)</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ Voeg lont by</string>
     
-    <string name="agregar_fusible_personalizado">➕ Voeg pasgemaakte lont by</string>
     
-    <string name="completa_todos_los_campos">Voltooi alle velde</string>
     
-    <string name="log_iniciado">Log het begin...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">Herstel sekerings van HEX</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux-tutoriaal</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux-tutoriaal</string>
     
     <string name="codigo_copiado_portapapeles">Kode na knipbord gekopieer</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">Loading tutorial…</string>
     <string name="paso_prefijo">STEP </string>
     <string name="error_prefijo">❌ ERROR: </string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">Voorbeeld</string>
     <string name="explicacion_label">Verduideliking</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>

@@ -31,8 +31,6 @@
     <string name="pic_programado_exitosamente">PIC 已成功编程</string>
     <string name="iniciando_programacion">正在开始编程...</string>
     <string name="error_cargando_archivo">加载文件时出错</string>
-    <string name="archivo_hex_cargado_exitosamen">HEX 文件已成功加载</string>
-    <string name="archivo_cargado">文件已加载</string>
     <string name="error_inicializando_chip">初始化芯片时出错</string>
     <string name="conectado_al_programador">已连接到编程器</string>
     <string name="error_inicializando_base_de_da">初始化芯片数据库时出错</string>
@@ -177,7 +175,6 @@
     
     
     
-    <string name="log_de_operaciones">操作日志</string>
     
     <string name="restaurar_desde_bd">从数据库恢复</string>
     
@@ -185,9 +182,7 @@
     
     <string name="aplicar_fuses">应用保险丝</string>
     
-    <string name="nombre_del_fusible">保险丝名称</string>
     
-    <string name="valor_ejemplo_on_off">值（例如：ON、OFF、0x3FFF）</string>
     
     
     
@@ -205,11 +200,8 @@
     
     <string name="sin_chip">无芯片</string>
     
-    <string name="fusible_agregado">添加保险丝</string>
     
-    <string name="fusibles_restaurados">恢复保险丝</string>
     
-    <string name="fusibles_aplicados">应用保险丝</string>
     
     
     <string name="rom_ok_blank">ROM：正常（空白）</string>
@@ -273,20 +265,11 @@
     
 
     
-    <string name="agregar_fusible_boton">➕ 添加保险丝</string>
     
-    <string name="agregar_fusible_personalizado">➕ 添加自定义保险丝</string>
     
-    <string name="completa_todos_los_campos">填写所有字段</string>
     
-    <string name="log_iniciado">日志开始...\n</string>
     
-    <string name="fusibles_restaurados_desde_hex">从十六进制恢复的保险丝</string>
 
-    
-    <string name="titulo_tutorial_sdcc_es">SDCC 4.5.0 - Termux 教程</string>
-    
-    <string name="titulo_tutorial_sdcc_en">SDCC 4.5.0 - Termux 教程</string>
     
     <string name="codigo_copiado_portapapeles">代码复制到剪贴板</string>
     
@@ -315,7 +298,7 @@
     <string name="memoria_eeprom">EEPROM Memory</string>
 
 
-    <!-- Strings sincronizados -->
+    
     <string name="cargando_tutorial">加载教程…</string>
     <string name="paso_prefijo">步骤 </string>
     <string name="error_prefijo">❌ 错误：</string>
@@ -429,4 +412,4 @@
     <string name="ejemplo_label">示例</string>
     <string name="explicacion_label">说明</string>
 
-</resources>
+<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>
