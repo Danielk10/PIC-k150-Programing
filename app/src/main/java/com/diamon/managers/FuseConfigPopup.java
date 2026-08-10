@@ -65,11 +65,9 @@ public class FuseConfigPopup {
     private Button btnRestoreFromChip;
     private Button btnRestoreFromHex;
     private Button btnCancel;
-    private Button btnAddCustomFuse;
 
     // Datos
     private Map<String, Spinner> fuseSpinners = new HashMap<>();
-    private Map<String, String> customFuses = new HashMap<>();
     private Map<String, String> lastConfiguration;
     private byte[] currentIDData = new byte[] { 0 };
 
@@ -145,9 +143,6 @@ public class FuseConfigPopup {
 
         // Editor de fusibles (SIN ScrollView interno, solo crece/encoge)
         scrollContent.addView(createFuseEditorSection());
-
-        // Boton agregar fusible personalizado
-        scrollContent.addView(createAddCustomFuseButton());
 
         // ID personalizado
         scrollContent.addView(createCustomIdSection());
@@ -315,73 +310,6 @@ public class FuseConfigPopup {
 
         section.addView(fuseContainer);
         return section;
-    }
-
-    /** Crea el boton para agregar fusibles personalizados */
-    private Button createAddCustomFuseButton() {
-        btnAddCustomFuse = new Button(context);
-        btnAddCustomFuse.setText(context.getString(com.diamon.pic.R.string.agregar_fusible_boton));
-        btnAddCustomFuse.setTextColor(Color.WHITE);
-        btnAddCustomFuse.setBackgroundColor(Color.parseColor("#FF9800"));
-        btnAddCustomFuse.setAllCaps(false);
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 0, 0, 12);
-        btnAddCustomFuse.setLayoutParams(params);
-
-        btnAddCustomFuse.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showCustomFuseDialog();
-                    }
-                });
-
-        return btnAddCustomFuse;
-    }
-
-    /** Muestra dialogo para agregar fusible personalizado */
-    private void showCustomFuseDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getString(com.diamon.pic.R.string.agregar_fusible_personalizado));
-
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(50, 40, 50, 10);
-
-        final EditText nameInput = new EditText(context);
-        nameInput.setHint(context.getString(com.diamon.pic.R.string.nombre_del_fusible));
-        layout.addView(nameInput);
-
-        final EditText valueInput = new EditText(context);
-        valueInput.setHint(context.getString(com.diamon.pic.R.string.valor_ejemplo_on_off));
-        layout.addView(valueInput);
-
-        builder.setView(layout);
-
-        builder.setPositiveButton(
-                context.getString(com.diamon.pic.R.string.aceptar),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name = nameInput.getText().toString().trim();
-                        String value = valueInput.getText().toString().trim();
-
-                        if (!name.isEmpty() && !value.isEmpty()) {
-                            customFuses.put(name, value);
-                            List<String> valueList = new ArrayList<>();
-                            valueList.add(value);
-                            addFuseRow(name, valueList);
-                            logMessage(context.getString(com.diamon.pic.R.string.fusible_agregado) + " " + name + " = " + value);
-                        } else {
-                            logMessage("⚠ " + context.getString(com.diamon.pic.R.string.completa_todos_los_campos));
-                        }
-                    }
-                });
-
-        builder.setNegativeButton(context.getString(com.diamon.pic.R.string.cancelar), null);
-        builder.show();
     }
 
     /** Crea la seccion de ID personalizado */
@@ -622,7 +550,6 @@ public class FuseConfigPopup {
     private void buildFuseEditor() {
         fuseContainer.removeAllViews();
         fuseSpinners.clear();
-        customFuses.clear();
 
         java.util.Map<String, java.util.Map<String, List<ChipPic.FuseValue>>> fuses = currentChip.getFusesMap();
 
@@ -790,8 +717,6 @@ public class FuseConfigPopup {
                     fuseConfig.put(fuseName, fuseValue);
                 }
             }
-
-            fuseConfig.putAll(customFuses);
 
             List<Integer> encodedFuses = currentChip.encodeFuseData(fuseConfig);
             byte[] idData = parseCustomId();
