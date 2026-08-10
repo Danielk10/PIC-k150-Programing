@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * Clase para manejar la interacción y comportamiento del tutorial
@@ -69,8 +70,9 @@ public class TutorialInteractionHandler {
             }
         }
 
-        android.widget.Toast.makeText(context, context.getString(R.string.texto_copiado_portapapeles),
-                android.widget.Toast.LENGTH_SHORT).show();
+        Snackbar.make(tutorialTextView,
+                context.getString(R.string.texto_copiado_portapapeles),
+                Snackbar.LENGTH_SHORT).show();
     }
 
     /**
@@ -130,8 +132,9 @@ public class TutorialInteractionHandler {
             return true;
         }
 
-        android.widget.Toast.makeText(context, context.getString(R.string.termino_no_encontrado, searchTerm),
-                android.widget.Toast.LENGTH_SHORT).show();
+        Snackbar.make(tutorialTextView,
+                context.getString(R.string.termino_no_encontrado, searchTerm),
+                Snackbar.LENGTH_SHORT).show();
         return false;
     }
 
@@ -166,13 +169,13 @@ public class TutorialInteractionHandler {
 
         if (count > 0) {
             tutorialTextView.setText(builder);
-            android.widget.Toast.makeText(context,
+            Snackbar.make(tutorialTextView,
                     context.getString(R.string.coincidencias_encontradas, count),
-                    android.widget.Toast.LENGTH_SHORT).show();
+                    Snackbar.LENGTH_SHORT).show();
         } else {
-            android.widget.Toast.makeText(context,
+            Snackbar.make(tutorialTextView,
                     context.getString(R.string.termino_no_encontrado, searchTerm),
-                    android.widget.Toast.LENGTH_SHORT).show();
+                    Snackbar.LENGTH_SHORT).show();
         }
 
         return count;

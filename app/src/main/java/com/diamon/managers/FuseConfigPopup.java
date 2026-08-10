@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
@@ -47,6 +46,8 @@ public class FuseConfigPopup {
         void onFusesApplied(List<Integer> fuses, byte[] idData, Map<String, String> configuration);
 
         void onFusesCancelled();
+
+        void onLogMessage(String message);
     }
 
     private Context context;
@@ -61,7 +62,7 @@ public class FuseConfigPopup {
     private TextView chipNameTextView;
     private TextView chipInfoTextView;
     private LinearLayout fuseContainer;
-    private TextView logTextView;
+    // logTextView eliminado: el log del popup fue removido por diseño
     private EditText customIdEditText;
     private Button btnApply;
     private Button btnRestoreFromChip;
@@ -154,8 +155,7 @@ public class FuseConfigPopup {
         // ID personalizado
         scrollContent.addView(createCustomIdSection());
 
-        // Log simplificado (SIN ScrollView, texto que se trunca)
-        scrollContent.addView(createLogSection());
+        // Sección de log eliminada del popup (mensajes relevantes van al log de la actividad principal)
 
         mainScrollView.addView(scrollContent);
         mainLayout.addView(mainScrollView);
@@ -377,10 +377,8 @@ public class FuseConfigPopup {
                             valueList.add(value);
                             addFuseRow(name, valueList);
                             logMessage(context.getString(com.diamon.pic.R.string.fusible_agregado) + " " + name + " = " + value);
-                            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusible_agregado), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(context, context.getString(com.diamon.pic.R.string.completa_todos_los_campos), Toast.LENGTH_SHORT)
-                                    .show();
+                            logMessage("⚠ " + context.getString(com.diamon.pic.R.string.completa_todos_los_campos));
                         }
                     }
                 });
@@ -426,51 +424,7 @@ public class FuseConfigPopup {
         return section;
     }
 
-    /**
-     * SIMPLIFICADO: Crea la seccion de log SIN ScrollView Solo muestra ultimos 5
-     * mensajes (trunca
-     * automaticamente)
-     */
-    private LinearLayout createLogSection() {
-        LinearLayout section = new LinearLayout(context);
-        section.setOrientation(LinearLayout.VERTICAL);
-
-        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
-        bg.setColor(Color.parseColor("#2A2A3E"));
-        bg.setCornerRadius(dpToPx(8));
-        section.setBackground(bg);
-        section.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 0, 0, 12);
-        section.setLayoutParams(params);
-
-        TextView label = new TextView(context);
-        label.setText(context.getString(com.diamon.pic.R.string.log_de_operaciones));
-        label.setTextColor(Color.parseColor("#9E9E9E"));
-        label.setTextSize(14);
-        label.setTypeface(null, android.graphics.Typeface.BOLD);
-        label.setPadding(0, 0, 0, 8);
-        section.addView(label);
-
-        logTextView = new TextView(context);
-        logTextView.setTextSize(10);
-        logTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
-        logTextView.setTextColor(Color.parseColor("#AAAAAA"));
-        logTextView.setText(context.getString(R.string.log_iniciado));
-        logTextView.setPadding(8, 8, 8, 8);
-        logTextView.setBackgroundColor(Color.parseColor("#1A1A2E"));
-
-        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        logTextView.setLayoutParams(textParams);
-        logTextView.setMaxLines(5); // Solo muestra maximo 5 lineas
-        logTextView.setEllipsize(android.text.TextUtils.TruncateAt.END);
-
-        section.addView(logTextView);
-        return section;
-    }
+    // createLogSection() eliminado: el popup ya no muestra log interno.
 
     /** Crea la barra de botones */
     private LinearLayout createButtonBar() {
@@ -759,7 +713,6 @@ public class FuseConfigPopup {
             currentIDData = new byte[] { 0 };
 
             logMessage(context.getString(R.string.restaurado_chip));
-            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -802,7 +755,6 @@ public class FuseConfigPopup {
             }
 
             logMessage(context.getString(R.string.restaurado_hex));
-            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_restaurados_desde_hex), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -853,8 +805,7 @@ public class FuseConfigPopup {
                 listener.onFusesApplied(encodedFuses, idData, fuseConfig);
             }
 
-            Toast.makeText(context, context.getString(com.diamon.pic.R.string.fusibles_aplicados), Toast.LENGTH_SHORT).show();
-            dismissWithAnimation(); // Usar animación al cerrar
+            dismissWithAnimation();
 
         } catch (Exception e) {
             logMessage("❌ Error: " + e.getMessage());
@@ -956,26 +907,11 @@ public class FuseConfigPopup {
         dismissWithAnimation();
     }
 
-    /** Agrega un mensaje al log (truncado a 5 lineas) */
+    /** logMessage: propaga los mensajes relevantes vía FuseConfigListener al log principal. */
     private void logMessage(String message) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        String timestamp = sdf.format(new Date());
-        String logEntry = "[" + timestamp + "] " + message;
-
-        String currentText = logTextView.getText().toString();
-        String[] lines = currentText.split("\n");
-
-        // Mantener solo ultimas 4 lineas + nueva
-        StringBuilder newText = new StringBuilder();
-        int start = Math.max(0, lines.length - 4);
-        for (int i = start; i < lines.length; i++) {
-            if (!lines[i].isEmpty()) {
-                newText.append(lines[i]).append("\n");
-            }
+        if (listener != null) {
+            listener.onLogMessage(message);
         }
-        newText.append(logEntry).append("\n");
-
-        logTextView.setText(newText.toString());
     }
 
     /** Verifica si la Activity del contexto esta activa y no fue destruida. */

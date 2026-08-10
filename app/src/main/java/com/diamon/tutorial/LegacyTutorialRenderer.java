@@ -15,12 +15,12 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.content.ClipboardManager;
 import android.content.ClipData;
 import android.text.util.Linkify;
 import android.text.method.LinkMovementMethod;
 import android.widget.RelativeLayout;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -371,8 +371,12 @@ public class LegacyTutorialRenderer {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("tutorial_code", text);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, context.getString(R.string.texto_copiado_portapapeles),
-                Toast.LENGTH_SHORT).show();
+        try {
+            android.view.View decorView = ((android.app.Activity) context).getWindow().getDecorView();
+            Snackbar.make(decorView,
+                    context.getString(R.string.texto_copiado_portapapeles),
+                    Snackbar.LENGTH_SHORT).show();
+        } catch (Exception ignored) {}
     }
 
     private int dpToPx(int dp) {

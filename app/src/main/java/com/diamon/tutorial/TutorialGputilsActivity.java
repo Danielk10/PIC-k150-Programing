@@ -10,7 +10,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.view.KeyEvent;
 import android.graphics.Typeface;
 
@@ -125,8 +124,10 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             loadTutorialImage();
 
         } catch (IOException e) {
-            Toast.makeText(this, getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
-                    Toast.LENGTH_SHORT).show();
+            android.view.View rootView = findViewById(android.R.id.content);
+            com.google.android.material.snackbar.Snackbar.make(rootView,
+                    getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
+                    com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -167,9 +168,10 @@ public class TutorialGputilsActivity extends AppCompatActivity {
                     "tutorial", tutorialText);
             clipboard.setPrimaryClip(clip);
 
-            Toast.makeText(this,
+            android.view.View rootView = findViewById(android.R.id.content);
+            com.google.android.material.snackbar.Snackbar.make(rootView,
                     currentLanguage.equals("es") ? getString(R.string.tutorial_copiado) : "Tutorial copied to clipboard",
-                    Toast.LENGTH_SHORT).show();
+                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
         }
     }
 

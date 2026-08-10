@@ -3,7 +3,6 @@ package com.diamon.managers;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
@@ -171,8 +170,7 @@ public class ChipSelectionManager {
     private void notifyError(String message) {
         if (selectionListener != null) {
             selectionListener.onChipSelectionError(message);
-        } else {
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         }
+        // Sin Toast: el error se propaga al log de la UI principal vía listener
     }
 }

@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.ScrollView;
@@ -385,6 +384,11 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onFusesCancelled() {
                         // No hacer nada
+                    }
+
+                    @Override
+                    public void onLogMessage(String message) {
+                        appendLog(message);
                     }
                 });
     }
@@ -1153,8 +1157,7 @@ public class MainActivity extends AppCompatActivity
     /** NUEVO: Muestra diálogo para exportar memoria leída */
     private void showExportDialog() {
         if (lastReadRomData.isEmpty() && lastReadEepromData.isEmpty() && lastReadConfigData.isEmpty()) {
-            Toast.makeText(this, getString(R.string.no_hay_datos_para_exportar),
-                    Toast.LENGTH_LONG).show();
+            appendLog("⚠ " + getString(R.string.no_hay_datos_para_exportar));
             return;
         }
 

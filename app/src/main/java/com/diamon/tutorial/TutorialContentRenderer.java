@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -473,7 +472,12 @@ public class TutorialContentRenderer {
                         context.startActivity(
                                 new Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     } catch (Exception e) {
-                        Toast.makeText(context, context.getString(R.string.error_abrir_link), Toast.LENGTH_SHORT).show();
+                        try {
+                            android.view.View decorView = ((android.app.Activity) context).getWindow().getDecorView();
+                            com.google.android.material.snackbar.Snackbar.make(decorView,
+                                    context.getString(R.string.error_abrir_link),
+                                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+                        } catch (Exception ignored) {}
                     }
                 }
 
@@ -561,7 +565,12 @@ public class TutorialContentRenderer {
     private void copyToClipboard(String text) {
         ((android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE))
                 .setPrimaryClip(android.content.ClipData.newPlainText("code", text));
-        Toast.makeText(context, context.getString(R.string.copiado_msg), Toast.LENGTH_SHORT).show();
+        try {
+            android.view.View decorView = ((android.app.Activity) context).getWindow().getDecorView();
+            com.google.android.material.snackbar.Snackbar.make(decorView,
+                    context.getString(R.string.copiado_msg),
+                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+        } catch (Exception ignored) {}
     }
 
     private int dpToPx(int dp) {
