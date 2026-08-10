@@ -41,7 +41,7 @@ public class DatosPicProcesados {
     private final android.content.Context context;
 
     /** Firmware HEX a procesar */
-    private final String firware;
+    private final String firmware;
 
     /** Información del chip PIC objetivo */
     private ChipPic chipPIC;
@@ -72,11 +72,11 @@ public class DatosPicProcesados {
     /**
      * Constructor para procesamiento de datos PIC.
      *
-     * @param firware Contenido del archivo HEX
+     * @param firmware Contenido del archivo HEX
      * @param chipPIC Información del chip PIC objetivo
      */
-    public DatosPicProcesados(android.content.Context context, String firware, ChipPic chipPIC) throws ChipConfigurationException {
-        if (firware == null || firware.trim().isEmpty()) {
+    public DatosPicProcesados(android.content.Context context, String firmware, ChipPic chipPIC) throws ChipConfigurationException {
+        if (firmware == null || firmware.trim().isEmpty()) {
             throw new IllegalArgumentException("Firmware no puede ser null o vacío");
         }
 
@@ -85,7 +85,7 @@ public class DatosPicProcesados {
         }
 
         this.context = context;
-        this.firware = firware;
+        this.firmware = firmware;
         this.chipPIC = chipPIC;
     }
 
@@ -140,9 +140,9 @@ public class DatosPicProcesados {
             }
 
             // Procesar archivo HEX
-            HexProcesado procesado;
+            ProcesadorHex procesado;
             try {
-                procesado = new HexProcesado(context, firware);
+                procesado = new ProcesadorHex(context, firmware);
             } catch (HexProcessingException e) {
                 throw e;
             }
@@ -278,14 +278,14 @@ public class DatosPicProcesados {
     /**
      * Convierte los registros HEX procesados a formato interno.
      *
-     * @param procesado Objeto HexProcesado con los registros
+     * @param procesado Objeto ProcesadorHex con los registros
      * @return Lista de pares (dirección, datos) convertidos
      */
-    private List<HexFileUtils.Pair<Integer, String>> convertirRegistrosHex(HexProcesado procesado) {
+    private List<HexFileUtils.Pair<Integer, String>> convertirRegistrosHex(ProcesadorHex procesado) {
         List<HexFileUtils.Pair<Integer, String>> records = new ArrayList<>();
 
         for (int i = 0; i < procesado.getRecords().size(); i++) {
-            HexProcesado.HexRecord registro = procesado.getRecords().get(i);
+            ProcesadorHex.HexRecord registro = procesado.getRecords().get(i);
             // Convertir a hexadecimal para reutilizar la infraestructura de fusión.
             String datosHex = ByteUtils.bytesToHex(registro.data);
             records.add(new HexFileUtils.Pair<>(registro.address, datosHex));
@@ -655,22 +655,22 @@ public class DatosPicProcesados {
         return configPresenteEnHex;
     }
 
-    public byte[] obtenerBytesHexROMPocesado() {
+    public byte[] obtenerBytesHexROMProcesado() {
 
         return this.romData;
     }
 
-    public byte[] obtenerBytesHexEEPROMPocesado() {
+    public byte[] obtenerBytesHexEEPROMProcesado() {
 
         return this.eepromData;
     }
 
-    public int[] obtenerValoresIntHexFusesPocesado() {
+    public int[] obtenerValoresIntHexFusesProcesado() {
 
         return this.fuseValues;
     }
 
-    public byte[] obtenerVsloresBytesHexIDPocesado() {
+    public byte[] obtenerValoresBytesHexIDProcesado() {
 
         return this.IDData;
     }

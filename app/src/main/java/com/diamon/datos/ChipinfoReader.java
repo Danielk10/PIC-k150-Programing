@@ -132,7 +132,7 @@ public class ChipinfoReader {
         modelosPic = new ArrayList<>();
 
         try {
-            final List<String> lines = new DatosDePic(actividad).getInformacionPic();
+            final List<String> lines = new LectorArchivoChipinfo(actividad).getInformacionPic();
             final int totalLines = lines.size();
 
             // 'block' acumula los campos del chip actual como Strings

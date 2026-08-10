@@ -3,12 +3,12 @@ package com.diamon.datos;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
-import com.diamon.nucleo.Datos;
+import com.diamon.nucleo.ManejadorArchivos;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class CargardorDeArchivos implements Datos {
+public class CargadorDeArchivos implements ManejadorArchivos {
 
     public static final String DATOS = "chipinfo.cid";
 
@@ -16,7 +16,7 @@ public class CargardorDeArchivos implements Datos {
 
     private Activity actividad;
 
-    public CargardorDeArchivos(Activity actividad) {
+    public CargadorDeArchivos(Activity actividad) {
 
         this.actividad = actividad;
 

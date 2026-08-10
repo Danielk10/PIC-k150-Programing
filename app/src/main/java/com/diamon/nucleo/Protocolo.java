@@ -344,7 +344,7 @@ public abstract class Protocolo {
      *
      * @return true si el reset fue exitoso, false en caso contrario
      */
-    protected boolean researComandos() {
+    protected boolean resetearComandos() {
         try {
             enviarComando("0");
             return true;
@@ -412,9 +412,9 @@ public abstract class Protocolo {
 
     public abstract boolean borrarMemoriasDelPic();
 
-    public abstract boolean verificarSiEstaBarradaLaMemoriaROMDelDelPic(ChipPic chipPIC);
+    public abstract boolean verificarSiEstaBorradaLaMemoriaROMDelPic(ChipPic chipPIC);
 
-    public abstract boolean verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+    public abstract boolean verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
 
     public abstract boolean programarFusesDePics18F();
 

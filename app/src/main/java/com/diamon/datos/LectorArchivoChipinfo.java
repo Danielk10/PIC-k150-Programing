@@ -10,17 +10,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class DatosDePic {
+public class LectorArchivoChipinfo {
 
     private Context contexto;
 
-    private CargardorDeArchivos datos;
+    private CargadorDeArchivos datos;
 
-    public DatosDePic(Activity actividad) {
+    public LectorArchivoChipinfo(Activity actividad) {
 
         contexto = ((AppCompatActivity) actividad).getApplicationContext();
 
-        datos = new CargardorDeArchivos(actividad);
+        datos = new CargadorDeArchivos(actividad);
     }
 
     public ArrayList<String> getInformacionPic() {
@@ -34,7 +34,7 @@ public class DatosDePic {
             buferarchivoLeer =
                     new BufferedReader(
                             new InputStreamReader(
-                                    datos.leerAsset(CargardorDeArchivos.DATOS), "UTF-8"));
+                                    datos.leerAsset(CargadorDeArchivos.DATOS), "UTF-8"));
 
             String lineas = "";
 

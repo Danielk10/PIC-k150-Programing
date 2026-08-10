@@ -121,7 +121,7 @@ public class ProtocoloP18A extends Protocolo {
             response.append((char) respuestaBytes[0]);
 
             // Resetear comandos
-            if (!researComandos()) {
+            if (!resetearComandos()) {
             }
 
             String resultado = response.toString();
@@ -201,7 +201,7 @@ public class ProtocoloP18A extends Protocolo {
             respuesta.append(new String(respuestaBytes, StandardCharsets.US_ASCII));
 
             // Resetear comandos
-            if (!researComandos()) {
+            if (!resetearComandos()) {
             }
 
             boolean exitoso = respuesta.toString().equals("I");
@@ -308,7 +308,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
 
-            byte[] romData = datosPic.obtenerBytesHexROMPocesado();
+            byte[] romData = datosPic.obtenerBytesHexROMProcesado();
 
             if (romData == null || romData.length == 0) {
                 return false;
@@ -336,7 +336,7 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             // Iniciar secuencia de comandos del programador.
-            if (!researComandos()) {
+            if (!resetearComandos()) {
                 return false;
             }
 
@@ -356,7 +356,7 @@ public class ProtocoloP18A extends Protocolo {
             if (!leerRespuesta(
                     response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
                 desactivarVoltajesDeProgramacion();
-                researComandos();
+                resetearComandos();
                 return false;
             }
 
@@ -376,7 +376,7 @@ public class ProtocoloP18A extends Protocolo {
                             "Error: No se recibió confirmación de bloque",
                             TIMEOUT_EXTENDED)) {
                         desactivarVoltajesDeProgramacion();
-                        researComandos();
+                        resetearComandos();
                         return false;
                     }
                 }
@@ -388,20 +388,20 @@ public class ProtocoloP18A extends Protocolo {
                         "Error: No se recibió confirmación final de programación",
                         TIMEOUT_EXTENDED)) {
                     desactivarVoltajesDeProgramacion();
-                    researComandos();
+                    resetearComandos();
                     return false;
                 }
 
             } catch (Exception e) {
                 // Ante error en transmisión, limpiar estado y finalizar con error.
                 desactivarVoltajesDeProgramacion();
-                researComandos();
+                resetearComandos();
                 return false;
             }
 
             // Finalizar secuencia
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
 
             // Verificación de lectura posterior sin afectar el resultado principal.
             try {
@@ -436,7 +436,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
 
-            byte[] eepromData = datosPic.obtenerBytesHexEEPROMPocesado();
+            byte[] eepromData = datosPic.obtenerBytesHexEEPROMProcesado();
 
             if (eepromData == null) {
                 return true; // No es error si no hay datos EEPROM
@@ -460,7 +460,7 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             // Preparar secuencia de programación
-            if (!researComandos()) {
+            if (!resetearComandos()) {
                 return false;
             }
 
@@ -480,7 +480,7 @@ public class ProtocoloP18A extends Protocolo {
             if (!leerRespuesta(
                     response, 'Y', "Error: No se recibió confirmación después de enviar tamaño")) {
                 desactivarVoltajesDeProgramacion();
-                researComandos();
+                resetearComandos();
                 return false;
             }
 
@@ -494,7 +494,7 @@ public class ProtocoloP18A extends Protocolo {
 
                 if (!leerRespuesta(response, 'Y', "Error: No se recibió confirmación de bloque")) {
                     desactivarVoltajesDeProgramacion();
-                    researComandos();
+                    resetearComandos();
                     return false;
                 }
             }
@@ -505,13 +505,13 @@ public class ProtocoloP18A extends Protocolo {
             // Validar respuesta final 'P'
             if (!leerRespuesta(response, 'P', "Error: No se recibió confirmación final")) {
                 desactivarVoltajesDeProgramacion();
-                researComandos();
+                resetearComandos();
                 return false;
             }
 
             // Finalizar secuencia
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
 
             return true;
 
@@ -550,7 +550,7 @@ public class ProtocoloP18A extends Protocolo {
                 if (usuarioConfiguroID) {
                     id = IDPic;
                 } else {
-                    id = datosPic.obtenerVsloresBytesHexIDPocesado();
+                    id = datosPic.obtenerValoresBytesHexIDProcesado();
                 }
 
                 // FUSES: Usar del usuario si existe, sino del HEX
@@ -561,13 +561,13 @@ public class ProtocoloP18A extends Protocolo {
                         fuses[i] = fusesUsuario.get(i);
                     }
                 } else {
-                    fuses = datosPic.obtenerValoresIntHexFusesPocesado();
+                    fuses = datosPic.obtenerValoresIntHexFusesProcesado();
                 }
 
             } else {
                 // Usar datos del HEX (comportamiento original).
-                id = datosPic.obtenerVsloresBytesHexIDPocesado();
-                fuses = datosPic.obtenerValoresIntHexFusesPocesado();
+                id = datosPic.obtenerValoresBytesHexIDProcesado();
+                fuses = datosPic.obtenerValoresIntHexFusesProcesado();
             }
 
             // Validar datos según tipo de núcleo.
@@ -596,7 +596,7 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             // Reiniciar comandos y activar voltajes de programación
-            researComandos();
+            resetearComandos();
             activarVoltajesDeProgramacion();
 
             // Enviar comando para programar FUSES e ID
@@ -637,7 +637,7 @@ public class ProtocoloP18A extends Protocolo {
 
             // Desactivar voltajes y limpiar comandos
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
 
             // Validar respuesta
             if (responseLen >= 1 && response[0] == 'Y') {
@@ -665,7 +665,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Obtener valores de calibración y fuse del chip
-            int[] fusesHex = datosPic.obtenerValoresIntHexFusesPocesado();
+            int[] fusesHex = datosPic.obtenerValoresIntHexFusesProcesado();
             if (fusesHex == null || fusesHex.length < 1) {
                 return false;
             }
@@ -674,7 +674,7 @@ public class ProtocoloP18A extends Protocolo {
             int fuse = fusesHex[0]; // Primer valor de fuse
 
             // Iniciar secuencia de comandos
-            if (!researComandos()) {
+            if (!resetearComandos()) {
                 return false;
             }
 
@@ -700,7 +700,7 @@ public class ProtocoloP18A extends Protocolo {
 
             // Finalizar secuencia
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
 
             return respuesta.equals("Y");
 
@@ -722,7 +722,7 @@ public class ProtocoloP18A extends Protocolo {
             int bytesLeidos = 0;
 
             // Resetear y activar los voltajes de programación
-            researComandos();
+            resetearComandos();
             activarVoltajesDeProgramacion();
 
             // Enviar el comando para leer ROM (11)
@@ -747,11 +747,11 @@ public class ProtocoloP18A extends Protocolo {
             // BUG FIX: Limpiar el buffer antes de enviar comandos de limpieza.
             // Si se seleccionó el chip incorrecto, romSize es erróneo y el bucle
             // termina dejando bytes ROM residuales en el buffer. Sin clearBuffer(),
-            // desactivarVoltajesDeProgramacion() y researComandos() leerían esos
+            // desactivarVoltajesDeProgramacion() y resetearComandos() leerían esos
             // bytes en lugar de la respuesta 'Q' esperada, rompiendo el protocolo.
             try { clearBuffer(); } catch (Exception ignored) {}
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
         }
     }
 
@@ -766,7 +766,7 @@ public class ProtocoloP18A extends Protocolo {
             int bytesLeidos = 0;
 
             // Resetear y activar los voltajes de programación
-            researComandos();
+            resetearComandos();
             activarVoltajesDeProgramacion();
 
             // Enviar el comando para leer EEPROM (12)
@@ -791,7 +791,7 @@ public class ProtocoloP18A extends Protocolo {
             // de los comandos de desactivación para evitar corrupción del protocolo.
             try { clearBuffer(); } catch (Exception ignored) {}
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
         }
     }
 
@@ -801,7 +801,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Resetear y activar los voltajes de programación
-            researComandos();
+            resetearComandos();
 
             activarVoltajesDeProgramacion();
 
@@ -837,7 +837,7 @@ public class ProtocoloP18A extends Protocolo {
             // Desactivar voltajes y resetear comandos
             desactivarVoltajesDeProgramacion();
 
-            researComandos();
+            resetearComandos();
 
             return datos.toString();
 
@@ -872,7 +872,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Preparar secuencia de borrado
-            if (!researComandos()) {
+            if (!resetearComandos()) {
                 return false;
             }
 
@@ -888,7 +888,7 @@ public class ProtocoloP18A extends Protocolo {
 
             // Finalizar secuencia
             desactivarVoltajesDeProgramacion();
-            researComandos();
+            resetearComandos();
 
             // Validar respuesta
             String respuesta = new String(bytes, StandardCharsets.US_ASCII);
@@ -908,11 +908,11 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean verificarSiEstaBarradaLaMemoriaROMDelDelPic(ChipPic chipPIC) {
+    public boolean verificarSiEstaBorradaLaMemoriaROMDelPic(ChipPic chipPIC) {
 
         try {
             // Resetear comandos
-            researComandos();
+            resetearComandos();
 
             // Comando ERASE CHECK ROM según protocolo activo.
             // High-byte recomendado para núcleos de 14 bits: 0x3F
@@ -930,27 +930,27 @@ public class ProtocoloP18A extends Protocolo {
                         case (byte) 0xFF: // Especificación KITSRUS/P018 oficial
                             continue;
                         case 'Y': // ROM está en blanco
-                            researComandos();
+                            resetearComandos();
                             return true;
                         case 'N': // ROM no está en blanco
                         case 'C': // ROM no está en blanco (alternativa)
-                            researComandos();
+                            resetearComandos();
                             return false;
                         default: // Error inesperado
-                            researComandos();
+                            resetearComandos();
                             return false;
                     }
                 } else {
                     intentosSinDatos++;
                     if (intentosSinDatos > 20) {
-                        researComandos();
+                        resetearComandos();
                         return false;
                     }
                 }
             }
         } catch (IOException e) {
             try {
-                researComandos();
+                resetearComandos();
             } catch (Exception ignored) {
             }
             return false;
@@ -958,18 +958,18 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic() {
+    public boolean verificarSiEstaBorradaLaMemoriaEEPROMDelPic() {
 
         try {
             // Resetear comandos previos
-            researComandos();
+            resetearComandos();
 
             // Comando ERASE CHECK EEPROM según protocolo activo.
             usbSerialPort.write(new byte[] { (byte) getCmdEepromBlankCheck() }, 10);
 
             byte[] response = new byte[1];
             int leidos = usbSerialPort.read(response, 300);
-            researComandos();
+            resetearComandos();
 
             if (leidos != 1) {
                 return false;
@@ -979,7 +979,7 @@ public class ProtocoloP18A extends Protocolo {
 
         } catch (IOException e) {
             try {
-                researComandos();
+                resetearComandos();
             } catch (Exception ignored) {
             }
 
@@ -996,7 +996,7 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             // Resetear comandos previos
-            if (!researComandos()) {
+            if (!resetearComandos()) {
                 return false;
             }
             if (!activarVoltajesDeProgramacion()) {
@@ -1028,7 +1028,7 @@ public class ProtocoloP18A extends Protocolo {
             } catch (Exception ignored) {
             }
             try {
-                researComandos();
+                resetearComandos();
             } catch (Exception ignored) {
             }
         }
@@ -1041,7 +1041,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Resetear comandos previos
-            researComandos();
+            resetearComandos();
 
             // Enviar comando para detectar chip en socket
             usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 10);
@@ -1050,12 +1050,12 @@ public class ProtocoloP18A extends Protocolo {
 
             if (leerRespuesta(response, 'A', "No se recibio la respuesta esperada")) {
 
-                datos.append("El PIC esta dentro del Soket");
+                datos.append("El PIC esta dentro del Socket");
             }
 
             if (leerRespuesta(response, 'Y', "No se recibio la respuesta esperada")) {
 
-                researComandos();
+                resetearComandos();
 
                 return true;
 
@@ -1079,7 +1079,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Resetear comandos previos
-            researComandos();
+            resetearComandos();
 
             // Enviar comando para detectar chip fuera del socket
             usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 10);
@@ -1088,12 +1088,12 @@ public class ProtocoloP18A extends Protocolo {
 
             if (leerRespuesta(response, 'A', "No se recibio la respuesta esperada")) {
 
-                datos.append("El PIC esta fuera del Soket");
+                datos.append("El PIC esta fuera del Socket");
             }
 
             if (leerRespuesta(response, 'Y', "No se recibio la respuesta esperada")) {
 
-                researComandos();
+                resetearComandos();
 
                 return true;
 
@@ -1117,7 +1117,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Resetear comandos previos
-            researComandos();
+            resetearComandos();
 
             // Enviar comando para obtener versión del programador
             usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdVersion() }, 10);
@@ -1145,7 +1145,7 @@ public class ProtocoloP18A extends Protocolo {
                     break;
                 }
             }
-            researComandos();
+            resetearComandos();
 
             if (bytes[0] == Byte.parseByte("0")) {
 
@@ -1178,7 +1178,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Resetear comandos previos
-            researComandos();
+            resetearComandos();
 
             // Enviar comando para obtener protocolo del programador
             usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdProtocolo() }, 10);
@@ -1206,7 +1206,7 @@ public class ProtocoloP18A extends Protocolo {
                 }
             }
 
-            researComandos();
+            resetearComandos();
 
             // Convertir los bytes a una cadena ASCII
             return new String(bytes, "US-ASCII") + " " + datos.toString();
@@ -1257,7 +1257,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             // Resetear comandos previos
-            researComandos();
+            resetearComandos();
 
             // Enviar comando (23/0x17 para P18A o 24/0x18 para otros): leer vector de depuración
             usbSerialPort.write(new byte[] { (byte) ((tipoProtocolo == TipoProtocolo.P18A) ? 0x17 : 0x18) }, 10);

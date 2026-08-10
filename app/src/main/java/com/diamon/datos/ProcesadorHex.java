@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
  * @version 2.0 - Integrado con sistema de logging y excepciones mejoradas
  * @since 2025
  */
-public class HexProcesado {
+public class ProcesadorHex {
 
     /** Contexto para localización */
     private final android.content.Context context;
@@ -65,7 +65,7 @@ public class HexProcesado {
      * @param fileContent Contenido del archivo HEX como string
      * @throws HexProcessingException Si ocurre error durante el procesamiento
      */
-    public HexProcesado(android.content.Context context, String fileContent) throws HexProcessingException {
+    public ProcesadorHex(android.content.Context context, String fileContent) throws HexProcessingException {
         if (fileContent == null || fileContent.trim().isEmpty()) {
             throw new IllegalArgumentException(
                     "Contenido del archivo HEX no puede ser null o vacío");

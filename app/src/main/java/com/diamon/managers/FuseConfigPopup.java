@@ -616,7 +616,7 @@ public class FuseConfigPopup {
         }
 
         try {
-            int[] hexFuses = hexData.obtenerValoresIntHexFusesPocesado();
+            int[] hexFuses = hexData.obtenerValoresIntHexFusesProcesado();
 
             if (hexFuses == null || hexFuses.length == 0) {
                 logMessage("⚠ El HEX no contiene fusibles");
@@ -776,8 +776,8 @@ public class FuseConfigPopup {
 
             logMessage(context.getString(R.string.restaurando_hex));
 
-            int[] hexFuses = hexData.obtenerValoresIntHexFusesPocesado();
-            byte[] hexID = hexData.obtenerVsloresBytesHexIDPocesado();
+            int[] hexFuses = hexData.obtenerValoresIntHexFusesProcesado();
+            byte[] hexID = hexData.obtenerValoresBytesHexIDProcesado();
 
             if (hexFuses == null || hexFuses.length == 0) {
                 logMessage(context.getString(R.string.hex_sin_fuses));

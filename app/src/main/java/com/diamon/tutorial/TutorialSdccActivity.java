@@ -14,10 +14,10 @@ import android.widget.Toast;
 import android.view.KeyEvent;
 import android.graphics.Typeface;
 
-import com.diamon.utilidades.PantallaCompleta;
+import com.diamon.utilidades.GestorPantalla;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import com.diamon.datos.CargardorDeArchivos;
+import com.diamon.datos.CargadorDeArchivos;
 import com.diamon.pic.R;
 
 import java.io.IOException;
@@ -42,17 +42,17 @@ public class TutorialSdccActivity extends AppCompatActivity {
     // ahora está en XML
     private TextView titleTextView;
 
-    private CargardorDeArchivos fileLoader;
+    private CargadorDeArchivos fileLoader;
     private String currentLanguage = "es";
     private String tutorialText = "";
     private String fullTutorialContent = "";
-    private PantallaCompleta pantallaCompleta;
+    private GestorPantalla pantallaCompleta;
 
     private TutorialContentRenderer contentRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        pantallaCompleta = new PantallaCompleta(this);
+        pantallaCompleta = new GestorPantalla(this);
         pantallaCompleta.habilitarEdgeToEdge();
 
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.titleTextView);
 
         // Inicializar cargador de archivos y renderizador
-        fileLoader = new CargardorDeArchivos(this);
+        fileLoader = new CargadorDeArchivos(this);
         contentRenderer = new TutorialContentRenderer(this, tutorialContainer);
         contentRenderer.setMarkdownEnabled(true);
 

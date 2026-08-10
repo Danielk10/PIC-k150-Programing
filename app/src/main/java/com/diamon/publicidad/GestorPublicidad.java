@@ -36,9 +36,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * Gestor CENTRALIZADO de publicidad de Google Mobile Ads.
  * Gestiona Banner, Interstitial y Native Ads en un solo lugar.
  */
-public class MostrarPublicidad implements Publicidad {
+public class GestorPublicidad implements Publicidad {
 
-    private static final String TAG = "MostrarPublicidad";
+    private static final String TAG = "GestorPublicidad";
 
     // IDs de Unidades de Anuncio
     private static final String BANNER_ID = "ca-app-pub-5141499161332805/5248084133";
@@ -61,7 +61,7 @@ public class MostrarPublicidad implements Publicidad {
     private static final Map<String, Long> lastRequestTimeMap = new ConcurrentHashMap<>();
     private static final long MIN_REQUEST_INTERVAL = 10000; // 10 segundos entre peticiones para la misma unidad
 
-    public MostrarPublicidad(AppCompatActivity actividad) {
+    public GestorPublicidad(AppCompatActivity actividad) {
         this.actividad = actividad;
         this.mainHandler = new Handler(Looper.getMainLooper());
     }

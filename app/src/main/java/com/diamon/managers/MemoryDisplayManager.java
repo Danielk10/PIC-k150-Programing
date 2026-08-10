@@ -66,7 +66,7 @@ public class MemoryDisplayManager {
     }
 
     public void preloadAd() {
-        // La precarga ahora se maneja centralizadamente en MostrarPublicidad
+        // La precarga ahora se maneja centralizadamente en GestorPublicidad
     }
 
     /**
@@ -114,7 +114,7 @@ public class MemoryDisplayManager {
         // Cargar o mostrar anuncio nativo usando el gestor centralizado
         if (context instanceof com.diamon.pic.MainActivity) {
             com.diamon.pic.MainActivity mainActivity = (com.diamon.pic.MainActivity) context;
-            mainActivity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY,
+            mainActivity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_MEMORY,
                     adContainer);
         }
     }

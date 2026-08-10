@@ -6,14 +6,10 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.diamon.utilidades.PantallaCompleta;
+import com.diamon.utilidades.GestorPantalla;
 
-public class Politicas extends AppCompatActivity {
+public class PoliticaPrivacidadActivity extends AppCompatActivity {
 
     private WebView pagina;
 
@@ -25,8 +21,8 @@ public class Politicas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Configurar edge-to-edge para Android 15+
-        PantallaCompleta pantallaCompleta = new PantallaCompleta(this);
-        pantallaCompleta.habilitarEdgeToEdge();
+        GestorPantalla gestorPantalla = new GestorPantalla(this);
+        gestorPantalla.habilitarEdgeToEdge();
 
         diseno = new LinearLayout(this);
 
@@ -43,7 +39,7 @@ public class Politicas extends AppCompatActivity {
         setContentView(diseno);
 
         // Aplicar window insets al layout para evitar que se oculte contenido
-        pantallaCompleta.aplicarWindowInsets(diseno);
+        gestorPantalla.aplicarWindowInsets(diseno);
 
         pagina.getSettings().setJavaScriptEnabled(true);
 

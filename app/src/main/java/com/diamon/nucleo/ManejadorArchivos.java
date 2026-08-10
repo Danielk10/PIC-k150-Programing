@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public interface Datos {
+public interface ManejadorArchivos {
 
     public InputStream leerDatoInterno(String nombre) throws IOException;
 

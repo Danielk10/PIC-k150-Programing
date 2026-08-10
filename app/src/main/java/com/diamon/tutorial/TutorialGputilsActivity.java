@@ -14,10 +14,10 @@ import android.widget.Toast;
 import android.view.KeyEvent;
 import android.graphics.Typeface;
 
-import com.diamon.utilidades.PantallaCompleta;
+import com.diamon.utilidades.GestorPantalla;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import com.diamon.datos.CargardorDeArchivos;
+import com.diamon.datos.CargadorDeArchivos;
 import com.diamon.pic.R;
 
 import java.io.IOException;
@@ -40,17 +40,17 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     private ImageView tutorialImageView;
     private TextView languageInfoTextView;
 
-    private CargardorDeArchivos fileLoader;
+    private CargadorDeArchivos fileLoader;
     private String currentLanguage = "es";
     private String tutorialText = "";
-    private PantallaCompleta pantallaCompleta;
+    private GestorPantalla pantallaCompleta;
 
     private LegacyTutorialRenderer contentRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Configurar edge-to-edge ANTES de setContentView (requerido por Android 15)
-        pantallaCompleta = new PantallaCompleta(this);
+        pantallaCompleta = new GestorPantalla(this);
         pantallaCompleta.habilitarEdgeToEdge();
 
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
         languageInfoTextView = findViewById(R.id.languageInfoTextView);
 
         // Inicializar cargador de archivos y renderizador
-        fileLoader = new CargardorDeArchivos(this);
+        fileLoader = new CargadorDeArchivos(this);
         contentRenderer = new LegacyTutorialRenderer(this, tutorialContainer);
 
         // Configurar spinner de idiomas

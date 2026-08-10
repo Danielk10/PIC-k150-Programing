@@ -55,10 +55,10 @@ import com.diamon.managers.ProgrammingDialogManager;
 import com.diamon.managers.UsbConnectionManager;
 import com.diamon.managers.SocketDrawingManager;
 import com.diamon.protocolo.TipoProtocolo;
-import com.diamon.politicas.Politicas;
-import com.diamon.publicidad.MostrarPublicidad;
+import com.diamon.politicas.PoliticaPrivacidadActivity;
+import com.diamon.publicidad.GestorPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
-import com.diamon.utilidades.PantallaCompleta;
+import com.diamon.utilidades.GestorPantalla;
 import android.graphics.Bitmap;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
     private ChipSelectionManager chipSelectionManager;
     private MemoryDisplayManager memoryDisplayManager;
     private ProgrammingDialogManager dialogManager;
-    private MostrarPublicidad publicidad;
+    private GestorPublicidad publicidad;
     private PowerManager.WakeLock wakeLock;
 
     private FuseConfigPopup fuseConfigPopup; // NUEVO
@@ -129,13 +129,13 @@ public class MainActivity extends AppCompatActivity
     private DatosPicProcesados datosPicProcesados = null;
     private final List<String> logHistory = new ArrayList<>();
 
-    private PantallaCompleta pantallaCompleta;
+    private GestorPantalla pantallaCompleta;
 
     @SuppressLint({ "InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag" })
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Habilitar Edge-to-Edge ANTES de setContentView (requerido por Android 15)
-        pantallaCompleta = new PantallaCompleta(this);
+        pantallaCompleta = new GestorPantalla(this);
         pantallaCompleta.habilitarEdgeToEdge();
 
         super.onCreate(savedInstanceState);
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initializeBasicComponents() {
         Analytics.trackEvent("Init: Basic Components");
-        publicidad = new MostrarPublicidad(this);
+        publicidad = new GestorPublicidad(this);
         appendLog("⚙ " + getString(R.string.esperando_operacion));
     }
 
@@ -333,8 +333,8 @@ public class MainActivity extends AppCompatActivity
         // NUEVO: Diferir la precarga para evitar ANR durante la inicialización
         new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
             if (publicidad != null) {
-                publicidad.precargarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_MEMORY);
-                publicidad.precargarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_PROGRAMMING);
+                publicidad.precargarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_MEMORY);
+                publicidad.precargarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_PROGRAMMING);
             }
         }, 3000); // Esperar 3 segundos para asegurar que MobileAds esté listo
 
@@ -642,8 +642,8 @@ public class MainActivity extends AppCompatActivity
 
                         runOnUiThread(
                                 () -> {
-                                    byte[] romBytes = datosPicProcesados.obtenerBytesHexROMPocesado();
-                                    byte[] eepromBytes = datosPicProcesados.obtenerBytesHexEEPROMPocesado();
+                                    byte[] romBytes = datosPicProcesados.obtenerBytesHexROMProcesado();
+                                    byte[] eepromBytes = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
                                     int romLen = (romBytes != null) ? romBytes.length : 0;
                                     int eepromLen = (eepromBytes != null) ? eepromBytes.length : 0;
 
@@ -943,8 +943,8 @@ public class MainActivity extends AppCompatActivity
                         }
 
                         // Usar VerificationManager para verificación real con bytes procesados
-                        byte[] expectedRomBytes = datosPicProcesados.obtenerBytesHexROMPocesado();
-                        byte[] expectedEepromBytes = datosPicProcesados.obtenerBytesHexEEPROMPocesado();
+                        byte[] expectedRomBytes = datosPicProcesados.obtenerBytesHexROMProcesado();
+                        byte[] expectedEepromBytes = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
 
                         com.diamon.managers.VerificationManager.VerificationResult result = com.diamon.managers.VerificationManager
                                 .verify(
@@ -1109,7 +1109,7 @@ public class MainActivity extends AppCompatActivity
                 openTutorialSdcc();
                 return true;
             case 4:
-                startActivity(new Intent(this, Politicas.class));
+                startActivity(new Intent(this, PoliticaPrivacidadActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -1681,7 +1681,7 @@ public class MainActivity extends AppCompatActivity
         return super.onKeyUp(keyCode, event);
     }
 
-    public MostrarPublicidad getPublicidad() {
+    public GestorPublicidad getPublicidad() {
         return publicidad;
     }
 }

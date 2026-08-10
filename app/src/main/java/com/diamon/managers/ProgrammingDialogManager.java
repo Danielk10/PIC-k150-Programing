@@ -68,7 +68,7 @@ public class ProgrammingDialogManager {
     }
 
     public void preloadAd() {
-        // La precarga ahora se maneja centralizadamente en MostrarPublicidad
+        // La precarga ahora se maneja centralizadamente en GestorPublicidad
     }
 
     private void createPopupWindow() {
@@ -131,7 +131,7 @@ public class ProgrammingDialogManager {
 
         if (context instanceof com.diamon.pic.MainActivity) {
             com.diamon.pic.MainActivity activity = (com.diamon.pic.MainActivity) context;
-            activity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.MostrarPublicidad.KEY_NATIVE_PROGRAMMING,
+            activity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_PROGRAMMING,
                     adContainer);
         }
 

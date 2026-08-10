@@ -314,7 +314,7 @@ public class ProtocoloP18AIntegrationTest {
             parsedHexes[i] = new com.diamon.datos.DatosPicProcesados(null, hexContent, chip16f628a);
             parsedHexes[i].iniciarProcesamientoDeDatos();
             
-            byte[] romBytes = parsedHexes[i].obtenerBytesHexROMPocesado();
+            byte[] romBytes = parsedHexes[i].obtenerBytesHexROMProcesado();
             assertNotNull("Los bytes ROM parseados no deben ser null", romBytes);
             assertTrue("Debe contener bytes ROM", romBytes.length > 0);
         }
@@ -372,8 +372,8 @@ public class ProtocoloP18AIntegrationTest {
         com.diamon.datos.DatosPicProcesados datosPicOriginal = new com.diamon.datos.DatosPicProcesados(null, hexContentOriginal, chip16f628a);
         datosPicOriginal.iniciarProcesamientoDeDatos();
 
-        byte[] romOriginal = datosPicOriginal.obtenerBytesHexROMPocesado();
-        byte[] eepromOriginal = datosPicOriginal.obtenerBytesHexEEPROMPocesado();
+        byte[] romOriginal = datosPicOriginal.obtenerBytesHexROMProcesado();
+        byte[] eepromOriginal = datosPicOriginal.obtenerBytesHexEEPROMProcesado();
 
         // 2. Formatear para exportación (Little Endian swabbing / padding según arquitectura PIC16 de 14-bits)
         byte[] romExportReady = com.diamon.managers.HexExportManager.formatForHexExport(romOriginal, 14, false);
@@ -387,13 +387,13 @@ public class ProtocoloP18AIntegrationTest {
 
         com.diamon.datos.DatosPicProcesados datosPicROMGenerado = new com.diamon.datos.DatosPicProcesados(null, romGeneratedHex, chip16f628a);
         datosPicROMGenerado.iniciarProcesamientoDeDatos();
-        byte[] romParseadoGenerado = datosPicROMGenerado.obtenerBytesHexROMPocesado();
+        byte[] romParseadoGenerado = datosPicROMGenerado.obtenerBytesHexROMProcesado();
 
         assertArrayEquals("La ROM exportada e importada de vuelta no coincide con la original", romOriginal, romParseadoGenerado);
 
         com.diamon.datos.DatosPicProcesados datosPicEEPROMGenerado = new com.diamon.datos.DatosPicProcesados(null, eepromGeneratedHex, chip16f628a);
         datosPicEEPROMGenerado.iniciarProcesamientoDeDatos();
-        byte[] eepromParseadoGenerado = datosPicEEPROMGenerado.obtenerBytesHexEEPROMPocesado();
+        byte[] eepromParseadoGenerado = datosPicEEPROMGenerado.obtenerBytesHexEEPROMProcesado();
 
         assertArrayEquals("La EEPROM exportada e importada de vuelta no coincide con la original", eepromOriginal, eepromParseadoGenerado);
     }
@@ -623,9 +623,9 @@ public class ProtocoloP18AIntegrationTest {
         assertTrue("Fallo al programar ROM original", protocolo.programarMemoriaROMDelPic(chip16f628a, datosPicOriginal));
         assertTrue("Fallo al programar EEPROM original", protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPicOriginal));
         
-        byte[] idPicOriginal = datosPicOriginal.obtenerVsloresBytesHexIDPocesado();
+        byte[] idPicOriginal = datosPicOriginal.obtenerValoresBytesHexIDProcesado();
         java.util.List<Integer> fusesListOriginal = new java.util.ArrayList<>();
-        for (int f : datosPicOriginal.obtenerValoresIntHexFusesPocesado()) {
+        for (int f : datosPicOriginal.obtenerValoresIntHexFusesProcesado()) {
             fusesListOriginal.add(f);
         }
         assertTrue("Fallo al programar Fuses e ID originales",
@@ -640,10 +640,10 @@ public class ProtocoloP18AIntegrationTest {
         assertNotNull(configDeHex);
 
         // --- PARTE B: Generar Volcado .bin, Importar e Integridad Local ---
-        byte[] romOriginalBytes = datosPicOriginal.obtenerBytesHexROMPocesado();
-        byte[] eepromOriginalBytes = datosPicOriginal.obtenerBytesHexEEPROMPocesado();
-        byte[] idOriginalBytes = datosPicOriginal.obtenerVsloresBytesHexIDPocesado();
-        int[] fusesOriginalInts = datosPicOriginal.obtenerValoresIntHexFusesPocesado();
+        byte[] romOriginalBytes = datosPicOriginal.obtenerBytesHexROMProcesado();
+        byte[] eepromOriginalBytes = datosPicOriginal.obtenerBytesHexEEPROMProcesado();
+        byte[] idOriginalBytes = datosPicOriginal.obtenerValoresBytesHexIDProcesado();
+        int[] fusesOriginalInts = datosPicOriginal.obtenerValoresIntHexFusesProcesado();
 
         byte[] rawConfigOriginal = new byte[26];
         int chipId = chip16f628a.getIDPIC();
@@ -667,10 +667,10 @@ public class ProtocoloP18AIntegrationTest {
         com.diamon.datos.DatosPicProcesados datosPicImportado = new com.diamon.datos.DatosPicProcesados(null, virtualHex, chip16f628a);
         datosPicImportado.iniciarProcesamientoDeDatos();
 
-        assertArrayEquals("La ROM importada desde Full Dump .bin no coincide", romOriginalBytes, datosPicImportado.obtenerBytesHexROMPocesado());
-        assertArrayEquals("La EEPROM importada desde Full Dump .bin no coincide", eepromOriginalBytes, datosPicImportado.obtenerBytesHexEEPROMPocesado());
-        assertArrayEquals("El ID importado desde Full Dump .bin no coincide", idOriginalBytes, datosPicImportado.obtenerVsloresBytesHexIDPocesado());
-        assertArrayEquals("Los Fuses importados desde Full Dump .bin no coinciden", fusesOriginalInts, datosPicImportado.obtenerValoresIntHexFusesPocesado());
+        assertArrayEquals("La ROM importada desde Full Dump .bin no coincide", romOriginalBytes, datosPicImportado.obtenerBytesHexROMProcesado());
+        assertArrayEquals("La EEPROM importada desde Full Dump .bin no coincide", eepromOriginalBytes, datosPicImportado.obtenerBytesHexEEPROMProcesado());
+        assertArrayEquals("El ID importado desde Full Dump .bin no coincide", idOriginalBytes, datosPicImportado.obtenerValoresBytesHexIDProcesado());
+        assertArrayEquals("Los Fuses importados desde Full Dump .bin no coinciden", fusesOriginalInts, datosPicImportado.obtenerValoresIntHexFusesProcesado());
 
         // --- PARTE C: Borrar, Grabar del .bin Importado y Contrastar ---
         assertTrue("Fallo al borrar el chip antes de grabar desde bin", protocolo.borrarMemoriasDelPic());
@@ -682,10 +682,10 @@ public class ProtocoloP18AIntegrationTest {
                 protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPicImportado));
         
         java.util.List<Integer> fusesListImportado = new java.util.ArrayList<>();
-        for (int fuse : datosPicImportado.obtenerValoresIntHexFusesPocesado()) {
+        for (int fuse : datosPicImportado.obtenerValoresIntHexFusesProcesado()) {
             fusesListImportado.add(fuse);
         }
-        byte[] idBytesImportado = datosPicImportado.obtenerVsloresBytesHexIDPocesado();
+        byte[] idBytesImportado = datosPicImportado.obtenerValoresBytesHexIDProcesado();
         assertTrue("Fallo al programar Fuses e ID importados en el emulador",
                 protocolo.programarFusesIDDelPic(chip16f628a, datosPicImportado, idBytesImportado, fusesListImportado));
 
@@ -701,17 +701,17 @@ public class ProtocoloP18AIntegrationTest {
         String romOnlyHex = fileMgr.binaryToIntelHex(romOriginalBytes, chip16f628a);
         com.diamon.datos.DatosPicProcesados datosPicRomOnly = new com.diamon.datos.DatosPicProcesados(null, romOnlyHex, chip16f628a);
         datosPicRomOnly.iniciarProcesamientoDeDatos();
-        assertArrayEquals("La ROM importada desde ROM-only .bin no coincide", romOriginalBytes, datosPicRomOnly.obtenerBytesHexROMPocesado());
+        assertArrayEquals("La ROM importada desde ROM-only .bin no coincide", romOriginalBytes, datosPicRomOnly.obtenerBytesHexROMProcesado());
 
         String eepromOnlyHex = fileMgr.binaryToIntelHex(eepromOriginalBytes, chip16f628a);
         com.diamon.datos.DatosPicProcesados datosPicEepromOnly = new com.diamon.datos.DatosPicProcesados(null, eepromOnlyHex, chip16f628a);
         datosPicEepromOnly.iniciarProcesamientoDeDatos();
-        assertArrayEquals("La EEPROM importada desde EEPROM-only .bin no coincide", eepromOriginalBytes, datosPicEepromOnly.obtenerBytesHexEEPROMPocesado());
+        assertArrayEquals("La EEPROM importada desde EEPROM-only .bin no coincide", eepromOriginalBytes, datosPicEepromOnly.obtenerBytesHexEEPROMProcesado());
 
         String configOnlyHex = fileMgr.binaryToIntelHex(rawConfigOriginal, chip16f628a);
         com.diamon.datos.DatosPicProcesados datosPicConfigOnly = new com.diamon.datos.DatosPicProcesados(null, configOnlyHex, chip16f628a);
         datosPicConfigOnly.iniciarProcesamientoDeDatos();
-        assertArrayEquals("El ID importado desde Config-only .bin no coincide", idOriginalBytes, datosPicConfigOnly.obtenerVsloresBytesHexIDPocesado());
-        assertArrayEquals("Los Fuses importados desde Config-only .bin no coinciden", fusesOriginalInts, datosPicConfigOnly.obtenerValoresIntHexFusesPocesado());
+        assertArrayEquals("El ID importado desde Config-only .bin no coincide", idOriginalBytes, datosPicConfigOnly.obtenerValoresBytesHexIDProcesado());
+        assertArrayEquals("Los Fuses importados desde Config-only .bin no coinciden", fusesOriginalInts, datosPicConfigOnly.obtenerValoresIntHexFusesProcesado());
     }
 }

@@ -25,11 +25,11 @@ import androidx.core.view.WindowInsetsControllerCompat;
  * setStatusBarColor y setNavigationBarColor están deprecados y no tienen
  * efecto.
  */
-public class PantallaCompleta {
+public class GestorPantalla {
 
     private final AppCompatActivity actividad;
 
-    public PantallaCompleta(AppCompatActivity actividad) {
+    public GestorPantalla(AppCompatActivity actividad) {
         this.actividad = actividad;
     }
 

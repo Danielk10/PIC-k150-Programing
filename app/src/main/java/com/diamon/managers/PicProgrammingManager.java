@@ -423,7 +423,7 @@ public class PicProgrammingManager {
         }
 
         try {
-            return protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+            return protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
         } catch (Exception e) {
             notifyError(
                     context.getString(R.string.error_verificando_memoria) + ": " + e.getMessage());
@@ -482,10 +482,10 @@ public class PicProgrammingManager {
 
         // Intento nativo y resolución con fallback por comparación.
         try {
-            boolean romBlankNativo = protocolo.verificarSiEstaBarradaLaMemoriaROMDelDelPic(chipPIC);
+            boolean romBlankNativo = protocolo.verificarSiEstaBorradaLaMemoriaROMDelPic(chipPIC);
             boolean eepromBlankNativo = true;
             if (chipPIC.isTamanoValidoDeEEPROM()) {
-                eepromBlankNativo = protocolo.verificarSiEstaBarradaLaMemoriaEEPROMDelDelPic();
+                eepromBlankNativo = protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
             }
 
             // ROM nativo se complementa con verificación comparativa de configuración.

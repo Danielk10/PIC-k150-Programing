@@ -56,7 +56,7 @@ public class DatosPicProcesadosTest {
 
         procesado.iniciarProcesamientoDeDatos();
 
-        int[] fuses = procesado.obtenerValoresIntHexFusesPocesado();
+        int[] fuses = procesado.obtenerValoresIntHexFusesProcesado();
         assertEquals(1, fuses.length);
         assertEquals(0x3F74, fuses[0]);
     }
@@ -78,7 +78,7 @@ public class DatosPicProcesadosTest {
 
         procesado.iniciarProcesamientoDeDatos();
 
-        byte[] eeprom = procesado.obtenerBytesHexEEPROMPocesado();
+        byte[] eeprom = procesado.obtenerBytesHexEEPROMProcesado();
         byte[] esperado = new byte[] {
                 0x41, 0x42, 0x43, 0x44,
                 0x45, 0x46, 0x47, 0x48
