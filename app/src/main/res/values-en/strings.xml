@@ -86,7 +86,8 @@
     <string name="detectar_pic">Detect PIC</string>
     <string name="esperando_operacion">Waiting for operation...</string>
     <string name="esperando_seleccion">Waiting for selection...</string>
-    <string name="seleccionar_chip_pic">Select PIC Chip</string>
+    <string name="seleccionar_chip_pic">Select PIC</string>
+    <string name="log_copiado">Log copied to clipboard</string>
     
     <string name="gputils_termux_asm">GPUTILS in Termux ASM Compiler Android</string>
 
@@ -132,35 +133,8 @@
     
     <string name="chip_seleccionado">Selected Chip</string>
     <string name="configuracion_de_fusibles">Fuse Configuration</string>
-    <string name="id_personalizado_hex">Custom ID (hex)</string>
-    <string name="restaurar_desde_bd">Restore from DB</string>
-    <string name="restaurar_desde_hex">Restore from HEX</string>
-    <string name="aplicar_fuses">Apply Fuses</string>
-
-    
-
-    <string name="seleccionar_operacion">Select Operation</string>
-
-    <string name="exportacion_exitosa">Export Successful!</string>
-    <string name="error_exportando">Error during export</string>
-    <string name="no_hay_datos_para_exportar">No data in memory to export. Read chip first.</string>
-    <string name="chip_info_json">View Chip JSON (Debug)</string>
-    <string name="chip_info_titulo">Technical Chip Information</string>
-
-    
-    <string name="leyendo_memoria" translatable="false">Reading memory...</string>
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Correctly applied fuses</string>
-
-    
-    
-    <string name="resultado_verificacion_borrado">Deletion Verification Result</string>
-    
-    <string name="error_verificando_borrado">Error verifying deletion</string>
-    
-    
-    
-    <string name="hint_id_personalizado">Example: 1A 2B 3C 4D (4 or 8 bytes)</string>
+    <string name="id_personalizado_hex">Custom ID</string>
+    <string name="hint_id_personalizado">Enter HEX bytes with spaces (e.g., FF 01 02 03)</string>
     
     
     

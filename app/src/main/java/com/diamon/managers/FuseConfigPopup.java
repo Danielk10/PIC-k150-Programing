@@ -56,8 +56,6 @@ public class FuseConfigPopup {
     private DatosPicProcesados hexData;
 
     // Vistas
-    private TextView chipNameTextView;
-    private TextView chipInfoTextView;
     private LinearLayout fuseContainer;
     // logTextView eliminado: el log del popup fue removido por diseño
     private EditText customIdEditText;
@@ -138,9 +136,6 @@ public class FuseConfigPopup {
         scrollContent.setOrientation(LinearLayout.VERTICAL);
         scrollContent.setPadding(0, dpToPx(8), 0, dpToPx(8));
 
-        // Informacion del chip
-        scrollContent.addView(createChipInfoSection());
-
         // Editor de fusibles (SIN ScrollView interno, solo crece/encoge)
         scrollContent.addView(createFuseEditorSection());
 
@@ -207,65 +202,6 @@ public class FuseConfigPopup {
         return title;
     }
 
-    /** Crea la seccion de informacion del chip */
-    private LinearLayout createChipInfoSection() {
-        LinearLayout section = new LinearLayout(context);
-        section.setOrientation(LinearLayout.VERTICAL);
-
-        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
-        bg.setColor(Color.parseColor("#2A2A3E"));
-        bg.setCornerRadius(dpToPx(8));
-        section.setBackground(bg);
-        section.setPadding(dpToPx(12), dpToPx(12), dpToPx(12), dpToPx(12));
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 0, 0, 12);
-        section.setLayoutParams(params);
-
-        TextView label = new TextView(context);
-        label.setText(context.getString(com.diamon.pic.R.string.chip_seleccionado));
-        label.setTextColor(Color.parseColor("#9E9E9E"));
-        label.setTextSize(14);
-        label.setTypeface(null, android.graphics.Typeface.BOLD);
-        section.addView(label);
-
-        chipNameTextView = new TextView(context);
-        chipNameTextView.setText(currentChip != null ? currentChip.getNombreDelPic() : context.getString(com.diamon.pic.R.string.sin_chip));
-        chipNameTextView.setTextColor(Color.parseColor("#4CAF50"));
-        chipNameTextView.setTextSize(16);
-        chipNameTextView.setTypeface(null, android.graphics.Typeface.BOLD);
-        chipNameTextView.setPadding(0, 8, 0, 8);
-        section.addView(chipNameTextView);
-
-        chipInfoTextView = new TextView(context);
-        chipInfoTextView.setBackgroundColor(Color.parseColor("#1A1A2E"));
-        chipInfoTextView.setPadding(12, 12, 12, 12);
-        chipInfoTextView.setTextSize(12);
-        chipInfoTextView.setTypeface(android.graphics.Typeface.MONOSPACE);
-        chipInfoTextView.setTextColor(Color.parseColor("#4CAF50")); // Valor en verde
-
-        if (currentChip != null) {
-            StringBuilder sb = new StringBuilder();
-            try {
-                sb.append(context.getString(R.string.label_rom) + "    ").append(currentChip.getTamanoROM()).append(" " + context.getString(R.string.label_bytes) + "\n");
-
-                if (currentChip.isTamanoValidoDeEEPROM()) {
-                    sb.append(context.getString(R.string.label_eeprom) + " ").append(currentChip.getTamanoEEPROM()).append(" " + context.getString(R.string.label_bytes) + "\n");
-                }
-
-                sb.append(context.getString(R.string.label_id) + "     ").append(String.format("0x%04X", currentChip.getIDPIC()));
-            } catch (Exception e) {
-                sb.append(context.getString(R.string.error_leyendo_info_chip));
-            }
-            chipInfoTextView.setText(sb.toString());
-        }
-
-        section.addView(chipInfoTextView);
-
-        return section;
-    }
-
     /**
      * CORREGIDO: Crea la seccion de edicion de fusibles SIN ScrollView interno Se
      * ajusta
@@ -287,14 +223,6 @@ public class FuseConfigPopup {
         );
         params.setMargins(0, 0, 0, 12);
         section.setLayoutParams(params);
-
-        TextView label = new TextView(context);
-        label.setText(context.getString(com.diamon.pic.R.string.configuracion_de_fusibles));
-        label.setTextColor(Color.parseColor("#9E9E9E"));
-        label.setTextSize(16);
-        label.setTypeface(null, android.graphics.Typeface.BOLD);
-        label.setPadding(0, 0, 0, 12);
-        section.addView(label);
 
         // Container de fusibles SIN ScrollView - se ajusta naturalmente
         fuseContainer = new LinearLayout(context);
@@ -473,7 +401,6 @@ public class FuseConfigPopup {
             return;
         }
 
-        displayChipInfo();
         buildFuseEditor();
         validateHexCompatibility();
 
@@ -522,28 +449,6 @@ public class FuseConfigPopup {
         } catch (Exception e) {
             logMessage(context.getString(R.string.error_verificando_hex) + ": " + e.getMessage());
         }
-    }
-
-    /** Muestra la informacion del chip */
-    private void displayChipInfo() {
-        StringBuilder info = new StringBuilder();
-        info.append(context.getString(R.string.label_chip)).append(currentChip.getNombreDelPic()).append("\n");
-
-        try {
-            info.append(context.getString(R.string.label_rom) + " 0x")
-                    .append(Integer.toHexString(currentChip.getTamanoROM()).toUpperCase())
-                    .append("\n");
-
-            if (currentChip.isTamanoValidoDeEEPROM()) {
-                info.append(context.getString(R.string.label_eeprom) + " 0x")
-                        .append(Integer.toHexString(currentChip.getTamanoEEPROM()).toUpperCase())
-                        .append("\n");
-            }
-        } catch (Exception e) {
-            info.append(context.getString(R.string.error_generico_detalle, e.getMessage()));
-        }
-
-        chipInfoTextView.setText(info.toString());
     }
 
     /** Construye el editor de fusibles dinamicamente */

@@ -88,7 +88,8 @@
     <string name="detectar_pic">Detectar PIC</string>
     <string name="esperando_operacion">Esperando operacion...</string>
     <string name="esperando_seleccion">Esperando seleccion...</string>
-    <string name="seleccionar_chip_pic">Seleccionar Chip PIC</string>
+    <string name="seleccionar_chip_pic">Seleccionar PIC</string>
+    <string name="log_copiado">Log copiado al portapapeles</string>
     <string name="gputils_termux_asm">Compilar GPUUTILS en Termux esamblador ASM</string>
     
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
@@ -139,8 +140,8 @@
     
     <string name="chip_seleccionado">Chip Seleccionado</string>
     <string name="configuracion_de_fusibles">Configuración de Fusibles</string>
-    <string name="id_personalizado_hex">ID Personalizado (HEX)</string>
-    <string name="hint_id_personalizado">Ejemplo: 1A 2B 3C 4D (4 u 8 bytes)</string>
+    <string name="id_personalizado_hex">ID Personalizado</string>
+    <string name="hint_id_personalizado">Ingresa bytes HEX con espacios (Ej: FF 01 02 03)</string>
     <string name="restaurar_desde_bd">Restaurar desde BD</string>
     <string name="restaurar_desde_hex">Restaurar desde HEX</string>
     <string name="aplicar_fuses">Aplicar Fuses</string>

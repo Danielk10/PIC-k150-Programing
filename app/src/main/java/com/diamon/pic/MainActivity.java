@@ -1,5 +1,8 @@
 package com.diamon.pic;
 
+import android.content.ClipboardManager;
+import android.content.ClipData;
+import android.widget.Toast;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -669,6 +672,18 @@ public class MainActivity extends AppCompatActivity
         btnBlankCheck.setOnClickListener(v -> ejecutarBlankCheck());
         if (btnLimpiarLog != null) {
             btnLimpiarLog.setOnClickListener(v -> clearLog());
+        }
+
+        // NUEVO: Copiar log al portapapeles con un toque
+        if (processStatusTextView != null) {
+            processStatusTextView.setOnClickListener(v -> {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (clipboard != null) {
+                    ClipData clip = ClipData.newPlainText("PIC Log", processStatusTextView.getText());
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(this, getString(R.string.log_copiado), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
