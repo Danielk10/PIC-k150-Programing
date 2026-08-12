@@ -315,7 +315,7 @@
     <string name="pic_seleccionado">PIC Seleccionado</string>
     <string name="modo_icsp_activado">Modo ICSP activado</string>
     <string name="modo_socket_activado">Modo ZIF Socket activado</string>
-    <string name="seleccionar_protocolo">Seleccionar protocolo</string>
+    <string name="seleccionar_protocolo">Seleccionar Protocolo</string>
     <string name="acerca_de_licencias">Acerca de / Licencias</string>
     <string name="desarrollador">Desarrollador</string>
     <string name="repositorio">Repositorio</string>
