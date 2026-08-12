@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">Privatumo politika</string>
-    
-
-    
-    
     <string name="aceptar">Priimti</string>
-    
-    
     <string name="cancelar">Atšaukti</string>
-    
-    
     <string name="conectado">Prisijungta</string>
-    
-    
     <string name="desconectado">Atjungta</string>
-    
-    
     <string name="grabando_pic">Rašoma į PIC...</string>
-    
-    
     <string name="espere_grabacion_pic">Palaukite. Neatsijunkite įrenginio.</string>
-    
-    
     <string name="grabacion_completada_pic">Rašymas baigtas</string>
-    
-    
     <string name="grabacion_correcta_pic">Programinė įranga sėkmingai įrašyta į PIC.</string>
-    
-    
     <string name="fallo_grabacion_pic">Rašymo klaida</string>
-    
-    
     <string name="proceso_no_completado">Nepavyko užbaigti proceso. Patikrinkite ryšį.</string>
-    
-    
     <string name="protocolo_del_programador">Programuotojo protokolas</string>
-    
-    
     <string name="modelo_del_programador">Programuotojo modelis</string>
-    
-    
     <string name="modelo_programador">Programuotojo modelis</string>
-    
-    
     <string name="protocolo">Protokolas</string>
-    
-    
+    <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privatumo politika</string>
-    
-    
     <string name="no_se_detecto_pic_en_socket">PIC neaptikta lizdoje</string>
-    
-    
     <string name="pic_detectado_en_socket">PIC aptikta lizdoje</string>
-    
-    
     <string name="error_borrando_memoria">Klaida trinant atmintį</string>
-    
-    
     <string name="memoria_borrada_exitosamente">Atmintis sėkmingai ištrinta</string>
-    
-    
     <string name="memoria_leida_exitosamente">Atmintis sėkmingai nuskaitytas</string>
-    
-    
     <string name="seleccione_un_chip">Pasirinkite lustą</string>
-    
-    
     <string name="seleccione_un_chip_y_cargue_un">Pasirinkite lustą ir įkelkite HEX failą</string>
-    
-    
     <string name="error_programando_pic">Klaida programuojant PIC</string>
-    
-    
     <string name="pic_programado_exitosamente">PIC sėkmingai naprogramuota</string>
-    
-    
     <string name="iniciando_programacion">Pradedamas programavimas...</string>
-    
-    
     <string name="error_cargando_archivo">Klaida įkeliant failą</string>
-    
-    
     <string name="error_inicializando_chip">Klaida inicijuojant lustą</string>
-    
-    
     <string name="conectado_al_programador">Prisijungta prie programuotojo</string>
-    
-    
     <string name="error_inicializando_base_de_da">Klaida inicijuojant lustų duomenų bazę</string>
-    
-    
     <string name="no_hay_chip_seleccionado">Nėra pasirinkto lusto</string>
-    
-    
     <string name="modelo">Modelis</string>
-    
-    
     <string name="palabras_rom">ROM žodžiai</string>
-    
-    
     <string name="tamano_rom">ROM dydis</string>
-    
-    
     <string name="eeprom">EEPROM</string>
-    
-    
     <string name="no_disponible">Negalima</string>
-    
-    
     <string name="tipo_de_nucleo">Branduolio tipas</string>
-    
-    
     <string name="error_obteniendo_datos_del_chi">Klaida gaunant lusto duomenis</string>
-    
-    
     <string name="modo">Režimas</string>
-    
-    
     <string name="icsp_solamente">Tik ICSP</string>
-    
-    
     <string name="pin_1">Spyna 1</string>
-    
-    
     <string name="filemanager_no_inicializado">FileManager nepradėta</string>
-    
-    
     <string name="no_se_pudo_obtener_el_nombre_d">Nepavyko gauti failo pavadinimo</string>
-    
-    
     <string name="seleccione_un_archivo_binario_">Pasirinkite galiojantį binarinį failą (.hex arba .bin)</string>
-    
-    
     <string name="error_abriendo_el_archivo_sele">Klaida atidarant pasirinktą failą</string>
-    
-    
     <string name="el_archivo_seleccionado_esta_v">Pasirinktas failas tuščias</string>
-    
-    
     <string name="error_leyendo_el_archivo">Klaida skaitant failą</string>
-    
-    
     <string name="error_inesperado_leyendo_el_ar">Netikėta klaida skaitant failą</string>
-    
-    
     <string name="protocolo_no_inicializado">Protokolas nepradėtas</string>
-    
-    
     <string name="datos_invalidos_para_programac">Negaliojami duomenys programavimui</string>
-    
-    
     <string name="borrando_memorias">Trinamos atminties...</string>
-    
-    
     <string name="error_borrando_memorias">Klaida trinant atmintį</string>
-    
-    
     <string name="programando_memoria_rom">Programuojama ROM atmintis...</string>
-    
-    
     <string name="error_programando_rom">Klaida programuojant ROM</string>
-    
-    
     <string name="programando_memoria_eeprom">Programuojama EEPROM atmintis...</string>
-    
-    
     <string name="error_programando_eeprom">Klaida programuojant EEPROM</string>
-    
-    
     <string name="programando_fuses_id">Programuojamos Fuses ID...</string>
-    
-    
     <string name="error_programando_fuses">Klaida programuojant Fuses</string>
-    
-    
     <string name="programando_fuses_18f">Programuojamos Fuses 18F...</string>
-    
-    
     <string name="error_programando_fuses_18f">Klaida programuojant Fuses 18F</string>
-    
-    
     <string name="programacion_completada">Programavimas baigtas</string>
-    
-    
     <string name="error_inesperado">Netikėta klaida</string>
-    
-    
     <string name="error_leyendo_memoria_rom">Klaida skaitant ROM atmintį</string>
-    
-    
     <string name="error_leyendo_memoria_eeprom">Klaida skaitant EEPROM atmintį</string>
-    
-    
     <string name="error_verificando_memoria">Klaida tikrinant atmintį</string>
-    
-    
     <string name="error_detectando_chip">Klaida aptinkant lustą</string>
-    
-    
     <string name="driver_usb_no_disponible">USB tvarkiklis neprieinamas</string>
-    
-    
     <string name="dispositivo_sin_puertos_usb_di">Nėra prieinamų USB prievadų įrenginys</string>
-    
-    
     <string name="error_inicializando_protocolo_">Klaida inicijuojant ryšio protokolą</string>
-    
-    
     <string name="error_de_conexion_usb">USB ryšio klaida</string>
-    
-    
     <string name="error_inesperado_durante_la_co">Netikėta klaida prijungiant</string>
-    
-
-    
-    
     <string name="operaciones">Operacijos</string>
-    
-    
     <string name="cargar_archivo_hex">Įkelkite HEX failą</string>
-    
-    
     <string name="programar_pic">Programuoti PIC</string>
-    
-    
     <string name="leer_memoria">Nuskaityti atmintį</string>
-    
-    
     <string name="verificar">Patikrinti</string>
-    
-    
     <string name="borrar_memoria">Trinti atmintį</string>
-    
-    
     <string name="detectar_pic">Aptikti PIC</string>
-    
-    
     <string name="esperando_operacion">Laukiama operacijos...</string>
-    
-    
     <string name="esperando_seleccion">Laukiama pasirinkimo...</string>
-    
-    
     <string name="seleccionar_chip_pic">Pasirinkite PIC lustą</string>
-    
-    
-    
+    <string name="log_copiado">Log copied to clipboard</string>
     <string name="gputils_termux_asm">GPUTILS Termuxe ASM Compiler Android</string>
-    
-
-    
-    
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
     <string name="configurar_fusibles">Konfigūruoti saugiklius</string>
-    
-    
     <string name="selecciona_chip_primero">Pirmiausia pasirinkite lustą</string>
-    
-    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
     <string name="fuses_configurados">Configured</string>
-    
-    
     <string name="fuses_no_configurados">Not configured</string>
-    
-    
     <string name="estado_fusibles">Saugiklių būsena:</string>
-    
-    
     <string name="modo_icsp">ICSP Mode</string>
-    
-    
     <string name="verificando_memoria">Verifying memory...</string>
-    
-    
     <string name="verificacion_rom_ok">ROM sėkmingai patikrinta</string>
-    
-    
     <string name="verificacion_rom_fallo">ROM patikrinimas nepavyko</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
     <string name="verificacion_completa">Patikrinimas baigtas</string>
-    
-    
     <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">Eksportuoti atmintį</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">Skaitoma atmintis...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Teisingai uždėti saugikliai</string>
-    
-
-    
-    
-    
     <string name="chip_info_titulo">Chip techninė informacija</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Eksportuoti atmintį</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
     <string name="exportar_config_hex">Eksportuoti CONFIG (.hex)</string>
-    
-    
-    
     <string name="exportar_config_bin">Eksportuoti CONFIG (.bin)</string>
-    
-    
-    
     <string name="exportar_dump_completo">Eksportuoti visą išrašymą (.hex)</string>
-    
-
-    
-    
-    
+    <string name="exportar_dump_completo_bin">Eksportuoti visą išrašymą (.bin)</string>
     <string name="programar_todo">Suplanuokite viską</string>
-    
-    
-    
     <string name="programar_solo_rom">Tik programos ROM</string>
-    
-    
-    
     <string name="programar_solo_eeprom">Programuoti tik EEPROM</string>
-    
-    
-    
     <string name="programar_solo_config">Tik programa CONFIG</string>
-    
-    
-    
-    
-    
     <string name="verificar_borrado">Patvirtinkite ištrynimą</string>
-    
-    
-    
     <string name="chip_esta_borrado">Lustas ištrintas (tuščias)</string>
-    
-    
-    
     <string name="chip_no_esta_borrado">Lustas NĖRA ištrintas</string>
-    
-    
-    
     <string name="verificando_borrado">Tikrinamas ištrynimas...</string>
-    
-    
-    
     <string name="resultado_verificacion_borrado">Ištrynimo patvirtinimo rezultatas</string>
-    
-    
-    
     <string name="error_verificando_borrado">Klaida tikrinant ištrynimą</string>
-    
-    
-    
-    
-    
-    
     <string name="chip_seleccionado">Pasirinktas lustas</string>
-    
-    
-    
     <string name="configuracion_de_fusibles">Saugiklio konfigūracija</string>
-    
-    
-    
     <string name="id_personalizado_hex">Tinkintas ID (HEX)</string>
-    
-    
-    
     <string name="hint_id_personalizado">Pavyzdys: 1A 2B 3C 4D (4 arba 8 baitai)</string>
-    
-    
-    
-    
-    
-    
     <string name="restaurar_desde_bd">Atkurti iš DB</string>
-    
-    
-    
     <string name="restaurar_desde_hex">Atkurti iš HEX</string>
-    
-    
-    
     <string name="aplicar_fuses">Uždėkite saugiklius</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
     <string name="seleccionar_operacion">Pasirinkite Operacija</string>
-    
-    
-
-    
-    
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
     <string name="publicidad_recomendada">Rekomenduojama reklama</string>
-    
-    
-    
     <string name="lectura_completa">Pilnas skaitymas</string>
-    
-    
-    
-    <string name="sin_chip">be lusto</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM: gerai (tuščia)</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM: NETUŠTA</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM: gerai (tuščia)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM: NETUŠTA</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">ispanų</string>
-    
-    
-    
-    <string name="idioma_ingles">anglų kalba</string>
-    
-    
-    
-    <string name="idioma_label">Kalba: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 Nukopijuoti viską</string>
-    
-    
-    
-    <string name="tutorial_copiado">Mokymo programa nukopijuota į mainų sritį</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">Įkeliant mokymo programą įvyko klaida</string>
-    
-    
-    
-    <string name="codigo_asm">📄 ASM kodas</string>
-    
-    
-    
-    <string name="comando_label">💻 Komanda</string>
-    
-    
-    
-    <string name="copiar_btn">Kopijuoti</string>
-    
-    
-    
-    <string name="copiado_msg">Nukopijuota</string>
-    
-    
-    
-    <string name="error_abrir_link">Klaida atidarant nuorodą</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">Klaida: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">Pirmiausia turite apdoroti HEX failą</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">Taip</string>
-    
-    
-    
-    <string name="no">Nr</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">Kodas nukopijuotas į mainų sritį</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">Tekstas nukopijuotas į mainų sritį</string>
-    
-    
-    
-    <string name="termino_no_encontrado">Terminas nerastas: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">Nėra galiojančių eksportuotinų duomenų</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">Klaida konvertuojant šešioliktainius duomenis</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">Nepavyko sukurti išvesties failo</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">Klaida rašant failą: %1$s</string>
-    
-    
-
-
-
-
-    
     <string name="datos_de_memoria">Atmintis sėkmingai nuskaitytas</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
+    <string name="sin_chip">be lusto</string>
+    <string name="rom_ok_blank">ROM: gerai (tuščia)</string>
+    <string name="rom_not_blank">ROM: NETUŠTA</string>
+    <string name="eeprom_ok_blank">EEPROM: gerai (tuščia)</string>
+    <string name="eeprom_not_blank">EEPROM: NETUŠTA</string>
+    <string name="idioma_espanol">ispanų</string>
+    <string name="idioma_ingles">anglų kalba</string>
+    <string name="idioma_label">Kalba: %s</string>
+    <string name="copiar_todo">📋 Nukopijuoti viską</string>
+    <string name="tutorial_copiado">Mokymo programa nukopijuota į mainų sritį</string>
+    <string name="error_cargar_tutorial">Įkeliant mokymo programą įvyko klaida</string>
+    <string name="codigo_asm">📄 ASM kodas</string>
+    <string name="comando_label">💻 Komanda</string>
+    <string name="copiar_btn">Kopijuoti</string>
+    <string name="copiado_msg">Nukopijuota</string>
+    <string name="error_abrir_link">Klaida atidarant nuorodą</string>
+    <string name="error_generico_detalle">Klaida: %1$s</string>
     <string name="cargando_tutorial">Loading tutorial…</string>
-    
-    
     <string name="paso_prefijo">STEP </string>
-    
-    
-    <string name="error_prefijo">❌ ERROR: </string>
-    
-    
+    <string name="error_prefijo">❌ KLAIDA:</string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
-    
-    
     <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    
-    
     <string name="coincidencias_encontradas">%1$d matches found</string>
-    
-    
     <string name="resultado_verificacion">Patikrinimo rezultatas</string>
-    
-    
     <string name="verificada">Patikrinta</string>
-    
-    
     <string name="fallo">Nepavyko</string>
-    
-    
+    <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="yes">Taip</string>
-    
-    
     <string name="no_label">Ne</string>
-    
-    
     <string name="seleccionar_idioma">Pasirinkti kalbą</string>
-    
-    
     <string name="tutorial_instalacion">Diegimo vadovas</string>
-    
-    
     <string name="copiar_todo_en">Kopijuoti viską</string>
-    
-    
     <string name="cerrar">Uždaryti</string>
-    
-    
     <string name="error_no_chip">Klaida: Nepasirinktas lustas arba nėra saugiklių</string>
-    
-    
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
+    <string name="hex_compatible">Suderinamas su HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
+    <string name="label_chip">Lustas:</string>
     <string name="editor_construido">Editor built</string>
-    
-    
     <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
     <string name="restaurado_chip">Restored from chip</string>
-    
-    
     <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
     <string name="restaurado_hex">Restored from HEX</string>
-    
-    
     <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
     <string name="aplicando">Taikoma…</string>
-    
-    
     <string name="aplicado_exito">Sėkmingai pritaikyta</string>
-    
-    
     <string name="error_parse_id">Error parsing ID</string>
-    
-    
     <string name="seccion_identificacion">IDENTIFIKACIJA</string>
-    
-    
     <string name="seccion_memoria">ATMINTIES SPECIFIKACIJOS</string>
-    
-    
     <string name="seccion_hardware">ARCHITEKTŪRA IR KONTAKTAI</string>
-    
-    
     <string name="seccion_programacion">PROGRAMAVIMO PARAMETRAI</string>
-    
-    
     <string name="seccion_fuses">PRIEINAMI SAUGIKLIAI</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
+    <string name="chip_id_label">Lusto ID:</string>
     <string name="include_file_label">Include File:</string>
-    
-    
     <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
+    <string name="rom_words_bytes">%1$,d Žodžiai (%2$,d baitai)</string>
     <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
+    <string name="eeprom_bytes">%1$,d baitai</string>
     <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
     <string name="flash_technology_label">Flash Technology:</string>
-    
-    
     <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
+    <string name="core_bits_val">%1$d bitų</string>
     <string name="core_type_id_label">Core Type ID:</string>
-    
-    
     <string name="pines_totales_label">Total Pins:</string>
-    
-    
     <string name="pines_val">%1$d pins</string>
-    
-    
     <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
     <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
     <string name="icsp_required_label">ICSP Required:</string>
-    
-    
     <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
     <string name="power_sequence_label">Power Sequence:</string>
-    
-    
     <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
     <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
     <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
     <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
     <string name="memory_error_label">Memory Error:</string>
-    
-    
+    <string name="texto_copiado_portapapeles">Tekstas nukopijuotas į mainų sritį</string>
     <string name="ad_label">Reklama</string>
-    
-    
+    <string name="codigo_copiado_portapapeles">Kodas nukopijuotas į mainų sritį</string>
+    <string name="debe_procesar_hex_primero">Pirmiausia turite apdoroti HEX failą</string>
+    <string name="error_convirtiendo_datos_hex">Klaida konvertuojant šešioliktainius duomenis</string>
+    <string name="error_creando_archivo_salida">Nepavyko sukurti išvesties failo</string>
+    <string name="error_escribiendo_archivo_detalle">Klaida rašant failą: %1$s</string>
     <string name="instalar">Įdiegti</string>
-    
-    
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">Nėra galiojančių eksportuotinų duomenų</string>
     <string name="not_available">Nepasiekiama</string>
-    
-    
+    <string name="termino_no_encontrado">Terminas nerastas: %1$s</string>
     <string name="calibracion_label">Calibration: %1$s</string>
-    
-    
     <string name="rom_label">ROM: %1$s</string>
-    
-    
     <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
     <string name="fuses_decodificados_exito">Saugikliai dekoduoti</string>
-    
-    
     <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
     <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
     <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
     <string name="verificando_rom_label">Verifying ROM…</string>
-    
-    
     <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    
-    
     <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
     <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
     <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
     <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
     <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    
-    
     <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    
-    
     <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
     <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
     <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
     <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
     <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
     <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
     <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
     <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
+    <string name="eeprom_total_info">Visas EEPROM lustas: %1$d baitai</string>
     <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
+    <string name="chip_label_info">Lustas: %1$s</string>
+    <string name="core_info">Šerdis: %1$d bitai</string>
+    <string name="pin1_info">1 kaištis: %1$s</string>
     <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
+    <string name="icsp_only_info">Tik ICSP: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
+    <string name="si">Taip</string>
+    <string name="no">Nr</string>
+    <string name="record_address_error">Įrašo adresas %1$s yra už leistino diapazono ribų.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
     <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
     <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
     <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
     <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
     <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
     <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
     <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
     <string name="error_vacio">Empty array</string>
-    
-    
     <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
     <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
     <string name="paso_label">ŽINGSNIS</string>
-    
-    
     <string name="nota_label">Pastaba</string>
-    
-    
     <string name="importante_label">Svarbu</string>
-    
-    
     <string name="advertencia_label">Įspėjimas</string>
-    
-    
     <string name="ejemplo_label">Pavyzdys</string>
-    
-    
     <string name="explicacion_label">Paaiškinimas</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="error_export_manager_not_initialized">HexExportManager nebuvo inicijuotas</string>
+    <string name="error_leyendo_info_chip">Klaida skaitant lusto informaciją</string>
     <string name="label_rom">ROM:</string>
     <string name="label_eeprom">EEPROM:</string>
     <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
+    <string name="label_bytes">baitų</string>
     <string name="pic_seleccionado">PIC Selected</string>
-    
-    
-    <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">Profesionali programa, skirta programuoti PIC mikrovaldiklius naudojant KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Tai leidžia programuoti PIC įrenginius tiesiai iš Android per USB OTG be kompiuterio.</string>
+    <string name="about_features">Pagrindinės savybės:</string>
+    <string name="about_feature_1">Mobilusis programavimas be kompiuterio per OTG.</string>
+    <string name="about_feature_2">KITSRUS P018 protokolų (K150, K128, K149, K182) palaikymas.</string>
+    <string name="about_feature_3">Intuityvi medžiagų dizaino sąsaja.</string>
+    <string name="about_feature_4">Arm64-v8a, armeabi-v7a, x86 ir x86_64 architektūrų palaikymas.</string>
+    <string name="about_acknowledgements_title">Padėkos:</string>
+    <string name="about_acknowledgements_desc">Ypatingas ačiū Mike\'ui Wakerly, Adamui Schubertui ir AndroidIDE, Android Code Studio ir KITSRUS komandoms.</string>
+    <string name="error_al_cambiar_modo">Klaida keičiant režimą:</string>
+    <string name="no_hay_firmware_valido">Nėra galiojančios programinės įrangos</string>
 </resources>

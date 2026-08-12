@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">隱私權政策</string>
-    
-
-    
-    
     <string name="aceptar">接受</string>
-    
-    
     <string name="cancelar">取消</string>
-    
-    
     <string name="conectado">已連接</string>
-    
-    
     <string name="desconectado">已斷開</string>
-    
-    
     <string name="grabando_pic">正在燒錄 PIC...</string>
-    
-    
     <string name="espere_grabacion_pic">請稍候。請勿斷開裝置連接。</string>
-    
-    
     <string name="grabacion_completada_pic">燒錄完成</string>
-    
-    
     <string name="grabacion_correcta_pic">韌體已成功燒錄到 PIC。</string>
-    
-    
     <string name="fallo_grabacion_pic">燒錄失敗</string>
-    
-    
     <string name="proceso_no_completado">無法完成此程序。請檢查連線。</string>
-    
-    
     <string name="protocolo_del_programador">編程器協議</string>
-    
-    
     <string name="modelo_del_programador">編程器型號</string>
-    
-    
     <string name="modelo_programador">編程器型號</string>
-    
-    
     <string name="protocolo">協議</string>
-    
-    
-    <string name="politica_de_privacidad">私隱政策</string>
-    
-    
-    <string name="no_se_detecto_pic_en_socket">在插槽中未偵測到 PIC</string>
-    
-    
-    <string name="pic_detectado_en_socket">在插槽中偵測到 PIC</string>
-    
-    
-    <string name="error_borrando_memoria">清除記憶體時發生錯誤</string>
-    
-    
-    <string name="memoria_borrada_exitosamente">記憶體已成功清除</string>
-    
-    
-    <string name="memoria_leida_exitosamente">記憶體已成功讀取</string>
-    
-    
-    <string name="seleccione_un_chip">選擇一個晶片</string>
-    
-    
-    <string name="seleccione_un_chip_y_cargue_un">選擇一個晶片並載入一個 HEX 檔案</string>
-    
-    
-    <string name="error_programando_pic">編程 PIC 時發生錯誤</string>
-    
-    
-    <string name="pic_programado_exitosamente">PIC 已成功編程</string>
-    
-    
-    <string name="iniciando_programacion">正在開始編程...</string>
-    
-    
-    <string name="error_cargando_archivo">載入檔案時發生錯誤</string>
-    
-    
-    <string name="error_inicializando_chip">初始化晶片時發生錯誤</string>
-    
-    
-    <string name="conectado_al_programador">已連接到編程器</string>
-    
-    
-    <string name="error_inicializando_base_de_da">初始化晶片資料庫時發生錯誤</string>
-    
-    
-    <string name="no_hay_chip_seleccionado">未選擇晶片</string>
-    
-    
-    <string name="modelo">型號</string>
-    
-    
-    <string name="palabras_rom">ROM 字</string>
-    
-    
-    <string name="tamano_rom">ROM 大小</string>
-    
-    
-    <string name="eeprom">EEPROM</string>
-    
-    
-    <string name="no_disponible">不可用</string>
-    
-    
-    <string name="tipo_de_nucleo">&quot;核心類型&quot;</string>
-    
-    
-    <string name="error_obteniendo_datos_del_chi">獲取晶片資料時發生錯誤</string>
-    
-    
-    <string name="modo">模式</string>
-    
-    
-    <string name="icsp_solamente">僅 ICSP</string>
-    
-    
-    <string name="pin_1">引腳 1</string>
-    
-    
-    <string name="filemanager_no_inicializado">FileManager 未初始化</string>
-    
-    
-    <string name="no_se_pudo_obtener_el_nombre_d">無法獲取檔案名稱</string>
-    
-    
-    <string name="seleccione_un_archivo_binario_">選擇一個有效的二進位檔案（.hex 或 .bin）</string>
-    
-    
-    <string name="error_abriendo_el_archivo_sele">開啟所選檔案時發生錯誤</string>
-    
-    
-    <string name="el_archivo_seleccionado_esta_v">所選檔案為空</string>
-    
-    
-    <string name="error_leyendo_el_archivo">讀取檔案時發生錯誤</string>
-    
-    
-    <string name="error_inesperado_leyendo_el_ar">讀取檔案時發生意外錯誤</string>
-    
-    
-    <string name="protocolo_no_inicializado">協議未初始化</string>
-    
-    
-    <string name="datos_invalidos_para_programac">編程資料無效</string>
-    
-    
-    <string name="borrando_memorias">正在清除記憶體...</string>
-    
-    
-    <string name="error_borrando_memorias">清除記憶體時發生錯誤</string>
-    
-    
-    <string name="programando_memoria_rom">正在編程 ROM 記憶體...</string>
-    
-    
-    <string name="error_programando_rom">編程 ROM 時發生錯誤</string>
-    
-    
-    <string name="programando_memoria_eeprom">正在編程 EEPROM 記憶體...</string>
-    
-    
-    <string name="error_programando_eeprom">編程 EEPROM 時發生錯誤</string>
-    
-    
-    <string name="programando_fuses_id">正在編程熔絲 ID...</string>
-    
-    
-    <string name="error_programando_fuses">編程熔絲時發生錯誤</string>
-    
-    
-    <string name="programando_fuses_18f">正在編程 18F 熔絲...</string>
-    
-    
-    <string name="error_programando_fuses_18f">編程 18F 熔絲時發生錯誤</string>
-    
-    
-    <string name="programacion_completada">編程完成</string>
-    
-    
-    <string name="error_inesperado">意外錯誤</string>
-    
-    
-    <string name="error_leyendo_memoria_rom">讀取 ROM 記憶體時發生錯誤</string>
-    
-    
-    <string name="error_leyendo_memoria_eeprom">讀取 EEPROM 記憶體時發生錯誤</string>
-    
-    
-    <string name="error_verificando_memoria">驗證記憶體時發生錯誤</string>
-    
-    
-    <string name="error_detectando_chip">偵測晶片時發生錯誤</string>
-    
-    
-    <string name="driver_usb_no_disponible">USB 驅動程式不可用</string>
-    
-    
-    <string name="dispositivo_sin_puertos_usb_di">裝置沒有可用的 USB 連接埠</string>
-    
-    
-    <string name="error_inicializando_protocolo_">初始化通訊協定時發生錯誤</string>
-    
-    
-    <string name="error_de_conexion_usb">USB 連線錯誤</string>
-    
-    
-    <string name="error_inesperado_durante_la_co">連線期間發生意外錯誤</string>
-    
-
-    
-    
-    <string name="operaciones">操作</string>
-    
-    
-    <string name="cargar_archivo_hex">載入 HEX 檔案</string>
-    
-    
-    <string name="programar_pic">程式 PIC</string>
-    
-    
-    <string name="leer_memoria">讀取記憶體</string>
-    
-    
-    <string name="verificar">驗證</string>
-    
-    
-    <string name="borrar_memoria">清除記憶體</string>
-    
-    
-    <string name="detectar_pic">偵測 PIC</string>
-    
-    
-    <string name="esperando_operacion">等待操作...</string>
-    
-    
-    <string name="esperando_seleccion">等待選擇...</string>
-    
-    
-    <string name="seleccionar_chip_pic">選擇 PIC 晶片</string>
-    
-    
-    
-    <string name="gputils_termux_asm">Termux 中的 GPUTILS ASM 編譯器 Android</string>
-    
-
-    
-    
-    <string name="configurar_fusibles">配置熔絲</string>
-    
-    
-    <string name="selecciona_chip_primero">請先選擇晶片</string>
-    
-    
-    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
-    <string name="fuses_configurados">Configured</string>
-    
-    
-    <string name="fuses_no_configurados">Not configured</string>
-    
-    
-    <string name="estado_fusibles">熔絲狀態：</string>
-    
-    
-    <string name="modo_icsp">ICSP Mode</string>
-    
-    
-    <string name="verificando_memoria">Verifying memory...</string>
-    
-    
-    <string name="verificacion_rom_ok">ROM驗證成功</string>
-    
-    
-    <string name="verificacion_rom_fallo">ROM驗證失敗</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
-    <string name="verificacion_completa">驗證完成</string>
-    
-    
-    <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">導出記憶體</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">讀取記憶...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">正確使用保險絲</string>
-    
-
-    
-    
-    
-    <string name="chip_info_titulo">晶片技術資料</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
-    
-    
-    
-    <string name="exportar_config_bin">匯出配置（.bin）</string>
-    
-    
-    
-    <string name="exportar_dump_completo">匯出完整轉儲 (.hex)</string>
-    
-
-    
-    
-    
-    <string name="programar_todo">安排一切</string>
-    
-    
-    
-    <string name="programar_solo_rom">僅程式 ROM</string>
-    
-    
-    
-    <string name="programar_solo_eeprom">僅對 EEPROM 進行編程</string>
-    
-    
-    
-    <string name="programar_solo_config">僅程式配置</string>
-    
-    
-    
-    
-    
-    <string name="verificar_borrado">驗證刪除</string>
-    
-    
-    
-    <string name="chip_esta_borrado">晶片被擦除（空白）</string>
-    
-    
-    
-    <string name="chip_no_esta_borrado">晶片未被擦除</string>
-    
-    
-    
-    <string name="verificando_borrado">正在驗證刪除...</string>
-    
-    
-    
-    <string name="resultado_verificacion_borrado">刪除驗證結果</string>
-    
-    
-    
-    <string name="error_verificando_borrado">驗證刪除時發生錯誤</string>
-    
-    
-    
-    
-    
-    
-    <string name="chip_seleccionado">選定晶片</string>
-    
-    
-    
-    <string name="configuracion_de_fusibles">保險絲配置</string>
-    
-    
-    
-    <string name="id_personalizado_hex">自訂 ID（十六進位）</string>
-    
-    
-    
-    <string name="hint_id_personalizado">範例：1A 2B 3C 4D（4 或 8 位元組）</string>
-    
-    
-    
-    
-    
-    
-    <string name="restaurar_desde_bd">從資料庫恢復</string>
-    
-    
-    
-    <string name="restaurar_desde_hex">從十六進位恢復</string>
-    
-    
-    
-    <string name="aplicar_fuses">應用保險絲</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="seleccionar_operacion">選擇操作</string>
-    
-    
-
-    
-    
-    <string name="publicidad_recomendada">推薦廣告</string>
-    
-    
-    
-    <string name="lectura_completa">完整閱讀</string>
-    
-    
-    
-    <string name="sin_chip">無晶片</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM：正常（空白）</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM：非空白</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM：正常（空白）</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM：非空白</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">西班牙語</string>
-    
-    
-    
-    <string name="idioma_ingles">英語</string>
-    
-    
-    
-    <string name="idioma_label">語言：%s</string>
-    
-    
-    
-    <string name="copiar_todo">📋全部複製</string>
-    
-    
-    
-    <string name="tutorial_copiado">教學已複製到剪貼簿</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">載入教學時出錯</string>
-    
-    
-    
-    <string name="codigo_asm">📄 ASM 代碼</string>
-    
-    
-    
-    <string name="comando_label">💻 命令</string>
-    
-    
-    
-    <string name="copiar_btn">複製</string>
-    
-    
-    
-    <string name="copiado_msg">已複製</string>
-    
-    
-    
-    <string name="error_abrir_link">開啟連結時出錯</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">錯誤：%1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">您必須先處理 HEX 文件</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">是的</string>
-    
-    
-    
-    <string name="no">不</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">代碼已複製到剪貼簿</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">文字已複製到剪貼簿</string>
-    
-    
-    
-    <string name="termino_no_encontrado">未找到術語：%1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">沒有有效數據可供匯出</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">轉換十六進位資料時出錯</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">No se pudo crear el archivo de salida</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">寫入檔案時發生錯誤：%1$s</string>
-    
-    
-
-
-
-
-    
-    <string name="datos_de_memoria">記憶體已成功讀取</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
-    <string name="cargando_tutorial">加载教程…</string>
-    
-    
-    <string name="paso_prefijo">步骤 </string>
-    
-    
-    <string name="error_prefijo">❌ 错误：</string>
-    
-    
-    <string name="exito_prefijo">✅ 成功：</string>
-    
-    
-    <string name="advertencia_prefijo">⚠️ 警告：</string>
-    
-    
-    <string name="coincidencias_encontradas">%1$d matches found</string>
-    
-    
-    <string name="resultado_verificacion">驗證結果</string>
-    
-    
-    <string name="verificada">已验证</string>
-    
-    
-    <string name="fallo">失败</string>
-    
-    
-    <string name="yes">是</string>
-    
-    
-    <string name="no_label">否</string>
-    
-    
-    <string name="seleccionar_idioma">选择语言</string>
-    
-    
-    <string name="tutorial_instalacion">安裝教程</string>
-    
-    
-    <string name="copiar_todo_en">全部複製</string>
-    
-    
-    <string name="cerrar">关闭</string>
-    
-    
-    <string name="error_no_chip">錯誤：未選擇晶片或無熔絲</string>
-    
-    
-    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
-    <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
-    <string name="editor_construido">Editor built</string>
-    
-    
-    <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
-    <string name="restaurado_chip">Restored from chip</string>
-    
-    
-    <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
-    <string name="restaurado_hex">Restored from HEX</string>
-    
-    
-    <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
-    <string name="aplicando">正在应用…</string>
-    
-    
-    <string name="aplicado_exito">应用成功</string>
-    
-    
-    <string name="error_parse_id">Error parsing ID</string>
-    
-    
-    <string name="seccion_identificacion">標識信息</string>
-    
-    
-    <string name="seccion_memoria">記憶體規格</string>
-    
-    
-    <string name="seccion_hardware">架構與引腳</string>
-    
-    
-    <string name="seccion_programacion">編程參數</string>
-    
-    
-    <string name="seccion_fuses">可用熔絲</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
-    <string name="include_file_label">Include File:</string>
-    
-    
-    <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
-    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
-    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
-    <string name="flash_technology_label">Flash Technology:</string>
-    
-    
-    <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
-    <string name="core_type_id_label">Core Type ID:</string>
-    
-    
-    <string name="pines_totales_label">Total Pins:</string>
-    
-    
-    <string name="pines_val">%1$d pins</string>
-    
-    
-    <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
-    <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
-    <string name="icsp_required_label">ICSP Required:</string>
-    
-    
-    <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
-    <string name="power_sequence_label">Power Sequence:</string>
-    
-    
-    <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
-    <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
-    <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
-    <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
-    <string name="memory_error_label">Memory Error:</string>
-    
-    
-    <string name="ad_label">广告</string>
-    
-    
-    <string name="instalar">安装</string>
-    
-    
-    <string name="not_available">不可用</string>
-    
-    
-    <string name="calibracion_label">校准：%1$s</string>
-    
-    
-    <string name="rom_label">ROM: %1$s</string>
-    
-    
-    <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
-    <string name="fuses_decodificados_exito">熔絲解碼成功</string>
-    
-    
-    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
-    <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
-    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
-    <string name="verificando_rom_label">Verifying ROM…</string>
-    
-    
-    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    
-    
-    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
-    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
-    <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
-    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
-    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
-    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    
-    
-    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    
-    
-    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
-    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
-    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
-    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
-    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
-    <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
-    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
-    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
-    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
-    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
-    <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
-    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
-    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
-    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
-    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
-    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
-    <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
-    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
-    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
-    <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
-    <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
-    <string name="error_vacio">Empty array</string>
-    
-    
-    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
-    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
-    <string name="paso_label">步骤</string>
-    
-    
-    <string name="nota_label">備註</string>
-    
-    
-    <string name="importante_label">重要</string>
-    
-    
-    <string name="advertencia_label">警告</string>
-    
-    
-    <string name="ejemplo_label">示例</string>
-    
-    
-    <string name="explicacion_label">说明</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
-    <string name="pic_seleccionado">PIC Selected</string>
-    
-    
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="politica_de_privacidad">私隱政策</string>
+    <string name="no_se_detecto_pic_en_socket">在插槽中未偵測到 PIC</string>
+    <string name="pic_detectado_en_socket">在插槽中偵測到 PIC</string>
+    <string name="error_borrando_memoria">清除記憶體時發生錯誤</string>
+    <string name="memoria_borrada_exitosamente">記憶體已成功清除</string>
+    <string name="memoria_leida_exitosamente">記憶體已成功讀取</string>
+    <string name="seleccione_un_chip">選擇一個晶片</string>
+    <string name="seleccione_un_chip_y_cargue_un">選擇一個晶片並載入一個 HEX 檔案</string>
+    <string name="error_programando_pic">編程 PIC 時發生錯誤</string>
+    <string name="pic_programado_exitosamente">PIC 已成功編程</string>
+    <string name="iniciando_programacion">正在開始編程...</string>
+    <string name="error_cargando_archivo">載入檔案時發生錯誤</string>
+    <string name="error_inicializando_chip">初始化晶片時發生錯誤</string>
+    <string name="conectado_al_programador">已連接到編程器</string>
+    <string name="error_inicializando_base_de_da">初始化晶片資料庫時發生錯誤</string>
+    <string name="no_hay_chip_seleccionado">未選擇晶片</string>
+    <string name="modelo">型號</string>
+    <string name="palabras_rom">ROM 字</string>
+    <string name="tamano_rom">ROM 大小</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">不可用</string>
+    <string name="tipo_de_nucleo">"核心類型"</string>
+    <string name="error_obteniendo_datos_del_chi">獲取晶片資料時發生錯誤</string>
+    <string name="modo">模式</string>
+    <string name="icsp_solamente">僅 ICSP</string>
+    <string name="pin_1">引腳 1</string>
+    <string name="filemanager_no_inicializado">FileManager 未初始化</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">無法獲取檔案名稱</string>
+    <string name="seleccione_un_archivo_binario_">選擇一個有效的二進位檔案（.hex 或 .bin）</string>
+    <string name="error_abriendo_el_archivo_sele">開啟所選檔案時發生錯誤</string>
+    <string name="el_archivo_seleccionado_esta_v">所選檔案為空</string>
+    <string name="error_leyendo_el_archivo">讀取檔案時發生錯誤</string>
+    <string name="error_inesperado_leyendo_el_ar">讀取檔案時發生意外錯誤</string>
+    <string name="protocolo_no_inicializado">協議未初始化</string>
+    <string name="datos_invalidos_para_programac">編程資料無效</string>
+    <string name="borrando_memorias">正在清除記憶體...</string>
+    <string name="error_borrando_memorias">清除記憶體時發生錯誤</string>
+    <string name="programando_memoria_rom">正在編程 ROM 記憶體...</string>
+    <string name="error_programando_rom">編程 ROM 時發生錯誤</string>
+    <string name="programando_memoria_eeprom">正在編程 EEPROM 記憶體...</string>
+    <string name="error_programando_eeprom">編程 EEPROM 時發生錯誤</string>
+    <string name="programando_fuses_id">正在編程熔絲 ID...</string>
+    <string name="error_programando_fuses">編程熔絲時發生錯誤</string>
+    <string name="programando_fuses_18f">正在編程 18F 熔絲...</string>
+    <string name="error_programando_fuses_18f">編程 18F 熔絲時發生錯誤</string>
+    <string name="programacion_completada">編程完成</string>
+    <string name="error_inesperado">意外錯誤</string>
+    <string name="error_leyendo_memoria_rom">讀取 ROM 記憶體時發生錯誤</string>
+    <string name="error_leyendo_memoria_eeprom">讀取 EEPROM 記憶體時發生錯誤</string>
+    <string name="error_verificando_memoria">驗證記憶體時發生錯誤</string>
+    <string name="error_detectando_chip">偵測晶片時發生錯誤</string>
+    <string name="driver_usb_no_disponible">USB 驅動程式不可用</string>
+    <string name="dispositivo_sin_puertos_usb_di">裝置沒有可用的 USB 連接埠</string>
+    <string name="error_inicializando_protocolo_">初始化通訊協定時發生錯誤</string>
+    <string name="error_de_conexion_usb">USB 連線錯誤</string>
+    <string name="error_inesperado_durante_la_co">連線期間發生意外錯誤</string>
+    <string name="operaciones">操作</string>
+    <string name="cargar_archivo_hex">載入 HEX 檔案</string>
+    <string name="programar_pic">程式 PIC</string>
+    <string name="leer_memoria">讀取記憶體</string>
+    <string name="verificar">驗證</string>
+    <string name="borrar_memoria">清除記憶體</string>
+    <string name="detectar_pic">偵測 PIC</string>
+    <string name="esperando_operacion">等待操作...</string>
+    <string name="esperando_seleccion">等待選擇...</string>
+    <string name="seleccionar_chip_pic">選擇 PIC 晶片</string>
+    <string name="log_copiado">Log copied to clipboard</string>
+    <string name="gputils_termux_asm">Termux 中的 GPUTILS ASM 編譯器 Android</string>
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
+    <string name="configurar_fusibles">配置熔絲</string>
+    <string name="selecciona_chip_primero">請先選擇晶片</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">熔絲狀態：</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM驗證成功</string>
+    <string name="verificacion_rom_fallo">ROM驗證失敗</string>
+    <string name="verificacion_completa">驗證完成</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="chip_info_titulo">晶片技術資料</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">導出記憶體</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportar_config_hex">匯出配置 (.hex)</string>
+    <string name="exportar_config_bin">匯出配置（.bin）</string>
+    <string name="exportar_dump_completo">匯出完整轉儲 (.hex)</string>
+    <string name="exportar_dump_completo_bin">匯出完整轉儲 (.bin)</string>
+    <string name="programar_todo">安排一切</string>
+    <string name="programar_solo_rom">僅程式 ROM</string>
+    <string name="programar_solo_eeprom">僅對 EEPROM 進行編程</string>
+    <string name="programar_solo_config">僅程式配置</string>
+    <string name="verificar_borrado">驗證刪除</string>
+    <string name="chip_esta_borrado">晶片被擦除（空白）</string>
+    <string name="chip_no_esta_borrado">晶片未被擦除</string>
+    <string name="verificando_borrado">正在驗證刪除...</string>
+    <string name="resultado_verificacion_borrado">刪除驗證結果</string>
+    <string name="error_verificando_borrado">驗證刪除時發生錯誤</string>
+    <string name="chip_seleccionado">選定晶片</string>
+    <string name="configuracion_de_fusibles">保險絲配置</string>
+    <string name="id_personalizado_hex">自訂 ID（十六進位）</string>
+    <string name="hint_id_personalizado">範例：1A 2B 3C 4D（4 或 8 位元組）</string>
+    <string name="restaurar_desde_bd">從資料庫恢復</string>
+    <string name="restaurar_desde_hex">從十六進位恢復</string>
+    <string name="aplicar_fuses">應用保險絲</string>
+    <string name="seleccionar_operacion">選擇操作</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+    <string name="publicidad_recomendada">推薦廣告</string>
+    <string name="lectura_completa">完整閱讀</string>
+    <string name="datos_de_memoria">記憶體已成功讀取</string>
+    <string name="sin_chip">無晶片</string>
+    <string name="rom_ok_blank">ROM：正常（空白）</string>
+    <string name="rom_not_blank">ROM：非空白</string>
+    <string name="eeprom_ok_blank">EEPROM：正常（空白）</string>
+    <string name="eeprom_not_blank">EEPROM：非空白</string>
+    <string name="idioma_espanol">西班牙語</string>
+    <string name="idioma_ingles">英語</string>
+    <string name="idioma_label">語言：%s</string>
+    <string name="copiar_todo">📋全部複製</string>
+    <string name="tutorial_copiado">教學已複製到剪貼簿</string>
+    <string name="error_cargar_tutorial">載入教學時出錯</string>
+    <string name="codigo_asm">📄 ASM 代碼</string>
+    <string name="comando_label">💻 命令</string>
+    <string name="copiar_btn">複製</string>
+    <string name="copiado_msg">已複製</string>
+    <string name="error_abrir_link">開啟連結時出錯</string>
+    <string name="error_generico_detalle">錯誤：%1$s</string>
+    <string name="cargando_tutorial">加载教程…</string>
+    <string name="paso_prefijo">步骤 </string>
+    <string name="error_prefijo">❌ 错误：</string>
+    <string name="exito_prefijo">✅ 成功：</string>
+    <string name="advertencia_prefijo">⚠️ 警告：</string>
+    <string name="coincidencias_encontradas">%1$d matches found</string>
+    <string name="resultado_verificacion">驗證結果</string>
+    <string name="verificada">已验证</string>
+    <string name="fallo">失败</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="yes">是</string>
+    <string name="no_label">否</string>
+    <string name="seleccionar_idioma">选择语言</string>
+    <string name="tutorial_instalacion">安裝教程</string>
+    <string name="copiar_todo_en">全部複製</string>
+    <string name="cerrar">关闭</string>
+    <string name="error_no_chip">錯誤：未選擇晶片或無熔絲</string>
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    <string name="hex_compatible">十六進位相容</string>
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    <string name="label_chip">晶片:</string>
+    <string name="editor_construido">Editor built</string>
+    <string name="restaurando_chip">Restoring from chip…</string>
+    <string name="restaurado_chip">Restored from chip</string>
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    <string name="restaurado_hex">Restored from HEX</string>
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    <string name="aplicando">正在应用…</string>
+    <string name="aplicado_exito">应用成功</string>
+    <string name="error_parse_id">Error parsing ID</string>
+    <string name="seccion_identificacion">標識信息</string>
+    <string name="seccion_memoria">記憶體規格</string>
+    <string name="seccion_hardware">架構與引腳</string>
+    <string name="seccion_programacion">編程參數</string>
+    <string name="seccion_fuses">可用熔絲</string>
+    <string name="chip_id_label">晶片編號：</string>
+    <string name="include_file_label">Include File:</string>
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    <string name="rom_words_bytes">%1$,d 字（%2$,d 位元組）</string>
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    <string name="eeprom_bytes">%1$,d 位元組</string>
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    <string name="flash_technology_label">Flash Technology:</string>
+    <string name="core_architecture_label">Core Architecture:</string>
+    <string name="core_bits_val">%1$d 位</string>
+    <string name="core_type_id_label">Core Type ID:</string>
+    <string name="pines_totales_label">Total Pins:</string>
+    <string name="pines_val">%1$d pins</string>
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    <string name="icsp_required_label">ICSP Required:</string>
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    <string name="power_sequence_label">Power Sequence:</string>
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    <string name="prog_retries_label">Prog. Retries:</string>
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    <string name="memory_error_label">Memory Error:</string>
+    <string name="texto_copiado_portapapeles">文字已複製到剪貼簿</string>
+    <string name="ad_label">广告</string>
+    <string name="codigo_copiado_portapapeles">代碼已複製到剪貼簿</string>
+    <string name="debe_procesar_hex_primero">您必須先處理 HEX 文件</string>
+    <string name="error_convirtiendo_datos_hex">轉換十六進位資料時出錯</string>
+    <string name="error_creando_archivo_salida">No se pudo crear el archivo de salida</string>
+    <string name="error_escribiendo_archivo_detalle">寫入檔案時發生錯誤：%1$s</string>
+    <string name="instalar">安装</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">沒有有效數據可供匯出</string>
+    <string name="not_available">不可用</string>
+    <string name="termino_no_encontrado">未找到術語：%1$s</string>
+    <string name="calibracion_label">校准：%1$s</string>
+    <string name="rom_label">ROM：%1$s</string>
+    <string name="eeprom_label">EEPROM：%1$s</string>
+    <string name="fuses_decodificados_exito">熔絲解碼成功</string>
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    <string name="error_leer_config">Could not read chip configuration</string>
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    <string name="verificando_rom_label">Verifying ROM…</string>
+    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
+    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    <string name="eeprom_total_info">EEPROM總晶片：%1$d位元組</string>
+    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
+    <string name="chip_label_info">晶片：%1$s</string>
+    <string name="core_info">核心：%1$d 位</string>
+    <string name="pin1_info">腳位 1：%1$s</string>
+    <string name="flash_info">快閃記憶體：%1$s</string>
+    <string name="icsp_only_info">僅 ICSP：%1$s</string>
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    <string name="si">是的</string>
+    <string name="no">不</string>
+    <string name="record_address_error">記錄位址%1$s超出允許範圍。</string>
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    <string name="error_vacio">Empty array</string>
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    <string name="paso_label">步骤</string>
+    <string name="nota_label">備註</string>
+    <string name="importante_label">重要</string>
+    <string name="advertencia_label">警告</string>
+    <string name="ejemplo_label">示例</string>
+    <string name="explicacion_label">说明</string>
+    <string name="error_export_manager_not_initialized">HexExportManager 未初始化</string>
+    <string name="error_leyendo_info_chip">讀取晶片資訊出錯</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">EEPROM：</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">位元組</string>
+    <string name="pic_seleccionado">PIC Selected</string>
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">使用 KITSRUS &lt;b&gt;協定 P018&lt;/b&gt; 對 PIC 微控制器進行程式設計的專業應用程式。它允許您透過 USB OTG 直接從 Android 對 PIC 裝置進行編程，無需使用 PC。</string>
+    <string name="about_features">主要特點：</string>
+    <string name="about_feature_1">透過 OTG 無需 PC 即可進行行動編程。</string>
+    <string name="about_feature_2">支援 KITSRUS P018 協定（K150、K128、K149、K182）。</string>
+    <string name="about_feature_3">直覺的材料設計介面。</string>
+    <string name="about_feature_4">支援arm64-v8a、armeabi-v7a、x86和x86_64架構。</string>
+    <string name="about_acknowledgements_title">致謝：</string>
+    <string name="about_acknowledgements_desc">特別感謝 Mike Wakerly、Adam Schubert 以及 AndroidIDE、Android Code Studio 和 KITSRUS 團隊。</string>
+    <string name="error_al_cambiar_modo">更改模式時發生錯誤：</string>
+    <string name="no_hay_firmware_valido">沒有有效的韌體</string>
 </resources>

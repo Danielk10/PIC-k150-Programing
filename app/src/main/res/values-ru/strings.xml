@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">Политика конфиденциальности</string>
-    
-
-    
-    
     <string name="aceptar">Принять</string>
-    
-    
     <string name="cancelar">Отмена</string>
-    
-    
     <string name="conectado">Подключено</string>
-    
-    
     <string name="desconectado">Отключено</string>
-    
-    
     <string name="grabando_pic">Запись PIC...</string>
-    
-    
     <string name="espere_grabacion_pic">Пожалуйста, подождите. Не отключайте устройство.</string>
-    
-    
     <string name="grabacion_completada_pic">Запись завершена</string>
-    
-    
     <string name="grabacion_correcta_pic">Прошивка успешно записана в PIC.</string>
-    
-    
     <string name="fallo_grabacion_pic">Ошибка записи</string>
-    
-    
     <string name="proceso_no_completado">Не удалось завершить процесс. Проверьте соединение.</string>
-    
-    
     <string name="protocolo_del_programador">Протокол программатора</string>
-    
-    
     <string name="modelo_del_programador">Модель программатора</string>
-    
-    
     <string name="modelo_programador">Модель программатора</string>
-    
-    
     <string name="protocolo">Протокол</string>
-    
-    
-    <string name="politica_de_privacidad">Политика конфиденциальности</string>
-    
-    
-    <string name="no_se_detecto_pic_en_socket">PIC в сокете не обнаружен</string>
-    
-    
-    <string name="pic_detectado_en_socket">PIC в сокете обнаружен</string>
-    
-    
-    <string name="error_borrando_memoria">Ошибка при стирании памяти</string>
-    
-    
-    <string name="memoria_borrada_exitosamente">Память успешно стерта</string>
-    
-    
-    <string name="memoria_leida_exitosamente">Память успешно прочитана</string>
-    
-    
-    <string name="seleccione_un_chip">Выберите чип</string>
-    
-    
-    <string name="seleccione_un_chip_y_cargue_un">Выберите чип и загрузите HEX-файл</string>
-    
-    
-    <string name="error_programando_pic">Ошибка программирования PIC</string>
-    
-    
-    <string name="pic_programado_exitosamente">PIC успешно запрограммирован</string>
-    
-    
-    <string name="iniciando_programacion">Начало программирования...</string>
-    
-    
-    <string name="error_cargando_archivo">Ошибка загрузки файла</string>
-    
-    
-    <string name="error_inicializando_chip">Ошибка инициализации чипа</string>
-    
-    
-    <string name="conectado_al_programador">Подключено к программатору</string>
-    
-    
-    <string name="error_inicializando_base_de_da">Ошибка инициализации базы данных чипов</string>
-    
-    
-    <string name="no_hay_chip_seleccionado">Чип не выбран</string>
-    
-    
-    <string name="modelo">Модель</string>
-    
-    
-    <string name="palabras_rom">Слова ROM</string>
-    
-    
-    <string name="tamano_rom">Размер ROM</string>
-    
-    
-    <string name="eeprom">EEPROM</string>
-    
-    
-    <string name="no_disponible">Недоступно</string>
-    
-    
-    <string name="tipo_de_nucleo">&quot;Тип ядра&quot;</string>
-    
-    
-    <string name="error_obteniendo_datos_del_chi">Ошибка получения данных о чипе</string>
-    
-    
-    <string name="modo">Режим</string>
-    
-    
-    <string name="icsp_solamente">Только ICSP</string>
-    
-    
-    <string name="pin_1">Контакт 1</string>
-    
-    
-    <string name="filemanager_no_inicializado">FileManager не инициализирован</string>
-    
-    
-    <string name="no_se_pudo_obtener_el_nombre_d">Не удалось получить имя файла</string>
-    
-    
-    <string name="seleccione_un_archivo_binario_">Выберите действительный двоичный файл (.hex или .bin)</string>
-    
-    
-    <string name="error_abriendo_el_archivo_sele">Ошибка при открытии выбранного файла</string>
-    
-    
-    <string name="el_archivo_seleccionado_esta_v">Выбранный файл пуст</string>
-    
-    
-    <string name="error_leyendo_el_archivo">Ошибка чтения файла</string>
-    
-    
-    <string name="error_inesperado_leyendo_el_ar">Неожиданная ошибка при чтении файла</string>
-    
-    
-    <string name="protocolo_no_inicializado">Протокол не инициализирован</string>
-    
-    
-    <string name="datos_invalidos_para_programac">Неверные данные для программирования</string>
-    
-    
-    <string name="borrando_memorias">Стирание памяти...</string>
-    
-    
-    <string name="error_borrando_memorias">Ошибка при стирании памяти</string>
-    
-    
-    <string name="programando_memoria_rom">Программирование памяти ROM...</string>
-    
-    
-    <string name="error_programando_rom">Ошибка программирования ROM</string>
-    
-    
-    <string name="programando_memoria_eeprom">Программирование памяти EEPROM...</string>
-    
-    
-    <string name="error_programando_eeprom">Ошибка программирования EEPROM</string>
-    
-    
-    <string name="programando_fuses_id">Программирование Fuses ID...</string>
-    
-    
-    <string name="error_programando_fuses">Ошибка программирования Fuses</string>
-    
-    
-    <string name="programando_fuses_18f">Программирование Fuses 18F...</string>
-    
-    
-    <string name="error_programando_fuses_18f">Ошибка программирования Fuses 18F</string>
-    
-    
-    <string name="programacion_completada">Программирование завершено</string>
-    
-    
-    <string name="error_inesperado">Неожиданная ошибка</string>
-    
-    
-    <string name="error_leyendo_memoria_rom">Ошибка чтения памяти ROM</string>
-    
-    
-    <string name="error_leyendo_memoria_eeprom">Ошибка чтения памяти EEPROM</string>
-    
-    
-    <string name="error_verificando_memoria">Ошибка проверки памяти</string>
-    
-    
-    <string name="error_detectando_chip">Ошибка обнаружения чипа</string>
-    
-    
-    <string name="driver_usb_no_disponible">Драйвер USB недоступен</string>
-    
-    
-    <string name="dispositivo_sin_puertos_usb_di">На устройстве нет доступных USB-портов</string>
-    
-    
-    <string name="error_inicializando_protocolo_">Ошибка инициализации протокола связи</string>
-    
-    
-    <string name="error_de_conexion_usb">Ошибка USB-подключения</string>
-    
-    
-    <string name="error_inesperado_durante_la_co">Неожиданная ошибка во время подключения</string>
-    
-
-    
-    
-    <string name="operaciones">Операции</string>
-    
-    
-    <string name="cargar_archivo_hex">Загрузить файл HEX</string>
-    
-    
-    <string name="programar_pic">Программировать PIC</string>
-    
-    
-    <string name="leer_memoria">Читать память</string>
-    
-    
-    <string name="verificar">Проверить</string>
-    
-    
-    <string name="borrar_memoria">Стереть память</string>
-    
-    
-    <string name="detectar_pic">Обнаружить PIC</string>
-    
-    
-    <string name="esperando_operacion">Ожидание операции...</string>
-    
-    
-    <string name="esperando_seleccion">Ожидание выбора...</string>
-    
-    
-    <string name="seleccionar_chip_pic">Выбрать чип PIC</string>
-    
-    
-    
-    <string name="gputils_termux_asm">GPUTILS в Termux ASM Compiler Android</string>
-    
-
-    
-    
-    <string name="configurar_fusibles">Настройка фьюзов</string>
-    
-    
-    <string name="selecciona_chip_primero">Сначала выберите чип</string>
-    
-    
-    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
-    <string name="fuses_configurados">Configured</string>
-    
-    
-    <string name="fuses_no_configurados">Not configured</string>
-    
-    
-    <string name="estado_fusibles">Состояние фьюзов:</string>
-    
-    
-    <string name="modo_icsp">ICSP Mode</string>
-    
-    
-    <string name="verificando_memoria">Verifying memory...</string>
-    
-    
-    <string name="verificacion_rom_ok">ROM проверена успешно</string>
-    
-    
-    <string name="verificacion_rom_fallo">Ошибка проверки ROM</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
-    <string name="verificacion_completa">Проверка завершена</string>
-    
-    
-    <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">Экспорт памяти</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">Чтение памяти...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Предохранители установлены правильно</string>
-    
-
-    
-    
-    
-    <string name="chip_info_titulo">Техническая информация о чипе</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="exportar_config_hex">Экспортировать CONFIG (.hex)</string>
-    
-    
-    
-    <string name="exportar_config_bin">Экспортировать CONFIG (.bin)</string>
-    
-    
-    
-    <string name="exportar_dump_completo">Экспортировать полный дамп (.hex)</string>
-    
-
-    
-    
-    
-    <string name="programar_todo">Программа Все</string>
-    
-    
-    
-    <string name="programar_solo_rom">Программа только ROM</string>
-    
-    
-    
-    <string name="programar_solo_eeprom">Программа только EEPROM</string>
-    
-    
-    
-    <string name="programar_solo_config">Только программа CONFIG</string>
-    
-    
-    
-    
-    
-    <string name="verificar_borrado">Проверка удаления</string>
-    
-    
-    
-    <string name="chip_esta_borrado">Чип стерт (пусто)</string>
-    
-    
-    
-    <string name="chip_no_esta_borrado">Чип НЕ стерт</string>
-    
-    
-    
-    <string name="verificando_borrado">Проверка стирания...</string>
-    
-    
-    
-    <string name="resultado_verificacion_borrado">Результат проверки стирания</string>
-    
-    
-    
-    <string name="error_verificando_borrado">Ошибка проверки стирания</string>
-    
-    
-    
-    
-    
-    
-    <string name="chip_seleccionado">Выбрана микросхема</string>
-    
-    
-    
-    <string name="configuracion_de_fusibles">Конфигурация предохранителя</string>
-    
-    
-    
-    <string name="id_personalizado_hex">Пользовательский идентификатор (HEX)</string>
-    
-    
-    
-    <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байт)</string>
-    
-    
-    
-    
-    
-    
-    <string name="restaurar_desde_bd">Восстановление из БД</string>
-    
-    
-    
-    <string name="restaurar_desde_hex">Восстановление из HEX</string>
-    
-    
-    
-    <string name="aplicar_fuses">Применение фьюзов</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="seleccionar_operacion">Выберите операцию</string>
-    
-    
-
-    
-    
-    <string name="publicidad_recomendada">Рекомендуемая реклама</string>
-    
-    
-    
-    <string name="lectura_completa">Полный текст</string>
-    
-    
-    
-    <string name="sin_chip">Без чипа</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM: OK (пусто)</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM: НЕ ПУСТОЕ</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM: OK (пусто)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM: НЕ ПУСТОЕ</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">Испанский</string>
-    
-    
-    
-    <string name="idioma_ingles">Английский</string>
-    
-    
-    
-    <string name="idioma_label">Язык: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 Копировать все</string>
-    
-    
-    
-    <string name="tutorial_copiado">Учебное пособие скопировано в буфер обмена</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">Ошибка при загрузке учебного пособия</string>
-    
-    
-    
-    <string name="codigo_asm">📄 Код ASM</string>
-    
-    
-    
-    <string name="comando_label">💻 Команда</string>
-    
-    
-    
-    <string name="copiar_btn">Копировать</string>
-    
-    
-    
-    <string name="copiado_msg">Скопировано</string>
-    
-    
-    
-    <string name="error_abrir_link">Ошибка открытия ссылки</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">Ошибка: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">Необходимо сначала обработать HEX-файл</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">Да</string>
-    
-    
-    
-    <string name="no">Нет</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">Код скопирован в буфер обмена</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">Текст скопирован в буфер обмена</string>
-    
-    
-    
-    <string name="termino_no_encontrado">Термин не найден: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">Нет допустимых данных для экспорта</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">Ошибка преобразования шестнадцатеричных данных</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">Не удалось создать выходной файл</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">Ошибка записи файла: %1$s</string>
-    
-    
-
-
-
-
-    
-    <string name="datos_de_memoria">Память успешно прочитана</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
-    <string name="cargando_tutorial">Загрузка руководства…</string>
-    
-    
-    <string name="paso_prefijo">ШАГ </string>
-    
-    
-    <string name="error_prefijo">❌ ОШИБКА: </string>
-    
-    
-    <string name="exito_prefijo">✅ УСПЕХ: </string>
-    
-    
-    <string name="advertencia_prefijo">⚠️ ПРЕДУПРЕЖДЕНИЕ: </string>
-    
-    
-    <string name="coincidencias_encontradas">Найдено %1$d совпадений</string>
-    
-    
-    <string name="resultado_verificacion">Результат проверки</string>
-    
-    
-    <string name="verificada">Проверено</string>
-    
-    
-    <string name="fallo">Ошибка</string>
-    
-    
-    <string name="yes">Да</string>
-    
-    
-    <string name="no_label">Нет</string>
-    
-    
-    <string name="seleccionar_idioma">Выбрать язык</string>
-    
-    
-    <string name="tutorial_instalacion">Руководство по установке</string>
-    
-    
-    <string name="copiar_todo_en">Копировать всё</string>
-    
-    
-    <string name="cerrar">Закрыть</string>
-    
-    
-    <string name="error_no_chip">Ошибка: Чип не выбран или фьюзы недоступны</string>
-    
-    
-    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
-    <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Чип: </string>
-    
-    
-    <string name="editor_construido">Editor built</string>
-    
-    
-    <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
-    <string name="restaurado_chip">Restored from chip</string>
-    
-    
-    <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
-    <string name="restaurado_hex">Restored from HEX</string>
-    
-    
-    <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
-    <string name="aplicando">Применение…</string>
-    
-    
-    <string name="aplicado_exito">Успешно применено</string>
-    
-    
-    <string name="error_parse_id">Error parsing ID</string>
-    
-    
-    <string name="seccion_identificacion">ИДЕНТИФИКАЦИЯ</string>
-    
-    
-    <string name="seccion_memoria">ХАРАКТЕРИСТИКИ ПАМЯТИ</string>
-    
-    
-    <string name="seccion_hardware">АРХИТЕКТУРА И ВЫВОДЫ</string>
-    
-    
-    <string name="seccion_programacion">ПАРАМЕТРЫ ПРОГРАММИРОВАНИЯ</string>
-    
-    
-    <string name="seccion_fuses">ДОСТУПНЫЕ ФЬЮЗЫ</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
-    <string name="include_file_label">Include File:</string>
-    
-    
-    <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
-    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
-    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
-    <string name="flash_technology_label">Flash Technology:</string>
-    
-    
-    <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
-    <string name="core_type_id_label">Core Type ID:</string>
-    
-    
-    <string name="pines_totales_label">Total Pins:</string>
-    
-    
-    <string name="pines_val">%1$d pins</string>
-    
-    
-    <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
-    <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
-    <string name="icsp_required_label">ICSP Required:</string>
-    
-    
-    <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
-    <string name="power_sequence_label">Power Sequence:</string>
-    
-    
-    <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
-    <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
-    <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
-    <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
-    <string name="memory_error_label">Memory Error:</string>
-    
-    
-    <string name="ad_label">Реклама</string>
-    
-    
-    <string name="instalar">Установить</string>
-    
-    
-    <string name="not_available">Недоступно</string>
-    
-    
-    <string name="calibracion_label">Калибровка: %1$s</string>
-    
-    
-    <string name="rom_label">ROM: %1$s</string>
-    
-    
-    <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
-    <string name="fuses_decodificados_exito">Фьюзы декодированы успешно</string>
-    
-    
-    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
-    <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
-    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
-    <string name="verificando_rom_label">Проверка ROM…</string>
-    
-    
-    <string name="rom_verificada_exito">ROM проверена успешно ✓</string>
-    
-    
-    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
-    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
-    <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
-    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
-    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
-    <string name="verificando_eeprom_label">Проверка EEPROM…</string>
-    
-    
-    <string name="eeprom_verificada_exito">EEPROM проверена успешно ✓</string>
-    
-    
-    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
-    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
-    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
-    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
-    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
-    <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
-    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
-    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
-    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
-    <string name="eeprom_no_disponible">EEPROM: Недоступна для этого чипа</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
-    <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
-    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
-    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
-    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
-    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
-    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
-    <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
-    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
-    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
-    <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
-    <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
-    <string name="error_vacio">Empty array</string>
-    
-    
-    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
-    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
-    <string name="paso_label">ШАГ</string>
-    
-    
-    <string name="nota_label">Примечание</string>
-    
-    
-    <string name="importante_label">Важно</string>
-    
-    
-    <string name="advertencia_label">Предупреждение</string>
-    
-    
-    <string name="ejemplo_label">Пример</string>
-    
-    
-    <string name="explicacion_label">Объяснение</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
-    <string name="pic_seleccionado">PIC Selected</string>
-    
-    
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="politica_de_privacidad">Политика конфиденциальности</string>
+    <string name="no_se_detecto_pic_en_socket">PIC в сокете не обнаружен</string>
+    <string name="pic_detectado_en_socket">PIC в сокете обнаружен</string>
+    <string name="error_borrando_memoria">Ошибка при стирании памяти</string>
+    <string name="memoria_borrada_exitosamente">Память успешно стерта</string>
+    <string name="memoria_leida_exitosamente">Память успешно прочитана</string>
+    <string name="seleccione_un_chip">Выберите чип</string>
+    <string name="seleccione_un_chip_y_cargue_un">Выберите чип и загрузите HEX-файл</string>
+    <string name="error_programando_pic">Ошибка программирования PIC</string>
+    <string name="pic_programado_exitosamente">PIC успешно запрограммирован</string>
+    <string name="iniciando_programacion">Начало программирования...</string>
+    <string name="error_cargando_archivo">Ошибка загрузки файла</string>
+    <string name="error_inicializando_chip">Ошибка инициализации чипа</string>
+    <string name="conectado_al_programador">Подключено к программатору</string>
+    <string name="error_inicializando_base_de_da">Ошибка инициализации базы данных чипов</string>
+    <string name="no_hay_chip_seleccionado">Чип не выбран</string>
+    <string name="modelo">Модель</string>
+    <string name="palabras_rom">Слова ROM</string>
+    <string name="tamano_rom">Размер ROM</string>
+    <string name="eeprom">ЭСППЗУ</string>
+    <string name="no_disponible">Недоступно</string>
+    <string name="tipo_de_nucleo">"Тип ядра"</string>
+    <string name="error_obteniendo_datos_del_chi">Ошибка получения данных о чипе</string>
+    <string name="modo">Режим</string>
+    <string name="icsp_solamente">Только ICSP</string>
+    <string name="pin_1">Контакт 1</string>
+    <string name="filemanager_no_inicializado">FileManager не инициализирован</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Не удалось получить имя файла</string>
+    <string name="seleccione_un_archivo_binario_">Выберите действительный двоичный файл (.hex или .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Ошибка при открытии выбранного файла</string>
+    <string name="el_archivo_seleccionado_esta_v">Выбранный файл пуст</string>
+    <string name="error_leyendo_el_archivo">Ошибка чтения файла</string>
+    <string name="error_inesperado_leyendo_el_ar">Неожиданная ошибка при чтении файла</string>
+    <string name="protocolo_no_inicializado">Протокол не инициализирован</string>
+    <string name="datos_invalidos_para_programac">Неверные данные для программирования</string>
+    <string name="borrando_memorias">Стирание памяти...</string>
+    <string name="error_borrando_memorias">Ошибка при стирании памяти</string>
+    <string name="programando_memoria_rom">Программирование памяти ROM...</string>
+    <string name="error_programando_rom">Ошибка программирования ROM</string>
+    <string name="programando_memoria_eeprom">Программирование памяти EEPROM...</string>
+    <string name="error_programando_eeprom">Ошибка программирования EEPROM</string>
+    <string name="programando_fuses_id">Программирование Fuses ID...</string>
+    <string name="error_programando_fuses">Ошибка программирования Fuses</string>
+    <string name="programando_fuses_18f">Программирование Fuses 18F...</string>
+    <string name="error_programando_fuses_18f">Ошибка программирования Fuses 18F</string>
+    <string name="programacion_completada">Программирование завершено</string>
+    <string name="error_inesperado">Неожиданная ошибка</string>
+    <string name="error_leyendo_memoria_rom">Ошибка чтения памяти ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Ошибка чтения памяти EEPROM</string>
+    <string name="error_verificando_memoria">Ошибка проверки памяти</string>
+    <string name="error_detectando_chip">Ошибка обнаружения чипа</string>
+    <string name="driver_usb_no_disponible">Драйвер USB недоступен</string>
+    <string name="dispositivo_sin_puertos_usb_di">На устройстве нет доступных USB-портов</string>
+    <string name="error_inicializando_protocolo_">Ошибка инициализации протокола связи</string>
+    <string name="error_de_conexion_usb">Ошибка USB-подключения</string>
+    <string name="error_inesperado_durante_la_co">Неожиданная ошибка во время подключения</string>
+    <string name="operaciones">Операции</string>
+    <string name="cargar_archivo_hex">Загрузить файл HEX</string>
+    <string name="programar_pic">Программировать PIC</string>
+    <string name="leer_memoria">Читать память</string>
+    <string name="verificar">Проверить</string>
+    <string name="borrar_memoria">Стереть память</string>
+    <string name="detectar_pic">Обнаружить PIC</string>
+    <string name="esperando_operacion">Ожидание операции...</string>
+    <string name="esperando_seleccion">Ожидание выбора...</string>
+    <string name="seleccionar_chip_pic">Выбрать чип PIC</string>
+    <string name="log_copiado">Log copied to clipboard</string>
+    <string name="gputils_termux_asm">GPUTILS в Termux ASM Compiler Android</string>
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
+    <string name="configurar_fusibles">Настройка фьюзов</string>
+    <string name="selecciona_chip_primero">Сначала выберите чип</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Состояние фьюзов:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM проверена успешно</string>
+    <string name="verificacion_rom_fallo">Ошибка проверки ROM</string>
+    <string name="verificacion_completa">Проверка завершена</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="chip_info_titulo">Техническая информация о чипе</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Экспорт памяти</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportar_config_hex">Экспортировать CONFIG (.hex)</string>
+    <string name="exportar_config_bin">Экспортировать CONFIG (.bin)</string>
+    <string name="exportar_dump_completo">Экспортировать полный дамп (.hex)</string>
+    <string name="exportar_dump_completo_bin">Экспорт полного дампа (.bin)</string>
+    <string name="programar_todo">Программа Все</string>
+    <string name="programar_solo_rom">Программа только ROM</string>
+    <string name="programar_solo_eeprom">Программа только EEPROM</string>
+    <string name="programar_solo_config">Только программа CONFIG</string>
+    <string name="verificar_borrado">Проверка удаления</string>
+    <string name="chip_esta_borrado">Чип стерт (пусто)</string>
+    <string name="chip_no_esta_borrado">Чип НЕ стерт</string>
+    <string name="verificando_borrado">Проверка стирания...</string>
+    <string name="resultado_verificacion_borrado">Результат проверки стирания</string>
+    <string name="error_verificando_borrado">Ошибка проверки стирания</string>
+    <string name="chip_seleccionado">Выбрана микросхема</string>
+    <string name="configuracion_de_fusibles">Конфигурация предохранителя</string>
+    <string name="id_personalizado_hex">Пользовательский идентификатор (HEX)</string>
+    <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байт)</string>
+    <string name="restaurar_desde_bd">Восстановление из БД</string>
+    <string name="restaurar_desde_hex">Восстановление из HEX</string>
+    <string name="aplicar_fuses">Применение фьюзов</string>
+    <string name="seleccionar_operacion">Выберите операцию</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+    <string name="publicidad_recomendada">Рекомендуемая реклама</string>
+    <string name="lectura_completa">Полный текст</string>
+    <string name="datos_de_memoria">Память успешно прочитана</string>
+    <string name="sin_chip">Без чипа</string>
+    <string name="rom_ok_blank">ROM: OK (пусто)</string>
+    <string name="rom_not_blank">ROM: НЕ ПУСТОЕ</string>
+    <string name="eeprom_ok_blank">EEPROM: OK (пусто)</string>
+    <string name="eeprom_not_blank">EEPROM: НЕ ПУСТОЕ</string>
+    <string name="idioma_espanol">Испанский</string>
+    <string name="idioma_ingles">Английский</string>
+    <string name="idioma_label">Язык: %s</string>
+    <string name="copiar_todo">📋 Копировать все</string>
+    <string name="tutorial_copiado">Учебное пособие скопировано в буфер обмена</string>
+    <string name="error_cargar_tutorial">Ошибка при загрузке учебного пособия</string>
+    <string name="codigo_asm">📄 Код ASM</string>
+    <string name="comando_label">💻 Команда</string>
+    <string name="copiar_btn">Копировать</string>
+    <string name="copiado_msg">Скопировано</string>
+    <string name="error_abrir_link">Ошибка открытия ссылки</string>
+    <string name="error_generico_detalle">Ошибка: %1$s</string>
+    <string name="cargando_tutorial">Загрузка руководства…</string>
+    <string name="paso_prefijo">ШАГ </string>
+    <string name="error_prefijo">❌ ОШИБКА: </string>
+    <string name="exito_prefijo">✅ УСПЕХ: </string>
+    <string name="advertencia_prefijo">⚠️ ПРЕДУПРЕЖДЕНИЕ: </string>
+    <string name="coincidencias_encontradas">Найдено %1$d совпадений</string>
+    <string name="resultado_verificacion">Результат проверки</string>
+    <string name="verificada">Проверено</string>
+    <string name="fallo">Ошибка</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="yes">Да</string>
+    <string name="no_label">Нет</string>
+    <string name="seleccionar_idioma">Выбрать язык</string>
+    <string name="tutorial_instalacion">Руководство по установке</string>
+    <string name="copiar_todo_en">Копировать всё</string>
+    <string name="cerrar">Закрыть</string>
+    <string name="error_no_chip">Ошибка: Чип не выбран или фьюзы недоступны</string>
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    <string name="hex_compatible">HEX-совместимый</string>
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    <string name="label_chip">Чип: </string>
+    <string name="editor_construido">Editor built</string>
+    <string name="restaurando_chip">Restoring from chip…</string>
+    <string name="restaurado_chip">Restored from chip</string>
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    <string name="restaurado_hex">Restored from HEX</string>
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    <string name="aplicando">Применение…</string>
+    <string name="aplicado_exito">Успешно применено</string>
+    <string name="error_parse_id">Error parsing ID</string>
+    <string name="seccion_identificacion">ИДЕНТИФИКАЦИЯ</string>
+    <string name="seccion_memoria">ХАРАКТЕРИСТИКИ ПАМЯТИ</string>
+    <string name="seccion_hardware">АРХИТЕКТУРА И ВЫВОДЫ</string>
+    <string name="seccion_programacion">ПАРАМЕТРЫ ПРОГРАММИРОВАНИЯ</string>
+    <string name="seccion_fuses">ДОСТУПНЫЕ ФЬЮЗЫ</string>
+    <string name="chip_id_label">Идентификатор чипа:</string>
+    <string name="include_file_label">Include File:</string>
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    <string name="rom_words_bytes">%1$,d слов (%2$,d байт)</string>
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    <string name="eeprom_bytes">%1$,d Байт</string>
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    <string name="flash_technology_label">Flash Technology:</string>
+    <string name="core_architecture_label">Core Architecture:</string>
+    <string name="core_bits_val">%1$d бит</string>
+    <string name="core_type_id_label">Core Type ID:</string>
+    <string name="pines_totales_label">Total Pins:</string>
+    <string name="pines_val">%1$d pins</string>
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    <string name="icsp_required_label">ICSP Required:</string>
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    <string name="power_sequence_label">Power Sequence:</string>
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    <string name="prog_retries_label">Prog. Retries:</string>
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    <string name="memory_error_label">Memory Error:</string>
+    <string name="texto_copiado_portapapeles">Текст скопирован в буфер обмена</string>
+    <string name="ad_label">Реклама</string>
+    <string name="codigo_copiado_portapapeles">Код скопирован в буфер обмена</string>
+    <string name="debe_procesar_hex_primero">Необходимо сначала обработать HEX-файл</string>
+    <string name="error_convirtiendo_datos_hex">Ошибка преобразования шестнадцатеричных данных</string>
+    <string name="error_creando_archivo_salida">Не удалось создать выходной файл</string>
+    <string name="error_escribiendo_archivo_detalle">Ошибка записи файла: %1$s</string>
+    <string name="instalar">Установить</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">Нет допустимых данных для экспорта</string>
+    <string name="not_available">Недоступно</string>
+    <string name="termino_no_encontrado">Термин не найден: %1$s</string>
+    <string name="calibracion_label">Калибровка: %1$s</string>
+    <string name="rom_label">ПЗУ: %1$s</string>
+    <string name="eeprom_label">ЭСППЗУ: %1$s</string>
+    <string name="fuses_decodificados_exito">Фьюзы декодированы успешно</string>
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    <string name="error_leer_config">Could not read chip configuration</string>
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    <string name="verificando_rom_label">Проверка ROM…</string>
+    <string name="rom_verificada_exito">ROM проверена успешно ✓</string>
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    <string name="verificando_eeprom_label">Проверка EEPROM…</string>
+    <string name="eeprom_verificada_exito">EEPROM проверена успешно ✓</string>
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    <string name="eeprom_total_info">Общий чип EEPROM: %1$d байт</string>
+    <string name="eeprom_no_disponible">EEPROM: Недоступна для этого чипа</string>
+    <string name="chip_label_info">Чип: %1$s</string>
+    <string name="core_info">Ядро: %1$d бит</string>
+    <string name="pin1_info">Контакт 1: %1$s</string>
+    <string name="flash_info">Вспышка: %1$s</string>
+    <string name="icsp_only_info">Только ICSP: %1$s</string>
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    <string name="si">Да</string>
+    <string name="no">Нет</string>
+    <string name="record_address_error">Адрес записи %1$s находится за пределами допустимого диапазона.</string>
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    <string name="error_vacio">Empty array</string>
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    <string name="paso_label">ШАГ</string>
+    <string name="nota_label">Примечание</string>
+    <string name="importante_label">Важно</string>
+    <string name="advertencia_label">Предупреждение</string>
+    <string name="ejemplo_label">Пример</string>
+    <string name="explicacion_label">Объяснение</string>
+    <string name="error_export_manager_not_initialized">HexExportManager не инициализирован</string>
+    <string name="error_leyendo_info_chip">Ошибка чтения информации о чипе</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">ЭСППЗУ:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">байты</string>
+    <string name="pic_seleccionado">PIC Selected</string>
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">Профессиональное приложение для программирования микроконтроллеров PIC с использованием KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Он позволяет программировать устройства PIC непосредственно с Android через USB OTG без необходимости использования ПК.</string>
+    <string name="about_features">Основные особенности:</string>
+    <string name="about_feature_1">Мобильное программирование без ПК через OTG.</string>
+    <string name="about_feature_2">Поддержка протоколов KITSRUS P018 (К150, К128, К149, К182).</string>
+    <string name="about_feature_3">Интуитивно понятный интерфейс Material Design.</string>
+    <string name="about_feature_4">Поддержка архитектур Arm64-v8a, Armeabi-v7a, x86 и x86_64.</string>
+    <string name="about_acknowledgements_title">Благодарности:</string>
+    <string name="about_acknowledgements_desc">Особая благодарность Майку Уэйкерли, Адаму Шуберту и командам AndroidIDE, Android Code Studio и KITSRUS.</string>
+    <string name="error_al_cambiar_modo">Ошибка при смене режима:</string>
+    <string name="no_hay_firmware_valido">Нет действующей прошивки</string>
 </resources>

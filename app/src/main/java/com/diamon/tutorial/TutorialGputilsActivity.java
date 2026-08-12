@@ -154,11 +154,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
     }
 
     private void updateCopyButtonText(String language) {
-        if (language.equals("es")) {
-            copyButton.setText(R.string.copiar_todo);
-        } else {
-            copyButton.setText(R.string.copiar_todo_en);
-        }
+        copyButton.setText(R.string.copiar_todo);
     }
 
     private void copyTutorialText() {
@@ -170,9 +166,7 @@ public class TutorialGputilsActivity extends AppCompatActivity {
             clipboard.setPrimaryClip(clip);
 
             android.view.View rootView = findViewById(android.R.id.content);
-            Snackbar.make(rootView,
-                    currentLanguage.equals("es") ? getString(R.string.tutorial_copiado) : "Tutorial copied to clipboard",
-                    Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(rootView, getString(R.string.tutorial_copiado), Snackbar.LENGTH_SHORT).show();
         }
     }
 

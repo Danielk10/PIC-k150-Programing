@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">Izinqubomgomo Zobumfihlo</string>
-    
-
-    
-    
     <string name="aceptar">Yamukela</string>
-    
-    
     <string name="cancelar">Khansela</string>
-    
-    
     <string name="conectado">Kuxhunyiwe</string>
-    
-    
     <string name="desconectado">Kunqunyuliwe</string>
-    
-    
     <string name="grabando_pic">Ihlela i-PIC...</string>
-    
-    
     <string name="espere_grabacion_pic">Sicela ulinde. Ungayinqumuli idivayisi.</string>
-    
-    
     <string name="grabacion_completada_pic">Ukuhlela Kuqedile</string>
-    
-    
     <string name="grabacion_correcta_pic">I-firmware ibhalwe ngempumelelo ku-PIC.</string>
-    
-    
     <string name="fallo_grabacion_pic">Ukuhlela Kwehlulekile</string>
-    
-    
     <string name="proceso_no_completado">Inqubo ayikwazanga ukuqedwa. Hlola uxhumo.</string>
-    
-    
     <string name="protocolo_del_programador">I-Protocol Yomhleli</string>
-    
-    
     <string name="modelo_del_programador">Imodeli Yomhleli</string>
-    
-    
     <string name="modelo_programador">Imodeli Yomhleli</string>
-    
-    
     <string name="protocolo">I-Protocol</string>
-    
-    
-    <string name="politica_de_privacidad">Inqubomgomo Yobumfihlo</string>
-    
-    
-    <string name="no_se_detecto_pic_en_socket">I-PIC ayitholakalanga esokethini</string>
-    
-    
-    <string name="pic_detectado_en_socket">I-PIC itholakele esokethini</string>
-    
-    
-    <string name="error_borrando_memoria">Iphutha lokususa inkumbulo</string>
-    
-    
-    <string name="memoria_borrada_exitosamente">Inkumbulo isuswe ngempumelelo</string>
-    
-    
-    <string name="memoria_leida_exitosamente">Inkumbulo ifundwe ngempumelelo</string>
-    
-    
-    <string name="seleccione_un_chip">Khetha i-chip</string>
-    
-    
-    <string name="seleccione_un_chip_y_cargue_un">Khetha i-chip bese ulayisha ifayela le-HEX</string>
-    
-    
-    <string name="error_programando_pic">Iphutha lokuhlela i-PIC</string>
-    
-    
-    <string name="pic_programado_exitosamente">I-PIC ihlelwe ngempumelelo</string>
-    
-    
-    <string name="iniciando_programacion">Kuqalwa ukuhlela...</string>
-    
-    
-    <string name="error_cargando_archivo">Iphutha lokulayisha ifayela</string>
-    
-    
-    <string name="error_inicializando_chip">Iphutha lokuqalisa i-chip</string>
-    
-    
-    <string name="conectado_al_programador">Kuxhunywe kumhleli</string>
-    
-    
-    <string name="error_inicializando_base_de_da">Iphutha lokuqalisa idathabeyisi ye-chip</string>
-    
-    
-    <string name="no_hay_chip_seleccionado">Ayikho i-chip ekhethiwe</string>
-    
-    
-    <string name="modelo">Imodeli</string>
-    
-    
-    <string name="palabras_rom">Amagama e-ROM</string>
-    
-    
-    <string name="tamano_rom">Ubukhulu be-ROM</string>
-    
-    
-    <string name="eeprom">EEPROM</string>
-    
-    
-    <string name="no_disponible">Akutholakali</string>
-    
-    
-    <string name="tipo_de_nucleo">Uhlobo Lwe-Core</string>
-    
-    
-    <string name="error_obteniendo_datos_del_chi">Iphutha lokuthola idatha ye-chip</string>
-    
-    
-    <string name="modo">Imodi</string>
-    
-    
-    <string name="icsp_solamente">I-ICSP kuphela</string>
-    
-    
-    <string name="pin_1">I-Pin 1</string>
-    
-    
-    <string name="filemanager_no_inicializado">I-FileManager ayiqalisiwe</string>
-    
-    
-    <string name="no_se_pudo_obtener_el_nombre_d">Akukwazeki ukuthola igama lefayela</string>
-    
-    
-    <string name="seleccione_un_archivo_binario_">Khetha ifayela le-binary elivumelekile (.hex noma .bin)</string>
-    
-    
-    <string name="error_abriendo_el_archivo_sele">Iphutha lokuvula ifayela elikhethiwe</string>
-    
-    
-    <string name="el_archivo_seleccionado_esta_v">Ifayela elikhethiwe alinandaba</string>
-    
-    
-    <string name="error_leyendo_el_archivo">Iphutha lokufunda ifayela</string>
-    
-    
-    <string name="error_inesperado_leyendo_el_ar">Iphutha elingalindelekile lokufunda ifayela</string>
-    
-    
-    <string name="protocolo_no_inicializado">I-Protocol ayiqalisiwe</string>
-    
-    
-    <string name="datos_invalidos_para_programac">Idatha engavumelekile yokuhlelwa</string>
-    
-    
-    <string name="borrando_memorias">Kususa inkumbulo...</string>
-    
-    
-    <string name="error_borrando_memorias">Iphutha lokususa inkumbulo</string>
-    
-    
-    <string name="programando_memoria_rom">Kuhlela inkumbulo ye-ROM...</string>
-    
-    
-    <string name="error_programando_rom">Iphutha lokuhlela i-ROM</string>
-    
-    
-    <string name="programando_memoria_eeprom">Kuhlela inkumbulo ye-EEPROM...</string>
-    
-    
-    <string name="error_programando_eeprom">Iphutha lokuhlela i-EEPROM</string>
-    
-    
-    <string name="programando_fuses_id">Kuhlela i-Fuses ID...</string>
-    
-    
-    <string name="error_programando_fuses">Iphutha lokuhlela i-Fuses</string>
-    
-    
-    <string name="programando_fuses_18f">Kuhlela i-18F Fuses...</string>
-    
-    
-    <string name="error_programando_fuses_18f">Iphutha lokuhlela i-18F Fuses</string>
-    
-    
-    <string name="programacion_completada">Ukuhlela kuqedile</string>
-    
-    
-    <string name="error_inesperado">Iphutha elingalindelekile</string>
-    
-    
-    <string name="error_leyendo_memoria_rom">Iphutha lokufunda inkumbulo ye-ROM</string>
-    
-    
-    <string name="error_leyendo_memoria_eeprom">Iphutha lokufunda inkumbulo ye-EEPROM</string>
-    
-    
-    <string name="error_verificando_memoria">Iphutha lokuqinisekisa inkumbulo</string>
-    
-    
-    <string name="error_detectando_chip">Iphutha lokuthola i-chip</string>
-    
-    
-    <string name="driver_usb_no_disponible">I-driver ye-USB ayitholakali</string>
-    
-    
-    <string name="dispositivo_sin_puertos_usb_di">Idivayisi ayinawo amaport e-USB atholakalayo</string>
-    
-    
-    <string name="error_inicializando_protocolo_">Iphutha lokuqalisa i-protocol yokuxhumana</string>
-    
-    
-    <string name="error_de_conexion_usb">Iphutha lokuxhuma i-USB</string>
-    
-    
-    <string name="error_inesperado_durante_la_co">Iphutha elingalindelekile ngesikhathi sokuxhuma</string>
-    
-
-    
-    
-    <string name="operaciones">Izenzo</string>
-    
-    
-    <string name="cargar_archivo_hex">Layisha Ifayela le-HEX</string>
-    
-    
-    <string name="programar_pic">Hlela i-PIC</string>
-    
-    
-    <string name="leer_memoria">Funda Inkumbulo</string>
-    
-    
-    <string name="verificar">Qinisekisa</string>
-    
-    
-    <string name="borrar_memoria">Susa Inkumbulo</string>
-    
-    
-    <string name="detectar_pic">Thola i-PIC</string>
-    
-    
-    <string name="esperando_operacion">Kulindwe isenzo...</string>
-    
-    
-    <string name="esperando_seleccion">Kulindwe ukukhetha...</string>
-    
-    
-    <string name="seleccionar_chip_pic">Khetha i-PIC Chip</string>
-    
-    
-    
-    <string name="gputils_termux_asm">GPUTILS ku-Termux ASM Compiler Android</string>
-    
-
-    
-    
-    <string name="configurar_fusibles">Hlela amafyuzi</string>
-    
-    
-    <string name="selecciona_chip_primero">Khetha i-chip kuqala</string>
-    
-    
-    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
-    <string name="fuses_configurados">Configured</string>
-    
-    
-    <string name="fuses_no_configurados">Not configured</string>
-    
-    
-    <string name="estado_fusibles">Isimo samafyuzi:</string>
-    
-    
-    <string name="modo_icsp">ICSP Mode</string>
-    
-    
-    <string name="verificando_memoria">Verifying memory...</string>
-    
-    
-    <string name="verificacion_rom_ok">ROM iqinisekisiwe</string>
-    
-    
-    <string name="verificacion_rom_fallo">Ukuqinisekisa kwe-ROM kwehlulekile</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
-    <string name="verificacion_completa">Ukuqinisekisa kuphelile</string>
-    
-    
-    <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">Thumela inkumbulo</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">Inkumbulo yokufunda...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Ama-fuse asetshenziswe kahle</string>
-    
-
-    
-    
-    
-    <string name="chip_info_titulo">Ulwazi Lwezobuchwepheshe Lwe-chip</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="exportar_config_hex">Khipha i-CONFIG (.hex)</string>
-    
-    
-    
-    <string name="exportar_config_bin">Khipha i-CONFIG (.bin)</string>
-    
-    
-    
-    <string name="exportar_dump_completo">Khipha Ukulahla Okugcwele (.hex)</string>
-    
-
-    
-    
-    
-    <string name="programar_todo">Hlela Konke</string>
-    
-    
-    
-    <string name="programar_solo_rom">Uhlelo lwe-ROM kuphela</string>
-    
-    
-    
-    <string name="programar_solo_eeprom">Uhlelo EEPROM kuphela</string>
-    
-    
-    
-    <string name="programar_solo_config">Uhlelo kuphela CONFIG</string>
-    
-    
-    
-    
-    
-    <string name="verificar_borrado">Qinisekisa Ukususwa</string>
-    
-    
-    
-    <string name="chip_esta_borrado">I-chip iyasulwa (Ayinalutho)</string>
-    
-    
-    
-    <string name="chip_no_esta_borrado">I-chip AYISULIWE</string>
-    
-    
-    
-    <string name="verificando_borrado">Iqinisekisa ukususwa...</string>
-    
-    
-    
-    <string name="resultado_verificacion_borrado">Umphumela Wokuqinisekisa Ukususwa</string>
-    
-    
-    
-    <string name="error_verificando_borrado">Iphutha lokuqinisekisa ukususwa</string>
-    
-    
-    
-    
-    
-    
-    <string name="chip_seleccionado">I-chip ekhethiwe</string>
-    
-    
-    
-    <string name="configuracion_de_fusibles">Ukucushwa kwe-Fuse</string>
-    
-    
-    
-    <string name="id_personalizado_hex">I-ID yangokwezifiso (HEX)</string>
-    
-    
-    
-    <string name="hint_id_personalizado">Isibonelo: 1A 2B 3C 4D (4 noma 8 bytes)</string>
-    
-    
-    
-    
-    
-    
-    <string name="restaurar_desde_bd">Buyisela kusuka ku-DB</string>
-    
-    
-    
-    <string name="restaurar_desde_hex">Buyisela kusuka ku-HEX</string>
-    
-    
-    
-    <string name="aplicar_fuses">Faka amaFuse</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="seleccionar_operacion">Khetha Ukusebenza</string>
-    
-    
-
-    
-    
-    <string name="publicidad_recomendada">Ukukhangisa okunconyiwe</string>
-    
-    
-    
-    <string name="lectura_completa">Qedela Ukufunda</string>
-    
-    
-    
-    <string name="sin_chip">ngaphandle kwe-chip</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">I-ROM: Kulungile (Akunalutho)</string>
-    
-    
-    
-    <string name="rom_not_blank">I-ROM: AKUSHONJA</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">I-EEPROM: KULUNGILE (Akunalutho)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">I-EEPROM: AKUKHO LONA</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">ISpanishi</string>
-    
-    
-    
-    <string name="idioma_ingles">IsiNgisi</string>
-    
-    
-    
-    <string name="idioma_label">Ulimi: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 Kopisha Konke</string>
-    
-    
-    
-    <string name="tutorial_copiado">Okokufundisa kukopishwe ebhodini lokunamathisela</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">Iphutha ekulayisheni okokufundisa</string>
-    
-    
-    
-    <string name="codigo_asm">📄 ikhodi ye-ASM</string>
-    
-    
-    
-    <string name="comando_label">💻 Umyalo</string>
-    
-    
-    
-    <string name="copiar_btn">Kopisha</string>
-    
-    
-    
-    <string name="copiado_msg">Kukopishiwe</string>
-    
-    
-    
-    <string name="error_abrir_link">Iphutha lokuvula isixhumanisi</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">Iphutha: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">Kufanele ucubungule ifayela le-HEX kuqala</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">Yebo</string>
-    
-    
-    
-    <string name="no">Cha</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">Ikhodi ikopishelwe ebhodini lokunamathisela</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">Umbhalo ukopishwe ebhodini lokunamathisela</string>
-    
-    
-    
-    <string name="termino_no_encontrado">Itemu alitholakali: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">Ayikho idatha evumelekile engathunyelwa</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">Iphutha ekuguquleni idatha ye-hexadecimal</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">Ayikwazanga ukudala ifayela eliphumayo</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">Iphutha ekubhaleni ifayela: %1$s</string>
-    
-    
-
-
-
-
-    
-    <string name="datos_de_memoria">Inkumbulo ifundwe ngempumelelo</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
-    <string name="cargando_tutorial">Loading tutorial…</string>
-    
-    
-    <string name="paso_prefijo">STEP </string>
-    
-    
-    <string name="error_prefijo">❌ ERROR: </string>
-    
-    
-    <string name="exito_prefijo">✅ SUCCESS: </string>
-    
-    
-    <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    
-    
-    <string name="coincidencias_encontradas">%1$d matches found</string>
-    
-    
-    <string name="resultado_verificacion">Umphumela wokuqinisekisa</string>
-    
-    
-    <string name="verificada">Kuqinisekisiwe</string>
-    
-    
-    <string name="fallo">Kwehlulekile</string>
-    
-    
-    <string name="yes">Yebo</string>
-    
-    
-    <string name="no_label">Cha</string>
-    
-    
-    <string name="seleccionar_idioma">Khetha Ulimi</string>
-    
-    
-    <string name="tutorial_instalacion">Isiqondiso sokufaka</string>
-    
-    
-    <string name="copiar_todo_en">Kopisha Konke</string>
-    
-    
-    <string name="cerrar">Vala</string>
-    
-    
-    <string name="error_no_chip">Iphutha: Akukho chip ekhethiwe noma awekho amafyuzi</string>
-    
-    
-    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
-    <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
-    <string name="editor_construido">Editor built</string>
-    
-    
-    <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
-    <string name="restaurado_chip">Restored from chip</string>
-    
-    
-    <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
-    <string name="restaurado_hex">Restored from HEX</string>
-    
-    
-    <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
-    <string name="aplicando">Kuyasebenza…</string>
-    
-    
-    <string name="aplicado_exito">Kusebenze ngempumelelo</string>
-    
-    
-    <string name="error_parse_id">Error parsing ID</string>
-    
-    
-    <string name="seccion_identificacion">UKUHLONZA</string>
-    
-    
-    <string name="seccion_memoria">IMINININGWANE YENKUMBULO</string>
-    
-    
-    <string name="seccion_hardware">ISAKHIWO NAMAPHINI</string>
-    
-    
-    <string name="seccion_programacion">AMAPHARAMITHA OKUHLELA</string>
-    
-    
-    <string name="seccion_fuses">AMAFYUZI ATHOLAKALAYO</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
-    <string name="include_file_label">Include File:</string>
-    
-    
-    <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
-    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
-    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
-    <string name="flash_technology_label">Flash Technology:</string>
-    
-    
-    <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
-    <string name="core_type_id_label">Core Type ID:</string>
-    
-    
-    <string name="pines_totales_label">Total Pins:</string>
-    
-    
-    <string name="pines_val">%1$d pins</string>
-    
-    
-    <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
-    <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
-    <string name="icsp_required_label">ICSP Required:</string>
-    
-    
-    <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
-    <string name="power_sequence_label">Power Sequence:</string>
-    
-    
-    <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
-    <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
-    <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
-    <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
-    <string name="memory_error_label">Memory Error:</string>
-    
-    
-    <string name="ad_label">Isikhangiso</string>
-    
-    
-    <string name="instalar">Faka</string>
-    
-    
-    <string name="not_available">Akutholakali</string>
-    
-    
-    <string name="calibracion_label">Calibration: %1$s</string>
-    
-    
-    <string name="rom_label">ROM: %1$s</string>
-    
-    
-    <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
-    <string name="fuses_decodificados_exito">Amafyuzi adekhodiwe ngempumelelo</string>
-    
-    
-    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
-    <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
-    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
-    <string name="verificando_rom_label">Verifying ROM…</string>
-    
-    
-    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    
-    
-    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
-    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
-    <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
-    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
-    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
-    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    
-    
-    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    
-    
-    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
-    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
-    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
-    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
-    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
-    <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
-    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
-    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
-    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
-    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
-    <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
-    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
-    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
-    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
-    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
-    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
-    <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
-    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
-    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
-    <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
-    <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
-    <string name="error_vacio">Empty array</string>
-    
-    
-    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
-    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
-    <string name="paso_label">ISINYATHELO</string>
-    
-    
-    <string name="nota_label">Qaphela</string>
-    
-    
-    <string name="importante_label">Kubalulekile</string>
-    
-    
-    <string name="advertencia_label">Isexwayiso</string>
-    
-    
-    <string name="ejemplo_label">Isibonelo</string>
-    
-    
-    <string name="explicacion_label">Incazelo</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
-    <string name="pic_seleccionado">PIC Selected</string>
-    
-    
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="politica_de_privacidad">Inqubomgomo Yobumfihlo</string>
+    <string name="no_se_detecto_pic_en_socket">I-PIC ayitholakalanga esokethini</string>
+    <string name="pic_detectado_en_socket">I-PIC itholakele esokethini</string>
+    <string name="error_borrando_memoria">Iphutha lokususa inkumbulo</string>
+    <string name="memoria_borrada_exitosamente">Inkumbulo isuswe ngempumelelo</string>
+    <string name="memoria_leida_exitosamente">Inkumbulo ifundwe ngempumelelo</string>
+    <string name="seleccione_un_chip">Khetha i-chip</string>
+    <string name="seleccione_un_chip_y_cargue_un">Khetha i-chip bese ulayisha ifayela le-HEX</string>
+    <string name="error_programando_pic">Iphutha lokuhlela i-PIC</string>
+    <string name="pic_programado_exitosamente">I-PIC ihlelwe ngempumelelo</string>
+    <string name="iniciando_programacion">Kuqalwa ukuhlela...</string>
+    <string name="error_cargando_archivo">Iphutha lokulayisha ifayela</string>
+    <string name="error_inicializando_chip">Iphutha lokuqalisa i-chip</string>
+    <string name="conectado_al_programador">Kuxhunywe kumhleli</string>
+    <string name="error_inicializando_base_de_da">Iphutha lokuqalisa idathabeyisi ye-chip</string>
+    <string name="no_hay_chip_seleccionado">Ayikho i-chip ekhethiwe</string>
+    <string name="modelo">Imodeli</string>
+    <string name="palabras_rom">Amagama e-ROM</string>
+    <string name="tamano_rom">Ubukhulu be-ROM</string>
+    <string name="eeprom">EEPROM</string>
+    <string name="no_disponible">Akutholakali</string>
+    <string name="tipo_de_nucleo">Uhlobo Lwe-Core</string>
+    <string name="error_obteniendo_datos_del_chi">Iphutha lokuthola idatha ye-chip</string>
+    <string name="modo">Imodi</string>
+    <string name="icsp_solamente">I-ICSP kuphela</string>
+    <string name="pin_1">I-Pin 1</string>
+    <string name="filemanager_no_inicializado">I-FileManager ayiqalisiwe</string>
+    <string name="no_se_pudo_obtener_el_nombre_d">Akukwazeki ukuthola igama lefayela</string>
+    <string name="seleccione_un_archivo_binario_">Khetha ifayela le-binary elivumelekile (.hex noma .bin)</string>
+    <string name="error_abriendo_el_archivo_sele">Iphutha lokuvula ifayela elikhethiwe</string>
+    <string name="el_archivo_seleccionado_esta_v">Ifayela elikhethiwe alinandaba</string>
+    <string name="error_leyendo_el_archivo">Iphutha lokufunda ifayela</string>
+    <string name="error_inesperado_leyendo_el_ar">Iphutha elingalindelekile lokufunda ifayela</string>
+    <string name="protocolo_no_inicializado">I-Protocol ayiqalisiwe</string>
+    <string name="datos_invalidos_para_programac">Idatha engavumelekile yokuhlelwa</string>
+    <string name="borrando_memorias">Kususa inkumbulo...</string>
+    <string name="error_borrando_memorias">Iphutha lokususa inkumbulo</string>
+    <string name="programando_memoria_rom">Kuhlela inkumbulo ye-ROM...</string>
+    <string name="error_programando_rom">Iphutha lokuhlela i-ROM</string>
+    <string name="programando_memoria_eeprom">Kuhlela inkumbulo ye-EEPROM...</string>
+    <string name="error_programando_eeprom">Iphutha lokuhlela i-EEPROM</string>
+    <string name="programando_fuses_id">Kuhlela i-Fuses ID...</string>
+    <string name="error_programando_fuses">Iphutha lokuhlela i-Fuses</string>
+    <string name="programando_fuses_18f">Kuhlela i-18F Fuses...</string>
+    <string name="error_programando_fuses_18f">Iphutha lokuhlela i-18F Fuses</string>
+    <string name="programacion_completada">Ukuhlela kuqedile</string>
+    <string name="error_inesperado">Iphutha elingalindelekile</string>
+    <string name="error_leyendo_memoria_rom">Iphutha lokufunda inkumbulo ye-ROM</string>
+    <string name="error_leyendo_memoria_eeprom">Iphutha lokufunda inkumbulo ye-EEPROM</string>
+    <string name="error_verificando_memoria">Iphutha lokuqinisekisa inkumbulo</string>
+    <string name="error_detectando_chip">Iphutha lokuthola i-chip</string>
+    <string name="driver_usb_no_disponible">I-driver ye-USB ayitholakali</string>
+    <string name="dispositivo_sin_puertos_usb_di">Idivayisi ayinawo amaport e-USB atholakalayo</string>
+    <string name="error_inicializando_protocolo_">Iphutha lokuqalisa i-protocol yokuxhumana</string>
+    <string name="error_de_conexion_usb">Iphutha lokuxhuma i-USB</string>
+    <string name="error_inesperado_durante_la_co">Iphutha elingalindelekile ngesikhathi sokuxhuma</string>
+    <string name="operaciones">Izenzo</string>
+    <string name="cargar_archivo_hex">Layisha Ifayela le-HEX</string>
+    <string name="programar_pic">Hlela i-PIC</string>
+    <string name="leer_memoria">Funda Inkumbulo</string>
+    <string name="verificar">Qinisekisa</string>
+    <string name="borrar_memoria">Susa Inkumbulo</string>
+    <string name="detectar_pic">Thola i-PIC</string>
+    <string name="esperando_operacion">Kulindwe isenzo...</string>
+    <string name="esperando_seleccion">Kulindwe ukukhetha...</string>
+    <string name="seleccionar_chip_pic">Khetha i-PIC Chip</string>
+    <string name="log_copiado">Log copied to clipboard</string>
+    <string name="gputils_termux_asm">GPUTILS ku-Termux ASM Compiler Android</string>
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
+    <string name="configurar_fusibles">Hlela amafyuzi</string>
+    <string name="selecciona_chip_primero">Khetha i-chip kuqala</string>
+    <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    <string name="fuses_configurados">Configured</string>
+    <string name="fuses_no_configurados">Not configured</string>
+    <string name="estado_fusibles">Isimo samafyuzi:</string>
+    <string name="modo_icsp">ICSP Mode</string>
+    <string name="verificando_memoria">Verifying memory...</string>
+    <string name="verificacion_rom_ok">ROM iqinisekisiwe</string>
+    <string name="verificacion_rom_fallo">Ukuqinisekisa kwe-ROM kwehlulekile</string>
+    <string name="verificacion_completa">Ukuqinisekisa kuphelile</string>
+    <string name="fuses_decodificados">Decoded fuses</string>
+    <string name="chip_info_titulo">Ulwazi Lwezobuchwepheshe Lwe-chip</string>
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Thumela inkumbulo</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    <string name="exportar_config_hex">Khipha i-CONFIG (.hex)</string>
+    <string name="exportar_config_bin">Khipha i-CONFIG (.bin)</string>
+    <string name="exportar_dump_completo">Khipha Ukulahla Okugcwele (.hex)</string>
+    <string name="exportar_dump_completo_bin">Khipha Ukulahla Okugcwele (.bin)</string>
+    <string name="programar_todo">Hlela Konke</string>
+    <string name="programar_solo_rom">Uhlelo lwe-ROM kuphela</string>
+    <string name="programar_solo_eeprom">Uhlelo EEPROM kuphela</string>
+    <string name="programar_solo_config">Uhlelo kuphela CONFIG</string>
+    <string name="verificar_borrado">Qinisekisa Ukususwa</string>
+    <string name="chip_esta_borrado">I-chip iyasulwa (Ayinalutho)</string>
+    <string name="chip_no_esta_borrado">I-chip AYISULIWE</string>
+    <string name="verificando_borrado">Iqinisekisa ukususwa...</string>
+    <string name="resultado_verificacion_borrado">Umphumela Wokuqinisekisa Ukususwa</string>
+    <string name="error_verificando_borrado">Iphutha lokuqinisekisa ukususwa</string>
+    <string name="chip_seleccionado">I-chip ekhethiwe</string>
+    <string name="configuracion_de_fusibles">Ukucushwa kwe-Fuse</string>
+    <string name="id_personalizado_hex">I-ID yangokwezifiso (HEX)</string>
+    <string name="hint_id_personalizado">Isibonelo: 1A 2B 3C 4D (4 noma 8 bytes)</string>
+    <string name="restaurar_desde_bd">Buyisela kusuka ku-DB</string>
+    <string name="restaurar_desde_hex">Buyisela kusuka ku-HEX</string>
+    <string name="aplicar_fuses">Faka amaFuse</string>
+    <string name="seleccionar_operacion">Khetha Ukusebenza</string>
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
+    <string name="publicidad_recomendada">Ukukhangisa okunconyiwe</string>
+    <string name="lectura_completa">Qedela Ukufunda</string>
+    <string name="datos_de_memoria">Inkumbulo ifundwe ngempumelelo</string>
+    <string name="sin_chip">ngaphandle kwe-chip</string>
+    <string name="rom_ok_blank">I-ROM: Kulungile (Akunalutho)</string>
+    <string name="rom_not_blank">I-ROM: AKUSHONJA</string>
+    <string name="eeprom_ok_blank">I-EEPROM: KULUNGILE (Akunalutho)</string>
+    <string name="eeprom_not_blank">I-EEPROM: AKUKHO LONA</string>
+    <string name="idioma_espanol">ISpanishi</string>
+    <string name="idioma_ingles">IsiNgisi</string>
+    <string name="idioma_label">Ulimi: %s</string>
+    <string name="copiar_todo">📋 Kopisha Konke</string>
+    <string name="tutorial_copiado">Okokufundisa kukopishwe ebhodini lokunamathisela</string>
+    <string name="error_cargar_tutorial">Iphutha ekulayisheni okokufundisa</string>
+    <string name="codigo_asm">📄 ikhodi ye-ASM</string>
+    <string name="comando_label">💻 Umyalo</string>
+    <string name="copiar_btn">Kopisha</string>
+    <string name="copiado_msg">Kukopishiwe</string>
+    <string name="error_abrir_link">Iphutha lokuvula isixhumanisi</string>
+    <string name="error_generico_detalle">Iphutha: %1$s</string>
+    <string name="cargando_tutorial">Loading tutorial…</string>
+    <string name="paso_prefijo">STEP </string>
+    <string name="error_prefijo">❌ BUG:</string>
+    <string name="exito_prefijo">✅ SUCCESS: </string>
+    <string name="advertencia_prefijo">⚠️ WARNING: </string>
+    <string name="coincidencias_encontradas">%1$d matches found</string>
+    <string name="resultado_verificacion">Umphumela wokuqinisekisa</string>
+    <string name="verificada">Kuqinisekisiwe</string>
+    <string name="fallo">Kwehlulekile</string>
+    <string name="rom_posible_locked">Possibly read-locked</string>
+    <string name="yes">Yebo</string>
+    <string name="no_label">Cha</string>
+    <string name="seleccionar_idioma">Khetha Ulimi</string>
+    <string name="tutorial_instalacion">Isiqondiso sokufaka</string>
+    <string name="copiar_todo_en">Kopisha Konke</string>
+    <string name="cerrar">Vala</string>
+    <string name="error_no_chip">Iphutha: Akukho chip ekhethiwe noma awekho amafyuzi</string>
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    <string name="hex_compatible">I-HEX iyahambisana</string>
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    <string name="label_chip">I-chip:</string>
+    <string name="editor_construido">Editor built</string>
+    <string name="restaurando_chip">Restoring from chip…</string>
+    <string name="restaurado_chip">Restored from chip</string>
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    <string name="restaurado_hex">Restored from HEX</string>
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    <string name="aplicando">Kuyasebenza…</string>
+    <string name="aplicado_exito">Kusebenze ngempumelelo</string>
+    <string name="error_parse_id">Error parsing ID</string>
+    <string name="seccion_identificacion">UKUHLONZA</string>
+    <string name="seccion_memoria">IMINININGWANE YENKUMBULO</string>
+    <string name="seccion_hardware">ISAKHIWO NAMAPHINI</string>
+    <string name="seccion_programacion">AMAPHARAMITHA OKUHLELA</string>
+    <string name="seccion_fuses">AMAFYUZI ATHOLAKALAYO</string>
+    <string name="chip_id_label">I-Chip ID:</string>
+    <string name="include_file_label">Include File:</string>
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    <string name="rom_words_bytes">%1$,d Amagama (%2$,d Amabhayithi)</string>
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    <string name="eeprom_bytes">%1$,d Amabhayithi</string>
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    <string name="flash_technology_label">Flash Technology:</string>
+    <string name="core_architecture_label">Core Architecture:</string>
+    <string name="core_bits_val">%1$d amabhithi</string>
+    <string name="core_type_id_label">Core Type ID:</string>
+    <string name="pines_totales_label">Total Pins:</string>
+    <string name="pines_val">%1$d pins</string>
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    <string name="icsp_required_label">ICSP Required:</string>
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    <string name="power_sequence_label">Power Sequence:</string>
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    <string name="prog_retries_label">Prog. Retries:</string>
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    <string name="memory_error_label">Memory Error:</string>
+    <string name="texto_copiado_portapapeles">Umbhalo ukopishwe ebhodini lokunamathisela</string>
+    <string name="ad_label">Isikhangiso</string>
+    <string name="codigo_copiado_portapapeles">Ikhodi ikopishelwe ebhodini lokunamathisela</string>
+    <string name="debe_procesar_hex_primero">Kufanele ucubungule ifayela le-HEX kuqala</string>
+    <string name="error_convirtiendo_datos_hex">Iphutha ekuguquleni idatha ye-hexadecimal</string>
+    <string name="error_creando_archivo_salida">Ayikwazanga ukudala ifayela eliphumayo</string>
+    <string name="error_escribiendo_archivo_detalle">Iphutha ekubhaleni ifayela: %1$s</string>
+    <string name="instalar">Faka</string>
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">Ayikho idatha evumelekile engathunyelwa</string>
+    <string name="not_available">Akutholakali</string>
+    <string name="termino_no_encontrado">Itemu alitholakali: %1$s</string>
+    <string name="calibracion_label">Calibration: %1$s</string>
+    <string name="rom_label">I-ROM: %1$s</string>
+    <string name="eeprom_label">I-EEPROM: %1$s</string>
+    <string name="fuses_decodificados_exito">Amafyuzi adekhodiwe ngempumelelo</string>
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    <string name="error_leer_config">Could not read chip configuration</string>
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    <string name="verificando_rom_label">Verifying ROM…</string>
+    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
+    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    <string name="eeprom_total_info">Ingqikithi ye-chip ye-EEPROM: %1$d amabhayithi</string>
+    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
+    <string name="chip_label_info">I-Chip: %1$s</string>
+    <string name="core_info">Ingqikithi: %1$d amabhithi</string>
+    <string name="pin1_info">Iphinikhodi 1: %1$s</string>
+    <string name="flash_info">I-Flash: %1$s</string>
+    <string name="icsp_only_info">I-ICSP kuphela: %1$s</string>
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    <string name="si">Yebo</string>
+    <string name="no">Cha</string>
+    <string name="record_address_error">Ikheli lokurekhoda %1$s lingaphandle kwebanga elivunyelwe.</string>
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    <string name="error_vacio">Empty array</string>
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    <string name="paso_label">ISINYATHELO</string>
+    <string name="nota_label">Qaphela</string>
+    <string name="importante_label">Kubalulekile</string>
+    <string name="advertencia_label">Isexwayiso</string>
+    <string name="ejemplo_label">Isibonelo</string>
+    <string name="explicacion_label">Incazelo</string>
+    <string name="error_export_manager_not_initialized">I-HexExportManager ayiqaliswanga</string>
+    <string name="error_leyendo_info_chip">Iphutha lokufunda ulwazi lwe-chip</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">I-EEPROM:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">amabhayithi</string>
+    <string name="pic_seleccionado">PIC Selected</string>
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">Uhlelo lokusebenza oluchwepheshile lokuhlela ama-microcontroller e-PIC kusetshenziswa i-KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Ikuvumela ukuthi uhlele amadivayisi we-PIC ngqo kusuka ku-Android nge-USB OTG ngaphandle kwesidingo se-PC.</string>
+    <string name="about_features">Izici eziyinhloko:</string>
+    <string name="about_feature_1">Izinhlelo zeselula ngaphandle kwe-PC nge-OTG.</string>
+    <string name="about_feature_2">Ukusekelwa kwezivumelwano ze-KITSRUS P018 (K150, K128, K149, K182).</string>
+    <string name="about_feature_3">I-interface ye-Intuitive Material Design.</string>
+    <string name="about_feature_4">Usekelo lwezakhiwo ze-armeabi-v7a, i-armeabi-v7a kanye ne-x86_64 ye-armeabi-v8a.</string>
+    <string name="about_acknowledgements_title">Ukubonga:</string>
+    <string name="about_acknowledgements_desc">Sibonga ngokukhethekile ku-Mike Wakerly, u-Adam Schubert, kanye ne-AndroidIDE, i-Android Code Studio, namaqembu e-KITSRUS.</string>
+    <string name="error_al_cambiar_modo">Iphutha lapho kushintshwa imodi:</string>
+    <string name="no_hay_firmware_valido">Ayikho i-firmware evumelekile</string>
 </resources>

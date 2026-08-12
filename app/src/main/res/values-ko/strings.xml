@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">개인 정보 보호 정책</string>
-    
-
-    
-    
     <string name="aceptar">수락</string>
-    
-    
     <string name="cancelar">취소</string>
-    
-    
     <string name="conectado">연결됨</string>
-    
-    
     <string name="desconectado">연결 끊김</string>
-    
-    
     <string name="grabando_pic">PIC 프로그래밍 중...</string>
-    
-    
     <string name="espere_grabacion_pic">기다려 주십시오. 장치를 분리하지 마십시오.</string>
-    
-    
     <string name="grabacion_completada_pic">프로그래밍 완료</string>
-    
-    
     <string name="grabacion_correcta_pic">펌웨어가 PIC에 성공적으로 프로그래밍되었습니다.</string>
-    
-    
     <string name="fallo_grabacion_pic">프로그래밍 실패</string>
-    
-    
     <string name="proceso_no_completado">프로세스를 완료할 수 없습니다. 연결을 확인하십시오.</string>
-    
-    
     <string name="protocolo_del_programador">프로그래머 프로토콜</string>
-    
-    
     <string name="modelo_del_programador">프로그래머 모델</string>
-    
-    
     <string name="modelo_programador">프로그래머 모델</string>
-    
-    
     <string name="protocolo">프로토콜</string>
-    
-    
+    <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">개인정보 처리방침</string>
-    
-    
     <string name="no_se_detecto_pic_en_socket">소켓에서 PIC가 감지되지 않았습니다</string>
-    
-    
     <string name="pic_detectado_en_socket">소켓에서 PIC가 감지되었습니다</string>
-    
-    
     <string name="error_borrando_memoria">메모리 지우기 오류</string>
-    
-    
     <string name="memoria_borrada_exitosamente">메모리가 성공적으로 지워졌습니다</string>
-    
-    
     <string name="memoria_leida_exitosamente">메모리를 성공적으로 읽었습니다</string>
-    
-    
     <string name="seleccione_un_chip">칩 선택</string>
-    
-    
     <string name="seleccione_un_chip_y_cargue_un">칩을 선택하고 HEX 파일을 로드하십시오</string>
-    
-    
     <string name="error_programando_pic">PIC 프로그래밍 오류</string>
-    
-    
     <string name="pic_programado_exitosamente">PIC가 성공적으로 프로그래밍되었습니다</string>
-    
-    
     <string name="iniciando_programacion">프로그래밍 시작 중...</string>
-    
-    
     <string name="error_cargando_archivo">파일 로드 오류</string>
-    
-    
     <string name="error_inicializando_chip">칩 초기화 오류</string>
-    
-    
     <string name="conectado_al_programador">프로그래머에 연결됨</string>
-    
-    
     <string name="error_inicializando_base_de_da">칩 데이터베이스 초기화 오류</string>
-    
-    
     <string name="no_hay_chip_seleccionado">선택된 칩이 없습니다</string>
-    
-    
     <string name="modelo">모델</string>
-    
-    
     <string name="palabras_rom">ROM 워드</string>
-    
-    
     <string name="tamano_rom">ROM 크기</string>
-    
-    
     <string name="eeprom">EEPROM</string>
-    
-    
     <string name="no_disponible">사용 불가</string>
-    
-    
     <string name="tipo_de_nucleo">코어 타입</string>
-    
-    
     <string name="error_obteniendo_datos_del_chi">칩 데이터 가져오기 오류</string>
-    
-    
     <string name="modo">모드</string>
-    
-    
     <string name="icsp_solamente">ICSP 전용</string>
-    
-    
     <string name="pin_1">핀 1</string>
-    
-    
     <string name="filemanager_no_inicializado">FileManager가 초기화되지 않았습니다</string>
-    
-    
     <string name="no_se_pudo_obtener_el_nombre_d">파일 이름을 가져올 수 없습니다</string>
-    
-    
     <string name="seleccione_un_archivo_binario_">유효한 바이너리 파일(.hex 또는 .bin)을 선택하십시오</string>
-    
-    
     <string name="error_abriendo_el_archivo_sele">선택한 파일을 여는 중 오류 발생</string>
-    
-    
     <string name="el_archivo_seleccionado_esta_v">선택한 파일이 비어 있습니다</string>
-    
-    
     <string name="error_leyendo_el_archivo">파일 읽기 오류</string>
-    
-    
     <string name="error_inesperado_leyendo_el_ar">파일을 읽는 중 예기치 않은 오류 발생</string>
-    
-    
     <string name="protocolo_no_inicializado">프로토콜이 초기화되지 않았습니다</string>
-    
-    
     <string name="datos_invalidos_para_programac">프로그래밍에 유효하지 않은 데이터</string>
-    
-    
     <string name="borrando_memorias">메모리 지우는 중...</string>
-    
-    
     <string name="error_borrando_memorias">메모리 지우기 오류</string>
-    
-    
     <string name="programando_memoria_rom">ROM 메모리 프로그래밍 중...</string>
-    
-    
     <string name="error_programando_rom">ROM 프로그래밍 오류</string>
-    
-    
     <string name="programando_memoria_eeprom">EEPROM 메모리 프로그래밍 중...</string>
-    
-    
     <string name="error_programando_eeprom">EEPROM 프로그래밍 오류</string>
-    
-    
     <string name="programando_fuses_id">Fuses ID 프로그래밍 중...</string>
-    
-    
     <string name="error_programando_fuses">Fuses 프로그래밍 오류</string>
-    
-    
     <string name="programando_fuses_18f">Fuses 18F 프로그래밍 중...</string>
-    
-    
     <string name="error_programando_fuses_18f">Fuses 18F 프로그래밍 오류</string>
-    
-    
     <string name="programacion_completada">프로그래밍 완료</string>
-    
-    
     <string name="error_inesperado">예기치 않은 오류</string>
-    
-    
     <string name="error_leyendo_memoria_rom">ROM 메모리 읽기 오류</string>
-    
-    
     <string name="error_leyendo_memoria_eeprom">EEPROM 메모리 읽기 오류</string>
-    
-    
     <string name="error_verificando_memoria">메모리 확인 오류</string>
-    
-    
     <string name="error_detectando_chip">칩 감지 오류</string>
-    
-    
     <string name="driver_usb_no_disponible">USB 드라이버를 사용할 수 없습니다</string>
-    
-    
     <string name="dispositivo_sin_puertos_usb_di">장치에 사용 가능한 USB 포트가 없습니다</string>
-    
-    
     <string name="error_inicializando_protocolo_">통신 프로토콜 초기화 오류</string>
-    
-    
     <string name="error_de_conexion_usb">USB 연결 오류</string>
-    
-    
     <string name="error_inesperado_durante_la_co">연결 중 예기치 않은 오류 발생</string>
-    
-
-    
-    
     <string name="operaciones">작업</string>
-    
-    
     <string name="cargar_archivo_hex">HEX 파일 로드</string>
-    
-    
     <string name="programar_pic">PIC 프로그래밍</string>
-    
-    
     <string name="leer_memoria">메모리 읽기</string>
-    
-    
     <string name="verificar">확인</string>
-    
-    
     <string name="borrar_memoria">메모리 지우기</string>
-    
-    
     <string name="detectar_pic">PIC 감지</string>
-    
-    
     <string name="esperando_operacion">작업 대기 중...</string>
-    
-    
     <string name="esperando_seleccion">선택 대기 중...</string>
-    
-    
     <string name="seleccionar_chip_pic">PIC 칩 선택</string>
-    
-    
-    
+    <string name="log_copiado">Log copied to clipboard</string>
     <string name="gputils_termux_asm">Termux의 GPUTILS ASM 컴파일러 Android</string>
-    
-
-    
-    
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
     <string name="configurar_fusibles">퓨즈 설정</string>
-    
-    
     <string name="selecciona_chip_primero">먼저 칩을 선택하세요</string>
-    
-    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
     <string name="fuses_configurados">Configured</string>
-    
-    
     <string name="fuses_no_configurados">Not configured</string>
-    
-    
     <string name="estado_fusibles">퓨즈 상태:</string>
-    
-    
     <string name="modo_icsp">ICSP Mode</string>
-    
-    
     <string name="verificando_memoria">Verifying memory...</string>
-    
-    
     <string name="verificacion_rom_ok">ROM 검증 성공</string>
-    
-    
     <string name="verificacion_rom_fallo">ROM 검증 실패</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
     <string name="verificacion_completa">검증 완료</string>
-    
-    
     <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">메모리 내보내기</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">메모리 읽기...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">퓨즈가 올바르게 적용됨</string>
-    
-
-    
-    
-    
     <string name="chip_info_titulo">칩 기술 정보</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">메모리 내보내기</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
     <string name="exportar_config_hex">CONFIG 내보내기(.hex)</string>
-    
-    
-    
     <string name="exportar_config_bin">CONFIG 내보내기(.bin)</string>
-    
-    
-    
     <string name="exportar_dump_completo">전체 덤프 내보내기(.hex)</string>
-    
-
-    
-    
-    
+    <string name="exportar_dump_completo_bin">전체 덤프(.bin) 내보내기</string>
     <string name="programar_todo">전체 프로그램</string>
-    
-    
-    
     <string name="programar_solo_rom">ROM만 프로그램</string>
-    
-    
-    
     <string name="programar_solo_eeprom">EEPROM만 프로그램</string>
-    
-    
-    
     <string name="programar_solo_config">CONFIG만 프로그램</string>
-    
-    
-    
-    
-    
     <string name="verificar_borrado">삭제 확인</string>
-    
-    
-    
     <string name="chip_esta_borrado">칩이 지워졌습니다(공백)</string>
-    
-    
-    
     <string name="chip_no_esta_borrado">칩이 지워지지 않았습니다</string>
-    
-    
-    
     <string name="verificando_borrado">삭제 확인 중...</string>
-    
-    
-    
     <string name="resultado_verificacion_borrado">지우기 확인 결과</string>
-    
-    
-    
     <string name="error_verificando_borrado">삭제 확인 오류</string>
-    
-    
-    
-    
-    
-    
     <string name="chip_seleccionado">선택한 칩</string>
-    
-    
-    
     <string name="configuracion_de_fusibles">퓨즈 구성</string>
-    
-    
-    
     <string name="id_personalizado_hex">사용자 정의 ID(HEX)</string>
-    
-    
-    
     <string name="hint_id_personalizado">예: 1A 2B 3C 4D(4 또는 8바이트)</string>
-    
-    
-    
-    
-    
-    
     <string name="restaurar_desde_bd">DB에서 복원</string>
-    
-    
-    
     <string name="restaurar_desde_hex">HEX에서 복원</string>
-    
-    
-    
     <string name="aplicar_fuses">퓨즈 적용</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
     <string name="seleccionar_operacion">작업 선택</string>
-    
-    
-
-    
-    
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
     <string name="publicidad_recomendada">추천 광고</string>
-    
-    
-    
     <string name="lectura_completa">읽기 완료</string>
-    
-    
-    
-    <string name="sin_chip">칩 없음</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM: OK(공백)</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM: 비어 있지 않음</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM: OK(공백)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM: 비어 있지 않음 흰색</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">스페인어</string>
-    
-    
-    
-    <string name="idioma_ingles">영어</string>
-    
-    
-    
-    <string name="idioma_label">언어: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 모두 복사</string>
-    
-    
-    
-    <string name="tutorial_copiado">튜토리얼이 클립보드에 복사됨</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">튜토리얼 로드 오류</string>
-    
-    
-    
-    <string name="codigo_asm">📄 ASM 코드</string>
-    
-    
-    
-    <string name="comando_label">💻 명령</string>
-    
-    
-    
-    <string name="copiar_btn">복사</string>
-    
-    
-    
-    <string name="copiado_msg">복사됨</string>
-    
-    
-    
-    <string name="error_abrir_link">링크 열기 오류</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">오류: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">먼저 HEX 파일을 처리해야 합니다.</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">예</string>
-    
-    
-    
-    <string name="no">아니요</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">클립보드에 복사된 코드</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">클립보드에 복사된 텍스트</string>
-    
-    
-    
-    <string name="termino_no_encontrado">용어를 찾을 수 없음: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">내보낼 유효한 데이터가 없습니다.</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">16진수 데이터 변환 중 오류가 발생했습니다.</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">출력 파일을 생성할 수 없습니다.</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">파일 쓰기 오류: %1$s</string>
-    
-    
-
-
-
-
-    
     <string name="datos_de_memoria">메모리를 성공적으로 읽었습니다</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
+    <string name="sin_chip">칩 없음</string>
+    <string name="rom_ok_blank">ROM: OK(공백)</string>
+    <string name="rom_not_blank">ROM: 비어 있지 않음</string>
+    <string name="eeprom_ok_blank">EEPROM: OK(공백)</string>
+    <string name="eeprom_not_blank">EEPROM: 비어 있지 않음 흰색</string>
+    <string name="idioma_espanol">스페인어</string>
+    <string name="idioma_ingles">영어</string>
+    <string name="idioma_label">언어: %s</string>
+    <string name="copiar_todo">📋 모두 복사</string>
+    <string name="tutorial_copiado">튜토리얼이 클립보드에 복사됨</string>
+    <string name="error_cargar_tutorial">튜토리얼 로드 오류</string>
+    <string name="codigo_asm">📄 ASM 코드</string>
+    <string name="comando_label">💻 명령</string>
+    <string name="copiar_btn">복사</string>
+    <string name="copiado_msg">복사됨</string>
+    <string name="error_abrir_link">링크 열기 오류</string>
+    <string name="error_generico_detalle">오류: %1$s</string>
     <string name="cargando_tutorial">튜토리얼 로딩 중…</string>
-    
-    
     <string name="paso_prefijo">단계 </string>
-    
-    
     <string name="error_prefijo">❌ 오류: </string>
-    
-    
     <string name="exito_prefijo">✅ 성공: </string>
-    
-    
     <string name="advertencia_prefijo">⚠️ 경고: </string>
-    
-    
     <string name="coincidencias_encontradas">%1$d matches found</string>
-    
-    
     <string name="resultado_verificacion">검증 결과</string>
-    
-    
     <string name="verificada">검증됨</string>
-    
-    
     <string name="fallo">실패</string>
-    
-    
+    <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="yes">예</string>
-    
-    
     <string name="no_label">아니오</string>
-    
-    
     <string name="seleccionar_idioma">언어 선택</string>
-    
-    
     <string name="tutorial_instalacion">설치 튜토리얼</string>
-    
-    
     <string name="copiar_todo_en">모두 복사</string>
-    
-    
     <string name="cerrar">닫기</string>
-    
-    
     <string name="error_no_chip">오류: 칩이 선택되지 않았거나 퓨즈 없음</string>
-    
-    
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
+    <string name="hex_compatible">HEX 호환</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
+    <string name="label_chip">칩:</string>
     <string name="editor_construido">Editor built</string>
-    
-    
     <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
     <string name="restaurado_chip">Restored from chip</string>
-    
-    
     <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
     <string name="restaurado_hex">Restored from HEX</string>
-    
-    
     <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
     <string name="aplicando">적용 중…</string>
-    
-    
     <string name="aplicado_exito">성공적으로 적용됨</string>
-    
-    
     <string name="error_parse_id">Error parsing ID</string>
-    
-    
     <string name="seccion_identificacion">식별정보</string>
-    
-    
     <string name="seccion_memoria">메모리 사양</string>
-    
-    
     <string name="seccion_hardware">아키텍처 및 핀</string>
-    
-    
     <string name="seccion_programacion">프로그래밍 매개변수</string>
-    
-    
     <string name="seccion_fuses">사용 가능한 퓨즈</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
+    <string name="chip_id_label">칩 ID:</string>
     <string name="include_file_label">Include File:</string>
-    
-    
     <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
+    <string name="rom_words_bytes">%1$,d 단어(%2$,d 바이트)</string>
     <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
+    <string name="eeprom_bytes">%1$,d바이트</string>
     <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
     <string name="flash_technology_label">Flash Technology:</string>
-    
-    
     <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
+    <string name="core_bits_val">%1$d비트</string>
     <string name="core_type_id_label">Core Type ID:</string>
-    
-    
     <string name="pines_totales_label">Total Pins:</string>
-    
-    
     <string name="pines_val">%1$d pins</string>
-    
-    
     <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
     <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
     <string name="icsp_required_label">ICSP Required:</string>
-    
-    
     <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
     <string name="power_sequence_label">Power Sequence:</string>
-    
-    
     <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
     <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
     <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
     <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
     <string name="memory_error_label">Memory Error:</string>
-    
-    
+    <string name="texto_copiado_portapapeles">클립보드에 복사된 텍스트</string>
     <string name="ad_label">광고</string>
-    
-    
+    <string name="codigo_copiado_portapapeles">클립보드에 복사된 코드</string>
+    <string name="debe_procesar_hex_primero">먼저 HEX 파일을 처리해야 합니다.</string>
+    <string name="error_convirtiendo_datos_hex">16진수 데이터 변환 중 오류가 발생했습니다.</string>
+    <string name="error_creando_archivo_salida">출력 파일을 생성할 수 없습니다.</string>
+    <string name="error_escribiendo_archivo_detalle">파일 쓰기 오류: %1$s</string>
     <string name="instalar">설치</string>
-    
-    
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">내보낼 유효한 데이터가 없습니다.</string>
     <string name="not_available">사용 불가</string>
-    
-    
+    <string name="termino_no_encontrado">용어를 찾을 수 없음: %1$s</string>
     <string name="calibracion_label">Calibration: %1$s</string>
-    
-    
-    <string name="rom_label">ROM: %1$s</string>
-    
-    
+    <string name="rom_label">롬: %1$s</string>
     <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
     <string name="fuses_decodificados_exito">퓨즈 디코딩 성공</string>
-    
-    
     <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
     <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
     <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
     <string name="verificando_rom_label">Verifying ROM…</string>
-    
-    
     <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    
-    
     <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
     <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
     <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
     <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
     <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    
-    
     <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    
-    
     <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
     <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
     <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
     <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
     <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
     <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
     <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
     <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
+    <string name="eeprom_total_info">EEPROM 총 칩: %1$d바이트</string>
     <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
-    <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
+    <string name="chip_label_info">칩: %1$s</string>
+    <string name="core_info">코어: %1$d비트</string>
+    <string name="pin1_info">핀 1: %1$s</string>
+    <string name="flash_info">플래시: %1$s</string>
+    <string name="icsp_only_info">ICSP 전용: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
+    <string name="si">예</string>
+    <string name="no">아니요</string>
+    <string name="record_address_error">레코드 주소 %1$s이 허용 범위를 벗어났습니다.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
     <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
     <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
     <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
     <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
     <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
     <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
     <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
     <string name="error_vacio">Empty array</string>
-    
-    
     <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
     <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
     <string name="paso_label">단계</string>
-    
-    
     <string name="nota_label">참고</string>
-    
-    
     <string name="importante_label">중요</string>
-    
-    
     <string name="advertencia_label">경고</string>
-    
-    
     <string name="ejemplo_label">예제</string>
-    
-    
     <string name="explicacion_label">설명</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="error_export_manager_not_initialized">HexExportManager가 초기화되지 않았습니다.</string>
+    <string name="error_leyendo_info_chip">칩 정보를 읽는 중 오류가 발생했습니다.</string>
     <string name="label_rom">ROM:</string>
     <string name="label_eeprom">EEPROM:</string>
     <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
+    <string name="label_bytes">바이트</string>
     <string name="pic_seleccionado">PIC Selected</string>
-    
-    
-    <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;을 사용하여 PIC 마이크로컨트롤러를 프로그래밍하는 전문 애플리케이션입니다. PC 없이도 USB OTG를 통해 Android에서 직접 PIC 장치를 프로그래밍할 수 있습니다.</string>
+    <string name="about_features">주요 특징:</string>
+    <string name="about_feature_1">OTG를 통해 PC 없이 모바일 프로그래밍을 할 수 있습니다.</string>
+    <string name="about_feature_2">KITSRUS P018 프로토콜(K150, K128, K149, K182)을 지원합니다.</string>
+    <string name="about_feature_3">직관적인 머티리얼 디자인 인터페이스.</string>
+    <string name="about_feature_4">arm64-v8a, armeabi-v7a, x86 및 x86_64 아키텍처를 지원합니다.</string>
+    <string name="about_acknowledgements_title">감사의 말씀:</string>
+    <string name="about_acknowledgements_desc">Mike Wakerly, Adam Schubert, AndroidIDE, Android Code Studio 및 KITSRUS 팀에게 특별히 감사드립니다.</string>
+    <string name="error_al_cambiar_modo">모드 변경 중 오류:</string>
+    <string name="no_hay_firmware_valido">유효한 펌웨어가 없습니다.</string>
 </resources>

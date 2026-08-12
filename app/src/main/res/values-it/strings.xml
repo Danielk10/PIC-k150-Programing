@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">Politiche sulla privacy</string>
-    
-
-    
-    
     <string name="aceptar">Accetta</string>
-    
-    
     <string name="cancelar">Annulla</string>
-    
-    
     <string name="conectado">Connesso</string>
-    
-    
     <string name="desconectado">Disconnesso</string>
-    
-    
     <string name="grabando_pic">Scrittura PIC in corso...</string>
-    
-    
     <string name="espere_grabacion_pic">Attendere prego. Non scollegare il dispositivo.</string>
-    
-    
     <string name="grabacion_completada_pic">Scrittura Completata</string>
-    
-    
     <string name="grabacion_correcta_pic">Il firmware è stato scritto correttamente nel PIC.</string>
-    
-    
     <string name="fallo_grabacion_pic">Scrittura Fallita</string>
-    
-    
     <string name="proceso_no_completado">Impossibile completare il processo. Controllare la connessione.</string>
-    
-    
     <string name="protocolo_del_programador">Protocollo del Programmatore</string>
-    
-    
     <string name="modelo_del_programador">Modello del Programmatore</string>
-    
-    
     <string name="modelo_programador">Modello Programmatore</string>
-    
-    
     <string name="protocolo">Protocollo</string>
-    
-    
+    <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Informativa sulla Privacy</string>
-    
-    
     <string name="no_se_detecto_pic_en_socket">Nessun PIC rilevato nel socket</string>
-    
-    
     <string name="pic_detectado_en_socket">PIC rilevato nel socket</string>
-    
-    
     <string name="error_borrando_memoria">Errore durante la cancellazione della memoria</string>
-    
-    
     <string name="memoria_borrada_exitosamente">Memoria cancellata con successo</string>
-    
-    
     <string name="memoria_leida_exitosamente">Memoria letta con successo</string>
-    
-    
     <string name="seleccione_un_chip">Seleziona un chip</string>
-    
-    
     <string name="seleccione_un_chip_y_cargue_un">Seleziona un chip e carica un file HEX</string>
-    
-    
     <string name="error_programando_pic">Errore durante la programmazione del PIC</string>
-    
-    
     <string name="pic_programado_exitosamente">PIC programmato con successo</string>
-    
-    
     <string name="iniciando_programacion">Avvio programmazione...</string>
-    
-    
     <string name="error_cargando_archivo">Errore durante il caricamento del file</string>
-    
-    
     <string name="error_inicializando_chip">Errore durante l\'inizializzazione del chip</string>
-    
-    
     <string name="conectado_al_programador">Connesso al programmatore</string>
-    
-    
     <string name="error_inicializando_base_de_da">Errore durante l\'inizializzazione del database dei chip</string>
-    
-    
     <string name="no_hay_chip_seleccionado">Nessun chip selezionato</string>
-    
-    
     <string name="modelo">Modello</string>
-    
-    
     <string name="palabras_rom">Parole ROM</string>
-    
-    
     <string name="tamano_rom">Dimensione ROM</string>
-    
-    
     <string name="eeprom">EEPROM</string>
-    
-    
     <string name="no_disponible">Non disponibile</string>
-    
-    
     <string name="tipo_de_nucleo">Tipo di Core</string>
-    
-    
     <string name="error_obteniendo_datos_del_chi">Errore nel recupero dei dati del chip</string>
-    
-    
     <string name="modo">Modalità</string>
-    
-    
     <string name="icsp_solamente">Solo ICSP</string>
-    
-    
     <string name="pin_1">Perno 1</string>
-    
-    
     <string name="filemanager_no_inicializado">FileManager non inizializzato</string>
-    
-    
     <string name="no_se_pudo_obtener_el_nombre_d">Impossibile ottenere il nome del file</string>
-    
-    
     <string name="seleccione_un_archivo_binario_">Seleziona un file binario valido (.hex o .bin)</string>
-    
-    
     <string name="error_abriendo_el_archivo_sele">Errore durante l\'apertura del file selezionato</string>
-    
-    
     <string name="el_archivo_seleccionado_esta_v">Il file selezionato è vuoto</string>
-    
-    
     <string name="error_leyendo_el_archivo">Errore durante la lettura del file</string>
-    
-    
     <string name="error_inesperado_leyendo_el_ar">Errore imprevisto durante la lettura del file</string>
-    
-    
     <string name="protocolo_no_inicializado">Protocollo non inizializzato</string>
-    
-    
     <string name="datos_invalidos_para_programac">Dati non validi per la programmazione</string>
-    
-    
     <string name="borrando_memorias">Cancellazione memorie in corso...</string>
-    
-    
     <string name="error_borrando_memorias">Errore durante la cancellazione delle memorie</string>
-    
-    
     <string name="programando_memoria_rom">Programmazione memoria ROM in corso...</string>
-    
-    
     <string name="error_programando_rom">Errore durante la programmazione della ROM</string>
-    
-    
     <string name="programando_memoria_eeprom">Programmazione memoria EEPROM in corso...</string>
-    
-    
     <string name="error_programando_eeprom">Errore durante la programmazione dell\'EEPROM</string>
-    
-    
     <string name="programando_fuses_id">Programmazione Fuses ID in corso...</string>
-    
-    
     <string name="error_programando_fuses">Errore durante la programmazione dei Fuses</string>
-    
-    
     <string name="programando_fuses_18f">Programmazione Fuses 18F in corso...</string>
-    
-    
     <string name="error_programando_fuses_18f">Errore durante la programmazione dei Fuses 18F</string>
-    
-    
     <string name="programacion_completada">Programmazione completata</string>
-    
-    
     <string name="error_inesperado">Errore imprevisto</string>
-    
-    
     <string name="error_leyendo_memoria_rom">Errore durante la lettura della memoria ROM</string>
-    
-    
     <string name="error_leyendo_memoria_eeprom">Errore durante la lettura della memoria EEPROM</string>
-    
-    
     <string name="error_verificando_memoria">Errore durante la verifica della memoria</string>
-    
-    
     <string name="error_detectando_chip">Errore durante il rilevamento del chip</string>
-    
-    
     <string name="driver_usb_no_disponible">Driver USB non disponibile</string>
-    
-    
     <string name="dispositivo_sin_puertos_usb_di">Dispositivo senza porte USB disponibili</string>
-    
-    
     <string name="error_inicializando_protocolo_">Errore durante l\'inizializzazione del protocollo di comunicazione</string>
-    
-    
     <string name="error_de_conexion_usb">Errore di connessione USB</string>
-    
-    
     <string name="error_inesperado_durante_la_co">Errore imprevisto durante la connessione</string>
-    
-
-    
-    
     <string name="operaciones">Operazioni</string>
-    
-    
     <string name="cargar_archivo_hex">Carica File HEX</string>
-    
-    
     <string name="programar_pic">Programma PIC</string>
-    
-    
     <string name="leer_memoria">Leggi Memoria</string>
-    
-    
     <string name="verificar">Verifica</string>
-    
-    
     <string name="borrar_memoria">Cancella Memoria</string>
-    
-    
     <string name="detectar_pic">Rileva PIC</string>
-    
-    
     <string name="esperando_operacion">In attesa di operazione...</string>
-    
-    
     <string name="esperando_seleccion">In attesa di selezione...</string>
-    
-    
     <string name="seleccionar_chip_pic">Seleziona Chip PIC</string>
-    
-    
-    
+    <string name="log_copiado">Log copied to clipboard</string>
     <string name="gputils_termux_asm">GPUTILS in Termux Compilatore ASM Android</string>
-    
-
-    
-    
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
     <string name="configurar_fusibles">Configura Fusibili</string>
-    
-    
     <string name="selecciona_chip_primero">Seleziona prima un chip</string>
-    
-    
     <string name="no_hay_fusibles_para_chip">Nessun dato fusibili per questo chip</string>
-    
-    
     <string name="fuses_configurados">Configurati</string>
-    
-    
     <string name="fuses_no_configurados">Non configurati</string>
-    
-    
     <string name="estado_fusibles">Stato Fusibili:</string>
-    
-    
     <string name="modo_icsp">Modalità ICSP</string>
-    
-    
     <string name="verificando_memoria">Verifica memoria…</string>
-    
-    
     <string name="verificacion_rom_ok">ROM verificata con successo</string>
-    
-    
     <string name="verificacion_rom_fallo">Verifica ROM fallita</string>
-    
-    
-    <string name="rom_posible_locked">Possibilmente bloccata in lettura</string>
-    
-    
     <string name="verificacion_completa">Verifica completata</string>
-    
-    
     <string name="fuses_decodificados">Fusibili decodificati</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX elaborato con successo</string>
-    
-    
-    <string name="error_procesando_hex">Errore nell\'elaborazione HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux Compilatore C Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Errore nell\'apertura del tutorial</string>
-    
-    
-    <string name="exportar_memoria">Esporta Memoria</string>
-    
-    
-    <string name="exportar_rom_hex">Esporta ROM come HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Esporta EEPROM come HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Esporta ROM come BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Esporta EEPROM come BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File esportato con successo</string>
-    
-    
-    <string name="error_exportando">Errore nell\'esportazione</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">Nessun dato da esportare. Leggi prima la memoria.</string>
-    
-    
-    <string name="chip_info_json">Info Chip (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">Leggere la memoria...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibili applicati correttamente</string>
-    
-
-    
-    
-    
     <string name="chip_info_titulo">Informazioni tecniche sul chip</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="hex_procesado_correctamente">HEX elaborato con successo</string>
+    <string name="error_procesando_hex">Errore nell\'elaborazione HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux Compilatore C Android</string>
+    <string name="error_abriendo_tutorial">Errore nell\'apertura del tutorial</string>
+    <string name="exportar_memoria">Esporta Memoria</string>
+    <string name="exportar_rom_hex">Esporta ROM come HEX</string>
+    <string name="exportar_eeprom_hex">Esporta EEPROM come HEX</string>
+    <string name="exportar_rom_bin">Esporta ROM come BIN</string>
+    <string name="exportar_eeprom_bin">Esporta EEPROM come BIN</string>
     <string name="exportar_config_hex">Esporta CONFIG (.hex)</string>
-    
-    
-    
     <string name="exportar_config_bin">Esporta CONFIG (.bin)</string>
-    
-    
-    
     <string name="exportar_dump_completo">Esporta dump completo (.hex)</string>
-    
-
-    
-    
-    
+    <string name="exportar_dump_completo_bin">Esporta dump completo (.bin)</string>
     <string name="programar_todo">Pianifica tutto</string>
-    
-    
-    
     <string name="programar_solo_rom">Solo ROM del programma</string>
-    
-    
-    
     <string name="programar_solo_eeprom">Programmare solo EEPROM</string>
-    
-    
-    
     <string name="programar_solo_config">Solo programma CONFIG</string>
-    
-    
-    
-    
-    
     <string name="verificar_borrado">Verifica l\'eliminazione</string>
-    
-    
-    
     <string name="chip_esta_borrado">Il chip viene cancellato (vuoto)</string>
-    
-    
-    
     <string name="chip_no_esta_borrado">Il chip NON viene cancellato</string>
-    
-    
-    
     <string name="verificando_borrado">Verifica dell\'eliminazione...</string>
-    
-    
-    
     <string name="resultado_verificacion_borrado">Risultato della verifica dell\'eliminazione</string>
-    
-    
-    
     <string name="error_verificando_borrado">Errore durante la verifica dell\'eliminazione</string>
-    
-    
-    
-    
-    
-    
     <string name="chip_seleccionado">Chip selezionato</string>
-    
-    
-    
     <string name="configuracion_de_fusibles">Configurazione del fusibile</string>
-    
-    
-    
     <string name="id_personalizado_hex">ID personalizzato (HEX)</string>
-    
-    
-    
     <string name="hint_id_personalizado">Esempio: 1A 2B 3C 4D (4 o 8 byte)</string>
-    
-    
-    
-    
-    
-    
     <string name="restaurar_desde_bd">Ripristina da DB</string>
-    
-    
-    
     <string name="restaurar_desde_hex">Ripristina da HEX</string>
-    
-    
-    
     <string name="aplicar_fuses">Applicare i fusibili</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
     <string name="seleccionar_operacion">Seleziona Operazione</string>
-    
-    
-
-    
-    
+    <string name="exportacion_exitosa">File esportato con successo</string>
+    <string name="error_exportando">Errore nell\'esportazione</string>
+    <string name="no_hay_datos_para_exportar">Nessun dato da esportare. Leggi prima la memoria.</string>
+    <string name="chip_info_json">Info Chip (JSON)</string>
     <string name="publicidad_recomendada">Pubblicità consigliata</string>
-    
-    
-    
     <string name="lectura_completa">Lettura completa</string>
-    
-    
-    
-    <string name="sin_chip">senza chip</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM: OK (vuoto)</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM: NON VUOTO</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM: OK (vuoto)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM: NON VUOTO</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">spagnolo</string>
-    
-    
-    
-    <string name="idioma_ingles">Inglese</string>
-    
-    
-    
-    <string name="idioma_label">Lingua: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 Copia tutto</string>
-    
-    
-    
-    <string name="tutorial_copiado">Tutorial copiato negli appunti</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">Errore durante il caricamento del tutorial</string>
-    
-    
-    
-    <string name="codigo_asm">📄Codice ASM</string>
-    
-    
-    
-    <string name="comando_label">💻Comanda</string>
-    
-    
-    
-    <string name="copiar_btn">Copia</string>
-    
-    
-    
-    <string name="copiado_msg">Copiato</string>
-    
-    
-    
-    <string name="error_abrir_link">Errore durante l\'apertura del collegamento</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">Errore: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">È necessario prima elaborare il file HEX</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">Sì</string>
-    
-    
-    
-    <string name="no">NO</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">Codice copiato negli appunti</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">Testo copiato negli appunti</string>
-    
-    
-    
-    <string name="termino_no_encontrado">Termine non trovato: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">Non ci sono dati validi da esportare</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">Errore durante la conversione dei dati esadecimali</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">Impossibile creare il file di output</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">Errore durante la scrittura del file: %1$s</string>
-    
-    
-
-
-
-
-    
     <string name="datos_de_memoria">Memoria letta con successo</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
+    <string name="sin_chip">senza chip</string>
+    <string name="rom_ok_blank">ROM: OK (vuoto)</string>
+    <string name="rom_not_blank">ROM: NON VUOTO</string>
+    <string name="eeprom_ok_blank">EEPROM: OK (vuoto)</string>
+    <string name="eeprom_not_blank">EEPROM: NON VUOTO</string>
+    <string name="idioma_espanol">spagnolo</string>
+    <string name="idioma_ingles">Inglese</string>
+    <string name="idioma_label">Lingua: %s</string>
+    <string name="copiar_todo">📋 Copia tutto</string>
+    <string name="tutorial_copiado">Tutorial copiato negli appunti</string>
+    <string name="error_cargar_tutorial">Errore durante il caricamento del tutorial</string>
+    <string name="codigo_asm">📄Codice ASM</string>
+    <string name="comando_label">💻Comanda</string>
+    <string name="copiar_btn">Copia</string>
+    <string name="copiado_msg">Copiato</string>
+    <string name="error_abrir_link">Errore durante l\'apertura del collegamento</string>
+    <string name="error_generico_detalle">Errore: %1$s</string>
     <string name="cargando_tutorial">Caricamento tutorial…</string>
-    
-    
     <string name="paso_prefijo">PASSO </string>
-    
-    
     <string name="error_prefijo">❌ ERRORE: </string>
-    
-    
     <string name="exito_prefijo">✅ SUCCESSO: </string>
-    
-    
     <string name="advertencia_prefijo">⚠️ AVVISO: </string>
-    
-    
     <string name="coincidencias_encontradas">%1$d corrispondenze trovate</string>
-    
-    
     <string name="resultado_verificacion">Risultato Verifica</string>
-    
-    
     <string name="verificada">Verificata</string>
-    
-    
     <string name="fallo">Fallito</string>
-    
-    
+    <string name="rom_posible_locked">Possibilmente bloccata in lettura</string>
     <string name="yes">Sì</string>
-    
-    
     <string name="no_label">No</string>
-    
-    
     <string name="seleccionar_idioma">Seleziona Lingua</string>
-    
-    
     <string name="tutorial_instalacion">Tutorial Installazione</string>
-    
-    
     <string name="copiar_todo_en">Copia Tutto</string>
-    
-    
     <string name="cerrar">Chiudi</string>
-    
-    
     <string name="error_no_chip">Errore: Nessun chip selezionato o nessun fuse</string>
-    
-    
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
     <string name="hex_compatible">HEX compatibile</string>
-    
-    
     <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
+    <string name="label_chip">Chip:</string>
     <string name="editor_construido">Editor built</string>
-    
-    
     <string name="restaurando_chip">Ripristino dal chip…</string>
-    
-    
     <string name="restaurado_chip">Ripristinato dal chip</string>
-    
-    
     <string name="restaurando_hex">Ripristino da HEX…</string>
-    
-    
     <string name="restaurado_hex">Ripristinato da HEX</string>
-    
-    
     <string name="hex_sin_fuses">HEX senza fuse</string>
-    
-    
     <string name="aplicando">Applicazione…</string>
-    
-    
     <string name="aplicado_exito">Applicato con successo</string>
-    
-    
     <string name="error_parse_id">Error parsing ID</string>
-    
-    
     <string name="seccion_identificacion">IDENTIFICAZIONE</string>
-    
-    
     <string name="seccion_memoria">SPECIFICHE MEMORIA</string>
-    
-    
     <string name="seccion_hardware">ARCHITETTURA &amp; PIN</string>
-    
-    
     <string name="seccion_programacion">PARAMETRI DI PROGRAMMAZIONE</string>
-    
-    
     <string name="seccion_fuses">FUSE DISPONIBILI</string>
-    
-    
     <string name="chip_id_label">ID Chip:</string>
-    
-    
     <string name="include_file_label">File Include:</string>
-    
-    
     <string name="rom_capacity_label">Capacità ROM:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
+    <string name="rom_words_bytes">%1$,d Parole (%2$,d Byte)</string>
     <string name="eeprom_capacity_label">Capacità EEPROM:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
+    <string name="eeprom_bytes">%1$,d Byte</string>
     <string name="fuse_blank_value_label">Valore FUSE Vuoto:</string>
-    
-    
     <string name="flash_technology_label">Tecnologia Flash:</string>
-    
-    
     <string name="core_architecture_label">Architettura Core:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
+    <string name="core_bits_val">%1$d bit</string>
     <string name="core_type_id_label">Core Type ID:</string>
-    
-    
     <string name="pines_totales_label">Pin Totali:</string>
-    
-    
     <string name="pines_val">%1$d pin</string>
-    
-    
     <string name="pin_1_location_label">Posizione Pin 1:</string>
-    
-    
     <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
     <string name="icsp_required_label">ICSP Richiesto:</string>
-    
-    
     <string name="erase_algorithm_label">Algoritmo Cancellazione:</string>
-    
-    
     <string name="power_sequence_label">Sequenza Avvio:</string>
-    
-    
     <string name="prog_delay_label">Ritardo Prog. (ms):</string>
-    
-    
     <string name="prog_retries_label">Tentativi Prog.:</string>
-    
-    
     <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
     <string name="cp_warn_label">Avviso Code Protect:</string>
-    
-    
     <string name="memory_error_label">Errore Memoria:</string>
-    
-    
+    <string name="texto_copiado_portapapeles">Testo copiato negli appunti</string>
     <string name="ad_label">Annuncio</string>
-    
-    
+    <string name="codigo_copiado_portapapeles">Codice copiato negli appunti</string>
+    <string name="debe_procesar_hex_primero">È necessario prima elaborare il file HEX</string>
+    <string name="error_convirtiendo_datos_hex">Errore durante la conversione dei dati esadecimali</string>
+    <string name="error_creando_archivo_salida">Impossibile creare il file di output</string>
+    <string name="error_escribiendo_archivo_detalle">Errore durante la scrittura del file: %1$s</string>
     <string name="instalar">Installa</string>
-    
-    
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">Non ci sono dati validi da esportare</string>
     <string name="not_available">Non disponibile</string>
-    
-    
+    <string name="termino_no_encontrado">Termine non trovato: %1$s</string>
     <string name="calibracion_label">Calibrazione: %1$s</string>
-    
-    
     <string name="rom_label">ROM: %1$s</string>
-    
-    
     <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
     <string name="fuses_decodificados_exito">Fuse decodificati con successo</string>
-    
-    
     <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
     <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
     <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
     <string name="verificando_rom_label">Verifica ROM…</string>
-    
-    
     <string name="rom_verificada_exito">ROM verificata con successo ✓</string>
-    
-    
     <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
     <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
     <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
     <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
     <string name="verificando_eeprom_label">Verifica EEPROM…</string>
-    
-    
     <string name="eeprom_verificada_exito">EEPROM verificata con successo ✓</string>
-    
-    
     <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
     <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
     <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
     <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
     <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
     <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
     <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
     <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
+    <string name="eeprom_total_info">Chip totale EEPROM: %1$d byte</string>
     <string name="eeprom_no_disponible">EEPROM: Non disponibile su questo chip</string>
-    
-    
     <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
+    <string name="core_info">Nucleo: %1$d bit</string>
+    <string name="pin1_info">Perno 1: %1$s</string>
     <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
+    <string name="icsp_only_info">Solo ICSP: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
+    <string name="si">Sì</string>
+    <string name="no">NO</string>
+    <string name="record_address_error">L\'indirizzo del record %1$s non è compreso nell\'intervallo consentito.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
     <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
     <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
     <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
     <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
     <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
     <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
     <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
     <string name="error_vacio">Empty array</string>
-    
-    
     <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
     <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
     <string name="paso_label">PASSO</string>
-    
-    
     <string name="nota_label">Nota</string>
-    
-    
     <string name="importante_label">Importante</string>
-    
-    
     <string name="advertencia_label">Avviso</string>
-    
-    
     <string name="ejemplo_label">Esempio</string>
-    
-    
     <string name="explicacion_label">Spiegazione</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="error_export_manager_not_initialized">HexExportManager non inizializzato</string>
+    <string name="error_leyendo_info_chip">Errore durante la lettura delle informazioni sul chip</string>
     <string name="label_rom">ROM:</string>
     <string name="label_eeprom">EEPROM:</string>
     <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
+    <string name="label_bytes">byte</string>
     <string name="pic_seleccionado">PIC Selected</string>
-    
-    
-    <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">Applicazione professionale per programmare i microcontrollori PIC utilizzando il KITSRUS &lt;b&gt;Protocollo P018&lt;/b&gt;. Permette di programmare i dispositivi PIC direttamente da Android tramite USB OTG senza bisogno di un PC.</string>
+    <string name="about_features">Caratteristiche principali:</string>
+    <string name="about_feature_1">Programmazione mobile senza PC tramite OTG.</string>
+    <string name="about_feature_2">Supporto per i protocolli KITSRUS P018 (K150, K128, K149, K182).</string>
+    <string name="about_feature_3">Interfaccia intuitiva di progettazione dei materiali.</string>
+    <string name="about_feature_4">Supporto per architetture arm64-v8a, armeabi-v7a, x86 e x86_64.</string>
+    <string name="about_acknowledgements_title">Ringraziamenti:</string>
+    <string name="about_acknowledgements_desc">Un ringraziamento speciale a Mike Wakerly, Adam Schubert e ai team AndroidIDE, Android Code Studio e KITSRUS.</string>
+    <string name="error_al_cambiar_modo">Errore durante il cambio di modalità:</string>
+    <string name="no_hay_firmware_valido">Nessun firmware valido</string>
 </resources>

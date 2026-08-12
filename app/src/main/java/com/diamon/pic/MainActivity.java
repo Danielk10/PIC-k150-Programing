@@ -505,7 +505,7 @@ public class MainActivity extends AppCompatActivity
 
                     } catch (ChipConfigurationException e) {
                         swModeICSP.setChecked(false);
-                        appendLog("❌ Error al cambiar modo: " + e.getMessage());
+                        appendLog("❌ " + getString(R.string.error_al_cambiar_modo) + e.getMessage());
                     }
                 });
     }
@@ -1000,8 +1000,8 @@ public class MainActivity extends AppCompatActivity
                     try {
                         // Procesar el HEX cargado (firmware) a bytes si es necesario
                         if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
-                            runOnUiThread(() -> appendLog("❌ " +
-                                    getString(R.string.error_verificando_memoria) + ": No hay firmware válido"));
+                             runOnUiThread(() -> appendLog("❌ " +
+                                     getString(R.string.error_verificando_memoria) + ": " + getString(R.string.no_hay_firmware_valido)));
                             return;
                         }
 
@@ -1665,15 +1665,14 @@ public class MainActivity extends AppCompatActivity
                 "<p><b>" + getString(R.string.desarrollador) + ":</b> Danielk10</p>" +
                 "<p><b>" + getString(R.string.repositorio) + ":</b> <a href=\"https://github.com/Danielk10/PIC-k150-Programing\">GitHub Repo</a></p>" +
                 "<hr>" +
-                "<p>Aplicación profesional para programar microcontroladores PIC utilizando el <b>Protocolo P018</b> de KITSRUS. " +
-                "Permite programar dispositivos PIC directamente desde Android vía USB OTG sin necesidad de PC.</p>" +
+                "<p>" + getString(R.string.about_description) + "</p>" +
                 "<hr>" +
-                "<h4><b>Características principales:</b></h4>" +
+                "<h4><b>" + getString(R.string.about_features) + "</b></h4>" +
                 "<ul>" +
-                "  <li>Programación móvil sin PC vía OTG.</li>" +
-                "  <li>Soporte para protocolos KITSRUS P018 (K150, K128, K149, K182).</li>" +
-                "  <li>Interfaz Material Design intuitiva.</li>" +
-                "  <li>Soporte para arquitecturas arm64-v8a, armeabi-v7a, x86 y x86_64.</li>" +
+                "  <li>" + getString(R.string.about_feature_1) + "</li>" +
+                "  <li>" + getString(R.string.about_feature_2) + "</li>" +
+                "  <li>" + getString(R.string.about_feature_3) + "</li>" +
+                "  <li>" + getString(R.string.about_feature_4) + "</li>" +
                 "</ul>" +
                 "<hr>" +
                 "<h4><b>" + getString(R.string.licencia_de_aplicacion) + "</b></h4>" +
@@ -1687,8 +1686,8 @@ public class MainActivity extends AppCompatActivity
                 "  <li><b>Termux:</b> GPL-3.0 (Fredrik Fornwall y colaboradores)</li>" +
                 "</ul>" +
                 "<hr>" +
-                "<h4><b>Agradecimientos:</b></h4>" +
-                "<p>Agradecimientos especiales a Mike Wakerly, Adam Schubert, y a los equipos de AndroidIDE, Android Code Studio y KITSRUS.</p>";
+                "<h4><b>" + getString(R.string.about_acknowledgements_title) + "</b></h4>" +
+                "<p>" + getString(R.string.about_acknowledgements_desc) + "</p>";
                 
         textView.setText(androidx.core.text.HtmlCompat.fromHtml(htmlText, androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY));
         

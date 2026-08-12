@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">Tietosuojakäytännöt</string>
-    
-
-    
-    
     <string name="aceptar">Hyväksy</string>
-    
-    
     <string name="cancelar">Peruuta</string>
-    
-    
     <string name="conectado">Yhdistetty</string>
-    
-    
     <string name="desconectado">Katkaistu</string>
-    
-    
     <string name="grabando_pic">Ohjelmoidaan PIC...</string>
-    
-    
     <string name="espere_grabacion_pic">Odota. Älä irrota laitetta.</string>
-    
-    
     <string name="grabacion_completada_pic">Ohjelmointi Valmis</string>
-    
-    
     <string name="grabacion_correcta_pic">Firmware kirjoitettiin onnistuneesti PIC:iin.</string>
-    
-    
     <string name="fallo_grabacion_pic">Ohjelmointi Epäonnistui</string>
-    
-    
     <string name="proceso_no_completado">Prosessia ei voitu suorittaa loppuun. Tarkista yhteys.</string>
-    
-    
     <string name="protocolo_del_programador">Ohjelmoijan Protokolla</string>
-    
-    
     <string name="modelo_del_programador">Ohjelmoijan Malli</string>
-    
-    
     <string name="modelo_programador">Ohjelmoijan Malli</string>
-    
-    
     <string name="protocolo">Protokolla</string>
-    
-    
+    <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Tietosuojakäytäntö</string>
-    
-    
     <string name="no_se_detecto_pic_en_socket">PIC ei havaittu kannassa</string>
-    
-    
     <string name="pic_detectado_en_socket">PIC havaittu kannassa</string>
-    
-    
     <string name="error_borrando_memoria">Virhe muistin tyhjentämisessä</string>
-    
-    
     <string name="memoria_borrada_exitosamente">Muisti tyhjennetty onnistuneesti</string>
-    
-    
     <string name="memoria_leida_exitosamente">Muisti luettu onnistuneesti</string>
-    
-    
     <string name="seleccione_un_chip">Valitse siru</string>
-    
-    
     <string name="seleccione_un_chip_y_cargue_un">Valitse siru ja lataa HEX-tiedosto</string>
-    
-    
     <string name="error_programando_pic">Virhe PIC:n ohjelmoinnissa</string>
-    
-    
     <string name="pic_programado_exitosamente">PIC ohjelmoitu onnistuneesti</string>
-    
-    
     <string name="iniciando_programacion">Aloitetaan ohjelmointia...</string>
-    
-    
     <string name="error_cargando_archivo">Virhe tiedoston lataamisessa</string>
-    
-    
     <string name="error_inicializando_chip">Virhe sirun alustamisessa</string>
-    
-    
     <string name="conectado_al_programador">Yhdistetty ohjelmoijaan</string>
-    
-    
     <string name="error_inicializando_base_de_da">Virhe sirutietokannan alustamisessa</string>
-    
-    
     <string name="no_hay_chip_seleccionado">Sirua ei ole valittu</string>
-    
-    
     <string name="modelo">Malli</string>
-    
-    
     <string name="palabras_rom">ROM-sanat</string>
-    
-    
     <string name="tamano_rom">ROM-koko</string>
-    
-    
     <string name="eeprom">EEPROM</string>
-    
-    
     <string name="no_disponible">Ei saatavilla</string>
-    
-    
     <string name="tipo_de_nucleo">Ydintyyppi</string>
-    
-    
     <string name="error_obteniendo_datos_del_chi">Virhe sirun tietojen hakemisessa</string>
-    
-    
     <string name="modo">Tila</string>
-    
-    
     <string name="icsp_solamente">Vain ICSP</string>
-    
-    
     <string name="pin_1">Pinni 1</string>
-    
-    
     <string name="filemanager_no_inicializado">FileManager ei alustettu</string>
-    
-    
     <string name="no_se_pudo_obtener_el_nombre_d">Tiedoston nimeä ei voitu hakea</string>
-    
-    
     <string name="seleccione_un_archivo_binario_">Valitse kelvollinen binääritiedosto (.hex tai .bin)</string>
-    
-    
     <string name="error_abriendo_el_archivo_sele">Virhe valitun tiedoston avaamisessa</string>
-    
-    
     <string name="el_archivo_seleccionado_esta_v">Valittu tiedosto on tyhjä</string>
-    
-    
     <string name="error_leyendo_el_archivo">Virhe tiedoston lukemisessa</string>
-    
-    
     <string name="error_inesperado_leyendo_el_ar">Odottamaton virhe tiedoston lukemisessa</string>
-    
-    
     <string name="protocolo_no_inicializado">Protokollaa ei alustettu</string>
-    
-    
     <string name="datos_invalidos_para_programac">Virheelliset tiedot ohjelmointiin</string>
-    
-    
     <string name="borrando_memorias">Tyhjennetään muistia...</string>
-    
-    
     <string name="error_borrando_memorias">Virhe muistin tyhjentämisessä</string>
-    
-    
     <string name="programando_memoria_rom">Ohjelmoidaan ROM-muistia...</string>
-    
-    
     <string name="error_programando_rom">Virhe ROM:n ohjelmoinnissa</string>
-    
-    
     <string name="programando_memoria_eeprom">Ohjelmoidaan EEPROM-muistia...</string>
-    
-    
     <string name="error_programando_eeprom">Virhe EEPROM:n ohjelmoinnissa</string>
-    
-    
     <string name="programando_fuses_id">Ohjelmoidaan Fuses ID...</string>
-    
-    
     <string name="error_programando_fuses">Virhe Fuses-ohjelmoinnissa</string>
-    
-    
     <string name="programando_fuses_18f">Ohjelmoidaan 18F Fuses...</string>
-    
-    
     <string name="error_programando_fuses_18f">Virhe 18F Fuses -ohjelmoinnissa</string>
-    
-    
     <string name="programacion_completada">Ohjelmointi valmis</string>
-    
-    
     <string name="error_inesperado">Odottamaton virhe</string>
-    
-    
     <string name="error_leyendo_memoria_rom">Virhe ROM-muistin lukemisessa</string>
-    
-    
     <string name="error_leyendo_memoria_eeprom">Virhe EEPROM-muistin lukemisessa</string>
-    
-    
     <string name="error_verificando_memoria">Virhe muistin varmentamisessa</string>
-    
-    
     <string name="error_detectando_chip">Virhe sirun tunnistamisessa</string>
-    
-    
     <string name="driver_usb_no_disponible">USB-ohjain ei saatavilla</string>
-    
-    
     <string name="dispositivo_sin_puertos_usb_di">Laite ilman USB-portteja</string>
-    
-    
     <string name="error_inicializando_protocolo_">Virhe viestintäprotokollan alustamisessa</string>
-    
-    
     <string name="error_de_conexion_usb">USB-yhteysvirhe</string>
-    
-    
     <string name="error_inesperado_durante_la_co">Odottamaton virhe yhteyden aikana</string>
-    
-
-    
-    
     <string name="operaciones">Toiminnot</string>
-    
-    
     <string name="cargar_archivo_hex">Lataa HEX-tiedosto</string>
-    
-    
     <string name="programar_pic">Ohjelmoi PIC</string>
-    
-    
     <string name="leer_memoria">Lue Muisti</string>
-    
-    
     <string name="verificar">Varmenna</string>
-    
-    
     <string name="borrar_memoria">Tyhjennä Muisti</string>
-    
-    
     <string name="detectar_pic">Tunnista PIC</string>
-    
-    
     <string name="esperando_operacion">Odotetaan toimintoa...</string>
-    
-    
     <string name="esperando_seleccion">Odotetaan valintaa...</string>
-    
-    
     <string name="seleccionar_chip_pic">Valitse PIC Siru</string>
-    
-    
-    
+    <string name="log_copiado">Log copied to clipboard</string>
     <string name="gputils_termux_asm">GPUTILS Termuxissa ASM Kääntäjä Android</string>
-    
-
-    
-    
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
     <string name="configurar_fusibles">Määritä sulakkeet</string>
-    
-    
     <string name="selecciona_chip_primero">Valitse ensin siru</string>
-    
-    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
     <string name="fuses_configurados">Configured</string>
-    
-    
     <string name="fuses_no_configurados">Not configured</string>
-    
-    
     <string name="estado_fusibles">Sulakkeiden tila:</string>
-    
-    
     <string name="modo_icsp">ICSP Mode</string>
-    
-    
     <string name="verificando_memoria">Verifying memory...</string>
-    
-    
     <string name="verificacion_rom_ok">ROM tarkistettu</string>
-    
-    
     <string name="verificacion_rom_fallo">ROM-tarkistus epäonnistui</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
     <string name="verificacion_completa">Tarkistus valmis</string>
-    
-    
     <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">Vie muisti</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">Muistia luetaan...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Oikein asennettu sulakkeet</string>
-    
-
-    
-    
-    
     <string name="chip_info_titulo">Sirun tekniset tiedot</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Vie muisti</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
     <string name="exportar_config_hex">Vie CONFIG (.hex)</string>
-    
-    
-    
     <string name="exportar_config_bin">Vie CONFIG (.bin)</string>
-    
-    
-    
     <string name="exportar_dump_completo">Vie koko vedos (.hex)</string>
-    
-
-    
-    
-    
+    <string name="exportar_dump_completo_bin">Vie koko vedos (.bin)</string>
     <string name="programar_todo">Aikatauluta kaikki</string>
-    
-    
-    
     <string name="programar_solo_rom">Ohjelma vain ROM</string>
-    
-    
-    
     <string name="programar_solo_eeprom">Ohjelmoi vain EEPROM</string>
-    
-    
-    
     <string name="programar_solo_config">Ohjelma vain CONFIG</string>
-    
-    
-    
-    
-    
     <string name="verificar_borrado">Vahvista poisto</string>
-    
-    
-    
     <string name="chip_esta_borrado">Siru on poistettu (tyhjä)</string>
-    
-    
-    
     <string name="chip_no_esta_borrado">Sirua EI poisteta</string>
-    
-    
-    
     <string name="verificando_borrado">Vahvistetaan poistoa...</string>
-    
-    
-    
     <string name="resultado_verificacion_borrado">Poiston vahvistustulos</string>
-    
-    
-    
     <string name="error_verificando_borrado">Virhe poiston vahvistamisessa</string>
-    
-    
-    
-    
-    
-    
     <string name="chip_seleccionado">Valittu siru</string>
-    
-    
-    
     <string name="configuracion_de_fusibles">Sulakkeen kokoonpano</string>
-    
-    
-    
     <string name="id_personalizado_hex">Muokattu tunnus (HEX)</string>
-    
-    
-    
     <string name="hint_id_personalizado">Esimerkki: 1A 2B 3C 4D (4 tai 8 tavua)</string>
-    
-    
-    
-    
-    
-    
     <string name="restaurar_desde_bd">Palauta DB:stä</string>
-    
-    
-    
     <string name="restaurar_desde_hex">Palauta HEX:stä</string>
-    
-    
-    
     <string name="aplicar_fuses">Aseta sulakkeet</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
     <string name="seleccionar_operacion">Valitse Käyttö</string>
-    
-    
-
-    
-    
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
     <string name="publicidad_recomendada">Suositeltu mainonta</string>
-    
-    
-    
     <string name="lectura_completa">Täydellinen lukeminen</string>
-    
-    
-    
-    <string name="sin_chip">ilman sirua</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM: OK (tyhjä)</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM: EI TYHJÄ</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM: OK (tyhjä)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM: EI TYHJÄ</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">espanja</string>
-    
-    
-    
-    <string name="idioma_ingles">englanti</string>
-    
-    
-    
-    <string name="idioma_label">Kieli: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 Kopioi kaikki</string>
-    
-    
-    
-    <string name="tutorial_copiado">Opetusohjelma kopioitu leikepöydälle</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">Virhe ladattaessa opetusohjelmaa</string>
-    
-    
-    
-    <string name="codigo_asm">📄 ASM-koodi</string>
-    
-    
-    
-    <string name="comando_label">💻 Komento</string>
-    
-    
-    
-    <string name="copiar_btn">Kopioi</string>
-    
-    
-    
-    <string name="copiado_msg">Kopioitu</string>
-    
-    
-    
-    <string name="error_abrir_link">Virhe avattaessa linkkiä</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">Virhe: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">Sinun on ensin käsiteltävä HEX-tiedosto</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">Kyllä</string>
-    
-    
-    
-    <string name="no">Ei</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">Koodi kopioitu leikepöydälle</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">Teksti kopioitu leikepöydälle</string>
-    
-    
-    
-    <string name="termino_no_encontrado">Termiä ei löydy: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">Ei kelvollisia vietäviä tietoja</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">Virhe muunnettaessa heksadesimaalitietoja</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">Tulostiedostoa ei voitu luoda</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">Virhe kirjoitettaessa tiedostoa: %1$s</string>
-    
-    
-
-
-
-
-    
     <string name="datos_de_memoria">Muisti luettu onnistuneesti</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
+    <string name="sin_chip">ilman sirua</string>
+    <string name="rom_ok_blank">ROM: OK (tyhjä)</string>
+    <string name="rom_not_blank">ROM: EI TYHJÄ</string>
+    <string name="eeprom_ok_blank">EEPROM: OK (tyhjä)</string>
+    <string name="eeprom_not_blank">EEPROM: EI TYHJÄ</string>
+    <string name="idioma_espanol">espanja</string>
+    <string name="idioma_ingles">englanti</string>
+    <string name="idioma_label">Kieli: %s</string>
+    <string name="copiar_todo">📋 Kopioi kaikki</string>
+    <string name="tutorial_copiado">Opetusohjelma kopioitu leikepöydälle</string>
+    <string name="error_cargar_tutorial">Virhe ladattaessa opetusohjelmaa</string>
+    <string name="codigo_asm">📄 ASM-koodi</string>
+    <string name="comando_label">💻 Komento</string>
+    <string name="copiar_btn">Kopioi</string>
+    <string name="copiado_msg">Kopioitu</string>
+    <string name="error_abrir_link">Virhe avattaessa linkkiä</string>
+    <string name="error_generico_detalle">Virhe: %1$s</string>
     <string name="cargando_tutorial">Loading tutorial…</string>
-    
-    
     <string name="paso_prefijo">STEP </string>
-    
-    
-    <string name="error_prefijo">❌ ERROR: </string>
-    
-    
+    <string name="error_prefijo">❌ VIKA:</string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
-    
-    
     <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    
-    
     <string name="coincidencias_encontradas">%1$d matches found</string>
-    
-    
     <string name="resultado_verificacion">Tarkistustulos</string>
-    
-    
     <string name="verificada">Vahvistettu</string>
-    
-    
     <string name="fallo">Epäonnistui</string>
-    
-    
+    <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="yes">Kyllä</string>
-    
-    
     <string name="no_label">Ei</string>
-    
-    
     <string name="seleccionar_idioma">Valitse kieli</string>
-    
-    
     <string name="tutorial_instalacion">Asennusopas</string>
-    
-    
     <string name="copiar_todo_en">Kopioi kaikki</string>
-    
-    
     <string name="cerrar">Sulje</string>
-    
-    
     <string name="error_no_chip">Virhe: Sirua ei valittu tai sulakkeita ei ole</string>
-    
-    
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
+    <string name="hex_compatible">HEX-yhteensopiva</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
+    <string name="label_chip">Siru:</string>
     <string name="editor_construido">Editor built</string>
-    
-    
     <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
     <string name="restaurado_chip">Restored from chip</string>
-    
-    
     <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
     <string name="restaurado_hex">Restored from HEX</string>
-    
-    
     <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
     <string name="aplicando">Otetaan käyttöön…</string>
-    
-    
     <string name="aplicado_exito">Otettu käyttöön onnistuneesti</string>
-    
-    
     <string name="error_parse_id">Error parsing ID</string>
-    
-    
     <string name="seccion_identificacion">TUNNISTUS</string>
-    
-    
     <string name="seccion_memoria">MUISTIN TIEDOT</string>
-    
-    
     <string name="seccion_hardware">ARKKITEHTUURI &amp; NASTAT</string>
-    
-    
     <string name="seccion_programacion">OHJELMOINTIPARAMETRIT</string>
-    
-    
     <string name="seccion_fuses">KÄYTETTÄVISSÄ OLEVAT SULAKKEET</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
+    <string name="chip_id_label">Sirun tunnus:</string>
     <string name="include_file_label">Include File:</string>
-    
-    
     <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
+    <string name="rom_words_bytes">%1$,d Sanat (%2$,d tavua)</string>
     <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
+    <string name="eeprom_bytes">%1$,d tavua</string>
     <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
     <string name="flash_technology_label">Flash Technology:</string>
-    
-    
     <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
+    <string name="core_bits_val">%1$d bittiä</string>
     <string name="core_type_id_label">Core Type ID:</string>
-    
-    
     <string name="pines_totales_label">Total Pins:</string>
-    
-    
     <string name="pines_val">%1$d pins</string>
-    
-    
     <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
     <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
     <string name="icsp_required_label">ICSP Required:</string>
-    
-    
     <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
     <string name="power_sequence_label">Power Sequence:</string>
-    
-    
     <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
     <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
     <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
     <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
     <string name="memory_error_label">Memory Error:</string>
-    
-    
+    <string name="texto_copiado_portapapeles">Teksti kopioitu leikepöydälle</string>
     <string name="ad_label">Mainos</string>
-    
-    
+    <string name="codigo_copiado_portapapeles">Koodi kopioitu leikepöydälle</string>
+    <string name="debe_procesar_hex_primero">Sinun on ensin käsiteltävä HEX-tiedosto</string>
+    <string name="error_convirtiendo_datos_hex">Virhe muunnettaessa heksadesimaalitietoja</string>
+    <string name="error_creando_archivo_salida">Tulostiedostoa ei voitu luoda</string>
+    <string name="error_escribiendo_archivo_detalle">Virhe kirjoitettaessa tiedostoa: %1$s</string>
     <string name="instalar">Asenna</string>
-    
-    
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">Ei kelvollisia vietäviä tietoja</string>
     <string name="not_available">Ei saatavilla</string>
-    
-    
+    <string name="termino_no_encontrado">Termiä ei löydy: %1$s</string>
     <string name="calibracion_label">Calibration: %1$s</string>
-    
-    
     <string name="rom_label">ROM: %1$s</string>
-    
-    
     <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
     <string name="fuses_decodificados_exito">Sulakkeet dekoodattu</string>
-    
-    
     <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
     <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
     <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
     <string name="verificando_rom_label">Verifying ROM…</string>
-    
-    
     <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    
-    
     <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
     <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
     <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
     <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
     <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    
-    
     <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    
-    
     <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
     <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
     <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
     <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
     <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
     <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
     <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
     <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
+    <string name="eeprom_total_info">EEPROM-siru yhteensä: %1$d tavua</string>
     <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
+    <string name="chip_label_info">Siru: %1$s</string>
+    <string name="core_info">Ydin: %1$d bittiä</string>
     <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
     <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
+    <string name="icsp_only_info">Vain ICSP: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
+    <string name="si">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="record_address_error">Tietueen osoite %1$s on sallitun alueen ulkopuolella.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
     <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
     <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
     <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
     <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
     <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
     <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
     <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
     <string name="error_vacio">Empty array</string>
-    
-    
     <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
     <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
     <string name="paso_label">VAIHE</string>
-    
-    
     <string name="nota_label">Huomautus</string>
-    
-    
     <string name="importante_label">Tärkeä</string>
-    
-    
     <string name="advertencia_label">Varoitus</string>
-    
-    
     <string name="ejemplo_label">Esimerkki</string>
-    
-    
     <string name="explicacion_label">Selitys</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="error_export_manager_not_initialized">HexExportManager ei alustettu</string>
+    <string name="error_leyendo_info_chip">Virhe sirutietojen lukemisessa</string>
     <string name="label_rom">ROM:</string>
     <string name="label_eeprom">EEPROM:</string>
     <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
+    <string name="label_bytes">tavua</string>
     <string name="pic_seleccionado">PIC Selected</string>
-    
-    
-    <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">Ammattimainen sovellus PIC-mikro-ohjainten ohjelmointiin KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; -protokollalla. Sen avulla voit ohjelmoida PIC-laitteita suoraan Androidista USB OTG:n kautta ilman tietokonetta.</string>
+    <string name="about_features">Pääominaisuudet:</string>
+    <string name="about_feature_1">Mobiiliohjelmointi ilman PC:tä OTG:n kautta.</string>
+    <string name="about_feature_2">Tuki KITSRUS P018 -protokolloille (K150, K128, K149, K182).</string>
+    <string name="about_feature_3">Intuitiivinen materiaalisuunnittelun käyttöliittymä.</string>
+    <string name="about_feature_4">Tuki arkkitehtuureille arm64-v8a, armeabi-v7a, x86 ja x86_64.</string>
+    <string name="about_acknowledgements_title">Kiitokset:</string>
+    <string name="about_acknowledgements_desc">Erityiset kiitokset Mike Wakerlylle, Adam Schubertille ja AndroidIDE-, Android Code Studio- ja KITSRUS-tiimeille.</string>
+    <string name="error_al_cambiar_modo">Virhe tilan vaihdossa:</string>
+    <string name="no_hay_firmware_valido">Ei kelvollista laiteohjelmistoa</string>
 </resources>

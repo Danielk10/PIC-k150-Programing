@@ -1,1013 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    
-    
-    
     <string name="app_name">PIC k150 Programing</string>
-    
-    
     <string name="politicas">Privātuma politikas</string>
-    
-
-    
-    
     <string name="aceptar">Pieņemt</string>
-    
-    
     <string name="cancelar">Atcelt</string>
-    
-    
     <string name="conectado">Savienots</string>
-    
-    
     <string name="desconectado">Atvienots</string>
-    
-    
     <string name="grabando_pic">Programmē PIC...</string>
-    
-    
     <string name="espere_grabacion_pic">Lūdzu, uzgaidiet. Neatvienojiet ierīci.</string>
-    
-    
     <string name="grabacion_completada_pic">Programmēšana Pabeigta</string>
-    
-    
     <string name="grabacion_correcta_pic">Programmaparatūra veiksmīgi ierakstīta PIC.</string>
-    
-    
     <string name="fallo_grabacion_pic">Programmēšana Neizdevās</string>
-    
-    
     <string name="proceso_no_completado">Procesu nevarēja pabeigt. Pārbaudiet savienojumu.</string>
-    
-    
     <string name="protocolo_del_programador">Programmētāja Protokols</string>
-    
-    
     <string name="modelo_del_programador">Programmētāja Modelis</string>
-    
-    
     <string name="modelo_programador">Programmētāja Modelis</string>
-    
-    
     <string name="protocolo">Protokols</string>
-    
-    
+    <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privātuma Politika</string>
-    
-    
     <string name="no_se_detecto_pic_en_socket">PIC nav konstatēts ligzdā</string>
-    
-    
     <string name="pic_detectado_en_socket">PIC konstatēts ligzdā</string>
-    
-    
     <string name="error_borrando_memoria">Kļūda dzēšot atmiņu</string>
-    
-    
     <string name="memoria_borrada_exitosamente">Atmiņa veiksmīgi dzēsta</string>
-    
-    
     <string name="memoria_leida_exitosamente">Atmiņa veiksmīgi nolasīta</string>
-    
-    
     <string name="seleccione_un_chip">Izvēlieties mikroshēmu</string>
-    
-    
     <string name="seleccione_un_chip_y_cargue_un">Izvēlieties mikroshēmu un ielādējiet HEX failu</string>
-    
-    
     <string name="error_programando_pic">Kļūda programmējot PIC</string>
-    
-    
     <string name="pic_programado_exitosamente">PIC veiksmīgi ieprogrammēts</string>
-    
-    
     <string name="iniciando_programacion">Sāk programmēšanu...</string>
-    
-    
     <string name="error_cargando_archivo">Kļūda ielādējot failu</string>
-    
-    
     <string name="error_inicializando_chip">Kļūda inicializējot mikroshēmu</string>
-    
-    
     <string name="conectado_al_programador">Savienots ar programmētāju</string>
-    
-    
     <string name="error_inicializando_base_de_da">Kļūda inicializējot mikroshēmu datubāzi</string>
-    
-    
     <string name="no_hay_chip_seleccionado">Mikroshēma nav izvēlēta</string>
-    
-    
     <string name="modelo">Modelis</string>
-    
-    
     <string name="palabras_rom">ROM vārdi</string>
-    
-    
     <string name="tamano_rom">ROM izmērs</string>
-    
-    
     <string name="eeprom">EEPROM</string>
-    
-    
     <string name="no_disponible">Nav pieejams</string>
-    
-    
     <string name="tipo_de_nucleo">Kodola Tips</string>
-    
-    
     <string name="error_obteniendo_datos_del_chi">Kļūda iegūstot mikroshēmas datus</string>
-    
-    
     <string name="modo">Režīms</string>
-    
-    
     <string name="icsp_solamente">Tikai ICSP</string>
-    
-    
     <string name="pin_1">Tapa 1</string>
-    
-    
     <string name="filemanager_no_inicializado">FileManager nav inicializēts</string>
-    
-    
     <string name="no_se_pudo_obtener_el_nombre_d">Nevar iegūt faila nosaukumu</string>
-    
-    
     <string name="seleccione_un_archivo_binario_">Izvēlieties derīgu bināro failu (.hex vai .bin)</string>
-    
-    
     <string name="error_abriendo_el_archivo_sele">Kļūda atverot izvēlēto failu</string>
-    
-    
     <string name="el_archivo_seleccionado_esta_v">Izvēlētais fails ir tukšs</string>
-    
-    
     <string name="error_leyendo_el_archivo">Kļūda lasot failu</string>
-    
-    
     <string name="error_inesperado_leyendo_el_ar">Neparedzēta kļūda lasot failu</string>
-    
-    
     <string name="protocolo_no_inicializado">Protokols nav inicializēts</string>
-    
-    
     <string name="datos_invalidos_para_programac">Nederīgi dati programmēšanai</string>
-    
-    
     <string name="borrando_memorias">Dzēš atmiņu...</string>
-    
-    
     <string name="error_borrando_memorias">Kļūda dzēšot atmiņu</string>
-    
-    
     <string name="programando_memoria_rom">Programmē ROM atmiņu...</string>
-    
-    
     <string name="error_programando_rom">Kļūda programmējot ROM</string>
-    
-    
     <string name="programando_memoria_eeprom">Programmē EEPROM atmiņu...</string>
-    
-    
     <string name="error_programando_eeprom">Kļūda programmējot EEPROM</string>
-    
-    
     <string name="programando_fuses_id">Programmē Fuses ID...</string>
-    
-    
     <string name="error_programando_fuses">Kļūda programmējot Fuses</string>
-    
-    
     <string name="programando_fuses_18f">Programmē 18F Fuses...</string>
-    
-    
     <string name="error_programando_fuses_18f">Kļūda programmējot 18F Fuses</string>
-    
-    
     <string name="programacion_completada">Programmēšana pabeigta</string>
-    
-    
     <string name="error_inesperado">Neparedzēta kļūda</string>
-    
-    
     <string name="error_leyendo_memoria_rom">Kļūda lasot ROM atmiņu</string>
-    
-    
     <string name="error_leyendo_memoria_eeprom">Kļūda lasot EEPROM atmiņu</string>
-    
-    
     <string name="error_verificando_memoria">Kļūda verificējot atmiņu</string>
-    
-    
     <string name="error_detectando_chip">Kļūda konstatējot mikroshēmu</string>
-    
-    
     <string name="driver_usb_no_disponible">USB draiveris nav pieejams</string>
-    
-    
     <string name="dispositivo_sin_puertos_usb_di">Ierīcei nav pieejamu USB portu</string>
-    
-    
     <string name="error_inicializando_protocolo_">Kļūda inicializējot komunikācijas protokolu</string>
-    
-    
     <string name="error_de_conexion_usb">USB savienojuma kļūda</string>
-    
-    
     <string name="error_inesperado_durante_la_co">Neparedzēta kļūda savienošanas laikā</string>
-    
-
-    
-    
     <string name="operaciones">Darbības</string>
-    
-    
     <string name="cargar_archivo_hex">Ielādēt HEX Failu</string>
-    
-    
     <string name="programar_pic">Programmēt PIC</string>
-    
-    
     <string name="leer_memoria">Lasīt Atmiņu</string>
-    
-    
     <string name="verificar">Verificēt</string>
-    
-    
     <string name="borrar_memoria">Dzēst Atmiņu</string>
-    
-    
     <string name="detectar_pic">Konstatēt PIC</string>
-    
-    
     <string name="esperando_operacion">Gaida darbību...</string>
-    
-    
     <string name="esperando_seleccion">Gaida izvēli...</string>
-    
-    
     <string name="seleccionar_chip_pic">Izvēlēties PIC Mikroshēmu</string>
-    
-    
-    
+    <string name="log_copiado">Log copied to clipboard</string>
     <string name="gputils_termux_asm">GPUTILS Termux ASM Kompilators Android</string>
-    
-
-    
-    
+    <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
+    <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
     <string name="configurar_fusibles">Konfigurēt drošinātājus</string>
-    
-    
     <string name="selecciona_chip_primero">Vispirms izvēlieties mikroshēmu</string>
-    
-    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
-    
-    
     <string name="fuses_configurados">Configured</string>
-    
-    
     <string name="fuses_no_configurados">Not configured</string>
-    
-    
     <string name="estado_fusibles">Drošinātāju statuss:</string>
-    
-    
     <string name="modo_icsp">ICSP Mode</string>
-    
-    
     <string name="verificando_memoria">Verifying memory...</string>
-    
-    
     <string name="verificacion_rom_ok">ROM veiksmīgi pārbaudīta</string>
-    
-    
     <string name="verificacion_rom_fallo">ROM pārbaude neizdevās</string>
-    
-    
-    <string name="rom_posible_locked">Possibly read-locked</string>
-    
-    
     <string name="verificacion_completa">Pārbaude pabeigta</string>
-    
-    
     <string name="fuses_decodificados">Decoded fuses</string>
-    
-    
-    <string name="hex_procesado_correctamente">HEX processed successfully</string>
-    
-    
-    <string name="error_procesando_hex">Error processing HEX</string>
-    
-    
-    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
-    
-    
-    <string name="error_abriendo_tutorial">Error opening tutorial</string>
-    
-    
-    <string name="exportar_memoria">Eksportēt atmiņu</string>
-    
-    
-    <string name="exportar_rom_hex">Export ROM as HEX</string>
-    
-    
-    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
-    
-    
-    <string name="exportar_rom_bin">Export ROM as BIN</string>
-    
-    
-    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    
-    
-    <string name="exportacion_exitosa">File exported successfully</string>
-    
-    
-    <string name="error_exportando">Error exporting</string>
-    
-    
-    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
-    
-    
-    <string name="chip_info_json">Chip Info (JSON)</string>
-    
-
-    
-    
-    <string name="leyendo_memoria" translatable="false">Notiek atmiņas lasīšana...</string>
-    
-    
-    
-    <string name="fusibles_aplicados_correctamente" translatable="false">Pareizi uzlikti drošinātāji</string>
-    
-
-    
-    
-    
     <string name="chip_info_titulo">Mikroshēmas tehniskā informācija</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    <string name="error_procesando_hex">Error processing HEX</string>
+    <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    <string name="exportar_memoria">Eksportēt atmiņu</string>
+    <string name="exportar_rom_hex">Export ROM as HEX</string>
+    <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    <string name="exportar_rom_bin">Export ROM as BIN</string>
+    <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
     <string name="exportar_config_hex">Eksportēt CONFIG (.hex)</string>
-    
-    
-    
     <string name="exportar_config_bin">Eksportēt CONFIG (.bin)</string>
-    
-    
-    
     <string name="exportar_dump_completo">Eksportēt pilnu izdruku (.hex)</string>
-    
-
-    
-    
-    
+    <string name="exportar_dump_completo_bin">Eksportēt pilnu izdruku (.bin)</string>
     <string name="programar_todo">Ieplānojiet visu</string>
-    
-    
-    
     <string name="programar_solo_rom">Programma tikai ROM</string>
-    
-    
-    
     <string name="programar_solo_eeprom">Programmējiet tikai EEPROM</string>
-    
-    
-    
     <string name="programar_solo_config">Programma tikai CONFIG</string>
-    
-    
-    
-    
-    
     <string name="verificar_borrado">Apstipriniet dzēšanu</string>
-    
-    
-    
     <string name="chip_esta_borrado">Mikroshēma ir izdzēsta (tukša)</string>
-    
-    
-    
     <string name="chip_no_esta_borrado">Mikroshēma NAV izdzēsta</string>
-    
-    
-    
     <string name="verificando_borrado">Notiek dzēšanas pārbaude...</string>
-    
-    
-    
     <string name="resultado_verificacion_borrado">Dzēšanas pārbaudes rezultāts</string>
-    
-    
-    
     <string name="error_verificando_borrado">Pārbaudot dzēšanu, radās kļūda</string>
-    
-    
-    
-    
-    
-    
     <string name="chip_seleccionado">Atlasītā mikroshēma</string>
-    
-    
-    
     <string name="configuracion_de_fusibles">Drošinātāja konfigurācija</string>
-    
-    
-    
     <string name="id_personalizado_hex">Pielāgots ID (HEX)</string>
-    
-    
-    
     <string name="hint_id_personalizado">Piemērs: 1A 2B 3C 4D (4 vai 8 baiti)</string>
-    
-    
-    
-    
-    
-    
     <string name="restaurar_desde_bd">Atjaunot no DB</string>
-    
-    
-    
     <string name="restaurar_desde_hex">Atjaunot no HEX</string>
-    
-    
-    
     <string name="aplicar_fuses">Uzlieciet drošinātājus</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
     <string name="seleccionar_operacion">Izvēlieties Darbība</string>
-    
-    
-
-    
-    
+    <string name="exportacion_exitosa">File exported successfully</string>
+    <string name="error_exportando">Error exporting</string>
+    <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    <string name="chip_info_json">Chip Info (JSON)</string>
     <string name="publicidad_recomendada">Ieteicamā reklāma</string>
-    
-    
-    
     <string name="lectura_completa">Pilnīga lasīšana</string>
-    
-    
-    
-    <string name="sin_chip">bez mikroshēmas</string>
-    
-    
-    
-    
-    
-    
-    
-    <string name="rom_ok_blank">ROM: labi (tukšs)</string>
-    
-    
-    
-    <string name="rom_not_blank">ROM: NAV TUŠS</string>
-    
-    
-    
-    <string name="eeprom_ok_blank">EEPROM: labi (tukšs)</string>
-    
-    
-    
-    <string name="eeprom_not_blank">EEPROM: NAV TUŠS</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="idioma_espanol">spāņu valoda</string>
-    
-    
-    
-    <string name="idioma_ingles">angļu valoda</string>
-    
-    
-    
-    <string name="idioma_label">Valoda: %s</string>
-    
-    
-    
-    <string name="copiar_todo">📋 Kopēt visu</string>
-    
-    
-    
-    <string name="tutorial_copiado">Apmācība ir kopēta starpliktuvē</string>
-    
-    
-    
-    <string name="error_cargar_tutorial">Ielādējot apmācību, radās kļūda</string>
-    
-    
-    
-    <string name="codigo_asm">📄 ASM kods</string>
-    
-    
-    
-    <string name="comando_label">💻 Komanda</string>
-    
-    
-    
-    <string name="copiar_btn">Kopēt</string>
-    
-    
-    
-    <string name="copiado_msg">Kopēts</string>
-    
-    
-    
-    <string name="error_abrir_link">Atverot saiti, radās kļūda</string>
-    
-    
-    
-    
-    <string name="error_generico_detalle">Kļūda: %1$s</string>
-    
-    
-    
-    
-    <string name="debe_procesar_hex_primero">Vispirms ir jāapstrādā HEX fails</string>
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <string name="si">Jā</string>
-    
-    
-    
-    <string name="no">Nē</string>
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-    <string name="codigo_copiado_portapapeles">Kods ir kopēts starpliktuvē</string>
-    
-    
-    
-    <string name="texto_copiado_portapapeles">Teksts ir kopēts starpliktuvē</string>
-    
-    
-    
-    <string name="termino_no_encontrado">Termins nav atrasts: %1$s</string>
-    
-
-    
-    
-    
-    <string name="no_hay_datos_validos_para_exportar">Nav derīgu datu, ko eksportēt</string>
-    
-    
-    
-    <string name="error_convirtiendo_datos_hex">Kļūda, konvertējot heksadecimālos datus</string>
-    
-    
-    
-    
-    <string name="error_creando_archivo_salida">Nevarēja izveidot izvades failu</string>
-    
-    
-    
-    
-    <string name="error_escribiendo_archivo_detalle">Kļūda, rakstot failu: %1$s</string>
-    
-    
-
-
-
-
-    
     <string name="datos_de_memoria">Atmiņa veiksmīgi nolasīta</string>
-    
-    
-    <string name="memoria_rom">ROM Memory</string>
-    
-    
-    <string name="memoria_eeprom">EEPROM Memory</string>
-    
-
-
-    
-    
+    <string name="sin_chip">bez mikroshēmas</string>
+    <string name="rom_ok_blank">ROM: labi (tukšs)</string>
+    <string name="rom_not_blank">ROM: NAV TUŠS</string>
+    <string name="eeprom_ok_blank">EEPROM: labi (tukšs)</string>
+    <string name="eeprom_not_blank">EEPROM: NAV TUŠS</string>
+    <string name="idioma_espanol">spāņu valoda</string>
+    <string name="idioma_ingles">angļu valoda</string>
+    <string name="idioma_label">Valoda: %s</string>
+    <string name="copiar_todo">📋 Kopēt visu</string>
+    <string name="tutorial_copiado">Apmācība ir kopēta starpliktuvē</string>
+    <string name="error_cargar_tutorial">Ielādējot apmācību, radās kļūda</string>
+    <string name="codigo_asm">📄 ASM kods</string>
+    <string name="comando_label">💻 Komanda</string>
+    <string name="copiar_btn">Kopēt</string>
+    <string name="copiado_msg">Kopēts</string>
+    <string name="error_abrir_link">Atverot saiti, radās kļūda</string>
+    <string name="error_generico_detalle">Kļūda: %1$s</string>
     <string name="cargando_tutorial">Loading tutorial…</string>
-    
-    
     <string name="paso_prefijo">STEP </string>
-    
-    
-    <string name="error_prefijo">❌ ERROR: </string>
-    
-    
+    <string name="error_prefijo">❌ KĻŪDA:</string>
     <string name="exito_prefijo">✅ SUCCESS: </string>
-    
-    
     <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    
-    
     <string name="coincidencias_encontradas">%1$d matches found</string>
-    
-    
     <string name="resultado_verificacion">Pārbaudes rezultāts</string>
-    
-    
     <string name="verificada">Pārbaudīts</string>
-    
-    
     <string name="fallo">Neizdevās</string>
-    
-    
+    <string name="rom_posible_locked">Possibly read-locked</string>
     <string name="yes">Jā</string>
-    
-    
     <string name="no_label">Nē</string>
-    
-    
     <string name="seleccionar_idioma">Izvēlieties valodu</string>
-    
-    
     <string name="tutorial_instalacion">Uzstādīšanas pamācība</string>
-    
-    
     <string name="copiar_todo_en">Kopēt visu</string>
-    
-    
     <string name="cerrar">Aizvērt</string>
-    
-    
     <string name="error_no_chip">Kļūda: Nav izvēlēta mikroshēma vai nav drošinātāju</string>
-    
-    
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    
-    
-    <string name="hex_compatible">HEX compatible</string>
-    
-    
+    <string name="hex_compatible">Saderīgs ar HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    
-    
-    <string name="label_chip">Chip: </string>
-    
-    
+    <string name="label_chip">Mikroshēma:</string>
     <string name="editor_construido">Editor built</string>
-    
-    
     <string name="restaurando_chip">Restoring from chip…</string>
-    
-    
     <string name="restaurado_chip">Restored from chip</string>
-    
-    
     <string name="restaurando_hex">Restoring from HEX…</string>
-    
-    
     <string name="restaurado_hex">Restored from HEX</string>
-    
-    
     <string name="hex_sin_fuses">HEX without fuses</string>
-    
-    
     <string name="aplicando">Piemēro…</string>
-    
-    
     <string name="aplicado_exito">Veiksmīgi piemērots</string>
-    
-    
     <string name="error_parse_id">Error parsing ID</string>
-    
-    
     <string name="seccion_identificacion">IDENTIFIKĀCIJA</string>
-    
-    
     <string name="seccion_memoria">ATMIŅAS SPECIFIKĀCIJAS</string>
-    
-    
     <string name="seccion_hardware">ARHITEKTŪRA &amp; KONTAKTI</string>
-    
-    
     <string name="seccion_programacion">PROGRAMMĒŠANAS PARAMETRI</string>
-    
-    
     <string name="seccion_fuses">PIEEJAMIE DROŠINĀTĀJI</string>
-    
-    
-    <string name="chip_id_label">Chip ID:</string>
-    
-    
+    <string name="chip_id_label">Mikroshēmas ID:</string>
     <string name="include_file_label">Include File:</string>
-    
-    
     <string name="rom_capacity_label">ROM Capacity:</string>
-    
-    
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    
-    
+    <string name="rom_words_bytes">%1$,d Vārdi (%2$,d baiti)</string>
     <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    
-    
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    
-    
+    <string name="eeprom_bytes">%1$,d baiti</string>
     <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    
-    
     <string name="flash_technology_label">Flash Technology:</string>
-    
-    
     <string name="core_architecture_label">Core Architecture:</string>
-    
-    
-    <string name="core_bits_val">%1$d bits</string>
-    
-    
+    <string name="core_bits_val">%1$d biti</string>
     <string name="core_type_id_label">Core Type ID:</string>
-    
-    
     <string name="pines_totales_label">Total Pins:</string>
-    
-    
     <string name="pines_val">%1$d pins</string>
-    
-    
     <string name="pin_1_location_label">Pin 1 Location:</string>
-    
-    
     <string name="socket_image_id_label">Socket Image ID:</string>
-    
-    
     <string name="icsp_required_label">ICSP Required:</string>
-    
-    
     <string name="erase_algorithm_label">Erase Algorithm:</string>
-    
-    
     <string name="power_sequence_label">Power Sequence:</string>
-    
-    
     <string name="prog_delay_label">Prog. Delay (ms):</string>
-    
-    
     <string name="prog_retries_label">Prog. Retries:</string>
-    
-    
     <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    
-    
     <string name="cp_warn_label">Code Protect Warning:</string>
-    
-    
     <string name="memory_error_label">Memory Error:</string>
-    
-    
+    <string name="texto_copiado_portapapeles">Teksts ir kopēts starpliktuvē</string>
     <string name="ad_label">Reklāma</string>
-    
-    
+    <string name="codigo_copiado_portapapeles">Kods ir kopēts starpliktuvē</string>
+    <string name="debe_procesar_hex_primero">Vispirms ir jāapstrādā HEX fails</string>
+    <string name="error_convirtiendo_datos_hex">Kļūda, konvertējot heksadecimālos datus</string>
+    <string name="error_creando_archivo_salida">Nevarēja izveidot izvades failu</string>
+    <string name="error_escribiendo_archivo_detalle">Kļūda, rakstot failu: %1$s</string>
     <string name="instalar">Instalēt</string>
-    
-    
+    <string name="memoria_rom">ROM Memory</string>
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    <string name="no_hay_datos_validos_para_exportar">Nav derīgu datu, ko eksportēt</string>
     <string name="not_available">Nav pieejams</string>
-    
-    
+    <string name="termino_no_encontrado">Termins nav atrasts: %1$s</string>
     <string name="calibracion_label">Calibration: %1$s</string>
-    
-    
     <string name="rom_label">ROM: %1$s</string>
-    
-    
     <string name="eeprom_label">EEPROM: %1$s</string>
-    
-    
     <string name="fuses_decodificados_exito">Drošinātāji veiksmīgi dekodēti</string>
-    
-    
     <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    
-    
     <string name="error_leer_config">Could not read chip configuration</string>
-    
-    
     <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    
-    
     <string name="verificando_rom_label">Verifying ROM…</string>
-    
-    
     <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    
-    
     <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    
-    
     <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_rom">Error converting read ROM data</string>
-    
-    
     <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    
-    
     <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    
-    
     <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    
-    
     <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    
-    
     <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    
-    
     <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    
-    
     <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    
-    
     <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    
-    
     <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    
-    
     <string name="titulo_info_hex">=== HEX File Information ===</string>
-    
-    
     <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    
-    
     <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    
-    
     <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    
-    
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    
-    
+    <string name="eeprom_total_info">EEPROM kopējā mikroshēma: %1$d baiti</string>
     <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    
-    
-    <string name="chip_label_info">Chip: %1$s</string>
-    
-    
-    <string name="core_info">Core: %1$d bits</string>
-    
-    
-    <string name="pin1_info">Pin 1: %1$s</string>
-    
-    
+    <string name="chip_label_info">Mikroshēma: %1$s</string>
+    <string name="core_info">Kodols: %1$d biti</string>
+    <string name="pin1_info">1. spraudnis: %1$s</string>
     <string name="flash_info">Flash: %1$s</string>
-    
-    
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    
-    
+    <string name="icsp_only_info">Tikai ICSP: %1$s</string>
     <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    
-    
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    
-    
+    <string name="si">Jā</string>
+    <string name="no">Nē</string>
+    <string name="record_address_error">Ieraksta adrese %1$s ir ārpus atļautā diapazona.</string>
     <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    
-    
     <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    
-    
     <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    
-    
     <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    
-    
     <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    
-    
     <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    
-    
     <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    
-    
     <string name="error_intercambio_par">Array must have even length for swap</string>
-    
-    
     <string name="error_md5_no_disponible">MD5 not available</string>
-    
-    
     <string name="error_vacio">Empty array</string>
-    
-    
     <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    
-    
     <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    
-    
     <string name="paso_label">SOLIS</string>
-    
-    
     <string name="nota_label">Piezīme</string>
-    
-    
     <string name="importante_label">Svarīgi</string>
-    
-    
     <string name="advertencia_label">Brīdinājums</string>
-    
-    
     <string name="ejemplo_label">Piemērs</string>
-    
-    
     <string name="explicacion_label">Skaidrojums</string>
-    
-
-
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
-    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
-    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="error_export_manager_not_initialized">HexExportManager nav inicializēts</string>
+    <string name="error_leyendo_info_chip">Kļūda, lasot mikroshēmas informāciju</string>
     <string name="label_rom">ROM:</string>
     <string name="label_eeprom">EEPROM:</string>
     <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
-    
-    
-    <string name="acerca_de_licencias">About / Licenses</string>
-    
-    
-    <string name="desarrollador">Developer</string>
-    
-    
-    <string name="licencia_de_aplicacion">Application License</string>
-    
-    
-    <string name="licencias_de_terceros">Third-party Licenses</string>
-    
-    
-    <string name="log_copiado">Log copied to clipboard</string>
-    
-    
-    <string name="modo_icsp_activado">ICSP mode activated</string>
-    
-    
-    <string name="modo_socket_activado">ZIF Socket mode activated</string>
-    
-    
+    <string name="label_bytes">baiti</string>
     <string name="pic_seleccionado">PIC Selected</string>
-    
-    
-    <string name="protocolo_descripcion">Native + config validation by comparison</string>
-    
-    
-    <string name="repositorio">Repository</string>
-    
-    
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
     <string name="seleccionar_protocolo">Select protocol</string>
-    
-
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="about_description">Profesionāla lietojumprogramma PIC mikrokontrolleru programmēšanai, izmantojot KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Tas ļauj programmēt PIC ierīces tieši no Android, izmantojot USB OTG, neizmantojot datoru.</string>
+    <string name="about_features">Galvenās iezīmes:</string>
+    <string name="about_feature_1">Mobilā programmēšana bez datora, izmantojot OTG.</string>
+    <string name="about_feature_2">Atbalsts KITSRUS P018 protokoliem (K150, K128, K149, K182).</string>
+    <string name="about_feature_3">Intuitīvs materiālu dizaina interfeiss.</string>
+    <string name="about_feature_4">Atbalsts arm64-v8a, armeabi-v7a, x86 un x86_64 arhitektūrām.</string>
+    <string name="about_acknowledgements_title">Pateicības:</string>
+    <string name="about_acknowledgements_desc">Īpašs paldies Maikam Veikerlijam, Ādamam Šūbertam un AndroidIDE, Android Code Studio un KITSRUS komandām.</string>
+    <string name="error_al_cambiar_modo">Kļūda, mainot režīmu:</string>
+    <string name="no_hay_firmware_valido">Nav derīgas programmaparatūras</string>
 </resources>
