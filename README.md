@@ -45,7 +45,7 @@ Esta solución innovadora elimina la necesidad de un equipo de escritorio, permi
 ### Requisitos del sistema
 
 - **API mínima**: Android 6.0 (Marshmallow) - API Level 23
-- **API objetivo**: Android 15 - API Level 36
+- **API objetivo**: Android 17 - API Level 37
 - **Permisos requeridos**: USB Host Mode
 - **Hardware**: Cable USB OTG y programador PIC k150 o compatible
 
@@ -250,7 +250,7 @@ Para más detalles, consulta el archivo [LICENSE.txt](LICENSE.txt).
 
 - **Lenguaje**: Java 11
 - **Framework**: Android SDK
-- **Build System**: Gradle 8.x
+- **Build System**: Gradle 9.6.0 (Gradle 9.x)
 - **UI Framework**: Material Design Components
 - **Comunicación**: USB Host API + usb-serial-for-android
 - **Crash Reporting**: Firebase Crashlytics + App Center
@@ -260,19 +260,35 @@ Para más detalles, consulta el archivo [LICENSE.txt](LICENSE.txt).
 
 ```
 PIC-k150-Programing/
-├── app/
+├── app/                                # Módulo principal de la aplicación Android
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/diamon/pic/
-│   │   │   ├── res/
-│   │   │   └── AndroidManifest.xml
-│   │   └── test/
-│   └── build.gradle
-├── gradle/
-├── build.gradle
-├── settings.gradle
-├── LICENSE.txt
-└── README.md
+│   │   │   ├── java/                   # Código fuente en Java de la aplicación
+│   │   │   │   └── com/diamon/
+│   │   │   │       ├── chip/           # Modelado y especificaciones de chips PIC soportados
+│   │   │   │       ├── datos/          # Procesamiento de archivos HEX y datos a grabar
+│   │   │   │       ├── excepciones/    # Excepciones personalizadas para el flujo de comunicación
+│   │   │   │       ├── managers/       # Gestores de lógica de negocio (e.g., gestor de archivos HEX)
+│   │   │   │       ├── nucleo/         # Clases base, vistas y componentes comunes de UI
+│   │   │   │       ├── pic/            # Actividades, diálogos y adaptadores específicos de la aplicación
+│   │   │   │       ├── politicas/      # Gestión de políticas de la aplicación
+│   │   │   │       ├── protocolo/      # Implementación del Protocolo P18A (programación serial de K150)
+│   │   │   │       ├── publicidad/     # Módulos y adaptadores para Google AdMob
+│   │   │   │       ├── tutorial/       # Guías visuales y tutoriales integrados paso a paso
+│   │   │   │       └── utilidades/     # Clases de utilidad generales (conversión, UI Helpers)
+│   │   │   ├── res/                    # Recursos de la interfaz (drawables, layouts, values, XMLs)
+│   │   │   └── AndroidManifest.xml     # Manifiesto de Android (permisos USB, actividades, configuración)
+│   │   └── test/                       # Pruebas unitarias locales JUnit e integración con el emulador
+│   └── build.gradle                    # Configuración del build a nivel de módulo
+├── gradle/                             # Wrapper de Gradle y archivos de configuración centralizados
+│   └── libs.versions.toml              # Catálogo de versiones de dependencias (AGP 9.2.1, SDK 37)
+├── build.gradle                        # Configuración de compilación del proyecto raíz
+├── settings.gradle                     # Ajustes del proyecto y habilitación del catálogo de plugins
+├── setup-sdk.sh                        # Script automatizado para configurar Android SDK, NDK y dependencias en /tmp
+├── run_java_emulator_tests.sh          # Script de pruebas automatizadas contra el emulador virtual K150
+├── GEMINI.md                           # Guía rápida de compilación y emulación local para agentes/desarrolladores
+├── LICENSE.txt                         # Licencia de código abierto del proyecto (GPL-3.0)
+└── README.md                           # Documentación general y guía del proyecto (este archivo)
 ```
 
 ## 📱 Capturas de pantalla
