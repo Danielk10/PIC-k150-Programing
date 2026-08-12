@@ -1658,7 +1658,7 @@ public class MainActivity extends AppCompatActivity
         int pad = Math.round(16 * density);
         textView.setPadding(pad, pad, pad, pad);
         textView.setTextSize(14);
-        textView.setTextColor(Color.WHITE);
+        textView.setTextColor(Color.BLACK);
         textView.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
         
         String htmlText = "<h3><b>PIC k150 Programming</b></h3>" +

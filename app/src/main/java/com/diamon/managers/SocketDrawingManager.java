@@ -101,37 +101,41 @@ public class SocketDrawingManager {
 
         float slotW = 18 * scaleX;
         float slotH = 8 * scaleY;
+        float totalAvailableHeight = 360 * scaleY;
+        float startPadding = 12 * scaleY;
+        float usableHeight = totalAvailableHeight - (2 * startPadding);
+        float verticalStep = usableHeight / 19f; // Para 20 filas
 
         for (int i = 0; i < 20; i++) {
-            float rowY = (24 + i * 16.5f) * scaleY; // Ajuste de posición y espaciado para rellenar mejor
+            float rowY = startPadding + (i * verticalStep) - (slotH / 2f);
 
             // Ranura Izquierda
-            RectF leftSlot = new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY);
+            RectF leftSlot = new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + slotH);
             canvas.drawRoundRect(leftSlot, 2f * scaleX, 2f * scaleY, slotPaint);
             
             // PIN PLATEADO IZQUIERDO (Efecto 3D mejorado)
             float pinLeft = 57 * scaleX;
             float pinRight = 69 * scaleX;
             // Capa base
-            canvas.drawRect(pinLeft, (rowY + 2) * scaleY, pinRight, (rowY + 6) * scaleY, slotContactPaint);
+            canvas.drawRect(pinLeft, rowY + 2 * scaleY, pinRight, rowY + 6 * scaleY, slotContactPaint);
             // Sombra inferior
-            canvas.drawRect(pinLeft, (rowY + 5) * scaleY, pinRight, (rowY + 6) * scaleY, slotShadowPaint);
+            canvas.drawRect(pinLeft, rowY + 5 * scaleY, pinRight, rowY + 6 * scaleY, slotShadowPaint);
             // Brillo superior
-            canvas.drawRect(pinLeft, (rowY + 2) * scaleY, pinRight, (rowY + 3.5f) * scaleY, slotHighlightPaint);
+            canvas.drawRect(pinLeft, rowY + 2 * scaleY, pinRight, rowY + 3.5f * scaleY, slotHighlightPaint);
 
             // Ranura Derecha
-            RectF rightSlot = new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY);
+            RectF rightSlot = new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + slotH);
             canvas.drawRoundRect(rightSlot, 2f * scaleX, 2f * scaleY, slotPaint);
             
             // PIN PLATEADO DERECHO
             float pinLeftR = 231 * scaleX;
             float pinRightR = 243 * scaleX;
             // Capa base
-            canvas.drawRect(pinLeftR, (rowY + 2) * scaleY, pinRightR, (rowY + 6) * scaleY, slotContactPaint);
+            canvas.drawRect(pinLeftR, rowY + 2 * scaleY, pinRightR, rowY + 6 * scaleY, slotContactPaint);
             // Sombra inferior
-            canvas.drawRect(pinLeftR, (rowY + 5) * scaleY, pinRightR, (rowY + 6) * scaleY, slotShadowPaint);
+            canvas.drawRect(pinLeftR, rowY + 5 * scaleY, pinRightR, rowY + 6 * scaleY, slotShadowPaint);
             // Brillo superior
-            canvas.drawRect(pinLeftR, (rowY + 2) * scaleY, pinRightR, (rowY + 3.5f) * scaleY, slotHighlightPaint);
+            canvas.drawRect(pinLeftR, rowY + 2 * scaleY, pinRightR, rowY + 3.5f * scaleY, slotHighlightPaint);
         }
 
         // 4. Indicadores (Número y Flecha para el Pin 1 del chip)
@@ -147,8 +151,8 @@ public class SocketDrawingManager {
             indicatorText = "13";
         }
 
-        float indicatorY = (24 + pinStartRow * 16.5f) * scaleY;
-        float rowCenterY = indicatorY + (4 * scaleY);
+        float indicatorY = startPadding + (pinStartRow * verticalStep) - (slotH / 2f);
+        float rowCenterY = indicatorY + (slotH / 2f);
 
         // Flecha indicadora naranja llamativa
         Paint arrowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -177,9 +181,9 @@ public class SocketDrawingManager {
             float left = 90 * scaleX;
             float right = 210 * scaleX;
 
-            float top = (24 + pinStartRow * 16.5f - 2) * scaleY;
+            float top = startPadding + (pinStartRow * verticalStep) - (slotH / 2f) - (2 * scaleY);
             int numFilas = numPines / 2;
-            float chipHeightVal = ((numFilas - 1) * 16.5f + 10 + 4) * scaleY;
+            float chipHeightVal = ((numFilas - 1) * verticalStep + slotH + 4 * scaleY);
             float bottom = top + chipHeightVal;
 
             // A. Patas plateadas del chip (salen del chip y se meten en las ranuras)
@@ -192,7 +196,7 @@ public class SocketDrawingManager {
             legHighlight.setStyle(Paint.Style.FILL);
 
             for (int i = 0; i < numFilas; i++) {
-                float legY = (24 + (pinStartRow + i) * 16.5f + 2) * scaleY;
+                float legY = startPadding + ((pinStartRow + i) * verticalStep) - (slotH / 2f) + (2 * scaleY);
                 // Pata Izquierda
                 canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 4 * scaleY, legPaint);
                 canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 1.5f * scaleY, legHighlight);

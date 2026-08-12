@@ -313,8 +313,8 @@
     <string name="label_id">ID:</string>
     <string name="label_bytes">bytes</string>
     <string name="pic_seleccionado">PIC Seleccionado</string>
-    <string name="modo_icsp_activado">Modo ICSP activado</string>
-    <string name="modo_socket_activado">Modo ZIF Socket activado</string>
+    <string name="modo_icsp_activado">Modo ICSP Activado</string>
+    <string name="modo_socket_activado">Modo ZIF Socket Activado</string>
     <string name="seleccionar_protocolo">Seleccionar Protocolo</string>
     <string name="acerca_de_licencias">Acerca de / Licencias</string>
     <string name="desarrollador">Desarrollador</string>
