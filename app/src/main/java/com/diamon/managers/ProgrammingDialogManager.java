@@ -40,6 +40,8 @@ public class ProgrammingDialogManager {
 
     private TextView titleTextView;
     private TextView descriptionTextView;
+    private TextView progressPercentTextView;
+    private PicAnimationView picAnimView;
     private ProgressBar statusProgressBar;
     private ImageView statusResultIcon;
     private Button actionButton;
@@ -150,33 +152,59 @@ public class ProgrammingDialogManager {
         titleTextView.setText(R.string.grabando_pic);
         titleTextView.setTextSize(18);
         titleTextView.setTextColor(Color.WHITE);
+        titleTextView.setTypeface(null, android.graphics.Typeface.BOLD);
         titleTextView.setGravity(Gravity.CENTER);
         topContent.addView(titleTextView);
 
-        FrameLayout statusContainer = new FrameLayout(context);
-        LinearLayout.LayoutParams statusParams = new LinearLayout.LayoutParams(
+        progressPercentTextView = new TextView(context);
+        progressPercentTextView.setText("0%");
+        progressPercentTextView.setTextSize(24);
+        progressPercentTextView.setTextColor(Color.parseColor("#00E676"));
+        progressPercentTextView.setTypeface(null, android.graphics.Typeface.BOLD);
+        progressPercentTextView.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams percentParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        statusParams.setMargins(0, dpToPx(4), 0, dpToPx(4));
+        percentParams.setMargins(0, dpToPx(4), 0, dpToPx(4));
+        topContent.addView(progressPercentTextView, percentParams);
 
-        statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyle);
-        statusProgressBar.getIndeterminateDrawable().setColorFilter(
-                new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
-        LinearLayout.LayoutParams progressSizeParams = new LinearLayout.LayoutParams(dpToPx(35), dpToPx(35));
+        picAnimView = new PicAnimationView(context);
+        LinearLayout.LayoutParams animParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(240));
+        animParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
+        topContent.addView(picAnimView, animParams);
+
+        FrameLayout statusContainer = new FrameLayout(context);
+        LinearLayout.LayoutParams statusParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        statusParams.setMargins(0, dpToPx(6), 0, dpToPx(6));
+
+        statusProgressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
+        statusProgressBar.setProgressDrawable(context.getDrawable(R.drawable.progress_bar_custom));
+        statusProgressBar.setIndeterminate(false);
+        statusProgressBar.setMax(100);
+        statusProgressBar.setProgress(0);
+        FrameLayout.LayoutParams progressSizeParams = new FrameLayout.LayoutParams(dpToPx(260), dpToPx(12));
+        progressSizeParams.gravity = Gravity.CENTER;
         statusProgressBar.setLayoutParams(progressSizeParams);
         statusProgressBar.setVisibility(View.VISIBLE);
         statusContainer.addView(statusProgressBar);
 
         statusResultIcon = new ImageView(context);
         statusResultIcon.setVisibility(View.GONE);
+        FrameLayout.LayoutParams iconParams = new FrameLayout.LayoutParams(dpToPx(45), dpToPx(45));
+        iconParams.gravity = Gravity.CENTER;
+        statusResultIcon.setLayoutParams(iconParams);
         statusContainer.addView(statusResultIcon);
 
         topContent.addView(statusContainer, statusParams);
 
         descriptionTextView = new TextView(context);
         descriptionTextView.setText(R.string.espere_grabacion_pic);
-        descriptionTextView.setTextSize(16);
-        descriptionTextView.setTextColor(Color.LTGRAY);
+        descriptionTextView.setTextSize(14);
+        descriptionTextView.setTextColor(Color.parseColor("#CCCCCC"));
         descriptionTextView.setGravity(Gravity.CENTER);
         topContent.addView(descriptionTextView);
 
@@ -212,7 +240,57 @@ public class ProgrammingDialogManager {
         return buttonContainer;
     }
 
+    public void updateProgress(final int progress, final String message) {
+        if (!isActivityValid()) return;
+
+        if (context instanceof android.app.Activity) {
+            ((android.app.Activity) context).runOnUiThread(() -> {
+                if (statusProgressBar != null) {
+                    statusProgressBar.setProgress(progress);
+                }
+                if (progressPercentTextView != null) {
+                    progressPercentTextView.setVisibility(View.VISIBLE);
+                    progressPercentTextView.setText(progress + "%");
+                    
+                    // Transition color from green (#00E676) to cyan (#00B0FF)
+                    float fraction = (float) progress / 100f;
+                    int color = interpolateColor(Color.parseColor("#00E676"), Color.parseColor("#00B0FF"), fraction);
+                    progressPercentTextView.setTextColor(color);
+                    
+                    // Micro-animation: pulse scale slightly on update
+                    progressPercentTextView.setScaleX(1.15f);
+                    progressPercentTextView.setScaleY(1.15f);
+                    progressPercentTextView.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150).start();
+                }
+                if (descriptionTextView != null) {
+                    descriptionTextView.setText(message);
+                }
+            });
+        }
+    }
+
+    private int interpolateColor(int colorStart, int colorEnd, float fraction) {
+        float[] startHsv = new float[3];
+        float[] endHsv = new float[3];
+        Color.colorToHSV(colorStart, startHsv);
+        Color.colorToHSV(colorEnd, endHsv);
+        float[] outHsv = new float[3];
+        outHsv[0] = startHsv[0] + (endHsv[0] - startHsv[0]) * fraction;
+        outHsv[1] = startHsv[1] + (endHsv[1] - startHsv[1]) * fraction;
+        outHsv[2] = startHsv[2] + (endHsv[2] - startHsv[2]) * fraction;
+        return Color.HSVToColor(outHsv);
+    }
+
     public void updateProgrammingResult(boolean success) {
+        if (picAnimView != null) {
+            picAnimView.setProgramming(false);
+            picAnimView.setVisibility(View.GONE);
+        }
+
+        if (progressPercentTextView != null) {
+            progressPercentTextView.setVisibility(View.GONE);
+        }
+
         if (statusProgressBar != null) {
             statusProgressBar.setVisibility(View.GONE);
         }

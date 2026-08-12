@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+    <!-- Titulos de Actividades -->
     <string name="app_name">PIC k150 Programming</string>
     <string name="politicas">Politicas de Privacidad</string>
 
-    
+    <!-- Ventana de grabacion del PIC -->
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="conectado">Conectado</string>
@@ -19,6 +19,7 @@
     <string name="modelo_del_programador">Modelo del Programador</string>
     <string name="modelo_programador">Modelo Programador</string>
     <string name="protocolo">Protocolo</string>
+    <string name="protocolo_descripcion">Nativo + validación config por comparación</string>
     <string name="politica_de_privacidad">Politica de Privacidad</string>
     <string name="no_se_detecto_pic_en_socket">No se detecto PIC en socket</string>
     <string name="pic_detectado_en_socket">PIC detectado en socket</string>
@@ -29,7 +30,7 @@
     <string name="seleccione_un_chip_y_cargue_un">Seleccione un chip y cargue un archivo HEX</string>
     <string name="error_programando_pic">Error programando PIC</string>
     <string name="pic_programado_exitosamente">PIC programado exitosamente</string>
-    <string name="iniciando_programacion">Iniciando programacion...</string>
+    <string name="iniciando_programacion">Iniciando programación...</string>
     <string name="error_cargando_archivo">Error cargando archivo</string>
     <string name="error_inicializando_chip">Error inicializando chip</string>
     <string name="conectado_al_programador">Conectado al programador</string>
@@ -37,24 +38,24 @@
     <string name="no_hay_chip_seleccionado">No hay chip seleccionado</string>
     <string name="modelo">Modelo</string>
     <string name="palabras_rom">Palabras ROM</string>
-    <string name="tamano_rom">Tamano ROM</string>
+    <string name="tamano_rom">Tamaño ROM</string>
     <string name="eeprom">EEPROM</string>
     <string name="no_disponible">No disponible</string>
-    <string name="tipo_de_nucleo">Tipo de Nucleo</string>
+    <string name="tipo_de_nucleo">Tipo de Núcleo</string>
     <string name="error_obteniendo_datos_del_chi">Error obteniendo datos del chip</string>
     <string name="modo">Modo</string>
     <string name="icsp_solamente">ICSP solamente</string>
     <string name="pin_1">Pin 1</string>
     <string name="filemanager_no_inicializado">FileManager no inicializado</string>
     <string name="no_se_pudo_obtener_el_nombre_d">No se pudo obtener el nombre del archivo</string>
-    <string name="seleccione_un_archivo_binario_">Seleccione un archivo binario valido (.hex o .bin)</string>
+    <string name="seleccione_un_archivo_binario_">Seleccione un archivo binario válido (.hex o .bin)</string>
     <string name="error_abriendo_el_archivo_sele">Error abriendo el archivo seleccionado</string>
-    <string name="el_archivo_seleccionado_esta_v">El archivo seleccionado esta vacio</string>
+    <string name="el_archivo_seleccionado_esta_v">El archivo seleccionado está vacío</string>
     <string name="error_leyendo_el_archivo">Error leyendo el archivo</string>
     <string name="error_inesperado_leyendo_el_ar">Error inesperado leyendo el archivo</string>
-
+ 
     <string name="protocolo_no_inicializado">Protocolo no inicializado</string>
-    <string name="datos_invalidos_para_programac">Datos invalidos para programacion</string>
+    <string name="datos_invalidos_para_programac">Datos inválidos para programación</string>
     <string name="borrando_memorias">Borrando memorias...</string>
     <string name="error_borrando_memorias">Error borrando memorias</string>
     <string name="programando_memoria_rom">Programando memoria ROM...</string>
@@ -65,7 +66,7 @@
     <string name="error_programando_fuses">Error programando Fuses</string>
     <string name="programando_fuses_18f">Programando Fuses 18F...</string>
     <string name="error_programando_fuses_18f">Error programando Fuses 18F</string>
-    <string name="programacion_completada">Programacion completada</string>
+    <string name="programacion_completada">Programación completada</string>
     <string name="error_inesperado">Error inesperado</string>
     <string name="error_leyendo_memoria_rom">Error leyendo memoria ROM</string>
     <string name="error_leyendo_memoria_eeprom">Error leyendo memoria EEPROM</string>
@@ -74,23 +75,23 @@
     <string name="error_detectando_chip">Error detectando chip</string>
     <string name="driver_usb_no_disponible">Driver USB no disponible</string>
     <string name="dispositivo_sin_puertos_usb_di">Dispositivo sin puertos USB disponibles</string>
-    <string name="error_inicializando_protocolo_">Error inicializando protocolo de comunicacion</string>
-    <string name="error_de_conexion_usb">Error de conexion USB</string>
-    <string name="error_inesperado_durante_la_co">Error inesperado durante la conexion</string>
-
-    
+    <string name="error_inicializando_protocolo_">Error inicializando protocolo de comunicación</string>
+    <string name="error_de_conexion_usb">Error de conexión USB</string>
+    <string name="error_inesperado_durante_la_co">Error inesperado durante la conexión</string>
+ 
+    <!-- Strings adicionales necesarios para UI -->
     <string name="operaciones">Operaciones</string>
     <string name="cargar_archivo_hex">Cargar Archivo HEX</string>
     <string name="programar_pic">Programar PIC</string>
     <string name="leer_memoria">Leer Memoria</string>
-    <string name="verificar">Verificar</string>
+    <string name="verificar">Verificar memoria</string>
     <string name="borrar_memoria">Borrar Memoria</string>
     <string name="detectar_pic">Detectar PIC</string>
-    <string name="esperando_operacion">Esperando operacion...</string>
-    <string name="esperando_seleccion">Esperando seleccion...</string>
+    <string name="esperando_operacion">Esperando operación...</string>
+    <string name="esperando_seleccion">Esperando selección...</string>
     <string name="seleccionar_chip_pic">Seleccionar PIC</string>
     <string name="log_copiado">Log copiado al portapapeles</string>
-    <string name="gputils_termux_asm">Compilar GPUUTILS en Termux esamblador ASM</string>
+    <string name="gputils_termux_asm">Compilar GPUTILS en Termux ensamblador ASM</string>
     
     <string name="leyendo_memoria" translatable="false">Leyendo memoria...</string>
     <string name="fusibles_aplicados_correctamente" translatable="false">Fusibles aplicados correctamente</string>
@@ -124,6 +125,7 @@
     <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
     <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exportar Volcado Completo (.hex)</string>
+    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
 
     <string name="programar_todo">Programar Todo</string>
     <string name="programar_solo_rom">Programar solo ROM</string>
@@ -186,7 +188,7 @@
     <string name="yes">Sí</string>
     <string name="no_label">No</string>
     <string name="seleccionar_idioma">Seleccionar Idioma</string>
-    <string name="tutorial_instalacion">Tutorial de Instalacion</string>
+    <string name="tutorial_instalacion">Tutorial de Instalación</string>
     <string name="copiar_todo_en">Copy All</string>
     <string name="cerrar">Cerrar</string>
     <string name="error_no_chip">Error: No hay chip seleccionado o sin fuses disponibles</string>
@@ -236,7 +238,7 @@
     
     <string name="texto_copiado_portapapeles">Texto copiado al portapapeles</string>
 
-    
+    <!-- Missing strings from audit -->
     <string name="ad_label">Anuncio</string>
     <string name="codigo_copiado_portapapeles">Código copiado al portapapeles</string>
     <string name="debe_procesar_hex_primero">Debe procesar el archivo HEX primero</string>
@@ -249,6 +251,7 @@
     <string name="no_hay_datos_validos_para_exportar">No hay datos válidos para exportar</string>
     <string name="not_available">No disponible</string>
     <string name="termino_no_encontrado">Término no encontrado: %1$s</string>
+
     <string name="calibracion_label">Calibración: %1$s</string>
     <string name="rom_label">ROM: %1$s</string>
     <string name="eeprom_label">EEPROM: %1$s</string>
@@ -303,7 +306,19 @@
     <string name="advertencia_label">Advertencia</string>
     <string name="ejemplo_label">Ejemplo</string>
     <string name="explicacion_label">Explicación</string>
-
-    
-
-<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>
+    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
+    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">EEPROM:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">bytes</string>
+    <string name="pic_seleccionado">PIC Seleccionado</string>
+    <string name="modo_icsp_activado">Modo ICSP activado</string>
+    <string name="modo_socket_activado">Modo ZIF Socket activado</string>
+    <string name="seleccionar_protocolo">Seleccionar protocolo</string>
+    <string name="acerca_de_licencias">Acerca de / Licencias</string>
+    <string name="desarrollador">Desarrollador</string>
+    <string name="repositorio">Repositorio</string>
+    <string name="licencia_de_aplicacion">Licencia de la aplicación</string>
+    <string name="licencias_de_terceros">Licencias de terceros</string>
+</resources>

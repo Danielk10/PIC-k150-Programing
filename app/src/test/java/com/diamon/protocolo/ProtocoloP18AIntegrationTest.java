@@ -714,4 +714,50 @@ public class ProtocoloP18AIntegrationTest {
         assertArrayEquals("El ID importado desde Config-only .bin no coincide", idOriginalBytes, datosPicConfigOnly.obtenerValoresBytesHexIDProcesado());
         assertArrayEquals("Los Fuses importados desde Config-only .bin no coinciden", fusesOriginalInts, datosPicConfigOnly.obtenerValoresIntHexFusesProcesado());
     }
+
+    @Test
+    public void testProgramacionYLecturaModoICSP() throws Exception {
+        // Habilitamos ICSP en el chip de prueba
+        chip16f628a.setActivarICSP(true);
+        assertTrue("El chip debería tener activado el modo ICSP", chip16f628a.isISCPModo());
+
+        // Ciclo completo de grabación y lectura con el emulador en modo ICSP
+        assertTrue("Fallo al iniciar variables de programación en modo ICSP", protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+        assertTrue("Fallo al borrar el chip en modo ICSP", protocolo.borrarMemoriasDelPic());
+
+        // Datos pic ficticios
+        byte[] romDummy = new byte[4096];
+        java.util.Arrays.fill(romDummy, (byte) 0x3F);
+        byte[] eepromDummy = new byte[128];
+        java.util.Arrays.fill(eepromDummy, (byte) 0xFF);
+        byte[] idDummy = new byte[] { (byte) 0xAA, (byte) 0xBB, (byte) 0xCC, (byte) 0xDD };
+        
+        com.diamon.datos.DatosPicProcesados datosPic = mock(com.diamon.datos.DatosPicProcesados.class);
+        when(datosPic.obtenerBytesHexROMProcesado()).thenReturn(romDummy);
+        when(datosPic.obtenerBytesHexEEPROMProcesado()).thenReturn(eepromDummy);
+        when(datosPic.obtenerValoresBytesHexIDProcesado()).thenReturn(idDummy);
+        when(datosPic.obtenerValoresIntHexFusesProcesado()).thenReturn(new int[] { 0x3F74 });
+
+        // Grabar ROM
+        assertTrue("Fallo al grabar ROM en modo ICSP", protocolo.programarMemoriaROMDelPic(chip16f628a, datosPic));
+        // Grabar EEPROM
+        assertTrue("Fallo al grabar EEPROM en modo ICSP", protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPic));
+        // Grabar Fuses
+        java.util.List<Integer> fusesList = java.util.Arrays.asList(0x3F74);
+        assertTrue("Fallo al grabar Fuses en modo ICSP", protocolo.programarFusesIDDelPic(chip16f628a, datosPic, idDummy, fusesList));
+
+        // Leer y comprobar integridad
+        String romLeida = protocolo.leerMemoriaROMDelPic(chip16f628a);
+        assertNotNull(romLeida);
+        assertFalse(romLeida.startsWith("Error"));
+
+        String eepromLeida = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+        assertNotNull(eepromLeida);
+        assertFalse(eepromLeida.startsWith("Error"));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+        assertTrue(config.toLowerCase().contains("aabbccdd"));
+    }
 }

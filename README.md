@@ -99,6 +99,12 @@ El proyecto se basa en las siguientes tecnologías y recursos de código abierto
 - **Repositorio**: [AndroidIDEOfficial/AndroidIDE](https://github.com/AndroidIDEOfficial/AndroidIDE)
 - **Descripción**: IDE completo para desarrollo Android en dispositivos móviles
 
+#### Termux
+- **Función**: Emulador de terminal y entorno Linux para Android para pruebas locales, scripting y emulación de hardware
+- **Licencia**: GPL-3.0
+- **Repositorio**: [termux/termux-app](https://github.com/termux/termux-app)
+- **Descripción**: Entorno Linux autocontenido que permite ejecutar herramientas de compilación, scripts Python para el emulador y la suite de pruebas locales de comunicación serial
+
 ### Servicios integrados
 
 - **Firebase Crashlytics**: Reporte y análisis de errores en tiempo real
@@ -231,11 +237,12 @@ Para más detalles, consulta el archivo [LICENSE.txt](LICENSE.txt).
 
 ### Licencias de dependencias
 
-| Proyecto | Licencia | Autor |
+| Proyecto | Licencia | Autor / Colaborador |
 |----------|----------|---------|
 | usb-serial-for-android | MIT | Google Inc. / Mike Wakerly |
 | picpro | LGPL-3.0 | Adam Schubert (Salamek) |
 | picprogrammer | LGPL-2.0 | Proyecto comunitario |
+| Termux | GPL-3.0 | Fredrik Fornwall y colaboradores |
 
 ## 🛠️ Especificaciones técnicas
 

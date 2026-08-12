@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.widget.ImageView;
 
 import com.diamon.chip.ChipPic;
@@ -43,54 +44,62 @@ public class SocketDrawingManager {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
-        // Colores originales del vector
-        int colorTeal = Color.parseColor("#005F5F");
-        int colorBlueFrame = Color.parseColor("#1565C0");
-        int colorInnerRecess = Color.parseColor("#0D47A1");
-        int colorPinGreen = Color.parseColor("#4CAF50");
-        int colorPinGold = Color.parseColor("#FFD700");
-
-        // Fondo Teal
-        canvas.drawColor(colorTeal);
+        // Fondo oscuro / Slate para coincidir con la UI oscura
+        canvas.drawColor(Color.parseColor("#121212"));
 
         float scaleX = width / 300f;
         float scaleY = height / 360f;
 
-        // 1. Marco del Socket (BLUE)
-        Paint paint = new Paint();
-        paint.setColor(colorBlueFrame);
+        // 1. Base del Zócalo ZIF (Verde)
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.parseColor("#0E5E3A")); // Verde ZIF profesional
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, paint);
+        RectF socketRect = new RectF(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY);
+        canvas.drawRoundRect(socketRect, 14 * scaleX, 14 * scaleY, paint);
 
+        // Borde relieve 3D del zócalo
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1 * scaleX);
-        paint.setColor(Color.WHITE);
-        canvas.drawRect(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY, paint);
+        paint.setStrokeWidth(3 * scaleX);
+        paint.setColor(Color.parseColor("#083B24"));
+        canvas.drawRoundRect(socketRect, 14 * scaleX, 14 * scaleY, paint);
 
-        // 2. Hueco Central (Inner Recess)
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(colorInnerRecess);
-        canvas.drawRect(90 * scaleX, 20 * scaleY, 210 * scaleX, 340 * scaleY, paint);
+        // 2. Palanca metálica ZIF (cromado)
+        paint.setColor(Color.parseColor("#90A4AE"));
+        paint.setStrokeWidth(4 * scaleX);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        float leverStartX = 25 * scaleX;
+        float leverStartY = 30 * scaleY;
+        float leverEndX = 25 * scaleX;
+        float leverEndY = 180 * scaleY;
+        // Brazo de la palanca
+        canvas.drawLine(leverStartX, leverStartY, leverEndX, leverEndY, paint);
+        // Codo de anclaje
+        canvas.drawLine(leverStartX, leverStartY, 40 * scaleX, leverStartY + 8 * scaleY, paint);
+        // Mango plástico rojo de la palanca
+        Paint pomoPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        pomoPaint.setColor(Color.parseColor("#D32F2F"));
+        pomoPaint.setStyle(Paint.Style.FILL);
+        canvas.drawCircle(leverEndX, leverEndY, 8 * scaleX, pomoPaint);
 
-        // 3. Pines (Grid de 20x2)
-        paint.setStyle(Paint.Style.FILL);
+        // 3. Ranuras del zócalo ZIF (Grid de 20x2)
+        Paint slotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        slotPaint.setColor(Color.parseColor("#1A1A1A")); // Ranura negra
+        slotPaint.setStyle(Paint.Style.FILL);
+
+        float slotW = 18 * scaleX;
+        float slotH = 8 * scaleY;
+
         for (int i = 0; i < 20; i++) {
             float rowY = (30 + i * 16) * scaleY;
 
-            // Columna Izquierda
-            paint.setColor(colorPinGreen);
-            canvas.drawRect(50 * scaleX, rowY, 80 * scaleX, rowY + 10 * scaleY, paint);
-            paint.setColor(colorPinGold);
-            canvas.drawRect(70 * scaleX, rowY + 2 * scaleY, 76 * scaleX, rowY + 8 * scaleY, paint);
+            // Ranura Izquierda
+            canvas.drawRoundRect(new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY), 2f * scaleX, 2f * scaleY, slotPaint);
 
-            // Columna Derecha
-            paint.setColor(colorPinGreen);
-            canvas.drawRect(220 * scaleX, rowY, 250 * scaleX, rowY + 10 * scaleY, paint);
-            paint.setColor(colorPinGold);
-            canvas.drawRect(224 * scaleX, rowY + 2 * scaleY, 230 * scaleX, rowY + 8 * scaleY, paint);
+            // Ranura Derecha
+            canvas.drawRoundRect(new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY), 2f * scaleX, 2f * scaleY, slotPaint);
         }
 
-        // 4. Indicadores (Numero y Flecha)
+        // 4. Indicadores (Número y Flecha para el Pin 1 del chip)
         String pinLocation = chip.getUbicacionPin1DelPic();
         int pinStartRow = 0;
         String indicatorText = "1";
@@ -103,108 +112,100 @@ public class SocketDrawingManager {
             indicatorText = "13";
         }
 
-        float indicatorY = (30 + pinStartRow * 16) * scaleY; // Y coord of the first pin row
-        float rowCenterY = indicatorY + (5 * scaleY); // Center of the 10-unit high pin
+        float indicatorY = (30 + pinStartRow * 16) * scaleY;
+        float rowCenterY = indicatorY + (4 * scaleY);
 
-        // Flecha Blanca - Tamaño moderado para evitar solape
-        paint.setColor(Color.WHITE);
+        // Flecha indicadora naranja llamativa
+        Paint arrowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        arrowPaint.setColor(Color.parseColor("#FF6600")); // Naranja
+        arrowPaint.setStyle(Paint.Style.FILL);
+
         Path path = new Path();
-        float arrowWidth = 12 * scaleX;
-        float arrowHeight = 10 * scaleY;
+        float arrowWidth = 10 * scaleX;
+        float arrowHeight = 8 * scaleY;
         path.moveTo(22 * scaleX, rowCenterY - arrowHeight);
-        path.lineTo(40 * scaleX, rowCenterY);
+        path.lineTo(38 * scaleX, rowCenterY);
         path.lineTo(22 * scaleX, rowCenterY + arrowHeight);
         path.close();
-        canvas.drawPath(path, paint);
+        canvas.drawPath(path, arrowPaint);
 
-        // Texto del indicador - Resuelto solapamiento
-        paint.setTextSize(24 * scaleY);
-        paint.setFakeBoldText(true);
-        // Desplazado para evitar la flecha si es de dos dígitos
-        paint.setColor(Color.WHITE);
-        canvas.drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, paint);
+        // Texto indicador "1", "2" o "13"
+        Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextSize(18 * scaleY);
+        textPaint.setFakeBoldText(true);
+        canvas.drawText(indicatorText, 4 * scaleX, rowCenterY + 6 * scaleY, textPaint);
 
-        // Brillo sutil en el texto
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(0.5f * scaleX);
-        paint.setColor(Color.LTGRAY);
-        canvas.drawText(indicatorText, 2 * scaleX, rowCenterY + 10 * scaleY, paint);
-        paint.setStyle(Paint.Style.FILL);
-
-        // 5. Cuerpo del Chip (Negro)
+        // 5. Cuerpo del Chip PIC (Negro)
         int numPines = chip.getNumeroDePines();
         if (numPines > 0) {
             float left = 90 * scaleX;
             float right = 210 * scaleX;
 
-            // Calculo exacto para que el chip coincida con los pines (2 unidades de margen arriba/abajo)
             float top = (30 + pinStartRow * 16 - 2) * scaleY;
             int numFilas = numPines / 2;
-            float chipHeight = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
-            float bottom = top + chipHeight;
+            float chipHeightVal = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
+            float bottom = top + chipHeightVal;
 
-            int colorChipBody = Color.parseColor("#151515");
-            int colorChipBorder = Color.parseColor("#404040");
-            int colorNotch = Color.parseColor("#8B4513"); // Marrón
-            int colorLegs = Color.parseColor("#BDBDBD"); // Plateado metálico
+            // A. Patas plateadas del chip (salen del chip y se meten en las ranuras)
+            Paint legPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            legPaint.setColor(Color.parseColor("#CFD8DC")); // Plateado
+            legPaint.setStyle(Paint.Style.FILL);
 
-            // A. PATAS del Chip (debajo del cuerpo)
-            paint.setStyle(Paint.Style.FILL);
             for (int i = 0; i < numFilas; i++) {
-                float legY = (30 + (pinStartRow + i) * 16 + 3) * scaleY;
+                float legY = (30 + (pinStartRow + i) * 16 + 2) * scaleY;
                 // Pata Izquierda
-                paint.setColor(colorLegs);
-                canvas.drawRect(80 * scaleX, legY, 92 * scaleX, legY + 4 * scaleY, paint);
+                canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 4 * scaleY, legPaint);
                 // Pata Derecha
-                canvas.drawRect(208 * scaleX, legY, 220 * scaleX, legY + 4 * scaleY, paint);
+                canvas.drawRect(208 * scaleX, legY, 228 * scaleX, legY + 4 * scaleY, legPaint);
             }
 
-            // B. Cuerpo
-            paint.setColor(colorChipBody);
-            canvas.drawRect(left, top, right, bottom, paint);
+            // B. Cuerpo del chip
+            Paint chipBodyPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            chipBodyPaint.setColor(Color.parseColor("#1E1E1E")); // Negro mate
+            chipBodyPaint.setStyle(Paint.Style.FILL);
+            RectF chipRect = new RectF(left, top, right, bottom);
+            canvas.drawRoundRect(chipRect, 8f * scaleX, 8f * scaleY, chipBodyPaint);
 
-            // C. Modelo del Chip (Texto grabado) - Horizontal y más grande
+            // Borde relieve del chip
+            Paint chipBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            chipBorderPaint.setColor(Color.parseColor("#3A3A3A"));
+            chipBorderPaint.setStyle(Paint.Style.STROKE);
+            chipBorderPaint.setStrokeWidth(1.2f * scaleX);
+            canvas.drawRoundRect(chipRect, 8f * scaleX, 8f * scaleY, chipBorderPaint);
+
+            // C. Muesca semicircular superior (Notch)
+            Paint notchPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            notchPaint.setColor(Color.parseColor("#0E5E3A")); // Mismo verde del fondo del zócalo
+            notchPaint.setStyle(Paint.Style.FILL);
+            float notchWidth = 36 * scaleX;
+            float notchHeight = 16 * scaleY;
+            canvas.drawArc(
+                    (300 / 2f - notchWidth / 2f) * scaleX,
+                    top - notchHeight / 2f,
+                    (300 / 2f + notchWidth / 2f) * scaleX,
+                    top + notchHeight / 2f,
+                    0, 180, true, notchPaint);
+
+            // D. Grabado modelo del chip
             String chipName = chip.getNombreDelPic();
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(Color.parseColor("#D0D0D0")); // Gris claro láser
-            paint.setTextSize(24 * scaleY); // Aumentado
-            paint.setFakeBoldText(true);
+            Paint modelTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            modelTextPaint.setColor(Color.parseColor("#B0BEC5")); // Gris claro láser
+            modelTextPaint.setTextSize(18 * scaleY);
+            modelTextPaint.setTextAlign(Paint.Align.CENTER);
+            modelTextPaint.setTypeface(android.graphics.Typeface.create(android.graphics.Typeface.MONOSPACE, android.graphics.Typeface.BOLD));
 
             float chipCenterX = (left + right) / 2f;
             float chipCenterY = (top + bottom) / 2f;
-            float textWidth = paint.measureText(chipName);
 
-            // Dibujar centrado horizontalmente y verticalmente
-            canvas.drawText(chipName, chipCenterX - textWidth / 2f, chipCenterY + (8 * scaleY), paint);
+            // Texto del modelo
+            canvas.drawText(chipName, chipCenterX, chipCenterY + (6 * scaleY), modelTextPaint);
 
-            // Borde del chip
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(1.2f * scaleX);
-            paint.setColor(colorChipBorder);
-            canvas.drawRect(left, top, right, bottom, paint);
-
-            // D. Muesca (Notch)
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(colorNotch);
-            float notchWidth = 40 * scaleX;
-            float notchHeight = 18 * scaleY;
-            canvas.drawArc(
-                    (300 / 2f - notchWidth / 2f) * scaleX,
-                    top - notchHeight / 2f,
-                    (300 / 2f + notchWidth / 2f) * scaleX,
-                    top + notchHeight / 2f,
-                    0, 180, true, paint);
-
-            // Sombra interna notch
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(0.8f * scaleX);
-            paint.setColor(Color.BLACK);
-            canvas.drawArc(
-                    (300 / 2f - notchWidth / 2f) * scaleX,
-                    top - notchHeight / 2f,
-                    (300 / 2f + notchWidth / 2f) * scaleX,
-                    top + notchHeight / 2f,
-                    0, 180, false, paint);
+            // Círculo indicador del Pin 1
+            Paint dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            dotPaint.setColor(Color.parseColor("#455A64"));
+            dotPaint.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(left + 15 * scaleX, top + 15 * scaleY, 4 * scaleX, dotPaint);
         }
 
         recycleTextura();

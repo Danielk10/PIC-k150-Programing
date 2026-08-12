@@ -209,15 +209,6 @@ public class MainActivity extends AppCompatActivity
             String timestamp = "[" + LOG_DATE_FORMAT.format(new Date()) + "] ";
             String fullMessage = timestamp + message;
 
-            // Si el mensaje anterior era de progreso (%), reemplazarlo en lugar de acumularlo
-            if (message.contains("%") && !logHistory.isEmpty()) {
-                String lastLog = logHistory.get(logHistory.size() - 1);
-                if (lastLog.contains("%") || lastLog.contains("⏳")) {
-                    logHistory.set(logHistory.size() - 1, fullMessage);
-                    updateLogUI();
-                    return;
-                }
-            }
             logHistory.add(fullMessage);
             updateLogUI();
         });
@@ -308,6 +299,7 @@ public class MainActivity extends AppCompatActivity
                 currentChip = chip;
                 fileManager.setCurrentChip(chip);
                 chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
+                appendLog("⚙ " + getString(R.string.pic_seleccionado) + ": " + model);
 
                 updateSwitchColors();
                 updateICSPSwitchState();
@@ -458,6 +450,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onProgrammingProgress(String message, int progress) {
         appendLog("⏳ " + message + " (" + progress + "%)");
+        if (dialogManager != null) {
+            dialogManager.updateProgress(progress, message);
+        }
     }
 
     @Override
@@ -502,6 +497,11 @@ public class MainActivity extends AppCompatActivity
 
                         // ACTUALIZAR IMAGEN SEGUN ESTADO DEL SWITCH
                         updateChipImage(currentChip);
+                        if (isChecked) {
+                            appendLog("⚙ " + getString(R.string.modo_icsp_activado));
+                        } else {
+                            appendLog("⚙ " + getString(R.string.modo_socket_activado));
+                        }
 
                     } catch (ChipConfigurationException e) {
                         swModeICSP.setChecked(false);
@@ -773,12 +773,12 @@ public class MainActivity extends AppCompatActivity
         btnConfigureFuses.setEnabled(enabled);
         if (enabled) {
             btnConfigureFuses.setBackgroundTintList(
-                    android.content.res.ColorStateList.valueOf(Color.parseColor("#9C27B0")));
+                    android.content.res.ColorStateList.valueOf(Color.parseColor("#00B0FF")));
             btnConfigureFuses.setTextColor(Color.WHITE);
         } else {
             btnConfigureFuses.setBackgroundTintList(
-                    android.content.res.ColorStateList.valueOf(Color.parseColor("#555555")));
-            btnConfigureFuses.setTextColor(Color.parseColor("#AAAAAA"));
+                    android.content.res.ColorStateList.valueOf(Color.parseColor("#35354D")));
+            btnConfigureFuses.setTextColor(Color.parseColor("#6D6D8A"));
         }
     }
 
@@ -799,24 +799,20 @@ public class MainActivity extends AppCompatActivity
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
                                     Color.parseColor("#FF6600")));
-                } else if (btn == btnLeerMemoriaDeLPic || btn == btnVerificarMemoriaDelPic) {
-                    btn.setBackgroundTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#2196F3")));
                 } else if (btn == btnBorrarMemoriaDeLPic) {
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#F44336")));
+                                    Color.parseColor("#D32F2F")));
                 } else {
                     btn.setBackgroundTintList(
                             android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#9C27B0")));
+                                    Color.parseColor("#00B0FF")));
                 }
                 btn.setTextColor(Color.WHITE);
             } else {
                 btn.setBackgroundTintList(
-                        android.content.res.ColorStateList.valueOf(Color.parseColor("#555555")));
-                btn.setTextColor(Color.parseColor("#AAAAAA"));
+                        android.content.res.ColorStateList.valueOf(Color.parseColor("#35354D")));
+                btn.setTextColor(Color.parseColor("#6D6D8A"));
             }
         }
     }
@@ -1054,6 +1050,7 @@ public class MainActivity extends AppCompatActivity
                                         }
                                     }
 
+                                    statusMsg.append("\n  ").append(getString(R.string.protocolo)).append(": ").append(getString(R.string.protocolo_descripcion));
                                     appendLog(statusMsg.toString());
                                 });
 
@@ -1145,12 +1142,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
-        menu.add(Menu.NONE, 2, 2, getString(R.string.protocolo));
+        menu.add(Menu.NONE, 2, 2, getString(R.string.seleccionar_protocolo));
         menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
         menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_json));
         menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm));
         menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial));
         menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad));
+        menu.add(Menu.NONE, 8, 8, "ℹ " + getString(R.string.acerca_de_licencias));
         return true;
     }
 
@@ -1177,6 +1175,9 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case 4:
                 startActivity(new Intent(this, PoliticaPrivacidadActivity.class));
+                return true;
+            case 8:
+                showAboutLicensesDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -1624,10 +1625,6 @@ public class MainActivity extends AppCompatActivity
 
     private void showProtocolDialog() {
         String currentProto = usbManager.getTipoProtocolo().getNombre();
-        String detected = "";
-        if (usbManager.isConnected()) {
-            detected = usbManager.getProtocolo().obtenerProtocoloDelProgramador();
-        }
 
         String[] protocolos = TipoProtocolo.getNombres();
         int currentIndex = 0;
@@ -1639,10 +1636,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         final int[] selectedIndex = { currentIndex };
-        String title = getString(R.string.protocolo_del_programador);
-        if (!detected.isEmpty()) {
-            title += " (" + detected.trim() + ")";
-        }
+        String title = getString(R.string.seleccionar_protocolo);
 
         new AlertDialog.Builder(this)
                 .setTitle(title)
@@ -1655,6 +1649,39 @@ public class MainActivity extends AppCompatActivity
                     appendLog("ℹ " + getString(R.string.protocolo) + ": " + selected.getNombre());
                 })
                 .setNegativeButton(getString(R.string.cancelar), null)
+                .show();
+    }
+
+    private void showAboutLicensesDialog() {
+        android.widget.TextView textView = new android.widget.TextView(this);
+        float density = getResources().getDisplayMetrics().density;
+        int pad = Math.round(16 * density);
+        textView.setPadding(pad, pad, pad, pad);
+        textView.setTextSize(14);
+        textView.setTextColor(Color.WHITE);
+        textView.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
+        
+        String htmlText = "<h3><b>PIC k150 Programming</b></h3>" +
+                "<p><b>" + getString(R.string.desarrollador) + ":</b> Danielk10</p>" +
+                "<p><b>" + getString(R.string.repositorio) + ":</b> <a href=\"https://github.com/Danielk10/PIC-k150-Programing\">GitHub Repo</a></p>" +
+                "<hr>" +
+                "<h4><b>" + getString(R.string.licencia_de_aplicacion) + "</b></h4>" +
+                "<p>GNU General Public License v3.0 (GPL-3.0)</p>" +
+                "<hr>" +
+                "<h4><b>" + getString(R.string.licencias_de_terceros) + "</b></h4>" +
+                "<ul>" +
+                "  <li><b>usb-serial-for-android:</b> MIT License (Mike Wakerly / Google Inc.)</li>" +
+                "  <li><b>picpro:</b> LGPL-3.0 (Adam Schubert / Salamek)</li>" +
+                "  <li><b>picprogrammer:</b> LGPL-2.0 (Proyecto comunitario)</li>" +
+                "  <li><b>Termux:</b> GPL-3.0 (Fredrik Fornwall y colaboradores)</li>" +
+                "</ul>";
+                
+        textView.setText(androidx.core.text.HtmlCompat.fromHtml(htmlText, androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY));
+        
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.acerca_de_licencias))
+                .setView(textView)
+                .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
     }
 

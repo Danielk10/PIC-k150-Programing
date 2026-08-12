@@ -19,6 +19,7 @@
     <string name="modelo_del_programador">Programmer Model</string>
     <string name="modelo_programador">Programmer Model</string>
     <string name="protocolo">Protocol</string>
+    <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privacy Policy</string>
     <string name="no_se_detecto_pic_en_socket">No PIC detected in socket</string>
     <string name="pic_detectado_en_socket">PIC detected in socket</string>
@@ -81,7 +82,7 @@
     <string name="cargar_archivo_hex">Load HEX File</string>
     <string name="programar_pic">Program PIC</string>
     <string name="leer_memoria">Read Memory</string>
-    <string name="verificar">Verify</string>
+    <string name="verificar">Verify memory</string>
     <string name="borrar_memoria">Erase Memory</string>
     <string name="detectar_pic">Detect PIC</string>
     <string name="esperando_operacion">Waiting for operation...</string>
@@ -357,4 +358,33 @@
     <string name="ejemplo_label">Example</string>
     <string name="explicacion_label">Explanation</string>
 
-<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string></resources>
+    <string name="exportar_dump_completo_bin">Export Full Dump (.bin)</string>
+    <string name="error_export_manager_not_initialized">HexExportManager not initialized</string>
+    <string name="error_leyendo_info_chip">Error reading chip info</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">EEPROM:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">bytes</string>
+    <string name="pic_seleccionado">PIC Selected</string>
+    <string name="modo_icsp_activado">ICSP mode activated</string>
+    <string name="modo_socket_activado">ZIF Socket mode activated</string>
+    <string name="seleccionar_protocolo">Select protocol</string>
+    <string name="acerca_de_licencias">About / Licenses</string>
+    <string name="desarrollador">Developer</string>
+    <string name="repositorio">Repository</string>
+    <string name="licencia_de_aplicacion">Application License</string>
+    <string name="licencias_de_terceros">Third-party Licenses</string>
+    <string name="aplicar_fuses">Apply Fuses</string>
+    <string name="chip_info_json">Technical Specifications of the Chip</string>
+    <string name="chip_info_titulo">Technical Information of the Chip</string>
+    <string name="error_exportando">Error during export</string>
+    <string name="error_verificando_borrado">Error verifying blank check</string>
+    <string name="exportacion_exitosa">Export Successful!</string>
+    <string name="fusibles_aplicados_correctamente">Fuses applied successfully</string>
+    <string name="leyendo_memoria">Reading memory...</string>
+    <string name="no_hay_datos_para_exportar">No data in memory to export. Read the chip first.</string>
+    <string name="restaurar_desde_bd">Restore from DB</string>
+    <string name="restaurar_desde_hex">Restore from HEX</string>
+    <string name="resultado_verificacion_borrado">Blank Check Verification Result</string>
+    <string name="seleccionar_operacion">Select Operation</string>
+</resources>

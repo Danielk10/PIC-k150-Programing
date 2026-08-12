@@ -70,7 +70,7 @@ public class CodeBlockView {
 
         // Botón de copiar
         ImageButton copyBtn = new ImageButton(context);
-        copyBtn.setImageResource(android.R.drawable.ic_menu_edit);
+        copyBtn.setImageResource(R.drawable.ic_copy);
         copyBtn.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(

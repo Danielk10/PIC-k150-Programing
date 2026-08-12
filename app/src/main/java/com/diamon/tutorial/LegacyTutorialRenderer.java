@@ -12,6 +12,7 @@ import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -280,14 +281,14 @@ public class LegacyTutorialRenderer {
         labelParams.addRule(RelativeLayout.CENTER_VERTICAL);
         header.addView(label, labelParams);
 
-        Button copyBtn = new Button(context);
-        copyBtn.setText(context.getString(R.string.copiar_btn).toUpperCase());
-        copyBtn.setTextSize(10);
+        ImageButton copyBtn = new ImageButton(context);
+        copyBtn.setImageResource(R.drawable.ic_copy);
         copyBtn.setBackgroundColor(Color.parseColor("#2E7D32"));
-        copyBtn.setTextColor(Color.WHITE);
+        int padding = dpToPx(8);
+        copyBtn.setPadding(padding, padding, padding, padding);
         copyBtn.setOnClickListener(v -> copyToClipboard(code));
 
-        RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(dpToPx(80), dpToPx(36));
+        RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(dpToPx(36), dpToPx(36));
         btnParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         header.addView(copyBtn, btnParams);
 

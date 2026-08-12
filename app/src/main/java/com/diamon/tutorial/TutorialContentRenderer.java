@@ -18,6 +18,7 @@ import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -278,13 +279,13 @@ public class TutorialContentRenderer {
             titleView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
             header.addView(titleView, new LinearLayout.LayoutParams(0, -2, 1f));
 
-            Button copyBtn = new Button(context);
-            copyBtn.setText(context.getString(R.string.copiar_btn));
-            copyBtn.setTextSize(10);
-            copyBtn.setTextColor(Color.WHITE);
+            ImageButton copyBtn = new ImageButton(context);
+            copyBtn.setImageResource(R.drawable.ic_copy);
             copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
+            int padding = dpToPx(8);
+            copyBtn.setPadding(padding, padding, padding, padding);
             copyBtn.setOnClickListener(v -> copyToClipboard(command));
-            header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(80), dpToPx(36)));
+            header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(36), dpToPx(36)));
 
             blockLayout.addView(header);
         }
@@ -334,13 +335,13 @@ public class TutorialContentRenderer {
         langView.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.BOLD));
         header.addView(langView, new LinearLayout.LayoutParams(0, -2, 1f));
 
-        Button copyBtn = new Button(context);
-        copyBtn.setText(context.getString(R.string.copiar_btn));
-        copyBtn.setTextSize(10);
-        copyBtn.setTextColor(Color.WHITE);
+        ImageButton copyBtn = new ImageButton(context);
+        copyBtn.setImageResource(R.drawable.ic_copy);
         copyBtn.setBackgroundColor(Color.parseColor("#4CAF50"));
+        int padding = dpToPx(8);
+        copyBtn.setPadding(padding, padding, padding, padding);
         copyBtn.setOnClickListener(v -> copyToClipboard(code));
-        header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(80), dpToPx(36)));
+        header.addView(copyBtn, new LinearLayout.LayoutParams(dpToPx(36), dpToPx(36)));
 
         blockLayout.addView(header);
 
