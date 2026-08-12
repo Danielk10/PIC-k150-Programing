@@ -760,4 +760,350 @@ public class ProtocoloP18AIntegrationTest {
         assertFalse(config.startsWith("Error"));
         assertTrue(config.toLowerCase().contains("aabbccdd"));
     }
+
+    // ===========================================================================
+    // PRUEBAS DE VERIFICACIÓN DE FUSIBLES (Todas las familias + ICSP)
+    // ===========================================================================
+
+    /**
+     * Método auxiliar para extraer los valores de fuses de la cadena de configuración
+     * leída del emulador. La cadena de configuración tiene 26 bytes (52 caracteres hex):
+     *   Bytes 0-1:   ChipID (16-bit LE)
+     *   Bytes 2-9:   User ID (4 bytes para 14-bit, 8 bytes para 16-bit)
+     *   Bytes 10-11: Fuse word 0 (16-bit LE)
+     *   Bytes 12-13: Fuse word 1 (16-bit LE) ... hasta byte 25
+     */
+    private int[] extraerFusesDeConfigString(String configHex, int numFuses) {
+        // configHex es "XXYY..." donde cada par de caracteres es un byte en hex
+        // Los fuses comienzan en el byte 10 (offset de caracteres 20)
+        int[] fuses = new int[numFuses];
+        int offset = 20; // byte 10 * 2 chars por byte
+        for (int i = 0; i < numFuses && offset + 4 <= configHex.length(); i++) {
+            String lowByteHex = configHex.substring(offset, offset + 2);
+            String highByteHex = configHex.substring(offset + 2, offset + 4);
+            int lowByte = Integer.parseInt(lowByteHex, 16);
+            int highByte = Integer.parseInt(highByteHex, 16);
+            fuses[i] = (highByte << 8) | lowByte; // Little Endian
+            offset += 4;
+        }
+        return fuses;
+    }
+
+    /**
+     * Método auxiliar para extraer el ID del usuario de la cadena de configuración.
+     */
+    private String extraerIDDeConfigString(String configHex, int numIDBytes) {
+        // El ID comienza en el byte 2 (offset 4 en hex chars)
+        int offset = 4;
+        int endOffset = offset + (numIDBytes * 2);
+        if (endOffset > configHex.length()) {
+            endOffset = configHex.length();
+        }
+        return configHex.substring(offset, endOffset).toUpperCase();
+    }
+
+    @Test
+    public void testFusesVerificacionExacta_PIC16F628A() throws Exception {
+        // Validar que los fuses programados coinciden EXACTAMENTE con los leídos
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        // Programar ROM mínima
+        String hexContent = new String(java.nio.file.Files.readAllBytes(
+                java.nio.file.Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")),
+                java.nio.charset.StandardCharsets.UTF_8);
+        com.diamon.datos.DatosPicProcesados datosPic =
+                new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
+        datosPic.iniciarProcesamientoDeDatos();
+        assertTrue(protocolo.programarMemoriaROMDelPic(chip16f628a, datosPic));
+
+        // Programar fuses con valor específico 0x3F74
+        byte[] idPic = new byte[] { (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00 };
+        java.util.List<Integer> fuses = java.util.Arrays.asList(0x3F74);
+        assertTrue("Fallo al programar Fuses del PIC16F628A",
+                protocolo.programarFusesIDDelPic(chip16f628a, datosPic, idPic, fuses));
+
+        // Leer configuración y verificar el fuse exacto
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+
+        int[] fusesLeidos = extraerFusesDeConfigString(config, 1);
+        assertEquals("El fuse leído del PIC16F628A no coincide con el programado",
+                0x3F74, fusesLeidos[0]);
+    }
+
+    @Test
+    public void testFusesVerificacionExacta_PIC12F675() throws Exception {
+        // Validar fuses exactos para PIC12F675 (familia PIC12, 14-bit)
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip12f675));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        String hexContent = new String(java.nio.file.Files.readAllBytes(
+                java.nio.file.Paths.get("/home/danielpdiamon/PIC-k150-Programing/32x-autohz_12f675.hex")),
+                java.nio.charset.StandardCharsets.UTF_8);
+        com.diamon.datos.DatosPicProcesados datosPic =
+                new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip12f675);
+        datosPic.iniciarProcesamientoDeDatos();
+        assertTrue(protocolo.programarMemoriaROMDelPic(chip12f675, datosPic));
+        assertTrue(protocolo.programarMemoriaEEPROMDelPic(chip12f675, datosPic));
+
+        // Programar fuse 0x31FF
+        byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44 };
+        java.util.List<Integer> fuses = java.util.Arrays.asList(0x31FF);
+        assertTrue("Fallo al programar Fuses del PIC12F675",
+                protocolo.programarFusesIDDelPic(chip12f675, datosPic, idPic, fuses));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+
+        int[] fusesLeidos = extraerFusesDeConfigString(config, 1);
+        assertEquals("El fuse leído del PIC12F675 no coincide con el programado",
+                0x31FF, fusesLeidos[0]);
+
+        // Verificar ID también
+        String idLeido = extraerIDDeConfigString(config, 4);
+        assertEquals("El ID leído del PIC12F675 no coincide", "11223344", idLeido);
+    }
+
+    @Test
+    public void testFusesVerificacionExacta_PIC18F2550() throws Exception {
+        // Validar fuses exactos para PIC18F2550 (familia PIC18, 16-bit, 7 fuses)
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip18f2550));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        String hexContent = new String(java.nio.file.Files.readAllBytes(
+                java.nio.file.Paths.get("/home/danielpdiamon/PIC-k150-Programing/waw_pic18f2550.hex")),
+                java.nio.charset.StandardCharsets.UTF_8);
+        com.diamon.datos.DatosPicProcesados datosPic =
+                new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip18f2550);
+        datosPic.iniciarProcesamientoDeDatos();
+        assertTrue(protocolo.programarMemoriaROMDelPic(chip18f2550, datosPic));
+
+        // Programar los 7 fuses del PIC18F2550
+        byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44,
+                (byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88 };
+        int[] fusesEnviados = { 0xCF3F, 0x1F3F, 0x8700, 0x00E5, 0xC00F, 0xE00F, 0x400F };
+        java.util.List<Integer> fusesList = new java.util.ArrayList<>();
+        for (int f : fusesEnviados) fusesList.add(f);
+
+        assertTrue("Fallo al programar Fuses del PIC18F2550",
+                protocolo.programarFusesIDDelPic(chip18f2550, datosPic, idPic, fusesList));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+
+        int[] fusesLeidos = extraerFusesDeConfigString(config, 7);
+        assertArrayEquals("Los 7 fuses leídos del PIC18F2550 no coinciden con los programados",
+                fusesEnviados, fusesLeidos);
+
+        // Verificar ID de 8 bytes
+        String idLeido = extraerIDDeConfigString(config, 8);
+        assertEquals("El ID leído del PIC18F2550 no coincide", "1122334455667788", idLeido);
+    }
+
+    @Test
+    public void testFusesExtraidosDesdeHEX_PIC16F628A() throws Exception {
+        // Verificar que los fuses extraídos del archivo HEX real son correctos
+        String hexContent = new String(java.nio.file.Files.readAllBytes(
+                java.nio.file.Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")),
+                java.nio.charset.StandardCharsets.UTF_8);
+        com.diamon.datos.DatosPicProcesados datosPic =
+                new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
+        datosPic.iniciarProcesamientoDeDatos();
+
+        int[] fusesHex = datosPic.obtenerValoresIntHexFusesProcesado();
+        assertNotNull("Los fuses del HEX no deben ser null", fusesHex);
+        assertEquals("PIC16F628A debe tener exactamente 1 fuse", 1, fusesHex.length);
+        // El fuse debe ser un valor de 14-bit (máximo 0x3FFF)
+        assertTrue("El fuse debe estar en rango 14-bit", fusesHex[0] <= 0x3FFF);
+
+        // Programar con esos fuses y verificar readback
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+        assertTrue(protocolo.programarMemoriaROMDelPic(chip16f628a, datosPic));
+        assertTrue(protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPic));
+
+        byte[] idHex = datosPic.obtenerValoresBytesHexIDProcesado();
+        java.util.List<Integer> fuseList = new java.util.ArrayList<>();
+        for (int f : fusesHex) fuseList.add(f);
+
+        assertTrue("Fallo al programar Fuses extraídos del HEX",
+                protocolo.programarFusesIDDelPic(chip16f628a, datosPic, idHex, fuseList));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        int[] fusesReadback = extraerFusesDeConfigString(config, 1);
+        assertEquals("El fuse del HEX no coincide con el readback del emulador",
+                fusesHex[0], fusesReadback[0]);
+    }
+
+    @Test
+    public void testFusesExtraidosDesdeHEX_PIC18F2550() throws Exception {
+        // Verificar fuses extraídos del HEX real de PIC18F2550
+        String hexContent = new String(java.nio.file.Files.readAllBytes(
+                java.nio.file.Paths.get("/home/danielpdiamon/PIC-k150-Programing/waw_pic18f2550.hex")),
+                java.nio.charset.StandardCharsets.UTF_8);
+        com.diamon.datos.DatosPicProcesados datosPic =
+                new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip18f2550);
+        datosPic.iniciarProcesamientoDeDatos();
+
+        int[] fusesHex = datosPic.obtenerValoresIntHexFusesProcesado();
+        assertNotNull("Los fuses del HEX PIC18F no deben ser null", fusesHex);
+        assertEquals("PIC18F2550 debe tener exactamente 7 fuses", 7, fusesHex.length);
+
+        // Verificar que cada fuse está en rango de 16-bit
+        for (int i = 0; i < fusesHex.length; i++) {
+            assertTrue("Fuse[" + i + "] debe estar en rango 16-bit", fusesHex[i] <= 0xFFFF);
+        }
+
+        // Programar y readback
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip18f2550));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+        assertTrue(protocolo.programarMemoriaROMDelPic(chip18f2550, datosPic));
+
+        byte[] idHex = datosPic.obtenerValoresBytesHexIDProcesado();
+        java.util.List<Integer> fuseList = new java.util.ArrayList<>();
+        for (int f : fusesHex) fuseList.add(f);
+
+        assertTrue("Fallo al programar Fuses del HEX PIC18F2550",
+                protocolo.programarFusesIDDelPic(chip18f2550, datosPic, idHex, fuseList));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        int[] fusesReadback = extraerFusesDeConfigString(config, 7);
+        assertArrayEquals("Los 7 fuses del HEX PIC18F2550 no coinciden con readback",
+                fusesHex, fusesReadback);
+    }
+
+    @Test
+    public void testFusesSoloProgramarSinTocarROMniEEPROM_PIC16F628A() throws Exception {
+        // Programar ROM y EEPROM primero, luego cambiar SOLO los fuses
+        // y verificar que ROM y EEPROM no se alteran
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        String hexContent = new String(java.nio.file.Files.readAllBytes(
+                java.nio.file.Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")),
+                java.nio.charset.StandardCharsets.UTF_8);
+        com.diamon.datos.DatosPicProcesados datosPic =
+                new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
+        datosPic.iniciarProcesamientoDeDatos();
+
+        assertTrue(protocolo.programarMemoriaROMDelPic(chip16f628a, datosPic));
+        assertTrue(protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPic));
+
+        // Capturar estado de ROM y EEPROM
+        String romAntes = protocolo.leerMemoriaROMDelPic(chip16f628a);
+        String eepromAntes = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+
+        // Programar SOLO fuses (valor distinto)
+        byte[] idPic = new byte[] { (byte) 0xDE, (byte) 0xAD, (byte) 0xBE, (byte) 0xEF };
+        java.util.List<Integer> fuses = java.util.Arrays.asList(0x3F30);
+        assertTrue("Fallo al programar solo Fuses",
+                protocolo.programarFusesIDDelPic(chip16f628a, datosPic, idPic, fuses));
+
+        // Verificar que fuses cambiaron
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        int[] fusesLeidos = extraerFusesDeConfigString(config, 1);
+        assertEquals("El fuse reprogramado no coincide", 0x3F30, fusesLeidos[0]);
+
+        // Verificar que ID cambió
+        String idLeido = extraerIDDeConfigString(config, 4);
+        assertEquals("El ID reprogramado no coincide", "DEADBEEF", idLeido);
+
+        // Verificar que ROM y EEPROM NO cambiaron
+        String romDespues = protocolo.leerMemoriaROMDelPic(chip16f628a);
+        String eepromDespues = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+        assertEquals("La ROM no debe alterarse al programar solo fuses", romAntes, romDespues);
+        assertEquals("La EEPROM no debe alterarse al programar solo fuses", eepromAntes, eepromDespues);
+    }
+
+    @Test
+    public void testICSP_PIC18F2550_FusesCompletos() throws Exception {
+        // Prueba ICSP con PIC18F2550 (16-bit, 7 fuses)
+        chip18f2550.setActivarICSP(true);
+        assertTrue("El chip PIC18F2550 debería tener ICSP activado", chip18f2550.isISCPModo());
+
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip18f2550));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        // Datos ficticios
+        byte[] romDummy = new byte[32768];
+        java.util.Arrays.fill(romDummy, (byte) 0x3F);
+        byte[] eepromDummy = new byte[256];
+        java.util.Arrays.fill(eepromDummy, (byte) 0xFF);
+        byte[] idDummy = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44,
+                (byte) 0x46, (byte) 0x46, (byte) 0x46, (byte) 0x46 };
+
+        com.diamon.datos.DatosPicProcesados datosPic = mock(com.diamon.datos.DatosPicProcesados.class);
+        when(datosPic.obtenerBytesHexROMProcesado()).thenReturn(romDummy);
+        when(datosPic.obtenerBytesHexEEPROMProcesado()).thenReturn(eepromDummy);
+        when(datosPic.obtenerValoresBytesHexIDProcesado()).thenReturn(idDummy);
+        when(datosPic.obtenerValoresIntHexFusesProcesado()).thenReturn(
+                new int[] { 0x3F74, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF });
+
+        // Grabar ROM en ICSP
+        assertTrue("Fallo al grabar ROM PIC18F en ICSP", protocolo.programarMemoriaROMDelPic(chip18f2550, datosPic));
+        // Grabar EEPROM en ICSP
+        assertTrue("Fallo al grabar EEPROM PIC18F en ICSP", protocolo.programarMemoriaEEPROMDelPic(chip18f2550, datosPic));
+
+        // Grabar Fuses e ID en ICSP
+        int[] fusesEnviados = { 0x3F74, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF };
+        java.util.List<Integer> fusesList = new java.util.ArrayList<>();
+        for (int f : fusesEnviados) fusesList.add(f);
+        assertTrue("Fallo al grabar Fuses PIC18F en ICSP",
+                protocolo.programarFusesIDDelPic(chip18f2550, datosPic, idDummy, fusesList));
+
+        // Verificar readback
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+
+        int[] fusesLeidos = extraerFusesDeConfigString(config, 7);
+        assertArrayEquals("Los fuses del PIC18F2550 en ICSP no coinciden", fusesEnviados, fusesLeidos);
+
+        String idLeido = extraerIDDeConfigString(config, 8);
+        assertEquals("El ID del PIC18F2550 en ICSP no coincide", "1122334446464646", idLeido);
+    }
+
+    @Test
+    public void testICSP_PIC12F675_FusesCompletos() throws Exception {
+        // Prueba ICSP con PIC12F675 (14-bit, 1 fuse)
+        chip12f675.setActivarICSP(true);
+        assertTrue("El chip PIC12F675 debería tener ICSP activado", chip12f675.isISCPModo());
+
+        assertTrue(protocolo.iniciarVariablesDeProgramacion(chip12f675));
+        assertTrue(protocolo.borrarMemoriasDelPic());
+
+        // Datos ficticios para PIC12F675
+        byte[] romDummy = new byte[2048];
+        java.util.Arrays.fill(romDummy, (byte) 0x3F);
+        byte[] eepromDummy = new byte[128];
+        java.util.Arrays.fill(eepromDummy, (byte) 0xFF);
+        byte[] idDummy = new byte[] { (byte) 0xAA, (byte) 0xBB, (byte) 0xCC, (byte) 0xDD };
+
+        com.diamon.datos.DatosPicProcesados datosPic = mock(com.diamon.datos.DatosPicProcesados.class);
+        when(datosPic.obtenerBytesHexROMProcesado()).thenReturn(romDummy);
+        when(datosPic.obtenerBytesHexEEPROMProcesado()).thenReturn(eepromDummy);
+        when(datosPic.obtenerValoresBytesHexIDProcesado()).thenReturn(idDummy);
+        when(datosPic.obtenerValoresIntHexFusesProcesado()).thenReturn(new int[] { 0x31FF });
+
+        assertTrue("Fallo al grabar ROM PIC12F en ICSP", protocolo.programarMemoriaROMDelPic(chip12f675, datosPic));
+        assertTrue("Fallo al grabar EEPROM PIC12F en ICSP", protocolo.programarMemoriaEEPROMDelPic(chip12f675, datosPic));
+
+        java.util.List<Integer> fusesList = java.util.Arrays.asList(0x31FF);
+        assertTrue("Fallo al grabar Fuses PIC12F675 en ICSP",
+                protocolo.programarFusesIDDelPic(chip12f675, datosPic, idDummy, fusesList));
+
+        String config = protocolo.leerDatosDeConfiguracionDelPic();
+        assertNotNull(config);
+        assertFalse(config.startsWith("Error"));
+
+        int[] fusesLeidos = extraerFusesDeConfigString(config, 1);
+        assertEquals("El fuse del PIC12F675 en ICSP no coincide", 0x31FF, fusesLeidos[0]);
+
+        String idLeido = extraerIDDeConfigString(config, 4);
+        assertEquals("El ID del PIC12F675 en ICSP no coincide", "AABBCCDD", idLeido);
+    }
 }
