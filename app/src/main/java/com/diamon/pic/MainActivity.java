@@ -1148,7 +1148,7 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 8, 8, "ℹ " + getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 8, 8, getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 
@@ -1665,6 +1665,17 @@ public class MainActivity extends AppCompatActivity
                 "<p><b>" + getString(R.string.desarrollador) + ":</b> Danielk10</p>" +
                 "<p><b>" + getString(R.string.repositorio) + ":</b> <a href=\"https://github.com/Danielk10/PIC-k150-Programing\">GitHub Repo</a></p>" +
                 "<hr>" +
+                "<p>Aplicación profesional para programar microcontroladores PIC utilizando el <b>Protocolo P018</b> de KITSRUS. " +
+                "Permite programar dispositivos PIC directamente desde Android vía USB OTG sin necesidad de PC.</p>" +
+                "<hr>" +
+                "<h4><b>Características principales:</b></h4>" +
+                "<ul>" +
+                "  <li>Programación móvil sin PC vía OTG.</li>" +
+                "  <li>Soporte para protocolos KITSRUS P018 (K150, K128, K149, K182).</li>" +
+                "  <li>Interfaz Material Design intuitiva.</li>" +
+                "  <li>Soporte para arquitecturas arm64-v8a, armeabi-v7a, x86 y x86_64.</li>" +
+                "</ul>" +
+                "<hr>" +
                 "<h4><b>" + getString(R.string.licencia_de_aplicacion) + "</b></h4>" +
                 "<p>GNU General Public License v3.0 (GPL-3.0)</p>" +
                 "<hr>" +
@@ -1674,7 +1685,10 @@ public class MainActivity extends AppCompatActivity
                 "  <li><b>picpro:</b> LGPL-3.0 (Adam Schubert / Salamek)</li>" +
                 "  <li><b>picprogrammer:</b> LGPL-2.0 (Proyecto comunitario)</li>" +
                 "  <li><b>Termux:</b> GPL-3.0 (Fredrik Fornwall y colaboradores)</li>" +
-                "</ul>";
+                "</ul>" +
+                "<hr>" +
+                "<h4><b>Agradecimientos:</b></h4>" +
+                "<p>Agradecimientos especiales a Mike Wakerly, Adam Schubert, y a los equipos de AndroidIDE, Android Code Studio y KITSRUS.</p>";
                 
         textView.setText(androidx.core.text.HtmlCompat.fromHtml(htmlText, androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY));
         

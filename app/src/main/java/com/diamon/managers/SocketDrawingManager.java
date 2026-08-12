@@ -88,12 +88,16 @@ public class SocketDrawingManager {
         slotPaint.setStyle(Paint.Style.FILL);
 
         Paint slotContactPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        slotContactPaint.setColor(Color.parseColor("#B0BEC5")); // Plata metálico (igual que las patas del chip)
+        slotContactPaint.setColor(Color.parseColor("#B0BEC5")); // Plata metálico base
         slotContactPaint.setStyle(Paint.Style.FILL);
 
         Paint slotHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        slotHighlightPaint.setColor(Color.WHITE); // Brillo metálico
+        slotHighlightPaint.setColor(Color.WHITE); // Brillo metálico superior
         slotHighlightPaint.setStyle(Paint.Style.FILL);
+        
+        Paint slotShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        slotShadowPaint.setColor(Color.parseColor("#546E7A")); // Sombra metálica inferior
+        slotShadowPaint.setStyle(Paint.Style.FILL);
 
         float slotW = 18 * scaleX;
         float slotH = 8 * scaleY;
@@ -104,16 +108,30 @@ public class SocketDrawingManager {
             // Ranura Izquierda
             RectF leftSlot = new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY);
             canvas.drawRoundRect(leftSlot, 2f * scaleX, 2f * scaleY, slotPaint);
-            // Contacto metálico izquierdo (Silver pin)
-            canvas.drawRect((54 + 3) * scaleX, (rowY + 2) * scaleY, (54 + 15) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
-            canvas.drawRect((54 + 3) * scaleX, (rowY + 2) * scaleY, (54 + 15) * scaleX, (rowY + 3.5f) * scaleY, slotHighlightPaint);
+            
+            // PIN PLATEADO IZQUIERDO (Efecto 3D mejorado)
+            float pinLeft = 57 * scaleX;
+            float pinRight = 69 * scaleX;
+            // Capa base
+            canvas.drawRect(pinLeft, (rowY + 2) * scaleY, pinRight, (rowY + 6) * scaleY, slotContactPaint);
+            // Sombra inferior
+            canvas.drawRect(pinLeft, (rowY + 5) * scaleY, pinRight, (rowY + 6) * scaleY, slotShadowPaint);
+            // Brillo superior
+            canvas.drawRect(pinLeft, (rowY + 2) * scaleY, pinRight, (rowY + 3.5f) * scaleY, slotHighlightPaint);
 
             // Ranura Derecha
             RectF rightSlot = new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY);
             canvas.drawRoundRect(rightSlot, 2f * scaleX, 2f * scaleY, slotPaint);
-            // Contacto metálico derecho (Silver pin)
-            canvas.drawRect((228 + 3) * scaleX, (rowY + 2) * scaleY, (228 + 15) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
-            canvas.drawRect((228 + 3) * scaleX, (rowY + 2) * scaleY, (228 + 15) * scaleX, (rowY + 3.5f) * scaleY, slotHighlightPaint);
+            
+            // PIN PLATEADO DERECHO
+            float pinLeftR = 231 * scaleX;
+            float pinRightR = 243 * scaleX;
+            // Capa base
+            canvas.drawRect(pinLeftR, (rowY + 2) * scaleY, pinRightR, (rowY + 6) * scaleY, slotContactPaint);
+            // Sombra inferior
+            canvas.drawRect(pinLeftR, (rowY + 5) * scaleY, pinRightR, (rowY + 6) * scaleY, slotShadowPaint);
+            // Brillo superior
+            canvas.drawRect(pinLeftR, (rowY + 2) * scaleY, pinRightR, (rowY + 3.5f) * scaleY, slotHighlightPaint);
         }
 
         // 4. Indicadores (Número y Flecha para el Pin 1 del chip)
