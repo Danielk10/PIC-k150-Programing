@@ -54,30 +54,32 @@ public class SocketDrawingManager {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.parseColor("#0F5B9E")); // Azul ZIF Textool profesional
         paint.setStyle(Paint.Style.FILL);
-        float socketTop = 4 * scaleY;
-        float socketBottom = 356 * scaleY;
+        
+        // Ajuste: Cubrir todo el borde vertical (0 a 360)
+        float socketTop = 0;
+        float socketBottom = 360 * scaleY;
         RectF socketRect = new RectF(40 * scaleX, socketTop, 260 * scaleX, socketBottom);
-        canvas.drawRoundRect(socketRect, 14 * scaleX, 14 * scaleY, paint);
+        canvas.drawRoundRect(socketRect, 10 * scaleX, 10 * scaleY, paint);
 
         // Borde relieve 3D del zócalo (Sombra)
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(3 * scaleX);
+        paint.setStrokeWidth(4 * scaleX);
         paint.setColor(Color.parseColor("#0A3C69"));
-        canvas.drawRoundRect(socketRect, 14 * scaleX, 14 * scaleY, paint);
+        canvas.drawRoundRect(socketRect, 10 * scaleX, 10 * scaleY, paint);
 
-        // Brillo superior e izquierdo para efecto 3D
+        // Brillo superior e izquierdo para efecto 3D (Corrección de escalado)
         Paint highlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         highlightPaint.setColor(Color.parseColor("#42A5F5")); // Celeste claro
         highlightPaint.setStyle(Paint.Style.STROKE);
-        highlightPaint.setStrokeWidth(1.5f * scaleX);
-        RectF innerRect = new RectF((40 + 1.5f) * scaleX, (socketTop + 1.5f) * scaleY, (260 - 1.5f) * scaleX, (socketBottom - 1.5f) * scaleY);
-        canvas.drawRoundRect(innerRect, 12.5f * scaleX, 12.5f * scaleY, highlightPaint);
+        highlightPaint.setStrokeWidth(2f * scaleX);
+        RectF innerRect = new RectF(42 * scaleX, 2 * scaleY, 258 * scaleX, (360 - 2) * scaleY);
+        canvas.drawRoundRect(innerRect, 8 * scaleX, 8 * scaleY, highlightPaint);
 
-        // Canal central longitudinal del zócalo ZIF (realismo)
+        // Canal central longitudinal del zócalo ZIF (realismo y extensión hasta abajo)
         Paint groovePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         groovePaint.setColor(Color.parseColor("#083054")); // Azul muy oscuro
         groovePaint.setStyle(Paint.Style.FILL);
-        RectF grooveRect = new RectF(144 * scaleX, (socketTop + 12) * scaleY, 156 * scaleX, (socketBottom - 12) * scaleY);
+        RectF grooveRect = new RectF(144 * scaleX, 8 * scaleY, 156 * scaleX, (360 - 8) * scaleY);
         canvas.drawRoundRect(grooveRect, 2 * scaleX, 2 * scaleY, groovePaint);
 
         // 3. Ranuras del zócalo ZIF (Grid de 20x2)
@@ -93,19 +95,19 @@ public class SocketDrawingManager {
         float slotH = 8 * scaleY;
 
         for (int i = 0; i < 20; i++) {
-            float rowY = (30 + i * 16) * scaleY;
+            float rowY = (24 + i * 16.5f) * scaleY; // Ajuste de posición y espaciado para rellenar mejor
 
             // Ranura Izquierda
             RectF leftSlot = new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY);
             canvas.drawRoundRect(leftSlot, 2f * scaleX, 2f * scaleY, slotPaint);
-            // Contacto metálico izquierdo
-            canvas.drawRect((54 + 6) * scaleX, (rowY + 2) * scaleY, (54 + 12) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
+            // Contacto metálico izquierdo (Más grande para "rellenar" el huequito)
+            canvas.drawRect((54 + 4) * scaleX, (rowY + 2) * scaleY, (54 + 14) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
 
             // Ranura Derecha
             RectF rightSlot = new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY);
             canvas.drawRoundRect(rightSlot, 2f * scaleX, 2f * scaleY, slotPaint);
-            // Contacto metálico derecho
-            canvas.drawRect((228 + 6) * scaleX, (rowY + 2) * scaleY, (228 + 12) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
+            // Contacto metálico derecho (Más grande)
+            canvas.drawRect((228 + 4) * scaleX, (rowY + 2) * scaleY, (228 + 14) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
         }
 
         // 4. Indicadores (Número y Flecha para el Pin 1 del chip)
@@ -121,7 +123,7 @@ public class SocketDrawingManager {
             indicatorText = "13";
         }
 
-        float indicatorY = (30 + pinStartRow * 16) * scaleY;
+        float indicatorY = (24 + pinStartRow * 16.5f) * scaleY;
         float rowCenterY = indicatorY + (4 * scaleY);
 
         // Flecha indicadora naranja llamativa
@@ -151,9 +153,9 @@ public class SocketDrawingManager {
             float left = 90 * scaleX;
             float right = 210 * scaleX;
 
-            float top = (30 + pinStartRow * 16 - 2) * scaleY;
+            float top = (24 + pinStartRow * 16.5f - 2) * scaleY;
             int numFilas = numPines / 2;
-            float chipHeightVal = ((numFilas - 1) * 16 + 10 + 4) * scaleY;
+            float chipHeightVal = ((numFilas - 1) * 16.5f + 10 + 4) * scaleY;
             float bottom = top + chipHeightVal;
 
             // A. Patas plateadas del chip (salen del chip y se meten en las ranuras)
@@ -166,7 +168,7 @@ public class SocketDrawingManager {
             legHighlight.setStyle(Paint.Style.FILL);
 
             for (int i = 0; i < numFilas; i++) {
-                float legY = (30 + (pinStartRow + i) * 16 + 2) * scaleY;
+                float legY = (24 + (pinStartRow + i) * 16.5f + 2) * scaleY;
                 // Pata Izquierda
                 canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 4 * scaleY, legPaint);
                 canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 1.5f * scaleY, legHighlight);

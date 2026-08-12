@@ -1141,14 +1141,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador));
-        menu.add(Menu.NONE, 2, 2, getString(R.string.seleccionar_protocolo));
-        menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria));
-        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_json));
-        menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm));
-        menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial));
-        menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad));
-        menu.add(Menu.NONE, 8, 8, "ℹ " + getString(R.string.acerca_de_licencias));
+        menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 2, 2, getString(R.string.seleccionar_protocolo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_json)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 8, 8, "ℹ " + getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 

@@ -314,16 +314,10 @@ public class PicAnimationView extends View {
 
         // Grabado láser realista (Texto del integrado)
         float textYOffset = chipHeight * 0.18f;
-        chipTextPaint.setTextSize(chipHeight * 0.08f);
         
-        // Logo o Marca simulada
-        canvas.drawText("MICROCHIP", centerX, chipY + textYOffset, chipTextPaint);
-        // Modelo del PIC
+        // Modelo del PIC (Ajustado para estar centrado)
         chipTextPaint.setTextSize(chipHeight * 0.10f);
-        canvas.drawText("PIC16F628A", centerX, chipY + textYOffset * 2.2f, chipTextPaint);
-        // Código de lote/velocidad
-        chipTextPaint.setTextSize(chipHeight * 0.07f);
-        canvas.drawText("-I/SO 2623", centerX, chipY + textYOffset * 3.3f, chipTextPaint);
+        canvas.drawText("PIC16F628A", centerX, chipY + chipHeight / 2f, chipTextPaint);
         
         // Punto de referencia del Pin 1 (Círculo pequeño grabado abajo a la izquierda de la muesca)
         Paint dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

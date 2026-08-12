@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.PICk150Programing" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
         
         <!-- Edge-to-Edge configuration for Android 15+ -->
         <item name="android:statusBarColor">@android:color/transparent</item>
