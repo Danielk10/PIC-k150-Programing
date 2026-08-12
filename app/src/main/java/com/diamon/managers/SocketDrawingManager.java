@@ -88,8 +88,12 @@ public class SocketDrawingManager {
         slotPaint.setStyle(Paint.Style.FILL);
 
         Paint slotContactPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        slotContactPaint.setColor(Color.parseColor("#78909C")); // Contacto metálico interno
+        slotContactPaint.setColor(Color.parseColor("#B0BEC5")); // Plata metálico (igual que las patas del chip)
         slotContactPaint.setStyle(Paint.Style.FILL);
+
+        Paint slotHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        slotHighlightPaint.setColor(Color.WHITE); // Brillo metálico
+        slotHighlightPaint.setStyle(Paint.Style.FILL);
 
         float slotW = 18 * scaleX;
         float slotH = 8 * scaleY;
@@ -100,14 +104,16 @@ public class SocketDrawingManager {
             // Ranura Izquierda
             RectF leftSlot = new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY);
             canvas.drawRoundRect(leftSlot, 2f * scaleX, 2f * scaleY, slotPaint);
-            // Contacto metálico izquierdo (Más grande para "rellenar" el huequito)
-            canvas.drawRect((54 + 4) * scaleX, (rowY + 2) * scaleY, (54 + 14) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
+            // Contacto metálico izquierdo (Silver pin)
+            canvas.drawRect((54 + 3) * scaleX, (rowY + 2) * scaleY, (54 + 15) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
+            canvas.drawRect((54 + 3) * scaleX, (rowY + 2) * scaleY, (54 + 15) * scaleX, (rowY + 3.5f) * scaleY, slotHighlightPaint);
 
             // Ranura Derecha
             RectF rightSlot = new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY);
             canvas.drawRoundRect(rightSlot, 2f * scaleX, 2f * scaleY, slotPaint);
-            // Contacto metálico derecho (Más grande)
-            canvas.drawRect((228 + 4) * scaleX, (rowY + 2) * scaleY, (228 + 14) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
+            // Contacto metálico derecho (Silver pin)
+            canvas.drawRect((228 + 3) * scaleX, (rowY + 2) * scaleY, (228 + 15) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
+            canvas.drawRect((228 + 3) * scaleX, (rowY + 2) * scaleY, (228 + 15) * scaleX, (rowY + 3.5f) * scaleY, slotHighlightPaint);
         }
 
         // 4. Indicadores (Número y Flecha para el Pin 1 del chip)

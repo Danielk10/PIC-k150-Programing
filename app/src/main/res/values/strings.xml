@@ -84,7 +84,7 @@
     <string name="cargar_archivo_hex">Cargar Archivo HEX</string>
     <string name="programar_pic">Programar PIC</string>
     <string name="leer_memoria">Leer Memoria</string>
-    <string name="verificar">Verificar memoria</string>
+    <string name="verificar">Verificar Memoria</string>
     <string name="borrar_memoria">Borrar Memoria</string>
     <string name="detectar_pic">Detectar PIC</string>
     <string name="esperando_operacion">Esperando operación...</string>
@@ -315,10 +315,12 @@
     <string name="pic_seleccionado">PIC Seleccionado</string>
     <string name="modo_icsp_activado">Modo ICSP activado</string>
     <string name="modo_socket_activado">Modo ZIF Socket activado</string>
-    <string name="seleccionar_protocolo">Seleccionar protocolo</string>
+    <string name="seleccionar_protocolo">Seleccionar Protocolo</string>
     <string name="acerca_de_licencias">Acerca de / Licencias</string>
     <string name="desarrollador">Desarrollador</string>
     <string name="repositorio">Repositorio</string>
     <string name="licencia_de_aplicacion">Licencia de la aplicación</string>
     <string name="licencias_de_terceros">Licencias de terceros</string>
+</resources>
+
 </resources>
