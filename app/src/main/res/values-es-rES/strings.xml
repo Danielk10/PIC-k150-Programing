@@ -84,7 +84,7 @@
     <string name="cargar_archivo_hex">Cargar Archivo HEX</string>
     <string name="programar_pic">Programar PIC</string>
     <string name="leer_memoria">Leer Memoria</string>
-    <string name="verificar">Verificar memoria</string>
+    <string name="verificar">Verificar Memoria</string>
     <string name="borrar_memoria">Borrar Memoria</string>
     <string name="detectar_pic">Detectar PIC</string>
     <string name="esperando_operacion">Esperando operación...</string>
