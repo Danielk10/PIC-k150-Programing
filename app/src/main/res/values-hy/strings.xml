@@ -1,128 +1,352 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    
+    
     <string name="app_name">PIC k150 Programing</string>
+    
+    
     <string name="politicas">Գաղտնիության քաղաքականություն</string>
+    
 
+    
     
     <string name="aceptar">Ընդունել</string>
+    
+    
     <string name="cancelar">Չեղարկել</string>
+    
+    
     <string name="conectado">Միացված</string>
+    
+    
     <string name="desconectado">Անջատված</string>
+    
+    
     <string name="grabando_pic">PIC-ը գրում...</string>
+    
+    
     <string name="espere_grabacion_pic">Խնդրում ենք սպասել: Մի անջատեք սարքը:</string>
+    
+    
     <string name="grabacion_completada_pic">Գրումն ավարտված</string>
+    
+    
     <string name="grabacion_correcta_pic">Firmware-ը հաջողությամբ գրվել է PIC-ի մեջ:</string>
+    
+    
     <string name="fallo_grabacion_pic">Գրման սխալ</string>
+    
+    
     <string name="proceso_no_completado">Գործընթացը չի կարող ավարտվել: Ստուգեք միացումը:</string>
+    
+    
     <string name="protocolo_del_programador">Ծրագրավորողի ամբ.</string>
+    
+    
     <string name="modelo_del_programador">Ծրագրավորողի մոդել</string>
+    
+    
     <string name="modelo_programador">Ծրագրավորողի մոդել</string>
+    
+    
     <string name="protocolo">Ամբ.</string>
+    
+    
     <string name="politica_de_privacidad">Գոկտայնության քաղաք</string>
+    
+    
     <string name="no_se_detecto_pic_en_socket">PIC-ը հայտնաբերված չէ վարդակում</string>
+    
+    
     <string name="pic_detectado_en_socket">PIC հայտնաբերված վարդակում</string>
+    
+    
     <string name="error_borrando_memoria">Հիշողությունը ջնջելու ժամանակ սխալ</string>
+    
+    
     <string name="memoria_borrada_exitosamente">Հիշողությունը հաջողությամբ ջնջվել է</string>
+    
+    
     <string name="memoria_leida_exitosamente">Հիշողությունը հաջողությամբ կարդացվել է</string>
+    
+    
     <string name="seleccione_un_chip">Ընտրեք չիպ</string>
+    
+    
     <string name="seleccione_un_chip_y_cargue_un">Ընտրեք չիպ և բեռնել HEX ֆայլ</string>
+    
+    
     <string name="error_programando_pic">PIC-ը ծրագրավորելու ժամանակ սխալ</string>
+    
+    
     <string name="pic_programado_exitosamente">PIC-ը հաջողությամբ ծրագրավորվել է</string>
+    
+    
     <string name="iniciando_programacion">Ծրագրավորման մեկնարկ...</string>
+    
+    
     <string name="error_cargando_archivo">Ֆայլ բեռնելու ժամանակ սխալ</string>
+    
+    
     <string name="error_inicializando_chip">Չիպ նախաստորագրելու ժամանակ սխալ</string>
+    
+    
     <string name="conectado_al_programador">Միացված ծրագրավորիչին</string>
+    
+    
     <string name="error_inicializando_base_de_da">Չիպերի տվյալների բազան նախաստորագրելու ժամանակ սխալ</string>
+    
+    
     <string name="no_hay_chip_seleccionado">Ընտրված չիպ չկա</string>
+    
+    
     <string name="modelo">Մոդել</string>
+    
+    
     <string name="palabras_rom">ROM բառեր</string>
+    
+    
     <string name="tamano_rom">ROM չափ</string>
+    
+    
     <string name="eeprom">EEPROM</string>
+    
+    
     <string name="no_disponible">Մատչելի չէ</string>
+    
+    
     <string name="tipo_de_nucleo">Միջուկի տեսակ</string>
+    
+    
     <string name="error_obteniendo_datos_del_chi">Չիպի տվյալներ ստանալու ժամանակ սխալ</string>
+    
+    
     <string name="modo">Ռեժիմ</string>
+    
+    
     <string name="icsp_solamente">Միայն ICSP</string>
+    
+    
     <string name="pin_1">Փին 1</string>
+    
+    
     <string name="filemanager_no_inicializado">FileManager-ը նախաստորագրված չէ</string>
+    
+    
     <string name="no_se_pudo_obtener_el_nombre_d">Չի կարող ստանալ ֆայլի անունը</string>
+    
+    
     <string name="seleccione_un_archivo_binario_">Ընտրեք վավեր հիմնական ֆայլ (.hex կամ .bin)</string>
+    
+    
     <string name="error_abriendo_el_archivo_sele">Ընտրված ֆայլ բացելու ժամանակ սխալ</string>
+    
+    
     <string name="el_archivo_seleccionado_esta_v">Ընտրված ֆայլը դատարկ է</string>
+    
+    
     <string name="error_leyendo_el_archivo">Ֆայլ կարդալու ժամանակ սխալ</string>
+    
+    
     <string name="error_inesperado_leyendo_el_ar">Ֆայլ կարդալու ժամանակ անակնկալ սխալ</string>
+    
+    
     <string name="protocolo_no_inicializado">Ամբ. նախաստորագրված չէ</string>
+    
+    
     <string name="datos_invalidos_para_programac">Ծրագրավորման համար անվավեր տվյալներ</string>
+    
+    
     <string name="borrando_memorias">Հիշողությունները ջնջում...</string>
+    
+    
     <string name="error_borrando_memorias">Հիշողությունները ջնջելու ժամանակ սխալ</string>
+    
+    
     <string name="programando_memoria_rom">ROM հիշողության ծրագրավորում...</string>
+    
+    
     <string name="error_programando_rom">ROM-ի ծրագրավորման ժամանակ սխալ</string>
+    
+    
     <string name="programando_memoria_eeprom">EEPROM հիշողության ծրագրավորում...</string>
+    
+    
     <string name="error_programando_eeprom">EEPROM-ի ծրագրավորման ժամանակ սխալ</string>
+    
+    
     <string name="programando_fuses_id">Fuses ID ծրագրավորում...</string>
+    
+    
     <string name="error_programando_fuses">Fuses ծրագրավորելու ժամանակ սխալ</string>
+    
+    
     <string name="programando_fuses_18f">Fuses 18F ծրագրավորում...</string>
+    
+    
     <string name="error_programando_fuses_18f">Fuses 18F ծրագրավորելու ժամանակ սխալ</string>
+    
+    
     <string name="programacion_completada">Ծրագրավորումն ավարտված</string>
+    
+    
     <string name="error_inesperado">Անակնկալ սխալ</string>
+    
+    
     <string name="error_leyendo_memoria_rom">ROM հիշողություն կարդալու ժամանակ սխալ</string>
+    
+    
     <string name="error_leyendo_memoria_eeprom">EEPROM հիշողություն կարդալու ժամանակ սխալ</string>
+    
+    
     <string name="error_verificando_memoria">Հիշողություն հաստատելու ժամանակ սխալ</string>
+    
+    
     <string name="error_detectando_chip">Չիպ հայտնաբերելու ժամանակ սխալ</string>
+    
+    
     <string name="driver_usb_no_disponible">USB վարորդ մատչելի չէ</string>
+    
+    
     <string name="dispositivo_sin_puertos_usb_di">USB մեջբերման առանց սարք</string>
+    
+    
     <string name="error_inicializando_protocolo_">Հաղորդակցման ամբ. նախաստորագրելու ժամանակ սխալ</string>
+    
+    
     <string name="error_de_conexion_usb">USB միացման սխալ</string>
+    
+    
     <string name="error_inesperado_durante_la_co">Միացման ժամանակ անակնկալ սխալ</string>
+    
 
+    
     
     <string name="operaciones">Գործառություններ</string>
+    
+    
     <string name="cargar_archivo_hex">Բեռնել HEX ֆայլ</string>
+    
+    
     <string name="programar_pic">Ծրագրավորել PIC</string>
+    
+    
     <string name="leer_memoria">Կարդալ հիշողություն</string>
+    
+    
     <string name="verificar">Հաստատել</string>
+    
+    
     <string name="borrar_memoria">Ջնջել հիշողություն</string>
+    
+    
     <string name="detectar_pic">Հայտնաբերել PIC</string>
+    
+    
     <string name="esperando_operacion">Սպասում գործործարկման...</string>
+    
+    
     <string name="esperando_seleccion">Ընտրություն սպասում...</string>
+    
+    
     <string name="seleccionar_chip_pic">Ընտրեք PIC չիպ</string>
     
+    
+    
     <string name="gputils_termux_asm">GPUTILS-ը Termux-ում ASM Compiler Android</string>
+    
 
     
+    
     <string name="configurar_fusibles">Կարգավորել ֆյուզները</string>
+    
+    
     <string name="selecciona_chip_primero">Նախ ընտրեք չիպը</string>
+    
+    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    
+    
     <string name="fuses_configurados">Configured</string>
+    
+    
     <string name="fuses_no_configurados">Not configured</string>
+    
+    
     <string name="estado_fusibles">Ֆյուզների վիճակ:</string>
+    
+    
     <string name="modo_icsp">ICSP Mode</string>
+    
+    
     <string name="verificando_memoria">Verifying memory...</string>
+    
+    
     <string name="verificacion_rom_ok">ROM ստուգվել է</string>
+    
+    
     <string name="verificacion_rom_fallo">ROM ստուգման սխալ</string>
+    
+    
     <string name="rom_posible_locked">Possibly read-locked</string>
+    
+    
     <string name="verificacion_completa">Ստուգումը ավարտվել է</string>
+    
+    
     <string name="fuses_decodificados">Decoded fuses</string>
+    
+    
     <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    
+    
     <string name="error_procesando_hex">Error processing HEX</string>
+    
+    
     <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    
+    
     <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    
+    
     <string name="exportar_memoria">Արտահանել հիշողությունը</string>
+    
+    
     <string name="exportar_rom_hex">Export ROM as HEX</string>
+    
+    
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    
+    
     <string name="exportar_rom_bin">Export ROM as BIN</string>
+    
+    
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    
+    
     <string name="exportacion_exitosa">File exported successfully</string>
+    
+    
     <string name="error_exportando">Error exporting</string>
+    
+    
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    
+    
     <string name="chip_info_json">Chip Info (JSON)</string>
+    
 
+    
     
     <string name="leyendo_memoria" translatable="false">Ընթերցանության հիշողություն...</string>
     
+    
+    
     <string name="fusibles_aplicados_correctamente" translatable="false">Ճիշտ կիրառվող ապահովիչներ</string>
+    
 
+    
     
     
     <string name="chip_info_titulo">Չիպի տեխնիկական տեղեկատվություն</string>
@@ -132,53 +356,93 @@
     
     
     
+    
+    
     <string name="exportar_config_hex">Արտահանել CONFIG (.hex)</string>
+    
+    
     
     <string name="exportar_config_bin">Արտահանել CONFIG (.bin)</string>
     
+    
+    
     <string name="exportar_dump_completo">Արտահանել Full Dump (.hex)</string>
+    
 
+    
     
     
     <string name="programar_todo">Ժամանակացույց ամեն ինչ</string>
     
+    
+    
     <string name="programar_solo_rom">Միայն ծրագրի ROM-ը</string>
     
+    
+    
     <string name="programar_solo_eeprom">Ծրագիր միայն EEPROM</string>
+    
+    
     
     <string name="programar_solo_config">Ծրագիր միայն CONFIG</string>
     
     
     
+    
+    
     <string name="verificar_borrado">Ստուգեք ջնջումը</string>
+    
+    
     
     <string name="chip_esta_borrado">Չիպը ջնջված է (դատարկ)</string>
     
+    
+    
     <string name="chip_no_esta_borrado">Չիպը ՉԻ ջնջվում</string>
+    
+    
     
     <string name="verificando_borrado">Ջնջման ստուգում...</string>
     
+    
+    
     <string name="resultado_verificacion_borrado">Ջնջման ստուգման արդյունքը</string>
+    
+    
     
     <string name="error_verificando_borrado">Սխալ՝ ջնջումը հաստատելիս</string>
     
     
     
     
+    
+    
     <string name="chip_seleccionado">Ընտրված չիպ</string>
+    
+    
     
     <string name="configuracion_de_fusibles">Ապահովիչների կոնֆիգուրացիա</string>
     
+    
+    
     <string name="id_personalizado_hex">Հատուկ ID (HEX)</string>
+    
+    
     
     <string name="hint_id_personalizado">Օրինակ՝ 1A 2B 3C 4D (4 կամ 8 բայթ)</string>
     
     
     
     
+    
+    
     <string name="restaurar_desde_bd">Վերականգնել DB-ից</string>
     
+    
+    
     <string name="restaurar_desde_hex">Վերականգնել HEX-ից</string>
+    
+    
     
     <string name="aplicar_fuses">Կիրառեք ապահովիչներ</string>
     
@@ -188,15 +452,23 @@
     
     
     
+    
 
+    
     
     <string name="seleccionar_operacion">Ընտրեք Գործողություն</string>
     
+    
 
+    
     
     <string name="publicidad_recomendada">Առաջարկվող գովազդ</string>
     
+    
+    
     <string name="lectura_completa">Ամբողջական ընթերցում</string>
+    
+    
     
     <string name="sin_chip">առանց չիպի</string>
     
@@ -204,14 +476,24 @@
     
     
     
+    
+    
     <string name="rom_ok_blank">ROM: Լավ (դատարկ)</string>
+    
+    
     
     <string name="rom_not_blank">ROM. ՉԻ ԴԱՏԱՐԿ</string>
     
+    
+    
     <string name="eeprom_ok_blank">EEPROM: Լավ (Դատարկ)</string>
     
+    
+    
     <string name="eeprom_not_blank">EEPROM. ՉԻ ԴԱՏԱՐԿ</string>
+    
 
+    
     
     
     
@@ -225,32 +507,58 @@
     
     <string name="idioma_espanol">իսպաներեն</string>
     
+    
+    
     <string name="idioma_ingles">Անգլերեն</string>
+    
+    
     
     <string name="idioma_label">Լեզուն՝ %s</string>
     
+    
+    
     <string name="copiar_todo">📋 Պատճենել բոլորը</string>
+    
+    
     
     <string name="tutorial_copiado">Ձեռնարկը պատճենվեց clipboard-ում</string>
     
+    
+    
     <string name="error_cargar_tutorial">Չհաջողվեց բեռնել ձեռնարկը</string>
+    
+    
     
     <string name="codigo_asm">📄 ASM կոդ</string>
     
+    
+    
     <string name="comando_label">💻 Հրաման</string>
+    
+    
     
     <string name="copiar_btn">Պատճենել</string>
     
+    
+    
     <string name="copiado_msg">Պատճենվել է</string>
     
+    
+    
     <string name="error_abrir_link">Չհաջողվեց բացել հղումը</string>
+    
+    
     
     
     <string name="error_generico_detalle">Սխալ՝ %1$s</string>
     
     
+    
+    
     <string name="debe_procesar_hex_primero">Նախ պետք է մշակեք HEX ֆայլը</string>
+    
 
+    
     
     
     
@@ -261,167 +569,445 @@
     
     <string name="si">Այո՛</string>
     
+    
+    
     <string name="no">Ոչ</string>
     
-
-    
-    
-    
-    
     
 
+    
+    
+    
+    
+    
+
+    
     
     <string name="codigo_copiado_portapapeles">Կոդը պատճենվեց clipboard-ում</string>
     
+    
+    
     <string name="texto_copiado_portapapeles">Տեքստը պատճենվեց սեղմատախտակին</string>
     
+    
+    
     <string name="termino_no_encontrado">Ժամկետը չի գտնվել՝ %1$s</string>
+    
 
+    
     
     
     <string name="no_hay_datos_validos_para_exportar">Արտահանման համար վավեր տվյալներ չկան</string>
     
+    
+    
     <string name="error_convirtiendo_datos_hex">Սխալ՝ տասնվեցական տվյալների փոխակերպման ժամանակ</string>
+    
+    
     
     
     <string name="error_creando_archivo_salida">Չհաջողվեց ստեղծել ելքային ֆայլ</string>
     
     
+    
+    
     <string name="error_escribiendo_archivo_detalle">Ֆայլը գրելու սխալ՝ %1$s</string>
     
+    
 
 
-
-
-    <string name="datos_de_memoria">Հիշողությունը հաջողությամբ կարդացվել է</string>
-    <string name="memoria_rom">ROM Memory</string>
-    <string name="memoria_eeprom">EEPROM Memory</string>
 
 
     
-    <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="paso_prefijo">STEP </string>
-    <string name="error_prefijo">❌ ERROR: </string>
-    <string name="exito_prefijo">✅ SUCCESS: </string>
-    <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    <string name="coincidencias_encontradas">%1$d matches found</string>
-    <string name="resultado_verificacion">Ստուգման արդյունքը</string>
-    <string name="verificada">Ստուգված</string>
-    <string name="fallo">Ձախողություն</string>
-    <string name="yes">Այո</string>
-    <string name="no_label">Ոչ</string>
-    <string name="seleccionar_idioma">Ընտրեք լեզուը</string>
-    <string name="tutorial_instalacion">Տեղադրման ուղեցույց</string>
-    <string name="copiar_todo_en">Պատճենել ամբողջը</string>
-    <string name="cerrar">Փակել</string>
-    <string name="error_no_chip">Սխալ: Չիպ չի ընտրվել</string>
-    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    <string name="hex_compatible">HEX compatible</string>
-    <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip: </string>
-    <string name="editor_construido">Editor built</string>
-    <string name="restaurando_chip">Restoring from chip…</string>
-    <string name="restaurado_chip">Restored from chip</string>
-    <string name="restaurando_hex">Restoring from HEX…</string>
-    <string name="restaurado_hex">Restored from HEX</string>
-    <string name="hex_sin_fuses">HEX without fuses</string>
-    <string name="aplicando">Կիրառում է…</string>
-    <string name="aplicado_exito">Հաջողությամբ կիրառվել է</string>
-    <string name="error_parse_id">Error parsing ID</string>
-    <string name="seccion_identificacion">ՆՈՒՈՏՏՍՈՒՏՆ</string>
-    <string name="seccion_memoria">ՀԻՏՍՎՎԲՎՊՆ</string>
-    <string name="seccion_hardware">ԼՏՊՆ ԵՎ ՓԻՆԵՊ</string>
-    <string name="seccion_programacion">ԾՊԼԳՊԱՎՎՊՆ</string>
-    <string name="seccion_fuses">ՀԼՍԼՆԵԼԻ Ֆ</string>
-    <string name="chip_id_label">Chip ID:</string>
-    <string name="include_file_label">Include File:</string>
-    <string name="rom_capacity_label">ROM Capacity:</string>
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    <string name="flash_technology_label">Flash Technology:</string>
-    <string name="core_architecture_label">Core Architecture:</string>
-    <string name="core_bits_val">%1$d bits</string>
-    <string name="core_type_id_label">Core Type ID:</string>
-    <string name="pines_totales_label">Total Pins:</string>
-    <string name="pines_val">%1$d pins</string>
-    <string name="pin_1_location_label">Pin 1 Location:</string>
-    <string name="socket_image_id_label">Socket Image ID:</string>
-    <string name="icsp_required_label">ICSP Required:</string>
-    <string name="erase_algorithm_label">Erase Algorithm:</string>
-    <string name="power_sequence_label">Power Sequence:</string>
-    <string name="prog_delay_label">Prog. Delay (ms):</string>
-    <string name="prog_retries_label">Prog. Retries:</string>
-    <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    <string name="cp_warn_label">Code Protect Warning:</string>
-    <string name="memory_error_label">Memory Error:</string>
-    <string name="ad_label">Գովազդ</string>
-    <string name="instalar">Տեղադրել</string>
-    <string name="not_available">Հասանելի չէ</string>
-    <string name="calibracion_label">Calibration: %1$s</string>
-    <string name="rom_label">ROM: %1$s</string>
-    <string name="eeprom_label">EEPROM: %1$s</string>
-    <string name="fuses_decodificados_exito">Ֆյուզները հաջողությամբ վերծակոդավորվել են</string>
-    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    <string name="error_leer_config">Could not read chip configuration</string>
-    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    <string name="verificando_rom_label">Verifying ROM…</string>
-    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    <string name="error_convertir_rom">Error converting read ROM data</string>
-    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    <string name="titulo_info_hex">=== HEX File Information ===</string>
-    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    <string name="chip_label_info">Chip: %1$s</string>
-    <string name="core_info">Core: %1$d bits</string>
-    <string name="pin1_info">Pin 1: %1$s</string>
-    <string name="flash_info">Flash: %1$s</string>
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    <string name="error_intercambio_par">Array must have even length for swap</string>
-    <string name="error_md5_no_disponible">MD5 not available</string>
-    <string name="error_vacio">Empty array</string>
-    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    <string name="paso_label">ՔԱՅԼ</string>
-    <string name="nota_label">Նշում</string>
-    <string name="importante_label">Կարևոր</string>
-    <string name="advertencia_label">Զգուշացում</string>
-    <string name="ejemplo_label">Օրինակ</string>
-    <string name="explicacion_label">Բացատրություն</string>
+    <string name="datos_de_memoria">Հիշողությունը հաջողությամբ կարդացվել է</string>
+    
+    
+    <string name="memoria_rom">ROM Memory</string>
+    
+    
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    
 
-<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string>
+
+    
+    
+    <string name="cargando_tutorial">Loading tutorial…</string>
+    
+    
+    <string name="paso_prefijo">STEP </string>
+    
+    
+    <string name="error_prefijo">❌ ERROR: </string>
+    
+    
+    <string name="exito_prefijo">✅ SUCCESS: </string>
+    
+    
+    <string name="advertencia_prefijo">⚠️ WARNING: </string>
+    
+    
+    <string name="coincidencias_encontradas">%1$d matches found</string>
+    
+    
+    <string name="resultado_verificacion">Ստուգման արդյունքը</string>
+    
+    
+    <string name="verificada">Ստուգված</string>
+    
+    
+    <string name="fallo">Ձախողություն</string>
+    
+    
+    <string name="yes">Այո</string>
+    
+    
+    <string name="no_label">Ոչ</string>
+    
+    
+    <string name="seleccionar_idioma">Ընտրեք լեզուը</string>
+    
+    
+    <string name="tutorial_instalacion">Տեղադրման ուղեցույց</string>
+    
+    
+    <string name="copiar_todo_en">Պատճենել ամբողջը</string>
+    
+    
+    <string name="cerrar">Փակել</string>
+    
+    
+    <string name="error_no_chip">Սխալ: Չիպ չի ընտրվել</string>
+    
+    
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    
+    
+    <string name="hex_compatible">HEX compatible</string>
+    
+    
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    
+    
+    <string name="label_chip">Chip: </string>
+    
+    
+    <string name="editor_construido">Editor built</string>
+    
+    
+    <string name="restaurando_chip">Restoring from chip…</string>
+    
+    
+    <string name="restaurado_chip">Restored from chip</string>
+    
+    
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    
+    
+    <string name="restaurado_hex">Restored from HEX</string>
+    
+    
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    
+    
+    <string name="aplicando">Կիրառում է…</string>
+    
+    
+    <string name="aplicado_exito">Հաջողությամբ կիրառվել է</string>
+    
+    
+    <string name="error_parse_id">Error parsing ID</string>
+    
+    
+    <string name="seccion_identificacion">ՆՈՒՈՏՏՍՈՒՏՆ</string>
+    
+    
+    <string name="seccion_memoria">ՀԻՏՍՎՎԲՎՊՆ</string>
+    
+    
+    <string name="seccion_hardware">ԼՏՊՆ ԵՎ ՓԻՆԵՊ</string>
+    
+    
+    <string name="seccion_programacion">ԾՊԼԳՊԱՎՎՊՆ</string>
+    
+    
+    <string name="seccion_fuses">ՀԼՍԼՆԵԼԻ Ֆ</string>
+    
+    
+    <string name="chip_id_label">Chip ID:</string>
+    
+    
+    <string name="include_file_label">Include File:</string>
+    
+    
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    
+    
+    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    
+    
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    
+    
+    <string name="eeprom_bytes">%1$,d Bytes</string>
+    
+    
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    
+    
+    <string name="flash_technology_label">Flash Technology:</string>
+    
+    
+    <string name="core_architecture_label">Core Architecture:</string>
+    
+    
+    <string name="core_bits_val">%1$d bits</string>
+    
+    
+    <string name="core_type_id_label">Core Type ID:</string>
+    
+    
+    <string name="pines_totales_label">Total Pins:</string>
+    
+    
+    <string name="pines_val">%1$d pins</string>
+    
+    
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    
+    
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    
+    
+    <string name="icsp_required_label">ICSP Required:</string>
+    
+    
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    
+    
+    <string name="power_sequence_label">Power Sequence:</string>
+    
+    
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    
+    
+    <string name="prog_retries_label">Prog. Retries:</string>
+    
+    
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    
+    
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    
+    
+    <string name="memory_error_label">Memory Error:</string>
+    
+    
+    <string name="ad_label">Գովազդ</string>
+    
+    
+    <string name="instalar">Տեղադրել</string>
+    
+    
+    <string name="not_available">Հասանելի չէ</string>
+    
+    
+    <string name="calibracion_label">Calibration: %1$s</string>
+    
+    
+    <string name="rom_label">ROM: %1$s</string>
+    
+    
+    <string name="eeprom_label">EEPROM: %1$s</string>
+    
+    
+    <string name="fuses_decodificados_exito">Ֆյուզները հաջողությամբ վերծակոդավորվել են</string>
+    
+    
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    
+    
+    <string name="error_leer_config">Could not read chip configuration</string>
+    
+    
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    
+    
+    <string name="verificando_rom_label">Verifying ROM…</string>
+    
+    
+    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
+    
+    
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    
+    
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    
+    
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    
+    
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    
+    
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    
+    
+    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
+    
+    
+    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
+    
+    
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    
+    
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    
+    
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    
+    
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    
+    
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    
+    
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    
+    
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    
+    
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    
+    
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    
+    
+    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
+    
+    
+    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
+    
+    
+    <string name="chip_label_info">Chip: %1$s</string>
+    
+    
+    <string name="core_info">Core: %1$d bits</string>
+    
+    
+    <string name="pin1_info">Pin 1: %1$s</string>
+    
+    
+    <string name="flash_info">Flash: %1$s</string>
+    
+    
+    <string name="icsp_only_info">ICSP only: %1$s</string>
+    
+    
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    
+    
+    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
+    
+    
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    
+    
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    
+    
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    
+    
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    
+    
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    
+    
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    
+    
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    
+    
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    
+    
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    
+    
+    <string name="error_vacio">Empty array</string>
+    
+    
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    
+    
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    
+    
+    <string name="paso_label">ՔԱՅԼ</string>
+    
+    
+    <string name="nota_label">Նշում</string>
+    
+    
+    <string name="importante_label">Կարևոր</string>
+    
+    
+    <string name="advertencia_label">Զգուշացում</string>
+    
+    
+    <string name="ejemplo_label">Օրինակ</string>
+    
+    
+    <string name="explicacion_label">Բացատրություն</string>
+    
+
+
+    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
+    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
+    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">EEPROM:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">bytes</string>
+    
+    
     <string name="acerca_de_licencias">About / Licenses</string>
+    
+    
     <string name="desarrollador">Developer</string>
+    
+    
     <string name="licencia_de_aplicacion">Application License</string>
+    
+    
     <string name="licencias_de_terceros">Third-party Licenses</string>
+    
+    
     <string name="log_copiado">Log copied to clipboard</string>
+    
+    
     <string name="modo_icsp_activado">ICSP mode activated</string>
+    
+    
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
+    
+    
     <string name="pic_seleccionado">PIC Selected</string>
+    
+    
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
+    
+    
     <string name="repositorio">Repository</string>
+    
+    
     <string name="seleccionar_protocolo">Select protocol</string>
+    
+
 </resources>

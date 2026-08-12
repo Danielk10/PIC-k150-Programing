@@ -1,128 +1,352 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    
+    
     <string name="app_name">PIC k150 Programing</string>
+    
+    
     <string name="politicas">Privatlivspolitikker</string>
+    
 
+    
     
     <string name="aceptar">Accepter</string>
+    
+    
     <string name="cancelar">Annuller</string>
+    
+    
     <string name="conectado">Tilsluttet</string>
+    
+    
     <string name="desconectado">Frakoblet</string>
+    
+    
     <string name="grabando_pic">Programmerer PIC...</string>
+    
+    
     <string name="espere_grabacion_pic">Vent venligst. Afbryd ikke enheden.</string>
+    
+    
     <string name="grabacion_completada_pic">Programmering Fuldført</string>
+    
+    
     <string name="grabacion_correcta_pic">Firmware er skrevet korrekt til PIC.</string>
+    
+    
     <string name="fallo_grabacion_pic">Programmering Mislykkedes</string>
+    
+    
     <string name="proceso_no_completado">Processen kunne ikke fuldføres. Kontroller forbindelsen.</string>
+    
+    
     <string name="protocolo_del_programador">Programmer Protokol</string>
+    
+    
     <string name="modelo_del_programador">Programmer Model</string>
+    
+    
     <string name="modelo_programador">Programmer Model</string>
+    
+    
     <string name="protocolo">Protokol</string>
+    
+    
     <string name="politica_de_privacidad">Privatlivspolitik</string>
+    
+    
     <string name="no_se_detecto_pic_en_socket">PIC ikke registreret i sokkel</string>
+    
+    
     <string name="pic_detectado_en_socket">PIC registreret i sokkel</string>
+    
+    
     <string name="error_borrando_memoria">Fejl ved sletning af hukommelse</string>
+    
+    
     <string name="memoria_borrada_exitosamente">Hukommelse slettet med succes</string>
+    
+    
     <string name="memoria_leida_exitosamente">Hukommelse læst med succes</string>
+    
+    
     <string name="seleccione_un_chip">Vælg en chip</string>
+    
+    
     <string name="seleccione_un_chip_y_cargue_un">Vælg en chip og indlæs en HEX-fil</string>
+    
+    
     <string name="error_programando_pic">Fejl ved programmering af PIC</string>
+    
+    
     <string name="pic_programado_exitosamente">PIC programmeret med succes</string>
+    
+    
     <string name="iniciando_programacion">Starter programmering...</string>
+    
+    
     <string name="error_cargando_archivo">Fejl ved indlæsning af fil</string>
+    
+    
     <string name="error_inicializando_chip">Fejl ved initialisering af chip</string>
+    
+    
     <string name="conectado_al_programador">Tilsluttet programmer</string>
+    
+    
     <string name="error_inicializando_base_de_da">Fejl ved initialisering af chip-database</string>
+    
+    
     <string name="no_hay_chip_seleccionado">Ingen chip valgt</string>
+    
+    
     <string name="modelo">Model</string>
+    
+    
     <string name="palabras_rom">ROM-ord</string>
+    
+    
     <string name="tamano_rom">ROM-størrelse</string>
+    
+    
     <string name="eeprom">EEPROM</string>
+    
+    
     <string name="no_disponible">Ikke tilgængelig</string>
+    
+    
     <string name="tipo_de_nucleo">Kernetype</string>
+    
+    
     <string name="error_obteniendo_datos_del_chi">Fejl ved hentning af chip-data</string>
+    
+    
     <string name="modo">Tilstand</string>
+    
+    
     <string name="icsp_solamente">Kun ICSP</string>
+    
+    
     <string name="pin_1">Pin 1</string>
+    
+    
     <string name="filemanager_no_inicializado">FileManager ikke initialiseret</string>
+    
+    
     <string name="no_se_pudo_obtener_el_nombre_d">Kunne ikke hente filnavn</string>
+    
+    
     <string name="seleccione_un_archivo_binario_">Vælg en gyldig binær fil (.hex eller .bin)</string>
+    
+    
     <string name="error_abriendo_el_archivo_sele">Fejl ved åbning af valgt fil</string>
+    
+    
     <string name="el_archivo_seleccionado_esta_v">Den valgte fil er tom</string>
+    
+    
     <string name="error_leyendo_el_archivo">Fejl ved læsning af fil</string>
+    
+    
     <string name="error_inesperado_leyendo_el_ar">Uventet fejl ved læsning af fil</string>
+    
+    
     <string name="protocolo_no_inicializado">Protokol ikke initialiseret</string>
+    
+    
     <string name="datos_invalidos_para_programac">Ugyldige data til programmering</string>
+    
+    
     <string name="borrando_memorias">Sletter hukommelse...</string>
+    
+    
     <string name="error_borrando_memorias">Fejl ved sletning af hukommelse</string>
+    
+    
     <string name="programando_memoria_rom">Programmerer ROM-hukommelse...</string>
+    
+    
     <string name="error_programando_rom">Fejl ved programmering af ROM</string>
+    
+    
     <string name="programando_memoria_eeprom">Programmerer EEPROM-hukommelse...</string>
+    
+    
     <string name="error_programando_eeprom">Fejl ved programmering af EEPROM</string>
+    
+    
     <string name="programando_fuses_id">Programmerer Fuses ID...</string>
+    
+    
     <string name="error_programando_fuses">Fejl ved programmering af Fuses</string>
+    
+    
     <string name="programando_fuses_18f">Programmerer 18F Fuses...</string>
+    
+    
     <string name="error_programando_fuses_18f">Fejl ved programmering af 18F Fuses</string>
+    
+    
     <string name="programacion_completada">Programmering fuldført</string>
+    
+    
     <string name="error_inesperado">Uventet fejl</string>
+    
+    
     <string name="error_leyendo_memoria_rom">Fejl ved læsning af ROM-hukommelse</string>
+    
+    
     <string name="error_leyendo_memoria_eeprom">Fejl ved læsning af EEPROM-hukommelse</string>
+    
+    
     <string name="error_verificando_memoria">Fejl ved verifikation af hukommelse</string>
+    
+    
     <string name="error_detectando_chip">Fejl ved detektering af chip</string>
+    
+    
     <string name="driver_usb_no_disponible">USB-driver ikke tilgængelig</string>
+    
+    
     <string name="dispositivo_sin_puertos_usb_di">Enhed uden tilgængelige USB-porte</string>
+    
+    
     <string name="error_inicializando_protocolo_">Fejl ved initialisering af kommunikationsprotokol</string>
+    
+    
     <string name="error_de_conexion_usb">USB-forbindelsesfejl</string>
+    
+    
     <string name="error_inesperado_durante_la_co">Uventet fejl under forbindelse</string>
+    
 
+    
     
     <string name="operaciones">Handlinger</string>
+    
+    
     <string name="cargar_archivo_hex">Indlæs HEX-fil</string>
+    
+    
     <string name="programar_pic">Programmer PIC</string>
+    
+    
     <string name="leer_memoria">Læs Hukommelse</string>
+    
+    
     <string name="verificar">Verificer</string>
+    
+    
     <string name="borrar_memoria">Slet Hukommelse</string>
+    
+    
     <string name="detectar_pic">Detekter PIC</string>
+    
+    
     <string name="esperando_operacion">Venter på handling...</string>
+    
+    
     <string name="esperando_seleccion">Venter på valg...</string>
+    
+    
     <string name="seleccionar_chip_pic">Vælg PIC Chip</string>
     
+    
+    
     <string name="gputils_termux_asm">GPUTILS i Termux ASM Compiler Android</string>
+    
 
     
+    
     <string name="configurar_fusibles">Konfigurer sikringer</string>
+    
+    
     <string name="selecciona_chip_primero">Vælg en chip først</string>
+    
+    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    
+    
     <string name="fuses_configurados">Configured</string>
+    
+    
     <string name="fuses_no_configurados">Not configured</string>
+    
+    
     <string name="estado_fusibles">Sikringsstatus:</string>
+    
+    
     <string name="modo_icsp">ICSP Mode</string>
+    
+    
     <string name="verificando_memoria">Verifying memory...</string>
+    
+    
     <string name="verificacion_rom_ok">ROM verificeret</string>
+    
+    
     <string name="verificacion_rom_fallo">ROM-verifikation fejlede</string>
+    
+    
     <string name="rom_posible_locked">Possibly read-locked</string>
+    
+    
     <string name="verificacion_completa">Verifikation fuldført</string>
+    
+    
     <string name="fuses_decodificados">Decoded fuses</string>
+    
+    
     <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    
+    
     <string name="error_procesando_hex">Error processing HEX</string>
+    
+    
     <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    
+    
     <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    
+    
     <string name="exportar_memoria">Eksportér hukommelse</string>
+    
+    
     <string name="exportar_rom_hex">Export ROM as HEX</string>
+    
+    
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    
+    
     <string name="exportar_rom_bin">Export ROM as BIN</string>
+    
+    
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    
+    
     <string name="exportacion_exitosa">File exported successfully</string>
+    
+    
     <string name="error_exportando">Error exporting</string>
+    
+    
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    
+    
     <string name="chip_info_json">Chip Info (JSON)</string>
+    
 
+    
     
     <string name="leyendo_memoria" translatable="false">Læser hukommelse...</string>
     
+    
+    
     <string name="fusibles_aplicados_correctamente" translatable="false">Korrekt påsatte sikringer</string>
+    
 
+    
     
     
     <string name="chip_info_titulo">Chip teknisk information</string>
@@ -132,53 +356,93 @@
     
     
     
+    
+    
     <string name="exportar_config_hex">Eksporter CONFIG (.hex)</string>
+    
+    
     
     <string name="exportar_config_bin">Eksporter CONFIG (.bin)</string>
     
+    
+    
     <string name="exportar_dump_completo">Eksporter fuld dump (.hex)</string>
+    
 
+    
     
     
     <string name="programar_todo">Planlæg alt</string>
     
+    
+    
     <string name="programar_solo_rom">Kun programmer ROM</string>
     
+    
+    
     <string name="programar_solo_eeprom">Programmer kun EEPROM</string>
+    
+    
     
     <string name="programar_solo_config">Program kun CONFIG</string>
     
     
     
+    
+    
     <string name="verificar_borrado">Bekræft sletning</string>
+    
+    
     
     <string name="chip_esta_borrado">Chippen er slettet (tom)</string>
     
+    
+    
     <string name="chip_no_esta_borrado">Chippen er IKKE slettet</string>
+    
+    
     
     <string name="verificando_borrado">Bekræfter sletning...</string>
     
+    
+    
     <string name="resultado_verificacion_borrado">Resultat af bekræftelse af sletning</string>
+    
+    
     
     <string name="error_verificando_borrado">Fejl ved bekræftelse af sletning</string>
     
     
     
     
+    
+    
     <string name="chip_seleccionado">Udvalgt chip</string>
+    
+    
     
     <string name="configuracion_de_fusibles">Sikringskonfiguration</string>
     
+    
+    
     <string name="id_personalizado_hex">Tilpasset ID (HEX)</string>
+    
+    
     
     <string name="hint_id_personalizado">Eksempel: 1A 2B 3C 4D (4 eller 8 bytes)</string>
     
     
     
     
+    
+    
     <string name="restaurar_desde_bd">Gendan fra DB</string>
     
+    
+    
     <string name="restaurar_desde_hex">Gendan fra HEX</string>
+    
+    
     
     <string name="aplicar_fuses">Sæt sikringer på</string>
     
@@ -188,15 +452,23 @@
     
     
     
+    
 
+    
     
     <string name="seleccionar_operacion">Vælg Operation</string>
     
+    
 
+    
     
     <string name="publicidad_recomendada">Anbefalet annoncering</string>
     
+    
+    
     <string name="lectura_completa">Fuldstændig læsning</string>
+    
+    
     
     <string name="sin_chip">uden chip</string>
     
@@ -204,14 +476,24 @@
     
     
     
+    
+    
     <string name="rom_ok_blank">ROM: OK (tom)</string>
+    
+    
     
     <string name="rom_not_blank">ROM: IKKE BLANK</string>
     
+    
+    
     <string name="eeprom_ok_blank">EEPROM: OK (tom)</string>
     
+    
+    
     <string name="eeprom_not_blank">EEPROM: IKKE BLANK</string>
+    
 
+    
     
     
     
@@ -225,32 +507,58 @@
     
     <string name="idioma_espanol">spansk</string>
     
+    
+    
     <string name="idioma_ingles">engelsk</string>
+    
+    
     
     <string name="idioma_label">Sprog: %s</string>
     
+    
+    
     <string name="copiar_todo">📋 Kopier alle</string>
+    
+    
     
     <string name="tutorial_copiado">Selvstudium kopieret til udklipsholder</string>
     
+    
+    
     <string name="error_cargar_tutorial">Fejl ved indlæsning af selvstudiet</string>
+    
+    
     
     <string name="codigo_asm">📄 ASM kode</string>
     
+    
+    
     <string name="comando_label">💻 Kommando</string>
+    
+    
     
     <string name="copiar_btn">Kopi</string>
     
+    
+    
     <string name="copiado_msg">Kopieret</string>
     
+    
+    
     <string name="error_abrir_link">Fejl ved åbning af link</string>
+    
+    
     
     
     <string name="error_generico_detalle">Fejl: %1$s</string>
     
     
+    
+    
     <string name="debe_procesar_hex_primero">Du skal først behandle HEX-filen</string>
+    
 
+    
     
     
     
@@ -261,167 +569,445 @@
     
     <string name="si">Ja</string>
     
+    
+    
     <string name="no">Ingen</string>
     
-
-    
-    
-    
-    
     
 
+    
+    
+    
+    
+    
+
+    
     
     <string name="codigo_copiado_portapapeles">Kode kopieret til udklipsholder</string>
     
+    
+    
     <string name="texto_copiado_portapapeles">Tekst kopieret til udklipsholder</string>
     
+    
+    
     <string name="termino_no_encontrado">Term ikke fundet: %1$s</string>
+    
 
+    
     
     
     <string name="no_hay_datos_validos_para_exportar">Der er ingen gyldige data at eksportere</string>
     
+    
+    
     <string name="error_convirtiendo_datos_hex">Fejl ved konvertering af hexadecimale data</string>
+    
+    
     
     
     <string name="error_creando_archivo_salida">Kunne ikke oprette outputfil</string>
     
     
+    
+    
     <string name="error_escribiendo_archivo_detalle">Fejl ved skrivning af fil: %1$s</string>
     
+    
 
 
-
-
-    <string name="datos_de_memoria">Hukommelse læst med succes</string>
-    <string name="memoria_rom">ROM Memory</string>
-    <string name="memoria_eeprom">EEPROM Memory</string>
 
 
     
-    <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="paso_prefijo">STEP </string>
-    <string name="error_prefijo">❌ ERROR: </string>
-    <string name="exito_prefijo">✅ SUCCESS: </string>
-    <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    <string name="coincidencias_encontradas">%1$d matches found</string>
-    <string name="resultado_verificacion">Verifikationsresultat</string>
-    <string name="verificada">Verificeret</string>
-    <string name="fallo">Fejl</string>
-    <string name="yes">Ja</string>
-    <string name="no_label">Nej</string>
-    <string name="seleccionar_idioma">Vælg sprog</string>
-    <string name="tutorial_instalacion">Installationsvejledning</string>
-    <string name="copiar_todo_en">Kopiér alt</string>
-    <string name="cerrar">Luk</string>
-    <string name="error_no_chip">Fejl: Ingen chip valgt eller ingen sikringer</string>
-    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    <string name="hex_compatible">HEX compatible</string>
-    <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip: </string>
-    <string name="editor_construido">Editor built</string>
-    <string name="restaurando_chip">Restoring from chip…</string>
-    <string name="restaurado_chip">Restored from chip</string>
-    <string name="restaurando_hex">Restoring from HEX…</string>
-    <string name="restaurado_hex">Restored from HEX</string>
-    <string name="hex_sin_fuses">HEX without fuses</string>
-    <string name="aplicando">Anvender…</string>
-    <string name="aplicado_exito">Anvendt med succes</string>
-    <string name="error_parse_id">Error parsing ID</string>
-    <string name="seccion_identificacion">IDENTIFIKATION</string>
-    <string name="seccion_memoria">HUKOMMELSESSPECIFIKATIONER</string>
-    <string name="seccion_hardware">ARKITEKTUR &amp; BEN</string>
-    <string name="seccion_programacion">PROGRAMMERINGSPARAMETRE</string>
-    <string name="seccion_fuses">TILGÆNGELIGE SIKRINGER</string>
-    <string name="chip_id_label">Chip ID:</string>
-    <string name="include_file_label">Include File:</string>
-    <string name="rom_capacity_label">ROM Capacity:</string>
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    <string name="flash_technology_label">Flash Technology:</string>
-    <string name="core_architecture_label">Core Architecture:</string>
-    <string name="core_bits_val">%1$d bits</string>
-    <string name="core_type_id_label">Core Type ID:</string>
-    <string name="pines_totales_label">Total Pins:</string>
-    <string name="pines_val">%1$d pins</string>
-    <string name="pin_1_location_label">Pin 1 Location:</string>
-    <string name="socket_image_id_label">Socket Image ID:</string>
-    <string name="icsp_required_label">ICSP Required:</string>
-    <string name="erase_algorithm_label">Erase Algorithm:</string>
-    <string name="power_sequence_label">Power Sequence:</string>
-    <string name="prog_delay_label">Prog. Delay (ms):</string>
-    <string name="prog_retries_label">Prog. Retries:</string>
-    <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    <string name="cp_warn_label">Code Protect Warning:</string>
-    <string name="memory_error_label">Memory Error:</string>
-    <string name="ad_label">Annonce</string>
-    <string name="instalar">Installer</string>
-    <string name="not_available">Ikke tilgængelig</string>
-    <string name="calibracion_label">Calibration: %1$s</string>
-    <string name="rom_label">ROM: %1$s</string>
-    <string name="eeprom_label">EEPROM: %1$s</string>
-    <string name="fuses_decodificados_exito">Fuses afkodet</string>
-    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    <string name="error_leer_config">Could not read chip configuration</string>
-    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    <string name="verificando_rom_label">Verifying ROM…</string>
-    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    <string name="error_convertir_rom">Error converting read ROM data</string>
-    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    <string name="titulo_info_hex">=== HEX File Information ===</string>
-    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    <string name="chip_label_info">Chip: %1$s</string>
-    <string name="core_info">Core: %1$d bits</string>
-    <string name="pin1_info">Pin 1: %1$s</string>
-    <string name="flash_info">Flash: %1$s</string>
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    <string name="error_intercambio_par">Array must have even length for swap</string>
-    <string name="error_md5_no_disponible">MD5 not available</string>
-    <string name="error_vacio">Empty array</string>
-    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    <string name="paso_label">TRIN</string>
-    <string name="nota_label">Bemærkning</string>
-    <string name="importante_label">Vigtigt</string>
-    <string name="advertencia_label">Advarsel</string>
-    <string name="ejemplo_label">Eksempel</string>
-    <string name="explicacion_label">Forklaring</string>
+    <string name="datos_de_memoria">Hukommelse læst med succes</string>
+    
+    
+    <string name="memoria_rom">ROM Memory</string>
+    
+    
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    
 
-<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string>
+
+    
+    
+    <string name="cargando_tutorial">Loading tutorial…</string>
+    
+    
+    <string name="paso_prefijo">STEP </string>
+    
+    
+    <string name="error_prefijo">❌ ERROR: </string>
+    
+    
+    <string name="exito_prefijo">✅ SUCCESS: </string>
+    
+    
+    <string name="advertencia_prefijo">⚠️ WARNING: </string>
+    
+    
+    <string name="coincidencias_encontradas">%1$d matches found</string>
+    
+    
+    <string name="resultado_verificacion">Verifikationsresultat</string>
+    
+    
+    <string name="verificada">Verificeret</string>
+    
+    
+    <string name="fallo">Fejl</string>
+    
+    
+    <string name="yes">Ja</string>
+    
+    
+    <string name="no_label">Nej</string>
+    
+    
+    <string name="seleccionar_idioma">Vælg sprog</string>
+    
+    
+    <string name="tutorial_instalacion">Installationsvejledning</string>
+    
+    
+    <string name="copiar_todo_en">Kopiér alt</string>
+    
+    
+    <string name="cerrar">Luk</string>
+    
+    
+    <string name="error_no_chip">Fejl: Ingen chip valgt eller ingen sikringer</string>
+    
+    
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    
+    
+    <string name="hex_compatible">HEX compatible</string>
+    
+    
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    
+    
+    <string name="label_chip">Chip: </string>
+    
+    
+    <string name="editor_construido">Editor built</string>
+    
+    
+    <string name="restaurando_chip">Restoring from chip…</string>
+    
+    
+    <string name="restaurado_chip">Restored from chip</string>
+    
+    
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    
+    
+    <string name="restaurado_hex">Restored from HEX</string>
+    
+    
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    
+    
+    <string name="aplicando">Anvender…</string>
+    
+    
+    <string name="aplicado_exito">Anvendt med succes</string>
+    
+    
+    <string name="error_parse_id">Error parsing ID</string>
+    
+    
+    <string name="seccion_identificacion">IDENTIFIKATION</string>
+    
+    
+    <string name="seccion_memoria">HUKOMMELSESSPECIFIKATIONER</string>
+    
+    
+    <string name="seccion_hardware">ARKITEKTUR &amp; BEN</string>
+    
+    
+    <string name="seccion_programacion">PROGRAMMERINGSPARAMETRE</string>
+    
+    
+    <string name="seccion_fuses">TILGÆNGELIGE SIKRINGER</string>
+    
+    
+    <string name="chip_id_label">Chip ID:</string>
+    
+    
+    <string name="include_file_label">Include File:</string>
+    
+    
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    
+    
+    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    
+    
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    
+    
+    <string name="eeprom_bytes">%1$,d Bytes</string>
+    
+    
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    
+    
+    <string name="flash_technology_label">Flash Technology:</string>
+    
+    
+    <string name="core_architecture_label">Core Architecture:</string>
+    
+    
+    <string name="core_bits_val">%1$d bits</string>
+    
+    
+    <string name="core_type_id_label">Core Type ID:</string>
+    
+    
+    <string name="pines_totales_label">Total Pins:</string>
+    
+    
+    <string name="pines_val">%1$d pins</string>
+    
+    
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    
+    
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    
+    
+    <string name="icsp_required_label">ICSP Required:</string>
+    
+    
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    
+    
+    <string name="power_sequence_label">Power Sequence:</string>
+    
+    
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    
+    
+    <string name="prog_retries_label">Prog. Retries:</string>
+    
+    
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    
+    
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    
+    
+    <string name="memory_error_label">Memory Error:</string>
+    
+    
+    <string name="ad_label">Annonce</string>
+    
+    
+    <string name="instalar">Installer</string>
+    
+    
+    <string name="not_available">Ikke tilgængelig</string>
+    
+    
+    <string name="calibracion_label">Calibration: %1$s</string>
+    
+    
+    <string name="rom_label">ROM: %1$s</string>
+    
+    
+    <string name="eeprom_label">EEPROM: %1$s</string>
+    
+    
+    <string name="fuses_decodificados_exito">Fuses afkodet</string>
+    
+    
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    
+    
+    <string name="error_leer_config">Could not read chip configuration</string>
+    
+    
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    
+    
+    <string name="verificando_rom_label">Verifying ROM…</string>
+    
+    
+    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
+    
+    
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    
+    
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    
+    
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    
+    
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    
+    
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    
+    
+    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
+    
+    
+    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
+    
+    
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    
+    
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    
+    
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    
+    
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    
+    
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    
+    
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    
+    
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    
+    
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    
+    
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    
+    
+    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
+    
+    
+    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
+    
+    
+    <string name="chip_label_info">Chip: %1$s</string>
+    
+    
+    <string name="core_info">Core: %1$d bits</string>
+    
+    
+    <string name="pin1_info">Pin 1: %1$s</string>
+    
+    
+    <string name="flash_info">Flash: %1$s</string>
+    
+    
+    <string name="icsp_only_info">ICSP only: %1$s</string>
+    
+    
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    
+    
+    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
+    
+    
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    
+    
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    
+    
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    
+    
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    
+    
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    
+    
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    
+    
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    
+    
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    
+    
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    
+    
+    <string name="error_vacio">Empty array</string>
+    
+    
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    
+    
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    
+    
+    <string name="paso_label">TRIN</string>
+    
+    
+    <string name="nota_label">Bemærkning</string>
+    
+    
+    <string name="importante_label">Vigtigt</string>
+    
+    
+    <string name="advertencia_label">Advarsel</string>
+    
+    
+    <string name="ejemplo_label">Eksempel</string>
+    
+    
+    <string name="explicacion_label">Forklaring</string>
+    
+
+
+    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
+    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
+    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">EEPROM:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">bytes</string>
+    
+    
     <string name="acerca_de_licencias">About / Licenses</string>
+    
+    
     <string name="desarrollador">Developer</string>
+    
+    
     <string name="licencia_de_aplicacion">Application License</string>
+    
+    
     <string name="licencias_de_terceros">Third-party Licenses</string>
+    
+    
     <string name="log_copiado">Log copied to clipboard</string>
+    
+    
     <string name="modo_icsp_activado">ICSP mode activated</string>
+    
+    
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
+    
+    
     <string name="pic_seleccionado">PIC Selected</string>
+    
+    
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
+    
+    
     <string name="repositorio">Repository</string>
+    
+    
     <string name="seleccionar_protocolo">Select protocol</string>
+    
+
 </resources>

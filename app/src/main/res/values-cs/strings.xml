@@ -1,128 +1,352 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    
+    
     <string name="app_name">PIC k150 Programing</string>
+    
+    
     <string name="politicas">Zásady ochrany osobních údajů</string>
+    
 
+    
     
     <string name="aceptar">Přijmout</string>
+    
+    
     <string name="cancelar">Zrušit</string>
+    
+    
     <string name="conectado">Připojeno</string>
+    
+    
     <string name="desconectado">Odpojeno</string>
+    
+    
     <string name="grabando_pic">Programování PIC...</string>
+    
+    
     <string name="espere_grabacion_pic">Prosím vyčkejte. Neodpojujte zařízení.</string>
+    
+    
     <string name="grabacion_completada_pic">Programování Dokončeno</string>
+    
+    
     <string name="grabacion_correcta_pic">Firmware byl úspěšně zapsán do PIC.</string>
+    
+    
     <string name="fallo_grabacion_pic">Programování Selhalo</string>
+    
+    
     <string name="proceso_no_completado">Proces nelze dokončit. Zkontrolujte připojení.</string>
+    
+    
     <string name="protocolo_del_programador">Protokol Programátoru</string>
+    
+    
     <string name="modelo_del_programador">Model Programátoru</string>
+    
+    
     <string name="modelo_programador">Model Programátoru</string>
+    
+    
     <string name="protocolo">Protokol</string>
+    
+    
     <string name="politica_de_privacidad">Zásady Ochrany Osobních Údajů</string>
+    
+    
     <string name="no_se_detecto_pic_en_socket">PIC nebyl detekován v patici</string>
+    
+    
     <string name="pic_detectado_en_socket">PIC detekován v patici</string>
+    
+    
     <string name="error_borrando_memoria">Chyba mazání paměti</string>
+    
+    
     <string name="memoria_borrada_exitosamente">Paměť úspěšně smazána</string>
+    
+    
     <string name="memoria_leida_exitosamente">Paměť úspěšně přečtena</string>
+    
+    
     <string name="seleccione_un_chip">Vyberte čip</string>
+    
+    
     <string name="seleccione_un_chip_y_cargue_un">Vyberte čip a nahrajte HEX soubor</string>
+    
+    
     <string name="error_programando_pic">Chyba programování PIC</string>
+    
+    
     <string name="pic_programado_exitosamente">PIC úspěšně naprogramován</string>
+    
+    
     <string name="iniciando_programacion">Zahajování programování...</string>
+    
+    
     <string name="error_cargando_archivo">Chyba načítání souboru</string>
+    
+    
     <string name="error_inicializando_chip">Chyba inicializace čipu</string>
+    
+    
     <string name="conectado_al_programador">Připojeno k programátoru</string>
+    
+    
     <string name="error_inicializando_base_de_da">Chyba inicializace databáze čipů</string>
+    
+    
     <string name="no_hay_chip_seleccionado">Není vybrán žádný čip</string>
+    
+    
     <string name="modelo">Model</string>
+    
+    
     <string name="palabras_rom">ROM slova</string>
+    
+    
     <string name="tamano_rom">Velikost ROM</string>
+    
+    
     <string name="eeprom">EEPROM</string>
+    
+    
     <string name="no_disponible">Nedostupné</string>
+    
+    
     <string name="tipo_de_nucleo">Typ Jádra</string>
+    
+    
     <string name="error_obteniendo_datos_del_chi">Chyba získávání dat čipu</string>
+    
+    
     <string name="modo">Režim</string>
+    
+    
     <string name="icsp_solamente">Pouze ICSP</string>
+    
+    
     <string name="pin_1">Pin 1</string>
+    
+    
     <string name="filemanager_no_inicializado">FileManager není inicializován</string>
+    
+    
     <string name="no_se_pudo_obtener_el_nombre_d">Nelze získat název souboru</string>
+    
+    
     <string name="seleccione_un_archivo_binario_">Vyberte platný binární soubor (.hex nebo .bin)</string>
+    
+    
     <string name="error_abriendo_el_archivo_sele">Chyba otevírání vybraného souboru</string>
+    
+    
     <string name="el_archivo_seleccionado_esta_v">Vybraný soubor je prázdný</string>
+    
+    
     <string name="error_leyendo_el_archivo">Chyba čtení souboru</string>
+    
+    
     <string name="error_inesperado_leyendo_el_ar">Neočekávaná chyba čtení souboru</string>
+    
+    
     <string name="protocolo_no_inicializado">Protokol není inicializován</string>
+    
+    
     <string name="datos_invalidos_para_programac">Neplatná data pro programování</string>
+    
+    
     <string name="borrando_memorias">Mazání paměti...</string>
+    
+    
     <string name="error_borrando_memorias">Chyba mazání paměti</string>
+    
+    
     <string name="programando_memoria_rom">Programování ROM paměti...</string>
+    
+    
     <string name="error_programando_rom">Chyba programování ROM</string>
+    
+    
     <string name="programando_memoria_eeprom">Programování EEPROM paměti...</string>
+    
+    
     <string name="error_programando_eeprom">Chyba programování EEPROM</string>
+    
+    
     <string name="programando_fuses_id">Programování Fuses ID...</string>
+    
+    
     <string name="error_programando_fuses">Chyba programování Fuses</string>
+    
+    
     <string name="programando_fuses_18f">Programování 18F Fuses...</string>
+    
+    
     <string name="error_programando_fuses_18f">Chyba programování 18F Fuses</string>
+    
+    
     <string name="programacion_completada">Programování dokončeno</string>
+    
+    
     <string name="error_inesperado">Neočekávaná chyba</string>
+    
+    
     <string name="error_leyendo_memoria_rom">Chyba čtení ROM paměti</string>
+    
+    
     <string name="error_leyendo_memoria_eeprom">Chyba čtení EEPROM paměti</string>
+    
+    
     <string name="error_verificando_memoria">Chyba ověření paměti</string>
+    
+    
     <string name="error_detectando_chip">Chyba detekce čipu</string>
+    
+    
     <string name="driver_usb_no_disponible">USB ovladač nedostupný</string>
+    
+    
     <string name="dispositivo_sin_puertos_usb_di">Zařízení bez dostupných USB portů</string>
+    
+    
     <string name="error_inicializando_protocolo_">Chyba inicializace komunikačního protokolu</string>
+    
+    
     <string name="error_de_conexion_usb">Chyba USB připojení</string>
+    
+    
     <string name="error_inesperado_durante_la_co">Neočekávaná chyba během připojení</string>
+    
 
+    
     
     <string name="operaciones">Operace</string>
+    
+    
     <string name="cargar_archivo_hex">Načíst HEX Soubor</string>
+    
+    
     <string name="programar_pic">Programovat PIC</string>
+    
+    
     <string name="leer_memoria">Číst Paměť</string>
+    
+    
     <string name="verificar">Ověřit</string>
+    
+    
     <string name="borrar_memoria">Smazat Paměť</string>
+    
+    
     <string name="detectar_pic">Detekovat PIC</string>
+    
+    
     <string name="esperando_operacion">Čekání na operaci...</string>
+    
+    
     <string name="esperando_seleccion">Čekání na výběr...</string>
+    
+    
     <string name="seleccionar_chip_pic">Vybrat PIC Čip</string>
     
+    
+    
     <string name="gputils_termux_asm">GPUTILS v Termux ASM Kompilátor Android</string>
+    
 
     
+    
     <string name="configurar_fusibles">Konfigurovat pojistky</string>
+    
+    
     <string name="selecciona_chip_primero">Nejprve vyberte čip</string>
+    
+    
     <string name="no_hay_fusibles_para_chip">No fuse data available for this chip</string>
+    
+    
     <string name="fuses_configurados">Configured</string>
+    
+    
     <string name="fuses_no_configurados">Not configured</string>
+    
+    
     <string name="estado_fusibles">Stav pojistek:</string>
+    
+    
     <string name="modo_icsp">ICSP Mode</string>
+    
+    
     <string name="verificando_memoria">Verifying memory...</string>
+    
+    
     <string name="verificacion_rom_ok">ROM úspěšně ověřena</string>
+    
+    
     <string name="verificacion_rom_fallo">Ověření ROM selhalo</string>
+    
+    
     <string name="rom_posible_locked">Possibly read-locked</string>
+    
+    
     <string name="verificacion_completa">Ověření dokončeno</string>
+    
+    
     <string name="fuses_decodificados">Decoded fuses</string>
+    
+    
     <string name="hex_procesado_correctamente">HEX processed successfully</string>
+    
+    
     <string name="error_procesando_hex">Error processing HEX</string>
+    
+    
     <string name="sdcc_termux_tutorial">SDCC in Termux C Compiler Android</string>
+    
+    
     <string name="error_abriendo_tutorial">Error opening tutorial</string>
+    
+    
     <string name="exportar_memoria">Exportovat paměť</string>
+    
+    
     <string name="exportar_rom_hex">Export ROM as HEX</string>
+    
+    
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
+    
+    
     <string name="exportar_rom_bin">Export ROM as BIN</string>
+    
+    
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
+    
+    
     <string name="exportacion_exitosa">File exported successfully</string>
+    
+    
     <string name="error_exportando">Error exporting</string>
+    
+    
     <string name="no_hay_datos_para_exportar">No read data to export. Read memory first.</string>
+    
+    
     <string name="chip_info_json">Chip Info (JSON)</string>
+    
 
+    
     
     <string name="leyendo_memoria" translatable="false">Čtení paměti...</string>
     
+    
+    
     <string name="fusibles_aplicados_correctamente" translatable="false">Správně aplikované pojistky</string>
+    
 
+    
     
     
     <string name="chip_info_titulo">Technické informace o čipu</string>
@@ -132,53 +356,93 @@
     
     
     
+    
+    
     <string name="exportar_config_hex">Export CONFIG (.hex)</string>
+    
+    
     
     <string name="exportar_config_bin">Exportovat CONFIG (.bin)</string>
     
+    
+    
     <string name="exportar_dump_completo">Exportovat úplný výpis (.hex)</string>
+    
 
+    
     
     
     <string name="programar_todo">Naplánujte si vše</string>
     
+    
+    
     <string name="programar_solo_rom">Pouze program ROM</string>
     
+    
+    
     <string name="programar_solo_eeprom">Programujte pouze EEPROM</string>
+    
+    
     
     <string name="programar_solo_config">Program pouze CONFIG</string>
     
     
     
+    
+    
     <string name="verificar_borrado">Ověřte smazání</string>
+    
+    
     
     <string name="chip_esta_borrado">Čip je vymazán (prázdný)</string>
     
+    
+    
     <string name="chip_no_esta_borrado">Čip NENÍ vymazán</string>
+    
+    
     
     <string name="verificando_borrado">Ověřování smazání...</string>
     
+    
+    
     <string name="resultado_verificacion_borrado">Výsledek ověření smazání</string>
+    
+    
     
     <string name="error_verificando_borrado">Chyba při ověřování smazání</string>
     
     
     
     
+    
+    
     <string name="chip_seleccionado">Vybraný čip</string>
+    
+    
     
     <string name="configuracion_de_fusibles">Konfigurace pojistek</string>
     
+    
+    
     <string name="id_personalizado_hex">Vlastní ID (HEX)</string>
+    
+    
     
     <string name="hint_id_personalizado">Příklad: 1A 2B 3C 4D (4 nebo 8 bajtů)</string>
     
     
     
     
+    
+    
     <string name="restaurar_desde_bd">Obnovit z DB</string>
     
+    
+    
     <string name="restaurar_desde_hex">Obnovit z HEX</string>
+    
+    
     
     <string name="aplicar_fuses">Použijte pojistky</string>
     
@@ -188,15 +452,23 @@
     
     
     
+    
 
+    
     
     <string name="seleccionar_operacion">Vyberte operaci</string>
     
+    
 
+    
     
     <string name="publicidad_recomendada">Doporučená reklama</string>
     
+    
+    
     <string name="lectura_completa">Kompletní čtení</string>
+    
+    
     
     <string name="sin_chip">bez čipu</string>
     
@@ -204,14 +476,24 @@
     
     
     
+    
+    
     <string name="rom_ok_blank">ROM: OK (prázdné)</string>
+    
+    
     
     <string name="rom_not_blank">ROM: NENÍ PRÁZDNÁ</string>
     
+    
+    
     <string name="eeprom_ok_blank">EEPROM: OK (prázdné)</string>
     
+    
+    
     <string name="eeprom_not_blank">EEPROM: NENÍ PRÁZDNÁ</string>
+    
 
+    
     
     
     
@@ -225,32 +507,58 @@
     
     <string name="idioma_espanol">španělština</string>
     
+    
+    
     <string name="idioma_ingles">anglicky</string>
+    
+    
     
     <string name="idioma_label">Jazyk: %s</string>
     
+    
+    
     <string name="copiar_todo">📋 Zkopírovat vše</string>
+    
+    
     
     <string name="tutorial_copiado">Výukový program zkopírován do schránky</string>
     
+    
+    
     <string name="error_cargar_tutorial">Chyba při načítání výukového programu</string>
+    
+    
     
     <string name="codigo_asm">📄 ASM kód</string>
     
+    
+    
     <string name="comando_label">💻 Příkaz</string>
+    
+    
     
     <string name="copiar_btn">Kopírovat</string>
     
+    
+    
     <string name="copiado_msg">Zkopírováno</string>
     
+    
+    
     <string name="error_abrir_link">Chyba při otevírání odkazu</string>
+    
+    
     
     
     <string name="error_generico_detalle">Chyba: %1$s</string>
     
     
+    
+    
     <string name="debe_procesar_hex_primero">Nejprve musíte zpracovat HEX soubor</string>
+    
 
+    
     
     
     
@@ -261,167 +569,445 @@
     
     <string name="si">Ano</string>
     
+    
+    
     <string name="no">Ne</string>
     
-
-    
-    
-    
-    
     
 
+    
+    
+    
+    
+    
+
+    
     
     <string name="codigo_copiado_portapapeles">Kód byl zkopírován do schránky</string>
     
+    
+    
     <string name="texto_copiado_portapapeles">Text byl zkopírován do schránky</string>
     
+    
+    
     <string name="termino_no_encontrado">Termín nenalezen: %1$s</string>
+    
 
+    
     
     
     <string name="no_hay_datos_validos_para_exportar">Neexistují žádná platná data k exportu</string>
     
+    
+    
     <string name="error_convirtiendo_datos_hex">Při převodu hexadecimálních dat došlo k chybě</string>
+    
+    
     
     
     <string name="error_creando_archivo_salida">Nelze vytvořit výstupní soubor</string>
     
     
+    
+    
     <string name="error_escribiendo_archivo_detalle">Chyba při zápisu souboru: %1$s</string>
     
+    
 
 
-
-
-    <string name="datos_de_memoria">Paměť úspěšně přečtena</string>
-    <string name="memoria_rom">ROM Memory</string>
-    <string name="memoria_eeprom">EEPROM Memory</string>
 
 
     
-    <string name="cargando_tutorial">Loading tutorial…</string>
-    <string name="paso_prefijo">STEP </string>
-    <string name="error_prefijo">❌ ERROR: </string>
-    <string name="exito_prefijo">✅ SUCCESS: </string>
-    <string name="advertencia_prefijo">⚠️ WARNING: </string>
-    <string name="coincidencias_encontradas">%1$d matches found</string>
-    <string name="resultado_verificacion">Výsledek ověření</string>
-    <string name="verificada">Ověřeno</string>
-    <string name="fallo">Selhání</string>
-    <string name="yes">Ano</string>
-    <string name="no_label">Ne</string>
-    <string name="seleccionar_idioma">Vybrat jazyk</string>
-    <string name="tutorial_instalacion">Návod k instalaci</string>
-    <string name="copiar_todo_en">Kopírovat vše</string>
-    <string name="cerrar">Zavřít</string>
-    <string name="error_no_chip">Chyba: Není vybrán čip nebo nejsou pojistky</string>
-    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
-    <string name="hex_compatible">HEX compatible</string>
-    <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip: </string>
-    <string name="editor_construido">Editor built</string>
-    <string name="restaurando_chip">Restoring from chip…</string>
-    <string name="restaurado_chip">Restored from chip</string>
-    <string name="restaurando_hex">Restoring from HEX…</string>
-    <string name="restaurado_hex">Restored from HEX</string>
-    <string name="hex_sin_fuses">HEX without fuses</string>
-    <string name="aplicando">Aplikování…</string>
-    <string name="aplicado_exito">Úspěšně aplikováno</string>
-    <string name="error_parse_id">Error parsing ID</string>
-    <string name="seccion_identificacion">IDENTIFIKACE</string>
-    <string name="seccion_memoria">SPECIFIKACE PAMĚTI</string>
-    <string name="seccion_hardware">ARCHITEKTURA A PINY</string>
-    <string name="seccion_programacion">PARAMETRY PROGRAMOVÁNÍ</string>
-    <string name="seccion_fuses">DOSTUPNÉ POJISTKY</string>
-    <string name="chip_id_label">Chip ID:</string>
-    <string name="include_file_label">Include File:</string>
-    <string name="rom_capacity_label">ROM Capacity:</string>
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
-    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
-    <string name="eeprom_bytes">%1$,d Bytes</string>
-    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
-    <string name="flash_technology_label">Flash Technology:</string>
-    <string name="core_architecture_label">Core Architecture:</string>
-    <string name="core_bits_val">%1$d bits</string>
-    <string name="core_type_id_label">Core Type ID:</string>
-    <string name="pines_totales_label">Total Pins:</string>
-    <string name="pines_val">%1$d pins</string>
-    <string name="pin_1_location_label">Pin 1 Location:</string>
-    <string name="socket_image_id_label">Socket Image ID:</string>
-    <string name="icsp_required_label">ICSP Required:</string>
-    <string name="erase_algorithm_label">Erase Algorithm:</string>
-    <string name="power_sequence_label">Power Sequence:</string>
-    <string name="prog_delay_label">Prog. Delay (ms):</string>
-    <string name="prog_retries_label">Prog. Retries:</string>
-    <string name="over_prog_factor_label">Over-prog. Factor:</string>
-    <string name="cp_warn_label">Code Protect Warning:</string>
-    <string name="memory_error_label">Memory Error:</string>
-    <string name="ad_label">Reklama</string>
-    <string name="instalar">Nainstalovat</string>
-    <string name="not_available">Nedostupné</string>
-    <string name="calibracion_label">Calibration: %1$s</string>
-    <string name="rom_label">ROM: %1$s</string>
-    <string name="eeprom_label">EEPROM: %1$s</string>
-    <string name="fuses_decodificados_exito">Fuse úspěšně dekódovány</string>
-    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
-    <string name="error_leer_config">Could not read chip configuration</string>
-    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
-    <string name="verificando_rom_label">Verifying ROM…</string>
-    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
-    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
-    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    <string name="error_convertir_rom">Error converting read ROM data</string>
-    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
-    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
-    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
-    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
-    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
-    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
-    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
-    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
-    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
-    <string name="titulo_info_hex">=== HEX File Information ===</string>
-    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
-    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
-    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
-    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
-    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
-    <string name="chip_label_info">Chip: %1$s</string>
-    <string name="core_info">Core: %1$d bits</string>
-    <string name="pin1_info">Pin 1: %1$s</string>
-    <string name="flash_info">Flash: %1$s</string>
-    <string name="icsp_only_info">ICSP only: %1$s</string>
-    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
-    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
-    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
-    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
-    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
-    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
-    <string name="error_hex_null">Hexadecimal string cannot be null</string>
-    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
-    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
-    <string name="error_intercambio_par">Array must have even length for swap</string>
-    <string name="error_md5_no_disponible">MD5 not available</string>
-    <string name="error_vacio">Empty array</string>
-    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
-    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
-    <string name="paso_label">KROK</string>
-    <string name="nota_label">Poznámka</string>
-    <string name="importante_label">Důležité</string>
-    <string name="advertencia_label">Varování</string>
-    <string name="ejemplo_label">Příklad</string>
-    <string name="explicacion_label">Vysvětlení</string>
+    <string name="datos_de_memoria">Paměť úspěšně přečtena</string>
+    
+    
+    <string name="memoria_rom">ROM Memory</string>
+    
+    
+    <string name="memoria_eeprom">EEPROM Memory</string>
+    
 
-<string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string><string name="error_export_manager_not_initialized">HexExportManager no inicializado</string><string name="error_leyendo_info_chip">Error leyendo info chip</string><string name="label_rom">ROM:</string><string name="label_eeprom">EEPROM:</string><string name="label_id">ID:</string><string name="label_bytes">bytes</string>
+
+    
+    
+    <string name="cargando_tutorial">Loading tutorial…</string>
+    
+    
+    <string name="paso_prefijo">STEP </string>
+    
+    
+    <string name="error_prefijo">❌ ERROR: </string>
+    
+    
+    <string name="exito_prefijo">✅ SUCCESS: </string>
+    
+    
+    <string name="advertencia_prefijo">⚠️ WARNING: </string>
+    
+    
+    <string name="coincidencias_encontradas">%1$d matches found</string>
+    
+    
+    <string name="resultado_verificacion">Výsledek ověření</string>
+    
+    
+    <string name="verificada">Ověřeno</string>
+    
+    
+    <string name="fallo">Selhání</string>
+    
+    
+    <string name="yes">Ano</string>
+    
+    
+    <string name="no_label">Ne</string>
+    
+    
+    <string name="seleccionar_idioma">Vybrat jazyk</string>
+    
+    
+    <string name="tutorial_instalacion">Návod k instalaci</string>
+    
+    
+    <string name="copiar_todo_en">Kopírovat vše</string>
+    
+    
+    <string name="cerrar">Zavřít</string>
+    
+    
+    <string name="error_no_chip">Chyba: Není vybrán čip nebo nejsou pojistky</string>
+    
+    
+    <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
+    
+    
+    <string name="hex_compatible">HEX compatible</string>
+    
+    
+    <string name="error_verificando_hex">Error verifying HEX</string>
+    
+    
+    <string name="label_chip">Chip: </string>
+    
+    
+    <string name="editor_construido">Editor built</string>
+    
+    
+    <string name="restaurando_chip">Restoring from chip…</string>
+    
+    
+    <string name="restaurado_chip">Restored from chip</string>
+    
+    
+    <string name="restaurando_hex">Restoring from HEX…</string>
+    
+    
+    <string name="restaurado_hex">Restored from HEX</string>
+    
+    
+    <string name="hex_sin_fuses">HEX without fuses</string>
+    
+    
+    <string name="aplicando">Aplikování…</string>
+    
+    
+    <string name="aplicado_exito">Úspěšně aplikováno</string>
+    
+    
+    <string name="error_parse_id">Error parsing ID</string>
+    
+    
+    <string name="seccion_identificacion">IDENTIFIKACE</string>
+    
+    
+    <string name="seccion_memoria">SPECIFIKACE PAMĚTI</string>
+    
+    
+    <string name="seccion_hardware">ARCHITEKTURA A PINY</string>
+    
+    
+    <string name="seccion_programacion">PARAMETRY PROGRAMOVÁNÍ</string>
+    
+    
+    <string name="seccion_fuses">DOSTUPNÉ POJISTKY</string>
+    
+    
+    <string name="chip_id_label">Chip ID:</string>
+    
+    
+    <string name="include_file_label">Include File:</string>
+    
+    
+    <string name="rom_capacity_label">ROM Capacity:</string>
+    
+    
+    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    
+    
+    <string name="eeprom_capacity_label">EEPROM Capacity:</string>
+    
+    
+    <string name="eeprom_bytes">%1$,d Bytes</string>
+    
+    
+    <string name="fuse_blank_value_label">Blank FUSE Value:</string>
+    
+    
+    <string name="flash_technology_label">Flash Technology:</string>
+    
+    
+    <string name="core_architecture_label">Core Architecture:</string>
+    
+    
+    <string name="core_bits_val">%1$d bits</string>
+    
+    
+    <string name="core_type_id_label">Core Type ID:</string>
+    
+    
+    <string name="pines_totales_label">Total Pins:</string>
+    
+    
+    <string name="pines_val">%1$d pins</string>
+    
+    
+    <string name="pin_1_location_label">Pin 1 Location:</string>
+    
+    
+    <string name="socket_image_id_label">Socket Image ID:</string>
+    
+    
+    <string name="icsp_required_label">ICSP Required:</string>
+    
+    
+    <string name="erase_algorithm_label">Erase Algorithm:</string>
+    
+    
+    <string name="power_sequence_label">Power Sequence:</string>
+    
+    
+    <string name="prog_delay_label">Prog. Delay (ms):</string>
+    
+    
+    <string name="prog_retries_label">Prog. Retries:</string>
+    
+    
+    <string name="over_prog_factor_label">Over-prog. Factor:</string>
+    
+    
+    <string name="cp_warn_label">Code Protect Warning:</string>
+    
+    
+    <string name="memory_error_label">Memory Error:</string>
+    
+    
+    <string name="ad_label">Reklama</string>
+    
+    
+    <string name="instalar">Nainstalovat</string>
+    
+    
+    <string name="not_available">Nedostupné</string>
+    
+    
+    <string name="calibracion_label">Calibration: %1$s</string>
+    
+    
+    <string name="rom_label">ROM: %1$s</string>
+    
+    
+    <string name="eeprom_label">EEPROM: %1$s</string>
+    
+    
+    <string name="fuses_decodificados_exito">Fuse úspěšně dekódovány</string>
+    
+    
+    <string name="error_decodificar_fuses">Could not decode fuses: %1$s</string>
+    
+    
+    <string name="error_leer_config">Could not read chip configuration</string>
+    
+    
+    <string name="error_leyendo_config_detalle">Error reading configuration: %1$s</string>
+    
+    
+    <string name="verificando_rom_label">Verifying ROM…</string>
+    
+    
+    <string name="rom_verificada_exito">ROM verified successfully ✓</string>
+    
+    
+    <string name="rom_fallo_locked_label">ROM verification failed — possibly read-locked</string>
+    
+    
+    <string name="rom_fallo_mismatch">ROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    
+    
+    <string name="error_convertir_rom">Error converting read ROM data</string>
+    
+    
+    <string name="error_leyendo_rom_verif">Error reading ROM for verification</string>
+    
+    
+    <string name="error_verif_rom_detalle">Error in ROM verification: %1$s</string>
+    
+    
+    <string name="verificando_eeprom_label">Verifying EEPROM…</string>
+    
+    
+    <string name="eeprom_verificada_exito">EEPROM verified successfully ✓</string>
+    
+    
+    <string name="eeprom_fallo_mismatch">EEPROM verification failed — %1$d bytes mismatch out of %2$d</string>
+    
+    
+    <string name="error_convertir_eeprom">Error converting read EEPROM data</string>
+    
+    
+    <string name="error_leyendo_eeprom_verif">Error reading EEPROM for verification</string>
+    
+    
+    <string name="chip_sin_eeprom_verif">Chip has no EEPROM, verification not applicable</string>
+    
+    
+    <string name="error_verif_eeprom_detalle">Error in EEPROM verification: %1$s</string>
+    
+    
+    <string name="titulo_info_hex">=== HEX File Information ===</string>
+    
+    
+    <string name="rom_info_usage">%1$d words used, %2$d words free on chip</string>
+    
+    
+    <string name="rom_total_info">ROM total chip: %1$d words (%2$d bytes)</string>
+    
+    
+    <string name="eeprom_info_usage">%1$d bytes used, %2$d bytes free on chip</string>
+    
+    
+    <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
+    
+    
+    <string name="eeprom_no_disponible">EEPROM: Not available on this chip</string>
+    
+    
+    <string name="chip_label_info">Chip: %1$s</string>
+    
+    
+    <string name="core_info">Core: %1$d bits</string>
+    
+    
+    <string name="pin1_info">Pin 1: %1$s</string>
+    
+    
+    <string name="flash_info">Flash: %1$s</string>
+    
+    
+    <string name="icsp_only_info">ICSP only: %1$s</string>
+    
+    
+    <string name="error_info_chip_detalle">Error getting chip info: %1$s</string>
+    
+    
+    <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
+    
+    
+    <string name="error_argumento_null">Parameter %1$s cannot be null</string>
+    
+    
+    <string name="error_tamano_esperado">Parameter %1$s must have %2$d bytes, but has %3$d</string>
+    
+    
+    <string name="error_tamano_maximo">Parameter %1$s exceeds maximum allowed size (%2$d bytes)</string>
+    
+    
+    <string name="error_rango_invalido">Invalid range: offset=%1$d, length=%2$d, arraySize=%3$d</string>
+    
+    
+    <string name="error_hex_null">Hexadecimal string cannot be null</string>
+    
+    
+    <string name="error_hex_longitud">Hexadecimal string must have even length</string>
+    
+    
+    <string name="error_hex_caracter">Invalid hexadecimal character: %1$s</string>
+    
+    
+    <string name="error_intercambio_par">Array must have even length for swap</string>
+    
+    
+    <string name="error_md5_no_disponible">MD5 not available</string>
+    
+    
+    <string name="error_vacio">Empty array</string>
+    
+    
+    <string name="stats_format">Size: %1$d bytes, Min: 0x%2$02X, Max: 0x%3$02X, Zeros: %4$d, 0xFF: %5$d</string>
+    
+    
+    <string name="error_no_multiplo_2">Number of bytes is not a multiple of 2</string>
+    
+    
+    <string name="paso_label">KROK</string>
+    
+    
+    <string name="nota_label">Poznámka</string>
+    
+    
+    <string name="importante_label">Důležité</string>
+    
+    
+    <string name="advertencia_label">Varování</string>
+    
+    
+    <string name="ejemplo_label">Příklad</string>
+    
+    
+    <string name="explicacion_label">Vysvětlení</string>
+    
+
+
+    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
+    <string name="error_export_manager_not_initialized">HexExportManager no inicializado</string>
+    <string name="error_leyendo_info_chip">Error leyendo info chip</string>
+    <string name="label_rom">ROM:</string>
+    <string name="label_eeprom">EEPROM:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_bytes">bytes</string>
+    
+    
     <string name="acerca_de_licencias">About / Licenses</string>
+    
+    
     <string name="desarrollador">Developer</string>
+    
+    
     <string name="licencia_de_aplicacion">Application License</string>
+    
+    
     <string name="licencias_de_terceros">Third-party Licenses</string>
+    
+    
     <string name="log_copiado">Log copied to clipboard</string>
+    
+    
     <string name="modo_icsp_activado">ICSP mode activated</string>
+    
+    
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
+    
+    
     <string name="pic_seleccionado">PIC Selected</string>
+    
+    
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
+    
+    
     <string name="repositorio">Repository</string>
+    
+    
     <string name="seleccionar_protocolo">Select protocol</string>
+    
+
 </resources>
