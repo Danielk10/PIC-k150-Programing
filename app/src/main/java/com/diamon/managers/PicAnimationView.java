@@ -64,9 +64,9 @@ public class PicAnimationView extends View {
     }
 
     private void init() {
-        // Pintura para el cuerpo del zócalo ZIF (Verde clásico)
+        // Pintura para el cuerpo del zócalo ZIF (Azul Textool profesional)
         socketPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        socketPaint.setColor(Color.parseColor("#0E5E3A")); // Verde oscuro de zócalo profesional
+        socketPaint.setColor(Color.parseColor("#0F5B9E"));
         socketPaint.setStyle(Paint.Style.FILL);
 
         // Pintura para las ranuras del zócalo (Negro/Gris muy oscuro)
@@ -110,10 +110,10 @@ public class PicAnimationView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         // Configuración de dimensiones del Zócalo ZIF (ocupa gran parte del área vertical)
-        socketWidth = w * 0.42f;
-        socketHeight = h * 0.90f;
+        socketWidth = w * 0.46f;
+        socketHeight = h * 0.96f;
         socketX = (w - socketWidth) / 2f;
-        socketY = h * 0.05f;
+        socketY = h * 0.02f;
 
         // Configuración de dimensiones del Chip PIC (dentro del zócalo)
         chipWidth = socketWidth * 0.65f;
@@ -190,28 +190,33 @@ public class PicAnimationView extends View {
         RectF socketRect = new RectF(socketX, socketY, socketX + socketWidth, socketY + socketHeight);
         canvas.drawRoundRect(socketRect, 18f, 18f, socketPaint);
 
-        // Borde interior 3D para darle relieve al zócalo
+        // Borde relieve 3D del zócalo (Sombra)
         Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        borderPaint.setColor(Color.parseColor("#083B24"));
+        borderPaint.setColor(Color.parseColor("#0A3C69"));
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(6f);
         canvas.drawRoundRect(socketRect, 18f, 18f, borderPaint);
 
-        // Dibujar Palanca ZIF en posición "cerrada/bloqueada" (hacia abajo paralela al zócalo)
-        float leverStartX = socketX - 16f;
-        float leverStartY = socketY + 30f;
-        float leverEndX = socketX - 16f;
-        float leverEndY = socketY + socketHeight * 0.45f;
-        
-        // Brazo metálico
-        canvas.drawLine(leverStartX, leverStartY, leverEndX, leverEndY, leverPaint);
-        // Codo de anclaje
-        canvas.drawLine(leverStartX, leverStartY, socketX, leverStartY + 10f, leverPaint);
-        // Pomo/Mango plástico de la palanca
-        Paint pomoPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        pomoPaint.setColor(Color.parseColor("#D32F2F")); // Rojo plástico llamativo
-        pomoPaint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(leverEndX, leverEndY, 12f, pomoPaint);
+        // Brillo superior e izquierdo para efecto 3D
+        Paint highlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        highlightPaint.setColor(Color.parseColor("#42A5F5")); // Celeste claro
+        highlightPaint.setStyle(Paint.Style.STROKE);
+        highlightPaint.setStrokeWidth(3f);
+        RectF innerRect = new RectF(socketX + 3f, socketY + 3f, socketX + socketWidth - 3f, socketY + socketHeight - 3f);
+        canvas.drawRoundRect(innerRect, 15f, 15f, highlightPaint);
+
+        // Canal central longitudinal del zócalo ZIF (realismo)
+        Paint groovePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        groovePaint.setColor(Color.parseColor("#083054")); // Azul muy oscuro
+        groovePaint.setStyle(Paint.Style.FILL);
+        float grooveW = socketWidth * 0.05f;
+        RectF grooveRect = new RectF(
+                (socketX + socketWidth/2f - grooveW/2f),
+                socketY + 14f,
+                (socketX + socketWidth/2f + grooveW/2f),
+                socketY + socketHeight - 14f
+        );
+        canvas.drawRoundRect(grooveRect, 2f, 2f, groovePaint);
 
         // Dibujar las ranuras de conexión (Slots de pines)
         int slotsCount = 18; // Simula un zócalo de 36 pines
@@ -222,12 +227,23 @@ public class PicAnimationView extends View {
         float leftSlotX = socketX + socketWidth * 0.18f;
         float rightSlotX = socketX + socketWidth * 0.82f - slotWidth;
 
+        Paint slotContactPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        slotContactPaint.setColor(Color.parseColor("#78909C")); // Metal
+        slotContactPaint.setStyle(Paint.Style.FILL);
+
         for (int i = 1; i <= slotsCount; i++) {
             float sy = socketY + i * slotSpacing - slotHeight / 2f;
             // Ranuras lado izquierdo
-            canvas.drawRoundRect(new RectF(leftSlotX, sy, leftSlotX + slotWidth, sy + slotHeight), 2f, 2f, socketSlotPaint);
+            RectF leftSlot = new RectF(leftSlotX, sy, leftSlotX + slotWidth, sy + slotHeight);
+            canvas.drawRoundRect(leftSlot, 2f, 2f, socketSlotPaint);
+            // Contacto metálico izquierdo
+            canvas.drawRect(leftSlotX + slotWidth * 0.33f, sy + slotHeight * 0.25f, leftSlotX + slotWidth * 0.67f, sy + slotHeight * 0.75f, slotContactPaint);
+
             // Ranuras lado derecho
-            canvas.drawRoundRect(new RectF(rightSlotX, sy, rightSlotX + slotWidth, sy + slotHeight), 2f, 2f, socketSlotPaint);
+            RectF rightSlot = new RectF(rightSlotX, sy, rightSlotX + slotWidth, sy + slotHeight);
+            canvas.drawRoundRect(rightSlot, 2f, 2f, socketSlotPaint);
+            // Contacto metálico derecho
+            canvas.drawRect(rightSlotX + slotWidth * 0.33f, sy + slotHeight * 0.25f, rightSlotX + slotWidth * 0.67f, sy + slotHeight * 0.75f, slotContactPaint);
         }
 
         // 3. DIBUJAR CHIP PIC (Con escala interactiva)
@@ -242,17 +258,33 @@ public class PicAnimationView extends View {
         float pinH = chipHeight * 0.025f;
         float pinSpacing = chipHeight / (pinCount + 1);
 
+        Paint legHighlight = new Paint(Paint.ANTI_ALIAS_FLAG);
+        legHighlight.setColor(Color.WHITE); // Brillo
+        legHighlight.setStyle(Paint.Style.FILL);
+
         for (int i = 1; i <= pinCount; i++) {
             float py = chipY + i * pinSpacing - pinH / 2f;
             // Pines izquierdos (salen del cuerpo del chip e ingresan al zócalo)
             canvas.drawRoundRect(new RectF(chipX - pinW, py, chipX, py + pinH), 3f, 3f, pinPaint);
+            canvas.drawRect(chipX - pinW, py, chipX, py + pinH * 0.35f, legHighlight);
+            
             // Pines derechos
             canvas.drawRoundRect(new RectF(chipX + chipWidth, py, chipX + chipWidth + pinW, py + pinH), 3f, 3f, pinPaint);
+            canvas.drawRect(chipX + chipWidth, py, chipX + chipWidth + pinW, py + pinH * 0.35f, legHighlight);
         }
 
-        // Cuerpo del chip PIC (Encima de los pines)
+        // Cuerpo del chip PIC (Encima de los pines - con gradiente)
         RectF chipRect = new RectF(chipX, chipY, chipX + chipWidth, chipY + chipHeight);
-        canvas.drawRoundRect(chipRect, 10f, 10f, chipPaint);
+        Paint chipBodyPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        chipBodyPaint.setStyle(Paint.Style.FILL);
+        android.graphics.LinearGradient chipGrad = new android.graphics.LinearGradient(
+                chipX, chipY, chipX + chipWidth, chipY + chipHeight,
+                new int[]{Color.parseColor("#2C2C2C"), Color.parseColor("#151515"), Color.parseColor("#111111")},
+                new float[]{0.0f, 0.5f, 1.0f},
+                android.graphics.Shader.TileMode.CLAMP
+        );
+        chipBodyPaint.setShader(chipGrad);
+        canvas.drawRoundRect(chipRect, 10f, 10f, chipBodyPaint);
 
         // Sombra / Relieve 3D en los bordes del chip
         Paint chipBorder = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -263,9 +295,22 @@ public class PicAnimationView extends View {
 
         // Muesca de orientación (Notch semicircular en la parte superior)
         Paint notchPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        notchPaint.setColor(Color.parseColor("#0E5E3A")); // Mismo color verde para simular hueco sobre el zócalo
+        notchPaint.setColor(Color.parseColor("#0F5B9E")); // Mismo azul del zócalo
+        notchPaint.setStyle(Paint.Style.FILL);
         float notchRadius = chipWidth * 0.12f;
         canvas.drawCircle(centerX, chipY, notchRadius, notchPaint);
+
+        // Sombra en el notch
+        Paint notchShadow = new Paint(Paint.ANTI_ALIAS_FLAG);
+        notchShadow.setColor(Color.parseColor("#083054"));
+        notchShadow.setStyle(Paint.Style.STROKE);
+        notchShadow.setStrokeWidth(3f);
+        canvas.drawArc(
+                centerX - notchRadius,
+                chipY - notchRadius,
+                centerX + notchRadius,
+                chipY + notchRadius,
+                0, 180, false, notchShadow);
 
         // Grabado láser realista (Texto del integrado)
         float textYOffset = chipHeight * 0.18f;
@@ -282,9 +327,15 @@ public class PicAnimationView extends View {
         
         // Punto de referencia del Pin 1 (Círculo pequeño grabado abajo a la izquierda de la muesca)
         Paint dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        dotPaint.setColor(Color.parseColor("#455A64"));
+        dotPaint.setColor(Color.parseColor("#0F0F0F"));
         dotPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(chipX + chipWidth * 0.18f, chipY + chipHeight * 0.12f, 7f, dotPaint);
+
+        Paint dotHighlight = new Paint(Paint.ANTI_ALIAS_FLAG);
+        dotHighlight.setColor(Color.parseColor("#546E7A"));
+        dotHighlight.setStyle(Paint.Style.STROKE);
+        dotHighlight.setStrokeWidth(1.5f);
+        canvas.drawCircle(chipX + chipWidth * 0.18f, chipY + chipHeight * 0.12f, 7f, dotHighlight);
 
         canvas.restore();
 

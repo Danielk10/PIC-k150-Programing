@@ -50,41 +50,44 @@ public class SocketDrawingManager {
         float scaleX = width / 300f;
         float scaleY = height / 360f;
 
-        // 1. Base del Zócalo ZIF (Verde)
+        // 1. Base del Zócalo ZIF (Azul)
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.parseColor("#0E5E3A")); // Verde ZIF profesional
+        paint.setColor(Color.parseColor("#0F5B9E")); // Azul ZIF Textool profesional
         paint.setStyle(Paint.Style.FILL);
-        RectF socketRect = new RectF(40 * scaleX, 10 * scaleY, 260 * scaleX, 350 * scaleY);
+        float socketTop = 4 * scaleY;
+        float socketBottom = 356 * scaleY;
+        RectF socketRect = new RectF(40 * scaleX, socketTop, 260 * scaleX, socketBottom);
         canvas.drawRoundRect(socketRect, 14 * scaleX, 14 * scaleY, paint);
 
-        // Borde relieve 3D del zócalo
+        // Borde relieve 3D del zócalo (Sombra)
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(3 * scaleX);
-        paint.setColor(Color.parseColor("#083B24"));
+        paint.setColor(Color.parseColor("#0A3C69"));
         canvas.drawRoundRect(socketRect, 14 * scaleX, 14 * scaleY, paint);
 
-        // 2. Palanca metálica ZIF (cromado)
-        paint.setColor(Color.parseColor("#90A4AE"));
-        paint.setStrokeWidth(4 * scaleX);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        float leverStartX = 25 * scaleX;
-        float leverStartY = 30 * scaleY;
-        float leverEndX = 25 * scaleX;
-        float leverEndY = 180 * scaleY;
-        // Brazo de la palanca
-        canvas.drawLine(leverStartX, leverStartY, leverEndX, leverEndY, paint);
-        // Codo de anclaje
-        canvas.drawLine(leverStartX, leverStartY, 40 * scaleX, leverStartY + 8 * scaleY, paint);
-        // Mango plástico rojo de la palanca
-        Paint pomoPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        pomoPaint.setColor(Color.parseColor("#D32F2F"));
-        pomoPaint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(leverEndX, leverEndY, 8 * scaleX, pomoPaint);
+        // Brillo superior e izquierdo para efecto 3D
+        Paint highlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        highlightPaint.setColor(Color.parseColor("#42A5F5")); // Celeste claro
+        highlightPaint.setStyle(Paint.Style.STROKE);
+        highlightPaint.setStrokeWidth(1.5f * scaleX);
+        RectF innerRect = new RectF((40 + 1.5f) * scaleX, (socketTop + 1.5f) * scaleY, (260 - 1.5f) * scaleX, (socketBottom - 1.5f) * scaleY);
+        canvas.drawRoundRect(innerRect, 12.5f * scaleX, 12.5f * scaleY, highlightPaint);
+
+        // Canal central longitudinal del zócalo ZIF (realismo)
+        Paint groovePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        groovePaint.setColor(Color.parseColor("#083054")); // Azul muy oscuro
+        groovePaint.setStyle(Paint.Style.FILL);
+        RectF grooveRect = new RectF(144 * scaleX, (socketTop + 12) * scaleY, 156 * scaleX, (socketBottom - 12) * scaleY);
+        canvas.drawRoundRect(grooveRect, 2 * scaleX, 2 * scaleY, groovePaint);
 
         // 3. Ranuras del zócalo ZIF (Grid de 20x2)
         Paint slotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        slotPaint.setColor(Color.parseColor("#1A1A1A")); // Ranura negra
+        slotPaint.setColor(Color.parseColor("#121212")); // Ranura negra
         slotPaint.setStyle(Paint.Style.FILL);
+
+        Paint slotContactPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        slotContactPaint.setColor(Color.parseColor("#78909C")); // Contacto metálico interno
+        slotContactPaint.setStyle(Paint.Style.FILL);
 
         float slotW = 18 * scaleX;
         float slotH = 8 * scaleY;
@@ -93,10 +96,16 @@ public class SocketDrawingManager {
             float rowY = (30 + i * 16) * scaleY;
 
             // Ranura Izquierda
-            canvas.drawRoundRect(new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY), 2f * scaleX, 2f * scaleY, slotPaint);
+            RectF leftSlot = new RectF(54 * scaleX, rowY, (54 + 18) * scaleX, rowY + 8 * scaleY);
+            canvas.drawRoundRect(leftSlot, 2f * scaleX, 2f * scaleY, slotPaint);
+            // Contacto metálico izquierdo
+            canvas.drawRect((54 + 6) * scaleX, (rowY + 2) * scaleY, (54 + 12) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
 
             // Ranura Derecha
-            canvas.drawRoundRect(new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY), 2f * scaleX, 2f * scaleY, slotPaint);
+            RectF rightSlot = new RectF(228 * scaleX, rowY, (228 + 18) * scaleX, rowY + 8 * scaleY);
+            canvas.drawRoundRect(rightSlot, 2f * scaleX, 2f * scaleY, slotPaint);
+            // Contacto metálico derecho
+            canvas.drawRect((228 + 6) * scaleX, (rowY + 2) * scaleY, (228 + 12) * scaleX, (rowY + 6) * scaleY, slotContactPaint);
         }
 
         // 4. Indicadores (Número y Flecha para el Pin 1 del chip)
@@ -149,21 +158,33 @@ public class SocketDrawingManager {
 
             // A. Patas plateadas del chip (salen del chip y se meten en las ranuras)
             Paint legPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            legPaint.setColor(Color.parseColor("#CFD8DC")); // Plateado
+            legPaint.setColor(Color.parseColor("#B0BEC5")); // Plateado base
             legPaint.setStyle(Paint.Style.FILL);
+
+            Paint legHighlight = new Paint(Paint.ANTI_ALIAS_FLAG);
+            legHighlight.setColor(Color.parseColor("#FFFFFF")); // Brillo
+            legHighlight.setStyle(Paint.Style.FILL);
 
             for (int i = 0; i < numFilas; i++) {
                 float legY = (30 + (pinStartRow + i) * 16 + 2) * scaleY;
                 // Pata Izquierda
                 canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 4 * scaleY, legPaint);
+                canvas.drawRect(72 * scaleX, legY, 92 * scaleX, legY + 1.5f * scaleY, legHighlight);
                 // Pata Derecha
                 canvas.drawRect(208 * scaleX, legY, 228 * scaleX, legY + 4 * scaleY, legPaint);
+                canvas.drawRect(208 * scaleX, legY, 228 * scaleX, legY + 1.5f * scaleY, legHighlight);
             }
 
-            // B. Cuerpo del chip
+            // B. Cuerpo del chip (Con gradiente para realismo 3D)
             Paint chipBodyPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            chipBodyPaint.setColor(Color.parseColor("#1E1E1E")); // Negro mate
             chipBodyPaint.setStyle(Paint.Style.FILL);
+            android.graphics.LinearGradient chipGrad = new android.graphics.LinearGradient(
+                left, top, right, bottom,
+                new int[]{Color.parseColor("#2C2C2C"), Color.parseColor("#151515"), Color.parseColor("#111111")},
+                new float[]{0.0f, 0.5f, 1.0f},
+                android.graphics.Shader.TileMode.CLAMP
+            );
+            chipBodyPaint.setShader(chipGrad);
             RectF chipRect = new RectF(left, top, right, bottom);
             canvas.drawRoundRect(chipRect, 8f * scaleX, 8f * scaleY, chipBodyPaint);
 
@@ -176,7 +197,7 @@ public class SocketDrawingManager {
 
             // C. Muesca semicircular superior (Notch)
             Paint notchPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            notchPaint.setColor(Color.parseColor("#0E5E3A")); // Mismo verde del fondo del zócalo
+            notchPaint.setColor(Color.parseColor("#0F5B9E")); // Mismo azul del fondo del zócalo
             notchPaint.setStyle(Paint.Style.FILL);
             float notchWidth = 36 * scaleX;
             float notchHeight = 16 * scaleY;
@@ -186,6 +207,18 @@ public class SocketDrawingManager {
                     (300 / 2f + notchWidth / 2f) * scaleX,
                     top + notchHeight / 2f,
                     0, 180, true, notchPaint);
+
+            // Sombra en el arco del notch
+            Paint notchShadow = new Paint(Paint.ANTI_ALIAS_FLAG);
+            notchShadow.setColor(Color.parseColor("#083054"));
+            notchShadow.setStyle(Paint.Style.STROKE);
+            notchShadow.setStrokeWidth(1.5f * scaleX);
+            canvas.drawArc(
+                    (300 / 2f - notchWidth / 2f) * scaleX,
+                    top - notchHeight / 2f,
+                    (300 / 2f + notchWidth / 2f) * scaleX,
+                    top + notchHeight / 2f,
+                    0, 180, false, notchShadow);
 
             // D. Grabado modelo del chip
             String chipName = chip.getNombreDelPic();
@@ -201,11 +234,17 @@ public class SocketDrawingManager {
             // Texto del modelo
             canvas.drawText(chipName, chipCenterX, chipCenterY + (6 * scaleY), modelTextPaint);
 
-            // Círculo indicador del Pin 1
+            // Indentación del Pin 1
             Paint dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            dotPaint.setColor(Color.parseColor("#455A64"));
+            dotPaint.setColor(Color.parseColor("#0F0F0F"));
             dotPaint.setStyle(Paint.Style.FILL);
             canvas.drawCircle(left + 15 * scaleX, top + 15 * scaleY, 4 * scaleX, dotPaint);
+
+            Paint dotHighlight = new Paint(Paint.ANTI_ALIAS_FLAG);
+            dotHighlight.setColor(Color.parseColor("#546E7A"));
+            dotHighlight.setStyle(Paint.Style.STROKE);
+            dotHighlight.setStrokeWidth(0.8f * scaleX);
+            canvas.drawCircle(left + 15 * scaleX, top + 15 * scaleY, 4 * scaleX, dotHighlight);
         }
 
         recycleTextura();

@@ -108,7 +108,7 @@
                 <ImageView
                     android:id="@+id/chipSocketImageView"
                     android:layout_width="120dp"
-                    android:layout_height="110dp"
+                    android:layout_height="144dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
