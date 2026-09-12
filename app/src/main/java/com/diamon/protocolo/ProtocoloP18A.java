@@ -1135,8 +1135,9 @@ public class ProtocoloP18A extends Protocolo {
                 int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
                 if (leidos > 0) {
                     for (int i = 0; i < leidos; i++) {
-
-                        bytes[i] = buffer[i];
+                        if (bytesLeidos + i < size) {
+                            bytes[bytesLeidos + i] = buffer[i];
+                        }
                     }
                     bytesLeidos += leidos;
 
@@ -1147,21 +1148,27 @@ public class ProtocoloP18A extends Protocolo {
             }
             resetearComandos();
 
-            if (bytes[0] == Byte.parseByte("0")) {
+            if (bytesLeidos == 0) {
+                return "Error al obtener la versión del programador: sin respuesta";
+            }
 
-                datos.append(String.format("K128", bytes[0] & 0xFF));
+            if (bytes[0] == 0 || bytes[0] == '0') {
 
-            } else if (bytes[0] == Byte.parseByte("1")) {
+                datos.append("K128");
 
-                datos.append(String.format("K149-A", bytes[0] & 0xFF));
+            } else if (bytes[0] == 1 || bytes[0] == '1') {
 
-            } else if (bytes[0] == Byte.parseByte("2")) {
+                datos.append("K149-A");
 
-                datos.append(String.format("K149-B", bytes[0] & 0xFF));
+            } else if (bytes[0] == 2 || bytes[0] == '2') {
 
-            } else if (bytes[0] == Byte.parseByte("3")) {
+                datos.append("K149-B");
 
-                datos.append(String.format("K150", bytes[0] & 0xFF));
+            } else if (bytes[0] == 3 || bytes[0] == '3') {
+
+                datos.append("K150");
+            } else {
+                datos.append(String.format("Programador (0x%02X)", bytes[0] & 0xFF));
             }
 
             return datos.toString();
@@ -1196,7 +1203,9 @@ public class ProtocoloP18A extends Protocolo {
                 int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
                 if (leidos > 0) {
                     for (int i = 0; i < leidos; i++) {
-                        bytes[bytesLeidos + i] = buffer[i];
+                        if (bytesLeidos + i < size) {
+                            bytes[bytesLeidos + i] = buffer[i];
+                        }
                         datos.append(String.format("%02X", buffer[i] & 0xFF));
                     }
                     bytesLeidos += leidos;
@@ -1208,8 +1217,13 @@ public class ProtocoloP18A extends Protocolo {
 
             resetearComandos();
 
+            if (bytesLeidos == 0) {
+                return "Error al obtener el protocolo del programador: sin respuesta";
+            }
+
+            int validLength = Math.min(bytesLeidos, size);
             // Convertir los bytes a una cadena ASCII
-            return new String(bytes, "US-ASCII") + " " + datos.toString();
+            return new String(bytes, 0, validLength, StandardCharsets.US_ASCII) + " " + datos.toString();
 
         } catch (IOException e) {
             return "Error al obtener el protocolo del programador: " + e.getMessage();

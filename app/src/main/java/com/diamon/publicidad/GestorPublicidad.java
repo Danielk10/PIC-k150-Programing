@@ -1,8 +1,10 @@
 package com.diamon.publicidad;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.diamon.nucleo.Publicidad;
 import com.diamon.pic.PicApplication;
 import com.diamon.pic.R;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -92,6 +95,23 @@ public class GestorPublicidad implements Publicidad {
         });
     }
 
+    /**
+     * Calcula el tamaño adaptable anclado (Anchored Adaptive Banner) para 2026.
+     * Ocupa el 100% del ancho de la pantalla y optimiza la altura dinámicamente.
+     */
+    private AdSize getAdaptiveAdSize(ViewGroup container) {
+        DisplayMetrics displayMetrics = actividad.getResources().getDisplayMetrics();
+        float density = displayMetrics.density;
+
+        float adWidthPixels = container.getWidth();
+        if (adWidthPixels <= 0) {
+            adWidthPixels = displayMetrics.widthPixels;
+        }
+
+        int adWidth = (int) (adWidthPixels / density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(actividad, adWidth);
+    }
+
     @Override
     public void cargarBanner(ViewGroup container) {
         if (container == null)
@@ -114,14 +134,32 @@ public class GestorPublicidad implements Publicidad {
 
                 adView = new AdView(actividad);
                 adView.setAdUnitId(BANNER_ID);
-                adView.setAdSize(AdSize.BANNER);
+                adView.setAdSize(getAdaptiveAdSize(container));
 
                 container.removeAllViews();
                 container.addView(adView);
 
-                AdRequest adRequest = new AdRequest.Builder().build();
+                // Soporte para Banner Adaptable Plegable (Collapsible Banner) estándar moderno
+                Bundle extras = new Bundle();
+                extras.putString("collapsible", "bottom");
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                        .build();
+
+                adView.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdLoaded() {
+                        Log.d(TAG, "Banner adaptable cargado exitosamente");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(LoadAdError loadAdError) {
+                        Log.w(TAG, "Fallo al cargar banner adaptable: " + loadAdError.getMessage());
+                    }
+                });
+
                 adView.loadAd(adRequest);
-                Log.d(TAG, "Solicitud de Banner enviada");
+                Log.d(TAG, "Solicitud de Banner adaptable enviada");
 
             } catch (Exception e) {
                 Log.e(TAG, "Error cargando banner: " + e.getMessage());
