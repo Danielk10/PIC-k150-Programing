@@ -1,13 +1,15 @@
 package com.diamon.publicidad;
 
+import android.app.Activity;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowMetrics;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +20,6 @@ import com.diamon.nucleo.Publicidad;
 import com.diamon.pic.PicApplication;
 import com.diamon.pic.R;
 
-import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -96,20 +97,29 @@ public class GestorPublicidad implements Publicidad {
     }
 
     /**
-     * Calcula el tamaño adaptable anclado (Anchored Adaptive Banner) para 2026.
-     * Ocupa el 100% del ancho de la pantalla y optimiza la altura dinámicamente.
+     * Calcula el tamaño óptimo de Anchored Adaptive Banner según el ancho de pantalla del dispositivo.
+     * Implementación limpia, fija y no intrusiva idéntica a Flash-EEPROM-Tool.
      */
-    private AdSize getAdaptiveAdSize(ViewGroup container) {
-        DisplayMetrics displayMetrics = actividad.getResources().getDisplayMetrics();
-        float density = displayMetrics.density;
-
-        float adWidthPixels = container.getWidth();
-        if (adWidthPixels <= 0) {
-            adWidthPixels = displayMetrics.widthPixels;
+    private AdSize getAdaptiveBannerAdSize(Activity activity) {
+        if (activity == null) {
+            return AdSize.BANNER;
         }
-
-        int adWidth = (int) (adWidthPixels / density);
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(actividad, adWidth);
+        try {
+            int adWidthPixels;
+            DisplayMetrics displayMetrics = activity.getResources().getDisplayMetrics();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                WindowMetrics windowMetrics = activity.getWindowManager().getCurrentWindowMetrics();
+                adWidthPixels = windowMetrics.getBounds().width();
+            } else {
+                adWidthPixels = displayMetrics.widthPixels;
+            }
+            float density = displayMetrics.density;
+            int adWidth = (int) (adWidthPixels / density);
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth);
+        } catch (Exception e) {
+            Log.e(TAG, "Error calculando adaptive banner size, fallback a estándar", e);
+            return AdSize.BANNER;
+        }
     }
 
     @Override
@@ -134,22 +144,18 @@ public class GestorPublicidad implements Publicidad {
 
                 adView = new AdView(actividad);
                 adView.setAdUnitId(BANNER_ID);
-                adView.setAdSize(getAdaptiveAdSize(container));
+                adView.setAdSize(getAdaptiveBannerAdSize(actividad));
 
                 container.removeAllViews();
                 container.addView(adView);
 
-                // Soporte para Banner Adaptable Plegable (Collapsible Banner) estándar moderno
-                Bundle extras = new Bundle();
-                extras.putString("collapsible", "bottom");
-                AdRequest adRequest = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(AdMobAdapter.class, extras)
-                        .build();
+                // Solicitud limpia estándar: permanece fijo y anclado abajo sin desplegarse sobre la pantalla
+                AdRequest adRequest = new AdRequest.Builder().build();
 
                 adView.setAdListener(new AdListener() {
                     @Override
                     public void onAdLoaded() {
-                        Log.d(TAG, "Banner adaptable cargado exitosamente");
+                        Log.d(TAG, "Banner adaptable inferior cargado exitosamente");
                     }
 
                     @Override
@@ -159,7 +165,7 @@ public class GestorPublicidad implements Publicidad {
                 });
 
                 adView.loadAd(adRequest);
-                Log.d(TAG, "Solicitud de Banner adaptable enviada");
+                Log.d(TAG, "Solicitud de Banner adaptable inferior enviada");
 
             } catch (Exception e) {
                 Log.e(TAG, "Error cargando banner: " + e.getMessage());
