@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class TestRealAppFlow {
 
-    private static final String VTTY_PATH = "/home/danielpdiamon/emulador_picpro/vtty";
+    private static final String VTTY_PATH = "/home/danielpdiamon/emulador_pic_k150/vtty";
     private static final String HEX_FILE_PATH = "/home/danielpdiamon/pwmc_main107_628A.HEX";
 
     public static void main(String[] args) {

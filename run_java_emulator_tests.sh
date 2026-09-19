@@ -5,7 +5,7 @@
 set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-EMULATOR_DIR="/home/danielpdiamon/emulador_picpro"
+EMULATOR_DIR="/home/danielpdiamon/emulador_pic_k150"
 VTTY="${EMULATOR_DIR}/vtty"
 MODE="${1:-python}" # 'python' o 'cpp'
 

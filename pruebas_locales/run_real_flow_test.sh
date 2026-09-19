@@ -5,7 +5,7 @@
 set -euo pipefail
 
 BASE_DIR="/home/danielpdiamon/PIC-k150-Programing"
-EMULATOR_DIR="/home/danielpdiamon/emulador_picpro"
+EMULATOR_DIR="/home/danielpdiamon/emulador_pic_k150"
 VTTY="${EMULATOR_DIR}/vtty"
 MODE="${1:-cpp}" # 'python' o 'cpp'
 PRUEBAS_DIR="${BASE_DIR}/pruebas_locales"
