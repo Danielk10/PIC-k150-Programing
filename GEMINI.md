@@ -71,4 +71,7 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
 7. **Selector del motor de emulación:** El script [`run_java_emulator_tests.sh`](file:///home/danielpdiamon/PIC-k150-Programing/run_java_emulator_tests.sh) acepta un parámetro (`cpp` o `python`) para validar las pruebas integradas de Java contra cualquiera de los dos emuladores:
    * `./run_java_emulator_tests.sh cpp` (Compila si es necesario e inicia el emulador en C++).
    * `./run_java_emulator_tests.sh python` (Inicia el emulador en Python).
+8. **Arquitectura de Sincronización del Protocolo K150 en Android (USB-OTG):**
+   * Documento técnico completo en [`sincronizacion_protocolo_k150_android.md`](file:///home/danielpdiamon/PIC-k150-Programing/sincronizacion_protocolo_k150_android.md).
+   * Explica por qué la aplicación en Android omite la Fase 1 (Power-up `B\x03`) y entra directamente a la *Command Jump Table* mediante la secuencia determinista `0x01 -> 'Q' -> 'P' -> 'P'`, superando el desfase temporal de VBUS en USB-OTG y la ineficacia del reset por DTR en chips clones seriales.
 

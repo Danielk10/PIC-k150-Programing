@@ -286,6 +286,7 @@ PIC-k150-Programing/
 ├── settings.gradle                     # Ajustes del proyecto y habilitación del catálogo de plugins
 ├── setup-sdk.sh                        # Script automatizado para configurar Android SDK, NDK y dependencias en /tmp
 ├── run_java_emulator_tests.sh          # Script de pruebas automatizadas contra el emulador virtual K150
+├── sincronizacion_protocolo_k150_android.md # Arquitectura de sincronización USB-OTG vs PC Linux/DTR
 ├── GEMINI.md                           # Guía rápida de compilación y emulación local para agentes/desarrolladores
 ├── LICENSE.txt                         # Licencia de código abierto del proyecto (GPL-3.0)
 └── README.md                           # Documentación general y guía del proyecto (este archivo)
