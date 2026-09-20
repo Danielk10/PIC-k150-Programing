@@ -31,7 +31,7 @@ import java.util.Map;
 public class ProtocoloP18AIntegrationTest {
 
     private static final String VTTY_PATH = "/home/danielpdiamon/emulador_pic_k150/vtty";
-    private static final String HEX_FILE_PATH = "/home/danielpdiamon/pwmc_main107_628A.HEX";
+    private static final String HEX_FILE_PATH = "/home/danielpdiamon/PIC-k150-Programing/pwmc_main107_628A.HEX";
 
     private FileInputStream in;
     private FileOutputStream out;
@@ -297,7 +297,7 @@ public class ProtocoloP18AIntegrationTest {
     public void testImportacionYProgramacionIntercaladaParcial() throws Exception {
         // Paths a probar
         String[] hexPaths = {
-            "/home/danielpdiamon/pwmc_main107_628A.HEX",
+            HEX_FILE_PATH,
             "/home/danielpdiamon/PIC-k150-Programing/main.hex",
             "/home/danielpdiamon/PIC-k150-Programing/nuevoled.hex"
         };
@@ -368,7 +368,7 @@ public class ProtocoloP18AIntegrationTest {
     @Test
     public void testExportacionYFormatosHexBin() throws Exception {
         // 1. Leer y parsear el HEX original
-        String hexContentOriginal = new String(Files.readAllBytes(Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")), StandardCharsets.UTF_8);
+        String hexContentOriginal = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
         com.diamon.datos.DatosPicProcesados datosPicOriginal = new com.diamon.datos.DatosPicProcesados(null, hexContentOriginal, chip16f628a);
         datosPicOriginal.iniciarProcesamientoDeDatos();
 
@@ -432,7 +432,7 @@ public class ProtocoloP18AIntegrationTest {
         });
 
         // 2. Leer archivo HEX completo
-        String hexContent = new String(Files.readAllBytes(Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")), StandardCharsets.UTF_8);
+        String hexContent = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
 
         // 3. Ejecutar programación completa (ROM + EEPROM + Config)
         byte[] idPic = new byte[] { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44 };
@@ -616,7 +616,7 @@ public class ProtocoloP18AIntegrationTest {
         assertTrue("Fallo al iniciar variables de programación", protocolo.iniciarVariablesDeProgramacion(chip16f628a));
         assertTrue("Fallo al borrar el chip", protocolo.borrarMemoriasDelPic());
 
-        String hexContentOriginal = new String(Files.readAllBytes(Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")), StandardCharsets.UTF_8);
+        String hexContentOriginal = new String(Files.readAllBytes(Paths.get(HEX_FILE_PATH)), StandardCharsets.UTF_8);
         com.diamon.datos.DatosPicProcesados datosPicOriginal = new com.diamon.datos.DatosPicProcesados(null, hexContentOriginal, chip16f628a);
         datosPicOriginal.iniciarProcesamientoDeDatos();
 
@@ -810,7 +810,7 @@ public class ProtocoloP18AIntegrationTest {
 
         // Programar ROM mínima
         String hexContent = new String(java.nio.file.Files.readAllBytes(
-                java.nio.file.Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")),
+                java.nio.file.Paths.get(HEX_FILE_PATH)),
                 java.nio.charset.StandardCharsets.UTF_8);
         com.diamon.datos.DatosPicProcesados datosPic =
                 new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
@@ -908,7 +908,7 @@ public class ProtocoloP18AIntegrationTest {
     public void testFusesExtraidosDesdeHEX_PIC16F628A() throws Exception {
         // Verificar que los fuses extraídos del archivo HEX real son correctos
         String hexContent = new String(java.nio.file.Files.readAllBytes(
-                java.nio.file.Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")),
+                java.nio.file.Paths.get(HEX_FILE_PATH)),
                 java.nio.charset.StandardCharsets.UTF_8);
         com.diamon.datos.DatosPicProcesados datosPic =
                 new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);
@@ -984,7 +984,7 @@ public class ProtocoloP18AIntegrationTest {
         assertTrue(protocolo.borrarMemoriasDelPic());
 
         String hexContent = new String(java.nio.file.Files.readAllBytes(
-                java.nio.file.Paths.get("/home/danielpdiamon/pwmc_main107_628A.HEX")),
+                java.nio.file.Paths.get(HEX_FILE_PATH)),
                 java.nio.charset.StandardCharsets.UTF_8);
         com.diamon.datos.DatosPicProcesados datosPic =
                 new com.diamon.datos.DatosPicProcesados(mockContext, hexContent, chip16f628a);

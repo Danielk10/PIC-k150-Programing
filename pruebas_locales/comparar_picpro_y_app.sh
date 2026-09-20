@@ -10,7 +10,7 @@ EMULATOR_DIR="/home/danielpdiamon/emulador_pic_k150"
 VTTY="${EMULATOR_DIR}/vtty"
 PRUEBAS_DIR="${BASE_DIR}/pruebas_locales"
 RUNNER="${EMULATOR_DIR}/picpro_patched.py"
-HEX_FILE="/home/danielpdiamon/pwmc_main107_628A.HEX"
+HEX_FILE="${BASE_DIR}/pwmc_main107_628A.HEX"
 
 PICPRO_DUMP="/tmp/picpro_dump.hex"
 APP_DUMP="/tmp/app_dump.hex"

@@ -5,7 +5,13 @@
 set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-HEX_FILE="/home/danielpdiamon/pwmc_main107_628A.HEX"
+if [ -f "${BASE_DIR}/pwmc_main107_628A.HEX" ]; then
+    HEX_FILE="${BASE_DIR}/pwmc_main107_628A.HEX"
+elif [ -f "${BASE_DIR}/../pwmc_main107_628A.HEX" ]; then
+    HEX_FILE="${BASE_DIR}/../pwmc_main107_628A.HEX"
+else
+    HEX_FILE="/home/danielpdiamon/PIC-k150-Programing/pwmc_main107_628A.HEX"
+fi
 VTTY="${BASE_DIR}/vtty"
 RUNNER="${BASE_DIR}/picpro_patched.py"
 
@@ -13,7 +19,7 @@ MODE="${1:-python}" # 'python' o 'cpp'
 
 echo "=== 1. Validando existencia del archivo HEX ==="
 if [ ! -f "$HEX_FILE" ]; then
-    echo "ERROR: El archivo $HEX_FILE no existe en el home."
+    echo "ERROR: El archivo $HEX_FILE no existe."
     exit 1
 fi
 echo "Archivo HEX encontrado: $HEX_FILE"

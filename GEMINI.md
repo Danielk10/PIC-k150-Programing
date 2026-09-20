@@ -29,7 +29,6 @@ Toda la salida de compilación se redirige a `/tmp` para ahorrar espacio de disc
 ## 🔌 3. Entorno de Emulación K150 Local
 El programador K150 (protocolo P18A) y el microcontrolador PIC16F628A están emulados de forma virtual en:
 * **Carpeta del Emulador:** [`/home/danielpdiamon/emulador_pic_k150/`](file:///home/danielpdiamon/emulador_pic_k150/) (disponible también dentro del repositorio en `emulador_pic_k150/`)
-  - *(Enlace simbólico de compatibilidad: `~/emulador_pic_k150_programing`)*
 * **Archivos Disponibles:**
   - `emulador_k150.py`: Emulador de hardware en Python.
   - `emulador_k150.cpp` / `emulador_k150_cpp`: Emulador de hardware en C++ y su binario optimizado.
