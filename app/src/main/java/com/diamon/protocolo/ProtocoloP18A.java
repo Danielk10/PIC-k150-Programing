@@ -103,6 +103,10 @@ public class ProtocoloP18A extends Protocolo {
         return (tipoProtocolo == TipoProtocolo.P18A) ? 0x11 : 0x12;
     }
 
+    private int getCmdProgramCal10F() {
+        return (tipoProtocolo == TipoProtocolo.P18A) ? 0x18 : 0x19;
+    }
+
     @Override
     public String hacerUnEco() {
         try {
@@ -1297,9 +1301,57 @@ public class ProtocoloP18A extends Protocolo {
         }
     }
 
+    /**
+     * Programa los datos de calibración y respaldo para la familia PIC10F.
+     * Comando 24 en P18A / Comando 25 en P018/P016/P014.
+     *
+     * @param calibration Valor de calibración (12 bits)
+     * @param backupCalibration Valor de respaldo de calibración (12 bits)
+     * @return true si se programó exitosamente ('Y'), false en caso contrario
+     */
+    public boolean programarDatosDeCalibracionDePics10F(int calibration, int backupCalibration) {
+        try {
+            if (!resetearComandos()) {
+                return false;
+            }
+
+            if (!activarVoltajesDeProgramacion()) {
+                return false;
+            }
+
+            // Comando según el protocolo activo (0x18 en P18A, 0x19 en P018)
+            escribirDatosUSB(new byte[] { (byte) getCmdProgramCal10F() }, 10, "cmd_calibracion_10f");
+
+            // Construir payload de 4 bytes: Cal_H, Cal_L, Backup_H, Backup_L
+            byte calHigh = (byte) ((calibration >> 8) & 0xFF);
+            byte calLow = (byte) (calibration & 0xFF);
+            byte backupHigh = (byte) ((backupCalibration >> 8) & 0xFF);
+            byte backupLow = (byte) (backupCalibration & 0xFF);
+
+            byte[] payload = new byte[] { calHigh, calLow, backupHigh, backupLow };
+            escribirDatosUSB(payload, TIMEOUT_DEFAULT, "datos_calibracion_10f");
+
+            // Leer respuesta de 1 byte ('Y' = Éxito, 'C' = Error Calibración, 'B' = Error Backup)
+            byte[] respuestaBytes = readBytes(1, TIMEOUT_EXTENDED);
+
+            desactivarVoltajesDeProgramacion();
+            resetearComandos();
+
+            String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
+            return "Y".equals(respuesta);
+
+        } catch (Exception e) {
+            try {
+                desactivarVoltajesDeProgramacion();
+                resetearComandos();
+            } catch (Exception ignored) {
+            }
+            return false;
+        }
+    }
+
     @Override
     public boolean programarDatosDeCalibracionDePics10F() {
-
-        return false;
+        return programarDatosDeCalibracionDePics10F(0x0FFF, 0x0FFF);
     }
 }

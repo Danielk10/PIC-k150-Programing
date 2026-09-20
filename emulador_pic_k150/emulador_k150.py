@@ -247,6 +247,12 @@ def run_emulator():
                         os.write(master, HeaderEnum.CONFIGURATION.value)
                         os.write(master, get_config_bytes())
                         state = "JUMP_TABLE"
+                    elif cmd == 24 or cmd == 25:  # program cal data for 10Fxxx
+                        cal_data = read_exactly(master, 4)
+                        cal, backup_cal = struct.unpack('>HH', cal_data)
+                        print(f"[K150-EMULATOR] Program 10F Calibration: 0x{cal:04X}, Backup: 0x{backup_cal:04X}")
+                        os.write(master, ResponseEnum.YES.value)
+                        state = "JUMP_TABLE"
                     else:
                         print(f"[K150-EMULATOR] Warning: Unhandled command {cmd}")
                         state = "JUMP_TABLE"

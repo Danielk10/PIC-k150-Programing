@@ -1106,4 +1106,18 @@ public class ProtocoloP18AIntegrationTest {
         String idLeido = extraerIDDeConfigString(config, 4);
         assertEquals("El ID del PIC12F675 en ICSP no coincide", "AABBCCDD", idLeido);
     }
+
+    @Test
+    public void testProgramarDatosDeCalibracionDePics10F() throws Exception {
+        // Valida la programación de calibración y backup para la familia PIC10F (Comando 24 en P18A)
+        int calibPrincipal = 0x0C2A; // Instrucción MOVLW 0x2A para OSCCAL
+        int calibBackup = 0x0C2A;
+
+        boolean resultado = protocolo.programarDatosDeCalibracionDePics10F(calibPrincipal, calibBackup);
+        assertTrue("La programación de calibración para PIC10F falló", resultado);
+
+        // Validar también la sobrecarga sin argumentos (calibración por defecto)
+        boolean resultadoDefault = protocolo.programarDatosDeCalibracionDePics10F();
+        assertTrue("La programación de calibración por defecto para PIC10F falló", resultadoDefault);
+    }
 }

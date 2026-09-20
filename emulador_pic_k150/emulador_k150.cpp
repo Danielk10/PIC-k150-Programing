@@ -320,6 +320,16 @@ void run_emulator(const std::string& symlink_path) {
                         
                         write(master_fd, config_bytes, 26);
                         state = JUMP_TABLE;
+                    } else if (cmd == 24 || cmd == 25) {  // program cal data for 10Fxxx
+                        uint8_t cal_data[4];
+                        if (!read_exactly(master_fd, cal_data, 4)) break;
+                        uint16_t cal = cal_data[1] | (cal_data[0] << 8);
+                        uint16_t backup_cal = cal_data[3] | (cal_data[2] << 8);
+                        std::cout << "[K150-EMULATOR-C++] Program 10F Calibration: 0x" << std::hex << cal 
+                                  << ", Backup: 0x" << backup_cal << std::dec << std::endl;
+                        uint8_t resp = 'Y';
+                        write(master_fd, &resp, 1);
+                        state = JUMP_TABLE;
                     } else {
                         std::cout << "[K150-EMULATOR-C++] Warning: Unhandled command " << (int)cmd << std::endl;
                         state = JUMP_TABLE;
