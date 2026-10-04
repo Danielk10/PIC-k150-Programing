@@ -331,6 +331,22 @@ public class FileManager {
         }
     }
 
+    /**
+     * Copia de archivos Zero-Copy utilizando FileChannel.transferTo() a nivel de kernel de Linux.
+     */
+    public static void copyFileZeroCopy(java.io.File source, java.io.File dest) throws IOException {
+        try (java.io.FileInputStream fis = new java.io.FileInputStream(source);
+             java.io.FileOutputStream fos = new java.io.FileOutputStream(dest);
+             java.nio.channels.FileChannel srcChannel = fis.getChannel();
+             java.nio.channels.FileChannel dstChannel = fos.getChannel()) {
+            long size = srcChannel.size();
+            long position = 0;
+            while (position < size) {
+                position += srcChannel.transferTo(position, size - position, dstChannel);
+            }
+        }
+    }
+
     private void notifyError(String errorMessage) {
         if (fileLoadListener != null) {
             fileLoadListener.onFileLoadError(errorMessage);

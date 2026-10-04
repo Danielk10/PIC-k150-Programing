@@ -299,10 +299,17 @@ public class HexExportManager {
             }
 
             if (binData != null) {
-                // Escritura binaria directa con buffer
-                try (java.io.BufferedOutputStream bufferedOut = new java.io.BufferedOutputStream(outputStream, 8192)) {
-                    bufferedOut.write(binData);
-                    bufferedOut.flush();
+                if (outputStream instanceof java.io.FileOutputStream) {
+                    java.nio.channels.FileChannel channel = ((java.io.FileOutputStream) outputStream).getChannel();
+                    java.nio.ByteBuffer buffer = java.nio.ByteBuffer.wrap(binData);
+                    while (buffer.hasRemaining()) {
+                        channel.write(buffer);
+                    }
+                } else {
+                    try (java.io.BufferedOutputStream bufferedOut = new java.io.BufferedOutputStream(outputStream, 8192)) {
+                        bufferedOut.write(binData);
+                        bufferedOut.flush();
+                    }
                 }
             } else if (txtData != null) {
                 // Formato de texto (HEX) sin duplicar array en heap
