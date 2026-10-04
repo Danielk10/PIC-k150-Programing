@@ -1,6 +1,7 @@
 package com.diamon.managers;
 
 import android.content.Context;
+import android.os.PowerManager;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
@@ -19,9 +20,29 @@ public class PicProgrammingManager {
 
     private final Context context;
     private ProtocoloP18A protocolo;
+    private PowerManager.WakeLock wakeLock;
 
     // Interfaz para notificar el progreso de operaciones
     private ProgrammingListener programmingListener;
+
+    private synchronized void acquireWakeLock() {
+        if (wakeLock == null && context != null) {
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            if (pm != null) {
+                wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PICk150:ProgrammingOperation");
+                wakeLock.setReferenceCounted(false);
+            }
+        }
+        if (wakeLock != null && !wakeLock.isHeld()) {
+            wakeLock.acquire(15 * 60 * 1000L); // 15 minutos timeout de seguridad
+        }
+    }
+
+    private synchronized void releaseWakeLock() {
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+        }
+    }
 
     /** Interfaz para manejar eventos de programacion */
     public interface ProgrammingListener {
@@ -115,89 +136,94 @@ public class PicProgrammingManager {
      */
     public boolean programChip(
             ChipPic chipPIC, String firmware, byte[] IDPic, List<Integer> fusesUsuario) {
-        if (protocolo == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return false;
-        }
-
-        if (chipPIC == null || firmware == null || firmware.isEmpty()) {
-            notifyError(context.getString(R.string.datos_invalidos_para_programac));
-            return false;
-        }
-
-        notifyStarted();
-
+        acquireWakeLock();
         try {
-            // Detectar qué regiones están presentes en el firmware cargado para soportar
-            // "Programar todo" también con HEX parciales.
-            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
-            datosPicProcesados.iniciarProcesamientoDeDatos();
-
-            boolean hasRom = datosPicProcesados.tieneRomEnHex() || datosPicProcesados.tieneRomData();
-            boolean hasEeprom = chipPIC.isTamanoValidoDeEEPROM()
-                    && (datosPicProcesados.tieneEepromEnHex() || datosPicProcesados.tieneEepromData());
-            boolean usuarioConfiguroFuses = fusesUsuario != null && !fusesUsuario.isEmpty();
-            boolean usuarioConfiguroID = IDPic != null && IDPic.length > 1 && !(IDPic.length == 1 && IDPic[0] == 0);
-            boolean hasConfig = datosPicProcesados.tieneConfigEnHex() || datosPicProcesados.tieneConfigData()
-                    || usuarioConfiguroFuses || usuarioConfiguroID;
-
-            if (!hasRom && !hasEeprom && !hasConfig) {
-                notifyError(context.getString(R.string.error_programando_pic) + ": HEX sin regiones programables");
+            if (protocolo == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
                 return false;
             }
 
-            // Paso 1: Borrar memorias
-            notifyProgress(context.getString(R.string.borrando_memorias), 10);
-            boolean eraseOk = protocolo.borrarMemoriasDelPic();
-            if (!eraseOk) {
-                notifyError(context.getString(R.string.error_borrando_memorias));
+            if (chipPIC == null || firmware == null || firmware.isEmpty()) {
+                notifyError(context.getString(R.string.datos_invalidos_para_programac));
                 return false;
             }
 
-            // Paso 2: Programar ROM si existe en HEX
-            if (hasRom) {
-                notifyProgress(context.getString(R.string.programando_memoria_rom), 30);
-                if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
-                    notifyError(context.getString(R.string.error_programando_rom));
+            notifyStarted();
+
+            try {
+                // Detectar qué regiones están presentes en el firmware cargado para soportar
+                // "Programar todo" también con HEX parciales.
+                DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+                datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                boolean hasRom = datosPicProcesados.tieneRomEnHex() || datosPicProcesados.tieneRomData();
+                boolean hasEeprom = chipPIC.isTamanoValidoDeEEPROM()
+                        && (datosPicProcesados.tieneEepromEnHex() || datosPicProcesados.tieneEepromData());
+                boolean usuarioConfiguroFuses = fusesUsuario != null && !fusesUsuario.isEmpty();
+                boolean usuarioConfiguroID = IDPic != null && IDPic.length > 1 && !(IDPic.length == 1 && IDPic[0] == 0);
+                boolean hasConfig = datosPicProcesados.tieneConfigEnHex() || datosPicProcesados.tieneConfigData()
+                        || usuarioConfiguroFuses || usuarioConfiguroID;
+
+                if (!hasRom && !hasEeprom && !hasConfig) {
+                    notifyError(context.getString(R.string.error_programando_pic) + ": HEX sin regiones programables");
                     return false;
                 }
-            }
 
-            // Paso 3: Programar EEPROM si existe en HEX
-            if (hasEeprom) {
-                notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
-                if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
-                    notifyError(context.getString(R.string.error_programando_eeprom));
+                // Paso 1: Borrar memorias
+                notifyProgress(context.getString(R.string.borrando_memorias), 10);
+                boolean eraseOk = protocolo.borrarMemoriasDelPic();
+                if (!eraseOk) {
+                    notifyError(context.getString(R.string.error_borrando_memorias));
                     return false;
                 }
-            }
 
-            // Paso 4: Programar Fuses/ID si existen en HEX o por usuario
-            if (hasConfig) {
-                notifyProgress(context.getString(R.string.programando_fuses_id), 70);
-                if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
-                    notifyError(context.getString(R.string.error_programando_fuses));
-                    return false;
+                // Paso 2: Programar ROM si existe en HEX
+                if (hasRom) {
+                    notifyProgress(context.getString(R.string.programando_memoria_rom), 30);
+                    if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
+                        notifyError(context.getString(R.string.error_programando_rom));
+                        return false;
+                    }
                 }
-            }
 
-            // Paso 5: Programar Fuses adicionales para PIC18F (solo si hubo config)
-            if (hasConfig && chipPIC.getTipoDeNucleoBit() == 16) {
-                notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
-                if (!protocolo.programarFusesDePics18F()) {
-                    notifyError(context.getString(R.string.error_programando_fuses_18f));
-                    return false;
+                // Paso 3: Programar EEPROM si existe en HEX
+                if (hasEeprom) {
+                    notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
+                    if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
+                        notifyError(context.getString(R.string.error_programando_eeprom));
+                        return false;
+                    }
                 }
+
+                // Paso 4: Programar Fuses/ID si existen en HEX o por usuario
+                if (hasConfig) {
+                    notifyProgress(context.getString(R.string.programando_fuses_id), 70);
+                    if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
+                        notifyError(context.getString(R.string.error_programando_fuses));
+                        return false;
+                    }
+                }
+
+                // Paso 5: Programar Fuses adicionales para PIC18F (solo si hubo config)
+                if (hasConfig && chipPIC.getTipoDeNucleoBit() == 16) {
+                    notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
+                    if (!protocolo.programarFusesDePics18F()) {
+                        notifyError(context.getString(R.string.error_programando_fuses_18f));
+                        return false;
+                    }
+                }
+
+                // Completado
+                notifyProgress(context.getString(R.string.programacion_completada), 100);
+                notifyCompleted(true);
+                return true;
+
+            } catch (Exception e) {
+                notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+                return false;
             }
-
-            // Completado
-            notifyProgress(context.getString(R.string.programacion_completada), 100);
-            notifyCompleted(true);
-            return true;
-
-        } catch (Exception e) {
-            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
-            return false;
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -209,33 +235,38 @@ public class PicProgrammingManager {
      * @return true si la programacion fue exitosa, false en caso contrario
      */
     public boolean programRomOnly(ChipPic chipPIC, String firmware) {
-        if (protocolo == null || chipPIC == null || firmware == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return false;
-        }
-
+        acquireWakeLock();
         try {
-            notifyStarted();
-
-            // Para modo "solo ROM" NO se fuerza chip erase global para no perder
-            // EEPROM/Fuses/ID existentes. Se intenta escritura directa de ROM.
-            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
-            datosPicProcesados.iniciarProcesamientoDeDatos();
-
-            notifyProgress(context.getString(R.string.programando_memoria_rom), 50);
-            if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
-                notifyError(context.getString(R.string.error_programando_rom));
+            if (protocolo == null || chipPIC == null || firmware == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
                 return false;
             }
 
-            // Completado
-            notifyProgress(context.getString(R.string.programacion_completada), 100);
-            notifyCompleted(true);
-            return true;
+            try {
+                notifyStarted();
 
-        } catch (Exception e) {
-            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
-            return false;
+                // Para modo "solo ROM" NO se fuerza chip erase global para no perder
+                // EEPROM/Fuses/ID existentes. Se intenta escritura directa de ROM.
+                DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+                datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                notifyProgress(context.getString(R.string.programando_memoria_rom), 50);
+                if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
+                    notifyError(context.getString(R.string.error_programando_rom));
+                    return false;
+                }
+
+                // Completado
+                notifyProgress(context.getString(R.string.programacion_completada), 100);
+                notifyCompleted(true);
+                return true;
+
+            } catch (Exception e) {
+                notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+                return false;
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -247,37 +278,42 @@ public class PicProgrammingManager {
      * @return true si la programacion fue exitosa, false en caso contrario
      */
     public boolean programEepromOnly(ChipPic chipPIC, String firmware) {
-        if (protocolo == null || chipPIC == null || firmware == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return false;
-        }
-
-        if (!chipPIC.isTamanoValidoDeEEPROM()) {
-            notifyError("Chip no tiene memoria EEPROM");
-            return false;
-        }
-
+        acquireWakeLock();
         try {
-            notifyStarted();
-
-            // Programar EEPROM
-            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
-            datosPicProcesados.iniciarProcesamientoDeDatos();
-
-            notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
-            if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
-                notifyError(context.getString(R.string.error_programando_eeprom));
+            if (protocolo == null || chipPIC == null || firmware == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
                 return false;
             }
 
-            // Completado
-            notifyProgress(context.getString(R.string.programacion_completada), 100);
-            notifyCompleted(true);
-            return true;
+            if (!chipPIC.isTamanoValidoDeEEPROM()) {
+                notifyError("Chip no tiene memoria EEPROM");
+                return false;
+            }
 
-        } catch (Exception e) {
-            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
-            return false;
+            try {
+                notifyStarted();
+
+                // Programar EEPROM
+                DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+                datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
+                if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
+                    notifyError(context.getString(R.string.error_programando_eeprom));
+                    return false;
+                }
+
+                // Completado
+                notifyProgress(context.getString(R.string.programacion_completada), 100);
+                notifyCompleted(true);
+                return true;
+
+            } catch (Exception e) {
+                notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+                return false;
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -287,41 +323,46 @@ public class PicProgrammingManager {
      * @return true si la programacion fue exitosa, false en caso contrario
      */
     public boolean programConfigOnly(ChipPic chipPIC, String firmware, byte[] IDPic, List<Integer> fusesUsuario) {
-        if (protocolo == null || chipPIC == null || firmware == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return false;
-        }
-
+        acquireWakeLock();
         try {
-            notifyStarted();
-
-            // Programar Fuses e ID
-            DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
-            datosPicProcesados.iniciarProcesamientoDeDatos();
-
-            notifyProgress(context.getString(R.string.programando_fuses_id), 50);
-            if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
-                notifyError(context.getString(R.string.error_programando_fuses));
+            if (protocolo == null || chipPIC == null || firmware == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
                 return false;
             }
 
-            // Programar Fuses adicionales para PIC18F
-            if (chipPIC.getTipoDeNucleoBit() == 16) {
-                notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
-                if (!protocolo.programarFusesDePics18F()) {
-                    notifyError(context.getString(R.string.error_programando_fuses_18f));
+            try {
+                notifyStarted();
+
+                // Programar Fuses e ID
+                DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
+                datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                notifyProgress(context.getString(R.string.programando_fuses_id), 50);
+                if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
+                    notifyError(context.getString(R.string.error_programando_fuses));
                     return false;
                 }
+
+                // Programar Fuses adicionales para PIC18F
+                if (chipPIC.getTipoDeNucleoBit() == 16) {
+                    notifyProgress(context.getString(R.string.programando_fuses_18f), 90);
+                    if (!protocolo.programarFusesDePics18F()) {
+                        notifyError(context.getString(R.string.error_programando_fuses_18f));
+                        return false;
+                    }
+                }
+
+                // Completado
+                notifyProgress(context.getString(R.string.programacion_completada), 100);
+                notifyCompleted(true);
+                return true;
+
+            } catch (Exception e) {
+                notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
+                return false;
             }
-
-            // Completado
-            notifyProgress(context.getString(R.string.programacion_completada), 100);
-            notifyCompleted(true);
-            return true;
-
-        } catch (Exception e) {
-            notifyError(context.getString(R.string.error_inesperado) + ": " + e.getMessage());
-            return false;
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -332,17 +373,22 @@ public class PicProgrammingManager {
      * @return Contenido de la memoria ROM como string
      */
     public String readRomMemory(ChipPic chipPIC) {
-        if (protocolo == null || chipPIC == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return "";
-        }
-
+        acquireWakeLock();
         try {
-            return protocolo.leerMemoriaROMDelPic(chipPIC);
-        } catch (Exception e) {
-            notifyError(
-                    context.getString(R.string.error_leyendo_memoria_rom) + ": " + e.getMessage());
-            return "";
+            if (protocolo == null || chipPIC == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
+                return "";
+            }
+
+            try {
+                return protocolo.leerMemoriaROMDelPic(chipPIC);
+            } catch (Exception e) {
+                notifyError(
+                        context.getString(R.string.error_leyendo_memoria_rom) + ": " + e.getMessage());
+                return "";
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -353,22 +399,27 @@ public class PicProgrammingManager {
      * @return Contenido de la memoria EEPROM como string
      */
     public String readEepromMemory(ChipPic chipPIC) {
-        if (protocolo == null || chipPIC == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return "";
-        }
-
+        acquireWakeLock();
         try {
-            if (chipPIC.isTamanoValidoDeEEPROM()) {
-                return protocolo.leerMemoriaEEPROMDelPic(chipPIC);
+            if (protocolo == null || chipPIC == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
+                return "";
             }
-            return "";
-        } catch (Exception e) {
-            notifyError(
-                    context.getString(R.string.error_leyendo_memoria_eeprom)
-                            + ": "
-                            + e.getMessage());
-            return "";
+
+            try {
+                if (chipPIC.isTamanoValidoDeEEPROM()) {
+                    return protocolo.leerMemoriaEEPROMDelPic(chipPIC);
+                }
+                return "";
+            } catch (Exception e) {
+                notifyError(
+                        context.getString(R.string.error_leyendo_memoria_eeprom)
+                                + ": "
+                                + e.getMessage());
+                return "";
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -379,16 +430,21 @@ public class PicProgrammingManager {
      * @return Contenido de la memoria de configuración como string
      */
     public String readConfigData(ChipPic chipPIC) {
-        if (protocolo == null || chipPIC == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return "";
-        }
-
+        acquireWakeLock();
         try {
-            return protocolo.leerDatosDeConfiguracionDelPic();
-        } catch (Exception e) {
-            notifyError("Error leyendo datos de configuración: " + e.getMessage());
-            return "";
+            if (protocolo == null || chipPIC == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
+                return "";
+            }
+
+            try {
+                return protocolo.leerDatosDeConfiguracionDelPic();
+            } catch (Exception e) {
+                notifyError("Error leyendo datos de configuración: " + e.getMessage());
+                return "";
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -398,16 +454,21 @@ public class PicProgrammingManager {
      * @return true si el borrado fue exitoso, false en caso contrario
      */
     public boolean eraseMemory() {
-        if (protocolo == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return false;
-        }
-
+        acquireWakeLock();
         try {
-            return protocolo.borrarMemoriasDelPic();
-        } catch (Exception e) {
-            notifyError(context.getString(R.string.error_borrando_memoria) + ": " + e.getMessage());
-            return false;
+            if (protocolo == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
+                return false;
+            }
+
+            try {
+                return protocolo.borrarMemoriasDelPic();
+            } catch (Exception e) {
+                notifyError(context.getString(R.string.error_borrando_memoria) + ": " + e.getMessage());
+                return false;
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -417,17 +478,22 @@ public class PicProgrammingManager {
      * @return true si la memoria esta borrada, false si contiene datos
      */
     public boolean verifyMemoryErased() {
-        if (protocolo == null) {
-            notifyError(context.getString(R.string.protocolo_no_inicializado));
-            return false;
-        }
-
+        acquireWakeLock();
         try {
-            return protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
-        } catch (Exception e) {
-            notifyError(
-                    context.getString(R.string.error_verificando_memoria) + ": " + e.getMessage());
-            return false;
+            if (protocolo == null) {
+                notifyError(context.getString(R.string.protocolo_no_inicializado));
+                return false;
+            }
+
+            try {
+                return protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
+            } catch (Exception e) {
+                notifyError(
+                        context.getString(R.string.error_verificando_memoria) + ": " + e.getMessage());
+                return false;
+            }
+        } finally {
+            releaseWakeLock();
         }
     }
 
@@ -460,56 +526,61 @@ public class PicProgrammingManager {
      * Nota: este flujo no persiste ni mezcla datos con la lectura de memoria para UI.
      */
     public ResultadoVerificacionBorrado verificarBorradoCompleto(ChipPic chipPIC) {
-        if (protocolo == null) {
-            String error = context.getString(R.string.protocolo_no_inicializado);
-            notifyError(error);
-            return new ResultadoVerificacionBorrado(false, false, true, "Sin protocolo", error);
-        }
-
-        if (chipPIC == null) {
-            String error = context.getString(R.string.no_hay_chip_seleccionado);
-            notifyError(error);
-            return new ResultadoVerificacionBorrado(false, false, true, "Sin chip", error);
-        }
-
-        // Siempre calculamos lectura comparativa (fallback seguro y diagnóstico).
-        boolean romBlankLectura = verificarRomVaciaPorLectura(chipPIC);
-        boolean eepromBlankLectura = true;
-        if (chipPIC.isTamanoValidoDeEEPROM()) {
-            eepromBlankLectura = verificarEepromVaciaPorLectura(chipPIC);
-        }
-        boolean configBlankLectura = verificarConfiguracionVaciaPorLectura(chipPIC);
-
-        // Intento nativo y resolución con fallback por comparación.
+        acquireWakeLock();
         try {
-            boolean romBlankNativo = protocolo.verificarSiEstaBorradaLaMemoriaROMDelPic(chipPIC);
-            boolean eepromBlankNativo = true;
+            if (protocolo == null) {
+                String error = context.getString(R.string.protocolo_no_inicializado);
+                notifyError(error);
+                return new ResultadoVerificacionBorrado(false, false, true, "Sin protocolo", error);
+            }
+
+            if (chipPIC == null) {
+                String error = context.getString(R.string.no_hay_chip_seleccionado);
+                notifyError(error);
+                return new ResultadoVerificacionBorrado(false, false, true, "Sin chip", error);
+            }
+
+            // Siempre calculamos lectura comparativa (fallback seguro y diagnóstico).
+            boolean romBlankLectura = verificarRomVaciaPorLectura(chipPIC);
+            boolean eepromBlankLectura = true;
             if (chipPIC.isTamanoValidoDeEEPROM()) {
-                eepromBlankNativo = protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
+                eepromBlankLectura = verificarEepromVaciaPorLectura(chipPIC);
             }
+            boolean configBlankLectura = verificarConfiguracionVaciaPorLectura(chipPIC);
 
-            // ROM nativo se complementa con verificación comparativa de configuración.
-            boolean romFinalNativo = romBlankNativo && configBlankLectura;
+            // Intento nativo y resolución con fallback por comparación.
+            try {
+                boolean romBlankNativo = protocolo.verificarSiEstaBorradaLaMemoriaROMDelPic(chipPIC);
+                boolean eepromBlankNativo = true;
+                if (chipPIC.isTamanoValidoDeEEPROM()) {
+                    eepromBlankNativo = protocolo.verificarSiEstaBorradaLaMemoriaEEPROMDelPic();
+                }
 
-            // Si nativo marca "con datos" pero la lectura comparativa marca "en blanco",
-            // priorizamos comparación para evitar falsos negativos en firmwares inestables.
-            boolean romFinalLectura = romBlankLectura && configBlankLectura;
-            boolean eepromFinalLectura = eepromBlankLectura;
-            boolean chipBlankNativo = romFinalNativo && eepromBlankNativo;
-            boolean chipBlankLectura = romFinalLectura && eepromFinalLectura;
+                // ROM nativo se complementa con verificación comparativa de configuración.
+                boolean romFinalNativo = romBlankNativo && configBlankLectura;
 
-            if (!chipBlankNativo && chipBlankLectura) {
-                String metodo = "Fallback lectura comparativa (nativo inconsistente)";
-                return new ResultadoVerificacionBorrado(
-                        romFinalLectura, eepromFinalLectura, true, metodo, null);
+                // Si nativo marca "con datos" pero la lectura comparativa marca "en blanco",
+                // priorizamos comparación para evitar falsos negativos en firmwares inestables.
+                boolean romFinalLectura = romBlankLectura && configBlankLectura;
+                boolean eepromFinalLectura = eepromBlankLectura;
+                boolean chipBlankNativo = romFinalNativo && eepromBlankNativo;
+                boolean chipBlankLectura = romFinalLectura && eepromFinalLectura;
+
+                if (!chipBlankNativo && chipBlankLectura) {
+                    String metodo = "Fallback lectura comparativa (nativo inconsistente)";
+                    return new ResultadoVerificacionBorrado(
+                            romFinalLectura, eepromFinalLectura, true, metodo, null);
+                }
+
+                String metodo = "Nativo + validación config por comparación";
+                return new ResultadoVerificacionBorrado(romFinalNativo, eepromBlankNativo, false, metodo, null);
+            } catch (Exception e) {
+                boolean romFinal = romBlankLectura && configBlankLectura;
+                String metodo = "Fallback lectura comparativa (ROM/EEPROM/FUSEblank)";
+                return new ResultadoVerificacionBorrado(romFinal, eepromBlankLectura, true, metodo, e.getMessage());
             }
-
-            String metodo = "Nativo + validación config por comparación";
-            return new ResultadoVerificacionBorrado(romFinalNativo, eepromBlankNativo, false, metodo, null);
-        } catch (Exception e) {
-            boolean romFinal = romBlankLectura && configBlankLectura;
-            String metodo = "Fallback lectura comparativa (ROM/EEPROM/FUSEblank)";
-            return new ResultadoVerificacionBorrado(romFinal, eepromBlankLectura, true, metodo, e.getMessage());
+        } finally {
+            releaseWakeLock();
         }
     }
 

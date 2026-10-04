@@ -299,14 +299,18 @@ public class HexExportManager {
             }
 
             if (binData != null) {
-                // Escritura binaria directa
-                outputStream.write(binData);
+                // Escritura binaria directa con buffer
+                try (java.io.BufferedOutputStream bufferedOut = new java.io.BufferedOutputStream(outputStream, 8192)) {
+                    bufferedOut.write(binData);
+                    bufferedOut.flush();
+                }
             } else if (txtData != null) {
-                // Formato de texto (HEX)
-                outputStream.write(txtData.getBytes(StandardCharsets.US_ASCII));
+                // Formato de texto (HEX) sin duplicar array en heap
+                try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(outputStream, StandardCharsets.US_ASCII)) {
+                    writer.write(txtData);
+                    writer.flush();
+                }
             }
-
-            outputStream.flush();
 
             if (exportListener != null) {
                 exportListener.onExportSuccess(uri.getLastPathSegment());
@@ -390,12 +394,30 @@ public class HexExportManager {
         }
     }
 
+    private static final char[] HEX_CHARS_LOOKUP = "0123456789ABCDEF".toCharArray();
+
+    private static void appendHexByte(StringBuilder sb, int b) {
+        sb.append(HEX_CHARS_LOOKUP[(b >>> 4) & 0x0F]);
+        sb.append(HEX_CHARS_LOOKUP[b & 0x0F]);
+    }
+
+    private static void appendHexWord(StringBuilder sb, int w) {
+        sb.append(HEX_CHARS_LOOKUP[(w >>> 12) & 0x0F]);
+        sb.append(HEX_CHARS_LOOKUP[(w >>> 8) & 0x0F]);
+        sb.append(HEX_CHARS_LOOKUP[(w >>> 4) & 0x0F]);
+        sb.append(HEX_CHARS_LOOKUP[w & 0x0F]);
+    }
+
     /**
      * Convierte un array de bytes a formato Intel HEX sin el EOF record.
      */
     public static String convertSegmentToIntelHex(byte[] data, int startAddress) {
-        StringBuilder hex = new StringBuilder();
+        if (data == null || data.length == 0) {
+            return "";
+        }
         int bytesPerLine = 16;
+        int estimatedLines = (data.length + bytesPerLine - 1) / bytesPerLine + 4;
+        StringBuilder hex = new StringBuilder(estimatedLines * 45);
         int currentExtendedAddress = -1; // -1 to force writing on first run if startAddress > 0xFFFF
 
         for (int offset = 0; offset < data.length; offset += bytesPerLine) {
@@ -405,7 +427,7 @@ public class HexExportManager {
             // Emitir Extended Linear Address record si cambió
             if (extendedAddress != currentExtendedAddress) {
                 currentExtendedAddress = extendedAddress;
-                hex.append(buildExtendedAddressRecord(extendedAddress));
+                appendExtendedAddressRecord(hex, extendedAddress);
             }
 
             // Calcular cuántos bytes quedan en esta línea
@@ -413,7 +435,7 @@ public class HexExportManager {
             int lineAddress = fullAddress & 0xFFFF;
 
             // Construir Data Record (tipo 00)
-            hex.append(buildDataRecord(lineAddress, data, offset, count));
+            appendDataRecord(hex, lineAddress, data, offset, count);
         }
 
         return hex.toString();
@@ -422,7 +444,7 @@ public class HexExportManager {
     /**
      * Construye un registro de dirección extendida (tipo 04).
      */
-    private static String buildExtendedAddressRecord(int extendedAddress) {
+    private static void appendExtendedAddressRecord(StringBuilder sb, int extendedAddress) {
         int byteCount = 2;
         int recordType = 4;
         int address = 0;
@@ -432,31 +454,37 @@ public class HexExportManager {
         int checksum = byteCount + (address >> 8) + (address & 0xFF) + recordType + hi + lo;
         checksum = (~checksum + 1) & 0xFF;
 
-        return String.format(":%02X%04X%02X%02X%02X%02X\r\n",
-                byteCount, address, recordType, hi, lo, checksum);
+        sb.append(':');
+        appendHexByte(sb, byteCount);
+        appendHexWord(sb, address);
+        appendHexByte(sb, recordType);
+        appendHexByte(sb, hi);
+        appendHexByte(sb, lo);
+        appendHexByte(sb, checksum);
+        sb.append("\r\n");
     }
 
     /**
      * Construye un registro de datos (tipo 00).
      */
-    private static String buildDataRecord(int address, byte[] data, int offset, int count) {
-        StringBuilder record = new StringBuilder();
+    private static void appendDataRecord(StringBuilder sb, int address, byte[] data, int offset, int count) {
         int recordType = 0;
-
-        record.append(String.format(":%02X%04X%02X", count, address, recordType));
-
         int checksum = count + ((address >> 8) & 0xFF) + (address & 0xFF) + recordType;
+
+        sb.append(':');
+        appendHexByte(sb, count);
+        appendHexWord(sb, address);
+        appendHexByte(sb, recordType);
 
         for (int i = 0; i < count; i++) {
             int b = data[offset + i] & 0xFF;
-            record.append(String.format("%02X", b));
+            appendHexByte(sb, b);
             checksum += b;
         }
 
         checksum = (~checksum + 1) & 0xFF;
-        record.append(String.format("%02X\r\n", checksum));
-
-        return record.toString();
+        appendHexByte(sb, checksum);
+        sb.append("\r\n");
     }
 
     /**
