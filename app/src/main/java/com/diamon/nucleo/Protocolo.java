@@ -10,7 +10,6 @@ import com.diamon.utilidades.ByteUtils;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -106,22 +105,29 @@ public abstract class Protocolo {
         }
 
         try {
-            // Crear un buffer para almacenar los datos leídos
-            ByteBuffer byteBuffer = ByteBuffer.allocate(count);
+            // Buffer final para los datos leídos
+            byte[] resultado = new byte[count];
+            int totalBytesRead = 0;
             long startTime = System.currentTimeMillis();
 
+            // Buffer temporal reutilizable fuera del bucle para eliminar la presión sobre el Garbage Collector
+            int chunkCapacity = Math.min(count, 1024);
+            byte[] tmpBuffer = new byte[chunkCapacity];
+
             // Mientras no se hayan leído todos los bytes y el tiempo de espera no haya expirado
-            while (byteBuffer.position() < count
+            while (totalBytesRead < count
                     && (System.currentTimeMillis() - startTime) < timeoutMillis) {
 
-                // Leer los bytes restantes
-                int remaining = count - byteBuffer.position();
-                byte[] tmpBuffer = new byte[remaining];
-                int bytesRead = usbSerialPort.read(tmpBuffer, Math.min(timeoutMillis, 100));
+                int remaining = count - totalBytesRead;
+                byte[] targetBuf = (remaining == tmpBuffer.length)
+                        ? tmpBuffer
+                        : (remaining < tmpBuffer.length ? new byte[remaining] : tmpBuffer);
+
+                int bytesRead = usbSerialPort.read(targetBuf, Math.min(timeoutMillis, 100));
 
                 if (bytesRead > 0) {
-                    // Añadir los bytes leídos al buffer
-                    byteBuffer.put(tmpBuffer, 0, bytesRead);
+                    System.arraycopy(targetBuf, 0, resultado, totalBytesRead, bytesRead);
+                    totalBytesRead += bytesRead;
 
                 } else if (bytesRead == 0) {
                     // Si no se reciben datos, esperar brevemente antes de reintentar
@@ -135,17 +141,14 @@ public abstract class Protocolo {
             }
 
             // Verificar si se leyeron todos los bytes
-            if (byteBuffer.position() < count) {
+            if (totalBytesRead < count) {
                 long tiempoTranscurrido = System.currentTimeMillis() - startTime;
                 String mensaje =
                         String.format(
                                 "Timeout leyendo bytes: esperados=%d, leídos=%d, tiempo=%dms",
-                                count, byteBuffer.position(), tiempoTranscurrido);
+                                count, totalBytesRead, tiempoTranscurrido);
                 throw UsbCommunicationException.crearTimeoutError("lectura", timeoutMillis);
             }
-
-            // Obtener los datos leídos
-            byte[] resultado = byteBuffer.array();
 
             return resultado;
 
@@ -165,12 +168,11 @@ public abstract class Protocolo {
             throws UsbCommunicationException {
         ByteUtils.validarArray(contexto, expected, -1, "expected");
 
-        String esperadoHex = ByteUtils.bytesToHex(expected);
-
         byte[] response = readBytes(expected.length, timeoutMillis);
-        String recibidoHex = ByteUtils.bytesToHex(response);
 
         if (!Arrays.equals(response, expected)) {
+            String esperadoHex = ByteUtils.bytesToHex(expected);
+            String recibidoHex = ByteUtils.bytesToHex(response);
             throw UsbCommunicationException.crearRespuestaInesperada(
                     esperadoHex, recibidoHex, "expectResponse");
         }

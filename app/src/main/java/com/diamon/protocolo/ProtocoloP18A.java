@@ -923,8 +923,8 @@ public class ProtocoloP18A extends Protocolo {
             usbSerialPort.write(new byte[] { (byte) getCmdRomBlankCheck(), (byte) 0x3F }, 10);
 
             int intentosSinDatos = 0;
+            byte[] buffer = new byte[1];
             while (true) {
-                byte[] buffer = new byte[1];
                 int leidos = usbSerialPort.read(buffer, 100);
 
                 if (leidos > 0) {
