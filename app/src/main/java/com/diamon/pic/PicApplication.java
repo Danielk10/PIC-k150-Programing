@@ -23,6 +23,14 @@ public class PicApplication extends Application {
 
     private static final String TAG = "PicApplication";
 
+    static {
+        try {
+            System.loadLibrary("fdsan_bypass");
+        } catch (Throwable t) {
+            Log.w(TAG, "No se pudo cargar libfdsan_bypass: " + t.getMessage());
+        }
+    }
+
     private Thread.UncaughtExceptionHandler defaultExceptionHandler;
 
     /**

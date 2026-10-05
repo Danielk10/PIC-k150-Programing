@@ -23,11 +23,14 @@ android {
         applicationId "com.diamon.pic"
         minSdk 23
         targetSdk 37
-        versionCode 50
-        versionName "2.8.3"
+        versionCode 51
+        versionName "2.8.4"
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+        }
     }
 
     signingConfigs {
@@ -63,6 +66,13 @@ android {
     }
     buildToolsVersion '37.0.0'
     ndkVersion '30.0.14904198 rc1'
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version = '4.1.2'
+        }
+    }
 
     buildFeatures {
         resValues true

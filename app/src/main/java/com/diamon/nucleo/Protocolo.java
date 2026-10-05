@@ -137,6 +137,9 @@ public abstract class Protocolo {
                         Thread.currentThread().interrupt();
                         throw new UsbCommunicationException("Hilo interrumpido durante lectura", e);
                     }
+                } else {
+                    // bytesRead < 0: desconexión física de hardware o EOF USB
+                    throw UsbCommunicationException.crearConexionPerdida();
                 }
             }
 

@@ -152,15 +152,13 @@ public class FileManager {
 
     /** Lee archivo .bin y lo convierte a Intel HEX de forma segura. */
     private String readBinaryAsIntelHex(Uri uri, ChipPic chip) {
-        try {
-            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+        try (InputStream inputStream = context.getContentResolver().openInputStream(uri)) {
             if (inputStream == null) {
                 notifyError(context.getString(R.string.error_abriendo_el_archivo_sele));
                 return "";
             }
 
             byte[] data = readAllBytes(inputStream);
-            inputStream.close();
 
             if (data.length == 0) {
                 notifyError(context.getString(R.string.el_archivo_seleccionado_esta_v));
@@ -335,14 +333,27 @@ public class FileManager {
      * Copia de archivos Zero-Copy utilizando FileChannel.transferTo() a nivel de kernel de Linux.
      */
     public static void copyFileZeroCopy(java.io.File source, java.io.File dest) throws IOException {
-        try (java.io.FileInputStream fis = new java.io.FileInputStream(source);
-             java.io.FileOutputStream fos = new java.io.FileOutputStream(dest);
-             java.nio.channels.FileChannel srcChannel = fis.getChannel();
-             java.nio.channels.FileChannel dstChannel = fos.getChannel()) {
-            long size = srcChannel.size();
-            long position = 0;
-            while (position < size) {
-                position += srcChannel.transferTo(position, size - position, dstChannel);
+        try {
+            try (java.io.FileInputStream fis = new java.io.FileInputStream(source);
+                 java.io.FileOutputStream fos = new java.io.FileOutputStream(dest);
+                 java.nio.channels.FileChannel srcChannel = fis.getChannel();
+                 java.nio.channels.FileChannel dstChannel = fos.getChannel()) {
+                long size = srcChannel.size();
+                long position = 0;
+                while (position < size) {
+                    position += srcChannel.transferTo(position, size - position, dstChannel);
+                }
+            }
+        } catch (IOException e) {
+            // Fallback a copiado tradicional por streams si el sistema de archivos no soporta sendfile
+            try (java.io.InputStream in = new java.io.BufferedInputStream(new java.io.FileInputStream(source), 8192);
+                 java.io.OutputStream out = new java.io.BufferedOutputStream(new java.io.FileOutputStream(dest), 8192)) {
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+                out.flush();
             }
         }
     }
