@@ -61,11 +61,13 @@ sleep 0.5
 
 # 3. Compilar clases Java de la app
 echo "=== 3. Compilando clases Java de PIC-k150-Programing ==="
-rm -rf "${PRUEBAS_DIR}/build"
-mkdir -p "${PRUEBAS_DIR}/build"
-javac -d "${PRUEBAS_DIR}/build" \
+BUILD_DIR="/tmp/k150_pruebas_build"
+rm -rf "${BUILD_DIR}"
+mkdir -p "${BUILD_DIR}"
+javac -d "${BUILD_DIR}" \
       -sourcepath "${BASE_DIR}/app/src/main/java:${PRUEBAS_DIR}" \
       "${PRUEBAS_DIR}/TestRealAppFlow.java"
+
 
 echo ""
 echo "======================================================================"
@@ -99,7 +101,8 @@ echo "======================================================================"
 START_APP=$(date +%s%N)
 
 echo "[App Java] Ejecutando flujo completo de la app (Handshake + Erase + ROM + EEPROM + Fuses)..."
-java -cp "${PRUEBAS_DIR}/build" TestRealAppFlow
+java -cp "${BUILD_DIR}" TestRealAppFlow
+
 
 END_APP=$(date +%s%N)
 DIFF_APP=$(( (END_APP - START_APP) / 1000000 ))

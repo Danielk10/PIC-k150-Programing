@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Asegurar que Gradle y temporales usen /tmp
+export GRADLE_USER_HOME="/tmp/.gradle"
+
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SDK_ROOT="${ANDROID_SDK_ROOT:-/tmp/android-sdk}"
 CMDLINE_TOOLS_VERSION="13114758"

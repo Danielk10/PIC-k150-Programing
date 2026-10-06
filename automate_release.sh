@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export GRADLE_USER_HOME="/tmp/.gradle"
+
 # Log everything to /tmp
 exec > /tmp/release_automation.log 2>&1
 

@@ -3,3 +3,6 @@ plugins {
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
 }
+
+// Redirigir la carpeta build del proyecto raíz a /tmp para proteger el disco de Cloud Shell
+layout.buildDirectory.set(file("/tmp/k150/root-build"))

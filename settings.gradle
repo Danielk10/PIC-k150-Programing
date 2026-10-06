@@ -26,3 +26,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "PIC-k150-Programing"
 include ':app'
+
+// Redirigir el build directory de todos los proyectos a /tmp antes de la configuración
+gradle.beforeProject { p ->
+    if (p.name == 'app') {
+        p.layout.buildDirectory.set(file("/tmp/k150"))
+    } else {
+        p.layout.buildDirectory.set(file("/tmp/k150/${p.name}"))
+    }
+}

@@ -4,6 +4,8 @@
 # ==============================================================================
 set -euo pipefail
 
+export GRADLE_USER_HOME="/tmp/.gradle"
+
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EMULATOR_DIR="/home/danielpdiamon/emulador_pic_k150"
 VTTY="${EMULATOR_DIR}/vtty"
