@@ -73,4 +73,8 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
 8. **Arquitectura de Sincronización del Protocolo K150 en Android (USB-OTG):**
    * Documento técnico completo en [`sincronizacion_protocolo_k150_android.md`](file:///home/danielpdiamon/PIC-k150-Programing/sincronizacion_protocolo_k150_android.md).
    * Explica por qué la aplicación en Android omite la Fase 1 (Power-up `B\x03`) y entra directamente a la *Command Jump Table* mediante la secuencia determinista `0x01 -> 'Q' -> 'P' -> 'P'`, superando el desfase temporal de VBUS en USB-OTG y la ineficacia del reset por DTR en chips clones seriales.
+9. **Resolución de Crash en Crashlytics y Actualización de Dependencias (v2.8.5):**
+   * Se eliminó la dependencia innecesaria `firebase-auth` que inyectaba `SignInHubActivity` (`com.google.android.gms:play-services-auth`) provocando `NullPointerException` en dispositivos Huawei (`HRY-LX1T`).
+   * Se actualizaron todas las dependencias principales a sus últimas versiones estables (`firebase-bom: 34.19.0`, `appcompat: 1.8.0`, `constraintlayout: 2.2.2`, `mockito-core: 5.24.0`, plugins de Google Services 4.5.0 y Crashlytics 3.0.8).
+   * Se configuró `systemProp.java.net.preferIPv4Stack=true` en `gradle.properties` para asegurar descargas inmediatas sin timeouts por IPv6.
 

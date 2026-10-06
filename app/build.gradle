@@ -23,8 +23,8 @@ android {
         applicationId "com.diamon.pic"
         minSdk 23
         targetSdk 37
-        versionCode 51
-        versionName "2.8.4"
+        versionCode 52
+        versionName "2.8.5"
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -102,7 +102,6 @@ dependencies {
     implementation platform(libs.firebase.bom)
     implementation libs.firebase.analytics
     implementation libs.firebase.messaging
-    implementation libs.firebase.auth
     implementation libs.admob.mediation
     // Add the dependencies for the Crashlytics NDK and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
