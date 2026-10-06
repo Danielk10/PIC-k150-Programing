@@ -52,9 +52,9 @@ fi
 echo "Puerto virtual listo en: $(readlink -f "$VTTY")"
 sleep 1
 
-echo "=== 3. Ejecutando pruebas de integración en Java ==="
+echo "=== 3. Ejecutando pruebas unitarias y de integración en Java ==="
 chmod +x "${BASE_DIR}/gradlew"
-"${BASE_DIR}/gradlew" -p "${BASE_DIR}" testDebugUnitTest --tests "com.diamon.protocolo.ProtocoloP18AIntegrationTest"
+"${BASE_DIR}/gradlew" -p "${BASE_DIR}" testDebugUnitTest
 
 echo "=========================================================="
 # Si llega aquí, la ejecución fue exitosa
