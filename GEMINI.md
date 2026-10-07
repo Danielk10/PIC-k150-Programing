@@ -77,4 +77,61 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * Se eliminó la dependencia innecesaria `firebase-auth` que inyectaba `SignInHubActivity` (`com.google.android.gms:play-services-auth`) provocando `NullPointerException` en dispositivos Huawei (`HRY-LX1T`).
    * Se actualizaron todas las dependencias principales a sus últimas versiones estables (`firebase-bom: 34.19.0`, `appcompat: 1.8.0`, `constraintlayout: 2.2.2`, `mockito-core: 5.24.0`, plugins de Google Services 4.5.0 y Crashlytics 3.0.8).
    * Se configuró `systemProp.java.net.preferIPv4Stack=true` en `gradle.properties` para asegurar descargas inmediatas sin timeouts por IPv6.
+10. **Validación Exitosa en Hardware Real (K150 + PIC16F628A):**
+   * Validación al 100% de las 7 fases del protocolo en silicio real sobre Android 12 (detección de Device ID 0x6810, volcado ROM/EEPROM, borrado masivo, verificación en blanco, programación completa y verificación de fuses), corroborando la robustez de la pila en producción.
 
+---
+
+## 🔌 6. Pruebas y Validación en Hardware Real (K150 + PIC16F628A por USB-OTG y ADB)
+La suite de comunicación y el protocolo P18A implementado en [`ProtocoloP18A.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/protocolo/ProtocoloP18A.java) han sido formalmente certificados sobre hardware físico real en un microcontrolador **Microchip PIC16F628A** montado en el programador **PIC K150**.
+
+### 🌐 Topología del Entorno de Hardware
+```text
+[Google Cloud Shell]
+        ↕ (Túnel SSH Reverso: ssh -R 5555:localhost:PUERTO_MOVIL)
+  [ADB Server / Client (localhost:5555)]
+        ↕ (Depuración USB inalámbrica / Termux)
+[Teléfono Físico: TECNO BF7 / SPARK Go 2023 (Android 12, ARM64)]
+        ↕ (Conexión física USB-OTG Host Mode)
+[Programador PIC K150 (Chip USB-Serial Prolific PL2303 - VID: 067b, PID: 2303)]
+        ↕ (Zócalo ZIF de 40 pines - Pin 1 en Pin 2 del ZIF, palanca trabada)
+[Microcontrolador Target: Microchip PIC16F628A (18 Pines DIP, Device ID 0x6810)]
+```
+
+### ⚡ Ciclo de Comandos Rápidos para Agentes
+Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o terminal:
+1. **Comprobar estado del teléfono y batería:**
+   ```bash
+   adb-phone status
+   # o: adb -s localhost:5555 devices -l
+   ```
+2. **Conectar/Reconectar túnel ADB:**
+   ```bash
+   adb-phone connect
+   ```
+3. **Verificar enumeración del programador USB (PL2303):**
+   ```bash
+   adb -s localhost:5555 shell dumpsys usb | grep -E "mName|mVendorId|mProductId"
+   ```
+4. **Monitorear tramas de comunicación y logs del protocolo:**
+   ```bash
+   adb -s localhost:5555 logcat -s ProtocoloP18A:V USB_SERIAL:V UsbService:V
+   ```
+5. **Inspección de UI y Automatización Headless (sin display):**
+   ```bash
+   # Volcar jerarquía de vistas XML
+   adb -s localhost:5555 shell uiautomator dump /sdcard/window_dump.xml
+   adb -s localhost:5555 pull /sdcard/window_dump.xml /tmp/
+
+   # Tocar botón o elemento por coordenadas calculadas [X, Y]
+   adb -s localhost:5555 shell input tap <X> <Y>
+   ```
+6. **Capturas de pantalla remotas:**
+   ```bash
+   adb-phone screenshot docs/capturas_hardware_k150/nueva_captura.png
+   ```
+
+### 📚 Documentación de Referencia y Evidencias
+* **Guía Operativa Exhaustiva:** [`GUIA_PRUEBAS_HARDWARE_REAL_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS_HARDWARE_REAL_K150.md) (manual completo para reproducir las 7 pruebas de hardware sin pantalla física).
+* **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
+* **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (10 evidencias visuales del ciclo completo de validación física: permisos USB, detección de socket con Device ID 0x6810, volcado ROM/EEPROM, borrado, verificación post-erase, programación de firmware y verificación bit a bit de fuses/código).

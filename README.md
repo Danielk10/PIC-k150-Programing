@@ -6,10 +6,11 @@
 
 [![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=com.diamon.pic)
 
-![Version](https://img.shields.io/badge/version-2.8.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.8.5-blue.svg)
 ![API Level](https://img.shields.io/badge/API-23%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange.svg)
 ![Target SDK](https://img.shields.io/badge/Target%20SDK-37-blueviolet.svg)
+![Hardware Validated](https://img.shields.io/badge/Hardware%20Tested-PIC16F628A%20%E2%9C%85-success.svg)
 
 ---
 
@@ -17,13 +18,14 @@
 
 ## 📋 Descripción
 
-**PIC k150 Programming** es una aplicación Android profesional que permite programar microcontroladores PIC utilizando el programador PIC k150, todo desde la comodidad de tu dispositivo móvil. La aplicación implementa el **Protocolo P018** de **KITSRUS Programmer Firmware Protocol**, versión de agosto de 2004, garantizando compatibilidad con todos los dispositivos que soportan este estándar industrial.
+**PIC k150 Programming** es una aplicación Android profesional que permite programar microcontroladores PIC utilizando el programador PIC k150, todo desde la comodidad de tu dispositivo móvil. La aplicación implementa el **Protocolo P018/P18A** de **KITSRUS Programmer Firmware Protocol**, versión de agosto de 2004, garantizando compatibilidad con todos los dispositivos que soportan este estándar industrial.
 
-Esta solución innovadora elimina la necesidad de un equipo de escritorio, permitiendo a desarrolladores embebidos, entusiastas de la electrónica y profesionales programar sus microcontroladores PIC en cualquier lugar usando únicamente su dispositivo Android y un cable USB OTG.
+El protocolo y la aplicación han sido **100% verificados y certificados sobre hardware físico real** (microcontrolador **Microchip PIC16F628A** con programador K150 mediante USB-OTG) y en un entorno de **emulación virtual local** (C++/Python con puertos PTY), asegurando máxima estabilidad y confiabilidad operativa sin requerir una PC de escritorio.
 
 ## ✨ Características principales
 
 - **🚀 Programación móvil sin PC**: Programa microcontroladores PIC directamente desde tu teléfono o tablet Android usando el programador PIC k150 o cualquier dispositivo compatible con el protocolo P018
+- **🔬 Protocolo P18A 100% Verificado en Silicio Real y Emulador**: Validación integral de ciclo de vida probada en laboratorio sobre microcontrolador físico Microchip PIC16F628A montado en K150 vía USB-OTG (Android 12), y respaldada por suite automatizada de pruebas JUnit con emulador local (C++/Python)
 - **📡 Protocolo P018**: Basado en el protocolo estándar KITSRUS Programmer Firmware Protocol P018, garantizando amplia compatibilidad con hardware de programación
 - **🔌 Comunicación USB-Serial**: Utiliza la librería de código abierto `usb-serial-for-android` para establecer comunicación USB confiable entre el dispositivo Android y el programador
 - **🎯 Interfaz intuitiva**: Diseño Material Design con flujo de trabajo optimizado para cargar archivos HEX y programar con mínimos pasos
@@ -51,15 +53,49 @@ Esta solución innovadora elimina la necesidad de un equipo de escritorio, permi
 
 ## 🔧 Dispositivos compatibles
 
-La aplicación es compatible con todos los dispositivos que implementan el **Protocolo P018** de **KITSRUS**, incluyendo:
+La aplicación es compatible con todos los dispositivos que implementan el **Protocolo P018/P18A** de **KITSRUS**, incluyendo:
 
-- ✅ **Programador PIC k150** (Verificado y probado)
+- ✅ **Programador PIC k150** (100% Verificado y certificado en silicio real con PIC16F628A y en emulador virtual)
 - ✅ **Programador PIC k128**
 - ✅ **Programador PIC k149** (versiones A-F)
 - ✅ **Programador PIC k182**
 - ✅ **Cualquier dispositivo compatible con protocolo P018**
 
 Este protocolo es ampliamente utilizado en la industria para programación de microcontroladores PIC, asegurando flexibilidad y compatibilidad con diversos fabricantes de hardware.
+
+## 🔬 Validación en Hardware Real y Emulación
+
+La suite de comunicación y el motor del protocolo ([`ProtocoloP18A.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/protocolo/ProtocoloP18A.java)) disponen de una doble capa de certificación y validación rigurosa:
+
+### 1. Validación en Hardware Físico Real (PIC16F628A + K150 por USB-OTG)
+Se completó de forma exitosa el ciclo integral de validación sobre silicio real con la siguiente configuración:
+* **Microcontrolador Target:** Microchip PIC16F628A (DIP de 18 pines, Device ID `0x6810`, 2048 bytes flash ROM, 128 bytes EEPROM).
+* **Programador Físico:** PIC K150 con chip puente USB-Serial Prolific PL2303 (`067b:2303`).
+* **Host Android:** Teléfono móvil físico TECNO BF7 / SPARK Go 2023 ejecutando Android 12 conectado mediante cable USB-OTG y operado de forma remota vía túnel reverso ADB.
+
+#### Matriz de Fases del Ciclo de Vida Validadas en Silicio Real:
+| Fase | Operación Protocolo P18A | Resultado Obtenido | Evidencia Visual |
+|:---:|:---|:---|:---:|
+| **1** | **Detección de Socket** | Identificación exitosa de Device ID `0x6810` (PIC16F628A) en zócalo ZIF | [Captura 04](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/04_hex_loaded_pic_detected.png) |
+| **2** | **Blank Check Inicial** | Detección precisa de código previamente grabado en ROM y EEPROM | [Captura 05](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/05_blank_check_initial_not_blank.png) |
+| **3** | **Lectura de Memoria** | Volcado completo de 1024 palabras ROM y 128 bytes EEPROM a la UI | [Captura 06](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/06_read_memory_dump.png) |
+| **4** | **Borrado (Chip Erase)** | Borrado masivo exitoso aplicando ciclo de voltajes de programación Vpp | [Captura 07](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/07_chip_erased_success.png) |
+| **5** | **Blank Check Post-Erase** | Confirmación de memoria completamente en blanco (`0x3FFF` / `0xFF`) | [Captura 08](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/08_blank_check_post_erase_ok.png) |
+| **6** | **Programación Completa** | Grabación íntegra de firmware (`pwmc_main107_628A.HEX`) con barra al 100% | [Captura 09](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/09_programming_success_dialog.png) |
+| **7** | **Verificación & Fuses** | Verificación bit a bit de memoria flash y decodificación exitosa de fuses | [Captura 10](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/10_memory_and_fuses_verified.png) |
+
+#### Documentos de Referencia Técnica:
+* 📘 **Manual Paso a Paso para Agentes y Desarrolladores:** [`GUIA_PRUEBAS_HARDWARE_REAL_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS_HARDWARE_REAL_K150.md)
+* 📊 **Reporte Técnico y Análisis de Protocolo:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md)
+* 🖼️ **Galería Completa de Evidencias:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/)
+
+### 2. Pruebas de Integración con Emulador Virtual Local (PTY)
+La lógica del protocolo Java se prueba de manera determinista y automatizada en entornos de integración continua (CI) contra los emuladores K150 en C++ y Python:
+```bash
+./run_java_emulator_tests.sh cpp    # Ejecuta pruebas JUnit de ProtocoloP18A contra emulador C++
+./run_java_emulator_tests.sh python # Ejecuta pruebas JUnit de ProtocoloP18A contra emulador Python
+```
+
 
 ## 📦 Dependencias y librerías
 
@@ -167,9 +203,15 @@ El proyecto se basa en las siguientes tecnologías y recursos de código abierto
     *   **Pruebas de Integración con Emulador Local:**
         Puedes validar la lógica de comunicación Java (`ProtocoloP18A.java`) contra el emulador virtual K150 en tu máquina local:
         ```bash
-        ./run_java_emulator_tests.sh
+        ./run_java_emulator_tests.sh cpp    # Con emulador en C++
+        ./run_java_emulator_tests.sh python # Con emulador en Python
         ```
         *(Este script inicia el emulador K150 en segundo plano, ejecuta las pruebas JUnit de `ProtocoloP18AIntegrationTest` mediante Gradle, y detiene el emulador al finalizar).*
+
+    *   **Pruebas y Validación en Hardware Real (K150 + PIC16F628A):**
+        Para reproducir las 7 fases del ciclo de vida en silicio físico conectado por USB-OTG mediante ADB:
+        - Consulta la guía operativa completa: [`GUIA_PRUEBAS_HARDWARE_REAL_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS_HARDWARE_REAL_K150.md)
+        - Revisa el análisis técnico y reporte de tramas: [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md)
 
 5. **Instala en dispositivo**:
    - Conecta tu dispositivo Android con depuración USB habilitada
@@ -287,6 +329,10 @@ PIC-k150-Programing/
 ├── setup-sdk.sh                        # Script automatizado para configurar Android SDK, NDK y dependencias en /tmp
 ├── run_java_emulator_tests.sh          # Script de pruebas automatizadas contra el emulador virtual K150
 ├── sincronizacion_protocolo_k150_android.md # Arquitectura de sincronización USB-OTG vs PC Linux/DTR
+├── GUIA_PRUEBAS_HARDWARE_REAL_K150.md    # Manual exhaustivo de pruebas en hardware real por ADB y USB-OTG
+├── REPORTE_VALIDACION_HARDWARE_PIC16F628A.md # Certificación técnica y análisis de tramas en PIC16F628A
+├── docs/                                 # Documentación técnica adicional y evidencias fotográficas
+│   └── capturas_hardware_k150/          # Galería de capturas de validación en hardware físico
 ├── GEMINI.md                           # Guía rápida de compilación y emulación local para agentes/desarrolladores
 ├── LICENSE.txt                         # Licencia de código abierto del proyecto (GPL-3.0)
 └── README.md                           # Documentación general y guía del proyecto (este archivo)
