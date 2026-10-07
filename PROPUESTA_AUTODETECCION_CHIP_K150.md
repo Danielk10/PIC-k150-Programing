@@ -1,4 +1,4 @@
-# 🧠 Propuesta Técnica: Detección Automática de Chip PIC y Sincronización de UI en K150
+# 🧠 Guía de Mejoras Técnicas Futuras: Autodetección de Chip PIC y Control Manual de Conexión USB en K150
 
 > **Estado:** Documento de Diseño e Implementación Futura  
 > **Fecha de Certificación:** 7 de Octubre de 2026  
@@ -9,7 +9,8 @@
 
 ## 📌 1. Resumen Ejecutivo y Objetivo
 
-El objetivo de esta propuesta es implementar la capacidad de:
+El objetivo de este documento de diseño es estructurar dos mejoras críticas de experiencia de usuario y robustez de hardware para futuras versiones:
+
 1. **Detectar automáticamente la presencia física de un microcontrolador** en el zócalo ZIF de 40 pines del programador K150.
 2. **Identificar el modelo exacto del chip (Device ID)** leyendo el registro de configuración del silicio a través del protocolo P18A.
 3. **Sincronizar automáticamente la interfaz de usuario**:
@@ -18,6 +19,10 @@ El objetivo de esta propuesta es implementar la capacidad de:
    - Actualizar el diagrama visual de orientación de pines en el zócalo (ej. *Pin 1 del chip en Pin 2 del ZIF*).
    - Ajustar el interruptor de *Modo ICSP* y mapa de fusibles correspondientes.
 4. **Conservar siempre la selección manual**: El usuario mantiene el control absoluto para cambiar manualmente de chip en el desplegable en cualquier momento o forzar un modelo si el chip no cuenta con Device ID legible.
+5. **Conectar y desconectar el programador K150 con un botón en la UI**:
+   - Permitir encender/apagar la comunicación lógica con el dispositivo a voluntad.
+   - **Reconexión transparente sin solicitar permisos USB de nuevo** mientras el cable permanezca físicamente enchufado.
+   - Operación desacoplada del reset DTR gracias a la secuencia determinista de rescate por software (`0x01 -> 'Q' -> 'P' -> 'P'`).
 
 ---
 
@@ -280,6 +285,149 @@ En la versión actual (`MainActivity.java:642`), todos los botones de operacione
 
 ---
 
-## 🏁 Conclusión y Recomendación
+## 🔌 6. Propuesta Técnica: Botón de Conexión y Desconexión USB en la UI
 
-La implementación de esta función es **100% viable y segura**. No requiere cambios de hardware ni firmwares especiales en el K150, ya que aprovecha exclusivamente comandos estándar existentes en el protocolo P18A (`cmd 18` y `cmd 13`) y el catálogo [`chipinfo.cid`](app/src/main/assets/chipinfo.cid) ya integrado en los assets de la aplicación.
+### A. Objetivo
+Permitir al usuario conectar y desconectar el programador K150 de forma explícita y manual mediante un botón en la interfaz de usuario (UI), sin depender únicamente de la inicialización automática al arrancar la app ni de desenchufar físicamente el cable USB-OTG.
+
+---
+
+### B. Análisis de Viabilidad: Permisos USB en Android
+> **Pregunta Clave:** ¿Es posible reconectar con el botón **SIN solicitar permisos de nuevo** al usuario?  
+> **Respuesta Técnica:** **SÍ, 100% FACTIBLE.**
+
+#### Fundamento del Framework de Android (`UsbManager`):
+1. **Asignación de Permisos:** En Android ([`android.hardware.usb.UsbManager`](https://developer.android.com/reference/android/hardware/usb/UsbManager)), la concesión de permisos otorgada por el usuario en el modal del sistema se asocia al identificador del objeto físico `UsbDevice` en el subsistema del kernel de Linux mientras el hardware permanezca energizado y conectado al bus USB.
+2. **Desconexión Lógica vs Física:**
+   * Al presionar el botón **"Desconectar"**, la app ejecuta:
+     ```java
+     usbSerialPort.close();
+     connection.close();
+     ```
+   * Esto libera el descriptor de archivo (`fd`) del puerto serie en espacio de usuario y finaliza los hilos de escucha, **pero NO destruye el objeto `UsbDevice` del sistema ni revoca el permiso concedido**.
+   * Por tanto, `usbManager.hasPermission(driver.getDevice())` **continúa devolviendo `true`**.
+3. **Reconexión Silenciosa e Inmediata:**
+   * Al presionar el botón **"Conectar"**, el gestor verifica inmediatamente `if (usbManager.hasPermission(device))`.
+   * Al ser afirmativo, abre el dispositivo directamente con `usbManager.openDevice(device)` sin disparar ningún diálogo emergente (`PendingIntent`).
+   * El diálogo de permisos solo reaparecerá si el usuario desenchufa físicamente el cable USB-OTG del teléfono (`ACTION_USB_DEVICE_DETACHED`).
+
+---
+
+### C. Análisis con respecto al DTR en Android (vs PC)
+
+En el documento de ingeniería [`sincronizacion_protocolo_k150_android.md`](file:///home/danielpdiamon/PIC-k150-Programing/sincronizacion_protocolo_k150_android.md), se explica que en PC (`picpro`), conectar o reconectar se basa en forzar un reset físico por **DTR** en el microcontrolador del programador (pin MCLR) para esperar la trama de Fase 1 (`'B\x03'`).
+
+**¿Por qué en tu app Android conectar/desconectar por botón es completamente seguro y diferente?**
+1. **Alimentación VBUS Continua:** Al estar conectado por USB-OTG, el teléfono alimenta de forma ininterrumpida al programador (5V continuos en VBUS). El microcontrolador PIC16F628A del K150 nunca se apaga cuando la app cierra el puerto serie.
+2. **Independencia de DTR:** Tu app no requiere conmutar DTR ni forzar un reset eléctrico por hardware (que en chips clones PL-2303 / CH340 suele ser ineficaz).
+3. **Resincronización Determinista por Software:** Al presionar "Conectar", la app no espera `'B\x03'`, sino que ejecuta la secuencia de rescate por software en la **Command Jump Table**:
+   $$\text{App} \xrightarrow{0x01} \text{K150 responde 'Q'} \xrightarrow{\text{'P'}} \text{K150 responde 'P'}$$
+   Esto garantiza que cada reconexión por software sea 100% determinista, limpia y sin timeouts, sin importar en qué estado haya quedado el buffer previo.
+
+---
+
+### D. Diseño de UI y Código Propuesto
+
+#### 1. Ubicación en la Toolbar (`activity_main.xml`):
+Complementar el actual `connectionIndicator` estático con un botón interactivo o chip de acción:
+```xml
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_marginEnd="8dp">
+
+    <View
+        android:id="@+id/connectionIndicator"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/connection_indicator" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConnectUsb"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:paddingHorizontal="8dp"
+        android:text="Conectar"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+</LinearLayout>
+```
+
+#### 2. Métodos en `UsbConnectionManager.java`:
+```java
+/**
+ * Conecta o reconecta al programador USB si ya se cuenta con permisos.
+ */
+public void connect() {
+    if (isConnected()) {
+        return;
+    }
+    drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
+    if (drivers == null || drivers.isEmpty()) {
+        notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
+        return;
+    }
+    // Si ya fue autorizado previamente en esta sesión física, conecta inmediatamente sin diálogos
+    requestPermissionsIfNeeded();
+}
+
+/**
+ * Cierra la conexión lógica con el programador liberando el puerto serie.
+ */
+public void disconnect() {
+    cleanupConnection();
+    if (connectionListener != null) {
+        connectionListener.onDisconnected();
+    }
+}
+```
+
+#### 3. Controlador en `MainActivity.java`:
+```java
+private void setupConnectionButton() {
+    btnConnectUsb = findViewById(R.id.btnConnectUsb);
+    btnConnectUsb.setOnClickListener(v -> {
+        if (usbManager.isConnected()) {
+            usbManager.disconnect();
+        } else {
+            appendLog("🔌 Conectando al programador...");
+            usbManager.connect();
+        }
+    });
+}
+
+@Override
+public void onConnected() {
+    runOnUiThread(() -> {
+        connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+        btnConnectUsb.setText("Desconectar");
+        btnConnectUsb.setTextColor(Color.parseColor("#FF5252"));
+        // Habilitar botones de hardware según estado
+    });
+}
+
+@Override
+public void onDisconnected() {
+    runOnUiThread(() -> {
+        connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        btnConnectUsb.setText("Conectar");
+        btnConnectUsb.setTextColor(Color.parseColor("#4CAF50"));
+        // Deshabilitar botones de hardware
+    });
+}
+```
+
+---
+
+## 🏁 Conclusión y Hoja de Ruta
+
+Tanto la **autodetección de chip en el zócalo** como el **botón de conexión/desconexión manual sin re-solicitud de permisos** son adiciones 100% viables, seguras y de alto valor para la experiencia de usuario:
+1. No requieren modificaciones de hardware ni flasheo del microcontrolador interno del K150.
+2. Respetan plenamente la arquitectura determinista del protocolo P18A en Android USB-OTG sin dependencia del DTR.
+3. Se integran limpiamente en la arquitectura de managers existente (`UsbConnectionManager`, `PicProgrammingManager`, `MainActivity`).
+
