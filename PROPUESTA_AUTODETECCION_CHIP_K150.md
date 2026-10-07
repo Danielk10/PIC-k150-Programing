@@ -424,10 +424,218 @@ public void onDisconnected() {
 
 ---
 
-## 🏁 Conclusión y Hoja de Ruta
+## 🧭 7. Análisis Independiente de MicroPro (Windows) y Funciones Avanzadas del Protocolo
 
-Tanto la **autodetección de chip en el zócalo** como el **botón de conexión/desconexión manual sin re-solicitud de permisos** son adiciones 100% viables, seguras y de alto valor para la experiencia de usuario:
-1. No requieren modificaciones de hardware ni flasheo del microcontrolador interno del K150.
-2. Respetan plenamente la arquitectura determinista del protocolo P18A en Android USB-OTG sin dependencia del DTR.
-3. Se integran limpiamente en la arquitectura de managers existente (`UsbConnectionManager`, `PicProgrammingManager`, `MainActivity`).
+A partir de la inspección visual directa de las 15 capturas de pantalla de la aplicación original para Windows **MicroPro / microbrn** ([`docs/imagenes_microbrn/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/imagenes_microbrn/)) y del análisis de bajo nivel de [`ProtocoloP18A.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/protocolo/ProtocoloP18A.java) y [`TipoProtocolo.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/protocolo/TipoProtocolo.java), se identifican **5 áreas maestras de mejora técnica** que ya cuentan con soporte en el hardware y en el protocolo pero aún no están expuestas en la UI de Android:
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│              SUITE DE MEJORAS BASADAS EN PROTOCOLO Y MICROPRO            │
+├──────────────────┬───────────────────────┬───────────────────────────────┤
+│ Área de Mejora   │ Comando K150 (P18A)   │ Referencia MicroPro (Windows) │
+├──────────────────┼───────────────────────┼───────────────────────────────┤
+│ 1. OSCCAL & 10F  │ Cmd 10 (0x0A) / 24    │ pantalla1 (CALIB), 9, 10, 13  │
+│ 2. Debug Vector  │ Cmd 22 (0x16) / 23    │ pantalla7, pantalla8 (ICD)    │
+│ 3. Diagnóstico   │ Cmd 2, 4, 5, 6, 19-21 │ pantalla3, pantalla5, 15      │
+│ 4. Grabación Sel │ Cmd 3, 7, 8, 9, 11    │ pantalla1, pantalla4, 12      │
+│ 5. Hex Live Edit │ Visualización Buffer  │ pantalla12 (Code Editor)      │
+└──────────────────┴───────────────────────┴───────────────────────────────┘
+```
+
+---
+
+## ⏱️ 8. Gestión Integral de Calibración de Oscilador (OSCCAL) y Familia PIC10F
+
+### A. El Problema Crítico de Silicio en PICs con Oscilador Interno
+En microcontroladores Microchip clásicos (PIC12F629, PIC12F675, PIC12CE673, PIC16F630, PIC16F676, etc.), la calibración del oscilador RC interno de 4 MHz no se guarda en un registro fusible, sino en la **última posición de la memoria Flash ROM** en forma de instrucción:
+$$\text{0x03FF / 0x07FF:} \quad \mathbf{\text{RETLW } xx} \quad (\text{ej. } \text{0x3448})$$
+* **El Peligro:** Si un usuario ejecuta un borrado masivo sin precaución, la instrucción de calibración de fábrica se borra (`0x3FFF`). A partir de ese momento, el reloj interno del PIC pierde precisión (hasta un $\pm 30\%$) y la comunicación UART por software o temporizadores dejan de funcionar de por vida.
+* **Solución Oficial de MicroPro (`pantalla10.png`):** La herramienta de Windows implementa la opción:
+  $$\text{Cal Program Options} \longrightarrow \mathbf{\text{[✓] Insert Original Into File}}$$
+  Antes de sobreescribir la memoria, el software lee el valor original del chip y lo reinyecta en el buffer HEX.
+
+### B. Especificación para Familia PIC10F (`pantalla11.png` y `pantalla13.png`)
+Los microcontroladores de 6 pines **PIC10F** (`10F200`, `10F202`, `10F204`, `10F206`, `10F220`, `10F222`) emplean una arquitectura especial de 12 bits (`CoreType=NewF12B`) con **dos registros de calibración**:
+1. `CAL 1`: Valor activo de calibración (12 bits: `0x000` - `0x0FFF`).
+2. `CAL 2`: Registro de respaldo de fábrica (`Backup Calibration`).
+
+En `ProtocoloP18A.java:1312`, el método ya está 100% implementado:
+```java
+public boolean programarDatosDeCalibracionDePics10F(int calibration, int backupCalibration)
+```
+* **Comando:** `0x18` (Comando 24 en P18A) / `0x19` (Comando 25 en P018/P016/P014).
+* **Payload:** 4 bytes: `[Cal_H, Cal_L, Backup_H, Backup_L]`.
+* **Respuesta:** `'Y'` (Éxito), `'C'` (Fallo de Calibración), `'B'` (Fallo de Backup).
+
+### C. Flujo de Borrado y Programación Segura con Preservación Automática
+```mermaid
+sequenceDiagram
+    autonumber
+    participant UI as MainActivity (Android)
+    participant PM as PicProgrammingManager
+    participant PROTO as ProtocoloP18A
+    participant K150 as Hardware K150
+    participant PIC as Chip en Zócalo
+
+    Note over UI,PIC: Ciclo de Borrado Seguro con Preservación
+    UI->>PM: borrarMemoriasConPreservacion(chip)
+    PM->>PIC: ¿Tiene bandera isFlagCalibration() == true?
+    alt Requiere Calibración
+        PM->>PROTO: leerDatosDeCalibracionDelPic() (Cmd 13)
+        PROTO->>PIC: Leer palabra de fábrica
+        PIC-->>PROTO: Devuelve OSCCAL (ej: 0x3448 o 0x05A0)
+        PROTO-->>PM: osccalBackup guardado en RAM
+        
+        PM->>PROTO: borrarMemoriasDelPic() (Cmd Erase)
+        PROTO-->>K150: Pulso de borrado físico
+        K150-->>PM: 'Y' (Memoria borrada)
+        
+        alt Familia PIC10F
+            PM->>PROTO: programarDatosDeCalibracionDePics10F(osccalBackup, osccalBackup)
+            PROTO-->>PIC: Escribe registros CAL y Backup
+        else PIC12F / PIC16F
+            PM->>PROTO: programarCalibracionDelPic(chip, osccalBackup)
+            PROTO-->>PIC: Restaura RETLW en última dirección
+        end
+        PM->>UI: "✓ Borrado exitoso. OSCCAL restaurado: 0x3448"
+    else Chip Estándar (ej: PIC16F628A / PIC18F2550)
+        PM->>PROTO: borrarMemoriasDelPic()
+        PROTO-->>UI: "✓ Chip borrado exitosamente"
+    end
+```
+
+### D. Elementos de UI a Agregar
+1. **Botón Dinámico `CALIB` en el Panel de Operaciones:**
+   * Visible siempre (inspirado en `pantalla1.png`).
+   * Deshabilitado (gris) si el chip no utiliza OSCCAL.
+   * Habilitado (naranja/verde) cuando `currentChip.isFlagCalibration() == true`.
+2. **Diálogo Modal `CAL Value(s)` (`pantalla13.png`):**
+   * Muestra el valor de calibración leído del chip y permite editarlo manualmente si el chip ya había sido borrado en otro grabador.
+3. **Casilla de Verificación en Diálogo de Grabación:**
+   * `[✓] Preservar automáticamente OSCCAL de fábrica antes de borrar o grabar`.
+
+---
+
+## 🐛 9. Vector de Depuración ICD (Debug Vector - Read / Write)
+
+### A. Fundamento Técnico (`pantalla7.png` y `pantalla8.png`)
+En microcontroladores PIC de gama media/alta y PIC18F, Microchip incorpora soporte para depuración en circuito (ICD) mediante un vector de dirección reservado de 24 bits.
+* En `MicroPro` de Windows (`pantalla7.png` y `pantalla8.png`), el menú `Programmer` ofrece acceso directo a:
+  $$\text{Programmer} \longrightarrow \text{Debug Vector} \longrightarrow \begin{cases} \mathbf{\text{Read}} \\ \mathbf{\text{Write}} \end{cases}$$
+
+### B. Implementación en `ProtocoloP18A.java`
+Los métodos ya están escritos en el protocolo pero sin conectar a la UI:
+1. **Lectura (`leerVectorDeDepuracionDelPic` - Línea 1274):**
+   * Comando: `0x17` (Comando 23 en P18A) / `0x18` (Comando 24 en P018).
+   * Respuesta: 4 bytes: `[0xEF, Addr_High, Addr_Mid, Addr_Low]`.
+2. **Escritura (`programarVectorDeDepuracionDelPic` - Línea 1238):**
+   * Comando: `0x16` (Comando 22 en P18A) / `0x17` (Comando 23 en P018).
+   * Parámetro: Dirección de 24 bits (`Addr_High, Addr_Mid, Addr_Low`).
+   * Respuesta: `'Y'` (Éxito), `'N'` (Fallo).
+
+### C. Propuesta de UI
+Incorporar en el menú de la Toolbar (`onCreateOptionsMenu`) la opción:
+* **"🛠️ Vector de Depuración (ICD)"**: Abre un diálogo modal con campo numérico hexadecimal para leer y escribir el vector de memoria sin alterar el resto del firmware.
+
+---
+
+## 🩺 10. Suite de Diagnóstico de Hardware y Control de Voltajes VPP/VDD
+
+### A. Detección de Firmware, Versión y Protocolo (`pantalla15.png`)
+Al presionar el menú `Help -> About` en MicroPro, se consulta la versión y protocolo del programador.
+En `ProtocoloP18A.java` existen los comandos nativos:
+* `obtenerVersionOModeloDelProgramador()` (Comando 20 en P18A):
+  - Retorna `K128`, `K149-A`, `K149-B` o `K150`.
+* `obtenerProtocoloDelProgramador()` (Comando 21 en P18A):
+  - Retorna el identificador del protocolo: `"P18A"`, `"P018"`, etc.
+* `hacerUnEco()` (Comando 2):
+  - Envía payload de prueba para certificar latencia y ausencia de corrupción serial.
+
+### B. Control de Voltajes de Programación (Herramienta para Técnicos)
+En reparaciones o verificación de programadores K150 (muy propensos a fallos en el circuito elevador MC34063 de 13V VPP o transistores de conmutación), el protocolo ofrece comandos directos para encender las líneas de alimentación:
+1. `activarVoltajesDeProgramacion()`:
+   * **Comando:** `"4"` (`0x04`).
+   * **Respuesta:** `'V'`.
+   * **Efecto de Hardware:** Aplica 13V en la línea VPP y 5V en VDD en el zócalo ZIF.
+2. `desactivarVoltajesDeProgramacion()`:
+   * **Comando:** `"5"` (`0x05`).
+   * **Respuesta:** `'v'`.
+   * **Efecto de Hardware:** Apaga VPP y VDD de forma segura (0V).
+3. `reiniciarVoltajesDeProgramacion()`:
+   * **Comando:** `"6"` (`0x06`).
+   * **Respuesta:** `'V'`.
+
+### C. Detección de Chip Fuera del Zócalo
+* `detectarSiEstaFueraElPicDelSocket()`:
+  - **Comando:** `0x13` (Comando 19 en P18A) / `0x14` (Comando 20 en P018).
+  - **Respuesta:** `'A'` seguido de `'Y'`.
+  - Permite validar si el usuario ya retiró el chip tras programar para mostrar: *"✓ Microcontrolador retirado. Listo para el siguiente chip."*
+
+### D. Propuesta de UI: Diálogo "Diagnóstico del Programador K150"
+```
+┌────────────────────────────────────────────────────────┐
+│ 🩺 Diagnóstico de Hardware K150                        │
+├────────────────────────────────────────────────────────┤
+│ Modelo Detectado:     DIY K150 PICmicro Programmer     │
+│ Protocolo Firmware:   P18A (Revisión Oficial)          │
+│ Prueba de Eco Serial: ✓ OK (Latencia: 12ms)            │
+│ Sensor de Zócalo:     ✓ PIC Presente (Palanca cerrada) │
+├────────────────────────────────────────────────────────┤
+│ ⚡ Prueba Manual de Voltajes (Multímetro)              │
+│ [ ADVERTENCIA: Retire el PIC antes de medir ]          │
+│                                                        │
+│ [ Activar VPP (13V) ]   [ Desactivar Voltajes ]        │
+├────────────────────────────────────────────────────────┤
+│                                        [ Cerrar ]      │
+└────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎛️ 11. Programación Selectiva (ROM, EEPROM, Fuses) y Editor en Vivo
+
+### A. Programación Selectiva (`pantalla1.png` y `pantalla4.png`)
+Actualmente en `MainActivity.java`, el botón `btnProgramarPic` ejecuta siempre la programación completa en bloque.
+Sin embargo, `PicProgrammingManager` ya implementa los métodos específicos:
+* `programRomOnly(chipPIC, firmware)`
+* `programEepromOnly(chipPIC, firmware)`
+* `programConfigOnly(chipPIC, firmware, ID, fuses)`
+* `verificarSiEstaBorradaLaMemoriaEEPROMDelPic()`
+
+**Mejora de UX Propuesta:**
+Al mantener pulsado el botón `Programar` (o mediante un botón desplegable con menú emergente), ofrecer:
+1. **Programación Completa** [Por Defecto]: Borra, graba ROM, graba EEPROM y programa Fuses.
+2. **Grabar Solo Memoria ROM:** No altera la EEPROM de datos ni los fusibles de configuración (ideal para iteraciones rápidas de depuración de código sin perder parámetros guardados).
+3. **Grabar Solo Memoria EEPROM:** Carga datos de calibración o strings sin reescribir la memoria de programa Flash.
+4. **Grabar Solo Fusibles de Configuración:** Modifica oscilador, Watchdog o protección de código sin tocar la memoria ROM.
+
+### B. Verificación de Borrado Diferenciada (Blank Check Dual)
+Al pulsar `btnBlankCheck`:
+* Consulta la memoria Flash ROM (`verificarSiEstaBorradaLaMemoriaROMDelPic`).
+* Consulta la memoria EEPROM por comando de hardware K150 (`verificarSiEstaBorradaLaMemoriaEEPROMDelPic`).
+* Informa con precisión:
+  * `✓ Memoria ROM limpia (100% 0x3FFF)`
+  * `✓ Memoria EEPROM limpia (100% 0xFF)`
+  *(o advierte cuál de las dos memorias contiene datos previos)*.
+
+### C. Editor Hexadecimal Interactivo en Vivo (`Code Editor` de `pantalla12.png`)
+En `pantalla12.png`, MicroPro permite examinar y editar bytes individuales en una tabla interactiva:
+* **Integración en Android:** Tocar una fila en los contenedores `romDataContainer` o `eepromDataContainer` abrirá un diálogo con teclado hexadecimal numérico para editar una palabra (`word`) específica y recalcular el checksum en tiempo real, permitiendo parches directos sobre la marcha.
+
+---
+
+## 🏁 Conclusión y Hoja de Ruta Consolidada
+
+La integración de las funcionalidades observadas en el software oficial de Windows **MicroPro** y los métodos ya existentes en **`ProtocoloP18A.java`** completará la maduración de **PIC-k150-Programing**:
+
+1. **Fase 1 (Inmediata / UI Ligera):**
+   * Incorporar el botón Conectar/Desconectar USB en la Toolbar sin re-solicitar permisos en Android.
+   * Desacoplar botones de hardware (`Detectar`, `Leer`, `Borrar`, `Blank Check`) para operar sin necesidad de cargar un `.hex`.
+2. **Fase 2 (Seguridad de Silicio):**
+   * Preservación automática de calibración OSCCAL (`0x0A` / `0x0D`) para PIC12F y PIC16F.
+   * Soporte completo para la familia PIC10F (`0x18`) con calibración y registro de respaldo.
+3. **Fase 3 (Diagnóstico y Herramientas Técnicas):**
+   * Diálogo modal de Diagnóstico de Hardware (versión, protocolo, eco y test de voltajes VPP/VDD).
+   * Programación selectiva (ROM Only, EEPROM Only, Fuses Only).
+   * Editor de memoria en vivo inspirado en `Kitsrus Code Editor`.
 
