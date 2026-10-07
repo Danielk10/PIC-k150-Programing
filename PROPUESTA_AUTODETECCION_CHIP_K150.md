@@ -624,13 +624,115 @@ En `pantalla12.png`, MicroPro permite examinar y editar bytes individuales en un
 
 ---
 
+## 🎬 12. Propuesta Técnica: Rediseño y Fidelidad Realista de la Animación de Grabación (`PicAnimationView`)
+
+### A. Diagnóstico de la Animación Actual (Observado en Pruebas Físicas Reales)
+Durante las pruebas de validación con el hardware real (K150 conectado por USB-OTG grabando el microcontrolador PIC16F628A), se identificaron varias discrepancias visuales en la vista de animación modal ([`PicAnimationView.java`](app/src/main/java/com/diamon/managers/PicAnimationView.java)):
+
+1. **Color Inexacto del Zócalo ZIF:**
+   * La animación actual renderiza el zócalo ZIF en un azul genérico (`#0F5B9E`).
+   * En el programador K150 físico real (y en la interfaz oficial de MicroPro en Windows `pantalla1.png`), el zócalo Textool de 40 pines es de un característico **Verde Esmeralda Textool** (`#0F7A4D`).
+2. **Palanca Metálica del ZIF Ausente en Pantalla:**
+   * En `init()` se declara `leverPaint` (pintura cromada), pero **nunca se invoca en el método `onDraw()`**.
+   * En el programador físico, la palanca metálica debe estar **bajada y bloqueada**, trabando mecánicamente los pines del chip durante todo el ciclo de programación.
+3. **Texto del Microcontrolador Hardcodeado:**
+   * En la línea 320, el texto grabado en láser está fijo como `"PIC16F628A"`, ignorando el modelo real seleccionado (ej. si se graba un `PIC16F877A`, `PIC18F2550` o `PIC12F629`, sigue mostrando `PIC16F628A`).
+4. **Cantidad Fija de Pines:**
+   * La animación dibuja un chip fijo de 28 pines (14 pines por lateral), independientemente de si el microcontrolador en el zócalo es de 8 pines (PIC12F), 18 pines (PIC16F628A) o 40 pines (PIC16F877A).
+5. **Falta de Retroalimentación de Avance en el Silicio:**
+   * Las partículas caen sobre el chip provocando un pequeño zoom (`pulseScale`), pero el cuerpo del chip no refleja el porcentaje de progreso (`0%` a `100%`) ni la fase activa de memoria.
+
+---
+
+### B. Especificación del Rediseño de Alta Fidelidad
+
+```
+┌────────────────────────────────────────────────────────────────────────────┐
+│              MEJORAS VISUALES PARA PicAnimationView (ZÓCALO ZIF)           │
+├─────────────────────────┬─────────────────────────┬────────────────────────┤
+│ Elemento Gráfico        │ Estado Actual           │ Rediseño Propuesto     │
+├─────────────────────────┼─────────────────────────┼────────────────────────┤
+│ Color Base ZIF          │ Azul (#0F5B9E)          │ Verde Textool (#0F7A4D)│
+│ Palanca ZIF (Lever)     │ No dibujada en onDraw() │ Visible y trabada (3D) │
+│ Grabado Láser           │ Hardcode "PIC16F628A"   │ Dinámico (chip real)   │
+│ Cantidad de Pines       │ Fija en 28 pines        │ Exacta (8, 14, 18, 40) │
+│ Flecha Pin 1 del ZIF    │ Inexistente             │ Flecha y número ZIF    │
+│ Progreso de Grabación   │ Solo texto 0-100%       │ Llenado de memoria y   │
+│                         │                         │ escaneo láser móvil    │
+│ Halo de Finalización    │ Cierre abrupto de view  │ Halo verde de éxito    │
+└─────────────────────────┴─────────────────────────┴────────────────────────┘
+```
+
+---
+
+### C. Características Técnicas a Implementar en `PicAnimationView.java`
+
+1. **Paleta de Colores Oficial del Zócalo K150:**
+   * Base del cuerpo ZIF: `#0F7A4D` (Verde Textool K150).
+   * Relieve y sombra 3D: `#084D30`.
+   * Brillo superior 3D: `#34D399` (Verde menta brillante).
+   * Ranuras de contactos: `#0D2319` con terminales metálicos niquelados `#94A3B8`.
+2. **Palanca Metálica de Bloqueo (The ZIF Lever):**
+   * Brazo de palanca cromado (`#CBD5E1`) dibujado en el lateral derecho del zócalo.
+   * Orientación: posición vertical hacia abajo (bloqueada/cerrada), con su perilla plástica esférica (`#1E293B`) en el extremo.
+3. **Indicador de Posición del Pin 1 en el Zócalo:**
+   * Flecha indicadora naranja (`#FF6600`) y número de pin (`"1"`, `"2"` o `"13"`) al lateral izquierdo del zócalo, alineados con la fila donde encaja el Pin 1 según `chip.getUbicacionPin1DelPic()`.
+4. **Microcontrolador Proporcional y Dinámico:**
+   * Método de configuración: `setChip(ChipPic chip)`.
+   * Altura proporcional: calcula la altura del encapsulado a partir de `numFilas = chip.getNumeroDePines() / 2` sobre las 20 filas del ZIF de 40 pines.
+   * Pines plateados individuales: dibuja exactamente los pines correspondientes a cada lado con su brillo superior metálico.
+   * Grabado láser dinámico: centra el texto con el nombre real (`chip.getNombreDelPic()`), acompañado del punto dorado de referencia del Pin 1.
+5. **Efecto de Llenado de Memoria (Memory Fill Glow & Laser Scan):**
+   * Parámetro `setProgress(int progress)` sincronizado en tiempo real con `ProgrammingDialogManager`.
+   * **Llenado Luminoso:** Una capa interior con gradiente verde neón/cian (`#2000E676` a `#4000B0FF`) va cubriendo el interior del chip de arriba hacia abajo a medida que avanza el porcentaje (0% a 100%).
+   * **Haz Láser de Grabación:** Una línea horizontal brillante (`laserScanPaint`, `#00E676`) barre el frente de avance mientras la grabación está en curso.
+6. **Halo de Confirmación:**
+   * Al recibir `setCompleted(true)`, la animación dibuja un halo verde resplandeciente (`#6600E676`) alrededor del encapsulado antes del cierre modal.
+
+---
+
+### D. Interconexión entre Managers
+
+```mermaid
+flowchart LR
+    A["MainActivity<br>(currentChip)"] -->|"dialogManager.setChip(chip)"| B["ProgrammingDialogManager"]
+    B -->|"picAnimView.setChip(chip)"| C["PicAnimationView"]
+    B -->|"picAnimView.setProgress(progress)"| C
+    B -->|"picAnimView.setCompleted(success)"| C
+```
+
+1. **En `ProgrammingDialogManager.java`:**
+   * Almacenar `currentChip` y propagarlo a `picAnimView` al inflar el diálogo:
+     ```java
+     public void setChip(ChipPic chip) {
+         this.currentChip = chip;
+         if (picAnimView != null) picAnimView.setChip(chip);
+     }
+     ```
+   * En `updateProgress(progress, message)`:
+     ```java
+     if (picAnimView != null) picAnimView.setProgress(progress);
+     ```
+   * En `updateProgrammingResult(success)`:
+     ```java
+     if (picAnimView != null) picAnimView.setCompleted(success);
+     ```
+2. **En `MainActivity.java`:**
+   * Antes de invocar `dialogManager.showProgrammingDialog(...)`:
+     ```java
+     dialogManager.setChip(currentChip);
+     ```
+
+---
+
 ## 🏁 Conclusión y Hoja de Ruta Consolidada
 
-La integración de las funcionalidades observadas en el software oficial de Windows **MicroPro** y los métodos ya existentes en **`ProtocoloP18A.java`** completará la maduración de **PIC-k150-Programing**:
+La integración de las funcionalidades observadas en el software oficial de Windows **MicroPro**, los métodos ya existentes en **`ProtocoloP18A.java`** y la optimización de alta fidelidad de **`PicAnimationView`** completará la maduración de **PIC-k150-Programing**:
 
 1. **Fase 1 (Inmediata / UI Ligera):**
    * Incorporar el botón Conectar/Desconectar USB en la Toolbar sin re-solicitar permisos en Android.
    * Desacoplar botones de hardware (`Detectar`, `Leer`, `Borrar`, `Blank Check`) para operar sin necesidad de cargar un `.hex`.
+   * Rediseño visual de `PicAnimationView` (zócalo verde Textool K150, palanca metálica, chip dinámico y llenado de memoria).
 2. **Fase 2 (Seguridad de Silicio):**
    * Preservación automática de calibración OSCCAL (`0x0A` / `0x0D`) para PIC12F y PIC16F.
    * Soporte completo para la familia PIC10F (`0x18`) con calibración y registro de respaldo.
