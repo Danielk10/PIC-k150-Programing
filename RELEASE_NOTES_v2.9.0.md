@@ -67,5 +67,11 @@ Fecha de lanzamiento / Release Date: 10 de Octubre de 2026 / October 10, 2026
    - Blank Check Dual detallado reportando ROM y EEPROM por separado.
    - Editor hexadecimal en vivo interactivo al hacer clic sobre cualquier fila del visor de memoria, con recálculo de checksum en formato Intel HEX.
 
-8. **Certificación y Cobertura de Pruebas**:
+8. **Monetización Híbrida Ética (Pase Pro 12 Horas y Google Play Billing)**:
+   - Integración de Google Play Billing 9.1.0 para compra in-app permanente (`remove_ads_pro`) a $4.99 / $5.00 USD.
+   - Pase Pro temporal de 12 horas desbloqueable con AdMob Rewarded Video (`ca-app-pub-5141499161332805/7291519778`).
+   - Cero anuncios durante el tiempo Pro activo (ocultamiento dinámico del banner).
+   - Protección estricta de funciones gratuitas: Grabación de silicio (ROM, EEPROM, Fuses), Detección, Borrado masivo, Blank Check y Exportación de Dumps son 100% libres. Solo 4 herramientas avanzadas (Editor Hexadecimal, Diagnóstico de Hardware y test de voltajes, Vector ICD y calibración manual OSCCAL) requieren Pase Pro.
+
+9. **Certificación y Cobertura de Pruebas**:
    - 100% de la suite de pruebas unitarias y de integración contra el emulador virtual K150 en C++ y Python (`./ejecutar_pruebas_con_emulador.sh`).
