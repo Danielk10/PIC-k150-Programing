@@ -54,6 +54,9 @@ public class ProtocoloP18A extends Protocolo {
     /** Timeout extendido para operaciones largas en milisegundos */
     private static final int TIMEOUT_EXTENDED = 500;
 
+    /** Timeout para operaciones de borrado masivo por hardware en milisegundos */
+    private static final int TIMEOUT_ERASE = 3000;
+
     /** Tipo de protocolo activo (define los command numbers de conexión) */
     private final TipoProtocolo tipoProtocolo;
 
@@ -229,7 +232,7 @@ public class ProtocoloP18A extends Protocolo {
 
             enviarComando("4");
 
-            byte[] respuestaBytes = readBytes(1, TIMEOUT_DEFAULT);
+            byte[] respuestaBytes = readBytes(1, TIMEOUT_EXTENDED);
             String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
 
             boolean exitoso = respuesta.equals("V");
@@ -254,7 +257,7 @@ public class ProtocoloP18A extends Protocolo {
 
             enviarComando("5");
 
-            byte[] respuestaBytes = readBytes(1, TIMEOUT_DEFAULT);
+            byte[] respuestaBytes = readBytes(1, TIMEOUT_EXTENDED);
             String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
 
             boolean exitoso = respuesta.equals("v");
@@ -279,7 +282,7 @@ public class ProtocoloP18A extends Protocolo {
 
             enviarComando("6");
 
-            byte[] respuestaBytes = readBytes(1, TIMEOUT_DEFAULT);
+            byte[] respuestaBytes = readBytes(1, TIMEOUT_EXTENDED);
             String respuesta = new String(respuestaBytes, StandardCharsets.US_ASCII);
 
             boolean exitoso = respuesta.equals("V");
@@ -905,7 +908,7 @@ public class ProtocoloP18A extends Protocolo {
 
     @Override
     public boolean borrarMemoriasDelPic() {
-
+        boolean exitoso = false;
         try {
             // Preparar secuencia de borrado
             if (!resetearComandos()) {
@@ -919,20 +922,12 @@ public class ProtocoloP18A extends Protocolo {
             // Comando para borrar memoria según protocolo activo.
             escribirDatosUSB(new byte[] { (byte) getCmdEraseChip() }, 10, "comando_borrar_memorias");
 
-            // Leer respuesta de confirmación
-            byte[] bytes = readBytes(1, TIMEOUT_EXTENDED); // Usar timeout extendido para borrado
-
-            // Finalizar secuencia
-            desactivarVoltajesDeProgramacion();
-            resetearComandos();
+            // Leer respuesta de confirmación (usar TIMEOUT_ERASE para cubrir el pulso físico de borrado masivo en silicio)
+            byte[] bytes = readBytes(1, TIMEOUT_ERASE);
 
             // Validar respuesta
             String respuesta = new String(bytes, StandardCharsets.US_ASCII);
-            boolean exitoso = respuesta.equals("Y");
-
-            if (exitoso) {
-            } else {
-            }
+            exitoso = "Y".equals(respuesta);
 
             return exitoso;
 
@@ -940,6 +935,16 @@ public class ProtocoloP18A extends Protocolo {
             return false;
         } catch (Exception e) {
             return false;
+        } finally {
+            // Asegurar siempre apagado de voltajes y restauración de estado del programador
+            try {
+                desactivarVoltajesDeProgramacion();
+            } catch (Exception ignored) {
+            }
+            try {
+                resetearComandos();
+            } catch (Exception ignored) {
+            }
         }
     }
 

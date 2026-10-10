@@ -77,7 +77,7 @@ public abstract class Protocolo {
             int totalLimpiado = 0;
             int bytesLeidos;
 
-            while ((bytesLeidos = usbSerialPort.read(tmpBuffer, 100)) > 0) {
+            while ((bytesLeidos = usbSerialPort.read(tmpBuffer, 10)) > 0) {
                 totalLimpiado += bytesLeidos;
             }
 
@@ -259,7 +259,7 @@ public abstract class Protocolo {
             usbSerialPort.write(salto, 100);
 
             // Paso 4: Leer acknowledgment 'P'
-            byte[] ack = readBytes(1, 100);
+            byte[] ack = readBytes(1, 500);
             if (ack[0] != 'P') {
                 String mensaje =
                         String.format(
