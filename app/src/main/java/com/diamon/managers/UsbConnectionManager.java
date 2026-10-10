@@ -150,49 +150,59 @@ public class UsbConnectionManager {
             return;
         }
 
-        try {
-            // Verificar que el dispositivo tiene puertos
-            if (driver.getPorts().isEmpty()) {
-                notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
-                return;
-            }
+        new Thread(() -> {
+            try {
+                // Verificar que el dispositivo tiene puertos
+                if (driver.getPorts().isEmpty()) {
+                    notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
+                    return;
+                }
 
-            // Seleccionar el primer puerto
-            usbSerialPort = driver.getPorts().get(0);
+                // Seleccionar el primer puerto
+                usbSerialPort = driver.getPorts().get(0);
 
-            // Abrir conexion
-            usbSerialPort.open(usbManager.openDevice(driver.getDevice()));
+                // Abrir conexion
+                usbSerialPort.open(usbManager.openDevice(driver.getDevice()));
 
-            // Configurar parametros del puerto serial
-            usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
+                // Configurar parametros del puerto serial
+                usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
 
-            // Crear e inicializar protocolo
-            protocolo = new ProtocoloP18A(context, usbSerialPort, tipoProtocolo);
-            boolean protocoloIniciado = protocolo.iniciarProtocolo();
+                // Crear e inicializar protocolo con reintentos universales
+                protocolo = new ProtocoloP18A(context, usbSerialPort, tipoProtocolo);
+                boolean protocoloIniciado = protocolo.iniciarProtocolo();
 
-            if (!protocoloIniciado) {
+                if (!protocoloIniciado) {
+                    cleanupConnection();
+                    notifyError(context.getString(R.string.error_inicializando_protocolo_));
+                    return;
+                }
+
+                // Notificar conexion exitosa en hilo principal
+                mainHandler.post(() -> {
+                    if (connectionListener != null) {
+                        connectionListener.onConnected();
+                    }
+                });
+
+            } catch (IOException e) {
+                String mensajeError = context.getString(R.string.error_de_conexion_usb) + ": " + e.getMessage();
                 cleanupConnection();
-                notifyError(context.getString(R.string.error_inicializando_protocolo_));
-                return;
+                notifyError(mensajeError);
+            } catch (Exception e) {
+                cleanupConnection();
+                notifyError(context.getString(R.string.error_inesperado_durante_la_co));
             }
-
-            // Notificar conexion exitosa
-            if (connectionListener != null) {
-                connectionListener.onConnected();
-            }
-
-        } catch (IOException e) {
-            String mensajeError = context.getString(R.string.error_de_conexion_usb) + ": " + e.getMessage();
-            cleanupConnection();
-            notifyError(mensajeError);
-        } catch (Exception e) {
-            cleanupConnection();
-            notifyError(context.getString(R.string.error_inesperado_durante_la_co));
-        }
+        }, "UsbConnectWorker").start();
     }
 
-    /** Limpia el estado de conexion cuando ocurre un error */
-    private void cleanupConnection() {
+    /** Limpia el estado de conexion cuando ocurre un error o al desconectar */
+    private synchronized void cleanupConnection() {
+        if (protocolo != null) {
+            try {
+                protocolo.resetearComandos();
+            } catch (Exception ignored) {
+            }
+        }
         if (usbSerialPort != null) {
             try {
                 usbSerialPort.close();
@@ -205,14 +215,16 @@ public class UsbConnectionManager {
     }
 
     /**
-     * Notifica un error al listener
+     * Notifica un error al listener en el hilo principal
      *
      * @param errorMessage Mensaje de error
      */
     private void notifyError(String errorMessage) {
-        if (connectionListener != null) {
-            connectionListener.onConnectionError(errorMessage);
-        }
+        mainHandler.post(() -> {
+            if (connectionListener != null) {
+                connectionListener.onConnectionError(errorMessage);
+            }
+        });
     }
 
     /**
@@ -250,21 +262,26 @@ public class UsbConnectionManager {
         if (isConnected()) {
             return;
         }
-        drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
-        if (drivers == null || drivers.isEmpty()) {
-            notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
-            return;
-        }
-        requestPermissionsIfNeeded();
+        new Thread(() -> {
+            drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
+            if (drivers == null || drivers.isEmpty()) {
+                notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
+                return;
+            }
+            requestPermissionsIfNeeded();
+        }, "UsbConnectScanner").start();
     }
 
     /** Cierra la conexion USB y libera recursos */
     public void disconnect() {
-        cleanupConnection();
-
-        if (connectionListener != null) {
-            connectionListener.onDisconnected();
-        }
+        new Thread(() -> {
+            cleanupConnection();
+            mainHandler.post(() -> {
+                if (connectionListener != null) {
+                    connectionListener.onDisconnected();
+                }
+            });
+        }, "UsbDisconnectWorker").start();
     }
 
     /** Libera todos los recursos y desregistra el BroadcastReceiver */

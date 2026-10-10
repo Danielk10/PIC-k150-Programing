@@ -3,9 +3,11 @@ package com.diamon.managers;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diamon.protocolo.ProtocoloP18A;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Gestor de la Suite de Diagnóstico de Hardware para el programador PIC K150.
@@ -120,18 +124,13 @@ public class DiagnosticoHardwareManager {
         } catch (Exception ignored) {
         }
 
-        // 4. Sensores de presencia en el zócalo ZIF (Cmd 19 y 20)
+        // 4. Sensor de presencia en el zócalo ZIF (Cmd 18)
         boolean picEnSocket = false;
-        boolean picFueraSocket = false;
         try {
             picEnSocket = protocolo.detectarPicEnElSocket();
         } catch (Exception ignored) {
         }
-
-        try {
-            picFueraSocket = protocolo.detectarSiEstaFueraElPicDelSocket();
-        } catch (Exception ignored) {
-        }
+        boolean picFueraSocket = !picEnSocket;
 
         return new ResultadoDiagnostico(
                 modelo,
@@ -283,6 +282,12 @@ public class DiagnosticoHardwareManager {
         layoutBotonesEstado.addView(btnProbarEco, btnHalfParams);
         layoutBotonesEstado.addView(btnActualizarTodo, btnHalfParams);
 
+        Button btnProbarSensores = crearBoton(activity, "🧪 Probar Sensores ZIF (Inserción/Extracción)", Color.parseColor("#7B1FA2"));
+        LinearLayout.LayoutParams btnFullWidthParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        btnFullWidthParams.topMargin = dp8;
+        cardEstado.addView(btnProbarSensores, btnFullWidthParams);
+
         // Separador
         View spacer = new View(activity);
         LinearLayout.LayoutParams spParams = new LinearLayout.LayoutParams(
@@ -346,18 +351,30 @@ public class DiagnosticoHardwareManager {
         layoutBotonesVoltajes.addView(btnDesactivarV, btnThirdParams);
         layoutBotonesVoltajes.addView(btnReiniciarV, btnThirdParams);
 
+        final AtomicBoolean voltajesActivos = new AtomicBoolean(false);
+
+        Runnable apagarVoltajesSiActivos = () -> {
+            if (voltajesActivos.compareAndSet(true, false)) {
+                new Thread(() -> {
+                    try {
+                        desactivarVoltajes(protocolo);
+                    } catch (Exception ignored) {
+                    }
+                }, "DiagVoltajesCleanup").start();
+            }
+        };
+
         // Diálogo AlertDialog
         AlertDialog dialog = new AlertDialog.Builder(activity)
                 .setTitle("🩺 Diagnóstico de Hardware K150")
                 .setView(scrollView)
                 .setPositiveButton("Cerrar", (d, which) -> {
-                    // Por seguridad técnica, apagar voltajes al salir
-                    new Thread(() -> desactivarVoltajes(protocolo)).start();
+                    apagarVoltajesSiActivos.run();
                 })
                 .create();
 
         dialog.setOnDismissListener(d -> {
-            new Thread(() -> desactivarVoltajes(protocolo)).start();
+            apagarVoltajesSiActivos.run();
         });
 
         // --- LÓGICA DE ACTUALIZACIÓN ASÍNCRONA ---
@@ -422,13 +439,27 @@ public class DiagnosticoHardwareManager {
             }).start();
         });
 
+        btnProbarSensores.setOnClickListener(v -> {
+            mostrarDialogoPruebaSensoresZIF(activity, protocolo, log);
+        });
+
         btnActivarVpp.setOnClickListener(v -> {
             btnActivarVpp.setEnabled(false);
             new Thread(() -> {
+                boolean chipEnSocket = protocolo.detectarPicEnElSocket();
+                if (chipEnSocket) {
+                    activity.runOnUiThread(() -> {
+                        btnActivarVpp.setEnabled(true);
+                        mostrarAlertaSeguridadVpp(activity, protocolo, btnActivarVpp, tvEstadoVoltaje, voltajesActivos, log);
+                    });
+                    return;
+                }
+
                 boolean ok = activarVoltajes(protocolo);
                 activity.runOnUiThread(() -> {
                     btnActivarVpp.setEnabled(true);
                     if (ok) {
+                        voltajesActivos.set(true);
                         tvEstadoVoltaje.setText("Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS");
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
                         if (log != null) {
@@ -453,6 +484,7 @@ public class DiagnosticoHardwareManager {
                 activity.runOnUiThread(() -> {
                     btnDesactivarV.setEnabled(true);
                     if (ok) {
+                        voltajesActivos.set(false);
                         tvEstadoVoltaje.setText("Estado: Voltajes apagados (0V)");
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#4CAF50"));
                         if (log != null) {
@@ -474,6 +506,7 @@ public class DiagnosticoHardwareManager {
                 activity.runOnUiThread(() -> {
                     btnReiniciarV.setEnabled(true);
                     if (ok) {
+                        voltajesActivos.set(true);
                         tvEstadoVoltaje.setText("Estado: ⚡ Voltajes reiniciados (Activos)");
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#00B0FF"));
                         if (log != null) {
@@ -489,8 +522,194 @@ public class DiagnosticoHardwareManager {
 
         dialog.show();
 
+        if (dialog.getWindow() != null) {
+            GradientDrawable winBg = new GradientDrawable();
+            winBg.setColor(Color.parseColor("#1A1A2E"));
+            winBg.setCornerRadius(12 * density);
+            dialog.getWindow().setBackgroundDrawable(winBg);
+        }
+
+        Button btnPos = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if (btnPos != null) {
+            btnPos.setTextColor(Color.parseColor("#4CAF50"));
+            btnPos.setTypeface(null, Typeface.BOLD);
+        }
+
         // Iniciar diagnóstico automático inmediatamente al abrir
         refrescarDiagnosticoCompleto.run();
+    }
+
+    private void mostrarAlertaSeguridadVpp(
+            Activity activity,
+            ProtocoloP18A protocolo,
+            Button btnActivarVpp,
+            TextView tvEstadoVoltaje,
+            AtomicBoolean voltajesActivos,
+            LogCallback log) {
+
+        final AtomicBoolean cancelToken = new AtomicBoolean(false);
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setTitle("⚠️ Microcontrolador en el Zócalo")
+                .setMessage("Para evitar dañar el PIC con 13V de VPP, por favor retire el microcontrolador del zócalo ZIF antes de activar voltajes de medición.\n\nEsperando a que retire el chip...")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setNegativeButton("Cancelar", (d, which) -> cancelToken.set(true))
+                .create();
+
+        dialog.setOnDismissListener(d -> cancelToken.set(true));
+        dialog.show();
+
+        new Thread(() -> {
+            boolean extraido = protocolo.esperarExtraccionDelSocket(30000, cancelToken);
+            activity.runOnUiThread(() -> {
+                if (extraido && !cancelToken.get()) {
+                    try {
+                        dialog.dismiss();
+                    } catch (Exception ignored) {}
+                    btnActivarVpp.setEnabled(false);
+                    new Thread(() -> {
+                        boolean ok = activarVoltajes(protocolo);
+                        activity.runOnUiThread(() -> {
+                            btnActivarVpp.setEnabled(true);
+                            if (ok) {
+                                voltajesActivos.set(true);
+                                tvEstadoVoltaje.setText("Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS");
+                                tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
+                                if (log != null) {
+                                    log.onLog("✓ Chip extraído detectado. Voltajes VPP/VDD activados con seguridad");
+                                }
+                                Toast.makeText(activity, "Chip retirado: Voltajes activados para medición segura", Toast.LENGTH_SHORT).show();
+                            } else {
+                                tvEstadoVoltaje.setText("Estado: ❌ Error activando voltajes");
+                                tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
+                            }
+                        });
+                    }).start();
+                } else if (!cancelToken.get()) {
+                    try {
+                        dialog.dismiss();
+                    } catch (Exception ignored) {}
+                    Toast.makeText(activity, "Tiempo agotado. Retire el chip e intente nuevamente.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
+    }
+
+    private void mostrarDialogoPruebaSensoresZIF(Activity activity, ProtocoloP18A protocolo, LogCallback log) {
+        final AtomicBoolean cancelToken = new AtomicBoolean(false);
+
+        final float density = activity.getResources().getDisplayMetrics().density;
+        final int p16 = Math.round(16 * density);
+        final int p12 = Math.round(12 * density);
+        final int p8 = Math.round(8 * density);
+
+        LinearLayout rootLayout = new LinearLayout(activity);
+        rootLayout.setOrientation(LinearLayout.VERTICAL);
+        rootLayout.setPadding(p16, p16, p16, p16);
+        rootLayout.setBackgroundColor(Color.parseColor("#1A1A2E"));
+
+        // Tarjeta con fondo oscuro contrastado #2A2A3E, esquinas redondeadas y borde sutil
+        LinearLayout card = new LinearLayout(activity);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setPadding(p16, p16, p16, p16);
+        GradientDrawable cardBg = new GradientDrawable();
+        cardBg.setColor(Color.parseColor("#2A2A3E"));
+        cardBg.setCornerRadius(10 * density);
+        cardBg.setStroke(Math.round(1 * density), Color.parseColor("#4A4A6A"));
+        card.setBackground(cardBg);
+        rootLayout.addView(card);
+
+        TextView tvTitulo = new TextView(activity);
+        tvTitulo.setText("🧪 Prueba de Sensores ZIF");
+        tvTitulo.setTextSize(16f);
+        tvTitulo.setTypeface(null, Typeface.BOLD);
+        tvTitulo.setTextColor(Color.WHITE);
+        tvTitulo.setPadding(0, 0, 0, p8);
+        card.addView(tvTitulo);
+
+        TextView tvInfo = new TextView(activity);
+        tvInfo.setText("Prueba de sensores de hardware del zócalo ZIF (Kitsrus Comandos 18 y 19):\n");
+        tvInfo.setTextSize(13f);
+        tvInfo.setTextColor(Color.parseColor("#ECEFF1"));
+        card.addView(tvInfo);
+
+        TextView tvPaso1 = new TextView(activity);
+        tvPaso1.setText("⏳ Paso 1: Inserte un microcontrolador en el zócalo y trabe la palanca (Comando 18)...");
+        tvPaso1.setTextSize(13f);
+        tvPaso1.setTextColor(Color.parseColor("#FFD54F"));
+        tvPaso1.setPadding(0, p8, 0, p8);
+        card.addView(tvPaso1);
+
+        TextView tvPaso2 = new TextView(activity);
+        tvPaso2.setText("⚪ Paso 2: Pendiente (Extracción con Comando 19)");
+        tvPaso2.setTextSize(13f);
+        tvPaso2.setTextColor(Color.parseColor("#B0BEC5"));
+        tvPaso2.setPadding(0, p8, 0, p8);
+        card.addView(tvPaso2);
+
+        ProgressBar pb = new ProgressBar(activity, null, android.R.attr.progressBarStyleSmall);
+        pb.setPadding(0, p8, 0, 0);
+        card.addView(pb);
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setView(rootLayout)
+                .setNegativeButton("Cancelar", (d, w) -> cancelToken.set(true))
+                .create();
+
+        dialog.setOnDismissListener(d -> cancelToken.set(true));
+        dialog.show();
+
+        if (dialog.getWindow() != null) {
+            GradientDrawable winBg = new GradientDrawable();
+            winBg.setColor(Color.parseColor("#1A1A2E"));
+            winBg.setCornerRadius(12 * density);
+            dialog.getWindow().setBackgroundDrawable(winBg);
+        }
+
+        Button btnCancel = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        if (btnCancel != null) {
+            btnCancel.setTextColor(Color.parseColor("#FF5252"));
+            btnCancel.setTypeface(null, Typeface.BOLD);
+        }
+
+        new Thread(() -> {
+            // Paso 1: Esperar inserción (Cmd 18)
+            boolean insercionOk = protocolo.esperarInsercionEnElSocket(25000, cancelToken);
+            if (cancelToken.get()) return;
+
+            activity.runOnUiThread(() -> {
+                if (insercionOk) {
+                    tvPaso1.setText("✓ Paso 1: Sensor de Inserción OK (Comando 18)");
+                    tvPaso1.setTextColor(Color.parseColor("#4CAF50"));
+                    tvPaso2.setText("⏳ Paso 2: Ahora levante la palanca y retire el chip del zócalo (Comando 19)...");
+                    tvPaso2.setTextColor(Color.parseColor("#FFD54F"));
+                    if (log != null) log.onLog("✓ Sensor de inserción ZIF respondido (Comando 18)");
+                } else {
+                    tvPaso1.setText("❌ Paso 1: Tiempo agotado sin detectar chip");
+                    tvPaso1.setTextColor(Color.parseColor("#FF5252"));
+                    pb.setVisibility(View.GONE);
+                }
+            });
+
+            if (!insercionOk || cancelToken.get()) return;
+
+            // Paso 2: Esperar extracción (Cmd 19)
+            boolean extraccionOk = protocolo.esperarExtraccionDelSocket(25000, cancelToken);
+            if (cancelToken.get()) return;
+
+            activity.runOnUiThread(() -> {
+                pb.setVisibility(View.GONE);
+                if (extraccionOk) {
+                    tvPaso2.setText("✓ Paso 2: Sensor de Extracción OK (Comando 19)");
+                    tvPaso2.setTextColor(Color.parseColor("#4CAF50"));
+                    tvInfo.setText("🎉 ¡Ambos sensores físicos del zócalo ZIF funcionan perfectamente!\n");
+                    if (log != null) log.onLog("✓ Sensor de extracción ZIF respondido (Comando 19)");
+                } else {
+                    tvPaso2.setText("❌ Paso 2: Tiempo agotado sin detectar extracción");
+                    tvPaso2.setTextColor(Color.parseColor("#FF5252"));
+                }
+            });
+        }).start();
     }
 
     private LinearLayout crearCardContainer(Context context, int padding, int margin) {

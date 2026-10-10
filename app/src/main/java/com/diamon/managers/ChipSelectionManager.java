@@ -175,7 +175,13 @@ public class ChipSelectionManager {
         if (chipModels == null || spinner == null || modelo == null) return;
         int index = chipModels.indexOf(modelo);
         if (index >= 0) {
-            spinner.setSelection(index);
+            if (spinner.getSelectedItemPosition() == index) {
+                // Si la posición no cambia, Android no dispara onItemSelected en el Spinner.
+                // Forzamos la selección explícita para refrescar el chip y notificar al listener.
+                selectChip(modelo);
+            } else {
+                spinner.setSelection(index);
+            }
         }
     }
 

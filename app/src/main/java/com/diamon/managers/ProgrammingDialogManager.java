@@ -49,9 +49,15 @@ public class ProgrammingDialogManager {
     private Runnable onProgrammingStartCallback;
     private Runnable onDismissCallback;
     private com.diamon.chip.ChipPic currentChip;
+    private com.diamon.nucleo.Protocolo protocolo;
+    private final java.util.concurrent.atomic.AtomicBoolean cancelTokenExtraccion = new java.util.concurrent.atomic.AtomicBoolean(false);
 
     public ProgrammingDialogManager(Context context) {
         this.context = context;
+    }
+
+    public void setProtocolo(com.diamon.nucleo.Protocolo protocolo) {
+        this.protocolo = protocolo;
     }
 
     public void setChip(com.diamon.chip.ChipPic chip) {
@@ -328,10 +334,27 @@ public class ProgrammingDialogManager {
 
     private void showSuccessState() {
         titleTextView.setText(R.string.grabacion_completada_pic);
-        descriptionTextView.setText(R.string.grabacion_correcta_pic);
+        descriptionTextView.setText("✓ Grabación completada. Ya puede retirar el microcontrolador del zócalo.");
         statusResultIcon.setImageResource(R.drawable.ic_status_success);
         Drawable successDrawable = DrawableCompat.wrap(statusResultIcon.getDrawable());
         DrawableCompat.setTint(successDrawable, Color.parseColor("#4CAF50"));
+
+        if (protocolo != null) {
+            cancelTokenExtraccion.set(false);
+            new Thread(() -> {
+                boolean extraido = protocolo.esperarExtraccionDelSocket(20000, cancelTokenExtraccion);
+                if (extraido && !cancelTokenExtraccion.get()) {
+                    if (context instanceof android.app.Activity) {
+                        ((android.app.Activity) context).runOnUiThread(() -> {
+                            if (descriptionTextView != null) {
+                                descriptionTextView.setText("✓ Chip retirado del zócalo ZIF con éxito");
+                                descriptionTextView.setTextColor(Color.parseColor("#4CAF50"));
+                            }
+                        });
+                    }
+                }
+            }).start();
+        }
     }
 
     private void showFailureState() {
@@ -363,6 +386,7 @@ public class ProgrammingDialogManager {
     }
 
     private void dismissWithAnimation() {
+        cancelTokenExtraccion.set(true);
         if (popupWindow == null || !popupWindow.isShowing()) {
             return;
         }
@@ -390,6 +414,7 @@ public class ProgrammingDialogManager {
     }
 
     public void dismiss() {
+        cancelTokenExtraccion.set(true);
         if (popupWindow != null && popupWindow.isShowing()) {
             try {
                 popupWindow.dismiss();

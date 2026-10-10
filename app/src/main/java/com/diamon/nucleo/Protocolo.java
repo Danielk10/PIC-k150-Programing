@@ -242,6 +242,12 @@ public abstract class Protocolo {
                 throw new IllegalArgumentException(mensaje, e);
             }
 
+            // Paso 0: Limpiar residuos previos en el búfer
+            try {
+                clearBuffer();
+            } catch (Exception ignored) {
+            }
+
             // Paso 1: Enviar 0x01 para inicializar
             byte[] inicializacion = ByteUtils.prepararDatosUSB(contexto, new byte[] {0x01}, "inicializacion");
             usbSerialPort.write(inicializacion, 100);
@@ -276,6 +282,7 @@ public abstract class Protocolo {
 
     /**
      * Inicializa el protocolo de comunicación con el dispositivo.
+     * Realiza una sincronización determinista tolerante a residuos en el bus serie.
      *
      * @return true si la inicialización fue exitosa, false en caso contrario
      */
@@ -284,42 +291,90 @@ public abstract class Protocolo {
             return false;
         }
 
-        String comando = "P";
+        // Realizar hasta 5 intentos de sincronización universal determinista
+        for (int intento = 1; intento <= 5; intento++) {
+            try {
+                // 1. Limpiar cualquier residuo previo en los búferes del puerto
+                try {
+                    clearBuffer();
+                } catch (Exception ignored) {
+                }
 
-        try {
+                // 2. Enviar 0x01 (abortar estado previo)
+                byte[] abortCmd = new byte[] { 0x01 };
+                usbSerialPort.write(abortCmd, 100);
 
-            // Preparar comando de inicialización
-            byte[] data =
-                    ByteUtils.prepararDatosUSB(
-                            contexto,
-                            comando.getBytes(StandardCharsets.US_ASCII), "inicializacion");
-            usbSerialPort.write(data, 100);
+                // Leer búfer buscando 'Q' (consumiendo cualquier residuo previo como 'A' o basuras)
+                long startWait = System.currentTimeMillis();
+                byte[] readBuf = new byte[64];
+                boolean foundQ = false;
+                while (System.currentTimeMillis() - startWait < 400) {
+                    int len = usbSerialPort.read(readBuf, 100);
+                    if (len > 0) {
+                        for (int i = 0; i < len; i++) {
+                            if (readBuf[i] == 'Q') {
+                                foundQ = true;
+                                break;
+                            } else if (readBuf[i] == 'P') {
+                                // Ya respondió 'P', está directamente en el Jump Table
+                                return true;
+                            }
+                        }
+                        if (foundQ) break;
+                    }
+                }
 
-            // Leer respuesta
-            byte[] respuesta = readBytes(1, 100);
+                if (foundQ) {
+                    // Respondió 'Q', ahora solicitar entrada a Command Jump Table con 'P'
+                    try { clearBuffer(); } catch (Exception ignored) {}
+                    byte[] pCmd = new byte[] { 'P' };
+                    usbSerialPort.write(pCmd, 100);
 
-            // Si se reciben más datos de los esperados, limpiar buffer
-            if (respuesta.length > 1) {
-                clearBuffer();
-                respuesta[0] = 'P'; // Asumir respuesta correcta después de limpiar
+                    startWait = System.currentTimeMillis();
+                    while (System.currentTimeMillis() - startWait < 400) {
+                        int len = usbSerialPort.read(readBuf, 100);
+                        if (len > 0) {
+                            for (int i = 0; i < len; i++) {
+                                if (readBuf[i] == 'P') {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // 3. Fallback directo: enviar 'P' y esperar 'P' (Power-up directo)
+                try {
+                    clearBuffer();
+                } catch (Exception ignored) {
+                }
+                byte[] pCmd = new byte[] { 'P' };
+                usbSerialPort.write(pCmd, 100);
+                startWait = System.currentTimeMillis();
+                while (System.currentTimeMillis() - startWait < 400) {
+                    int len = usbSerialPort.read(readBuf, 100);
+                    if (len > 0) {
+                        for (int i = 0; i < len; i++) {
+                            if (readBuf[i] == 'P') {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+                Thread.sleep(80);
+
+            } catch (Exception e) {
+                try {
+                    Thread.sleep(80);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    return false;
+                }
             }
-
-            boolean exitoso = (respuesta[0] == 'P');
-
-            if (exitoso) {
-            } else {
-            }
-
-            return exitoso;
-
-        } catch (NumberFormatException e) {
-            return false;
-
-        } catch (UsbCommunicationException e) {
-            return false;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+
+        return false;
     }
 
     /**
@@ -349,7 +404,7 @@ public abstract class Protocolo {
      *
      * @return true si el reset fue exitoso, false en caso contrario
      */
-    protected boolean resetearComandos() {
+    public boolean resetearComandos() {
         try {
             enviarComando("0");
             return true;
@@ -426,6 +481,10 @@ public abstract class Protocolo {
     public abstract boolean detectarPicEnElSocket();
 
     public abstract boolean detectarSiEstaFueraElPicDelSocket();
+
+    public abstract boolean esperarExtraccionDelSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar);
+
+    public abstract boolean esperarInsercionEnElSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar);
 
     public abstract String obtenerVersionOModeloDelProgramador();
 

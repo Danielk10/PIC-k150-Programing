@@ -65,9 +65,11 @@ import com.diamon.managers.ProAccessDialog;
 import com.diamon.managers.ProPassManager;
 import com.diamon.managers.ProgramacionSelectivaManager;
 import com.diamon.managers.ProgramacionSelectivaManager.TipoProgramacion;
+import com.diamon.managers.NotificacionVibracionManager;
 import com.diamon.managers.ProgrammingDialogManager;
 import com.diamon.managers.UsbConnectionManager;
 import com.diamon.managers.SocketDrawingManager;
+import com.diamon.nucleo.Protocolo;
 import com.diamon.protocolo.TipoProtocolo;
 import com.diamon.politicas.PoliticaPrivacidadActivity;
 import com.diamon.publicidad.GestorPublicidad;
@@ -153,6 +155,7 @@ public class MainActivity extends AppCompatActivity
     private final List<String> logHistory = new ArrayList<>();
 
     private GestorPantalla pantallaCompleta;
+    private NotificacionVibracionManager notificacionVibracionManager;
 
     @SuppressLint({ "InvalidWakeLockTag", "UnspecifiedRegisterReceiverFlag" })
     @Override
@@ -163,6 +166,12 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
 
         // Aplicar insets del sistema al layout raíz para evitar solapes
         View vistaPrincipal = findViewById(R.id.main);
@@ -378,6 +387,10 @@ public class MainActivity extends AppCompatActivity
         programacionSelectivaManager = new ProgramacionSelectivaManager(this);
         hexEditorManager = new HexEditorManager(this);
         proPassManager = new ProPassManager(this);
+        proPassManager.setOnPassRestoredListener(expireTime -> {
+            actualizarEstadoProUI();
+            invalidateOptionsMenu();
+        });
         billingManager = new BillingManager(this, new BillingManager.BillingListener() {
             @Override
             public void onAdsRemovedChanged(boolean adsRemoved) {
@@ -396,6 +409,7 @@ public class MainActivity extends AppCompatActivity
         billingManager.startConnection();
 
         dialogManager = new ProgrammingDialogManager(this);
+        notificacionVibracionManager = new NotificacionVibracionManager(this);
         diagnosticoHardwareManager = new DiagnosticoHardwareManager();
 
         // NUEVO: Inicializar export manager
@@ -482,7 +496,19 @@ public class MainActivity extends AppCompatActivity
             actualizarEstadoBotones(true, !firmware.isEmpty());
             programmingManager.setProtocolo(usbManager.getProtocolo());
             calibracionManager.setProtocolo(usbManager.getProtocolo());
+            if (dialogManager != null) {
+                dialogManager.setProtocolo(usbManager.getProtocolo());
+            }
             appendLog("🔌 " + getString(R.string.conectado_al_programador));
+
+            if (currentChip != null && usbManager.getProtocolo() != null) {
+                new Thread(() -> {
+                    try {
+                        usbManager.getProtocolo().iniciarVariablesDeProgramacion(currentChip);
+                    } catch (Exception ignored) {
+                    }
+                }, "InitChipOnConnect").start();
+            }
         });
     }
 
@@ -1031,11 +1057,48 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        // Si no está en modo ICSP, verificar que el microcontrolador esté físicamente en el zócalo ZIF
+        Protocolo proto = (usbManager != null) ? usbManager.getProtocolo() : null;
+        if (proto != null && (swModeICSP == null || !swModeICSP.isChecked())) {
+            appendLog("🔍 Verificando presencia de PIC en el zócalo ZIF...");
+            new Thread(() -> {
+                boolean chipEnSocket = proto.detectarPicEnElSocket();
+                if (!chipEnSocket) {
+                    runOnUiThread(() -> {
+                        if (notificacionVibracionManager != null) {
+                            notificacionVibracionManager.vibrarAlerta();
+                            notificacionVibracionManager.reproducirSonidoNotificacion();
+                        }
+                        appendLog("❌ Advertencia: Inserte el microcontrolador en el zócalo antes de grabar.");
+                        mostrarAlertaPicNoInsertado();
+                    });
+                    return;
+                }
+                runOnUiThread(this::iniciarFlujoSeleccionProgramacion);
+            }).start();
+            return;
+        }
+
+        iniciarFlujoSeleccionProgramacion();
+    }
+
+    private void iniciarFlujoSeleccionProgramacion() {
         if (programacionSelectivaManager != null) {
             programacionSelectivaManager.mostrarMenuSeleccion(this, this::doProgrammingFlow);
         } else {
             doProgrammingFlow(TipoProgramacion.COMPLETA);
         }
+    }
+
+    private void mostrarAlertaPicNoInsertado() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("⚠️ Zócalo ZIF Vacío")
+                .setMessage("No se ha detectado ningún microcontrolador en el zócalo ZIF.\n\nPor favor, inserte el PIC "
+                        + (currentChip != null ? currentChip.getNombreDelPic() : "")
+                        + " en la posición correspondiente, trabe la palanca y vuelva a intentar la grabación.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.aceptar, null)
+                .show();
     }
 
     private void doProgrammingFlow(TipoProgramacion tipo) {
@@ -1066,6 +1129,20 @@ public class MainActivity extends AppCompatActivity
                                 runOnUiThread(
                                         () -> {
                                             dialogManager.updateProgrammingResult(finalSuccess);
+                                            if (finalSuccess) {
+                                                if (notificacionVibracionManager != null) {
+                                                    notificacionVibracionManager.vibrarExito();
+                                                    notificacionVibracionManager.lanzarNotificacion(
+                                                            "¡Grabación Completada!",
+                                                            "El microcontrolador " + (currentChip != null ? currentChip.getNombreDelPic() : "PIC") + " fue grabado correctamente.");
+                                                }
+                                                appendLog("✓ ¡Grabación completada y verificada con éxito!");
+                                            } else {
+                                                if (notificacionVibracionManager != null) {
+                                                    notificacionVibracionManager.vibrarAlerta();
+                                                }
+                                                appendLog("❌ Falló el proceso de grabación del microcontrolador");
+                                            }
                                         });
                             })
                             .start();

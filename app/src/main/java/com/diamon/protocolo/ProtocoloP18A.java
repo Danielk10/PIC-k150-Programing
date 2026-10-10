@@ -110,6 +110,7 @@ public class ProtocoloP18A extends Protocolo {
     @Override
     public String hacerUnEco() {
         try {
+            try { clearBuffer(); } catch (Exception ignored) {}
 
             // Enviar comando 2 para eco
             enviarComando("2");
@@ -124,17 +125,15 @@ public class ProtocoloP18A extends Protocolo {
             byte[] respuestaBytes = readBytes(1, TIMEOUT_EXTENDED);
             response.append((char) respuestaBytes[0]);
 
-            // Resetear comandos
-            if (!resetearComandos()) {
-            }
+            // Resetear comandos y limpiar residuos
+            try { clearBuffer(); } catch (Exception ignored) {}
+            resetearComandos();
 
-            String resultado = response.toString();
+            return response.toString();
 
-            return resultado;
-
-        } catch (UsbCommunicationException e) {
-            return ""; // Retornar vacío en caso de error
         } catch (Exception e) {
+            try { clearBuffer(); } catch (Exception ignored) {}
+            try { resetearComandos(); } catch (Exception ignored) {}
             return "";
         }
     }
@@ -822,49 +821,49 @@ public class ProtocoloP18A extends Protocolo {
         StringBuilder datos = new StringBuilder();
 
         try {
-            // Resetear y activar los voltajes de programación
+            // Limpiar residuos previos y resetear estado
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
-            activarVoltajesDeProgramacion();
+            if (!activarVoltajesDeProgramacion()) {
+                return "Error al activar voltajes de programación";
+            }
 
-            // Comando para leer la configuración
-            usbSerialPort.write(new byte[] { Byte.parseByte("13") }, 10); // 0x0D es 13 en hexadecimal
+            // Comando 13 (0x0D): leer configuración
+            usbSerialPort.write(new byte[] { 13 }, 100);
 
-            int size = 26; // Convertir palabras a bytes
+            // Leer acknowledgment ('C') con timeout extendido para permitir estabilización VPP (13V)
+            byte[] ack;
+            try {
+                ack = readBytes(1, TIMEOUT_EXTENDED);
+            } catch (Exception e) {
+                return "Error: No se recibió acknowledgment ('C') a tiempo";
+            }
 
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            // Leer el acknowledgment ('C')
-            byte[] ack = new byte[1];
-            int bytesRead = usbSerialPort.read(ack, 100);
-
-            if (bytesRead != 1 || ack[0] != 'C') {
+            if (ack.length != 1 || ack[0] != 'C') {
                 return "Error: No se recibió el acknowledgment ('C')";
             }
 
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    ByteUtils.appendHexToBuilder(buffer, leidos, datos);
-                    bytesLeidos += leidos;
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
+            // Leer los 26 bytes de configuración
+            byte[] configBytes;
+            try {
+                configBytes = readBytes(26, TIMEOUT_EXTENDED);
+            } catch (Exception e) {
+                return "Error al leer datos de configuración: " + e.getMessage();
             }
 
-            // Desactivar voltajes y resetear comandos
-            desactivarVoltajesDeProgramacion();
-
-            resetearComandos();
+            for (byte b : configBytes) {
+                datos.append(String.format("%02X", b & 0xFF));
+            }
 
             return datos.toString();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             return "Error al leer Datos de configuración: " + e.toString();
+        } finally {
+            try { clearBuffer(); } catch (Exception ignored) {}
+            try { desactivarVoltajesDeProgramacion(); } catch (Exception ignored) {}
+            try { resetearComandos(); } catch (Exception ignored) {}
         }
     }
 
@@ -1073,78 +1072,154 @@ public class ProtocoloP18A extends Protocolo {
 
     @Override
     public boolean detectarPicEnElSocket() {
-
-        StringBuffer datos = new StringBuffer();
-
         try {
-            // Resetear comandos previos
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
             // Enviar comando para detectar chip en socket
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 10);
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 100);
 
-            byte[] response = new byte[1];
-
-            if (leerRespuesta(response, 'A', "No se recibio la respuesta esperada")) {
-
-                datos.append("El PIC esta dentro del Socket");
-            }
-
-            if (leerRespuesta(response, 'Y', "No se recibio la respuesta esperada")) {
-
+            byte[] b1 = readBytes(1, TIMEOUT_EXTENDED);
+            if (b1.length > 0 && b1[0] == 'Y') {
                 resetearComandos();
-
                 return true;
-
-            } else {
-
-                return false;
+            }
+            if (b1.length > 0 && b1[0] == 'A') {
+                byte[] b2 = readBytes(1, TIMEOUT_EXTENDED);
+                resetearComandos();
+                return (b2.length > 0 && b2[0] == 'Y');
             }
 
-        } catch (IOException e) {
-
+            resetearComandos();
             return false;
-        } catch (UsbCommunicationException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            try { resetearComandos(); } catch (Exception ignored) {}
+            return false;
         }
     }
 
     @Override
     public boolean detectarSiEstaFueraElPicDelSocket() {
-
-        StringBuffer datos = new StringBuffer();
-
         try {
-            // Resetear comandos previos
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
             // Enviar comando para detectar chip fuera del socket
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 10);
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 100);
 
-            byte[] response = new byte[1];
-
-            if (leerRespuesta(response, 'A', "No se recibio la respuesta esperada")) {
-
-                datos.append("El PIC esta fuera del Socket");
-            }
-
-            if (leerRespuesta(response, 'Y', "No se recibio la respuesta esperada")) {
-
+            byte[] b1 = readBytes(1, TIMEOUT_EXTENDED);
+            if (b1.length > 0 && b1[0] == 'Y') {
                 resetearComandos();
-
                 return true;
-
-            } else {
-
-                return false;
+            }
+            if (b1.length > 0 && b1[0] == 'A') {
+                byte[] b2 = readBytes(1, TIMEOUT_EXTENDED);
+                resetearComandos();
+                return (b2.length > 0 && b2[0] == 'Y');
             }
 
-        } catch (IOException e) {
-
+            resetearComandos();
             return false;
-        } catch (UsbCommunicationException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            try { resetearComandos(); } catch (Exception ignored) {}
+            return false;
         }
+    }
+
+    @Override
+    public boolean esperarExtraccionDelSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar) {
+        long fin = System.currentTimeMillis() + timeoutMs;
+        try {
+            try { clearBuffer(); } catch (Exception ignored) {}
+            resetearComandos();
+
+            // Enviar comando para detectar chip fuera del socket
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 100);
+
+            // Leer primer byte: puede ser 'Y' (ya fuera) o 'A' (esperando acción física)
+            byte[] b1;
+            try {
+                b1 = readBytes(1, 400);
+            } catch (Exception e) {
+                b1 = new byte[0];
+            }
+
+            if (b1.length > 0 && b1[0] == 'Y') {
+                resetearComandos();
+                return true;
+            }
+
+            // Si respondió 'A', el hardware está en bucle esperando que se retire el chip
+            while (System.currentTimeMillis() < fin) {
+                if (cancelar != null && cancelar.get()) {
+                    break;
+                }
+                try {
+                    byte[] b2 = readBytes(1, 200);
+                    if (b2.length > 0 && b2[0] == 'Y') {
+                        resetearComandos();
+                        return true;
+                    }
+                } catch (Exception ignored) {
+                    // Timeout parcial de 200ms mientras se espera extracción
+                }
+            }
+        } catch (Exception e) {
+            // Ignorado, se aborta y limpia en finally
+        } finally {
+            try {
+                clearBuffer();
+                resetearComandos();
+            } catch (Exception ignored) {}
+        }
+        return false;
+    }
+
+    @Override
+    public boolean esperarInsercionEnElSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar) {
+        long fin = System.currentTimeMillis() + timeoutMs;
+        try {
+            try { clearBuffer(); } catch (Exception ignored) {}
+            resetearComandos();
+
+            // Enviar comando para detectar chip en el socket
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 100);
+
+            byte[] b1;
+            try {
+                b1 = readBytes(1, 400);
+            } catch (Exception e) {
+                b1 = new byte[0];
+            }
+
+            if (b1.length > 0 && b1[0] == 'Y') {
+                resetearComandos();
+                return true;
+            }
+
+            while (System.currentTimeMillis() < fin) {
+                if (cancelar != null && cancelar.get()) {
+                    break;
+                }
+                try {
+                    byte[] b2 = readBytes(1, 200);
+                    if (b2.length > 0 && b2[0] == 'Y') {
+                        resetearComandos();
+                        return true;
+                    }
+                } catch (Exception ignored) {
+                    // Timeout parcial de 200ms
+                }
+            }
+        } catch (Exception e) {
+            // Ignorado
+        } finally {
+            try {
+                clearBuffer();
+                resetearComandos();
+            } catch (Exception ignored) {}
+        }
+        return false;
     }
 
     @Override
@@ -1153,117 +1228,99 @@ public class ProtocoloP18A extends Protocolo {
         StringBuffer datos = new StringBuffer();
 
         try {
-            // Resetear comandos previos
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
             // Enviar comando para obtener versión del programador
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdVersion() }, 10);
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdVersion() }, 100);
 
-            int size = 1; // Convertir palabras a bytes
+            byte[] bytes = new byte[1];
+            int bytesLeidos = usbSerialPort.read(bytes, 250);
 
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
-            int bytesLeidos = 0;
-
-            byte[] bytes = new byte[size];
-
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
-                if (leidos > 0) {
-                    for (int i = 0; i < leidos; i++) {
-                        if (bytesLeidos + i < size) {
-                            bytes[bytesLeidos + i] = buffer[i];
-                        }
-                    }
-                    bytesLeidos += leidos;
-
-                } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
-                    break;
-                }
-            }
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
-            if (bytesLeidos == 0) {
-                return "Error al obtener la versión del programador: sin respuesta";
+            if (bytesLeidos <= 0) {
+                return "K150";
             }
 
             if (bytes[0] == 0 || bytes[0] == '0') {
-
                 datos.append("K128");
-
             } else if (bytes[0] == 1 || bytes[0] == '1') {
-
                 datos.append("K149-A");
-
             } else if (bytes[0] == 2 || bytes[0] == '2') {
-
                 datos.append("K149-B");
-
             } else if (bytes[0] == 3 || bytes[0] == '3') {
-
                 datos.append("K150");
             } else {
-                datos.append(String.format("Programador (0x%02X)", bytes[0] & 0xFF));
+                datos.append(String.format("K150 (0x%02X)", bytes[0] & 0xFF));
             }
 
             return datos.toString();
 
-        } catch (IOException e) {
-            return "Error al obtener la versión del programador: " + e.getMessage();
+        } catch (Exception e) {
+            try { resetearComandos(); } catch (Exception ignored) {}
+            return "K150";
         }
     }
 
     @Override
     public String obtenerProtocoloDelProgramador() {
 
-        StringBuffer datos = new StringBuffer();
-
         try {
-            // Resetear comandos previos
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
             // Enviar comando para obtener protocolo del programador
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdProtocolo() }, 10);
+            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdProtocolo() }, 100);
 
-            int size = 4; // Convertir palabras a bytes
-
-            byte[] buffer = new byte[64]; // Búfer temporal para leer datos en bloques
-
+            int size = 4;
+            byte[] buffer = new byte[64];
             int bytesLeidos = 0;
-
             byte[] bytes = new byte[size];
 
-            // Leer los datos en múltiples iteraciones
-            while (bytesLeidos < size) {
-                int leidos = usbSerialPort.read(buffer, 100); // Leer hasta 64 bytes
+            long startWait = System.currentTimeMillis();
+            while (bytesLeidos < size && (System.currentTimeMillis() - startWait < 300)) {
+                int leidos = usbSerialPort.read(buffer, 100);
                 if (leidos > 0) {
                     for (int i = 0; i < leidos; i++) {
                         if (bytesLeidos + i < size) {
                             bytes[bytesLeidos + i] = buffer[i];
                         }
-                        datos.append(String.format("%02X", buffer[i] & 0xFF));
                     }
                     bytesLeidos += leidos;
                 } else {
-                    // Si no se reciben datos, salir del bucle para evitar un bloqueo infinito
                     break;
                 }
             }
 
+            try { clearBuffer(); } catch (Exception ignored) {}
             resetearComandos();
 
             if (bytesLeidos == 0) {
-                return "Error al obtener el protocolo del programador: sin respuesta";
+                return tipoProtocolo.getNombre();
             }
 
-            int validLength = Math.min(bytesLeidos, size);
-            // Convertir los bytes a una cadena ASCII
-            return new String(bytes, 0, validLength, StandardCharsets.US_ASCII) + " " + datos.toString();
+            // Validar si los bytes leídos son caracteres ASCII imprimibles (e.g. "P18A")
+            boolean esAsciiImprimible = true;
+            for (int i = 0; i < Math.min(bytesLeidos, size); i++) {
+                int b = bytes[i] & 0xFF;
+                if (b < 0x20 || b > 0x7E) {
+                    esAsciiImprimible = false;
+                    break;
+                }
+            }
 
-        } catch (IOException e) {
-            return "Error al obtener el protocolo del programador: " + e.getMessage();
+            if (esAsciiImprimible && bytesLeidos >= 3) {
+                return new String(bytes, 0, Math.min(bytesLeidos, size), StandardCharsets.US_ASCII);
+            } else {
+                // El microcontrolador físico o clon no implementa comando 21 o devolvió 0xFF
+                return tipoProtocolo.getNombre() + " (Firmware Compatible)";
+            }
+
+        } catch (Exception e) {
+            try { resetearComandos(); } catch (Exception ignored) {}
+            return tipoProtocolo.getNombre();
         }
     }
 

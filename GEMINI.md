@@ -95,6 +95,28 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * `ProAccessDialog`: diálogo modal oscuro temático para acceder al pase o a la compra permanente.
    * Protección estricta de funciones gratuitas: Grabación de silicio completa/selectiva (ROM, EEPROM, Fuses), Detección en zócalo, Borrado masivo, Blank Check Dual y Exportación de Dumps (HEX/BIN) son 100% libres y sin costo. Solo 4 herramientas avanzadas (Editor Hexadecimal en Vivo, Diagnóstico Hardware y test VPP/VDD, Vector ICD y calibración manual OSCCAL) están protegidas por el Pase Pro.
    * Guía paso a paso para Google Play Console y AdMob en [`GUIA_CONFIGURACION_PLAY_CONSOLE_MONETIZACION.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_CONFIGURACION_PLAY_CONSOLE_MONETIZACION.md).
+13. **Robustez de Autodetección y Sincronización de Spinner en UI:**
+   * Se solucionó la limitación nativa de Android donde `Spinner.setSelection(index)` no dispara `onItemSelected` si el índice coincide con el valor previo, invocando explícitamente `selectChip(modelo)` para sincronizar modelo, visualización del zócalo ZIF y parámetros de memoria.
+   * Se implementó un fallback automático en `PicProgrammingManager`: si `detectarPicEnElSocket()` o `leerDeviceIDDelSocket()` fallan tras haber seleccionado manualmente un chip con pines/parámetros incompatibles en el Spinner, se reconfiguran las variables al perfil estándar de 14-bit y se reintenta la lectura de Device ID.
+   * Se extendió el timeout de espera del ack de VPP (`'C'`) de 100ms a 500ms (`TIMEOUT_EXTENDED`) con apagado fail-safe de voltajes en bloque `finally`.
+14. **Reconexión USB en Vivo sin Desconectar Cable OTG:**
+   * `iniciarProtocolo()` incorpora una secuencia determinista de 3 reintentos (`clearBuffer() -> 0x01 -> 'Q' -> 'P' -> 'P'`) que recupera la máquina de estados del firmware K150 aun cuando el microcontrolador permanezca encendido vía el bus de alimentación VBUS del puerto USB-OTG.
+   * Las operaciones de apertura, handshake y cierre del puerto USB en `UsbConnectionManager` se trasladaron a un hilo en segundo plano (`UsbWorkerThread`), evitando cualquier bloqueo en la interfaz de usuario.
+15. **Persistencia Híbrida del Pase Pro de 12 Horas (Firebase Firestore + Respaldo Local Firmado):**
+   * Sincronización en la nube con **Cloud Firestore** (`pro_passes/{deviceId}`) dentro del plan gratuito Spark de Firebase (50.000 lecturas y 20.000 escrituras diarias).
+   * Al desinstalar y reinstalar la app, el pase activo de 12 horas se consulta y restaura automáticamente desde Firestore en el arranque mediante `OnPassRestoredListener`, ocultando banners publicitarios y habilitando el menú Pro de inmediato.
+   * Cuenta con doble salvaguarda offline: archivo firmado con hash HMAC-SHA256 (`Documents/.k150_pro_pass.dat`) y Google Cloud Auto Backup (`pro_pass_prefs.xml`).
+16. **Resolución de Bloqueo y Desincronización en Diagnóstico de Hardware K150:**
+   * Se identificó que el Comando 19 (`detectarSiEstaFueraElPicDelSocket()`) en el firmware K150 es un bucle bloqueante que espera la extracción física del microcontrolador; al ejecutarse con un chip insertado bloqueaba el microcontrolador y rompía la máquina de estados serial. Se desacopló de la rutina diagnóstica automática.
+   * Se robusteció `obtenerProtocoloDelProgramador()` (Comando 21) sanitizando respuestas no-ASCII (`0xFF`) de clones físicos para evitar desbordes y cadenas corruptas.
+   * Se añadieron purgas de búfer (`clearBuffer()`) previas y posteriores a eco/diagnóstico y se implementó un cerrojo atómico (`AtomicBoolean voltajesActivos`) en `DiagnosticoHardwareManager`, eliminando colisiones por hilos concurrentes al cerrar el diálogo.
+   * Se validó en hardware real: la prueba de eco responde en ~420ms, el diagnóstico completo finaliza con éxito y las operaciones posteriores en la UI (como "Detectar PIC" reconociendo el `16F628A`) operan con total normalidad sin requerir reconexión OTG.
+17. **Implementación de Comandos de Zócalo 18 y 19, Feedback Háptico y Notificaciones con Sonido:**
+   * Se creó [`NotificacionVibracionManager.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/managers/NotificacionVibracionManager.java) con soporte para vibración háptica (`vibrarAlerta()`, `vibrarExito()`) y notificaciones con sonido del sistema en canal de alta prioridad.
+   * **Protección contra grabación en vacío:** Antes de iniciar la programación (en modo ZIF), se valida con el Comando 18 si el microcontrolador está físicamente en el zócalo. Si está ausente, vibra con alerta, emite sonido y muestra modal avisando que inserte el PIC y trabe la palanca.
+   * **Finalización de programación:** Al terminar con éxito, vibra con patrón de éxito, emite notificación con sonido y en el diálogo de fin de proceso monitorea con el Comando 19 (`esperarExtraccionDelSocket`) para confirmar la extracción segura del microcontrolador.
+   * **Seguridad de voltajes en Diagnóstico:** Al pulsar `VPP (13V)`, si hay un chip en el zócalo, solicita su extracción previa y espera confirmación con Comando 19 antes de activar 13V para no dañar el componente.
+   * **Asistente de sensores ZIF:** Se añadió la opción "🧪 Probar Sensores ZIF" en Diagnóstico para probar interactivamente la inserción (Cmd 18) y extracción (Cmd 19).
 
 ---
 
@@ -150,7 +172,7 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 ### 📚 Documentación de Referencia y Evidencias
 * **Guía Operativa Exhaustiva:** [`GUIA_PRUEBAS_HARDWARE_REAL_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS_HARDWARE_REAL_K150.md) (manual completo para reproducir las 7 pruebas de hardware sin pantalla física).
 * **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
-* **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (10 evidencias visuales del ciclo completo de validación física: permisos USB, detección de socket con Device ID 0x6810, volcado ROM/EEPROM, borrado, verificación post-erase, programación de firmware y verificación bit a bit de fuses/código).
+* **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (Evidencias visuales del ciclo completo de validación física: permisos USB, detección en socket con Device ID 0x6810, volcado ROM/EEPROM, diagnóstico de hardware sin desincronización, seguridad de voltajes VPP 13V con Comando 19 y prueba interactiva de sensores ZIF).
 * **Guía de Mejoras Técnicas:** [`PROPUESTA_AUTODETECCION_CHIP_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/PROPUESTA_AUTODETECCION_CHIP_K150.md) (arquitectura de autodetección de modelo PIC por Device ID, control USB, diagnóstico de hardware y calibración, 100% implementada en v2.9.0).
 * **Notas de Lanzamiento v2.9.0:** [`RELEASE_NOTES_v2.9.0.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.0.md) (detalle técnico bilingüe y registro de cambios para Google Play Console).
 

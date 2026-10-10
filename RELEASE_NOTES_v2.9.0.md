@@ -15,6 +15,8 @@ Fecha de lanzamiento / Release Date: 10 de Octubre de 2026 / October 10, 2026
 - 🛠️ Vector de Depuración ICD (24 bits) para inspección y parcheo en gamas medias y PIC18F.
 - 🩺 Suite de Diagnóstico de Hardware K150: Telemetría de firmware/protocolo, test de latencia de eco y control de voltajes VPP (13V) / VDD (5V) con fail-safe para técnicos.
 - 🎛️ Grabación selectiva (Completa, Solo ROM, Solo EEPROM, Solo Fuses), Blank Check Dual detallado y Editor Hexadecimal interactivo en vivo.
+- 📳 Retroalimentación háptica y acústica: Alerta vibratoria y sonora preventiva ante zócalo vacío al intentar grabar, y pulso de éxito con notificación persistente del sistema Android al finalizar el quemado.
+- 🧪 Asistente interactivo de sensores ZIF (Comandos 18 y 19) y bloqueo de seguridad fail-safe de 13V (VPP) para protección del silicio en Diagnóstico.
 
 ### English (`en-US`)
 - 🎯 Automatic silicon Device ID chip detection with instantaneous socket mapping and parameter configuration.
@@ -25,6 +27,8 @@ Fecha de lanzamiento / Release Date: 10 de Octubre de 2026 / October 10, 2026
 - 🛠️ In-Circuit Debug (ICD) 24-bit vector support for mid-range and PIC18F microcontrollers.
 - 🩺 K150 Hardware Diagnostic Suite: Firmware/protocol telemetry, serial echo latency benchmark, and manual VPP (13V)/VDD (5V) voltage testing with fail-safe shutoff.
 - 🎛️ Modular Selective Programming (Full, ROM-Only, EEPROM-Only, Fuses-Only), Dual Blank Check report, and Live Interactive Hex Code Editor.
+- 📳 Haptic and acoustic feedback: Vibration and audio warning on empty ZIF socket when attempting to burn, plus success vibration and Android system notifications upon burn completion.
+- 🧪 Interactive ZIF sensor test suite (Commands 18 & 19) and fail-safe 13V (VPP) high-voltage lockout protecting chips during diagnostics.
 
 ---
 
@@ -75,3 +79,9 @@ Fecha de lanzamiento / Release Date: 10 de Octubre de 2026 / October 10, 2026
 
 9. **Certificación y Cobertura de Pruebas**:
    - 100% de la suite de pruebas unitarias y de integración contra el emulador virtual K150 en C++ y Python (`./ejecutar_pruebas_con_emulador.sh`).
+
+10. **Seguridad de Hardware, Hápticos y Notificaciones (`NotificacionVibracionManager`, `DiagnosticoHardwareManager`)**:
+   - Validación obligatoria previa de chip en zócalo ZIF (Comando 18) antes de grabar, con alerta vibratoria y sonora si está ausente.
+   - Patrón háptico de éxito y notificación Android de alta prioridad en canal dedicado con sonido al finalizar la grabación.
+   - Asistente interactivo de prueba de sensores ZIF (Comando 18 para inserción y Comando 19 para extracción) con diseño visual oscuro de alto contraste (`#1A1A2E` / `#2A2A3E`).
+   - Bloqueo de seguridad para activación de VPP (13V) en Diagnóstico si el chip está insertado, previniendo sobretensión accidental en el silicio.

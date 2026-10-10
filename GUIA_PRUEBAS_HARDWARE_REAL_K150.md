@@ -387,6 +387,50 @@ Realiza una comparación analítica estricta entre el contenido físico del sili
 
 ---
 
+### Prueba 8: Detección Preventiva de Zócalo Vacío y Alerta Háptica / Sonora
+Valida el blindaje preventivo contra intentos de grabación cuando el zócalo ZIF no tiene un microcontrolador insertado o la palanca mecánica está abierta.
+
+*   **Comando y Lógica Interna:**
+    *   Al solicitar la grabación (`executeProgram()`) sin modo ICSP, la aplicación consulta inmediatamente `protocolo.detectarPicEnElSocket()` (Comando 18 Kitsrus).
+    *   Si el sensor responde ausente (`false`), se intercepta el flujo antes de activar los relés o elevar voltajes.
+*   **Comportamiento del Dispositivo:**
+    1.  **Vibración:** Dispara patrón háptico de alarma triple (`vibrarAlerta()`).
+    2.  **Audio:** Reproduce tono de advertencia del sistema (`reproducirSonidoNotificacion()`).
+    3.  **Interfaz:** Despliega diálogo modal `⚠️ Zócalo ZIF Vacío` instando al técnico a insertar el chip y trabar la palanca.
+    4.  **Log de Consola:**
+        ```text
+        🔍 Verificando presencia de PIC en el zócalo ZIF...
+        ❌ Advertencia: Inserte el microcontrolador en el zócalo antes de grabar.
+        ```
+
+---
+
+### Prueba 9: Notificación del Sistema y Vibración de Éxito al Finalizar Grabación
+Certifica la entrega de confirmación sensorial y en segundo plano tras un proceso exitoso de grabación de silicio.
+
+*   **Comportamiento al Finalizar:**
+    1.  **Vibración:** Patrón de pulso doble festivo de éxito (`vibrarExito()`).
+    2.  **Notificación de Sistema Android:** Emite notificación persistente en el canal prioritario `"canal_k150_operaciones"` con sonido del sistema:
+        *   *Título:* `¡Grabación Completada!`
+        *   *Mensaje:* `El microcontrolador PIC16F628A fue grabado correctamente.`
+    3.  **Supervisión con Comando 19:** El diálogo de fin de proceso activa un hilo de sondeo continuo con el Comando 19 (`esperarExtraccionDelSocket`) para registrar cuándo el microcontrolador ha sido retirado con seguridad del programador.
+
+---
+
+### Prueba 10: Suite de Diagnóstico de Hardware, Prueba de Sensores ZIF y Seguridad VPP (13V)
+Valida la integridad de la circuitería física del programador K150 y el aislamiento de alta tensión.
+
+*   **Pasos de Ejecución:**
+    1.  Acceso mediante el menú de 3 puntos -> `🩺 Diagnóstico de Hardware K150`.
+    2.  **Telemetría Automática:** Identifica Modelo `K150`, Protocolo `P18A` y realiza test de eco bidireccional midiendo una latencia de ~**424 ms**.
+    3.  **Seguridad Fail-Safe de 13V (VPP):** Al presionar `VPP (13V)` con el microcontrolador en el zócalo, el sistema bloquea inmediatamente la energización y despliega: `⚠️ Microcontrolador en el Zócalo: Para evitar dañar el PIC con 13V de VPP, por favor retire el microcontrolador del zócalo ZIF`.
+    4.  **Prueba Interactiva de Sensores ZIF:** Ejecuta la rutina paso a paso de validación física:
+        *   *Paso 1 (Comando 18):* Inserción detectada `✓ Paso 1: Sensor de Inserción OK`.
+        *   *Paso 2 (Comando 19):* Extracción monitoreada `✓ Paso 2: Sensor de Extracción OK`.
+        *   Interfaz estilizada en tarjeta de alto contraste `#1A1A2E` / `#2A2A3E`.
+
+---
+
 ## 🤖 6. Automatización Headless desde ADB (Sin Interfaz Gráfica)
 
 Cualquier agente de IA que trabaje en entornos headless (Cloud Shell, servidores CI/CD o contenedores) puede inspeccionar y manipular la interfaz de la aplicación Android utilizando la siguiente metodología:
@@ -442,7 +486,7 @@ adb -s localhost:5555 shell rm -f /data/local/tmp/screen.png
 
 ## 📸 7. Galería Referenciada de Evidencias de Hardware
 
-A continuación se presentan las 10 capturas de pantalla obtenidas durante la ejecución real de las pruebas sobre el hardware físico, disponibles en [`docs/capturas_hardware_k150/`](docs/capturas_hardware_k150/):
+A continuación se presentan las capturas de pantalla obtenidas durante la ejecución real de las pruebas sobre el hardware físico, disponibles en [`docs/capturas_hardware_k150/`](docs/capturas_hardware_k150/):
 
 | # | Archivo de Captura | Estado / Operación Demostrada | Descripción Visual y Técnica |
 | :---: | :--- | :--- | :--- |
@@ -456,6 +500,7 @@ A continuación se presentan las 10 capturas de pantalla obtenidas durante la ej
 | **8** | [08_blank_check_post_erase_ok.png](docs/capturas_hardware_k150/08_blank_check_post_erase_ok.png) | **Prueba 5: Blank Check Limpio** | Confirmación post-borrado: *ROM: OK (En blanco)* y *EEPROM: OK (En blanco)*. |
 | **9** | [09_programming_success_dialog.png](docs/capturas_hardware_k150/09_programming_success_dialog.png) | **Prueba 6: Grabación Completa** | Menú modal y ventana de confirmación de grabación exitosa de ROM, EEPROM y registros de configuración. |
 | **10** | [10_memory_and_fuses_verified.png](docs/capturas_hardware_k150/10_memory_and_fuses_verified.png) | **Prueba 7: Verificación y Fuses** | Validación bit a bit idéntica al archivo HEX y decodificación completa de fusibles (*RCIO, MCLRE, WDT, etc.*). |
+| **11** | [09_validacion_sensores_zif_y_diagnostico.png](docs/capturas_hardware_k150/09_validacion_sensores_zif_y_diagnostico.png) | **Pruebas 8, 9 y 10: Sensores ZIF y Diagnóstico** | Validación integral en silicio: Diagnóstico K150 (P18A, 424ms), sensores ZIF (Cmd 18 y 19), Blank Check Dual y Device ID `0x6810`. |
 
 ---
 
