@@ -103,6 +103,7 @@ dependencies {
     implementation libs.appcenter.analytics
     implementation libs.appcenter.crashes
     implementation libs.play.services.ads
+    implementation libs.billing
     implementation platform(libs.firebase.bom)
     implementation libs.firebase.analytics
     implementation libs.firebase.messaging

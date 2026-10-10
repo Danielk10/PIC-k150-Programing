@@ -16,9 +16,11 @@ usbSerialForAndroid = "3.11.0"
 vectordrawable = "1.2.0"
 firebaseCrashlytics = "20.1.1"
 googleServices = "4.5.0"
+billing = "9.1.0"
 crashlyticsPlugin = "3.0.8"
 
 [libraries]
+billing = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
 admob-mediation = { module = "io.start:admob-mediation", version.ref = "admobMediation" }
 appcenter-analytics = { module = "com.microsoft.appcenter:appcenter-analytics", version.ref = "appCenterSdkVersion" }
 appcenter-crashes = { module = "com.microsoft.appcenter:appcenter-crashes", version.ref = "appCenterSdkVersion" }

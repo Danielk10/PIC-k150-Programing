@@ -51,6 +51,7 @@ import android.graphics.drawable.LayerDrawable;
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
 import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.billing.BillingManager;
 import com.diamon.managers.CalibracionManager;
 import com.diamon.managers.ChipSelectionManager;
 import com.diamon.managers.DiagnosticoHardwareManager;
@@ -60,6 +61,8 @@ import com.diamon.managers.HexEditorManager;
 import com.diamon.managers.HexExportManager;
 import com.diamon.managers.MemoryDisplayManager;
 import com.diamon.managers.PicProgrammingManager;
+import com.diamon.managers.ProAccessDialog;
+import com.diamon.managers.ProPassManager;
 import com.diamon.managers.ProgramacionSelectivaManager;
 import com.diamon.managers.ProgramacionSelectivaManager.TipoProgramacion;
 import com.diamon.managers.ProgrammingDialogManager;
@@ -131,6 +134,8 @@ public class MainActivity extends AppCompatActivity
     private CalibracionManager calibracionManager; // NUEVO: Calibración OSCCAL e ICD
     private ProgramacionSelectivaManager programacionSelectivaManager; // NUEVO: Programación selectiva y Dual Blank Check
     private HexEditorManager hexEditorManager; // NUEVO: Editor hexadecimal interactivo en vivo
+    private BillingManager billingManager; // NUEVO: Facturación Google Play (Pro Permanente)
+    private ProPassManager proPassManager; // NUEVO: Pase temporal Pro de 12 Horas
 
     private String firmware = "";
     private String lastReadRomData = ""; // Últimos datos ROM leídos
@@ -294,6 +299,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupBanner() {
+        if (proPassManager != null && proPassManager.isProActive(billingManager)) {
+            return;
+        }
         FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
         if (bannerContainer != null && publicidad != null) {
             publicidad.cargarBanner(bannerContainer);
@@ -369,6 +377,24 @@ public class MainActivity extends AppCompatActivity
         memoryDisplayManager.setOnMemoryRowClickListener(this::abrirEditorHexadecimal);
         programacionSelectivaManager = new ProgramacionSelectivaManager(this);
         hexEditorManager = new HexEditorManager(this);
+        proPassManager = new ProPassManager(this);
+        billingManager = new BillingManager(this, new BillingManager.BillingListener() {
+            @Override
+            public void onAdsRemovedChanged(boolean adsRemoved) {
+                MainActivity.this.actualizarEstadoProUI();
+            }
+
+            @Override
+            public void onPriceLoaded(String formattedPrice) {
+            }
+
+            @Override
+            public void onBillingError(String errorMessage) {
+                appendLog("⚠ Compra Pro: " + errorMessage);
+            }
+        });
+        billingManager.startConnection();
+
         dialogManager = new ProgrammingDialogManager(this);
         diagnosticoHardwareManager = new DiagnosticoHardwareManager();
 
@@ -392,6 +418,7 @@ public class MainActivity extends AppCompatActivity
             if (publicidad != null) {
                 publicidad.precargarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_MEMORY);
                 publicidad.precargarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_PROGRAMMING);
+                publicidad.precargarRewardedAd();
             }
         }, 3000); // Esperar 3 segundos para asegurar que MobileAds esté listo
 
@@ -777,11 +804,38 @@ public class MainActivity extends AppCompatActivity
                 .start();
     }
 
+    /** Actualiza visibilidad de publicidad y Toolbar según el estado Pro. */
+    private void actualizarEstadoProUI() {
+        runOnUiThread(() -> {
+            boolean isPro = proPassManager != null && proPassManager.isProActive(billingManager);
+            if (isPro) {
+                if (publicidad != null) {
+                    publicidad.ocultarBanner();
+                }
+            }
+            invalidateOptionsMenu();
+        });
+    }
+
+    /** Muestra el diálogo modal de Acceso K150 Pro. */
+    private void showProAccessDialog(Runnable onUnlocked) {
+        ProAccessDialog.show(this, publicidad, billingManager, proPassManager, () -> {
+            actualizarEstadoProUI();
+            if (onUnlocked != null) {
+                onUnlocked.run();
+            }
+        });
+    }
+
     /**
      * Editor Hexadecimal en Vivo: Abre el diálogo modal para modificar
      * una palabra ROM o byte EEPROM directamente.
      */
     private void abrirEditorHexadecimal(boolean isRom, int address, TextView rowView) {
+        if (proPassManager != null && !proPassManager.isProActive(billingManager)) {
+            showProAccessDialog(() -> abrirEditorHexadecimal(isRom, address, rowView));
+            return;
+        }
         if (hexEditorManager == null) return;
         int valorActual = 0;
         if (isRom) {
@@ -1284,6 +1338,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        String proTitle = "⭐ Modo Pro";
+        if (proPassManager != null && proPassManager.isProActive(billingManager)) {
+            if (billingManager != null && billingManager.isProPurchased()) {
+                proTitle = "👑 Pro Permanente";
+            } else {
+                proTitle = "⭐ Pro (" + proPassManager.formatearTiempoRestante() + ")";
+            }
+        }
+        menu.add(Menu.NONE, 12, 0, proTitle).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
         menu.add(Menu.NONE, 9, 1, "🩺 Diagnóstico de Hardware K150").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 10, 2, "⏱️ Calibración OSCCAL").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 11, 3, "🛠️ Vector de Depuración (ICD)").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
@@ -1301,15 +1365,38 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case 12:
+                showProAccessDialog(null);
+                return true;
             case 9:
+                if (proPassManager != null && !proPassManager.isProActive(billingManager)) {
+                    showProAccessDialog(this::abrirDiagnosticoHardware);
+                    return true;
+                }
                 abrirDiagnosticoHardware();
                 return true;
             case 10:
+                if (proPassManager != null && !proPassManager.isProActive(billingManager)) {
+                    showProAccessDialog(() -> {
+                        if (calibracionManager != null) {
+                            calibracionManager.showCalibrationDialog(this, currentChip);
+                        }
+                    });
+                    return true;
+                }
                 if (calibracionManager != null) {
                     calibracionManager.showCalibrationDialog(this, currentChip);
                 }
                 return true;
             case 11:
+                if (proPassManager != null && !proPassManager.isProActive(billingManager)) {
+                    showProAccessDialog(() -> {
+                        if (calibracionManager != null) {
+                            calibracionManager.showDebugVectorDialog(this, currentChip);
+                        }
+                    });
+                    return true;
+                }
                 if (calibracionManager != null) {
                     calibracionManager.showDebugVectorDialog(this, currentChip);
                 }
@@ -1344,6 +1431,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void abrirDiagnosticoHardware() {
+        if (proPassManager != null && !proPassManager.isProActive(billingManager)) {
+            showProAccessDialog(this::abrirDiagnosticoHardware);
+            return;
+        }
         if (!usbManager.isConnected()) {
             appendLog("⚠ Debe conectar el programador K150 antes de ejecutar el diagnóstico");
             android.widget.Toast.makeText(this, "Conecte el programador K150 primero", android.widget.Toast.LENGTH_SHORT).show();
@@ -1888,7 +1979,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        publicidad.resumenBanner();
+        if (proPassManager != null && proPassManager.isProActive(billingManager)) {
+            if (publicidad != null) {
+                publicidad.ocultarBanner();
+            }
+        } else {
+            if (publicidad != null) {
+                publicidad.resumenBanner();
+            }
+        }
+        actualizarEstadoProUI();
 
         // NUEVO: Recrear la imagen del chip al volver
         if (currentChip != null) {
@@ -1904,6 +2004,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         try {
+            if (billingManager != null) {
+                billingManager.destroy();
+            }
+
             if (publicidad != null) {
                 publicidad.destruirPublicidad();
             }

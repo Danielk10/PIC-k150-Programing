@@ -27,10 +27,19 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +47,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Gestor CENTRALIZADO de publicidad de Google Mobile Ads.
- * Gestiona Banner, Interstitial y Native Ads en un solo lugar.
+ * Gestiona Banner, Interstitial, Native Ads y Rewarded Video en un solo lugar.
  */
 public class GestorPublicidad implements Publicidad {
 
@@ -48,6 +57,12 @@ public class GestorPublicidad implements Publicidad {
     private static final String BANNER_ID = "ca-app-pub-5141499161332805/5248084133";
     public static final String KEY_NATIVE_MEMORY = "memory_native";
     public static final String KEY_NATIVE_PROGRAMMING = "programming_native";
+
+    /** ID Real AdMob de producción: "Pase Pro 12 Horas K150" */
+    public static final String REWARDED_AD_UNIT_ID = "ca-app-pub-5141499161332805/7291519778";
+    /** ID Oficial de Prueba de Google AdMob para desarrollo y pruebas locales */
+    public static final String REWARDED_TEST_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917";
+    public static final String REWARDED_ID = REWARDED_AD_UNIT_ID; // Alias retrocompatible
 
     private static final Map<String, String> NATIVE_IDS = new HashMap<String, String>() {
         {
@@ -60,6 +75,8 @@ public class GestorPublicidad implements Publicidad {
     private final Handler mainHandler;
 
     private AdView adView;
+    private RewardedAd rewardedAd;
+    private boolean isRewardedLoading = false;
     private final Map<String, NativeAd> nativeAdsMap = new ConcurrentHashMap<>();
     private final Map<String, Boolean> loadingAdsMap = new ConcurrentHashMap<>();
     private static final Map<String, Long> lastRequestTimeMap = new ConcurrentHashMap<>();
@@ -68,6 +85,137 @@ public class GestorPublicidad implements Publicidad {
     public GestorPublicidad(AppCompatActivity actividad) {
         this.actividad = actividad;
         this.mainHandler = new Handler(Looper.getMainLooper());
+        cargarRewardedAd();
+    }
+
+    /**
+     * Carga el anuncio de video bonificado (Rewarded Ad) en segundo plano.
+     */
+    public void cargarRewardedAd() {
+        mainHandler.post(() -> {
+            try {
+                if (!PicApplication.isMobileAdsInitialized()) {
+                    Log.d(TAG, "Diferido: Cargando RewardedAd tras inicialización...");
+                    mainHandler.postDelayed(this::cargarRewardedAd, 2000);
+                    return;
+                }
+
+                if (rewardedAd != null || isRewardedLoading) {
+                    return;
+                }
+
+                isRewardedLoading = true;
+                Log.d(TAG, "Iniciando carga de RewardedAd...");
+                AdRequest adRequest = new AdRequest.Builder().build();
+                RewardedAd.load(
+                        actividad,
+                        REWARDED_AD_UNIT_ID,
+                        adRequest,
+                        new RewardedAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull RewardedAd ad) {
+                                rewardedAd = ad;
+                                isRewardedLoading = false;
+                                Log.d(TAG, "RewardedAd cargado con éxito.");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                rewardedAd = null;
+                                isRewardedLoading = false;
+                                Log.w(TAG, "Error cargando RewardedAd: " + loadAdError.getMessage());
+                            }
+                        }
+                );
+            } catch (Exception e) {
+                isRewardedLoading = false;
+                Log.e(TAG, "Excepción cargando RewardedAd: " + e.getMessage(), e);
+            }
+        });
+    }
+
+    /**
+     * Alias retrocompatible para precarga de Rewarded Ad.
+     */
+    public void precargarRewardedAd() {
+        cargarRewardedAd();
+    }
+
+    /**
+     * Retorna true si el anuncio de video bonificado está cargado y listo para mostrarse.
+     */
+    public boolean isRewardedAdLoaded() {
+        return rewardedAd != null;
+    }
+
+    @VisibleForTesting
+    public void setRewardedAd(@Nullable RewardedAd rewardedAd) {
+        this.rewardedAd = rewardedAd;
+    }
+
+    /**
+     * Muestra el video de recompensa para desbloquear el Pase Pro de 12 horas.
+     *
+     * @param activity             Actividad que presenta el anuncio.
+     * @param rewardListener       Listener cuando el usuario completa la visualización y gana la recompensa.
+     * @param onDismissedListener  Callback ejecutado cuando el anuncio se descarta o falla al mostrarse.
+     */
+    public void mostrarRewardedAd(
+            Activity activity,
+            OnUserEarnedRewardListener rewardListener,
+            Runnable onDismissedListener) {
+
+        Activity targetActivity = (activity != null && !activity.isFinishing()) ? activity : this.actividad;
+        if (targetActivity == null || targetActivity.isFinishing()) {
+            if (onDismissedListener != null) {
+                onDismissedListener.run();
+            }
+            return;
+        }
+
+        mainHandler.post(() -> {
+            if (rewardedAd != null) {
+                RewardedAd adParaMostrar = rewardedAd;
+                rewardedAd = null;
+
+                adParaMostrar.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        Log.d(TAG, "RewardedAd cerrado por el usuario.");
+                        cargarRewardedAd();
+                        if (onDismissedListener != null) {
+                            onDismissedListener.run();
+                        }
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(@NonNull com.google.android.gms.ads.AdError adError) {
+                        Log.w(TAG, "Fallo al mostrar RewardedAd: " + adError.getMessage());
+                        cargarRewardedAd();
+                        if (onDismissedListener != null) {
+                            onDismissedListener.run();
+                        }
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        Log.d(TAG, "RewardedAd mostrado en pantalla completa.");
+                    }
+                });
+
+                adParaMostrar.show(
+                        targetActivity,
+                        rewardListener != null ? rewardListener : reward -> Log.d(TAG, "Recompensa otorgada sin listener.")
+                );
+            } else {
+                Log.w(TAG, "RewardedAd no listo. Notificando y reintentando carga...");
+                cargarRewardedAd();
+                Toast.makeText(targetActivity, "Cargando video de recompensa... Por favor intente en unos segundos.", Toast.LENGTH_SHORT).show();
+                if (onDismissedListener != null) {
+                    onDismissedListener.run();
+                }
+            }
+        });
     }
 
     @Override
@@ -424,6 +572,8 @@ public class GestorPublicidad implements Publicidad {
             }
             nativeAdsMap.clear();
             loadingAdsMap.clear();
+            rewardedAd = null;
+            isRewardedLoading = false;
         });
     }
 }

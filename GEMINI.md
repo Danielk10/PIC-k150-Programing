@@ -89,6 +89,12 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
      - Vector de Depuración ICD (24 bits) para inspección y parcheo.
      - Diálogo de Diagnóstico Hardware K150 (modelo, protocolo, test de eco/latencia y control manual de voltajes VPP 13V / VDD 5V con fail-safe para técnicos).
      - Programación selectiva (ROM, EEPROM, Fuses), Blank Check Dual y Editor Hexadecimal interactivo en vivo.
+12. **Monetización Híbrida Ética (In-App Purchase & Pase Pro de 12 Horas con Video Recompensado):**
+   * Integración de `BillingManager` con Google Play Billing 9.1.0 para compra in-app permanente (`remove_ads_pro`).
+   * `GestorPublicidad` y `ProPassManager`: desbloqueo del Pase Pro temporal de 12 horas mediante AdMob Rewarded Video (`ca-app-pub-5141499161332805/7291519778`, unidad *"Pase Pro 12 Horas K150"*), persistido en SharedPreferences con formateo dinámico (`11h 45m`) y ocultamiento del banner publicitario.
+   * `ProAccessDialog`: diálogo modal oscuro temático para acceder al pase o a la compra permanente.
+   * Protección estricta de funciones gratuitas: Grabación de silicio completa/selectiva (ROM, EEPROM, Fuses), Detección en zócalo, Borrado masivo, Blank Check Dual y Exportación de Dumps (HEX/BIN) son 100% libres y sin costo. Solo 4 herramientas avanzadas (Editor Hexadecimal en Vivo, Diagnóstico Hardware y test VPP/VDD, Vector ICD y calibración manual OSCCAL) están protegidas por el Pase Pro.
+   * Guía paso a paso para Google Play Console y AdMob en [`GUIA_CONFIGURACION_PLAY_CONSOLE_MONETIZACION.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_CONFIGURACION_PLAY_CONSOLE_MONETIZACION.md).
 
 ---
 
