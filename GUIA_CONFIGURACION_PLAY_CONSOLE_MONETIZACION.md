@@ -69,7 +69,7 @@ El usuario puede desbloquear las herramientas Pro de dos formas:
   ```
 
 ### Paso 2.4: Fijar Precio y Activar
-* **Precio Oficial:** `$4.99 USD` / `$5.00 USD` (Google Play calculará automáticamente los equivalentes en moneda local para cada país con impuestos incluidos).
+* **Precio Oficial:** `$4.99 USD` (Google Play calculará automáticamente los equivalentes en moneda local para cada país con impuestos incluidos).
 * Haz clic en **Guardar** y luego en **Activar producto**.
 
 ---
