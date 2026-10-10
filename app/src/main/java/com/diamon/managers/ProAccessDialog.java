@@ -102,7 +102,7 @@ public class ProAccessDialog {
                 "Diagnóstico de Hardware & Prueba de Voltajes (VPP 13V / VDD 5V)",
                 "Vector de Depuración ICD (24 bits)",
                 "Rescate y Edición Manual de OSCCAL",
-                "Cero Anuncios en toda la aplicación durante 12 horas"
+                "Quitar todos los anuncios de la aplicación"
         };
 
         for (String feat : features) {
@@ -136,7 +136,7 @@ public class ProAccessDialog {
 
         // 3. BOTÓN 1: VER VIDEO RECOMPENSADO (PASE 12 HORAS)
         Button btnRewarded = new Button(activity);
-        btnRewarded.setText("🎬 Ver Video (Pase Libre de 12 Horas)");
+        btnRewarded.setText("🎬 Ver Video - Pase Libre de 12 Horas");
         btnRewarded.setTextSize(14);
         btnRewarded.setTypeface(null, Typeface.BOLD);
         btnRewarded.setTextColor(Color.WHITE);
@@ -172,8 +172,8 @@ public class ProAccessDialog {
         // 4. BOTÓN 2: COMPRA PERMANENTE GOOGLE PLAY
         Button btnBuyPro = new Button(activity);
         String priceText = (billingManager != null && billingManager.getFormattedPrice() != null)
-                ? " (" + billingManager.getFormattedPrice() + ")"
-                : " ($4.99)";
+                ? " - " + billingManager.getFormattedPrice()
+                : " - $4.99";
         btnBuyPro.setText("👑 Comprar " + appName + " Pro Permanente" + priceText);
         btnBuyPro.setTextSize(14);
         btnBuyPro.setTypeface(null, Typeface.BOLD);
