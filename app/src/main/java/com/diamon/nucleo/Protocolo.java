@@ -437,5 +437,17 @@ public abstract class Protocolo {
 
     public abstract boolean programarDatosDeCalibracionDePics10F();
 
+    public boolean programarCalibracionDelPic(ChipPic chipPIC, int calibrate) {
+        return false;
+    }
+
+    public boolean programarCalibracionDelPic(ChipPic chipPIC, int calibrate, int fuse) {
+        return false;
+    }
+
+    public boolean programarVectorDeDepuracionDelPic(int address) {
+        return false;
+    }
+
     public abstract int leerDeviceIDDelSocket();
 }

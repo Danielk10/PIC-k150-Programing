@@ -51,12 +51,17 @@ import android.graphics.drawable.LayerDrawable;
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
 import com.diamon.excepciones.ChipConfigurationException;
+import com.diamon.managers.CalibracionManager;
 import com.diamon.managers.ChipSelectionManager;
+import com.diamon.managers.DiagnosticoHardwareManager;
 import com.diamon.managers.FileManager;
 import com.diamon.managers.FuseConfigPopup;
+import com.diamon.managers.HexEditorManager;
 import com.diamon.managers.HexExportManager;
 import com.diamon.managers.MemoryDisplayManager;
 import com.diamon.managers.PicProgrammingManager;
+import com.diamon.managers.ProgramacionSelectivaManager;
+import com.diamon.managers.ProgramacionSelectivaManager.TipoProgramacion;
 import com.diamon.managers.ProgrammingDialogManager;
 import com.diamon.managers.UsbConnectionManager;
 import com.diamon.managers.SocketDrawingManager;
@@ -122,6 +127,10 @@ public class MainActivity extends AppCompatActivity
 
     private FuseConfigPopup fuseConfigPopup; // NUEVO
     private HexExportManager hexExportManager; // NUEVO: Export manager
+    private DiagnosticoHardwareManager diagnosticoHardwareManager; // NUEVO: Diagnóstico K150
+    private CalibracionManager calibracionManager; // NUEVO: Calibración OSCCAL e ICD
+    private ProgramacionSelectivaManager programacionSelectivaManager; // NUEVO: Programación selectiva y Dual Blank Check
+    private HexEditorManager hexEditorManager; // NUEVO: Editor hexadecimal interactivo en vivo
 
     private String firmware = "";
     private String lastReadRomData = ""; // Últimos datos ROM leídos
@@ -299,6 +308,7 @@ public class MainActivity extends AppCompatActivity
         Analytics.trackEvent("Init: Managers");
         usbManager = new UsbConnectionManager(this);
         programmingManager = new PicProgrammingManager(this);
+        calibracionManager = new CalibracionManager(this);
         socketDrawingManager = new SocketDrawingManager(this, chipSocketImageView);
 
         // Configurar listeners
@@ -356,7 +366,11 @@ public class MainActivity extends AppCompatActivity
         chipSelectionManager.initializeAsync();
 
         memoryDisplayManager = new MemoryDisplayManager(this);
+        memoryDisplayManager.setOnMemoryRowClickListener(this::abrirEditorHexadecimal);
+        programacionSelectivaManager = new ProgramacionSelectivaManager(this);
+        hexEditorManager = new HexEditorManager(this);
         dialogManager = new ProgrammingDialogManager(this);
+        diagnosticoHardwareManager = new DiagnosticoHardwareManager();
 
         // NUEVO: Inicializar export manager
         hexExportManager = new HexExportManager(this);
@@ -440,6 +454,7 @@ public class MainActivity extends AppCompatActivity
             }
             actualizarEstadoBotones(true, !firmware.isEmpty());
             programmingManager.setProtocolo(usbManager.getProtocolo());
+            calibracionManager.setProtocolo(usbManager.getProtocolo());
             appendLog("🔌 " + getString(R.string.conectado_al_programador));
         });
     }
@@ -700,6 +715,10 @@ public class MainActivity extends AppCompatActivity
         btnSelectHex.setOnClickListener(v -> fileManager.openFilePicker());
         btnConfigureFuses.setOnClickListener(v -> openFuseConfiguration());
         btnProgramarPic.setOnClickListener(v -> executeProgram());
+        btnProgramarPic.setOnLongClickListener(v -> {
+            executeProgram();
+            return true;
+        });
         btnLeerMemoriaDeLPic.setOnClickListener(v -> executeReadMemory());
         btnBorrarMemoriaDeLPic.setOnClickListener(v -> executeEraseMemory());
         btnVerificarMemoriaDelPic.setOnClickListener(v -> executeVerifyMemory());
@@ -741,6 +760,8 @@ public class MainActivity extends AppCompatActivity
                                     int romLen = (romBytes != null) ? romBytes.length : 0;
                                     int eepromLen = (eepromBytes != null) ? eepromBytes.length : 0;
 
+                                    popularContenedoresMemoria(romBytes, eepromBytes);
+
                                     String detailMsg = getString(R.string.hex_procesado_correctamente)
                                             + "\n  ROM: " + romLen + " B, EEPROM: " + eepromLen + " B";
                                     appendLog("✓ " + detailMsg);
@@ -754,6 +775,99 @@ public class MainActivity extends AppCompatActivity
                     }
                 })
                 .start();
+    }
+
+    /**
+     * Editor Hexadecimal en Vivo: Abre el diálogo modal para modificar
+     * una palabra ROM o byte EEPROM directamente.
+     */
+    private void abrirEditorHexadecimal(boolean isRom, int address, TextView rowView) {
+        if (hexEditorManager == null) return;
+        int valorActual = 0;
+        if (isRom) {
+            if (datosPicProcesados != null && datosPicProcesados.obtenerBytesHexROMProcesado() != null) {
+                byte[] rom = datosPicProcesados.obtenerBytesHexROMProcesado();
+                int offset = address * 2;
+                if (offset + 1 < rom.length) {
+                    valorActual = (rom[offset] & 0xFF) | ((rom[offset + 1] & 0xFF) << 8);
+                }
+            }
+        } else {
+            if (datosPicProcesados != null && datosPicProcesados.obtenerBytesHexEEPROMProcesado() != null) {
+                byte[] eep = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
+                if (address < eep.length) {
+                    valorActual = eep[address] & 0xFF;
+                }
+            }
+        }
+
+        hexEditorManager.mostrarDialogoEdicion(
+                this,
+                isRom,
+                address,
+                valorActual,
+                currentChip,
+                datosPicProcesados,
+                firmware,
+                rowView,
+                (isRomEdited, addr, oldVal, newVal, updatedFirmware) -> {
+                    firmware = updatedFirmware;
+                    appendLog(String.format(Locale.getDefault(), "✏️ Memoria %s editada en 0x%04X: 0x%X -> 0x%X",
+                            isRomEdited ? "ROM" : "EEPROM", addr, oldVal, newVal));
+                }
+        );
+    }
+
+    /**
+     * Llena los contenedores de memoria interactivos con filas clickeables
+     * para permitir edición en vivo celda por celda.
+     */
+    private void popularContenedoresMemoria(byte[] romBytes, byte[] eepromBytes) {
+        if (romDataContainer != null) {
+            romDataContainer.removeAllViews();
+            if (romBytes != null && romBytes.length > 0) {
+                int wordsPerRow = 8;
+                int totalWords = romBytes.length / 2;
+                for (int w = 0; w < totalWords; w += wordsPerRow) {
+                    final int addr = w;
+                    TextView tv = new TextView(this);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(String.format(Locale.getDefault(), "0x%04X: ", addr));
+                    for (int i = 0; i < wordsPerRow && (w + i) < totalWords; i++) {
+                        int idx = (w + i) * 2;
+                        int wordVal = (romBytes[idx] & 0xFF) | ((romBytes[idx + 1] & 0xFF) << 8);
+                        sb.append(String.format(Locale.getDefault(), "%04X ", wordVal));
+                    }
+                    tv.setText(sb.toString().trim());
+                    tv.setTextColor(Color.parseColor("#4CAF50"));
+                    tv.setPadding(0, 4, 0, 4);
+                    tv.setOnClickListener(v -> abrirEditorHexadecimal(true, addr, tv));
+                    romDataContainer.addView(tv);
+                }
+            }
+        }
+
+        if (eepromDataContainer != null) {
+            eepromDataContainer.removeAllViews();
+            if (eepromBytes != null && eepromBytes.length > 0) {
+                int bytesPerRow = 16;
+                for (int b = 0; b < eepromBytes.length; b += bytesPerRow) {
+                    final int addr = b;
+                    TextView tv = new TextView(this);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(String.format(Locale.getDefault(), "0x%04X: ", addr));
+                    for (int i = 0; i < bytesPerRow && (b + i) < eepromBytes.length; i++) {
+                        int val = eepromBytes[b + i] & 0xFF;
+                        sb.append(String.format(Locale.getDefault(), "%02X ", val));
+                    }
+                    tv.setText(sb.toString().trim());
+                    tv.setTextColor(Color.parseColor("#00BCD4"));
+                    tv.setPadding(0, 4, 0, 4);
+                    tv.setOnClickListener(v -> abrirEditorHexadecimal(false, addr, tv));
+                    eepromDataContainer.addView(tv);
+                }
+            }
+        }
     }
 
     /** NUEVO: Abre el popup de configuración de fusibles */
@@ -849,8 +963,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * MODIFICADO: Ahora usa los fusibles configurados y permite programación
-     * parcial
+     * Programación Selectiva: Ofrece modal con las 4 opciones
+     * (Completa, Solo Flash ROM, Solo EEPROM, Solo Configuración)
      */
     private void executeProgram() {
         if (currentChip == null || firmware.isEmpty()) {
@@ -863,46 +977,14 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        // Determinar qué regiones están presentes en el HEX cargado
-        // (aunque su contenido sea blank) para mostrar opciones parciales coherentes.
-        boolean hasRom = datosPicProcesados.tieneRomEnHex() || datosPicProcesados.tieneRomData();
-        boolean hasEeprom = datosPicProcesados.tieneEepromEnHex() || datosPicProcesados.tieneEepromData();
-        boolean hasConfig = datosPicProcesados.tieneConfigEnHex() || datosPicProcesados.tieneConfigData();
-
-        java.util.List<String> options = new java.util.ArrayList<>();
-
-        // Siempre ofrecemos Programar Todo (comportamiento clásico)
-        options.add(getString(R.string.programar_todo));
-
-        if (hasRom) {
-            options.add(getString(R.string.programar_solo_rom));
+        if (programacionSelectivaManager != null) {
+            programacionSelectivaManager.mostrarMenuSeleccion(this, this::doProgrammingFlow);
+        } else {
+            doProgrammingFlow(TipoProgramacion.COMPLETA);
         }
-        if (hasEeprom) {
-            options.add(getString(R.string.programar_solo_eeprom));
-        }
-        if (hasConfig || fusesConfigured) {
-            options.add(getString(R.string.programar_solo_config));
-        }
-
-        // Si solo hay una opción (Programar Todo) o el usuario no configuró
-        // fuses/regiones, lo hacemos directo
-        if (options.size() <= 1) {
-            doProgrammingFlow(getString(R.string.programar_todo));
-            return;
-        }
-
-        String[] items = options.toArray(new String[0]);
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.seleccionar_operacion))
-                .setItems(items, (dialog, which) -> {
-                    String selected = items[which];
-                    doProgrammingFlow(selected);
-                })
-                .setNegativeButton(getString(R.string.cancelar), null)
-                .show();
     }
 
-    private void doProgrammingFlow(String operationType) {
+    private void doProgrammingFlow(TipoProgramacion tipo) {
         publicidad.ocultarBanner();
 
         final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
@@ -913,19 +995,17 @@ public class MainActivity extends AppCompatActivity
                 () -> {
                     new Thread(
                             () -> {
-                                boolean success = false;
-
-                                if (operationType.equals(getString(R.string.programar_solo_rom))) {
-                                    success = programmingManager.programRomOnly(currentChip, firmware);
-                                } else if (operationType.equals(getString(R.string.programar_solo_eeprom))) {
-                                    success = programmingManager.programEepromOnly(currentChip, firmware);
-                                } else if (operationType.equals(getString(R.string.programar_solo_config))) {
-                                    success = programmingManager.programConfigOnly(currentChip, firmware, idToUse,
+                                boolean success;
+                                if (programacionSelectivaManager != null) {
+                                    success = programacionSelectivaManager.ejecutarProgramacion(
+                                            tipo,
+                                            programmingManager,
+                                            currentChip,
+                                            firmware,
+                                            idToUse,
                                             fusesToUse);
                                 } else {
-                                    // Default: Programar todo
-                                    success = programmingManager.programChip(currentChip, firmware, idToUse,
-                                            fusesToUse);
+                                    success = programmingManager.programChip(currentChip, firmware, idToUse, fusesToUse);
                                 }
 
                                 final boolean finalSuccess = success;
@@ -1005,12 +1085,28 @@ public class MainActivity extends AppCompatActivity
     private void executeEraseMemory() {
         new Thread(
                 () -> {
-                    boolean success = programmingManager.eraseMemory();
+                    if (currentChip != null && CalibracionManager.requiereCalibracion(currentChip)) {
+                        runOnUiThread(() -> appendLog("⏱️ Chip requiere calibración. Respaldando OSCCAL antes de borrar..."));
+                    }
+
+                    CalibracionManager.ResultadoBorradoSeguro res = (calibracionManager != null && currentChip != null)
+                            ? calibracionManager.borrarConPreservacion(currentChip, programmingManager)
+                            : new CalibracionManager.ResultadoBorradoSeguro(programmingManager.eraseMemory(), false, null, false, "");
+
                     runOnUiThread(
                             () -> {
-                                if (success) {
+                                if (res.borradoExitoso) {
                                     appendLog("✓ " + getString(
                                             R.string.memoria_borrada_exitosamente));
+                                    if (res.requiereCalibracion) {
+                                        if (res.restauracionExitosa && res.osccalPreservado != null) {
+                                            String calHex = CalibracionManager.formatearCalibracionHex(
+                                                    res.osccalPreservado, CalibracionManager.isFamilia10F(currentChip));
+                                            appendLog("✓ OSCCAL restaurado exitosamente en silicio: " + calHex);
+                                        } else if (res.osccalPreservado != null) {
+                                            appendLog("⚠ No se pudo restaurar OSCCAL automáticamente. Use el menú de Calibración.");
+                                        }
+                                    }
                                 } else {
                                     appendLog("❌ " + getString(R.string.error_borrando_memoria));
                                 }
@@ -1135,32 +1231,39 @@ public class MainActivity extends AppCompatActivity
                 PicProgrammingManager.ResultadoVerificacionBorrado resultado = programmingManager
                         .verificarBorradoCompleto(currentChip);
 
-                if (resultado.error != null && !resultado.error.isEmpty()) {
-                    runOnUiThread(() -> appendLog("❌ " + getString(R.string.error_verificando_borrado) + ": " + resultado.error));
-                    return;
-                }
-
                 runOnUiThread(() -> {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("✓ ").append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
-                    sb.append("  ROM: ").append(
-                            resultado.romEnBlanco ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
-                            .append("\n");
-
-                    if (currentChip.isTamanoValidoDeEEPROM()) {
-                        sb.append("  EEPROM: ")
-                                .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
-                                        : getString(R.string.eeprom_not_blank))
-                                .append("\n");
-                    }
-
-                    sb.append("  ").append(getString(R.string.protocolo)).append(": ").append(resultado.metodoUtilizado);
-                    appendLog(sb.toString());
-
-                    if (resultado.chipEnBlanco()) {
-                        appendLog("✓ " + getString(R.string.chip_esta_borrado));
+                    if (programacionSelectivaManager != null) {
+                        List<String> lineasReporte = programacionSelectivaManager
+                                .formatearReporteBlankCheckDual(resultado, currentChip);
+                        for (String linea : lineasReporte) {
+                            appendLog(linea);
+                        }
                     } else {
-                        appendLog("⚠ " + getString(R.string.chip_no_esta_borrado));
+                        if (resultado.error != null && !resultado.error.isEmpty()) {
+                            appendLog("❌ " + getString(R.string.error_verificando_borrado) + ": " + resultado.error);
+                            return;
+                        }
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("✓ ").append(getString(R.string.resultado_verificacion_borrado)).append(":\n");
+                        sb.append("  ROM: ").append(
+                                resultado.romEnBlanco ? getString(R.string.rom_ok_blank) : getString(R.string.rom_not_blank))
+                                .append("\n");
+
+                        if (currentChip.isTamanoValidoDeEEPROM()) {
+                            sb.append("  EEPROM: ")
+                                    .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
+                                            : getString(R.string.eeprom_not_blank))
+                                    .append("\n");
+                        }
+
+                        sb.append("  ").append(getString(R.string.protocolo)).append(": ").append(resultado.metodoUtilizado);
+                        appendLog(sb.toString());
+
+                        if (resultado.chipEnBlanco()) {
+                            appendLog("✓ " + getString(R.string.chip_esta_borrado));
+                        } else {
+                            appendLog("⚠ " + getString(R.string.chip_no_esta_borrado));
+                        }
                     }
                 });
             } catch (Exception e) {
@@ -1181,20 +1284,36 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, 1, 1, getString(R.string.modelo_programador)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 2, 2, getString(R.string.seleccionar_protocolo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 6, 3, "💾 " + getString(R.string.exportar_memoria)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 7, 4, "📋 " + getString(R.string.chip_info_json)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 3, 5, "📚 " + getString(R.string.gputils_termux_asm)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 5, 6, "📚 " + getString(R.string.sdcc_termux_tutorial)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 4, 7, getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 8, 8, getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 9, 1, "🩺 Diagnóstico de Hardware K150").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 10, 2, "⏱️ Calibración OSCCAL").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 11, 3, "🛠️ Vector de Depuración (ICD)").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 1, 4, getString(R.string.modelo_programador)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 2, 5, getString(R.string.seleccionar_protocolo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 6, 6, "💾 " + getString(R.string.exportar_memoria)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 7, 7, "📋 " + getString(R.string.chip_info_json)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 3, 8, "📚 " + getString(R.string.gputils_termux_asm)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 5, 9, "📚 " + getString(R.string.sdcc_termux_tutorial)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 4, 10, getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 8, 11, getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case 9:
+                abrirDiagnosticoHardware();
+                return true;
+            case 10:
+                if (calibracionManager != null) {
+                    calibracionManager.showCalibrationDialog(this, currentChip);
+                }
+                return true;
+            case 11:
+                if (calibracionManager != null) {
+                    calibracionManager.showDebugVectorDialog(this, currentChip);
+                }
+                return true;
             case 1:
                 showProgrammerModelDialog();
                 return true;
@@ -1222,6 +1341,18 @@ public class MainActivity extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void abrirDiagnosticoHardware() {
+        if (!usbManager.isConnected()) {
+            appendLog("⚠ Debe conectar el programador K150 antes de ejecutar el diagnóstico");
+            android.widget.Toast.makeText(this, "Conecte el programador K150 primero", android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        diagnosticoHardwareManager.showDiagnosticoDialog(
+                this,
+                usbManager.getProtocolo(),
+                this::appendLog);
     }
 
     /** NUEVO: Muestra diálogo para exportar memoria leída */

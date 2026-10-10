@@ -61,6 +61,16 @@ public class MemoryDisplayManager {
     private static final int COLOR_BUTTON = Color.parseColor("#2196F3");
     private static final int COLOR_TEXT_SECONDARY = Color.parseColor("#9E9E9E");
 
+    public interface OnMemoryRowClickListener {
+        void onRowClick(boolean isRom, int address, TextView rowTextView);
+    }
+
+    private OnMemoryRowClickListener rowClickListener;
+
+    public void setOnMemoryRowClickListener(OnMemoryRowClickListener listener) {
+        this.rowClickListener = listener;
+    }
+
     public MemoryDisplayManager(Context context) {
         this.context = context;
     }
@@ -372,6 +382,13 @@ public class MemoryDisplayManager {
 
             String fullText = hexPart.toString() + "│" + asciiPart.toString();
             TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, hexPart.length());
+            final int currentRowAddr = address;
+            final boolean currentIsRom = isROM;
+            rowTextView.setOnClickListener(v -> {
+                if (rowClickListener != null) {
+                    rowClickListener.onRowClick(currentIsRom, currentRowAddr, rowTextView);
+                }
+            });
             container.addView(rowTextView);
 
             address += columns;
@@ -398,6 +415,13 @@ public class MemoryDisplayManager {
 
             String fullText = hexPart.toString() + "│" + asciiPart.toString();
             TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, hexPart.length());
+            final int currentRowAddr = address;
+            final boolean currentIsRom = isROM;
+            rowTextView.setOnClickListener(v -> {
+                if (rowClickListener != null) {
+                    rowClickListener.onRowClick(currentIsRom, currentRowAddr, rowTextView);
+                }
+            });
             container.addView(rowTextView);
 
             address += columns;

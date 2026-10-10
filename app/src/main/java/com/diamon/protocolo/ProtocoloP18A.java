@@ -662,22 +662,12 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean programarCalibracionDelPic(ChipPic chipPIC, DatosPicProcesados datosPic) {
-        if (chipPIC == null || datosPic == null) {
+    public boolean programarCalibracionDelPic(ChipPic chipPIC, int calibrate, int fuse) {
+        if (chipPIC == null) {
             return false;
         }
 
         try {
-            // Obtener valores de calibración y fuse del chip
-            int[] fusesHex = datosPic.obtenerValoresIntHexFusesProcesado();
-            if (fusesHex == null || fusesHex.length < 1) {
-                return false;
-            }
-
-            int calibrate = 0; // Valor de calibración leído del chip
-            int fuse = fusesHex[0]; // Primer valor de fuse
-
-            // Iniciar secuencia de comandos
             if (!resetearComandos()) {
                 return false;
             }
@@ -708,11 +698,39 @@ public class ProtocoloP18A extends Protocolo {
 
             return respuesta.equals("Y");
 
-        } catch (UsbCommunicationException e) {
-            return false;
         } catch (Exception e) {
+            try {
+                desactivarVoltajesDeProgramacion();
+                resetearComandos();
+            } catch (Exception ignored) {
+            }
             return false;
         }
+    }
+
+    @Override
+    public boolean programarCalibracionDelPic(ChipPic chipPIC, int calibrate) {
+        int fuse = 0x3FFF;
+        if (chipPIC != null) {
+            try {
+                int[] fuseBlank = chipPIC.getFuseBlank();
+                if (fuseBlank != null && fuseBlank.length > 0) {
+                    fuse = fuseBlank[0];
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return programarCalibracionDelPic(chipPIC, calibrate, fuse);
+    }
+
+    @Override
+    public boolean programarCalibracionDelPic(ChipPic chipPIC, DatosPicProcesados datosPic) {
+        if (chipPIC == null || datosPic == null) {
+            return false;
+        }
+        int[] fusesHex = datosPic.obtenerValoresIntHexFusesProcesado();
+        int fuse = (fusesHex != null && fusesHex.length > 0) ? fusesHex[0] : 0x3FFF;
+        return programarCalibracionDelPic(chipPIC, 0, fuse);
     }
 
     @Override
@@ -1250,39 +1268,31 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean programarVectorDeDepuracionDelPic(ChipPic chipPIC) {
-
-        int address = 0;
+    public boolean programarVectorDeDepuracionDelPic(int address) {
         try {
+            resetearComandos();
             // Comando 22 (0x16 para P18A) o 23 (0x17 para otros): programar vector de depuración
             byte cmd = (byte) ((tipoProtocolo == TipoProtocolo.P18A) ? 0x16 : 0x17);
 
-            // Dividir la dirección en bytes
+            // Dividir la dirección de 24 bits en 3 bytes
             byte[] BE4_address = ByteBuffer.allocate(4).putInt(address).array();
 
-            // Enviar comando
             usbSerialPort.write(new byte[] { cmd }, 10);
-
-            // Enviar los 3 bytes de la dirección
             usbSerialPort.write(new byte[] { BE4_address[1], BE4_address[2], BE4_address[3] }, 10);
 
-            // Leer respuesta (1 byte)
             byte[] response = new byte[1];
-            usbSerialPort.read(response, 100);
+            int bytesRead = usbSerialPort.read(response, 100);
+            resetearComandos();
 
-            // Validar la respuesta
-            if (response[0] == 'Y') {
-                return true;
-            } else if (response[0] == 'N') {
-                return false;
-            } else {
-
-                return false;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(
-                    "Error en programarVectorDeDepuracion(): " + e.getMessage(), e);
+            return bytesRead == 1 && response[0] == 'Y';
+        } catch (Exception e) {
+            return false;
         }
+    }
+
+    @Override
+    public boolean programarVectorDeDepuracionDelPic(ChipPic chipPIC) {
+        return programarVectorDeDepuracionDelPic(0);
     }
 
     @Override
