@@ -85,3 +85,8 @@ Fecha de lanzamiento / Release Date: 10 de Octubre de 2026 / October 10, 2026
    - Patrón háptico de éxito y notificación Android de alta prioridad en canal dedicado con sonido al finalizar la grabación.
    - Asistente interactivo de prueba de sensores ZIF (Comando 18 para inserción y Comando 19 para extracción) con diseño visual oscuro de alto contraste (`#1A1A2E` / `#2A2A3E`).
    - Bloqueo de seguridad para activación de VPP (13V) en Diagnóstico si el chip está insertado, previniendo sobretensión accidental en el silicio.
+
+11. **Optimización de Borrado y Supresión de Latencia UART (`ProtocoloP18A`, `Protocolo`)**:
+   - Ampliación del timeout de confirmación de borrado masivo físico a 3000 ms (`TIMEOUT_ERASE`) garantizando efectividad en el primer intento en silicio real bajo cualquier latencia USB-OTG.
+   - Reducción del timeout de drenado en `clearBuffer()` de 100 ms a 10 ms, eliminando ~400 ms de latencia acumulada innecesaria por operación.
+   - Desconexión garantizada de voltajes $V_{PP}$ y reset de comandos en bloque `finally`.
