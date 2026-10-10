@@ -79,6 +79,16 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * Se configuró `systemProp.java.net.preferIPv4Stack=true` en `gradle.properties` para asegurar descargas inmediatas sin timeouts por IPv6.
 10. **Validación Exitosa en Hardware Real (K150 + PIC16F628A):**
    * Validación al 100% de las 7 fases del protocolo en silicio real sobre Android 12 (detección de Device ID 0x6810, volcado ROM/EEPROM, borrado masivo, verificación en blanco, programación completa y verificación de fuses), corroborando la robustez de la pila en producción.
+11. **Lanzamiento Mayor v2.9.0 (K150 Master Suite):**
+   * Implementación completa de [`PROPUESTA_AUTODETECCION_CHIP_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/PROPUESTA_AUTODETECCION_CHIP_K150.md):
+     - Autodetección automática de PIC por Device ID en silicio (Flash).
+     - Botón Conectar/Desconectar USB en Toolbar con reconexión transparente sin re-pedir permisos OTG.
+     - Desacoplamiento de operaciones de hardware (Dump, Borrado, Blank Check y Detección disponibles sin requerir archivo HEX previo).
+     - Rediseño visual 3D de alta fidelidad en `PicAnimationView` (zócalo verde Textool K150 `#0F7A4D`, palanca metálica cerrada, Pin 1 dinámico, microcontrolador proporcional, llenado de memoria y barrido láser).
+     - Preservación automática de calibración de fábrica OSCCAL (`RETLW xx`) para PIC12F/PIC16F y soporte PIC10F (Comando `0x18`).
+     - Vector de Depuración ICD (24 bits) para inspección y parcheo.
+     - Diálogo de Diagnóstico Hardware K150 (modelo, protocolo, test de eco/latencia y control manual de voltajes VPP 13V / VDD 5V con fail-safe para técnicos).
+     - Programación selectiva (ROM, EEPROM, Fuses), Blank Check Dual y Editor Hexadecimal interactivo en vivo.
 
 ---
 
@@ -135,4 +145,6 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 * **Guía Operativa Exhaustiva:** [`GUIA_PRUEBAS_HARDWARE_REAL_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS_HARDWARE_REAL_K150.md) (manual completo para reproducir las 7 pruebas de hardware sin pantalla física).
 * **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
 * **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (10 evidencias visuales del ciclo completo de validación física: permisos USB, detección de socket con Device ID 0x6810, volcado ROM/EEPROM, borrado, verificación post-erase, programación de firmware y verificación bit a bit de fuses/código).
-* **Guía de Mejoras Técnicas Futuras:** [`PROPUESTA_AUTODETECCION_CHIP_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/PROPUESTA_AUTODETECCION_CHIP_K150.md) (diseño de arquitectura para autodetección de modelo PIC por Device ID y botón manual de conexión/desconexión USB sin re-solicitud de permisos en Android).
+* **Guía de Mejoras Técnicas:** [`PROPUESTA_AUTODETECCION_CHIP_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/PROPUESTA_AUTODETECCION_CHIP_K150.md) (arquitectura de autodetección de modelo PIC por Device ID, control USB, diagnóstico de hardware y calibración, 100% implementada en v2.9.0).
+* **Notas de Lanzamiento v2.9.0:** [`RELEASE_NOTES_v2.9.0.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.0.md) (detalle técnico bilingüe y registro de cambios para Google Play Console).
+
