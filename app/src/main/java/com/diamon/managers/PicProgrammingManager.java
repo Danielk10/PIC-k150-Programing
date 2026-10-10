@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.PowerManager;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.datos.ChipinfoReader;
 import com.diamon.datos.DatosPicProcesados;
 import com.diamon.protocolo.ProtocoloP18A;
 import com.diamon.pic.R;
@@ -514,6 +515,44 @@ public class PicProgrammingManager {
             notifyError(context.getString(R.string.error_detectando_chip) + ": " + e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * Resultado del proceso de autodetección de PIC en el zócalo ZIF.
+     */
+    public static class ResultadoAutodeteccion {
+        public final boolean chipEnSocket;
+        public final int rawDeviceId;
+        public final String modeloIdentificado;
+
+        public ResultadoAutodeteccion(boolean enSocket, int deviceId, String modelo) {
+            this.chipEnSocket = enSocket;
+            this.rawDeviceId = deviceId;
+            this.modeloIdentificado = modelo;
+        }
+    }
+
+    /**
+     * Autodetecta la presencia de un PIC en el zócalo ZIF e identifica su modelo mediante el Device ID.
+     *
+     * @param reader Instancia de ChipinfoReader con la base de datos de chips cargada
+     * @return ResultadoAutodeteccion con estado del socket, Device ID en bruto y modelo identificado
+     */
+    public ResultadoAutodeteccion autodectarChip(ChipinfoReader reader) {
+        if (protocolo == null) {
+            return new ResultadoAutodeteccion(false, -1, null);
+        }
+        boolean enSocket = protocolo.detectarPicEnElSocket();
+        if (!enSocket) {
+            return new ResultadoAutodeteccion(false, -1, null);
+        }
+        int rawId = protocolo.leerDeviceIDDelSocket();
+        String modelo = (rawId > 0 && reader != null) ? reader.buscarModeloPorDeviceID(rawId) : null;
+        return new ResultadoAutodeteccion(true, rawId, modelo);
+    }
+
+    public ResultadoAutodeteccion autodetectarChip(ChipinfoReader reader) {
+        return autodectarChip(reader);
     }
 
     /**

@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity
     private android.widget.Button btnDetectarPic;
     private android.widget.Button btnConfigureFuses; // NUEVO
     private android.widget.Button btnBlankCheck; // Verificar Borrado
+    private com.google.android.material.button.MaterialButton btnConnectUsb;
 
     private UsbConnectionManager usbManager;
     private PicProgrammingManager programmingManager;
@@ -266,6 +267,21 @@ public class MainActivity extends AppCompatActivity
 
         romDataContainer = findViewById(R.id.romDataContainer);
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
+
+        btnConnectUsb = findViewById(R.id.btnConnectUsb);
+        if (btnConnectUsb != null) {
+            btnConnectUsb.setOnClickListener(v -> {
+                if (usbManager != null && usbManager.isConnected()) {
+                    appendLog("🔌 " + getString(R.string.desconectado));
+                    usbManager.disconnect();
+                } else if (usbManager != null) {
+                    appendLog("🔌 Conectando al programador...");
+                    usbManager.connect();
+                }
+            });
+        }
+
+        actualizarEstadoBotones(false, false);
     }
 
     private void setupBanner() {
@@ -297,6 +313,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onChipSelected(ChipPic chip, String model) {
                 currentChip = chip;
+                if (dialogManager != null) {
+                    dialogManager.setChip(chip);
+                }
                 fileManager.setCurrentChip(chip);
                 chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
                 appendLog("⚙ " + getString(R.string.pic_seleccionado) + ": " + model);
@@ -313,6 +332,8 @@ public class MainActivity extends AppCompatActivity
                         appendLog("❌ " + getString(R.string.error_inicializando_chip));
                     }
                 }
+
+                actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), !firmware.isEmpty());
             }
 
             @Override
@@ -413,6 +434,11 @@ public class MainActivity extends AppCompatActivity
             if (connectionIndicator != null) {
                 connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             }
+            if (btnConnectUsb != null) {
+                btnConnectUsb.setText("Desconectar");
+                btnConnectUsb.setTextColor(Color.parseColor("#FF5252"));
+            }
+            actualizarEstadoBotones(true, !firmware.isEmpty());
             programmingManager.setProtocolo(usbManager.getProtocolo());
             appendLog("🔌 " + getString(R.string.conectado_al_programador));
         });
@@ -425,6 +451,11 @@ public class MainActivity extends AppCompatActivity
             if (connectionIndicator != null) {
                 connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             }
+            if (btnConnectUsb != null) {
+                btnConnectUsb.setText("Conectar");
+                btnConnectUsb.setTextColor(Color.parseColor("#4CAF50"));
+            }
+            actualizarEstadoBotones(false, !firmware.isEmpty());
             appendLog("❌ " + getString(R.string.desconectado));
         });
     }
@@ -436,6 +467,11 @@ public class MainActivity extends AppCompatActivity
             if (connectionIndicator != null) {
                 connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             }
+            if (btnConnectUsb != null) {
+                btnConnectUsb.setText("Conectar");
+                btnConnectUsb.setTextColor(Color.parseColor("#4CAF50"));
+            }
+            actualizarEstadoBotones(false, !firmware.isEmpty());
             appendLog("❌ " + errorMessage);
         });
     }
@@ -639,8 +675,7 @@ public class MainActivity extends AppCompatActivity
                         String tipoArchivo = esBin ? ".BIN" : ".HEX";
                         appendLog("📂 Cargando " + tipoArchivo + ": " + fileName);
 
-                        enableOperationButtons(true);
-                        enableFuseConfigButton(true);
+                        actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), true);
 
                         // Resetear configuración de fusibles al cargar nuevo archivo
                         clearFuseConfiguration();
@@ -768,53 +803,49 @@ public class MainActivity extends AppCompatActivity
         return Math.round(dp * getResources().getDisplayMetrics().density);
     }
 
-    /** NUEVO: Habilita/deshabilita el botón de configuración de fusibles */
-    private void enableFuseConfigButton(boolean enabled) {
-        btnConfigureFuses.setEnabled(enabled);
+    private void setButtonState(android.widget.Button btn, boolean enabled, int activeColor) {
+        if (btn == null) return;
+        btn.setEnabled(enabled);
         if (enabled) {
-            btnConfigureFuses.setBackgroundTintList(
-                    android.content.res.ColorStateList.valueOf(Color.parseColor("#00B0FF")));
-            btnConfigureFuses.setTextColor(Color.WHITE);
+            btn.setBackgroundTintList(
+                    android.content.res.ColorStateList.valueOf(activeColor));
+            btn.setTextColor(Color.WHITE);
         } else {
-            btnConfigureFuses.setBackgroundTintList(
+            btn.setBackgroundTintList(
                     android.content.res.ColorStateList.valueOf(Color.parseColor("#35354D")));
-            btnConfigureFuses.setTextColor(Color.parseColor("#6D6D8A"));
+            btn.setTextColor(Color.parseColor("#6D6D8A"));
         }
     }
 
-    private void enableOperationButtons(boolean enabled) {
-        android.widget.Button[] buttons = {
-                btnProgramarPic,
-                btnLeerMemoriaDeLPic,
-                btnVerificarMemoriaDelPic,
-                btnBorrarMemoriaDeLPic,
-                btnDetectarPic,
-                btnBlankCheck
-        };
+    /**
+     * Desacoplamiento de botones de hardware y firmware:
+     * - Operaciones de hardware (Detectar, Leer, Borrar, Blank Check) habilitadas si hardwareConectado == true
+     * - Operaciones dependientes de firmware (Programar, Verificar) habilitadas si hardwareConectado == true && firmwareCargado == true
+     * - Configuración de fusibles habilitada si currentChip != null
+     */
+    private void actualizarEstadoBotones(boolean hardwareConectado, boolean firmwareCargado) {
+        // Operaciones de hardware (independientes del archivo HEX)
+        setButtonState(btnDetectarPic, hardwareConectado, Color.parseColor("#00B0FF"));
+        setButtonState(btnLeerMemoriaDeLPic, hardwareConectado, Color.parseColor("#00B0FF"));
+        setButtonState(btnBorrarMemoriaDeLPic, hardwareConectado, Color.parseColor("#D32F2F"));
+        setButtonState(btnBlankCheck, hardwareConectado, Color.parseColor("#00B0FF"));
 
-        for (android.widget.Button btn : buttons) {
-            btn.setEnabled(enabled);
-            if (enabled) {
-                if (btn == btnProgramarPic) {
-                    btn.setBackgroundTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#FF6600")));
-                } else if (btn == btnBorrarMemoriaDeLPic) {
-                    btn.setBackgroundTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#D32F2F")));
-                } else {
-                    btn.setBackgroundTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    Color.parseColor("#00B0FF")));
-                }
-                btn.setTextColor(Color.WHITE);
-            } else {
-                btn.setBackgroundTintList(
-                        android.content.res.ColorStateList.valueOf(Color.parseColor("#35354D")));
-                btn.setTextColor(Color.parseColor("#6D6D8A"));
-            }
-        }
+        // Operaciones que requieren hardware conectado y firmware cargado
+        boolean progHabilitado = hardwareConectado && firmwareCargado;
+        setButtonState(btnProgramarPic, progHabilitado, Color.parseColor("#FF6600"));
+        setButtonState(btnVerificarMemoriaDelPic, progHabilitado, Color.parseColor("#00B0FF"));
+
+        // Configuración de fusibles (requiere chip seleccionado)
+        boolean fusesHabilitado = currentChip != null;
+        setButtonState(btnConfigureFuses, fusesHabilitado, Color.parseColor("#00B0FF"));
+    }
+
+    private void enableFuseConfigButton(boolean enabled) {
+        setButtonState(btnConfigureFuses, enabled, Color.parseColor("#00B0FF"));
+    }
+
+    private void enableOperationButtons(boolean enabled) {
+        actualizarEstadoBotones(enabled, enabled);
     }
 
     /**
@@ -877,6 +908,7 @@ public class MainActivity extends AppCompatActivity
         final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
         final List<Integer> fusesToUse = fusesConfigured ? new ArrayList<>(configuredFuses) : new ArrayList<>();
 
+        dialogManager.setChip(currentChip);
         dialogManager.showProgrammingDialog(
                 () -> {
                     new Thread(
@@ -1065,20 +1097,28 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void executeDetectChip() {
-        new Thread(
-                () -> {
-                    boolean detected = programmingManager.detectChipInSocket();
-                    runOnUiThread(
-                            () -> {
-                                if (detected) {
-                                    appendLog("✓ " + getString(R.string.pic_detectado_en_socket));
-                                } else {
-                                    appendLog("⚠ " + getString(
-                                            R.string.no_se_detecto_pic_en_socket));
-                                }
-                            });
-                })
-                .start();
+        new Thread(() -> {
+            runOnUiThread(() -> appendLog("🔍 Detectando chip en el zócalo..."));
+
+            PicProgrammingManager.ResultadoAutodeteccion res =
+                    programmingManager.autodectarChip(chipSelectionManager.getChipReader());
+            runOnUiThread(() -> {
+                if (!res.chipEnSocket) {
+                    appendLog("⚠ No se detectó ningún PIC en el zócalo ZIF (verifique orientación y palanca)");
+                    return;
+                }
+                appendLog("✓ PIC detectado físicamente en el zócalo");
+                if (res.modeloIdentificado != null) {
+                    String hexStr = String.format("0x%04X", res.rawDeviceId);
+                    appendLog("🎯 Identificado automáticamente: " + res.modeloIdentificado + " (ID: " + hexStr + ")");
+                    chipSelectionManager.seleccionarModeloEnSpinner(chipSpinner, res.modeloIdentificado);
+                    Toast.makeText(MainActivity.this, "Chip detectado: " + res.modeloIdentificado, Toast.LENGTH_SHORT).show();
+                } else {
+                    String hexStr = (res.rawDeviceId > 0) ? String.format("0x%04X", res.rawDeviceId) : "Desconocido";
+                    appendLog("ℹ Chip presente (ID: " + hexStr + "). Seleccione el modelo en la lista manual.");
+                }
+            });
+        }).start();
     }
 
     /** Ejecuta la verificación de borrado (Blank Check) */

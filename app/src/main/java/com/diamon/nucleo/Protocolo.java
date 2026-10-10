@@ -436,4 +436,6 @@ public abstract class Protocolo {
     public abstract String leerVectorDeDepuracionDelPic();
 
     public abstract boolean programarDatosDeCalibracionDePics10F();
+
+    public abstract int leerDeviceIDDelSocket();
 }

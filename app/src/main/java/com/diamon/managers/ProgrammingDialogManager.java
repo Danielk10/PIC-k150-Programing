@@ -48,9 +48,17 @@ public class ProgrammingDialogManager {
 
     private Runnable onProgrammingStartCallback;
     private Runnable onDismissCallback;
+    private com.diamon.chip.ChipPic currentChip;
 
     public ProgrammingDialogManager(Context context) {
         this.context = context;
+    }
+
+    public void setChip(com.diamon.chip.ChipPic chip) {
+        this.currentChip = chip;
+        if (picAnimView != null) {
+            picAnimView.setChip(chip);
+        }
     }
 
     public void showProgrammingDialog(Runnable onStart, Runnable onDismiss) {
@@ -169,6 +177,9 @@ public class ProgrammingDialogManager {
         topContent.addView(progressPercentTextView, percentParams);
 
         picAnimView = new PicAnimationView(context);
+        if (currentChip != null) {
+            picAnimView.setChip(currentChip);
+        }
         LinearLayout.LayoutParams animParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 dpToPx(240));
@@ -245,6 +256,9 @@ public class ProgrammingDialogManager {
 
         if (context instanceof android.app.Activity) {
             ((android.app.Activity) context).runOnUiThread(() -> {
+                if (picAnimView != null) {
+                    picAnimView.setProgress(progress);
+                }
                 if (statusProgressBar != null) {
                     statusProgressBar.setProgress(progress);
                 }
@@ -284,7 +298,7 @@ public class ProgrammingDialogManager {
     public void updateProgrammingResult(boolean success) {
         if (picAnimView != null) {
             picAnimView.setProgramming(false);
-            picAnimView.setVisibility(View.GONE);
+            picAnimView.setCompleted(success);
         }
 
         if (progressPercentTextView != null) {

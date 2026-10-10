@@ -243,6 +243,21 @@ public class UsbConnectionManager {
         return usbSerialPort != null && protocolo != null;
     }
 
+    /**
+     * Conecta o reconecta al programador USB si ya se cuenta con permisos.
+     */
+    public void connect() {
+        if (isConnected()) {
+            return;
+        }
+        drivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
+        if (drivers == null || drivers.isEmpty()) {
+            notifyError(context.getString(R.string.dispositivo_sin_puertos_usb_di));
+            return;
+        }
+        requestPermissionsIfNeeded();
+    }
+
     /** Cierra la conexion USB y libera recursos */
     public void disconnect() {
         cleanupConnection();

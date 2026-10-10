@@ -77,6 +77,10 @@ android {
     buildFeatures {
         resValues true
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 

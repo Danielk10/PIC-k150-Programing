@@ -104,6 +104,7 @@ public class ChipinfoReader {
 
     private final Map<String, ChipPic> chipEntries;
     private final ArrayList<String> modelosPic;
+    private final Map<Integer, String> deviceIdMap = new HashMap<>();
 
     /**
      * Obtiene el valor de un mapa o un valor por defecto si la clave no existe o es
@@ -133,39 +134,68 @@ public class ChipinfoReader {
 
         try {
             final List<String> lines = new LectorArchivoChipinfo(actividad).getInformacionPic();
-            final int totalLines = lines.size();
-
-            // 'block' acumula los campos del chip actual como Strings
-            // Se crea al encontrar la primera linea no-vacia de un bloque
-            Map<String, String> block = null;
-            // 'fusesBlock' acumula los fusibles estructurados del chip actual
-            Map<String, Map<String, List<ChipPic.FuseValue>>> fusesBlock = null;
-
-            for (int i = 0; i < totalLines; i++) {
-                final String raw = lines.get(i);
-                final String line = (raw != null) ? raw.trim() : "";
-                final boolean isLast = (i == totalLines - 1);
-
-                if (!line.isEmpty()) {
-                    // Primera linea de un bloque nuevo
-                    if (block == null) {
-                        block = new HashMap<>();
-                        fusesBlock = new HashMap<>();
-                    }
-                    parsearLinea(block, fusesBlock, line);
-                }
-
-                // Fin del bloque: linea vacia o ultima linea
-                if (block != null && (line.isEmpty() || isLast)) {
-                    guardarBloque(block, fusesBlock);
-                    block = null;
-                    fusesBlock = null;
-                }
-            }
-
+            procesarBaseDeDatos(lines);
         } catch (Exception e) {
             throw new ChipConfigurationException(
                     "Error al inicializar ChipinfoReader: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Constructor alternativo: procesa directamente una lista de líneas de chipinfo.
+     * Útil para pruebas unitarias y entornos sin contexto de Android.
+     *
+     * @param lines Líneas del archivo chipinfo
+     * @throws ChipConfigurationException si ocurre un error al procesar
+     */
+    public ChipinfoReader(List<String> lines) throws ChipConfigurationException {
+        chipEntries = new HashMap<>();
+        modelosPic = new ArrayList<>();
+        try {
+            procesarBaseDeDatos(lines);
+        } catch (Exception e) {
+            throw new ChipConfigurationException(
+                    "Error al inicializar ChipinfoReader: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Procesa las líneas de la base de datos de chips y pobla las estructuras en memoria.
+     *
+     * @param lines Lista de líneas del archivo de configuración
+     */
+    public void procesarBaseDeDatos(List<String> lines) {
+        if (lines == null) {
+            return;
+        }
+        final int totalLines = lines.size();
+
+        // 'block' acumula los campos del chip actual como Strings
+        // Se crea al encontrar la primera linea no-vacia de un bloque
+        Map<String, String> block = null;
+        // 'fusesBlock' acumula los fusibles estructurados del chip actual
+        Map<String, Map<String, List<ChipPic.FuseValue>>> fusesBlock = null;
+
+        for (int i = 0; i < totalLines; i++) {
+            final String raw = lines.get(i);
+            final String line = (raw != null) ? raw.trim() : "";
+            final boolean isLast = (i == totalLines - 1);
+
+            if (!line.isEmpty()) {
+                // Primera linea de un bloque nuevo
+                if (block == null) {
+                    block = new HashMap<>();
+                    fusesBlock = new HashMap<>();
+                }
+                parsearLinea(block, fusesBlock, line);
+            }
+
+            // Fin del bloque: linea vacia o ultima linea
+            if (block != null && (line.isEmpty() || isLast)) {
+                guardarBloque(block, fusesBlock);
+                block = null;
+                fusesBlock = null;
+            }
         }
     }
 
@@ -250,6 +280,20 @@ public class ChipinfoReader {
         if (chipName == null || chipName.isEmpty())
             return;
 
+        // Registrar Device ID en el mapa de resolución inversa
+        String chipIdRaw = block.get("ChipID");
+        if (chipIdRaw != null && !chipIdRaw.trim().isEmpty()) {
+            try {
+                int chipId = Integer.parseInt(chipIdRaw.trim(), 16);
+                if (chipId != 0xFFFF && chipId > 0) {
+                    if (!deviceIdMap.containsKey(chipId) || (!chipName.endsWith("-I") && deviceIdMap.get(chipId).endsWith("-I"))) {
+                        deviceIdMap.put(chipId, chipName);
+                    }
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
+
         String romSize = block.get("ROMsize");
         String coreType = block.get("CoreType");
         if (romSize == null || romSize.isEmpty())
@@ -308,6 +352,38 @@ public class ChipinfoReader {
     // -------------------------------------------------------------------------
     // API publica
     // -------------------------------------------------------------------------
+
+    /**
+     * Busca el modelo de PIC correspondiente a un Device ID en bruto.
+     * Soporta coincidencia directa, máscara de revisión de 5 bits (0xFFE0),
+     * y orden de bytes invertido (Little-Endian / Big-Endian).
+     *
+     * @param rawWord Palabra de 16 bits del Device ID leída del PIC
+     * @return Nombre del modelo de PIC (ej. "16F628A") o null si no se reconoce
+     */
+    public String buscarModeloPorDeviceID(int rawWord) {
+        // 1. Coincidencia directa
+        if (deviceIdMap.containsKey(rawWord)) return deviceIdMap.get(rawWord);
+        // 2. Máscara de revisión de 5 bits (Microchip: 0xFFE0)
+        int masked = rawWord & 0xFFE0;
+        if (deviceIdMap.containsKey(masked)) return deviceIdMap.get(masked);
+        // 3. Byte-swapped (Little-Endian a Big-Endian)
+        int swapped = ((rawWord & 0xFF) << 8) | ((rawWord >> 8) & 0xFF);
+        if (deviceIdMap.containsKey(swapped)) return deviceIdMap.get(swapped);
+        // 4. Byte-swapped con máscara de revisión
+        int swappedMasked = swapped & 0xFFE0;
+        if (deviceIdMap.containsKey(swappedMasked)) return deviceIdMap.get(swappedMasked);
+        return null;
+    }
+
+    /**
+     * Retorna una vista no modificable del mapa de Device IDs a nombres de modelo PIC.
+     *
+     * @return Mapa inverso DeviceID -> Modelo
+     */
+    public Map<Integer, String> getDeviceIdMap() {
+        return Collections.unmodifiableMap(deviceIdMap);
+    }
 
     /**
      * Obtiene el objeto ChipPic para el chip indicado.

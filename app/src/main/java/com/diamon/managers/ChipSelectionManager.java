@@ -167,6 +167,18 @@ public class ChipSelectionManager {
         return getSelectedChipInfoColored().toString();
     }
 
+    public ChipinfoReader getChipReader() {
+        return chipReader;
+    }
+
+    public void seleccionarModeloEnSpinner(Spinner spinner, String modelo) {
+        if (chipModels == null || spinner == null || modelo == null) return;
+        int index = chipModels.indexOf(modelo);
+        if (index >= 0) {
+            spinner.setSelection(index);
+        }
+    }
+
     private void notifyError(String message) {
         if (selectionListener != null) {
             selectionListener.onChipSelectionError(message);

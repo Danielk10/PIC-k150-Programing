@@ -872,6 +872,21 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
+    public int leerDeviceIDDelSocket() {
+        String configData = leerDatosDeConfiguracionDelPic();
+        if (configData == null || configData.startsWith("Error") || configData.length() < 4) {
+            return -1;
+        }
+        try {
+            // Los primeros 4 caracteres hexadecimales son los 2 bytes del Device ID (ej. "6810")
+            String idHex = configData.substring(0, 4);
+            return Integer.parseInt(idHex, 16);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    @Override
     public boolean borrarMemoriasDelPic() {
 
         try {
