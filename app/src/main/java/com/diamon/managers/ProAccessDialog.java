@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.diamon.billing.BillingManager;
+import com.diamon.pic.R;
 import com.diamon.publicidad.GestorPublicidad;
 
 /**
@@ -66,9 +67,11 @@ public class ProAccessDialog {
         rootLayout.setPadding(dp(20, density), dp(20, density), dp(20, density), dp(20, density));
         rootLayout.setBackgroundColor(COLOR_BG);
 
+        String appName = activity.getString(R.string.app_name);
+
         // 1. TÍTULO CON ICONO
         TextView titleView = new TextView(activity);
-        titleView.setText("⭐ Acceso K150 Pro");
+        titleView.setText("⭐ " + appName + " Pro");
         titleView.setTextSize(22);
         titleView.setTypeface(null, Typeface.BOLD);
         titleView.setTextColor(COLOR_ACCENT_GOLD);
@@ -77,7 +80,7 @@ public class ProAccessDialog {
 
         // Subtítulo
         TextView subtitleView = new TextView(activity);
-        subtitleView.setText("Desbloquea las herramientas técnicas avanzadas de MicroPro y silicio");
+        subtitleView.setText("Desbloquea las herramientas técnicas avanzadas de " + appName + " y silicio");
         subtitleView.setTextSize(13);
         subtitleView.setTextColor(COLOR_TEXT_SECONDARY);
         subtitleView.setGravity(Gravity.CENTER);
@@ -147,7 +150,7 @@ public class ProAccessDialog {
             if (gestorPublicidad != null) {
                 gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
                     proPassManager.activarPase12Horas();
-                    Toast.makeText(activity, "⭐ ¡Pase K150 Pro activado por 12 horas!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, "⭐ ¡Pase " + appName + " Pro activado por 12 horas!", Toast.LENGTH_LONG).show();
                     if (onProUnlocked != null) {
                         onProUnlocked.run();
                     }
@@ -171,7 +174,7 @@ public class ProAccessDialog {
         String priceText = (billingManager != null && billingManager.getFormattedPrice() != null)
                 ? " (" + billingManager.getFormattedPrice() + ")"
                 : " ($4.99)";
-        btnBuyPro.setText("👑 Comprar Versión Pro Permanente" + priceText);
+        btnBuyPro.setText("👑 Comprar " + appName + " Pro Permanente" + priceText);
         btnBuyPro.setTextSize(14);
         btnBuyPro.setTypeface(null, Typeface.BOLD);
         btnBuyPro.setTextColor(0xFF1E1E2E);
