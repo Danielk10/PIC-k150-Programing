@@ -543,33 +543,29 @@ public class PicProgrammingManager {
             return new ResultadoAutodeteccion(false, -1, null);
         }
         try {
-            boolean enSocket = protocolo.detectarPicEnElSocket();
             int rawId = protocolo.leerDeviceIDDelSocket();
 
-            // Si el socket o la lectura inicial fallaron (p.ej. porque el K150 tenía variables
+            // Si la lectura inicial no devolvió un ID válido (p.ej. porque el K150 tenía variables
             // incompatibles configuradas por una selección manual previa en el spinner),
             // intentar fallback resincronizando variables con un perfil 14-bit estándar (16F628A).
-            if ((!enSocket || rawId <= 0 || rawId == 0xFFFF) && reader != null) {
+            if ((rawId <= 0 || rawId == 0xFFFF || rawId == 0x3FFF) && reader != null) {
                 ChipPic defaultProfile = reader.getChipEntry("16F628A");
                 if (defaultProfile != null) {
                     try {
                         protocolo.iniciarVariablesDeProgramacion(defaultProfile);
-                        if (!enSocket) {
-                            enSocket = protocolo.detectarPicEnElSocket();
-                        }
                         int retryId = protocolo.leerDeviceIDDelSocket();
-                        if (retryId > 0 && retryId != 0xFFFF) {
+                        if (retryId > 0 && retryId != 0xFFFF && retryId != 0x3FFF) {
                             rawId = retryId;
-                            enSocket = true;
                         }
                     } catch (Exception ignored) {
                     }
                 }
             }
 
-            // Si se detectó un Device ID válido en silicio, confirmamos presencia en socket
-            if (rawId > 0 && rawId != 0xFFFF) {
-                enSocket = true;
+            boolean enSocket = (rawId > 0 && rawId != 0xFFFF && rawId != 0x3FFF);
+            if (!enSocket) {
+                // Fallback para chips sin Device ID en silicio (ej. 12-bit o PIC16C antiguos)
+                enSocket = protocolo.detectarPicEnElSocket();
             }
 
             if (!enSocket) {

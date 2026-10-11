@@ -292,16 +292,21 @@ public class MainActivity extends AppCompatActivity
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
 
         btnConnectUsb = findViewById(R.id.btnConnectUsb);
+        View layoutConnectUsb = findViewById(R.id.layoutConnectUsb);
+        View.OnClickListener connectListener = v -> {
+            if (usbManager != null && usbManager.isConnected()) {
+                appendLog("🔌 " + getString(R.string.desconectado));
+                usbManager.disconnect();
+            } else if (usbManager != null) {
+                appendLog("🔌 Conectando al programador...");
+                usbManager.connect();
+            }
+        };
         if (btnConnectUsb != null) {
-            btnConnectUsb.setOnClickListener(v -> {
-                if (usbManager != null && usbManager.isConnected()) {
-                    appendLog("🔌 " + getString(R.string.desconectado));
-                    usbManager.disconnect();
-                } else if (usbManager != null) {
-                    appendLog("🔌 Conectando al programador...");
-                    usbManager.connect();
-                }
-            });
+            btnConnectUsb.setOnClickListener(connectListener);
+        }
+        if (layoutConnectUsb != null) {
+            layoutConnectUsb.setOnClickListener(connectListener);
         }
 
         actualizarEstadoBotones(false, false);
@@ -344,6 +349,11 @@ public class MainActivity extends AppCompatActivity
                     dialogManager.setChip(chip);
                 }
                 fileManager.setCurrentChip(chip);
+                if (fileManager != null) {
+                    fileManager.clearLoadedFile();
+                }
+                firmware = "";
+                datosPicProcesados = null;
                 chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
                 appendLog("⚙ " + getString(R.string.pic_seleccionado) + ": " + model);
 
@@ -360,7 +370,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), !firmware.isEmpty());
+                actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), false);
             }
 
             @Override
@@ -407,6 +417,10 @@ public class MainActivity extends AppCompatActivity
             }
         });
         billingManager.startConnection();
+
+        if (publicidad != null) {
+            publicidad.setAdsDisabledChecker(() -> proPassManager != null && proPassManager.isProActive(billingManager));
+        }
 
         dialogManager = new ProgrammingDialogManager(this);
         notificacionVibracionManager = new NotificacionVibracionManager(this);
@@ -496,9 +510,6 @@ public class MainActivity extends AppCompatActivity
             actualizarEstadoBotones(true, !firmware.isEmpty());
             programmingManager.setProtocolo(usbManager.getProtocolo());
             calibracionManager.setProtocolo(usbManager.getProtocolo());
-            if (dialogManager != null) {
-                dialogManager.setProtocolo(usbManager.getProtocolo());
-            }
             appendLog("🔌 " + getString(R.string.conectado_al_programador));
 
             if (currentChip != null && usbManager.getProtocolo() != null) {
@@ -1043,6 +1054,114 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
+     * Verifica la presencia del microcontrolador en el zócalo ZIF antes de realizar
+     * operaciones que lo requieran (Programar, Leer, Borrar, Verificar, Blank Check).
+     *
+     * Si el chip ya está en el zócalo, ejecuta la operación de inmediato.
+     * Si no está en el zócalo, muestra la advertencia y monitorea la inserción;
+     * tan pronto como se inserte el chip, ejecuta la operación automáticamente.
+     */
+    private void verificarChipEnSocketYEjecutar(Runnable operacion, String nombreOperacion) {
+        if (currentChip == null) {
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
+            return;
+        }
+
+        if (usbManager == null || !usbManager.isConnected()) {
+            appendLog("⚠ Conecte el programador K150 por USB primero.");
+            return;
+        }
+
+        // Si está en modo ICSP, la conexión es externa a los pines del circuito; omitir sensor de socket ZIF
+        if (swModeICSP != null && swModeICSP.isChecked()) {
+            operacion.run();
+            return;
+        }
+
+        Protocolo proto = usbManager.getProtocolo();
+        if (proto == null) {
+            operacion.run();
+            return;
+        }
+
+        appendLog("🔍 Verificando presencia de PIC en el zócalo ZIF...");
+        new Thread(() -> {
+            boolean chipEnSocket = proto.detectarPicEnElSocket();
+            if (chipEnSocket) {
+                // El microcontrolador ya está en el zócalo; proceder normalmente
+                runOnUiThread(operacion);
+            } else {
+                // No hay chip en el zócalo; alertar y esperar inserción automática
+                runOnUiThread(() -> mostrarAlertaYEspanarInsercion(operacion, nombreOperacion, proto));
+            }
+        }, "VerificarSocketThread").start();
+    }
+
+    private void mostrarAlertaYEspanarInsercion(Runnable operacion, String nombreOperacion, Protocolo proto) {
+        if (isFinishing() || (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1 && isDestroyed())) {
+            return;
+        }
+
+        if (notificacionVibracionManager != null) {
+            notificacionVibracionManager.vibrarAlerta();
+            notificacionVibracionManager.reproducirSonidoNotificacion();
+        }
+
+        appendLog("⚠️ Inserte el microcontrolador " + (currentChip != null ? currentChip.getNombreDelPic() : "")
+                + " en el zócalo ZIF para continuar.");
+
+        final java.util.concurrent.atomic.AtomicBoolean cancelado = new java.util.concurrent.atomic.AtomicBoolean(false);
+
+        androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("⚠️ Inserte el Microcontrolador")
+                .setMessage("No se detectó ningún chip en el zócalo ZIF.\n\n"
+                        + "Por favor, inserte el PIC " + (currentChip != null ? currentChip.getNombreDelPic() : "")
+                        + " en la posición correspondiente y trabe la palanca.\n\n"
+                        + "⏳ La operación [" + nombreOperacion + "] se iniciará automáticamente tan pronto como inserte el chip.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setNegativeButton(R.string.cancelar, (d, which) -> {
+                    cancelado.set(true);
+                    appendLog("⏹ Operación [" + nombreOperacion + "] cancelada por el usuario.");
+                })
+                .setOnCancelListener(d -> {
+                    cancelado.set(true);
+                    appendLog("⏹ Operación [" + nombreOperacion + "] cancelada.");
+                })
+                .create();
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        new Thread(() -> {
+            // Espera activa hasta 60 segundos por la inserción física del chip en el zócalo
+            boolean detectado = proto.esperarInsercionEnElSocket(60000, cancelado);
+
+            runOnUiThread(() -> {
+                if (dialog.isShowing()) {
+                    try {
+                        dialog.dismiss();
+                    } catch (Exception ignored) {}
+                }
+
+                if (cancelado.get()) {
+                    return;
+                }
+
+                if (detectado) {
+                    if (notificacionVibracionManager != null) {
+                        notificacionVibracionManager.vibrarExito();
+                    }
+                    appendLog("✓ Chip insertado y detectado en el zócalo ZIF. Iniciando " + nombreOperacion + "...");
+                    operacion.run();
+                } else {
+                    appendLog("⏱ Tiempo de espera agotado sin insertar el chip en el zócalo.");
+                    Toast.makeText(MainActivity.this, "Tiempo de espera agotado. Inserte el chip y vuelva a intentar.", Toast.LENGTH_LONG).show();
+                }
+            });
+        }, "EsperarInsercionAutoThread").start();
+    }
+
+    /**
      * Programación Selectiva: Ofrece modal con las 4 opciones
      * (Completa, Solo Flash ROM, Solo EEPROM, Solo Configuración)
      */
@@ -1057,48 +1176,15 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        // Si no está en modo ICSP, verificar que el microcontrolador esté físicamente en el zócalo ZIF
-        Protocolo proto = (usbManager != null) ? usbManager.getProtocolo() : null;
-        if (proto != null && (swModeICSP == null || !swModeICSP.isChecked())) {
-            appendLog("🔍 Verificando presencia de PIC en el zócalo ZIF...");
-            new Thread(() -> {
-                boolean chipEnSocket = proto.detectarPicEnElSocket();
-                if (!chipEnSocket) {
-                    runOnUiThread(() -> {
-                        if (notificacionVibracionManager != null) {
-                            notificacionVibracionManager.vibrarAlerta();
-                            notificacionVibracionManager.reproducirSonidoNotificacion();
-                        }
-                        appendLog("❌ Advertencia: Inserte el microcontrolador en el zócalo antes de grabar.");
-                        mostrarAlertaPicNoInsertado();
-                    });
-                    return;
-                }
-                runOnUiThread(this::iniciarFlujoSeleccionProgramacion);
-            }).start();
-            return;
-        }
-
-        iniciarFlujoSeleccionProgramacion();
+        verificarChipEnSocketYEjecutar(this::iniciarFlujoSeleccionProgramacion, getString(R.string.programar_pic));
     }
 
     private void iniciarFlujoSeleccionProgramacion() {
         if (programacionSelectivaManager != null) {
-            programacionSelectivaManager.mostrarMenuSeleccion(this, this::doProgrammingFlow);
+            programacionSelectivaManager.mostrarMenuSeleccion(this, currentChip, this::doProgrammingFlow);
         } else {
             doProgrammingFlow(TipoProgramacion.COMPLETA);
         }
-    }
-
-    private void mostrarAlertaPicNoInsertado() {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("⚠️ Zócalo ZIF Vacío")
-                .setMessage("No se ha detectado ningún microcontrolador en el zócalo ZIF.\n\nPor favor, inserte el PIC "
-                        + (currentChip != null ? currentChip.getNombreDelPic() : "")
-                        + " en la posición correspondiente, trabe la palanca y vuelva a intentar la grabación.")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(R.string.aceptar, null)
-                .show();
     }
 
     private void doProgrammingFlow(TipoProgramacion tipo) {
@@ -1113,15 +1199,14 @@ public class MainActivity extends AppCompatActivity
                     new Thread(
                             () -> {
                                 boolean success;
-                                if (programacionSelectivaManager != null) {
-                                    success = programacionSelectivaManager.ejecutarProgramacion(
-                                            tipo,
-                                            programmingManager,
-                                            currentChip,
-                                            firmware,
-                                            idToUse,
-                                            fusesToUse);
+                                if (tipo == TipoProgramacion.SOLO_ROM) {
+                                    success = programmingManager.programRomOnly(currentChip, firmware);
+                                } else if (tipo == TipoProgramacion.SOLO_EEPROM) {
+                                    success = programmingManager.programEepromOnly(currentChip, firmware);
+                                } else if (tipo == TipoProgramacion.SOLO_CONFIG) {
+                                    success = programmingManager.programConfigOnly(currentChip, firmware, idToUse, fusesToUse);
                                 } else {
+                                    // Default: Grabación Completa
                                     success = programmingManager.programChip(currentChip, firmware, idToUse, fusesToUse);
                                 }
 
@@ -1132,9 +1217,7 @@ public class MainActivity extends AppCompatActivity
                                             if (finalSuccess) {
                                                 if (notificacionVibracionManager != null) {
                                                     notificacionVibracionManager.vibrarExito();
-                                                    notificacionVibracionManager.lanzarNotificacion(
-                                                            "¡Grabación Completada!",
-                                                            "El microcontrolador " + (currentChip != null ? currentChip.getNombreDelPic() : "PIC") + " fue grabado correctamente.");
+                                                    notificacionVibracionManager.reproducirSonidoNotificacion();
                                                 }
                                                 appendLog("✓ ¡Grabación completada y verificada con éxito!");
                                             } else {
@@ -1157,7 +1240,10 @@ public class MainActivity extends AppCompatActivity
             appendLog("⚠ " + getString(R.string.seleccione_un_chip));
             return;
         }
+        verificarChipEnSocketYEjecutar(this::doReadMemoryOperation, getString(R.string.leer_memoria));
+    }
 
+    private void doReadMemoryOperation() {
         // Ocultar banner mientras se muestra el popup
         publicidad.ocultarBanner();
 
@@ -1214,6 +1300,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void executeEraseMemory() {
+        if (currentChip == null) {
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
+            return;
+        }
+        verificarChipEnSocketYEjecutar(this::doEraseMemoryOperation, getString(R.string.borrar_memoria));
+    }
+
+    private void doEraseMemoryOperation() {
         new Thread(
                 () -> {
                     if (currentChip != null && CalibracionManager.requiereCalibracion(currentChip)) {
@@ -1252,19 +1346,21 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
+            appendLog("❌ " + getString(R.string.error_verificando_memoria) + ": " + getString(R.string.no_hay_firmware_valido));
+            return;
+        }
+
+        verificarChipEnSocketYEjecutar(this::doVerifyMemoryOperation, getString(R.string.verificar));
+    }
+
+    private void doVerifyMemoryOperation() {
         appendLog("⏳ " + getString(R.string.verificando_memoria));
 
         new Thread(
                 () -> {
                     try {
                         // Procesar el HEX cargado (firmware) a bytes si es necesario
-                        if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
-                             runOnUiThread(() -> appendLog("❌ " +
-                                     getString(R.string.error_verificando_memoria) + ": " + getString(R.string.no_hay_firmware_valido)));
-                            return;
-                        }
-
-                        // Usar VerificationManager para verificación real con bytes procesados
                         byte[] expectedRomBytes = datosPicProcesados.obtenerBytesHexROMProcesado();
                         byte[] expectedEepromBytes = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
 
@@ -1338,11 +1434,23 @@ public class MainActivity extends AppCompatActivity
                 if (res.modeloIdentificado != null) {
                     String hexStr = String.format("0x%04X", res.rawDeviceId);
                     appendLog("🎯 Identificado automáticamente: " + res.modeloIdentificado + " (ID: " + hexStr + ")");
+                    firmware = "";
+                    datosPicProcesados = null;
+                    if (fileManager != null) {
+                        fileManager.clearLoadedFile();
+                    }
+                    actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), false);
                     chipSelectionManager.seleccionarModeloEnSpinner(chipSpinner, res.modeloIdentificado);
                     Toast.makeText(MainActivity.this, "Chip detectado: " + res.modeloIdentificado, Toast.LENGTH_SHORT).show();
                 } else {
                     String hexStr = (res.rawDeviceId > 0) ? String.format("0x%04X", res.rawDeviceId) : "Desconocido";
                     appendLog("ℹ Chip presente (ID: " + hexStr + "). Seleccione el modelo en la lista manual.");
+                    firmware = "";
+                    datosPicProcesados = null;
+                    if (fileManager != null) {
+                        fileManager.clearLoadedFile();
+                    }
+                    actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), false);
                 }
             });
         }).start();
@@ -1355,6 +1463,10 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        verificarChipEnSocketYEjecutar(this::doBlankCheckOperation, getString(R.string.verificar_borrado));
+    }
+
+    private void doBlankCheckOperation() {
         appendLog("⏳ " + getString(R.string.verificando_borrado) + "...");
 
         new Thread(() -> {
@@ -1420,7 +1532,7 @@ public class MainActivity extends AppCompatActivity
             if (billingManager != null && billingManager.isProPurchased()) {
                 proTitle = "👑 Pro Permanente";
             } else {
-                proTitle = "⭐ Pro (" + proPassManager.formatearTiempoRestante() + ")";
+                proTitle = "⭐ Pro " + proPassManager.formatearTiempoRestante();
             }
         }
         menu.add(Menu.NONE, 12, 0, proTitle).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

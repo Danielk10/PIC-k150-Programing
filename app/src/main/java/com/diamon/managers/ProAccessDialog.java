@@ -150,6 +150,7 @@ public class ProAccessDialog {
             if (gestorPublicidad != null) {
                 gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
                     proPassManager.activarPase12Horas();
+                    gestorPublicidad.ocultarBanner();
                     Toast.makeText(activity, "⭐ ¡Pase " + appName + " Pro activado por 12 horas!", Toast.LENGTH_LONG).show();
                     if (onProUnlocked != null) {
                         onProUnlocked.run();

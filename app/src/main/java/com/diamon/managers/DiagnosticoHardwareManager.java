@@ -450,7 +450,27 @@ public class DiagnosticoHardwareManager {
                 if (chipEnSocket) {
                     activity.runOnUiThread(() -> {
                         btnActivarVpp.setEnabled(true);
-                        mostrarAlertaSeguridadVpp(activity, protocolo, btnActivarVpp, tvEstadoVoltaje, voltajesActivos, log);
+                        mostrarAlertaSeguridadVpp(activity, protocolo, () -> {
+                            btnActivarVpp.setEnabled(false);
+                            new Thread(() -> {
+                                boolean ok = activarVoltajes(protocolo);
+                                activity.runOnUiThread(() -> {
+                                    btnActivarVpp.setEnabled(true);
+                                    if (ok) {
+                                        voltajesActivos.set(true);
+                                        tvEstadoVoltaje.setText("Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS");
+                                        tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
+                                        if (log != null) {
+                                            log.onLog("⚡ Voltajes VPP/VDD activados (13V/5V) para medición");
+                                        }
+                                        Toast.makeText(activity, "Chip retirado: Voltajes activados para medición segura", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        tvEstadoVoltaje.setText("Estado: ❌ Error activando voltajes");
+                                        tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
+                                    }
+                                });
+                            }).start();
+                        });
                     });
                     return;
                 }
@@ -502,6 +522,35 @@ public class DiagnosticoHardwareManager {
         btnReiniciarV.setOnClickListener(v -> {
             btnReiniciarV.setEnabled(false);
             new Thread(() -> {
+                boolean chipEnSocket = protocolo.detectarPicEnElSocket();
+                if (chipEnSocket) {
+                    activity.runOnUiThread(() -> {
+                        btnReiniciarV.setEnabled(true);
+                        mostrarAlertaSeguridadVpp(activity, protocolo, () -> {
+                            btnReiniciarV.setEnabled(false);
+                            new Thread(() -> {
+                                boolean ok = reiniciarVoltajes(protocolo);
+                                activity.runOnUiThread(() -> {
+                                    btnReiniciarV.setEnabled(true);
+                                    if (ok) {
+                                        voltajesActivos.set(true);
+                                        tvEstadoVoltaje.setText("Estado: ⚡ Voltajes reiniciados (Activos)");
+                                        tvEstadoVoltaje.setTextColor(Color.parseColor("#00B0FF"));
+                                        if (log != null) {
+                                            log.onLog("⚡ Ciclo de voltajes de programación reiniciado");
+                                        }
+                                        Toast.makeText(activity, "Chip retirado: Voltajes reiniciados para medición", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        tvEstadoVoltaje.setText("Estado: ❌ Error al reiniciar voltajes");
+                                        tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
+                                    }
+                                });
+                            }).start();
+                        });
+                    });
+                    return;
+                }
+
                 boolean ok = reiniciarVoltajes(protocolo);
                 activity.runOnUiThread(() -> {
                     btnReiniciarV.setEnabled(true);
@@ -542,10 +591,7 @@ public class DiagnosticoHardwareManager {
     private void mostrarAlertaSeguridadVpp(
             Activity activity,
             ProtocoloP18A protocolo,
-            Button btnActivarVpp,
-            TextView tvEstadoVoltaje,
-            AtomicBoolean voltajesActivos,
-            LogCallback log) {
+            Runnable accionAlRetirar) {
 
         final AtomicBoolean cancelToken = new AtomicBoolean(false);
 
@@ -566,25 +612,9 @@ public class DiagnosticoHardwareManager {
                     try {
                         dialog.dismiss();
                     } catch (Exception ignored) {}
-                    btnActivarVpp.setEnabled(false);
-                    new Thread(() -> {
-                        boolean ok = activarVoltajes(protocolo);
-                        activity.runOnUiThread(() -> {
-                            btnActivarVpp.setEnabled(true);
-                            if (ok) {
-                                voltajesActivos.set(true);
-                                tvEstadoVoltaje.setText("Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS");
-                                tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
-                                if (log != null) {
-                                    log.onLog("✓ Chip extraído detectado. Voltajes VPP/VDD activados con seguridad");
-                                }
-                                Toast.makeText(activity, "Chip retirado: Voltajes activados para medición segura", Toast.LENGTH_SHORT).show();
-                            } else {
-                                tvEstadoVoltaje.setText("Estado: ❌ Error activando voltajes");
-                                tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
-                            }
-                        });
-                    }).start();
+                    if (accionAlRetirar != null) {
+                        accionAlRetirar.run();
+                    }
                 } else if (!cancelToken.get()) {
                     try {
                         dialog.dismiss();

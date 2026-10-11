@@ -2,8 +2,10 @@
 <data-extraction-rules>
     <cloud-backup>
         <include domain="sharedpref" path="pro_pass_prefs.xml"/>
+        <include domain="file" path=".k150_pro_pass.dat"/>
     </cloud-backup>
     <device-transfer>
         <include domain="sharedpref" path="pro_pass_prefs.xml"/>
+        <include domain="file" path=".k150_pro_pass.dat"/>
     </device-transfer>
 </data-extraction-rules>

@@ -74,6 +74,20 @@ public class GestorPublicidad implements Publicidad {
     private final AppCompatActivity actividad;
     private final Handler mainHandler;
 
+    public interface AdsDisabledChecker {
+        boolean areAdsDisabled();
+    }
+
+    private AdsDisabledChecker adsDisabledChecker;
+
+    public void setAdsDisabledChecker(AdsDisabledChecker checker) {
+        this.adsDisabledChecker = checker;
+    }
+
+    private boolean isAdDisabled() {
+        return adsDisabledChecker != null && adsDisabledChecker.areAdsDisabled();
+    }
+
     private AdView adView;
     private RewardedAd rewardedAd;
     private boolean isRewardedLoading = false;
@@ -239,6 +253,10 @@ public class GestorPublicidad implements Publicidad {
     @Override
     public void resumenBanner() {
         mainHandler.post(() -> {
+            if (isAdDisabled()) {
+                if (adView != null) adView.setVisibility(View.GONE);
+                return;
+            }
             if (adView != null)
                 adView.resume();
         });
@@ -277,6 +295,10 @@ public class GestorPublicidad implements Publicidad {
 
         mainHandler.post(() -> {
             try {
+                if (isAdDisabled()) {
+                    if (adView != null) adView.setVisibility(View.GONE);
+                    return;
+                }
                 if (!PicApplication.isMobileAdsInitialized()) {
                     Log.w(TAG, "Diferido: Cargando banner tras inicialización...");
                     mainHandler.postDelayed(() -> cargarBanner(container), 2000);
@@ -324,6 +346,11 @@ public class GestorPublicidad implements Publicidad {
     @Override
     public void mostrarBanner() {
         mainHandler.post(() -> {
+            if (isAdDisabled()) {
+                if (adView != null)
+                    adView.setVisibility(View.GONE);
+                return;
+            }
             if (adView != null)
                 adView.setVisibility(View.VISIBLE);
         });

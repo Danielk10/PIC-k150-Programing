@@ -26,34 +26,7 @@
             android:background="#003366"
             android:elevation="8dp"
             app:titleTextColor="#FFFFFF"
-            app:title="@string/app_name">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginEnd="8dp">
-
-                <View
-                    android:id="@+id/connectionIndicator"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/connection_indicator" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnConnectUsb"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:paddingHorizontal="8dp"
-                    android:text="Conectar"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </androidx.appcompat.widget.Toolbar>
+            app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Layout principal compacto (SIN ScrollView externo) -->
@@ -101,7 +74,7 @@
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
-                    <Spinner
+                    <com.diamon.managers.ReselectableSpinner
                         android:id="@+id/chipSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -251,21 +224,77 @@
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
-                <!-- Fila A: Cargar archivo -->
-                <Button
-                    android:id="@+id/btnSelectHex"
+                <!-- Fila A: Conectar USB con Indicador -->
+                <LinearLayout
+                    android:id="@+id/layoutConnectUsb"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginBottom="4dp"
-                    android:backgroundTint="#FF6600"
-                    android:textAllCaps="false"
-                    android:text="@string/cargar_archivo_hex"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:background="#222235">
 
-                <!-- Fila B: Config Fuses + Blank Check -->
+                    <View
+                        android:id="@+id/connectionIndicator"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/connection_indicator" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConnectUsb"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Conectar"
+                        android:textColor="#4CAF50"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+                </LinearLayout>
+
+                <!-- Fila B: Cargar archivo HEX + Programar PIC -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSelectHex"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FF6600"
+                        android:textAllCaps="false"
+                        android:text="@string/cargar_archivo_hex"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnProgramarPic"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#35354D"
+                        android:enabled="false"
+                        android:textAllCaps="false"
+                        android:text="@string/programar_pic"
+                        android:textColor="#6D6D8A"
+                        android:textSize="11sp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp" />
+                </LinearLayout>
+
+                <!-- Fila C: Config Fuses + Blank Check -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -302,21 +331,6 @@
                         android:paddingTop="0dp"
                         android:paddingBottom="0dp" />
                 </LinearLayout>
-
-                <!-- Fila C: Programar -->
-                <Button
-                    android:id="@+id/btnProgramarPic"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_marginBottom="4dp"
-                    android:backgroundTint="#35354D"
-                    android:enabled="false"
-                    android:textAllCaps="false"
-                    android:text="@string/programar_pic"
-                    android:textColor="#6D6D8A"
-                    android:textSize="12sp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp" />
 
                 <!-- Fila D: Leer + Verificar -->
                 <LinearLayout

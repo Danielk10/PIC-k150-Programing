@@ -107,11 +107,11 @@ public class ProPassManager {
         if (context == null) return;
         new Thread(() -> {
             try {
-                File docDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-                if (!docDir.exists()) {
-                    docDir.mkdirs();
+                File privateDir = context.getFilesDir();
+                if (privateDir != null && !privateDir.exists()) {
+                    privateDir.mkdirs();
                 }
-                File backupFile = new File(docDir, BACKUP_FILENAME);
+                File backupFile = new File(privateDir, BACKUP_FILENAME);
                 String hash = calcularHash(getDeviceId(), expireTime);
                 FileWriter writer = new FileWriter(backupFile);
                 writer.write(expireTime + ":" + hash);
@@ -125,8 +125,8 @@ public class ProPassManager {
     private void intentarRestaurarRespaldo() {
         if (context == null) return;
         try {
-            File docDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-            File backupFile = new File(docDir, BACKUP_FILENAME);
+            File privateDir = context.getFilesDir();
+            File backupFile = new File(privateDir, BACKUP_FILENAME);
             if (!backupFile.exists() || !backupFile.canRead()) {
                 return;
             }

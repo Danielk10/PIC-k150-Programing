@@ -39,6 +39,10 @@ public class FileManager {
         this.currentChip = chip;
     }
 
+    public void clearLoadedFile() {
+        this.hexFileContent = "";
+    }
+
     public FileManager(AppCompatActivity activity) {
         this.activity = activity;
         this.context = activity;

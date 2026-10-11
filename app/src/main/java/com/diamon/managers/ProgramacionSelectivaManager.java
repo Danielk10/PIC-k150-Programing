@@ -75,29 +75,49 @@ public class ProgramacionSelectivaManager {
     }
 
     /**
+     * Muestra el menú modal con las opciones de programación selectiva.
+     * Garantiza que la Grabación Completa aparezca siempre en primer lugar.
+     *
+     * @param context  Contexto de la actividad.
+     * @param chipPIC  Microcontrolador actual (opcional, para omitir EEPROM si no dispone).
+     * @param listener Callback invocado al seleccionar una opción.
+     */
+    public void mostrarMenuSeleccion(Context context, ChipPic chipPIC, OnProgramacionSeleccionadaListener listener) {
+        if (context == null || listener == null) return;
+
+        List<TipoProgramacion> opciones = new ArrayList<>();
+        // Grabación Completa SIEMPRE de primero
+        opciones.add(TipoProgramacion.COMPLETA);
+        opciones.add(TipoProgramacion.SOLO_ROM);
+        if (chipPIC == null || chipPIC.isTamanoValidoDeEEPROM()) {
+            opciones.add(TipoProgramacion.SOLO_EEPROM);
+        }
+        opciones.add(TipoProgramacion.SOLO_CONFIG);
+
+        CharSequence[] items = new CharSequence[opciones.size()];
+        for (int i = 0; i < opciones.size(); i++) {
+            items[i] = opciones.get(i).getTitulo() + "\n   " + opciones.get(i).getDescripcion();
+        }
+
+        new AlertDialog.Builder(context)
+                .setTitle("🎛️ " + context.getString(R.string.seleccionar_operacion))
+                .setItems(items, (dialog, which) -> {
+                    if (which >= 0 && which < opciones.size()) {
+                        listener.onOpcionSeleccionada(opciones.get(which));
+                    }
+                })
+                .setNegativeButton(context.getString(R.string.cancelar), null)
+                .show();
+    }
+
+    /**
      * Muestra el menú modal con las 4 opciones de programación selectiva.
      *
      * @param context  Contexto de la actividad.
      * @param listener Callback invocado al seleccionar una opción.
      */
     public void mostrarMenuSeleccion(Context context, OnProgramacionSeleccionadaListener listener) {
-        if (context == null || listener == null) return;
-
-        TipoProgramacion[] opciones = TipoProgramacion.values();
-        CharSequence[] items = new CharSequence[opciones.length];
-        for (int i = 0; i < opciones.length; i++) {
-            items[i] = opciones[i].getTitulo() + "\n   " + opciones[i].getDescripcion();
-        }
-
-        new AlertDialog.Builder(context)
-                .setTitle("🎛️ " + context.getString(R.string.seleccionar_operacion))
-                .setItems(items, (dialog, which) -> {
-                    if (which >= 0 && which < opciones.length) {
-                        listener.onOpcionSeleccionada(opciones[which]);
-                    }
-                })
-                .setNegativeButton(context.getString(R.string.cancelar), null)
-                .show();
+        mostrarMenuSeleccion(context, null, listener);
     }
 
     /**

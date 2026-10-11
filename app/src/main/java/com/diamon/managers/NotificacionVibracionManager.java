@@ -122,9 +122,21 @@ public class NotificacionVibracionManager {
     public void reproducirSonidoNotificacion() {
         try {
             Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(context, soundUri);
-            if (r != null) {
-                r.play();
+            if (soundUri == null) {
+                soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            }
+            if (soundUri != null) {
+                Ringtone r = RingtoneManager.getRingtone(context, soundUri);
+                if (r != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                                .build();
+                        r.setAudioAttributes(audioAttributes);
+                    }
+                    r.play();
+                }
             }
         } catch (Exception ignored) {
         }
