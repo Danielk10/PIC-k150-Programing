@@ -125,8 +125,9 @@ public abstract class Protocolo {
                 int bytesRead = usbSerialPort.read(targetBuf, Math.min(timeoutMillis, 100));
 
                 if (bytesRead > 0) {
-                    System.arraycopy(targetBuf, 0, resultado, totalBytesRead, bytesRead);
-                    totalBytesRead += bytesRead;
+                    int bytesToCopy = Math.min(bytesRead, Math.min(targetBuf.length, remaining));
+                    System.arraycopy(targetBuf, 0, resultado, totalBytesRead, bytesToCopy);
+                    totalBytesRead += bytesToCopy;
 
                 } else if (bytesRead == 0) {
                     // Si no se reciben datos, esperar brevemente antes de reintentar

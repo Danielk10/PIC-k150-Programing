@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; を使用して PIC マイクロコントローラーをプログラムするためのプロフェッショナル アプリケーション。 PC を必要とせず、USB OTG 経由で Android から直接 PIC デバイスをプログラムできます。</string>
+    <string name="about_description">KITSRUS <b>Protocol P018</b> を使用して PIC マイクロコントローラーをプログラムするためのプロフェッショナル アプリケーション。 PC を必要とせず、USB OTG 経由で Android から直接 PIC デバイスをプログラムできます。</string>
     <string name="about_features">主な特徴:</string>
     <string name="about_feature_1">OTG 経由で PC を使用せずにモバイル プログラミングを行うことができます。</string>
     <string name="about_feature_2">KITSRUS P018 プロトコル (K150、K128、K149、K182) のサポート。</string>
@@ -467,4 +467,6 @@ PIC %1$sを対応する位置に挿入してレバーをロックし、もう一
     <string name="status_connected">接続済み</string>
     <string name="status_error">エラー</string>
     <string name="log_pro_purchase_error">⚠ Pro購入: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

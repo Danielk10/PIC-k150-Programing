@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Uhlelo lokusebenza oluchwepheshile lokuhlela ama-microcontroller e-PIC kusetshenziswa i-KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Ikuvumela ukuthi uhlele amadivayisi we-PIC ngqo kusuka ku-Android nge-USB OTG ngaphandle kwesidingo se-PC.</string>
+    <string name="about_description">Uhlelo lokusebenza oluchwepheshile lokuhlela ama-microcontroller e-PIC kusetshenziswa i-KITSRUS <b>Protocol P018</b>. Ikuvumela ukuthi uhlele amadivayisi we-PIC ngqo kusuka ku-Android nge-USB OTG ngaphandle kwesidingo se-PC.</string>
     <string name="about_features">Izici eziyinhloko:</string>
     <string name="about_feature_1">Izinhlelo zeselula ngaphandle kwe-PC nge-OTG.</string>
     <string name="about_feature_2">Ukusekelwa kwezivumelwano ze-KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="status_connected">Kuxhunyiwe</string>
     <string name="status_error">Iphutha</string>
     <string name="log_pro_purchase_error">⚠ Ukuthenga i-Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

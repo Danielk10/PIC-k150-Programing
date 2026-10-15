@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar;
 public class CodeBlockView {
 
     private LinearLayout codeContainer;
-    private String codeContent;
     private Context context;
 
     public CodeBlockView(Context context, LinearLayout container) {
@@ -31,7 +30,6 @@ public class CodeBlockView {
      * @param code Código a mostrar
      */
     public void addCodeBlock(String emoji, String title, String code) {
-        this.codeContent = code;
 
         // Crear LinearLayout para el bloque
         LinearLayout blockLayout = new LinearLayout(context);

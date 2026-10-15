@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Faglegt forrit til að forrita PIC örstýringar með KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Það gerir þér kleift að forrita PIC tæki beint frá Android í gegnum USB OTG án þess að þurfa tölvu.</string>
+    <string name="about_description">Faglegt forrit til að forrita PIC örstýringar með KITSRUS <b>Protocol P018</b>. Það gerir þér kleift að forrita PIC tæki beint frá Android í gegnum USB OTG án þess að þurfa tölvu.</string>
     <string name="about_features">Helstu eiginleikar:</string>
     <string name="about_feature_1">Farsímaforritun án tölvu í gegnum OTG.</string>
     <string name="about_feature_2">Stuðningur við KITSRUS P018 samskiptareglur (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Vinsamlegast settu PIC %1$s í viðeigandi stöðu, læstu handfanginu og ýttu 
     <string name="status_connected">Tengt</string>
     <string name="status_error">Villa</string>
     <string name="log_pro_purchase_error">⚠ Pro kaup: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

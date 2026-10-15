@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Propesyonal na aplikasyon sa pagprograma ng mga PIC microcontroller gamit ang KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Binibigyang-daan ka nitong mag-program ng mga PIC device nang direkta mula sa Android sa pamamagitan ng USB OTG nang hindi nangangailangan ng PC.</string>
+    <string name="about_description">Propesyonal na aplikasyon sa pagprograma ng mga PIC microcontroller gamit ang KITSRUS <b>Protocol P018</b>. Binibigyang-daan ka nitong mag-program ng mga PIC device nang direkta mula sa Android sa pamamagitan ng USB OTG nang hindi nangangailangan ng PC.</string>
     <string name="about_features">Pangunahing tampok:</string>
     <string name="about_feature_1">Mobile programming na walang PC sa pamamagitan ng OTG.</string>
     <string name="about_feature_2">Suporta para sa mga protocol ng KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Mangyaring ipasok ang PIC %1$s sa kaukulang posisyon, i-lock ang lever, at i-tap
     <string name="status_connected">Nakakonekta</string>
     <string name="status_error">Error</string>
     <string name="log_pro_purchase_error">⚠ Pagbili ng Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

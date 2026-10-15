@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Professzionális alkalmazás PIC mikrokontrollerek programozásához a KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; használatával. Lehetővé teszi a PIC-eszközök közvetlen programozását az Androidról USB OTG-n keresztül, számítógép nélkül.</string>
+    <string name="about_description">Professzionális alkalmazás PIC mikrokontrollerek programozásához a KITSRUS <b>Protocol P018</b> használatával. Lehetővé teszi a PIC-eszközök közvetlen programozását az Androidról USB OTG-n keresztül, számítógép nélkül.</string>
     <string name="about_features">Főbb jellemzők:</string>
     <string name="about_feature_1">Mobil programozás PC nélkül OTG-n keresztül.</string>
     <string name="about_feature_2">KITSRUS P018 protokollok támogatása (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Kérjük, helyezze be a PIC %1$s mikrokontrollert a megfelelő pozícióba, zár
     <string name="status_connected">Csatlakoztatva</string>
     <string name="status_error">Hiba</string>
     <string name="log_pro_purchase_error">⚠ Pro vásárlás: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

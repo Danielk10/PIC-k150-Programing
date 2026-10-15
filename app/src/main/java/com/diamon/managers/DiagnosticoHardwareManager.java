@@ -448,10 +448,10 @@ public class DiagnosticoHardwareManager {
                     }
 
                     if (log != null) {
-                        log.onLog("🩺 Diagnóstico K150: " + res.modeloProgramador +
-                                " | Proto: " + res.protocolo +
-                                " | Eco: " + (res.ecoExitoso ? res.latenciaEcoMs + "ms" : "Fallo") +
-                                " | Socket: " + (res.picEnSocket ? "Chip Detectado" : "Vacío"));
+                        log.onLog(activity.getString(R.string.diag_dialog_title) + ": " + res.modeloProgramador +
+                                " | " + activity.getString(R.string.protocolo) + ": " + res.protocolo +
+                                " | " + activity.getString(R.string.diag_label_echo_test) + " " + (res.ecoExitoso ? res.latenciaEcoMs + " ms" : activity.getString(R.string.fallo)) +
+                                " | " + activity.getString(R.string.diag_label_zif_sensor) + " " + res.getEstadoSocketDescripcion(activity));
                     }
                 });
             }).start();
@@ -472,13 +472,13 @@ public class DiagnosticoHardwareManager {
                         tvEco.setText(activity.getString(R.string.diag_echo_ok, (int) latencia));
                         tvEco.setTextColor(Color.parseColor("#4CAF50"));
                         if (log != null) {
-                            log.onLog("⚡ Eco serial K150 exitoso: " + latencia + " ms");
+                            log.onLog(activity.getString(R.string.diag_echo_ok, (int) latencia));
                         }
                     } else {
                         tvEco.setText(activity.getString(R.string.diag_echo_failed));
                         tvEco.setTextColor(Color.parseColor("#FF5252"));
                         if (log != null) {
-                            log.onLog("❌ Prueba de eco K150 no respondió");
+                            log.onLog(activity.getString(R.string.diag_echo_no_response));
                         }
                     }
                 });
@@ -509,7 +509,7 @@ public class DiagnosticoHardwareManager {
                                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_vpp_active));
                                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
                                         if (log != null) {
-                                            log.onLog("⚡ Voltajes VPP/VDD activados (13V/5V) para medición");
+                                            log.onLog(activity.getString(R.string.diag_toast_voltages_activated_multimeter));
                                         }
                                         Toast.makeText(activity, activity.getString(R.string.diag_toast_chip_removed_voltages_active), Toast.LENGTH_SHORT).show();
                                     } else {
@@ -531,14 +531,14 @@ public class DiagnosticoHardwareManager {
                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_vpp_active));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
                         if (log != null) {
-                            log.onLog("⚡ Voltajes VPP/VDD activados (13V/5V) para medición");
+                            log.onLog(activity.getString(R.string.diag_toast_voltages_activated_multimeter));
                         }
                         Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_activated_multimeter), Toast.LENGTH_SHORT).show();
                     } else {
                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_activating));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
                         if (log != null) {
-                            log.onLog("❌ Error al activar voltajes de programación");
+                            log.onLog(activity.getString(R.string.diag_status_error_activating));
                         }
                     }
                 });
@@ -557,7 +557,7 @@ public class DiagnosticoHardwareManager {
                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_off));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#4CAF50"));
                         if (log != null) {
-                            log.onLog("✓ Voltajes desactivados (0V)");
+                            log.onLog(activity.getString(R.string.diag_toast_voltages_off));
                         }
                         Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_off), Toast.LENGTH_SHORT).show();
                     } else {
@@ -587,7 +587,7 @@ public class DiagnosticoHardwareManager {
                                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_restarted));
                                         tvEstadoVoltaje.setTextColor(Color.parseColor("#00B0FF"));
                                         if (log != null) {
-                                            log.onLog("⚡ Ciclo de voltajes de programación reiniciado");
+                                            log.onLog(activity.getString(R.string.diag_toast_voltages_restarted));
                                         }
                                         Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_restarted), Toast.LENGTH_SHORT).show();
                                     } else {
@@ -609,7 +609,7 @@ public class DiagnosticoHardwareManager {
                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_restarted));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#00B0FF"));
                         if (log != null) {
-                            log.onLog("⚡ Ciclo de voltajes de programación reiniciado");
+                            log.onLog(activity.getString(R.string.diag_toast_voltages_restarted));
                         }
                     } else {
                         tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_restarting));
@@ -746,7 +746,7 @@ public class DiagnosticoHardwareManager {
                     tvPaso1.setTextColor(Color.parseColor("#4CAF50"));
                     tvPaso2.setText(activity.getString(R.string.diag_zif_step2_waiting));
                     tvPaso2.setTextColor(Color.parseColor("#FFD54F"));
-                    if (log != null) log.onLog("✓ Sensor de inserción ZIF respondido (Comando 18)");
+                    if (log != null) log.onLog(activity.getString(R.string.diag_zif_step1_ok));
                 } else {
                     tvPaso1.setText(activity.getString(R.string.diag_zif_step1_timeout));
                     tvPaso1.setTextColor(Color.parseColor("#FF5252"));
@@ -766,7 +766,7 @@ public class DiagnosticoHardwareManager {
                     tvPaso2.setText(activity.getString(R.string.diag_zif_step2_ok));
                     tvPaso2.setTextColor(Color.parseColor("#4CAF50"));
                     tvInfo.setText(activity.getString(R.string.diag_zif_both_sensors_ok));
-                    if (log != null) log.onLog("✓ Sensor de extracción ZIF respondido (Comando 19)");
+                    if (log != null) log.onLog(activity.getString(R.string.diag_zif_step2_ok));
                 } else {
                     tvPaso2.setText(activity.getString(R.string.diag_zif_step2_timeout));
                     tvPaso2.setTextColor(Color.parseColor("#FF5252"));

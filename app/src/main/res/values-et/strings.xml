@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Professionaalne rakendus PIC-mikrokontrollerite programmeerimiseks, kasutades KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. See võimaldab programmeerida PIC-seadmeid otse Androidist USB OTG kaudu, ilma et oleks vaja arvutit.</string>
+    <string name="about_description">Professionaalne rakendus PIC-mikrokontrollerite programmeerimiseks, kasutades KITSRUS <b>Protocol P018</b>. See võimaldab programmeerida PIC-seadmeid otse Androidist USB OTG kaudu, ilma et oleks vaja arvutit.</string>
     <string name="about_features">Peamised omadused:</string>
     <string name="about_feature_1">Mobiilne programmeerimine ilma arvutita OTG kaudu.</string>
     <string name="about_feature_2">KITSRUS P018 protokollide tugi (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Palun sisestage PIC %1$s vastavasse asendisse, lukustage hoob ja puudutage uuest
     <string name="status_connected">Ühendatud</string>
     <string name="status_error">Viga</string>
     <string name="log_pro_purchase_error">⚠ Pro ost: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

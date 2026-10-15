@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Профессиональное приложение для программирования микроконтроллеров PIC с использованием KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Он позволяет программировать устройства PIC непосредственно с Android через USB OTG без необходимости использования ПК.</string>
+    <string name="about_description">Профессиональное приложение для программирования микроконтроллеров PIC с использованием KITSRUS <b>Protocol P018</b>. Он позволяет программировать устройства PIC непосредственно с Android через USB OTG без необходимости использования ПК.</string>
     <string name="about_features">Основные особенности:</string>
     <string name="about_feature_1">Мобильное программирование без ПК через OTG.</string>
     <string name="about_feature_2">Поддержка протоколов KITSRUS P018 (К150, К128, К149, К182).</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">Подключено</string>
     <string name="status_error">Ошибка</string>
     <string name="log_pro_purchase_error">⚠ Покупка Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

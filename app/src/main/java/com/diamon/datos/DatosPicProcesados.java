@@ -61,9 +61,6 @@ public class DatosPicProcesados {
     /** Valores de fuses como enteros */
     private int[] fuseValues;
 
-    /** Información del procesamiento para logging */
-    private String informacionProcesamiento;
-
     /** Indican si el HEX fuente trae registros de cada región (aunque sean blank). */
     private boolean romPresenteEnHex;
     private boolean eepromPresenteEnHex;
@@ -259,9 +256,6 @@ public class DatosPicProcesados {
 
             // Procesar ID y fuses
             procesarIDyFuses(idRecords, idWordBase, fuseRecords, fuseWordBase, coreBits);
-
-            // Generar información de resumen
-            this.informacionProcesamiento = generarResumenProcesamiento();
 
         } catch (Exception e) {
 
@@ -542,33 +536,6 @@ public class DatosPicProcesados {
         }
     }
 
-    /**
-     * Genera un resumen del procesamiento para logging.
-     *
-     * @return String con resumen del procesamiento
-     */
-    private String generarResumenProcesamiento() {
-        StringBuilder resumen = new StringBuilder();
-        resumen.append("Procesamiento completado - ");
-
-        if (romData != null) {
-            resumen.append("ROM: ").append(romData.length).append(" bytes, ");
-        }
-
-        if (eepromData != null) {
-            resumen.append("EEPROM: ").append(eepromData.length).append(" bytes, ");
-        }
-
-        if (IDData != null) {
-            resumen.append("ID: ").append(IDData.length).append(" bytes, ");
-        }
-
-        if (fuseValues != null) {
-            resumen.append("Fuses: ").append(fuseValues.length).append(" valores");
-        }
-
-        return resumen.toString();
-    }
 
     /**
      * Verifica si la PROM procesada contiene datos no en blanco.

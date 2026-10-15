@@ -165,7 +165,7 @@ public class PicProgrammingManager {
                         || usuarioConfiguroFuses || usuarioConfiguroID;
 
                 if (!hasRom && !hasEeprom && !hasConfig) {
-                    notifyError(context.getString(R.string.error_programando_pic) + ": HEX sin regiones programables");
+                    notifyError(context.getString(R.string.error_programando_pic) + ": " + context.getString(R.string.hex_sin_regiones));
                     return false;
                 }
 
@@ -286,7 +286,7 @@ public class PicProgrammingManager {
             }
 
             if (!chipPIC.isTamanoValidoDeEEPROM()) {
-                notifyError("Chip no tiene memoria EEPROM");
+                notifyError(context.getString(R.string.eeprom_no_disponible));
                 return false;
             }
 
@@ -440,7 +440,7 @@ public class PicProgrammingManager {
             try {
                 return protocolo.leerDatosDeConfiguracionDelPic();
             } catch (Exception e) {
-                notifyError("Error leyendo datos de configuración: " + e.getMessage());
+                notifyError(context.getString(R.string.error_leyendo_config_detalle, e.getMessage()));
                 return "";
             }
         } finally {

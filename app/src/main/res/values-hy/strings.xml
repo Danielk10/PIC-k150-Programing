@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Պրոֆեսիոնալ հավելված՝ PIC միկրոկառավարիչների ծրագրավորման համար՝ օգտագործելով KITRUS &lt;b&gt;Protocol P018&lt;/b&gt;: Այն թույլ է տալիս ծրագրավորել PIC սարքերը անմիջապես Android-ից՝ USB OTG-ի միջոցով՝ առանց համակարգչի անհրաժեշտության:</string>
+    <string name="about_description">Պրոֆեսիոնալ հավելված՝ PIC միկրոկառավարիչների ծրագրավորման համար՝ օգտագործելով KITRUS <b>Protocol P018</b>: Այն թույլ է տալիս ծրագրավորել PIC սարքերը անմիջապես Android-ից՝ USB OTG-ի միջոցով՝ առանց համակարգչի անհրաժեշտության:</string>
     <string name="about_features">Հիմնական հատկանիշները:</string>
     <string name="about_feature_1">Բջջային ծրագրավորում առանց համակարգչի OTG-ի միջոցով:</string>
     <string name="about_feature_2">Աջակցություն KITTRUS P018 արձանագրություններին (K150, K128, K149, K182):</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">Միացված է</string>
     <string name="status_error">Սխալ</string>
     <string name="log_pro_purchase_error">⚠ Pro գնում՝ %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

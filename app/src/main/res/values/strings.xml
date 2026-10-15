@@ -467,4 +467,6 @@ Please insert the PIC %1$s in the corresponding position, lock the lever, and ta
     <string name="status_connected">Connected</string>
     <string name="status_error">Error</string>
     <string name="log_pro_purchase_error">⚠ Pro purchase: %1$s</string>
+    <string name="log_memoria_editada">✏️ %1$s memory edited at 0x%2$04X: 0x%3$X -&gt; 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX without programmable regions</string>
 </resources>

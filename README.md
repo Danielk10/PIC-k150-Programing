@@ -6,7 +6,7 @@
 
 [![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=com.diamon.pic)
 
-![Version](https://img.shields.io/badge/version-2.9.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.9.1-blue.svg)
 ![API Level](https://img.shields.io/badge/API-23%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange.svg)
 ![Target SDK](https://img.shields.io/badge/Target%20SDK-37-blueviolet.svg)
@@ -31,6 +31,7 @@ El protocolo y la aplicación han sido **100% verificados y certificados sobre h
 - **🎯 Interfaz intuitiva**: Diseño Material Design con flujo de trabajo optimizado para cargar archivos HEX y programar con mínimos pasos
 - **📊 Soporte multiarquitectura**: Compatible con todas las arquitecturas Android modernas
 - **💾 Compatible con archivos HEX**: Soporta formato Intel HEX estándar para carga de firmware
+- **🌍 Internacionalización Global (53 Idiomas)**: Traducción y sincronización completa del 100% de los recursos (450 claves) en 53 idiomas con terminología técnica certificada para microcontroladores y electrónica.
 - **📱 OTG Ready**: Funciona con cualquier dispositivo Android que soporte USB Host Mode
 
 ## 🏗️ Arquitectura y compatibilidad

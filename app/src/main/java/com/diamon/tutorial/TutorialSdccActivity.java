@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -30,7 +29,6 @@ import java.nio.charset.StandardCharsets;
 public class TutorialSdccActivity extends AppCompatActivity {
 
     private LinearLayout tutorialContainer;
-    private ScrollView scrollView;
     private Spinner languageSpinner;
     private Button copyButton;
     private ImageView tutorialImageView;
@@ -59,7 +57,6 @@ public class TutorialSdccActivity extends AppCompatActivity {
 
         // Inicializar componentes
         tutorialContainer = findViewById(R.id.tutorialContainer);
-        scrollView = findViewById(R.id.tutorialScrollView);
         languageSpinner = findViewById(R.id.languageSpinner);
         copyButton = findViewById(R.id.btnCopyTutorial);
         tutorialImageView = findViewById(R.id.tutorialImageView);
@@ -120,7 +117,7 @@ public class TutorialSdccActivity extends AppCompatActivity {
                     getString(R.string.error_cargar_tutorial) + ": " + e.getMessage(),
                     Snackbar.LENGTH_LONG).show();
             e.printStackTrace();
-            fullTutorialContent = "Error loading tutorial.";
+            fullTutorialContent = getString(R.string.error_cargar_tutorial);
         }
     }
 

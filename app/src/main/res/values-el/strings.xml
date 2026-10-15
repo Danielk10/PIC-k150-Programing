@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Επαγγελματική εφαρμογή για τον προγραμματισμό μικροελεγκτών PIC χρησιμοποιώντας το KITRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Σας επιτρέπει να προγραμματίζετε συσκευές PIC απευθείας από το Android μέσω USB OTG χωρίς να χρειάζεστε υπολογιστή.</string>
+    <string name="about_description">Επαγγελματική εφαρμογή για τον προγραμματισμό μικροελεγκτών PIC χρησιμοποιώντας το KITRUS <b>Protocol P018</b>. Σας επιτρέπει να προγραμματίζετε συσκευές PIC απευθείας από το Android μέσω USB OTG χωρίς να χρειάζεστε υπολογιστή.</string>
     <string name="about_features">Κύρια χαρακτηριστικά:</string>
     <string name="about_feature_1">Προγραμματισμός κινητού χωρίς υπολογιστή μέσω OTG.</string>
     <string name="about_feature_2">Υποστήριξη για πρωτόκολλα KITRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">Συνδεδεμένο</string>
     <string name="status_error">Σφάλμα</string>
     <string name="log_pro_purchase_error">⚠ Αγορά Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

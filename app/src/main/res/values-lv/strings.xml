@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Profesionāla lietojumprogramma PIC mikrokontrolleru programmēšanai, izmantojot KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Tas ļauj programmēt PIC ierīces tieši no Android, izmantojot USB OTG, neizmantojot datoru.</string>
+    <string name="about_description">Profesionāla lietojumprogramma PIC mikrokontrolleru programmēšanai, izmantojot KITSRUS <b>Protocol P018</b>. Tas ļauj programmēt PIC ierīces tieši no Android, izmantojot USB OTG, neizmantojot datoru.</string>
     <string name="about_features">Galvenās iezīmes:</string>
     <string name="about_feature_1">Mobilā programmēšana bez datora, izmantojot OTG.</string>
     <string name="about_feature_2">Atbalsts KITSRUS P018 protokoliem (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Lūdzu, ievietojiet PIC %1$s atbilstošajā pozīcijā, nofiksējiet sviru un v�
     <string name="status_connected">Pievienots</string>
     <string name="status_error">Kļūda</string>
     <string name="log_pro_purchase_error">⚠ Pro pirkums: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

@@ -56,9 +56,6 @@ public class ProcesadorHex {
     /** Lista de registros HEX procesados */
     private final List<HexRecord> records = new ArrayList<>();
 
-    /** Información del archivo procesado para logging */
-    private final String informacionArchivo;
-
     /**
      * Constructor que procesa un archivo HEX completo con logging integrado.
      *
@@ -72,7 +69,6 @@ public class ProcesadorHex {
         }
 
         String[] lineas = fileContent.split("\n");
-        this.informacionArchivo = String.format("%d líneas, %d caracteres", lineas.length, fileContent.length());
 
         boolean eof = false;
         int extendedAddress = 0;

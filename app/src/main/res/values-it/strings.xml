@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Applicazione professionale per programmare i microcontrollori PIC utilizzando il KITSRUS &lt;b&gt;Protocollo P018&lt;/b&gt;. Permette di programmare i dispositivi PIC direttamente da Android tramite USB OTG senza bisogno di un PC.</string>
+    <string name="about_description">Applicazione professionale per programmare i microcontrollori PIC utilizzando il KITSRUS <b>Protocollo P018</b>. Permette di programmare i dispositivi PIC direttamente da Android tramite USB OTG senza bisogno di un PC.</string>
     <string name="about_features">Caratteristiche principali:</string>
     <string name="about_feature_1">Programmazione mobile senza PC tramite OTG.</string>
     <string name="about_feature_2">Supporto per i protocolli KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Inserire il PIC %1$s nella posizione corrispondente, bloccare la leva e toccare 
     <string name="status_connected">Connesso</string>
     <string name="status_error">Errore</string>
     <string name="log_pro_purchase_error">⚠ Acquisto Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

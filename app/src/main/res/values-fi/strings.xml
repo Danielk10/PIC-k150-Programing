@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Ammattimainen sovellus PIC-mikro-ohjainten ohjelmointiin KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; -protokollalla. Sen avulla voit ohjelmoida PIC-laitteita suoraan Androidista USB OTG:n kautta ilman tietokonetta.</string>
+    <string name="about_description">Ammattimainen sovellus PIC-mikro-ohjainten ohjelmointiin KITSRUS <b>Protocol P018</b> -protokollalla. Sen avulla voit ohjelmoida PIC-laitteita suoraan Androidista USB OTG:n kautta ilman tietokonetta.</string>
     <string name="about_features">Pääominaisuudet:</string>
     <string name="about_feature_1">Mobiiliohjelmointi ilman PC:tä OTG:n kautta.</string>
     <string name="about_feature_2">Tuki KITSRUS P018 -protokolloille (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</s
     <string name="status_connected">Yhdistetty</string>
     <string name="status_error">Virhe</string>
     <string name="log_pro_purchase_error">⚠ Pro-osto: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

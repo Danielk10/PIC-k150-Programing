@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Professionele toepassing om PIC-mikrobeheerders te programmeer deur die KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; te gebruik. Dit laat jou toe om PIC-toestelle direk vanaf Android via USB OTG te programmeer sonder dat \'n rekenaar nodig is.</string>
+    <string name="about_description">Professionele toepassing om PIC-mikrobeheerders te programmeer deur die KITSRUS <b>Protocol P018</b> te gebruik. Dit laat jou toe om PIC-toestelle direk vanaf Android via USB OTG te programmeer sonder dat \'n rekenaar nodig is.</string>
     <string name="about_features">Belangrikste kenmerke:</string>
     <string name="about_feature_1">Mobiele programmering sonder rekenaar via OTG.</string>
     <string name="about_feature_2">Ondersteuning vir KITSRUS P018-protokolle (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Plaas asseblief die PIC %1$s in die ooreenstemmende posisie, sluit die hefboom, 
     <string name="status_connected">Gekoppel</string>
     <string name="status_error">Fout</string>
     <string name="log_pro_purchase_error">⚠ Pro-aankoop: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

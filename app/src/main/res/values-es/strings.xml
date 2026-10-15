@@ -467,4 +467,6 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="status_connected">Conectado</string>
     <string name="status_error">Error</string>
     <string name="log_pro_purchase_error">⚠ Compra Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -&gt; 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

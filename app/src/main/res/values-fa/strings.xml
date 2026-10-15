@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">برنامه حرفه ای برای برنامه ریزی میکروکنترلرهای PIC با استفاده از KITRUS &lt;b&gt;Protocol P018&lt;/b&gt;. این امکان را به شما می دهد که دستگاه های PIC را مستقیماً از اندروید از طریق USB OTG بدون نیاز به رایانه شخصی برنامه ریزی کنید.</string>
+    <string name="about_description">برنامه حرفه ای برای برنامه ریزی میکروکنترلرهای PIC با استفاده از KITRUS <b>Protocol P018</b>. این امکان را به شما می دهد که دستگاه های PIC را مستقیماً از اندروید از طریق USB OTG بدون نیاز به رایانه شخصی برنامه ریزی کنید.</string>
     <string name="about_features">ویژگی های اصلی:</string>
     <string name="about_feature_1">برنامه نویسی موبایل بدون کامپیوتر از طریق OTG.</string>
     <string name="about_feature_2">پشتیبانی از پروتکل های KITRUS P018 (K150، K128، K149، K182).</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">متصل</string>
     <string name="status_error">خطا</string>
     <string name="log_pro_purchase_error">⚠ خرید Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

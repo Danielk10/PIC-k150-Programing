@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; kullanarak PIC mikrokontrolörlerini programlamak için profesyonel uygulama. PIC cihazlarını PC\'ye ihtiyaç duymadan USB OTG aracılığıyla doğrudan Android\'den programlamanıza olanak tanır.</string>
+    <string name="about_description">KITSRUS <b>Protocol P018</b> kullanarak PIC mikrokontrolörlerini programlamak için profesyonel uygulama. PIC cihazlarını PC\'ye ihtiyaç duymadan USB OTG aracılığıyla doğrudan Android\'den programlamanıza olanak tanır.</string>
     <string name="about_features">Ana özellikler:</string>
     <string name="about_feature_1">OTG aracılığıyla PC olmadan mobil programlama.</string>
     <string name="about_feature_2">KITSRUS P018 protokolleri (K150, K128, K149, K182) desteği.</string>
@@ -467,4 +467,6 @@ Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%
     <string name="status_connected">Bağlı</string>
     <string name="status_error">Hata</string>
     <string name="log_pro_purchase_error">⚠ Pro satın alma: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">تطبيق احترافي لبرمجة المتحكمات الدقيقة PIC باستخدام KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. يسمح لك ببرمجة أجهزة PIC مباشرة من Android عبر USB OTG دون الحاجة إلى جهاز كمبيوتر.</string>
+    <string name="about_description">تطبيق احترافي لبرمجة المتحكمات الدقيقة PIC باستخدام KITSRUS <b>Protocol P018</b>. يسمح لك ببرمجة أجهزة PIC مباشرة من Android عبر USB OTG دون الحاجة إلى جهاز كمبيوتر.</string>
     <string name="about_features">الميزات الرئيسية:</string>
     <string name="about_feature_1">برمجة الجوال بدون كمبيوتر عن طريق OTG.</string>
     <string name="about_feature_2">دعم بروتوكولات KITSRUS P018 (K150، K128، K149، K182).</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">متصل</string>
     <string name="status_error">خطأ</string>
     <string name="log_pro_purchase_error">⚠ شراء برو: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

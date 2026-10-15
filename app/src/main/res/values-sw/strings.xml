@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Programu ya kitaalamu ya kupanga vidhibiti vidogo vya PIC kwa kutumia KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Inakuruhusu kupanga vifaa vya PIC moja kwa moja kutoka kwa Android kupitia USB OTG bila hitaji la Kompyuta.</string>
+    <string name="about_description">Programu ya kitaalamu ya kupanga vidhibiti vidogo vya PIC kwa kutumia KITSRUS <b>Protocol P018</b>. Inakuruhusu kupanga vifaa vya PIC moja kwa moja kutoka kwa Android kupitia USB OTG bila hitaji la Kompyuta.</string>
     <string name="about_features">Vipengele kuu:</string>
     <string name="about_feature_1">Programu ya rununu bila PC kupitia OTG.</string>
     <string name="about_feature_2">Usaidizi wa itifaki za KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge
     <string name="status_connected">Imeunganishwa</string>
     <string name="status_error">Hitilafu</string>
     <string name="log_pro_purchase_error">⚠ Ununuzi wa Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

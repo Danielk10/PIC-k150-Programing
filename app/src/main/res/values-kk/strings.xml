@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt; арқылы PIC микроконтроллерін бағдарламалауға арналған кәсіби қолданба. Ол PIC құрылғыларын тікелей Android жүйесінен USB OTG арқылы компьютерді қажет етпей бағдарламалауға мүмкіндік береді.</string>
+    <string name="about_description">KITSRUS <b>Protocol P018</b> арқылы PIC микроконтроллерін бағдарламалауға арналған кәсіби қолданба. Ол PIC құрылғыларын тікелей Android жүйесінен USB OTG арқылы компьютерді қажет етпей бағдарламалауға мүмкіндік береді.</string>
     <string name="about_features">Негізгі ерекшеліктері:</string>
     <string name="about_feature_1">OTG арқылы компьютерсіз мобильді бағдарламалау.</string>
     <string name="about_feature_2">KITSRUS P018 протоколдарына қолдау көрсету (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ PIC %1$s микроконтроллерін тиісті орынға салып
     <string name="status_connected">Қосылған</string>
     <string name="status_error">Қате</string>
     <string name="log_pro_purchase_error">⚠ Pro сатып алу: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

@@ -20,7 +20,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -482,7 +481,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupListeners() {
-        // setupChipSelectionListeners(); // ELIMINADO: Se maneja en initializeManagers
         setupFileManagerListeners();
         setupButtonListeners();
         setupPersistentLayoutListener(); // Registramos el vigilante de tamaño desde el inicio
@@ -907,7 +905,7 @@ public class MainActivity extends AppCompatActivity
                 rowView,
                 (isRomEdited, addr, oldVal, newVal, updatedFirmware) -> {
                     firmware = updatedFirmware;
-                    appendLog(String.format(Locale.getDefault(), "✏️ Memoria %s editada en 0x%04X: 0x%X -> 0x%X",
+                    appendLog(getString(R.string.log_memoria_editada,
                             isRomEdited ? "ROM" : "EEPROM", addr, oldVal, newVal));
                 }
         );
@@ -1346,7 +1344,7 @@ public class MainActivity extends AppCompatActivity
 
                                     // Chip config info
                                     if (result.chipIdHex != null) {
-                                        statusMsg.append("\n  Chip ID: ").append(result.chipIdHex);
+                                        statusMsg.append("\n  ").append(getString(R.string.chip_id_label)).append(" ").append(result.chipIdHex);
                                     }
 
                                     // Fuses decodificados

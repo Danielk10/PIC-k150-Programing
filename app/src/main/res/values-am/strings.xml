@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;ን በመጠቀም የPIC ማይክሮ መቆጣጠሪያ ፕሮግራሞችን ለማዘጋጀት ሙያዊ መተግበሪያ። ፒሲ ሳያስፈልጋቸው በዩኤስቢ OTG ከ Android በቀጥታ የPIC መሳሪያዎችን ፕሮግራም እንዲያዘጋጁ ይፈቅድልዎታል።</string>
+    <string name="about_description">KITSRUS <b>Protocol P018</b>ን በመጠቀም የPIC ማይክሮ መቆጣጠሪያ ፕሮግራሞችን ለማዘጋጀት ሙያዊ መተግበሪያ። ፒሲ ሳያስፈልጋቸው በዩኤስቢ OTG ከ Android በቀጥታ የPIC መሳሪያዎችን ፕሮግራም እንዲያዘጋጁ ይፈቅድልዎታል።</string>
     <string name="about_features">ዋና ዋና ባህሪያት:</string>
     <string name="about_feature_1">የሞባይል ፕሮግራሚንግ ያለ ፒሲ በ OTG።</string>
     <string name="about_feature_2">ለKITSRUS P018 ፕሮቶኮሎች (K150, K128, K149, K182) ድጋፍ.</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">ተገናኝቷል</string>
     <string name="status_error">ስህተት</string>
     <string name="log_pro_purchase_error">⚠ የፕሮ ግዢ፦ %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

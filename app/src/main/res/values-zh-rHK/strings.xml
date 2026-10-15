@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">使用 KITSRUS &lt;b&gt;協定 P018&lt;/b&gt; 對 PIC 微控制器進行程式設計的專業應用程式。它允許您透過 USB OTG 直接從 Android 對 PIC 裝置進行編程，無需使用 PC。</string>
+    <string name="about_description">使用 KITSRUS <b>協定 P018</b> 對 PIC 微控制器進行程式設計的專業應用程式。它允許您透過 USB OTG 直接從 Android 對 PIC 裝置進行編程，無需使用 PC。</string>
     <string name="about_features">主要特點：</string>
     <string name="about_feature_1">透過 OTG 無需 PC 即可進行行動編程。</string>
     <string name="about_feature_2">支援 KITSRUS P018 協定（K150、K128、K149、K182）。</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">已連接</string>
     <string name="status_error">錯誤</string>
     <string name="log_pro_purchase_error">⚠ 購買專業版：%1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

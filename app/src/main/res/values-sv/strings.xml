@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Professionell applikation för att programmera PIC-mikrokontroller med hjälp av KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Det låter dig programmera PIC-enheter direkt från Android via USB OTG utan att behöva en PC.</string>
+    <string name="about_description">Professionell applikation för att programmera PIC-mikrokontroller med hjälp av KITSRUS <b>Protocol P018</b>. Det låter dig programmera PIC-enheter direkt från Android via USB OTG utan att behöva en PC.</string>
     <string name="about_features">Huvudfunktioner:</string>
     <string name="about_feature_1">Mobil programmering utan PC via OTG.</string>
     <string name="about_feature_2">Stöd för KITSRUS P018-protokoll (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Sätt i PIC %1$s i rätt position, lås spaken och tryck på [%2$s] igen.</strin
     <string name="status_connected">Ansluten</string>
     <string name="status_error">Fel</string>
     <string name="log_pro_purchase_error">⚠ Pro-köp: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

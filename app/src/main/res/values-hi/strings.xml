@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">KITSRUS &lt;b&gt;प्रोटोकॉल P018&lt;/b&gt; का उपयोग करके PIC माइक्रोकंट्रोलर को प्रोग्राम करने के लिए व्यावसायिक अनुप्रयोग। यह आपको पीसी की आवश्यकता के बिना यूएसबी ओटीजी के माध्यम से सीधे एंड्रॉइड से पीआईसी उपकरणों को प्रोग्राम करने की अनुमति देता है।</string>
+    <string name="about_description">KITSRUS <b>प्रोटोकॉल P018</b> का उपयोग करके PIC माइक्रोकंट्रोलर को प्रोग्राम करने के लिए व्यावसायिक अनुप्रयोग। यह आपको पीसी की आवश्यकता के बिना यूएसबी ओटीजी के माध्यम से सीधे एंड्रॉइड से पीआईसी उपकरणों को प्रोग्राम करने की अनुमति देता है।</string>
     <string name="about_features">मुख्य विशेषताएं:</string>
     <string name="about_feature_1">ओटीजी के माध्यम से पीसी के बिना मोबाइल प्रोग्रामिंग।</string>
     <string name="about_feature_2">KITSRUS P018 प्रोटोकॉल (K150, K128, K149, K182) के लिए समर्थन।</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">कनेक्टेड</string>
     <string name="status_error">त्रुटि</string>
     <string name="log_pro_purchase_error">⚠ प्रो खरीद: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

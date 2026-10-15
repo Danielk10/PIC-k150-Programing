@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Ứng dụng chuyên nghiệp để lập trình bộ vi điều khiển PIC bằng KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Nó cho phép bạn lập trình các thiết bị PIC trực tiếp từ Android thông qua USBOTG mà không cần PC.</string>
+    <string name="about_description">Ứng dụng chuyên nghiệp để lập trình bộ vi điều khiển PIC bằng KITSRUS <b>Protocol P018</b>. Nó cho phép bạn lập trình các thiết bị PIC trực tiếp từ Android thông qua USBOTG mà không cần PC.</string>
     <string name="about_features">Các tính năng chính:</string>
     <string name="about_feature_1">Lập trình di động không cần PC thông qua cổng OOT.</string>
     <string name="about_feature_2">Hỗ trợ các giao thức KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Vui lòng cắm PIC %1$s vào đúng vị trí, khóa cần gạt và nhấn l�
     <string name="status_connected">Đã kết nối</string>
     <string name="status_error">Lỗi</string>
     <string name="log_pro_purchase_error">⚠ Mua Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

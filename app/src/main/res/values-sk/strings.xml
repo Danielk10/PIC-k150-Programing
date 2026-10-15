@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Profesionálna aplikácia na programovanie mikrokontrolérov PIC pomocou KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Umožňuje vám programovať zariadenia PIC priamo z Androidu cez USB OTG bez potreby PC.</string>
+    <string name="about_description">Profesionálna aplikácia na programovanie mikrokontrolérov PIC pomocou KITSRUS <b>Protocol P018</b>. Umožňuje vám programovať zariadenia PIC priamo z Androidu cez USB OTG bez potreby PC.</string>
     <string name="about_features">Hlavné vlastnosti:</string>
     <string name="about_feature_1">Mobilné programovanie bez PC cez OTG.</string>
     <string name="about_feature_2">Podpora protokolov KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Vložte prosím PIC %1$s do príslušnej pozície, zaistite páčku a znova klep
     <string name="status_connected">Pripojené</string>
     <string name="status_error">Chyba</string>
     <string name="log_pro_purchase_error">⚠ Nákup Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

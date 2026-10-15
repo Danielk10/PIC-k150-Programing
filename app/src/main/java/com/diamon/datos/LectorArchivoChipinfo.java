@@ -1,9 +1,6 @@
 package com.diamon.datos;
 
 import android.app.Activity;
-import android.content.Context;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,13 +9,9 @@ import java.util.ArrayList;
 
 public class LectorArchivoChipinfo {
 
-    private Context contexto;
-
     private CargadorDeArchivos datos;
 
     public LectorArchivoChipinfo(Activity actividad) {
-
-        contexto = ((AppCompatActivity) actividad).getApplicationContext();
 
         datos = new CargadorDeArchivos(actividad);
     }

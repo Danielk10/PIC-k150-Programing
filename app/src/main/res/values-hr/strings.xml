@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">Profesionalna aplikacija za programiranje PIC mikrokontrolera pomoću KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. Omogućuje vam programiranje PIC uređaja izravno s Androida putem USB OTG-a bez potrebe za računalom.</string>
+    <string name="about_description">Profesionalna aplikacija za programiranje PIC mikrokontrolera pomoću KITSRUS <b>Protocol P018</b>. Omogućuje vam programiranje PIC uređaja izravno s Androida putem USB OTG-a bez potrebe za računalom.</string>
     <string name="about_features">Glavne karakteristike:</string>
     <string name="about_feature_1">Mobilno programiranje bez PC-a preko OTG-a.</string>
     <string name="about_feature_2">Podrška za KITSRUS P018 protokole (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@ Umetnite PIC %1$s u odgovarajući položaj, zaključajte polugu i ponovno dodirn
     <string name="status_connected">Povezan</string>
     <string name="status_error">Greška</string>
     <string name="log_pro_purchase_error">⚠ Pro kupnja: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>

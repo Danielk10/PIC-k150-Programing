@@ -129,7 +129,11 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Sonido de Fin de Grabación:** Se reemplazaron las notificaciones de la barra de estado de Android por reproducción de sonido directo del sistema (`reproducirSonidoNotificacion()`) y vibración háptica de éxito.
    * **Diálogo de Grabación Selectiva Clásico:** Se garantizó que el diálogo modal se muestre siempre al pulsar programar, presentando «🚀 Grabación Completa» siempre en primer lugar con sus descripciones detalladas.
    * **Seguridad en Diagnóstico:** La prueba de voltajes (13V VPP) detecta si hay chip presente y bloquea la tensión hasta que el usuario retira el microcontrolador (Cmd 19).
-   * **Pase Pro y Publicidad:** Respaldo privado en almacenamiento de la app (`filesDir`) y Firestore (eliminando archivos en `Documents`), reseteo del contador a 12 horas completas al ver un video recompensado y supresión inmediata de banners publicitarios.
+20. **Internacionalización Completa (53 Idiomas), Sincronización Global y Cierre de Issues (v2.9.1):**
+   * **Internacionalización total:** Se estandarizó el inglés como recurso predeterminado en `values/strings.xml` y `values-en/strings.xml`, certificando el español nativo en `values-es`, `values-es-rES` y `values-es-rVE`. Se coordinaron 3 subagentes de IA en lotes de 5 para traducir y sincronizar los 48 idiomas restantes, logrando paridad del 100% (450 claves en cada uno de los 53 archivos `strings.xml`) y eliminando 17 claves obsoletas.
+   * **Corrección de ArrayIndexOutOfBoundsException en `Protocolo.readBytes` (Issue #68):** Se acotó la cantidad de bytes a copiar en `System.arraycopy` mediante `Math.min(bytesRead, Math.min(targetBuf.length, remaining))`, garantizando que buffers o paquetes mayores del endpoint USB nunca provoquen desbordamiento de índice.
+   * **Revisión y Cierre de Issues en GitHub:** Se comentaron y cerraron los issues #68 (error en `readBytes`), #67 (timeout transitorio al detectar), #66 (reporte sobre protocolo obsoleto v1.5.8) y #10 (implementación del protocolo P18A), dejando únicamente el issue #11 abierto como roadmap de expansión de microcontroladores.
+   * **Compilación y Lanzamiento:** Verificación con 104/104 pruebas JUnit contra el emulador C++ K150, compilación limpia de Debug (APK) y producción (APK y AAB) con `versionCode 54` y `versionName "2.9.1"`, y publicación en GitHub Releases (`v2.9.1`).
 
 ---
 
@@ -188,4 +192,5 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 * **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (Evidencias visuales del ciclo completo de validación física: permisos USB, detección en socket con Device ID 0x6810, volcado ROM/EEPROM, diagnóstico de hardware sin desincronización, seguridad de voltajes VPP 13V con Comando 19 y prueba interactiva de sensores ZIF).
 * **Guía de Mejoras Técnicas:** [`PROPUESTA_AUTODETECCION_CHIP_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/PROPUESTA_AUTODETECCION_CHIP_K150.md) (arquitectura de autodetección de modelo PIC por Device ID, control USB, diagnóstico de hardware y calibración, 100% implementada en v2.9.0).
 * **Notas de Lanzamiento v2.9.0:** [`RELEASE_NOTES_v2.9.0.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.0.md) (detalle técnico bilingüe y registro de cambios para Google Play Console).
+* **Notas de Lanzamiento v2.9.1:** [`RELEASE_NOTES_v2.9.1.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.1.md) (internacionalización global a 53 idiomas, resolución de issues de GitHub y blindaje de buffers USB).
 

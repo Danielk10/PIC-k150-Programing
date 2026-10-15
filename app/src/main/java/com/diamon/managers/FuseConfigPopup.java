@@ -542,7 +542,7 @@ public class FuseConfigPopup {
             logMessage(context.getString(R.string.restaurado_chip));
 
         } catch (Exception e) {
-            logMessage("❌ Error: " + e.getMessage());
+            logMessage("❌ " + context.getString(R.string.error_generico_detalle, e.getMessage()));
         }
     }
 
@@ -584,7 +584,7 @@ public class FuseConfigPopup {
             logMessage(context.getString(R.string.restaurado_hex));
 
         } catch (Exception e) {
-            logMessage("❌ Error: " + e.getMessage());
+            logMessage("❌ " + context.getString(R.string.error_generico_detalle, e.getMessage()));
         }
     }
 
@@ -633,7 +633,7 @@ public class FuseConfigPopup {
             dismissWithAnimation();
 
         } catch (Exception e) {
-            logMessage("❌ Error: " + e.getMessage());
+            logMessage("❌ " + context.getString(R.string.error_generico_detalle, e.getMessage()));
         }
     }
 

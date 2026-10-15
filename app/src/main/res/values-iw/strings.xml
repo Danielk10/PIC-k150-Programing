@@ -278,7 +278,7 @@
     <string name="repositorio">Repository</string>
     <string name="licencia_de_aplicacion">Application License</string>
     <string name="licencias_de_terceros">Third-party Licenses</string>
-    <string name="about_description">יישום מקצועי לתכנות מיקרו-בקרי PIC באמצעות KITSRUS &lt;b&gt;Protocol P018&lt;/b&gt;. זה מאפשר לך לתכנת התקני PIC ישירות מאנדרואיד באמצעות USB OTG ללא צורך במחשב.</string>
+    <string name="about_description">יישום מקצועי לתכנות מיקרו-בקרי PIC באמצעות KITSRUS <b>Protocol P018</b>. זה מאפשר לך לתכנת התקני PIC ישירות מאנדרואיד באמצעות USB OTG ללא צורך במחשב.</string>
     <string name="about_features">מאפיינים עיקריים:</string>
     <string name="about_feature_1">תכנות נייד ללא PC דרך OTG.</string>
     <string name="about_feature_2">תמיכה בפרוטוקולי KITSRUS P018 (K150, K128, K149, K182).</string>
@@ -467,4 +467,6 @@
     <string name="status_connected">מחובר</string>
     <string name="status_error">שגיאה</string>
     <string name="log_pro_purchase_error">⚠ רכישת Pro: %1$s</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sin regiones programables</string>
 </resources>
