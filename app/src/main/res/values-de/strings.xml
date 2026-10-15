@@ -467,6 +467,6 @@ Bitte setzen Sie den PIC %1$s in die entsprechende Position ein, verriegeln Sie 
     <string name="status_connected">Verbunden</string>
     <string name="status_error">Fehler</string>
     <string name="log_pro_purchase_error">⚠ Pro-Kauf: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ %1$s-Speicher bearbeitet bei 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX ohne programmierbare Bereiche</string>
 </resources>

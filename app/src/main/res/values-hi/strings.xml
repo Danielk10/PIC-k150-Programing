@@ -467,6 +467,6 @@
     <string name="status_connected">कनेक्टेड</string>
     <string name="status_error">त्रुटि</string>
     <string name="log_pro_purchase_error">⚠ प्रो खरीद: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ %1$s मेमोरी को 0x%2$04X पर संपादित किया गया: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">प्रोग्राम करने योग्य क्षेत्रों के बिना HEX</string>
 </resources>

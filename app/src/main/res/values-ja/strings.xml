@@ -467,6 +467,6 @@ PIC %1$sを対応する位置に挿入してレバーをロックし、もう一
     <string name="status_connected">接続済み</string>
     <string name="status_error">エラー</string>
     <string name="log_pro_purchase_error">⚠ Pro購入: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ 0x%2$04X の %1$s メモリが編集されました: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">プログラム可能領域のないHEX</string>
 </resources>

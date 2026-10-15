@@ -467,6 +467,6 @@
     <string name="status_connected">เชื่อมต่อแล้ว</string>
     <string name="status_error">ข้อผิดพลาด</string>
     <string name="log_pro_purchase_error">⚠ การซื้อ Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ แก้ไขหน่วยความจำ %1$s ที่ 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">ไฟล์ HEX ไม่มีส่วนที่สามารถโปรแกรมได้</string>
 </resources>

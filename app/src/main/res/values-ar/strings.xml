@@ -467,6 +467,6 @@
     <string name="status_connected">متصل</string>
     <string name="status_error">خطأ</string>
     <string name="log_pro_purchase_error">⚠ شراء برو: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ تم تعديل ذاكرة %1$s في 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">ملف HEX بدون مناطق قابلة للبرمجة</string>
 </resources>

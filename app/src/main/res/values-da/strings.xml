@@ -467,6 +467,6 @@ Indsæt venligst PIC %1$s i den korrekte position, lås håndtaget, og tryk på 
     <string name="status_connected">Tilsluttet</string>
     <string name="status_error">Fejl</string>
     <string name="log_pro_purchase_error">⚠ Pro-køb: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ %1$s hukommelse redigeret ved 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX uden programmerbare områder</string>
 </resources>

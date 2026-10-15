@@ -467,6 +467,6 @@ Mangyaring ipasok ang PIC %1$s sa kaukulang posisyon, i-lock ang lever, at i-tap
     <string name="status_connected">Nakakonekta</string>
     <string name="status_error">Error</string>
     <string name="log_pro_purchase_error">⚠ Pagbili ng Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Binago ang memory ng %1$s sa 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX nang walang mga programmable na rehiyon</string>
 </resources>

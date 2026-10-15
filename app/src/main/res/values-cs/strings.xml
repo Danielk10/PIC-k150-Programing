@@ -467,6 +467,6 @@ Vložte prosím PIC %1$s do odpovídající polohy, zajistěte páčku a znovu k
     <string name="status_connected">Připojeno</string>
     <string name="status_error">Chyba</string>
     <string name="log_pro_purchase_error">⚠ Pro nákup: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Paměť %1$s upravena na adrese 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX bez programovatelných oblastí</string>
 </resources>

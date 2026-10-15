@@ -467,6 +467,6 @@
     <string name="status_connected">متصل</string>
     <string name="status_error">خطا</string>
     <string name="log_pro_purchase_error">⚠ خرید Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ حافظه %1$s در آدرس 0x%2$04X ویرایش شد: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">فایل HEX بدون بخش‌های قابل برنامه‌ریزی</string>
 </resources>

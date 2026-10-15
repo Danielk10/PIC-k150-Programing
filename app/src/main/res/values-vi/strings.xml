@@ -467,6 +467,6 @@ Vui lòng cắm PIC %1$s vào đúng vị trí, khóa cần gạt và nhấn l�
     <string name="status_connected">Đã kết nối</string>
     <string name="status_error">Lỗi</string>
     <string name="log_pro_purchase_error">⚠ Mua Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Đã chỉnh sửa bộ nhớ %1$s tại 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX không có vùng khả trình</string>
 </resources>

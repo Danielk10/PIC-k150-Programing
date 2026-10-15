@@ -467,6 +467,6 @@ Inserire il PIC %1$s nella posizione corrispondente, bloccare la leva e toccare 
     <string name="status_connected">Connesso</string>
     <string name="status_error">Errore</string>
     <string name="log_pro_purchase_error">⚠ Acquisto Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Memoria %1$s modificata all\'indirizzo 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX senza aree programmabili</string>
 </resources>

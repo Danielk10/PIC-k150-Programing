@@ -467,6 +467,6 @@ Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</s
     <string name="status_connected">Yhdistetty</string>
     <string name="status_error">Virhe</string>
     <string name="log_pro_purchase_error">⚠ Pro-osto: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Muistia %1$s muokattu osoitteessa 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX ilman ohjelmoitavia alueita</string>
 </resources>

@@ -467,6 +467,6 @@
     <string name="status_connected">Падключана</string>
     <string name="status_error">Памылка</string>
     <string name="log_pro_purchase_error">⚠ Купля Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Памяць %1$s зменена па адрасе 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX без праграмуемых абласцей</string>
 </resources>

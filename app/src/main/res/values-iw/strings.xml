@@ -467,6 +467,6 @@
     <string name="status_connected">מחובר</string>
     <string name="status_error">שגיאה</string>
     <string name="log_pro_purchase_error">⚠ רכישת Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ זיכרון %1$s נערך ב-0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">קובץ HEX ללא אזורים הניתנים לתכנות</string>
 </resources>

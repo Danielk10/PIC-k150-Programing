@@ -467,6 +467,6 @@
     <string name="status_connected">Свързан</string>
     <string name="status_error">Грешка</string>
     <string name="log_pro_purchase_error">⚠ Покупка на Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Паметта %1$s е редактирана на адрес 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX без програмируеми области</string>
 </resources>

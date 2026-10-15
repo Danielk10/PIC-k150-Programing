@@ -467,6 +467,6 @@ Plaats de PIC %1$s in de juiste positie, vergrendel de hendel en tik opnieuw op 
     <string name="status_connected">Verbonden</string>
     <string name="status_error">Fout</string>
     <string name="log_pro_purchase_error">⚠ Pro-aankoop: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ %1$s-geheugen bewerkt op 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX zonder programmeerbare gebieden</string>
 </resources>

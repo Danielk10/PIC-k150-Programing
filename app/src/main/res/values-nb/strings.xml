@@ -467,6 +467,6 @@ Vennligst sett inn PIC %1$s i tilsvarende posisjon, lås hendelen og trykk på [
     <string name="status_connected">Tilkoblet</string>
     <string name="status_error">Feil</string>
     <string name="log_pro_purchase_error">⚠ Pro-kjøp: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ %1$s-minne redigert ved 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX uten programmerbare områder</string>
 </resources>

@@ -467,6 +467,6 @@ Włóż PIC %1$s w odpowiednie miejsce, zablokuj dźwignię i dotknij [%2$s] pon
     <string name="status_connected">Połączono</string>
     <string name="status_error">Błąd</string>
     <string name="log_pro_purchase_error">⚠ Zakup Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Pamięć %1$s zmodyfikowana pod adresem 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX bez programowalnych obszarów</string>
 </resources>

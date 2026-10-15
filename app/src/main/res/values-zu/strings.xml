@@ -467,6 +467,6 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="status_connected">Kuxhunyiwe</string>
     <string name="status_error">Iphutha</string>
     <string name="log_pro_purchase_error">⚠ Ukuthenga i-Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Imemori ye-%1$s ihlelwe ku-0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">I-HEX engenazo izifunda ezihlelekayo</string>
 </resources>

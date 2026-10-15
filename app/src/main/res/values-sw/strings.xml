@@ -467,6 +467,6 @@ Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge
     <string name="status_connected">Imeunganishwa</string>
     <string name="status_error">Hitilafu</string>
     <string name="log_pro_purchase_error">⚠ Ununuzi wa Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Kumbukumbu ya %1$s imebadilishwa kwenye 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX bila maeneo yanayoweza kupangwa</string>
 </resources>

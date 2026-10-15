@@ -467,6 +467,6 @@ Si us plau inseriu el PIC %1$s a la posició corresponent, bloquegeu la palanca 
     <string name="status_connected">Connectat</string>
     <string name="status_error">Error</string>
     <string name="log_pro_purchase_error">⚠ Compra Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Memòria %1$s editada a 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX sense regions programables</string>
 </resources>

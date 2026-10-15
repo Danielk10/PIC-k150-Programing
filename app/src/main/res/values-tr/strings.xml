@@ -467,6 +467,6 @@ Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%
     <string name="status_connected">Bağlı</string>
     <string name="status_error">Hata</string>
     <string name="log_pro_purchase_error">⚠ Pro satın alma: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ 0x%2$04X adresindeki %1$s belleği düzenlendi: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">Programlanabilir alanı olmayan HEX</string>
 </resources>

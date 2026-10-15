@@ -467,6 +467,6 @@ Sila masukkan PIC %1$s pada kedudukan yang sepadan, kunci tuil dan ketik [%2$s] 
     <string name="status_connected">Disambungkan</string>
     <string name="status_error">Ralat</string>
     <string name="log_pro_purchase_error">⚠ Pembelian Pro: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ Memori %1$s diedit pada 0x%2$04X: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">HEX tanpa kawasan boleh atur cara</string>
 </resources>

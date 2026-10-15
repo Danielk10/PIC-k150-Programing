@@ -467,6 +467,6 @@
     <string name="status_connected">已連線</string>
     <string name="status_error">錯誤</string>
     <string name="log_pro_purchase_error">⚠ 購買專業版：%1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ 已在 0x%2$04X 修改 %1$s 記憶體: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">沒有可程式化區域的 HEX</string>
 </resources>

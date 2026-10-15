@@ -467,6 +467,6 @@ PIC %1$s을(를) 해당 위치에 삽입하고 레버를 잠근 후 [%2$s]을(�
     <string name="status_connected">연결됨</string>
     <string name="status_error">오류</string>
     <string name="log_pro_purchase_error">⚠ Pro 구매: %1$s</string>
-    <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
-    <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="log_memoria_editada">✏️ 0x%2$04X 위치의 %1$s 메모리 수정됨: 0x%3$X -> 0x%4$X</string>
+    <string name="hex_sin_regiones">프로그래밍 가능한 영역이 없는 HEX</string>
 </resources>
