@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Izinqubomgomo Zobumfihlo</string>
     <string name="aceptar">Yamukela</string>
     <string name="cancelar">Khansela</string>
-    <string name="conectado">Kuxhunyiwe</string>
     <string name="desconectado">Kunqunyuliwe</string>
     <string name="grabando_pic">Ihlela i-PIC...</string>
     <string name="espere_grabacion_pic">Sicela ulinde. Ungayinqumuli idivayisi.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">I-firmware ibhalwe ngempumelelo ku-PIC.</string>
     <string name="fallo_grabacion_pic">Ukuhlela Kwehlulekile</string>
     <string name="proceso_no_completado">Inqubo ayikwazanga ukuqedwa. Hlola uxhumo.</string>
-    <string name="protocolo_del_programador">I-Protocol Yomhleli</string>
     <string name="modelo_del_programador">Imodeli Yomhleli</string>
     <string name="modelo_programador">Imodeli Yomhleli</string>
     <string name="protocolo">I-Protocol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Inqubomgomo Yobumfihlo</string>
-    <string name="no_se_detecto_pic_en_socket">I-PIC ayitholakalanga esokethini</string>
-    <string name="pic_detectado_en_socket">I-PIC itholakele esokethini</string>
     <string name="error_borrando_memoria">Iphutha lokususa inkumbulo</string>
     <string name="memoria_borrada_exitosamente">Inkumbulo isuswe ngempumelelo</string>
     <string name="memoria_leida_exitosamente">Inkumbulo ifundwe ngempumelelo</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Khipha i-CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Khipha Ukulahla Okugcwele (.hex)</string>
     <string name="exportar_dump_completo_bin">Khipha Ukulahla Okugcwele (.bin)</string>
-    <string name="programar_todo">Hlela Konke</string>
-    <string name="programar_solo_rom">Uhlelo lwe-ROM kuphela</string>
-    <string name="programar_solo_eeprom">Uhlelo EEPROM kuphela</string>
-    <string name="programar_solo_config">Uhlelo kuphela CONFIG</string>
     <string name="verificar_borrado">Qinisekisa Ukususwa</string>
     <string name="chip_esta_borrado">I-chip iyasulwa (Ayinalutho)</string>
     <string name="chip_no_esta_borrado">I-chip AYISULIWE</string>
     <string name="verificando_borrado">Iqinisekisa ukususwa...</string>
     <string name="resultado_verificacion_borrado">Umphumela Wokuqinisekisa Ukususwa</string>
     <string name="error_verificando_borrado">Iphutha lokuqinisekisa ukususwa</string>
-    <string name="chip_seleccionado">I-chip ekhethiwe</string>
     <string name="configuracion_de_fusibles">Ukucushwa kwe-Fuse</string>
     <string name="id_personalizado_hex">I-ID yangokwezifiso (HEX)</string>
     <string name="hint_id_personalizado">Isibonelo: 1A 2B 3C 4D (4 noma 8 bytes)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Ukukhangisa okunconyiwe</string>
     <string name="lectura_completa">Qedela Ukufunda</string>
     <string name="datos_de_memoria">Inkumbulo ifundwe ngempumelelo</string>
-    <string name="sin_chip">ngaphandle kwe-chip</string>
     <string name="rom_ok_blank">I-ROM: Kulungile (Akunalutho)</string>
     <string name="rom_not_blank">I-ROM: AKUSHONJA</string>
     <string name="eeprom_ok_blank">I-EEPROM: KULUNGILE (Akunalutho)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Cha</string>
     <string name="seleccionar_idioma">Khetha Ulimi</string>
     <string name="tutorial_instalacion">Isiqondiso sokufaka</string>
-    <string name="copiar_todo_en">Kopisha Konke</string>
     <string name="cerrar">Vala</string>
     <string name="error_no_chip">Iphutha: Akukho chip ekhethiwe noma awekho amafyuzi</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">I-HEX iyahambisana</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">I-chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Isibonelo</string>
     <string name="explicacion_label">Incazelo</string>
     <string name="error_export_manager_not_initialized">I-HexExportManager ayiqaliswanga</string>
-    <string name="error_leyendo_info_chip">Iphutha lokufunda ulwazi lwe-chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">I-EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">amabhayithi</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Sibonga ngokukhethekile ku-Mike Wakerly, u-Adam Schubert, kanye ne-AndroidIDE, i-Android Code Studio, namaqembu e-KITSRUS.</string>
     <string name="error_al_cambiar_modo">Iphutha lapho kushintshwa imodi:</string>
     <string name="no_hay_firmware_valido">Ayikho i-firmware evumelekile</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Vula amathuluzi obuchwepheshe athuthukile e-%1$s</string>
+    <string name="pro_feature_hex_editor">Umhleli We-Hexadecimal Obukhoma (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Ukuxilongwa Kwezingxenyekazi Zekhompyutha Nokuhlolwa Kwevoltheji (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">I-Vector Yokulungisa Iphutha ye-ICD (amabhithi angu-24)</string>
+    <string name="pro_feature_osccal">Ukuhlenga Nokuhlela Ngesandla kwe-OSCCAL</string>
+    <string name="pro_feature_remove_ads">Susa zonke izikhangiso kuhlelo lokusebenza</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Buka Ividiyo - Iphasiphethi Yamahhala Yamahora angu-12</string>
+    <string name="pro_pass_activated_toast">⭐ Iphasiphethi ye-%1$s Pro isebenze amahora angu-12!</string>
+    <string name="pro_ads_not_available">Izikhangiso azitholakali</string>
+    <string name="pro_btn_buy_permanent">👑 Thenga i-%1$s Pro Yaphakade%2$s</string>
+    <string name="pro_billing_not_available">Ukukhokha kwe-Google Play akutholakali</string>
+    <string name="menu_pro_mode">⭐ Imodi ye-Pro</string>
+    <string name="menu_pro_permanent">👑 I-Pro Yaphakade</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Ukuxilongwa Kwezingxenyekazi ze-K150</string>
+    <string name="menu_osccal_calibration">⏱️ Ukulinganisa kwe-OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ I-Vector Yokulungisa Iphutha Kusekethe (ICD)</string>
+    <string name="cd_socket_diagram">Umdwebo wesokhethi</string>
+    <string name="btn_connect_usb">Xhuma Umhleli we-USB</string>
+    <string name="btn_disconnect_usb">Nqamula Umhleli we-USB</string>
+    <string name="cd_clear_log">Sula ilogi</string>
+    <string name="cd_tutorial_image">Umfanekiso wesifundo</string>
+    <string name="title_activity_tutorial_gputils">Isifundo se-GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Isifundo se-SDCC</string>
+    <string name="diag_dialog_title">🩺 Ukuxilongwa Kwezingxenyekazi ze-K150</string>
+    <string name="diag_section_programmer_status">📋 Isimo Somhleli</string>
+    <string name="diag_label_model">Imodeli:</string>
+    <string name="diag_label_protocol">I-Protocol:</string>
+    <string name="diag_label_echo_test">Ukuhlolwa kwe-Echo:</string>
+    <string name="diag_label_zif_sensor">Inzwa ye-ZIF:</string>
+    <string name="diag_status_querying">Iyabuza...</string>
+    <string name="diag_status_pending">Iselindile</string>
+    <string name="diag_btn_test_echo">⚡ Hlola i-Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Ukuxilongwa Okugcwele</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Hlola Izinzwa ze-ZIF (Faka/Khipha)</string>
+    <string name="diag_section_voltage_control">⚡ Ukulawula Amavoltheji VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ ISIXWAYISO: Khipha i-microcontroller esokethini le-ZIF ngaphambi kokuvula noma ukukala amavoltheji nge-multimeter.</string>
+    <string name="diag_status_voltages_off">Isimo: Amavoltheji acishiwe (0V)</string>
+    <string name="diag_status_vpp_active">Isimo: ⚡ VPP (13V) / VDD (5V) IVULIWE</string>
+    <string name="diag_status_voltages_restarted">Isimo: ⚡ Amavoltheji aphinde aqaliswa (Ayasebenza)</string>
+    <string name="diag_status_error_activating">Isimo: ❌ Iphutha lokuvula amavoltheji</string>
+    <string name="diag_status_error_deactivating">Isimo: ❌ Iphutha lokucisha amavoltheji</string>
+    <string name="diag_status_error_restarting">Isimo: ❌ Iphutha lokuphinda uqale amavoltheji</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Cisha (0V)</string>
+    <string name="diag_btn_restart_voltages">Qala Kabusha</string>
+    <string name="diag_programmer_not_connected">Umhleli akaxhunyiwe</string>
+    <string name="diag_connect_programmer_prompt">⚠ Xhuma umhleli we-K150 ukuze usebenzise ukuxilonga</string>
+    <string name="diag_model_not_connected">Imodeli: Umhleli akaxhunyiwe</string>
+    <string name="diag_echo_measuring">Ukuhlolwa kwe-Echo: Kuyakala...</string>
+    <string name="diag_zif_reading">Inzwa ye-ZIF: Iyafunda...</string>
+    <string name="diag_echo_ok">Ukuhlolwa kwe-Echo: ✓ Kulungile (%1$d ms)</string>
+    <string name="diag_echo_no_response">Ukuhlolwa kwe-Echo: ❌ Ayikho impendulo</string>
+    <string name="diag_echo_failed">Ukuhlolwa kwe-Echo: ❌ Kwehlulekile</string>
+    <string name="diag_socket_pic_detected">✓ I-PIC itholakele esokethini le-ZIF</string>
+    <string name="diag_socket_empty">ℹ Isokhethi alinalutho (Ayikho i-chip etholakele)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Akukho ukuxhumana okuqinile okutholakele esokethini</string>
+    <string name="diag_toast_chip_removed_voltages_active">I-chip ikishiwe: Amavoltheji avuliwe ukuze kulinganiswe ngokuphepha</string>
+    <string name="diag_toast_voltages_activated_multimeter">Amavoltheji avuliwe: kala nge-multimeter ku-VPP no-VDD</string>
+    <string name="diag_toast_voltages_off">Amavoltheji acishiwe (0V)</string>
+    <string name="diag_toast_voltages_restarted">I-chip ikishiwe: Amavoltheji aphinde aqaliswa ukuze kulinganiswe</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ I-Microcontroller Isekusokethini</string>
+    <string name="diag_alert_chip_in_socket_message">Ukuze ugweme ukulimaza i-PIC nge-13V VPP, sicela ukhiphe i-microcontroller esokethini le-ZIF ngaphambi kokuvula noma ukukala amavoltheji.
+
+Uma i-chip isikhishiwe, thinta \'Qhubeka\' ukuze uvule isilinganiso, noma \'Khansela\' ukuze ugcine amavoltheji ecishiwe.</string>
+    <string name="diag_btn_continue_chip_removed">Qhubeka (I-chip Ikishiwe)</string>
+    <string name="diag_zif_test_title">🧪 Ukuhlolwa Kwezinzwa ze-ZIF</string>
+    <string name="diag_zif_test_desc">Ukuhlolwa kwezinzwa zezingxenyekazi zesokhethi le-ZIF (Imiyalo ye-Kitsrus 18 no-19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Isinyathelo 1: Faka i-microcontroller esokethini bese uvala isigwedlo (Umyalo 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Isinyathelo 2: Kusalindwe (Ukukhipha ngomyalo 19)</string>
+    <string name="diag_zif_step1_ok">✓ Isinyathelo 1: Inzwa Yokufaka ILUNGILE (Umyalo 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Isinyathelo 2: Manje phakamisa isigwedlo bese ukhipha i-chip esokethini (Umyalo 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Isinyathelo 1: Isikhathi siphelile kungatholakalanga i-chip</string>
+    <string name="diag_zif_step2_ok">✓ Isinyathelo 2: Inzwa Yokukhipha ILUNGILE (Umyalo 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Zombili izinzwa ezingokoqobo zesokhethi le-ZIF zisebenza kahle kakhulu!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Isinyathelo 2: Isikhathi siphelile kungatholakalanga ukukhipha</string>
+    <string name="hex_editor_title">✏️ Hlela i-%1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Igama)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (I-Byte)</string>
+    <string name="hex_editor_info_address_value">Ikheli Lememori: %1$s
+Inani lamanje: 0x%2$s (Ubukhulu: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Ifomethi Yegama Nokulandelana Kwe-Byte (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Ifomethi Yeseli ye-EEPROM (amabhithi angu-8)</string>
+    <string name="hex_editor_desc_rom">• Ama-PIC agcina amagama angamabhithi angu-14/16 ngokulandelana kwe-Little-Endian:
+   - I-Byte Ephansi (LSB): 0x%1$s (offset 2×N)
+   - I-Byte Ephezulu (MSB): 0x%2$s (offset 2×N+1)
+• Uhlela kanjani?: Faka igama eligcwele elinengqondo [MSB][LSB] (isib. 2805 = LSB 05, MSB 28).
+• Uhlelo lokusebenza luhlela kabusha ngokuzenzakalelayo amabhayithi abe yi-Little-Endian ye-silicon nefayela le-HEX.</string>
+    <string name="hex_editor_desc_eeprom">• Amaseli e-EEPROM anama-byte angamabhithi angu-8 ngalinye.
+• Faka i-byte ye-hexadecimal enezinhlamvu ezi-2 ngokuqondile (ibanga: 00 kuya ku-FF).</string>
+    <string name="hex_editor_input_label_rom">Faka inani elisha (Igama le-Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Faka inani elisha (I-Byte ye-Hex 00-FF):</string>
+    <string name="guardar">Londoloza</string>
+    <string name="hex_editor_err_empty">Inani alikwazi ukuba yize</string>
+    <string name="hex_editor_err_invalid_hex">Ifomethi ye-hexadecimal engavumelekile</string>
+    <string name="hex_editor_err_exceeds_max">Inani lidlula ubukhulu obuvunyelwe (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">I-Microcontroller: %1$s (Umndeni wakwa-PIC10F - Amarejista e-CAL angu-2)</string>
+    <string name="cal_chip_subtitle_standard">I-Microcontroller: %1$s (Igama le-OSCCAL ekhelini lokugcina le-ROM)</string>
+    <string name="cal_not_read_yet">Akukafundwa ku-chip okwamanje</string>
+    <string name="cal_silicon_value">
+Inani le-Silicon: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Faka inani le-hexadecimal (isib. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Funda ku-Chip</string>
+    <string name="cal_btn_write_silicon">💾 Bhala ku-Silicon</string>
+    <string name="cal_dialog_title">⏱️ Ukulinganisa kwe-OSCCAL</string>
+    <string name="cal_toast_read_success">✓ I-OSCCAL ifundiwe: %1$s</string>
+    <string name="cal_toast_read_error">❌ Iphutha lokufunda ukulinganisa ku-chip</string>
+    <string name="cal_toast_invalid_hex">Inani le-hexadecimal elingavumelekile</string>
+    <string name="cal_toast_write_success">✓ I-OSCCAL ibhalwe ngempumelelo ku-chip</string>
+    <string name="cal_toast_write_error">❌ Kwehlulekile ukubhala ukulinganisa ku-silicon</string>
+    <string name="icd_dialog_subtitle">Ukulungisa Iphutha Kusekethe (ICD) - I-Vector Yekheli Lamabhithi angu-24
+(Ibanga elivumelekile: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+I-Vector Yamanje: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Ikheli lokulungisa ku-hex (isib. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Funda i-Vector</string>
+    <string name="icd_btn_write_vector">💾 Bhala i-Vector</string>
+    <string name="icd_dialog_title">🛠️ I-Vector Yokulungisa (ICD)</string>
+    <string name="icd_toast_read_success">✓ I-Vector ifundiwe: %1$s</string>
+    <string name="icd_toast_invalid_address">Ikheli le-hexadecimal lamabhithi angu-24 elingavumelekile</string>
+    <string name="icd_toast_write_success">✓ I-Vector ye-ICD ihleliwe: %1$s</string>
+    <string name="icd_toast_write_error">❌ Kwehlulekile ukuhlela i-vector ye-ICD</string>
+    <string name="prog_type_all_title">Hlela Konke</string>
+    <string name="prog_type_all_desc">ROM, EEPROM Nokulungiselelwa</string>
+    <string name="prog_type_rom_title">Hlela i-ROM</string>
+    <string name="prog_type_rom_desc">Imemori ye-Flash</string>
+    <string name="prog_type_eeprom_title">Hlela i-EEPROM</string>
+    <string name="prog_type_eeprom_desc">Idatha ye-EEPROM</string>
+    <string name="prog_type_config_title">Hlela Ukulungiselelwa</string>
+    <string name="prog_type_config_desc">Amafyuzi namabhithi okumisa</string>
+    <string name="blank_check_err_null_result">❌ Iphutha ekuhloleni okungenalutho: umphumela oyize</string>
+    <string name="blank_check_err_verifying">❌ Iphutha lokuqinisekisa ukuhlola okungenalutho: %1$s</string>
+    <string name="blank_check_dual_header">📋 Ukuhlola Okuhlukile Kokungenalutho (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ I-ROM ihlanzekile ngo-100%% (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ I-ROM enedatha yangaphambilini itholakele (Ayinalutho)</string>
+    <string name="blank_check_eeprom_clean">  ✓ I-EEPROM ihlanzekile ngo-100%% (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ I-EEPROM enedatha yangaphambilini itholakele (Ayinalutho)</string>
+    <string name="blank_check_method_label">  ℹ Indlela: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ I-Microcontroller isilungele ukuhlelwa (Isuswe ngo-100%%)</string>
+    <string name="blank_check_erase_required">⚠ Ukususa kwangaphambili kuyadingeka ngaphambi kokuhlela</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Faka i-Microcontroller</string>
+    <string name="dialog_insert_microcontroller_message">Ayikho i-chip etholakele esokethini le-ZIF.
+
+Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%2$s] futhi.</string>
+    <string name="log_no_chip_in_socket">⚠️ Ayikho i-chip esokethini le-ZIF. Faka i-microcontroller %1$s bese uthinta [%2$s] futhi.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Kuqinisekiswa ukuba khona kwe-PIC esokethini le-ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Kutholwa i-chip esokethini...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Ayikho i-PIC etholakele esokethini le-ZIF (hlola umumo nesigwedlo)</string>
+    <string name="log_pic_physically_detected">✓ I-PIC itholakele ngokoqobo esokethini</string>
+    <string name="log_chip_auto_identified">🎯 Kukhonjwe ngokuzenzakalelayo: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">I-chip itholakele: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ I-chip ikhona (ID: %1$s). Khetha imodeli ohlwini lwezandla.</string>
+    <string name="log_connecting_to_programmer">🔌 Kuxhunywa kumhleli...</string>
+    <string name="log_connect_programmer_first">⚠ Xhuma umhleli we-K150 nge-USB kuqala.</string>
+    <string name="log_loading_file">📂 Kulayishwa i-%1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Kucutshungulwa ifayela le-%1$s...</string>
+    <string name="log_programming_verified_success">✓ Ukuhlela kuqediwe futhi kwaqinisekiswa ngempumelelo!</string>
+    <string name="log_programming_failed">❌ Inqubo yokuhlela i-microcontroller yehlulekile</string>
+    <string name="log_backing_up_osccal">⏱️ I-chip idinga ukulinganiswa. Kwenzelwa ikhophi ye-OSCCAL ngaphambi kokususa...</string>
+    <string name="log_osccal_restored">✓ I-OSCCAL ibuyiselwe ngempumelelo ku-silicon: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Ayikwazanga ukubuyisela i-OSCCAL ngokuzenzakalelayo. Sebenzisa imenyu Yokulinganisa.</string>
+    <string name="notification_channel_name">Imisebenzi ye-PIC K150</string>
+    <string name="notification_channel_description">Izaziso zokuqedwa kohlelo nezixwayiso zezingxenyekazi zekhompyutha</string>
+    <string name="ad_loading_rewarded_video_toast">Ilayisha ividiyo enomvuzo... Sicela uzame futhi emva kwemizuzwana embalwa.</string>
+    <string name="pro_pass_expired">Kuphelelwe yisikhathi</string>
+    <string name="fuse_log_last_config_restored">✓ Ukumiswa kokugcina kubuyiselwe</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Alikho ifayela le-HEX elilayishiwe</string>
+    <string name="fuse_log_hex_no_fuses">⚠ I-HEX ayinawo amafyuzi</string>
+    <string name="fuse_log_hex_count">  HEX: amafyuzi angu-%1$d</string>
+    <string name="fuse_log_expected_count">  I-chip ilindele: %1$d</string>
+    <string name="unknown_device_id">Akwaziwa</string>
+    <string name="status_connected">Kuxhunyiwe</string>
+    <string name="status_error">Iphutha</string>
+    <string name="log_pro_purchase_error">⚠ Ukuthenga i-Pro: %1$s</string>
 </resources>

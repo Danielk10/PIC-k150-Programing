@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">سیاست های حفظ حریم خصوصی</string>
     <string name="aceptar">قبول</string>
     <string name="cancelar">لغو</string>
-    <string name="conectado">متصل</string>
     <string name="desconectado">قطع شده</string>
     <string name="grabando_pic">در حال برنامه‌ریزی PIC...</string>
     <string name="espere_grabacion_pic">لطفاً صبر کنید. دستگاه را جدا نکنید.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">فریمور با موفقیت در PIC نوشته شد.</string>
     <string name="fallo_grabacion_pic">برنامه‌ریزی ناموفق</string>
     <string name="proceso_no_completado">فرآیند کامل نشد. اتصال را بررسی کنید.</string>
-    <string name="protocolo_del_programador">پروتکل برنامه‌نویس</string>
     <string name="modelo_del_programador">مدل برنامه‌نویس</string>
     <string name="modelo_programador">مدل برنامه‌نویس</string>
     <string name="protocolo">پروتکل</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">سیاست حفظ حریم خصوصی</string>
-    <string name="no_se_detecto_pic_en_socket">PIC در سوکت شناسایی نشد</string>
-    <string name="pic_detectado_en_socket">PIC در سوکت شناسایی شد</string>
     <string name="error_borrando_memoria">خطا در پاک کردن حافظه</string>
     <string name="memoria_borrada_exitosamente">حافظه با موفقیت پاک شد</string>
     <string name="memoria_leida_exitosamente">حافظه با موفقیت خوانده شد</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">صادرات CONFIG (.bin)</string>
     <string name="exportar_dump_completo">صادرات کامل دامپ (.hex)</string>
     <string name="exportar_dump_completo_bin">صادرات کامل دامپ (.bin)</string>
-    <string name="programar_todo">همه چیز را برنامه ریزی کنید</string>
-    <string name="programar_solo_rom">فقط رام برنامه</string>
-    <string name="programar_solo_eeprom">فقط EEPROM را برنامه ریزی کنید</string>
-    <string name="programar_solo_config">فقط برنامه CONFIG</string>
     <string name="verificar_borrado">تایید حذف</string>
     <string name="chip_esta_borrado">تراشه پاک می شود (خالی)</string>
     <string name="chip_no_esta_borrado">تراشه پاک نمی شود</string>
     <string name="verificando_borrado">در حال تایید حذف...</string>
     <string name="resultado_verificacion_borrado">نتیجه تأیید حذف</string>
     <string name="error_verificando_borrado">خطا در تأیید حذف</string>
-    <string name="chip_seleccionado">تراشه انتخاب شده</string>
     <string name="configuracion_de_fusibles">پیکربندی فیوز</string>
     <string name="id_personalizado_hex">شناسه سفارشی (HEX)</string>
     <string name="hint_id_personalizado">مثال: 1A 2B 3C 4D (4 یا 8 بایت)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">تبلیغات توصیه شده</string>
     <string name="lectura_completa">Reading کامل</string>
     <string name="datos_de_memoria">حافظه با موفقیت خوانده شد</string>
-    <string name="sin_chip">بدون تراشه</string>
     <string name="rom_ok_blank">رام: خوب (خالی)</string>
     <string name="rom_not_blank">رام: خالی نیست</string>
     <string name="eeprom_ok_blank">EEPROM: خوب (خالی)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">خیر</string>
     <string name="seleccionar_idioma">انتخاب زبان</string>
     <string name="tutorial_instalacion">آموزش نصب</string>
-    <string name="copiar_todo_en">کپی همه</string>
     <string name="cerrar">بستن</string>
     <string name="error_no_chip">خطا: تراشه‌ای انتخاب نشده یا فیوز ندارد</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">سازگار با HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">تراشه:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">مثال</string>
     <string name="explicacion_label">توضیح</string>
     <string name="error_export_manager_not_initialized">HexExportManager راه اندازی نشده است</string>
-    <string name="error_leyendo_info_chip">خطا در خواندن اطلاعات تراشه</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">بایت ها</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">تشکر ویژه از Mike Wakerly، Adam Schubert، و تیم‌های AndroidIDE، Android Code Studio و KITSRUS.</string>
     <string name="error_al_cambiar_modo">خطا هنگام تغییر حالت:</string>
     <string name="no_hay_firmware_valido">بدون سیستم عامل معتبر</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">باز کردن قفل ابزارهای فنی پیشرفته برای %1$s</string>
+    <string name="pro_feature_hex_editor">ویرایشگر هگزادسیمال زنده (وصله‌کاری مستقیم حافظه)</string>
+    <string name="pro_feature_hardware_diagnostics">عیب‌یابی سخت‌افزار و تست ولتاژ (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">بردار اشکال‌زدایی ICD (۲۴ بیتی)</string>
+    <string name="pro_feature_osccal">بازیابی و ویرایش دستی OSCCAL</string>
+    <string name="pro_feature_remove_ads">حذف تمام تبلیغات از برنامه</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 تماشای ویدیو - اشتراک رایگان ۱۲ ساعته</string>
+    <string name="pro_pass_activated_toast">⭐ اشتراک %1$s Pro به مدت ۱۲ ساعت فعال شد!</string>
+    <string name="pro_ads_not_available">تبلیغات در دسترس نیست</string>
+    <string name="pro_btn_buy_permanent">👑 خرید دائمی %1$s Pro%2$s</string>
+    <string name="pro_billing_not_available">پرداخت Google Play در دسترس نیست</string>
+    <string name="menu_pro_mode">⭐ حالت Pro</string>
+    <string name="menu_pro_permanent">👑 Pro دائمی</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 عیب‌یابی سخت‌افزار K150</string>
+    <string name="menu_osccal_calibration">⏱️ کالیبراسیون OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ بردار اشکال‌زدایی درون مداری (ICD)</string>
+    <string name="cd_socket_diagram">نمودار سوکت</string>
+    <string name="btn_connect_usb">اتصال پروگرمر USB</string>
+    <string name="btn_disconnect_usb">قطع اتصال پروگرمر USB</string>
+    <string name="cd_clear_log">پاک کردن لاگ</string>
+    <string name="cd_tutorial_image">تصویر راهنما</string>
+    <string name="title_activity_tutorial_gputils">آموزش GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">آموزش SDCC</string>
+    <string name="diag_dialog_title">🩺 عیب‌یابی سخت‌افزار K150</string>
+    <string name="diag_section_programmer_status">📋 وضعیت پروگرمر</string>
+    <string name="diag_label_model">مدل:</string>
+    <string name="diag_label_protocol">پروتکل:</string>
+    <string name="diag_label_echo_test">تست اکو:</string>
+    <string name="diag_label_zif_sensor">سنسور ZIF:</string>
+    <string name="diag_status_querying">در حال استعلام...</string>
+    <string name="diag_status_pending">در انتظار</string>
+    <string name="diag_btn_test_echo">⚡ تست اکو</string>
+    <string name="diag_btn_full_diagnosis">🔄 عیب‌یابی کامل</string>
+    <string name="diag_btn_test_zif_sensors">🧪 تست سنسورهای ZIF (قرار دادن/خارج کردن)</string>
+    <string name="diag_section_voltage_control">⚡ کنترل ولتاژ VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ احتیاط: قبل از فعال‌سازی یا اندازه‌گیری ولتاژ با مولتی‌متر، میکروکنترلر را از سوکت ZIF خارج کنید.</string>
+    <string name="diag_status_voltages_off">وضعیت: ولتاژها قطع هستند (0V)</string>
+    <string name="diag_status_vpp_active">وضعیت: ⚡ VPP (13V) / VDD (5V) فعال شد</string>
+    <string name="diag_status_voltages_restarted">وضعیت: ⚡ ولتاژها مجدداً برقرار شدند (فعال)</string>
+    <string name="diag_status_error_activating">وضعیت: ❌ خطا در فعال‌سازی ولتاژها</string>
+    <string name="diag_status_error_deactivating">وضعیت: ❌ خطا در قطع ولتاژها</string>
+    <string name="diag_status_error_restarting">وضعیت: ❌ خطا در راه‌اندازی مجدد ولتاژها</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">خاموش (0V)</string>
+    <string name="diag_btn_restart_voltages">شروع مجدد</string>
+    <string name="diag_programmer_not_connected">پروگرمر متصل نیست</string>
+    <string name="diag_connect_programmer_prompt">⚠ برای استفاده از عیب‌یابی پروگرمر K150 را متصل کنید</string>
+    <string name="diag_model_not_connected">مدل: پروگرمر متصل نیست</string>
+    <string name="diag_echo_measuring">تست اکو: در حال اندازه‌گیری...</string>
+    <string name="diag_zif_reading">سنسور ZIF: در حال خواندن...</string>
+    <string name="diag_echo_ok">تست اکو: ✓ موفق (%1$d میلی‌ثانیه)</string>
+    <string name="diag_echo_no_response">تست اکو: ❌ بدون پاسخ</string>
+    <string name="diag_echo_failed">تست اکو: ❌ ناموفق</string>
+    <string name="diag_socket_pic_detected">✓ تراشه PIC در سوکت ZIF شناسایی شد</string>
+    <string name="diag_socket_empty">ℹ سوکت خالی (تراشه‌ای شناسایی نشد)</string>
+    <string name="diag_socket_no_firm_contact">⚠ تماس محکم در سوکت شناسایی نشد</string>
+    <string name="diag_toast_chip_removed_voltages_active">تراشه خارج شد: ولتاژها برای اندازه‌گیری ایمن فعال شدند</string>
+    <string name="diag_toast_voltages_activated_multimeter">ولتاژها فعال شدند: با مولتی‌متر روی VPP و VDD اندازه‌گیری کنید</string>
+    <string name="diag_toast_voltages_off">ولتاژها خاموش شدند (0V)</string>
+    <string name="diag_toast_voltages_restarted">تراشه خارج شد: ولتاژها برای اندازه‌گیری مجدداً راه‌اندازی شدند</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ میکروکنترلر در سوکت</string>
+    <string name="diag_alert_chip_in_socket_message">برای جلوگیری از آسیب دیدن PIC با ولتاژ 13V VPP، لطفاً قبل از فعال‌سازی یا اندازه‌گیری ولتاژها، میکروکنترلر را از سوکت ZIF خارج کنید.
+
+پس از خروج تراشه، روی \'ادامه\' ضربه بزنید تا اندازه‌گیری فعال شود، یا \'لغو\' را انتخاب کنید تا ولتاژها خاموش بمانند.</string>
+    <string name="diag_btn_continue_chip_removed">ادامه (تراشه خارج شد)</string>
+    <string name="diag_zif_test_title">🧪 تست سنسورهای ZIF</string>
+    <string name="diag_zif_test_desc">تست سنسورهای سخت‌افزاری سوکت ZIF (دستورات 18 و 19 کیتس‌راس):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ مرحله ۱: میکروکنترلر را در سوکت قرار داده و اهرم را قفل کنید (دستور ۱۸)...</string>
+    <string name="diag_zif_step2_pending">⚪ مرحله ۲: در انتظار (خارج کردن با دستور ۱۹)</string>
+    <string name="diag_zif_step1_ok">✓ مرحله ۱: سنسور قرار دادن تأیید شد (دستور ۱۸)</string>
+    <string name="diag_zif_step2_waiting">⏳ مرحله ۲: حالا اهرم را بالا برده و تراشه را از سوکت خارج کنید (دستور ۱۹)...</string>
+    <string name="diag_zif_step1_timeout">❌ مرحله ۱: پایان زمان بدون شناسایی تراشه</string>
+    <string name="diag_zif_step2_ok">✓ مرحله ۲: سنسور خروج تأیید شد (دستور ۱۹)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 هر دو سنسور فیزیکی سوکت ZIF به درستی کار می‌کنند!
+</string>
+    <string name="diag_zif_step2_timeout">❌ مرحله ۲: پایان زمان بدون شناسایی خروج تراشه</string>
+    <string name="hex_editor_title">✏️ ویرایش %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (کلمه)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (بایت)</string>
+    <string name="hex_editor_info_address_value">آدرس حافظه: %1$s
+مقدار فعلی: 0x%2$s (حداکثر: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ قالب کلمه و ترتیب بایت‌ها (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ قالب سلول EEPROM (۸ بیتی)</string>
+    <string name="hex_editor_desc_rom">• تراشه‌های PIC کلمات ۱۴/۱۶ بیتی را به ترتیب Little-Endian ذخیره می‌کنند:
+   - بایت پایین (LSB): 0x%1$s (آفست 2×N)
+   - بایت بالا (MSB): 0x%2$s (آفست 2×N+1)
+• نحوه ویرایش: کلمه منطقی کامل را وارد کنید [MSB][LSB] (مثلاً 2805 = LSB 05, MSB 28).
+• برنامه به طور خودکار بایت‌ها را به Little-Endian برای سیلیکون و فایل HEX مرتب می‌کند.</string>
+    <string name="hex_editor_desc_eeprom">• سلول‌های EEPROM شامل بایت‌های مجزای ۸ بیتی هستند.
+• بایت هگزادسیمال ۲ کاراکتری را مستقیماً وارد کنید (محدوده: 00 تا FF).</string>
+    <string name="hex_editor_input_label_rom">مقدار جدید را وارد کنید (کلمه هگز [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">مقدار جدید را وارد کنید (بایت هگز 00-FF):</string>
+    <string name="guardar">ذخیره</string>
+    <string name="hex_editor_err_empty">مقدار نمی‌تواند خالی باشد</string>
+    <string name="hex_editor_err_invalid_hex">قالب هگزادسیمال نامعتبر است</string>
+    <string name="hex_editor_err_exceeds_max">مقدار از حداکثر مجاز فراتر است (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">میکروکنترلر: %1$s (خانواده PIC10F - ۲ رجیستر CAL)</string>
+    <string name="cal_chip_subtitle_standard">میکروکنترلر: %1$s (کلمه OSCCAL در آخرین آدرس ROM)</string>
+    <string name="cal_not_read_yet">هنوز از تراشه خوانده نشده است</string>
+    <string name="cal_silicon_value">
+مقدار روی سیلیکون: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+مقدار هگزادسیمال را وارد کنید (مثلاً %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 خواندن از تراشه</string>
+    <string name="cal_btn_write_silicon">💾 نوشتن روی سیلیکون</string>
+    <string name="cal_dialog_title">⏱️ کالیبراسیون OSCCAL</string>
+    <string name="cal_toast_read_success">✓ مقدار OSCCAL خوانده شد: %1$s</string>
+    <string name="cal_toast_read_error">❌ خطا در خواندن کالیبراسیون از تراشه</string>
+    <string name="cal_toast_invalid_hex">مقدار هگزادسیمال نامعتبر است</string>
+    <string name="cal_toast_write_success">✓ OSCCAL با موفقیت روی تراشه نوشته شد</string>
+    <string name="cal_toast_write_error">❌ نوشتن کالیبراسیون روی سیلیکون ناموفق بود</string>
+    <string name="icd_dialog_subtitle">اشکال‌زدایی درون مداری (ICD) - بردار آدرس ۲۴ بیتی
+(محدوده معتبر: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+بردار فعلی: %1$s</string>
+    <string name="icd_enter_address_prompt">
+آدرس اشکال‌زدایی به صورت هگز (مثلاً 000020):</string>
+    <string name="icd_btn_read_vector">📥 خواندن بردار</string>
+    <string name="icd_btn_write_vector">💾 نوشتن بردار</string>
+    <string name="icd_dialog_title">🛠️ بردار اشکال‌زدایی (ICD)</string>
+    <string name="icd_toast_read_success">✓ بردار خوانده شد: %1$s</string>
+    <string name="icd_toast_invalid_address">آدرس هگزادسیمال ۲۴ بیتی نامعتبر است</string>
+    <string name="icd_toast_write_success">✓ بردار ICD برنامه‌ریزی شد: %1$s</string>
+    <string name="icd_toast_write_error">❌ برنامه‌ریزی بردار ICD ناموفق بود</string>
+    <string name="prog_type_all_title">برنامه‌ریزی همه</string>
+    <string name="prog_type_all_desc">ROM، EEPROM و پیکربندی</string>
+    <string name="prog_type_rom_title">برنامه‌ریزی ROM</string>
+    <string name="prog_type_rom_desc">حافظه فلش</string>
+    <string name="prog_type_eeprom_title">برنامه‌ریزی EEPROM</string>
+    <string name="prog_type_eeprom_desc">داده‌های EEPROM</string>
+    <string name="prog_type_config_title">برنامه‌ریزی پیکربندی</string>
+    <string name="prog_type_config_desc">فیوزها و بیت‌های پیکربندی</string>
+    <string name="blank_check_err_null_result">❌ خطا در بررسی خالی بودن: نتیجه نامعتبر</string>
+    <string name="blank_check_err_verifying">❌ خطا در تأیید بررسی خالی بودن: %1$s</string>
+    <string name="blank_check_dual_header">📋 بررسی تفاضلی خالی بودن (بررسی دوگانه خالی بودن):</string>
+    <string name="blank_check_rom_clean">  ✓ حافظه ROM کاملاً پاک است (100%%) (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ داده‌های قبلی در ROM شناسایی شد (خالی نیست)</string>
+    <string name="blank_check_eeprom_clean">  ✓ حافظه EEPROM کاملاً پاک است (100%%) (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ داده‌های قبلی در EEPROM شناسایی شد (خالی نیست)</string>
+    <string name="blank_check_method_label">  ℹ روش: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ میکروکنترلر آماده برنامه‌ریزی است (100%% پاک شده)</string>
+    <string name="blank_check_erase_required">⚠ پاکسازی قبلی پیش از برنامه‌ریزی الزامی است</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ قرار دادن میکروکنترلر</string>
+    <string name="dialog_insert_microcontroller_message">هیچ تراشه‌ای در سوکت ZIF شناسایی نشد.
+
+لطفاً PIC %1$s را در جهت مناسب قرار دهید، اهرم را قفل کنید و دوباره [%2$s] را فشار دهید.</string>
+    <string name="log_no_chip_in_socket">⚠️ تراشه‌ای در سوکت ZIF نیست. میکروکنترلر %1$s را قرار داده و مجدداً [%2$s] را لمس کنید.</string>
+    <string name="log_verifying_pic_in_socket">🔍 در حال بررسی حضور PIC در سوکت ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 در حال شناسایی تراشه در سوکت...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ تراشه PIC در سوکت ZIF شناسایی نشد (جهت تراشه و اهرم را بررسی کنید)</string>
+    <string name="log_pic_physically_detected">✓ تراشه PIC به صورت فیزیکی در سوکت شناسایی شد</string>
+    <string name="log_chip_auto_identified">🎯 شناسایی خودکار: %1$s (شناسه: %2$s)</string>
+    <string name="toast_chip_detected">تراشه شناسایی شد: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ تراشه حاضر است (شناسه: %1$s). مدل را از لیست دستی انتخاب کنید.</string>
+    <string name="log_connecting_to_programmer">🔌 در حال اتصال به پروگرمر...</string>
+    <string name="log_connect_programmer_first">⚠ ابتدا پروگرمر K150 را از طریق USB متصل کنید.</string>
+    <string name="log_loading_file">📂 در حال بارگذاری %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ در حال پردازش فایل %1$s...</string>
+    <string name="log_programming_verified_success">✓ برنامه‌ریزی انجام شد و با موفقیت تأیید گردید!</string>
+    <string name="log_programming_failed">❌ فرآیند برنامه‌ریزی میکروکنترلر ناموفق بود</string>
+    <string name="log_backing_up_osccal">⏱️ تراشه نیاز به کالیبراسیون دارد. پشتیبان‌گیری از OSCCAL قبل از پاک‌سازی...</string>
+    <string name="log_osccal_restored">✓ مقدار OSCCAL با موفقیت روی سیلیکون بازیابی شد: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ بازیابی خودکار OSCCAL ناموفق بود. از منوی کالیبراسیون استفاده کنید.</string>
+    <string name="notification_channel_name">عملیات PIC K150</string>
+    <string name="notification_channel_description">اعلان‌های اتمام برنامه‌ریزی و هشدارهای سخت‌افزاری</string>
+    <string name="ad_loading_rewarded_video_toast">در حال بارگذاری ویدیوی پاداش... لطفاً چند ثانیه دیگر تلاش کنید.</string>
+    <string name="pro_pass_expired">منقضی شده</string>
+    <string name="fuse_log_last_config_restored">✓ آخرین پیکربندی بازیابی شد</string>
+    <string name="fuse_log_no_hex_loaded">⚠ فایلی برای HEX بارگذاری نشده است</string>
+    <string name="fuse_log_hex_no_fuses">⚠ فایل HEX فاقد فیوز است</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d فیوز</string>
+    <string name="fuse_log_expected_count">  تراشه انتظار دارد: %1$d</string>
+    <string name="unknown_device_id">ناشناخته</string>
+    <string name="status_connected">متصل</string>
+    <string name="status_error">خطا</string>
+    <string name="log_pro_purchase_error">⚠ خرید Pro: %1$s</string>
 </resources>

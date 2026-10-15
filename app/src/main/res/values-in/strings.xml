@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Kebijakan Privasi</string>
     <string name="aceptar">Terima</string>
     <string name="cancelar">Batal</string>
-    <string name="conectado">Terhubung</string>
     <string name="desconectado">Terputus</string>
     <string name="grabando_pic">Menulis PIC...</string>
     <string name="espere_grabacion_pic">Harap tunggu. Jangan lepaskan perangkat.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware telah berhasil ditulis ke PIC.</string>
     <string name="fallo_grabacion_pic">Penulisan Gagal</string>
     <string name="proceso_no_completado">Proses tidak dapat diselesaikan. Periksa koneksi.</string>
-    <string name="protocolo_del_programador">Protokol Programmer</string>
     <string name="modelo_del_programador">Model Programmer</string>
     <string name="modelo_programador">Model Programmer</string>
     <string name="protocolo">Protokol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Kebijakan Privasi</string>
-    <string name="no_se_detecto_pic_en_socket">PIC tidak terdeteksi di soket</string>
-    <string name="pic_detectado_en_socket">PIC terdeteksi di soket</string>
     <string name="error_borrando_memoria">Error menghapus memori</string>
     <string name="memoria_borrada_exitosamente">Memori berhasil dihapus</string>
     <string name="memoria_leida_exitosamente">Memori berhasil dibaca</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Ekspor KONFIG (.bin)</string>
     <string name="exportar_dump_completo">Ekspor Dump Penuh (.hex)</string>
     <string name="exportar_dump_completo_bin">Ekspor Dump Penuh (.bin)</string>
-    <string name="programar_todo">Jadwalkan Segalanya</string>
-    <string name="programar_solo_rom">ROM Program saja</string>
-    <string name="programar_solo_eeprom">Program EEPROM saja</string>
-    <string name="programar_solo_config">Hanya program CONFIG</string>
     <string name="verificar_borrado">Verifikasi Penghapusan</string>
     <string name="chip_esta_borrado">Chip terhapus (Kosong)</string>
     <string name="chip_no_esta_borrado">Chipnya TIDAK terhapus</string>
     <string name="verificando_borrado">Memverifikasi penghapusan...</string>
     <string name="resultado_verificacion_borrado">Hasil Verifikasi Penghapusan</string>
     <string name="error_verificando_borrado">Terjadi kesalahan saat memverifikasi penghapusan</string>
-    <string name="chip_seleccionado">Chip yang Dipilih</string>
     <string name="configuracion_de_fusibles">Konfigurasi Sekering</string>
     <string name="id_personalizado_hex">ID Khusus (HEX)</string>
     <string name="hint_id_personalizado">Contoh: 1A 2B 3C 4D (4 atau 8 byte)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Iklan yang direkomendasikan</string>
     <string name="lectura_completa">Bacaan Lengkap</string>
     <string name="datos_de_memoria">Memori berhasil dibaca</string>
-    <string name="sin_chip">tanpa chip</string>
     <string name="rom_ok_blank">ROM: Oke (Kosong)</string>
     <string name="rom_not_blank">ROM: TIDAK KOSONG</string>
     <string name="eeprom_ok_blank">EEPROM: OK (Kosong)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Tidak</string>
     <string name="seleccionar_idioma">Pilih Bahasa</string>
     <string name="tutorial_instalacion">Tutorial instalasi</string>
-    <string name="copiar_todo_en">Salin Semua</string>
     <string name="cerrar">Tutup</string>
     <string name="error_no_chip">Error: Tidak ada chip yang dipilih atau tidak ada fuse</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">Kompatibel dengan HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Contoh</string>
     <string name="explicacion_label">Penerangan</string>
     <string name="error_export_manager_not_initialized">HexExportManager tidak diinisialisasi</string>
-    <string name="error_leyendo_info_chip">Kesalahan saat membaca info chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">byte</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Terima kasih khusus kepada Mike Wakerly, Adam Schubert, dan tim AndroidIDE, Android Code Studio, dan KITSRUS.</string>
     <string name="error_al_cambiar_modo">Kesalahan saat mengubah mode:</string>
     <string name="no_hay_firmware_valido">Tidak ada firmware yang valid</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Buka alat teknis tingkat lanjut untuk %1$s</string>
+    <string name="pro_feature_hex_editor">Editor Heksadesimal Langsung (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Diagnostik Perangkat Keras &amp; Uji Tegangan (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Vektor Debug ICD (24 bit)</string>
+    <string name="pro_feature_osccal">Penyelamatan &amp; Pengeditan Manual OSCCAL</string>
+    <string name="pro_feature_remove_ads">Hapus semua iklan dari aplikasi</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Tonton Video - Akses Gratis 12 Jam</string>
+    <string name="pro_pass_activated_toast">⭐ Akses %1$s Pro diaktifkan selama 12 jam!</string>
+    <string name="pro_ads_not_available">Iklan tidak tersedia</string>
+    <string name="pro_btn_buy_permanent">👑 Beli %1$s Pro Permanen%2$s</string>
+    <string name="pro_billing_not_available">Google Play Billing tidak tersedia</string>
+    <string name="menu_pro_mode">⭐ Mode Pro</string>
+    <string name="menu_pro_permanent">👑 Pro Permanen</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Diagnostik Perangkat Keras K150</string>
+    <string name="menu_osccal_calibration">⏱️ Kalibrasi OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor Debug In-Circuit (ICD)</string>
+    <string name="cd_socket_diagram">Diagram soket</string>
+    <string name="btn_connect_usb">Hubungkan Pemrogram USB</string>
+    <string name="btn_disconnect_usb">Putuskan Pemrogram USB</string>
+    <string name="cd_clear_log">Hapus log</string>
+    <string name="cd_tutorial_image">Ilustrasi tutorial</string>
+    <string name="title_activity_tutorial_gputils">Tutorial GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Tutorial SDCC</string>
+    <string name="diag_dialog_title">🩺 Diagnostik Perangkat Keras K150</string>
+    <string name="diag_section_programmer_status">📋 Status Pemrogram</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protokol:</string>
+    <string name="diag_label_echo_test">Uji Echo:</string>
+    <string name="diag_label_zif_sensor">Sensor ZIF:</string>
+    <string name="diag_status_querying">Meminta informasi...</string>
+    <string name="diag_status_pending">Tertunda</string>
+    <string name="diag_btn_test_echo">⚡ Uji Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Diagnostik Penuh</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Uji Sensor ZIF (Pasang/Lepas)</string>
+    <string name="diag_section_voltage_control">⚡ Kontrol Tegangan VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ PERHATIAN: Lepaskan mikrokontroler dari soket ZIF sebelum mengaktifkan atau mengukur tegangan dengan multimeter.</string>
+    <string name="diag_status_voltages_off">Status: Tegangan dimatikan (0V)</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) DIAKTIFKAN</string>
+    <string name="diag_status_voltages_restarted">Status: ⚡ Tegangan dimulai ulang (Aktif)</string>
+    <string name="diag_status_error_activating">Status: ❌ Kesalahan mengaktifkan tegangan</string>
+    <string name="diag_status_error_deactivating">Status: ❌ Kesalahan mematikan tegangan</string>
+    <string name="diag_status_error_restarting">Status: ❌ Kesalahan memulai ulang tegangan</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Matikan (0V)</string>
+    <string name="diag_btn_restart_voltages">Mulai Ulang</string>
+    <string name="diag_programmer_not_connected">Pemrogram tidak terhubung</string>
+    <string name="diag_connect_programmer_prompt">⚠ Hubungkan pemrogram K150 untuk menggunakan diagnostik</string>
+    <string name="diag_model_not_connected">Model: Pemrogram tidak terhubung</string>
+    <string name="diag_echo_measuring">Uji Echo: Mengukur...</string>
+    <string name="diag_zif_reading">Sensor ZIF: Membaca...</string>
+    <string name="diag_echo_ok">Uji Echo: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Uji Echo: ❌ Tidak ada respons</string>
+    <string name="diag_echo_failed">Uji Echo: ❌ Gagal</string>
+    <string name="diag_socket_pic_detected">✓ PIC terdeteksi di soket ZIF</string>
+    <string name="diag_socket_empty">ℹ Soket kosong (Tidak ada chip terdeteksi)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Kontak rapat tidak terdeteksi di soket</string>
+    <string name="diag_toast_chip_removed_voltages_active">Chip dilepas: Tegangan diaktifkan untuk pengukuran yang aman</string>
+    <string name="diag_toast_voltages_activated_multimeter">Tegangan diaktifkan: ukur dengan multimeter pada pin VPP dan VDD</string>
+    <string name="diag_toast_voltages_off">Tegangan dimatikan (0V)</string>
+    <string name="diag_toast_voltages_restarted">Chip dilepas: Tegangan dimulai ulang untuk pengukuran</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroler di Soket</string>
+    <string name="diag_alert_chip_in_socket_message">Untuk menghindari kerusakan pada PIC akibat VPP 13V, harap lepaskan mikrokontroler dari soket ZIF sebelum mengaktifkan atau mengukur tegangan.
+
+Setelah chip dilepas, ketuk \'Lanjutkan\' untuk mengaktifkan pengukuran, atau \'Batal\' agar tegangan tetap mati.</string>
+    <string name="diag_btn_continue_chip_removed">Lanjutkan (Chip Dilepas)</string>
+    <string name="diag_zif_test_title">🧪 Uji Sensor ZIF</string>
+    <string name="diag_zif_test_desc">Uji sensor perangkat keras untuk soket ZIF (Perintah Kitsrus 18 dan 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Langkah 1: Masukkan mikrokontroler ke soket dan kunci tuasnya (Perintah 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Langkah 2: Tertunda (Pelepasan dengan Perintah 19)</string>
+    <string name="diag_zif_step1_ok">✓ Langkah 1: Sensor Pemasangan OK (Perintah 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Langkah 2: Sekarang angkat tuas dan lepaskan chip dari soket (Perintah 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Langkah 1: Waktu habis tanpa mendeteksi chip</string>
+    <string name="diag_zif_step2_ok">✓ Langkah 2: Sensor Pelepasan OK (Perintah 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Kedua sensor fisik soket ZIF berfungsi dengan sempurna!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Langkah 2: Waktu habis tanpa mendeteksi pelepasan chip</string>
+    <string name="hex_editor_title">✏️ Edit %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Word)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">Alamat Memori: %1$s
+Nilai saat ini: 0x%2$s (Maksimum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Format Word &amp; Urutan Byte (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Format Sel EEPROM (8-bit)</string>
+    <string name="hex_editor_desc_rom">• PIC menyimpan word 14/16-bit dalam urutan Little-Endian:
+   - Byte Rendah (LSB): 0x%1$s (offset 2×N)
+   - Byte Tinggi (MSB): 0x%2$s (offset 2×N+1)
+• Cara mengedit: Masukkan word logis lengkap [MSB][LSB] (mis. 2805 = LSB 05, MSB 28).
+• Aplikasi secara otomatis mengurutkan byte ke Little-Endian untuk silikon dan file HEX.</string>
+    <string name="hex_editor_desc_eeprom">• Sel EEPROM terdiri dari byte 8-bit individual.
+• Masukkan 2 karakter byte heksadesimal secara langsung (rentang: 00 hingga FF).</string>
+    <string name="hex_editor_input_label_rom">Masukkan nilai baru (Word Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Masukkan nilai baru (Byte Hex 00-FF):</string>
+    <string name="guardar">Simpan</string>
+    <string name="hex_editor_err_empty">Nilai tidak boleh kosong</string>
+    <string name="hex_editor_err_invalid_hex">Format heksadesimal tidak valid</string>
+    <string name="hex_editor_err_exceeds_max">Nilai melebihi maksimum yang diizinkan (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrokontroler: %1$s (Keluarga PIC10F - 2 register CAL)</string>
+    <string name="cal_chip_subtitle_standard">Mikrokontroler: %1$s (Word OSCCAL di alamat ROM terakhir)</string>
+    <string name="cal_not_read_yet">Belum dibaca dari chip</string>
+    <string name="cal_silicon_value">
+Nilai Silikon: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Masukkan nilai heksadesimal (mis. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Baca dari Chip</string>
+    <string name="cal_btn_write_silicon">💾 Tulis ke Silikon</string>
+    <string name="cal_dialog_title">⏱️ Kalibrasi OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL terbaca: %1$s</string>
+    <string name="cal_toast_read_error">❌ Kesalahan saat membaca kalibrasi dari chip</string>
+    <string name="cal_toast_invalid_hex">Nilai heksadesimal tidak valid</string>
+    <string name="cal_toast_write_success">✓ OSCCAL berhasil ditulis ke chip</string>
+    <string name="cal_toast_write_error">❌ Gagal menulis kalibrasi ke silikon</string>
+    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) - Vektor Alamat 24-bit
+(Rentang valid: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Vektor Saat Ini: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Alamat debug heksadesimal (mis. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Baca Vektor</string>
+    <string name="icd_btn_write_vector">💾 Tulis Vektor</string>
+    <string name="icd_dialog_title">🛠️ Vektor Debug (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektor terbaca: %1$s</string>
+    <string name="icd_toast_invalid_address">Alamat heksadesimal 24-bit tidak valid</string>
+    <string name="icd_toast_write_success">✓ Vektor ICD terprogram: %1$s</string>
+    <string name="icd_toast_write_error">❌ Gagal memprogram vektor ICD</string>
+    <string name="prog_type_all_title">Program Semua</string>
+    <string name="prog_type_all_desc">ROM, EEPROM dan Konfigurasi</string>
+    <string name="prog_type_rom_title">Program ROM</string>
+    <string name="prog_type_rom_desc">Memori Flash</string>
+    <string name="prog_type_eeprom_title">Program EEPROM</string>
+    <string name="prog_type_eeprom_desc">Data EEPROM</string>
+    <string name="prog_type_config_title">Program Konfigurasi</string>
+    <string name="prog_type_config_desc">Fuse dan bit konfigurasi</string>
+    <string name="blank_check_err_null_result">❌ Kesalahan pemeriksaan kosong: hasil null</string>
+    <string name="blank_check_err_verifying">❌ Kesalahan memverifikasi pemeriksaan kosong: %1$s</string>
+    <string name="blank_check_dual_header">📋 Pemeriksaan Kosong Diferensial (Pemeriksaan Ganda):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% bersih (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Terdeteksi data sebelumnya di ROM (Tidak kosong)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% bersih (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Terdeteksi data sebelumnya di EEPROM (Tidak kosong)</string>
+    <string name="blank_check_method_label">  ℹ Metode: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrokontroler siap diprogram (100%% Terhapus)</string>
+    <string name="blank_check_erase_required">⚠ Penghapusan awal diperlukan sebelum memprogram</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Masukkan Mikrokontroler</string>
+    <string name="dialog_insert_microcontroller_message">Tidak ada chip yang terdeteksi di soket ZIF.
+
+Harap masukkan PIC %1$s pada posisi yang sesuai, kunci tuasnya, lalu ketuk [%2$s] lagi.</string>
+    <string name="log_no_chip_in_socket">⚠️ Tidak ada chip di soket ZIF. Masukkan mikrokontroler %1$s dan ketuk [%2$s] lagi.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Memverifikasi keberadaan PIC di soket ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Mendeteksi chip di soket...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Tidak ada PIC terdeteksi di soket ZIF (periksa orientasi dan tuas)</string>
+    <string name="log_pic_physically_detected">✓ PIC terdeteksi secara fisik di soket</string>
+    <string name="log_chip_auto_identified">🎯 Teridentifikasi otomatis: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Chip terdeteksi: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Chip terpasang (ID: %1$s). Pilih model dari daftar manual.</string>
+    <string name="log_connecting_to_programmer">🔌 Menghubungkan ke pemrogram...</string>
+    <string name="log_connect_programmer_first">⚠ Hubungkan pemrogram K150 melalui USB terlebih dahulu.</string>
+    <string name="log_loading_file">📂 Memuat %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Memproses file %1$s...</string>
+    <string name="log_programming_verified_success">✓ Pemrograman selesai dan berhasil diverifikasi!</string>
+    <string name="log_programming_failed">❌ Proses pemrograman mikrokontroler gagal</string>
+    <string name="log_backing_up_osccal">⏱️ Chip memerlukan kalibrasi. Mencadangkan OSCCAL sebelum menghapus...</string>
+    <string name="log_osccal_restored">✓ OSCCAL berhasil dipulihkan ke silikon: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Tidak dapat memulihkan OSCCAL secara otomatis. Gunakan menu Kalibrasi.</string>
+    <string name="notification_channel_name">Operasi PIC K150</string>
+    <string name="notification_channel_description">Pemberitahuan penyelesaian pemrograman dan peringatan perangkat keras</string>
+    <string name="ad_loading_rewarded_video_toast">Memuat video berhadiah... Silakan coba lagi dalam beberapa detik.</string>
+    <string name="pro_pass_expired">Kedaluwarsa</string>
+    <string name="fuse_log_last_config_restored">✓ Konfigurasi terakhir dipulihkan</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Tidak ada file HEX yang dimuat</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX tidak berisi fuse</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d fuse</string>
+    <string name="fuse_log_expected_count">  Chip membutuhkan: %1$d</string>
+    <string name="unknown_device_id">Tidak Dikenal</string>
+    <string name="status_connected">Terhubung</string>
+    <string name="status_error">Kesalahan</string>
+    <string name="log_pro_purchase_error">⚠ Pembelian Pro: %1$s</string>
 </resources>

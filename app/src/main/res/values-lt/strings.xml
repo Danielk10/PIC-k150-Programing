@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Privatumo politika</string>
     <string name="aceptar">Priimti</string>
     <string name="cancelar">Atšaukti</string>
-    <string name="conectado">Prisijungta</string>
     <string name="desconectado">Atjungta</string>
     <string name="grabando_pic">Rašoma į PIC...</string>
     <string name="espere_grabacion_pic">Palaukite. Neatsijunkite įrenginio.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Programinė įranga sėkmingai įrašyta į PIC.</string>
     <string name="fallo_grabacion_pic">Rašymo klaida</string>
     <string name="proceso_no_completado">Nepavyko užbaigti proceso. Patikrinkite ryšį.</string>
-    <string name="protocolo_del_programador">Programuotojo protokolas</string>
     <string name="modelo_del_programador">Programuotojo modelis</string>
     <string name="modelo_programador">Programuotojo modelis</string>
     <string name="protocolo">Protokolas</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privatumo politika</string>
-    <string name="no_se_detecto_pic_en_socket">PIC neaptikta lizdoje</string>
-    <string name="pic_detectado_en_socket">PIC aptikta lizdoje</string>
     <string name="error_borrando_memoria">Klaida trinant atmintį</string>
     <string name="memoria_borrada_exitosamente">Atmintis sėkmingai ištrinta</string>
     <string name="memoria_leida_exitosamente">Atmintis sėkmingai nuskaitytas</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Eksportuoti CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Eksportuoti visą išrašymą (.hex)</string>
     <string name="exportar_dump_completo_bin">Eksportuoti visą išrašymą (.bin)</string>
-    <string name="programar_todo">Suplanuokite viską</string>
-    <string name="programar_solo_rom">Tik programos ROM</string>
-    <string name="programar_solo_eeprom">Programuoti tik EEPROM</string>
-    <string name="programar_solo_config">Tik programa CONFIG</string>
     <string name="verificar_borrado">Patvirtinkite ištrynimą</string>
     <string name="chip_esta_borrado">Lustas ištrintas (tuščias)</string>
     <string name="chip_no_esta_borrado">Lustas NĖRA ištrintas</string>
     <string name="verificando_borrado">Tikrinamas ištrynimas...</string>
     <string name="resultado_verificacion_borrado">Ištrynimo patvirtinimo rezultatas</string>
     <string name="error_verificando_borrado">Klaida tikrinant ištrynimą</string>
-    <string name="chip_seleccionado">Pasirinktas lustas</string>
     <string name="configuracion_de_fusibles">Saugiklio konfigūracija</string>
     <string name="id_personalizado_hex">Tinkintas ID (HEX)</string>
     <string name="hint_id_personalizado">Pavyzdys: 1A 2B 3C 4D (4 arba 8 baitai)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Rekomenduojama reklama</string>
     <string name="lectura_completa">Pilnas skaitymas</string>
     <string name="datos_de_memoria">Atmintis sėkmingai nuskaitytas</string>
-    <string name="sin_chip">be lusto</string>
     <string name="rom_ok_blank">ROM: gerai (tuščia)</string>
     <string name="rom_not_blank">ROM: NETUŠTA</string>
     <string name="eeprom_ok_blank">EEPROM: gerai (tuščia)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Ne</string>
     <string name="seleccionar_idioma">Pasirinkti kalbą</string>
     <string name="tutorial_instalacion">Diegimo vadovas</string>
-    <string name="copiar_todo_en">Kopijuoti viską</string>
     <string name="cerrar">Uždaryti</string>
     <string name="error_no_chip">Klaida: Nepasirinktas lustas arba nėra saugiklių</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">Suderinamas su HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Lustas:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Pavyzdys</string>
     <string name="explicacion_label">Paaiškinimas</string>
     <string name="error_export_manager_not_initialized">HexExportManager nebuvo inicijuotas</string>
-    <string name="error_leyendo_info_chip">Klaida skaitant lusto informaciją</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">baitų</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Ypatingas ačiū Mike\'ui Wakerly, Adamui Schubertui ir AndroidIDE, Android Code Studio ir KITSRUS komandoms.</string>
     <string name="error_al_cambiar_modo">Klaida keičiant režimą:</string>
     <string name="no_hay_firmware_valido">Nėra galiojančios programinės įrangos</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Atrakinkite pažangius techninius įrankius, skirtus %1$s</string>
+    <string name="pro_feature_hex_editor">Tiesioginis šešioliktainis redaktorius (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Aparatinės įrangos diagnostika ir įtampos testas (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD derinimo vektorius (24 bitai)</string>
+    <string name="pro_feature_osccal">OSCCAL atkūrimas ir rankinis redagavimas</string>
+    <string name="pro_feature_remove_ads">Pašalinti visas reklamas iš programėlės</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Žiūrėti vaizdo įrašą – 12 val. nemokama prieiga</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro prieiga suaktyvinta 12 valandų!</string>
+    <string name="pro_ads_not_available">Reklamos nepasiekiamos</string>
+    <string name="pro_btn_buy_permanent">👑 Pirkti %1$s Pro visam laikui%2$s</string>
+    <string name="pro_billing_not_available">„Google Play Billing“ nepasiekiama</string>
+    <string name="menu_pro_mode">⭐ „Pro“ režimas</string>
+    <string name="menu_pro_permanent">👑 Nuolatinis „Pro“</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 aparatinės įrangos diagnostika</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL kalibravimas</string>
+    <string name="menu_debug_vector_icd">🛠️ Grandinės derinimo vektorius (ICD)</string>
+    <string name="cd_socket_diagram">Lizdo diagrama</string>
+    <string name="btn_connect_usb">Prijungti USB programuotuvą</string>
+    <string name="btn_disconnect_usb">Atjungti USB programuotuvą</string>
+    <string name="cd_clear_log">Išvalyti žurnalą</string>
+    <string name="cd_tutorial_image">Mokymo iliustracija</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS pamoka</string>
+    <string name="title_activity_tutorial_sdcc">SDCC pamoka</string>
+    <string name="diag_dialog_title">🩺 K150 aparatinės įrangos diagnostika</string>
+    <string name="diag_section_programmer_status">📋 Programuotuvo būsena</string>
+    <string name="diag_label_model">Modelis:</string>
+    <string name="diag_label_protocol">Protokolas:</string>
+    <string name="diag_label_echo_test">Aido testas:</string>
+    <string name="diag_label_zif_sensor">ZIF jutiklis:</string>
+    <string name="diag_status_querying">Užklausiama...</string>
+    <string name="diag_status_pending">Laukiama</string>
+    <string name="diag_btn_test_echo">⚡ Tikrinti aidą</string>
+    <string name="diag_btn_full_diagnosis">🔄 Pilna diagnostika</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Tikrinti ZIF jutiklius (Įdėjimas/Išėmimas)</string>
+    <string name="diag_section_voltage_control">⚡ Įtampos valdymas VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ DĖMESIO: Prieš įjungdami ar matuodami įtampas multimetru, išimkite mikrovaldiklį iš ZIF lizdo.</string>
+    <string name="diag_status_voltages_off">Būsena: Įtampa išjungta (0V)</string>
+    <string name="diag_status_vpp_active">Būsena: ⚡ VPP (13V) / VDD (5V) ĮJUNGTA</string>
+    <string name="diag_status_voltages_restarted">Būsena: ⚡ Įtampa paleista iš naujo (Aktyvi)</string>
+    <string name="diag_status_error_activating">Būsena: ❌ Klaida įjungiant įtampą</string>
+    <string name="diag_status_error_deactivating">Būsena: ❌ Klaida išjungiant įtampą</string>
+    <string name="diag_status_error_restarting">Būsena: ❌ Klaida paleidžiant įtampą iš naujo</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Išjungti (0V)</string>
+    <string name="diag_btn_restart_voltages">Paleisti iš naujo</string>
+    <string name="diag_programmer_not_connected">Programuotuvas neprijungtas</string>
+    <string name="diag_connect_programmer_prompt">⚠ Prijunkite K150 programuotuvą, kad galėtumėte naudoti diagnostiką</string>
+    <string name="diag_model_not_connected">Modelis: Programuotuvas neprijungtas</string>
+    <string name="diag_echo_measuring">Aido testas: Matuojama...</string>
+    <string name="diag_zif_reading">ZIF jutiklis: Skaitoma...</string>
+    <string name="diag_echo_ok">Aido testas: ✓ Gerai (%1$d ms)</string>
+    <string name="diag_echo_no_response">Aido testas: ❌ Nėra atsakymo</string>
+    <string name="diag_echo_failed">Aido testas: ❌ Nepavyko</string>
+    <string name="diag_socket_pic_detected">✓ ZIF lizde aptiktas PIC</string>
+    <string name="diag_socket_empty">ℹ Tuščias lizdas (Mikroschema neaptikta)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Lizde neaptiktas patikimas kontaktas</string>
+    <string name="diag_toast_chip_removed_voltages_active">Mikroschema išimta: Įtampos įjungtos saugiam matavimui</string>
+    <string name="diag_toast_voltages_activated_multimeter">Įtampos įjungtos: matuokite multimetru ties VPP ir VDD</string>
+    <string name="diag_toast_voltages_off">Įtampos išjungtos (0V)</string>
+    <string name="diag_toast_voltages_restarted">Mikroschema išimta: Įtampos paleistos iš naujo matavimui</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrovaldiklis lizde</string>
+    <string name="diag_alert_chip_in_socket_message">Kad nepažeistumėte PIC su 13V VPP, prieš įjungdami arba matuodami įtampas išimkite mikrovaldiklį iš ZIF lizdo.
+
+Išėmę mikroschemą, bakstelėkite „Tęsti“, kad įjungtumėte matavimą, arba „Atšaukti“, kad įtampa liktų išjungta.</string>
+    <string name="diag_btn_continue_chip_removed">Tęsti (Mikroschema išimta)</string>
+    <string name="diag_zif_test_title">🧪 ZIF jutiklių testas</string>
+    <string name="diag_zif_test_desc">ZIF lizdo aparatinės įrangos jutiklių testas („Kitsrus“ komandos 18 ir 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ 1 žingsnis: Įdėkite mikrovaldiklį į lizdą ir užfiksuokite svirtį (18 komanda)...</string>
+    <string name="diag_zif_step2_pending">⚪ 2 žingsnis: Laukiama (Išėmimas su 19 komanda)</string>
+    <string name="diag_zif_step1_ok">✓ 1 žingsnis: Įdėjimo jutiklis VEIKIA (18 komanda)</string>
+    <string name="diag_zif_step2_waiting">⏳ 2 žingsnis: Dabar pakelkite svirtį ir išimkite mikroschemą iš lizdo (19 komanda)...</string>
+    <string name="diag_zif_step1_timeout">❌ 1 žingsnis: Baigėsi laikas neaptikus mikroschemos</string>
+    <string name="diag_zif_step2_ok">✓ 2 žingsnis: Išėmimo jutiklis VEIKIA (19 komanda)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Abu fiziniai ZIF lizdo jutikliai veikia nepriekaištingai!
+</string>
+    <string name="diag_zif_step2_timeout">❌ 2 žingsnis: Baigėsi laikas neaptikus išėmimo</string>
+    <string name="hex_editor_title">✏️ Redaguoti %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Žodis)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Baitas)</string>
+    <string name="hex_editor_info_address_value">Atminties adresas: %1$s
+Dabartinė reikšmė: 0x%2$s (Maksimali: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Žodžio formatas ir baitų tvarka („Little-Endian“)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM ląstelės formatas (8 bitai)</string>
+    <string name="hex_editor_desc_rom">• PIC mikrovaldikliai saugo 14/16 bitų žodžius „Little-Endian“ tvarka:
+   - Žemasis baitas (LSB): 0x%1$s (poslinkis 2×N)
+   - Aukštasis baitas (MSB): 0x%2$s (poslinkis 2×N+1)
+• Kaip redaguoti?: Įveskite visą loginį žodį [MSB][LSB] (pvz., 2805 = LSB 05, MSB 28).
+• Programėlė automatiškai pertvarko baitus į „Little-Endian“ mikroschemai ir HEX failui.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM ląsteles sudaro atskiri 8 bitų baitai.
+• Įveskite 2 simbolių šešioliktainį baitą tiesiogiai (diapazonas: nuo 00 iki FF).</string>
+    <string name="hex_editor_input_label_rom">Įveskite naują reikšmę (Hex žodis [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Įveskite naują reikšmę (Hex baitas 00-FF):</string>
+    <string name="guardar">Išsaugoti</string>
+    <string name="hex_editor_err_empty">Reikšmė negali būti tuščia</string>
+    <string name="hex_editor_err_invalid_hex">Neteisingas šešioliktainis formatas</string>
+    <string name="hex_editor_err_exceeds_max">Reikšmė viršija didžiausią leistiną (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrovaldiklis: %1$s (PIC10F šeima – 2 CAL registrai)</string>
+    <string name="cal_chip_subtitle_standard">Mikrovaldiklis: %1$s (OSCCAL žodis paskutiniu ROM adresu)</string>
+    <string name="cal_not_read_yet">Dar nenuskaityta iš mikroschemos</string>
+    <string name="cal_silicon_value">
+Reikšmė silicio luste: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Įveskite šešioliktainę reikšmę (pvz., %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Skaityti iš mikroschemos</string>
+    <string name="cal_btn_write_silicon">💾 Įrašyti į lustą</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL kalibravimas</string>
+    <string name="cal_toast_read_success">✓ OSCCAL nuskaityta: %1$s</string>
+    <string name="cal_toast_read_error">❌ Klaida nuskaitant kalibravimą iš mikroschemos</string>
+    <string name="cal_toast_invalid_hex">Neteisinga šešioliktainė reikšmė</string>
+    <string name="cal_toast_write_success">✓ OSCCAL sėkmingai įrašyta į mikroschemą</string>
+    <string name="cal_toast_write_error">❌ Nepavyko įrašyti kalibravimo į lustą</string>
+    <string name="icd_dialog_subtitle">Grandinės derinimas (ICD) – 24 bitų adreso vektorius
+(Galiojantis diapazonas: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Dabartinis vektorius: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
+    <string name="icd_btn_read_vector">📥 Skaityti vektorių</string>
+    <string name="icd_btn_write_vector">💾 Įrašyti vektorių</string>
+    <string name="icd_dialog_title">🛠️ Derinimo vektorius (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektorius nuskaitytas: %1$s</string>
+    <string name="icd_toast_invalid_address">Neteisingas 24 bitų šešioliktainis adresas</string>
+    <string name="icd_toast_write_success">✓ ICD vektorius užprogramuotas: %1$s</string>
+    <string name="icd_toast_write_error">❌ Nepavyko užprogramuoti ICD vektoriaus</string>
+    <string name="prog_type_all_title">Programuoti viską</string>
+    <string name="prog_type_all_desc">ROM, EEPROM ir konfigūracija</string>
+    <string name="prog_type_rom_title">Programuoti ROM</string>
+    <string name="prog_type_rom_desc">„Flash“ atmintis</string>
+    <string name="prog_type_eeprom_title">Programuoti EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM duomenys</string>
+    <string name="prog_type_config_title">Programuoti konfigūraciją</string>
+    <string name="prog_type_config_desc">Saugikliai ir konfigūracijos bitai</string>
+    <string name="blank_check_err_null_result">❌ Tuštumo patikros klaida: tuščias rezultatas</string>
+    <string name="blank_check_err_verifying">❌ Klaida tikrinant tuštumo patikrą: %1$s</string>
+    <string name="blank_check_dual_header">📋 Diferencinė tuštumo patikra (Dviguba patikra):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% švari (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM aptikta ankstesnių duomenų (Ne tuščia)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% švari (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM aptikta ankstesnių duomenų (Ne tuščia)</string>
+    <string name="blank_check_method_label">  ℹ Metodas: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrovaldiklis paruoštas programavimui (100%% Ištrinta)</string>
+    <string name="blank_check_erase_required">⚠ Prieš programuojant būtina iš anksto ištrinti</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Įdėkite mikrovaldiklį</string>
+    <string name="dialog_insert_microcontroller_message">ZIF lizde mikroschema neaptikta.
+
+Įdėkite PIC %1$s į atitinkamą padėtį, užfiksuokite svirtį ir dar kartą palieskite [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF lizde nėra mikroschemos. Įdėkite mikrovaldiklį %1$s ir dar kartą palieskite [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Tikrinamas PIC buvimas ZIF lizde...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Aptinkama mikroschema lizde...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF lizde PIC neaptiktas (patikrinkite orientaciją ir svirtį)</string>
+    <string name="log_pic_physically_detected">✓ PIC fiziškai aptiktas lizde</string>
+    <string name="log_chip_auto_identified">🎯 Automatiškai atpažinta: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Aptikta mikroschema: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Mikroschema yra (ID: %1$s). Pasirinkite modelį iš sąrašo rankiniu būdu.</string>
+    <string name="log_connecting_to_programmer">🔌 Jungiamasi prie programuotuvo...</string>
+    <string name="log_connect_programmer_first">⚠ Pirmiausia prijunkite K150 programuotuvą per USB.</string>
+    <string name="log_loading_file">📂 Įkeliama %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Apdorojamas %1$s failas...</string>
+    <string name="log_programming_verified_success">✓ Programavimas baigtas ir sėkmingai patikrintas!</string>
+    <string name="log_programming_failed">❌ Mikrovaldiklio programavimo procesas nepavyko</string>
+    <string name="log_backing_up_osccal">⏱️ Mikroschemai reikalingas kalibravimas. Kuriama OSCCAL atsarginė kopija prieš trinant...</string>
+    <string name="log_osccal_restored">✓ OSCCAL sėkmingai atkurta į lustą: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Nepavyko automatiškai atkurti OSCCAL. Naudokite kalibravimo meniu.</string>
+    <string name="notification_channel_name">PIC K150 operacijos</string>
+    <string name="notification_channel_description">Programavimo pabaigos pranešimai ir aparatinės įrangos įspėjimai</string>
+    <string name="ad_loading_rewarded_video_toast">Įkeliamas atlyginamas vaizdo įrašas... Bandykite dar kartą po kelių sekundžių.</string>
+    <string name="pro_pass_expired">Galiojimas baigėsi</string>
+    <string name="fuse_log_last_config_restored">✓ Paskutinė konfigūracija atkurta</string>
+    <string name="fuse_log_no_hex_loaded">⚠ HEX failas neįkeltas</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX faile nėra saugiklių informacijos</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d saugikliai</string>
+    <string name="fuse_log_expected_count">  Lustas tikisi: %1$d</string>
+    <string name="unknown_device_id">Nežinoma</string>
+    <string name="status_connected">Prisijungta</string>
+    <string name="status_error">Klaida</string>
+    <string name="log_pro_purchase_error">⚠ Pro pirkimas: %1$s</string>
 </resources>

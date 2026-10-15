@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Zásady ochrany osobných údajov</string>
     <string name="aceptar">Prijať</string>
     <string name="cancelar">Zrušiť</string>
-    <string name="conectado">Pripojené</string>
     <string name="desconectado">Odpojené</string>
     <string name="grabando_pic">Programovanie PIC...</string>
     <string name="espere_grabacion_pic">Prosím čakajte. Neodpájajte zariadenie.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware bol úspešne zapísaný do PIC.</string>
     <string name="fallo_grabacion_pic">Programovanie Zlyhalo</string>
     <string name="proceso_no_completado">Proces sa nedokončil. Skontrolujte pripojenie.</string>
-    <string name="protocolo_del_programador">Protokol Programátora</string>
     <string name="modelo_del_programador">Model Programátora</string>
     <string name="modelo_programador">Model Programátora</string>
     <string name="protocolo">Protokol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Zásady Ochrany Súkromia</string>
-    <string name="no_se_detecto_pic_en_socket">PIC nebol detekovaný v pätici</string>
-    <string name="pic_detectado_en_socket">PIC detekovaný v pätici</string>
     <string name="error_borrando_memoria">Chyba mazania pamäte</string>
     <string name="memoria_borrada_exitosamente">Pamäť úspešne vymazaná</string>
     <string name="memoria_leida_exitosamente">Pamäť úspešne prečítaná</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Exportovať CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exportovať úplný výpis (.hex)</string>
     <string name="exportar_dump_completo_bin">Exportovať úplný výpis (.bin)</string>
-    <string name="programar_todo">Naplánujte si všetko</string>
-    <string name="programar_solo_rom">Len program ROM</string>
-    <string name="programar_solo_eeprom">Naprogramujte iba EEPROM</string>
-    <string name="programar_solo_config">Program len CONFIG</string>
     <string name="verificar_borrado">Overte vymazanie</string>
     <string name="chip_esta_borrado">Čip je vymazaný (prázdny)</string>
     <string name="chip_no_esta_borrado">Čip NIE JE vymazaný</string>
     <string name="verificando_borrado">Overuje sa odstránenie...</string>
     <string name="resultado_verificacion_borrado">Výsledok overenia vymazania</string>
     <string name="error_verificando_borrado">Chyba pri overovaní odstránenia</string>
-    <string name="chip_seleccionado">Vybraný čip</string>
     <string name="configuracion_de_fusibles">Konfigurácia poistky</string>
     <string name="id_personalizado_hex">Vlastné ID (HEX)</string>
     <string name="hint_id_personalizado">Príklad: 1A 2B 3C 4D (4 alebo 8 bajtov)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Odporúčaná reklama</string>
     <string name="lectura_completa">Kompletné čítanie</string>
     <string name="datos_de_memoria">Pamäť úspešne prečítaná</string>
-    <string name="sin_chip">bez čipu</string>
     <string name="rom_ok_blank">ROM: OK (prázdne)</string>
     <string name="rom_not_blank">ROM: NIE JE PRÁZDNA</string>
     <string name="eeprom_ok_blank">EEPROM: OK (prázdne)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Nie</string>
     <string name="seleccionar_idioma">Vybrať jazyk</string>
     <string name="tutorial_instalacion">Návod na inštaláciu</string>
-    <string name="copiar_todo_en">Kopírovať všetko</string>
     <string name="cerrar">Zavrieť</string>
     <string name="error_no_chip">Chyba: Nebol vybraný čip alebo nie sú poistky</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX kompatibilné</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Čip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Príklad</string>
     <string name="explicacion_label">Vysvetlenie</string>
     <string name="error_export_manager_not_initialized">HexExportManager nie je inicializovaný</string>
-    <string name="error_leyendo_info_chip">Chyba pri čítaní informácií o čipe</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bajtov</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Špeciálne poďakovanie patrí Mikeovi Wakerlymu, Adamovi Schubertovi a tímom AndroidIDE, Android Code Studio a KITSRUS.</string>
     <string name="error_al_cambiar_modo">Chyba pri zmene režimu:</string>
     <string name="no_hay_firmware_valido">Žiadny platný firmvér</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Odomknite pokročilé technické nástroje pre %1$s</string>
+    <string name="pro_feature_hex_editor">Hexadecimálny editor v reálnom čase (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Diagnostika hardvéru a test napätí (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Ladiaci vektor ICD (24 bitov)</string>
+    <string name="pro_feature_osccal">Záchrana a manuálna úprava OSCCAL</string>
+    <string name="pro_feature_remove_ads">Odstrániť všetky reklamy z aplikácie</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Pozrieť video – 12-hodinový bezplatný prístup</string>
+    <string name="pro_pass_activated_toast">⭐ Prístup %1$s Pro aktivovaný na 12 hodín!</string>
+    <string name="pro_ads_not_available">Reklamy nie sú k dispozícii</string>
+    <string name="pro_btn_buy_permanent">👑 Kúpiť trvalý %1$s Pro%2$s</string>
+    <string name="pro_billing_not_available">Služba Google Play Billing nie je k dispozícii</string>
+    <string name="menu_pro_mode">⭐ Režim Pro</string>
+    <string name="menu_pro_permanent">👑 Trvalý Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Diagnostika hardvéru K150</string>
+    <string name="menu_osccal_calibration">⏱️ Kalibrácia OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor ladenia v obvode (ICD)</string>
+    <string name="cd_socket_diagram">Schéma pätice</string>
+    <string name="btn_connect_usb">Pripojiť USB programátor</string>
+    <string name="btn_disconnect_usb">Odpojiť USB programátor</string>
+    <string name="cd_clear_log">Vymazať záznam</string>
+    <string name="cd_tutorial_image">Ilustrácia návodu</string>
+    <string name="title_activity_tutorial_gputils">Návod na GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Návod na SDCC</string>
+    <string name="diag_dialog_title">🩺 Diagnostika hardvéru K150</string>
+    <string name="diag_section_programmer_status">📋 Stav programátora</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protokol:</string>
+    <string name="diag_label_echo_test">Echo test:</string>
+    <string name="diag_label_zif_sensor">ZIF senzor:</string>
+    <string name="diag_status_querying">Zisťovanie...</string>
+    <string name="diag_status_pending">Čaká sa</string>
+    <string name="diag_btn_test_echo">⚡ Otestovať echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Kompletná diagnostika</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Test senzorov ZIF (Vloženie/Vybratie)</string>
+    <string name="diag_section_voltage_control">⚡ Ovládanie napätí VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ UPOZORNENIE: Pred zapnutím alebo meraním napätí multimetrom vyberte mikrokontrolér zo ZIF pätice.</string>
+    <string name="diag_status_voltages_off">Stav: Napätia vypnuté (0V)</string>
+    <string name="diag_status_vpp_active">Stav: ⚡ VPP (13V) / VDD (5V) AKTÍVNE</string>
+    <string name="diag_status_voltages_restarted">Stav: ⚡ Napätia reštartované (Aktívne)</string>
+    <string name="diag_status_error_activating">Stav: ❌ Chyba pri aktivácii napätí</string>
+    <string name="diag_status_error_deactivating">Stav: ❌ Chyba pri vypínaní napätí</string>
+    <string name="diag_status_error_restarting">Stav: ❌ Chyba pri reštartovaní napätí</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Vypnúť (0V)</string>
+    <string name="diag_btn_restart_voltages">Reštartovať</string>
+    <string name="diag_programmer_not_connected">Programátor nie je pripojený</string>
+    <string name="diag_connect_programmer_prompt">⚠ Pripojte programátor K150 pre použitie diagnostiky</string>
+    <string name="diag_model_not_connected">Model: Programátor nie je pripojený</string>
+    <string name="diag_echo_measuring">Echo test: Meranie...</string>
+    <string name="diag_zif_reading">ZIF senzor: Čítanie...</string>
+    <string name="diag_echo_ok">Echo test: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Echo test: ❌ Žiadna odpoveď</string>
+    <string name="diag_echo_failed">Echo test: ❌ Zlyhal</string>
+    <string name="diag_socket_pic_detected">✓ PIC detegovaný v ZIF pätici</string>
+    <string name="diag_socket_empty">ℹ Prázdna pätica (Čip nebol detegovaný)</string>
+    <string name="diag_socket_no_firm_contact">⚠ V pätici nebol detegovaný pevný kontakt</string>
+    <string name="diag_toast_chip_removed_voltages_active">Čip vybratý: Napätia aktivované pre bezpečné meranie</string>
+    <string name="diag_toast_voltages_activated_multimeter">Napätia aktivované: zmerajte multimetrom na VPP a VDD</string>
+    <string name="diag_toast_voltages_off">Napätia vypnuté (0V)</string>
+    <string name="diag_toast_voltages_restarted">Čip vybratý: Napätia reštartované pre meranie</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontrolér v pätici</string>
+    <string name="diag_alert_chip_in_socket_message">Aby ste predišli poškodeniu PIC napätím 13V VPP, pred zapnutím alebo meraním napätí vyberte mikrokontrolér zo ZIF pätice.
+
+Po vybratí čipu klepnite na \'Pokračovať\' pre aktiváciu merania alebo na \'Zrušiť\', aby zostali napätia vypnuté.</string>
+    <string name="diag_btn_continue_chip_removed">Pokračovať (Čip vybratý)</string>
+    <string name="diag_zif_test_title">🧪 Test senzorov ZIF</string>
+    <string name="diag_zif_test_desc">Test hardvérových senzorov ZIF pätice (Príkazy Kitsrus 18 a 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Krok 1: Vložte mikrokontrolér do pätice a zaistite páčku (Príkaz 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Krok 2: Čaká sa (Vybratie s príkazom 19)</string>
+    <string name="diag_zif_step1_ok">✓ Krok 1: Senzor vloženia OK (Príkaz 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Krok 2: Teraz zdvihnite páčku a vyberte čip z pätice (Príkaz 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Krok 1: Časový limit vypršal bez detekcie čipu</string>
+    <string name="diag_zif_step2_ok">✓ Krok 2: Senzor vybratia OK (Príkaz 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Oba fyzické senzory ZIF pätice fungujú perfektne!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Krok 2: Časový limit vypršal bez detekcie vybratia</string>
+    <string name="hex_editor_title">✏️ Upraviť %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Slovo)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Bajt)</string>
+    <string name="hex_editor_info_address_value">Adresa pamäte: %1$s
+Aktuálna hodnota: 0x%2$s (Maximum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Formát slova a poradie bajtov (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Formát bunky EEPROM (8-bit)</string>
+    <string name="hex_editor_desc_rom">• PIC ukladajú 14/16-bitové slová v poradí Little-Endian:
+   - Dolný bajt (LSB): 0x%1$s (posun 2×N)
+   - Horný bajt (MSB): 0x%2$s (posun 2×N+1)
+• Ako upravovať?: Zadajte celé logické slovo [MSB][LSB] (napr. 2805 = LSB 05, MSB 28).
+• Aplikácia automaticky preusporiada bajty do Little-Endian pre čip a HEX súbor.</string>
+    <string name="hex_editor_desc_eeprom">• Bunky EEPROM pozostávajú z jednotlivých 8-bitových bajtov.
+• Zadajte 2-znakový hexadecimálny bajt priamo (rozsah: 00 až FF).</string>
+    <string name="hex_editor_input_label_rom">Zadajte novú hodnotu (Hex slovo [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Zadajte novú hodnotu (Hex bajt 00-FF):</string>
+    <string name="guardar">Uložiť</string>
+    <string name="hex_editor_err_empty">Hodnota nemôže byť prázdna</string>
+    <string name="hex_editor_err_invalid_hex">Neplatný hexadecimálny formát</string>
+    <string name="hex_editor_err_exceeds_max">Hodnota prekračuje povolené maximum (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrokontrolér: %1$s (Rad PIC10F – 2 registre CAL)</string>
+    <string name="cal_chip_subtitle_standard">Mikrokontrolér: %1$s (Slovo OSCCAL na poslednej adrese ROM)</string>
+    <string name="cal_not_read_yet">Zatiaľ nenačítané z čipu</string>
+    <string name="cal_silicon_value">
+Hodnota v kremíku: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Zadajte hexadecimálnu hodnotu (napr. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Načítať z čipu</string>
+    <string name="cal_btn_write_silicon">💾 Zapísať do kremíka</string>
+    <string name="cal_dialog_title">⏱️ Kalibrácia OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL načítaný: %1$s</string>
+    <string name="cal_toast_read_error">❌ Chyba pri čítaní kalibrácie z čipu</string>
+    <string name="cal_toast_invalid_hex">Neplatná hexadecimálna hodnota</string>
+    <string name="cal_toast_write_success">✓ OSCCAL úspešne zapísaný do čipu</string>
+    <string name="cal_toast_write_error">❌ Zápis kalibrácie do kremíka zlyhal</string>
+    <string name="icd_dialog_subtitle">Ladenie v obvode (ICD) – 24-bitový vektor adresy
+(Platný rozsah: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Aktuálny vektor: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Ladiaca adresa v hex (napr. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Načítať vektor</string>
+    <string name="icd_btn_write_vector">💾 Zapísať vektor</string>
+    <string name="icd_dialog_title">🛠️ Ladiaci vektor (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektor načítaný: %1$s</string>
+    <string name="icd_toast_invalid_address">Neplatná 24-bitová hexadecimálna adresa</string>
+    <string name="icd_toast_write_success">✓ ICD vektor naprogramovaný: %1$s</string>
+    <string name="icd_toast_write_error">❌ Programovanie vektora ICD zlyhalo</string>
+    <string name="prog_type_all_title">Programovať všetko</string>
+    <string name="prog_type_all_desc">ROM, EEPROM a Konfigurácia</string>
+    <string name="prog_type_rom_title">Programovať ROM</string>
+    <string name="prog_type_rom_desc">Flash pamäť</string>
+    <string name="prog_type_eeprom_title">Programovať EEPROM</string>
+    <string name="prog_type_eeprom_desc">Údaje EEPROM</string>
+    <string name="prog_type_config_title">Programovať konfiguráciu</string>
+    <string name="prog_type_config_desc">Poistky a konfiguračné bity</string>
+    <string name="blank_check_err_null_result">❌ Chyba pri kontrole prázdnosti: nulový výsledok</string>
+    <string name="blank_check_err_verifying">❌ Chyba pri overovaní prázdnosti: %1$s</string>
+    <string name="blank_check_dual_header">📋 Diferenciálna kontrola prázdnosti (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% čistá (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Detegovaná ROM s predchádzajúcimi dátami (Nie je prázdna)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% čistá (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Detegovaná EEPROM s predchádzajúcimi dátami (Nie je prázdna)</string>
+    <string name="blank_check_method_label">  ℹ Metóda: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrokontrolér pripravený na programovanie (100%% vymazaný)</string>
+    <string name="blank_check_erase_required">⚠ Pred programovaním je potrebné vymazanie</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Vložte mikrokontrolér</string>
+    <string name="dialog_insert_microcontroller_message">V ZIF pätici nebol detegovaný žiadny čip.
+
+Vložte prosím PIC %1$s do príslušnej pozície, zaistite páčku a znova klepnite na [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Žiadny čip v ZIF pätici. Vložte mikrokontrolér %1$s a znova klepnite na [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Overovanie prítomnosti PIC v ZIF pätici...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Detekcia čipu v pätici...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ PIC nebol detegovaný v ZIF pätici (skontrolujte orientáciu a páčku)</string>
+    <string name="log_pic_physically_detected">✓ PIC fyzicky detegovaný v pätici</string>
+    <string name="log_chip_auto_identified">🎯 Automaticky identifikovaný: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Čip detegovaný: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Čip prítomný (ID: %1$s). Vyberte model z manuálneho zoznamu.</string>
+    <string name="log_connecting_to_programmer">🔌 Pripájanie k programátoru...</string>
+    <string name="log_connect_programmer_first">⚠ Najprv pripojte programátor K150 cez USB.</string>
+    <string name="log_loading_file">📂 Načítava sa %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Spracovanie súboru %1$s...</string>
+    <string name="log_programming_verified_success">✓ Programovanie bolo úspešne dokončené a overené!</string>
+    <string name="log_programming_failed">❌ Proces programovania mikrokontroléra zlyhal</string>
+    <string name="log_backing_up_osccal">⏱️ Čip vyžaduje kalibráciu. Zálohovanie OSCCAL pred vymazaním...</string>
+    <string name="log_osccal_restored">✓ OSCCAL úspešne obnovený v kremíku: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Nepodarilo sa automaticky obnoviť OSCCAL. Použite ponuku Kalibrácia.</string>
+    <string name="notification_channel_name">Operácie PIC K150</string>
+    <string name="notification_channel_description">Upozornenia na dokončenie programovania a hardvérové výstrahy</string>
+    <string name="ad_loading_rewarded_video_toast">Načítava sa odmenené video... Skúste to znova o niekoľko sekúnd.</string>
+    <string name="pro_pass_expired">Vypršala platnosť</string>
+    <string name="fuse_log_last_config_restored">✓ Posledná konfigurácia obnovená</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Nie je načítaný žiadny súbor HEX</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX neobsahuje žiadne poistky</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d poistiek</string>
+    <string name="fuse_log_expected_count">  Čip očakáva: %1$d</string>
+    <string name="unknown_device_id">Neznáme</string>
+    <string name="status_connected">Pripojené</string>
+    <string name="status_error">Chyba</string>
+    <string name="log_pro_purchase_error">⚠ Nákup Pro: %1$s</string>
 </resources>

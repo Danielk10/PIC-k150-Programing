@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Privatlivspolitikker</string>
     <string name="aceptar">Accepter</string>
     <string name="cancelar">Annuller</string>
-    <string name="conectado">Tilsluttet</string>
     <string name="desconectado">Frakoblet</string>
     <string name="grabando_pic">Programmerer PIC...</string>
     <string name="espere_grabacion_pic">Vent venligst. Afbryd ikke enheden.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware er skrevet korrekt til PIC.</string>
     <string name="fallo_grabacion_pic">Programmering Mislykkedes</string>
     <string name="proceso_no_completado">Processen kunne ikke fuldføres. Kontroller forbindelsen.</string>
-    <string name="protocolo_del_programador">Programmer Protokol</string>
     <string name="modelo_del_programador">Programmer Model</string>
     <string name="modelo_programador">Programmer Model</string>
     <string name="protocolo">Protokol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privatlivspolitik</string>
-    <string name="no_se_detecto_pic_en_socket">PIC ikke registreret i sokkel</string>
-    <string name="pic_detectado_en_socket">PIC registreret i sokkel</string>
     <string name="error_borrando_memoria">Fejl ved sletning af hukommelse</string>
     <string name="memoria_borrada_exitosamente">Hukommelse slettet med succes</string>
     <string name="memoria_leida_exitosamente">Hukommelse læst med succes</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Eksporter CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Eksporter fuld dump (.hex)</string>
     <string name="exportar_dump_completo_bin">Eksporter fuld dump (.bin)</string>
-    <string name="programar_todo">Planlæg alt</string>
-    <string name="programar_solo_rom">Kun programmer ROM</string>
-    <string name="programar_solo_eeprom">Programmer kun EEPROM</string>
-    <string name="programar_solo_config">Program kun CONFIG</string>
     <string name="verificar_borrado">Bekræft sletning</string>
     <string name="chip_esta_borrado">Chippen er slettet (tom)</string>
     <string name="chip_no_esta_borrado">Chippen er IKKE slettet</string>
     <string name="verificando_borrado">Bekræfter sletning...</string>
     <string name="resultado_verificacion_borrado">Resultat af bekræftelse af sletning</string>
     <string name="error_verificando_borrado">Fejl ved bekræftelse af sletning</string>
-    <string name="chip_seleccionado">Udvalgt chip</string>
     <string name="configuracion_de_fusibles">Sikringskonfiguration</string>
     <string name="id_personalizado_hex">Tilpasset ID (HEX)</string>
     <string name="hint_id_personalizado">Eksempel: 1A 2B 3C 4D (4 eller 8 bytes)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Anbefalet annoncering</string>
     <string name="lectura_completa">Fuldstændig læsning</string>
     <string name="datos_de_memoria">Hukommelse læst med succes</string>
-    <string name="sin_chip">uden chip</string>
     <string name="rom_ok_blank">ROM: OK (tom)</string>
     <string name="rom_not_blank">ROM: IKKE BLANK</string>
     <string name="eeprom_ok_blank">EEPROM: OK (tom)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Nej</string>
     <string name="seleccionar_idioma">Vælg sprog</string>
     <string name="tutorial_instalacion">Installationsvejledning</string>
-    <string name="copiar_todo_en">Kopiér alt</string>
     <string name="cerrar">Luk</string>
     <string name="error_no_chip">Fejl: Ingen chip valgt eller ingen sikringer</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX-kompatibel</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Eksempel</string>
     <string name="explicacion_label">Forklaring</string>
     <string name="error_export_manager_not_initialized">HexExportManager ikke initialiseret</string>
-    <string name="error_leyendo_info_chip">Fejl ved læsning af chipoplysninger</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Særlig tak til Mike Wakerly, Adam Schubert og AndroidIDE, Android Code Studio og KITSRUS-holdene.</string>
     <string name="error_al_cambiar_modo">Fejl ved ændring af tilstand:</string>
     <string name="no_hay_firmware_valido">Ingen gyldig firmware</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Lås op for avancerede tekniske værktøjer til %1$s</string>
+    <string name="pro_feature_hex_editor">Live Hexadecimal Editor (Direkte patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Hardwarediagnostik og spændingstest (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD-fejlfindingsvektor (24 bit)</string>
+    <string name="pro_feature_osccal">OSCCAL-redning og manuel redigering</string>
+    <string name="pro_feature_remove_ads">Fjern alle annoncer fra applikationen</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Se Video – 12-Timers Gratis Adgang</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro-adgang aktiveret i 12 timer!</string>
+    <string name="pro_ads_not_available">Annoncer er ikke tilgængelige</string>
+    <string name="pro_btn_buy_permanent">👑 Køb %1$s Pro Permanent%2$s</string>
+    <string name="pro_billing_not_available">Google Play-fakturering er ikke tilgængelig</string>
+    <string name="menu_pro_mode">⭐ Pro-tilstand</string>
+    <string name="menu_pro_permanent">👑 Permanent Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 Hardwarediagnostik</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibrering</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Circuit Debug-vektor (ICD)</string>
+    <string name="cd_socket_diagram">Sokkeldiagram</string>
+    <string name="btn_connect_usb">Tilslut USB-programmør</string>
+    <string name="btn_disconnect_usb">Afbryd USB-programmør</string>
+    <string name="cd_clear_log">Ryd log</string>
+    <string name="cd_tutorial_image">Selvstudieillustration</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS Selvstudie</string>
+    <string name="title_activity_tutorial_sdcc">SDCC Selvstudie</string>
+    <string name="diag_dialog_title">🩺 K150 Hardwarediagnostik</string>
+    <string name="diag_section_programmer_status">📋 Programmørstatus</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protokol:</string>
+    <string name="diag_label_echo_test">Ekkotest:</string>
+    <string name="diag_label_zif_sensor">ZIF-sensor:</string>
+    <string name="diag_status_querying">Forespørger...</string>
+    <string name="diag_status_pending">Afventer</string>
+    <string name="diag_btn_test_echo">⚡ Test Ekko</string>
+    <string name="diag_btn_full_diagnosis">🔄 Fuld Diagnostik</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Test ZIF-sensorer (Indsæt/Fjern)</string>
+    <string name="diag_section_voltage_control">⚡ Spændingsstyring VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ FORSIGTIG: Fjern mikrocontrolleren fra ZIF-soklen, før du aktiverer eller måler spændinger med et multimeter.</string>
+    <string name="diag_status_voltages_off">Status: Spændinger slukket (0V)</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) AKTIVERET</string>
+    <string name="diag_status_voltages_restarted">Status: ⚡ Spændinger genstartet (Aktiv)</string>
+    <string name="diag_status_error_activating">Status: ❌ Fejl ved aktivering af spændinger</string>
+    <string name="diag_status_error_deactivating">Status: ❌ Fejl ved slukning af spændinger</string>
+    <string name="diag_status_error_restarting">Status: ❌ Fejl ved genstart af spændinger</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Sluk (0V)</string>
+    <string name="diag_btn_restart_voltages">Genstart</string>
+    <string name="diag_programmer_not_connected">Programmør er ikke tilsluttet</string>
+    <string name="diag_connect_programmer_prompt">⚠ Tilslut K150-programmøren for at bruge diagnostik</string>
+    <string name="diag_model_not_connected">Model: Programmør ikke tilsluttet</string>
+    <string name="diag_echo_measuring">Ekkotest: Måler...</string>
+    <string name="diag_zif_reading">ZIF-sensor: Læser...</string>
+    <string name="diag_echo_ok">Ekkotest: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Ekkotest: ❌ Intet svar</string>
+    <string name="diag_echo_failed">Ekkotest: ❌ Mislykkedes</string>
+    <string name="diag_socket_pic_detected">✓ PIC fundet i ZIF-sokkel</string>
+    <string name="diag_socket_empty">ℹ Tom sokkel (Ingen chip fundet)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Ingen fast kontakt fundet i soklen</string>
+    <string name="diag_toast_chip_removed_voltages_active">Chip fjernet: Spændinger aktiveret til sikker måling</string>
+    <string name="diag_toast_voltages_activated_multimeter">Spændinger aktiveret: mål med multimeter på VPP og VDD</string>
+    <string name="diag_toast_voltages_off">Spændinger slukket (0V)</string>
+    <string name="diag_toast_voltages_restarted">Chip fjernet: Spændinger genstartet til måling</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrocontroller i Soklen</string>
+    <string name="diag_alert_chip_in_socket_message">For at undgå at beskadige PIC med 13V VPP, bedes du fjerne mikrocontrolleren fra ZIF-soklen, før du aktiverer eller måler spændinger.
+
+Når chippen er fjernet, tryk på \'Fortsæt\' for at aktivere måling, eller \'Annuller\' for at holde spændingerne slukket.</string>
+    <string name="diag_btn_continue_chip_removed">Fortsæt (Chip Fjernet)</string>
+    <string name="diag_zif_test_title">🧪 Test af ZIF-sensorer</string>
+    <string name="diag_zif_test_desc">Test af hardwaresensorer til ZIF-sokkel (Kitsrus-kommandoer 18 og 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Trin 1: Indsæt en mikrocontroller i soklen, og lås håndtaget (Kommando 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Trin 2: Afventer (Fjernelse med Kommando 19)</string>
+    <string name="diag_zif_step1_ok">✓ Trin 1: Indsættelsessensor OK (Kommando 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Trin 2: Løft nu håndtaget, og fjern chippen fra soklen (Kommando 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Trin 1: Timeout uden registrering af chip</string>
+    <string name="diag_zif_step2_ok">✓ Trin 2: Fjernelsessensor OK (Kommando 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Begge fysiske sensorer på ZIF-soklen fungerer perfekt!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Trin 2: Timeout uden registrering af fjernelse</string>
+    <string name="hex_editor_title">✏️ Rediger %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Ord)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">Hukommelsesadresse: %1$s
+Nuværende værdi: 0x%2$s (Maksimum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Ordformat og Byte-rækkefølge (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-celleformat (8-bit)</string>
+    <string name="hex_editor_desc_rom">• PIC gemmer 14/16-bit ord i Little-Endian-rækkefølge:
+   - Lav Byte (LSB): 0x%1$s (forskydning 2×N)
+   - Høj Byte (MSB): 0x%2$s (forskydning 2×N+1)
+• Hvordan redigeres?: Indtast hele det logiske ord [MSB][LSB] (f.eks. 2805 = LSB 05, MSB 28).
+• Appen omorganiserer automatisk bytes til Little-Endian for chippen og HEX-filen.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM-celler består af individuelle 8-bit bytes.
+• Indtast den 2-tegns hexadecimale byte direkte (område: 00 til FF).</string>
+    <string name="hex_editor_input_label_rom">Indtast ny værdi (Hex-ord [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Indtast ny værdi (Hex-byte 00-FF):</string>
+    <string name="guardar">Gem</string>
+    <string name="hex_editor_err_empty">Værdien må ikke være tom</string>
+    <string name="hex_editor_err_invalid_hex">Ugyldigt hexadecimalt format</string>
+    <string name="hex_editor_err_exceeds_max">Værdien overstiger det maksimalt tilladte (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrocontroller: %1$s (PIC10F-familie – 2 CAL-registre)</string>
+    <string name="cal_chip_subtitle_standard">Mikrocontroller: %1$s (OSCCAL-ord på sidste ROM-adresse)</string>
+    <string name="cal_not_read_yet">Endnu ikke læst fra chip</string>
+    <string name="cal_silicon_value">
+Værdi på chip: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Indtast hexadecimal værdi (f.eks. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Læs fra Chip</string>
+    <string name="cal_btn_write_silicon">💾 Skriv til Chip</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL-kalibrering</string>
+    <string name="cal_toast_read_success">✓ OSCCAL læst: %1$s</string>
+    <string name="cal_toast_read_error">❌ Fejl ved læsning af kalibrering fra chip</string>
+    <string name="cal_toast_invalid_hex">Ugyldig hexadecimal værdi</string>
+    <string name="cal_toast_write_success">✓ OSCCAL skrevet korrekt til chip</string>
+    <string name="cal_toast_write_error">❌ Kunne ikke skrive kalibrering til chip</string>
+    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) – 24-bit adressevektor
+(Gyldigt område: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Nuværende vektor: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Fejlfindingsadresse i hex (f.eks. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Læs Vektor</string>
+    <string name="icd_btn_write_vector">💾 Skriv Vektor</string>
+    <string name="icd_dialog_title">🛠️ Fejlfindingsvektor (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektor læst: %1$s</string>
+    <string name="icd_toast_invalid_address">Ugyldig 24-bit hexadecimal adresse</string>
+    <string name="icd_toast_write_success">✓ ICD-vektor programmeret: %1$s</string>
+    <string name="icd_toast_write_error">❌ Kunne ikke programmere ICD-vektor</string>
+    <string name="prog_type_all_title">Programmer Alt</string>
+    <string name="prog_type_all_desc">ROM, EEPROM og Konfiguration</string>
+    <string name="prog_type_rom_title">Programmer ROM</string>
+    <string name="prog_type_rom_desc">Flash-hukommelse</string>
+    <string name="prog_type_eeprom_title">Programmer EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM-data</string>
+    <string name="prog_type_config_title">Programmer Konfiguration</string>
+    <string name="prog_type_config_desc">Sikringer (fuses) og konfigurationsbits</string>
+    <string name="blank_check_err_null_result">❌ Fejl i blank-tjek: tomt resultat</string>
+    <string name="blank_check_err_verifying">❌ Fejl ved verifikation af blank-tjek: %1$s</string>
+    <string name="blank_check_dual_header">📋 Differentielt blank-tjek (Dobbelt blank-tjek):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% ren (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM med tidligere data fundet (Ikke tom)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% ren (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM med tidligere data fundet (Ikke tom)</string>
+    <string name="blank_check_method_label">  ℹ Metode: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrocontroller klar til programmering (100%% Slettet)</string>
+    <string name="blank_check_erase_required">⚠ Forudgående sletning er påkrævet før programmering</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Indsæt Mikrocontroller</string>
+    <string name="dialog_insert_microcontroller_message">Der blev ikke fundet nogen chip i ZIF-soklen.
+
+Indsæt venligst PIC %1$s i den korrekte position, lås håndtaget, og tryk på [%2$s] igen.</string>
+    <string name="log_no_chip_in_socket">⚠️ Ingen chip i ZIF-sokkel. Indsæt mikrocontroller %1$s og tryk på [%2$s] igen.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Kontrollerer PIC-tilstedeværelse i ZIF-soklen...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Finder chip i soklen...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Ingen PIC fundet i ZIF-soklen (kontroller retning og håndtag)</string>
+    <string name="log_pic_physically_detected">✓ PIC fysisk fundet i soklen</string>
+    <string name="log_chip_auto_identified">🎯 Automatisk identificeret: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Chip fundet: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Chip til stede (ID: %1$s). Vælg model fra den manuelle liste.</string>
+    <string name="log_connecting_to_programmer">🔌 Opretter forbindelse til programmør...</string>
+    <string name="log_connect_programmer_first">⚠ Tilslut K150-programmøren via USB først.</string>
+    <string name="log_loading_file">📂 Indlæser %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Behandler %1$s-fil...</string>
+    <string name="log_programming_verified_success">✓ Programmering fuldført og bekræftet!</string>
+    <string name="log_programming_failed">❌ Programmeringsproces for mikrocontroller mislykkedes</string>
+    <string name="log_backing_up_osccal">⏱️ Chippen kræver kalibrering. Sikkerhedskopierer OSCCAL før sletning...</string>
+    <string name="log_osccal_restored">✓ OSCCAL gendannet til chippen: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Kunne ikke gendanne OSCCAL automatisk. Brug menuen Kalibrering.</string>
+    <string name="notification_channel_name">PIC K150 Handlinger</string>
+    <string name="notification_channel_description">Notifikationer om fuldført programmering og hardwareadvarsler</string>
+    <string name="ad_loading_rewarded_video_toast">Indlæser belønningsvideo... Prøv venligst igen om et par sekunder.</string>
+    <string name="pro_pass_expired">Udløbet</string>
+    <string name="fuse_log_last_config_restored">✓ Sidste konfiguration gendannet</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Ingen HEX-fil indlæst</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX indeholder ingen sikringer (fuses)</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d sikringer</string>
+    <string name="fuse_log_expected_count">  Chippen forventer: %1$d</string>
+    <string name="unknown_device_id">Ukendt</string>
+    <string name="status_connected">Tilsluttet</string>
+    <string name="status_error">Fejl</string>
+    <string name="log_pro_purchase_error">⚠ Pro-køb: %1$s</string>
 </resources>

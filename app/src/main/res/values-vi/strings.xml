@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Chính sách quyền riêng tư</string>
     <string name="aceptar">Chấp nhận</string>
     <string name="cancelar">Hủy bỏ</string>
-    <string name="conectado">Đã kết nối</string>
     <string name="desconectado">Đã ngắt kết nối</string>
     <string name="grabando_pic">Đang ghi PIC...</string>
     <string name="espere_grabacion_pic">Vui lòng chờ. Không ngắt kết nối thiết bị.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware đã được ghi chính xác vào PIC.</string>
     <string name="fallo_grabacion_pic">Lỗi ghi</string>
     <string name="proceso_no_completado">Không thể hoàn tất quy trình. Kiểm tra kết nối.</string>
-    <string name="protocolo_del_programador">Giao thức lập trình viên</string>
     <string name="modelo_del_programador">Mô hình lập trình viên</string>
     <string name="modelo_programador">Mô hình lập trình viên</string>
     <string name="protocolo">Giao thức</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Chính sách bảo mật</string>
-    <string name="no_se_detecto_pic_en_socket">Không phát hiện được PIC trong ổ cắm</string>
-    <string name="pic_detectado_en_socket">Phát hiện PIC trong ổ cắm</string>
     <string name="error_borrando_memoria">Lỗi xóa bộ nhớ</string>
     <string name="memoria_borrada_exitosamente">Bộ nhớ đã xóa thành công</string>
     <string name="memoria_leida_exitosamente">Bộ nhớ đã đọc thành công</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Xuất CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Xuất kết xuất đầy đủ (.hex)</string>
     <string name="exportar_dump_completo_bin">Xuất kết xuất đầy đủ (.bin)</string>
-    <string name="programar_todo">Tất cả chương trình</string>
-    <string name="programar_solo_rom">Chỉ ROM chương trình</string>
-    <string name="programar_solo_eeprom">Chỉ chương trình EEPROM</string>
-    <string name="programar_solo_config">Chỉ chương trình CẤU HÌNH</string>
     <string name="verificar_borrado">Xác minh xóa</string>
     <string name="chip_esta_borrado">Chip bị xóa (Trống)</string>
     <string name="chip_no_esta_borrado">Chip KHÔNG bị xóa</string>
     <string name="verificando_borrado">Đang xác minh xóa...</string>
     <string name="resultado_verificacion_borrado">Kết quả xác minh xóa</string>
     <string name="error_verificando_borrado">Lỗi xác minh xóa</string>
-    <string name="chip_seleccionado">Chip đã chọn</string>
     <string name="configuracion_de_fusibles">Cấu hình cầu chì</string>
     <string name="id_personalizado_hex">ID tùy chỉnh (HEX)</string>
     <string name="hint_id_personalizado">Ví dụ: 1A 2B 3C 4D (4 hoặc 8 byte)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Quảng cáo được đề xuất</string>
     <string name="lectura_completa">Đọc đầy đủ</string>
     <string name="datos_de_memoria">Bộ nhớ đã đọc thành công</string>
-    <string name="sin_chip">Không có chip</string>
     <string name="rom_ok_blank">ROM: OK (Trống)</string>
     <string name="rom_not_blank">ROM: KHÔNG BLANK</string>
     <string name="eeprom_ok_blank">EEPROM: OK (Trống)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Không</string>
     <string name="seleccionar_idioma">Chọn ngôn ngữ</string>
     <string name="tutorial_instalacion">Hướng dẫn cài đặt</string>
-    <string name="copiar_todo_en">Sao chép tất cả</string>
     <string name="cerrar">Đóng</string>
     <string name="error_no_chip">Lỗi: Chưa chọn chip hoặc không có fuse</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX tương thích</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Ví dụ</string>
     <string name="explicacion_label">Giải thích</string>
     <string name="error_export_manager_not_initialized">HexExportManager chưa được khởi tạo</string>
-    <string name="error_leyendo_info_chip">Lỗi đọc thông tin chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">byte</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Đặc biệt xin cảm ơn Mike Wakerly, Adam Schubert và các nhóm AndroidIDE, Android Code Studio và KITSRUS.</string>
     <string name="error_al_cambiar_modo">Lỗi khi thay đổi chế độ:</string>
     <string name="no_hay_firmware_valido">Không có chương trình cơ sở hợp lệ</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Mở khóa các công cụ kỹ thuật nâng cao cho %1$s</string>
+    <string name="pro_feature_hex_editor">Trình chỉnh sửa thập lục phân trực tiếp (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Chẩn đoán phần cứng &amp; Kiểm tra điện áp (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Vector gỡ lỗi ICD (24 bit)</string>
+    <string name="pro_feature_osccal">Cứu hộ và chỉnh sửa thủ công OSCCAL</string>
+    <string name="pro_feature_remove_ads">Xóa tất cả quảng cáo khỏi ứng dụng</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Xem video - Thẻ miễn phí 12 giờ</string>
+    <string name="pro_pass_activated_toast">⭐ Thẻ %1$s Pro đã được kích hoạt trong 12 giờ!</string>
+    <string name="pro_ads_not_available">Quảng cáo hiện không khả dụng</string>
+    <string name="pro_btn_buy_permanent">👑 Mua %1$s Pro vĩnh viễn%2$s</string>
+    <string name="pro_billing_not_available">Google Play Billing hiện không khả dụng</string>
+    <string name="menu_pro_mode">⭐ Chế độ Pro</string>
+    <string name="menu_pro_permanent">👑 Pro vĩnh viễn</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Chẩn đoán phần cứng K150</string>
+    <string name="menu_osccal_calibration">⏱️ Hiệu chuẩn OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Vector gỡ lỗi trong mạch (ICD)</string>
+    <string name="cd_socket_diagram">Sơ đồ đế cắm</string>
+    <string name="btn_connect_usb">Kết nối bộ nạp USB</string>
+    <string name="btn_disconnect_usb">Ngắt kết nối bộ nạp USB</string>
+    <string name="cd_clear_log">Xóa nhật ký</string>
+    <string name="cd_tutorial_image">Hình minh họa hướng dẫn</string>
+    <string name="title_activity_tutorial_gputils">Hướng dẫn GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Hướng dẫn SDCC</string>
+    <string name="diag_dialog_title">🩺 Chẩn đoán phần cứng K150</string>
+    <string name="diag_section_programmer_status">📋 Trạng thái bộ nạp</string>
+    <string name="diag_label_model">Kiểu máy:</string>
+    <string name="diag_label_protocol">Giao thức:</string>
+    <string name="diag_label_echo_test">Kiểm tra phản hồi (Echo):</string>
+    <string name="diag_label_zif_sensor">Cảm biến ZIF:</string>
+    <string name="diag_status_querying">Đang truy vấn...</string>
+    <string name="diag_status_pending">Đang chờ</string>
+    <string name="diag_btn_test_echo">⚡ Kiểm tra Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Chẩn đoán toàn diện</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Kiểm tra cảm biến ZIF (Cắm/Rút)</string>
+    <string name="diag_section_voltage_control">⚡ Điều khiển điện áp VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ THẬN TRỌNG: Tháo vi điều khiển khỏi đế ZIF trước khi kích hoạt hoặc đo điện áp bằng đồng hồ vạn năng.</string>
+    <string name="diag_status_voltages_off">Trạng thái: Điện áp đã tắt (0V)</string>
+    <string name="diag_status_vpp_active">Trạng thái: ⚡ VPP (13V) / VDD (5V) ĐÃ KÍCH HOẠT</string>
+    <string name="diag_status_voltages_restarted">Trạng thái: ⚡ Điện áp đã khởi động lại (Hoạt động)</string>
+    <string name="diag_status_error_activating">Trạng thái: ❌ Lỗi kích hoạt điện áp</string>
+    <string name="diag_status_error_deactivating">Trạng thái: ❌ Lỗi tắt điện áp</string>
+    <string name="diag_status_error_restarting">Trạng thái: ❌ Lỗi khởi động lại điện áp</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Tắt nguồn (0V)</string>
+    <string name="diag_btn_restart_voltages">Khởi động lại</string>
+    <string name="diag_programmer_not_connected">Bộ nạp chưa được kết nối</string>
+    <string name="diag_connect_programmer_prompt">⚠ Kết nối bộ nạp K150 để sử dụng tính năng chẩn đoán</string>
+    <string name="diag_model_not_connected">Kiểu máy: Bộ nạp chưa kết nối</string>
+    <string name="diag_echo_measuring">Kiểm tra Echo: Đang đo...</string>
+    <string name="diag_zif_reading">Cảm biến ZIF: Đang đọc...</string>
+    <string name="diag_echo_ok">Kiểm tra Echo: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Kiểm tra Echo: ❌ Không có phản hồi</string>
+    <string name="diag_echo_failed">Kiểm tra Echo: ❌ Thất bại</string>
+    <string name="diag_socket_pic_detected">✓ Đã phát hiện PIC trong đế cắm ZIF</string>
+    <string name="diag_socket_empty">ℹ Đế cắm trống (Không phát hiện thấy chip)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Tiếp xúc không chắc chắn trong đế cắm</string>
+    <string name="diag_toast_chip_removed_voltages_active">Đã tháo chip: Điện áp được kích hoạt để đo an toàn</string>
+    <string name="diag_toast_voltages_activated_multimeter">Điện áp đã kích hoạt: đo bằng đồng hồ vạn năng tại VPP và VDD</string>
+    <string name="diag_toast_voltages_off">Điện áp đã tắt (0V)</string>
+    <string name="diag_toast_voltages_restarted">Đã tháo chip: Điện áp được khởi động lại để đo</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Vi điều khiển còn trong đế cắm</string>
+    <string name="diag_alert_chip_in_socket_message">Để tránh làm hỏng PIC với mức điện áp 13V VPP, vui lòng tháo vi điều khiển khỏi đế ZIF trước khi bật hoặc đo điện áp.
+
+Sau khi tháo chip, nhấn \'Tiếp tục\' để kích hoạt phép đo, hoặc \'Hủy\' để duy trì tắt điện áp.</string>
+    <string name="diag_btn_continue_chip_removed">Tiếp tục (Đã tháo chip)</string>
+    <string name="diag_zif_test_title">🧪 Kiểm tra cảm biến ZIF</string>
+    <string name="diag_zif_test_desc">Kiểm tra cảm biến phần cứng của đế ZIF (Lệnh Kitsrus 18 và 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Bước 1: Cắm vi điều khiển vào đế và khóa cần gạt (Lệnh 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Bước 2: Đang chờ (Rút chip với Lệnh 19)</string>
+    <string name="diag_zif_step1_ok">✓ Bước 1: Cảm biến cắm chip OK (Lệnh 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Bước 2: Bây giờ hãy nâng cần gạt và rút chip khỏi đế (Lệnh 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Bước 1: Hết thời gian chờ mà không phát hiện thấy chip</string>
+    <string name="diag_zif_step2_ok">✓ Bước 2: Cảm biến rút chip OK (Lệnh 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Cả hai cảm biến vật lý của đế cắm ZIF đều hoạt động hoàn hảo!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Bước 2: Hết thời gian chờ mà không phát hiện rút chip</string>
+    <string name="hex_editor_title">✏️ Chỉnh sửa %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Từ - Word)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">Địa chỉ bộ nhớ: %1$s
+Giá trị hiện tại: 0x%2$s (Tối đa: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Định dạng từ &amp; Thứ tự byte (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Định dạng ô EEPROM (8 bit)</string>
+    <string name="hex_editor_desc_rom">• PIC lưu trữ các từ 14/16 bit theo thứ tự Little-Endian:
+   - Byte thấp (LSB): 0x%1$s (độ lệch 2×N)
+   - Byte cao (MSB): 0x%2$s (độ lệch 2×N+1)
+• Cách chỉnh sửa?: Nhập từ logic hoàn chỉnh [MSB][LSB] (ví dụ: 2805 = LSB 05, MSB 28).
+• Ứng dụng tự động sắp xếp lại các byte thành Little-Endian cho chip và tệp HEX.</string>
+    <string name="hex_editor_desc_eeprom">• Các ô nhớ EEPROM bao gồm các byte 8 bit riêng lẻ.
+• Nhập trực tiếp byte thập lục phân 2 ký tự (phạm vi: 00 đến FF).</string>
+    <string name="hex_editor_input_label_rom">Nhập giá trị mới (Từ Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Nhập giá trị mới (Byte Hex 00-FF):</string>
+    <string name="guardar">Lưu</string>
+    <string name="hex_editor_err_empty">Giá trị không được để trống</string>
+    <string name="hex_editor_err_invalid_hex">Định dạng thập lục phân không hợp lệ</string>
+    <string name="hex_editor_err_exceeds_max">Giá trị vượt quá mức tối đa cho phép (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Vi điều khiển: %1$s (Dòng PIC10F - 2 thanh ghi CAL)</string>
+    <string name="cal_chip_subtitle_standard">Vi điều khiển: %1$s (Từ OSCCAL ở địa chỉ ROM cuối cùng)</string>
+    <string name="cal_not_read_yet">Chưa đọc từ chip</string>
+    <string name="cal_silicon_value">
+Giá trị trong chip: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Nhập giá trị thập lục phân (ví dụ: %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Đọc từ Chip</string>
+    <string name="cal_btn_write_silicon">💾 Ghi vào Chip</string>
+    <string name="cal_dialog_title">⏱️ Hiệu chuẩn OSCCAL</string>
+    <string name="cal_toast_read_success">✓ Đã đọc OSCCAL: %1$s</string>
+    <string name="cal_toast_read_error">❌ Lỗi đọc hiệu chuẩn từ chip</string>
+    <string name="cal_toast_invalid_hex">Giá trị thập lục phân không hợp lệ</string>
+    <string name="cal_toast_write_success">✓ Đã ghi OSCCAL vào chip thành công</string>
+    <string name="cal_toast_write_error">❌ Ghi hiệu chuẩn vào chip thất bại</string>
+    <string name="icd_dialog_subtitle">Gỡ lỗi trong mạch (ICD) - Vector địa chỉ 24 bit
+(Phạm vi hợp lệ: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Vector hiện tại: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Địa chỉ gỡ lỗi bằng hex (ví dụ: 000020):</string>
+    <string name="icd_btn_read_vector">📥 Đọc Vector</string>
+    <string name="icd_btn_write_vector">💾 Ghi Vector</string>
+    <string name="icd_dialog_title">🛠️ Vector gỡ lỗi (ICD)</string>
+    <string name="icd_toast_read_success">✓ Đã đọc vector: %1$s</string>
+    <string name="icd_toast_invalid_address">Địa chỉ thập lục phân 24 bit không hợp lệ</string>
+    <string name="icd_toast_write_success">✓ Đã nạp vector ICD: %1$s</string>
+    <string name="icd_toast_write_error">❌ Nạp vector ICD thất bại</string>
+    <string name="prog_type_all_title">Nạp tất cả</string>
+    <string name="prog_type_all_desc">ROM, EEPROM và Cấu hình</string>
+    <string name="prog_type_rom_title">Nạp ROM</string>
+    <string name="prog_type_rom_desc">Bộ nhớ Flash</string>
+    <string name="prog_type_eeprom_title">Nạp EEPROM</string>
+    <string name="prog_type_eeprom_desc">Dữ liệu EEPROM</string>
+    <string name="prog_type_config_title">Nạp cấu hình</string>
+    <string name="prog_type_config_desc">Cầu chì và các bit cấu hình</string>
+    <string name="blank_check_err_null_result">❌ Lỗi kiểm tra trống: kết quả rỗng</string>
+    <string name="blank_check_err_verifying">❌ Lỗi xác minh kiểm tra trống: %1$s</string>
+    <string name="blank_check_dual_header">📋 Kiểm tra trống vi sai (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM sạch 100%% (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Phát hiện ROM chứa dữ liệu trước đó (Không trống)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM sạch 100%% (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Phát hiện EEPROM chứa dữ liệu trước đó (Không trống)</string>
+    <string name="blank_check_method_label">  ℹ Phương pháp: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Vi điều khiển đã sẵn sàng nạp (Đã xóa 100%%)</string>
+    <string name="blank_check_erase_required">⚠ Cần xóa trước khi tiến hành nạp</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Cắm vi điều khiển</string>
+    <string name="dialog_insert_microcontroller_message">Không phát hiện thấy chip nào trong đế ZIF.
+
+Vui lòng cắm PIC %1$s vào đúng vị trí, khóa cần gạt và nhấn lại vào [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Không có chip trong đế ZIF. Hãy cắm vi điều khiển %1$s và nhấn lại [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Đang kiểm tra sự hiện diện của PIC trong đế ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Đang phát hiện chip trong đế cắm...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Không phát hiện thấy PIC trong đế ZIF (kiểm tra hướng cắm và cần gạt)</string>
+    <string name="log_pic_physically_detected">✓ Đã phát hiện thấy PIC cắm trên đế</string>
+    <string name="log_chip_auto_identified">🎯 Đã nhận dạng tự động: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Phát hiện chip: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Có chip (ID: %1$s). Chọn kiểu máy từ danh sách thủ công.</string>
+    <string name="log_connecting_to_programmer">🔌 Đang kết nối với bộ nạp...</string>
+    <string name="log_connect_programmer_first">⚠ Hãy kết nối bộ nạp K150 qua USB trước.</string>
+    <string name="log_loading_file">📂 Đang tải %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Đang xử lý tệp %1$s...</string>
+    <string name="log_programming_verified_success">✓ Quá trình nạp đã hoàn tất và được xác minh thành công!</string>
+    <string name="log_programming_failed">❌ Quá trình nạp vi điều khiển thất bại</string>
+    <string name="log_backing_up_osccal">⏱️ Chip yêu cầu hiệu chuẩn. Đang sao lưu OSCCAL trước khi xóa...</string>
+    <string name="log_osccal_restored">✓ Đã khôi phục OSCCAL vào chip thành công: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Không thể tự động khôi phục OSCCAL. Hãy sử dụng menu Hiệu chuẩn.</string>
+    <string name="notification_channel_name">Hoạt động của PIC K150</string>
+    <string name="notification_channel_description">Thông báo hoàn thành nạp và cảnh báo phần cứng</string>
+    <string name="ad_loading_rewarded_video_toast">Đang tải video nhận thưởng... Vui lòng thử lại sau vài giây.</string>
+    <string name="pro_pass_expired">Đã hết hạn</string>
+    <string name="fuse_log_last_config_restored">✓ Đã khôi phục cấu hình gần nhất</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Chưa có tệp HEX nào được tải</string>
+    <string name="fuse_log_hex_no_fuses">⚠ Tệp HEX không chứa thông tin cầu chì</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d cầu chì</string>
+    <string name="fuse_log_expected_count">  Chip yêu cầu: %1$d</string>
+    <string name="unknown_device_id">Không xác định</string>
+    <string name="status_connected">Đã kết nối</string>
+    <string name="status_error">Lỗi</string>
+    <string name="log_pro_purchase_error">⚠ Mua Pro: %1$s</string>
 </resources>

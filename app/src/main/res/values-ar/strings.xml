@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">سياسات الخصوصية</string>
     <string name="aceptar">قبول</string>
     <string name="cancelar">إلغاء</string>
-    <string name="conectado">متصل</string>
     <string name="desconectado">غير متصل</string>
     <string name="grabando_pic">...جاري كتابة PIC</string>
     <string name="espere_grabacion_pic">رجاء الإنتظار. لا تقم بفصل الجهاز.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">تمت كتابة البرنامج الثابت (firmware) على PIC بنجاح.</string>
     <string name="fallo_grabacion_pic">فشل في الكتابة</string>
     <string name="proceso_no_completado">لم يتم إكمال العملية. تحقق من الاتصال.</string>
-    <string name="protocolo_del_programador">بروتوكول المبرمج</string>
     <string name="modelo_del_programador">طراز المبرمج</string>
     <string name="modelo_programador">طراز المبرمج</string>
     <string name="protocolo">البروتوكول</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">سياسة الخصوصية</string>
-    <string name="no_se_detecto_pic_en_socket">لم يتم الكشف عن PIC في المقبس</string>
-    <string name="pic_detectado_en_socket">تم الكشف عن PIC في المقبس</string>
     <string name="error_borrando_memoria">خطأ أثناء مسح الذاكرة</string>
     <string name="memoria_borrada_exitosamente">تم مسح الذاكرة بنجاح</string>
     <string name="memoria_leida_exitosamente">تمت قراءة الذاكرة بنجاح</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">تصدير التكوين (.bin)</string>
     <string name="exportar_dump_completo">تصدير التفريغ الكامل (.hex)</string>
     <string name="exportar_dump_completo_bin">تصدير التفريغ الكامل (.bin)</string>
-    <string name="programar_todo">جدولة كل شيء</string>
-    <string name="programar_solo_rom">روم البرنامج فقط</string>
-    <string name="programar_solo_eeprom">برنامج إيبروم فقط</string>
-    <string name="programar_solo_config">برنامج التكوين فقط</string>
     <string name="verificar_borrado">التحقق من الحذف</string>
     <string name="chip_esta_borrado">تم مسح الشريحة (فارغة)</string>
     <string name="chip_no_esta_borrado">لا يتم مسح الشريحة</string>
     <string name="verificando_borrado">جارٍ التحقق من الحذف...</string>
     <string name="resultado_verificacion_borrado">نتيجة التحقق من الحذف</string>
     <string name="error_verificando_borrado">خطأ في التحقق من الحذف</string>
-    <string name="chip_seleccionado">شريحة مختارة</string>
     <string name="configuracion_de_fusibles">تكوين الصمامات</string>
     <string name="id_personalizado_hex">معرف مخصص (ست عشري)</string>
     <string name="hint_id_personalizado">مثال: 1A 2B 3C 4D (4 أو 8 بايت)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">الإعلانات الموصى بها</string>
     <string name="lectura_completa">قراءة كاملة</string>
     <string name="datos_de_memoria">تمت قراءة الذاكرة بنجاح</string>
-    <string name="sin_chip">بدون شريحة</string>
     <string name="rom_ok_blank">ROM: موافق (فارغ)</string>
     <string name="rom_not_blank">ذاكرة القراءة فقط: ليست فارغة</string>
     <string name="eeprom_ok_blank">إيبروم: موافق (فارغ)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">لا</string>
     <string name="seleccionar_idioma">اختر اللغة</string>
     <string name="tutorial_instalacion">دليل التثبيت</string>
-    <string name="copiar_todo_en">نسخ الكل</string>
     <string name="cerrar">إغلاق</string>
     <string name="error_no_chip">خطأ: لم يتم اختيار شريحة أو لا فيوزات</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">متوافق مع HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">رقاقة:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">مثال</string>
     <string name="explicacion_label">شرح</string>
     <string name="error_export_manager_not_initialized">لم تتم تهيئة HexExportManager</string>
-    <string name="error_leyendo_info_chip">خطأ في قراءة معلومات الشريحة</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">إيبروم:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">بايت</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">شكر خاص لمايك واكيرلي وآدم شوبرت وفرق AndroidIDE وAndroid Code Studio وKITSRUS.</string>
     <string name="error_al_cambiar_modo">خطأ عند تغيير الوضع:</string>
     <string name="no_hay_firmware_valido">لا توجد برامج ثابتة صالحة</string>
+    <string name="pro_access_title">⭐ %1$s برو</string>
+    <string name="pro_access_subtitle">فتح الأدوات التقنية المتقدمة لـ %1$s</string>
+    <string name="pro_feature_hex_editor">محرر سداسي عشري حي (تعديل مباشر للذاكرة)</string>
+    <string name="pro_feature_hardware_diagnostics">تشخيص العتاد واختبار الجهد (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">متجه تصحيح الأخطاء ICD (24 بت)</string>
+    <string name="pro_feature_osccal">استعادة وتحرير OSCCAL يدوياً</string>
+    <string name="pro_feature_remove_ads">إزالة جميع الإعلانات من التطبيق</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 مشاهدة الفيديو - تصريح مجاني لمدة 12 ساعة</string>
+    <string name="pro_pass_activated_toast">⭐ تم تفعيل تصريح %1$s برو لمدة 12 ساعة!</string>
+    <string name="pro_ads_not_available">الإعلانات غير متوفرة</string>
+    <string name="pro_btn_buy_permanent">👑 شراء %1$s برو الدائم%2$s</string>
+    <string name="pro_billing_not_available">الفوترة عبر Google Play غير متوفرة</string>
+    <string name="menu_pro_mode">⭐ وضع برو</string>
+    <string name="menu_pro_permanent">👑 برو الدائم</string>
+    <string name="menu_pro_timer">⭐ برو %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 تشخيص عتاد K150</string>
+    <string name="menu_osccal_calibration">⏱️ معايرة OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ متجه تصحيح الأخطاء داخل الدائرة (ICD)</string>
+    <string name="cd_socket_diagram">مخطط المقبس</string>
+    <string name="btn_connect_usb">توصيل مبرمجة USB</string>
+    <string name="btn_disconnect_usb">فصل مبرمجة USB</string>
+    <string name="cd_clear_log">مسح السجل</string>
+    <string name="cd_tutorial_image">توضيح تعليمي</string>
+    <string name="title_activity_tutorial_gputils">دليل GPUTILS التعليمي</string>
+    <string name="title_activity_tutorial_sdcc">دليل SDCC التعليمي</string>
+    <string name="diag_dialog_title">🩺 تشخيص عتاد K150</string>
+    <string name="diag_section_programmer_status">📋 حالة المبرمجة</string>
+    <string name="diag_label_model">الطراز:</string>
+    <string name="diag_label_protocol">البروتوكول:</string>
+    <string name="diag_label_echo_test">اختبار الصدى:</string>
+    <string name="diag_label_zif_sensor">مستشعر ZIF:</string>
+    <string name="diag_status_querying">جاري الاستعلام...</string>
+    <string name="diag_status_pending">معلق</string>
+    <string name="diag_btn_test_echo">⚡ اختبار الصدى</string>
+    <string name="diag_btn_full_diagnosis">🔄 تشخيص كامل</string>
+    <string name="diag_btn_test_zif_sensors">🧪 اختبار مستشعرات ZIF (إدخال/إخراج)</string>
+    <string name="diag_section_voltage_control">⚡ التحكم بالجهد VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ تنبيه: قم بإزالة المتحكم الدقيق من مقبس ZIF قبل تفعيل أو قياس الجهود باستخدام الملتيميتر.</string>
+    <string name="diag_status_voltages_off">الحالة: تم إيقاف تشغيل الجهد (0V)</string>
+    <string name="diag_status_vpp_active">الحالة: ⚡ تم تفعيل VPP (13V) / VDD (5V)</string>
+    <string name="diag_status_voltages_restarted">الحالة: ⚡ تمت إعادة تشغيل الجهد (نشط)</string>
+    <string name="diag_status_error_activating">الحالة: ❌ خطأ في تفعيل الجهد</string>
+    <string name="diag_status_error_deactivating">الحالة: ❌ خطأ في إيقاف تشغيل الجهد</string>
+    <string name="diag_status_error_restarting">الحالة: ❌ خطأ في إعادة تشغيل الجهد</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">إيقاف (0V)</string>
+    <string name="diag_btn_restart_voltages">إعادة تشغيل</string>
+    <string name="diag_programmer_not_connected">المبرمجة غير متصلة</string>
+    <string name="diag_connect_programmer_prompt">⚠ قم بتوصيل مبرمجة K150 لاستخدام التشخيص</string>
+    <string name="diag_model_not_connected">الطراز: المبرمجة غير متصلة</string>
+    <string name="diag_echo_measuring">اختبار الصدى: جاري القياس...</string>
+    <string name="diag_zif_reading">مستشعر ZIF: جاري القراءة...</string>
+    <string name="diag_echo_ok">اختبار الصدى: ✓ ناجح (%1$d مللي ثانية)</string>
+    <string name="diag_echo_no_response">اختبار الصدى: ❌ لا توجد استجابة</string>
+    <string name="diag_echo_failed">اختبار الصدى: ❌ فشل</string>
+    <string name="diag_socket_pic_detected">✓ تم اكتشاف PIC في مقبس ZIF</string>
+    <string name="diag_socket_empty">ℹ المقبس فارغ (لم يتم اكتشاف رقاقة)</string>
+    <string name="diag_socket_no_firm_contact">⚠ لم يتم اكتشاف اتصال محكم في المقبس</string>
+    <string name="diag_toast_chip_removed_voltages_active">تمت إزالة الرقاقة: تم تفعيل الجهد للقياس الآمن</string>
+    <string name="diag_toast_voltages_activated_multimeter">تم تفعيل الجهد: قم بالقياس بالملتيميتر على VPP و VDD</string>
+    <string name="diag_toast_voltages_off">تم إيقاف تشغيل الجهد (0V)</string>
+    <string name="diag_toast_voltages_restarted">تمت إزالة الرقاقة: تمت إعادة تشغيل الجهد للقياس</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ متحكم دقيق في المقبس</string>
+    <string name="diag_alert_chip_in_socket_message">لتجنب إتلاف شريحة PIC بجهد 13V VPP، يرجى إزالة المتحكم الدقيق من مقبس ZIF قبل تمكين أو قياس الجهود.
+
+بمجرد إزالة الشريحة، اضغط على \'متابعة\' لتفعيل القياس، أو \'إلغاء\' لإبقاء مصادر الجهد مغلقة.</string>
+    <string name="diag_btn_continue_chip_removed">متابعة (تمت إزالة الشريحة)</string>
+    <string name="diag_zif_test_title">🧪 اختبار مستشعرات ZIF</string>
+    <string name="diag_zif_test_desc">اختبار مستشعرات العتاد لمقبس ZIF (أوامر Kitsrus 18 و 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ الخطوة 1: أدخل المتحكم الدقيق في المقبس وأغلق الذراع (الأمر 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ الخطوة 2: معلق (الإخراج بالأمر 19)</string>
+    <string name="diag_zif_step1_ok">✓ الخطوة 1: مستشعر الإدخال سليم (الأمر 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ الخطوة 2: ارفع الذراع الآن وأخرج الشريحة من المقبس (الأمر 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ الخطوة 1: انتهت المهلة دون اكتشاف الشريحة</string>
+    <string name="diag_zif_step2_ok">✓ الخطوة 2: مستشعر الإخراج سليم (الأمر 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 كِلا المستشعرين الفعليين لمقبس ZIF يعملان بشكل ممتاز!
+</string>
+    <string name="diag_zif_step2_timeout">❌ الخطوة 2: انتهت المهلة دون اكتشاف إخراج الشريحة</string>
+    <string name="hex_editor_title">✏️ تعديل %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (كلمة)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (بايت)</string>
+    <string name="hex_editor_info_address_value">عنوان الذاكرة: %1$s
+القيمة الحالية: 0x%2$s (الحد الأقصى: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ تنسيق الكلمة وترتيب البايتات (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ تنسيق خلية EEPROM (8 بت)</string>
+    <string name="hex_editor_desc_rom">• تخزن معالجات PIC كلمات 14/16 بت بترتيب Little-Endian:
+   - البايت المنخفض (LSB): 0x%1$s (الإزاحة 2×N)
+   - البايت المرتفع (MSB): 0x%2$s (الإزاحة 2×N+1)
+• كيفية التعديل؟: أدخل الكلمة المنطقية كاملة [MSB][LSB] (مثال: 2805 = LSB 05, MSB 28).
+• يعيد التطبيق ترتيب البايتات تلقائياً إلى Little-Endian للسيليكون وملف HEX.</string>
+    <string name="hex_editor_desc_eeprom">• تتكون خلايا EEPROM من بايتات مفردة بحجم 8 بت.
+• أدخل البايت السداسي عشري المكون من حرفين مباشرة (النطاق: 00 إلى FF).</string>
+    <string name="hex_editor_input_label_rom">أدخل القيمة الجديدة (كلمة سداسية عشرية [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">أدخل القيمة الجديدة (بايت سداسي عشري 00-FF):</string>
+    <string name="guardar">حفظ</string>
+    <string name="hex_editor_err_empty">لا يمكن أن تكون القيمة فارغة</string>
+    <string name="hex_editor_err_invalid_hex">تنسيق سداسي عشري غير صالح</string>
+    <string name="hex_editor_err_exceeds_max">تتجاوز القيمة الحد الأقصى المسموح به (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">المتحكم الدقيق: %1$s (عائلة PIC10F - سجلا CAL)</string>
+    <string name="cal_chip_subtitle_standard">المتحكم الدقيق: %1$s (كلمة OSCCAL في آخر عنوان ROM)</string>
+    <string name="cal_not_read_yet">لم تتم قراءته من الشريحة بعد</string>
+    <string name="cal_silicon_value">
+القيمة في السيليكون: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+أدخل قيمة سداسية عشرية (مثال: %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 قراءة من الشريحة</string>
+    <string name="cal_btn_write_silicon">💾 كتابة على السيليكون</string>
+    <string name="cal_dialog_title">⏱️ معايرة OSCCAL</string>
+    <string name="cal_toast_read_success">✓ تمت قراءة OSCCAL: %1$s</string>
+    <string name="cal_toast_read_error">❌ خطأ في قراءة المعايرة من الشريحة</string>
+    <string name="cal_toast_invalid_hex">قيمة سداسية عشرية غير صالحة</string>
+    <string name="cal_toast_write_success">✓ تمت كتابة OSCCAL بنجاح على الشريحة</string>
+    <string name="cal_toast_write_error">❌ فشلت كتابة المعايرة على السيليكون</string>
+    <string name="icd_dialog_subtitle">تصحيح الأخطاء داخل الدائرة (ICD) - متجه عنوان 24 بت
+(النطاق الصالح: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+المتجه الحالي: %1$s</string>
+    <string name="icd_enter_address_prompt">
+عنوان التصحيح بالسداسي عشري (مثال: 000020):</string>
+    <string name="icd_btn_read_vector">📥 قراءة المتجه</string>
+    <string name="icd_btn_write_vector">💾 كتابة المتجه</string>
+    <string name="icd_dialog_title">🛠️ متجه تصحيح الأخطاء (ICD)</string>
+    <string name="icd_toast_read_success">✓ تمت قراءة المتجه: %1$s</string>
+    <string name="icd_toast_invalid_address">عنوان سداسي عشري 24 بت غير صالح</string>
+    <string name="icd_toast_write_success">✓ تمت برمجة متجه ICD: %1$s</string>
+    <string name="icd_toast_write_error">❌ فشلت برمجة متجه ICD</string>
+    <string name="prog_type_all_title">برمجة الكل</string>
+    <string name="prog_type_all_desc">ROM و EEPROM والتهيئة</string>
+    <string name="prog_type_rom_title">برمجة ROM</string>
+    <string name="prog_type_rom_desc">ذاكرة الفلاش</string>
+    <string name="prog_type_eeprom_title">برمجة EEPROM</string>
+    <string name="prog_type_eeprom_desc">بيانات EEPROM</string>
+    <string name="prog_type_config_title">برمجة التهيئة</string>
+    <string name="prog_type_config_desc">الفيوزات وبتات التهيئة</string>
+    <string name="blank_check_err_null_result">❌ خطأ في فحص المسح: نتيجة فارغة</string>
+    <string name="blank_check_err_verifying">❌ خطأ في التحقق من فحص المسح: %1$s</string>
+    <string name="blank_check_dual_header">📋 فحص المسح التفاضلي (فحص مسح مزدوج):</string>
+    <string name="blank_check_rom_clean">  ✓ ذاكرة ROM نظيفة 100%% (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ تم اكتشاف بيانات سابقة في ROM (ليست فارغة)</string>
+    <string name="blank_check_eeprom_clean">  ✓ ذاكرة EEPROM نظيفة 100%% (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ تم اكتشاف بيانات سابقة في EEPROM (ليست فارغة)</string>
+    <string name="blank_check_method_label">  ℹ الطريقة: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ المتحكم الدقيق جاهز للبرمجة (ممسوح 100%%)</string>
+    <string name="blank_check_erase_required">⚠ يلزم المسح المسبق قبل البرمجة</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ أدخل المتحكم الدقيق</string>
+    <string name="dialog_insert_microcontroller_message">لم يتم اكتشاف أي شريحة في مقبس ZIF.
+
+يرجى إدخال PIC %1$s في الموضع المناسب، وقفل الذراع، والضغط على [%2$s] مرة أخرى.</string>
+    <string name="log_no_chip_in_socket">⚠️ لا توجد شريحة في مقبس ZIF. أدخل المتحكم الدقيق %1$s واضغط على [%2$s] مرة أخرى.</string>
+    <string name="log_verifying_pic_in_socket">🔍 جاري التحقق من وجود PIC في مقبس ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 جاري اكتشاف الشريحة في المقبس...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ لم يتم اكتشاف PIC في مقبس ZIF (تحقق من الاتجاه والذراع)</string>
+    <string name="log_pic_physically_detected">✓ تم اكتشاف PIC فعلياً في المقبس</string>
+    <string name="log_chip_auto_identified">🎯 تم التعرف عليه تلقائياً: %1$s (المعرف: %2$s)</string>
+    <string name="toast_chip_detected">تم اكتشاف الشريحة: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ الشريحة موجودة (المعرف: %1$s). حدد الطراز من القائمة اليدوية.</string>
+    <string name="log_connecting_to_programmer">🔌 جاري الاتصال بالمبرمجة...</string>
+    <string name="log_connect_programmer_first">⚠ قم بتوصيل مبرمجة K150 عبر USB أولاً.</string>
+    <string name="log_loading_file">📂 جاري تحميل %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ جاري معالجة ملف %1$s...</string>
+    <string name="log_programming_verified_success">✓ اكتملت البرمجة وتم التحقق منها بنجاح!</string>
+    <string name="log_programming_failed">❌ فشلت عملية برمجة المتحكم الدقيق</string>
+    <string name="log_backing_up_osccal">⏱️ الشريحة تتطلب معايرة. جاري نسخ OSCCAL احتياطياً قبل المسح...</string>
+    <string name="log_osccal_restored">✓ تمت استعادة OSCCAL بنجاح إلى السيليكون: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ تعذرت استعادة OSCCAL تلقائياً. استخدم قائمة المعايرة.</string>
+    <string name="notification_channel_name">عمليات PIC K150</string>
+    <string name="notification_channel_description">إشعارات اكتمال البرمجة وتنبيهات العتاد</string>
+    <string name="ad_loading_rewarded_video_toast">جاري تحميل فيديو المكافأة... يرجى المحاولة بعد بضع ثوانٍ.</string>
+    <string name="pro_pass_expired">منتهي الصلاحية</string>
+    <string name="fuse_log_last_config_restored">✓ تمت استعادة آخر تهيئة</string>
+    <string name="fuse_log_no_hex_loaded">⚠ لم يتم تحميل أي ملف HEX</string>
+    <string name="fuse_log_hex_no_fuses">⚠ ملف HEX لا يحتوي على فيوزات</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d فيوزات</string>
+    <string name="fuse_log_expected_count">  الشريحة تتوقع: %1$d</string>
+    <string name="unknown_device_id">غير معروف</string>
+    <string name="status_connected">متصل</string>
+    <string name="status_error">خطأ</string>
+    <string name="log_pro_purchase_error">⚠ شراء برو: %1$s</string>
 </resources>

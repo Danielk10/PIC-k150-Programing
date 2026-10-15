@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Gizlilik Politikaları</string>
     <string name="aceptar">Kabul Et</string>
     <string name="cancelar">İptal</string>
-    <string name="conectado">Bağlı</string>
     <string name="desconectado">Bağlantısı Kesildi</string>
     <string name="grabando_pic">PIC Yazılıyor...</string>
     <string name="espere_grabacion_pic">Lütfen bekleyin. Cihazı sökmeyin.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware, PIC\u0027e başarıyla yazıldı.</string>
     <string name="fallo_grabacion_pic">Yazma Hatası</string>
     <string name="proceso_no_completado">İşlem tamamlanamadı. Bağlantıyı kontrol edin.</string>
-    <string name="protocolo_del_programador">Programcı Protokolü</string>
     <string name="modelo_del_programador">Programcı Modeli</string>
     <string name="modelo_programador">Programcı Modeli</string>
     <string name="protocolo">Protokol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Gizlilik Politikası</string>
-    <string name="no_se_detecto_pic_en_socket">Sokette PIC algılanmadı</string>
-    <string name="pic_detectado_en_socket">Sokette PIC algılandı</string>
     <string name="error_borrando_memoria">Bellek silinirken hata oluştu</string>
     <string name="memoria_borrada_exitosamente">Bellek başarıyla silindi</string>
     <string name="memoria_leida_exitosamente">Bellek başarıyla okundu</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">CONFIG\'i dışa aktar (.bin)</string>
     <string name="exportar_dump_completo">Tam Dökümü Dışa Aktar (.hex)</string>
     <string name="exportar_dump_completo_bin">Tam Dökümü Dışa Aktar (.bin)</string>
-    <string name="programar_todo">Tümünü Programla</string>
-    <string name="programar_solo_rom">Yalnızca ROM\'u programla</string>
-    <string name="programar_solo_eeprom">Yalnızca EEPROM\'u programla</string>
-    <string name="programar_solo_config">Yalnızca program CONFIG</string>
     <string name="verificar_borrado">Silme işlemini doğrula</string>
     <string name="chip_esta_borrado">Çip silinir (Boş)</string>
     <string name="chip_no_esta_borrado">Çip SİLİNMEZ</string>
     <string name="verificando_borrado">Silme doğrulanıyor...</string>
     <string name="resultado_verificacion_borrado">Silme Doğrulama Sonucu</string>
     <string name="error_verificando_borrado">Silme işlemi doğrulanırken hata</string>
-    <string name="chip_seleccionado">Seçilen Çip</string>
     <string name="configuracion_de_fusibles">Sigorta Yapılandırması</string>
     <string name="id_personalizado_hex">Özel Kimlik (HEX)</string>
     <string name="hint_id_personalizado">Örnek: 1A 2B 3C 4D (4 veya 8 bayt)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Önerilen Reklam</string>
     <string name="lectura_completa">Tam Okuma</string>
     <string name="datos_de_memoria">Bellek başarıyla okundu</string>
-    <string name="sin_chip">Çip Yok</string>
     <string name="rom_ok_blank">ROM: Tamam (Boş)</string>
     <string name="rom_not_blank">ROM: BLANK DEĞİL</string>
     <string name="eeprom_ok_blank">EEPROM: Tamam (Boş)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Hayır</string>
     <string name="seleccionar_idioma">Dil Seçin</string>
     <string name="tutorial_instalacion">Kurulum Kılavuzu</string>
-    <string name="copiar_todo_en">Tümünü Kopyala</string>
     <string name="cerrar">Kapat</string>
     <string name="error_no_chip">Hata: Çip seçilmedi veya sigorta yok</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX uyumlu</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Çip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Örnek</string>
     <string name="explicacion_label">Açıklama</string>
     <string name="error_export_manager_not_initialized">HexExportManager başlatılmadı</string>
-    <string name="error_leyendo_info_chip">Çip bilgisi okunurken hata oluştu</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bayt</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Mike Wakerly, Adam Schubert ve AndroidIDE, Android Code Studio ve KITSRUS ekiplerine özellikle teşekkür ederiz.</string>
     <string name="error_al_cambiar_modo">Modu değiştirirken hata oluştu:</string>
     <string name="no_hay_firmware_valido">Geçerli bir ürün yazılımı yok</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">%1$s için gelişmiş teknik araçların kilidini açın</string>
+    <string name="pro_feature_hex_editor">Canlı Onaltılık Düzenleyici (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Donanım Teşhisi ve Voltaj Testi (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD Hata Ayıklama Vektörü (24 bit)</string>
+    <string name="pro_feature_osccal">OSCCAL Kurtarma ve Manuel Düzenleme</string>
+    <string name="pro_feature_remove_ads">Uygulamadaki tüm reklamları kaldırın</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Video İzle - 12 Saatlik Ücretsiz Geçiş</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro geçişi 12 saatliğine etkinleştirildi!</string>
+    <string name="pro_ads_not_available">Reklamlar mevcut değil</string>
+    <string name="pro_btn_buy_permanent">👑 Kalıcı %1$s Pro Satın Al%2$s</string>
+    <string name="pro_billing_not_available">Google Play Faturalandırma kullanılamıyor</string>
+    <string name="menu_pro_mode">⭐ Pro Modu</string>
+    <string name="menu_pro_permanent">👑 Kalıcı Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 Donanım Teşhisi</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL Kalibrasyonu</string>
+    <string name="menu_debug_vector_icd">🛠️ Devre İçi Hata Ayıklama Vektörü (ICD)</string>
+    <string name="cd_socket_diagram">Soket diyagramı</string>
+    <string name="btn_connect_usb">USB Programlayıcıyı Bağla</string>
+    <string name="btn_disconnect_usb">USB Programlayıcı Bağlantısını Kes</string>
+    <string name="cd_clear_log">Günlüğü temizle</string>
+    <string name="cd_tutorial_image">Eğitim görseli</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS Eğitimi</string>
+    <string name="title_activity_tutorial_sdcc">SDCC Eğitimi</string>
+    <string name="diag_dialog_title">🩺 K150 Donanım Teşhisi</string>
+    <string name="diag_section_programmer_status">📋 Programlayıcı Durumu</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protokol:</string>
+    <string name="diag_label_echo_test">Yankı Testi:</string>
+    <string name="diag_label_zif_sensor">ZIF Sensörü:</string>
+    <string name="diag_status_querying">Sorgulanıyor...</string>
+    <string name="diag_status_pending">Beklemede</string>
+    <string name="diag_btn_test_echo">⚡ Yankıyı Test Et</string>
+    <string name="diag_btn_full_diagnosis">🔄 Tam Teşhis</string>
+    <string name="diag_btn_test_zif_sensors">🧪 ZIF Sensörlerini Test Et (Tak/Çıkar)</string>
+    <string name="diag_section_voltage_control">⚡ Voltaj Kontrolü VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ DİKKAT: Voltajları etkinleştirmeden veya multimetre ile ölçmeden önce mikrodenetleyiciyi ZIF soketinden çıkarın.</string>
+    <string name="diag_status_voltages_off">Durum: Voltajlar kapalı (0V)</string>
+    <string name="diag_status_vpp_active">Durum: ⚡ VPP (13V) / VDD (5V) ETKİNLEŞTİRİLDİ</string>
+    <string name="diag_status_voltages_restarted">Durum: ⚡ Voltajlar yeniden başlatıldı (Aktif)</string>
+    <string name="diag_status_error_activating">Durum: ❌ Voltajları etkinleştirme hatası</string>
+    <string name="diag_status_error_deactivating">Durum: ❌ Voltajları kapatma hatası</string>
+    <string name="diag_status_error_restarting">Durum: ❌ Voltajları yeniden başlatma hatası</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Kapat (0V)</string>
+    <string name="diag_btn_restart_voltages">Yeniden Başlat</string>
+    <string name="diag_programmer_not_connected">Programlayıcı bağlı değil</string>
+    <string name="diag_connect_programmer_prompt">⚠ Teşhisi kullanmak için K150 programlayıcıyı bağlayın</string>
+    <string name="diag_model_not_connected">Model: Programlayıcı bağlı değil</string>
+    <string name="diag_echo_measuring">Yankı Testi: Ölçülüyor...</string>
+    <string name="diag_zif_reading">ZIF Sensörü: Okunuyor...</string>
+    <string name="diag_echo_ok">Yankı Testi: ✓ Tamam (%1$d ms)</string>
+    <string name="diag_echo_no_response">Yankı Testi: ❌ Yanıt yok</string>
+    <string name="diag_echo_failed">Yankı Testi: ❌ Başarısız</string>
+    <string name="diag_socket_pic_detected">✓ ZIF soketinde PIC algılandı</string>
+    <string name="diag_socket_empty">ℹ Boş soket (Çip algılanmadı)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Sokette sağlam temas algılanmadı</string>
+    <string name="diag_toast_chip_removed_voltages_active">Çip çıkarıldı: Güvenli ölçüm için voltajlar etkinleştirildi</string>
+    <string name="diag_toast_voltages_activated_multimeter">Voltajlar etkinleştirildi: VPP ve VDD üzerinde multimetre ile ölçün</string>
+    <string name="diag_toast_voltages_off">Voltajlar kapatıldı (0V)</string>
+    <string name="diag_toast_voltages_restarted">Çip çıkarıldı: Ölçüm için voltajlar yeniden başlatıldı</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Sokette Mikrodenetleyici Var</string>
+    <string name="diag_alert_chip_in_socket_message">PIC\'in 13V VPP ile zarar görmesini önlemek için voltajları etkinleştirmeden veya ölçmeden önce mikrodenetleyiciyi ZIF soketinden çıkarın.
+
+Çip çıkarıldıktan sonra ölçümü etkinleştirmek için \'Devam Et\'e veya voltajları kapalı tutmak için \'İptal\'e dokunun.</string>
+    <string name="diag_btn_continue_chip_removed">Devam Et (Çip Çıkarıldı)</string>
+    <string name="diag_zif_test_title">🧪 ZIF Sensör Testi</string>
+    <string name="diag_zif_test_desc">ZIF soketi donanım sensörleri testi (Kitsrus Komutları 18 ve 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Adım 1: Sokete bir mikrodenetleyici takın ve kolu kilitleyin (Komut 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Adım 2: Beklemede (Komut 19 ile Çıkarma)</string>
+    <string name="diag_zif_step1_ok">✓ Adım 1: Takma Sensörü TAMAM (Komut 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Adım 2: Şimdi kolu kaldırın ve çipi soketten çıkarın (Komut 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Adım 1: Çip algılanamadan zaman aşımı</string>
+    <string name="diag_zif_step2_ok">✓ Adım 2: Çıkarma Sensörü TAMAM (Komut 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 ZIF soketinin her iki fiziksel sensörü de mükemmel çalışıyor!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Adım 2: Çıkarma algılanamadan zaman aşımı</string>
+    <string name="hex_editor_title">✏️ Düzenle: %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Kelime)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Bayt)</string>
+    <string name="hex_editor_info_address_value">Bellek Adresi: %1$s
+Geçerli değer: 0x%2$s (Maksimum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Kelime Formatı ve Bayt Sırası (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM Hücre Formatı (8-bit)</string>
+    <string name="hex_editor_desc_rom">• PIC\'ler 14/16-bitlik kelimeleri Little-Endian sırasında saklar:
+   - Düşük Bayt (LSB): 0x%1$s (ofset 2×N)
+   - Yüksek Bayt (MSB): 0x%2$s (ofset 2×N+1)
+• Nasıl düzenlenir?: Tam mantıksal kelimeyi [MSB][LSB] girin (örn. 2805 = LSB 05, MSB 28).
+• Uygulama, baytları silikon ve HEX dosyası için otomatik olarak Little-Endian düzenine dönüştürür.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM hücreleri bağımsız 8-bitlik baytlardan oluşur.
+• 2 karakterli onaltılık baytı doğrudan girin (aralık: 00 - FF).</string>
+    <string name="hex_editor_input_label_rom">Yeni değeri girin (Hex Kelime [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Yeni değeri girin (Hex Bayt 00-FF):</string>
+    <string name="guardar">Kaydet</string>
+    <string name="hex_editor_err_empty">Değer boş olamaz</string>
+    <string name="hex_editor_err_invalid_hex">Geçersiz onaltılık format</string>
+    <string name="hex_editor_err_exceeds_max">Değer izin verilen maksimum değeri aşıyor (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrodenetleyici: %1$s (PIC10F Ailesi - 2 CAL kaydı)</string>
+    <string name="cal_chip_subtitle_standard">Mikrodenetleyici: %1$s (Son ROM adresindeki OSCCAL kelimesi)</string>
+    <string name="cal_not_read_yet">Henüz çipten okunmadı</string>
+    <string name="cal_silicon_value">
+Silikon Değeri: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Onaltılık değeri girin (örn. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Çipten Oku</string>
+    <string name="cal_btn_write_silicon">💾 Silikona Yaz</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL Kalibrasyonu</string>
+    <string name="cal_toast_read_success">✓ OSCCAL okundu: %1$s</string>
+    <string name="cal_toast_read_error">❌ Çipten kalibrasyon okuma hatası</string>
+    <string name="cal_toast_invalid_hex">Geçersiz onaltılık değer</string>
+    <string name="cal_toast_write_success">✓ OSCCAL çipe başarıyla yazıldı</string>
+    <string name="cal_toast_write_error">❌ Kalibrasyon silikona yazılamadı</string>
+    <string name="icd_dialog_subtitle">Devre İçi Hata Ayıklama (ICD) - 24-bit Adres Vektörü
+(Geçerli aralık: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Geçerli Vektör: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Hex formatında hata ayıklama adresi (örn. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Vektörü Oku</string>
+    <string name="icd_btn_write_vector">💾 Vektörü Yaz</string>
+    <string name="icd_dialog_title">🛠️ Hata Ayıklama Vektörü (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektör okundu: %1$s</string>
+    <string name="icd_toast_invalid_address">Geçersiz 24-bit onaltılık adres</string>
+    <string name="icd_toast_write_success">✓ ICD vektörü programlandı: %1$s</string>
+    <string name="icd_toast_write_error">❌ ICD vektörü programlanamadı</string>
+    <string name="prog_type_all_title">Tümünü Programla</string>
+    <string name="prog_type_all_desc">ROM, EEPROM ve Yapılandırma</string>
+    <string name="prog_type_rom_title">ROM Programla</string>
+    <string name="prog_type_rom_desc">Flash Bellek</string>
+    <string name="prog_type_eeprom_title">EEPROM Programla</string>
+    <string name="prog_type_eeprom_desc">EEPROM Verisi</string>
+    <string name="prog_type_config_title">Yapılandırmayı Programla</string>
+    <string name="prog_type_config_desc">Sigortalar ve yapılandırma bitleri</string>
+    <string name="blank_check_err_null_result">❌ Boşluk kontrolünde hata: boş sonuç</string>
+    <string name="blank_check_err_verifying">❌ Boşluk kontrolü doğrulanırken hata: %1$s</string>
+    <string name="blank_check_dual_header">📋 Diferansiyel Boşluk Kontrolü (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM %%100 temiz (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Önceki verileri içeren ROM algılandı (Boş değil)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM %%100 temiz (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Önceki verileri içeren EEPROM algılandı (Boş değil)</string>
+    <string name="blank_check_method_label">  ℹ Yöntem: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrodenetleyici programlamaya hazır (%%100 Silindi)</string>
+    <string name="blank_check_erase_required">⚠ Programlamadan önce silme işlemi gereklidir</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Mikrodenetleyiciyi Takın</string>
+    <string name="dialog_insert_microcontroller_message">ZIF soketinde çip algılanmadı.
+
+Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%2$s] seçeneğine tekrar dokunun.</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF soketinde çip yok. Mikrodenetleyiciyi %1$s takın ve [%2$s] seçeneğine tekrar dokunun.</string>
+    <string name="log_verifying_pic_in_socket">🔍 ZIF soketindeki PIC varlığı doğrulanıyor...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Sokette çip algılanıyor...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF soketinde PIC algılanmadı (yönü ve kolu kontrol edin)</string>
+    <string name="log_pic_physically_detected">✓ Sokette PIC fiziksel olarak algılandı</string>
+    <string name="log_chip_auto_identified">🎯 Otomatik olarak tanımlandı: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Çip algılandı: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Çip mevcut (ID: %1$s). Manuel listeden modeli seçin.</string>
+    <string name="log_connecting_to_programmer">🔌 Programlayıcıya bağlanılıyor...</string>
+    <string name="log_connect_programmer_first">⚠ Önce K150 programlayıcıyı USB ile bağlayın.</string>
+    <string name="log_loading_file">📂 Yükleniyor %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ %1$s dosyası işleniyor...</string>
+    <string name="log_programming_verified_success">✓ Programlama tamamlandı ve başarıyla doğrulandı!</string>
+    <string name="log_programming_failed">❌ Mikrodenetleyici programlama işlemi başarısız oldu</string>
+    <string name="log_backing_up_osccal">⏱️ Çip kalibrasyon gerektiriyor. Silmeden önce OSCCAL yedekleniyor...</string>
+    <string name="log_osccal_restored">✓ OSCCAL silikona başarıyla geri yüklendi: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCAL otomatik olarak geri yüklenemedi. Kalibrasyon menüsünü kullanın.</string>
+    <string name="notification_channel_name">PIC K150 İşlemleri</string>
+    <string name="notification_channel_description">Programlama tamamlama bildirimleri ve donanım uyarıları</string>
+    <string name="ad_loading_rewarded_video_toast">Ödüllü video yükleniyor... Lütfen birkaç saniye sonra tekrar deneyin.</string>
+    <string name="pro_pass_expired">Süresi doldu</string>
+    <string name="fuse_log_last_config_restored">✓ Son yapılandırma geri yüklendi</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Yüklü HEX dosyası yok</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX sigorta içermiyor</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d sigorta</string>
+    <string name="fuse_log_expected_count">  Çip beklentisi: %1$d</string>
+    <string name="unknown_device_id">Bilinmeyen</string>
+    <string name="status_connected">Bağlı</string>
+    <string name="status_error">Hata</string>
+    <string name="log_pro_purchase_error">⚠ Pro satın alma: %1$s</string>
 </resources>

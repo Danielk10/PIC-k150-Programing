@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Правила за поверителност</string>
     <string name="aceptar">Приемам</string>
     <string name="cancelar">Отмяна</string>
-    <string name="conectado">Свързан</string>
     <string name="desconectado">Отключен</string>
     <string name="grabando_pic">Записване на PIC...</string>
     <string name="espere_grabacion_pic">Моля, изчакайте. Не отключвайте устройството.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Фърмуерът е записан успешно в PIC.</string>
     <string name="fallo_grabacion_pic">Грешка при записване</string>
     <string name="proceso_no_completado">Не можа да се завърши процесът. Проверете връзката.</string>
-    <string name="protocolo_del_programador">Протокол на програмиста</string>
     <string name="modelo_del_programador">Модел на програмиста</string>
     <string name="modelo_programador">Модел на програмиста</string>
     <string name="protocolo">Протокол</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Политика за поверителност</string>
-    <string name="no_se_detecto_pic_en_socket">PIC не е открит в гнездото</string>
-    <string name="pic_detectado_en_socket">PIC е открит в гнездото</string>
     <string name="error_borrando_memoria">Грешка при изтриване на памятта</string>
     <string name="memoria_borrada_exitosamente">Памятта е изтрита успешно</string>
     <string name="memoria_leida_exitosamente">Памятта е прочетена успешно</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Експортиране на CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Експортиране на пълен дъмп (.hex)</string>
     <string name="exportar_dump_completo_bin">Експортиране на пълен дъмп (.bin)</string>
-    <string name="programar_todo">Планирайте всичко</string>
-    <string name="programar_solo_rom">Програмирайте само ROM</string>
-    <string name="programar_solo_eeprom">Програмирайте само EEPROM</string>
-    <string name="programar_solo_config">Програма само CONFIG</string>
     <string name="verificar_borrado">Потвърдете изтриването</string>
     <string name="chip_esta_borrado">Чипът е изтрит (празен)</string>
     <string name="chip_no_esta_borrado">Чипа НЕ е изтрит</string>
     <string name="verificando_borrado">Проверка на изтриването...</string>
     <string name="resultado_verificacion_borrado">Резултат от проверката на изтриването</string>
     <string name="error_verificando_borrado">Грешка при проверката на изтриването</string>
-    <string name="chip_seleccionado">Избран чип</string>
     <string name="configuracion_de_fusibles">Конфигурация на предпазител</string>
     <string name="id_personalizado_hex">Персонализиран идентификатор (HEX)</string>
     <string name="hint_id_personalizado">Пример: 1A 2B 3C 4D (4 или 8 байта)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Препоръчителна реклама</string>
     <string name="lectura_completa">Пълно четене</string>
     <string name="datos_de_memoria">Памятта е прочетена успешно</string>
-    <string name="sin_chip">без чип</string>
     <string name="rom_ok_blank">ROM: OK (празен)</string>
     <string name="rom_not_blank">ROM: НЕ ПРАЗЕН</string>
     <string name="eeprom_ok_blank">EEPROM: OK (празен)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Не</string>
     <string name="seleccionar_idioma">Избери език</string>
     <string name="tutorial_instalacion">Ръководство за инсталация</string>
-    <string name="copiar_todo_en">Копирай всичко</string>
     <string name="cerrar">Затвори</string>
     <string name="error_no_chip">Грешка: Не е избран чип или няма предпазители</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">Съвместим с HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Чип:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Пример</string>
     <string name="explicacion_label">Обяснение</string>
     <string name="error_export_manager_not_initialized">HexExportManager не е инициализиран</string>
-    <string name="error_leyendo_info_chip">Грешка при четене на информация за чипа</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">байтове</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Специални благодарности на Майк Уейкърли, Адам Шуберт и екипите на AndroidIDE, Android Code Studio и KITSRUS.</string>
     <string name="error_al_cambiar_modo">Грешка при смяна на режима:</string>
     <string name="no_hay_firmware_valido">Няма валиден фърмуер</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Отключете разширени технически инструменти за %1$s</string>
+    <string name="pro_feature_hex_editor">Шестнадесетичен редактор на живо (Директно пачване)</string>
+    <string name="pro_feature_hardware_diagnostics">Хардуерна диагностика и тест на напрежението (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Вектор за дебъгване ICD (24 бита)</string>
+    <string name="pro_feature_osccal">Спасяване и ръчно редактиране на OSCCAL</string>
+    <string name="pro_feature_remove_ads">Премахване на всички реклами от приложението</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Гледайте видео - 12-часов безплатен достъп</string>
+    <string name="pro_pass_activated_toast">⭐ Достъпът до %1$s Pro е активиран за 12 часа!</string>
+    <string name="pro_ads_not_available">Няма налични реклами</string>
+    <string name="pro_btn_buy_permanent">👑 Купете %1$s Pro за постоянно%2$s</string>
+    <string name="pro_billing_not_available">Google Play таксуването не е налично</string>
+    <string name="menu_pro_mode">⭐ Pro режим</string>
+    <string name="menu_pro_permanent">👑 Постоянен Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Хардуерна диагностика на K150</string>
+    <string name="menu_osccal_calibration">⏱️ Калибриране на OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Вектор за вътрешносхемно дебъгване (ICD)</string>
+    <string name="cd_socket_diagram">Диаграма на цокъла</string>
+    <string name="btn_connect_usb">Свързване на USB програматор</string>
+    <string name="btn_disconnect_usb">Изключване на USB програматор</string>
+    <string name="cd_clear_log">Изчистване на дневника</string>
+    <string name="cd_tutorial_image">Илюстрация към урока</string>
+    <string name="title_activity_tutorial_gputils">Урок за GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Урок за SDCC</string>
+    <string name="diag_dialog_title">🩺 Хардуерна диагностика на K150</string>
+    <string name="diag_section_programmer_status">📋 Състояние на програматора</string>
+    <string name="diag_label_model">Модел:</string>
+    <string name="diag_label_protocol">Протокол:</string>
+    <string name="diag_label_echo_test">Ехо тест:</string>
+    <string name="diag_label_zif_sensor">ZIF сензор:</string>
+    <string name="diag_status_querying">Запитване...</string>
+    <string name="diag_status_pending">Изчаква се</string>
+    <string name="diag_btn_test_echo">⚡ Тест на ехото</string>
+    <string name="diag_btn_full_diagnosis">🔄 Пълна диагностика</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Тест на ZIF сензорите (Поставяне/Изваждане)</string>
+    <string name="diag_section_voltage_control">⚡ Контрол на напрежението VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ ВНИМАНИЕ: Извадете микроконтролера от ZIF цокъла преди активиране или измерване на напрежения с мултицет.</string>
+    <string name="diag_status_voltages_off">Състояние: Напреженията са изключени (0V)</string>
+    <string name="diag_status_vpp_active">Състояние: ⚡ VPP (13V) / VDD (5V) АКТИВИРАНИ</string>
+    <string name="diag_status_voltages_restarted">Състояние: ⚡ Напреженията са рестартирани (Активни)</string>
+    <string name="diag_status_error_activating">Състояние: ❌ Грешка при активиране на напреженията</string>
+    <string name="diag_status_error_deactivating">Състояние: ❌ Грешка при изключване на напреженията</string>
+    <string name="diag_status_error_restarting">Състояние: ❌ Грешка при рестартиране на напреженията</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Изключване (0V)</string>
+    <string name="diag_btn_restart_voltages">Рестартиране</string>
+    <string name="diag_programmer_not_connected">Програматорът не е свързан</string>
+    <string name="diag_connect_programmer_prompt">⚠ Свържете програматора K150, за да използвате диагностиката</string>
+    <string name="diag_model_not_connected">Модел: Програматорът не е свързан</string>
+    <string name="diag_echo_measuring">Ехо тест: Измерване...</string>
+    <string name="diag_zif_reading">ZIF сензор: Четене...</string>
+    <string name="diag_echo_ok">Ехо тест: ✓ Успешен (%1$d ms)</string>
+    <string name="diag_echo_no_response">Ехо тест: ❌ Няма отговор</string>
+    <string name="diag_echo_failed">Ехо тест: ❌ Неуспешен</string>
+    <string name="diag_socket_pic_detected">✓ Открит PIC в ZIF цокъла</string>
+    <string name="diag_socket_empty">ℹ Празен цокъл (Не е открит чип)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Не е открит стабилен контакт в цокъла</string>
+    <string name="diag_toast_chip_removed_voltages_active">Чипът е изваден: Напреженията са активирани за безопасно измерване</string>
+    <string name="diag_toast_voltages_activated_multimeter">Напреженията са активирани: измерете с мултицет на VPP и VDD</string>
+    <string name="diag_toast_voltages_off">Напреженията са изключени (0V)</string>
+    <string name="diag_toast_voltages_restarted">Чипът е изваден: Напреженията са рестартирани за измерване</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Микроконтролер в цокъла</string>
+    <string name="diag_alert_chip_in_socket_message">За да избегнете повреда на PIC с 13V VPP, моля, извадете микроконтролера от ZIF цокъла, преди да активирате или измервате напреженията.
+
+След като чипът бъде изваден, натиснете \'Продължи\', за да активирате измерването, или \'Отказ\', за да оставите напреженията изключени.</string>
+    <string name="diag_btn_continue_chip_removed">Продължи (Чипът е изваден)</string>
+    <string name="diag_zif_test_title">🧪 Тест на ZIF сензорите</string>
+    <string name="diag_zif_test_desc">Хардуерен тест на сензорите на ZIF цокъла (Команди Kitsrus 18 и 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Стъпка 1: Поставете микроконтролер в цокъла и заключете лоста (Команда 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Стъпка 2: Изчаква се (Изваждане с Команда 19)</string>
+    <string name="diag_zif_step1_ok">✓ Стъпка 1: Сензорът за поставяне е наред (Команда 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Стъпка 2: Сега повдигнете лоста и извадете чипа от цокъла (Команда 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Стъпка 1: Времето изтече без откриване на чип</string>
+    <string name="diag_zif_step2_ok">✓ Стъпка 2: Сензорът за изваждане е наред (Команда 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 И двата физически сензора на ZIF цокъла работят перфектно!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Стъпка 2: Времето изтече без откриване на изваждане</string>
+    <string name="hex_editor_title">✏️ Редактиране на %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Дума)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Байт)</string>
+    <string name="hex_editor_info_address_value">Адрес на паметта: %1$s
+Текуща стойност: 0x%2$s (Максимум: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Формат на думата и ред на байтовете (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Формат на EEPROM клетката (8-битов)</string>
+    <string name="hex_editor_desc_rom">• Микроконтролерите PIC съхраняват 14/16-битови думи в ред Little-Endian:
+   - Младши байт (LSB): 0x%1$s (отместване 2×N)
+   - Старши байт (MSB): 0x%2$s (отместване 2×N+1)
+• Как да редактирате?: Въведете пълната логическа дума [MSB][LSB] (напр. 2805 = LSB 05, MSB 28).
+• Приложението автоматично пренарежда байтовете в Little-Endian за чипа и HEX файла.</string>
+    <string name="hex_editor_desc_eeprom">• Клетките на EEPROM се състоят от отделни 8-битови байтове.
+• Въведете директно 2-символния шестнадесетичен байт (диапазон: 00 до FF).</string>
+    <string name="hex_editor_input_label_rom">Въведете нова стойност (Hex дума [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Въведете нова стойност (Hex байт 00-FF):</string>
+    <string name="guardar">Запазване</string>
+    <string name="hex_editor_err_empty">Стойността не може да бъде празна</string>
+    <string name="hex_editor_err_invalid_hex">Невалиден шестнадесетичен формат</string>
+    <string name="hex_editor_err_exceeds_max">Стойността надвишава максимално допустимата (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Микроконтролер: %1$s (Фамилия PIC10F - 2 CAL регистъра)</string>
+    <string name="cal_chip_subtitle_standard">Микроконтролер: %1$s (OSCCAL дума на последния ROM адрес)</string>
+    <string name="cal_not_read_yet">Все още не е прочетено от чипа</string>
+    <string name="cal_silicon_value">
+Стойност в чипа: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Въведете шестнадесетична стойност (напр. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Четене от чипа</string>
+    <string name="cal_btn_write_silicon">💾 Запис в чипа</string>
+    <string name="cal_dialog_title">⏱️ Калибриране на OSCCAL</string>
+    <string name="cal_toast_read_success">✓ Прочетен OSCCAL: %1$s</string>
+    <string name="cal_toast_read_error">❌ Грешка при четене на калибрацията от чипа</string>
+    <string name="cal_toast_invalid_hex">Невалидна шестнадесетична стойност</string>
+    <string name="cal_toast_write_success">✓ OSCCAL е записан успешно в чипа</string>
+    <string name="cal_toast_write_error">❌ Неуспешен запис на калибрацията в чипа</string>
+    <string name="icd_dialog_subtitle">Вътрешносхемно дебъгване (ICD) - 24-битов адрес на вектора
+(Валиден диапазон: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Текущ вектор: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Адрес за дебъгване в hex (напр. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Четене на вектор</string>
+    <string name="icd_btn_write_vector">💾 Запис на вектор</string>
+    <string name="icd_dialog_title">🛠️ Вектор за дебъгване (ICD)</string>
+    <string name="icd_toast_read_success">✓ Прочетен вектор: %1$s</string>
+    <string name="icd_toast_invalid_address">Невалиден 24-битов шестнадесетичен адрес</string>
+    <string name="icd_toast_write_success">✓ Програмиран ICD вектор: %1$s</string>
+    <string name="icd_toast_write_error">❌ Неуспешно програмиране на ICD вектора</string>
+    <string name="prog_type_all_title">Програмиране на всичко</string>
+    <string name="prog_type_all_desc">ROM, EEPROM и конфигурация</string>
+    <string name="prog_type_rom_title">Програмиране на ROM</string>
+    <string name="prog_type_rom_desc">Флаш памет</string>
+    <string name="prog_type_eeprom_title">Програмиране на EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM данни</string>
+    <string name="prog_type_config_title">Програмиране на конфигурация</string>
+    <string name="prog_type_config_desc">Предпазители (fuses) и конфигурационни битове</string>
+    <string name="blank_check_err_null_result">❌ Грешка при проверка за празен чип: празен резултат</string>
+    <string name="blank_check_err_verifying">❌ Грешка при верификация на проверката за празен чип: %1$s</string>
+    <string name="blank_check_dual_header">📋 Диференциална проверка за празен чип (Двойна проверка):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM е 100%% чиста (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Открити предишни данни в ROM (Не е празна)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM е 100%% чиста (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Открити предишни данни в EEPROM (Не е празна)</string>
+    <string name="blank_check_method_label">  ℹ Метод: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Микроконтролерът е готов за програмиране (100%% Изтрит)</string>
+    <string name="blank_check_erase_required">⚠ Изисква се предварително изтриване преди програмиране</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Поставете микроконтролер</string>
+    <string name="dialog_insert_microcontroller_message">Не е открит чип в ZIF цокъла.
+
+Моля, поставете PIC %1$s в съответната позиция, заключете лоста и докоснете [%2$s] отново.</string>
+    <string name="log_no_chip_in_socket">⚠️ Няма чип в ZIF цокъла. Поставете микроконтролер %1$s и докоснете [%2$s] отново.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Проверка за наличие на PIC в ZIF цокъла...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Откриване на чип в цокъла...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Не е открит PIC в ZIF цокъла (проверете ориентацията и лоста)</string>
+    <string name="log_pic_physically_detected">✓ Открит физически PIC в цокъла</string>
+    <string name="log_chip_auto_identified">🎯 Автоматично идентифициран: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Открит чип: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Чипът е наличен (ID: %1$s). Изберете модел от ръчния списък.</string>
+    <string name="log_connecting_to_programmer">🔌 Свързване с програматора...</string>
+    <string name="log_connect_programmer_first">⚠ Първо свържете програматора K150 чрез USB.</string>
+    <string name="log_loading_file">📂 Зареждане на %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Обработка на файл %1$s...</string>
+    <string name="log_programming_verified_success">✓ Програмирането завърши и е проверено успешно!</string>
+    <string name="log_programming_failed">❌ Процесът на програмиране на микроконтролера се провали</string>
+    <string name="log_backing_up_osccal">⏱️ Чипът изисква калибриране. Архивиране на OSCCAL преди изтриване...</string>
+    <string name="log_osccal_restored">✓ OSCCAL е възстановен успешно в чипа: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Неуспешно автоматично възстановяване на OSCCAL. Използвайте меню Калибриране.</string>
+    <string name="notification_channel_name">Операции на PIC K150</string>
+    <string name="notification_channel_description">Известия за завършване на програмирането и хардуерни предупреждения</string>
+    <string name="ad_loading_rewarded_video_toast">Зареждане на видео с награда... Моля, опитайте отново след няколко секунди.</string>
+    <string name="pro_pass_expired">Изтекъл</string>
+    <string name="fuse_log_last_config_restored">✓ Последната конфигурация е възстановена</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Не е зареден HEX файл</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX файлът не съдържа предпазители (fuses)</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d предпазители</string>
+    <string name="fuse_log_expected_count">  Чипът очаква: %1$d</string>
+    <string name="unknown_device_id">Неизвестен</string>
+    <string name="status_connected">Свързан</string>
+    <string name="status_error">Грешка</string>
+    <string name="log_pro_purchase_error">⚠ Покупка на Pro: %1$s</string>
 </resources>

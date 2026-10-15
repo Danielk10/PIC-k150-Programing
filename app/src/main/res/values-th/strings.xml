@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">นโยบายความเป็นส่วนตัว</string>
     <string name="aceptar">ยอมรับ</string>
     <string name="cancelar">ยกเลิก</string>
-    <string name="conectado">เชื่อมต่อแล้ว</string>
     <string name="desconectado">ตัดการเชื่อมต่อ</string>
     <string name="grabando_pic">กำลังเขียน PIC...</string>
     <string name="espere_grabacion_pic">โปรดรอสักครู่ อย่าถอดอุปกรณ์ออก</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">เขียนเฟิร์มแวร์ลงใน PIC สำเร็จแล้ว</string>
     <string name="fallo_grabacion_pic">การเขียนล้มเหลว</string>
     <string name="proceso_no_completado">ไม่สามารถทำให้กระบวนการสำเร็จ โปรดตรวจสอบการเชื่อมต่อ</string>
-    <string name="protocolo_del_programador">โปรโตคอลของโปรแกรมเมอร์</string>
     <string name="modelo_del_programador">รุ่นของโปรแกรมเมอร์</string>
     <string name="modelo_programador">รุ่นโปรแกรมเมอร์</string>
     <string name="protocolo">โปรโตคอล</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">นโยบายความเป็นส่วนตัว</string>
-    <string name="no_se_detecto_pic_en_socket">ไม่พบ PIC ในซ็อกเก็ต</string>
-    <string name="pic_detectado_en_socket">พบ PIC ในซ็อกเก็ต</string>
     <string name="error_borrando_memoria">ข้อผิดพลาดในการลบหน่วยความจำ</string>
     <string name="memoria_borrada_exitosamente">ลบหน่วยความจำสำเร็จ</string>
     <string name="memoria_leida_exitosamente">อ่านหน่วยความจำสำเร็จ</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">ส่งออก CONFIG (.bin)</string>
     <string name="exportar_dump_completo">ส่งออก Full Dump (.hex)</string>
     <string name="exportar_dump_completo_bin">ส่งออกการถ่ายโอนข้อมูลแบบเต็ม (.bin)</string>
-    <string name="programar_todo">โปรแกรมทั้งหมด</string>
-    <string name="programar_solo_rom">Program ROM เท่านั้น</string>
-    <string name="programar_solo_eeprom">โปรแกรม EEPROM เท่านั้น</string>
-    <string name="programar_solo_config">Program CONFIG เท่านั้น</string>
     <string name="verificar_borrado">Verify Erase</string>
     <string name="chip_esta_borrado">ชิป ถูกลบ (ว่าง)</string>
     <string name="chip_no_esta_borrado">ชิปไม่ถูกลบ</string>
     <string name="verificando_borrado">กำลังตรวจสอบการลบ...</string>
     <string name="resultado_verificacion_borrado">ผลการตรวจสอบการลบ</string>
     <string name="error_verificando_borrado">เกิดข้อผิดพลาดในการตรวจสอบการลบ</string>
-    <string name="chip_seleccionado">ชิปที่เลือก</string>
     <string name="configuracion_de_fusibles">การกำหนดค่าฟิวส์</string>
     <string name="id_personalizado_hex">ID ที่กำหนดเอง (HEX)</string>
     <string name="hint_id_personalizado">ตัวอย่าง: 1A 2B 3C 4D (4 หรือ 8 ไบต์)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">โฆษณาที่แนะนำ</string>
     <string name="lectura_completa">อ่านแบบเต็ม</string>
     <string name="datos_de_memoria">อ่านหน่วยความจำสำเร็จ</string>
-    <string name="sin_chip">ไม่มีชิป</string>
     <string name="rom_ok_blank">ROM: ตกลง (ว่างเปล่า)</string>
     <string name="rom_not_blank">ROM: ไม่ว่างเปล่า</string>
     <string name="eeprom_ok_blank">EEPROM: ตกลง (ว่างเปล่า)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">ไม่</string>
     <string name="seleccionar_idioma">เลือกภาษา</string>
     <string name="tutorial_instalacion">คู่มือการติดตั้ง</string>
-    <string name="copiar_todo_en">คัดลอกทั้งหมด</string>
     <string name="cerrar">ปิด</string>
     <string name="error_no_chip">ข้อผิดพลาด: ไม่ได้เลือกชิปหรือไม่มีฟิวส์</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">รองรับ HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">ชิป:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">ตัวอย่าง</string>
     <string name="explicacion_label">คำอธิบาย</string>
     <string name="error_export_manager_not_initialized">HexExportManager ไม่ได้เตรียมใช้งาน</string>
-    <string name="error_leyendo_info_chip">เกิดข้อผิดพลาดในการอ่านข้อมูลชิป</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">อีพรอม:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">ไบต์</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">ขอขอบคุณเป็นพิเศษสำหรับ Mike Wakerly, Adam Schubert และทีม AndroidIDE, Android Code Studio และ KITSRUS</string>
     <string name="error_al_cambiar_modo">เกิดข้อผิดพลาดเมื่อเปลี่ยนโหมด:</string>
     <string name="no_hay_firmware_valido">ไม่มีเฟิร์มแวร์ที่ถูกต้อง</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">ปลดล็อกเครื่องมือทางเทคนิคขั้นสูงสำหรับ %1$s</string>
+    <string name="pro_feature_hex_editor">ตัวแก้ไขเลขฐานสิบหกแบบสด (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">การวินิจฉัยฮาร์ดแวร์และการทดสอบแรงดันไฟฟ้า (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">เวกเตอร์การดีบัก ICD (24 บิต)</string>
+    <string name="pro_feature_osccal">การกู้คืนและการแก้ไข OSCCAL ด้วยตนเอง</string>
+    <string name="pro_feature_remove_ads">ลบโฆษณาทั้งหมดออกจากแอปพลิเคชัน</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 ดูวิดีโอ - สิทธิ์ใช้งานฟรี 12 ชั่วโมง</string>
+    <string name="pro_pass_activated_toast">⭐ สิทธิ์ %1$s Pro เปิดใช้งานเป็นเวลา 12 ชั่วโมงแล้ว!</string>
+    <string name="pro_ads_not_available">ไม่มีโฆษณาพร้อมใช้งาน</string>
+    <string name="pro_btn_buy_permanent">👑 ซื้อ %1$s Pro ถาวร%2$s</string>
+    <string name="pro_billing_not_available">Google Play Billing ไม่พร้อมใช้งาน</string>
+    <string name="menu_pro_mode">⭐ โหมด Pro</string>
+    <string name="menu_pro_permanent">👑 Pro ถาวร</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 การวินิจฉัยฮาร์ดแวร์ K150</string>
+    <string name="menu_osccal_calibration">⏱️ การสอบเทียบ OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ เวกเตอร์การดีบักในวงจร (ICD)</string>
+    <string name="cd_socket_diagram">แผนผังซ็อกเก็ต</string>
+    <string name="btn_connect_usb">เชื่อมต่อโปรแกรมเมอร์ USB</string>
+    <string name="btn_disconnect_usb">ตัดการเชื่อมต่อโปรแกรมเมอร์ USB</string>
+    <string name="cd_clear_log">ล้างบันทึก</string>
+    <string name="cd_tutorial_image">ภาพประกอบบทช่วยสอน</string>
+    <string name="title_activity_tutorial_gputils">บทช่วยสอน GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">บทช่วยสอน SDCC</string>
+    <string name="diag_dialog_title">🩺 การวินิจฉัยฮาร์ดแวร์ K150</string>
+    <string name="diag_section_programmer_status">📋 สถานะโปรแกรมเมอร์</string>
+    <string name="diag_label_model">รุ่น:</string>
+    <string name="diag_label_protocol">โปรโตคอล:</string>
+    <string name="diag_label_echo_test">การทดสอบ Echo:</string>
+    <string name="diag_label_zif_sensor">เซ็นเซอร์ ZIF:</string>
+    <string name="diag_status_querying">กำลังสอบถาม...</string>
+    <string name="diag_status_pending">รอดำเนินการ</string>
+    <string name="diag_btn_test_echo">⚡ ทดสอบ Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 การวินิจฉัยเต็มรูปแบบ</string>
+    <string name="diag_btn_test_zif_sensors">🧪 ทดสอบเซ็นเซอร์ ZIF (ใส่/ถอด)</string>
+    <string name="diag_section_voltage_control">⚡ การควบคุมแรงดันไฟฟ้า VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ ข้อควรระวัง: ถอดไมโครคอนโทรลเลอร์ออกจากซ็อกเก็ต ZIF ก่อนเปิดใช้งานหรือวัดแรงดันไฟฟ้าด้วยมัลติมิเตอร์</string>
+    <string name="diag_status_voltages_off">สถานะ: ปิดแรงดันไฟฟ้าแล้ว (0V)</string>
+    <string name="diag_status_vpp_active">สถานะ: ⚡ เปิดใช้งาน VPP (13V) / VDD (5V) แล้ว</string>
+    <string name="diag_status_voltages_restarted">สถานะ: ⚡ รีสตาร์ทแรงดันไฟฟ้าแล้ว (ทำงานอยู่)</string>
+    <string name="diag_status_error_activating">สถานะ: ❌ เกิดข้อผิดพลาดในการเปิดใช้งานแรงดันไฟฟ้า</string>
+    <string name="diag_status_error_deactivating">สถานะ: ❌ เกิดข้อผิดพลาดในการปิดแรงดันไฟฟ้า</string>
+    <string name="diag_status_error_restarting">สถานะ: ❌ เกิดข้อผิดพลาดในการรีสตาร์ทแรงดันไฟฟ้า</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">ปิดเครื่อง (0V)</string>
+    <string name="diag_btn_restart_voltages">รีสตาร์ท</string>
+    <string name="diag_programmer_not_connected">ไม่ได้เชื่อมต่อโปรแกรมเมอร์</string>
+    <string name="diag_connect_programmer_prompt">⚠ เชื่อมต่อโปรแกรมเมอร์ K150 เพื่อใช้การวินิจฉัย</string>
+    <string name="diag_model_not_connected">รุ่น: ไม่ได้เชื่อมต่อโปรแกรมเมอร์</string>
+    <string name="diag_echo_measuring">การทดสอบ Echo: กำลังวัด...</string>
+    <string name="diag_zif_reading">เซ็นเซอร์ ZIF: กำลังอ่าน...</string>
+    <string name="diag_echo_ok">การทดสอบ Echo: ✓ ตกลง (%1$d ms)</string>
+    <string name="diag_echo_no_response">การทดสอบ Echo: ❌ ไม่มีการตอบสนอง</string>
+    <string name="diag_echo_failed">การทดสอบ Echo: ❌ ล้มเหลว</string>
+    <string name="diag_socket_pic_detected">✓ ตรวจพบ PIC ในซ็อกเก็ต ZIF</string>
+    <string name="diag_socket_empty">ℹ ซ็อกเก็ตว่างเปล่า (ตรวจไม่พบชิป)</string>
+    <string name="diag_socket_no_firm_contact">⚠ ตรวจไม่พบการสัมผัสที่แน่นหนาในซ็อกเก็ต</string>
+    <string name="diag_toast_chip_removed_voltages_active">ถอดชิปออกแล้ว: เปิดใช้งานแรงดันไฟฟ้าเพื่อการวัดที่ปลอดภัย</string>
+    <string name="diag_toast_voltages_activated_multimeter">เปิดใช้งานแรงดันไฟฟ้าแล้ว: วัดด้วยมัลติมิเตอร์ที่ VPP และ VDD</string>
+    <string name="diag_toast_voltages_off">ปิดแรงดันไฟฟ้าแล้ว (0V)</string>
+    <string name="diag_toast_voltages_restarted">ถอดชิปออกแล้ว: รีสตาร์ทแรงดันไฟฟ้าสำหรับการวัด</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ มีไมโครคอนโทรลเลอร์ในซ็อกเก็ต</string>
+    <string name="diag_alert_chip_in_socket_message">เพื่อหลีกเลี่ยงความเสียหายต่อ PIC จาก 13V VPP โปรดถอดไมโครคอนโทรลเลอร์ออกจากซ็อกเก็ต ZIF ก่อนเปิดใช้งานหรือวัดแรงดันไฟฟ้า
+
+เมื่อถอดชิปออกแล้ว ให้แตะ \'ดำเนินการต่อ\' เพื่อเริ่มการวัด หรือแตะ \'ยกเลิก\' เพื่อปิดแรงดันไฟฟ้าไว้</string>
+    <string name="diag_btn_continue_chip_removed">ดำเนินการต่อ (ถอดชิปออกแล้ว)</string>
+    <string name="diag_zif_test_title">🧪 การทดสอบเซ็นเซอร์ ZIF</string>
+    <string name="diag_zif_test_desc">การทดสอบเซ็นเซอร์ฮาร์ดแวร์สำหรับซ็อกเก็ต ZIF (คำสั่ง Kitsrus 18 และ 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ ขั้นตอนที่ 1: ใส่ไมโครคอนโทรลเลอร์ลงในซ็อกเก็ตแล้วล็อคคันโยก (คำสั่ง 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ ขั้นตอนที่ 2: รอดำเนินการ (ถอดออกด้วยคำสั่ง 19)</string>
+    <string name="diag_zif_step1_ok">✓ ขั้นตอนที่ 1: เซ็นเซอร์การใส่ ตกลง (คำสั่ง 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ ขั้นตอนที่ 2: ตอนนี้ยกคันโยกขึ้นแล้วถอดชิปออกจากซ็อกเก็ต (คำสั่ง 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ ขั้นตอนที่ 1: หมดเวลาโดยตรวจไม่พบชิป</string>
+    <string name="diag_zif_step2_ok">✓ ขั้นตอนที่ 2: เซ็นเซอร์การถอด ตกลง (คำสั่ง 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 เซ็นเซอร์ฮาร์ดแวร์ทั้งสองของซ็อกเก็ต ZIF ทำงานได้อย่างสมบูรณ์แบบ!
+</string>
+    <string name="diag_zif_step2_timeout">❌ ขั้นตอนที่ 2: หมดเวลาโดยตรวจไม่พบการถอด</string>
+    <string name="hex_editor_title">✏️ แก้ไข %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Word)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">ที่อยู่หน่วยความจำ: %1$s
+ค่าปัจจุบัน: 0x%2$s (สูงสุด: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ รูปแบบ Word และลำดับไบต์ (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ รูปแบบเซลล์ EEPROM (8 บิต)</string>
+    <string name="hex_editor_desc_rom">• PIC จัดเก็บข้อมูล 14/16 บิตในลำดับ Little-Endian:
+   - ไบต์ต่ำ (LSB): 0x%1$s (ออฟเซ็ต 2×N)
+   - ไบต์สูง (MSB): 0x%2$s (ออฟเซ็ต 2×N+1)
+• วิธีแก้ไข?: ป้อนคำเชิงตรรกะแบบเต็ม [MSB][LSB] (เช่น 2805 = LSB 05, MSB 28)
+• แอปจะเรียงลำดับไบต์เป็น Little-Endian สำหรับซิลิคอนและไฟล์ HEX โดยอัตโนมัติ</string>
+    <string name="hex_editor_desc_eeprom">• เซลล์ EEPROM ประกอบด้วยไบต์ 8 บิตแต่ละตัว
+• ป้อนไบต์ฐานสิบหก 2 อักขระโดยตรง (ช่วง: 00 ถึง FF)</string>
+    <string name="hex_editor_input_label_rom">ป้อนค่าใหม่ (Hex Word [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">ป้อนค่าใหม่ (Hex Byte 00-FF):</string>
+    <string name="guardar">บันทึก</string>
+    <string name="hex_editor_err_empty">ค่าต้องไม่ว่างเปล่า</string>
+    <string name="hex_editor_err_invalid_hex">รูปแบบเลขฐานสิบหกไม่ถูกต้อง</string>
+    <string name="hex_editor_err_exceeds_max">ค่าเกินขีดจำกัดสูงสุดที่อนุญาต (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">ไมโครคอนโทรลเลอร์: %1$s (ตระกูล PIC10F - 2 รีจิสเตอร์ CAL)</string>
+    <string name="cal_chip_subtitle_standard">ไมโครคอนโทรลเลอร์: %1$s (คำ OSCCAL ที่ตำแหน่ง ROM สุดท้าย)</string>
+    <string name="cal_not_read_yet">ยังไม่ได้อ่านจากชิป</string>
+    <string name="cal_silicon_value">
+ค่าในซิลิคอน: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+ป้อนค่าเลขฐานสิบหก (เช่น %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 อ่านจากชิป</string>
+    <string name="cal_btn_write_silicon">💾 เขียนลงซิลิคอน</string>
+    <string name="cal_dialog_title">⏱️ การสอบเทียบ OSCCAL</string>
+    <string name="cal_toast_read_success">✓ อ่าน OSCCAL: %1$s</string>
+    <string name="cal_toast_read_error">❌ เกิดข้อผิดพลาดในการอ่านค่าการสอบเทียบจากชิป</string>
+    <string name="cal_toast_invalid_hex">ค่าเลขฐานสิบหกไม่ถูกต้อง</string>
+    <string name="cal_toast_write_success">✓ เขียน OSCCAL ลงในชิปสำเร็จแล้ว</string>
+    <string name="cal_toast_write_error">❌ ล้มเหลวในการเขียนค่าการสอบเทียบลงในซิลิคอน</string>
+    <string name="icd_dialog_subtitle">การดีบักในวงจร (ICD) - เวกเตอร์ที่อยู่ 24 บิต
+(ช่วงที่ถูกต้อง: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+เวกเตอร์ปัจจุบัน: %1$s</string>
+    <string name="icd_enter_address_prompt">
+ที่อยู่การดีบักเป็นเลขฐานสิบหก (เช่น 000020):</string>
+    <string name="icd_btn_read_vector">📥 อ่านเวกเตอร์</string>
+    <string name="icd_btn_write_vector">💾 เขียนเวกเตอร์</string>
+    <string name="icd_dialog_title">🛠️ เวกเตอร์การดีบัก (ICD)</string>
+    <string name="icd_toast_read_success">✓ อ่านเวกเตอร์: %1$s</string>
+    <string name="icd_toast_invalid_address">ที่อยู่เลขฐานสิบหก 24 บิตไม่ถูกต้อง</string>
+    <string name="icd_toast_write_success">✓ โปรแกรมเวกเตอร์ ICD: %1$s</string>
+    <string name="icd_toast_write_error">❌ ล้มเหลวในการโปรแกรมเวกเตอร์ ICD</string>
+    <string name="prog_type_all_title">เขียนโปรแกรมทั้งหมด</string>
+    <string name="prog_type_all_desc">ROM, EEPROM และการกำหนดค่า</string>
+    <string name="prog_type_rom_title">เขียนโปรแกรม ROM</string>
+    <string name="prog_type_rom_desc">หน่วยความจำแฟลช</string>
+    <string name="prog_type_eeprom_title">เขียนโปรแกรม EEPROM</string>
+    <string name="prog_type_eeprom_desc">ข้อมูล EEPROM</string>
+    <string name="prog_type_config_title">เขียนโปรแกรมการกำหนดค่า</string>
+    <string name="prog_type_config_desc">ฟิวส์และบิตการกำหนดค่า</string>
+    <string name="blank_check_err_null_result">❌ ข้อผิดพลาดในการตรวจสอบความว่างเปล่า: ผลลัพธ์เป็นค่าว่าง</string>
+    <string name="blank_check_err_verifying">❌ เกิดข้อผิดพลาดในการตรวจสอบความว่างเปล่า: %1$s</string>
+    <string name="blank_check_dual_header">📋 การตรวจสอบความว่างเปล่าแบบดิฟเฟอเรนเชียล (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM สะอาด 100%% (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ตรวจพบ ROM ที่มีข้อมูลเดิม (ไม่ว่างเปล่า)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM สะอาด 100%% (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ ตรวจพบ EEPROM ที่มีข้อมูลเดิม (ไม่ว่างเปล่า)</string>
+    <string name="blank_check_method_label">  ℹ วิธีการ: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ ไมโครคอนโทรลเลอร์พร้อมสำหรับการเขียนโปรแกรม (ลบแล้ว 100%%)</string>
+    <string name="blank_check_erase_required">⚠ จำเป็นต้องลบข้อมูลเดิมก่อนทำการเขียนโปรแกรม</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ ใส่ไมโครคอนโทรลเลอร์</string>
+    <string name="dialog_insert_microcontroller_message">ตรวจไม่พบชิปในซ็อกเก็ต ZIF
+
+โปรดใส่ PIC %1$s ในตำแหน่งที่เกี่ยวข้อง ล็อคคันโยก แล้วแตะ [%2$s] อีกครั้ง</string>
+    <string name="log_no_chip_in_socket">⚠️ ไม่มีชิปในซ็อกเก็ต ZIF ใส่ไมโครคอนโทรลเลอร์ %1$s แล้วแตะ [%2$s] อีกครั้ง</string>
+    <string name="log_verifying_pic_in_socket">🔍 กำลังตรวจสอบการมีอยู่ของ PIC ในซ็อกเก็ต ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 กำลังตรวจหาชิปในซ็อกเก็ต...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ตรวจไม่พบ PIC ในซ็อกเก็ต ZIF (ตรวจสอบการวางทิศทางและคันโยก)</string>
+    <string name="log_pic_physically_detected">✓ ตรวจพบ PIC ทางกายภาพในซ็อกเก็ต</string>
+    <string name="log_chip_auto_identified">🎯 ระบุโดยอัตโนมัติ: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">ตรวจพบชิป: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ ตรวจพบชิป (ID: %1$s) เลือกรุ่นจากรายการด้วยตนเอง</string>
+    <string name="log_connecting_to_programmer">🔌 กำลังเชื่อมต่อกับโปรแกรมเมอร์...</string>
+    <string name="log_connect_programmer_first">⚠ เชื่อมต่อโปรแกรมเมอร์ K150 ผ่าน USB ก่อน</string>
+    <string name="log_loading_file">📂 กำลังโหลด %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ กำลังประมวลผลไฟล์ %1$s...</string>
+    <string name="log_programming_verified_success">✓ การเขียนโปรแกรมเสร็จสมบูรณ์และตรวจสอบเรียบร้อยแล้ว!</string>
+    <string name="log_programming_failed">❌ กระบวนการเขียนโปรแกรมไมโครคอนโทรลเลอร์ล้มเหลว</string>
+    <string name="log_backing_up_osccal">⏱️ ชิปต้องการการสอบเทียบ สำรองข้อมูล OSCCAL ก่อนทำการลบ...</string>
+    <string name="log_osccal_restored">✓ คืนค่า OSCCAL ลงในซิลิคอนเรียบร้อยแล้ว: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ ไม่สามารถคืนค่า OSCCAL โดยอัตโนมัติได้ ใช้เมนูการสอบเทียบ</string>
+    <string name="notification_channel_name">การดำเนินการ PIC K150</string>
+    <string name="notification_channel_description">การแจ้งเตือนเมื่อการเขียนโปรแกรมเสร็จสิ้นและการแจ้งเตือนฮาร์ดแวร์</string>
+    <string name="ad_loading_rewarded_video_toast">กำลังโหลดวิดีโอที่มีรางวัล... โปรดลองอีกครั้งในอีกสักครู่</string>
+    <string name="pro_pass_expired">หมดอายุแล้ว</string>
+    <string name="fuse_log_last_config_restored">✓ คืนค่าการกำหนดค่าล่าสุดแล้ว</string>
+    <string name="fuse_log_no_hex_loaded">⚠ ยังไม่ได้โหลดไฟล์ HEX</string>
+    <string name="fuse_log_hex_no_fuses">⚠ ไฟล์ HEX ไม่มีฟิวส์</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d ฟิวส์</string>
+    <string name="fuse_log_expected_count">  ชิปต้องการ: %1$d</string>
+    <string name="unknown_device_id">ไม่ทราบ</string>
+    <string name="status_connected">เชื่อมต่อแล้ว</string>
+    <string name="status_error">ข้อผิดพลาด</string>
+    <string name="log_pro_purchase_error">⚠ การซื้อ Pro: %1$s</string>
 </resources>

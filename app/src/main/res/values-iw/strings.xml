@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">מדיניות פרטיות</string>
     <string name="aceptar">אישור</string>
     <string name="cancelar">ביטול</string>
-    <string name="conectado">מחובר</string>
     <string name="desconectado">מנותק</string>
     <string name="grabando_pic">צריבת PIC...</string>
     <string name="espere_grabacion_pic">אנא המתן. אל תנתק את ההתקן.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">הקושחה נצרבה בהצלחה ב-PIC.</string>
     <string name="fallo_grabacion_pic">כשל בצריבה</string>
     <string name="proceso_no_completado">לא ניתן להשלים את התהליך. בדוק את החיבור.</string>
-    <string name="protocolo_del_programador">פרוטוקול מתכנת</string>
     <string name="modelo_del_programador">דגם מתכנת</string>
     <string name="modelo_programador">דגם מתכנת</string>
     <string name="protocolo">פרוטוקול</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">מדיניות פרטיות</string>
-    <string name="no_se_detecto_pic_en_socket">לא זוהה PIC בתושבת</string>
-    <string name="pic_detectado_en_socket">PIC זוהה בתושבת</string>
     <string name="error_borrando_memoria">שגיאה במחיקת הזיכרון</string>
     <string name="memoria_borrada_exitosamente">הזיכרון נמחק בהצלחה</string>
     <string name="memoria_leida_exitosamente">הזיכרון נקרא בהצלחה</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">ייצוא CONFIG (.bin)</string>
     <string name="exportar_dump_completo">ייצא dump מלא (.hex)</string>
     <string name="exportar_dump_completo_bin">ייצא dump מלא (.bin)</string>
-    <string name="programar_todo">תזמן הכל</string>
-    <string name="programar_solo_rom">תוכנית ROM בלבד</string>
-    <string name="programar_solo_eeprom">תוכנית EEPROM בלבד</string>
-    <string name="programar_solo_config">תכנת רק CONFIG</string>
     <string name="verificar_borrado">אמת את המחיקה</string>
     <string name="chip_esta_borrado">השבב נמחק (ריק)</string>
     <string name="chip_no_esta_borrado">השבב לא נמחק</string>
     <string name="verificando_borrado">מאמת את המחיקה...</string>
     <string name="resultado_verificacion_borrado">תוצאת אימות מחיקה</string>
     <string name="error_verificando_borrado">שגיאה באימות המחיקה</string>
-    <string name="chip_seleccionado">צ\'יפ נבחר</string>
     <string name="configuracion_de_fusibles">תצורת נתיך</string>
     <string name="id_personalizado_hex">מזהה מותאם אישית (HEX)</string>
     <string name="hint_id_personalizado">דוגמה: 1A 2B 3C 4D (4 או 8 בתים)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">פרסום מומלץ</string>
     <string name="lectura_completa">קריאה מלאה</string>
     <string name="datos_de_memoria">הזיכרון נקרא בהצלחה</string>
-    <string name="sin_chip">ללא שבב</string>
     <string name="rom_ok_blank">ROM: בסדר (ריק)</string>
     <string name="rom_not_blank">רום: לא ריק</string>
     <string name="eeprom_ok_blank">EEPROM: בסדר (ריק)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">לא</string>
     <string name="seleccionar_idioma">בחר שפה</string>
     <string name="tutorial_instalacion">מדריך התקנה</string>
-    <string name="copiar_todo_en">העתק הכל</string>
     <string name="cerrar">סגור</string>
     <string name="error_no_chip">שגיאה: לא נבחר שבב או אין פיוזים</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">תואם HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">שְׁבָב:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">דוגמה</string>
     <string name="explicacion_label">הסבר</string>
     <string name="error_export_manager_not_initialized">HexExportManager לא אותחל</string>
-    <string name="error_leyendo_info_chip">שגיאה בקריאת מידע שבב</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">בתים</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">תודה מיוחדת למייק וואקרלי, אדם שוברט ולצוותי AndroidIDE, Android Code Studio ו-KITSRUS.</string>
     <string name="error_al_cambiar_modo">שגיאה בעת שינוי מצב:</string>
     <string name="no_hay_firmware_valido">אין קושחה חוקית</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">פתח כלים טכניים מתקדמים עבור %1$s</string>
+    <string name="pro_feature_hex_editor">עורך הקסדצימלי חי (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">אבחון חומרה ובדיקת מתחים (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">וקטור ניפוי שגיאות ICD (24 סיביות)</string>
+    <string name="pro_feature_osccal">שחזור ועריכה ידנית של OSCCAL</string>
+    <string name="pro_feature_remove_ads">הסרת כל הפרסומות מהאפליקציה</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 צפה בסרטון - כרטיס חינם ל-12 שעות</string>
+    <string name="pro_pass_activated_toast">⭐ כרטיס %1$s Pro הופעל ל-12 שעות!</string>
+    <string name="pro_ads_not_available">פרסומות אינן זמינות</string>
+    <string name="pro_btn_buy_permanent">👑 קנה %1$s Pro לתמיד%2$s</string>
+    <string name="pro_billing_not_available">שירות התשלומים של Google Play אינו זמין</string>
+    <string name="menu_pro_mode">⭐ מצב Pro</string>
+    <string name="menu_pro_permanent">👑 Pro קבוע</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 אבחון חומרת K150</string>
+    <string name="menu_osccal_calibration">⏱️ כיול OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ וקטור ניפוי שגיאות במעגל (ICD)</string>
+    <string name="cd_socket_diagram">דיאגרמת תושבת</string>
+    <string name="btn_connect_usb">חבר צורב USB</string>
+    <string name="btn_disconnect_usb">נתק צורב USB</string>
+    <string name="cd_clear_log">נקה יומן</string>
+    <string name="cd_tutorial_image">איור הדרכה</string>
+    <string name="title_activity_tutorial_gputils">מדריך GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">מדריך SDCC</string>
+    <string name="diag_dialog_title">🩺 אבחון חומרת K150</string>
+    <string name="diag_section_programmer_status">📋 סטטוס צורב</string>
+    <string name="diag_label_model">דגם:</string>
+    <string name="diag_label_protocol">פרוטוקול:</string>
+    <string name="diag_label_echo_test">בדיקת Echo:</string>
+    <string name="diag_label_zif_sensor">חיישן ZIF:</string>
+    <string name="diag_status_querying">מבצע שאילתה...</string>
+    <string name="diag_status_pending">ממתין</string>
+    <string name="diag_btn_test_echo">⚡ בדיקת Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 אבחון מלא</string>
+    <string name="diag_btn_test_zif_sensors">🧪 בדיקת חיישני ZIF (הכנסה/הוצאה)</string>
+    <string name="diag_section_voltage_control">⚡ בקרת מתחים VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ זהירות: הסר את המיקרו-בקר מתושבת ה-ZIF לפני הפעלה או מדידת מתחים באמצעות רב-מודד.</string>
+    <string name="diag_status_voltages_off">סטטוס: מתחים כבויים (0V)</string>
+    <string name="diag_status_vpp_active">סטטוס: ⚡ VPP (13V) / VDD (5V) מופעלים</string>
+    <string name="diag_status_voltages_restarted">סטטוס: ⚡ מתחים הופעלו מחדש (פעיל)</string>
+    <string name="diag_status_error_activating">סטטוס: ❌ שגיאה בהפעלת מתחים</string>
+    <string name="diag_status_error_deactivating">סטטוס: ❌ שגיאה בכיבוי מתחים</string>
+    <string name="diag_status_error_restarting">סטטוס: ❌ שגיאה בהפעלה מחדש של מתחים</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">כיבוי (0V)</string>
+    <string name="diag_btn_restart_voltages">הפעל מחדש</string>
+    <string name="diag_programmer_not_connected">הצורב אינו מחובר</string>
+    <string name="diag_connect_programmer_prompt">⚠ חבר את צורב ה-K150 כדי להשתמש באבחון</string>
+    <string name="diag_model_not_connected">דגם: צורב אינו מחובר</string>
+    <string name="diag_echo_measuring">בדיקת Echo: מודד...</string>
+    <string name="diag_zif_reading">חיישן ZIF: קורא...</string>
+    <string name="diag_echo_ok">בדיקת Echo: ✓ תקין (%1$d מ"ש)</string>
+    <string name="diag_echo_no_response">בדיקת Echo: ❌ אין תגובה</string>
+    <string name="diag_echo_failed">בדיקת Echo: ❌ נכשל</string>
+    <string name="diag_socket_pic_detected">✓ PIC זוהה בתושבת ה-ZIF</string>
+    <string name="diag_socket_empty">ℹ תושבת ריקה (לא זוהה שבב)</string>
+    <string name="diag_socket_no_firm_contact">⚠ לא זוהה מגע יציב בתושבת</string>
+    <string name="diag_toast_chip_removed_voltages_active">השבב הוסר: מתחים הופעלו למדידה בטוחה</string>
+    <string name="diag_toast_voltages_activated_multimeter">מתחים מופעלים: מדוד עם רב-מודד בפינים VPP ו-VDD</string>
+    <string name="diag_toast_voltages_off">מתחים כבויים (0V)</string>
+    <string name="diag_toast_voltages_restarted">השבב הוסר: מתחים הופעלו מחדש למדידה</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ מיקרו-בקר בתושבת</string>
+    <string name="diag_alert_chip_in_socket_message">כדי למנוע נזק ל-PIC ממתח VPP של 13V, אנא הסר את המיקרו-בקר מתושבת ה-ZIF לפני הפעלת או מדידת מתחים.
+
+לאחר הסרת השבב, הקש \'המשך\' כדי להפעיל מדידה, או \'ביטול\' כדי להשאיר את המתחים כבויים.</string>
+    <string name="diag_btn_continue_chip_removed">המשך (שבב הוסר)</string>
+    <string name="diag_zif_test_title">🧪 בדיקת חיישני ZIF</string>
+    <string name="diag_zif_test_desc">בדיקת חיישני חומרה עבור תושבת ZIF (פקודות Kitsrus 18 ו-19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ שלב 1: הכנס מיקרו-בקר לתושבת ונעל את הידית (פקודה 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ שלב 2: ממתין (הוצאה באמצעות פקודה 19)</string>
+    <string name="diag_zif_step1_ok">✓ שלב 1: חיישן הכנסה תקין (פקודה 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ שלב 2: כעת הרם את הידית והוצא את השבב מהתושבת (פקודה 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ שלב 1: תם הזמן ללא זיהוי שבב</string>
+    <string name="diag_zif_step2_ok">✓ שלב 2: חיישן הוצאה תקין (פקודה 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 שני החיישנים הפיזיים של תושבת ה-ZIF פועלים בצורה מושלמת!
+</string>
+    <string name="diag_zif_step2_timeout">❌ שלב 2: תם הזמן ללא זיהוי הוצאת השבב</string>
+    <string name="hex_editor_title">✏️ ערוך %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (מילה)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (בייט)</string>
+    <string name="hex_editor_info_address_value">כתובת זיכרון: %1$s
+ערך נוכחי: 0x%2$s (מקסימום: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ מבנה מילה וסדר בייטים (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ מבנה תא EEPROM (8 סיביות)</string>
+    <string name="hex_editor_desc_rom">• בקרי PIC שומרים מילות 14/16 סיביות בסדר Little-Endian:
+   - בייט נמוך (LSB): 0x%1$s (היסט 2×N)
+   - בייט גבוה (MSB): 0x%2$s (היסט 2×N+1)
+• כיצד לערוך?: הזן מילה לוגית מלאה [MSB][LSB] (למשל 2805 = LSB 05, MSB 28).
+• האפליקציה מסדרת אוטומטית את הבייטים ל-Little-Endian עבור השבב וקובץ ה-HEX.</string>
+    <string name="hex_editor_desc_eeprom">• תאי EEPROM מורכבים מבייטים בודדים של 8 סיביות.
+• הזן את הבייט ההקסדצימלי בן 2 התווים ישירות (טווח: 00 עד FF).</string>
+    <string name="hex_editor_input_label_rom">הזן ערך חדש (מילת Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">הזן ערך חדש (בייט Hex 00-FF):</string>
+    <string name="guardar">שמור</string>
+    <string name="hex_editor_err_empty">הערך אינו יכול להיות ריק</string>
+    <string name="hex_editor_err_invalid_hex">פורמט הקסדצימלי לא חוקי</string>
+    <string name="hex_editor_err_exceeds_max">הערך חורג מהמקסימום המותר (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">מיקרו-בקר: %1$s (משפחת PIC10F - 2 אוגרי CAL)</string>
+    <string name="cal_chip_subtitle_standard">מיקרו-בקר: %1$s (מילת OSCCAL בכתובת ה-ROM האחרונה)</string>
+    <string name="cal_not_read_yet">טרם נקרא מהשבב</string>
+    <string name="cal_silicon_value">
+ערך בסיליקון: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+הזן ערך הקסדצימלי (למשל %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 קרא מהשבב</string>
+    <string name="cal_btn_write_silicon">💾 כתוב לסיליקון</string>
+    <string name="cal_dialog_title">⏱️ כיול OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL נקרא: %1$s</string>
+    <string name="cal_toast_read_error">❌ שגיאה בקריאת כיול מהשבב</string>
+    <string name="cal_toast_invalid_hex">ערך הקסדצימלי לא תקין</string>
+    <string name="cal_toast_write_success">✓ OSCCAL נכתב בהצלחה לשבב</string>
+    <string name="cal_toast_write_error">❌ כתיבת הכיול לסיליקון נכשלה</string>
+    <string name="icd_dialog_subtitle">ניפוי שגיאות במעגל (ICD) - וקטור כתובת 24 סיביות
+(טווח תקין: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+וקטור נוכחי: %1$s</string>
+    <string name="icd_enter_address_prompt">
+כתובת ניפוי בהקס (למשל 000020):</string>
+    <string name="icd_btn_read_vector">📥 קרא וקטור</string>
+    <string name="icd_btn_write_vector">💾 כתוב וקטור</string>
+    <string name="icd_dialog_title">🛠️ וקטור ניפוי שגיאות (ICD)</string>
+    <string name="icd_toast_read_success">✓ וקטור נקרא: %1$s</string>
+    <string name="icd_toast_invalid_address">כתובת הקסדצימלית של 24 סיביות לא חוקית</string>
+    <string name="icd_toast_write_success">✓ וקטור ICD תוכנת: %1$s</string>
+    <string name="icd_toast_write_error">❌ תכנות וקטור ICD נכשל</string>
+    <string name="prog_type_all_title">צרוב הכל</string>
+    <string name="prog_type_all_desc">ROM, EEPROM ותצורה</string>
+    <string name="prog_type_rom_title">צרוב ROM</string>
+    <string name="prog_type_rom_desc">זיכרון Flash</string>
+    <string name="prog_type_eeprom_title">צרוב EEPROM</string>
+    <string name="prog_type_eeprom_desc">נתוני EEPROM</string>
+    <string name="prog_type_config_title">צרוב תצורה</string>
+    <string name="prog_type_config_desc">פיוזים וביטי תצורה</string>
+    <string name="blank_check_err_null_result">❌ שגיאה בבדיקת ריקנות: תוצאה ריקה</string>
+    <string name="blank_check_err_verifying">❌ שגיאה באימות בדיקת ריקנות: %1$s</string>
+    <string name="blank_check_dual_header">📋 בדיקת ריקנות דיפרנציאלית (בדיקה כפולה):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM נקי ב-100%% (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ זוהו נתונים קודמים ב-ROM (לא ריק)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM נקי ב-100%% (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ זוהו נתונים קודמים ב-EEPROM (לא ריק)</string>
+    <string name="blank_check_method_label">  ℹ שיטה: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ המיקרו-בקר מוכן לצריבה (מחוק ב-100%%)</string>
+    <string name="blank_check_erase_required">⚠ נדרשת מחיקה מוקדמת לפני הצריבה</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ הכנס מיקרו-בקר</string>
+    <string name="dialog_insert_microcontroller_message">לא זוהה שבב בתושבת ה-ZIF.
+
+אנא הכנס את ה-PIC %1$s במיקום המתאים, נעל את הידית והקש [%2$s] שוב.</string>
+    <string name="log_no_chip_in_socket">⚠️ אין שבב בתושבת ה-ZIF. הכנס מיקרו-בקר %1$s והקש [%2$s] שוב.</string>
+    <string name="log_verifying_pic_in_socket">🔍 בודק נוכחות PIC בתושבת ה-ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 מזהה שבב בתושבת...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ לא זוהה PIC בתושבת ה-ZIF (בדוק כיוון וידית נעילה)</string>
+    <string name="log_pic_physically_detected">✓ PIC זוהה פיזית בתושבת</string>
+    <string name="log_chip_auto_identified">🎯 זוהה אוטומטית: %1$s (מזהה: %2$s)</string>
+    <string name="toast_chip_detected">שבב זוהה: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ שבב קיים (מזהה: %1$s). בחר דגם מהרשימה הידנית.</string>
+    <string name="log_connecting_to_programmer">🔌 מתחבר לצורב...</string>
+    <string name="log_connect_programmer_first">⚠ חבר תחילה את צורב ה-K150 דרך USB.</string>
+    <string name="log_loading_file">📂 טוען %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ מעבד קובץ %1$s...</string>
+    <string name="log_programming_verified_success">✓ הצריבה הושלמה ואומתה בהצלחה!</string>
+    <string name="log_programming_failed">❌ תהליך צריבת המיקרו-בקר נכשל</string>
+    <string name="log_backing_up_osccal">⏱️ השבב דורש כיול. מגבה את OSCCAL לפני מחיקה...</string>
+    <string name="log_osccal_restored">✓ OSCCAL שוחזר בהצלחה לסיליקון: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ לא ניתן לשחזר את OSCCAL אוטומטית. השתמש בתפריט הכיול.</string>
+    <string name="notification_channel_name">פעולות PIC K150</string>
+    <string name="notification_channel_description">הודעות על סיום צריבה והתראות חומרה</string>
+    <string name="ad_loading_rewarded_video_toast">טוען סרטון מתגמל... אנא נסה שוב בעוד מספר שניות.</string>
+    <string name="pro_pass_expired">פג תוקף</string>
+    <string name="fuse_log_last_config_restored">✓ תצורה אחרונה שוחזרה</string>
+    <string name="fuse_log_no_hex_loaded">⚠ לא נטען קובץ HEX</string>
+    <string name="fuse_log_hex_no_fuses">⚠ קובץ HEX אינו מכיל פיוזים</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d פיוזים</string>
+    <string name="fuse_log_expected_count">  השבב מצפה ל: %1$d</string>
+    <string name="unknown_device_id">לא ידוע</string>
+    <string name="status_connected">מחובר</string>
+    <string name="status_error">שגיאה</string>
+    <string name="log_pro_purchase_error">⚠ רכישת Pro: %1$s</string>
 </resources>

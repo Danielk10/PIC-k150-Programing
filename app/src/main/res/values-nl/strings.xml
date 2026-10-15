@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Privacybeleid</string>
     <string name="aceptar">Accepteren</string>
     <string name="cancelar">Annuleren</string>
-    <string name="conectado">Verbonden</string>
     <string name="desconectado">Losgekoppeld</string>
     <string name="grabando_pic">PIC programmeren...</string>
     <string name="espere_grabacion_pic">Even geduld. Koppel het apparaat niet los.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">De firmware is succesvol naar de PIC geschreven.</string>
     <string name="fallo_grabacion_pic">Programmeren Mislukt</string>
     <string name="proceso_no_completado">Het proces kon niet worden voltooid. Controleer de verbinding.</string>
-    <string name="protocolo_del_programador">Programmeerprotocol</string>
     <string name="modelo_del_programador">Programmeermodel</string>
     <string name="modelo_programador">Programmeermodel</string>
     <string name="protocolo">Protocol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privacybeleid</string>
-    <string name="no_se_detecto_pic_en_socket">Geen PIC gedetecteerd in socket</string>
-    <string name="pic_detectado_en_socket">PIC gedetecteerd in socket</string>
     <string name="error_borrando_memoria">Fout bij wissen geheugen</string>
     <string name="memoria_borrada_exitosamente">Geheugen succesvol gewist</string>
     <string name="memoria_leida_exitosamente">Geheugen succesvol gelezen</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Export CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exporteer volledige dump (.hex)</string>
     <string name="exportar_dump_completo_bin">Volledige dump exporteren (.bin)</string>
-    <string name="programar_todo">Programma alles</string>
-    <string name="programar_solo_rom">Alleen programma-ROM</string>
-    <string name="programar_solo_eeprom">Alleen programma-EEPROM</string>
-    <string name="programar_solo_config">Alleen programma CONFIG</string>
     <string name="verificar_borrado">Verifieer wissen</string>
     <string name="chip_esta_borrado">De chip is gewist (leeg)</string>
     <string name="chip_no_esta_borrado">De chip is NIET gewist</string>
     <string name="verificando_borrado">Verificatie van wissen...</string>
     <string name="resultado_verificacion_borrado">Resultaat van verwijderingsverificatie</string>
     <string name="error_verificando_borrado">Fout bij verificatie van wissen</string>
-    <string name="chip_seleccionado">Geselecteerde chip</string>
     <string name="configuracion_de_fusibles">Zekeringconfiguratie</string>
     <string name="id_personalizado_hex">Aangepaste ID (HEX)</string>
     <string name="hint_id_personalizado">Voorbeeld: 1A 2B 3C 4D (4 of 8 bytes)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Aanbevolen reclame</string>
     <string name="lectura_completa">Volledig lezen</string>
     <string name="datos_de_memoria">Geheugen succesvol gelezen</string>
-    <string name="sin_chip">Geen chip</string>
     <string name="rom_ok_blank">ROM: OK (leeg)</string>
     <string name="rom_not_blank">ROM: NIET BLANK</string>
     <string name="eeprom_ok_blank">EEPROM: OK (leeg)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Nee</string>
     <string name="seleccionar_idioma">Taal selecteren</string>
     <string name="tutorial_instalacion">Installatiehandleiding</string>
-    <string name="copiar_todo_en">Alles kopiëren</string>
     <string name="cerrar">Sluiten</string>
     <string name="error_no_chip">Fout: Geen chip geselecteerd of geen fuses</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX-compatibel</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Spaander:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Voorbeeld</string>
     <string name="explicacion_label">Uitleg</string>
     <string name="error_export_manager_not_initialized">HexExportManager niet geïnitialiseerd</string>
-    <string name="error_leyendo_info_chip">Fout bij het lezen van chipinformatie</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Speciale dank aan Mike Wakerly, Adam Schubert en de AndroidIDE-, Android Code Studio- en KITSRUS-teams.</string>
     <string name="error_al_cambiar_modo">Fout bij het wijzigen van de modus:</string>
     <string name="no_hay_firmware_valido">Geen geldige firmware</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Ontgrendel geavanceerde technische tools voor %1$s</string>
+    <string name="pro_feature_hex_editor">Live hexadecimale editor (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Hardwarediagnose en spanningstest (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD-foutopsporingsvector (24 bits)</string>
+    <string name="pro_feature_osccal">OSCCAL redden en handmatig bewerken</string>
+    <string name="pro_feature_remove_ads">Verwijder alle advertenties uit de applicatie</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Bekijk video - 12 uur gratis toegang</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro-toegang geactiveerd voor 12 uur!</string>
+    <string name="pro_ads_not_available">Advertenties niet beschikbaar</string>
+    <string name="pro_btn_buy_permanent">👑 Koop %1$s Pro permanent%2$s</string>
+    <string name="pro_billing_not_available">Google Play Billing niet beschikbaar</string>
+    <string name="menu_pro_mode">⭐ Pro-modus</string>
+    <string name="menu_pro_permanent">👑 Permanente Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 hardwarediagnose</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibratie</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Circuit foutopsporingsvector (ICD)</string>
+    <string name="cd_socket_diagram">Voetdiagram</string>
+    <string name="btn_connect_usb">Verbind USB-programmeur</string>
+    <string name="btn_disconnect_usb">Koppel USB-programmeur los</string>
+    <string name="cd_clear_log">Logboek wissen</string>
+    <string name="cd_tutorial_image">Handleiding illustratie</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS-handleiding</string>
+    <string name="title_activity_tutorial_sdcc">SDCC-handleiding</string>
+    <string name="diag_dialog_title">🩺 K150 hardwarediagnose</string>
+    <string name="diag_section_programmer_status">📋 Programmeurstatus</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protocol:</string>
+    <string name="diag_label_echo_test">Echotest:</string>
+    <string name="diag_label_zif_sensor">ZIF-sensor:</string>
+    <string name="diag_status_querying">Opvragen...</string>
+    <string name="diag_status_pending">In afwachting</string>
+    <string name="diag_btn_test_echo">⚡ Test echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Volledige diagnose</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Test ZIF-sensoren (Plaatsen/Verwijderen)</string>
+    <string name="diag_section_voltage_control">⚡ Spanningsregeling VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ LET OP: Verwijder de microcontroller uit de ZIF-voet voordat u spanningen inschakelt of meet met een multimeter.</string>
+    <string name="diag_status_voltages_off">Status: Spanningen uitgeschakeld (0V)</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) GEACTIVEERD</string>
+    <string name="diag_status_voltages_restarted">Status: ⚡ Spanningen herstart (Actief)</string>
+    <string name="diag_status_error_activating">Status: ❌ Fout bij inschakelen van spanningen</string>
+    <string name="diag_status_error_deactivating">Status: ❌ Fout bij uitschakelen van spanningen</string>
+    <string name="diag_status_error_restarting">Status: ❌ Fout bij herstarten van spanningen</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Uitschakelen (0V)</string>
+    <string name="diag_btn_restart_voltages">Herstarten</string>
+    <string name="diag_programmer_not_connected">Programmeur niet verbonden</string>
+    <string name="diag_connect_programmer_prompt">⚠ Sluit de K150-programmeur aan om diagnostiek te gebruiken</string>
+    <string name="diag_model_not_connected">Model: Programmeur niet verbonden</string>
+    <string name="diag_echo_measuring">Echotest: Meten...</string>
+    <string name="diag_zif_reading">ZIF-sensor: Lezen...</string>
+    <string name="diag_echo_ok">Echotest: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Echotest: ❌ Geen reactie</string>
+    <string name="diag_echo_failed">Echotest: ❌ Mislukt</string>
+    <string name="diag_socket_pic_detected">✓ PIC gedetecteerd in ZIF-voet</string>
+    <string name="diag_socket_empty">ℹ Lege voet (Geen chip gedetecteerd)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Geen stevig contact gedetecteerd in voet</string>
+    <string name="diag_toast_chip_removed_voltages_active">Chip verwijderd: Spanningen geactiveerd voor veilige meting</string>
+    <string name="diag_toast_voltages_activated_multimeter">Spanningen geactiveerd: meet met multimeter op VPP en VDD</string>
+    <string name="diag_toast_voltages_off">Spanningen uitgeschakeld (0V)</string>
+    <string name="diag_toast_voltages_restarted">Chip verwijderd: Spanningen herstart voor meting</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Microcontroller in voet</string>
+    <string name="diag_alert_chip_in_socket_message">Om te voorkomen dat de PIC beschadigd raakt door 13V VPP, dient u de microcontroller uit de ZIF-voet te verwijderen voordat u spanningen inschakelt of meet.
+
+Zodra de chip is verwijderd, tikt u op \'Doorgaan\' om de meting te activeren, of op \'Annuleren\' om de spanningen uitgeschakeld te laten.</string>
+    <string name="diag_btn_continue_chip_removed">Doorgaan (Chip verwijderd)</string>
+    <string name="diag_zif_test_title">🧪 Test ZIF-sensoren</string>
+    <string name="diag_zif_test_desc">Hardwaresensortest voor ZIF-voet (Kitsrus-commando\'s 18 en 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Stap 1: Plaats een microcontroller in de voet en vergrendel de hendel (Commando 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Stap 2: In afwachting (Verwijderen met commando 19)</string>
+    <string name="diag_zif_step1_ok">✓ Stap 1: Invoersensor OK (Commando 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Stap 2: Til nu de hendel op en verwijder de chip uit de voet (Commando 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Stap 1: Time-out zonder chipdetectie</string>
+    <string name="diag_zif_step2_ok">✓ Stap 2: Verwijderingssensor OK (Commando 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Beide fysieke sensoren van de ZIF-voet werken perfect!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Stap 2: Time-out zonder detectie van verwijdering</string>
+    <string name="hex_editor_title">✏️ %1$s bewerken</string>
+    <string name="hex_editor_type_rom_word">ROM (Woord)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">Geheugenadres: %1$s
+Huidige waarde: 0x%2$s (Maximum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Woordformaat en bytevolgorde (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-celformaat (8-bit)</string>
+    <string name="hex_editor_desc_rom">• PIC\'s slaan 14/16-bits woorden op in Little-Endian-volgorde:
+   - Lage byte (LSB): 0x%1$s (offset 2×N)
+   - Hoge byte (MSB): 0x%2$s (offset 2×N+1)
+• Hoe te bewerken?: Voer het volledige logische woord in [MSB][LSB] (bijv. 2805 = LSB 05, MSB 28).
+• De app herschikt bytes automatisch naar Little-Endian voor de chip en het HEX-bestand.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM-cellen bestaan uit individuele 8-bits bytes.
+• Voer de hexadecimale byte van 2 tekens direct in (bereik: 00 tot FF).</string>
+    <string name="hex_editor_input_label_rom">Voer nieuwe waarde in (Hex-woord [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Voer nieuwe waarde in (Hex-byte 00-FF):</string>
+    <string name="guardar">Opslaan</string>
+    <string name="hex_editor_err_empty">Waarde mag niet leeg zijn</string>
+    <string name="hex_editor_err_invalid_hex">Ongeldig hexadecimaal formaat</string>
+    <string name="hex_editor_err_exceeds_max">Waarde overschrijdt maximaal toegestane (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Microcontroller: %1$s (PIC10F-familie - 2 CAL-registers)</string>
+    <string name="cal_chip_subtitle_standard">Microcontroller: %1$s (OSCCAL-woord op laatste ROM-adres)</string>
+    <string name="cal_not_read_yet">Nog niet gelezen van chip</string>
+    <string name="cal_silicon_value">
+Waarde op chip: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Voer hexadecimale waarde in (bijv. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Lezen van chip</string>
+    <string name="cal_btn_write_silicon">💾 Schrijven naar chip</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL-kalibratie</string>
+    <string name="cal_toast_read_success">✓ OSCCAL gelezen: %1$s</string>
+    <string name="cal_toast_read_error">❌ Fout bij lezen van kalibratie van chip</string>
+    <string name="cal_toast_invalid_hex">Ongeldige hexadecimale waarde</string>
+    <string name="cal_toast_write_success">✓ OSCCAL succesvol naar chip geschreven</string>
+    <string name="cal_toast_write_error">❌ Schrijven van kalibratie naar chip mislukt</string>
+    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) - 24-bits adresvector
+(Geldig bereik: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Huidige vector: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Foutopsporingsadres in hex (bijv. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Vector lezen</string>
+    <string name="icd_btn_write_vector">💾 Vector schrijven</string>
+    <string name="icd_dialog_title">🛠️ Foutopsporingsvector (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vector gelezen: %1$s</string>
+    <string name="icd_toast_invalid_address">Ongeldig 24-bits hexadecimaal adres</string>
+    <string name="icd_toast_write_success">✓ ICD-vector geprogrammeerd: %1$s</string>
+    <string name="icd_toast_write_error">❌ Programmeren van ICD-vector mislukt</string>
+    <string name="prog_type_all_title">Alles programmeren</string>
+    <string name="prog_type_all_desc">ROM, EEPROM en configuratie</string>
+    <string name="prog_type_rom_title">ROM programmeren</string>
+    <string name="prog_type_rom_desc">Flashgeheugen</string>
+    <string name="prog_type_eeprom_title">EEPROM programmeren</string>
+    <string name="prog_type_eeprom_desc">EEPROM-gegevens</string>
+    <string name="prog_type_config_title">Configuratie programmeren</string>
+    <string name="prog_type_config_desc">Fuses en configuratiebits</string>
+    <string name="blank_check_err_null_result">❌ Fout bij leegtecontrole: null-resultaat</string>
+    <string name="blank_check_err_verifying">❌ Fout bij verifiëren van leegtecontrole: %1$s</string>
+    <string name="blank_check_dual_header">📋 Differentiële leegtecontrole (Dubbele controle):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% schoon (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Eerdere gegevens gedetecteerd in ROM (Niet leeg)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% schoon (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Eerdere gegevens gedetecteerd in EEPROM (Niet leeg)</string>
+    <string name="blank_check_method_label">  ℹ Methode: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Microcontroller klaar om te programmeren (100%% Gewist)</string>
+    <string name="blank_check_erase_required">⚠ Vooraf wissen is vereist vóór programmeren</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Microcontroller plaatsen</string>
+    <string name="dialog_insert_microcontroller_message">Er is geen chip gedetecteerd in de ZIF-voet.
+
+Plaats de PIC %1$s in de juiste positie, vergrendel de hendel en tik opnieuw op [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Geen chip in ZIF-voet. Plaats microcontroller %1$s en tik opnieuw op [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Aanwezigheid van PIC in ZIF-voet controleren...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Chip in voet detecteren...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Geen PIC gedetecteerd in ZIF-voet (controleer oriëntatie en hendel)</string>
+    <string name="log_pic_physically_detected">✓ PIC fysiek gedetecteerd in voet</string>
+    <string name="log_chip_auto_identified">🎯 Automatisch geïdentificeerd: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Chip gedetecteerd: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Chip aanwezig (ID: %1$s). Selecteer model uit de handmatige lijst.</string>
+    <string name="log_connecting_to_programmer">🔌 Verbinden met programmeur...</string>
+    <string name="log_connect_programmer_first">⚠ Sluit eerst de K150-programmeur aan via USB.</string>
+    <string name="log_loading_file">📂 Laden van %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Verwerken van %1$s-bestand...</string>
+    <string name="log_programming_verified_success">✓ Programmeren voltooid en succesvol geverifieerd!</string>
+    <string name="log_programming_failed">❌ Programmeerproces van microcontroller mislukt</string>
+    <string name="log_backing_up_osccal">⏱️ Chip vereist kalibratie. Back-up maken van OSCCAL voor het wissen...</string>
+    <string name="log_osccal_restored">✓ OSCCAL succesvol hersteld naar chip: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Kon OSCCAL niet automatisch herstellen. Gebruik het menu Kalibratie.</string>
+    <string name="notification_channel_name">PIC K150-bewerkingen</string>
+    <string name="notification_channel_description">Meldingen over voltooiing van programmering en hardwarewaarschuwingen</string>
+    <string name="ad_loading_rewarded_video_toast">Beloningsvideo laden... Probeer het over enkele seconden opnieuw.</string>
+    <string name="pro_pass_expired">Verlopen</string>
+    <string name="fuse_log_last_config_restored">✓ Laatste configuratie hersteld</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Geen HEX-bestand geladen</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX bevat geen fuses</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d fuses</string>
+    <string name="fuse_log_expected_count">  Chip verwacht: %1$d</string>
+    <string name="unknown_device_id">Onbekend</string>
+    <string name="status_connected">Verbonden</string>
+    <string name="status_error">Fout</string>
+    <string name="log_pro_purchase_error">⚠ Pro-aankoop: %1$s</string>
 </resources>

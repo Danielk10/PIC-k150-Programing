@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">プライバシーポリシー</string>
     <string name="aceptar">承認</string>
     <string name="cancelar">キャンセル</string>
-    <string name="conectado">接続済み</string>
     <string name="desconectado">切断されました</string>
     <string name="grabando_pic">PICを書き込み中...</string>
     <string name="espere_grabacion_pic">お待ちください。デバイスを切断しないでください。</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">ファームウェアはPICに正常に書き込まれました。</string>
     <string name="fallo_grabacion_pic">書き込み失敗</string>
     <string name="proceso_no_completado">プロセスを完了できませんでした。接続を確認してください。</string>
-    <string name="protocolo_del_programador">プログラマプロトコル</string>
     <string name="modelo_del_programador">プログラマモデル</string>
     <string name="modelo_programador">プログラマモデル</string>
     <string name="protocolo">プロトコル</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">プライバシーポリシー</string>
-    <string name="no_se_detecto_pic_en_socket">ソケットにPICが検出されませんでした</string>
-    <string name="pic_detectado_en_socket">ソケットにPICが検出されました</string>
     <string name="error_borrando_memoria">メモリの消去中にエラーが発生しました</string>
     <string name="memoria_borrada_exitosamente">メモリは正常に消去されました</string>
     <string name="memoria_leida_exitosamente">メモリは正常に読み取られました</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">設定をエクスポート (.bin)</string>
     <string name="exportar_dump_completo">フルダンプ (.hex) をエクスポート</string>
     <string name="exportar_dump_completo_bin">フルダンプ (.bin) をエクスポート</string>
-    <string name="programar_todo">すべてをスケジュールする</string>
-    <string name="programar_solo_rom">プログラムROMのみ</string>
-    <string name="programar_solo_eeprom">プログラムEEPROMのみ</string>
-    <string name="programar_solo_config">プログラムのみ CONFIG</string>
     <string name="verificar_borrado">削除の確認</string>
     <string name="chip_esta_borrado">チップは消去済み（ブランク）</string>
     <string name="chip_no_esta_borrado">チップは消去されていません</string>
     <string name="verificando_borrado">削除を確認しています...</string>
     <string name="resultado_verificacion_borrado">削除検証結果</string>
     <string name="error_verificando_borrado">削除の検証中にエラーが発生しました</string>
-    <string name="chip_seleccionado">選択されたチップ</string>
     <string name="configuracion_de_fusibles">ヒューズの構成</string>
     <string name="id_personalizado_hex">カスタム ID (16 進数)</string>
     <string name="hint_id_personalizado">例: 1A 2B 3C 4D (4 または 8 バイト)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">おすすめの広告</string>
     <string name="lectura_completa">完読</string>
     <string name="datos_de_memoria">メモリは正常に読み取られました</string>
-    <string name="sin_chip">チップなし</string>
     <string name="rom_ok_blank">ROM：OK（ブランク）</string>
     <string name="rom_not_blank">ROM: ブランクではありません</string>
     <string name="eeprom_ok_blank">EEPROM: OK (ブランク)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">いいえ</string>
     <string name="seleccionar_idioma">言語を選択</string>
     <string name="tutorial_instalacion">インストールチュートリアル</string>
-    <string name="copiar_todo_en">すべてコピー</string>
     <string name="cerrar">閉じる</string>
     <string name="error_no_chip">エラー: チップが未選択またはヒューズなし</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX互換</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">チップ：</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">例</string>
     <string name="explicacion_label">説明</string>
     <string name="error_export_manager_not_initialized">HexExportManager が初期化されていません</string>
-    <string name="error_leyendo_info_chip">チップ情報の読み取りエラー</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">バイト</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Mike Wakerly、Adam Schubert、AndroidIDE、Android Code Studio、KITSRUS チームに心より感謝いたします。</string>
     <string name="error_al_cambiar_modo">モード変更時のエラー:</string>
     <string name="no_hay_firmware_valido">有効なファームウェアがありません</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">%1$sの高度な技術ツールをアンロック</string>
+    <string name="pro_feature_hex_editor">ライブ16進エディタ (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">ハードウェア診断＆電圧テスト (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICDデバッグベクター (24ビット)</string>
+    <string name="pro_feature_osccal">OSCCALレスキュー＆手動編集</string>
+    <string name="pro_feature_remove_ads">アプリからすべての広告を削除</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 動画を見る - 12時間無料パス</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Proパスが12時間有効化されました！</string>
+    <string name="pro_ads_not_available">広告は利用できません</string>
+    <string name="pro_btn_buy_permanent">👑 %1$s Pro（永久版）を購入%2$s</string>
+    <string name="pro_billing_not_available">Google Play請求サービスを利用できません</string>
+    <string name="menu_pro_mode">⭐ Proモード</string>
+    <string name="menu_pro_permanent">👑 永久Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150ハードウェア診断</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCALキャリブレーション</string>
+    <string name="menu_debug_vector_icd">🛠️ インサーキット・デバッグベクター (ICD)</string>
+    <string name="cd_socket_diagram">ソケット図</string>
+    <string name="btn_connect_usb">USBライターを接続</string>
+    <string name="btn_disconnect_usb">USBライターを切断</string>
+    <string name="cd_clear_log">ログをクリア</string>
+    <string name="cd_tutorial_image">チュートリアル図解</string>
+    <string name="title_activity_tutorial_gputils">GPUTILSチュートリアル</string>
+    <string name="title_activity_tutorial_sdcc">SDCCチュートリアル</string>
+    <string name="diag_dialog_title">🩺 K150ハードウェア診断</string>
+    <string name="diag_section_programmer_status">📋 ライターの状態</string>
+    <string name="diag_label_model">モデル:</string>
+    <string name="diag_label_protocol">プロトコル:</string>
+    <string name="diag_label_echo_test">エコーテスト:</string>
+    <string name="diag_label_zif_sensor">ZIFセンサー:</string>
+    <string name="diag_status_querying">問い合わせ中...</string>
+    <string name="diag_status_pending">保留中</string>
+    <string name="diag_btn_test_echo">⚡ エコーテスト</string>
+    <string name="diag_btn_full_diagnosis">🔄 完全診断</string>
+    <string name="diag_btn_test_zif_sensors">🧪 ZIFセンサーテスト (挿入/取り出し)</string>
+    <string name="diag_section_voltage_control">⚡ 電圧制御 VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ 注意: テスターで電圧を印加または測定する前に、必ずZIFソケットからマイコンを取り外してください。</string>
+    <string name="diag_status_voltages_off">状態: 電圧オフ (0V)</string>
+    <string name="diag_status_vpp_active">状態: ⚡ VPP (13V) / VDD (5V) 有効</string>
+    <string name="diag_status_voltages_restarted">状態: ⚡ 電圧再起動 (有効)</string>
+    <string name="diag_status_error_activating">状態: ❌ 電圧有効化エラー</string>
+    <string name="diag_status_error_deactivating">状態: ❌ 電圧オフエラー</string>
+    <string name="diag_status_error_restarting">状態: ❌ 電圧再起動エラー</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">電源オフ (0V)</string>
+    <string name="diag_btn_restart_voltages">再起動</string>
+    <string name="diag_programmer_not_connected">ライターが接続されていません</string>
+    <string name="diag_connect_programmer_prompt">⚠ 診断を使用するにはK150ライターを接続してください</string>
+    <string name="diag_model_not_connected">モデル: ライター未接続</string>
+    <string name="diag_echo_measuring">エコーテスト: 測定中...</string>
+    <string name="diag_zif_reading">ZIFセンサー: 読み取り中...</string>
+    <string name="diag_echo_ok">エコーテスト: ✓ 正常 (%1$d ms)</string>
+    <string name="diag_echo_no_response">エコーテスト: ❌ 応答なし</string>
+    <string name="diag_echo_failed">エコーテスト: ❌ 失敗</string>
+    <string name="diag_socket_pic_detected">✓ ZIFソケットにPICを検出しました</string>
+    <string name="diag_socket_empty">ℹ 空のソケット (チップは検出されません)</string>
+    <string name="diag_socket_no_firm_contact">⚠ ソケットの確実な接触が検出されません</string>
+    <string name="diag_toast_chip_removed_voltages_active">チップ取り外し済み: 安全な測定のため電圧を有効化しました</string>
+    <string name="diag_toast_voltages_activated_multimeter">電圧有効化: VPPおよびVDD端子をテスターで測定してください</string>
+    <string name="diag_toast_voltages_off">電圧をオフにしました (0V)</string>
+    <string name="diag_toast_voltages_restarted">チップ取り外し済み: 測定用電圧を再起動しました</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ ソケット内にマイコンがあります</string>
+    <string name="diag_alert_chip_in_socket_message">13VのVPPによるPICの損傷を防ぐため、電圧を印加または測定する前に必ずZIFソケットからマイコンを取り外してください。
+
+チップを取り外したら、「続行」をタップして測定を有効にするか、「キャンセル」をタップして電圧をオフのままにしてください。</string>
+    <string name="diag_btn_continue_chip_removed">続行 (チップ取り外し済み)</string>
+    <string name="diag_zif_test_title">🧪 ZIFセンサーテスト</string>
+    <string name="diag_zif_test_desc">ZIFソケットのハードウェアセンサーテスト (Kitsrusコマンド18および19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ ステップ1: マイコンをソケットに挿入し、レバーをロックしてください (コマンド18)...</string>
+    <string name="diag_zif_step2_pending">⚪ ステップ2: 保留中 (コマンド19による取り出し)</string>
+    <string name="diag_zif_step1_ok">✓ ステップ1: 挿入センサー正常 (コマンド18)</string>
+    <string name="diag_zif_step2_waiting">⏳ ステップ2: レバーを上げてソケットからチップを取り出してください (コマンド19)...</string>
+    <string name="diag_zif_step1_timeout">❌ ステップ1: チップが検出されずタイムアウトしました</string>
+    <string name="diag_zif_step2_ok">✓ ステップ2: 取り出しセンサー正常 (コマンド19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 ZIFソケットの両方の物理センサーは完全に機能しています！
+</string>
+    <string name="diag_zif_step2_timeout">❌ ステップ2: 取り出しが検出されずタイムアウトしました</string>
+    <string name="hex_editor_title">✏️ %1$sの編集</string>
+    <string name="hex_editor_type_rom_word">ROM (ワード)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (バイト)</string>
+    <string name="hex_editor_info_address_value">メモリアドレス: %1$s
+現在の値: 0x%2$s (最大: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ ワード形式とバイト順序 (リトルエンディアン)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROMセル形式 (8ビット)</string>
+    <string name="hex_editor_desc_rom">• PICは14/16ビットワードをリトルエンディアン順で格納します:
+   - 下位バイト (LSB): 0x%1$s (オフセット 2×N)
+   - 上位バイト (MSB): 0x%2$s (オフセット 2×N+1)
+• 編集方法: 完全な論理ワード [MSB][LSB] を入力します (例: 2805 = LSB 05, MSB 28)。
+• アプリはシリコンおよびHEXファイル用に自動的にリトルエンディアンへ並べ替えます。</string>
+    <string name="hex_editor_desc_eeprom">• EEPROMセルは個別の8ビットバイトで構成されています。
+• 2文字の16進数バイトを直接入力してください (範囲: 00〜FF)。</string>
+    <string name="hex_editor_input_label_rom">新しい値を入力 (16進ワード [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">新しい値を入力 (16進バイト 00-FF):</string>
+    <string name="guardar">保存</string>
+    <string name="hex_editor_err_empty">値を空にすることはできません</string>
+    <string name="hex_editor_err_invalid_hex">無効な16進数形式です</string>
+    <string name="hex_editor_err_exceeds_max">値が許容最大値 (0x%1$s) を超えています</string>
+    <string name="cal_chip_subtitle_10f">マイコン: %1$s (PIC10Fファミリー - 2つのCALレジスタ)</string>
+    <string name="cal_chip_subtitle_standard">マイコン: %1$s (最終ROMアドレスのOSCCALワード)</string>
+    <string name="cal_not_read_yet">チップからまだ読み取られていません</string>
+    <string name="cal_silicon_value">
+シリコンの値: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+16進数の値を入力 (例: %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 チップから読み取り</string>
+    <string name="cal_btn_write_silicon">💾 シリコンへ書き込み</string>
+    <string name="cal_dialog_title">⏱️ OSCCALキャリブレーション</string>
+    <string name="cal_toast_read_success">✓ OSCCAL読み取り完了: %1$s</string>
+    <string name="cal_toast_read_error">❌ チップからのキャリブレーション読み取りエラー</string>
+    <string name="cal_toast_invalid_hex">無効な16進数値です</string>
+    <string name="cal_toast_write_success">✓ OSCCALがチップに正常に書き込まれました</string>
+    <string name="cal_toast_write_error">❌ シリコンへのキャリブレーション書き込みに失敗しました</string>
+    <string name="icd_dialog_subtitle">インサーキット・デバッグ (ICD) - 24ビットアドレスベクター
+(有効範囲: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+現在のベクター: %1$s</string>
+    <string name="icd_enter_address_prompt">
+16進数デバッグアドレス (例: 000020):</string>
+    <string name="icd_btn_read_vector">📥 ベクターを読み取り</string>
+    <string name="icd_btn_write_vector">💾 ベクターを書き込み</string>
+    <string name="icd_dialog_title">🛠️ デバッグベクター (ICD)</string>
+    <string name="icd_toast_read_success">✓ ベクター読み取り完了: %1$s</string>
+    <string name="icd_toast_invalid_address">無効な24ビット16進アドレスです</string>
+    <string name="icd_toast_write_success">✓ ICDベクター書き込み完了: %1$s</string>
+    <string name="icd_toast_write_error">❌ ICDベクターの書き込みに失敗しました</string>
+    <string name="prog_type_all_title">すべて書き込み</string>
+    <string name="prog_type_all_desc">ROM、EEPROMおよびコンフィグレーション</string>
+    <string name="prog_type_rom_title">ROM書き込み</string>
+    <string name="prog_type_rom_desc">フラッシュメモリ</string>
+    <string name="prog_type_eeprom_title">EEPROM書き込み</string>
+    <string name="prog_type_eeprom_desc">EEPROMデータ</string>
+    <string name="prog_type_config_title">コンフィグレーション書き込み</string>
+    <string name="prog_type_config_desc">ヒューズおよびコンフィグレーションビット</string>
+    <string name="blank_check_err_null_result">❌ ブランクチェックエラー: 結果がNullです</string>
+    <string name="blank_check_err_verifying">❌ ブランクチェック検証エラー: %1$s</string>
+    <string name="blank_check_dual_header">📋 差分ブランクチェック (デュアルブランクチェック):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% クリーン (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROMに以前のデータを検出 (ブランクではありません)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% クリーン (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROMに以前のデータを検出 (ブランクではありません)</string>
+    <string name="blank_check_method_label">  ℹ 方式: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ マイコンの書き込み準備完了 (100%% 消去済み)</string>
+    <string name="blank_check_erase_required">⚠ 書き込み前に事前の消去が必要です</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ マイコンを挿入してください</string>
+    <string name="dialog_insert_microcontroller_message">ZIFソケットにチップが検出されませんでした。
+
+PIC %1$sを対応する位置に挿入してレバーをロックし、もう一度 [%2$s] をタップしてください。</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIFソケットにチップがありません。マイコン %1$sを挿入し、もう一度 [%2$s] をタップしてください。</string>
+    <string name="log_verifying_pic_in_socket">🔍 ZIFソケット内のPICの存在を確認中...</string>
+    <string name="log_detecting_chip_in_socket">🔍 ソケット内のチップを検出中...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIFソケットにPICが検出されません (向きとレバーを確認してください)</string>
+    <string name="log_pic_physically_detected">✓ ソケット内にPICを物理的に検出しました</string>
+    <string name="log_chip_auto_identified">🎯 自動識別完了: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">チップを検出: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ チップが存在します (ID: %1$s)。リストから手動でモデルを選択してください。</string>
+    <string name="log_connecting_to_programmer">🔌 ライターに接続中...</string>
+    <string name="log_connect_programmer_first">⚠ 最初にUSBでK150ライターを接続してください。</string>
+    <string name="log_loading_file">📂 %1$s を読み込み中: %2$s</string>
+    <string name="log_processing_file">⏳ %1$s ファイルを処理中...</string>
+    <string name="log_programming_verified_success">✓ 書き込みが完了し、正常に検証されました！</string>
+    <string name="log_programming_failed">❌ マイコンの書き込みプロセスに失敗しました</string>
+    <string name="log_backing_up_osccal">⏱️ チップにキャリブレーションが必要です。消去前にOSCCALをバックアップ中...</string>
+    <string name="log_osccal_restored">✓ OSCCALがシリコンに正常に復元されました: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCALを自動的に復元できませんでした。キャリブレーションメニューを使用してください。</string>
+    <string name="notification_channel_name">PIC K150の操作</string>
+    <string name="notification_channel_description">書き込み完了通知およびハードウェア警告</string>
+    <string name="ad_loading_rewarded_video_toast">リワード動画を読み込み中... 数秒後にもう一度お試しください。</string>
+    <string name="pro_pass_expired">期限切れ</string>
+    <string name="fuse_log_last_config_restored">✓ 前回の構成が復元されました</string>
+    <string name="fuse_log_no_hex_loaded">⚠ HEXファイルが読み込まれていません</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEXにヒューズ設定が含まれていません</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d 個のヒューズ</string>
+    <string name="fuse_log_expected_count">  チップ要求: %1$d 個</string>
+    <string name="unknown_device_id">不明</string>
+    <string name="status_connected">接続済み</string>
+    <string name="status_error">エラー</string>
+    <string name="log_pro_purchase_error">⚠ Pro購入: %1$s</string>
 </resources>

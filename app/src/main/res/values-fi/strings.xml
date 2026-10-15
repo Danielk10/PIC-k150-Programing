@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Tietosuojakäytännöt</string>
     <string name="aceptar">Hyväksy</string>
     <string name="cancelar">Peruuta</string>
-    <string name="conectado">Yhdistetty</string>
     <string name="desconectado">Katkaistu</string>
     <string name="grabando_pic">Ohjelmoidaan PIC...</string>
     <string name="espere_grabacion_pic">Odota. Älä irrota laitetta.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware kirjoitettiin onnistuneesti PIC:iin.</string>
     <string name="fallo_grabacion_pic">Ohjelmointi Epäonnistui</string>
     <string name="proceso_no_completado">Prosessia ei voitu suorittaa loppuun. Tarkista yhteys.</string>
-    <string name="protocolo_del_programador">Ohjelmoijan Protokolla</string>
     <string name="modelo_del_programador">Ohjelmoijan Malli</string>
     <string name="modelo_programador">Ohjelmoijan Malli</string>
     <string name="protocolo">Protokolla</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Tietosuojakäytäntö</string>
-    <string name="no_se_detecto_pic_en_socket">PIC ei havaittu kannassa</string>
-    <string name="pic_detectado_en_socket">PIC havaittu kannassa</string>
     <string name="error_borrando_memoria">Virhe muistin tyhjentämisessä</string>
     <string name="memoria_borrada_exitosamente">Muisti tyhjennetty onnistuneesti</string>
     <string name="memoria_leida_exitosamente">Muisti luettu onnistuneesti</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Vie CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Vie koko vedos (.hex)</string>
     <string name="exportar_dump_completo_bin">Vie koko vedos (.bin)</string>
-    <string name="programar_todo">Aikatauluta kaikki</string>
-    <string name="programar_solo_rom">Ohjelma vain ROM</string>
-    <string name="programar_solo_eeprom">Ohjelmoi vain EEPROM</string>
-    <string name="programar_solo_config">Ohjelma vain CONFIG</string>
     <string name="verificar_borrado">Vahvista poisto</string>
     <string name="chip_esta_borrado">Siru on poistettu (tyhjä)</string>
     <string name="chip_no_esta_borrado">Sirua EI poisteta</string>
     <string name="verificando_borrado">Vahvistetaan poistoa...</string>
     <string name="resultado_verificacion_borrado">Poiston vahvistustulos</string>
     <string name="error_verificando_borrado">Virhe poiston vahvistamisessa</string>
-    <string name="chip_seleccionado">Valittu siru</string>
     <string name="configuracion_de_fusibles">Sulakkeen kokoonpano</string>
     <string name="id_personalizado_hex">Muokattu tunnus (HEX)</string>
     <string name="hint_id_personalizado">Esimerkki: 1A 2B 3C 4D (4 tai 8 tavua)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Suositeltu mainonta</string>
     <string name="lectura_completa">Täydellinen lukeminen</string>
     <string name="datos_de_memoria">Muisti luettu onnistuneesti</string>
-    <string name="sin_chip">ilman sirua</string>
     <string name="rom_ok_blank">ROM: OK (tyhjä)</string>
     <string name="rom_not_blank">ROM: EI TYHJÄ</string>
     <string name="eeprom_ok_blank">EEPROM: OK (tyhjä)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Ei</string>
     <string name="seleccionar_idioma">Valitse kieli</string>
     <string name="tutorial_instalacion">Asennusopas</string>
-    <string name="copiar_todo_en">Kopioi kaikki</string>
     <string name="cerrar">Sulje</string>
     <string name="error_no_chip">Virhe: Sirua ei valittu tai sulakkeita ei ole</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX-yhteensopiva</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Siru:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Esimerkki</string>
     <string name="explicacion_label">Selitys</string>
     <string name="error_export_manager_not_initialized">HexExportManager ei alustettu</string>
-    <string name="error_leyendo_info_chip">Virhe sirutietojen lukemisessa</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">tavua</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Erityiset kiitokset Mike Wakerlylle, Adam Schubertille ja AndroidIDE-, Android Code Studio- ja KITSRUS-tiimeille.</string>
     <string name="error_al_cambiar_modo">Virhe tilan vaihdossa:</string>
     <string name="no_hay_firmware_valido">Ei kelvollista laiteohjelmistoa</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Avaa edistyneet tekniset työkalut kohteelle %1$s</string>
+    <string name="pro_feature_hex_editor">Reaaliaikainen heksaeditori (Suora muistin korjaus)</string>
+    <string name="pro_feature_hardware_diagnostics">Laitteiston diagnostiikka ja jännitetesti (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD-virheenkorjausvektori (24 bittiä)</string>
+    <string name="pro_feature_osccal">OSCCAL-pelastus ja manuaalinen muokkaus</string>
+    <string name="pro_feature_remove_ads">Poista kaikki mainokset sovelluksesta</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Katso Video – 12 Tunnin Ilmainen Passi</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro -passi aktivoitu 12 tunniksi!</string>
+    <string name="pro_ads_not_available">Mainoksia ei ole saatavilla</string>
+    <string name="pro_btn_buy_permanent">👑 Osta %1$s Pro Pysyvästi%2$s</string>
+    <string name="pro_billing_not_available">Google Play -laskutus ei ole käytettävissä</string>
+    <string name="menu_pro_mode">⭐ Pro-tila</string>
+    <string name="menu_pro_permanent">👑 Pysyvä Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150-laitteistodiagnostiikka</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibrointi</string>
+    <string name="menu_debug_vector_icd">🛠️ Piirinsisäinen Virheenkorjausvektori (ICD)</string>
+    <string name="cd_socket_diagram">Kannan kaavio</string>
+    <string name="btn_connect_usb">Yhdistä USB-ohjelmoija</string>
+    <string name="btn_disconnect_usb">Katkaise USB-ohjelmoijan yhteys</string>
+    <string name="cd_clear_log">Tyhjennä loki</string>
+    <string name="cd_tutorial_image">Ohjeen kuva</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS-opas</string>
+    <string name="title_activity_tutorial_sdcc">SDCC-opas</string>
+    <string name="diag_dialog_title">🩺 K150-laitteistodiagnostiikka</string>
+    <string name="diag_section_programmer_status">📋 Ohjelmoijan Tila</string>
+    <string name="diag_label_model">Malli:</string>
+    <string name="diag_label_protocol">Protokolla:</string>
+    <string name="diag_label_echo_test">Kaikutesti:</string>
+    <string name="diag_label_zif_sensor">ZIF-anturi:</string>
+    <string name="diag_status_querying">Kysellään...</string>
+    <string name="diag_status_pending">Odottaa</string>
+    <string name="diag_btn_test_echo">⚡ Testaa Kaiku</string>
+    <string name="diag_btn_full_diagnosis">🔄 Täysi Diagnostiikka</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Testaa ZIF-anturit (Asetus/Poisto)</string>
+    <string name="diag_section_voltage_control">⚡ Jännitteen Ohjaus VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ VAROITUS: Poista mikrokontrolleri ZIF-kannasta ennen jännitteiden käyttöönottoa tai mittaamista yleismittarilla.</string>
+    <string name="diag_status_voltages_off">Tila: Jännitteet katkaistu (0V)</string>
+    <string name="diag_status_vpp_active">Tila: ⚡ VPP (13V) / VDD (5V) KÄYTÖSSÄ</string>
+    <string name="diag_status_voltages_restarted">Tila: ⚡ Jännitteet käynnistetty uudelleen (Aktiivinen)</string>
+    <string name="diag_status_error_activating">Tila: ❌ Virhe jännitteiden kytkemisessä</string>
+    <string name="diag_status_error_deactivating">Tila: ❌ Virhe jännitteiden katkaisemisessa</string>
+    <string name="diag_status_error_restarting">Tila: ❌ Virhe jännitteiden uudelleenkäynnistyksessä</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Katkaise (0V)</string>
+    <string name="diag_btn_restart_voltages">Käynnistä uudelleen</string>
+    <string name="diag_programmer_not_connected">Ohjelmoija ei ole yhdistetty</string>
+    <string name="diag_connect_programmer_prompt">⚠ Yhdistä K150-ohjelmoija käyttääksesi diagnostiikkaa</string>
+    <string name="diag_model_not_connected">Malli: Ohjelmoija ei yhdistetty</string>
+    <string name="diag_echo_measuring">Kaikutesti: Mitataan...</string>
+    <string name="diag_zif_reading">ZIF-anturi: Luetaan...</string>
+    <string name="diag_echo_ok">Kaikutesti: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Kaikutesti: ❌ Ei vastausta</string>
+    <string name="diag_echo_failed">Kaikutesti: ❌ Epäonnistui</string>
+    <string name="diag_socket_pic_detected">✓ PIC havaittu ZIF-kannassa</string>
+    <string name="diag_socket_empty">ℹ Tyhjä kanta (Sirua ei havaittu)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Kannassa ei havaittu varmaa kosketusta</string>
+    <string name="diag_toast_chip_removed_voltages_active">Siru poistettu: Jännitteet kytketty turvallista mittausta varten</string>
+    <string name="diag_toast_voltages_activated_multimeter">Jännitteet kytketty: mittaa yleismittarilla VPP ja VDD</string>
+    <string name="diag_toast_voltages_off">Jännitteet katkaistu (0V)</string>
+    <string name="diag_toast_voltages_restarted">Siru poistettu: Jännitteet käynnistetty uudelleen mittausta varten</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontrolleri Kannassa</string>
+    <string name="diag_alert_chip_in_socket_message">Jotta PIC ei vaurioituisi 13V VPP -jännitteellä, poista mikrokontrolleri ZIF-kannasta ennen jännitteiden käyttöönottoa tai mittaamista.
+
+Kun siru on poistettu, napauta \'Jatka\' ottaaksesi mittauksen käyttöön tai \'Peruuta\' pitääksesi jännitteet katkaistuina.</string>
+    <string name="diag_btn_continue_chip_removed">Jatka (Siru poistettu)</string>
+    <string name="diag_zif_test_title">🧪 ZIF-anturitesti</string>
+    <string name="diag_zif_test_desc">ZIF-kannan laitteistoanturitesti (Kitsrus-komennot 18 ja 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Vaihe 1: Aseta mikrokontrolleri kantaan ja lukitse vipu (Komento 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Vaihe 2: Odottaa (Poisto komennolla 19)</string>
+    <string name="diag_zif_step1_ok">✓ Vaihe 1: Asetusanturi OK (Komento 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Vaihe 2: Nosta nyt vipu ja poista siru kannasta (Komento 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Vaihe 1: Aikakatkaisu ilman sirun havaitsemista</string>
+    <string name="diag_zif_step2_ok">✓ Vaihe 2: Poistoanturi OK (Komento 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Molemmat ZIF-kannan fyysiset anturit toimivat täydellisesti!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Vaihe 2: Aikakatkaisu ilman poiston havaitsemista</string>
+    <string name="hex_editor_title">✏️ Muokkaa %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Sana)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Tavu)</string>
+    <string name="hex_editor_info_address_value">Muistiosoite: %1$s
+Nykyinen arvo: 0x%2$s (Enintään: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Sanan Muoto ja Tavujärjestys (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-solumuoto (8-bittinen)</string>
+    <string name="hex_editor_desc_rom">• PIC-piirit tallentavat 14/16-bittiset sanat Little-Endian-järjestyksessä:
+   - Matala tavu (LSB): 0x%1$s (siirtymä 2×N)
+   - Korkea tavu (MSB): 0x%2$s (siirtymä 2×N+1)
+• Kuinka muokata?: Syötä koko looginen sana [MSB][LSB] (esim. 2805 = LSB 05, MSB 28).
+• Sovellus järjestää tavut automaattisesti Little-Endian-järjestykseen sirulle ja HEX-tiedostolle.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM-solut koostuvat yksittäisistä 8-bittisistä tavuista.
+• Syötä 2-merkkinen heksadesimaalitavu suoraan (alue: 00 - FF).</string>
+    <string name="hex_editor_input_label_rom">Syötä uusi arvo (Heksa-sana [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Syötä uusi arvo (Heksa-tavu 00-FF):</string>
+    <string name="guardar">Tallenna</string>
+    <string name="hex_editor_err_empty">Arvo ei voi olla tyhjä</string>
+    <string name="hex_editor_err_invalid_hex">Virheellinen heksadesimaalimuoto</string>
+    <string name="hex_editor_err_exceeds_max">Arvo ylittää sallitun enimmäismäärän (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrokontrolleri: %1$s (PIC10F-perhe – 2 CAL-rekisteriä)</string>
+    <string name="cal_chip_subtitle_standard">Mikrokontrolleri: %1$s (OSCCAL-sana viimeisessä ROM-osoitteessa)</string>
+    <string name="cal_not_read_yet">Ei vielä luettu sirulta</string>
+    <string name="cal_silicon_value">
+Arvo sirulla: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Syötä heksadesimaaliarvo (esim. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Lue Sirulta</string>
+    <string name="cal_btn_write_silicon">💾 Kirjoita Sirulle</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL-kalibrointi</string>
+    <string name="cal_toast_read_success">✓ OSCCAL luettu: %1$s</string>
+    <string name="cal_toast_read_error">❌ Virhe kalibroinnin lukemisessa sirulta</string>
+    <string name="cal_toast_invalid_hex">Virheellinen heksadesimaaliarvo</string>
+    <string name="cal_toast_write_success">✓ OSCCAL kirjoitettu onnistuneesti sirulle</string>
+    <string name="cal_toast_write_error">❌ Kalibroinnin kirjoittaminen sirulle epäonnistui</string>
+    <string name="icd_dialog_subtitle">Piirinsisäinen virheenkorjaus (ICD) – 24-bittinen osoitevektori
+(Sallittu alue: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Nykyinen vektori: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Virheenkorjausosoite heksana (esim. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Lue Vektori</string>
+    <string name="icd_btn_write_vector">💾 Kirjoita Vektori</string>
+    <string name="icd_dialog_title">🛠️ Virheenkorjausvektori (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektori luettu: %1$s</string>
+    <string name="icd_toast_invalid_address">Virheellinen 24-bittinen heksadesimaaliosoite</string>
+    <string name="icd_toast_write_success">✓ ICD-vektori ohjelmoitu: %1$s</string>
+    <string name="icd_toast_write_error">❌ ICD-vektorin ohjelmointi epäonnistui</string>
+    <string name="prog_type_all_title">Ohjelmoi Kaikki</string>
+    <string name="prog_type_all_desc">ROM, EEPROM ja Konfiguraatio</string>
+    <string name="prog_type_rom_title">Ohjelmoi ROM</string>
+    <string name="prog_type_rom_desc">Flash-muisti</string>
+    <string name="prog_type_eeprom_title">Ohjelmoi EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM-tiedot</string>
+    <string name="prog_type_config_title">Ohjelmoi Konfiguraatio</string>
+    <string name="prog_type_config_desc">Sulakkeet (fuses) ja konfigurointibitit</string>
+    <string name="blank_check_err_null_result">❌ Virhe tyhjyystarkistuksessa: tyhjä tulos</string>
+    <string name="blank_check_err_verifying">❌ Virhe tyhjyystarkistuksen vahvistuksessa: %1$s</string>
+    <string name="blank_check_dual_header">📋 Differentiaalinen tyhjyystarkistus (Kaksinkertainen tarkistus):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% puhdas (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM sisältää aiempaa dataa (Ei tyhjä)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% puhdas (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM sisältää aiempaa dataa (Ei tyhjä)</string>
+    <string name="blank_check_method_label">  ℹ Menetelmä: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrokontrolleri valmis ohjelmointiin (100%% Tyhjennetty)</string>
+    <string name="blank_check_erase_required">⚠ Aiempi tyhjennys vaaditaan ennen ohjelmointia</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Aseta Mikrokontrolleri</string>
+    <string name="dialog_insert_microcontroller_message">ZIF-kannassa ei havaittu sirua.
+
+Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF-kannassa ei ole sirua. Aseta mikrokontrolleri %1$s ja napauta [%2$s] uudelleen.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Tarkistetaan PIC:n läsnäolo ZIF-kannassa...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Tunnistetaan sirua kannassa...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF-kannassa ei havaittu PIC:iä (tarkista suunta ja vipu)</string>
+    <string name="log_pic_physically_detected">✓ PIC havaittu fyysisesti kannassa</string>
+    <string name="log_chip_auto_identified">🎯 Tunnistettu automaattisesti: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Siru havaittu: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Siru paikalla (ID: %1$s). Valitse malli manuaalisesta luettelosta.</string>
+    <string name="log_connecting_to_programmer">🔌 Yhdistetään ohjelmoijaan...</string>
+    <string name="log_connect_programmer_first">⚠ Yhdistä K150-ohjelmoija ensin USB:n kautta.</string>
+    <string name="log_loading_file">📂 Ladataan %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Käsitellään %1$s-tiedostoa...</string>
+    <string name="log_programming_verified_success">✓ Ohjelmointi suoritettu ja vahvistettu onnistuneesti!</string>
+    <string name="log_programming_failed">❌ Mikrokontrollerin ohjelmointiprosessi epäonnistui</string>
+    <string name="log_backing_up_osccal">⏱️ Siru vaatii kalibroinnin. Varmuuskopioidaan OSCCAL ennen tyhjennystä...</string>
+    <string name="log_osccal_restored">✓ OSCCAL palautettu onnistuneesti sirulle: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCAL:ia ei voitu palauttaa automaattisesti. Käytä Kalibrointi-valikkoa.</string>
+    <string name="notification_channel_name">PIC K150 -toiminnot</string>
+    <string name="notification_channel_description">Ohjelmoinnin valmistumisilmoitukset ja laitteistovaroitukset</string>
+    <string name="ad_loading_rewarded_video_toast">Ladataan palkkiovideota... Yritä uudelleen muutaman sekunnin kuluttua.</string>
+    <string name="pro_pass_expired">Vanhentunut</string>
+    <string name="fuse_log_last_config_restored">✓ Viimeisin konfiguraatio palautettu</string>
+    <string name="fuse_log_no_hex_loaded">⚠ HEX-tiedostoa ei ole ladattu</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX ei sisällä sulakkeita (fuses)</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d sulaketta</string>
+    <string name="fuse_log_expected_count">  Siru odottaa: %1$d</string>
+    <string name="unknown_device_id">Tuntematon</string>
+    <string name="status_connected">Yhdistetty</string>
+    <string name="status_error">Virhe</string>
+    <string name="log_pro_purchase_error">⚠ Pro-osto: %1$s</string>
 </resources>

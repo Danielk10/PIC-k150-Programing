@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Sera za Faragha</string>
     <string name="aceptar">Kubali</string>
     <string name="cancelar">Ghairi</string>
-    <string name="conectado">Imeunganishwa</string>
     <string name="desconectado">Imekatwa</string>
     <string name="grabando_pic">Inaandika PIC...</string>
     <string name="espere_grabacion_pic">Tafadhali subiri. Usiondoe kifaa.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware imeandikwa kwa mafanikio kwenye PIC.</string>
     <string name="fallo_grabacion_pic">Kuandika Kumeshindwa</string>
     <string name="proceso_no_completado">Mchakato haukukamilika. Angalia muunganisho.</string>
-    <string name="protocolo_del_programador">Itifaki ya Kiprogramu</string>
     <string name="modelo_del_programador">Modeli ya Kiprogramu</string>
     <string name="modelo_programador">Modeli ya Kiprogramu</string>
     <string name="protocolo">Itifaki</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Sera ya Faragha</string>
-    <string name="no_se_detecto_pic_en_socket">PIC haijagunduliwa kwenye soketi</string>
-    <string name="pic_detectado_en_socket">PIC imegunduliwa kwenye soketi</string>
     <string name="error_borrando_memoria">Hitilafu ya kufuta kumbukumbu</string>
     <string name="memoria_borrada_exitosamente">Kumbukumbu imefutwa kwa mafanikio</string>
     <string name="memoria_leida_exitosamente">Kumbukumbu imesomwa kwa mafanikio</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Hamisha MFUNGO (.bin)</string>
     <string name="exportar_dump_completo">Hamisha Taka Kamili (.hex)</string>
     <string name="exportar_dump_completo_bin">Hamisha Taka Kamili (.bin)</string>
-    <string name="programar_todo">Panga Kila Kitu</string>
-    <string name="programar_solo_rom">Programu ya ROM pekee</string>
-    <string name="programar_solo_eeprom">Mpango wa EEPROM pekee</string>
-    <string name="programar_solo_config">Mpango wa CONFIG pekee</string>
     <string name="verificar_borrado">Thibitisha Ufutaji</string>
     <string name="chip_esta_borrado">Chip imefutwa (Tupu)</string>
     <string name="chip_no_esta_borrado">Chip HAIJAFUTWA</string>
     <string name="verificando_borrado">Inathibitisha ufutaji...</string>
     <string name="resultado_verificacion_borrado">Matokeo ya Uthibitishaji wa Kufuta</string>
     <string name="error_verificando_borrado">Hitilafu katika kuthibitisha ufutaji</string>
-    <string name="chip_seleccionado">Chip iliyochaguliwa</string>
     <string name="configuracion_de_fusibles">Usanidi wa Fuse</string>
     <string name="id_personalizado_hex">Kitambulisho Maalum (HEX)</string>
     <string name="hint_id_personalizado">Mfano: 1A 2B 3C 4D (baiti 4 au 8)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Utangazaji uliopendekezwa</string>
     <string name="lectura_completa">Kusoma Kamili</string>
     <string name="datos_de_memoria">Kumbukumbu imesomwa kwa mafanikio</string>
-    <string name="sin_chip">bila chip</string>
     <string name="rom_ok_blank">ROM: Sawa (Tupu)</string>
     <string name="rom_not_blank">ROM: SI TUPU</string>
     <string name="eeprom_ok_blank">EEPROM: Sawa (Tupu)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Hapana</string>
     <string name="seleccionar_idioma">Chagua Lugha</string>
     <string name="tutorial_instalacion">Mwongozo wa usakinishaji</string>
-    <string name="copiar_todo_en">Nakili Zote</string>
     <string name="cerrar">Funga</string>
     <string name="error_no_chip">Hitilafu: Hakuna chipu iliyochaguliwa au hakuna fyuzi</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX sambamba</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chipu:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Mfano</string>
     <string name="explicacion_label">Maelezo</string>
     <string name="error_export_manager_not_initialized">HexExportManager haijaanzishwa</string>
-    <string name="error_leyendo_info_chip">Hitilafu katika kusoma maelezo ya chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">baiti</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Shukrani za pekee kwa Mike Wakely, Adam Schubert, na AndroidIDE, Android Code Studio, na timu za KITSRUS.</string>
     <string name="error_al_cambiar_modo">Hitilafu wakati wa kubadilisha hali:</string>
     <string name="no_hay_firmware_valido">Hakuna programu dhibiti halali</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Fungua zana za kiufundi za hali ya juu kwa %1$s</string>
+    <string name="pro_feature_hex_editor">Kihariri cha Hexadecimal Papo Hapo (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Uchunguzi wa Vifaa na Jaribio la Volteji (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Vekta ya Utatuzi wa Hitilafu ya ICD (biti 24)</string>
+    <string name="pro_feature_osccal">Uokoaji na Uhariri wa Mwongozo wa OSCCAL</string>
+    <string name="pro_feature_remove_ads">Ondoa matangazo yote kwenye programu</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Tazama Video - Pasi ya Bure ya Saa 12</string>
+    <string name="pro_pass_activated_toast">⭐ Pasi ya %1$s Pro imewashwa kwa saa 12!</string>
+    <string name="pro_ads_not_available">Matangazo hayapatikani</string>
+    <string name="pro_btn_buy_permanent">👑 Nunua %1$s Pro ya Kudumu%2$s</string>
+    <string name="pro_billing_not_available">Google Play Billing haipatikani</string>
+    <string name="menu_pro_mode">⭐ Hali ya Pro</string>
+    <string name="menu_pro_permanent">👑 Pro ya Kudumu</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Uchunguzi wa Vifaa vya K150</string>
+    <string name="menu_osccal_calibration">⏱️ Urekebishaji wa OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Vekta ya Utatuzi Ndani ya Saketi (ICD)</string>
+    <string name="cd_socket_diagram">Mchoro wa soketi</string>
+    <string name="btn_connect_usb">Unganisha Programu ya USB</string>
+    <string name="btn_disconnect_usb">Tenganisha Programu ya USB</string>
+    <string name="cd_clear_log">Futa kumbukumbu</string>
+    <string name="cd_tutorial_image">Picha ya mafunzo</string>
+    <string name="title_activity_tutorial_gputils">Mafunzo ya GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Mafunzo ya SDCC</string>
+    <string name="diag_dialog_title">🩺 Uchunguzi wa Vifaa vya K150</string>
+    <string name="diag_section_programmer_status">📋 Hali ya Kiprogramu</string>
+    <string name="diag_label_model">Muundo:</string>
+    <string name="diag_label_protocol">Itifaki:</string>
+    <string name="diag_label_echo_test">Jaribio la Mwangwi:</string>
+    <string name="diag_label_zif_sensor">Kihisi cha ZIF:</string>
+    <string name="diag_status_querying">Inauliza...</string>
+    <string name="diag_status_pending">Inasubiri</string>
+    <string name="diag_btn_test_echo">⚡ Jaribu Mwangwi</string>
+    <string name="diag_btn_full_diagnosis">🔄 Uchunguzi Kamili</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Jaribu Vihisi vya ZIF (Weka/Ondoa)</string>
+    <string name="diag_section_voltage_control">⚡ Udhibiti wa Volteji VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ TAHADHARI: Ondoa kikontrola kidogo kwenye soketi ya ZIF kabla ya kuwasha au kupima volteji kwa mita.</string>
+    <string name="diag_status_voltages_off">Hali: Volteji zimezimwa (0V)</string>
+    <string name="diag_status_vpp_active">Hali: ⚡ VPP (13V) / VDD (5V) ZIMEWASHWA</string>
+    <string name="diag_status_voltages_restarted">Hali: ⚡ Volteji zimewashwa upya (Amilifu)</string>
+    <string name="diag_status_error_activating">Hali: ❌ Hitilafu wakati wa kuwasha volteji</string>
+    <string name="diag_status_error_deactivating">Hali: ❌ Hitilafu wakati wa kuzima volteji</string>
+    <string name="diag_status_error_restarting">Hali: ❌ Hitilafu wakati wa kuwasha tena volteji</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Zima (0V)</string>
+    <string name="diag_btn_restart_voltages">Washa Upya</string>
+    <string name="diag_programmer_not_connected">Kiprogramu hakijaunganishwa</string>
+    <string name="diag_connect_programmer_prompt">⚠ Unganisha kiprogramu cha K150 ili kutumia uchunguzi</string>
+    <string name="diag_model_not_connected">Muundo: Kiprogramu hakijaunganishwa</string>
+    <string name="diag_echo_measuring">Jaribio la Mwangwi: Inapima...</string>
+    <string name="diag_zif_reading">Kihisi cha ZIF: Inasoma...</string>
+    <string name="diag_echo_ok">Jaribio la Mwangwi: ✓ Sawa (%1$d ms)</string>
+    <string name="diag_echo_no_response">Jaribio la Mwangwi: ❌ Hakuna jibu</string>
+    <string name="diag_echo_failed">Jaribio la Mwangwi: ❌ Imeshindwa</string>
+    <string name="diag_socket_pic_detected">✓ PIC imegunduliwa kwenye soketi ya ZIF</string>
+    <string name="diag_socket_empty">ℹ Soketi haina kitu (Hakuna chip iliyogunduliwa)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Mguso thabiti haukugunduliwa kwenye soketi</string>
+    <string name="diag_toast_chip_removed_voltages_active">Chip imeondolewa: Volteji zimewashwa kwa kipimo salama</string>
+    <string name="diag_toast_voltages_activated_multimeter">Volteji zimewashwa: pima kwa mita kwenye VPP na VDD</string>
+    <string name="diag_toast_voltages_off">Volteji zimezimwa (0V)</string>
+    <string name="diag_toast_voltages_restarted">Chip imeondolewa: Volteji zimewashwa upya kwa kipimo</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Kikontrola Kidogo kipo kwenye Soketi</string>
+    <string name="diag_alert_chip_in_socket_message">Ili kuepuka kuharibu PIC kwa 13V VPP, tafadhali ondoa kikontrola kidogo kwenye soketi ya ZIF kabla ya kuwezesha au kupima volteji.
+
+Baada ya kuondoa chip, gonga \'Endelea\' ili kuanzisha kipimo, au \'Ghairi\' ili kuweka volteji zikiwa zimezimwa.</string>
+    <string name="diag_btn_continue_chip_removed">Endelea (Chip Imeondolewa)</string>
+    <string name="diag_zif_test_title">🧪 Jaribio la Vihisi vya ZIF</string>
+    <string name="diag_zif_test_desc">Jaribio la vihisi vya vifaa vya soketi ya ZIF (Amri za Kitsrus 18 na 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Hatua ya 1: Ingiza kikontrola kidogo kwenye soketi na ufunge leveri (Amri 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Hatua ya 2: Inasubiri (Kuondoa kwa Amri 19)</string>
+    <string name="diag_zif_step1_ok">✓ Hatua ya 1: Kihisi cha Kuingiza SAWA (Amri 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Hatua ya 2: Sasa inua leveri na uondoe chip kwenye soketi (Amri 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Hatua ya 1: Muda umekwisha bila kugundua chip</string>
+    <string name="diag_zif_step2_ok">✓ Hatua ya 2: Kihisi cha Kuondoa SAWA (Amri 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Vihisi vyote vya mwili vya soketi ya ZIF vinafanya kazi kikamilifu!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Hatua ya 2: Muda umekwisha bila kugundua kuondolewa</string>
+    <string name="hex_editor_title">✏️ Hariri %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Neno)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Baiti)</string>
+    <string name="hex_editor_info_address_value">Anwani ya Kumbukumbu: %1$s
+Thamani ya sasa: 0x%2$s (Kiwango cha juu: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Muundo wa Neno na Mpangilio wa Baiti (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Muundo wa Seli ya EEPROM (Biti 8)</string>
+    <string name="hex_editor_desc_rom">• PIC huhifadhi maneno ya biti 14/16 kwa mpangilio wa Little-Endian:
+   - Baiti ya Chini (LSB): 0x%1$s (kikomo 2×N)
+   - Baiti ya Juu (MSB): 0x%2$s (kikomo 2×N+1)
+• Jinsi ya kuhariri?: Weka neno kamili la kimantiki [MSB][LSB] (mfano 2805 = LSB 05, MSB 28).
+• Programu hupanga upya baiti kiotomatiki kuwa Little-Endian kwa silicon na faili ya HEX.</string>
+    <string name="hex_editor_desc_eeprom">• Seli za EEPROM zinajumuisha baiti moja moja za biti 8.
+• Weka baiti ya hexadecimal ya herufi 2 moja kwa moja (masafa: 00 hadi FF).</string>
+    <string name="hex_editor_input_label_rom">Weka thamani mpya (Neno la Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Weka thamani mpya (Baiti ya Hex 00-FF):</string>
+    <string name="guardar">Hifadhi</string>
+    <string name="hex_editor_err_empty">Thamani haiwezi kuwa tupu</string>
+    <string name="hex_editor_err_invalid_hex">Muundo batili wa hexadecimal</string>
+    <string name="hex_editor_err_exceeds_max">Thamani inazidi kiwango cha juu kinachoruhusiwa (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Kikontrola Kidogo: %1$s (Familia ya PIC10F - sajili 2 za CAL)</string>
+    <string name="cal_chip_subtitle_standard">Kikontrola Kidogo: %1$s (Neno la OSCCAL kwenye anwani ya mwisho ya ROM)</string>
+    <string name="cal_not_read_yet">Bado haijasomwa kutoka kwa chip</string>
+    <string name="cal_silicon_value">
+Thamani ya Silicon: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Weka thamani ya hexadecimal (mfano %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Soma kutoka kwenye Chip</string>
+    <string name="cal_btn_write_silicon">💾 Andika kwenye Silicon</string>
+    <string name="cal_dialog_title">⏱️ Urekebishaji wa OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL imesomwa: %1$s</string>
+    <string name="cal_toast_read_error">❌ Hitilafu ya kusoma urekebishaji kutoka kwa chip</string>
+    <string name="cal_toast_invalid_hex">Thamani batili ya hexadecimal</string>
+    <string name="cal_toast_write_success">✓ OSCCAL imeandikwa kwa mafanikio kwenye chip</string>
+    <string name="cal_toast_write_error">❌ Imeshindwa kuandika urekebishaji kwenye silicon</string>
+    <string name="icd_dialog_subtitle">Utatuzi Ndani ya Saketi (ICD) - Vekta ya Anwani ya Biti 24
+(Masafa halali: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Vekta ya Sasa: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Anwani ya utatuzi kwa hex (mfano 000020):</string>
+    <string name="icd_btn_read_vector">📥 Soma Vekta</string>
+    <string name="icd_btn_write_vector">💾 Andika Vekta</string>
+    <string name="icd_dialog_title">🛠️ Vekta ya Utatuzi (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vekta imesomwa: %1$s</string>
+    <string name="icd_toast_invalid_address">Anwani batili ya hexadecimal ya biti 24</string>
+    <string name="icd_toast_write_success">✓ Vekta ya ICD imeratibiwa: %1$s</string>
+    <string name="icd_toast_write_error">❌ Imeshindwa kuratibu vekta ya ICD</string>
+    <string name="prog_type_all_title">Panga Yote</string>
+    <string name="prog_type_all_desc">ROM, EEPROM na Usanidi</string>
+    <string name="prog_type_rom_title">Panga ROM</string>
+    <string name="prog_type_rom_desc">Kumbukumbu ya Flash</string>
+    <string name="prog_type_eeprom_title">Panga EEPROM</string>
+    <string name="prog_type_eeprom_desc">Data ya EEPROM</string>
+    <string name="prog_type_config_title">Panga Usanidi</string>
+    <string name="prog_type_config_desc">Fyuzi na biti za usanidi</string>
+    <string name="blank_check_err_null_result">❌ Hitilafu katika ukaguzi tupu: matokeo tupu</string>
+    <string name="blank_check_err_verifying">❌ Hitilafu ya kuthibitisha ukaguzi tupu: %1$s</string>
+    <string name="blank_check_dual_header">📋 Ukaguzi Tofauti wa Utupu (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% safi (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM yenye data ya awali imegunduliwa (Si tupu)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% safi (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM yenye data ya awali imegunduliwa (Si tupu)</string>
+    <string name="blank_check_method_label">  ℹ Mbinu: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Kikontrola kidogo kiko tayari kupangwa (100%% Kimefutwa)</string>
+    <string name="blank_check_erase_required">⚠ Ufutaji wa awali unahitajika kabla ya kupanga programu</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Ingiza Kikontrola Kidogo</string>
+    <string name="dialog_insert_microcontroller_message">Hakuna chip iliyogunduliwa kwenye soketi ya ZIF.
+
+Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge [%2$s] tena.</string>
+    <string name="log_no_chip_in_socket">⚠️ Hakuna chip kwenye soketi ya ZIF. Ingiza kikontrola kidogo %1$s na ugonge [%2$s] tena.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Inathibitisha uwepo wa PIC kwenye soketi ya ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Inagundua chip kwenye soketi...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Hakuna PIC iliyogunduliwa kwenye soketi ya ZIF (angalia mwelekeo na leveri)</string>
+    <string name="log_pic_physically_detected">✓ PIC imegunduliwa kimwili kwenye soketi</string>
+    <string name="log_chip_auto_identified">🎯 Imetambuliwa kiotomatiki: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Chip imegunduliwa: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Chip ipo (ID: %1$s). Chagua muundo kutoka kwenye orodha ya mwongozo.</string>
+    <string name="log_connecting_to_programmer">🔌 Inaunganisha kwenye kiprogramu...</string>
+    <string name="log_connect_programmer_first">⚠ Unganisha kiprogramu cha K150 kupitia USB kwanza.</string>
+    <string name="log_loading_file">📂 Inapakia %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Inachakata faili ya %1$s...</string>
+    <string name="log_programming_verified_success">✓ Upangaji programu umekamilika na kuthibitishwa kwa mafanikio!</string>
+    <string name="log_programming_failed">❌ Mchakato wa upangaji programu wa kikontrola kidogo umeshindwa</string>
+    <string name="log_backing_up_osccal">⏱️ Chip inahitaji urekebishaji. Inahifadhi nakala ya OSCCAL kabla ya kufuta...</string>
+    <string name="log_osccal_restored">✓ OSCCAL imerejeshwa kwa mafanikio kwenye silicon: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Imeshindwa kurejesha OSCCAL kiotomatiki. Tumia menyu ya Urekebishaji.</string>
+    <string name="notification_channel_name">Uendeshaji wa PIC K150</string>
+    <string name="notification_channel_description">Arifa za kukamilika kwa programu na maonyo ya vifaa</string>
+    <string name="ad_loading_rewarded_video_toast">Inapakia video yenye zawadi... Tafadhali jaribu tena baada ya sekunde chache.</string>
+    <string name="pro_pass_expired">Muda umeisha</string>
+    <string name="fuse_log_last_config_restored">✓ Usanidi wa mwisho umerejeshwa</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Hakuna faili ya HEX iliyopakiwa</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX haina fyuzi zozote</string>
+    <string name="fuse_log_hex_count">  HEX: fyuzi %1$d</string>
+    <string name="fuse_log_expected_count">  Chip inatarajia: %1$d</string>
+    <string name="unknown_device_id">Haijulikani</string>
+    <string name="status_connected">Imeunganishwa</string>
+    <string name="status_error">Hitilafu</string>
+    <string name="log_pro_purchase_error">⚠ Ununuzi wa Pro: %1$s</string>
 </resources>

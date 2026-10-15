@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">የግላዊነት ፖሊሲዎች</string>
     <string name="aceptar">ተቀበል</string>
     <string name="cancelar">ሰርዝ</string>
-    <string name="conectado">ተገናኝቷል</string>
     <string name="desconectado">ተቋረጠ</string>
     <string name="grabando_pic">PIC ይጻፉ...</string>
     <string name="espere_grabacion_pic">እባክዎ ይጠብቁ። ጭንብል አያስወግዱ።</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">ፍርማዌር በPIC ላይ በተሳካ ሁኔታ ተጻፈ።</string>
     <string name="fallo_grabacion_pic">ስህተት መጻፍ</string>
     <string name="proceso_no_completado">ሂደቱ ሊጠናቀቅ አልቻለም። ግንኙነትን ያረጋግጡ።</string>
-    <string name="protocolo_del_programador">የፕሮግራሚስት ፕሮቶኮል</string>
     <string name="modelo_del_programador">የፕሮግራሚስት ሞዴል</string>
     <string name="modelo_programador">የፕሮግራሚስት ሞዴል</string>
     <string name="protocolo">ፕሮቶኮል</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">የግላዊነት ፖሊሲ</string>
-    <string name="no_se_detecto_pic_en_socket">PIC በሶኬት ላይ ታይቷል</string>
-    <string name="pic_detectado_en_socket">PIC በሶኬት ላይ ታይቷል</string>
     <string name="error_borrando_memoria">ማህደር ሲጠፋ ስህተት</string>
     <string name="memoria_borrada_exitosamente">ማህደር በተሳካ ሁኔታ ተጠፍቷል</string>
     <string name="memoria_leida_exitosamente">ማህደር በተሳካ ሁኔታ ተነበበ</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">CONFIG (.ቢን) ወደ ውጪ ላክ</string>
     <string name="exportar_dump_completo">ሙሉ ቆሻሻ ወደ ውጪ ላክ (.hex)</string>
     <string name="exportar_dump_completo_bin">ሙሉ ቆሻሻን ወደ ውጪ ላክ (.ቢን)</string>
-    <string name="programar_todo">ሁሉንም ነገር ያቅዱ</string>
-    <string name="programar_solo_rom">ፕሮግራም ROM ብቻ</string>
-    <string name="programar_solo_eeprom">ፕሮግራም EEPROM ብቻ</string>
-    <string name="programar_solo_config">ፕሮግራም ብቻ CONFIG</string>
     <string name="verificar_borrado">ስረዛን ያረጋግጡ</string>
     <string name="chip_esta_borrado">ቺፕው ተሰርዟል (ባዶ)</string>
     <string name="chip_no_esta_borrado">ቺፕው አልተሰረዘም</string>
     <string name="verificando_borrado">ስረዛን በማረጋገጥ ላይ...</string>
     <string name="resultado_verificacion_borrado">የማረጋገጫ ስረዛ ውጤት</string>
     <string name="error_verificando_borrado">መሰረዙን ማረጋገጥ ላይ ስህተት</string>
-    <string name="chip_seleccionado">የተመረጠ ቺፕ</string>
     <string name="configuracion_de_fusibles">ፊውዝ ውቅር</string>
     <string name="id_personalizado_hex">ብጁ መታወቂያ (HEX)</string>
     <string name="hint_id_personalizado">ምሳሌ፡ 1A 2B 3C 4D (4 ወይም 8 ባይት)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">የሚመከር ማስታወቂያ</string>
     <string name="lectura_completa">የተሟላ ንባብ</string>
     <string name="datos_de_memoria">ማህደር በተሳካ ሁኔታ ተነበበ</string>
-    <string name="sin_chip">ያለ ቺፕ</string>
     <string name="rom_ok_blank">ROM: እሺ (ባዶ)</string>
     <string name="rom_not_blank">ሮም: ባዶ አይደለም</string>
     <string name="eeprom_ok_blank">EEPROM፡ እሺ (ባዶ)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">አይ</string>
     <string name="seleccionar_idioma">ቋንቋ ይምረጡ</string>
     <string name="tutorial_instalacion">የመጫን መመሪያ</string>
-    <string name="copiar_todo_en">ሁሉንም ቅዳ</string>
     <string name="cerrar">ዝጋ</string>
     <string name="error_no_chip">ስህተት: ቺፕ አልተመረጠም ወይም ፊውዝ የለም</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX ተኳሃኝ</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">ቺፕ፡</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">ምሳሌ</string>
     <string name="explicacion_label">ማብራሪያ</string>
     <string name="error_export_manager_not_initialized">HexExportManager አልተጀመረም።</string>
-    <string name="error_leyendo_info_chip">ቺፕ መረጃን በማንበብ ላይ ስህተት</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM፡</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">ባይት</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">ልዩ ምስጋና ለ Mike Wakerly፣ Adam Schubert እና AndroidIDE፣ አንድሮይድ ኮድ ስቱዲዮ እና የKITSRUS ቡድኖች።</string>
     <string name="error_al_cambiar_modo">ሁነታን ሲቀይሩ ስህተት:</string>
     <string name="no_hay_firmware_valido">ምንም የሚሰራ firmware የለም።</string>
+    <string name="pro_access_title">⭐ %1$s ፕሮ</string>
+    <string name="pro_access_subtitle">ለ%1$s የላቁ ቴክኒካዊ መሳሪያዎችን ይክፈቱ</string>
+    <string name="pro_feature_hex_editor">የቀጥታ ሄክሳዴሲማል አርታኢ (የቀጥታ ማስተካከያ)</string>
+    <string name="pro_feature_hardware_diagnostics">የሃርድዌር ምርመራ እና የቮልቴጅ ሙከራ (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">የICD ማረም ቬክተር (24 ቢት)</string>
+    <string name="pro_feature_osccal">የOSCCAL ማዳን እና በእጅ ማረም</string>
+    <string name="pro_feature_remove_ads">ሁሉንም ማስታወቂያዎች ከመተግበሪያው ያስወግዱ</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 ቪዲዮ ይመልከቱ - የ12 ሰዓት ነፃ ማለፊያ</string>
+    <string name="pro_pass_activated_toast">⭐ የ%1$s ፕሮ ማለፊያ ለ12 ሰዓታት ነቅቷል!</string>
+    <string name="pro_ads_not_available">ማስታወቂያዎች አልተገኙም</string>
+    <string name="pro_btn_buy_permanent">👑 %1$s ፕሮ ቋሚ ይግዙ%2$s</string>
+    <string name="pro_billing_not_available">የGoogle Play ክፍያ አገልግሎት አልተገኘም</string>
+    <string name="menu_pro_mode">⭐ ፕሮ ሁነታ</string>
+    <string name="menu_pro_permanent">👑 ቋሚ ፕሮ</string>
+    <string name="menu_pro_timer">⭐ ፕሮ %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 የK150 ሃርድዌር ምርመራ</string>
+    <string name="menu_osccal_calibration">⏱️ የOSCCAL ልኬት ማስተካከያ</string>
+    <string name="menu_debug_vector_icd">🛠️ የወረዳ ውስጥ ማረሚያ ቬክተር (ICD)</string>
+    <string name="cd_socket_diagram">የሶኬት ንድፍ</string>
+    <string name="btn_connect_usb">የUSB ፕሮግራመር ያገናኙ</string>
+    <string name="btn_disconnect_usb">የUSB ፕሮግራመር ያላቅቁ</string>
+    <string name="cd_clear_log">ምዝግብ ማስታወሻ አጽዳ</string>
+    <string name="cd_tutorial_image">የማጠናከሪያ ትምህርት ስዕል</string>
+    <string name="title_activity_tutorial_gputils">የGPUTILS አጋዥ ስልጠና</string>
+    <string name="title_activity_tutorial_sdcc">የSDCC አጋዥ ስልጠና</string>
+    <string name="diag_dialog_title">🩺 የK150 ሃርድዌር ምርመራ</string>
+    <string name="diag_section_programmer_status">📋 የፕሮግራመር ሁኔታ</string>
+    <string name="diag_label_model">ሞዴል፦</string>
+    <string name="diag_label_protocol">ፕሮቶኮል፦</string>
+    <string name="diag_label_echo_test">የማሚቶ ሙከራ፦</string>
+    <string name="diag_label_zif_sensor">የZIF ዳሳሽ፦</string>
+    <string name="diag_status_querying">በመጠየቅ ላይ...</string>
+    <string name="diag_status_pending">በመጠባበቅ ላይ</string>
+    <string name="diag_btn_test_echo">⚡ ማሚቶ ሞክር</string>
+    <string name="diag_btn_full_diagnosis">🔄 ሙሉ ምርመራ</string>
+    <string name="diag_btn_test_zif_sensors">🧪 የZIF ዳሳሾችን ሞክር (አስገባ/አውጣ)</string>
+    <string name="diag_section_voltage_control">⚡ የቮልቴጅ መቆጣጠሪያ VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ ጥንቃቄ፦ ቮልቴጆችን ከማንቃት ወይም በመልቲሜትር ከመለካትዎ በፊት ማይክሮ መቆጣጠሪያውን ከZIF ሶኬት ያስወግዱ።</string>
+    <string name="diag_status_voltages_off">ሁኔታ፦ ቮልቴጆች ጠፍተዋል (0V)</string>
+    <string name="diag_status_vpp_active">ሁኔታ፦ ⚡ VPP (13V) / VDD (5V) ነቅቷል</string>
+    <string name="diag_status_voltages_restarted">ሁኔታ፦ ⚡ ቮልቴጆች እንደገና ተጀምረዋል (ገባሪ)</string>
+    <string name="diag_status_error_activating">ሁኔታ፦ ❌ ቮልቴጆችን በማንቃት ላይ ስህተት ተከስቷል</string>
+    <string name="diag_status_error_deactivating">ሁኔታ፦ ❌ ቮልቴጆችን በማጥፋት ላይ ስህተት ተከስቷል</string>
+    <string name="diag_status_error_restarting">ሁኔታ፦ ❌ ቮልቴጆችን እንደገና በማስጀመር ላይ ስህተት ተከስቷል</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">አጥፋ (0V)</string>
+    <string name="diag_btn_restart_voltages">እንደገና አስጀምር</string>
+    <string name="diag_programmer_not_connected">ፕሮግራመር አልተገናኘም</string>
+    <string name="diag_connect_programmer_prompt">⚠ ምርመራን ለመጠቀም የK150 ፕሮግራመርን ያገናኙ</string>
+    <string name="diag_model_not_connected">ሞዴል፦ ፕሮግራመር አልተገናኘም</string>
+    <string name="diag_echo_measuring">የማሚቶ ሙከራ፦ በመለካት ላይ...</string>
+    <string name="diag_zif_reading">የZIF ዳሳሽ፦ በማንበብ ላይ...</string>
+    <string name="diag_echo_ok">የማሚቶ ሙከራ፦ ✓ ትክክል (%1$d ms)</string>
+    <string name="diag_echo_no_response">የማሚቶ ሙከራ፦ ❌ ምላሽ የለም</string>
+    <string name="diag_echo_failed">የማሚቶ ሙከራ፦ ❌ አልተሳካም</string>
+    <string name="diag_socket_pic_detected">✓ PIC በZIF ሶኬት ውስጥ ተገኝቷል</string>
+    <string name="diag_socket_empty">ℹ ባዶ ሶኬት (ምንም ቺፕ አልተገኘም)</string>
+    <string name="diag_socket_no_firm_contact">⚠ በሶኬት ውስጥ አስተማማኝ ግንኙነት አልተገኘም</string>
+    <string name="diag_toast_chip_removed_voltages_active">ቺፕ ተወግዷል፦ ለአስተማማኝ ልኬት ቮልቴጆች ነቅተዋል</string>
+    <string name="diag_toast_voltages_activated_multimeter">ቮልቴጆች ነቅተዋል፦ በመልቲሜትር በVPP እና VDD ላይ ይለኩ</string>
+    <string name="diag_toast_voltages_off">ቮልቴጆች ጠፍተዋል (0V)</string>
+    <string name="diag_toast_voltages_restarted">ቺፕ ተወግዷል፦ ለልኬት ቮልቴጆች እንደገና ተጀምረዋል</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ ማይክሮ መቆጣጠሪያ በሶኬት ውስጥ</string>
+    <string name="diag_alert_chip_in_socket_message">PIC በ13V VPP እንዳይጎዳ ለመከላከል እባክዎ ቮልቴጆችን ከማንቃት ወይም ከመለካትዎ በፊት ማይክሮ መቆጣጠሪያውን ከZIF ሶኬት ያስወግዱ።
+
+ቺፑ ከተወገደ በኋላ ልኬቱን ለማንቃት \'ቀጥል\' የሚለውን ይጫኑ ወይም ቮልቴጆችን እንዳጠፉ ለማቆየት \'ሰርዝ\' የሚለውን ይጫኑ።</string>
+    <string name="diag_btn_continue_chip_removed">ቀጥል (ቺፕ ተወግዷል)</string>
+    <string name="diag_zif_test_title">🧪 የZIF ዳሳሾች ሙከራ</string>
+    <string name="diag_zif_test_desc">የZIF ሶኬት ሃርድዌር ዳሳሾች ሙከራ (የኪትስረስ ትዕዛዞች 18 እና 19)፦
+</string>
+    <string name="diag_zif_step1_waiting">⏳ ደረጃ 1፦ ማይክሮ መቆጣጠሪያውን ወደ ሶኬት ያስገቡ እና ማንሻውን ይቆልፉ (ትዕዛዝ 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ ደረጃ 2፦ በመጠባበቅ ላይ (በትዕዛዝ 19 ማውጣት)</string>
+    <string name="diag_zif_step1_ok">✓ ደረጃ 1፦ የማስገቢያ ዳሳሽ ትክክል ነው (ትዕዛዝ 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ ደረጃ 2፦ አሁን ማንሻውን ያንሱ እና ቺፑን ከሶኬት ያስወግዱ (ትዕዛዝ 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ ደረጃ 1፦ ቺፕ ሳይገኝ ጊዜው አልቋል</string>
+    <string name="diag_zif_step2_ok">✓ ደረጃ 2፦ የማስወገጃ ዳሳሽ ትክክል ነው (ትዕዛዝ 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 ሁለቱም የZIF ሶኬት አካላዊ ዳሳሾች በትክክል ይሰራሉ!
+</string>
+    <string name="diag_zif_step2_timeout">❌ ደረጃ 2፦ ማስወገድ ሳይገኝ ጊዜው አልቋል</string>
+    <string name="hex_editor_title">✏️ %1$s አርትዕ</string>
+    <string name="hex_editor_type_rom_word">ROM (ቃል/Word)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (ባይት)</string>
+    <string name="hex_editor_info_address_value">የማህደረ ትውስታ አድራሻ፦ %1$s
+የአሁኑ እሴት፦ 0x%2$s (ከፍተኛ፦ 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ የቃል ቅርጸት እና የባይት ቅደም ተከተል (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ የEEPROM ሴል ቅርጸት (8-ቢት)</string>
+    <string name="hex_editor_desc_rom">• PIC ዎች 14/16-ቢት ቃላትን በLittle-Endian ቅደም ተከተል ያከማቻሉ፦
+   - ዝቅተኛ ባይት (LSB)፦ 0x%1$s (ማካካሻ 2×N)
+   - ከፍተኛ ባይት (MSB)፦ 0x%2$s (ማካካሻ 2×N+1)
+• እንዴት ማረም ይቻላል?፦ ሙሉ አመክንዮአዊ ቃል ያስገቡ [MSB][LSB] (ለምሳሌ 2805 = LSB 05, MSB 28)።
+• መተግበሪያው ባይቶችን ለሲሊኮን እና HEX ፋይል በራስ-ሰር ወደ Little-Endian ያስተካክላል።</string>
+    <string name="hex_editor_desc_eeprom">• የEEPROM ሴሎች የግል 8-ቢት ባይቶችን ያካትታሉ።
+• የ2-ቁምፊ ሄክሳዴሲማል ባይት በቀጥታ ያስገቡ (ክልል፦ 00 እስከ FF)።</string>
+    <string name="hex_editor_input_label_rom">አዲስ እሴት ያስገቡ (ሄክስ ቃል [MSB][LSB])፦</string>
+    <string name="hex_editor_input_label_eeprom">አዲስ እሴት ያስገቡ (ሄክስ ባይት 00-FF)፦</string>
+    <string name="guardar">አስቀምጥ</string>
+    <string name="hex_editor_err_empty">እሴቱ ባዶ መሆን አይችልም</string>
+    <string name="hex_editor_err_invalid_hex">ልክ ያልሆነ ሄክሳዴሲማል ቅርጸት</string>
+    <string name="hex_editor_err_exceeds_max">እሴቱ ከተፈቀደው ከፍተኛ ወሰን አልፏል (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">ማይክሮ መቆጣጠሪያ፦ %1$s (PIC10F ቤተሰብ - 2 የCAL መመዝገቢያዎች)</string>
+    <string name="cal_chip_subtitle_standard">ማይክሮ መቆጣጠሪያ፦ %1$s (የOSCCAL ቃል በመጨረሻው የROM አድራሻ ላይ)</string>
+    <string name="cal_not_read_yet">እስካሁን ከቺፕ አልተነበበም</string>
+    <string name="cal_silicon_value">
+የሲሊኮን እሴት፦ %1$s</string>
+    <string name="cal_enter_hex_prompt">
+ሄክሳዴሲማል እሴት ያስገቡ (ለምሳሌ %1$s)፦</string>
+    <string name="cal_btn_read_from_chip">📥 ከቺፕ አንብብ</string>
+    <string name="cal_btn_write_silicon">💾 ወደ ሲሊኮን ጻፍ</string>
+    <string name="cal_dialog_title">⏱️ የOSCCAL ልኬት ማስተካከያ</string>
+    <string name="cal_toast_read_success">✓ OSCCAL ተነቧል፦ %1$s</string>
+    <string name="cal_toast_read_error">❌ ልኬትን ከቺፕ በማንበብ ላይ ስህተት ተከስቷል</string>
+    <string name="cal_toast_invalid_hex">ልክ ያልሆነ ሄክሳዴሲማል እሴት</string>
+    <string name="cal_toast_write_success">✓ OSCCAL በተሳካ ሁኔታ ወደ ቺፕ ተጽፏል</string>
+    <string name="cal_toast_write_error">❌ ልኬትን ወደ ሲሊኮን መጻፍ አልተሳካም</string>
+    <string name="icd_dialog_subtitle">የወረዳ ውስጥ ማረም (ICD) - 24-ቢት የአድራሻ ቬክተር
+(ትክክለኛ ክልል፦ 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+የአሁኑ ቬክተር፦ %1$s</string>
+    <string name="icd_enter_address_prompt">
+የማረሚያ አድራሻ በሄክስ (ለምሳሌ 000020)፦</string>
+    <string name="icd_btn_read_vector">📥 ቬክተር አንብብ</string>
+    <string name="icd_btn_write_vector">💾 ቬክተር ጻፍ</string>
+    <string name="icd_dialog_title">🛠️ የማረሚያ ቬክተር (ICD)</string>
+    <string name="icd_toast_read_success">✓ ቬክተር ተነቧል፦ %1$s</string>
+    <string name="icd_toast_invalid_address">ልክ ያልሆነ 24-ቢት ሄክሳዴሲማል አድራሻ</string>
+    <string name="icd_toast_write_success">✓ የICD ቬክተር ተዘጋጅቷል፦ %1$s</string>
+    <string name="icd_toast_write_error">❌ የICD ቬክተር ማዘጋጀት አልተሳካም</string>
+    <string name="prog_type_all_title">ሁሉንም ፕሮግራም አድርግ</string>
+    <string name="prog_type_all_desc">ROM፣ EEPROM እና ውቅር</string>
+    <string name="prog_type_rom_title">ROM ፕሮግራም አድርግ</string>
+    <string name="prog_type_rom_desc">የፍላሽ ማህደረ ትውስታ</string>
+    <string name="prog_type_eeprom_title">EEPROM ፕሮግራም አድርግ</string>
+    <string name="prog_type_eeprom_desc">የEEPROM ውሂብ</string>
+    <string name="prog_type_config_title">ውቅርን ፕሮግራም አድርግ</string>
+    <string name="prog_type_config_desc">ፊውዞች እና የውቅር ቢቶች</string>
+    <string name="blank_check_err_null_result">❌ በባዶ ፍተሻ ላይ ስህተት፦ ባዶ ውጤት</string>
+    <string name="blank_check_err_verifying">❌ የባዶ ፍተሻን በማረጋገጥ ላይ ስህተት፦ %1$s</string>
+    <string name="blank_check_dual_header">📋 ልዩነት ያለው ባዶ ፍተሻ (ድርብ ባዶ ፍተሻ)፦</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% ንጹህ (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ቀደም ሲል የነበረ ውሂብ በROM ተገኝቷል (ባዶ አይደለም)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% ንጹህ (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ ቀደም ሲል የነበረ ውሂብ በEEPROM ተገኝቷል (ባዶ አይደለም)</string>
+    <string name="blank_check_method_label">  ℹ ዘዴ፦ %1$s</string>
+    <string name="blank_check_ready_to_program">✓ ማይክሮ መቆጣጠሪያው ለፕሮግራም ዝግጁ ነው (100%% ተሰርዟል)</string>
+    <string name="blank_check_erase_required">⚠ ከፕሮግራም በፊት ቀዳሚ ማጥፋት ያስፈልጋል</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ ማይክሮ መቆጣጠሪያውን ያስገቡ</string>
+    <string name="dialog_insert_microcontroller_message">በZIF ሶኬት ውስጥ ምንም ቺፕ አልተገኘም።
+
+እባክዎ PIC %1$s ን በተገቢው ቦታ ያስገቡ፣ ማንሻውን ይቆልፉ እና እንደገና [%2$s] ን ይጫኑ።</string>
+    <string name="log_no_chip_in_socket">⚠️ በZIF ሶኬት ውስጥ ምንም ቺፕ የለም። ማይክሮ መቆጣጠሪያ %1$s ን ያስገቡ እና እንደገና [%2$s] ን ይጫኑ።</string>
+    <string name="log_verifying_pic_in_socket">🔍 የPIC መኖር በZIF ሶኬት ውስጥ በማረጋገጥ ላይ...</string>
+    <string name="log_detecting_chip_in_socket">🔍 ቺፕ በሶኬት ውስጥ በመለየት ላይ...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ በZIF ሶኬት ውስጥ ምንም PIC አልተገኘም (አቅጣጫውን እና ማንሻውን ያረጋግጡ)</string>
+    <string name="log_pic_physically_detected">✓ PIC በሶኬት ውስጥ በአካል ተገኝቷል</string>
+    <string name="log_chip_auto_identified">🎯 በራስ-ሰር ተለይቷል፦ %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">ቺፕ ተገኝቷል፦ %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ ቺፕ አለ (ID: %1$s)። ሞዴሉን በእጅ ዝርዝር ውስጥ ይምረጡ።</string>
+    <string name="log_connecting_to_programmer">🔌 ከፕሮግራመር ጋር በመገናኘት ላይ...</string>
+    <string name="log_connect_programmer_first">⚠ መጀመሪያ የK150 ፕሮግራመርን በUSB ያገናኙ።</string>
+    <string name="log_loading_file">📂 %1$s በመጫን ላይ፦ %2$s</string>
+    <string name="log_processing_file">⏳ የ%1$s ፋይል በማስኬድ ላይ...</string>
+    <string name="log_programming_verified_success">✓ ፕሮግራሚንግ ተጠናቅቋል እና በተሳካ ሁኔታ ተረጋግጧል!</string>
+    <string name="log_programming_failed">❌ የማይክሮ መቆጣጠሪያ ፕሮግራሚንግ ሂደት አልተሳካም</string>
+    <string name="log_backing_up_osccal">⏱️ ቺፑ ልኬት ይፈልጋል። ከማጥፋትዎ በፊት የOSCCAL ምትኬ በመውሰድ ላይ...</string>
+    <string name="log_osccal_restored">✓ OSCCAL በተሳካ ሁኔታ ወደ ሲሊኮን ተመልሷል፦ %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCAL ን በራስ-ሰር መመለስ አልተቻለም። የልኬት ሜኑውን ይጠቀሙ።</string>
+    <string name="notification_channel_name">የPIC K150 ክዋኔዎች</string>
+    <string name="notification_channel_description">የፕሮግራሚንግ ማጠናቀቂያ ማሳወቂያዎች እና የሃርድዌር ማስጠንቀቂያዎች</string>
+    <string name="ad_loading_rewarded_video_toast">የሽልማት ቪዲዮ በመጫን ላይ... እባክዎ ከጥቂት ሰከንዶች በኋላ እንደገና ይሞክሩ።</string>
+    <string name="pro_pass_expired">ጊዜው አልፎበታል</string>
+    <string name="fuse_log_last_config_restored">✓ የመጨረሻው ውቅር ተመልሷል</string>
+    <string name="fuse_log_no_hex_loaded">⚠ ምንም የHEX ፋይል አልተጫነም</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX ምንም ፊውዞችን አልያዘም</string>
+    <string name="fuse_log_hex_count">  HEX፦ %1$d ፊውዞች</string>
+    <string name="fuse_log_expected_count">  ቺፕ የሚጠብቀው፦ %1$d</string>
+    <string name="unknown_device_id">ያልታወቀ</string>
+    <string name="status_connected">ተገናኝቷል</string>
+    <string name="status_error">ስህተት</string>
+    <string name="log_pro_purchase_error">⚠ የፕሮ ግዢ፦ %1$s</string>
 </resources>

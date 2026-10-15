@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Pravila privatnosti</string>
     <string name="aceptar">Prihvati</string>
     <string name="cancelar">Odustani</string>
-    <string name="conectado">Povezan</string>
     <string name="desconectado">Odspojen</string>
     <string name="grabando_pic">Pisanje u PIC...</string>
     <string name="espere_grabacion_pic">Molim, čekajte. Ne isključujte uređaj.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware je uspješno napisan u PIC.</string>
     <string name="fallo_grabacion_pic">Greška pri pisanju</string>
     <string name="proceso_no_completado">Proces nije mogao biti dovršen. Provjerite vezu.</string>
-    <string name="protocolo_del_programador">Protokol programera</string>
     <string name="modelo_del_programador">Model programera</string>
     <string name="modelo_programador">Model programera</string>
     <string name="protocolo">Protokol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Politika privatnosti</string>
-    <string name="no_se_detecto_pic_en_socket">PIC nije detektovan u priključnici</string>
-    <string name="pic_detectado_en_socket">PIC detektovan u priključnici</string>
     <string name="error_borrando_memoria">Greška pri brisanju memorije</string>
     <string name="memoria_borrada_exitosamente">Memorija je uspješno obrisana</string>
     <string name="memoria_leida_exitosamente">Memorija je uspješno pročitana</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Izvezi KONFIG (.bin)</string>
     <string name="exportar_dump_completo">Izvezi cijeli dump (.hex)</string>
     <string name="exportar_dump_completo_bin">Izvezi cijeli ispis (.bin)</string>
-    <string name="programar_todo">Zakažite sve</string>
-    <string name="programar_solo_rom">Programirajte samo ROM</string>
-    <string name="programar_solo_eeprom">Programirajte samo EEPROM</string>
-    <string name="programar_solo_config">Program samo CONFIG</string>
     <string name="verificar_borrado">Potvrdi brisanje</string>
     <string name="chip_esta_borrado">Čip je izbrisan (prazan)</string>
     <string name="chip_no_esta_borrado">Čip se NE briše</string>
     <string name="verificando_borrado">Provjera brisanja...</string>
     <string name="resultado_verificacion_borrado">Rezultat provjere brisanja</string>
     <string name="error_verificando_borrado">Pogreška prilikom provjere brisanja</string>
-    <string name="chip_seleccionado">Odabrani čip</string>
     <string name="configuracion_de_fusibles">Konfiguracija osigurača</string>
     <string name="id_personalizado_hex">Prilagođeni ID (HEX)</string>
     <string name="hint_id_personalizado">Primjer: 1A 2B 3C 4D (4 ili 8 bajtova)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Preporučeno oglašavanje</string>
     <string name="lectura_completa">Kompletno čitanje</string>
     <string name="datos_de_memoria">Memorija je uspješno pročitana</string>
-    <string name="sin_chip">bez čipa</string>
     <string name="rom_ok_blank">ROM: OK (prazno)</string>
     <string name="rom_not_blank">ROM: NIJE PRAZNO</string>
     <string name="eeprom_ok_blank">EEPROM: OK (prazno)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Ne</string>
     <string name="seleccionar_idioma">Odaberi jezik</string>
     <string name="tutorial_instalacion">Vodič za instalaciju</string>
-    <string name="copiar_todo_en">Kopiraj sve</string>
     <string name="cerrar">Zatvori</string>
     <string name="error_no_chip">Greška: Čip nije odabran ili nema osigurača</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX kompatibilan</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Čip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Primjer</string>
     <string name="explicacion_label">Objašnjenje</string>
     <string name="error_export_manager_not_initialized">HexExportManager nije pokrenut</string>
-    <string name="error_leyendo_info_chip">Pogreška pri čitanju informacija o čipu</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bajtova</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Posebna zahvala Mikeu Wakerlyju, Adamu Schubertu i timovima AndroidIDE, Android Code Studio i KITSRUS.</string>
     <string name="error_al_cambiar_modo">Greška prilikom promjene načina rada:</string>
     <string name="no_hay_firmware_valido">Nema važećeg firmvera</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Otključajte napredne tehničke alate za %1$s</string>
+    <string name="pro_feature_hex_editor">Hexadecimalni uređivač uživo (Izravno krpanje memorije)</string>
+    <string name="pro_feature_hardware_diagnostics">Dijagnostika hardvera i test napona (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Vektor za uklanjanje pogrešaka ICD (24 bita)</string>
+    <string name="pro_feature_osccal">Spašavanje i ručno uređivanje OSCCAL-a</string>
+    <string name="pro_feature_remove_ads">Uklonite sve oglase iz aplikacije</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Pogledajte Video – 12-Satna Besplatna Propusnica</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro propusnica aktivirana na 12 sati!</string>
+    <string name="pro_ads_not_available">Oglasi nisu dostupni</string>
+    <string name="pro_btn_buy_permanent">👑 Kupite %1$s Pro Trajno%2$s</string>
+    <string name="pro_billing_not_available">Naplata putem Google Playa nije dostupna</string>
+    <string name="menu_pro_mode">⭐ Pro način</string>
+    <string name="menu_pro_permanent">👑 Trajni Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Dijagnostika Hardvera K150</string>
+    <string name="menu_osccal_calibration">⏱️ Kalibracija OSCCAL-a</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor za Uklanjanje Pogrešaka u Krugu (ICD)</string>
+    <string name="cd_socket_diagram">Dijagram podnožja</string>
+    <string name="btn_connect_usb">Spoji USB programator</string>
+    <string name="btn_disconnect_usb">Odspoji USB programator</string>
+    <string name="cd_clear_log">Očisti zapisnik</string>
+    <string name="cd_tutorial_image">Ilustracija vodiča</string>
+    <string name="title_activity_tutorial_gputils">Vodič za GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Vodič za SDCC</string>
+    <string name="diag_dialog_title">🩺 Dijagnostika Hardvera K150</string>
+    <string name="diag_section_programmer_status">📋 Status Programatora</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protokol:</string>
+    <string name="diag_label_echo_test">Echo test:</string>
+    <string name="diag_label_zif_sensor">ZIF senzor:</string>
+    <string name="diag_status_querying">Slanje upita...</string>
+    <string name="diag_status_pending">Na čekanju</string>
+    <string name="diag_btn_test_echo">⚡ Testiraj Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Potpuna Dijagnostika</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Testiraj ZIF Senzore (Umetanje/Vađenje)</string>
+    <string name="diag_section_voltage_control">⚡ Kontrola Napona VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ OPREZ: Uklonite mikrokontroler iz ZIF podnožja prije omogućavanja ili mjerenja napona multimetrom.</string>
+    <string name="diag_status_voltages_off">Status: Naponi isključeni (0V)</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) AKTIVIRANI</string>
+    <string name="diag_status_voltages_restarted">Status: ⚡ Naponi ponovno pokrenuti (Aktivno)</string>
+    <string name="diag_status_error_activating">Status: ❌ Greška pri aktiviranju napona</string>
+    <string name="diag_status_error_deactivating">Status: ❌ Greška pri isključivanju napona</string>
+    <string name="diag_status_error_restarting">Status: ❌ Greška pri ponovnom pokretanju napona</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Isključi (0V)</string>
+    <string name="diag_btn_restart_voltages">Ponovno pokreni</string>
+    <string name="diag_programmer_not_connected">Programator nije spojen</string>
+    <string name="diag_connect_programmer_prompt">⚠ Spojite K150 programator za korištenje dijagnostike</string>
+    <string name="diag_model_not_connected">Model: Programator nije spojen</string>
+    <string name="diag_echo_measuring">Echo test: Mjerenje u tijeku...</string>
+    <string name="diag_zif_reading">ZIF senzor: Očitavanje...</string>
+    <string name="diag_echo_ok">Echo test: ✓ U redu (%1$d ms)</string>
+    <string name="diag_echo_no_response">Echo test: ❌ Nema odgovora</string>
+    <string name="diag_echo_failed">Echo test: ❌ Neuspješno</string>
+    <string name="diag_socket_pic_detected">✓ PIC detektiran u ZIF podnožju</string>
+    <string name="diag_socket_empty">ℹ Prazno podnožje (Čip nije detektiran)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Nije detektiran čvrst kontakt u podnožju</string>
+    <string name="diag_toast_chip_removed_voltages_active">Čip uklonjen: Naponi aktivirani za sigurno mjerenje</string>
+    <string name="diag_toast_voltages_activated_multimeter">Naponi aktivirani: mjerite multimetrom na VPP i VDD</string>
+    <string name="diag_toast_voltages_off">Naponi isključeni (0V)</string>
+    <string name="diag_toast_voltages_restarted">Čip uklonjen: Naponi ponovno pokrenuti za mjerenje</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroler u Podnožju</string>
+    <string name="diag_alert_chip_in_socket_message">Kako biste izbjegli oštećenje PIC-a naponom od 13V VPP, uklonite mikrokontroler iz ZIF podnožja prije omogućavanja ili mjerenja napona.
+
+Nakon što uklonite čip, dodirnite \'Nastavi\' za aktiviranje mjerenja ili \'Odustani\' kako bi naponi ostali isključeni.</string>
+    <string name="diag_btn_continue_chip_removed">Nastavi (Čip uklonjen)</string>
+    <string name="diag_zif_test_title">🧪 Test ZIF Senzora</string>
+    <string name="diag_zif_test_desc">Test hardverskih senzora ZIF podnožja (Naredbe Kitsrus 18 i 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Korak 1: Umetnite mikrokontroler u podnožje i zaključajte polugu (Naredba 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Korak 2: Na čekanju (Vađenje s naredbom 19)</string>
+    <string name="diag_zif_step1_ok">✓ Korak 1: Senzor umetanja u redu (Naredba 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Korak 2: Sada podignite polugu i izvadite čip iz podnožja (Naredba 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Korak 1: Isteklo vrijeme bez detekcije čipa</string>
+    <string name="diag_zif_step2_ok">✓ Korak 2: Senzor vađenja u redu (Naredba 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Oba fizička senzora ZIF podnožja rade savršeno!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Korak 2: Isteklo vrijeme bez detekcije vađenja</string>
+    <string name="hex_editor_title">✏️ Uredi %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Riječ)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Bajt)</string>
+    <string name="hex_editor_info_address_value">Memorijska adresa: %1$s
+Trenutna vrijednost: 0x%2$s (Maksimalno: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Format Riječi i Redoslijed Bajtova (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Format EEPROM Ćelije (8-bitni)</string>
+    <string name="hex_editor_desc_rom">• PIC mikrokontroleri pohranjuju 14/16-bitne riječi u Little-Endian redoslijedu:
+   - Niži bajt (LSB): 0x%1$s (pomak 2×N)
+   - Viši bajt (MSB): 0x%2$s (pomak 2×N+1)
+• Kako urediti?: Unesite punu logičku riječ [MSB][LSB] (npr. 2805 = LSB 05, MSB 28).
+• Aplikacija automatski preslaguje bajtove u Little-Endian za čip i HEX datoteku.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM ćelije sastoje se od pojedinačnih 8-bitnih bajtova.
+• Unesite izravno 2-znamenkasti heksadecimalni bajt (raspon: 00 do FF).</string>
+    <string name="hex_editor_input_label_rom">Unesite novu vrijednost (Heks riječ [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Unesite novu vrijednost (Heks bajt 00-FF):</string>
+    <string name="guardar">Spremi</string>
+    <string name="hex_editor_err_empty">Vrijednost ne može biti prazna</string>
+    <string name="hex_editor_err_invalid_hex">Nevažeći heksadecimalni format</string>
+    <string name="hex_editor_err_exceeds_max">Vrijednost premašuje maksimalno dopuštenu (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrokontroler: %1$s (Obitelj PIC10F – 2 CAL registra)</string>
+    <string name="cal_chip_subtitle_standard">Mikrokontroler: %1$s (Riječ OSCCAL na zadnjoj ROM adresi)</string>
+    <string name="cal_not_read_yet">Još nije pročitano s čipa</string>
+    <string name="cal_silicon_value">
+Vrijednost na čipu: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Unesite heksadecimalnu vrijednost (npr. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Čitaj s Čipa</string>
+    <string name="cal_btn_write_silicon">💾 Zapiši na Čip</string>
+    <string name="cal_dialog_title">⏱️ Kalibracija OSCCAL-a</string>
+    <string name="cal_toast_read_success">✓ OSCCAL pročitan: %1$s</string>
+    <string name="cal_toast_read_error">❌ Greška pri čitanju kalibracije s čipa</string>
+    <string name="cal_toast_invalid_hex">Nevažeća heksadecimalna vrijednost</string>
+    <string name="cal_toast_write_success">✓ OSCCAL uspješno zapisan na čip</string>
+    <string name="cal_toast_write_error">❌ Zapisivanje kalibracije na čip nije uspjelo</string>
+    <string name="icd_dialog_subtitle">Uklanjanje pogrešaka u krugu (ICD) – 24-bitni adresni vektor
+(Valjani raspon: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Trenutni vektor: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Adresa za uklanjanje pogrešaka u heksu (npr. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Čitaj Vektor</string>
+    <string name="icd_btn_write_vector">💾 Zapiši Vektor</string>
+    <string name="icd_dialog_title">🛠️ Vektor za Uklanjanje Pogrešaka (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektor pročitan: %1$s</string>
+    <string name="icd_toast_invalid_address">Nevažeća 24-bitna heksadecimalna adresa</string>
+    <string name="icd_toast_write_success">✓ ICD vektor programiran: %1$s</string>
+    <string name="icd_toast_write_error">❌ Programiranje ICD vektora nije uspjelo</string>
+    <string name="prog_type_all_title">Programiraj Sve</string>
+    <string name="prog_type_all_desc">ROM, EEPROM i Konfiguracija</string>
+    <string name="prog_type_rom_title">Programiraj ROM</string>
+    <string name="prog_type_rom_desc">Flash Memorija</string>
+    <string name="prog_type_eeprom_title">Programiraj EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM Podaci</string>
+    <string name="prog_type_config_title">Programiraj Konfiguraciju</string>
+    <string name="prog_type_config_desc">Osigurači (fuses) i konfiguracijski bitovi</string>
+    <string name="blank_check_err_null_result">❌ Greška pri provjeri praznine: nulti rezultat</string>
+    <string name="blank_check_err_verifying">❌ Greška pri verifikaciji provjere praznine: %1$s</string>
+    <string name="blank_check_dual_header">📋 Diferencijalna Provjera Praznine (Dvostruka provjera):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% čist (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Detektirani prethodni podaci u ROM-u (Nije prazan)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% čist (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Detektirani prethodni podaci u EEPROM-u (Nije prazan)</string>
+    <string name="blank_check_method_label">  ℹ Metoda: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrokontroler spreman za programiranje (100%% Obrisan)</string>
+    <string name="blank_check_erase_required">⚠ Prije programiranja potrebno je prethodno brisanje</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Umetnite Mikrokontroler</string>
+    <string name="dialog_insert_microcontroller_message">U ZIF podnožju nije detektiran čip.
+
+Umetnite PIC %1$s u odgovarajući položaj, zaključajte polugu i ponovno dodirnite [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Nema čipa u ZIF podnožju. Umetnite mikrokontroler %1$s i ponovno dodirnite [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Provjera prisutnosti PIC-a u ZIF podnožju...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Detektiranje čipa u podnožju...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ PIC nije detektiran u ZIF podnožju (provjerite orijentaciju i polugu)</string>
+    <string name="log_pic_physically_detected">✓ PIC fizički detektiran u podnožju</string>
+    <string name="log_chip_auto_identified">🎯 Automatski identificirano: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Detektiran čip: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Čip prisutan (ID: %1$s). Odaberite model s ručnog popisa.</string>
+    <string name="log_connecting_to_programmer">🔌 Povezivanje s programatorom...</string>
+    <string name="log_connect_programmer_first">⚠ Prvo spojite K150 programator putem USB-a.</string>
+    <string name="log_loading_file">📂 Učitavanje %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Obrada datoteke %1$s...</string>
+    <string name="log_programming_verified_success">✓ Programiranje dovršeno i uspješno provjereno!</string>
+    <string name="log_programming_failed">❌ Postupak programiranja mikrokontrolera nije uspio</string>
+    <string name="log_backing_up_osccal">⏱️ Čip zahtijeva kalibraciju. Izrada sigurnosne kopije OSCCAL-a prije brisanja...</string>
+    <string name="log_osccal_restored">✓ OSCCAL uspješno vraćen na čip: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Nije moguće automatski vratiti OSCCAL. Koristite izbornik Kalibracija.</string>
+    <string name="notification_channel_name">Operacije PIC K150</string>
+    <string name="notification_channel_description">Obavijesti o završetku programiranja i hardverska upozorenja</string>
+    <string name="ad_loading_rewarded_video_toast">Učitavanje nagradnog videozapisa... Pokušajte ponovno za nekoliko sekundi.</string>
+    <string name="pro_pass_expired">Isteklo</string>
+    <string name="fuse_log_last_config_restored">✓ Zadnja konfiguracija vraćena</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Nije učitana HEX datoteka</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX ne sadrži osigurače (fuses)</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d osigurača</string>
+    <string name="fuse_log_expected_count">  Čip očekuje: %1$d</string>
+    <string name="unknown_device_id">Nepoznato</string>
+    <string name="status_connected">Povezan</string>
+    <string name="status_error">Greška</string>
+    <string name="log_pro_purchase_error">⚠ Pro kupnja: %1$s</string>
 </resources>

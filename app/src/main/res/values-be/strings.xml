@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Палітыкі прыватнасці</string>
     <string name="aceptar">Прыняць</string>
     <string name="cancelar">Адмяніць</string>
-    <string name="conectado">Падключана</string>
     <string name="desconectado">Адключана</string>
     <string name="grabando_pic">Праграмаванне PIC...</string>
     <string name="espere_grabacion_pic">Калі ласка, пачакайце. Не адключайце прыладу.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Прашыўка паспяхова запісана ў PIC.</string>
     <string name="fallo_grabacion_pic">Праграмаванне Няўдалае</string>
     <string name="proceso_no_completado">Працэс не завершаны. Праверце злучэнне.</string>
-    <string name="protocolo_del_programador">Пратакол Праграматара</string>
     <string name="modelo_del_programador">Мадэль Праграматара</string>
     <string name="modelo_programador">Мадэль Праграматара</string>
     <string name="protocolo">Пратакол</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Палітыка Канфідэнцыяльнасці</string>
-    <string name="no_se_detecto_pic_en_socket">PIC не выяўлены ў раздыме</string>
-    <string name="pic_detectado_en_socket">PIC выяўлены ў раздыме</string>
     <string name="error_borrando_memoria">Памылка выдалення памяці</string>
     <string name="memoria_borrada_exitosamente">Памяць паспяхова выдалена</string>
     <string name="memoria_leida_exitosamente">Памяць паспяхова прачытана</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Экспарт КАНФІГ (.bin)</string>
     <string name="exportar_dump_completo">Экспартаваць поўны дамп (.hex)</string>
     <string name="exportar_dump_completo_bin">Экспартаваць поўны дамп (.bin)</string>
-    <string name="programar_todo">Расклад усё</string>
-    <string name="programar_solo_rom">Толькі праграма ROM</string>
-    <string name="programar_solo_eeprom">Праграмаваць толькі EEPROM</string>
-    <string name="programar_solo_config">Праграма толькі CONFIG</string>
     <string name="verificar_borrado">Праверце выдаленне</string>
     <string name="chip_esta_borrado">Чып сцёрты (пусты)</string>
     <string name="chip_no_esta_borrado">Чып НЕ сціраецца</string>
     <string name="verificando_borrado">Праверка выдалення...</string>
     <string name="resultado_verificacion_borrado">Вынік праверкі выдалення</string>
     <string name="error_verificando_borrado">Памылка праверкі выдалення</string>
-    <string name="chip_seleccionado">Абраны Чып</string>
     <string name="configuracion_de_fusibles">Канфігурацыя засцерагальніка</string>
     <string name="id_personalizado_hex">Карыстальніцкі ідэнтыфікатар (HEX)</string>
     <string name="hint_id_personalizado">Прыклад: 1A 2B 3C 4D (4 ці 8 байтаў)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Рэкамендаваная рэклама</string>
     <string name="lectura_completa">Поўнае чытанне</string>
     <string name="datos_de_memoria">Памяць паспяхова прачытана</string>
-    <string name="sin_chip">без чыпа</string>
     <string name="rom_ok_blank">ПЗУ: ОК (Пусты)</string>
     <string name="rom_not_blank">ПЗУ: НЕ ПУСТЫ</string>
     <string name="eeprom_ok_blank">EEPROM: OK (пусты)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Не</string>
     <string name="seleccionar_idioma">Абраць мову</string>
     <string name="tutorial_instalacion">Кіраўніцтва па ўсталёўцы</string>
-    <string name="copiar_todo_en">Капіяваць усё</string>
     <string name="cerrar">Зачыніць</string>
     <string name="error_no_chip">Памылка: Чып не абраны або няма запобежнікаў</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX сумяшчальны</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Чып:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Прыклад</string>
     <string name="explicacion_label">Тлумачэнне</string>
     <string name="error_export_manager_not_initialized">HexExportManager не ініцыялізаваны</string>
-    <string name="error_leyendo_info_chip">Памылка чытання інфармацыі аб чыпе</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">байт</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Асаблівая падзяка Майку Уэйкерлі, Адаму Шуберту і камандам AndroidIDE, Android Code Studio і KITSRUS.</string>
     <string name="error_al_cambiar_modo">Памылка пры змене рэжыму:</string>
     <string name="no_hay_firmware_valido">Няма сапраўднай прашыўкі</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Разблакуйце пашыраныя тэхнічныя інструменты для %1$s</string>
+    <string name="pro_feature_hex_editor">Жывы шаснаццатковы рэдактар (прамое выпраўленне памяці)</string>
+    <string name="pro_feature_hardware_diagnostics">Дыягностыка абсталявання і тэст напружання (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Вектар адладкі ICD (24 біты)</string>
+    <string name="pro_feature_osccal">Аднаўленне і ручное рэдагаванне OSCCAL</string>
+    <string name="pro_feature_remove_ads">Выдаліць усю рэкламу з праграмы</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Глядзець відэа - 12-гадзінны бясплатны пропуск</string>
+    <string name="pro_pass_activated_toast">⭐ Пропуск %1$s Pro актываваны на 12 гадзін!</string>
+    <string name="pro_ads_not_available">Рэклама недаступная</string>
+    <string name="pro_btn_buy_permanent">👑 Купіць %1$s Pro назаўсёды%2$s</string>
+    <string name="pro_billing_not_available">Аплата праз Google Play недаступная</string>
+    <string name="menu_pro_mode">⭐ Рэжым Pro</string>
+    <string name="menu_pro_permanent">👑 Пастаянны Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Дыягностыка абсталявання K150</string>
+    <string name="menu_osccal_calibration">⏱️ Каліброўка OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Вектар унутрысхемнай адладкі (ICD)</string>
+    <string name="cd_socket_diagram">Дыяграма сокета</string>
+    <string name="btn_connect_usb">Падключыць USB-праграматар</string>
+    <string name="btn_disconnect_usb">Адключыць USB-праграматар</string>
+    <string name="cd_clear_log">Ачысціць журнал</string>
+    <string name="cd_tutorial_image">Ілюстрацыя дапаможніка</string>
+    <string name="title_activity_tutorial_gputils">Дапаможнік па GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Дапаможнік па SDCC</string>
+    <string name="diag_dialog_title">🩺 Дыягностыка абсталявання K150</string>
+    <string name="diag_section_programmer_status">📋 Стан праграматара</string>
+    <string name="diag_label_model">Мадэль:</string>
+    <string name="diag_label_protocol">Пратакол:</string>
+    <string name="diag_label_echo_test">Тэст рэха:</string>
+    <string name="diag_label_zif_sensor">Датчык ZIF:</string>
+    <string name="diag_status_querying">Запыт...</string>
+    <string name="diag_status_pending">У чаканні</string>
+    <string name="diag_btn_test_echo">⚡ Тэст рэха</string>
+    <string name="diag_btn_full_diagnosis">🔄 Поўная дыягностыка</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Тэст датчыкаў ZIF (Устаўка/Выманне)</string>
+    <string name="diag_section_voltage_control">⚡ Кіраванне напружаннем VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ УВАГА: Выміце мікракантролер з сокета ZIF перад уключэннем або вымярэннем напружання мультыметрам.</string>
+    <string name="diag_status_voltages_off">Стан: Напружанне выключана (0V)</string>
+    <string name="diag_status_vpp_active">Стан: ⚡ VPP (13V) / VDD (5V) УКЛЮЧАНА</string>
+    <string name="diag_status_voltages_restarted">Стан: ⚡ Напружанне перазапушчана (Актыўна)</string>
+    <string name="diag_status_error_activating">Стан: ❌ Памылка ўключэння напружання</string>
+    <string name="diag_status_error_deactivating">Стан: ❌ Памылка выключэння напружання</string>
+    <string name="diag_status_error_restarting">Стан: ❌ Памылка перазапуску напружання</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Выключыць (0V)</string>
+    <string name="diag_btn_restart_voltages">Перазапусціць</string>
+    <string name="diag_programmer_not_connected">Праграматар не падключаны</string>
+    <string name="diag_connect_programmer_prompt">⚠ Падключыце праграматар K150 для выкарыстання дыягностыкі</string>
+    <string name="diag_model_not_connected">Мадэль: Праграматар не падключаны</string>
+    <string name="diag_echo_measuring">Тэст рэха: Вымярэнне...</string>
+    <string name="diag_zif_reading">Датчык ZIF: Чытанне...</string>
+    <string name="diag_echo_ok">Тэст рэха: ✓ Паспяхова (%1$d мс)</string>
+    <string name="diag_echo_no_response">Тэст рэха: ❌ Няма адказу</string>
+    <string name="diag_echo_failed">Тэст рэха: ❌ Збой</string>
+    <string name="diag_socket_pic_detected">✓ PIC выяўлены ў сокеце ZIF</string>
+    <string name="diag_socket_empty">ℹ Сокет пусты (Чып не выяўлены)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Надзейны кантакт у сокеце не выяўлены</string>
+    <string name="diag_toast_chip_removed_voltages_active">Чып выняты: Напружанне ўключана для бяспечнага вымярэння</string>
+    <string name="diag_toast_voltages_activated_multimeter">Напружанне ўключана: вымерайце мультыметрам на VPP і VDD</string>
+    <string name="diag_toast_voltages_off">Напружанне выключана (0V)</string>
+    <string name="diag_toast_voltages_restarted">Чып выняты: Напружанне перазапушчана для вымярэння</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Мікракантролер у сокеце</string>
+    <string name="diag_alert_chip_in_socket_message">Каб пазбегнуць пашкоджання PIC напружаннем 13V VPP, калі ласка, выміце мікракантролер з сокета ZIF перад уключэннем або вымярэннем напружання.
+
+Пасля вымання чыпа націсніце \'Працягнуць\' для актывацыі вымярэння або \'Адмена\', каб пакінуць напружанне выключаным.</string>
+    <string name="diag_btn_continue_chip_removed">Працягнуць (Чып выняты)</string>
+    <string name="diag_zif_test_title">🧪 Тэст датчыкаў ZIF</string>
+    <string name="diag_zif_test_desc">Тэст апаратных датчыкаў сокета ZIF (Каманды Kitsrus 18 і 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Крок 1: Устаўце мікракантролер у сокет і зафіксуйце рычаг (Каманда 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Крок 2: У чаканні (Выманне з дапамогай Каманды 19)</string>
+    <string name="diag_zif_step1_ok">✓ Крок 1: Датчык устаўкі OK (Каманда 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Крок 2: Цяпер падніміце рычаг і выміце чып з сокета (Каманда 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Крок 1: Час чакання скончыўся без выяўлення чыпа</string>
+    <string name="diag_zif_step2_ok">✓ Крок 2: Датчык вымання OK (Каманда 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Абодва фізічныя датчыкі сокета ZIF працуюць бездакорна!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Крок 2: Час чакання скончыўся без выяўлення вымання</string>
+    <string name="hex_editor_title">✏️ Рэдагаваць %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Слова)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Байт)</string>
+    <string name="hex_editor_info_address_value">Адрас памяці: %1$s
+Бягучае значэнне: 0x%2$s (Максімум: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Фармат слова і парадак байтаў (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Фармат ячэйкі EEPROM (8 біт)</string>
+    <string name="hex_editor_desc_rom">• PIC захоўваюць 14/16-бітныя словы ў парадку Little-Endian:
+   - Малодшы байт (LSB): 0x%1$s (зрух 2×N)
+   - Старэйшы байт (MSB): 0x%2$s (зрух 2×N+1)
+• Як рэдагаваць?: Увядзіце поўнае лагічнае слова [MSB][LSB] (напрыклад, 2805 = LSB 05, MSB 28).
+• Праграма аўтаматычна пераўпарадкуе байты ў Little-Endian для чыпа і HEX-файла.</string>
+    <string name="hex_editor_desc_eeprom">• Ячэйкі EEPROM складаюцца з асобных 8-бітных байтаў.
+• Увядзіце 2-значны шаснаццатковы байт напрамую (дыяпазон: ад 00 да FF).</string>
+    <string name="hex_editor_input_label_rom">Увядзіце новае значэнне (Hex-слова [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Увядзіце новае значэнне (Hex-байт 00-FF):</string>
+    <string name="guardar">Захаваць</string>
+    <string name="hex_editor_err_empty">Значэнне не можа быць пустым</string>
+    <string name="hex_editor_err_invalid_hex">Няправільны шаснаццатковы фармат</string>
+    <string name="hex_editor_err_exceeds_max">Значэнне перавышае максімальна дапушчальнае (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Мікракантролер: %1$s (Сямейства PIC10F - 2 рэгістры CAL)</string>
+    <string name="cal_chip_subtitle_standard">Мікракантролер: %1$s (Слова OSCCAL па апошнім адрасе ROM)</string>
+    <string name="cal_not_read_yet">Яшчэ не прачытана з чыпа</string>
+    <string name="cal_silicon_value">
+Значэнне ў чыпе: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Увядзіце шаснаццатковае значэнне (напрыклад, %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Чытаць з чыпа</string>
+    <string name="cal_btn_write_silicon">💾 Запісаць у чып</string>
+    <string name="cal_dialog_title">⏱️ Каліброўка OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL прачытаны: %1$s</string>
+    <string name="cal_toast_read_error">❌ Памылка чытання каліброўкі з чыпа</string>
+    <string name="cal_toast_invalid_hex">Няправільнае шаснаццатковае значэнне</string>
+    <string name="cal_toast_write_success">✓ OSCCAL паспяхова запісаны ў чып</string>
+    <string name="cal_toast_write_error">❌ Не ўдалося запісаць каліброўку ў чып</string>
+    <string name="icd_dialog_subtitle">Унутрысхемная адладка (ICD) - 24-бітны вектар адраса
+(Дапушчальны дыяпазон: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Бягучы вектар: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Адрас адладкі ў hex (напрыклад, 000020):</string>
+    <string name="icd_btn_read_vector">📥 Чытаць вектар</string>
+    <string name="icd_btn_write_vector">💾 Запісаць вектар</string>
+    <string name="icd_dialog_title">🛠️ Вектар адладкі (ICD)</string>
+    <string name="icd_toast_read_success">✓ Вектар прачытаны: %1$s</string>
+    <string name="icd_toast_invalid_address">Няправільны 24-бітны шаснаццатковы адрас</string>
+    <string name="icd_toast_write_success">✓ Вектар ICD запраграмаваны: %1$s</string>
+    <string name="icd_toast_write_error">❌ Не ўдалося запраграмаваць вектар ICD</string>
+    <string name="prog_type_all_title">Праграмаваць усё</string>
+    <string name="prog_type_all_desc">ROM, EEPROM і канфігурацыя</string>
+    <string name="prog_type_rom_title">Праграмаваць ROM</string>
+    <string name="prog_type_rom_desc">Флэш-памяць</string>
+    <string name="prog_type_eeprom_title">Праграмаваць EEPROM</string>
+    <string name="prog_type_eeprom_desc">Даныя EEPROM</string>
+    <string name="prog_type_config_title">Праграмаваць канфігурацыю</string>
+    <string name="prog_type_config_desc">Канфігурацыйныя біты (Fuses)</string>
+    <string name="blank_check_err_null_result">❌ Памылка праверкі на чысціню: пусты вынік</string>
+    <string name="blank_check_err_verifying">❌ Памылка верыфікацыі праверкі на чысціню: %1$s</string>
+    <string name="blank_check_dual_header">📋 Дыферэнцыйная праверка на чысціню (падвойная праверка):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM чыстая на 100%% (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Выяўлены ранейшыя даныя ў ROM (не чыстая)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM чыстая на 100%% (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Выяўлены ранейшыя даныя ў EEPROM (не чыстая)</string>
+    <string name="blank_check_method_label">  ℹ Метад: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Мікракантролер гатовы да праграмавання (Сцёрты на 100%%)</string>
+    <string name="blank_check_erase_required">⚠ Перад праграмаваннем патрабуецца папярэдняе сціранне</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Устаўце мікракантролер</string>
+    <string name="dialog_insert_microcontroller_message">У сокеце ZIF чып не выяўлены.
+
+Калі ласка, устаўце PIC %1$s у адпаведнае становішча, зафіксуйце рычаг і націсніце [%2$s] зноў.</string>
+    <string name="log_no_chip_in_socket">⚠️ Няма чыпа ў сокеце ZIF. Устаўце мікракантролер %1$s і націсніце [%2$s] зноў.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Праверка наяўнасці PIC у сокеце ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Выяўленне чыпа ў сокеце...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ PIC не выяўлены ў сокеце ZIF (праверце арыентацыю і рычаг)</string>
+    <string name="log_pic_physically_detected">✓ PIC фізічна выяўлены ў сокеце</string>
+    <string name="log_chip_auto_identified">🎯 Аўтаматычна ідэнтыфікаваны: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Выяўлены чып: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Чып прысутнічае (ID: %1$s). Абярыце мадэль са спісу ўручную.</string>
+    <string name="log_connecting_to_programmer">🔌 Падключэнне да праграматара...</string>
+    <string name="log_connect_programmer_first">⚠ Спачатку падключыце праграматар K150 праз USB.</string>
+    <string name="log_loading_file">📂 Загрузка %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Апрацоўка файла %1$s...</string>
+    <string name="log_programming_verified_success">✓ Праграмаванне завершана і паспяхова праверана!</string>
+    <string name="log_programming_failed">❌ Працэс праграмавання мікракантролера завяршыўся няўдала</string>
+    <string name="log_backing_up_osccal">⏱️ Чып патрабуе каліброўкі. Рэзервовае капіраванне OSCCAL перад сціраннем...</string>
+    <string name="log_osccal_restored">✓ OSCCAL паспяхова адноўлены ў чып: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Не ўдалося аднавіць OSCCAL аўтаматычна. Выкарыстоўвайце меню Каліброўка.</string>
+    <string name="notification_channel_name">Аперацыі PIC K150</string>
+    <string name="notification_channel_description">Апавяшчэнні аб завяршэнні праграмавання і апаратныя папярэджанні</string>
+    <string name="ad_loading_rewarded_video_toast">Загрузка ўзнагароднага відэа... Калі ласка, паспрабуйце праз некалькі секунд.</string>
+    <string name="pro_pass_expired">Скончыўся тэрмін</string>
+    <string name="fuse_log_last_config_restored">✓ Апошняя канфігурацыя адноўлена</string>
+    <string name="fuse_log_no_hex_loaded">⚠ HEX-файл не загружаны</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX не змяшчае бітаў канфігурацыі</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d бітаў канфігурацыі</string>
+    <string name="fuse_log_expected_count">  Чып чакае: %1$d</string>
+    <string name="unknown_device_id">Невядома</string>
+    <string name="status_connected">Падключана</string>
+    <string name="status_error">Памылка</string>
+    <string name="log_pro_purchase_error">⚠ Купля Pro: %1$s</string>
 </resources>

@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Políticas de Privacidade</string>
     <string name="aceptar">Aceitar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="conectado">Conectado</string>
     <string name="desconectado">Off-line</string>
     <string name="grabando_pic">Gravando PIC...</string>
     <string name="espere_grabacion_pic">Por favor, espere. Não desconecte o dispositivo.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">O firmware foi gravado com sucesso no PIC.</string>
     <string name="fallo_grabacion_pic">Falha na Gravação</string>
     <string name="proceso_no_completado">Não foi possível concluir o processo. Verifique a conexão.</string>
-    <string name="protocolo_del_programador">Protocolo do Programador</string>
     <string name="modelo_del_programador">Modelo do Programador</string>
     <string name="modelo_programador">Modelo do Programador</string>
     <string name="protocolo">Protocolo</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Política de Privacidade</string>
-    <string name="no_se_detecto_pic_en_socket">Nenhum PIC detectado no soquete</string>
-    <string name="pic_detectado_en_socket">PIC detectado no soquete</string>
     <string name="error_borrando_memoria">Erro ao apagar a memória</string>
     <string name="memoria_borrada_exitosamente">Memória apagada com sucesso</string>
     <string name="memoria_leida_exitosamente">Memória lida com sucesso</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Exportar configuração (.bin)</string>
     <string name="exportar_dump_completo">Exportar Full Dump (.hex)</string>
     <string name="exportar_dump_completo_bin">Exportar dump completo (.bin)</string>
-    <string name="programar_todo">Programar todos</string>
-    <string name="programar_solo_rom">Apenas programa ROM</string>
-    <string name="programar_solo_eeprom">Somente programa EEPROM</string>
-    <string name="programar_solo_config">Somente programa CONFIG</string>
     <string name="verificar_borrado">Verificação de apagamento</string>
     <string name="chip_esta_borrado">O chip é apagado (em branco)</string>
     <string name="chip_no_esta_borrado">O chip NÃO é apagado</string>
     <string name="verificando_borrado">Verificando exclusão...</string>
     <string name="resultado_verificacion_borrado">Resultado da verificação de exclusão</string>
     <string name="error_verificando_borrado">Erro ao verificar a exclusão</string>
-    <string name="chip_seleccionado">Chip selecionado</string>
     <string name="configuracion_de_fusibles">Configuração de fusíveis</string>
     <string name="id_personalizado_hex">ID personalizado (HEX)</string>
     <string name="hint_id_personalizado">Exemplo: 1A 2B 3C 4D (4 ou 8 bytes)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Publicidade recomendada</string>
     <string name="lectura_completa">Leitura completa</string>
     <string name="datos_de_memoria">Memória lida com sucesso</string>
-    <string name="sin_chip">Sem chip</string>
     <string name="rom_ok_blank">ROM: OK (em branco)</string>
     <string name="rom_not_blank">ROM: NÃO EM BRANCO</string>
     <string name="eeprom_ok_blank">EEPROM: OK (em branco)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Não</string>
     <string name="seleccionar_idioma">Selecionar Idioma</string>
     <string name="tutorial_instalacion">Tutorial de Instalação</string>
-    <string name="copiar_todo_en">Copiar Tudo</string>
     <string name="cerrar">Fechar</string>
     <string name="error_no_chip">Erro: Nenhum chip selecionado ou sem fuses</string>
     <string name="advertencia_cantidad_fuses">AVISO: Quantidade de fuses não corresponde</string>
     <string name="hex_compatible">HEX compatível</string>
     <string name="error_verificando_hex">Erro ao verificar HEX</string>
-    <string name="label_chip">Chip:</string>
     <string name="editor_construido">Editor construído</string>
     <string name="restaurando_chip">Restaurando do chip…</string>
     <string name="restaurado_chip">Restaurado do chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Exemplo</string>
     <string name="explicacion_label">Explicação</string>
     <string name="error_export_manager_not_initialized">HexExportManager não inicializado</string>
-    <string name="error_leyendo_info_chip">Erro ao ler informações do chip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bytes</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Agradecimentos especiais a Mike Wakerly, Adam Schubert e às equipes AndroidIDE, Android Code Studio e KITSRUS.</string>
     <string name="error_al_cambiar_modo">Erro ao alterar o modo:</string>
     <string name="no_hay_firmware_valido">Nenhum firmware válido</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Desbloqueie ferramentas técnicas avançadas para %1$s</string>
+    <string name="pro_feature_hex_editor">Editor Hexadecimal em Tempo Real (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Diagnóstico de Hardware e Teste de Voltagem (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Vetor de Depuração ICD (24 bits)</string>
+    <string name="pro_feature_osccal">Resgate e Edição Manual de OSCCAL</string>
+    <string name="pro_feature_remove_ads">Remover todos os anúncios do aplicativo</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Assistir Vídeo - Passe Gratuito de 12 Horas</string>
+    <string name="pro_pass_activated_toast">⭐ Passe %1$s Pro ativado por 12 horas!</string>
+    <string name="pro_ads_not_available">Anúncios indisponíveis</string>
+    <string name="pro_btn_buy_permanent">👑 Comprar %1$s Pro Permanente%2$s</string>
+    <string name="pro_billing_not_available">O faturamento do Google Play não está disponível</string>
+    <string name="menu_pro_mode">⭐ Modo Pro</string>
+    <string name="menu_pro_permanent">👑 Pro Permanente</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Diagnóstico de Hardware K150</string>
+    <string name="menu_osccal_calibration">⏱️ Calibração OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Vetor de Depuração no Circuito (ICD)</string>
+    <string name="cd_socket_diagram">Diagrama do soquete</string>
+    <string name="btn_connect_usb">Conectar Programador USB</string>
+    <string name="btn_disconnect_usb">Desconectar Programador USB</string>
+    <string name="cd_clear_log">Limpar registro</string>
+    <string name="cd_tutorial_image">Ilustração do tutorial</string>
+    <string name="title_activity_tutorial_gputils">Tutorial GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Tutorial SDCC</string>
+    <string name="diag_dialog_title">🩺 Diagnóstico de Hardware K150</string>
+    <string name="diag_section_programmer_status">📋 Status do Programador</string>
+    <string name="diag_label_model">Modelo:</string>
+    <string name="diag_label_protocol">Protocolo:</string>
+    <string name="diag_label_echo_test">Teste de Eco:</string>
+    <string name="diag_label_zif_sensor">Sensor ZIF:</string>
+    <string name="diag_status_querying">Consultando...</string>
+    <string name="diag_status_pending">Pendente</string>
+    <string name="diag_btn_test_echo">⚡ Testar Eco</string>
+    <string name="diag_btn_full_diagnosis">🔄 Diagnóstico Completo</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Testar Sensores ZIF (Inserir/Remover)</string>
+    <string name="diag_section_voltage_control">⚡ Controle de Voltagem VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ CUIDADO: Remova o microcontrolador do soquete ZIF antes de habilitar ou medir voltagens com um multímetro.</string>
+    <string name="diag_status_voltages_off">Status: Voltagens desligadas (0V)</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) ATIVADOS</string>
+    <string name="diag_status_voltages_restarted">Status: ⚡ Voltagens reiniciadas (Ativo)</string>
+    <string name="diag_status_error_activating">Status: ❌ Erro ao ativar voltagens</string>
+    <string name="diag_status_error_deactivating">Status: ❌ Erro ao desligar voltagens</string>
+    <string name="diag_status_error_restarting">Status: ❌ Erro ao reiniciar voltagens</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Desligar (0V)</string>
+    <string name="diag_btn_restart_voltages">Reiniciar</string>
+    <string name="diag_programmer_not_connected">Programador não conectado</string>
+    <string name="diag_connect_programmer_prompt">⚠ Conecte o programador K150 para usar o diagnóstico</string>
+    <string name="diag_model_not_connected">Modelo: Programador não conectado</string>
+    <string name="diag_echo_measuring">Teste de Eco: Medindo...</string>
+    <string name="diag_zif_reading">Sensor ZIF: Lendo...</string>
+    <string name="diag_echo_ok">Teste de Eco: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Teste de Eco: ❌ Sem resposta</string>
+    <string name="diag_echo_failed">Teste de Eco: ❌ Falhou</string>
+    <string name="diag_socket_pic_detected">✓ PIC detectado no soquete ZIF</string>
+    <string name="diag_socket_empty">ℹ Soquete vazio (Nenhum chip detectado)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Contato firme não detectado no soquete</string>
+    <string name="diag_toast_chip_removed_voltages_active">Chip removido: Voltagens ativadas para medição segura</string>
+    <string name="diag_toast_voltages_activated_multimeter">Voltagens ativadas: meça com multímetro em VPP e VDD</string>
+    <string name="diag_toast_voltages_off">Voltagens desligadas (0V)</string>
+    <string name="diag_toast_voltages_restarted">Chip removido: Voltagens reiniciadas para medição</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Microcontrolador no Soquete</string>
+    <string name="diag_alert_chip_in_socket_message">Para evitar danificar o PIC com 13V VPP, por favor remova o microcontrolador do soquete ZIF antes de habilitar ou medir voltagens.
+
+Depois de remover o chip, toque em \'Continuar\' para ativar a medição, ou \'Cancelar\' para manter as voltagens desligadas.</string>
+    <string name="diag_btn_continue_chip_removed">Continuar (Chip Removido)</string>
+    <string name="diag_zif_test_title">🧪 Teste dos Sensores ZIF</string>
+    <string name="diag_zif_test_desc">Teste dos sensores de hardware para o soquete ZIF (Comandos Kitsrus 18 e 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Etapa 1: Insira um microcontrolador no soquete e trave a alavanca (Comando 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Etapa 2: Pendente (Extração com Comando 19)</string>
+    <string name="diag_zif_step1_ok">✓ Etapa 1: Sensor de Inserção OK (Comando 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Etapa 2: Agora levante a alavanca e remova o chip do soquete (Comando 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Etapa 1: Tempo limite esgotado sem detectar o chip</string>
+    <string name="diag_zif_step2_ok">✓ Etapa 2: Sensor de Extração OK (Comando 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Ambos os sensores físicos do soquete ZIF funcionam perfeitamente!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Etapa 2: Tempo limite esgotado sem detectar a extração</string>
+    <string name="hex_editor_title">✏️ Editar %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Palavra)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">Endereço de Memória: %1$s
+Valor atual: 0x%2$s (Máximo: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Formato de Palavra e Ordem dos Bytes (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Formato da Célula EEPROM (8 bits)</string>
+    <string name="hex_editor_desc_rom">• Os PICs armazenam palavras de 14/16 bits em ordem Little-Endian:
+   - Byte Baixo (LSB): 0x%1$s (deslocamento 2×N)
+   - Byte Alto (MSB): 0x%2$s (deslocamento 2×N+1)
+• Como editar?: Insira a palavra lógica completa [MSB][LSB] (ex. 2805 = LSB 05, MSB 28).
+• O aplicativo reordena automaticamente os bytes para Little-Endian para o chip e arquivo HEX.</string>
+    <string name="hex_editor_desc_eeprom">• As células EEPROM são compostas por bytes individuais de 8 bits.
+• Insira o byte hexadecimal de 2 caracteres diretamente (faixa: 00 a FF).</string>
+    <string name="hex_editor_input_label_rom">Insira o novo valor (Palavra Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Insira o novo valor (Byte Hex 00-FF):</string>
+    <string name="guardar">Salvar</string>
+    <string name="hex_editor_err_empty">O valor não pode estar vazio</string>
+    <string name="hex_editor_err_invalid_hex">Formato hexadecimal inválido</string>
+    <string name="hex_editor_err_exceeds_max">O valor excede o máximo permitido (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Microcontrolador: %1$s (Família PIC10F - 2 registradores CAL)</string>
+    <string name="cal_chip_subtitle_standard">Microcontrolador: %1$s (Palavra OSCCAL no último endereço da ROM)</string>
+    <string name="cal_not_read_yet">Ainda não lido do chip</string>
+    <string name="cal_silicon_value">
+Valor no Silício: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Insira o valor hexadecimal (ex. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Ler do Chip</string>
+    <string name="cal_btn_write_silicon">💾 Gravar no Silício</string>
+    <string name="cal_dialog_title">⏱️ Calibração OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL lido: %1$s</string>
+    <string name="cal_toast_read_error">❌ Erro ao ler calibração do chip</string>
+    <string name="cal_toast_invalid_hex">Valor hexadecimal inválido</string>
+    <string name="cal_toast_write_success">✓ OSCCAL gravado com sucesso no chip</string>
+    <string name="cal_toast_write_error">❌ Falha ao gravar calibração no silício</string>
+    <string name="icd_dialog_subtitle">Depuração no Circuito (ICD) - Vetor de Endereço de 24 bits
+(Faixa válida: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Vetor Atual: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Endereço de depuração em hex (ex. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Ler Vetor</string>
+    <string name="icd_btn_write_vector">💾 Gravar Vetor</string>
+    <string name="icd_dialog_title">🛠️ Vetor de Depuração (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vetor lido: %1$s</string>
+    <string name="icd_toast_invalid_address">Endereço hexadecimal de 24 bits inválido</string>
+    <string name="icd_toast_write_success">✓ Vetor ICD programado: %1$s</string>
+    <string name="icd_toast_write_error">❌ Falha ao programar vetor ICD</string>
+    <string name="prog_type_all_title">Programar Tudo</string>
+    <string name="prog_type_all_desc">ROM, EEPROM e Configuração</string>
+    <string name="prog_type_rom_title">Programar ROM</string>
+    <string name="prog_type_rom_desc">Memória Flash</string>
+    <string name="prog_type_eeprom_title">Programar EEPROM</string>
+    <string name="prog_type_eeprom_desc">Dados EEPROM</string>
+    <string name="prog_type_config_title">Programar Configuração</string>
+    <string name="prog_type_config_desc">Fusíveis e bits de configuração</string>
+    <string name="blank_check_err_null_result">❌ Erro na verificação de memória vazia: resultado nulo</string>
+    <string name="blank_check_err_verifying">❌ Erro ao verificar teste de memória vazia: %1$s</string>
+    <string name="blank_check_dual_header">📋 Verificação Diferencial de Memória Vazia (Teste Duplo):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% limpa (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Dados anteriores detectados na ROM (Não está vazia)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% limpa (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Dados anteriores detectados na EEPROM (Não está vazia)</string>
+    <string name="blank_check_method_label">  ℹ Método: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Microcontrolador pronto para programar (100%% Apagado)</string>
+    <string name="blank_check_erase_required">⚠ É necessário apagar previamente antes de programar</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Insira o Microcontrolador</string>
+    <string name="dialog_insert_microcontroller_message">Nenhum chip foi detectado no soquete ZIF.
+
+Por favor, insira o PIC %1$s na posição correspondente, trave a alavanca e toque em [%2$s] novamente.</string>
+    <string name="log_no_chip_in_socket">⚠️ Nenhum chip no soquete ZIF. Insira o microcontrolador %1$s e toque em [%2$s] novamente.</string>
+    <string name="log_verifying_pic_in_socket">🔍 Verificando presença do PIC no soquete ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Detectando chip no soquete...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Nenhum PIC detectado no soquete ZIF (verifique orientação e alavanca)</string>
+    <string name="log_pic_physically_detected">✓ PIC detectado fisicamente no soquete</string>
+    <string name="log_chip_auto_identified">🎯 Identificado automaticamente: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Chip detectado: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Chip presente (ID: %1$s). Selecione o modelo na lista manual.</string>
+    <string name="log_connecting_to_programmer">🔌 Conectando ao programador...</string>
+    <string name="log_connect_programmer_first">⚠ Conecte o programador K150 via USB primeiro.</string>
+    <string name="log_loading_file">📂 Carregando %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Processando arquivo %1$s...</string>
+    <string name="log_programming_verified_success">✓ Programação concluída e verificada com sucesso!</string>
+    <string name="log_programming_failed">❌ Falha no processo de programação do microcontrolador</string>
+    <string name="log_backing_up_osccal">⏱️ O chip requer calibração. Fazendo backup do OSCCAL antes de apagar...</string>
+    <string name="log_osccal_restored">✓ OSCCAL restaurado com sucesso no silício: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Não foi possível restaurar o OSCCAL automaticamente. Use o menu de Calibração.</string>
+    <string name="notification_channel_name">Operações PIC K150</string>
+    <string name="notification_channel_description">Notificações de conclusão de programação e alertas de hardware</string>
+    <string name="ad_loading_rewarded_video_toast">Carregando vídeo premiado... Tente novamente em alguns segundos.</string>
+    <string name="pro_pass_expired">Expirado</string>
+    <string name="fuse_log_last_config_restored">✓ Última configuração restaurada</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Nenhum arquivo HEX carregado</string>
+    <string name="fuse_log_hex_no_fuses">⚠ O HEX não contém fusíveis</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d fusíveis</string>
+    <string name="fuse_log_expected_count">  O chip espera: %1$d</string>
+    <string name="unknown_device_id">Desconhecido</string>
+    <string name="status_connected">Conectado</string>
+    <string name="status_error">Erro</string>
+    <string name="log_pro_purchase_error">⚠ Compra Pro: %1$s</string>
 </resources>

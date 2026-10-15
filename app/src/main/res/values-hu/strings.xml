@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Adatvédelmi szabályzat</string>
     <string name="aceptar">Elfogadás</string>
     <string name="cancelar">Mégse</string>
-    <string name="conectado">Csatlakoztatva</string>
     <string name="desconectado">Leválasztva</string>
     <string name="grabando_pic">PIC programozása...</string>
     <string name="espere_grabacion_pic">Kérjük, várjon. Ne válassza le az eszközt.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">A firmware sikeresen beíródott a PIC-be.</string>
     <string name="fallo_grabacion_pic">Programozás Sikertelen</string>
     <string name="proceso_no_completado">A folyamat nem fejeződött be. Ellenőrizze a kapcsolatot.</string>
-    <string name="protocolo_del_programador">Programozó Protokoll</string>
     <string name="modelo_del_programador">Programozó Modell</string>
     <string name="modelo_programador">Programozó Modell</string>
     <string name="protocolo">Protokoll</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Adatvédelmi Irányelvek</string>
-    <string name="no_se_detecto_pic_en_socket">Nem található PIC a foglalatban</string>
-    <string name="pic_detectado_en_socket">PIC észlelve a foglalatban</string>
     <string name="error_borrando_memoria">Hiba a memória törlése közben</string>
     <string name="memoria_borrada_exitosamente">Memória sikeresen törölve</string>
     <string name="memoria_leida_exitosamente">Memória sikeresen olvasva</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">CONFIG exportálása (.bin)</string>
     <string name="exportar_dump_completo">Teljes kiírat exportálása (.hex)</string>
     <string name="exportar_dump_completo_bin">Teljes kiíratás exportálása (.bin)</string>
-    <string name="programar_todo">Ütemezze be mindent</string>
-    <string name="programar_solo_rom">Csak program ROM</string>
-    <string name="programar_solo_eeprom">Csak az EEPROM programozása</string>
-    <string name="programar_solo_config">Csak program CONFIG</string>
     <string name="verificar_borrado">Ellenőrizze a törlést</string>
     <string name="chip_esta_borrado">A chip törlődik (Üres)</string>
     <string name="chip_no_esta_borrado">A chip NEM törlődik</string>
     <string name="verificando_borrado">Törlés ellenőrzése...</string>
     <string name="resultado_verificacion_borrado">A törlés ellenőrzésének eredménye</string>
     <string name="error_verificando_borrado">Hiba a törlés ellenőrzésekor</string>
-    <string name="chip_seleccionado">Kiválasztott chip</string>
     <string name="configuracion_de_fusibles">Biztosíték konfiguráció</string>
     <string name="id_personalizado_hex">Egyéni azonosító (HEX)</string>
     <string name="hint_id_personalizado">Példa: 1A 2B 3C 4D (4 vagy 8 bájt)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Ajánlott reklám</string>
     <string name="lectura_completa">Teljes olvasás</string>
     <string name="datos_de_memoria">Memória sikeresen olvasva</string>
-    <string name="sin_chip">chip nélkül</string>
     <string name="rom_ok_blank">ROM: OK (üres)</string>
     <string name="rom_not_blank">ROM: NEM ÜRES</string>
     <string name="eeprom_ok_blank">EEPROM: OK (Üres)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Nem</string>
     <string name="seleccionar_idioma">Nyelv kiválasztása</string>
     <string name="tutorial_instalacion">Telepítési útmutató</string>
-    <string name="copiar_todo_en">Összes másolása</string>
     <string name="cerrar">Bezárás</string>
     <string name="error_no_chip">Hiba: Nincs chip kiválasztva vagy nincs biztosíték</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX kompatibilis</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Példa</string>
     <string name="explicacion_label">Magyarázat</string>
     <string name="error_export_manager_not_initialized">A HexExportManager nincs inicializálva</string>
-    <string name="error_leyendo_info_chip">Hiba a chip információinak olvasásakor</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bájtok</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Külön köszönet Mike Wakerlynek, Adam Schubertnek, valamint az AndroidIDE, az Android Code Studio és a KITSRUS csapatának.</string>
     <string name="error_al_cambiar_modo">Hiba módváltáskor:</string>
     <string name="no_hay_firmware_valido">Nincs érvényes firmware</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Fejlett műszaki eszközök feloldása a(z) %1$s számára</string>
+    <string name="pro_feature_hex_editor">Élő hexadecimális szerkesztő (élő módosítás)</string>
+    <string name="pro_feature_hardware_diagnostics">Hardverdiagnosztika és feszültségteszt (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD hibakeresési vektor (24 bites)</string>
+    <string name="pro_feature_osccal">OSCCAL mentés és kézi szerkesztés</string>
+    <string name="pro_feature_remove_ads">Összes hirdetés eltávolítása az alkalmazásból</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Videó megtekintése – 12 órás ingyenes hozzáférés</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro hozzáférés aktiválva 12 órára!</string>
+    <string name="pro_ads_not_available">A hirdetések nem érhetők el</string>
+    <string name="pro_btn_buy_permanent">👑 %1$s Pro végleges vásárlása%2$s</string>
+    <string name="pro_billing_not_available">A Google Play Számlázás nem érhető el</string>
+    <string name="menu_pro_mode">⭐ Pro mód</string>
+    <string name="menu_pro_permanent">👑 Végleges Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 hardverdiagnosztika</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL kalibráció</string>
+    <string name="menu_debug_vector_icd">🛠️ Áramköri hibakeresési vektor (ICD)</string>
+    <string name="cd_socket_diagram">Foglalat ábrája</string>
+    <string name="btn_connect_usb">USB programozó csatlakoztatása</string>
+    <string name="btn_disconnect_usb">USB programozó leválasztása</string>
+    <string name="cd_clear_log">Napló törlése</string>
+    <string name="cd_tutorial_image">Oktatóanyag illusztrációja</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS oktatóanyag</string>
+    <string name="title_activity_tutorial_sdcc">SDCC oktatóanyag</string>
+    <string name="diag_dialog_title">🩺 K150 hardverdiagnosztika</string>
+    <string name="diag_section_programmer_status">📋 Programozó állapota</string>
+    <string name="diag_label_model">Modell:</string>
+    <string name="diag_label_protocol">Protokoll:</string>
+    <string name="diag_label_echo_test">Echo teszt:</string>
+    <string name="diag_label_zif_sensor">ZIF érzékelő:</string>
+    <string name="diag_status_querying">Lekérdezés...</string>
+    <string name="diag_status_pending">Függőben</string>
+    <string name="diag_btn_test_echo">⚡ Echo tesztelése</string>
+    <string name="diag_btn_full_diagnosis">🔄 Teljes diagnosztika</string>
+    <string name="diag_btn_test_zif_sensors">🧪 ZIF érzékelők tesztelése (Behelyezés/Kivétel)</string>
+    <string name="diag_section_voltage_control">⚡ Feszültségvezérlés VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ VIGYÁZAT: Távolítsa el a mikrokontrollert a ZIF foglalatból, mielőtt engedélyezi vagy multiméterrel méri a feszültségeket.</string>
+    <string name="diag_status_voltages_off">Állapot: Feszültségek kikapcsolva (0V)</string>
+    <string name="diag_status_vpp_active">Állapot: ⚡ VPP (13V) / VDD (5V) BEKAPCSOLVA</string>
+    <string name="diag_status_voltages_restarted">Állapot: ⚡ Feszültségek újraindítva (Aktív)</string>
+    <string name="diag_status_error_activating">Állapot: ❌ Hiba a feszültségek bekapcsolásakor</string>
+    <string name="diag_status_error_deactivating">Állapot: ❌ Hiba a feszültségek kikapcsolásakor</string>
+    <string name="diag_status_error_restarting">Állapot: ❌ Hiba a feszültségek újraindításakor</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Kikapcsolás (0V)</string>
+    <string name="diag_btn_restart_voltages">Újraindítás</string>
+    <string name="diag_programmer_not_connected">A programozó nincs csatlakoztatva</string>
+    <string name="diag_connect_programmer_prompt">⚠ A diagnosztika használatához csatlakoztassa a K150 programozót</string>
+    <string name="diag_model_not_connected">Modell: A programozó nincs csatlakoztatva</string>
+    <string name="diag_echo_measuring">Echo teszt: Mérés...</string>
+    <string name="diag_zif_reading">ZIF érzékelő: Olvasás...</string>
+    <string name="diag_echo_ok">Echo teszt: ✓ Rendben (%1$d ms)</string>
+    <string name="diag_echo_no_response">Echo teszt: ❌ Nincs válasz</string>
+    <string name="diag_echo_failed">Echo teszt: ❌ Sikertelen</string>
+    <string name="diag_socket_pic_detected">✓ PIC észlelve a ZIF foglalatban</string>
+    <string name="diag_socket_empty">ℹ Üres foglalat (Nincs észlelt chip)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Nem észlelhető stabil érintkezés a foglalatban</string>
+    <string name="diag_toast_chip_removed_voltages_active">Chip eltávolítva: A feszültségek bekapcsolva a biztonságos méréshez</string>
+    <string name="diag_toast_voltages_activated_multimeter">Feszültségek bekapcsolva: mérjen multiméterrel a VPP és VDD pontokon</string>
+    <string name="diag_toast_voltages_off">Feszültségek kikapcsolva (0V)</string>
+    <string name="diag_toast_voltages_restarted">Chip eltávolítva: A feszültségek újraindítva a méréshez</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroller a foglalatban</string>
+    <string name="diag_alert_chip_in_socket_message">A PIC 13V VPP miatti károsodásának megelőzése érdekében kérjük, távolítsa el a mikrokontrollert a ZIF foglalatból a feszültségek bekapcsolása vagy mérése előtt.
+
+Miután eltávolította a chipet, koppintson a \'Folytatás\' gombra a mérés aktiválásához, vagy a \'Mégse\' gombra a feszültségek kikapcsolva tartásához.</string>
+    <string name="diag_btn_continue_chip_removed">Folytatás (Chip eltávolítva)</string>
+    <string name="diag_zif_test_title">🧪 ZIF érzékelők tesztje</string>
+    <string name="diag_zif_test_desc">Hardveres érzékelőteszt a ZIF foglalathoz (Kitsrus 18-as és 19-es parancsok):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ 1. lépés: Helyezzen be egy mikrokontrollert a foglalatba, és zárja le a kart (18. parancs)...</string>
+    <string name="diag_zif_step2_pending">⚪ 2. lépés: Függőben (Kivétel a 19. paranccsal)</string>
+    <string name="diag_zif_step1_ok">✓ 1. lépés: Behelyezés érzékelője RENDESEN MŰKÖDIK (18. parancs)</string>
+    <string name="diag_zif_step2_waiting">⏳ 2. lépés: Most emelje fel a kart, és vegye ki a chipet a foglalatból (19. parancs)...</string>
+    <string name="diag_zif_step1_timeout">❌ 1. lépés: Időtúllépés a chip észlelése nélkül</string>
+    <string name="diag_zif_step2_ok">✓ 2. lépés: Kivétel érzékelője RENDESEN MŰKÖDIK (19. parancs)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 A ZIF foglalat mindkét fizikai érzékelője tökéletesen működik!
+</string>
+    <string name="diag_zif_step2_timeout">❌ 2. lépés: Időtúllépés a kivétel észlelése nélkül</string>
+    <string name="hex_editor_title">✏️ %1$s szerkesztése</string>
+    <string name="hex_editor_type_rom_word">ROM (Szó)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Bájt)</string>
+    <string name="hex_editor_info_address_value">Memóriacím: %1$s
+Jelenlegi érték: 0x%2$s (Maximum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Szóformátum és bájtsorrend (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM cellaformátum (8 bites)</string>
+    <string name="hex_editor_desc_rom">• A PIC-ek 14/16 bites szavakat Little-Endian sorrendben tárolnak:
+   - Alsó bájt (LSB): 0x%1$s (eltolás 2×N)
+   - Felső bájt (MSB): 0x%2$s (eltolás 2×N+1)
+• Hogyan szerkessze?: Adja meg a teljes logikai szót [MSB][LSB] (pl. 2805 = LSB 05, MSB 28).
+• Az alkalmazás automatikusan átrendezi a bájtokat Little-Endian formátumra a chiphez és a HEX fájlhoz.</string>
+    <string name="hex_editor_desc_eeprom">• Az EEPROM cellák egyedi 8 bites bájtokból állnak.
+• Adja meg közvetlenül a 2 karakteres hexadecimális bájtot (tartomány: 00-tól FF-ig).</string>
+    <string name="hex_editor_input_label_rom">Adjon meg új értéket (Hex szó [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Adjon meg új értéket (Hex bájt 00-FF):</string>
+    <string name="guardar">Mentés</string>
+    <string name="hex_editor_err_empty">Az érték nem lehet üres</string>
+    <string name="hex_editor_err_invalid_hex">Érvénytelen hexadecimális formátum</string>
+    <string name="hex_editor_err_exceeds_max">Az érték meghaladja a megengedett maximumot (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrokontroller: %1$s (PIC10F család – 2 CAL regiszter)</string>
+    <string name="cal_chip_subtitle_standard">Mikrokontroller: %1$s (OSCCAL szó az utolsó ROM címen)</string>
+    <string name="cal_not_read_yet">Még nincs beolvasva a chipről</string>
+    <string name="cal_silicon_value">
+Chip értéke: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Adja meg a hexadecimális értéket (pl. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Beolvasás a chipről</string>
+    <string name="cal_btn_write_silicon">💾 Írás a chipbe</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL kalibráció</string>
+    <string name="cal_toast_read_success">✓ OSCCAL beolvasva: %1$s</string>
+    <string name="cal_toast_read_error">❌ Hiba a kalibráció chipről történő beolvasásakor</string>
+    <string name="cal_toast_invalid_hex">Érvénytelen hexadecimális érték</string>
+    <string name="cal_toast_write_success">✓ OSCCAL sikeresen beírva a chipbe</string>
+    <string name="cal_toast_write_error">❌ Nem sikerült a kalibrációt a chipbe írni</string>
+    <string name="icd_dialog_subtitle">Áramköri hibakeresés (ICD) – 24 bites címvektor
+(Érvényes tartomány: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Jelenlegi vektor: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Hibakeresési cím hexadecimálisan (pl. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Vektor olvasása</string>
+    <string name="icd_btn_write_vector">💾 Vektor írása</string>
+    <string name="icd_dialog_title">🛠️ Hibakeresési vektor (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektor beolvasva: %1$s</string>
+    <string name="icd_toast_invalid_address">Érvénytelen 24 bites hexadecimális cím</string>
+    <string name="icd_toast_write_success">✓ ICD vektor beprogramozva: %1$s</string>
+    <string name="icd_toast_write_error">❌ Nem sikerült az ICD vektor programozása</string>
+    <string name="prog_type_all_title">Összes programozása</string>
+    <string name="prog_type_all_desc">ROM, EEPROM és konfiguráció</string>
+    <string name="prog_type_rom_title">ROM programozása</string>
+    <string name="prog_type_rom_desc">Flash memória</string>
+    <string name="prog_type_eeprom_title">EEPROM programozása</string>
+    <string name="prog_type_eeprom_desc">EEPROM adatok</string>
+    <string name="prog_type_config_title">Konfiguráció programozása</string>
+    <string name="prog_type_config_desc">Biztosítékok és konfigurációs bitek</string>
+    <string name="blank_check_err_null_result">❌ Hiba az üresség-ellenőrzés során: null eredmény</string>
+    <string name="blank_check_err_verifying">❌ Hiba az üresség-ellenőrzés ellenőrzésekor: %1$s</string>
+    <string name="blank_check_dual_header">📋 Differenciális üresség-ellenőrzés (kettős ellenőrzés):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% tiszta (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Korábbi adat észlelve a ROM-ban (Nem üres)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% tiszta (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Korábbi adat észlelve az EEPROM-ban (Nem üres)</string>
+    <string name="blank_check_method_label">  ℹ Módszer: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ A mikrokontroller készen áll a programozásra (100%% törölve)</string>
+    <string name="blank_check_erase_required">⚠ A programozás előtt előzetes törlés szükséges</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Helyezze be a mikrokontrollert</string>
+    <string name="dialog_insert_microcontroller_message">Nem észlelhető chip a ZIF foglalatban.
+
+Kérjük, helyezze be a PIC %1$s mikrokontrollert a megfelelő pozícióba, zárja le a kart, majd koppintson újra a [%2$s] gombra.</string>
+    <string name="log_no_chip_in_socket">⚠️ Nincs chip a ZIF foglalatban. Helyezze be a(z) %1$s mikrokontrollert, majd koppintson újra a [%2$s] gombra.</string>
+    <string name="log_verifying_pic_in_socket">🔍 PIC jelenlétének ellenőrzése a ZIF foglalatban...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Chip észlelése a foglalatban...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Nincs PIC észlelve a ZIF foglalatban (ellenőrizze az irányt és a kart)</string>
+    <string name="log_pic_physically_detected">✓ PIC fizikailag észlelve a foglalatban</string>
+    <string name="log_chip_auto_identified">🎯 Automatikusan azonosítva: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Észlelt chip: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Chip jelen van (ID: %1$s). Válassza ki a modellt a kézi listából.</string>
+    <string name="log_connecting_to_programmer">🔌 Csatlakozás a programozóhoz...</string>
+    <string name="log_connect_programmer_first">⚠ Először csatlakoztassa a K150 programozót USB-n keresztül.</string>
+    <string name="log_loading_file">📂 %1$s betöltése: %2$s</string>
+    <string name="log_processing_file">⏳ %1$s fájl feldolgozása...</string>
+    <string name="log_programming_verified_success">✓ A programozás befejeződött és sikeresen ellenőrizve!</string>
+    <string name="log_programming_failed">❌ A mikrokontroller programozási folyamata sikertelen</string>
+    <string name="log_backing_up_osccal">⏱️ A chip kalibrációt igényel. OSCCAL mentése a törlés előtt...</string>
+    <string name="log_osccal_restored">✓ OSCCAL sikeresen visszaállítva a chipbe: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Nem sikerült automatikusan visszaállítani az OSCCAL-t. Használja a Kalibráció menüt.</string>
+    <string name="notification_channel_name">PIC K150 műveletek</string>
+    <string name="notification_channel_description">Programozás befejezési értesítések és hardveres figyelmeztetések</string>
+    <string name="ad_loading_rewarded_video_toast">Jutalmazott videó betöltése... Kérjük, próbálja újra néhány másodperc múlva.</string>
+    <string name="pro_pass_expired">Lejárt</string>
+    <string name="fuse_log_last_config_restored">✓ Utolsó konfiguráció visszaállítva</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Nincs betöltve HEX fájl</string>
+    <string name="fuse_log_hex_no_fuses">⚠ A HEX nem tartalmaz biztosítékokat</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d biztosíték</string>
+    <string name="fuse_log_expected_count">  A chip vár: %1$d</string>
+    <string name="unknown_device_id">Ismeretlen</string>
+    <string name="status_connected">Csatlakoztatva</string>
+    <string name="status_error">Hiba</string>
+    <string name="log_pro_purchase_error">⚠ Pro vásárlás: %1$s</string>
 </resources>

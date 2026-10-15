@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Mga Patakaran sa Privacy</string>
     <string name="aceptar">Tanggapin</string>
     <string name="cancelar">Kanselahin</string>
-    <string name="conectado">Nakakonekta</string>
     <string name="desconectado">Nakadiskonekta</string>
     <string name="grabando_pic">Pinoprogram ang PIC...</string>
     <string name="espere_grabacion_pic">Maghintay lamang. Huwag idiskonekta ang device.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Matagumpay na naisulat ang firmware sa PIC.</string>
     <string name="fallo_grabacion_pic">Nabigo ang Programming</string>
     <string name="proceso_no_completado">Hindi nakumpleto ang proseso. Suriin ang koneksyon.</string>
-    <string name="protocolo_del_programador">Protocol ng Programmer</string>
     <string name="modelo_del_programador">Modelo ng Programmer</string>
     <string name="modelo_programador">Modelo ng Programmer</string>
     <string name="protocolo">Protocol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Patakaran sa Privacy</string>
-    <string name="no_se_detecto_pic_en_socket">Hindi nakita ang PIC sa socket</string>
-    <string name="pic_detectado_en_socket">Nakita ang PIC sa socket</string>
     <string name="error_borrando_memoria">Error sa pagbura ng memory</string>
     <string name="memoria_borrada_exitosamente">Matagumpay na nabura ang memory</string>
     <string name="memoria_leida_exitosamente">Matagumpay na nabasa ang memory</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">I-export ang CONFIG (.bin)</string>
     <string name="exportar_dump_completo">I-export ang Buong Dump (.hex)</string>
     <string name="exportar_dump_completo_bin">I-export ang Buong Dump (.bin)</string>
-    <string name="programar_todo">Iskedyul ang Lahat</string>
-    <string name="programar_solo_rom">Program ROM lamang</string>
-    <string name="programar_solo_eeprom">Programang EEPROM lamang</string>
-    <string name="programar_solo_config">Programa lang ang CONFIG</string>
     <string name="verificar_borrado">I-verify ang Pagtanggal</string>
     <string name="chip_esta_borrado">Ang chip ay nabura (Blanko)</string>
     <string name="chip_no_esta_borrado">HINDI nabubura ang chip</string>
     <string name="verificando_borrado">Bine-verify ang pagtanggal...</string>
     <string name="resultado_verificacion_borrado">Resulta ng Pagpapatunay ng Pagtanggal</string>
     <string name="error_verificando_borrado">Error sa pag-verify ng pagtanggal</string>
-    <string name="chip_seleccionado">Napiling Chip</string>
     <string name="configuracion_de_fusibles">Configuration ng piyus</string>
     <string name="id_personalizado_hex">Custom ID (HEX)</string>
     <string name="hint_id_personalizado">Halimbawa: 1A 2B 3C 4D (4 o 8 byte)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Inirerekomenda ang advertising</string>
     <string name="lectura_completa">Ganap na Pagbasa</string>
     <string name="datos_de_memoria">Matagumpay na nabasa ang memory</string>
-    <string name="sin_chip">walang chip</string>
     <string name="rom_ok_blank">ROM: OK (Blanko)</string>
     <string name="rom_not_blank">ROM: HINDI BLANKO</string>
     <string name="eeprom_ok_blank">EEPROM: OK (Blanko)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Hindi</string>
     <string name="seleccionar_idioma">Pumili ng Wika</string>
     <string name="tutorial_instalacion">Tutorial sa Pag-install</string>
-    <string name="copiar_todo_en">Kopyahin Lahat</string>
     <string name="cerrar">Isara</string>
     <string name="error_no_chip">Error: Walang napiling chip o walang fuse</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX compatible</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Halimbawa</string>
     <string name="explicacion_label">Paliwanag</string>
     <string name="error_export_manager_not_initialized">Hindi nasimulan ang HexExportManager</string>
-    <string name="error_leyendo_info_chip">Error sa pagbabasa ng chip info</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">byte</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Espesyal na pasasalamat kina Mike Wakerly, Adam Schubert, at sa AndroidIDE, Android Code Studio, at mga koponan ng KITSRUS.</string>
     <string name="error_al_cambiar_modo">Error sa pagpapalit ng mode:</string>
     <string name="no_hay_firmware_valido">Walang wastong firmware</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">I-unlock ang mga advanced na teknikal na tool para sa %1$s</string>
+    <string name="pro_feature_hex_editor">Live Hexadecimal Editor (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Diagnostics ng Hardware at Pagsubok sa Boltahe (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD Debugging Vector (24 bits)</string>
+    <string name="pro_feature_osccal">Pagsagip at Manu-manong Pag-edit ng OSCCAL</string>
+    <string name="pro_feature_remove_ads">Alisin ang lahat ng ad mula sa application</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Manood ng Video - 12 Oras na Libreng Pass</string>
+    <string name="pro_pass_activated_toast">⭐ Na-activate ang %1$s Pro pass nang 12 oras!</string>
+    <string name="pro_ads_not_available">Hindi available ang mga ad</string>
+    <string name="pro_btn_buy_permanent">👑 Bumili ng Permanenteng %1$s Pro%2$s</string>
+    <string name="pro_billing_not_available">Hindi available ang Google Play Billing</string>
+    <string name="menu_pro_mode">⭐ Pro Mode</string>
+    <string name="menu_pro_permanent">👑 Permanenteng Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 Hardware Diagnostics</string>
+    <string name="menu_osccal_calibration">⏱️ Kalibrasyon ng OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Circuit Debugging Vector (ICD)</string>
+    <string name="cd_socket_diagram">Diagram ng socket</string>
+    <string name="btn_connect_usb">Ikonekta ang USB Programmer</string>
+    <string name="btn_disconnect_usb">Idiskonekta ang USB Programmer</string>
+    <string name="cd_clear_log">I-clear ang log</string>
+    <string name="cd_tutorial_image">Ilustrasyon ng tutorial</string>
+    <string name="title_activity_tutorial_gputils">Tutorial sa GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Tutorial sa SDCC</string>
+    <string name="diag_dialog_title">🩺 K150 Hardware Diagnostics</string>
+    <string name="diag_section_programmer_status">📋 Katayuan ng Programmer</string>
+    <string name="diag_label_model">Modelo:</string>
+    <string name="diag_label_protocol">Protokol:</string>
+    <string name="diag_label_echo_test">Pagsubok sa Echo:</string>
+    <string name="diag_label_zif_sensor">Sensor ng ZIF:</string>
+    <string name="diag_status_querying">Nagtatanong...</string>
+    <string name="diag_status_pending">Nakabinbin</string>
+    <string name="diag_btn_test_echo">⚡ Subukan ang Echo</string>
+    <string name="diag_btn_full_diagnosis">🔄 Kumpletong Diagnostics</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Subukan ang ZIF Sensors (Ipasok/Alisin)</string>
+    <string name="diag_section_voltage_control">⚡ Pagkontrol sa Boltahe VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ PAUNAWA: Alisin ang microcontroller sa ZIF socket bago paganahin o sukatin ang boltahe gamit ang multimeter.</string>
+    <string name="diag_status_voltages_off">Katayuan: Naka-off ang mga boltahe (0V)</string>
+    <string name="diag_status_vpp_active">Katayuan: ⚡ NAKA-ACTIVATE ang VPP (13V) / VDD (5V)</string>
+    <string name="diag_status_voltages_restarted">Katayuan: ⚡ Na-restart ang mga boltahe (Aktibo)</string>
+    <string name="diag_status_error_activating">Katayuan: ❌ Error sa pag-activate ng mga boltahe</string>
+    <string name="diag_status_error_deactivating">Katayuan: ❌ Error sa pagpatay ng mga boltahe</string>
+    <string name="diag_status_error_restarting">Katayuan: ❌ Error sa pag-restart ng mga boltahe</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">I-off (0V)</string>
+    <string name="diag_btn_restart_voltages">I-restart</string>
+    <string name="diag_programmer_not_connected">Hindi nakakonekta ang programmer</string>
+    <string name="diag_connect_programmer_prompt">⚠ Ikonekta ang K150 programmer upang magamit ang diagnostics</string>
+    <string name="diag_model_not_connected">Modelo: Hindi nakakonekta ang programmer</string>
+    <string name="diag_echo_measuring">Pagsubok sa Echo: Sumusukat...</string>
+    <string name="diag_zif_reading">Sensor ng ZIF: Nagbabasa...</string>
+    <string name="diag_echo_ok">Pagsubok sa Echo: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Pagsubok sa Echo: ❌ Walang tugon</string>
+    <string name="diag_echo_failed">Pagsubok sa Echo: ❌ Nabigo</string>
+    <string name="diag_socket_pic_detected">✓ Na-detect ang PIC sa ZIF socket</string>
+    <string name="diag_socket_empty">ℹ Walang laman ang socket (Walang na-detect na chip)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Hindi nakita ang matatag na kontak sa socket</string>
+    <string name="diag_toast_chip_removed_voltages_active">Inalis ang chip: Na-activate ang boltahe para sa ligtas na pagsukat</string>
+    <string name="diag_toast_voltages_activated_multimeter">Na-activate ang boltahe: sukatin gamit ang multimeter sa VPP at VDD</string>
+    <string name="diag_toast_voltages_off">Napatay ang mga boltahe (0V)</string>
+    <string name="diag_toast_voltages_restarted">Inalis ang chip: Na-restart ang boltahe para sa pagsukat</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ May Microcontroller sa Socket</string>
+    <string name="diag_alert_chip_in_socket_message">Upang maiwasang masira ang PIC sa 13V VPP, mangyaring alisin ang microcontroller sa ZIF socket bago paganahin o sukatin ang boltahe.
+
+Kapag naalis na ang chip, i-tap ang \'Magpatuloy\' upang i-activate ang pagsukat, o \'Kanselahin\' upang manatiling naka-off ang mga boltahe.</string>
+    <string name="diag_btn_continue_chip_removed">Magpatuloy (Inalis ang Chip)</string>
+    <string name="diag_zif_test_title">🧪 Pagsubok sa ZIF Sensors</string>
+    <string name="diag_zif_test_desc">Pagsubok sa hardware sensors ng ZIF socket (Mga Utos ng Kitsrus 18 at 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Hakbang 1: Ipasok ang microcontroller sa socket at i-lock ang lever (Utos 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Hakbang 2: Nakabinbin (Pag-alis gamit ang Utos 19)</string>
+    <string name="diag_zif_step1_ok">✓ Hakbang 1: Insertion Sensor OK (Utos 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Hakbang 2: Ngayon itaas ang lever at alisin ang chip sa socket (Utos 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Hakbang 1: Nag-time out nang walang nakitang chip</string>
+    <string name="diag_zif_step2_ok">✓ Hakbang 2: Extraction Sensor OK (Utos 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Perpektong gumagana ang dalawang pisikal na sensor ng ZIF socket!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Hakbang 2: Nag-time out nang hindi napansing inalis</string>
+    <string name="hex_editor_title">✏️ I-edit ang %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Word)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
+    <string name="hex_editor_info_address_value">Address ng Memory: %1$s
+Kasalukuyang halaga: 0x%2$s (Maximum: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Format ng Word at Pagkakasunod-sunod ng Byte (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Format ng EEPROM Cell (8-bit)</string>
+    <string name="hex_editor_desc_rom">• Nag-iimbak ang mga PIC ng 14/16-bit words sa pagkakasunud-sunod na Little-Endian:
+   - Mababang Byte (LSB): 0x%1$s (offset 2×N)
+   - Mataas na Byte (MSB): 0x%2$s (offset 2×N+1)
+• Paano mag-edit?: Ilagay ang buong lohikal na salita [MSB][LSB] (hal. 2805 = LSB 05, MSB 28).
+• Awtomatikong muling inaayos ng app ang mga byte sa Little-Endian para sa silicon at HEX file.</string>
+    <string name="hex_editor_desc_eeprom">• Binubuo ang mga cell ng EEPROM ng mga indibidwal na 8-bit bytes.
+• Direktang ilagay ang 2-character na hexadecimal byte (saklaw: 00 hanggang FF).</string>
+    <string name="hex_editor_input_label_rom">Ilagay ang bagong halaga (Hex Word [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Ilagay ang bagong halaga (Hex Byte 00-FF):</string>
+    <string name="guardar">I-save</string>
+    <string name="hex_editor_err_empty">Hindi maaaring walang laman ang halaga</string>
+    <string name="hex_editor_err_invalid_hex">Di-wastong format ng hexadecimal</string>
+    <string name="hex_editor_err_exceeds_max">Lumampas ang halaga sa maximum na pinapayagan (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Microcontroller: %1$s (Pamilya ng PIC10F - 2 rehistro ng CAL)</string>
+    <string name="cal_chip_subtitle_standard">Microcontroller: %1$s (OSCCAL word sa huling address ng ROM)</string>
+    <string name="cal_not_read_yet">Hindi pa nababasa mula sa chip</string>
+    <string name="cal_silicon_value">
+Halaga sa Silicon: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Ilagay ang hexadecimal na halaga (hal. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Basahin mula sa Chip</string>
+    <string name="cal_btn_write_silicon">💾 Isulat sa Silicon</string>
+    <string name="cal_dialog_title">⏱️ Kalibrasyon ng OSCCAL</string>
+    <string name="cal_toast_read_success">✓ Nabasa ang OSCCAL: %1$s</string>
+    <string name="cal_toast_read_error">❌ Error sa pagbasa ng kalibrasyon mula sa chip</string>
+    <string name="cal_toast_invalid_hex">Di-wastong hexadecimal na halaga</string>
+    <string name="cal_toast_write_success">✓ Matagumpay na naisulat ang OSCCAL sa chip</string>
+    <string name="cal_toast_write_error">❌ Nabigong isulat ang kalibrasyon sa silicon</string>
+    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) - 24-bit Address Vector
+(Wastong saklaw: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Kasalukuyang Vector: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Debug address sa hex (hal. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Basahin ang Vector</string>
+    <string name="icd_btn_write_vector">💾 Isulat ang Vector</string>
+    <string name="icd_dialog_title">🛠️ Debugging Vector (ICD)</string>
+    <string name="icd_toast_read_success">✓ Nabasa ang vector: %1$s</string>
+    <string name="icd_toast_invalid_address">Di-wastong 24-bit hexadecimal address</string>
+    <string name="icd_toast_write_success">✓ Niprograma ang ICD vector: %1$s</string>
+    <string name="icd_toast_write_error">❌ Nabigong i-program ang ICD vector</string>
+    <string name="prog_type_all_title">I-program ang Lahat</string>
+    <string name="prog_type_all_desc">ROM, EEPROM at Konpigurasyon</string>
+    <string name="prog_type_rom_title">I-program ang ROM</string>
+    <string name="prog_type_rom_desc">Flash Memory</string>
+    <string name="prog_type_eeprom_title">I-program ang EEPROM</string>
+    <string name="prog_type_eeprom_desc">Datos ng EEPROM</string>
+    <string name="prog_type_config_title">I-program ang Konpigurasyon</string>
+    <string name="prog_type_config_desc">Fuses at configuration bits</string>
+    <string name="blank_check_err_null_result">❌ Error sa blank check: null na resulta</string>
+    <string name="blank_check_err_verifying">❌ Error sa pag-verify ng blank check: %1$s</string>
+    <string name="blank_check_dual_header">📋 Differential Blank Check (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% malinis (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ May nakitang naunang datos sa ROM (Hindi blangko)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% malinis (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ May nakitang naunang datos sa EEPROM (Hindi blangko)</string>
+    <string name="blank_check_method_label">  ℹ Pamamaraan: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Handa nang i-program ang microcontroller (100%% Nabura)</string>
+    <string name="blank_check_erase_required">⚠ Kinakailangan muna ang pagbura bago mag-program</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Ipasok ang Microcontroller</string>
+    <string name="dialog_insert_microcontroller_message">Walang chip na na-detect sa ZIF socket.
+
+Mangyaring ipasok ang PIC %1$s sa kaukulang posisyon, i-lock ang lever, at i-tap muli ang [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Walang chip sa ZIF socket. Ipasok ang microcontroller %1$s at i-tap muli ang [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Sinusuri ang presensya ng PIC sa ZIF socket...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Naghahanap ng chip sa socket...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Walang PIC na na-detect sa ZIF socket (tingnan ang oryentasyon at lever)</string>
+    <string name="log_pic_physically_detected">✓ Pisikal na na-detect ang PIC sa socket</string>
+    <string name="log_chip_auto_identified">🎯 Awtomatikong natukoy: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Na-detect ang chip: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Naroroon ang chip (ID: %1$s). Pumili ng modelo mula sa manu-manong listahan.</string>
+    <string name="log_connecting_to_programmer">🔌 Kumokonekta sa programmer...</string>
+    <string name="log_connect_programmer_first">⚠ Ikonekta muna ang K150 programmer sa pamamagitan ng USB.</string>
+    <string name="log_loading_file">📂 Naglo-load ng %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Pinoproseso ang %1$s file...</string>
+    <string name="log_programming_verified_success">✓ Matagumpay na nakumpleto at na-verify ang programming!</string>
+    <string name="log_programming_failed">❌ Nabigo ang proseso ng pag-program ng microcontroller</string>
+    <string name="log_backing_up_osccal">⏱️ Nangangailangan ng kalibrasyon ang chip. Bina-back up ang OSCCAL bago magbura...</string>
+    <string name="log_osccal_restored">✓ Matagumpay na naibalik ang OSCCAL sa silicon: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Hindi maibalik nang awtomatiko ang OSCCAL. Gamitin ang menu ng Kalibrasyon.</string>
+    <string name="notification_channel_name">Mga Operasyon ng PIC K150</string>
+    <string name="notification_channel_description">Mga abiso sa pagkumpleto ng programming at mga babala sa hardware</string>
+    <string name="ad_loading_rewarded_video_toast">Naglo-load ng may reward na video... Pakisubukang muli sa ilang sandali.</string>
+    <string name="pro_pass_expired">Nag-expire na</string>
+    <string name="fuse_log_last_config_restored">✓ Naibalik ang huling konpigurasyon</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Walang na-load na HEX file</string>
+    <string name="fuse_log_hex_no_fuses">⚠ Walang naglalaman ng fuses ang HEX</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d fuses</string>
+    <string name="fuse_log_expected_count">  Inaasahan ng chip: %1$d</string>
+    <string name="unknown_device_id">Hindi kilala</string>
+    <string name="status_connected">Nakakonekta</string>
+    <string name="status_error">Error</string>
+    <string name="log_pro_purchase_error">⚠ Pagbili ng Pro: %1$s</string>
 </resources>

@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">隱私權政策</string>
     <string name="aceptar">接受</string>
     <string name="cancelar">取消</string>
-    <string name="conectado">已連線</string>
     <string name="desconectado">已斷線</string>
     <string name="grabando_pic">正在燒錄 PIC...</string>
     <string name="espere_grabacion_pic">請稍候。請勿拔除裝置。</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">韌體已成功燒錄至 PIC。</string>
     <string name="fallo_grabacion_pic">燒錄失敗</string>
     <string name="proceso_no_completado">無法完成此程序。請檢查連線。</string>
-    <string name="protocolo_del_programador">編程器通訊協定</string>
     <string name="modelo_del_programador">編程器型號</string>
     <string name="modelo_programador">編程器型號</string>
     <string name="protocolo">通訊協定</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">隱私權政策</string>
-    <string name="no_se_detecto_pic_en_socket">在插槽中未偵測到 PIC</string>
-    <string name="pic_detectado_en_socket">在插槽中偵測到 PIC</string>
     <string name="error_borrando_memoria">清除記憶體時發生錯誤</string>
     <string name="memoria_borrada_exitosamente">記憶體已成功清除</string>
     <string name="memoria_leida_exitosamente">記憶體已成功讀取</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">匯出配置（.bin）</string>
     <string name="exportar_dump_completo">匯出完整轉儲 (.hex)</string>
     <string name="exportar_dump_completo_bin">匯出完整轉儲 (.bin)</string>
-    <string name="programar_todo">安排一切</string>
-    <string name="programar_solo_rom">僅程式 ROM</string>
-    <string name="programar_solo_eeprom">僅對 EEPROM 進行編程</string>
-    <string name="programar_solo_config">僅程式配置</string>
     <string name="verificar_borrado">驗證刪除</string>
     <string name="chip_esta_borrado">晶片被擦除（空白）</string>
     <string name="chip_no_esta_borrado">晶片未被擦除</string>
     <string name="verificando_borrado">正在驗證刪除...</string>
     <string name="resultado_verificacion_borrado">刪除驗證結果</string>
     <string name="error_verificando_borrado">驗證刪除時發生錯誤</string>
-    <string name="chip_seleccionado">選定晶片</string>
     <string name="configuracion_de_fusibles">保險絲配置</string>
     <string name="id_personalizado_hex">自訂 ID（十六進位）</string>
     <string name="hint_id_personalizado">範例：1A 2B 3C 4D（4 或 8 位元組）</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">推薦廣告</string>
     <string name="lectura_completa">完整閱讀</string>
     <string name="datos_de_memoria">記憶體已成功讀取</string>
-    <string name="sin_chip">無晶片</string>
     <string name="rom_ok_blank">ROM：正常（空白）</string>
     <string name="rom_not_blank">ROM：非空白</string>
     <string name="eeprom_ok_blank">EEPROM：正常（空白）</string>
@@ -169,13 +159,11 @@
     <string name="no_label">否</string>
     <string name="seleccionar_idioma">選擇語言</string>
     <string name="tutorial_instalacion">安裝教學</string>
-    <string name="copiar_todo_en">全部複製</string>
     <string name="cerrar">關閉</string>
     <string name="error_no_chip">錯誤：未選擇晶片或無熔絲</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">十六進位相容</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">晶片:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">範例</string>
     <string name="explicacion_label">說明</string>
     <string name="error_export_manager_not_initialized">HexExportManager 未初始化</string>
-    <string name="error_leyendo_info_chip">讀取晶片資訊出錯</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM：</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">位元組</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">特別感謝 Mike Wakerly、Adam Schubert 以及 AndroidIDE、Android Code Studio 和 KITSRUS 團隊。</string>
     <string name="error_al_cambiar_modo">更改模式時發生錯誤：</string>
     <string name="no_hay_firmware_valido">沒有有效的韌體</string>
+    <string name="pro_access_title">⭐ %1$s 專業版</string>
+    <string name="pro_access_subtitle">解除鎖定 %1$s 的進階技術工具</string>
+    <string name="pro_feature_hex_editor">即時十六進位編輯器 (即時修補 Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">硬體診斷與電壓測試 (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD 偵錯向量 (24 位元)</string>
+    <string name="pro_feature_osccal">OSCCAL 救援與手動編輯</string>
+    <string name="pro_feature_remove_ads">移除應用程式中的所有廣告</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 觀看影片 - 12小時免費通行證</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s 專業版通行證已啟用 12 小時！</string>
+    <string name="pro_ads_not_available">廣告目前無法使用</string>
+    <string name="pro_btn_buy_permanent">👑 購買永久 %1$s 專業版%2$s</string>
+    <string name="pro_billing_not_available">Google Play 結帳服務無法使用</string>
+    <string name="menu_pro_mode">⭐ 專業模式</string>
+    <string name="menu_pro_permanent">👑 永久專業版</string>
+    <string name="menu_pro_timer">⭐ 專業版 %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 硬體診斷</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL 校準</string>
+    <string name="menu_debug_vector_icd">🛠️ 線上偵錯向量 (ICD)</string>
+    <string name="cd_socket_diagram">插座示意圖</string>
+    <string name="btn_connect_usb">連線 USB 燒錄器</string>
+    <string name="btn_disconnect_usb">中斷連線 USB 燒錄器</string>
+    <string name="cd_clear_log">清除記錄</string>
+    <string name="cd_tutorial_image">教學示意圖</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS 教學</string>
+    <string name="title_activity_tutorial_sdcc">SDCC 教學</string>
+    <string name="diag_dialog_title">🩺 K150 硬體診斷</string>
+    <string name="diag_section_programmer_status">📋 燒錄器狀態</string>
+    <string name="diag_label_model">型號：</string>
+    <string name="diag_label_protocol">通訊協定：</string>
+    <string name="diag_label_echo_test">回顯測試：</string>
+    <string name="diag_label_zif_sensor">ZIF 感測器：</string>
+    <string name="diag_status_querying">查詢中...</string>
+    <string name="diag_status_pending">等待中</string>
+    <string name="diag_btn_test_echo">⚡ 測試回顯</string>
+    <string name="diag_btn_full_diagnosis">🔄 完整診斷</string>
+    <string name="diag_btn_test_zif_sensors">🧪 測試 ZIF 感測器 (插入/拔除)</string>
+    <string name="diag_section_voltage_control">⚡ 電壓控制 VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ 注意：在使用三用電表啟用或測量電壓之前，請從 ZIF 插座中取出微控制器。</string>
+    <string name="diag_status_voltages_off">狀態：電壓已關閉 (0V)</string>
+    <string name="diag_status_vpp_active">狀態：⚡ VPP (13V) / VDD (5V) 已啟用</string>
+    <string name="diag_status_voltages_restarted">狀態：⚡ 電壓已重啟 (活動中)</string>
+    <string name="diag_status_error_activating">狀態：❌ 啟用電壓失敗</string>
+    <string name="diag_status_error_deactivating">狀態：❌ 關閉電壓失敗</string>
+    <string name="diag_status_error_restarting">狀態：❌ 重啟電壓失敗</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">關閉電源 (0V)</string>
+    <string name="diag_btn_restart_voltages">重啟</string>
+    <string name="diag_programmer_not_connected">燒錄器未連線</string>
+    <string name="diag_connect_programmer_prompt">⚠ 請連線 K150 燒錄器以使用診斷功能</string>
+    <string name="diag_model_not_connected">型號：燒錄器未連線</string>
+    <string name="diag_echo_measuring">回顯測試：測量中...</string>
+    <string name="diag_zif_reading">ZIF 感測器：讀取中...</string>
+    <string name="diag_echo_ok">回顯測試：✓ 正常 (%1$d 毫秒)</string>
+    <string name="diag_echo_no_response">回顯測試：❌ 無回應</string>
+    <string name="diag_echo_failed">回顯測試：❌ 失敗</string>
+    <string name="diag_socket_pic_detected">✓ 在 ZIF 插座中偵測到 PIC</string>
+    <string name="diag_socket_empty">ℹ 插座為空 (未偵測到晶片)</string>
+    <string name="diag_socket_no_firm_contact">⚠ 插座中未偵測到確實接觸</string>
+    <string name="diag_toast_chip_removed_voltages_active">晶片已取出：已啟用電壓以進行安全測量</string>
+    <string name="diag_toast_voltages_activated_multimeter">電壓已啟用：請使用三用電表測量 VPP 和 VDD</string>
+    <string name="diag_toast_voltages_off">電壓已關閉 (0V)</string>
+    <string name="diag_toast_voltages_restarted">晶片已取出：電壓已重啟以進行測量</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ 插座中有微控制器</string>
+    <string name="diag_alert_chip_in_socket_message">為避免 13V VPP 損壞 PIC，請在啟用或測量電壓前從 ZIF 插座中取出微控制器。
+
+取出晶片後，輕觸「繼續」開始測量，或輕觸「取消」保持電壓關閉。</string>
+    <string name="diag_btn_continue_chip_removed">繼續 (晶片已取出)</string>
+    <string name="diag_zif_test_title">🧪 ZIF 感測器測試</string>
+    <string name="diag_zif_test_desc">ZIF 插座硬體感測器測試 (Kitsrus 指令 18 與 19)：
+</string>
+    <string name="diag_zif_step1_waiting">⏳ 步驟 1：將微控制器插入插座並鎖緊拉桿 (指令 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ 步驟 2：等待中 (使用指令 19 拔除)</string>
+    <string name="diag_zif_step1_ok">✓ 步驟 1：插入感測器正常 (指令 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ 步驟 2：現在抬起拉桿並從插座中取出晶片 (指令 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ 步驟 1：逾時，未偵測到晶片</string>
+    <string name="diag_zif_step2_ok">✓ 步驟 2：拔除感測器正常 (指令 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 ZIF 插座的兩個實體感測器運作完全正常！
+</string>
+    <string name="diag_zif_step2_timeout">❌ 步驟 2：逾時，未偵測到拔除操作</string>
+    <string name="hex_editor_title">✏️ 編輯 %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (字組 Word)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (位元組 Byte)</string>
+    <string name="hex_editor_info_address_value">記憶體位址：%1$s
+目前值：0x%2$s (最大值：0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ 字組格式與位元組順序 (小端序 Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM 單元格式 (8 位元)</string>
+    <string name="hex_editor_desc_rom">• PIC 按小端序 (Little-Endian) 儲存 14/16 位元字組：
+   - 低位元組 (LSB)：0x%1$s (偏移量 2×N)
+   - 高位元組 (MSB)：0x%2$s (偏移量 2×N+1)
+• 如何編輯？：輸入完整的邏輯字組 [MSB][LSB] (例如 2805 = LSB 05, MSB 28)。
+• 應用程式會自動將位元組重新排列為小端序以寫入晶片與 HEX 檔案。</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM 單元由獨立的 8 位元位元組組成。
+• 直接輸入 2 個字元的十六進位位元組 (範圍：00 至 FF)。</string>
+    <string name="hex_editor_input_label_rom">輸入新值 (十六進位字組 [MSB][LSB])：</string>
+    <string name="hex_editor_input_label_eeprom">輸入新值 (十六進位位元組 00-FF)：</string>
+    <string name="guardar">儲存</string>
+    <string name="hex_editor_err_empty">值不可為空</string>
+    <string name="hex_editor_err_invalid_hex">無效的十六進位格式</string>
+    <string name="hex_editor_err_exceeds_max">值超出允許的最大值 (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">微控制器：%1$s (PIC10F 系列 - 2 個 CAL 暫存器)</string>
+    <string name="cal_chip_subtitle_standard">微控制器：%1$s (OSCCAL 字組位於最後一個 ROM 位址)</string>
+    <string name="cal_not_read_yet">尚未從晶片讀取</string>
+    <string name="cal_silicon_value">
+晶片內部值：%1$s</string>
+    <string name="cal_enter_hex_prompt">
+輸入十六進位值 (例如 %1$s)：</string>
+    <string name="cal_btn_read_from_chip">📥 從晶片讀取</string>
+    <string name="cal_btn_write_silicon">💾 寫入晶片</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL 校準</string>
+    <string name="cal_toast_read_success">✓ 讀取 OSCCAL：%1$s</string>
+    <string name="cal_toast_read_error">❌ 從晶片讀取校準值失敗</string>
+    <string name="cal_toast_invalid_hex">無效的十六進位值</string>
+    <string name="cal_toast_write_success">✓ OSCCAL 已成功寫入晶片</string>
+    <string name="cal_toast_write_error">❌ 寫入校準值至晶片失敗</string>
+    <string name="icd_dialog_subtitle">線上偵錯 (ICD) - 24 位元位址向量
+(有效範圍：0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+目前向量：%1$s</string>
+    <string name="icd_enter_address_prompt">
+偵錯十六進位位址 (例如 000020)：</string>
+    <string name="icd_btn_read_vector">📥 讀取向量</string>
+    <string name="icd_btn_write_vector">💾 寫入向量</string>
+    <string name="icd_dialog_title">🛠️ 偵錯向量 (ICD)</string>
+    <string name="icd_toast_read_success">✓ 讀取向量：%1$s</string>
+    <string name="icd_toast_invalid_address">無效的 24 位元十六進位位址</string>
+    <string name="icd_toast_write_success">✓ 已燒錄 ICD 向量：%1$s</string>
+    <string name="icd_toast_write_error">❌ 燒錄 ICD 向量失敗</string>
+    <string name="prog_type_all_title">全部燒錄</string>
+    <string name="prog_type_all_desc">ROM、EEPROM 與組態</string>
+    <string name="prog_type_rom_title">燒錄 ROM</string>
+    <string name="prog_type_rom_desc">Flash 快閃記憶體</string>
+    <string name="prog_type_eeprom_title">燒錄 EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM 資料</string>
+    <string name="prog_type_config_title">燒錄組態</string>
+    <string name="prog_type_config_desc">保險絲與組態位元</string>
+    <string name="blank_check_err_null_result">❌ 空白檢查錯誤：結果為空</string>
+    <string name="blank_check_err_verifying">❌ 驗證空白檢查出錯：%1$s</string>
+    <string name="blank_check_dual_header">📋 差分空白檢查測試 (Dual Blank Check)：</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% 空白乾淨 (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ 偵測到 ROM 含有舊資料 (非空白)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% 空白乾淨 (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ 偵測到 EEPROM 含有舊資料 (非空白)</string>
+    <string name="blank_check_method_label">  ℹ 方法：%1$s</string>
+    <string name="blank_check_ready_to_program">✓ 微控制器已準備好燒錄 (100%% 已清除)</string>
+    <string name="blank_check_erase_required">⚠ 燒錄前必須先執行清除</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ 插入微控制器</string>
+    <string name="dialog_insert_microcontroller_message">ZIF 插座中未偵測到晶片。
+
+請將 PIC %1$s 插入相應位置，鎖緊拉桿，然後再次輕觸 [%2$s]。</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF 插座中沒有晶片。請插入微控制器 %1$s 並再次輕觸 [%2$s]。</string>
+    <string name="log_verifying_pic_in_socket">🔍 正在驗證 ZIF 插座中是否存在 PIC...</string>
+    <string name="log_detecting_chip_in_socket">🔍 正在偵測插座中的晶片...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF 插座中未偵測到 PIC (請檢查方向與拉桿)</string>
+    <string name="log_pic_physically_detected">✓ 已實體偵測到插座中的 PIC</string>
+    <string name="log_chip_auto_identified">🎯 自動識別：%1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">偵測到晶片：%1$s</string>
+    <string name="log_chip_present_select_manually">ℹ 晶片存在 (ID: %1$s)。請從手動清單中選擇型號。</string>
+    <string name="log_connecting_to_programmer">🔌 正在連線燒錄器...</string>
+    <string name="log_connect_programmer_first">⚠ 請先透過 USB 連線 K150 燒錄器。</string>
+    <string name="log_loading_file">📂 正在載入 %1$s：%2$s</string>
+    <string name="log_processing_file">⏳ 正在處理 %1$s 檔案...</string>
+    <string name="log_programming_verified_success">✓ 燒錄完成並驗證成功！</string>
+    <string name="log_programming_failed">❌ 微控制器燒錄過程失敗</string>
+    <string name="log_backing_up_osccal">⏱️ 晶片需要校準。正在清除前備份 OSCCAL...</string>
+    <string name="log_osccal_restored">✓ OSCCAL 已成功還原至晶片：%1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ 無法自動還原 OSCCAL。請使用校準選單。</string>
+    <string name="notification_channel_name">PIC K150 操作</string>
+    <string name="notification_channel_description">燒錄完成通知與硬體警告</string>
+    <string name="ad_loading_rewarded_video_toast">正在載入獎勵影片... 請數秒後重試。</string>
+    <string name="pro_pass_expired">已過期</string>
+    <string name="fuse_log_last_config_restored">✓ 已還原上次組態</string>
+    <string name="fuse_log_no_hex_loaded">⚠ 未載入 HEX 檔案</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX 檔案不包含保險絲設定</string>
+    <string name="fuse_log_hex_count">  HEX：%1$d 個保險絲</string>
+    <string name="fuse_log_expected_count">  晶片預期：%1$d</string>
+    <string name="unknown_device_id">未知</string>
+    <string name="status_connected">已連線</string>
+    <string name="status_error">錯誤</string>
+    <string name="log_pro_purchase_error">⚠ 購買專業版：%1$s</string>
 </resources>

@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Privaatsuspoliitika</string>
     <string name="aceptar">Nõustu</string>
     <string name="cancelar">Tühista</string>
-    <string name="conectado">Ühendatud</string>
     <string name="desconectado">Ühendus katkestatud</string>
     <string name="grabando_pic">PIC-i kirjutamine...</string>
     <string name="espere_grabacion_pic">Palun oodake. Ärge katkestage seadet.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware kirjutati edukalt PIC-sse.</string>
     <string name="fallo_grabacion_pic">Kirjutamise tõrge</string>
     <string name="proceso_no_completado">Protsessi ei saanud lõpetada. Kontrollige ühendust.</string>
-    <string name="protocolo_del_programador">Programmeerija protokoll</string>
     <string name="modelo_del_programador">Programmeerija mudel</string>
     <string name="modelo_programador">Programmeerija mudel</string>
     <string name="protocolo">Protokoll</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privaatsuspoliitika</string>
-    <string name="no_se_detecto_pic_en_socket">PIC-i soklisse ei avastatud</string>
-    <string name="pic_detectado_en_socket">PIC avastati soklisse</string>
     <string name="error_borrando_memoria">Mälu kustutamise viga</string>
     <string name="memoria_borrada_exitosamente">Mälu kustutati edukalt</string>
     <string name="memoria_leida_exitosamente">Mälu loeti edukalt</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Ekspordi CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Ekspordi täielik tühjendus (.hex)</string>
     <string name="exportar_dump_completo_bin">Ekspordi täielik tühjendus (.bin)</string>
-    <string name="programar_todo">Ajasta kõik</string>
-    <string name="programar_solo_rom">Ainult programmi ROM</string>
-    <string name="programar_solo_eeprom">Programmeerige ainult EEPROM</string>
-    <string name="programar_solo_config">Programm ainult CONFIG</string>
     <string name="verificar_borrado">Kinnitage kustutamine</string>
     <string name="chip_esta_borrado">Kiip on kustutatud (tühi)</string>
     <string name="chip_no_esta_borrado">Kiipi EI kustutata</string>
     <string name="verificando_borrado">Kustutamise kinnitamine...</string>
     <string name="resultado_verificacion_borrado">Kustutamise kontrollimise tulemus</string>
     <string name="error_verificando_borrado">Viga kustutamise kinnitamisel</string>
-    <string name="chip_seleccionado">Valitud kiip</string>
     <string name="configuracion_de_fusibles">Kaitsme konfiguratsioon</string>
     <string name="id_personalizado_hex">Kohandatud ID (HEX)</string>
     <string name="hint_id_personalizado">Näide: 1A 2B 3C 4D (4 või 8 baiti)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Soovitatav reklaam</string>
     <string name="lectura_completa">Täielik lugemine</string>
     <string name="datos_de_memoria">Mälu loeti edukalt</string>
-    <string name="sin_chip">ilma kiibita</string>
     <string name="rom_ok_blank">ROM: OK (tühi)</string>
     <string name="rom_not_blank">ROM: EI OLE TÜHI</string>
     <string name="eeprom_ok_blank">EEPROM: OK (tühi)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Ei</string>
     <string name="seleccionar_idioma">Vali keel</string>
     <string name="tutorial_instalacion">Paigaldusjuhend</string>
-    <string name="copiar_todo_en">Kopeeri kõik</string>
     <string name="cerrar">Sulge</string>
     <string name="error_no_chip">Viga: Kiipi pole valitud või kaitselüliteid pole</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX-ühilduv</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Kiip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Näide</string>
     <string name="explicacion_label">Selgitus</string>
     <string name="error_export_manager_not_initialized">HexExportManager pole lähtestatud</string>
-    <string name="error_leyendo_info_chip">Viga kiibi teabe lugemisel</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">baiti</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Eriline tänu Mike Wakerlyle, Adam Schubertile ning AndroidIDE, Android Code Studio ja KITSRUS meeskondadele.</string>
     <string name="error_al_cambiar_modo">Viga režiimi vahetamisel:</string>
     <string name="no_hay_firmware_valido">Puudub kehtiv püsivara</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Avage täiustatud tehnilised tööriistad rakendusele %1$s</string>
+    <string name="pro_feature_hex_editor">Reaalajas heksadetsimaalredaktor (Otsene mälu paikamine)</string>
+    <string name="pro_feature_hardware_diagnostics">Riistvara diagnostika ja pingetest (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD silumisvektor (24 bitti)</string>
+    <string name="pro_feature_osccal">OSCCAL-i päästmine ja käsitsi redigeerimine</string>
+    <string name="pro_feature_remove_ads">Eemalda rakendusest kõik reklaamid</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Vaata Videot – 12-Tunnine Tasuta Pääse</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro pääse aktiveeritud 12 tunniks!</string>
+    <string name="pro_ads_not_available">Reklaamid pole saadaval</string>
+    <string name="pro_btn_buy_permanent">👑 Osta %1$s Pro Püsivalt%2$s</string>
+    <string name="pro_billing_not_available">Google Play arveldamine pole saadaval</string>
+    <string name="menu_pro_mode">⭐ Pro-režiim</string>
+    <string name="menu_pro_permanent">👑 Püsiv Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 Riistvara Diagnostika</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL Kalibreerimine</string>
+    <string name="menu_debug_vector_icd">🛠️ Skeemisisese Silumise Vektor (ICD)</string>
+    <string name="cd_socket_diagram">Sokli skeem</string>
+    <string name="btn_connect_usb">Ühenda USB-programmeerija</string>
+    <string name="btn_disconnect_usb">Katkesta USB-programmeerija ühendus</string>
+    <string name="cd_clear_log">Tühjenda logi</string>
+    <string name="cd_tutorial_image">Õpetuse illustratsioon</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS-i Õpetus</string>
+    <string name="title_activity_tutorial_sdcc">SDCC Õpetus</string>
+    <string name="diag_dialog_title">🩺 K150 Riistvara Diagnostika</string>
+    <string name="diag_section_programmer_status">📋 Programmeerija Olek</string>
+    <string name="diag_label_model">Mudel:</string>
+    <string name="diag_label_protocol">Protokoll:</string>
+    <string name="diag_label_echo_test">Kajakatse:</string>
+    <string name="diag_label_zif_sensor">ZIF-andur:</string>
+    <string name="diag_status_querying">Pärimine...</string>
+    <string name="diag_status_pending">Ootel</string>
+    <string name="diag_btn_test_echo">⚡ Testi Kaja</string>
+    <string name="diag_btn_full_diagnosis">🔄 Täielik Diagnostika</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Testi ZIF-andureid (Sisesta/Eemalda)</string>
+    <string name="diag_section_voltage_control">⚡ Pingete Juhtimine VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ ETTEVAATUST: Enne pingete lubamist või multimeetriga mõõtmist eemaldage mikrokontroller ZIF-soklist.</string>
+    <string name="diag_status_voltages_off">Olek: Pinged välja lülitatud (0V)</string>
+    <string name="diag_status_vpp_active">Olek: ⚡ VPP (13V) / VDD (5V) AKTIVEERITUD</string>
+    <string name="diag_status_voltages_restarted">Olek: ⚡ Pinged taaskäivitatud (Aktiivne)</string>
+    <string name="diag_status_error_activating">Olek: ❌ Viga pingete aktiveerimisel</string>
+    <string name="diag_status_error_deactivating">Olek: ❌ Viga pingete väljalülitamisel</string>
+    <string name="diag_status_error_restarting">Olek: ❌ Viga pingete taaskäivitamisel</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Lülita välja (0V)</string>
+    <string name="diag_btn_restart_voltages">Taaskäivita</string>
+    <string name="diag_programmer_not_connected">Programmeerija pole ühendatud</string>
+    <string name="diag_connect_programmer_prompt">⚠ Diagnostika kasutamiseks ühendage K150 programmeerija</string>
+    <string name="diag_model_not_connected">Mudel: Programmeerija pole ühendatud</string>
+    <string name="diag_echo_measuring">Kajakatse: Mõõtmine...</string>
+    <string name="diag_zif_reading">ZIF-andur: Lugemine...</string>
+    <string name="diag_echo_ok">Kajakatse: ✓ Korras (%1$d ms)</string>
+    <string name="diag_echo_no_response">Kajakatse: ❌ Vastus puudub</string>
+    <string name="diag_echo_failed">Kajakatse: ❌ Ebaõnnestus</string>
+    <string name="diag_socket_pic_detected">✓ PIC leitud ZIF-soklis</string>
+    <string name="diag_socket_empty">ℹ Tühi sokkel (Kiipi ei leitud)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Soklis ei tuvastatud kindlat kontakti</string>
+    <string name="diag_toast_chip_removed_voltages_active">Kiip eemaldatud: Pinged aktiveeritud ohutuks mõõtmiseks</string>
+    <string name="diag_toast_voltages_activated_multimeter">Pinged aktiveeritud: mõõtke multimeetriga VPP ja VDD pealt</string>
+    <string name="diag_toast_voltages_off">Pinged välja lülitatud (0V)</string>
+    <string name="diag_toast_voltages_restarted">Kiip eemaldatud: Pinged taaskäivitatud mõõtmiseks</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroller Soklis</string>
+    <string name="diag_alert_chip_in_socket_message">PIC-i kahjustamise vältimiseks 13V VPP pingega eemaldage mikrokontroller ZIF-soklist enne pingete lubamist või mõõtmist.
+
+Kui kiip on eemaldatud, puudutage mõõtmise aktiveerimiseks \'Jätka\' või pingete väljalülitatuna hoidmiseks \'Tühista\'.</string>
+    <string name="diag_btn_continue_chip_removed">Jätka (Kiip eemaldatud)</string>
+    <string name="diag_zif_test_title">🧪 ZIF-andurite Test</string>
+    <string name="diag_zif_test_desc">ZIF-sokli riistvaraandurite test (Kitsruse käsud 18 ja 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ 1. samm: Sisestage mikrokontroller soklisse ja lukustage hoob (Käsk 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ 2. samm: Ootel (Eemaldamine käsuga 19)</string>
+    <string name="diag_zif_step1_ok">✓ 1. samm: Sisestamisandur korras (Käsk 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ 2. samm: Tõstke nüüd hoob üles ja eemaldage kiip soklist (Käsk 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ 1. samm: Ajalõpp ilma kiipi tuvastamata</string>
+    <string name="diag_zif_step2_ok">✓ 2. samm: Eemaldamisandur korras (Käsk 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Mõlemad ZIF-sokli füüsilised andurid töötavad suurepäraselt!
+</string>
+    <string name="diag_zif_step2_timeout">❌ 2. samm: Ajalõpp ilma eemaldamist tuvastamata</string>
+    <string name="hex_editor_title">✏️ Muuda %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Sõna)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Bait)</string>
+    <string name="hex_editor_info_address_value">Mälu aadress: %1$s
+Praegune väärtus: 0x%2$s (Maksimaalne: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Sõnavorming ja Baitide Järjekord (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-i Elemendi Vorming (8-bitine)</string>
+    <string name="hex_editor_desc_rom">• PIC-id salvestavad 14/16-bitiseid sõnu Little-Endian järjekorras:
+   - Madal bait (LSB): 0x%1$s (nihe 2×N)
+   - Kõrge bait (MSB): 0x%2$s (nihe 2×N+1)
+• Kuidas muuta?: Sisestage täielik loogiline sõna [MSB][LSB] (nt 2805 = LSB 05, MSB 28).
+• Rakendus järjestab baidid kiibi ja HEX-faili jaoks automaatselt Little-Endian kujule.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM-i elemendid koosnevad eraldiseisvatest 8-bitistest baitidest.
+• Sisestage otse 2-kohaline heksadetsimaalbait (vahemik: 00 kuni FF).</string>
+    <string name="hex_editor_input_label_rom">Sisestage uus väärtus (Heks-sõna [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Sisestage uus väärtus (Heks-bait 00-FF):</string>
+    <string name="guardar">Salvesta</string>
+    <string name="hex_editor_err_empty">Väärtus ei tohi olla tühi</string>
+    <string name="hex_editor_err_invalid_hex">Kehtetu heksadetsimaalvorming</string>
+    <string name="hex_editor_err_exceeds_max">Väärtus ületab maksimaalselt lubatu (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Mikrokontroller: %1$s (PIC10F seeria – 2 CAL-registrit)</string>
+    <string name="cal_chip_subtitle_standard">Mikrokontroller: %1$s (OSCCAL sõna viimasel ROM-i aadressil)</string>
+    <string name="cal_not_read_yet">Pole veel kiibilt loetud</string>
+    <string name="cal_silicon_value">
+Väärtus kiibil: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Sisestage heksadetsimaalväärtus (nt %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Loe Kiibilt</string>
+    <string name="cal_btn_write_silicon">💾 Kirjuta Kiibile</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL Kalibreerimine</string>
+    <string name="cal_toast_read_success">✓ OSCCAL loetud: %1$s</string>
+    <string name="cal_toast_read_error">❌ Viga kalibreerimise lugemisel kiibilt</string>
+    <string name="cal_toast_invalid_hex">Kehtetu heksadetsimaalväärtus</string>
+    <string name="cal_toast_write_success">✓ OSCCAL edukalt kiibile kirjutatud</string>
+    <string name="cal_toast_write_error">❌ Kalibreerimise kirjutamine kiibile ebaõnnestus</string>
+    <string name="icd_dialog_subtitle">Skeemisisene silumine (ICD) – 24-bitine aadressivektor
+(Kehtiv vahemik: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Praegune vektor: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Silumise aadress heks-vormingus (nt 000020):</string>
+    <string name="icd_btn_read_vector">📥 Loe Vektor</string>
+    <string name="icd_btn_write_vector">💾 Kirjuta Vektor</string>
+    <string name="icd_dialog_title">🛠️ Silumisvektor (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vektor loetud: %1$s</string>
+    <string name="icd_toast_invalid_address">Kehtetu 24-bitine heksadetsimaalaadress</string>
+    <string name="icd_toast_write_success">✓ ICD vektor programmeeritud: %1$s</string>
+    <string name="icd_toast_write_error">❌ ICD vektori programmeerimine ebaõnnestus</string>
+    <string name="prog_type_all_title">Programmeeri Kõik</string>
+    <string name="prog_type_all_desc">ROM, EEPROM ja Konfiguratsioon</string>
+    <string name="prog_type_rom_title">Programmeeri ROM</string>
+    <string name="prog_type_rom_desc">Välkmälu</string>
+    <string name="prog_type_eeprom_title">Programmeeri EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM-i andmed</string>
+    <string name="prog_type_config_title">Programmeeri Konfiguratsioon</string>
+    <string name="prog_type_config_desc">Kaitsmed ja konfiguratsioonibitid</string>
+    <string name="blank_check_err_null_result">❌ Viga tühjuse kontrollimisel: tühi tulemus</string>
+    <string name="blank_check_err_verifying">❌ Viga tühjuse kontrolli verifitseerimisel: %1$s</string>
+    <string name="blank_check_dual_header">📋 Diferentsiaalne tühjuse kontroll (Topeltkontroll):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% puhas (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM-is tuvastati varasemad andmed (Pole tühi)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% puhas (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM-is tuvastati varasemad andmed (Pole tühi)</string>
+    <string name="blank_check_method_label">  ℹ Meetod: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Mikrokontroller on programmeerimiseks valmis (100%% Kustutatud)</string>
+    <string name="blank_check_erase_required">⚠ Enne programmeerimist on vajalik eelnev kustutamine</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Sisestage Mikrokontroller</string>
+    <string name="dialog_insert_microcontroller_message">ZIF-soklis ei tuvastatud kiipi.
+
+Palun sisestage PIC %1$s vastavasse asendisse, lukustage hoob ja puudutage uuesti [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF-soklis pole kiipi. Sisestage mikrokontroller %1$s ja puudutage uuesti [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 PIC-i olemasolu kontrollimine ZIF-soklis...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Kiibi tuvastamine soklis...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF-soklis ei tuvastatud PIC-i (kontrollige suunda ja hooba)</string>
+    <string name="log_pic_physically_detected">✓ PIC füüsiliselt soklis tuvastatud</string>
+    <string name="log_chip_auto_identified">🎯 Automaatselt tuvastatud: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Kiip tuvastatud: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Kiip on olemas (ID: %1$s). Valige mudel käsitsi loendist.</string>
+    <string name="log_connecting_to_programmer">🔌 Ühenduse loomine programmeerijaga...</string>
+    <string name="log_connect_programmer_first">⚠ Esmalt ühendage K150 programmeerija USB kaudu.</string>
+    <string name="log_loading_file">📂 Laadimine %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Faili %1$s töötlemine...</string>
+    <string name="log_programming_verified_success">✓ Programmeerimine lõpetatud ja edukalt kontrollitud!</string>
+    <string name="log_programming_failed">❌ Mikrokontrolleri programmeerimise protsess ebaõnnestus</string>
+    <string name="log_backing_up_osccal">⏱️ Kiip vajab kalibreerimist. OSCCAL-i varundamine enne kustutamist...</string>
+    <string name="log_osccal_restored">✓ OSCCAL edukalt kiibile taastatud: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCAL-i ei õnnestunud automaatselt taastada. Kasutage kalibreerimismenüüd.</string>
+    <string name="notification_channel_name">PIC K150 Toimingud</string>
+    <string name="notification_channel_description">Programmeerimise lõpetamise teavitused ja riistvarahoiatused</string>
+    <string name="ad_loading_rewarded_video_toast">Preemiavideo laadimine... Palun proovige mõne sekundi pärast uuesti.</string>
+    <string name="pro_pass_expired">Aegunud</string>
+    <string name="fuse_log_last_config_restored">✓ Viimane konfiguratsioon taastatud</string>
+    <string name="fuse_log_no_hex_loaded">⚠ HEX-faili pole laaditud</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX ei sisalda kaitsmeid (fuses)</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d kaitset</string>
+    <string name="fuse_log_expected_count">  Kiip eeldab: %1$d</string>
+    <string name="unknown_device_id">Tundmatu</string>
+    <string name="status_connected">Ühendatud</string>
+    <string name="status_error">Viga</string>
+    <string name="log_pro_purchase_error">⚠ Pro ost: %1$s</string>
 </resources>

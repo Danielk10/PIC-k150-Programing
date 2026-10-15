@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">गोपनीयता पालिसी</string>
     <string name="aceptar">स्वीकार करें</string>
     <string name="cancelar">रद्द करें</string>
-    <string name="conectado">कनेक्टेड</string>
     <string name="desconectado">डिस्कनेक्टेड</string>
     <string name="grabando_pic">PIC राइट किया जा रहा है...</string>
     <string name="espere_grabacion_pic">कृपया प्रतीक्षा करें। डिवाइस को डिस्कनेक्ट न करें।</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">फर्मवेयर को PIC पर सफलतापूर्वक राइट कर दिया गया है।</string>
     <string name="fallo_grabacion_pic">राइटिंग विफल</string>
     <string name="proceso_no_completado">प्रक्रिया पूरी नहीं हो सकी। कनेक्शन जांचें।</string>
-    <string name="protocolo_del_programador">प्रोग्रामर प्रोटोकॉल</string>
     <string name="modelo_del_programador">प्रोग्रामर मॉडल</string>
     <string name="modelo_programador">प्रोग्रामर मॉडल</string>
     <string name="protocolo">प्रोटोकॉल</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">गोपनीयता नीति</string>
-    <string name="no_se_detecto_pic_en_socket">सॉकेट में PIC का पता नहीं चला</string>
-    <string name="pic_detectado_en_socket">सॉकेट में PIC का पता चला</string>
     <string name="error_borrando_memoria">मेमोरी मिटाते समय त्रुटि</string>
     <string name="memoria_borrada_exitosamente">मेमोरी सफलतापूर्वक मिटा दी गई</string>
     <string name="memoria_leida_exitosamente">मेमोरी सफलतापूर्वक पढ़ी गई</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">कॉन्फ़िग निर्यात करें (.bin)</string>
     <string name="exportar_dump_completo">पूर्ण डंप निर्यात करें (.hex)</string>
     <string name="exportar_dump_completo_bin">पूर्ण डंप निर्यात करें (.bin)</string>
-    <string name="programar_todo">सब कुछ शेड्यूल करें</string>
-    <string name="programar_solo_rom">केवल प्रोग्राम ROM</string>
-    <string name="programar_solo_eeprom">प्रोग्राम केवल EEPROM</string>
-    <string name="programar_solo_config">प्रोग्राम केवल कॉन्फ़िग</string>
     <string name="verificar_borrado">विलोपन सत्यापित करें</string>
     <string name="chip_esta_borrado">चिप मिट गई है (खाली)</string>
     <string name="chip_no_esta_borrado">चिप मिटती नहीं है</string>
     <string name="verificando_borrado">विलोपन का सत्यापन किया जा रहा है...</string>
     <string name="resultado_verificacion_borrado">विलोपन सत्यापन परिणाम</string>
     <string name="error_verificando_borrado">हटाने की पुष्टि करने में त्रुटि</string>
-    <string name="chip_seleccionado">चयनित चिप</string>
     <string name="configuracion_de_fusibles">फ़्यूज़ कॉन्फ़िगरेशन</string>
     <string name="id_personalizado_hex">कस्टम आईडी (हेक्स)</string>
     <string name="hint_id_personalizado">उदाहरण: 1ए 2बी 3सी 4डी (4 या 8 बाइट्स)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">अनुशंसित विज्ञापन</string>
     <string name="lectura_completa">पूरा पढ़ना</string>
     <string name="datos_de_memoria">मेमोरी सफलतापूर्वक पढ़ी गई</string>
-    <string name="sin_chip">बिना चिप के</string>
     <string name="rom_ok_blank">ROM: ठीक है (रिक्त)</string>
     <string name="rom_not_blank">ROM: खाली नहीं</string>
     <string name="eeprom_ok_blank">EEPROM: ठीक है (रिक्त)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">नहीं</string>
     <string name="seleccionar_idioma">भाषा चुनें</string>
     <string name="tutorial_instalacion">इंस्टॉलेशन ट्यूटोरियल</string>
-    <string name="copiar_todo_en">सब कॉपी करें</string>
     <string name="cerrar">बंद करें</string>
     <string name="error_no_chip">त्रुटि: कोई चिप नहीं चुना या फ्यूज नहीं</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">हेक्स संगत</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">चिप:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">उदाहरण</string>
     <string name="explicacion_label">व्याख्या</string>
     <string name="error_export_manager_not_initialized">HexExportManager प्रारंभ नहीं हुआ</string>
-    <string name="error_leyendo_info_chip">चिप जानकारी पढ़ने में त्रुटि</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">ईईपीरोम:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">बाइट्स</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">माइक वेकरली, एडम शुबर्ट और AndroidIDE, Android कोड स्टूडियो और KITSRUS टीमों को विशेष धन्यवाद।</string>
     <string name="error_al_cambiar_modo">मोड बदलते समय त्रुटि:</string>
     <string name="no_hay_firmware_valido">कोई वैध फ़र्मवेयर नहीं</string>
+    <string name="pro_access_title">⭐ %1$s प्रो</string>
+    <string name="pro_access_subtitle">%1$s के लिए उन्नत तकनीकी उपकरण अनलॉक करें</string>
+    <string name="pro_feature_hex_editor">लाइव हेक्साडेसिमल एडिटर (लाइव पैचिंग)</string>
+    <string name="pro_feature_hardware_diagnostics">हार्डवेयर डायग्नोस्टिक्स और वोल्टेज टेस्ट (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD डिबगिंग वेक्टर (24 बिट्स)</string>
+    <string name="pro_feature_osccal">OSCCAL रिकवरी और मैनुअल संपादन</string>
+    <string name="pro_feature_remove_ads">ऐप से सभी विज्ञापन हटाएं</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 वीडियो देखें - 12 घंटे का निःशुल्क पास</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s प्रो पास 12 घंटे के लिए सक्रिय हुआ!</string>
+    <string name="pro_ads_not_available">विज्ञापन उपलब्ध नहीं हैं</string>
+    <string name="pro_btn_buy_permanent">👑 %1$s प्रो स्थायी रूप से खरीदें%2$s</string>
+    <string name="pro_billing_not_available">Google Play बिलिंग उपलब्ध नहीं है</string>
+    <string name="menu_pro_mode">⭐ प्रो मोड</string>
+    <string name="menu_pro_permanent">👑 स्थायी प्रो</string>
+    <string name="menu_pro_timer">⭐ प्रो %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 हार्डवेयर डायग्नोस्टिक्स</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL कैलिब्रेशन</string>
+    <string name="menu_debug_vector_icd">🛠️ इन-सर्किट डिबग वेक्टर (ICD)</string>
+    <string name="cd_socket_diagram">सॉकेट आरेख</string>
+    <string name="btn_connect_usb">USB प्रोग्रामर कनेक्ट करें</string>
+    <string name="btn_disconnect_usb">USB प्रोग्रामर डिस्कनेक्ट करें</string>
+    <string name="cd_clear_log">लॉग साफ़ करें</string>
+    <string name="cd_tutorial_image">ट्यूटोरियल चित्रण</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS ट्यूटोरियल</string>
+    <string name="title_activity_tutorial_sdcc">SDCC ट्यूटोरियल</string>
+    <string name="diag_dialog_title">🩺 K150 हार्डवेयर डायग्नोस्टिक्स</string>
+    <string name="diag_section_programmer_status">📋 प्रोग्रामर स्थिति</string>
+    <string name="diag_label_model">मॉडल:</string>
+    <string name="diag_label_protocol">प्रोटोकॉल:</string>
+    <string name="diag_label_echo_test">इको टेस्ट:</string>
+    <string name="diag_label_zif_sensor">ZIF सेंसर:</string>
+    <string name="diag_status_querying">पूछताछ की जा रही है...</string>
+    <string name="diag_status_pending">लंबित</string>
+    <string name="diag_btn_test_echo">⚡ इको टेस्ट करें</string>
+    <string name="diag_btn_full_diagnosis">🔄 पूर्ण डायग्नोस्टिक्स</string>
+    <string name="diag_btn_test_zif_sensors">🧪 ZIF सेंसर टेस्ट (डालें/निकालें)</string>
+    <string name="diag_section_voltage_control">⚡ वोल्टेज नियंत्रण VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ चेतावनी: मल्टीमीटर से वोल्टेज सक्षम करने या मापने से पहले माइक्रोकंट्रोलर को ZIF सॉकेट से निकालें।</string>
+    <string name="diag_status_voltages_off">स्थिति: वोल्टेज बंद है (0V)</string>
+    <string name="diag_status_vpp_active">स्थिति: ⚡ VPP (13V) / VDD (5V) सक्रिय</string>
+    <string name="diag_status_voltages_restarted">स्थिति: ⚡ वोल्टेज पुनः प्रारंभ (सक्रिय)</string>
+    <string name="diag_status_error_activating">स्थिति: ❌ वोल्टेज सक्रिय करने में त्रुटि</string>
+    <string name="diag_status_error_deactivating">स्थिति: ❌ वोल्टेज बंद करने में त्रुटि</string>
+    <string name="diag_status_error_restarting">स्थिति: ❌ वोल्टेज पुनः प्रारंभ करने में त्रुटि</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">बंद करें (0V)</string>
+    <string name="diag_btn_restart_voltages">पुनः प्रारंभ करें</string>
+    <string name="diag_programmer_not_connected">प्रोग्रामर कनेक्ट नहीं है</string>
+    <string name="diag_connect_programmer_prompt">⚠ डायग्नोस्टिक्स का उपयोग करने के लिए K150 प्रोग्रामर कनेक्ट करें</string>
+    <string name="diag_model_not_connected">मॉडल: प्रोग्रामर कनेक्ट नहीं है</string>
+    <string name="diag_echo_measuring">इको टेस्ट: मापा जा रहा है...</string>
+    <string name="diag_zif_reading">ZIF सेंसर: पढ़ा जा रहा है...</string>
+    <string name="diag_echo_ok">इको टेस्ट: ✓ ठीक है (%1$d ms)</string>
+    <string name="diag_echo_no_response">इको टेस्ट: ❌ कोई प्रतिक्रिया नहीं</string>
+    <string name="diag_echo_failed">इको टेस्ट: ❌ विफल</string>
+    <string name="diag_socket_pic_detected">✓ ZIF सॉकेट में PIC का पता चला</string>
+    <string name="diag_socket_empty">ℹ खाली सॉकेट (कोई चिप नहीं मिली)</string>
+    <string name="diag_socket_no_firm_contact">⚠ सॉकेट में दृढ़ संपर्क का पता नहीं चला</string>
+    <string name="diag_toast_chip_removed_voltages_active">चिप निकाल दी गई: सुरक्षित माप के लिए वोल्टेज सक्रिय</string>
+    <string name="diag_toast_voltages_activated_multimeter">वोल्टेज सक्रिय: VPP और VDD पर मल्टीमीटर से मापें</string>
+    <string name="diag_toast_voltages_off">वोल्टेज बंद कर दिया गया (0V)</string>
+    <string name="diag_toast_voltages_restarted">चिप निकाल दी गई: माप के लिए वोल्टेज पुनः प्रारंभ</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ सॉकेट में माइक्रोकंट्रोलर</string>
+    <string name="diag_alert_chip_in_socket_message">PIC को 13V VPP से क्षतिग्रस्त होने से बचाने के लिए, कृपया वोल्टेज सक्षम करने या मापने से पहले माइक्रोकंट्रोलर को ZIF सॉकेट से हटा दें।
+
+चिप हटाने के बाद, माप सक्रिय करने के लिए \'जारी रखें\' पर टैप करें, या वोल्टेज बंद रखने के लिए \'रद्द करें\' पर टैप करें।</string>
+    <string name="diag_btn_continue_chip_removed">जारी रखें (चिप निकाल दी गई)</string>
+    <string name="diag_zif_test_title">🧪 ZIF सेंसर टेस्ट</string>
+    <string name="diag_zif_test_desc">ZIF सॉकेट के लिए हार्डवेयर सेंसर टेस्ट (Kitsrus कमांड 18 और 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ चरण 1: सॉकेट में एक माइक्रोकंट्रोलर डालें और लीवर को लॉक करें (कमांड 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ चरण 2: लंबित (कमांड 19 से निकालना)</string>
+    <string name="diag_zif_step1_ok">✓ चरण 1: इंसर्शन सेंसर ठीक है (कमांड 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ चरण 2: अब लीवर उठाएं और सॉकेट से चिप निकालें (कमांड 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ चरण 1: चिप का पता लगाए बिना समय समाप्त</string>
+    <string name="diag_zif_step2_ok">✓ चरण 2: निष्कर्षण सेंसर ठीक है (कमांड 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 ZIF सॉकेट के दोनों भौतिक सेंसर पूरी तरह से काम कर रहे हैं!
+</string>
+    <string name="diag_zif_step2_timeout">❌ चरण 2: निष्कर्षण का पता लगाए बिना समय समाप्त</string>
+    <string name="hex_editor_title">✏️ %1$s संपादित करें</string>
+    <string name="hex_editor_type_rom_word">ROM (वर्ड)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (बाइट)</string>
+    <string name="hex_editor_info_address_value">मेमोरी पता: %1$s
+वर्तमान मान: 0x%2$s (अधिकतम: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ वर्ड फॉर्मेट और बाइट क्रम (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM सेल फॉर्मेट (8-बिट)</string>
+    <string name="hex_editor_desc_rom">• PIC 14/16-बिट शब्दों को Little-Endian क्रम में संग्रहीत करते हैं:
+   - निचला बाइट (LSB): 0x%1$s (ऑफ़सेट 2×N)
+   - उच्च बाइट (MSB): 0x%2$s (ऑफ़सेट 2×N+1)
+• कैसे संपादित करें?: पूरा तार्किक शब्द दर्ज करें [MSB][LSB] (उदा. 2805 = LSB 05, MSB 28)।
+• ऐप स्वचालित रूप से सिलिकॉन और HEX फ़ाइल के लिए बाइट्स को Little-Endian में पुनर्व्यवस्थित करता है।</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM सेल अलग-अलग 8-बिट बाइट्स से बने होते हैं।
+• सीधे 2-वर्ण हेक्साडेसिमल बाइट दर्ज करें (श्रेणी: 00 से FF)।</string>
+    <string name="hex_editor_input_label_rom">नया मान दर्ज करें (हेक्स वर्ड [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">नया मान दर्ज करें (हेक्स बाइट 00-FF):</string>
+    <string name="guardar">सहेजें</string>
+    <string name="hex_editor_err_empty">मान खाली नहीं हो सकता</string>
+    <string name="hex_editor_err_invalid_hex">अमान्य हेक्साडेसिमल प्रारूप</string>
+    <string name="hex_editor_err_exceeds_max">मान अनुमत अधिकतम (0x%1$s) से अधिक है</string>
+    <string name="cal_chip_subtitle_10f">माइक्रोकंट्रोलर: %1$s (PIC10F परिवार - 2 CAL रजिस्टर)</string>
+    <string name="cal_chip_subtitle_standard">माइक्रोकंट्रोलर: %1$s (अंतिम ROM पते पर OSCCAL वर्ड)</string>
+    <string name="cal_not_read_yet">अभी तक चिप से नहीं पढ़ा गया</string>
+    <string name="cal_silicon_value">
+सिलिकॉन मान: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+हेक्साडेसिमल मान दर्ज करें (उदा. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 चिप से पढ़ें</string>
+    <string name="cal_btn_write_silicon">💾 सिलिकॉन पर लिखें</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL कैलिब्रेशन</string>
+    <string name="cal_toast_read_success">✓ OSCCAL पढ़ा गया: %1$s</string>
+    <string name="cal_toast_read_error">❌ चिप से कैलिब्रेशन पढ़ने में त्रुटि</string>
+    <string name="cal_toast_invalid_hex">अमान्य हेक्साडेसिमल मान</string>
+    <string name="cal_toast_write_success">✓ OSCCAL चिप पर सफलतापूर्वक लिखा गया</string>
+    <string name="cal_toast_write_error">❌ सिलिकॉन पर कैलिब्रेशन लिखने में विफल</string>
+    <string name="icd_dialog_subtitle">इन-सर्किट डिबगिंग (ICD) - 24-बिट पता वेक्टर
+(मान्य सीमा: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+वर्तमान वेक्टर: %1$s</string>
+    <string name="icd_enter_address_prompt">
+हेक्स में डिबग पता (उदा. 000020):</string>
+    <string name="icd_btn_read_vector">📥 वेक्टर पढ़ें</string>
+    <string name="icd_btn_write_vector">💾 वेक्टर लिखें</string>
+    <string name="icd_dialog_title">🛠️ डिबगिंग वेक्टर (ICD)</string>
+    <string name="icd_toast_read_success">✓ वेक्टर पढ़ा गया: %1$s</string>
+    <string name="icd_toast_invalid_address">अमान्य 24-बिट हेक्साडेसिमल पता</string>
+    <string name="icd_toast_write_success">✓ ICD वेक्टर प्रोग्राम किया गया: %1$s</string>
+    <string name="icd_toast_write_error">❌ ICD वेक्टर प्रोग्राम करने में विफल</string>
+    <string name="prog_type_all_title">सभी प्रोग्राम करें</string>
+    <string name="prog_type_all_desc">ROM, EEPROM और कॉन्फ़िगरेशन</string>
+    <string name="prog_type_rom_title">ROM प्रोग्राम करें</string>
+    <string name="prog_type_rom_desc">फ़्लैश मेमोरी</string>
+    <string name="prog_type_eeprom_title">EEPROM प्रोग्राम करें</string>
+    <string name="prog_type_eeprom_desc">EEPROM डेटा</string>
+    <string name="prog_type_config_title">कॉन्फ़िगरेशन प्रोग्राम करें</string>
+    <string name="prog_type_config_desc">फ़्यूज़ और कॉन्फ़िगरेशन बिट्स</string>
+    <string name="blank_check_err_null_result">❌ ब्लैंक चेक में त्रुटि: शून्य परिणाम</string>
+    <string name="blank_check_err_verifying">❌ ब्लैंक चेक सत्यापित करने में त्रुटि: %1$s</string>
+    <string name="blank_check_dual_header">📋 डिफरेंशियल ब्लैंक चेक (दोहरा ब्लैंक चेक):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% साफ़ (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM में पिछला डेटा मिला (खाली नहीं है)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% साफ़ (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM में पिछला डेटा मिला (खाली नहीं है)</string>
+    <string name="blank_check_method_label">  ℹ विधि: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ माइक्रोकंट्रोलर प्रोग्राम के लिए तैयार है (100%% मिटाया गया)</string>
+    <string name="blank_check_erase_required">⚠ प्रोग्रामिंग से पहले पूर्व मिटाना आवश्यक है</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ माइक्रोकंट्रोलर डालें</string>
+    <string name="dialog_insert_microcontroller_message">ZIF सॉकेट में कोई चिप नहीं मिली।
+
+कृपया PIC %1$s को संबंधित स्थिति में डालें, लीवर लॉक करें और फिर से [%2$s] पर टैप करें।</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF सॉकेट में कोई चिप नहीं है। माइक्रोकंट्रोलर %1$s डालें और फिर से [%2$s] पर टैप करें।</string>
+    <string name="log_verifying_pic_in_socket">🔍 ZIF सॉकेट में PIC की उपस्थिति जांची जा रही है...</string>
+    <string name="log_detecting_chip_in_socket">🔍 सॉकेट में चिप का पता लगाया जा रहा है...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF सॉकेट में कोई PIC नहीं मिला (अभिविन्यास और लीवर जांचें)</string>
+    <string name="log_pic_physically_detected">✓ सॉकेट में PIC भौतिक रूप से मिला</string>
+    <string name="log_chip_auto_identified">🎯 स्वचालित रूप से पहचाना गया: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">चिप का पता चला: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ चिप मौजूद है (ID: %1$s)। मैन्युअल सूची से मॉडल चुनें।</string>
+    <string name="log_connecting_to_programmer">🔌 प्रोग्रामर से कनेक्ट हो रहा है...</string>
+    <string name="log_connect_programmer_first">⚠ पहले USB के माध्यम से K150 प्रोग्रामर कनेक्ट करें।</string>
+    <string name="log_loading_file">📂 लोड हो रहा है %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ %1$s फ़ाइल प्रोसेस हो रही है...</string>
+    <string name="log_programming_verified_success">✓ प्रोग्रामिंग पूर्ण और सफलतापूर्वक सत्यापित!</string>
+    <string name="log_programming_failed">❌ माइक्रोकंट्रोलर प्रोग्रामिंग प्रक्रिया विफल रही</string>
+    <string name="log_backing_up_osccal">⏱️ चिप को कैलिब्रेशन की आवश्यकता है। मिटाने से पहले OSCCAL का बैकअप लिया जा रहा है...</string>
+    <string name="log_osccal_restored">✓ सिलिकॉन पर OSCCAL सफलतापूर्वक पुनर्स्थापित: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCAL स्वचालित रूप से पुनर्स्थापित नहीं किया जा सका। कैलिब्रेशन मेनू का उपयोग करें।</string>
+    <string name="notification_channel_name">PIC K150 संचालन</string>
+    <string name="notification_channel_description">प्रोग्रामिंग पूर्णता सूचनाएं और हार्डवेयर अलर्ट</string>
+    <string name="ad_loading_rewarded_video_toast">पुरस्कृत वीडियो लोड हो रहा है... कृपया कुछ सेकंड में पुन: प्रयास करें।</string>
+    <string name="pro_pass_expired">समाप्त</string>
+    <string name="fuse_log_last_config_restored">✓ अंतिम कॉन्फ़िगरेशन पुनर्स्थापित</string>
+    <string name="fuse_log_no_hex_loaded">⚠ कोई HEX फ़ाइल लोड नहीं है</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX में कोई फ़्यूज़ नहीं है</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d फ़्यूज़</string>
+    <string name="fuse_log_expected_count">  चिप को अपेक्षा है: %1$d</string>
+    <string name="unknown_device_id">अज्ञात</string>
+    <string name="status_connected">कनेक्टेड</string>
+    <string name="status_error">त्रुटि</string>
+    <string name="log_pro_purchase_error">⚠ प्रो खरीद: %1$s</string>
 </resources>

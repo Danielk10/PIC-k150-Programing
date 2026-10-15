@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Persónuverndarstefnur</string>
     <string name="aceptar">Samþykkja</string>
     <string name="cancelar">Hætta við</string>
-    <string name="conectado">Tengt</string>
     <string name="desconectado">Aftengt</string>
     <string name="grabando_pic">Forritar PIC...</string>
     <string name="espere_grabacion_pic">Vinsamlegast bíðið. Ekki aftengja tækið.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Fastbúnaður var skrifaður á PIC.</string>
     <string name="fallo_grabacion_pic">Forritun Mistókst</string>
     <string name="proceso_no_completado">Ferlið kláraðist ekki. Athugaðu tengingu.</string>
-    <string name="protocolo_del_programador">Samskiptareglur Forritara</string>
     <string name="modelo_del_programador">Gerð Forritara</string>
     <string name="modelo_programador">Gerð Forritara</string>
     <string name="protocolo">Samskiptareglur</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Persónuverndarstefna</string>
-    <string name="no_se_detecto_pic_en_socket">PIC fannst ekki í faldi</string>
-    <string name="pic_detectado_en_socket">PIC fannst í faldi</string>
     <string name="error_borrando_memoria">Villa við að eyða minni</string>
     <string name="memoria_borrada_exitosamente">Minni eytt</string>
     <string name="memoria_leida_exitosamente">Minni lesið</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Flytja út CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Flytja út fullt sorp (.hex)</string>
     <string name="exportar_dump_completo_bin">Flytja út fullt sorp (.bin)</string>
-    <string name="programar_todo">Skipuleggðu allt</string>
-    <string name="programar_solo_rom">Aðeins forrit ROM</string>
-    <string name="programar_solo_eeprom">Forrit aðeins EEPROM</string>
-    <string name="programar_solo_config">Aðeins forrit CONFIG</string>
     <string name="verificar_borrado">Staðfestu eyðingu</string>
     <string name="chip_esta_borrado">Flísið er eytt (Autt)</string>
     <string name="chip_no_esta_borrado">Kubburinn er EKKI eytt</string>
     <string name="verificando_borrado">Staðfestir eyðingu...</string>
     <string name="resultado_verificacion_borrado">Niðurstaða staðfestingar á eyðingu</string>
     <string name="error_verificando_borrado">Villa við að staðfesta eyðingu</string>
-    <string name="chip_seleccionado">Valinn Chip</string>
     <string name="configuracion_de_fusibles">Öryggisstillingar</string>
     <string name="id_personalizado_hex">Sérsniðið auðkenni (HEX)</string>
     <string name="hint_id_personalizado">Dæmi: 1A 2B 3C 4D (4 eða 8 bæti)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Mælt er með auglýsingum</string>
     <string name="lectura_completa">Heill lestur</string>
     <string name="datos_de_memoria">Minni lesið</string>
-    <string name="sin_chip">án flís</string>
     <string name="rom_ok_blank">ROM: OK (Autt)</string>
     <string name="rom_not_blank">ROM: EKKI AUT</string>
     <string name="eeprom_ok_blank">EEPROM: OK (Autt)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Nei</string>
     <string name="seleccionar_idioma">Velja tungumál</string>
     <string name="tutorial_instalacion">Uppsetningarleiðbeiningar</string>
-    <string name="copiar_todo_en">Afrita allt</string>
     <string name="cerrar">Loka</string>
     <string name="error_no_chip">Villa: Enginn flís valinn eða engin öryggi</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX samhæft</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Chip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Dæmi</string>
     <string name="explicacion_label">Útskýring</string>
     <string name="error_export_manager_not_initialized">HexExportManager ekki frumstillt</string>
-    <string name="error_leyendo_info_chip">Villa við að lesa flísupplýsingar</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">bæti</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Sérstakar þakkir til Mike Wakerly, Adam Schubert og AndroidIDE, Android Code Studio og KITSRUS liðin.</string>
     <string name="error_al_cambiar_modo">Villa þegar skipt var um ham:</string>
     <string name="no_hay_firmware_valido">Enginn gildur vélbúnaðar</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Opnaðu háþróuð tæknileg verkfæri fyrir %1$s</string>
+    <string name="pro_feature_hex_editor">Rauntíma sextándakerfisritill (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Vélbúnaðargreining og spennuprófun (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD villuleitavigur (24 bitar)</string>
+    <string name="pro_feature_osccal">OSCCAL björgun og handvirk breyting</string>
+    <string name="pro_feature_remove_ads">Fjarlægja allar auglýsingar úr forritinu</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Horfa á myndband - 12 stunda ókeypis aðgangur</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro aðgangur virkjaður í 12 klukkustundir!</string>
+    <string name="pro_ads_not_available">Auglýsingar ekki tiltækar</string>
+    <string name="pro_btn_buy_permanent">👑 Kaupa %1$s Pro varanlega%2$s</string>
+    <string name="pro_billing_not_available">Google Play greiðsluþjónusta ekki tiltæk</string>
+    <string name="menu_pro_mode">⭐ Pro stilling</string>
+    <string name="menu_pro_permanent">👑 Varanlegt Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 vélbúnaðargreining</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL kvörðun</string>
+    <string name="menu_debug_vector_icd">🛠️ Rásarvilluleitavigur (ICD)</string>
+    <string name="cd_socket_diagram">Skýringarmynd af sökkli</string>
+    <string name="btn_connect_usb">Tengja USB forritara</string>
+    <string name="btn_disconnect_usb">Aftengja USB forritara</string>
+    <string name="cd_clear_log">Hreinsa atburðaskrá</string>
+    <string name="cd_tutorial_image">Leiðbeiningamynd</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS leiðarvísir</string>
+    <string name="title_activity_tutorial_sdcc">SDCC leiðarvísir</string>
+    <string name="diag_dialog_title">🩺 K150 vélbúnaðargreining</string>
+    <string name="diag_section_programmer_status">📋 Staða forritara</string>
+    <string name="diag_label_model">Tegund:</string>
+    <string name="diag_label_protocol">Samskiptaregla:</string>
+    <string name="diag_label_echo_test">Bergmálspróf:</string>
+    <string name="diag_label_zif_sensor">ZIF skynjari:</string>
+    <string name="diag_status_querying">Fyrirspurn í gangi...</string>
+    <string name="diag_status_pending">Í bið</string>
+    <string name="diag_btn_test_echo">⚡ Prófa bergmál</string>
+    <string name="diag_btn_full_diagnosis">🔄 Heildargreining</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Prófa ZIF skynjara (Ísetning/Úttaka)</string>
+    <string name="diag_section_voltage_control">⚡ Spennustýring VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ VARÚÐ: Fjarlægðu örstýringuna úr ZIF sökklinum áður en spenna er virkjuð eða mæld með mælitæki.</string>
+    <string name="diag_status_voltages_off">Staða: Slökkt á spennu (0V)</string>
+    <string name="diag_status_vpp_active">Staða: ⚡ VPP (13V) / VDD (5V) VIRKJAÐ</string>
+    <string name="diag_status_voltages_restarted">Staða: ⚡ Spenna endurræst (Virk)</string>
+    <string name="diag_status_error_activating">Staða: ❌ Villa við að virkja spennu</string>
+    <string name="diag_status_error_deactivating">Staða: ❌ Villa við að slökkva á spennu</string>
+    <string name="diag_status_error_restarting">Staða: ❌ Villa við að endurræsa spennu</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Slökkva (0V)</string>
+    <string name="diag_btn_restart_voltages">Endurræsa</string>
+    <string name="diag_programmer_not_connected">Forritari ekki tengdur</string>
+    <string name="diag_connect_programmer_prompt">⚠ Tengdu K150 forritara til að nota greiningu</string>
+    <string name="diag_model_not_connected">Tegund: Forritari ekki tengdur</string>
+    <string name="diag_echo_measuring">Bergmálspróf: Mælir...</string>
+    <string name="diag_zif_reading">ZIF skynjari: Les...</string>
+    <string name="diag_echo_ok">Bergmálspróf: ✓ Í lagi (%1$d ms)</string>
+    <string name="diag_echo_no_response">Bergmálspróf: ❌ Ekkert svar</string>
+    <string name="diag_echo_failed">Bergmálspróf: ❌ Mistókst</string>
+    <string name="diag_socket_pic_detected">✓ PIC fannst í ZIF sökkli</string>
+    <string name="diag_socket_empty">ℹ Tómur sökkull (Enginn kubbur fannst)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Ekki fannst örugg snerting í sökkli</string>
+    <string name="diag_toast_chip_removed_voltages_active">Kubbur fjarlægður: Spenna virkjuð fyrir örugga mælingu</string>
+    <string name="diag_toast_voltages_activated_multimeter">Spenna virkjuð: mælið með mælitæki á VPP og VDD</string>
+    <string name="diag_toast_voltages_off">Slökkt á spennu (0V)</string>
+    <string name="diag_toast_voltages_restarted">Kubbur fjarlægður: Spenna endurræst fyrir mælingu</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Örstýring í sökkli</string>
+    <string name="diag_alert_chip_in_socket_message">Til að forðast skemmdir á PIC kubbnum vegna 13V VPP skal fjarlægja örstýringuna úr ZIF sökklinum áður en spenna er sett á eða mæld.
+
+Þegar kubburinn hefur verið fjarlægður skaltu ýta á \'Halda áfram\' til að virkja mælingu, eða \'Hætta við\' til að halda slökktu á spennu.</string>
+    <string name="diag_btn_continue_chip_removed">Halda áfram (Kubbur fjarlægður)</string>
+    <string name="diag_zif_test_title">🧪 Prófun á ZIF skynjurum</string>
+    <string name="diag_zif_test_desc">Vélbúnaðarskynjaraprófun fyrir ZIF sökkul (Kitsrus skipanir 18 og 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Skref 1: Settu örstýringu í sökkulinn og læstu handfanginu (Skipun 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Skref 2: Í bið (Úttaka með skipun 19)</string>
+    <string name="diag_zif_step1_ok">✓ Skref 1: Ísetningarskynjari Í LAGI (Skipun 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Skref 2: Lyftu nú handfanginu og fjarlægðu kubbinn úr sökklinum (Skipun 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Skref 1: Tímamörk runnu út án þess að kubbur greindist</string>
+    <string name="diag_zif_step2_ok">✓ Skref 2: Úttökuskynjari Í LAGI (Skipun 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Báðir líkamlegir skynjarar ZIF sökkulsins virka fullkomlega!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Skref 2: Tímamörk runnu út án þess að úttaka greindist</string>
+    <string name="hex_editor_title">✏️ Breyta %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Orð)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Bæt)</string>
+    <string name="hex_editor_info_address_value">Minnisvistfang: %1$s
+Núverandi gildi: 0x%2$s (Hámark: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Orðasnið og bætaröð (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM hólfasnið (8 bita)</string>
+    <string name="hex_editor_desc_rom">• PIC geyma 14/16 bita orð í Little-Endian röð:
+   - Lágbæt (LSB): 0x%1$s (hliðrun 2×N)
+   - Hábæt (MSB): 0x%2$s (hliðrun 2×N+1)
+• Hvernig á að breyta?: Sláðu inn allt röklegt orð [MSB][LSB] (t.d. 2805 = LSB 05, MSB 28).
+• Forritið endurraðar bætum sjálfkrafa í Little-Endian fyrir örgjörva og HEX skrá.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM hólf samanstanda af einstökum 8 bita bætum.
+• Sláðu beint inn 2 stafa sextándakerfisbætið (bil: 00 til FF).</string>
+    <string name="hex_editor_input_label_rom">Sláðu inn nýtt gildi (Hex orð [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Sláðu inn nýtt gildi (Hex bæt 00-FF):</string>
+    <string name="guardar">Vista</string>
+    <string name="hex_editor_err_empty">Gildi má ekki vera tómt</string>
+    <string name="hex_editor_err_invalid_hex">Ógilt sextándakerfissnið</string>
+    <string name="hex_editor_err_exceeds_max">Gildi fer yfir leyfilegt hámark (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Örstýring: %1$s (PIC10F fjölskylda - 2 CAL geymar)</string>
+    <string name="cal_chip_subtitle_standard">Örstýring: %1$s (OSCCAL orð á síðasta ROM vistfangi)</string>
+    <string name="cal_not_read_yet">Ekki enn lesið af kubbi</string>
+    <string name="cal_silicon_value">
+Gildi á kubbi: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Sláðu inn sextándakerfisgildi (t.d. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Lesa af kubbi</string>
+    <string name="cal_btn_write_silicon">💾 Skrifa á kubb</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL kvörðun</string>
+    <string name="cal_toast_read_success">✓ OSCCAL lesið: %1$s</string>
+    <string name="cal_toast_read_error">❌ Villa við lestur kvörðunar af kubbi</string>
+    <string name="cal_toast_invalid_hex">Ógilt sextándakerfisgildi</string>
+    <string name="cal_toast_write_success">✓ OSCCAL skrifað á kubb</string>
+    <string name="cal_toast_write_error">❌ Tókst ekki að skrifa kvörðun á kubb</string>
+    <string name="icd_dialog_subtitle">Rásarvilluleit (ICD) - 24 bita vistfangsvigur
+(Gilt bil: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Núverandi vigur: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Vistfang villuleitar í hex (t.d. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Lesa vigur</string>
+    <string name="icd_btn_write_vector">💾 Skrifa vigur</string>
+    <string name="icd_dialog_title">🛠️ Villuleitavigur (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vigur lesinn: %1$s</string>
+    <string name="icd_toast_invalid_address">Ógilt 24 bita sextándakerfisvistfang</string>
+    <string name="icd_toast_write_success">✓ ICD vigur forritaður: %1$s</string>
+    <string name="icd_toast_write_error">❌ Tókst ekki að forrita ICD vigur</string>
+    <string name="prog_type_all_title">Forrita allt</string>
+    <string name="prog_type_all_desc">ROM, EEPROM og stillingar</string>
+    <string name="prog_type_rom_title">Forrita ROM</string>
+    <string name="prog_type_rom_desc">Flash minni</string>
+    <string name="prog_type_eeprom_title">Forrita EEPROM</string>
+    <string name="prog_type_eeprom_desc">EEPROM gögn</string>
+    <string name="prog_type_config_title">Forrita stillingar</string>
+    <string name="prog_type_config_desc">Öryggi og stillibitar</string>
+    <string name="blank_check_err_null_result">❌ Villa við tæmingarprófun: ógild niðurstaða</string>
+    <string name="blank_check_err_verifying">❌ Villa við staðfestingu tæmingarprófunar: %1$s</string>
+    <string name="blank_check_dual_header">📋 Mismunadrifin tæmingarprófun (Tvöföld prófun):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% hreint (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ Fyrri gögn greindust í ROM (Ekki tómt)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% hreint (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ Fyrri gögn greindust í EEPROM (Ekki tómt)</string>
+    <string name="blank_check_method_label">  ℹ Aðferð: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Örstýring tilbúin til forritunar (100%% Hreinsuð)</string>
+    <string name="blank_check_erase_required">⚠ Fyrri hreinsun er nauðsynleg fyrir forritun</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Setja örstýringu í</string>
+    <string name="dialog_insert_microcontroller_message">Enginn kubbur fannst í ZIF sökklinum.
+
+Vinsamlegast settu PIC %1$s í viðeigandi stöðu, læstu handfanginu og ýttu aftur á [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Enginn kubbur í ZIF sökkli. Settu örstýringu %1$s í og ýttu aftur á [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Athuga hvort PIC sé í ZIF sökkli...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Greini kubb í sökkli...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Enginn PIC fannst í ZIF sökkli (athugaðu snúning og handfang)</string>
+    <string name="log_pic_physically_detected">✓ PIC fannst í sökkli</string>
+    <string name="log_chip_auto_identified">🎯 Greint sjálfkrafa: %1$s (Auðkenni: %2$s)</string>
+    <string name="toast_chip_detected">Kubbur fannst: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Kubbur til staðar (Auðkenni: %1$s). Veldu tegund handvirkt úr lista.</string>
+    <string name="log_connecting_to_programmer">🔌 Tengist við forritara...</string>
+    <string name="log_connect_programmer_first">⚠ Tengdu K150 forritarann fyrst með USB.</string>
+    <string name="log_loading_file">📂 Hleður %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Vinnur úr %1$s skrá...</string>
+    <string name="log_programming_verified_success">✓ Forritun lokið og staðfest með árangri!</string>
+    <string name="log_programming_failed">❌ Forritun örstýringar mistókst</string>
+    <string name="log_backing_up_osccal">⏱️ Kubbur þarfnast kvörðunar. Tek afrit af OSCCAL fyrir hreinsun...</string>
+    <string name="log_osccal_restored">✓ OSCCAL endurheimt á kubb: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Gat ekki endurheimt OSCCAL sjálfkrafa. Notaðu kvörðunarvalmyndina.</string>
+    <string name="notification_channel_name">PIC K150 aðgerðir</string>
+    <string name="notification_channel_description">Tilkynningar um lok forritunar og vélbúnaðarviðvaranir</string>
+    <string name="ad_loading_rewarded_video_toast">Hleður verðlaunamyndbandi... Vinsamlegast reyndu aftur eftir nokkrar sekúndur.</string>
+    <string name="pro_pass_expired">Útrunnið</string>
+    <string name="fuse_log_last_config_restored">✓ Síðasta stilling endurheimt</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Engin HEX skrá hlaðin</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX inniheldur engin öryggi</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d öryggi</string>
+    <string name="fuse_log_expected_count">  Kubbur býst við: %1$d</string>
+    <string name="unknown_device_id">Óþekkt</string>
+    <string name="status_connected">Tengt</string>
+    <string name="status_error">Villa</string>
+    <string name="log_pro_purchase_error">⚠ Pro kaup: %1$s</string>
 </resources>

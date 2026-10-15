@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">Politici de confidențialitate</string>
     <string name="aceptar">Accepta</string>
     <string name="cancelar">Anulare</string>
-    <string name="conectado">Conectat</string>
     <string name="desconectado">Deconectat</string>
     <string name="grabando_pic">Se scrie PIC...</string>
     <string name="espere_grabacion_pic">Vă rog așteptați. Nu deconectați dispozitivul.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">Firmware-ul a fost scris corect în PIC.</string>
     <string name="fallo_grabacion_pic">Eroare de scriere</string>
     <string name="proceso_no_completado">Nu a putut finaliza procesul. Verificați conexiunea.</string>
-    <string name="protocolo_del_programador">Protocolul programatorului</string>
     <string name="modelo_del_programador">Modelul programatorului</string>
     <string name="modelo_programador">Modelul programatorului</string>
     <string name="protocolo">Protocol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Politica de confidențialitate</string>
-    <string name="no_se_detecto_pic_en_socket">PIC nu a fost detectat în soclu</string>
-    <string name="pic_detectado_en_socket">PIC detectat în soclu</string>
     <string name="error_borrando_memoria">Eroare la ștergerea memoriei</string>
     <string name="memoria_borrada_exitosamente">Memorie ștearsă cu succes</string>
     <string name="memoria_leida_exitosamente">Memorie citită cu succes</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">Exportați CONFIG (.bin)</string>
     <string name="exportar_dump_completo">Exportați descărcarea completă (.hex)</string>
     <string name="exportar_dump_completo_bin">Exportați descărcarea completă (.bin)</string>
-    <string name="programar_todo">Programează totul</string>
-    <string name="programar_solo_rom">Numai programul ROM</string>
-    <string name="programar_solo_eeprom">Program doar EEPROM</string>
-    <string name="programar_solo_config">Program numai CONFIG</string>
     <string name="verificar_borrado">Verificați ștergerea</string>
     <string name="chip_esta_borrado">Cipul este șters (Alb)</string>
     <string name="chip_no_esta_borrado">Cipul NU este șters</string>
     <string name="verificando_borrado">Se verifică ștergerea...</string>
     <string name="resultado_verificacion_borrado">Rezultatul verificării ștergerii</string>
     <string name="error_verificando_borrado">Eroare la verificarea ștergerii</string>
-    <string name="chip_seleccionado">Chip selectat</string>
     <string name="configuracion_de_fusibles">Configurația siguranței</string>
     <string name="id_personalizado_hex">ID personalizat (HEX)</string>
     <string name="hint_id_personalizado">Exemplu: 1A 2B 3C 4D (4 sau 8 octeți)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">Reclamă recomandată</string>
     <string name="lectura_completa">Lectură completă</string>
     <string name="datos_de_memoria">Memorie citită cu succes</string>
-    <string name="sin_chip">fara cip</string>
     <string name="rom_ok_blank">ROM: OK (alb)</string>
     <string name="rom_not_blank">ROM: NU GOL</string>
     <string name="eeprom_ok_blank">EEPROM: OK (alb)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">Nu</string>
     <string name="seleccionar_idioma">Selectați limba</string>
     <string name="tutorial_instalacion">Tutorial instalare</string>
-    <string name="copiar_todo_en">Copiază tot</string>
     <string name="cerrar">Închide</string>
     <string name="error_no_chip">Eroare: Niciun chip selectat sau fără fuzibile</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">Compatibil HEX</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">Cip:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">Exemplu</string>
     <string name="explicacion_label">Explicație</string>
     <string name="error_export_manager_not_initialized">HexExportManager nu a fost inițializat</string>
-    <string name="error_leyendo_info_chip">Eroare la citirea informațiilor despre cip</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">octeți</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Mulțumiri speciale lui Mike Wakerly, Adam Schubert și echipelor AndroidIDE, Android Code Studio și KITSRUS.</string>
     <string name="error_al_cambiar_modo">Eroare la schimbarea modului:</string>
     <string name="no_hay_firmware_valido">Niciun firmware valid</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">Deblocați instrumente tehnice avansate pentru %1$s</string>
+    <string name="pro_feature_hex_editor">Editor hexazecimal în timp real (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">Diagnosticare hardware și testare tensiuni (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">Vector de depanare ICD (24 biți)</string>
+    <string name="pro_feature_osccal">Salvare și editare manuală OSCCAL</string>
+    <string name="pro_feature_remove_ads">Elimină toate reclamele din aplicație</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Vizionați videoclip - Permis gratuit de 12 ore</string>
+    <string name="pro_pass_activated_toast">⭐ Permis %1$s Pro activat pentru 12 ore!</string>
+    <string name="pro_ads_not_available">Reclamele nu sunt disponibile</string>
+    <string name="pro_btn_buy_permanent">👑 Cumpără %1$s Pro permanent%2$s</string>
+    <string name="pro_billing_not_available">Google Play Billing nu este disponibil</string>
+    <string name="menu_pro_mode">⭐ Mod Pro</string>
+    <string name="menu_pro_permanent">👑 Pro Permanent</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 Diagnosticare hardware K150</string>
+    <string name="menu_osccal_calibration">⏱️ Calibrare OSCCAL</string>
+    <string name="menu_debug_vector_icd">🛠️ Vector de depanare în circuit (ICD)</string>
+    <string name="cd_socket_diagram">Diagrama soclului</string>
+    <string name="btn_connect_usb">Conectare programator USB</string>
+    <string name="btn_disconnect_usb">Deconectare programator USB</string>
+    <string name="cd_clear_log">Ștergere jurnal</string>
+    <string name="cd_tutorial_image">Ilustrație tutorial</string>
+    <string name="title_activity_tutorial_gputils">Tutorial GPUTILS</string>
+    <string name="title_activity_tutorial_sdcc">Tutorial SDCC</string>
+    <string name="diag_dialog_title">🩺 Diagnosticare hardware K150</string>
+    <string name="diag_section_programmer_status">📋 Stare programator</string>
+    <string name="diag_label_model">Model:</string>
+    <string name="diag_label_protocol">Protocol:</string>
+    <string name="diag_label_echo_test">Test ecou:</string>
+    <string name="diag_label_zif_sensor">Senzor ZIF:</string>
+    <string name="diag_status_querying">Se interoghează...</string>
+    <string name="diag_status_pending">În așteptare</string>
+    <string name="diag_btn_test_echo">⚡ Testează ecou</string>
+    <string name="diag_btn_full_diagnosis">🔄 Diagnostic complet</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Testare senzori ZIF (Inserare/Extragere)</string>
+    <string name="diag_section_voltage_control">⚡ Control tensiuni VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ ATENȚIE: Scoateți microcontrolerul din soclul ZIF înainte de a activa sau măsura tensiunile cu un multimetru.</string>
+    <string name="diag_status_voltages_off">Stare: Tensiuni oprite (0V)</string>
+    <string name="diag_status_vpp_active">Stare: ⚡ VPP (13V) / VDD (5V) ACTIVATE</string>
+    <string name="diag_status_voltages_restarted">Stare: ⚡ Tensiuni repornite (Active)</string>
+    <string name="diag_status_error_activating">Stare: ❌ Eroare la activarea tensiunilor</string>
+    <string name="diag_status_error_deactivating">Stare: ❌ Eroare la oprirea tensiunilor</string>
+    <string name="diag_status_error_restarting">Stare: ❌ Eroare la repornirea tensiunilor</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">Oprire (0V)</string>
+    <string name="diag_btn_restart_voltages">Repornire</string>
+    <string name="diag_programmer_not_connected">Programator neconectat</string>
+    <string name="diag_connect_programmer_prompt">⚠ Conectați programatorul K150 pentru a utiliza diagnosticul</string>
+    <string name="diag_model_not_connected">Model: Programator neconectat</string>
+    <string name="diag_echo_measuring">Test ecou: Se măsoară...</string>
+    <string name="diag_zif_reading">Senzor ZIF: Se citește...</string>
+    <string name="diag_echo_ok">Test ecou: ✓ OK (%1$d ms)</string>
+    <string name="diag_echo_no_response">Test ecou: ❌ Niciun răspuns</string>
+    <string name="diag_echo_failed">Test ecou: ❌ Eșuat</string>
+    <string name="diag_socket_pic_detected">✓ PIC detectat în soclul ZIF</string>
+    <string name="diag_socket_empty">ℹ Soclu gol (Niciun cip detectat)</string>
+    <string name="diag_socket_no_firm_contact">⚠ Contact ferm nedetectat în soclu</string>
+    <string name="diag_toast_chip_removed_voltages_active">Cip scos: Tensiuni activate pentru măsurare sigură</string>
+    <string name="diag_toast_voltages_activated_multimeter">Tensiuni activate: măsurați cu multimetrul pe VPP și VDD</string>
+    <string name="diag_toast_voltages_off">Tensiuni oprite (0V)</string>
+    <string name="diag_toast_voltages_restarted">Cip scos: Tensiuni repornite pentru măsurare</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ Microcontroler în soclu</string>
+    <string name="diag_alert_chip_in_socket_message">Pentru a evita deteriorarea PIC-ului cu 13V VPP, vă rugăm să scoateți microcontrolerul din soclul ZIF înainte de a activa sau măsura tensiunile.
+
+După ce ați scos cipul, apăsați pe \'Continuare\' pentru a activa măsurarea sau pe \'Anulare\' pentru a menține tensiunile oprite.</string>
+    <string name="diag_btn_continue_chip_removed">Continuare (Cip scos)</string>
+    <string name="diag_zif_test_title">🧪 Testare senzori ZIF</string>
+    <string name="diag_zif_test_desc">Testarea senzorilor hardware ai soclului ZIF (Comenzile Kitsrus 18 și 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ Pasul 1: Introduceți un microcontroler în soclu și blocați maneta (Comanda 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ Pasul 2: În așteptare (Extragere cu comanda 19)</string>
+    <string name="diag_zif_step1_ok">✓ Pasul 1: Senzor de inserare OK (Comanda 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ Pasul 2: Ridicați acum maneta și scoateți cipul din soclu (Comanda 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ Pasul 1: Timp expirat fără detectarea cipului</string>
+    <string name="diag_zif_step2_ok">✓ Pasul 2: Senzor de extragere OK (Comanda 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 Ambii senzori fizici ai soclului ZIF funcționează perfect!
+</string>
+    <string name="diag_zif_step2_timeout">❌ Pasul 2: Timp expirat fără detectarea extragerii</string>
+    <string name="hex_editor_title">✏️ Editare %1$s</string>
+    <string name="hex_editor_type_rom_word">ROM (Cuvânt)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (Octet)</string>
+    <string name="hex_editor_info_address_value">Adresă memorie: %1$s
+Valoare curentă: 0x%2$s (Maxim: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Format cuvânt și ordine octeți (Little-Endian)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Format celulă EEPROM (8 biți)</string>
+    <string name="hex_editor_desc_rom">• PIC-urile stochează cuvinte de 14/16 biți în ordinea Little-Endian:
+   - Octet inferior (LSB): 0x%1$s (decalaj 2×N)
+   - Octet superior (MSB): 0x%2$s (decalaj 2×N+1)
+• Cum se editează?: Introduceți cuvântul logic complet [MSB][LSB] (de ex. 2805 = LSB 05, MSB 28).
+• Aplicația reordonează automat octeții în Little-Endian pentru siliciu și fișierul HEX.</string>
+    <string name="hex_editor_desc_eeprom">• Celulele EEPROM constau din octeți individuali de 8 biți.
+• Introduceți octetul hexazecimal de 2 caractere direct (interval: 00 la FF).</string>
+    <string name="hex_editor_input_label_rom">Introduceți noua valoare (Cuvânt Hex [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">Introduceți noua valoare (Octet Hex 00-FF):</string>
+    <string name="guardar">Salvare</string>
+    <string name="hex_editor_err_empty">Valoarea nu poate fi goală</string>
+    <string name="hex_editor_err_invalid_hex">Format hexazecimal nevalid</string>
+    <string name="hex_editor_err_exceeds_max">Valoarea depășește maximul permis (0x%1$s)</string>
+    <string name="cal_chip_subtitle_10f">Microcontroler: %1$s (Familia PIC10F - 2 registre CAL)</string>
+    <string name="cal_chip_subtitle_standard">Microcontroler: %1$s (Cuvânt OSCCAL la ultima adresă ROM)</string>
+    <string name="cal_not_read_yet">Nu a fost încă citit din cip</string>
+    <string name="cal_silicon_value">
+Valoare pe siliciu: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+Introduceți valoarea hexazecimală (de ex. %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 Citire din cip</string>
+    <string name="cal_btn_write_silicon">💾 Scriere pe siliciu</string>
+    <string name="cal_dialog_title">⏱️ Calibrare OSCCAL</string>
+    <string name="cal_toast_read_success">✓ OSCCAL citit: %1$s</string>
+    <string name="cal_toast_read_error">❌ Eroare la citirea calibrării din cip</string>
+    <string name="cal_toast_invalid_hex">Valoare hexazecimală nevalidă</string>
+    <string name="cal_toast_write_success">✓ OSCCAL scris cu succes pe cip</string>
+    <string name="cal_toast_write_error">❌ Eșec la scrierea calibrării pe siliciu</string>
+    <string name="icd_dialog_subtitle">Depanare în circuit (ICD) - Vector de adresă pe 24 biți
+(Interval valid: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+Vector curent: %1$s</string>
+    <string name="icd_enter_address_prompt">
+Adresă de depanare în hex (de ex. 000020):</string>
+    <string name="icd_btn_read_vector">📥 Citire vector</string>
+    <string name="icd_btn_write_vector">💾 Scriere vector</string>
+    <string name="icd_dialog_title">🛠️ Vector de depanare (ICD)</string>
+    <string name="icd_toast_read_success">✓ Vector citit: %1$s</string>
+    <string name="icd_toast_invalid_address">Adresă hexazecimală pe 24 biți nevalidă</string>
+    <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
+    <string name="icd_toast_write_error">❌ Eșec la programarea vectorului ICD</string>
+    <string name="prog_type_all_title">Programare totală</string>
+    <string name="prog_type_all_desc">ROM, EEPROM și Configurație</string>
+    <string name="prog_type_rom_title">Programare ROM</string>
+    <string name="prog_type_rom_desc">Memorie Flash</string>
+    <string name="prog_type_eeprom_title">Programare EEPROM</string>
+    <string name="prog_type_eeprom_desc">Date EEPROM</string>
+    <string name="prog_type_config_title">Programare configurație</string>
+    <string name="prog_type_config_desc">Siguranțe fuzibile și biți de configurare</string>
+    <string name="blank_check_err_null_result">❌ Eroare la verificarea golirii: rezultat nul</string>
+    <string name="blank_check_err_verifying">❌ Eroare la verificarea stării goale: %1$s</string>
+    <string name="blank_check_dual_header">📋 Verificare diferențială în gol (Dual Blank Check):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% curat (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM cu date anterioare detectate (Nu este gol)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% curat (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM cu date anterioare detectate (Nu este gol)</string>
+    <string name="blank_check_method_label">  ℹ Metodă: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ Microcontroler gata de programare (100%% Șters)</string>
+    <string name="blank_check_erase_required">⚠ Este necesară ștergerea prealabilă înainte de programare</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ Introduceți microcontrolerul</string>
+    <string name="dialog_insert_microcontroller_message">Nu a fost detectat niciun cip în soclul ZIF.
+
+Vă rugăm să introduceți PIC %1$s în poziția corespunzătoare, să blocați maneta și să apăsați din nou pe [%2$s].</string>
+    <string name="log_no_chip_in_socket">⚠️ Niciun cip în soclul ZIF. Introduceți microcontrolerul %1$s și apăsați din nou pe [%2$s].</string>
+    <string name="log_verifying_pic_in_socket">🔍 Se verifică prezența PIC-ului în soclul ZIF...</string>
+    <string name="log_detecting_chip_in_socket">🔍 Se detectează cipul în soclu...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ Niciun PIC detectat în soclul ZIF (verificați orientarea și maneta)</string>
+    <string name="log_pic_physically_detected">✓ PIC detectat fizic în soclu</string>
+    <string name="log_chip_auto_identified">🎯 Identificat automat: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">Cip detectat: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ Cip prezent (ID: %1$s). Selectați modelul din lista manuală.</string>
+    <string name="log_connecting_to_programmer">🔌 Conectare la programator...</string>
+    <string name="log_connect_programmer_first">⚠ Conectați mai întâi programatorul K150 prin USB.</string>
+    <string name="log_loading_file">📂 Se încarcă %1$s: %2$s</string>
+    <string name="log_processing_file">⏳ Se procesează fișierul %1$s...</string>
+    <string name="log_programming_verified_success">✓ Programare finalizată și verificată cu succes!</string>
+    <string name="log_programming_failed">❌ Procesul de programare a microcontrolerului a eșuat</string>
+    <string name="log_backing_up_osccal">⏱️ Cipul necesită calibrare. Se salvează OSCCAL înainte de ștergere...</string>
+    <string name="log_osccal_restored">✓ OSCCAL restaurat cu succes pe siliciu: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ Nu s-a putut restaura automat OSCCAL. Utilizați meniul Calibrare.</string>
+    <string name="notification_channel_name">Operațiuni PIC K150</string>
+    <string name="notification_channel_description">Notificări de finalizare a programării și alerte hardware</string>
+    <string name="ad_loading_rewarded_video_toast">Se încarcă videoclipul cu recompensă... Vă rugăm să încercați din nou în câteva secunde.</string>
+    <string name="pro_pass_expired">Expirat</string>
+    <string name="fuse_log_last_config_restored">✓ Ultima configurație a fost restaurată</string>
+    <string name="fuse_log_no_hex_loaded">⚠ Niciun fișier HEX încărcat</string>
+    <string name="fuse_log_hex_no_fuses">⚠ Fișierul HEX nu conține siguranțe fuzibile</string>
+    <string name="fuse_log_hex_count">  HEX: %1$d siguranțe</string>
+    <string name="fuse_log_expected_count">  Cipul așteaptă: %1$d</string>
+    <string name="unknown_device_id">Necunoscut</string>
+    <string name="status_connected">Conectat</string>
+    <string name="status_error">Eroare</string>
+    <string name="log_pro_purchase_error">⚠ Achiziție Pro: %1$s</string>
 </resources>

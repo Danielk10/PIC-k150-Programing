@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PIC k150 Programing</string>
     <string name="politicas">개인 정보 보호 정책</string>
     <string name="aceptar">수락</string>
     <string name="cancelar">취소</string>
-    <string name="conectado">연결됨</string>
     <string name="desconectado">연결 끊김</string>
     <string name="grabando_pic">PIC 프로그래밍 중...</string>
     <string name="espere_grabacion_pic">기다려 주십시오. 장치를 분리하지 마십시오.</string>
@@ -12,14 +11,11 @@
     <string name="grabacion_correcta_pic">펌웨어가 PIC에 성공적으로 프로그래밍되었습니다.</string>
     <string name="fallo_grabacion_pic">프로그래밍 실패</string>
     <string name="proceso_no_completado">프로세스를 완료할 수 없습니다. 연결을 확인하십시오.</string>
-    <string name="protocolo_del_programador">프로그래머 프로토콜</string>
     <string name="modelo_del_programador">프로그래머 모델</string>
     <string name="modelo_programador">프로그래머 모델</string>
     <string name="protocolo">프로토콜</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">개인정보 처리방침</string>
-    <string name="no_se_detecto_pic_en_socket">소켓에서 PIC가 감지되지 않았습니다</string>
-    <string name="pic_detectado_en_socket">소켓에서 PIC가 감지되었습니다</string>
     <string name="error_borrando_memoria">메모리 지우기 오류</string>
     <string name="memoria_borrada_exitosamente">메모리가 성공적으로 지워졌습니다</string>
     <string name="memoria_leida_exitosamente">메모리를 성공적으로 읽었습니다</string>
@@ -113,17 +109,12 @@
     <string name="exportar_config_bin">CONFIG 내보내기(.bin)</string>
     <string name="exportar_dump_completo">전체 덤프 내보내기(.hex)</string>
     <string name="exportar_dump_completo_bin">전체 덤프(.bin) 내보내기</string>
-    <string name="programar_todo">전체 프로그램</string>
-    <string name="programar_solo_rom">ROM만 프로그램</string>
-    <string name="programar_solo_eeprom">EEPROM만 프로그램</string>
-    <string name="programar_solo_config">CONFIG만 프로그램</string>
     <string name="verificar_borrado">삭제 확인</string>
     <string name="chip_esta_borrado">칩이 지워졌습니다(공백)</string>
     <string name="chip_no_esta_borrado">칩이 지워지지 않았습니다</string>
     <string name="verificando_borrado">삭제 확인 중...</string>
     <string name="resultado_verificacion_borrado">지우기 확인 결과</string>
     <string name="error_verificando_borrado">삭제 확인 오류</string>
-    <string name="chip_seleccionado">선택한 칩</string>
     <string name="configuracion_de_fusibles">퓨즈 구성</string>
     <string name="id_personalizado_hex">사용자 정의 ID(HEX)</string>
     <string name="hint_id_personalizado">예: 1A 2B 3C 4D(4 또는 8바이트)</string>
@@ -138,7 +129,6 @@
     <string name="publicidad_recomendada">추천 광고</string>
     <string name="lectura_completa">읽기 완료</string>
     <string name="datos_de_memoria">메모리를 성공적으로 읽었습니다</string>
-    <string name="sin_chip">칩 없음</string>
     <string name="rom_ok_blank">ROM: OK(공백)</string>
     <string name="rom_not_blank">ROM: 비어 있지 않음</string>
     <string name="eeprom_ok_blank">EEPROM: OK(공백)</string>
@@ -169,13 +159,11 @@
     <string name="no_label">아니오</string>
     <string name="seleccionar_idioma">언어 선택</string>
     <string name="tutorial_instalacion">설치 튜토리얼</string>
-    <string name="copiar_todo_en">모두 복사</string>
     <string name="cerrar">닫기</string>
     <string name="error_no_chip">오류: 칩이 선택되지 않았거나 퓨즈 없음</string>
     <string name="advertencia_cantidad_fuses">WARNING: Fuse count mismatch</string>
     <string name="hex_compatible">HEX 호환</string>
     <string name="error_verificando_hex">Error verifying HEX</string>
-    <string name="label_chip">칩:</string>
     <string name="editor_construido">Editor built</string>
     <string name="restaurando_chip">Restoring from chip…</string>
     <string name="restaurado_chip">Restored from chip</string>
@@ -281,11 +269,6 @@
     <string name="ejemplo_label">예제</string>
     <string name="explicacion_label">설명</string>
     <string name="error_export_manager_not_initialized">HexExportManager가 초기화되지 않았습니다.</string>
-    <string name="error_leyendo_info_chip">칩 정보를 읽는 중 오류가 발생했습니다.</string>
-    <string name="label_rom">ROM:</string>
-    <string name="label_eeprom">EEPROM:</string>
-    <string name="label_id">ID:</string>
-    <string name="label_bytes">바이트</string>
     <string name="pic_seleccionado">PIC Selected</string>
     <string name="modo_icsp_activado">ICSP mode activated</string>
     <string name="modo_socket_activado">ZIF Socket mode activated</string>
@@ -305,4 +288,183 @@
     <string name="about_acknowledgements_desc">Mike Wakerly, Adam Schubert, AndroidIDE, Android Code Studio 및 KITSRUS 팀에게 특별히 감사드립니다.</string>
     <string name="error_al_cambiar_modo">모드 변경 중 오류:</string>
     <string name="no_hay_firmware_valido">유효한 펌웨어가 없습니다.</string>
+    <string name="pro_access_title">⭐ %1$s Pro</string>
+    <string name="pro_access_subtitle">%1$s의 고급 기술 도구 잠금 해제</string>
+    <string name="pro_feature_hex_editor">실시간 16진수 편집기 (Live Patching)</string>
+    <string name="pro_feature_hardware_diagnostics">하드웨어 진단 및 전압 테스트 (VPP 13V / VDD 5V)</string>
+    <string name="pro_feature_icd_vector">ICD 디버깅 벡터 (24비트)</string>
+    <string name="pro_feature_osccal">OSCCAL 복구 및 수동 편집</string>
+    <string name="pro_feature_remove_ads">애플리케이션에서 모든 광고 제거</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 동영상 시청 - 12시간 무료 패스</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro 패스가 12시간 동안 활성화되었습니다!</string>
+    <string name="pro_ads_not_available">광고를 사용할 수 없습니다</string>
+    <string name="pro_btn_buy_permanent">👑 %1$s Pro 평생 구매%2$s</string>
+    <string name="pro_billing_not_available">Google Play 결제를 사용할 수 없습니다</string>
+    <string name="menu_pro_mode">⭐ Pro 모드</string>
+    <string name="menu_pro_permanent">👑 평생 Pro</string>
+    <string name="menu_pro_timer">⭐ Pro %1$s</string>
+    <string name="menu_hardware_diagnostic">🩺 K150 하드웨어 진단</string>
+    <string name="menu_osccal_calibration">⏱️ OSCCAL 교정</string>
+    <string name="menu_debug_vector_icd">🛠️ 인서킷 디버그 벡터 (ICD)</string>
+    <string name="cd_socket_diagram">소켓 다이어그램</string>
+    <string name="btn_connect_usb">USB 프로그래머 연결</string>
+    <string name="btn_disconnect_usb">USB 프로그래머 분리</string>
+    <string name="cd_clear_log">로그 지우기</string>
+    <string name="cd_tutorial_image">튜토리얼 그림</string>
+    <string name="title_activity_tutorial_gputils">GPUTILS 튜토리얼</string>
+    <string name="title_activity_tutorial_sdcc">SDCC 튜토리얼</string>
+    <string name="diag_dialog_title">🩺 K150 하드웨어 진단</string>
+    <string name="diag_section_programmer_status">📋 프로그래머 상태</string>
+    <string name="diag_label_model">모델:</string>
+    <string name="diag_label_protocol">프로토콜:</string>
+    <string name="diag_label_echo_test">에코 테스트:</string>
+    <string name="diag_label_zif_sensor">ZIF 센서:</string>
+    <string name="diag_status_querying">조회 중...</string>
+    <string name="diag_status_pending">대기 중</string>
+    <string name="diag_btn_test_echo">⚡ 에코 테스트</string>
+    <string name="diag_btn_full_diagnosis">🔄 전체 진단</string>
+    <string name="diag_btn_test_zif_sensors">🧪 ZIF 센서 테스트 (삽입/제거)</string>
+    <string name="diag_section_voltage_control">⚡ 전압 제어 VPP / VDD</string>
+    <string name="diag_voltage_warning_banner">⚠️ 주의: 멀티미터로 전압을 활성화하거나 측정하기 전에 ZIF 소켓에서 마이크로컨트롤러를 제거하십시오.</string>
+    <string name="diag_status_voltages_off">상태: 전압 꺼짐 (0V)</string>
+    <string name="diag_status_vpp_active">상태: ⚡ VPP (13V) / VDD (5V) 활성화됨</string>
+    <string name="diag_status_voltages_restarted">상태: ⚡ 전압 재시작됨 (활성)</string>
+    <string name="diag_status_error_activating">상태: ❌ 전압 활성화 오류</string>
+    <string name="diag_status_error_deactivating">상태: ❌ 전압 끄기 오류</string>
+    <string name="diag_status_error_restarting">상태: ❌ 전압 재시작 오류</string>
+    <string name="diag_btn_vpp_13v">VPP (13V)</string>
+    <string name="diag_btn_power_off_0v">전원 끄기 (0V)</string>
+    <string name="diag_btn_restart_voltages">재시작</string>
+    <string name="diag_programmer_not_connected">프로그래머가 연결되지 않음</string>
+    <string name="diag_connect_programmer_prompt">⚠ 진단을 사용하려면 K150 프로그래머를 연결하십시오</string>
+    <string name="diag_model_not_connected">모델: 프로그래머 미연결</string>
+    <string name="diag_echo_measuring">에코 테스트: 측정 중...</string>
+    <string name="diag_zif_reading">ZIF 센서: 읽는 중...</string>
+    <string name="diag_echo_ok">에코 테스트: ✓ 정상 (%1$d ms)</string>
+    <string name="diag_echo_no_response">에코 테스트: ❌ 응답 없음</string>
+    <string name="diag_echo_failed">에코 테스트: ❌ 실패</string>
+    <string name="diag_socket_pic_detected">✓ ZIF 소켓에서 PIC 감지됨</string>
+    <string name="diag_socket_empty">ℹ 빈 소켓 (칩 감지되지 않음)</string>
+    <string name="diag_socket_no_firm_contact">⚠ 소켓에서 안정적인 접촉이 감지되지 않음</string>
+    <string name="diag_toast_chip_removed_voltages_active">칩 제거됨: 안전한 측정을 위해 전압이 활성화되었습니다</string>
+    <string name="diag_toast_voltages_activated_multimeter">전압 활성화됨: VPP 및 VDD 핀에서 멀티미터로 측정하십시오</string>
+    <string name="diag_toast_voltages_off">전압 꺼짐 (0V)</string>
+    <string name="diag_toast_voltages_restarted">칩 제거됨: 측정을 위해 전압이 재시작되었습니다</string>
+    <string name="diag_alert_chip_in_socket_title">⚠️ 소켓에 마이크로컨트롤러 있음</string>
+    <string name="diag_alert_chip_in_socket_message">13V VPP로 인한 PIC 손상을 방지하려면 전압을 활성화하거나 측정하기 전에 ZIF 소켓에서 마이크로컨트롤러를 제거하십시오.
+
+칩을 제거한 후 \'계속\'을 눌러 측정을 활성화하거나, \'취소\'를 눌러 전압을 꺼진 상태로 유지하십시오.</string>
+    <string name="diag_btn_continue_chip_removed">계속 (칩 제거됨)</string>
+    <string name="diag_zif_test_title">🧪 ZIF 센서 테스트</string>
+    <string name="diag_zif_test_desc">ZIF 소켓 하드웨어 센서 테스트 (Kitsrus 명령어 18 및 19):
+</string>
+    <string name="diag_zif_step1_waiting">⏳ 1단계: 소켓에 마이크로컨트롤러를 삽입하고 레버를 잠그십시오 (명령어 18)...</string>
+    <string name="diag_zif_step2_pending">⚪ 2단계: 대기 중 (명령어 19로 추출)</string>
+    <string name="diag_zif_step1_ok">✓ 1단계: 삽입 센서 정상 (명령어 18)</string>
+    <string name="diag_zif_step2_waiting">⏳ 2단계: 이제 레버를 올리고 소켓에서 칩을 제거하십시오 (명령어 19)...</string>
+    <string name="diag_zif_step1_timeout">❌ 1단계: 칩이 감지되지 않고 시간 초과됨</string>
+    <string name="diag_zif_step2_ok">✓ 2단계: 추출 센서 정상 (명령어 19)</string>
+    <string name="diag_zif_both_sensors_ok">🎉 ZIF 소켓의 두 물리 센서가 모두 완벽하게 작동합니다!
+</string>
+    <string name="diag_zif_step2_timeout">❌ 2단계: 추출이 감지되지 않고 시간 초과됨</string>
+    <string name="hex_editor_title">✏️ %1$s 편집</string>
+    <string name="hex_editor_type_rom_word">ROM (워드)</string>
+    <string name="hex_editor_type_eeprom_byte">EEPROM (바이트)</string>
+    <string name="hex_editor_info_address_value">메모리 주소: %1$s
+현재 값: 0x%2$s (최대: 0x%3$s)</string>
+    <string name="hex_editor_card_title_rom">ℹ️ 워드 형식 및 바이트 순서 (리틀 엔디언)</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM 셀 형식 (8비트)</string>
+    <string name="hex_editor_desc_rom">• PIC는 14/16비트 워드를 리틀 엔디언 순서로 저장합니다:
+   - 하위 바이트 (LSB): 0x%1$s (오프셋 2×N)
+   - 상위 바이트 (MSB): 0x%2$s (오프셋 2×N+1)
+• 편집 방법: 전체 논리 워드 [MSB][LSB]를 입력합니다 (예: 2805 = LSB 05, MSB 28).
+• 앱이 실리콘 및 HEX 파일용 리틀 엔디언으로 바이트를 자동 재정렬합니다.</string>
+    <string name="hex_editor_desc_eeprom">• EEPROM 셀은 개별 8비트 바이트로 구성됩니다.
+• 2자리 16진수 바이트를 직접 입력하십시오 (범위: 00 ~ FF).</string>
+    <string name="hex_editor_input_label_rom">새 값 입력 (16진수 워드 [MSB][LSB]):</string>
+    <string name="hex_editor_input_label_eeprom">새 값 입력 (16진수 바이트 00-FF):</string>
+    <string name="guardar">저장</string>
+    <string name="hex_editor_err_empty">값은 비워둘 수 없습니다</string>
+    <string name="hex_editor_err_invalid_hex">유효하지 않은 16진수 형식입니다</string>
+    <string name="hex_editor_err_exceeds_max">값이 허용된 최대값(0x%1$s)을 초과합니다</string>
+    <string name="cal_chip_subtitle_10f">마이크로컨트롤러: %1$s (PIC10F 제품군 - CAL 레지스터 2개)</string>
+    <string name="cal_chip_subtitle_standard">마이크로컨트롤러: %1$s (마지막 ROM 주소의 OSCCAL 워드)</string>
+    <string name="cal_not_read_yet">칩에서 아직 읽지 않음</string>
+    <string name="cal_silicon_value">
+실리콘 값: %1$s</string>
+    <string name="cal_enter_hex_prompt">
+16진수 값 입력 (예: %1$s):</string>
+    <string name="cal_btn_read_from_chip">📥 칩에서 읽기</string>
+    <string name="cal_btn_write_silicon">💾 실리콘에 쓰기</string>
+    <string name="cal_dialog_title">⏱️ OSCCAL 교정</string>
+    <string name="cal_toast_read_success">✓ OSCCAL 읽기 완료: %1$s</string>
+    <string name="cal_toast_read_error">❌ 칩에서 교정값 읽기 오류</string>
+    <string name="cal_toast_invalid_hex">유효하지 않은 16진수 값입니다</string>
+    <string name="cal_toast_write_success">✓ OSCCAL이 칩에 성공적으로 기록되었습니다</string>
+    <string name="cal_toast_write_error">❌ 실리콘에 교정값 쓰기 실패</string>
+    <string name="icd_dialog_subtitle">인서킷 디버깅 (ICD) - 24비트 주소 벡터
+(유효 범위: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_current_vector">
+현재 벡터: %1$s</string>
+    <string name="icd_enter_address_prompt">
+16진수 디버그 주소 (예: 000020):</string>
+    <string name="icd_btn_read_vector">📥 벡터 읽기</string>
+    <string name="icd_btn_write_vector">💾 벡터 쓰기</string>
+    <string name="icd_dialog_title">🛠️ 디버깅 벡터 (ICD)</string>
+    <string name="icd_toast_read_success">✓ 벡터 읽기 완료: %1$s</string>
+    <string name="icd_toast_invalid_address">유효하지 않은 24비트 16진수 주소입니다</string>
+    <string name="icd_toast_write_success">✓ ICD 벡터 프로그래밍 완료: %1$s</string>
+    <string name="icd_toast_write_error">❌ ICD 벡터 프로그래밍 실패</string>
+    <string name="prog_type_all_title">모두 프로그래밍</string>
+    <string name="prog_type_all_desc">ROM, EEPROM 및 구성</string>
+    <string name="prog_type_rom_title">ROM 프로그래밍</string>
+    <string name="prog_type_rom_desc">플래시 메모리</string>
+    <string name="prog_type_eeprom_title">EEPROM 프로그래밍</string>
+    <string name="prog_type_eeprom_desc">EEPROM 데이터</string>
+    <string name="prog_type_config_title">구성 프로그래밍</string>
+    <string name="prog_type_config_desc">퓨즈 및 구성 비트</string>
+    <string name="blank_check_err_null_result">❌ 블랭크 체크 오류: 결과 없음(null)</string>
+    <string name="blank_check_err_verifying">❌ 블랭크 체크 확인 오류: %1$s</string>
+    <string name="blank_check_dual_header">📋 차등 블랭크 체크 (이중 블랭크 체크):</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% 비어 있음 (%1$s)</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM에서 이전 데이터 감지됨 (비어 있지 않음)</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% 비어 있음 (0xFF)</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM에서 이전 데이터 감지됨 (비어 있지 않음)</string>
+    <string name="blank_check_method_label">  ℹ 방식: %1$s</string>
+    <string name="blank_check_ready_to_program">✓ 마이크로컨트롤러 프로그래밍 준비 완료 (100%% 지워짐)</string>
+    <string name="blank_check_erase_required">⚠ 프로그래밍 전에 사전 지우기가 필요합니다</string>
+    <string name="dialog_insert_microcontroller_title">⚠️ 마이크로컨트롤러 삽입</string>
+    <string name="dialog_insert_microcontroller_message">ZIF 소켓에서 칩이 감지되지 않았습니다.
+
+PIC %1$s을(를) 해당 위치에 삽입하고 레버를 잠근 후 [%2$s]을(를) 다시 누르십시오.</string>
+    <string name="log_no_chip_in_socket">⚠️ ZIF 소켓에 칩이 없습니다. 마이크로컨트롤러 %1$s을(를) 삽입하고 [%2$s]을(를) 다시 누르십시오.</string>
+    <string name="log_verifying_pic_in_socket">🔍 ZIF 소켓의 PIC 존재 확인 중...</string>
+    <string name="log_detecting_chip_in_socket">🔍 소켓의 칩 감지 중...</string>
+    <string name="log_no_pic_detected_in_zif">⚠ ZIF 소켓에서 PIC가 감지되지 않음 (방향 및 레버 확인)</string>
+    <string name="log_pic_physically_detected">✓ 소켓에서 PIC 물리적으로 감지됨</string>
+    <string name="log_chip_auto_identified">🎯 자동 식별 완료: %1$s (ID: %2$s)</string>
+    <string name="toast_chip_detected">칩 감지됨: %1$s</string>
+    <string name="log_chip_present_select_manually">ℹ 칩 있음 (ID: %1$s). 목록에서 수동으로 모델을 선택하십시오.</string>
+    <string name="log_connecting_to_programmer">🔌 프로그래머에 연결 중...</string>
+    <string name="log_connect_programmer_first">⚠ 먼저 USB를 통해 K150 프로그래머를 연결하십시오.</string>
+    <string name="log_loading_file">📂 %1$s 로드 중: %2$s</string>
+    <string name="log_processing_file">⏳ %1$s 파일 처리 중...</string>
+    <string name="log_programming_verified_success">✓ 프로그래밍이 완료되었으며 성공적으로 확인되었습니다!</string>
+    <string name="log_programming_failed">❌ 마이크로컨트롤러 프로그래밍 프로세스 실패</string>
+    <string name="log_backing_up_osccal">⏱️ 칩에 교정이 필요합니다. 지우기 전에 OSCCAL을 백업하는 중...</string>
+    <string name="log_osccal_restored">✓ OSCCAL이 실리콘에 성공적으로 복원됨: %1$s</string>
+    <string name="log_osccal_restore_failed_warning">⚠ OSCCAL을 자동으로 복원할 수 없습니다. 교정 메뉴를 사용하십시오.</string>
+    <string name="notification_channel_name">PIC K150 작업</string>
+    <string name="notification_channel_description">프로그래밍 완료 알림 및 하드웨어 경고</string>
+    <string name="ad_loading_rewarded_video_toast">보상형 동영상 로드 중... 몇 초 후에 다시 시도하십시오.</string>
+    <string name="pro_pass_expired">만료됨</string>
+    <string name="fuse_log_last_config_restored">✓ 마지막 구성 복원됨</string>
+    <string name="fuse_log_no_hex_loaded">⚠ HEX 파일이 로드되지 않음</string>
+    <string name="fuse_log_hex_no_fuses">⚠ HEX에 퓨즈 정보가 없음</string>
+    <string name="fuse_log_hex_count">  HEX: 퓨즈 %1$d개</string>
+    <string name="fuse_log_expected_count">  칩 필요: %1$d개</string>
+    <string name="unknown_device_id">알 수 없음</string>
+    <string name="status_connected">연결됨</string>
+    <string name="status_error">오류</string>
+    <string name="log_pro_purchase_error">⚠ Pro 구매: %1$s</string>
 </resources>
