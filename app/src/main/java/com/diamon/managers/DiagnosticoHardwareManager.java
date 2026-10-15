@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -18,6 +17,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.diamon.pic.R;
 import com.diamon.protocolo.ProtocoloP18A;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -34,6 +34,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * </ul>
  */
 public class DiagnosticoHardwareManager {
+
+    /** Verificador de conexión compatible con API 23 (sin java.util.function). */
+    private interface VerificadorConexion {
+        boolean verificar();
+    }
+
 
     /** Callback para notificar eventos al log principal de la aplicación. */
     public interface LogCallback {
@@ -67,12 +73,16 @@ public class DiagnosticoHardwareManager {
         }
 
         public String getEstadoSocketDescripcion() {
+            return getEstadoSocketDescripcion(null);
+        }
+
+        public String getEstadoSocketDescripcion(Context context) {
             if (picEnSocket) {
-                return "✓ PIC Detectado en el zócalo ZIF";
+                return context != null ? context.getString(R.string.diag_socket_pic_detected) : "✓ PIC Detectado en el zócalo ZIF";
             } else if (picFueraSocket) {
-                return "ℹ Zócalo vacío (Sin chip detectado)";
+                return context != null ? context.getString(R.string.diag_socket_empty) : "ℹ Zócalo vacío (Sin chip detectado)";
             } else {
-                return "⚠ No se detectó contacto firme en el zócalo";
+                return context != null ? context.getString(R.string.diag_socket_no_firm_contact) : "⚠ No se detectó contacto firme en el zócalo";
             }
         }
     }
@@ -242,19 +252,19 @@ public class DiagnosticoHardwareManager {
         LinearLayout cardEstado = crearCardContainer(activity, dp12, dp16);
         rootLayout.addView(cardEstado);
 
-        TextView tvTituloEstado = crearSectionHeader(activity, "📋 Estado del Programador");
+        TextView tvTituloEstado = crearSectionHeader(activity, activity.getString(R.string.diag_section_programmer_status));
         cardEstado.addView(tvTituloEstado);
 
-        final TextView tvModelo = crearFilaInfo(activity, "Modelo:", "Consultando...");
+        final TextView tvModelo = crearFilaInfo(activity, activity.getString(R.string.diag_label_model), activity.getString(R.string.diag_status_querying));
         cardEstado.addView(tvModelo);
 
-        final TextView tvProtocolo = crearFilaInfo(activity, "Protocolo:", "Consultando...");
+        final TextView tvProtocolo = crearFilaInfo(activity, activity.getString(R.string.diag_label_protocol), activity.getString(R.string.diag_status_querying));
         cardEstado.addView(tvProtocolo);
 
-        final TextView tvEco = crearFilaInfo(activity, "Prueba de Eco:", "Pendiente");
+        final TextView tvEco = crearFilaInfo(activity, activity.getString(R.string.diag_label_echo_test), activity.getString(R.string.diag_status_pending));
         cardEstado.addView(tvEco);
 
-        final TextView tvSocket = crearFilaInfo(activity, "Sensor ZIF:", "Consultando...");
+        final TextView tvSocket = crearFilaInfo(activity, activity.getString(R.string.diag_label_zif_sensor), activity.getString(R.string.diag_status_querying));
         cardEstado.addView(tvSocket);
 
         final ProgressBar progressBar = new ProgressBar(activity, null, android.R.attr.progressBarStyleSmall);
@@ -274,15 +284,15 @@ public class DiagnosticoHardwareManager {
         lbeParams.topMargin = dp12;
         cardEstado.addView(layoutBotonesEstado, lbeParams);
 
-        Button btnProbarEco = crearBoton(activity, "⚡ Probar Eco", Color.parseColor("#00B0FF"));
-        Button btnActualizarTodo = crearBoton(activity, "🔄 Diagnóstico Completo", Color.parseColor("#3F51B5"));
+        Button btnProbarEco = crearBoton(activity, activity.getString(R.string.diag_btn_test_echo), Color.parseColor("#00B0FF"));
+        Button btnActualizarTodo = crearBoton(activity, activity.getString(R.string.diag_btn_full_diagnosis), Color.parseColor("#3F51B5"));
 
         LinearLayout.LayoutParams btnHalfParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         btnHalfParams.setMargins(dp8 / 2, 0, dp8 / 2, 0);
         layoutBotonesEstado.addView(btnProbarEco, btnHalfParams);
         layoutBotonesEstado.addView(btnActualizarTodo, btnHalfParams);
 
-        Button btnProbarSensores = crearBoton(activity, "🧪 Probar Sensores ZIF (Inserción/Extracción)", Color.parseColor("#7B1FA2"));
+        Button btnProbarSensores = crearBoton(activity, activity.getString(R.string.diag_btn_test_zif_sensors), Color.parseColor("#7B1FA2"));
         LinearLayout.LayoutParams btnFullWidthParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         btnFullWidthParams.topMargin = dp8;
@@ -298,7 +308,7 @@ public class DiagnosticoHardwareManager {
         LinearLayout cardVoltajes = crearCardContainer(activity, dp12, dp16);
         rootLayout.addView(cardVoltajes);
 
-        TextView tvTituloVoltajes = crearSectionHeader(activity, "⚡ Control de Voltajes VPP / VDD");
+        TextView tvTituloVoltajes = crearSectionHeader(activity, activity.getString(R.string.diag_section_voltage_control));
         cardVoltajes.addView(tvTituloVoltajes);
 
         // Cuadro de Advertencia Crítica de Seguridad
@@ -312,7 +322,7 @@ public class DiagnosticoHardwareManager {
         warningBox.setBackground(warningBg);
 
         TextView tvWarning = new TextView(activity);
-        tvWarning.setText("⚠️ ATENCIÓN: Retire el microcontrolador del zócalo ZIF antes de activar o medir voltajes con multímetro.");
+        tvWarning.setText(activity.getString(R.string.diag_voltage_warning_banner));
         tvWarning.setTextColor(Color.parseColor("#FFCC80"));
         tvWarning.setTextSize(13f);
         tvWarning.setTypeface(null, Typeface.BOLD);
@@ -325,7 +335,7 @@ public class DiagnosticoHardwareManager {
         cardVoltajes.addView(warningBox, wbParams);
 
         final TextView tvEstadoVoltaje = new TextView(activity);
-        tvEstadoVoltaje.setText("Estado: Voltajes apagados (0V)");
+        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_off));
         tvEstadoVoltaje.setTextColor(Color.parseColor("#B0BEC5"));
         tvEstadoVoltaje.setTextSize(13f);
         tvEstadoVoltaje.setGravity(Gravity.CENTER);
@@ -340,9 +350,9 @@ public class DiagnosticoHardwareManager {
         lbvParams.topMargin = dp12;
         cardVoltajes.addView(layoutBotonesVoltajes, lbvParams);
 
-        final Button btnActivarVpp = crearBoton(activity, "VPP (13V)", Color.parseColor("#FF6600"));
-        final Button btnDesactivarV = crearBoton(activity, "Apagar (0V)", Color.parseColor("#4CAF50"));
-        final Button btnReiniciarV = crearBoton(activity, "Reiniciar", Color.parseColor("#78909C"));
+        final Button btnActivarVpp = crearBoton(activity, activity.getString(R.string.diag_btn_vpp_13v), Color.parseColor("#FF6600"));
+        final Button btnDesactivarV = crearBoton(activity, activity.getString(R.string.diag_btn_power_off_0v), Color.parseColor("#4CAF50"));
+        final Button btnReiniciarV = crearBoton(activity, activity.getString(R.string.diag_btn_restart_voltages), Color.parseColor("#78909C"));
 
         LinearLayout.LayoutParams btnThirdParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         btnThirdParams.setMargins(dp8 / 2, 0, dp8 / 2, 0);
@@ -366,9 +376,9 @@ public class DiagnosticoHardwareManager {
 
         // Diálogo AlertDialog
         AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle("🩺 Diagnóstico de Hardware K150")
+                .setTitle(activity.getString(R.string.diag_dialog_title))
                 .setView(scrollView)
-                .setPositiveButton("Cerrar", (d, which) -> {
+                .setPositiveButton(activity.getString(R.string.cerrar), (d, which) -> {
                     apagarVoltajesSiActivos.run();
                 })
                 .create();
@@ -377,28 +387,60 @@ public class DiagnosticoHardwareManager {
             apagarVoltajesSiActivos.run();
         });
 
+        // --- VERIFICACIÓN DE CONEXIÓN (igual que Calibración OSCCAL / Vector ICD) ---
+        final VerificadorConexion verificarConexion = () -> {
+            if (protocolo == null) {
+                Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
+                if (log != null) {
+                    log.onLog(activity.getString(R.string.diag_connect_programmer_prompt));
+                }
+                return false;
+            }
+            return true;
+        };
+
         // --- LÓGICA DE ACTUALIZACIÓN ASÍNCRONA ---
         Runnable refrescarDiagnosticoCompleto = () -> {
+            if (protocolo == null) {
+                progressBar.setVisibility(View.GONE);
+                tvModelo.setText(activity.getString(R.string.diag_model_not_connected));
+                tvProtocolo.setText(activity.getString(R.string.diag_label_protocol) + " —");
+                tvEco.setText(activity.getString(R.string.diag_label_echo_test) + " —");
+                tvSocket.setText(activity.getString(R.string.diag_label_zif_sensor) + " —");
+                return;
+            }
             progressBar.setVisibility(View.VISIBLE);
-            tvModelo.setText("Modelo: Consultando...");
-            tvProtocolo.setText("Protocolo: Consultando...");
-            tvEco.setText("Prueba de Eco: Midiendo...");
-            tvSocket.setText("Sensor ZIF: Leyendo...");
+            tvModelo.setText(activity.getString(R.string.diag_label_model) + " " + activity.getString(R.string.diag_status_querying));
+            tvProtocolo.setText(activity.getString(R.string.diag_label_protocol) + " " + activity.getString(R.string.diag_status_querying));
+            tvEco.setText(activity.getString(R.string.diag_echo_measuring));
+            tvSocket.setText(activity.getString(R.string.diag_zif_reading));
 
             new Thread(() -> {
                 ResultadoDiagnostico res = ejecutarDiagnostico(protocolo);
                 activity.runOnUiThread(() -> {
                     progressBar.setVisibility(View.GONE);
-                    tvModelo.setText("Modelo: " + res.modeloProgramador);
-                    tvProtocolo.setText("Protocolo: " + res.protocolo);
+                    boolean modeloOk = res.modeloProgramador != null &&
+                            !res.modeloProgramador.contains("Error") &&
+                            !res.modeloProgramador.contains("Desconocido") &&
+                            !res.modeloProgramador.contains("no conectado");
+                    tvModelo.setText(activity.getString(R.string.diag_label_model) + " " + (modeloOk ? "✓ " : "") + res.modeloProgramador);
+                    tvModelo.setTextColor(modeloOk ? Color.parseColor("#4CAF50") : Color.parseColor("#FF5252"));
+
+                    boolean protoOk = res.protocolo != null &&
+                            !res.protocolo.contains("Error") &&
+                            !res.protocolo.contains("Desconocido") &&
+                            !res.protocolo.equals("N/A");
+                    tvProtocolo.setText(activity.getString(R.string.diag_label_protocol) + " " + (protoOk ? "✓ " : "") + res.protocolo);
+                    tvProtocolo.setTextColor(protoOk ? Color.parseColor("#4CAF50") : Color.parseColor("#FF5252"));
+
                     if (res.ecoExitoso) {
-                        tvEco.setText("Prueba de Eco: ✓ OK (" + res.latenciaEcoMs + " ms)");
+                        tvEco.setText(activity.getString(R.string.diag_echo_ok, (int) res.latenciaEcoMs));
                         tvEco.setTextColor(Color.parseColor("#4CAF50"));
                     } else {
-                        tvEco.setText("Prueba de Eco: ❌ Sin respuesta");
+                        tvEco.setText(activity.getString(R.string.diag_echo_no_response));
                         tvEco.setTextColor(Color.parseColor("#FF5252"));
                     }
-                    tvSocket.setText("Sensor ZIF: " + res.getEstadoSocketDescripcion());
+                    tvSocket.setText(activity.getString(R.string.diag_label_zif_sensor) + " " + res.getEstadoSocketDescripcion(activity));
                     if (res.picEnSocket) {
                         tvSocket.setTextColor(Color.parseColor("#4CAF50"));
                     } else {
@@ -415,21 +457,25 @@ public class DiagnosticoHardwareManager {
             }).start();
         };
 
-        btnActualizarTodo.setOnClickListener(v -> refrescarDiagnosticoCompleto.run());
+        btnActualizarTodo.setOnClickListener(v -> {
+            if (!verificarConexion.verificar()) return;
+            refrescarDiagnosticoCompleto.run();
+        });
 
         btnProbarEco.setOnClickListener(v -> {
-            tvEco.setText("Prueba de Eco: Midiendo...");
+            if (!verificarConexion.verificar()) return;
+            tvEco.setText(activity.getString(R.string.diag_echo_measuring));
             new Thread(() -> {
                 long latencia = probarEco(protocolo);
                 activity.runOnUiThread(() -> {
                     if (latencia >= 0) {
-                        tvEco.setText("Prueba de Eco: ✓ OK (" + latencia + " ms)");
+                        tvEco.setText(activity.getString(R.string.diag_echo_ok, (int) latencia));
                         tvEco.setTextColor(Color.parseColor("#4CAF50"));
                         if (log != null) {
                             log.onLog("⚡ Eco serial K150 exitoso: " + latencia + " ms");
                         }
                     } else {
-                        tvEco.setText("Prueba de Eco: ❌ Falló");
+                        tvEco.setText(activity.getString(R.string.diag_echo_failed));
                         tvEco.setTextColor(Color.parseColor("#FF5252"));
                         if (log != null) {
                             log.onLog("❌ Prueba de eco K150 no respondió");
@@ -440,13 +486,15 @@ public class DiagnosticoHardwareManager {
         });
 
         btnProbarSensores.setOnClickListener(v -> {
+            if (!verificarConexion.verificar()) return;
             mostrarDialogoPruebaSensoresZIF(activity, protocolo, log);
         });
 
         btnActivarVpp.setOnClickListener(v -> {
+            if (!verificarConexion.verificar()) return;
             btnActivarVpp.setEnabled(false);
             new Thread(() -> {
-                boolean chipEnSocket = protocolo.detectarPicEnElSocket();
+                boolean chipEnSocket = !voltajesActivos.get() && protocolo.detectarPicEnElSocket();
                 if (chipEnSocket) {
                     activity.runOnUiThread(() -> {
                         btnActivarVpp.setEnabled(true);
@@ -458,14 +506,14 @@ public class DiagnosticoHardwareManager {
                                     btnActivarVpp.setEnabled(true);
                                     if (ok) {
                                         voltajesActivos.set(true);
-                                        tvEstadoVoltaje.setText("Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS");
+                                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_vpp_active));
                                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
                                         if (log != null) {
                                             log.onLog("⚡ Voltajes VPP/VDD activados (13V/5V) para medición");
                                         }
-                                        Toast.makeText(activity, "Chip retirado: Voltajes activados para medición segura", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(activity, activity.getString(R.string.diag_toast_chip_removed_voltages_active), Toast.LENGTH_SHORT).show();
                                     } else {
-                                        tvEstadoVoltaje.setText("Estado: ❌ Error activando voltajes");
+                                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_activating));
                                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
                                     }
                                 });
@@ -480,14 +528,14 @@ public class DiagnosticoHardwareManager {
                     btnActivarVpp.setEnabled(true);
                     if (ok) {
                         voltajesActivos.set(true);
-                        tvEstadoVoltaje.setText("Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS");
+                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_vpp_active));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF6600"));
                         if (log != null) {
                             log.onLog("⚡ Voltajes VPP/VDD activados (13V/5V) para medición");
                         }
-                        Toast.makeText(activity, "Voltajes activados: mida con multímetro en VPP y VDD", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_activated_multimeter), Toast.LENGTH_SHORT).show();
                     } else {
-                        tvEstadoVoltaje.setText("Estado: ❌ Error activando voltajes");
+                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_activating));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
                         if (log != null) {
                             log.onLog("❌ Error al activar voltajes de programación");
@@ -498,6 +546,7 @@ public class DiagnosticoHardwareManager {
         });
 
         btnDesactivarV.setOnClickListener(v -> {
+            if (!verificarConexion.verificar()) return;
             btnDesactivarV.setEnabled(false);
             new Thread(() -> {
                 boolean ok = desactivarVoltajes(protocolo);
@@ -505,14 +554,14 @@ public class DiagnosticoHardwareManager {
                     btnDesactivarV.setEnabled(true);
                     if (ok) {
                         voltajesActivos.set(false);
-                        tvEstadoVoltaje.setText("Estado: Voltajes apagados (0V)");
+                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_off));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#4CAF50"));
                         if (log != null) {
                             log.onLog("✓ Voltajes desactivados (0V)");
                         }
-                        Toast.makeText(activity, "Voltajes apagados (0V)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_off), Toast.LENGTH_SHORT).show();
                     } else {
-                        tvEstadoVoltaje.setText("Estado: ❌ Error apagando voltajes");
+                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_deactivating));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
                     }
                 });
@@ -520,9 +569,10 @@ public class DiagnosticoHardwareManager {
         });
 
         btnReiniciarV.setOnClickListener(v -> {
+            if (!verificarConexion.verificar()) return;
             btnReiniciarV.setEnabled(false);
             new Thread(() -> {
-                boolean chipEnSocket = protocolo.detectarPicEnElSocket();
+                boolean chipEnSocket = !voltajesActivos.get() && protocolo.detectarPicEnElSocket();
                 if (chipEnSocket) {
                     activity.runOnUiThread(() -> {
                         btnReiniciarV.setEnabled(true);
@@ -534,14 +584,14 @@ public class DiagnosticoHardwareManager {
                                     btnReiniciarV.setEnabled(true);
                                     if (ok) {
                                         voltajesActivos.set(true);
-                                        tvEstadoVoltaje.setText("Estado: ⚡ Voltajes reiniciados (Activos)");
+                                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_restarted));
                                         tvEstadoVoltaje.setTextColor(Color.parseColor("#00B0FF"));
                                         if (log != null) {
                                             log.onLog("⚡ Ciclo de voltajes de programación reiniciado");
                                         }
-                                        Toast.makeText(activity, "Chip retirado: Voltajes reiniciados para medición", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_restarted), Toast.LENGTH_SHORT).show();
                                     } else {
-                                        tvEstadoVoltaje.setText("Estado: ❌ Error al reiniciar voltajes");
+                                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_restarting));
                                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
                                     }
                                 });
@@ -556,13 +606,13 @@ public class DiagnosticoHardwareManager {
                     btnReiniciarV.setEnabled(true);
                     if (ok) {
                         voltajesActivos.set(true);
-                        tvEstadoVoltaje.setText("Estado: ⚡ Voltajes reiniciados (Activos)");
+                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_restarted));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#00B0FF"));
                         if (log != null) {
                             log.onLog("⚡ Ciclo de voltajes de programación reiniciado");
                         }
                     } else {
-                        tvEstadoVoltaje.setText("Estado: ❌ Error al reiniciar voltajes");
+                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_restarting));
                         tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
                     }
                 });
@@ -593,36 +643,19 @@ public class DiagnosticoHardwareManager {
             ProtocoloP18A protocolo,
             Runnable accionAlRetirar) {
 
-        final AtomicBoolean cancelToken = new AtomicBoolean(false);
-
         AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle("⚠️ Microcontrolador en el Zócalo")
-                .setMessage("Para evitar dañar el PIC con 13V de VPP, por favor retire el microcontrolador del zócalo ZIF antes de activar voltajes de medición.\n\nEsperando a que retire el chip...")
+                .setTitle(activity.getString(R.string.diag_alert_chip_in_socket_title))
+                .setMessage(activity.getString(R.string.diag_alert_chip_in_socket_message))
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setNegativeButton("Cancelar", (d, which) -> cancelToken.set(true))
-                .create();
-
-        dialog.setOnDismissListener(d -> cancelToken.set(true));
-        dialog.show();
-
-        new Thread(() -> {
-            boolean extraido = protocolo.esperarExtraccionDelSocket(30000, cancelToken);
-            activity.runOnUiThread(() -> {
-                if (extraido && !cancelToken.get()) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception ignored) {}
+                .setPositiveButton(activity.getString(R.string.diag_btn_continue_chip_removed), (d, which) -> {
                     if (accionAlRetirar != null) {
                         accionAlRetirar.run();
                     }
-                } else if (!cancelToken.get()) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception ignored) {}
-                    Toast.makeText(activity, "Tiempo agotado. Retire el chip e intente nuevamente.", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }).start();
+                })
+                .setNegativeButton(activity.getString(R.string.cancelar), null)
+                .create();
+
+        dialog.show();
     }
 
     private void mostrarDialogoPruebaSensoresZIF(Activity activity, ProtocoloP18A protocolo, LogCallback log) {
@@ -650,7 +683,7 @@ public class DiagnosticoHardwareManager {
         rootLayout.addView(card);
 
         TextView tvTitulo = new TextView(activity);
-        tvTitulo.setText("🧪 Prueba de Sensores ZIF");
+        tvTitulo.setText(activity.getString(R.string.diag_zif_test_title));
         tvTitulo.setTextSize(16f);
         tvTitulo.setTypeface(null, Typeface.BOLD);
         tvTitulo.setTextColor(Color.WHITE);
@@ -658,20 +691,20 @@ public class DiagnosticoHardwareManager {
         card.addView(tvTitulo);
 
         TextView tvInfo = new TextView(activity);
-        tvInfo.setText("Prueba de sensores de hardware del zócalo ZIF (Kitsrus Comandos 18 y 19):\n");
+        tvInfo.setText(activity.getString(R.string.diag_zif_test_desc));
         tvInfo.setTextSize(13f);
         tvInfo.setTextColor(Color.parseColor("#ECEFF1"));
         card.addView(tvInfo);
 
         TextView tvPaso1 = new TextView(activity);
-        tvPaso1.setText("⏳ Paso 1: Inserte un microcontrolador en el zócalo y trabe la palanca (Comando 18)...");
+        tvPaso1.setText(activity.getString(R.string.diag_zif_step1_waiting));
         tvPaso1.setTextSize(13f);
         tvPaso1.setTextColor(Color.parseColor("#FFD54F"));
         tvPaso1.setPadding(0, p8, 0, p8);
         card.addView(tvPaso1);
 
         TextView tvPaso2 = new TextView(activity);
-        tvPaso2.setText("⚪ Paso 2: Pendiente (Extracción con Comando 19)");
+        tvPaso2.setText(activity.getString(R.string.diag_zif_step2_pending));
         tvPaso2.setTextSize(13f);
         tvPaso2.setTextColor(Color.parseColor("#B0BEC5"));
         tvPaso2.setPadding(0, p8, 0, p8);
@@ -683,7 +716,7 @@ public class DiagnosticoHardwareManager {
 
         AlertDialog dialog = new AlertDialog.Builder(activity)
                 .setView(rootLayout)
-                .setNegativeButton("Cancelar", (d, w) -> cancelToken.set(true))
+                .setNegativeButton(activity.getString(R.string.cancelar), (d, w) -> cancelToken.set(true))
                 .create();
 
         dialog.setOnDismissListener(d -> cancelToken.set(true));
@@ -709,13 +742,13 @@ public class DiagnosticoHardwareManager {
 
             activity.runOnUiThread(() -> {
                 if (insercionOk) {
-                    tvPaso1.setText("✓ Paso 1: Sensor de Inserción OK (Comando 18)");
+                    tvPaso1.setText(activity.getString(R.string.diag_zif_step1_ok));
                     tvPaso1.setTextColor(Color.parseColor("#4CAF50"));
-                    tvPaso2.setText("⏳ Paso 2: Ahora levante la palanca y retire el chip del zócalo (Comando 19)...");
+                    tvPaso2.setText(activity.getString(R.string.diag_zif_step2_waiting));
                     tvPaso2.setTextColor(Color.parseColor("#FFD54F"));
                     if (log != null) log.onLog("✓ Sensor de inserción ZIF respondido (Comando 18)");
                 } else {
-                    tvPaso1.setText("❌ Paso 1: Tiempo agotado sin detectar chip");
+                    tvPaso1.setText(activity.getString(R.string.diag_zif_step1_timeout));
                     tvPaso1.setTextColor(Color.parseColor("#FF5252"));
                     pb.setVisibility(View.GONE);
                 }
@@ -730,12 +763,12 @@ public class DiagnosticoHardwareManager {
             activity.runOnUiThread(() -> {
                 pb.setVisibility(View.GONE);
                 if (extraccionOk) {
-                    tvPaso2.setText("✓ Paso 2: Sensor de Extracción OK (Comando 19)");
+                    tvPaso2.setText(activity.getString(R.string.diag_zif_step2_ok));
                     tvPaso2.setTextColor(Color.parseColor("#4CAF50"));
-                    tvInfo.setText("🎉 ¡Ambos sensores físicos del zócalo ZIF funcionan perfectamente!\n");
+                    tvInfo.setText(activity.getString(R.string.diag_zif_both_sensors_ok));
                     if (log != null) log.onLog("✓ Sensor de extracción ZIF respondido (Comando 19)");
                 } else {
-                    tvPaso2.setText("❌ Paso 2: Tiempo agotado sin detectar extracción");
+                    tvPaso2.setText(activity.getString(R.string.diag_zif_step2_timeout));
                     tvPaso2.setTextColor(Color.parseColor("#FF5252"));
                 }
             });

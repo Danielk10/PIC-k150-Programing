@@ -103,7 +103,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:contentDescription="Socket Diagram"
+                    android:contentDescription="@string/cd_socket_diagram"
                     android:scaleType="fitCenter"
                     android:visibility="visible" />
             </LinearLayout>
@@ -215,47 +215,61 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Cabecera de Operaciones con Indicador Lógico de Conexión -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
-                    android:text="@string/operaciones"
-                    android:textColor="#FF6600"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <!-- Fila A: Conectar USB con Indicador -->
-                <LinearLayout
-                    android:id="@+id/layoutConnectUsb"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/operaciones"
+                        android:textColor="#FF6600"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <!-- Indicador Lógico de Conexión -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/connectionIndicator"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/connection_indicator" />
+
+                        <TextView
+                            android:id="@+id/tvConnectionStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/desconectado"
+                            android:textColor="#B0BEC5"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Fila A: Botón Conectar USB sólido como todos los demás -->
+                <Button
+                    android:id="@+id/btnConnectUsb"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginBottom="4dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:background="#222235">
-
-                    <View
-                        android:id="@+id/connectionIndicator"
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:layout_marginEnd="6dp"
-                        android:background="@drawable/connection_indicator" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnConnectUsb"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Conectar"
-                        android:textColor="#4CAF50"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:minWidth="0dp"
-                        android:paddingHorizontal="8dp"
-                        android:paddingTop="0dp"
-                        android:paddingBottom="0dp" />
-                </LinearLayout>
+                    android:backgroundTint="#2E7D32"
+                    android:textAllCaps="false"
+                    android:text="@string/btn_connect_usb"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp" />
 
                 <!-- Fila B: Cargar archivo HEX + Programar PIC -->
                 <LinearLayout
@@ -451,7 +465,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
                     android:layout_margin="8dp"
-                    android:contentDescription="Limpiar log"
+                    android:contentDescription="@string/cd_clear_log"
                     app:srcCompat="@android:drawable/ic_menu_delete"
                     app:backgroundTint="#CC333355"
                     app:fabSize="mini"

@@ -45,9 +45,6 @@ import java.util.List;
  */
 public class ProtocoloP18A extends Protocolo {
 
-    /** Versión del protocolo P18A implementado */
-    private static final String VERSION_PROTOCOLO = "P18A v2.0";
-
     /** Timeout por defecto para operaciones USB en milisegundos */
     private static final int TIMEOUT_DEFAULT = 100;
 
@@ -1079,26 +1076,31 @@ public class ProtocoloP18A extends Protocolo {
     public boolean detectarPicEnElSocket() {
         try {
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
+            enviarComandoOpcode(tipoProtocolo.getCmdDetectarEnSocket());
 
-            // Enviar comando para detectar chip en socket
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 100);
-
-            byte[] b1 = readBytes(1, TIMEOUT_EXTENDED);
+            // Leer respuesta del hardware
+            // Con chip en zócalo: responde 'A' y casi de inmediato 'Y' (o 'Y' directo)
+            // Sin chip: responde 'A' y se queda esperando inserción
+            byte[] b1 = readBytes(1, 300);
             if (b1.length > 0 && b1[0] == 'Y') {
-                resetearComandos();
                 return true;
             }
             if (b1.length > 0 && b1[0] == 'A') {
-                byte[] b2 = readBytes(1, TIMEOUT_EXTENDED);
-                resetearComandos();
-                return (b2.length > 0 && b2[0] == 'Y');
+                try {
+                    byte[] b2 = readBytes(1, 250);
+                    if (b2.length > 0 && b2[0] == 'Y') {
+                        return true;
+                    }
+                } catch (Exception ignored) {
+                    // No llegó 'Y', el zócalo está vacío y el hardware espera inserción
+                }
             }
 
-            resetearComandos();
+            // Abortar bucle de espera de inserción en el firmware y resincronizar
+            iniciarProtocolo();
             return false;
         } catch (Exception e) {
-            try { resetearComandos(); } catch (Exception ignored) {}
+            try { iniciarProtocolo(); } catch (Exception ignored) {}
             return false;
         }
     }
@@ -1107,26 +1109,30 @@ public class ProtocoloP18A extends Protocolo {
     public boolean detectarSiEstaFueraElPicDelSocket() {
         try {
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
+            enviarComandoOpcode(tipoProtocolo.getCmdDetectarFueraSocket());
 
-            // Enviar comando para detectar chip fuera del socket
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 100);
-
-            byte[] b1 = readBytes(1, TIMEOUT_EXTENDED);
+            // Con zócalo vacío: responde 'A' e inmediatamente 'Y' (o 'Y' directo)
+            // Con chip en zócalo: responde 'A' y se queda esperando extracción
+            byte[] b1 = readBytes(1, 300);
             if (b1.length > 0 && b1[0] == 'Y') {
-                resetearComandos();
                 return true;
             }
             if (b1.length > 0 && b1[0] == 'A') {
-                byte[] b2 = readBytes(1, TIMEOUT_EXTENDED);
-                resetearComandos();
-                return (b2.length > 0 && b2[0] == 'Y');
+                try {
+                    byte[] b2 = readBytes(1, 250);
+                    if (b2.length > 0 && b2[0] == 'Y') {
+                        return true;
+                    }
+                } catch (Exception ignored) {
+                    // No llegó 'Y', el chip aún está en el zócalo y el hardware espera extracción
+                }
             }
 
-            resetearComandos();
+            // Abortar bucle de espera de extracción en el firmware y resincronizar
+            iniciarProtocolo();
             return false;
         } catch (Exception e) {
-            try { resetearComandos(); } catch (Exception ignored) {}
+            try { iniciarProtocolo(); } catch (Exception ignored) {}
             return false;
         }
     }
@@ -1136,10 +1142,7 @@ public class ProtocoloP18A extends Protocolo {
         long fin = System.currentTimeMillis() + timeoutMs;
         try {
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
-
-            // Enviar comando para detectar chip fuera del socket
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarFueraSocket() }, 100);
+            enviarComandoOpcode(tipoProtocolo.getCmdDetectarFueraSocket());
 
             // Leer primer byte: puede ser 'Y' (ya fuera) o 'A' (esperando acción física)
             byte[] b1;
@@ -1150,7 +1153,6 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             if (b1.length > 0 && b1[0] == 'Y') {
-                resetearComandos();
                 return true;
             }
 
@@ -1162,7 +1164,6 @@ public class ProtocoloP18A extends Protocolo {
                 try {
                     byte[] b2 = readBytes(1, 200);
                     if (b2.length > 0 && b2[0] == 'Y') {
-                        resetearComandos();
                         return true;
                     }
                 } catch (Exception ignored) {
@@ -1174,7 +1175,7 @@ public class ProtocoloP18A extends Protocolo {
         } finally {
             try {
                 clearBuffer();
-                resetearComandos();
+                iniciarProtocolo();
             } catch (Exception ignored) {}
         }
         return false;
@@ -1185,10 +1186,7 @@ public class ProtocoloP18A extends Protocolo {
         long fin = System.currentTimeMillis() + timeoutMs;
         try {
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
-
-            // Enviar comando para detectar chip en el socket
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdDetectarEnSocket() }, 100);
+            enviarComandoOpcode(tipoProtocolo.getCmdDetectarEnSocket());
 
             byte[] b1;
             try {
@@ -1198,7 +1196,6 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             if (b1.length > 0 && b1[0] == 'Y') {
-                resetearComandos();
                 return true;
             }
 
@@ -1209,7 +1206,6 @@ public class ProtocoloP18A extends Protocolo {
                 try {
                     byte[] b2 = readBytes(1, 200);
                     if (b2.length > 0 && b2[0] == 'Y') {
-                        resetearComandos();
                         return true;
                     }
                 } catch (Exception ignored) {
@@ -1221,7 +1217,7 @@ public class ProtocoloP18A extends Protocolo {
         } finally {
             try {
                 clearBuffer();
-                resetearComandos();
+                iniciarProtocolo();
             } catch (Exception ignored) {}
         }
         return false;
@@ -1234,16 +1230,12 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
-
-            // Enviar comando para obtener versión del programador
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdVersion() }, 100);
+            enviarComandoOpcode(tipoProtocolo.getCmdVersion());
 
             byte[] bytes = new byte[1];
             int bytesLeidos = usbSerialPort.read(bytes, 250);
 
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
 
             if (bytesLeidos <= 0) {
                 return "K150";
@@ -1274,10 +1266,7 @@ public class ProtocoloP18A extends Protocolo {
 
         try {
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
-
-            // Enviar comando para obtener protocolo del programador
-            usbSerialPort.write(new byte[] { (byte) tipoProtocolo.getCmdProtocolo() }, 100);
+            enviarComandoOpcode(tipoProtocolo.getCmdProtocolo());
 
             int size = 4;
             byte[] buffer = new byte[64];
@@ -1300,7 +1289,6 @@ public class ProtocoloP18A extends Protocolo {
             }
 
             try { clearBuffer(); } catch (Exception ignored) {}
-            resetearComandos();
 
             if (bytesLeidos == 0) {
                 return tipoProtocolo.getNombre();

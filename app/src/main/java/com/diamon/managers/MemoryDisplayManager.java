@@ -17,7 +17,6 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
@@ -53,7 +52,6 @@ public class MemoryDisplayManager {
 
     // Colores
     private static final int COLOR_BACKGROUND = Color.parseColor("#505060");
-    private static final int COLOR_CARD = Color.parseColor("#2A2A3E");
     private static final int COLOR_ADDRESS = Color.parseColor("#FFD700");
     private static final int COLOR_DATA_LOADED = Color.parseColor("#4CAF50");
     private static final int COLOR_DATA_EMPTY = Color.parseColor("#F44336");

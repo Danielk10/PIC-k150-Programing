@@ -1,10 +1,8 @@
 package com.diamon.managers;
 import com.diamon.pic.R;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.text.InputType;
 import android.view.Gravity;
@@ -406,7 +404,7 @@ public class FuseConfigPopup {
 
         if (lastConfiguration != null && !lastConfiguration.isEmpty()) {
             restoreConfiguration(lastConfiguration);
-            logMessage("✓ Ultima configuracion restaurada");
+            logMessage(context.getString(R.string.fuse_log_last_config_restored));
         } else {
             if (hexData != null) {
                 restoreFromHex();
@@ -417,7 +415,7 @@ public class FuseConfigPopup {
     /** Valida compatibilidad del HEX con el chip seleccionado */
     private void validateHexCompatibility() {
         if (hexData == null) {
-            logMessage("⚠ No hay archivo HEX cargado");
+            logMessage(context.getString(R.string.fuse_log_no_hex_loaded));
             return;
         }
 
@@ -425,7 +423,7 @@ public class FuseConfigPopup {
             int[] hexFuses = hexData.obtenerValoresIntHexFusesProcesado();
 
             if (hexFuses == null || hexFuses.length == 0) {
-                logMessage("⚠ El HEX no contiene fusibles");
+                logMessage(context.getString(R.string.fuse_log_hex_no_fuses));
                 return;
             }
 
@@ -438,8 +436,8 @@ public class FuseConfigPopup {
 
                     if (hexFuses.length != expectedFuseCount) {
                         logMessage(context.getString(R.string.advertencia_cantidad_fuses));
-                        logMessage("  HEX: " + hexFuses.length + " fusibles");
-                        logMessage("  Chip espera: " + expectedFuseCount);
+                        logMessage(context.getString(R.string.fuse_log_hex_count, hexFuses.length));
+                        logMessage(context.getString(R.string.fuse_log_expected_count, expectedFuseCount));
                     } else {
                         logMessage(context.getString(R.string.hex_compatible));
                     }
@@ -552,7 +550,7 @@ public class FuseConfigPopup {
     private void restoreFromHex() {
         try {
             if (hexData == null) {
-                logMessage("⚠ No hay archivo HEX cargado");
+                logMessage(context.getString(R.string.fuse_log_no_hex_loaded));
                 return;
             }
 

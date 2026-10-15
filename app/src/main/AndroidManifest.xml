@@ -60,7 +60,7 @@
         <activity
             android:name="com.diamon.tutorial.TutorialGputilsActivity"
             android:exported="false"
-            android:label="GPUTILS Tutorial"
+            android:label="@string/title_activity_tutorial_gputils"
             android:theme="@style/Theme.PICk150Programing"
             android:parentActivityName=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -73,7 +73,7 @@
         <activity
             android:name="com.diamon.tutorial.TutorialSdccActivity"
             android:exported="false"
-            android:label="SDCC Tutorial"
+            android:label="@string/title_activity_tutorial_sdcc"
             android:theme="@style/Theme.PICk150Programing"
             android:parentActivityName=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

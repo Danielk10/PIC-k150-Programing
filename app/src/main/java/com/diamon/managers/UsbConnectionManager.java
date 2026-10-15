@@ -59,16 +59,21 @@ public class UsbConnectionManager {
         void onConnectionError(String errorMessage);
     }
 
-    /** BroadcastReceiver para manejar permisos USB */
+    /** BroadcastReceiver para manejar permisos y desconexión física USB */
     private final BroadcastReceiver usbReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (ACTION_USB_PERMISSION.equals(intent.getAction())) {
+            if (intent == null) return;
+            String action = intent.getAction();
+            if (ACTION_USB_PERMISSION.equals(action)) {
                 // Verificar que drivers no sea null antes de acceder
                 if (drivers != null && !drivers.isEmpty()) {
                     UsbSerialDriver driver = drivers.get(0);
                     connectToDevice(driver);
                 }
+            } else if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
+                Log.d(TAG, "Detectada desconexión física de cable USB (ACTION_USB_DEVICE_DETACHED)");
+                handleDeviceDetached();
             }
         }
     };
@@ -105,6 +110,7 @@ public class UsbConnectionManager {
         // binder
         mainHandler.post(() -> {
             IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+            filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
             boolean registered = broadcastManager.registerReceiver(usbReceiver, filter, false);
             if (!registered) {
                 Log.w(TAG, "Failed to register USB receiver");
@@ -212,6 +218,36 @@ public class UsbConnectionManager {
             usbSerialPort = null;
         }
         protocolo = null;
+    }
+
+    /**
+     * Limpia el puerto de forma inmediata cuando el dispositivo fue desconectado físicamente,
+     * evitando intentar enviar comandos seriales a un puerto cerrado.
+     */
+    private synchronized void cleanupDisconnectedDevice() {
+        if (usbSerialPort != null) {
+            try {
+                usbSerialPort.close();
+            } catch (Exception ignored) {
+            }
+            usbSerialPort = null;
+        }
+        protocolo = null;
+    }
+
+    /**
+     * Maneja la desconexión física abrupta del dispositivo USB.
+     * Cierra el puerto inmediatamente y notifica a la UI.
+     */
+    public void handleDeviceDetached() {
+        new Thread(() -> {
+            cleanupDisconnectedDevice();
+            mainHandler.post(() -> {
+                if (connectionListener != null) {
+                    connectionListener.onDisconnected();
+                }
+            });
+        }, "UsbDetachedWorker").start();
     }
 
     /**

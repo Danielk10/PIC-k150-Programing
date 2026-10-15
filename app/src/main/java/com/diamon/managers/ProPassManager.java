@@ -2,7 +2,6 @@ package com.diamon.managers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -11,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import com.diamon.billing.BillingManager;
+import com.diamon.pic.R;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -248,7 +248,7 @@ public class ProPassManager {
     public String getTiempoRestanteFormateado() {
         long restante = getTiempoRestanteMs();
         if (restante <= 0) {
-            return "Expirado";
+            return context != null ? context.getString(R.string.pro_pass_expired) : "Expirado";
         }
 
         long horas = TimeUnit.MILLISECONDS.toHours(restante);

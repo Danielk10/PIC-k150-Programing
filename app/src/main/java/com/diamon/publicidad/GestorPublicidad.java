@@ -26,14 +26,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
-import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import android.widget.Toast;
@@ -224,7 +222,7 @@ public class GestorPublicidad implements Publicidad {
             } else {
                 Log.w(TAG, "RewardedAd no listo. Notificando y reintentando carga...");
                 cargarRewardedAd();
-                Toast.makeText(targetActivity, "Cargando video de recompensa... Por favor intente en unos segundos.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(targetActivity, targetActivity.getString(R.string.ad_loading_rewarded_video_toast), Toast.LENGTH_SHORT).show();
                 if (onDismissedListener != null) {
                     onDismissedListener.run();
                 }

@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.view.KeyEvent;
-import android.graphics.Typeface;
 
 import com.diamon.utilidades.GestorPantalla;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +22,6 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Activity mejorada para mostrar tutoriales de GPUTILS

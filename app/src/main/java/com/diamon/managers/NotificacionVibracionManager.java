@@ -24,8 +24,6 @@ import com.diamon.pic.R;
 public class NotificacionVibracionManager {
 
     private static final String CHANNEL_ID = "canal_k150_operaciones";
-    private static final String CHANNEL_NAME = "Operaciones PIC K150";
-    private static final String CHANNEL_DESC = "Notificaciones de fin de grabación y alertas de hardware";
     private static final int NOTIFICATION_ID_BASE = 1050;
 
     private final Context context;
@@ -60,9 +58,9 @@ public class NotificacionVibracionManager {
                 if (nm != null) {
                     NotificationChannel channel = new NotificationChannel(
                             CHANNEL_ID,
-                            CHANNEL_NAME,
+                            context.getString(R.string.notification_channel_name),
                             NotificationManager.IMPORTANCE_HIGH);
-                    channel.setDescription(CHANNEL_DESC);
+                    channel.setDescription(context.getString(R.string.notification_channel_description));
                     channel.enableVibration(true);
                     channel.setVibrationPattern(new long[]{0, 150, 100, 250});
 

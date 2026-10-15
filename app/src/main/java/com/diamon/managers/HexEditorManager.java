@@ -5,7 +5,6 @@ import android.content.Context;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
+import com.diamon.pic.R;
 
 /**
  * Gestor del Editor Hexadecimal Interactivo en Vivo (Code Editor MicroPro).
@@ -81,8 +81,8 @@ public class HexEditorManager {
         int maxChars = isRom ? 4 : 2;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        String tipoMem = isRom ? "ROM (Word)" : "EEPROM (Byte)";
-        builder.setTitle("✏️ Editar " + tipoMem);
+        String tipoMem = isRom ? context.getString(R.string.hex_editor_type_rom_word) : context.getString(R.string.hex_editor_type_eeprom_byte);
+        builder.setTitle(context.getString(R.string.hex_editor_title, tipoMem));
 
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -92,11 +92,50 @@ public class HexEditorManager {
         TextView infoText = new TextView(context);
         String addrStr = String.format("0x%04X", address);
         String currHex = isRom ? String.format("%04X", valorActual & maxVal) : String.format("%02X", valorActual & 0xFF);
-        infoText.setText("Dirección: " + addrStr + "\nValor actual: 0x" + currHex + " (Máx: 0x" + String.format(isRom ? "%04X" : "%02X", maxVal) + ")");
+        infoText.setText(context.getString(R.string.hex_editor_info_address_value, addrStr, currHex, String.format(isRom ? "%04X" : "%02X", maxVal)));
         infoText.setTextSize(14);
-        infoText.setTextColor(0xFFCCCCCC);
-        infoText.setPadding(0, 0, 0, dpToPx(context, 12));
+        infoText.setTextColor(0xFFFFFFFF);
+        infoText.setPadding(0, 0, 0, dpToPx(context, 8));
         layout.addView(infoText);
+
+        // Tarjeta informativa de formato y orden de bytes (Little-Endian vs Big-Endian lógico)
+        LinearLayout infoCard = new LinearLayout(context);
+        infoCard.setOrientation(LinearLayout.VERTICAL);
+        infoCard.setBackgroundColor(0xFF252538);
+        int cardPadding = dpToPx(context, 10);
+        infoCard.setPadding(cardPadding, cardPadding, cardPadding, cardPadding);
+
+        TextView tvCardTitle = new TextView(context);
+        tvCardTitle.setText(isRom ? context.getString(R.string.hex_editor_card_title_rom) : context.getString(R.string.hex_editor_card_title_eeprom));
+        tvCardTitle.setTextSize(12);
+        tvCardTitle.setTextColor(0xFF00E676);
+        tvCardTitle.setTypeface(null, android.graphics.Typeface.BOLD);
+        infoCard.addView(tvCardTitle);
+
+        TextView tvCardDesc = new TextView(context);
+        if (isRom) {
+            int lsb = valorActual & 0xFF;
+            int msb = (valorActual >> 8) & 0xFF;
+            tvCardDesc.setText(context.getString(R.string.hex_editor_desc_rom, String.format("%02X", lsb), String.format("%02X", msb)));
+        } else {
+            tvCardDesc.setText(context.getString(R.string.hex_editor_desc_eeprom));
+        }
+        tvCardDesc.setTextSize(11);
+        tvCardDesc.setTextColor(0xFFCCCCCC);
+        tvCardDesc.setPadding(0, dpToPx(context, 4), 0, 0);
+        infoCard.addView(tvCardDesc);
+
+        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        cardParams.bottomMargin = dpToPx(context, 12);
+        layout.addView(infoCard, cardParams);
+
+        TextView inputLabel = new TextView(context);
+        inputLabel.setText(isRom ? context.getString(R.string.hex_editor_input_label_rom) : context.getString(R.string.hex_editor_input_label_eeprom));
+        inputLabel.setTextSize(12);
+        inputLabel.setTextColor(0xFFB0BEC5);
+        inputLabel.setPadding(0, 0, 0, dpToPx(context, 4));
+        layout.addView(inputLabel);
 
         EditText input = new EditText(context);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -123,10 +162,10 @@ public class HexEditorManager {
 
         builder.setView(layout);
 
-        builder.setPositiveButton("Guardar", (dialog, which) -> {
+        builder.setPositiveButton(context.getString(R.string.guardar), (dialog, which) -> {
             String text = input.getText().toString().trim();
             if (text.isEmpty()) {
-                Toast.makeText(context, "El valor no puede estar vacío", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.hex_editor_err_empty), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -134,12 +173,12 @@ public class HexEditorManager {
             try {
                 nuevoValor = Integer.parseInt(text, 16);
             } catch (NumberFormatException e) {
-                Toast.makeText(context, "Formato hexadecimal inválido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.hex_editor_err_invalid_hex), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (nuevoValor > maxVal) {
-                Toast.makeText(context, "El valor excede el máximo permitido (0x" + String.format(isRom ? "%04X" : "%02X", maxVal) + ")", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.hex_editor_err_exceeds_max, String.format(isRom ? "%04X" : "%02X", maxVal)), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -160,7 +199,7 @@ public class HexEditorManager {
             }
         });
 
-        builder.setNegativeButton("Cancelar", null);
+        builder.setNegativeButton(context.getString(R.string.cancelar), null);
         builder.show();
     }
 

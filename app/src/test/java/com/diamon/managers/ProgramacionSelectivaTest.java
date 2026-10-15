@@ -51,10 +51,10 @@ public class ProgramacionSelectivaTest {
             assertFalse(tipo.getDescripcion().isEmpty());
         }
 
-        assertEquals("🚀 Grabación Completa", TipoProgramacion.COMPLETA.getTitulo());
-        assertEquals("💾 Grabar Solo Flash ROM", TipoProgramacion.SOLO_ROM.getTitulo());
-        assertEquals("📦 Grabar Solo EEPROM", TipoProgramacion.SOLO_EEPROM.getTitulo());
-        assertEquals("⚙️ Grabar Solo Fusibles de Configuración", TipoProgramacion.SOLO_CONFIG.getTitulo());
+        assertEquals("Grabar todo", TipoProgramacion.COMPLETA.getTitulo());
+        assertEquals("Grabar ROM", TipoProgramacion.SOLO_ROM.getTitulo());
+        assertEquals("Grabar EEPROM", TipoProgramacion.SOLO_EEPROM.getTitulo());
+        assertEquals("Grabar configuración", TipoProgramacion.SOLO_CONFIG.getTitulo());
     }
 
     @Test

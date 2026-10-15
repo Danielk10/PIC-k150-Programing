@@ -10,7 +10,6 @@ import com.diamon.utilidades.ByteUtils;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -214,34 +213,20 @@ public abstract class Protocolo {
     }
 
     /**
-     * Envía un comando al dispositivo USB siguiendo el protocolo establecido.
+     * Envía un comando numérico (opcode) al dispositivo USB siguiendo el protocolo Kitsrus/P18A:
+     * 1. 0x01 -> espera 'Q'
+     * 2. 'P'  -> espera 'P' (entra a la tabla de salto)
+     * 3. opcode (1 byte)
      *
-     * @param comando String con el comando a enviar
+     * @param opcode Código de operación a ejecutar
      * @throws UsbCommunicationException Si ocurre error durante el envío
      */
-    protected void enviarComando(String comando) throws UsbCommunicationException {
+    public void enviarComandoOpcode(int opcode) throws UsbCommunicationException {
         if (usbSerialPort == null) {
             throw new UsbCommunicationException("Puerto USB no inicializado");
         }
 
-        if (comando == null || comando.isEmpty()) {
-            throw new IllegalArgumentException("Comando no puede ser null o vacío");
-        }
-
         try {
-
-            // Parsear comando a bytes
-            byte[] data = new byte[comando.length()];
-            try {
-                for (int i = 0; i < comando.length(); i++) {
-                    data[i] = Byte.parseByte(comando);
-                }
-            } catch (NumberFormatException e) {
-                String mensaje =
-                        String.format("Comando inválido: '%s' - no es un número válido", comando);
-                throw new IllegalArgumentException(mensaje, e);
-            }
-
             // Paso 0: Limpiar residuos previos en el búfer
             try {
                 clearBuffer();
@@ -265,19 +250,40 @@ public abstract class Protocolo {
                         String.format(
                                 "Acknowledgment inválido: esperado 'P', recibido 0x%02X", ack[0]);
                 throw UsbCommunicationException.crearRespuestaInesperada(
-                        "P", String.format("0x%02X", ack[0]), "enviarComando");
+                        "P", String.format("0x%02X", ack[0]), "enviarComandoOpcode");
             }
 
-            // Paso 5: Enviar el número del comando, si es necesario
-            if (data[0] != 0) {
-                byte[] comandoFinal = ByteUtils.prepararDatosUSB(contexto, data, "comando_final");
+            // Paso 5: Enviar el número del comando si es distinto de 0 (comando 0 solo resetea a wait)
+            if (opcode != 0) {
+                byte[] comandoFinal = ByteUtils.prepararDatosUSB(contexto, new byte[] {(byte) opcode}, "comando_final");
                 usbSerialPort.write(comandoFinal, 100);
-            } else {
             }
 
         } catch (IOException e) {
             throw new UsbCommunicationException("Error I/O enviando comando", e);
         }
+    }
+
+    /**
+     * Envía un comando al dispositivo USB siguiendo el protocolo establecido.
+     *
+     * @param comando String con el número de comando a enviar
+     * @throws UsbCommunicationException Si ocurre error durante el envío
+     */
+    protected void enviarComando(String comando) throws UsbCommunicationException {
+        if (comando == null || comando.trim().isEmpty()) {
+            throw new IllegalArgumentException("Comando no puede ser null o vacío");
+        }
+
+        int opcode;
+        try {
+            opcode = Integer.parseInt(comando.trim());
+        } catch (NumberFormatException e) {
+            String mensaje = String.format("Comando inválido: '%s' - no es un número válido", comando);
+            throw new IllegalArgumentException(mensaje, e);
+        }
+
+        enviarComandoOpcode(opcode);
     }
 
     /**

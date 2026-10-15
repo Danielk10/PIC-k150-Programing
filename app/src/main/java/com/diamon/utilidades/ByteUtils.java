@@ -48,9 +48,6 @@ public final class ByteUtils {
     /** Caracteres hexadecimales válidos */
     private static final String HEX_CHARS = "0123456789ABCDEF";
 
-    /** Prefijo para logging de operaciones de bytes */
-    private static final String LOG_PREFIX = "ByteOp";
-
     // Constructor privado para clase utilitaria
     private ByteUtils() {
         throw new AssertionError("Clase utilitaria - no instanciar");

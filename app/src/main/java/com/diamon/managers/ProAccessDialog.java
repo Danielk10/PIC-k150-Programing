@@ -71,7 +71,7 @@ public class ProAccessDialog {
 
         // 1. TÍTULO CON ICONO
         TextView titleView = new TextView(activity);
-        titleView.setText("⭐ " + appName + " Pro");
+        titleView.setText(activity.getString(R.string.pro_access_title, appName));
         titleView.setTextSize(22);
         titleView.setTypeface(null, Typeface.BOLD);
         titleView.setTextColor(COLOR_ACCENT_GOLD);
@@ -80,7 +80,7 @@ public class ProAccessDialog {
 
         // Subtítulo
         TextView subtitleView = new TextView(activity);
-        subtitleView.setText("Desbloquea las herramientas técnicas avanzadas de " + appName + " y silicio");
+        subtitleView.setText(activity.getString(R.string.pro_access_subtitle, appName));
         subtitleView.setTextSize(13);
         subtitleView.setTextColor(COLOR_TEXT_SECONDARY);
         subtitleView.setGravity(Gravity.CENTER);
@@ -98,11 +98,11 @@ public class ProAccessDialog {
         cardLayout.setBackground(cardBg);
 
         String[] features = new String[]{
-                "Editor Hexadecimal en Vivo (Live Patching)",
-                "Diagnóstico de Hardware & Prueba de Voltajes (VPP 13V / VDD 5V)",
-                "Vector de Depuración ICD (24 bits)",
-                "Rescate y Edición Manual de OSCCAL",
-                "Quitar todos los anuncios de la aplicación"
+                activity.getString(R.string.pro_feature_hex_editor),
+                activity.getString(R.string.pro_feature_hardware_diagnostics),
+                activity.getString(R.string.pro_feature_icd_vector),
+                activity.getString(R.string.pro_feature_osccal),
+                activity.getString(R.string.pro_feature_remove_ads)
         };
 
         for (String feat : features) {
@@ -136,7 +136,7 @@ public class ProAccessDialog {
 
         // 3. BOTÓN 1: VER VIDEO RECOMPENSADO (PASE 12 HORAS)
         Button btnRewarded = new Button(activity);
-        btnRewarded.setText("🎬 Ver Video - Pase Libre de 12 Horas");
+        btnRewarded.setText(activity.getString(R.string.pro_btn_watch_rewarded_video));
         btnRewarded.setTextSize(14);
         btnRewarded.setTypeface(null, Typeface.BOLD);
         btnRewarded.setTextColor(Color.WHITE);
@@ -151,7 +151,7 @@ public class ProAccessDialog {
                 gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
                     proPassManager.activarPase12Horas();
                     gestorPublicidad.ocultarBanner();
-                    Toast.makeText(activity, "⭐ ¡Pase " + appName + " Pro activado por 12 horas!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, activity.getString(R.string.pro_pass_activated_toast, appName), Toast.LENGTH_LONG).show();
                     if (onProUnlocked != null) {
                         onProUnlocked.run();
                     }
@@ -160,7 +160,7 @@ public class ProAccessDialog {
                     // Si se cierra sin recompensa
                 });
             } else {
-                Toast.makeText(activity, "Anuncios no disponibles", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.pro_ads_not_available), Toast.LENGTH_SHORT).show();
             }
         });
         rootLayout.addView(btnRewarded);
@@ -175,7 +175,7 @@ public class ProAccessDialog {
         String priceText = (billingManager != null && billingManager.getFormattedPrice() != null)
                 ? " - " + billingManager.getFormattedPrice()
                 : " - $4.99";
-        btnBuyPro.setText("👑 Comprar " + appName + " Pro Permanente" + priceText);
+        btnBuyPro.setText(activity.getString(R.string.pro_btn_buy_permanent, appName, priceText));
         btnBuyPro.setTextSize(14);
         btnBuyPro.setTypeface(null, Typeface.BOLD);
         btnBuyPro.setTextColor(0xFF1E1E2E);
@@ -190,14 +190,14 @@ public class ProAccessDialog {
                 billingManager.launchPurchaseFlow(activity);
                 dialog.dismiss();
             } else {
-                Toast.makeText(activity, "Facturación de Google Play no disponible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.pro_billing_not_available), Toast.LENGTH_SHORT).show();
             }
         });
         rootLayout.addView(btnBuyPro);
 
         // 5. BOTÓN 3: CANCELAR
         Button btnCancel = new Button(activity);
-        btnCancel.setText("Cancelar");
+        btnCancel.setText(activity.getString(R.string.cancelar));
         btnCancel.setTextSize(13);
         btnCancel.setTextColor(COLOR_TEXT_SECONDARY);
         btnCancel.setBackgroundColor(Color.TRANSPARENT);

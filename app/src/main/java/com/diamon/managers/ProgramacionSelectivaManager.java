@@ -2,7 +2,6 @@ package com.diamon.managers;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.pic.R;
@@ -28,36 +27,64 @@ public class ProgramacionSelectivaManager {
      */
     public enum TipoProgramacion {
         COMPLETA(
-                "🚀 Grabación Completa",
-                "Borra, graba ROM, EEPROM y Fusibles de Configuración"
+                R.string.prog_type_all_title,
+                R.string.prog_type_all_desc
         ),
         SOLO_ROM(
-                "💾 Grabar Solo Flash ROM",
-                "Graba la memoria Flash sin alterar EEPROM ni Fusibles"
+                R.string.prog_type_rom_title,
+                R.string.prog_type_rom_desc
         ),
         SOLO_EEPROM(
-                "📦 Grabar Solo EEPROM",
-                "Escribe datos persistentes sin reescribir la memoria de código"
+                R.string.prog_type_eeprom_title,
+                R.string.prog_type_eeprom_desc
         ),
         SOLO_CONFIG(
-                "⚙️ Grabar Solo Fusibles de Configuración",
-                "Actualiza fuses y oscilador sin tocar memorias ROM/EEPROM"
+                R.string.prog_type_config_title,
+                R.string.prog_type_config_desc
         );
 
-        private final String titulo;
-        private final String descripcion;
+        private final int tituloResId;
+        private final int descripcionResId;
 
-        TipoProgramacion(String titulo, String descripcion) {
-            this.titulo = titulo;
-            this.descripcion = descripcion;
+        TipoProgramacion(int tituloResId, int descripcionResId) {
+            this.tituloResId = tituloResId;
+            this.descripcionResId = descripcionResId;
+        }
+
+        public int getTituloResId() {
+            return tituloResId;
+        }
+
+        public int getDescripcionResId() {
+            return descripcionResId;
+        }
+
+        public String getTitulo(Context context) {
+            return context != null ? context.getString(tituloResId) : getTitulo();
+        }
+
+        public String getDescripcion(Context context) {
+            return context != null ? context.getString(descripcionResId) : getDescripcion();
         }
 
         public String getTitulo() {
-            return titulo;
+            switch (this) {
+                case COMPLETA: return "Grabar todo";
+                case SOLO_ROM: return "Grabar ROM";
+                case SOLO_EEPROM: return "Grabar EEPROM";
+                case SOLO_CONFIG: return "Grabar configuración";
+                default: return name();
+            }
         }
 
         public String getDescripcion() {
-            return descripcion;
+            switch (this) {
+                case COMPLETA: return "ROM, EEPROM y Configuración";
+                case SOLO_ROM: return "Memoria Flash";
+                case SOLO_EEPROM: return "Datos EEPROM";
+                case SOLO_CONFIG: return "Fusibles y bits de configuración";
+                default: return name();
+            }
         }
     }
 
@@ -96,11 +123,11 @@ public class ProgramacionSelectivaManager {
 
         CharSequence[] items = new CharSequence[opciones.size()];
         for (int i = 0; i < opciones.size(); i++) {
-            items[i] = opciones.get(i).getTitulo() + "\n   " + opciones.get(i).getDescripcion();
+            items[i] = opciones.get(i).getTitulo(context);
         }
 
         new AlertDialog.Builder(context)
-                .setTitle("🎛️ " + context.getString(R.string.seleccionar_operacion))
+                .setTitle(context.getString(R.string.seleccionar_operacion))
                 .setItems(items, (dialog, which) -> {
                     if (which >= 0 && which < opciones.size()) {
                         listener.onOpcionSeleccionada(opciones.get(which));
@@ -162,26 +189,28 @@ public class ProgramacionSelectivaManager {
     /**
      * Genera un reporte detallado e individualizado de la verificación de borrado dual (ROM + EEPROM).
      *
+     * @param context   Contexto para recursos (opcional).
      * @param resultado Resultado de la verificación de borrado de PicProgrammingManager.
      * @param chip      Microcontrolador objetivo.
      * @return Lista de líneas formateadas para el log.
      */
     public List<String> formatearReporteBlankCheckDual(
+            Context context,
             PicProgrammingManager.ResultadoVerificacionBorrado resultado,
             ChipPic chip) {
 
         List<String> lineas = new ArrayList<>();
         if (resultado == null) {
-            lineas.add("❌ Error en verificación de borrado: resultado nulo");
+            lineas.add(context != null ? context.getString(R.string.blank_check_err_null_result) : "❌ Error en verificación de borrado: resultado nulo");
             return lineas;
         }
 
         if (resultado.error != null && !resultado.error.isEmpty()) {
-            lineas.add("❌ Error verificando borrado: " + resultado.error);
+            lineas.add(context != null ? context.getString(R.string.blank_check_err_verifying, resultado.error) : ("❌ Error verificando borrado: " + resultado.error));
             return lineas;
         }
 
-        lineas.add("📋 Verificación de Borrado Diferenciada (Blank Check Dual):");
+        lineas.add(context != null ? context.getString(R.string.blank_check_dual_header) : "📋 Verificación de Borrado Diferenciada (Blank Check Dual):");
 
         // 1. Diagnóstico de Memoria ROM
         int coreBits = 14;
@@ -195,33 +224,39 @@ public class ProgramacionSelectivaManager {
         String blankHex = String.format("0x%04X", blankWord);
 
         if (resultado.romEnBlanco) {
-            lineas.add("  ✓ ROM limpia al 100% (" + blankHex + ")");
+            lineas.add(context != null ? context.getString(R.string.blank_check_rom_clean, blankHex) : ("  ✓ ROM limpia al 100% (" + blankHex + ")"));
         } else {
-            lineas.add("  ⚠ ROM con datos previos detectados (No está en blanco)");
+            lineas.add(context != null ? context.getString(R.string.blank_check_rom_has_data) : "  ⚠ ROM con datos previos detectados (No está en blanco)");
         }
 
         // 2. Diagnóstico de Memoria EEPROM
         boolean hasEeprom = (chip != null && chip.isTamanoValidoDeEEPROM());
         if (hasEeprom) {
             if (resultado.eepromEnBlanco) {
-                lineas.add("  ✓ EEPROM limpia al 100% (0xFF)");
+                lineas.add(context != null ? context.getString(R.string.blank_check_eeprom_clean) : "  ✓ EEPROM limpia al 100% (0xFF)");
             } else {
-                lineas.add("  ⚠ EEPROM con datos previos detectados (No está en blanco)");
+                lineas.add(context != null ? context.getString(R.string.blank_check_eeprom_has_data) : "  ⚠ EEPROM con datos previos detectados (No está en blanco)");
             }
         }
 
         // 3. Método y protocolo utilizado
         if (resultado.metodoUtilizado != null && !resultado.metodoUtilizado.isEmpty()) {
-            lineas.add("  ℹ Método: " + resultado.metodoUtilizado);
+            lineas.add(context != null ? context.getString(R.string.blank_check_method_label, resultado.metodoUtilizado) : ("  ℹ Método: " + resultado.metodoUtilizado));
         }
 
         // 4. Conclusión global
         if (resultado.chipEnBlanco()) {
-            lineas.add("✓ Microcontrolador listo para grabar (100% Borrado)");
+            lineas.add(context != null ? context.getString(R.string.blank_check_ready_to_program) : "✓ Microcontrolador listo para grabar (100% Borrado)");
         } else {
-            lineas.add("⚠ Se requiere borrado previo antes de grabar");
+            lineas.add(context != null ? context.getString(R.string.blank_check_erase_required) : "⚠ Se requiere borrado previo antes de grabar");
         }
 
         return lineas;
+    }
+
+    public List<String> formatearReporteBlankCheckDual(
+            PicProgrammingManager.ResultadoVerificacionBorrado resultado,
+            ChipPic chip) {
+        return formatearReporteBlankCheckDual(null, resultado, chip);
     }
 }

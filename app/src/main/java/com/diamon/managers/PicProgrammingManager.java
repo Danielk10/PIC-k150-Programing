@@ -8,7 +8,6 @@ import com.diamon.datos.ChipinfoReader;
 import com.diamon.datos.DatosPicProcesados;
 import com.diamon.protocolo.ProtocoloP18A;
 import com.diamon.pic.R;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

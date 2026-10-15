@@ -17,10 +17,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.pic.R;
 import com.diamon.protocolo.ProtocoloP18A;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Gestor integral de Calibración de Oscilador (OSCCAL), arquitectura PIC10F
@@ -353,8 +352,7 @@ public class CalibracionManager {
 
         // Cabecera descriptiva
         TextView tvSubtitulo = new TextView(activity);
-        tvSubtitulo.setText("Microcontrolador: " + chipNombre +
-                (es10F ? " (Familia PIC10F - 2 registros CAL)" : " (Palabra OSCCAL en última dirección ROM)"));
+        tvSubtitulo.setText(activity.getString(es10F ? R.string.cal_chip_subtitle_10f : R.string.cal_chip_subtitle_standard, chipNombre));
         tvSubtitulo.setTextColor(Color.parseColor("#B0B0C0"));
         tvSubtitulo.setTextSize(13);
         layout.addView(tvSubtitulo);
@@ -362,8 +360,8 @@ public class CalibracionManager {
         // Estado del valor en silicio
         TextView tvValorActual = new TextView(activity);
         String valStr = (ultimoOsccalPreservado != null) ?
-                formatearCalibracionHex(ultimoOsccalPreservado, es10F) : "No leído aún del chip";
-        tvValorActual.setText("\nValor en Silicio: " + valStr);
+                formatearCalibracionHex(ultimoOsccalPreservado, es10F) : activity.getString(R.string.cal_not_read_yet);
+        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, valStr));
         tvValorActual.setTextColor(Color.WHITE);
         tvValorActual.setTextSize(15);
         tvValorActual.setTypeface(null, Typeface.BOLD);
@@ -371,7 +369,7 @@ public class CalibracionManager {
 
         // Campo de entrada hexadecimal
         TextView tvPrompt = new TextView(activity);
-        tvPrompt.setText("\nIngrese valor hexadecimal (ej. " + (es10F ? "0C2A" : "3448") + "):");
+        tvPrompt.setText(activity.getString(R.string.cal_enter_hex_prompt, (es10F ? "0C2A" : "3448")));
         tvPrompt.setTextColor(Color.parseColor("#00B0FF"));
         tvPrompt.setTextSize(13);
         layout.addView(tvPrompt);
@@ -394,7 +392,7 @@ public class CalibracionManager {
         btnLayout.setPadding(0, dpToPx(activity, 15), 0, 0);
 
         Button btnLeer = new Button(activity);
-        btnLeer.setText("📥 Leer del Chip");
+        btnLeer.setText(activity.getString(R.string.cal_btn_read_from_chip));
         btnLeer.setTextColor(Color.WHITE);
         btnLeer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00B0FF")));
         LinearLayout.LayoutParams lpLeer = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -403,7 +401,7 @@ public class CalibracionManager {
         btnLayout.addView(btnLeer);
 
         Button btnGrabar = new Button(activity);
-        btnGrabar.setText("💾 Grabar Silicio");
+        btnGrabar.setText(activity.getString(R.string.cal_btn_write_silicon));
         btnGrabar.setTextColor(Color.WHITE);
         btnGrabar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
         LinearLayout.LayoutParams lpGrabar = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -414,25 +412,25 @@ public class CalibracionManager {
         scrollView.addView(layout);
 
         AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle("⏱️ Calibración OSCCAL")
+                .setTitle(activity.getString(R.string.cal_dialog_title))
                 .setView(scrollView)
-                .setNeutralButton("Cerrar", null)
+                .setNeutralButton(activity.getString(R.string.cerrar), null)
                 .create();
 
         btnLeer.setOnClickListener(v -> {
             if (protocolo == null) {
-                Toast.makeText(activity, "Programador no conectado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
             }
             new Thread(() -> {
                 Integer cal = leerYPreservarCalibracion(chip);
                 activity.runOnUiThread(() -> {
                     if (cal != null) {
-                        tvValorActual.setText("\nValor en Silicio: " + formatearCalibracionHex(cal, es10F));
+                        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, formatearCalibracionHex(cal, es10F)));
                         etValorHex.setText(String.format(es10F ? "%03X" : "%04X", cal));
-                        Toast.makeText(activity, "✓ OSCCAL leído: " + formatearCalibracionHex(cal, es10F), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.cal_toast_read_success, formatearCalibracionHex(cal, es10F)), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(activity, "❌ Error al leer calibración del chip", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.cal_toast_read_error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }).start();
@@ -440,7 +438,7 @@ public class CalibracionManager {
 
         btnGrabar.setOnClickListener(v -> {
             if (protocolo == null) {
-                Toast.makeText(activity, "Programador no conectado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
             }
             String input = etValorHex.getText().toString().trim();
@@ -453,7 +451,7 @@ public class CalibracionManager {
                 }
             }
             if (valorAGrabar < 0) {
-                Toast.makeText(activity, "Valor hexadecimal no válido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.cal_toast_invalid_hex), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -463,10 +461,10 @@ public class CalibracionManager {
                 activity.runOnUiThread(() -> {
                     if (ok) {
                         ultimoOsccalPreservado = valorFinal;
-                        tvValorActual.setText("\nValor en Silicio: " + formatearCalibracionHex(valorFinal, es10F));
-                        Toast.makeText(activity, "✓ OSCCAL grabado exitosamente en el chip", Toast.LENGTH_SHORT).show();
+                        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, formatearCalibracionHex(valorFinal, es10F)));
+                        Toast.makeText(activity, activity.getString(R.string.cal_toast_write_success), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(activity, "❌ Fallo al grabar calibración en silicio", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.cal_toast_write_error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }).start();
@@ -491,22 +489,22 @@ public class CalibracionManager {
         layout.setBackgroundColor(Color.parseColor("#1E1E2C"));
 
         TextView tvSubtitulo = new TextView(activity);
-        tvSubtitulo.setText("Depuración en Circuito (ICD) - Vector de Dirección de 24 bits\n(Rango válido: 0x000000 - 0xFFFFFF)");
+        tvSubtitulo.setText(activity.getString(R.string.icd_dialog_subtitle));
         tvSubtitulo.setTextColor(Color.parseColor("#B0B0C0"));
         tvSubtitulo.setTextSize(13);
         layout.addView(tvSubtitulo);
 
         TextView tvValorActual = new TextView(activity);
         String valStr = (ultimoVectorIcd != null) ?
-                formatearDireccionIcdHex(ultimoVectorIcd) : "No leído aún del chip";
-        tvValorActual.setText("\nVector Actual: " + valStr);
+                formatearDireccionIcdHex(ultimoVectorIcd) : activity.getString(R.string.cal_not_read_yet);
+        tvValorActual.setText(activity.getString(R.string.icd_current_vector, valStr));
         tvValorActual.setTextColor(Color.WHITE);
         tvValorActual.setTextSize(15);
         tvValorActual.setTypeface(null, Typeface.BOLD);
         layout.addView(tvValorActual);
 
         TextView tvPrompt = new TextView(activity);
-        tvPrompt.setText("\nDirección de depuración en hex (ej. 000020):");
+        tvPrompt.setText(activity.getString(R.string.icd_enter_address_prompt));
         tvPrompt.setTextColor(Color.parseColor("#00B0FF"));
         tvPrompt.setTextSize(13);
         layout.addView(tvPrompt);
@@ -528,7 +526,7 @@ public class CalibracionManager {
         btnLayout.setPadding(0, dpToPx(activity, 15), 0, 0);
 
         Button btnLeer = new Button(activity);
-        btnLeer.setText("📥 Leer Vector");
+        btnLeer.setText(activity.getString(R.string.icd_btn_read_vector));
         btnLeer.setTextColor(Color.WHITE);
         btnLeer.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00B0FF")));
         LinearLayout.LayoutParams lpLeer = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -537,7 +535,7 @@ public class CalibracionManager {
         btnLayout.addView(btnLeer);
 
         Button btnGrabar = new Button(activity);
-        btnGrabar.setText("💾 Grabar Vector");
+        btnGrabar.setText(activity.getString(R.string.icd_btn_write_vector));
         btnGrabar.setTextColor(Color.WHITE);
         btnGrabar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF9800")));
         LinearLayout.LayoutParams lpGrabar = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -548,14 +546,14 @@ public class CalibracionManager {
         scrollView.addView(layout);
 
         AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle("🛠️ Vector de Depuración (ICD)")
+                .setTitle(activity.getString(R.string.icd_dialog_title))
                 .setView(scrollView)
-                .setNeutralButton("Cerrar", null)
+                .setNeutralButton(activity.getString(R.string.cerrar), null)
                 .create();
 
         btnLeer.setOnClickListener(v -> {
             if (protocolo == null) {
-                Toast.makeText(activity, "Programador no conectado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
             }
             new Thread(() -> {
@@ -567,26 +565,26 @@ public class CalibracionManager {
                         int addr = parsearDireccionIcdHex(hex);
                         if (addr >= 0) {
                             ultimoVectorIcd = addr;
-                            tvValorActual.setText("\nVector Actual: " + formatearDireccionIcdHex(addr));
+                            tvValorActual.setText(activity.getString(R.string.icd_current_vector, formatearDireccionIcdHex(addr)));
                             etDireccionHex.setText(String.format("%06X", addr));
-                            Toast.makeText(activity, "✓ Vector leído: " + formatearDireccionIcdHex(addr), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, activity.getString(R.string.icd_toast_read_success, formatearDireccionIcdHex(addr)), Toast.LENGTH_SHORT).show();
                             return;
                         }
                     }
-                    Toast.makeText(activity, "Respuesta: " + resp, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, String.valueOf(resp), Toast.LENGTH_SHORT).show();
                 });
             }).start();
         });
 
         btnGrabar.setOnClickListener(v -> {
             if (protocolo == null) {
-                Toast.makeText(activity, "Programador no conectado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
             }
             String input = etDireccionHex.getText().toString().trim();
             int addr = parsearDireccionIcdHex(input);
             if (addr < 0) {
-                Toast.makeText(activity, "Dirección hexadecimal de 24 bits inválida", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, activity.getString(R.string.icd_toast_invalid_address), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -595,10 +593,10 @@ public class CalibracionManager {
                 activity.runOnUiThread(() -> {
                     if (ok) {
                         ultimoVectorIcd = addr;
-                        tvValorActual.setText("\nVector Actual: " + formatearDireccionIcdHex(addr));
-                        Toast.makeText(activity, "✓ Vector ICD programado: " + formatearDireccionIcdHex(addr), Toast.LENGTH_SHORT).show();
+                        tvValorActual.setText(activity.getString(R.string.icd_current_vector, formatearDireccionIcdHex(addr)));
+                        Toast.makeText(activity, activity.getString(R.string.icd_toast_write_success, formatearDireccionIcdHex(addr)), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(activity, "❌ Fallo al programar vector ICD", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.icd_toast_write_error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }).start();

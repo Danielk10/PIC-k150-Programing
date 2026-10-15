@@ -2,8 +2,6 @@ package com.diamon.pic;
 
 import android.app.Application;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.webkit.WebView;
 

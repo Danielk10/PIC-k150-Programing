@@ -15,7 +15,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,7 +27,6 @@ import android.widget.TableRow;
 import android.widget.ScrollView;
 import android.widget.HorizontalScrollView;
 import android.graphics.Typeface;
-import java.util.LinkedHashMap;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -38,15 +36,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PixelFormat;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
@@ -75,7 +65,6 @@ import com.diamon.politicas.PoliticaPrivacidadActivity;
 import com.diamon.publicidad.GestorPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
 import com.diamon.utilidades.GestorPantalla;
-import android.graphics.Bitmap;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -119,7 +108,8 @@ public class MainActivity extends AppCompatActivity
     private android.widget.Button btnDetectarPic;
     private android.widget.Button btnConfigureFuses; // NUEVO
     private android.widget.Button btnBlankCheck; // Verificar Borrado
-    private com.google.android.material.button.MaterialButton btnConnectUsb;
+    private android.widget.Button btnConnectUsb;
+    private TextView tvConnectionStatus;
 
     private UsbConnectionManager usbManager;
     private PicProgrammingManager programmingManager;
@@ -268,8 +258,13 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         connectionIndicator = findViewById(R.id.connectionIndicator);
+        tvConnectionStatus = findViewById(R.id.tvConnectionStatus);
         if (connectionIndicator != null) {
             connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
+        if (tvConnectionStatus != null) {
+            tvConnectionStatus.setText(getString(R.string.desconectado));
+            tvConnectionStatus.setTextColor(Color.parseColor("#B0BEC5"));
         }
         processStatusTextView = findViewById(R.id.processStatusTextView);
         chipInfoTextView = findViewById(R.id.chipInfoTextView);
@@ -292,21 +287,19 @@ public class MainActivity extends AppCompatActivity
         eepromDataContainer = findViewById(R.id.eepromDataContainer);
 
         btnConnectUsb = findViewById(R.id.btnConnectUsb);
-        View layoutConnectUsb = findViewById(R.id.layoutConnectUsb);
-        View.OnClickListener connectListener = v -> {
-            if (usbManager != null && usbManager.isConnected()) {
-                appendLog("🔌 " + getString(R.string.desconectado));
-                usbManager.disconnect();
-            } else if (usbManager != null) {
-                appendLog("🔌 Conectando al programador...");
-                usbManager.connect();
-            }
-        };
         if (btnConnectUsb != null) {
-            btnConnectUsb.setOnClickListener(connectListener);
-        }
-        if (layoutConnectUsb != null) {
-            layoutConnectUsb.setOnClickListener(connectListener);
+            btnConnectUsb.setOnClickListener(v -> {
+                if (usbManager != null && usbManager.isConnected()) {
+                    appendLog("🔌 " + getString(R.string.desconectado));
+                    usbManager.disconnect();
+                } else if (usbManager != null) {
+                    appendLog(getString(R.string.log_connecting_to_programmer));
+                    usbManager.connect();
+                }
+            });
+            btnConnectUsb.setText(getString(R.string.btn_connect_usb));
+            btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2E7D32")));
+            btnConnectUsb.setTextColor(Color.WHITE);
         }
 
         actualizarEstadoBotones(false, false);
@@ -413,7 +406,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onBillingError(String errorMessage) {
-                appendLog("⚠ Compra Pro: " + errorMessage);
+                appendLog(getString(R.string.log_pro_purchase_error, errorMessage));
             }
         });
         billingManager.startConnection();
@@ -503,9 +496,14 @@ public class MainActivity extends AppCompatActivity
             if (connectionIndicator != null) {
                 connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             }
+            if (tvConnectionStatus != null) {
+                tvConnectionStatus.setText(getString(R.string.status_connected));
+                tvConnectionStatus.setTextColor(Color.parseColor("#4CAF50"));
+            }
             if (btnConnectUsb != null) {
-                btnConnectUsb.setText("Desconectar");
-                btnConnectUsb.setTextColor(Color.parseColor("#FF5252"));
+                btnConnectUsb.setText(getString(R.string.btn_disconnect_usb));
+                btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C62828")));
+                btnConnectUsb.setTextColor(Color.WHITE);
             }
             actualizarEstadoBotones(true, !firmware.isEmpty());
             programmingManager.setProtocolo(usbManager.getProtocolo());
@@ -530,9 +528,14 @@ public class MainActivity extends AppCompatActivity
             if (connectionIndicator != null) {
                 connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             }
+            if (tvConnectionStatus != null) {
+                tvConnectionStatus.setText(getString(R.string.desconectado));
+                tvConnectionStatus.setTextColor(Color.parseColor("#B0BEC5"));
+            }
             if (btnConnectUsb != null) {
-                btnConnectUsb.setText("Conectar");
-                btnConnectUsb.setTextColor(Color.parseColor("#4CAF50"));
+                btnConnectUsb.setText(getString(R.string.btn_connect_usb));
+                btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2E7D32")));
+                btnConnectUsb.setTextColor(Color.WHITE);
             }
             actualizarEstadoBotones(false, !firmware.isEmpty());
             appendLog("❌ " + getString(R.string.desconectado));
@@ -546,9 +549,14 @@ public class MainActivity extends AppCompatActivity
             if (connectionIndicator != null) {
                 connectionIndicator.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             }
+            if (tvConnectionStatus != null) {
+                tvConnectionStatus.setText(getString(R.string.status_error));
+                tvConnectionStatus.setTextColor(Color.parseColor("#FF5252"));
+            }
             if (btnConnectUsb != null) {
-                btnConnectUsb.setText("Conectar");
-                btnConnectUsb.setTextColor(Color.parseColor("#4CAF50"));
+                btnConnectUsb.setText(getString(R.string.btn_connect_usb));
+                btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2E7D32")));
+                btnConnectUsb.setTextColor(Color.WHITE);
             }
             actualizarEstadoBotones(false, !firmware.isEmpty());
             appendLog("❌ " + errorMessage);
@@ -752,7 +760,7 @@ public class MainActivity extends AppCompatActivity
                         // Detectar tipo de archivo para mensaje coherente
                         boolean esBin = fileName != null && fileName.toLowerCase().endsWith(".bin");
                         String tipoArchivo = esBin ? ".BIN" : ".HEX";
-                        appendLog("📂 Cargando " + tipoArchivo + ": " + fileName);
+                        appendLog(getString(R.string.log_loading_file, tipoArchivo, fileName));
 
                         actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), true);
 
@@ -760,11 +768,7 @@ public class MainActivity extends AppCompatActivity
                         clearFuseConfiguration();
 
                         // Procesar datos del archivo
-                        if (esBin) {
-                            appendLog("⏳ Procesando archivo " + tipoArchivo + "...");
-                        } else {
-                            appendLog("⏳ Procesando archivo " + tipoArchivo + "...");
-                        }
+                        appendLog(getString(R.string.log_processing_file, tipoArchivo));
                         procesarDatosHex();
                     }
 
@@ -1045,14 +1049,6 @@ public class MainActivity extends AppCompatActivity
         setButtonState(btnConfigureFuses, fusesHabilitado, Color.parseColor("#00B0FF"));
     }
 
-    private void enableFuseConfigButton(boolean enabled) {
-        setButtonState(btnConfigureFuses, enabled, Color.parseColor("#00B0FF"));
-    }
-
-    private void enableOperationButtons(boolean enabled) {
-        actualizarEstadoBotones(enabled, enabled);
-    }
-
     /**
      * Verifica la presencia del microcontrolador en el zócalo ZIF antes de realizar
      * operaciones que lo requieran (Programar, Leer, Borrar, Verificar, Blank Check).
@@ -1068,7 +1064,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (usbManager == null || !usbManager.isConnected()) {
-            appendLog("⚠ Conecte el programador K150 por USB primero.");
+            appendLog(getString(R.string.log_connect_programmer_first));
             return;
         }
 
@@ -1084,7 +1080,7 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        appendLog("🔍 Verificando presencia de PIC en el zócalo ZIF...");
+        appendLog(getString(R.string.log_verifying_pic_in_socket));
         new Thread(() -> {
             boolean chipEnSocket = proto.detectarPicEnElSocket();
             if (chipEnSocket) {
@@ -1107,58 +1103,17 @@ public class MainActivity extends AppCompatActivity
             notificacionVibracionManager.reproducirSonidoNotificacion();
         }
 
-        appendLog("⚠️ Inserte el microcontrolador " + (currentChip != null ? currentChip.getNombreDelPic() : "")
-                + " en el zócalo ZIF para continuar.");
-
-        final java.util.concurrent.atomic.AtomicBoolean cancelado = new java.util.concurrent.atomic.AtomicBoolean(false);
+        String chipName = (currentChip != null ? currentChip.getNombreDelPic() : "");
+        appendLog(getString(R.string.log_no_chip_in_socket, chipName, nombreOperacion));
 
         androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("⚠️ Inserte el Microcontrolador")
-                .setMessage("No se detectó ningún chip en el zócalo ZIF.\n\n"
-                        + "Por favor, inserte el PIC " + (currentChip != null ? currentChip.getNombreDelPic() : "")
-                        + " en la posición correspondiente y trabe la palanca.\n\n"
-                        + "⏳ La operación [" + nombreOperacion + "] se iniciará automáticamente tan pronto como inserte el chip.")
+                .setTitle(getString(R.string.dialog_insert_microcontroller_title))
+                .setMessage(getString(R.string.dialog_insert_microcontroller_message, chipName, nombreOperacion))
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setNegativeButton(R.string.cancelar, (d, which) -> {
-                    cancelado.set(true);
-                    appendLog("⏹ Operación [" + nombreOperacion + "] cancelada por el usuario.");
-                })
-                .setOnCancelListener(d -> {
-                    cancelado.set(true);
-                    appendLog("⏹ Operación [" + nombreOperacion + "] cancelada.");
-                })
+                .setPositiveButton(R.string.aceptar, null)
                 .create();
 
-        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-
-        new Thread(() -> {
-            // Espera activa hasta 60 segundos por la inserción física del chip en el zócalo
-            boolean detectado = proto.esperarInsercionEnElSocket(60000, cancelado);
-
-            runOnUiThread(() -> {
-                if (dialog.isShowing()) {
-                    try {
-                        dialog.dismiss();
-                    } catch (Exception ignored) {}
-                }
-
-                if (cancelado.get()) {
-                    return;
-                }
-
-                if (detectado) {
-                    if (notificacionVibracionManager != null) {
-                        notificacionVibracionManager.vibrarExito();
-                    }
-                    appendLog("✓ Chip insertado y detectado en el zócalo ZIF. Iniciando " + nombreOperacion + "...");
-                    operacion.run();
-                } else {
-                    appendLog("⏱ Tiempo de espera agotado sin insertar el chip en el zócalo.");
-                    Toast.makeText(MainActivity.this, "Tiempo de espera agotado. Inserte el chip y vuelva a intentar.", Toast.LENGTH_LONG).show();
-                }
-            });
-        }, "EsperarInsercionAutoThread").start();
     }
 
     /**
@@ -1219,12 +1174,12 @@ public class MainActivity extends AppCompatActivity
                                                     notificacionVibracionManager.vibrarExito();
                                                     notificacionVibracionManager.reproducirSonidoNotificacion();
                                                 }
-                                                appendLog("✓ ¡Grabación completada y verificada con éxito!");
+                                                appendLog(getString(R.string.log_programming_verified_success));
                                             } else {
                                                 if (notificacionVibracionManager != null) {
                                                     notificacionVibracionManager.vibrarAlerta();
                                                 }
-                                                appendLog("❌ Falló el proceso de grabación del microcontrolador");
+                                                appendLog(getString(R.string.log_programming_failed));
                                             }
                                         });
                             })
@@ -1311,7 +1266,7 @@ public class MainActivity extends AppCompatActivity
         new Thread(
                 () -> {
                     if (currentChip != null && CalibracionManager.requiereCalibracion(currentChip)) {
-                        runOnUiThread(() -> appendLog("⏱️ Chip requiere calibración. Respaldando OSCCAL antes de borrar..."));
+                        runOnUiThread(() -> appendLog(getString(R.string.log_backing_up_osccal)));
                     }
 
                     CalibracionManager.ResultadoBorradoSeguro res = (calibracionManager != null && currentChip != null)
@@ -1327,9 +1282,9 @@ public class MainActivity extends AppCompatActivity
                                         if (res.restauracionExitosa && res.osccalPreservado != null) {
                                             String calHex = CalibracionManager.formatearCalibracionHex(
                                                     res.osccalPreservado, CalibracionManager.isFamilia10F(currentChip));
-                                            appendLog("✓ OSCCAL restaurado exitosamente en silicio: " + calHex);
+                                            appendLog(getString(R.string.log_osccal_restored, calHex));
                                         } else if (res.osccalPreservado != null) {
-                                            appendLog("⚠ No se pudo restaurar OSCCAL automáticamente. Use el menú de Calibración.");
+                                            appendLog(getString(R.string.log_osccal_restore_failed_warning));
                                         }
                                     }
                                 } else {
@@ -1421,19 +1376,19 @@ public class MainActivity extends AppCompatActivity
 
     private void executeDetectChip() {
         new Thread(() -> {
-            runOnUiThread(() -> appendLog("🔍 Detectando chip en el zócalo..."));
+            runOnUiThread(() -> appendLog(getString(R.string.log_detecting_chip_in_socket)));
 
             PicProgrammingManager.ResultadoAutodeteccion res =
                     programmingManager.autodectarChip(chipSelectionManager.getChipReader());
             runOnUiThread(() -> {
                 if (!res.chipEnSocket) {
-                    appendLog("⚠ No se detectó ningún PIC en el zócalo ZIF (verifique orientación y palanca)");
+                    appendLog(getString(R.string.log_no_pic_detected_in_zif));
                     return;
                 }
-                appendLog("✓ PIC detectado físicamente en el zócalo");
+                appendLog(getString(R.string.log_pic_physically_detected));
                 if (res.modeloIdentificado != null) {
                     String hexStr = String.format("0x%04X", res.rawDeviceId);
-                    appendLog("🎯 Identificado automáticamente: " + res.modeloIdentificado + " (ID: " + hexStr + ")");
+                    appendLog(getString(R.string.log_chip_auto_identified, res.modeloIdentificado, hexStr));
                     firmware = "";
                     datosPicProcesados = null;
                     if (fileManager != null) {
@@ -1441,10 +1396,10 @@ public class MainActivity extends AppCompatActivity
                     }
                     actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), false);
                     chipSelectionManager.seleccionarModeloEnSpinner(chipSpinner, res.modeloIdentificado);
-                    Toast.makeText(MainActivity.this, "Chip detectado: " + res.modeloIdentificado, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.toast_chip_detected, res.modeloIdentificado), Toast.LENGTH_SHORT).show();
                 } else {
-                    String hexStr = (res.rawDeviceId > 0) ? String.format("0x%04X", res.rawDeviceId) : "Desconocido";
-                    appendLog("ℹ Chip presente (ID: " + hexStr + "). Seleccione el modelo en la lista manual.");
+                    String hexStr = (res.rawDeviceId > 0) ? String.format("0x%04X", res.rawDeviceId) : getString(R.string.unknown_device_id);
+                    appendLog(getString(R.string.log_chip_present_select_manually, hexStr));
                     firmware = "";
                     datosPicProcesados = null;
                     if (fileManager != null) {
@@ -1477,7 +1432,7 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(() -> {
                     if (programacionSelectivaManager != null) {
                         List<String> lineasReporte = programacionSelectivaManager
-                                .formatearReporteBlankCheckDual(resultado, currentChip);
+                                .formatearReporteBlankCheckDual(MainActivity.this, resultado, currentChip);
                         for (String linea : lineasReporte) {
                             appendLog(linea);
                         }
@@ -1494,7 +1449,7 @@ public class MainActivity extends AppCompatActivity
 
                         if (currentChip.isTamanoValidoDeEEPROM()) {
                             sb.append("  EEPROM: ")
-                                    .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
+                                     .append(resultado.eepromEnBlanco ? getString(R.string.eeprom_ok_blank)
                                             : getString(R.string.eeprom_not_blank))
                                     .append("\n");
                         }
@@ -1527,27 +1482,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        String proTitle = "⭐ Modo Pro";
+        String proTitle = getString(R.string.menu_pro_mode);
         if (proPassManager != null && proPassManager.isProActive(billingManager)) {
             if (billingManager != null && billingManager.isProPurchased()) {
-                proTitle = "👑 Pro Permanente";
+                proTitle = getString(R.string.menu_pro_permanent);
             } else {
-                proTitle = "⭐ Pro " + proPassManager.formatearTiempoRestante();
+                proTitle = getString(R.string.menu_pro_timer, proPassManager.formatearTiempoRestante());
             }
         }
         menu.add(Menu.NONE, 12, 0, proTitle).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-        menu.add(Menu.NONE, 9, 1, "🩺 Diagnóstico de Hardware K150").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 10, 2, "⏱️ Calibración OSCCAL").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 11, 3, "🛠️ Vector de Depuración (ICD)").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 1, 4, getString(R.string.modelo_programador)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 2, 5, getString(R.string.seleccionar_protocolo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 9, 1, getString(R.string.menu_hardware_diagnostic)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 10, 2, getString(R.string.menu_osccal_calibration)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 11, 3, getString(R.string.menu_debug_vector_icd)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 1, 4, "🔌 " + getString(R.string.modelo_programador)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 2, 5, "⚡ " + getString(R.string.seleccionar_protocolo)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 6, 6, "💾 " + getString(R.string.exportar_memoria)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 7, 7, "📋 " + getString(R.string.chip_info_json)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 3, 8, "📚 " + getString(R.string.gputils_termux_asm)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 5, 9, "📚 " + getString(R.string.sdcc_termux_tutorial)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 4, 10, getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, 8, 11, getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 4, 10, "🛡️ " + getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, 8, 11, "ℹ️ " + getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 
@@ -1624,14 +1579,12 @@ public class MainActivity extends AppCompatActivity
             showProAccessDialog(this::abrirDiagnosticoHardware);
             return;
         }
-        if (!usbManager.isConnected()) {
-            appendLog("⚠ Debe conectar el programador K150 antes de ejecutar el diagnóstico");
-            android.widget.Toast.makeText(this, "Conecte el programador K150 primero", android.widget.Toast.LENGTH_SHORT).show();
-            return;
-        }
+        // Igual que Calibración OSCCAL y Vector ICD: la ventana se abre siempre y
+        // la verificación de conexión se realiza al ejecutar cada prueba.
+        boolean conectado = usbManager != null && usbManager.isConnected();
         diagnosticoHardwareManager.showDiagnosticoDialog(
                 this,
-                usbManager.getProtocolo(),
+                conectado ? usbManager.getProtocolo() : null,
                 this::appendLog);
     }
 
@@ -2039,7 +1992,7 @@ public class MainActivity extends AppCompatActivity
         verticalScrollView.addView(horizontalScrollView);
 
         new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.chip_info_json))
+                .setTitle(getString(R.string.chip_info_titulo))
                 .setView(verticalScrollView)
                 .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
