@@ -415,6 +415,10 @@ Debug address sa hex (hal. 000020):</string>
     <string name="icd_toast_invalid_address">Di-wastong 24-bit hexadecimal address</string>
     <string name="icd_toast_write_success">✓ Niprograma ang ICD vector: %1$s</string>
     <string name="icd_toast_write_error">❌ Nabigong i-program ang ICD vector</string>
+    <string name="programar_todo">Iskedyul ang Lahat</string>
+    <string name="programar_solo_rom">Program ROM lamang</string>
+    <string name="programar_solo_eeprom">Programang EEPROM lamang</string>
+    <string name="programar_solo_config">Programa lang ang CONFIG</string>
     <string name="prog_type_all_title">I-program ang Lahat</string>
     <string name="prog_type_all_desc">ROM, EEPROM at Konpigurasyon</string>
     <string name="prog_type_rom_title">I-program ang ROM</string>
@@ -469,4 +473,7 @@ Mangyaring ipasok ang PIC %1$s sa kaukulang posisyon, i-lock ang lever, at i-tap
     <string name="log_pro_purchase_error">⚠ Pagbili ng Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Binago ang memory ng %1$s sa 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX nang walang mga programmable na rehiyon</string>
+    <string name="toast_no_log_text">Walang teksto sa log upang kopyahin.</string>
+    <string name="toast_clipboard_fail">Hindi ma-access ang clipboard.</string>
+    <string name="toast_logs_copied">Nakopya ang mga log sa clipboard.</string>
 </resources>

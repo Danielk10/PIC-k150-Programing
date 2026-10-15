@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">Жарамсыз 24 биттік он алтылық мекенжай</string>
     <string name="icd_toast_write_success">✓ ICD векторы бағдарламаланды: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD векторын бағдарламалау сәтсіз аяқталды</string>
+    <string name="programar_todo">Барлығын жоспарлаңыз</string>
+    <string name="programar_solo_rom">Тек бағдарлама ROM</string>
+    <string name="programar_solo_eeprom">Тек EEPROM бағдарламасы</string>
+    <string name="programar_solo_config">Бағдарлама тек CONFIG</string>
     <string name="prog_type_all_title">Барлығын бағдарламалау</string>
     <string name="prog_type_all_desc">ROM, EEPROM және конфигурация</string>
     <string name="prog_type_rom_title">ROM бағдарламалау</string>
@@ -469,4 +473,7 @@ PIC %1$s микроконтроллерін тиісті орынға салып
     <string name="log_pro_purchase_error">⚠ Pro сатып алу: %1$s</string>
     <string name="log_memoria_editada">✏️ 0x%2$04X мекенжайындағы %1$s жады өзгертілді: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">Бағдарламаланатын аймақтары жоқ HEX</string>
+    <string name="toast_no_log_text">Журналда көшіруге арналған мәтін жоқ.</string>
+    <string name="toast_clipboard_fail">Алмасу буферіне қол жеткізілмеді.</string>
+    <string name="toast_logs_copied">Журналдар алмасу буферіне көшірілді.</string>
 </resources>

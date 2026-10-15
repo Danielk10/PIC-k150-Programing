@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">Μη έγκυρη δεκαεξαδική διεύθυνση 24-bit</string>
     <string name="icd_toast_write_success">✓ Το διάνυσμα ICD προγραμματίστηκε: %1$s</string>
     <string name="icd_toast_write_error">❌ Αποτυχία προγραμματισμού διανύσματος ICD</string>
+    <string name="programar_todo">Προγραμματίστε τα πάντα</string>
+    <string name="programar_solo_rom">Μόνο ROM προγράμματος</string>
+    <string name="programar_solo_eeprom">Πρόγραμμα μόνο EEPROM</string>
+    <string name="programar_solo_config">Πρόγραμμα μόνο CONFIG</string>
     <string name="prog_type_all_title">Προγραμματισμός Όλων</string>
     <string name="prog_type_all_desc">ROM, EEPROM και Διαμόρφωση</string>
     <string name="prog_type_rom_title">Προγραμματισμός ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ Αγορά Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Η μνήμη %1$s τροποποιήθηκε στη διεύθυνση 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX χωρίς προγραμματιζόμενες περιοχές</string>
+    <string name="toast_no_log_text">Δεν υπάρχει κείμενο στο αρχείο καταγραφής για αντιγραφή.</string>
+    <string name="toast_clipboard_fail">Δεν ήταν δυνατή η πρόσβαση στο πρόχειρο.</string>
+    <string name="toast_logs_copied">Τα αρχεία καταγραφής αντιγράφηκαν στο πρόχειρο.</string>
 </resources>

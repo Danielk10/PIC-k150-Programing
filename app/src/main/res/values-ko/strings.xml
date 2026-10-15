@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">유효하지 않은 24비트 16진수 주소입니다</string>
     <string name="icd_toast_write_success">✓ ICD 벡터 프로그래밍 완료: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD 벡터 프로그래밍 실패</string>
+    <string name="programar_todo">전체 프로그램</string>
+    <string name="programar_solo_rom">ROM만 프로그램</string>
+    <string name="programar_solo_eeprom">EEPROM만 프로그램</string>
+    <string name="programar_solo_config">CONFIG만 프로그램</string>
     <string name="prog_type_all_title">모두 프로그래밍</string>
     <string name="prog_type_all_desc">ROM, EEPROM 및 구성</string>
     <string name="prog_type_rom_title">ROM 프로그래밍</string>
@@ -469,4 +473,7 @@ PIC %1$s을(를) 해당 위치에 삽입하고 레버를 잠근 후 [%2$s]을(�
     <string name="log_pro_purchase_error">⚠ Pro 구매: %1$s</string>
     <string name="log_memoria_editada">✏️ 0x%2$04X 위치의 %1$s 메모리 수정됨: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">프로그래밍 가능한 영역이 없는 HEX</string>
+    <string name="toast_no_log_text">복사할 로그 텍스트가 없습니다.</string>
+    <string name="toast_clipboard_fail">클립보드에 액세스할 수 없습니다.</string>
+    <string name="toast_logs_copied">로그가 클립보드에 복사되었습니다.</string>
 </resources>

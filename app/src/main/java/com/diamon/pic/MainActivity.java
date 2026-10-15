@@ -794,17 +794,32 @@ public class MainActivity extends AppCompatActivity
             btnLimpiarLog.setOnClickListener(v -> clearLog());
         }
 
-        // NUEVO: Copiar log al portapapeles con un toque
-        if (processStatusTextView != null) {
-            processStatusTextView.setOnClickListener(v -> {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                if (clipboard != null) {
-                    ClipData clip = ClipData.newPlainText("PIC Log", processStatusTextView.getText());
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(this, getString(R.string.log_copiado), Toast.LENGTH_SHORT).show();
-                }
-            });
+        setupLogCopySupport();
+    }
+
+    private void setupLogCopySupport() {
+        if (processStatusTextView == null) {
+            return;
         }
+        processStatusTextView.setTextIsSelectable(true);
+        processStatusTextView.setLongClickable(true);
+        processStatusTextView.setOnLongClickListener(v -> {
+            String logs = processStatusTextView.getText() == null ? "" : processStatusTextView.getText().toString();
+            if (logs.trim().isEmpty()) {
+                Toast.makeText(this, getString(R.string.toast_no_log_text), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            if (clipboard == null) {
+                Toast.makeText(this, getString(R.string.toast_clipboard_fail), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            clipboard.setPrimaryClip(ClipData.newPlainText("logs", logs));
+            Toast.makeText(this, getString(R.string.toast_logs_copied), Toast.LENGTH_SHORT).show();
+            return true;
+        });
     }
 
     /** NUEVO: Procesa los datos del archivo HEX */
@@ -1134,7 +1149,12 @@ public class MainActivity extends AppCompatActivity
 
     private void iniciarFlujoSeleccionProgramacion() {
         if (programacionSelectivaManager != null) {
-            programacionSelectivaManager.mostrarMenuSeleccion(this, currentChip, this::doProgrammingFlow);
+            programacionSelectivaManager.mostrarMenuSeleccion(
+                    this,
+                    currentChip,
+                    datosPicProcesados,
+                    fusesConfigured,
+                    this::doProgrammingFlow);
         } else {
             doProgrammingFlow(TipoProgramacion.COMPLETA);
         }

@@ -415,6 +415,10 @@ Foutopsporingsadres in hex (bijv. 000020):</string>
     <string name="icd_toast_invalid_address">Ongeldig 24-bits hexadecimaal adres</string>
     <string name="icd_toast_write_success">✓ ICD-vector geprogrammeerd: %1$s</string>
     <string name="icd_toast_write_error">❌ Programmeren van ICD-vector mislukt</string>
+    <string name="programar_todo">Programma alles</string>
+    <string name="programar_solo_rom">Alleen programma-ROM</string>
+    <string name="programar_solo_eeprom">Alleen programma-EEPROM</string>
+    <string name="programar_solo_config">Alleen programma CONFIG</string>
     <string name="prog_type_all_title">Alles programmeren</string>
     <string name="prog_type_all_desc">ROM, EEPROM en configuratie</string>
     <string name="prog_type_rom_title">ROM programmeren</string>
@@ -469,4 +473,7 @@ Plaats de PIC %1$s in de juiste positie, vergrendel de hendel en tik opnieuw op 
     <string name="log_pro_purchase_error">⚠ Pro-aankoop: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s-geheugen bewerkt op 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX zonder programmeerbare gebieden</string>
+    <string name="toast_no_log_text">Geen tekst in logboek om te kopiëren.</string>
+    <string name="toast_clipboard_fail">Kon geen toegang krijgen tot klembord.</string>
+    <string name="toast_logs_copied">Logboeken gekopieerd naar klembord.</string>
 </resources>

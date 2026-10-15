@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">ที่อยู่เลขฐานสิบหก 24 บิตไม่ถูกต้อง</string>
     <string name="icd_toast_write_success">✓ โปรแกรมเวกเตอร์ ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ ล้มเหลวในการโปรแกรมเวกเตอร์ ICD</string>
+    <string name="programar_todo">โปรแกรมทั้งหมด</string>
+    <string name="programar_solo_rom">Program ROM เท่านั้น</string>
+    <string name="programar_solo_eeprom">โปรแกรม EEPROM เท่านั้น</string>
+    <string name="programar_solo_config">Program CONFIG เท่านั้น</string>
     <string name="prog_type_all_title">เขียนโปรแกรมทั้งหมด</string>
     <string name="prog_type_all_desc">ROM, EEPROM และการกำหนดค่า</string>
     <string name="prog_type_rom_title">เขียนโปรแกรม ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ การซื้อ Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ แก้ไขหน่วยความจำ %1$s ที่ 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">ไฟล์ HEX ไม่มีส่วนที่สามารถโปรแกรมได้</string>
+    <string name="toast_no_log_text">ไม่มีข้อความในบันทึกที่จะคัดลอก</string>
+    <string name="toast_clipboard_fail">ไม่สามารถเข้าถึงคลิปบอร์ดได้</string>
+    <string name="toast_logs_copied">คัดลอกบันทึกไปยังคลิปบอร์ดแล้ว</string>
 </resources>

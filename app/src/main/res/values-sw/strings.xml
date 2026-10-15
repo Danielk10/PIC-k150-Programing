@@ -415,6 +415,10 @@ Anwani ya utatuzi kwa hex (mfano 000020):</string>
     <string name="icd_toast_invalid_address">Anwani batili ya hexadecimal ya biti 24</string>
     <string name="icd_toast_write_success">✓ Vekta ya ICD imeratibiwa: %1$s</string>
     <string name="icd_toast_write_error">❌ Imeshindwa kuratibu vekta ya ICD</string>
+    <string name="programar_todo">Panga Kila Kitu</string>
+    <string name="programar_solo_rom">Programu ya ROM pekee</string>
+    <string name="programar_solo_eeprom">Mpango wa EEPROM pekee</string>
+    <string name="programar_solo_config">Mpango wa CONFIG pekee</string>
     <string name="prog_type_all_title">Panga Yote</string>
     <string name="prog_type_all_desc">ROM, EEPROM na Usanidi</string>
     <string name="prog_type_rom_title">Panga ROM</string>
@@ -469,4 +473,7 @@ Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge
     <string name="log_pro_purchase_error">⚠ Ununuzi wa Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Kumbukumbu ya %1$s imebadilishwa kwenye 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX bila maeneo yanayoweza kupangwa</string>
+    <string name="toast_no_log_text">Hakuna maandishi kwenye kumbukumbu ya kunakili.</string>
+    <string name="toast_clipboard_fail">Haikuweza kufikia ubao wa kunakili.</string>
+    <string name="toast_logs_copied">Kumbukumbu zimenakiliwa kwenye ubao wa kunakili.</string>
 </resources>

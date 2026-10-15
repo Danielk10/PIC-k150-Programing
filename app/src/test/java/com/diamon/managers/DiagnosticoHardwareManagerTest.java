@@ -33,6 +33,7 @@ public class DiagnosticoHardwareManagerTest {
         when(mockProtocolo.obtenerVersionOModeloDelProgramador()).thenReturn("K150");
         when(mockProtocolo.obtenerProtocoloDelProgramador()).thenReturn("P18A");
         when(mockProtocolo.hacerUnEco()).thenReturn("2");
+        when(mockProtocolo.sondaPicPresenteEnSocket()).thenReturn(true);
         when(mockProtocolo.detectarPicEnElSocket()).thenReturn(true);
         when(mockProtocolo.detectarSiEstaFueraElPicDelSocket()).thenReturn(false);
 
@@ -53,6 +54,7 @@ public class DiagnosticoHardwareManagerTest {
         when(mockProtocolo.obtenerVersionOModeloDelProgramador()).thenReturn("K149-B");
         when(mockProtocolo.obtenerProtocoloDelProgramador()).thenReturn("P18A");
         when(mockProtocolo.hacerUnEco()).thenReturn("2");
+        when(mockProtocolo.sondaPicPresenteEnSocket()).thenReturn(false);
         when(mockProtocolo.detectarPicEnElSocket()).thenReturn(false);
         when(mockProtocolo.detectarSiEstaFueraElPicDelSocket()).thenReturn(true);
 

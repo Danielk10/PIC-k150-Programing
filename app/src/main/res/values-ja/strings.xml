@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">無効な24ビット16進アドレスです</string>
     <string name="icd_toast_write_success">✓ ICDベクター書き込み完了: %1$s</string>
     <string name="icd_toast_write_error">❌ ICDベクターの書き込みに失敗しました</string>
+    <string name="programar_todo">すべてをスケジュールする</string>
+    <string name="programar_solo_rom">プログラムROMのみ</string>
+    <string name="programar_solo_eeprom">プログラムEEPROMのみ</string>
+    <string name="programar_solo_config">プログラムのみ CONFIG</string>
     <string name="prog_type_all_title">すべて書き込み</string>
     <string name="prog_type_all_desc">ROM、EEPROMおよびコンフィグレーション</string>
     <string name="prog_type_rom_title">ROM書き込み</string>
@@ -469,4 +473,7 @@ PIC %1$sを対応する位置に挿入してレバーをロックし、もう一
     <string name="log_pro_purchase_error">⚠ Pro購入: %1$s</string>
     <string name="log_memoria_editada">✏️ 0x%2$04X の %1$s メモリが編集されました: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">プログラム可能領域のないHEX</string>
+    <string name="toast_no_log_text">コピーするログテキストがありません。</string>
+    <string name="toast_clipboard_fail">クリップボードにアクセスできませんでした。</string>
+    <string name="toast_logs_copied">ログをクリップボードにコピーしました。</string>
 </resources>

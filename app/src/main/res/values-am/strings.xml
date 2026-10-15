@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">ልክ ያልሆነ 24-ቢት ሄክሳዴሲማል አድራሻ</string>
     <string name="icd_toast_write_success">✓ የICD ቬክተር ተዘጋጅቷል፦ %1$s</string>
     <string name="icd_toast_write_error">❌ የICD ቬክተር ማዘጋጀት አልተሳካም</string>
+    <string name="programar_todo">ሁሉንም ነገር ያቅዱ</string>
+    <string name="programar_solo_rom">ፕሮግራም ROM ብቻ</string>
+    <string name="programar_solo_eeprom">ፕሮግራም EEPROM ብቻ</string>
+    <string name="programar_solo_config">ፕሮግራም ብቻ CONFIG</string>
     <string name="prog_type_all_title">ሁሉንም ፕሮግራም አድርግ</string>
     <string name="prog_type_all_desc">ROM፣ EEPROM እና ውቅር</string>
     <string name="prog_type_rom_title">ROM ፕሮግራም አድርግ</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ የፕሮ ግዢ፦ %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s ማህደረ ትውስታ በ 0x%2$04X ተስተካክሏል: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">ሊዘጋጁ የሚችሉ ክልሎች የሌለው HEX</string>
+    <string name="toast_no_log_text">የሚገለበጥ ጽሑፍ በምዝግብ ማስታወሻ ውስጥ የለም።</string>
+    <string name="toast_clipboard_fail">ቅንጥብ ሰሌዳውን መድረስ አልተቻለም።</string>
+    <string name="toast_logs_copied">ምዝግብ ማስታወሻዎች ወደ ቅንጥብ ሰሌዳ ተቀድተዋል።</string>
 </resources>

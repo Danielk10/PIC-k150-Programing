@@ -415,6 +415,10 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="icd_toast_invalid_address">Neteisingas 24 bitų šešioliktainis adresas</string>
     <string name="icd_toast_write_success">✓ ICD vektorius užprogramuotas: %1$s</string>
     <string name="icd_toast_write_error">❌ Nepavyko užprogramuoti ICD vektoriaus</string>
+    <string name="programar_todo">Suplanuokite viską</string>
+    <string name="programar_solo_rom">Tik programos ROM</string>
+    <string name="programar_solo_eeprom">Programuoti tik EEPROM</string>
+    <string name="programar_solo_config">Tik programa CONFIG</string>
     <string name="prog_type_all_title">Programuoti viską</string>
     <string name="prog_type_all_desc">ROM, EEPROM ir konfigūracija</string>
     <string name="prog_type_rom_title">Programuoti ROM</string>
@@ -469,4 +473,7 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="log_pro_purchase_error">⚠ Pro pirkimas: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s atmintis redaguota adresu 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX be programuojamų sričių</string>
+    <string name="toast_no_log_text">Žurnale nėra teksto, kurį būtų galima nukopijuoti.</string>
+    <string name="toast_clipboard_fail">Nepavyko pasiekti iškarpinės.</string>
+    <string name="toast_logs_copied">Žurnalas nukopijuotas į iškarpinę.</string>
 </resources>

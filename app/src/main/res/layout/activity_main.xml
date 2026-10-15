@@ -443,7 +443,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fillViewport="true"
-                    android:scrollbars="vertical">
+                    android:scrollbars="vertical"
+                    android:descendantFocusability="blocksDescendants">
 
                     <TextView
                         android:id="@+id/processStatusTextView"
@@ -451,10 +452,13 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="monospace"
                         android:gravity="start|top"
+                        android:longClickable="true"
                         android:padding="10dp"
                         android:paddingBottom="48dp"
+                        android:saveEnabled="false"
                         android:text="@string/esperando_operacion"
                         android:textColor="#00FFCC"
+                        android:textIsSelectable="true"
                         android:textSize="11sp" />
                 </ScrollView>
 

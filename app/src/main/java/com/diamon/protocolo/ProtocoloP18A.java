@@ -1073,36 +1073,26 @@ public class ProtocoloP18A extends Protocolo {
     }
 
     @Override
-    public boolean detectarPicEnElSocket() {
+    public boolean sondaPicPresenteEnSocket() {
         try {
-            try { clearBuffer(); } catch (Exception ignored) {}
-            enviarComandoOpcode(tipoProtocolo.getCmdDetectarEnSocket());
-
-            // Leer respuesta del hardware
-            // Con chip en zócalo: responde 'A' y casi de inmediato 'Y' (o 'Y' directo)
-            // Sin chip: responde 'A' y se queda esperando inserción
-            byte[] b1 = readBytes(1, 300);
-            if (b1.length > 0 && b1[0] == 'Y') {
+            // 1. Verificación rápida y no bloqueante por lectura de Device ID en silicio (Cmd 13)
+            int devId = leerDeviceIDDelSocket();
+            if (devId > 0 && devId != 0xFFFF && devId != 0x3FFF) {
                 return true;
             }
-            if (b1.length > 0 && b1[0] == 'A') {
-                try {
-                    byte[] b2 = readBytes(1, 250);
-                    if (b2.length > 0 && b2[0] == 'Y') {
-                        return true;
-                    }
-                } catch (Exception ignored) {
-                    // No llegó 'Y', el zócalo está vacío y el hardware espera inserción
-                }
-            }
 
-            // Abortar bucle de espera de inserción en el firmware y resincronizar
-            iniciarProtocolo();
-            return false;
+            // 2. Si no hay Device ID (zócalo vacío o chip antiguo sin ID en silicio), consultar con Cmd 19.
+            // Si el zócalo está vacío, Cmd 19 responde 'Y' inmediatamente (<15ms).
+            boolean estaFuera = detectarSiEstaFueraElPicDelSocket();
+            return !estaFuera;
         } catch (Exception e) {
-            try { iniciarProtocolo(); } catch (Exception ignored) {}
             return false;
         }
+    }
+
+    @Override
+    public boolean detectarPicEnElSocket() {
+        return sondaPicPresenteEnSocket();
     }
 
     @Override
@@ -1113,13 +1103,13 @@ public class ProtocoloP18A extends Protocolo {
 
             // Con zócalo vacío: responde 'A' e inmediatamente 'Y' (o 'Y' directo)
             // Con chip en zócalo: responde 'A' y se queda esperando extracción
-            byte[] b1 = readBytes(1, 300);
+            byte[] b1 = readBytes(1, 150);
             if (b1.length > 0 && b1[0] == 'Y') {
                 return true;
             }
             if (b1.length > 0 && b1[0] == 'A') {
                 try {
-                    byte[] b2 = readBytes(1, 250);
+                    byte[] b2 = readBytes(1, 100);
                     if (b2.length > 0 && b2[0] == 'Y') {
                         return true;
                     }
@@ -1140,43 +1130,19 @@ public class ProtocoloP18A extends Protocolo {
     @Override
     public boolean esperarExtraccionDelSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar) {
         long fin = System.currentTimeMillis() + timeoutMs;
-        try {
-            try { clearBuffer(); } catch (Exception ignored) {}
-            enviarComandoOpcode(tipoProtocolo.getCmdDetectarFueraSocket());
-
-            // Leer primer byte: puede ser 'Y' (ya fuera) o 'A' (esperando acción física)
-            byte[] b1;
-            try {
-                b1 = readBytes(1, 400);
-            } catch (Exception e) {
-                b1 = new byte[0];
+        while (System.currentTimeMillis() < fin) {
+            if (cancelar != null && cancelar.get()) {
+                return false;
             }
-
-            if (b1.length > 0 && b1[0] == 'Y') {
+            if (!sondaPicPresenteEnSocket()) {
                 return true;
             }
-
-            // Si respondió 'A', el hardware está en bucle esperando que se retire el chip
-            while (System.currentTimeMillis() < fin) {
-                if (cancelar != null && cancelar.get()) {
-                    break;
-                }
-                try {
-                    byte[] b2 = readBytes(1, 200);
-                    if (b2.length > 0 && b2[0] == 'Y') {
-                        return true;
-                    }
-                } catch (Exception ignored) {
-                    // Timeout parcial de 200ms mientras se espera extracción
-                }
-            }
-        } catch (Exception e) {
-            // Ignorado, se aborta y limpia en finally
-        } finally {
             try {
-                clearBuffer();
-                iniciarProtocolo();
-            } catch (Exception ignored) {}
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
         }
         return false;
     }
@@ -1184,41 +1150,19 @@ public class ProtocoloP18A extends Protocolo {
     @Override
     public boolean esperarInsercionEnElSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar) {
         long fin = System.currentTimeMillis() + timeoutMs;
-        try {
-            try { clearBuffer(); } catch (Exception ignored) {}
-            enviarComandoOpcode(tipoProtocolo.getCmdDetectarEnSocket());
-
-            byte[] b1;
-            try {
-                b1 = readBytes(1, 400);
-            } catch (Exception e) {
-                b1 = new byte[0];
+        while (System.currentTimeMillis() < fin) {
+            if (cancelar != null && cancelar.get()) {
+                return false;
             }
-
-            if (b1.length > 0 && b1[0] == 'Y') {
+            if (sondaPicPresenteEnSocket()) {
                 return true;
             }
-
-            while (System.currentTimeMillis() < fin) {
-                if (cancelar != null && cancelar.get()) {
-                    break;
-                }
-                try {
-                    byte[] b2 = readBytes(1, 200);
-                    if (b2.length > 0 && b2[0] == 'Y') {
-                        return true;
-                    }
-                } catch (Exception ignored) {
-                    // Timeout parcial de 200ms
-                }
-            }
-        } catch (Exception e) {
-            // Ignorado
-        } finally {
             try {
-                clearBuffer();
-                iniciarProtocolo();
-            } catch (Exception ignored) {}
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
         }
         return false;
     }

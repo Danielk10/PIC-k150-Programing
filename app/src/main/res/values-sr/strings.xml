@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">Неважећа 24-битна хексадецимална адреса</string>
     <string name="icd_toast_write_success">✓ ICD вектор програмиран: %1$s</string>
     <string name="icd_toast_write_error">❌ Програмирање ICD вектора није успело</string>
+    <string name="programar_todo">Закажите све</string>
+    <string name="programar_solo_rom">Само РОМ програма</string>
+    <string name="programar_solo_eeprom">Програмирајте само ЕЕПРОМ</string>
+    <string name="programar_solo_config">Програм само ЦОНФИГ</string>
     <string name="prog_type_all_title">Програмирај све</string>
     <string name="prog_type_all_desc">ROM, EEPROM и Конфигурација</string>
     <string name="prog_type_rom_title">Програмирај ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ Про куповина: %1$s</string>
     <string name="log_memoria_editada">✏️ Меморија %1$s измењена на 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX без програмабилних области</string>
+    <string name="toast_no_log_text">Нема текста у дневнику за копирање.</string>
+    <string name="toast_clipboard_fail">Није могуће приступити међуспремнику.</string>
+    <string name="toast_logs_copied">Дневници су копирани у међуспремник.</string>
 </resources>

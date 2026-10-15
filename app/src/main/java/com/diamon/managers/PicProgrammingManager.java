@@ -563,11 +563,8 @@ public class PicProgrammingManager {
 
             boolean enSocket = (rawId > 0 && rawId != 0xFFFF && rawId != 0x3FFF);
             if (!enSocket) {
-                // Fallback para chips sin Device ID en silicio (ej. 12-bit o PIC16C antiguos)
-                enSocket = protocolo.detectarPicEnElSocket();
-            }
-
-            if (!enSocket) {
+                // El zócalo está vacío o el microcontrolador no devolvió un Device ID válido en silicio.
+                // Finalizar aquí de forma inmediata y limpia sin colgar el firmware K150.
                 return new ResultadoAutodeteccion(false, -1, null);
             }
 

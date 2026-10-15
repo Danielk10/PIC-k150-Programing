@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">Անվավեր 24 բիթանոց տասնվեցական հասցե</string>
     <string name="icd_toast_write_success">✓ ICD վեկտորը ծրագրավորված է՝ %1$s</string>
     <string name="icd_toast_write_error">❌ Չհաջողվեց ծրագրավորել ICD վեկտորը</string>
+    <string name="programar_todo">Ժամանակացույց ամեն ինչ</string>
+    <string name="programar_solo_rom">Միայն ծրագրի ROM-ը</string>
+    <string name="programar_solo_eeprom">Ծրագիր միայն EEPROM</string>
+    <string name="programar_solo_config">Ծրագիր միայն CONFIG</string>
     <string name="prog_type_all_title">Ծրագրավորել բոլորը</string>
     <string name="prog_type_all_desc">ROM, EEPROM և կոնֆիգուրացիա</string>
     <string name="prog_type_rom_title">Ծրագրավորել ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ Pro գնում՝ %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s հիշողությունը խմբագրված է 0x%2$04X հասցեում. 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX առանց ծրագրավորվող տիրույթների</string>
+    <string name="toast_no_log_text">Մատյանում պատճենելու տեքստ չկա:</string>
+    <string name="toast_clipboard_fail">Չհաջողվեց մուտք գործել սեղմատախտակ:</string>
+    <string name="toast_logs_copied">Մատյանները պատճենվել են սեղմատախտակում:</string>
 </resources>

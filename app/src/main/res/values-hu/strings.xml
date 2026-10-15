@@ -415,6 +415,10 @@ Hibakeresési cím hexadecimálisan (pl. 000020):</string>
     <string name="icd_toast_invalid_address">Érvénytelen 24 bites hexadecimális cím</string>
     <string name="icd_toast_write_success">✓ ICD vektor beprogramozva: %1$s</string>
     <string name="icd_toast_write_error">❌ Nem sikerült az ICD vektor programozása</string>
+    <string name="programar_todo">Ütemezze be mindent</string>
+    <string name="programar_solo_rom">Csak program ROM</string>
+    <string name="programar_solo_eeprom">Csak az EEPROM programozása</string>
+    <string name="programar_solo_config">Csak program CONFIG</string>
     <string name="prog_type_all_title">Összes programozása</string>
     <string name="prog_type_all_desc">ROM, EEPROM és konfiguráció</string>
     <string name="prog_type_rom_title">ROM programozása</string>
@@ -469,4 +473,7 @@ Kérjük, helyezze be a PIC %1$s mikrokontrollert a megfelelő pozícióba, zár
     <string name="log_pro_purchase_error">⚠ Pro vásárlás: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s memória szerkesztve itt: 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX programozható területek nélkül</string>
+    <string name="toast_no_log_text">Nincs másolható szöveg a naplóban.</string>
+    <string name="toast_clipboard_fail">Nem sikerült elérni a vágólapot.</string>
+    <string name="toast_logs_copied">Naplók másolva a vágólapra.</string>
 </resources>

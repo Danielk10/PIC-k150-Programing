@@ -415,6 +415,10 @@ Alamat debug heksadesimal (mis. 000020):</string>
     <string name="icd_toast_invalid_address">Alamat heksadesimal 24-bit tidak valid</string>
     <string name="icd_toast_write_success">✓ Vektor ICD terprogram: %1$s</string>
     <string name="icd_toast_write_error">❌ Gagal memprogram vektor ICD</string>
+    <string name="programar_todo">Jadwalkan Segalanya</string>
+    <string name="programar_solo_rom">ROM Program saja</string>
+    <string name="programar_solo_eeprom">Program EEPROM saja</string>
+    <string name="programar_solo_config">Hanya program CONFIG</string>
     <string name="prog_type_all_title">Program Semua</string>
     <string name="prog_type_all_desc">ROM, EEPROM dan Konfigurasi</string>
     <string name="prog_type_rom_title">Program ROM</string>
@@ -469,4 +473,7 @@ Harap masukkan PIC %1$s pada posisi yang sesuai, kunci tuasnya, lalu ketuk [%2$s
     <string name="log_pro_purchase_error">⚠ Pembelian Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Memori %1$s diedit di 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX tanpa wilayah yang dapat diprogram</string>
+    <string name="toast_no_log_text">Tidak ada teks di log untuk disalin.</string>
+    <string name="toast_clipboard_fail">Tidak dapat mengakses papan klip.</string>
+    <string name="toast_logs_copied">Log disalin ke papan klip.</string>
 </resources>

@@ -415,6 +415,10 @@ Adreça de depuració en hex (ex. 000020):</string>
     <string name="icd_toast_invalid_address">Adreça hexadecimal de 24 bits no vàlida</string>
     <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
     <string name="icd_toast_write_error">❌ Ha fallat la programació del vector ICD</string>
+    <string name="programar_todo">Programar Tot</string>
+    <string name="programar_solo_rom">Programar només ROM</string>
+    <string name="programar_solo_eeprom">Programar només EEPROM</string>
+    <string name="programar_solo_config">Programar només CONFIG</string>
     <string name="prog_type_all_title">Programar Tot</string>
     <string name="prog_type_all_desc">ROM, EEPROM i Configuració</string>
     <string name="prog_type_rom_title">Programar ROM</string>
@@ -469,4 +473,7 @@ Si us plau inseriu el PIC %1$s a la posició corresponent, bloquegeu la palanca 
     <string name="log_pro_purchase_error">⚠ Compra Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Memòria %1$s editada a 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX sense regions programables</string>
+    <string name="toast_no_log_text">No hi ha text al registre per copiar.</string>
+    <string name="toast_clipboard_fail">No s\'ha pogut accedir al porta-retalls.</string>
+    <string name="toast_logs_copied">Registres copiats al porta-retalls.</string>
 </resources>

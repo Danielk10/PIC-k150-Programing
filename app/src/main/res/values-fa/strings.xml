@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">آدرس هگزادسیمال ۲۴ بیتی نامعتبر است</string>
     <string name="icd_toast_write_success">✓ بردار ICD برنامه‌ریزی شد: %1$s</string>
     <string name="icd_toast_write_error">❌ برنامه‌ریزی بردار ICD ناموفق بود</string>
+    <string name="programar_todo">همه چیز را برنامه ریزی کنید</string>
+    <string name="programar_solo_rom">فقط رام برنامه</string>
+    <string name="programar_solo_eeprom">فقط EEPROM را برنامه ریزی کنید</string>
+    <string name="programar_solo_config">فقط برنامه CONFIG</string>
     <string name="prog_type_all_title">برنامه‌ریزی همه</string>
     <string name="prog_type_all_desc">ROM، EEPROM و پیکربندی</string>
     <string name="prog_type_rom_title">برنامه‌ریزی ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ خرید Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ حافظه %1$s در آدرس 0x%2$04X ویرایش شد: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">فایل HEX بدون بخش‌های قابل برنامه‌ریزی</string>
+    <string name="toast_no_log_text">متنی در گزارش برای کپی وجود ندارد.</string>
+    <string name="toast_clipboard_fail">دسترسی به کلیپ‌بورد امکان‌پذیر نبود.</string>
+    <string name="toast_logs_copied">گزارش‌ها در کلیپ‌بورد کپی شدند.</string>
 </resources>

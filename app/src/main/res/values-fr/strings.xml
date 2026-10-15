@@ -415,6 +415,10 @@ Adresse de débogage en hex (ex. 000020) :</string>
     <string name="icd_toast_invalid_address">Adresse hexadécimale 24 bits non valide</string>
     <string name="icd_toast_write_success">✓ Vecteur ICD programmé : %1$s</string>
     <string name="icd_toast_write_error">❌ Échec de la programmation du vecteur ICD</string>
+    <string name="programar_todo">Planifiez tout</string>
+    <string name="programar_solo_rom">ROM du programme uniquement</string>
+    <string name="programar_solo_eeprom">Programmer l\'EEPROM uniquement</string>
+    <string name="programar_solo_config">Programme uniquement CONFIG</string>
     <string name="prog_type_all_title">Tout Programmer</string>
     <string name="prog_type_all_desc">ROM, EEPROM et Configuration</string>
     <string name="prog_type_rom_title">Programmer la ROM</string>
@@ -469,4 +473,7 @@ Veuillez insérer le PIC %1$s dans la position correspondante, verrouiller le le
     <string name="log_pro_purchase_error">⚠ Achat Pro : %1$s</string>
     <string name="log_memoria_editada">✏️ Mémoire %1$s modifiée à l\'adresse 0x%2$04X : 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX sans régions programmables</string>
+    <string name="toast_no_log_text">Aucun texte dans le journal à copier.</string>
+    <string name="toast_clipboard_fail">Impossible d\'accéder au presse-papiers.</string>
+    <string name="toast_logs_copied">Journaux copiés dans le presse-papiers.</string>
 </resources>

@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">عنوان سداسي عشري 24 بت غير صالح</string>
     <string name="icd_toast_write_success">✓ تمت برمجة متجه ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ فشلت برمجة متجه ICD</string>
+    <string name="programar_todo">جدولة كل شيء</string>
+    <string name="programar_solo_rom">روم البرنامج فقط</string>
+    <string name="programar_solo_eeprom">برنامج إيبروم فقط</string>
+    <string name="programar_solo_config">برنامج التكوين فقط</string>
     <string name="prog_type_all_title">برمجة الكل</string>
     <string name="prog_type_all_desc">ROM و EEPROM والتهيئة</string>
     <string name="prog_type_rom_title">برمجة ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ شراء برو: %1$s</string>
     <string name="log_memoria_editada">✏️ تم تعديل ذاكرة %1$s في 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">ملف HEX بدون مناطق قابلة للبرمجة</string>
+    <string name="toast_no_log_text">لا يوجد نص في السجل لنسخه.</string>
+    <string name="toast_clipboard_fail">تعذر الوصول إلى الحافظة.</string>
+    <string name="toast_logs_copied">تم نسخ السجلات إلى الحافظة.</string>
 </resources>

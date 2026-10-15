@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">Няправільны 24-бітны шаснаццатковы адрас</string>
     <string name="icd_toast_write_success">✓ Вектар ICD запраграмаваны: %1$s</string>
     <string name="icd_toast_write_error">❌ Не ўдалося запраграмаваць вектар ICD</string>
+    <string name="programar_todo">Расклад усё</string>
+    <string name="programar_solo_rom">Толькі праграма ROM</string>
+    <string name="programar_solo_eeprom">Праграмаваць толькі EEPROM</string>
+    <string name="programar_solo_config">Праграма толькі CONFIG</string>
     <string name="prog_type_all_title">Праграмаваць усё</string>
     <string name="prog_type_all_desc">ROM, EEPROM і канфігурацыя</string>
     <string name="prog_type_rom_title">Праграмаваць ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ Купля Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Памяць %1$s зменена па адрасе 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX без праграмуемых абласцей</string>
+    <string name="toast_no_log_text">Няма тэксту ў журнале для капіявання.</string>
+    <string name="toast_clipboard_fail">Не ўдалося атрымаць доступ да буфера абмену.</string>
+    <string name="toast_logs_copied">Журнал скапіяваны ў буфер абмену.</string>
 </resources>

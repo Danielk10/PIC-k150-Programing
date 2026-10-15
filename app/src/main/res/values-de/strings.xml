@@ -415,6 +415,10 @@ Debug-Adresse in Hex (z. B. 000020):</string>
     <string name="icd_toast_invalid_address">Ungültige 24-Bit-Hexadezimaladresse</string>
     <string name="icd_toast_write_success">✓ ICD-Vektor programmiert: %1$s</string>
     <string name="icd_toast_write_error">❌ Programmieren des ICD-Vektors fehlgeschlagen</string>
+    <string name="programar_todo">Planen Sie alles</string>
+    <string name="programar_solo_rom">Nur Programm-ROM</string>
+    <string name="programar_solo_eeprom">Nur EEPROM programmieren</string>
+    <string name="programar_solo_config">Nur Programm KONFIG</string>
     <string name="prog_type_all_title">Alles Programmieren</string>
     <string name="prog_type_all_desc">ROM, EEPROM und Konfiguration</string>
     <string name="prog_type_rom_title">ROM Programmieren</string>
@@ -469,4 +473,7 @@ Bitte setzen Sie den PIC %1$s in die entsprechende Position ein, verriegeln Sie 
     <string name="log_pro_purchase_error">⚠ Pro-Kauf: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s-Speicher bearbeitet bei 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX ohne programmierbare Bereiche</string>
+    <string name="toast_no_log_text">Kein Text im Protokoll zum Kopieren.</string>
+    <string name="toast_clipboard_fail">Zugriff auf die Zwischenablage fehlgeschlagen.</string>
+    <string name="toast_logs_copied">Protokolle in die Zwischenablage kopiert.</string>
 </resources>

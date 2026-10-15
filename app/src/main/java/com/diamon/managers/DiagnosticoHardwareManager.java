@@ -134,10 +134,10 @@ public class DiagnosticoHardwareManager {
         } catch (Exception ignored) {
         }
 
-        // 4. Sensor de presencia en el zócalo ZIF (Cmd 18)
+        // 4. Sensor de presencia en el zócalo ZIF mediante sonda segura no bloqueante
         boolean picEnSocket = false;
         try {
-            picEnSocket = protocolo.detectarPicEnElSocket();
+            picEnSocket = protocolo.sondaPicPresenteEnSocket();
         } catch (Exception ignored) {
         }
         boolean picFueraSocket = !picEnSocket;

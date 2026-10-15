@@ -415,6 +415,10 @@ Fejlfindingsadresse i hex (f.eks. 000020):</string>
     <string name="icd_toast_invalid_address">Ugyldig 24-bit hexadecimal adresse</string>
     <string name="icd_toast_write_success">✓ ICD-vektor programmeret: %1$s</string>
     <string name="icd_toast_write_error">❌ Kunne ikke programmere ICD-vektor</string>
+    <string name="programar_todo">Planlæg alt</string>
+    <string name="programar_solo_rom">Kun programmer ROM</string>
+    <string name="programar_solo_eeprom">Programmer kun EEPROM</string>
+    <string name="programar_solo_config">Program kun CONFIG</string>
     <string name="prog_type_all_title">Programmer Alt</string>
     <string name="prog_type_all_desc">ROM, EEPROM og Konfiguration</string>
     <string name="prog_type_rom_title">Programmer ROM</string>
@@ -469,4 +473,7 @@ Indsæt venligst PIC %1$s i den korrekte position, lås håndtaget, og tryk på 
     <string name="log_pro_purchase_error">⚠ Pro-køb: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s hukommelse redigeret ved 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX uden programmerbare områder</string>
+    <string name="toast_no_log_text">Ingen tekst i loggen at kopiere.</string>
+    <string name="toast_clipboard_fail">Kunne ikke få adgang til udklipsholder.</string>
+    <string name="toast_logs_copied">Logfiler kopieret til udklipsholder.</string>
 </resources>

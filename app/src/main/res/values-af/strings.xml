@@ -415,6 +415,10 @@ Ontfoutingsadres in heks (bv. 000020):</string>
     <string name="icd_toast_invalid_address">Ongeldige 24-bis heksadesimale adres</string>
     <string name="icd_toast_write_success">✓ ICD-vektor geprogrammeer: %1$s</string>
     <string name="icd_toast_write_error">❌ Kon nie ICD-vektor programmeer nie</string>
+    <string name="programar_todo">Skeduleer alles</string>
+    <string name="programar_solo_rom">Program slegs ROM</string>
+    <string name="programar_solo_eeprom">Program slegs EEPROM</string>
+    <string name="programar_solo_config">Program slegs CONFIG</string>
     <string name="prog_type_all_title">Programmeer alles</string>
     <string name="prog_type_all_desc">ROM, EEPROM en Konfigurasie</string>
     <string name="prog_type_rom_title">Programmeer ROM</string>
@@ -469,4 +473,7 @@ Plaas asseblief die PIC %1$s in die ooreenstemmende posisie, sluit die hefboom, 
     <string name="log_pro_purchase_error">⚠ Pro-aankoop: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s geheue gewysig by 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX sonder programmeerbare streke</string>
+    <string name="toast_no_log_text">Geen teks in logboek om te kopieer nie.</string>
+    <string name="toast_clipboard_fail">Kon nie toegang tot knipbord kry nie.</string>
+    <string name="toast_logs_copied">Logboeke na knipbord gekopieer.</string>
 </resources>

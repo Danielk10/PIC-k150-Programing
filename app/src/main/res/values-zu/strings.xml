@@ -415,6 +415,10 @@ Ikheli lokulungisa ku-hex (isib. 000020):</string>
     <string name="icd_toast_invalid_address">Ikheli le-hexadecimal lamabhithi angu-24 elingavumelekile</string>
     <string name="icd_toast_write_success">✓ I-Vector ye-ICD ihleliwe: %1$s</string>
     <string name="icd_toast_write_error">❌ Kwehlulekile ukuhlela i-vector ye-ICD</string>
+    <string name="programar_todo">Hlela Konke</string>
+    <string name="programar_solo_rom">Uhlelo lwe-ROM kuphela</string>
+    <string name="programar_solo_eeprom">Uhlelo EEPROM kuphela</string>
+    <string name="programar_solo_config">Uhlelo kuphela CONFIG</string>
     <string name="prog_type_all_title">Hlela Konke</string>
     <string name="prog_type_all_desc">ROM, EEPROM Nokulungiselelwa</string>
     <string name="prog_type_rom_title">Hlela i-ROM</string>
@@ -469,4 +473,7 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="log_pro_purchase_error">⚠ Ukuthenga i-Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Imemori ye-%1$s ihlelwe ku-0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">I-HEX engenazo izifunda ezihlelekayo</string>
+    <string name="toast_no_log_text">Awukho umbhalo kulogi ongawakopisha.</string>
+    <string name="toast_clipboard_fail">Ayikwazanga ukufinyelela ebhodini lokunamathisela.</string>
+    <string name="toast_logs_copied">Amalogi akopishelwe ebhodini lokunamathisela.</string>
 </resources>

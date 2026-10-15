@@ -415,6 +415,10 @@ Ladiaca adresa v hex (napr. 000020):</string>
     <string name="icd_toast_invalid_address">Neplatná 24-bitová hexadecimálna adresa</string>
     <string name="icd_toast_write_success">✓ ICD vektor naprogramovaný: %1$s</string>
     <string name="icd_toast_write_error">❌ Programovanie vektora ICD zlyhalo</string>
+    <string name="programar_todo">Naplánujte si všetko</string>
+    <string name="programar_solo_rom">Len program ROM</string>
+    <string name="programar_solo_eeprom">Naprogramujte iba EEPROM</string>
+    <string name="programar_solo_config">Program len CONFIG</string>
     <string name="prog_type_all_title">Programovať všetko</string>
     <string name="prog_type_all_desc">ROM, EEPROM a Konfigurácia</string>
     <string name="prog_type_rom_title">Programovať ROM</string>
@@ -469,4 +473,7 @@ Vložte prosím PIC %1$s do príslušnej pozície, zaistite páčku a znova klep
     <string name="log_pro_purchase_error">⚠ Nákup Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Pamäť %1$s upravená na adrese 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX bez programovateľných oblastí</string>
+    <string name="toast_no_log_text">V denníku nie je žiadny text na skopírovanie.</string>
+    <string name="toast_clipboard_fail">Nepodarilo sa získať prístup k schránke.</string>
+    <string name="toast_logs_copied">Denníky skopírované do schránky.</string>
 </resources>

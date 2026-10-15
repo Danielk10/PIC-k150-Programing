@@ -415,6 +415,10 @@ Adres debugowania w hex (np. 000020):</string>
     <string name="icd_toast_invalid_address">Nieprawidłowy 24-bitowy adres szesnastkowy</string>
     <string name="icd_toast_write_success">✓ Zaprogramowano wektor ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ Nie udało się zaprogramować wektora ICD</string>
+    <string name="programar_todo">Programuj wszystko</string>
+    <string name="programar_solo_rom">Programuj tylko ROM</string>
+    <string name="programar_solo_eeprom">Programuj tylko EEPROM</string>
+    <string name="programar_solo_config">Tylko programuj CONFIG</string>
     <string name="prog_type_all_title">Programuj wszystko</string>
     <string name="prog_type_all_desc">ROM, EEPROM i konfiguracja</string>
     <string name="prog_type_rom_title">Programuj ROM</string>
@@ -469,4 +473,7 @@ Włóż PIC %1$s w odpowiednie miejsce, zablokuj dźwignię i dotknij [%2$s] pon
     <string name="log_pro_purchase_error">⚠ Zakup Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Pamięć %1$s zmodyfikowana pod adresem 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX bez programowalnych obszarów</string>
+    <string name="toast_no_log_text">Brak tekstu w dzienniku do skopiowania.</string>
+    <string name="toast_clipboard_fail">Nie można uzyskać dostępu do schowka.</string>
+    <string name="toast_logs_copied">Dzienniki skopiowane do schowka.</string>
 </resources>

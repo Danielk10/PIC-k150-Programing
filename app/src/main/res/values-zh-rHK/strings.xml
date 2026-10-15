@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">無效的 24 位元十六進制位址</string>
     <string name="icd_toast_write_success">✓ 已燒錄 ICD 向量：%1$s</string>
     <string name="icd_toast_write_error">❌ 燒錄 ICD 向量失敗</string>
+    <string name="programar_todo">安排一切</string>
+    <string name="programar_solo_rom">僅程式 ROM</string>
+    <string name="programar_solo_eeprom">僅對 EEPROM 進行編程</string>
+    <string name="programar_solo_config">僅程式配置</string>
     <string name="prog_type_all_title">全部燒錄</string>
     <string name="prog_type_all_desc">ROM、EEPROM 和配置</string>
     <string name="prog_type_rom_title">燒錄 ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ 購買專業版：%1$s</string>
     <string name="log_memoria_editada">✏️ 已在 0x%2$04X 修改 %1$s 記憶體: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">沒有可編程區域的 HEX</string>
+    <string name="toast_no_log_text">日誌中沒有可複製的文字。</string>
+    <string name="toast_clipboard_fail">無法存取剪貼簿。</string>
+    <string name="toast_logs_copied">日誌已複製到剪貼簿。</string>
 </resources>

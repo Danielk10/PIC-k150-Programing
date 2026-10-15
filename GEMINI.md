@@ -134,6 +134,11 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Corrección de ArrayIndexOutOfBoundsException en `Protocolo.readBytes` (Issue #68):** Se acotó la cantidad de bytes a copiar en `System.arraycopy` mediante `Math.min(bytesRead, Math.min(targetBuf.length, remaining))`, garantizando que buffers o paquetes mayores del endpoint USB nunca provoquen desbordamiento de índice.
    * **Revisión y Cierre de Issues en GitHub:** Se comentaron y cerraron los issues #68 (error en `readBytes`), #67 (timeout transitorio al detectar), #66 (reporte sobre protocolo obsoleto v1.5.8) y #10 (implementación del protocolo P18A), dejando únicamente el issue #11 abierto como roadmap de expansión de microcontroladores.
    * **Compilación y Lanzamiento:** Verificación con 104/104 pruebas JUnit contra el emulador C++ K150, compilación limpia de Debug (APK) y producción (APK y AAB) con `versionCode 54` y `versionName "2.9.1"`, y publicación en GitHub Releases (`v2.9.1`).
+21. **Blindaje de Detección No Bloqueante en Zócalo ZIF, Grabación Parcial Dinámica y Copiado de Log C-PIC (v2.9.2):**
+   * **Sonda No Bloqueante en Zócalo ZIF (`sondaPicPresenteEnSocket`):** Se erradicó el bloqueo del firmware K150 (Comando 18) cuando el zócalo está vacío o el chip no hace contacto; la app interroga primero el Device ID en silicio o el Comando 19 (<15ms) evitando que el microcontrolador K150 se congele en bucles infinitos en ensamblador.
+   * **Prueba Dinámica de Sensores ZIF Segura:** Se actualizaron `esperarInsercionEnElSocket()` y `esperarExtraccionDelSocket()` para utilizar sondeo no bloqueante en bucle con cancelación inmediata sin riesgo de colgar el programador ni la app.
+   * **Restauración de Grabación Parcial Dinámica:** Basada en la rama `backup-v2.8.5-estable`, el modal de programación selectiva filtra dinámicamente las opciones disponibles en función de las regiones presentes en el archivo HEX/BIN cargado (Flash ROM, EEPROM, Configuración).
+   * **Copiado de Log al Portapapeles (Estilo C-PIC Compiler):** Se eliminó el copiado accidental por toques bruscos (`setOnClickListener`), reemplazándolo por pulsación prolongada (`setOnLongClickListener`), selección de texto (`textIsSelectable`) y protección de foco en el ScrollView (`blocksDescendants`), con 100% de paridad de cadenas en los 53 idiomas.
 
 ---
 

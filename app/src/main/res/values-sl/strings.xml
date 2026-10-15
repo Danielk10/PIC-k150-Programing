@@ -415,6 +415,10 @@ Naslov za razhroščevanje v hex (npr. 000020):</string>
     <string name="icd_toast_invalid_address">Neveljaven 24-bitni šestnajstiški naslov</string>
     <string name="icd_toast_write_success">✓ Vektor ICD sprogramiran: %1$s</string>
     <string name="icd_toast_write_error">❌ Programiranje vektorja ICD ni uspelo</string>
+    <string name="programar_todo">Program Vse</string>
+    <string name="programar_solo_rom">Program ROM samo</string>
+    <string name="programar_solo_eeprom">Program EEPROM samo</string>
+    <string name="programar_solo_config">Program CONFIG samo</string>
     <string name="prog_type_all_title">Programiraj vse</string>
     <string name="prog_type_all_desc">ROM, EEPROM in Konfiguracija</string>
     <string name="prog_type_rom_title">Programiraj ROM</string>
@@ -469,4 +473,7 @@ Vstavite PIC %1$s v ustrezni položaj, zaklenite ročico in znova tapnite [%2$s]
     <string name="log_pro_purchase_error">⚠ Nakup Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Pomnilnik %1$s urejen na naslovu 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX brez programirljivih območij</string>
+    <string name="toast_no_log_text">V dnevniku ni besedila za kopiranje.</string>
+    <string name="toast_clipboard_fail">Dostop do odložišča ni uspel.</string>
+    <string name="toast_logs_copied">Dnevniki kopirani v odložišče.</string>
 </resources>

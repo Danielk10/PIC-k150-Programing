@@ -415,6 +415,10 @@ Debug address in hex (e.g. 000020):</string>
     <string name="icd_toast_invalid_address">Invalid 24-bit hexadecimal address</string>
     <string name="icd_toast_write_success">✓ ICD vector programmed: %1$s</string>
     <string name="icd_toast_write_error">❌ Failed to program ICD vector</string>
+    <string name="programar_todo">Program All</string>
+    <string name="programar_solo_rom">Program ROM only</string>
+    <string name="programar_solo_eeprom">Program EEPROM only</string>
+    <string name="programar_solo_config">Program CONFIG only</string>
     <string name="prog_type_all_title">Program All</string>
     <string name="prog_type_all_desc">ROM, EEPROM and Configuration</string>
     <string name="prog_type_rom_title">Program ROM</string>
@@ -469,4 +473,7 @@ Please insert the PIC %1$s in the corresponding position, lock the lever, and ta
     <string name="log_pro_purchase_error">⚠ Pro purchase: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s memory edited at 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX without programmable regions</string>
+    <string name="toast_no_log_text">No text in log to copy.</string>
+    <string name="toast_clipboard_fail">Could not access clipboard.</string>
+    <string name="toast_logs_copied">Logs copied to clipboard.</string>
 </resources>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.datos.DatosPicProcesados;
 import com.diamon.pic.R;
 
 import java.util.ArrayList;
@@ -27,19 +28,19 @@ public class ProgramacionSelectivaManager {
      */
     public enum TipoProgramacion {
         COMPLETA(
-                R.string.prog_type_all_title,
+                R.string.programar_todo,
                 R.string.prog_type_all_desc
         ),
         SOLO_ROM(
-                R.string.prog_type_rom_title,
+                R.string.programar_solo_rom,
                 R.string.prog_type_rom_desc
         ),
         SOLO_EEPROM(
-                R.string.prog_type_eeprom_title,
+                R.string.programar_solo_eeprom,
                 R.string.prog_type_eeprom_desc
         ),
         SOLO_CONFIG(
-                R.string.prog_type_config_title,
+                R.string.programar_solo_config,
                 R.string.prog_type_config_desc
         );
 
@@ -102,24 +103,75 @@ public class ProgramacionSelectivaManager {
     }
 
     /**
-     * Muestra el menú modal con las opciones de programación selectiva.
-     * Garantiza que la Grabación Completa aparezca siempre en primer lugar.
+     * Calcula la lista de modalidades de programación disponibles según las regiones
+     * presentes en el HEX/BIN cargado y la configuración del usuario.
      *
-     * @param context  Contexto de la actividad.
-     * @param chipPIC  Microcontrolador actual (opcional, para omitir EEPROM si no dispone).
-     * @param listener Callback invocado al seleccionar una opción.
+     * @param chipPIC            Microcontrolador actual (para validar si soporta EEPROM).
+     * @param datosPicProcesados Datos procesados del HEX/BIN (opcional).
+     * @param fusesConfigured    Indica si el usuario configuró fuses/ID manualmente.
+     * @return Lista de opciones disponibles (siempre incluye COMPLETA al inicio).
      */
-    public void mostrarMenuSeleccion(Context context, ChipPic chipPIC, OnProgramacionSeleccionadaListener listener) {
-        if (context == null || listener == null) return;
+    public List<TipoProgramacion> obtenerOpcionesDisponibles(
+            ChipPic chipPIC,
+            DatosPicProcesados datosPicProcesados,
+            boolean fusesConfigured) {
+
+        boolean hasRom = true;
+        boolean hasEeprom = (chipPIC == null || chipPIC.isTamanoValidoDeEEPROM());
+        boolean hasConfig = true;
+
+        if (datosPicProcesados != null) {
+            hasRom = datosPicProcesados.tieneRomEnHex() || datosPicProcesados.tieneRomData();
+            hasEeprom = (chipPIC == null || chipPIC.isTamanoValidoDeEEPROM())
+                    && (datosPicProcesados.tieneEepromEnHex() || datosPicProcesados.tieneEepromData());
+            hasConfig = datosPicProcesados.tieneConfigEnHex() || datosPicProcesados.tieneConfigData() || fusesConfigured;
+        }
 
         List<TipoProgramacion> opciones = new ArrayList<>();
         // Grabación Completa SIEMPRE de primero
         opciones.add(TipoProgramacion.COMPLETA);
-        opciones.add(TipoProgramacion.SOLO_ROM);
-        if (chipPIC == null || chipPIC.isTamanoValidoDeEEPROM()) {
+
+        if (hasRom) {
+            opciones.add(TipoProgramacion.SOLO_ROM);
+        }
+        if (hasEeprom) {
             opciones.add(TipoProgramacion.SOLO_EEPROM);
         }
-        opciones.add(TipoProgramacion.SOLO_CONFIG);
+        if (hasConfig) {
+            opciones.add(TipoProgramacion.SOLO_CONFIG);
+        }
+
+        return opciones;
+    }
+
+    /**
+     * Muestra el menú modal con las opciones de programación selectiva filtradas dinámicamente
+     * de acuerdo con las regiones presentes en el archivo HEX o binario cargado (ROM, EEPROM, Config).
+     * Si el archivo solo contiene una región o no hay opciones diferenciadas, ejecuta directamente
+     * sin mostrar el diálogo modal.
+     *
+     * @param context            Contexto de la actividad.
+     * @param chipPIC            Microcontrolador actual.
+     * @param datosPicProcesados Datos procesados del archivo HEX/BIN.
+     * @param fusesConfigured    Si el usuario configuró fuses/ID manualmente.
+     * @param listener           Callback invocado al seleccionar una opción.
+     */
+    public void mostrarMenuSeleccion(
+            Context context,
+            ChipPic chipPIC,
+            DatosPicProcesados datosPicProcesados,
+            boolean fusesConfigured,
+            OnProgramacionSeleccionadaListener listener) {
+        if (context == null || listener == null) return;
+
+        List<TipoProgramacion> opciones = obtenerOpcionesDisponibles(chipPIC, datosPicProcesados, fusesConfigured);
+
+        // Si solo hay una opción (Programar Todo) o el firmware no tiene partes diferenciadas,
+        // ejecutamos directo sin desplegar diálogo
+        if (opciones.size() <= 1) {
+            listener.onOpcionSeleccionada(TipoProgramacion.COMPLETA);
+            return;
+        }
 
         CharSequence[] items = new CharSequence[opciones.size()];
         for (int i = 0; i < opciones.size(); i++) {
@@ -138,13 +190,24 @@ public class ProgramacionSelectivaManager {
     }
 
     /**
-     * Muestra el menú modal con las 4 opciones de programación selectiva.
+     * Sobrecarga de compatibilidad: muestra opciones de programación selectiva para un chip.
+     *
+     * @param context  Contexto de la actividad.
+     * @param chipPIC  Microcontrolador actual.
+     * @param listener Callback invocado al seleccionar una opción.
+     */
+    public void mostrarMenuSeleccion(Context context, ChipPic chipPIC, OnProgramacionSeleccionadaListener listener) {
+        mostrarMenuSeleccion(context, chipPIC, null, false, listener);
+    }
+
+    /**
+     * Muestra el menú modal con las opciones de programación selectiva por defecto.
      *
      * @param context  Contexto de la actividad.
      * @param listener Callback invocado al seleccionar una opción.
      */
     public void mostrarMenuSeleccion(Context context, OnProgramacionSeleccionadaListener listener) {
-        mostrarMenuSeleccion(context, null, listener);
+        mostrarMenuSeleccion(context, null, null, false, listener);
     }
 
     /**

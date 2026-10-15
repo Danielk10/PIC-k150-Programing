@@ -415,6 +415,10 @@ Adresă de depanare în hex (de ex. 000020):</string>
     <string name="icd_toast_invalid_address">Adresă hexazecimală pe 24 biți nevalidă</string>
     <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
     <string name="icd_toast_write_error">❌ Eșec la programarea vectorului ICD</string>
+    <string name="programar_todo">Programează totul</string>
+    <string name="programar_solo_rom">Numai programul ROM</string>
+    <string name="programar_solo_eeprom">Program doar EEPROM</string>
+    <string name="programar_solo_config">Program numai CONFIG</string>
     <string name="prog_type_all_title">Programare totală</string>
     <string name="prog_type_all_desc">ROM, EEPROM și Configurație</string>
     <string name="prog_type_rom_title">Programare ROM</string>
@@ -469,4 +473,7 @@ Vă rugăm să introduceți PIC %1$s în poziția corespunzătoare, să blocați
     <string name="log_pro_purchase_error">⚠ Achiziție Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Memorie %1$s editată la 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX fără regiuni programabile</string>
+    <string name="toast_no_log_text">Nu există text în jurnal de copiat.</string>
+    <string name="toast_clipboard_fail">Nu s-a putut accesa clipboard-ul.</string>
+    <string name="toast_logs_copied">Jurnale copiate în clipboard.</string>
 </resources>

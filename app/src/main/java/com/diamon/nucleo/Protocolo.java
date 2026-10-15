@@ -487,6 +487,14 @@ public abstract class Protocolo {
 
     public abstract boolean detectarPicEnElSocket();
 
+    /**
+     * Realiza una sonda segura y no bloqueante para determinar si hay un microcontrolador
+     * presente en el zócalo ZIF. Si el zócalo está vacío, no se cuelga ni bloquea el firmware.
+     */
+    public boolean sondaPicPresenteEnSocket() {
+        return detectarPicEnElSocket();
+    }
+
     public abstract boolean detectarSiEstaFueraElPicDelSocket();
 
     public abstract boolean esperarExtraccionDelSocket(long timeoutMs, java.util.concurrent.atomic.AtomicBoolean cancelar);

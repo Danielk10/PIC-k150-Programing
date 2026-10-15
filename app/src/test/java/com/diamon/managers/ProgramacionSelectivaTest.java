@@ -11,6 +11,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.diamon.chip.ChipPic;
+import com.diamon.datos.DatosPicProcesados;
 import com.diamon.excepciones.ChipConfigurationException;
 import com.diamon.managers.PicProgrammingManager.ResultadoVerificacionBorrado;
 import com.diamon.managers.ProgramacionSelectivaManager.TipoProgramacion;
@@ -240,5 +241,89 @@ public class ProgramacionSelectivaTest {
         assertTrue(reporteCompleto.contains("ROM limpia al 100% (0x3FFF)"));
         assertFalse(reporteCompleto.contains("EEPROM"));
         assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar (100% Borrado)"));
+    }
+
+    @Test
+    public void testObtenerOpcionesDisponibles_sinRom_soloMuestraCompletaEepromYConfig() {
+        when(mockChip.isTamanoValidoDeEEPROM()).thenReturn(true);
+        DatosPicProcesados mockDatos = mock(DatosPicProcesados.class);
+        when(mockDatos.tieneRomEnHex()).thenReturn(false);
+        when(mockDatos.tieneRomData()).thenReturn(false);
+        when(mockDatos.tieneEepromEnHex()).thenReturn(true);
+        when(mockDatos.tieneConfigEnHex()).thenReturn(true);
+
+        List<TipoProgramacion> opciones = manager.obtenerOpcionesDisponibles(mockChip, mockDatos, false);
+
+        assertEquals(3, opciones.size());
+        assertEquals(TipoProgramacion.COMPLETA, opciones.get(0));
+        assertEquals(TipoProgramacion.SOLO_EEPROM, opciones.get(1));
+        assertEquals(TipoProgramacion.SOLO_CONFIG, opciones.get(2));
+        assertFalse(opciones.contains(TipoProgramacion.SOLO_ROM));
+    }
+
+    @Test
+    public void testObtenerOpcionesDisponibles_conRomYEepromSinConfig_muestraCompletaRomYEeprom() {
+        when(mockChip.isTamanoValidoDeEEPROM()).thenReturn(true);
+        DatosPicProcesados mockDatos = mock(DatosPicProcesados.class);
+        when(mockDatos.tieneRomEnHex()).thenReturn(true);
+        when(mockDatos.tieneEepromEnHex()).thenReturn(true);
+        when(mockDatos.tieneConfigEnHex()).thenReturn(false);
+        when(mockDatos.tieneConfigData()).thenReturn(false);
+
+        List<TipoProgramacion> opciones = manager.obtenerOpcionesDisponibles(mockChip, mockDatos, false);
+
+        assertEquals(3, opciones.size());
+        assertEquals(TipoProgramacion.COMPLETA, opciones.get(0));
+        assertEquals(TipoProgramacion.SOLO_ROM, opciones.get(1));
+        assertEquals(TipoProgramacion.SOLO_EEPROM, opciones.get(2));
+        assertFalse(opciones.contains(TipoProgramacion.SOLO_CONFIG));
+    }
+
+    @Test
+    public void testObtenerOpcionesDisponibles_conFusesConfigurados_incluyeConfigAunqueHexNoTenga() {
+        when(mockChip.isTamanoValidoDeEEPROM()).thenReturn(true);
+        DatosPicProcesados mockDatos = mock(DatosPicProcesados.class);
+        when(mockDatos.tieneRomEnHex()).thenReturn(true);
+        when(mockDatos.tieneEepromEnHex()).thenReturn(false);
+        when(mockDatos.tieneEepromData()).thenReturn(false);
+        when(mockDatos.tieneConfigEnHex()).thenReturn(false);
+        when(mockDatos.tieneConfigData()).thenReturn(false);
+
+        List<TipoProgramacion> opciones = manager.obtenerOpcionesDisponibles(mockChip, mockDatos, true);
+
+        assertEquals(3, opciones.size());
+        assertEquals(TipoProgramacion.COMPLETA, opciones.get(0));
+        assertEquals(TipoProgramacion.SOLO_ROM, opciones.get(1));
+        assertEquals(TipoProgramacion.SOLO_CONFIG, opciones.get(2));
+    }
+
+    @Test
+    public void testObtenerOpcionesDisponibles_chipSinEeprom_noMuestraEeprom() {
+        when(mockChip.isTamanoValidoDeEEPROM()).thenReturn(false);
+        DatosPicProcesados mockDatos = mock(DatosPicProcesados.class);
+        when(mockDatos.tieneRomEnHex()).thenReturn(true);
+        when(mockDatos.tieneEepromEnHex()).thenReturn(true);
+        when(mockDatos.tieneConfigEnHex()).thenReturn(true);
+
+        List<TipoProgramacion> opciones = manager.obtenerOpcionesDisponibles(mockChip, mockDatos, false);
+
+        assertEquals(3, opciones.size());
+        assertEquals(TipoProgramacion.COMPLETA, opciones.get(0));
+        assertEquals(TipoProgramacion.SOLO_ROM, opciones.get(1));
+        assertEquals(TipoProgramacion.SOLO_CONFIG, opciones.get(2));
+        assertFalse(opciones.contains(TipoProgramacion.SOLO_EEPROM));
+    }
+
+    @Test
+    public void testObtenerOpcionesDisponibles_datosNulos_comportamientoPorDefecto() {
+        when(mockChip.isTamanoValidoDeEEPROM()).thenReturn(true);
+
+        List<TipoProgramacion> opciones = manager.obtenerOpcionesDisponibles(mockChip, null, false);
+
+        assertEquals(4, opciones.size());
+        assertEquals(TipoProgramacion.COMPLETA, opciones.get(0));
+        assertEquals(TipoProgramacion.SOLO_ROM, opciones.get(1));
+        assertEquals(TipoProgramacion.SOLO_EEPROM, opciones.get(2));
+        assertEquals(TipoProgramacion.SOLO_CONFIG, opciones.get(3));
     }
 }

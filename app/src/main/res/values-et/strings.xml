@@ -415,6 +415,10 @@ Silumise aadress heks-vormingus (nt 000020):</string>
     <string name="icd_toast_invalid_address">Kehtetu 24-bitine heksadetsimaalaadress</string>
     <string name="icd_toast_write_success">✓ ICD vektor programmeeritud: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD vektori programmeerimine ebaõnnestus</string>
+    <string name="programar_todo">Ajasta kõik</string>
+    <string name="programar_solo_rom">Ainult programmi ROM</string>
+    <string name="programar_solo_eeprom">Programmeerige ainult EEPROM</string>
+    <string name="programar_solo_config">Programm ainult CONFIG</string>
     <string name="prog_type_all_title">Programmeeri Kõik</string>
     <string name="prog_type_all_desc">ROM, EEPROM ja Konfiguratsioon</string>
     <string name="prog_type_rom_title">Programmeeri ROM</string>
@@ -469,4 +473,7 @@ Palun sisestage PIC %1$s vastavasse asendisse, lukustage hoob ja puudutage uuest
     <string name="log_pro_purchase_error">⚠ Pro ost: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s mälu muudetud aadressil 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">Programmeeritavate piirkondadeta HEX</string>
+    <string name="toast_no_log_text">Logis pole kopeeritavat teksti.</string>
+    <string name="toast_clipboard_fail">Lõikelauale ei pääsenud juurde.</string>
+    <string name="toast_logs_copied">Logid kopeeriti lõikelauale.</string>
 </resources>

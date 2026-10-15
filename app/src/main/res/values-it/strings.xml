@@ -415,6 +415,10 @@ Indirizzo di debug in hex (es. 000020):</string>
     <string name="icd_toast_invalid_address">Indirizzo esadecimale a 24 bit non valido</string>
     <string name="icd_toast_write_success">✓ Vettore ICD programmato: %1$s</string>
     <string name="icd_toast_write_error">❌ Impossibile programmare il vettore ICD</string>
+    <string name="programar_todo">Pianifica tutto</string>
+    <string name="programar_solo_rom">Solo ROM del programma</string>
+    <string name="programar_solo_eeprom">Programmare solo EEPROM</string>
+    <string name="programar_solo_config">Solo programma CONFIG</string>
     <string name="prog_type_all_title">Programma Tutto</string>
     <string name="prog_type_all_desc">ROM, EEPROM e Configurazione</string>
     <string name="prog_type_rom_title">Programma ROM</string>
@@ -469,4 +473,7 @@ Inserire il PIC %1$s nella posizione corrispondente, bloccare la leva e toccare 
     <string name="log_pro_purchase_error">⚠ Acquisto Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Memoria %1$s modificata all\'indirizzo 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX senza aree programmabili</string>
+    <string name="toast_no_log_text">Nessun testo nel registro da copiare.</string>
+    <string name="toast_clipboard_fail">Impossibile accedere agli appunti.</string>
+    <string name="toast_logs_copied">Registri copiati negli appunti.</string>
 </resources>

@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">כתובת הקסדצימלית של 24 סיביות לא חוקית</string>
     <string name="icd_toast_write_success">✓ וקטור ICD תוכנת: %1$s</string>
     <string name="icd_toast_write_error">❌ תכנות וקטור ICD נכשל</string>
+    <string name="programar_todo">תזמן הכל</string>
+    <string name="programar_solo_rom">תוכנית ROM בלבד</string>
+    <string name="programar_solo_eeprom">תוכנית EEPROM בלבד</string>
+    <string name="programar_solo_config">תכנת רק CONFIG</string>
     <string name="prog_type_all_title">צרוב הכל</string>
     <string name="prog_type_all_desc">ROM, EEPROM ותצורה</string>
     <string name="prog_type_rom_title">צרוב ROM</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ רכישת Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ זיכרון %1$s נערך ב-0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">קובץ HEX ללא אזורים הניתנים לתכנות</string>
+    <string name="toast_no_log_text">אין טקסט ביומן להעתקה.</string>
+    <string name="toast_clipboard_fail">לא ניתן היה לגשת ללוח הגזירים.</string>
+    <string name="toast_logs_copied">יומנים הועתקו ללוח.</string>
 </resources>

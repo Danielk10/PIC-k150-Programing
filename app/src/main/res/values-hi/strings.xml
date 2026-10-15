@@ -415,6 +415,10 @@
     <string name="icd_toast_invalid_address">अमान्य 24-बिट हेक्साडेसिमल पता</string>
     <string name="icd_toast_write_success">✓ ICD वेक्टर प्रोग्राम किया गया: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD वेक्टर प्रोग्राम करने में विफल</string>
+    <string name="programar_todo">सब कुछ शेड्यूल करें</string>
+    <string name="programar_solo_rom">केवल प्रोग्राम ROM</string>
+    <string name="programar_solo_eeprom">प्रोग्राम केवल EEPROM</string>
+    <string name="programar_solo_config">प्रोग्राम केवल कॉन्फ़िग</string>
     <string name="prog_type_all_title">सभी प्रोग्राम करें</string>
     <string name="prog_type_all_desc">ROM, EEPROM और कॉन्फ़िगरेशन</string>
     <string name="prog_type_rom_title">ROM प्रोग्राम करें</string>
@@ -469,4 +473,7 @@
     <string name="log_pro_purchase_error">⚠ प्रो खरीद: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s मेमोरी को 0x%2$04X पर संपादित किया गया: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">प्रोग्राम करने योग्य क्षेत्रों के बिना HEX</string>
+    <string name="toast_no_log_text">कॉपी करने के लिए लॉग में कोई टेक्स्ट नहीं है।</string>
+    <string name="toast_clipboard_fail">क्लिपबोर्ड तक नहीं पहुंच सका।</string>
+    <string name="toast_logs_copied">लॉग क्लिपबोर्ड पर कॉपी किए गए।</string>
 </resources>

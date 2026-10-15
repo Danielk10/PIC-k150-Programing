@@ -415,6 +415,10 @@ Hex formatında hata ayıklama adresi (örn. 000020):</string>
     <string name="icd_toast_invalid_address">Geçersiz 24-bit onaltılık adres</string>
     <string name="icd_toast_write_success">✓ ICD vektörü programlandı: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD vektörü programlanamadı</string>
+    <string name="programar_todo">Tümünü Programla</string>
+    <string name="programar_solo_rom">Yalnızca ROM\'u programla</string>
+    <string name="programar_solo_eeprom">Yalnızca EEPROM\'u programla</string>
+    <string name="programar_solo_config">Yalnızca program CONFIG</string>
     <string name="prog_type_all_title">Tümünü Programla</string>
     <string name="prog_type_all_desc">ROM, EEPROM ve Yapılandırma</string>
     <string name="prog_type_rom_title">ROM Programla</string>
@@ -469,4 +473,7 @@ Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%
     <string name="log_pro_purchase_error">⚠ Pro satın alma: %1$s</string>
     <string name="log_memoria_editada">✏️ 0x%2$04X adresindeki %1$s belleği düzenlendi: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">Programlanabilir alanı olmayan HEX</string>
+    <string name="toast_no_log_text">Kopyalanacak günlük metni yok.</string>
+    <string name="toast_clipboard_fail">Panoya erişilemedi.</string>
+    <string name="toast_logs_copied">Günlükler panoya kopyalandı.</string>
 </resources>

@@ -415,6 +415,10 @@ Virheenkorjausosoite heksana (esim. 000020):</string>
     <string name="icd_toast_invalid_address">Virheellinen 24-bittinen heksadesimaaliosoite</string>
     <string name="icd_toast_write_success">✓ ICD-vektori ohjelmoitu: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD-vektorin ohjelmointi epäonnistui</string>
+    <string name="programar_todo">Aikatauluta kaikki</string>
+    <string name="programar_solo_rom">Ohjelma vain ROM</string>
+    <string name="programar_solo_eeprom">Ohjelmoi vain EEPROM</string>
+    <string name="programar_solo_config">Ohjelma vain CONFIG</string>
     <string name="prog_type_all_title">Ohjelmoi Kaikki</string>
     <string name="prog_type_all_desc">ROM, EEPROM ja Konfiguraatio</string>
     <string name="prog_type_rom_title">Ohjelmoi ROM</string>
@@ -469,4 +473,7 @@ Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</s
     <string name="log_pro_purchase_error">⚠ Pro-osto: %1$s</string>
     <string name="log_memoria_editada">✏️ Muistia %1$s muokattu osoitteessa 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX ilman ohjelmoitavia alueita</string>
+    <string name="toast_no_log_text">Ei tekstiä lokissa kopioitavaksi.</string>
+    <string name="toast_clipboard_fail">Leikepöydälle ei päästy.</string>
+    <string name="toast_logs_copied">Lokit kopioitu leikepöydälle.</string>
 </resources>

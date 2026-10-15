@@ -415,6 +415,10 @@ Adresa za uklanjanje pogrešaka u heksu (npr. 000020):</string>
     <string name="icd_toast_invalid_address">Nevažeća 24-bitna heksadecimalna adresa</string>
     <string name="icd_toast_write_success">✓ ICD vektor programiran: %1$s</string>
     <string name="icd_toast_write_error">❌ Programiranje ICD vektora nije uspjelo</string>
+    <string name="programar_todo">Zakažite sve</string>
+    <string name="programar_solo_rom">Programirajte samo ROM</string>
+    <string name="programar_solo_eeprom">Programirajte samo EEPROM</string>
+    <string name="programar_solo_config">Program samo CONFIG</string>
     <string name="prog_type_all_title">Programiraj Sve</string>
     <string name="prog_type_all_desc">ROM, EEPROM i Konfiguracija</string>
     <string name="prog_type_rom_title">Programiraj ROM</string>
@@ -469,4 +473,7 @@ Umetnite PIC %1$s u odgovarajući položaj, zaključajte polugu i ponovno dodirn
     <string name="log_pro_purchase_error">⚠ Pro kupnja: %1$s</string>
     <string name="log_memoria_editada">✏️ Memorija %1$s uređena na 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX bez programabilnih područja</string>
+    <string name="toast_no_log_text">Nema teksta u zapisniku za kopiranje.</string>
+    <string name="toast_clipboard_fail">Nije moguće pristupiti međuspremniku.</string>
+    <string name="toast_logs_copied">Zapisnici kopirani u međuspremnik.</string>
 </resources>

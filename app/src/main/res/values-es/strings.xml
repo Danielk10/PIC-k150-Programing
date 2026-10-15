@@ -415,6 +415,10 @@ Dirección de depuración en hex (ej. 000020):</string>
     <string name="icd_toast_invalid_address">Dirección hexadecimal de 24 bits no válida</string>
     <string name="icd_toast_write_success">✓ Vector ICD programado: %1$s</string>
     <string name="icd_toast_write_error">❌ Falló la programación del vector ICD</string>
+    <string name="programar_todo">Programar Todo</string>
+    <string name="programar_solo_rom">Programar solo ROM</string>
+    <string name="programar_solo_eeprom">Programar solo EEPROM</string>
+    <string name="programar_solo_config">Programar solo CONFIG</string>
     <string name="prog_type_all_title">Programar Todo</string>
     <string name="prog_type_all_desc">ROM, EEPROM y Configuración</string>
     <string name="prog_type_rom_title">Programar ROM</string>
@@ -469,4 +473,7 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="log_pro_purchase_error">⚠ Compra Pro: %1$s</string>
     <string name="log_memoria_editada">✏️ Memoria %1$s editada en 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX sin regiones programables</string>
+    <string name="toast_no_log_text">No hay texto en el log para copiar.</string>
+    <string name="toast_clipboard_fail">No se pudo acceder al portapapeles.</string>
+    <string name="toast_logs_copied">Logs copiados al portapapeles.</string>
 </resources>

@@ -415,6 +415,10 @@ Vistfang villuleitar í hex (t.d. 000020):</string>
     <string name="icd_toast_invalid_address">Ógilt 24 bita sextándakerfisvistfang</string>
     <string name="icd_toast_write_success">✓ ICD vigur forritaður: %1$s</string>
     <string name="icd_toast_write_error">❌ Tókst ekki að forrita ICD vigur</string>
+    <string name="programar_todo">Skipuleggðu allt</string>
+    <string name="programar_solo_rom">Aðeins forrit ROM</string>
+    <string name="programar_solo_eeprom">Forrit aðeins EEPROM</string>
+    <string name="programar_solo_config">Aðeins forrit CONFIG</string>
     <string name="prog_type_all_title">Forrita allt</string>
     <string name="prog_type_all_desc">ROM, EEPROM og stillingar</string>
     <string name="prog_type_rom_title">Forrita ROM</string>
@@ -469,4 +473,7 @@ Vinsamlegast settu PIC %1$s í viðeigandi stöðu, læstu handfanginu og ýttu 
     <string name="log_pro_purchase_error">⚠ Pro kaup: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s minni breytt á 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX án forritanlegra svæða</string>
+    <string name="toast_no_log_text">Enginn texti í annál til að afrita.</string>
+    <string name="toast_clipboard_fail">Tókst ekki að fá aðgang að klemmuspjaldi.</string>
+    <string name="toast_logs_copied">Annálar afritaðir á klemmuspjald.</string>
 </resources>

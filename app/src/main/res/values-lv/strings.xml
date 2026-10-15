@@ -415,6 +415,10 @@ Atkļūdošanas adrese heksadecimāli (piem., 000020):</string>
     <string name="icd_toast_invalid_address">Nederīga 24 bitu heksadecimālā adrese</string>
     <string name="icd_toast_write_success">✓ ICD vektors ieprogrammēts: %1$s</string>
     <string name="icd_toast_write_error">❌ Neizdevās ieprogrammēt ICD vektoru</string>
+    <string name="programar_todo">Ieplānojiet visu</string>
+    <string name="programar_solo_rom">Programma tikai ROM</string>
+    <string name="programar_solo_eeprom">Programmējiet tikai EEPROM</string>
+    <string name="programar_solo_config">Programma tikai CONFIG</string>
     <string name="prog_type_all_title">Programmēt visu</string>
     <string name="prog_type_all_desc">ROM, EEPROM un konfigurācija</string>
     <string name="prog_type_rom_title">Programmēt ROM</string>
@@ -469,4 +473,7 @@ Lūdzu, ievietojiet PIC %1$s atbilstošajā pozīcijā, nofiksējiet sviru un v�
     <string name="log_pro_purchase_error">⚠ Pro pirkums: %1$s</string>
     <string name="log_memoria_editada">✏️ %1$s atmiņa rediģēta pie 0x%2$04X: 0x%3$X -> 0x%4$X</string>
     <string name="hex_sin_regiones">HEX bez programmējamiem reģioniem</string>
+    <string name="toast_no_log_text">Žurnālā nav kopējamā teksta.</string>
+    <string name="toast_clipboard_fail">Nevarēja piekļūt starpliktuvei.</string>
+    <string name="toast_logs_copied">Žurnāli nokopēti starptuvē.</string>
 </resources>
