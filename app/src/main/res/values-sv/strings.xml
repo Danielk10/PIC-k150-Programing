@@ -476,4 +476,5 @@ Sätt i PIC %1$s i rätt position, lås spaken och tryck på [%2$s] igen.</strin
     <string name="toast_no_log_text">Ingen text i loggen att kopiera.</string>
     <string name="toast_clipboard_fail">Kunde inte komma åt urklipp.</string>
     <string name="toast_logs_copied">Loggar kopierade till urklipp.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrollern sitter fortfarande i ZIF-sockeln. Ta bort den innan du fortsätter.</string>
 </resources>

@@ -476,4 +476,5 @@ Veuillez insérer le PIC %1$s dans la position correspondante, verrouiller le le
     <string name="toast_no_log_text">Aucun texte dans le journal à copier.</string>
     <string name="toast_clipboard_fail">Impossible d\'accéder au presse-papiers.</string>
     <string name="toast_logs_copied">Journaux copiés dans le presse-papiers.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Le microcontrôleur est toujours dans le support ZIF. Veuillez le retirer avant de continuer.</string>
 </resources>

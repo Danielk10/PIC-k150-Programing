@@ -476,4 +476,5 @@ PIC %1$s을(를) 해당 위치에 삽입하고 레버를 잠근 후 [%2$s]을(�
     <string name="toast_no_log_text">복사할 로그 텍스트가 없습니다.</string>
     <string name="toast_clipboard_fail">클립보드에 액세스할 수 없습니다.</string>
     <string name="toast_logs_copied">로그가 클립보드에 복사되었습니다.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ 마이크로컨트롤러가 아직 ZIF 소켓에 있습니다. 계속하기 전에 제거하십시오.</string>
 </resources>

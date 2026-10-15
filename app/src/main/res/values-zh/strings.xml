@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">日志中没有可复制的文本。</string>
     <string name="toast_clipboard_fail">无法访问剪贴板。</string>
     <string name="toast_logs_copied">日志已复制到剪贴板。</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ 微控制器仍在ZIF插座中。请在继续之前将其取出。</string>
 </resources>

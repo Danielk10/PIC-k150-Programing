@@ -476,4 +476,5 @@ Vă rugăm să introduceți PIC %1$s în poziția corespunzătoare, să blocați
     <string name="toast_no_log_text">Nu există text în jurnal de copiat.</string>
     <string name="toast_clipboard_fail">Nu s-a putut accesa clipboard-ul.</string>
     <string name="toast_logs_copied">Jurnale copiate în clipboard.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Microcontrolerul este încă în soclul ZIF. Vă rugăm să îl scoateți înainte de a continua.</string>
 </resources>

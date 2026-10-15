@@ -476,4 +476,5 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="toast_no_log_text">Žurnale nėra teksto, kurį būtų galima nukopijuoti.</string>
     <string name="toast_clipboard_fail">Nepavyko pasiekti iškarpinės.</string>
     <string name="toast_logs_copied">Žurnalas nukopijuotas į iškarpinę.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrovaldiklis vis dar yra ZIF lizde. Prieš tęsdami jį išimkite.</string>
 </resources>

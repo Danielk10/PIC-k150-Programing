@@ -494,7 +494,7 @@ public class DiagnosticoHardwareManager {
             if (!verificarConexion.verificar()) return;
             btnActivarVpp.setEnabled(false);
             new Thread(() -> {
-                boolean chipEnSocket = !voltajesActivos.get() && protocolo.detectarPicEnElSocket();
+                boolean chipEnSocket = !voltajesActivos.get() && protocolo.sondaPicPresenteEnSocket();
                 if (chipEnSocket) {
                     activity.runOnUiThread(() -> {
                         btnActivarVpp.setEnabled(true);
@@ -549,6 +549,35 @@ public class DiagnosticoHardwareManager {
             if (!verificarConexion.verificar()) return;
             btnDesactivarV.setEnabled(false);
             new Thread(() -> {
+                boolean chipEnSocket = !voltajesActivos.get() && protocolo.sondaPicPresenteEnSocket();
+                if (chipEnSocket) {
+                    activity.runOnUiThread(() -> {
+                        btnDesactivarV.setEnabled(true);
+                        mostrarAlertaSeguridadVpp(activity, protocolo, () -> {
+                            btnDesactivarV.setEnabled(false);
+                            new Thread(() -> {
+                                boolean ok = desactivarVoltajes(protocolo);
+                                activity.runOnUiThread(() -> {
+                                    btnDesactivarV.setEnabled(true);
+                                    if (ok) {
+                                        voltajesActivos.set(false);
+                                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_voltages_off));
+                                        tvEstadoVoltaje.setTextColor(Color.parseColor("#4CAF50"));
+                                        if (log != null) {
+                                            log.onLog(activity.getString(R.string.diag_toast_voltages_off));
+                                        }
+                                        Toast.makeText(activity, activity.getString(R.string.diag_toast_voltages_off), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        tvEstadoVoltaje.setText(activity.getString(R.string.diag_status_error_deactivating));
+                                        tvEstadoVoltaje.setTextColor(Color.parseColor("#FF5252"));
+                                    }
+                                });
+                            }).start();
+                        });
+                    });
+                    return;
+                }
+
                 boolean ok = desactivarVoltajes(protocolo);
                 activity.runOnUiThread(() -> {
                     btnDesactivarV.setEnabled(true);
@@ -572,7 +601,7 @@ public class DiagnosticoHardwareManager {
             if (!verificarConexion.verificar()) return;
             btnReiniciarV.setEnabled(false);
             new Thread(() -> {
-                boolean chipEnSocket = !voltajesActivos.get() && protocolo.detectarPicEnElSocket();
+                boolean chipEnSocket = !voltajesActivos.get() && protocolo.sondaPicPresenteEnSocket();
                 if (chipEnSocket) {
                     activity.runOnUiThread(() -> {
                         btnReiniciarV.setEnabled(true);
@@ -643,14 +672,31 @@ public class DiagnosticoHardwareManager {
             ProtocoloP18A protocolo,
             Runnable accionAlRetirar) {
 
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+
         AlertDialog dialog = new AlertDialog.Builder(activity)
                 .setTitle(activity.getString(R.string.diag_alert_chip_in_socket_title))
                 .setMessage(activity.getString(R.string.diag_alert_chip_in_socket_message))
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(activity.getString(R.string.diag_btn_continue_chip_removed), (d, which) -> {
-                    if (accionAlRetirar != null) {
-                        accionAlRetirar.run();
-                    }
+                    // Verificar realmente si el chip fue retirado físicamente del zócalo ZIF
+                    new Thread(() -> {
+                        boolean sigueEnSocket = protocolo != null && protocolo.sondaPicPresenteEnSocket();
+                        activity.runOnUiThread(() -> {
+                            if (sigueEnSocket) {
+                                Toast.makeText(activity, activity.getString(R.string.diag_chip_still_in_socket_warning), Toast.LENGTH_LONG).show();
+                                // El usuario no retiró el microcontrolador: no confiar y volver a advertir
+                                mostrarAlertaSeguridadVpp(activity, protocolo, accionAlRetirar);
+                            } else {
+                                // Chip retirado físicamente con certeza: ejecutar acción
+                                if (accionAlRetirar != null) {
+                                    accionAlRetirar.run();
+                                }
+                            }
+                        });
+                    }).start();
                 })
                 .setNegativeButton(activity.getString(R.string.cancelar), null)
                 .create();

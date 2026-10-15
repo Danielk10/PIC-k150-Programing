@@ -476,4 +476,5 @@ Vinsamlegast settu PIC %1$s í viðeigandi stöðu, læstu handfanginu og ýttu 
     <string name="toast_no_log_text">Enginn texti í annál til að afrita.</string>
     <string name="toast_clipboard_fail">Tókst ekki að fá aðgang að klemmuspjaldi.</string>
     <string name="toast_logs_copied">Annálar afritaðir á klemmuspjald.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Örgjörvinn er enn í ZIF-sökklinum. Vinsamlegast fjarlægðu hann áður en haldið er áfram.</string>
 </resources>

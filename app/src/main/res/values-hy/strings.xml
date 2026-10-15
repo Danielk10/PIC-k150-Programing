@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">Մատյանում պատճենելու տեքստ չկա:</string>
     <string name="toast_clipboard_fail">Չհաջողվեց մուտք գործել սեղմատախտակ:</string>
     <string name="toast_logs_copied">Մատյանները պատճենվել են սեղմատախտակում:</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Միկրոկոնտրոլերը դեռ գտնվում է ZIF վարդակից: Շարունակելուց առաջ հեռացրեք այն:</string>
 </resources>

@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">Немає тексту в журналі для копіювання.</string>
     <string name="toast_clipboard_fail">Не вдалося отримати доступ до буфера обміну.</string>
     <string name="toast_logs_copied">Журнали скопійовано в буфер обміну.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Мікроконтролер все ще перебуває в сокеті ZIF. Будь ласка, вийміть його перед продовженням.</string>
 </resources>

@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">متنی در گزارش برای کپی وجود ندارد.</string>
     <string name="toast_clipboard_fail">دسترسی به کلیپ‌بورد امکان‌پذیر نبود.</string>
     <string name="toast_logs_copied">گزارش‌ها در کلیپ‌بورد کپی شدند.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ میکروکنترلر هنوز در سوکت ZIF قرار دارد. لطفاً قبل از ادامه آن را بردارید.</string>
 </resources>

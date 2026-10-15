@@ -476,4 +476,5 @@ Please insert the PIC %1$s in the corresponding position, lock the lever, and ta
     <string name="toast_no_log_text">No text in log to copy.</string>
     <string name="toast_clipboard_fail">Could not access clipboard.</string>
     <string name="toast_logs_copied">Logs copied to clipboard.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ The microcontroller is still in the ZIF socket. Please remove it before continuing.</string>
 </resources>

@@ -476,4 +476,5 @@ Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</s
     <string name="toast_no_log_text">Ei tekstiä lokissa kopioitavaksi.</string>
     <string name="toast_clipboard_fail">Leikepöydälle ei päästy.</string>
     <string name="toast_logs_copied">Lokit kopioitu leikepöydälle.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolleri on edelleen ZIF-kannassa. Poista se ennen jatkamista.</string>
 </resources>

@@ -476,4 +476,5 @@ Inserire il PIC %1$s nella posizione corrispondente, bloccare la leva e toccare 
     <string name="toast_no_log_text">Nessun testo nel registro da copiare.</string>
     <string name="toast_clipboard_fail">Impossibile accedere agli appunti.</string>
     <string name="toast_logs_copied">Registri copiati negli appunti.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Il microcontrollore è ancora nello zoccolo ZIF. Rimuoverlo prima di continuare.</string>
 </resources>

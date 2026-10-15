@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">Δεν υπάρχει κείμενο στο αρχείο καταγραφής για αντιγραφή.</string>
     <string name="toast_clipboard_fail">Δεν ήταν δυνατή η πρόσβαση στο πρόχειρο.</string>
     <string name="toast_logs_copied">Τα αρχεία καταγραφής αντιγράφηκαν στο πρόχειρο.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Ο μικροελεγκτής βρίσκεται ακόμα στην υποδοχή ZIF. Αφαιρέστε τον πριν συνεχίσετε.</string>
 </resources>

@@ -476,4 +476,5 @@ Por favor, insira o PIC %1$s na posição correspondente, trave a alavanca e toq
     <string name="toast_no_log_text">Nenhum texto no registro para copiar.</string>
     <string name="toast_clipboard_fail">Não foi possível acessar a área de transferência.</string>
     <string name="toast_logs_copied">Registros copiados para a área de transferência.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ O microcontrolador ainda está no soquete ZIF. Remova-o antes de continuar.</string>
 </resources>

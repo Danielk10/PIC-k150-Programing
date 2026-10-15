@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">ไม่มีข้อความในบันทึกที่จะคัดลอก</string>
     <string name="toast_clipboard_fail">ไม่สามารถเข้าถึงคลิปบอร์ดได้</string>
     <string name="toast_logs_copied">คัดลอกบันทึกไปยังคลิปบอร์ดแล้ว</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ ไมโครคอนโทรลเลอร์ยังคงอยู่ในซ็อกเก็ต ZIF โปรดถอดออกก่อนดำเนินการต่อ</string>
 </resources>

@@ -476,4 +476,5 @@ Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge
     <string name="toast_no_log_text">Hakuna maandishi kwenye kumbukumbu ya kunakili.</string>
     <string name="toast_clipboard_fail">Haikuweza kufikia ubao wa kunakili.</string>
     <string name="toast_logs_copied">Kumbukumbu zimenakiliwa kwenye ubao wa kunakili.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Kidhibiti kidogo bado kiko kwenye soketi ya ZIF. Tafadhali kiondoe kabla ya kuendelea.</string>
 </resources>

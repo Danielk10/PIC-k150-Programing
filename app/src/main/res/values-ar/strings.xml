@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">لا يوجد نص في السجل لنسخه.</string>
     <string name="toast_clipboard_fail">تعذر الوصول إلى الحافظة.</string>
     <string name="toast_logs_copied">تم نسخ السجلات إلى الحافظة.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ لا يزال المتحكم الدقيق في مقبس ZIF. يرجى إزالته قبل المتابعة.</string>
 </resources>

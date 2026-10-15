@@ -476,4 +476,5 @@ Vložte prosím PIC %1$s do odpovídající polohy, zajistěte páčku a znovu k
     <string name="toast_no_log_text">V protokolu není žádný text ke zkopírování.</string>
     <string name="toast_clipboard_fail">Nelze získat přístup k schránce.</string>
     <string name="toast_logs_copied">Protokoly zkopírovány do schránky.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolér je stále v patici ZIF. Před pokračováním jej prosím vyjměte.</string>
 </resources>

@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">Няма тэксту ў журнале для капіявання.</string>
     <string name="toast_clipboard_fail">Не ўдалося атрымаць доступ да буфера абмену.</string>
     <string name="toast_logs_copied">Журнал скапіяваны ў буфер абмену.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Мікракантролер усё яшчэ знаходзіцца ў раздыме ZIF. Калі ласка, выміце яго перад працягам.</string>
 </resources>

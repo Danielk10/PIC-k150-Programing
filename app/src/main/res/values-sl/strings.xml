@@ -476,4 +476,5 @@ Vstavite PIC %1$s v ustrezni položaj, zaklenite ročico in znova tapnite [%2$s]
     <string name="toast_no_log_text">V dnevniku ni besedila za kopiranje.</string>
     <string name="toast_clipboard_fail">Dostop do odložišča ni uspel.</string>
     <string name="toast_logs_copied">Dnevniki kopirani v odložišče.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokrmilnik je še vedno v podnožju ZIF. Pred nadaljevanjem ga odstranite.</string>
 </resources>

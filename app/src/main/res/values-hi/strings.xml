@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">कॉपी करने के लिए लॉग में कोई टेक्स्ट नहीं है।</string>
     <string name="toast_clipboard_fail">क्लिपबोर्ड तक नहीं पहुंच सका।</string>
     <string name="toast_logs_copied">लॉग क्लिपबोर्ड पर कॉपी किए गए।</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ माइक्रोकंट्रोलर अभी भी ZIF सॉकेट में है। कृपया जारी रखने से पहले इसे हटा दें।</string>
 </resources>

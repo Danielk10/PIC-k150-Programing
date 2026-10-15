@@ -476,4 +476,5 @@ Umetnite PIC %1$s u odgovarajući položaj, zaključajte polugu i ponovno dodirn
     <string name="toast_no_log_text">Nema teksta u zapisniku za kopiranje.</string>
     <string name="toast_clipboard_fail">Nije moguće pristupiti međuspremniku.</string>
     <string name="toast_logs_copied">Zapisnici kopirani u međuspremnik.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroler je još uvijek u ZIF podnožju. Uklonite ga prije nastavka.</string>
 </resources>

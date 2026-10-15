@@ -476,4 +476,5 @@ Harap masukkan PIC %1$s pada posisi yang sesuai, kunci tuasnya, lalu ketuk [%2$s
     <string name="toast_no_log_text">Tidak ada teks di log untuk disalin.</string>
     <string name="toast_clipboard_fail">Tidak dapat mengakses papan klip.</string>
     <string name="toast_logs_copied">Log disalin ke papan klip.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroler masih berada di soket ZIF. Harap lepaskan sebelum melanjutkan.</string>
 </resources>

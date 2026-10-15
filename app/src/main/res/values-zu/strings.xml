@@ -476,4 +476,5 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="toast_no_log_text">Awukho umbhalo kulogi ongawakopisha.</string>
     <string name="toast_clipboard_fail">Ayikwazanga ukufinyelela ebhodini lokunamathisela.</string>
     <string name="toast_logs_copied">Amalogi akopishelwe ebhodini lokunamathisela.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Isilawuli esincane sisekhona kusokhethi ye-ZIF. Sicela usisuse ngaphambi kokuqhubeka.</string>
 </resources>

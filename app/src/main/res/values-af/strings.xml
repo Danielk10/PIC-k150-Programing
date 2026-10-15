@@ -476,4 +476,5 @@ Plaas asseblief die PIC %1$s in die ooreenstemmende posisie, sluit die hefboom, 
     <string name="toast_no_log_text">Geen teks in logboek om te kopieer nie.</string>
     <string name="toast_clipboard_fail">Kon nie toegang tot knipbord kry nie.</string>
     <string name="toast_logs_copied">Logboeke na knipbord gekopieer.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Die mikrobeheerder is steeds in die ZIF-sok. Verwyder dit asseblief voordat u voortgaan.</string>
 </resources>

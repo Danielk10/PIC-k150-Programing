@@ -476,4 +476,5 @@ PIC %1$sを対応する位置に挿入してレバーをロックし、もう一
     <string name="toast_no_log_text">コピーするログテキストがありません。</string>
     <string name="toast_clipboard_fail">クリップボードにアクセスできませんでした。</string>
     <string name="toast_logs_copied">ログをクリップボードにコピーしました。</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ マイクロコントローラはまだZIFソケットにあります。続行する前に取り外してください。</string>
 </resources>

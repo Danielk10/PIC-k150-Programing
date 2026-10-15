@@ -476,4 +476,5 @@ Włóż PIC %1$s w odpowiednie miejsce, zablokuj dźwignię i dotknij [%2$s] pon
     <string name="toast_no_log_text">Brak tekstu w dzienniku do skopiowania.</string>
     <string name="toast_clipboard_fail">Nie można uzyskać dostępu do schowka.</string>
     <string name="toast_logs_copied">Dzienniki skopiowane do schowka.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroler nadal znajduje się w podstawce ZIF. Wyjmij go przed kontynuowaniem.</string>
 </resources>

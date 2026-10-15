@@ -476,4 +476,5 @@ Palun sisestage PIC %1$s vastavasse asendisse, lukustage hoob ja puudutage uuest
     <string name="toast_no_log_text">Logis pole kopeeritavat teksti.</string>
     <string name="toast_clipboard_fail">Lõikelauale ei pääsenud juurde.</string>
     <string name="toast_logs_copied">Logid kopeeriti lõikelauale.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroller on endiselt ZIF-pesas. Enne jätkamist eemaldage see.</string>
 </resources>

@@ -476,4 +476,5 @@ Plaats de PIC %1$s in de juiste positie, vergrendel de hendel en tik opnieuw op 
     <string name="toast_no_log_text">Geen tekst in logboek om te kopiëren.</string>
     <string name="toast_clipboard_fail">Kon geen toegang krijgen tot klembord.</string>
     <string name="toast_logs_copied">Logboeken gekopieerd naar klembord.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ De microcontroller bevindt zich nog in de ZIF-voet. Verwijder deze voordat u doorgaat.</string>
 </resources>

@@ -476,4 +476,5 @@ Vui lòng cắm PIC %1$s vào đúng vị trí, khóa cần gạt và nhấn l�
     <string name="toast_no_log_text">Không có văn bản trong nhật ký để sao chép.</string>
     <string name="toast_clipboard_fail">Không thể truy cập khay nhớ tạm.</string>
     <string name="toast_logs_copied">Nhật ký đã được sao chép vào khay nhớ tạm.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Vi điều khiển vẫn còn trong đế ZIF. Vui lòng tháo ra trước khi tiếp tục.</string>
 </resources>

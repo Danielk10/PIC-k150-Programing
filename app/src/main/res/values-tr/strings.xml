@@ -476,4 +476,5 @@ Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%
     <string name="toast_no_log_text">Kopyalanacak günlük metni yok.</string>
     <string name="toast_clipboard_fail">Panoya erişilemedi.</string>
     <string name="toast_logs_copied">Günlükler panoya kopyalandı.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrodenetleyici hala ZIF soketinde. Lütfen devam etmeden önce çıkarın.</string>
 </resources>

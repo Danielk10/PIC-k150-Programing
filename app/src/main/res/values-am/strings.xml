@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">የሚገለበጥ ጽሑፍ በምዝግብ ማስታወሻ ውስጥ የለም።</string>
     <string name="toast_clipboard_fail">ቅንጥብ ሰሌዳውን መድረስ አልተቻለም።</string>
     <string name="toast_logs_copied">ምዝግብ ማስታወሻዎች ወደ ቅንጥብ ሰሌዳ ተቀድተዋል።</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ ማይክሮ መቆጣጠሪያው አሁንም በZIF ሶኬት ውስጥ አለ። እባክዎ ከመቀጠልዎ በፊት ያስወግዱት።</string>
 </resources>

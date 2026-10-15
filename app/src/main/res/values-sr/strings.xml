@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">Нема текста у дневнику за копирање.</string>
     <string name="toast_clipboard_fail">Није могуће приступити међуспремнику.</string>
     <string name="toast_logs_copied">Дневници су копирани у међуспремник.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтролер је и даље у ZIF подножју. Уклоните га пре него што наставите.</string>
 </resources>

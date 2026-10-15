@@ -476,4 +476,5 @@ Indsæt venligst PIC %1$s i den korrekte position, lås håndtaget, og tryk på 
     <string name="toast_no_log_text">Ingen tekst i loggen at kopiere.</string>
     <string name="toast_clipboard_fail">Kunne ikke få adgang til udklipsholder.</string>
     <string name="toast_logs_copied">Logfiler kopieret til udklipsholder.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolleren sidder stadig i ZIF-soklen. Fjern den venligst, før du fortsætter.</string>
 </resources>

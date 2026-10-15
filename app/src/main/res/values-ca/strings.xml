@@ -476,4 +476,5 @@ Si us plau inseriu el PIC %1$s a la posició corresponent, bloquegeu la palanca 
     <string name="toast_no_log_text">No hi ha text al registre per copiar.</string>
     <string name="toast_clipboard_fail">No s\'ha pogut accedir al porta-retalls.</string>
     <string name="toast_logs_copied">Registres copiats al porta-retalls.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ El microcontrolador encara és al sòcol ZIF. Si us plau, retireu-lo abans de continuar.</string>
 </resources>

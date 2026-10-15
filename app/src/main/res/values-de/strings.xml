@@ -476,4 +476,5 @@ Bitte setzen Sie den PIC %1$s in die entsprechende Position ein, verriegeln Sie 
     <string name="toast_no_log_text">Kein Text im Protokoll zum Kopieren.</string>
     <string name="toast_clipboard_fail">Zugriff auf die Zwischenablage fehlgeschlagen.</string>
     <string name="toast_logs_copied">Protokolle in die Zwischenablage kopiert.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Der Mikrocontroller befindet sich noch im ZIF-Sockel. Bitte entfernen Sie ihn, bevor Sie fortfahren.</string>
 </resources>

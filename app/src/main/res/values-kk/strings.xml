@@ -476,4 +476,5 @@ PIC %1$s микроконтроллерін тиісті орынға салып
     <string name="toast_no_log_text">Журналда көшіруге арналған мәтін жоқ.</string>
     <string name="toast_clipboard_fail">Алмасу буферіне қол жеткізілмеді.</string>
     <string name="toast_logs_copied">Журналдар алмасу буферіне көшірілді.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтроллер әлі де ZIF ұяшығында. Жалғастырмас бұрын оны шығарып алыңыз.</string>
 </resources>

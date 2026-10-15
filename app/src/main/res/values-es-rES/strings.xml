@@ -476,4 +476,5 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="toast_no_log_text">No hay texto en el log para copiar.</string>
     <string name="toast_clipboard_fail">No se pudo acceder al portapapeles.</string>
     <string name="toast_logs_copied">Logs copiados al portapapeles.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ El microcontrolador aún sigue en el zócalo ZIF. Por favor retírelo antes de continuar.</string>
 </resources>

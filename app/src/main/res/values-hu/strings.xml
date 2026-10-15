@@ -476,4 +476,5 @@ Kérjük, helyezze be a PIC %1$s mikrokontrollert a megfelelő pozícióba, zár
     <string name="toast_no_log_text">Nincs másolható szöveg a naplóban.</string>
     <string name="toast_clipboard_fail">Nem sikerült elérni a vágólapot.</string>
     <string name="toast_logs_copied">Naplók másolva a vágólapra.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ A mikrokontroller még mindig a ZIF foglalatban van. Kérjük, távolítsa el a folytatás előtt.</string>
 </resources>

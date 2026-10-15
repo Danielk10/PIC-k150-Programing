@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">אין טקסט ביומן להעתקה.</string>
     <string name="toast_clipboard_fail">לא ניתן היה לגשת ללוח הגזירים.</string>
     <string name="toast_logs_copied">יומנים הועתקו ללוח.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ המיקרו-בקר עדיין נמצא בתושבת ZIF. אנא הסר אותו לפני שתמשיך.</string>
 </resources>

@@ -476,4 +476,5 @@ Lūdzu, ievietojiet PIC %1$s atbilstošajā pozīcijā, nofiksējiet sviru un v�
     <string name="toast_no_log_text">Žurnālā nav kopējamā teksta.</string>
     <string name="toast_clipboard_fail">Nevarēja piekļūt starpliktuvei.</string>
     <string name="toast_logs_copied">Žurnāli nokopēti starptuvē.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolleris joprojām atrodas ZIF ligzdā. Pirms turpināt, lūdzu, izņemiet to.</string>
 </resources>

@@ -476,4 +476,5 @@
     <string name="toast_no_log_text">Няма текст в дневника за копиране.</string>
     <string name="toast_clipboard_fail">Няма достъп до клипборда.</string>
     <string name="toast_logs_copied">Дневниците са копирани в клипборда.</string>
+    <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтролерът все още е в цокъла ZIF. Моля, извадете го, преди да продължите.</string>
 </resources>
