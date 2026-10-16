@@ -178,6 +178,10 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
      - **Núcleo de 12 bits (PIC10F / Baseline):** Enmascarado con `0x0FFF`.
      - **Núcleo de 16 bits (PIC18F):** Enmascarado con `0xFFFF`.
    * **Sincronización Total en 53 Idiomas (474 Claves):** Integración de `chip_no_compatible_funcion` en las 53 variantes de `strings.xml` con paridad del 100% en todas las claves.
+29. **Lanzamiento Mayor v2.9.3 (versionCode 57, minSdkVersion 24, Optimización R8 DEX):**
+   * **Play Automatic Protection:** Actualización de `minSdkVersion` a 24 para dar soporte nativo a las defensas automáticas de Google Play contra piratería y manipulación.
+   * **Optimización DEX y Ofuscación R8 (Android Vitals):** Habilitación de `minifyEnabled true` y `shrinkResources true` con reglas exhaustivas en `proguard-rules.pro`, reduciendo el peso del APK de 21 MB a 15 MB y superando el umbral de ofuscación del 25% de Google Play Vitals.
+   * **Versionado:** Incremento a `versionCode 57` y `versionName "2.9.3"`.
 
 ---
 
@@ -235,5 +239,6 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 * **Guía de Pruebas con Emulador Virtual:** [`GUIA_PRUEBAS.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS.md) (documentación de las 108 pruebas automatizadas JUnit + Emulador C++/Python).
 * **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
 * **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (Evidencias visuales del ciclo completo de validación física: permisos USB, detección en socket con Device ID 0x6810, volcado ROM/EEPROM, diagnóstico de hardware sin desincronización, seguridad de voltajes 13V/5V con Comando 19 y prueba interactiva de sensores ZIF).
-* **Notas de Lanzamiento Vigentes (v2.9.2):** [`RELEASE_NOTES_v2.9.2.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.2.md) (sincronización a 470 claves en 53 idiomas, selector de protocolos de alto contraste, botón 13V/5V, editor hexadecimal en 3 tarjetas, blindaje C++/Java y cero cadenas hardcodeadas).
+* **Notas de Lanzamiento Vigentes (v2.9.3):** [`RELEASE_NOTES_v2.9.3.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.3.md) (versionCode 57, minSdkVersion 24, ofuscación R8, aislamiento estricto de memoria y sincronización a 474 claves en 53 idiomas).
+
 
