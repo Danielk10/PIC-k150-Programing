@@ -169,6 +169,13 @@ public class PicProgrammingManager {
                     return false;
                 }
 
+                // Paso 0: Asegurar inicialización de variables del chip en el firmware del programador K150
+                // (EraseMode, PowerSequence, RomSize, CoreType, etc.) antes de cualquier pulso físico.
+                if (!protocolo.iniciarVariablesDeProgramacion(chipPIC)) {
+                    notifyError(context.getString(R.string.error_inicializando_chip));
+                    return false;
+                }
+
                 // Paso 1: Borrar memorias
                 notifyProgress(context.getString(R.string.borrando_memorias), 10);
                 boolean eraseOk = protocolo.borrarMemoriasDelPic();
@@ -250,6 +257,12 @@ public class PicProgrammingManager {
                 DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
                 datosPicProcesados.iniciarProcesamientoDeDatos();
 
+                // Inicializar variables de programación en el firmware K150
+                if (!protocolo.iniciarVariablesDeProgramacion(chipPIC)) {
+                    notifyError(context.getString(R.string.error_inicializando_chip));
+                    return false;
+                }
+
                 notifyProgress(context.getString(R.string.programando_memoria_rom), 50);
                 if (!protocolo.programarMemoriaROMDelPic(chipPIC, datosPicProcesados)) {
                     notifyError(context.getString(R.string.error_programando_rom));
@@ -297,6 +310,11 @@ public class PicProgrammingManager {
                 DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
                 datosPicProcesados.iniciarProcesamientoDeDatos();
 
+                if (!protocolo.iniciarVariablesDeProgramacion(chipPIC)) {
+                    notifyError(context.getString(R.string.error_inicializando_chip));
+                    return false;
+                }
+
                 notifyProgress(context.getString(R.string.programando_memoria_eeprom), 50);
                 if (!protocolo.programarMemoriaEEPROMDelPic(chipPIC, datosPicProcesados)) {
                     notifyError(context.getString(R.string.error_programando_eeprom));
@@ -336,6 +354,11 @@ public class PicProgrammingManager {
                 // Programar Fuses e ID
                 DatosPicProcesados datosPicProcesados = new DatosPicProcesados(context, firmware, chipPIC);
                 datosPicProcesados.iniciarProcesamientoDeDatos();
+
+                if (!protocolo.iniciarVariablesDeProgramacion(chipPIC)) {
+                    notifyError(context.getString(R.string.error_inicializando_chip));
+                    return false;
+                }
 
                 notifyProgress(context.getString(R.string.programando_fuses_id), 50);
                 if (!protocolo.programarFusesIDDelPic(chipPIC, datosPicProcesados, IDPic, fusesUsuario)) {
@@ -454,6 +477,16 @@ public class PicProgrammingManager {
      * @return true si el borrado fue exitoso, false en caso contrario
      */
     public boolean eraseMemory() {
+        return eraseMemory(null);
+    }
+
+    /**
+     * Borra todas las memorias del chip PIC inicializando primero los parámetros de hardware
+     *
+     * @param chipPIC Chip PIC a borrar
+     * @return true si el borrado fue exitoso, false en caso contrario
+     */
+    public boolean eraseMemory(ChipPic chipPIC) {
         acquireWakeLock();
         try {
             if (protocolo == null) {
@@ -462,6 +495,9 @@ public class PicProgrammingManager {
             }
 
             try {
+                if (chipPIC != null) {
+                    protocolo.iniciarVariablesDeProgramacion(chipPIC);
+                }
                 return protocolo.borrarMemoriasDelPic();
             } catch (Exception e) {
                 notifyError(context.getString(R.string.error_borrando_memoria) + ": " + e.getMessage());

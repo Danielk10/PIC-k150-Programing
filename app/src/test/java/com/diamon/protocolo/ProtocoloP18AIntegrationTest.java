@@ -1156,12 +1156,11 @@ public class ProtocoloP18AIntegrationTest {
                 null, firmwareReconstruido, chip16f628a);
         datosPicEditados.iniciarProcesamientoDeDatos();
 
-        // 5. Reprogramar el chip en el emulador con la memoria editada
-        boolean romProgOk = protocolo.programarMemoriaROMDelPic(chip16f628a, datosPicEditados);
-        assertTrue("Fallo al reprogramar ROM editada", romProgOk);
-
-        boolean eepromProgOk = protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPicEditados);
-        assertTrue("Fallo al reprogramar EEPROM editada", eepromProgOk);
+        // 5. Reprogramar el chip en el emulador con la memoria editada usando PicProgrammingManager (flujo real)
+        com.diamon.managers.PicProgrammingManager progManager = new com.diamon.managers.PicProgrammingManager(mockContext);
+        progManager.setProtocolo(protocolo);
+        boolean progOk = progManager.programChip(chip16f628a, firmwareReconstruido, null, null);
+        assertTrue("Fallo al reprogramar memoria editada mediante PicProgrammingManager", progOk);
 
         // 6. Leer nuevamente del emulador y verificar que los datos editados se grabaron físicamente
         String romLeidaFinal = protocolo.leerMemoriaROMDelPic(chip16f628a);

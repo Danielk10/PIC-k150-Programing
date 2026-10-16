@@ -909,10 +909,12 @@ public class ProtocoloP18A extends Protocolo {
         try {
             // Preparar secuencia de borrado
             if (!resetearComandos()) {
+                android.util.Log.e("ProtocoloP18A", "borrarMemoriasDelPic: fallo en resetearComandos");
                 return false;
             }
 
             if (!activarVoltajesDeProgramacion()) {
+                android.util.Log.e("ProtocoloP18A", "borrarMemoriasDelPic: fallo en activarVoltajesDeProgramacion");
                 return false;
             }
 
@@ -925,12 +927,18 @@ public class ProtocoloP18A extends Protocolo {
             // Validar respuesta
             String respuesta = new String(bytes, StandardCharsets.US_ASCII);
             exitoso = "Y".equals(respuesta);
+            if (!exitoso) {
+                android.util.Log.e("ProtocoloP18A", "borrarMemoriasDelPic: respuesta no fue Y, recibido: "
+                        + (bytes.length > 0 ? ("0x" + Integer.toHexString(bytes[0] & 0xFF) + " ('" + (char) bytes[0] + "')") : "vacio"));
+            }
 
             return exitoso;
 
         } catch (UsbCommunicationException e) {
+            android.util.Log.e("ProtocoloP18A", "borrarMemoriasDelPic: UsbCommunicationException: " + e.getMessage(), e);
             return false;
         } catch (Exception e) {
+            android.util.Log.e("ProtocoloP18A", "borrarMemoriasDelPic: Exception: " + e.getMessage(), e);
             return false;
         } finally {
             // Asegurar siempre apagado de voltajes y restauración de estado del programador

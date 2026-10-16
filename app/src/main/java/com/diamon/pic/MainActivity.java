@@ -1000,6 +1000,16 @@ public class MainActivity extends AppCompatActivity
                             memoryDisplayManager.refreshRow(false, addr, lastReadEepromData, eepromSize);
                         }
                     }
+                    if (updatedFirmware != null && !updatedFirmware.isEmpty()) {
+                        firmware = updatedFirmware;
+                        originalLoadedFirmware = updatedFirmware;
+                        try {
+                            datosPicProcesados = new DatosPicProcesados(MainActivity.this, updatedFirmware, currentChip);
+                            datosPicProcesados.iniciarProcesamientoDeDatos();
+                            originalLoadedDatosPic = datosPicProcesados;
+                        } catch (Exception ignored) {
+                        }
+                    }
                     appendLog(getString(R.string.log_memoria_editada,
                             isRomEdited ? "ROM" : "EEPROM", addr, oldVal, newVal));
                 }
@@ -1434,7 +1444,7 @@ public class MainActivity extends AppCompatActivity
 
                     CalibracionManager.ResultadoBorradoSeguro res = (calibracionManager != null && currentChip != null)
                             ? calibracionManager.borrarConPreservacion(currentChip, programmingManager)
-                            : new CalibracionManager.ResultadoBorradoSeguro(programmingManager.eraseMemory(), false, null, false, "");
+                            : new CalibracionManager.ResultadoBorradoSeguro(programmingManager.eraseMemory(currentChip), false, null, false, "");
 
                     runOnUiThread(
                             () -> {
@@ -1969,15 +1979,23 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
 
-        byte[] idBytes = Arrays.copyOfRange(rawConfig, idStart, Math.min(idStart + idLen, rawConfig.length));
+        byte[] rawId = Arrays.copyOfRange(rawConfig, idStart, Math.min(idStart + idLen, rawConfig.length));
         byte[] fuseBytes = Arrays.copyOfRange(rawConfig, fuseStart,
                 Math.min(fuseStart + fuseByteLen, rawConfig.length));
 
-        idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
-        fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
-
         int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
         int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
+
+        byte[] idBytes;
+        if (coreBits == 16) {
+            idBytes = rawId.clone();
+        } else {
+            idBytes = new byte[8];
+            for (int i = 0; i < Math.min(rawId.length, 4); i++) {
+                idBytes[i * 2] = rawId[i];
+                idBytes[i * 2 + 1] = 0x00;
+            }
+        }
 
         return new ConfigSplitData(idBytes, idAddr, fuseBytes, fuseAddr);
     }

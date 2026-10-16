@@ -294,7 +294,7 @@ public class CalibracionManager {
 
         // Si no requiere calibración, borrado estándar directo
         if (!reqCal) {
-            boolean borrado = programmingManager.eraseMemory();
+            boolean borrado = programmingManager.eraseMemory(chip);
             return new ResultadoBorradoSeguro(borrado, false, null, false,
                     borrado ? "Memoria borrada exitosamente" : "Error al borrar memoria");
         }
@@ -303,7 +303,7 @@ public class CalibracionManager {
         Integer osccalLeido = leerYPreservarCalibracion(chip);
 
         // 2. Ejecutar borrado masivo físico
-        boolean borrado = programmingManager.eraseMemory();
+        boolean borrado = programmingManager.eraseMemory(chip);
         if (!borrado) {
             return new ResultadoBorradoSeguro(false, true, osccalLeido, false,
                     "Fallo durante el borrado físico del chip");

@@ -238,4 +238,48 @@ public class HexEditorManagerTest {
         assertEquals((byte) 0xC3, eepromBytes[2]);
         assertEquals((byte) 0xD4, eepromBytes[3]);
     }
+
+    @Test
+    public void testConstruirFirmwareIntelHexDesdeLectura_conConfiguracionYFuses_preservaValoresYEndianness() throws Exception {
+        ChipPic mockChip = mock(ChipPic.class);
+        when(mockChip.getTipoDeNucleoBit()).thenReturn(14);
+        when(mockChip.getTamanoROM()).thenReturn(4);
+        when(mockChip.isTamanoValidoDeEEPROM()).thenReturn(true);
+        when(mockChip.getTamanoEEPROM()).thenReturn(4);
+        when(mockChip.getFuseBlank()).thenReturn(new int[]{0x3FFF});
+
+        String romHex = "28053FFF12340000";
+        String eepromHex = "A1B2C3D4";
+        // 26 bytes de Command 13 (52 chars):
+        // DevID (10 68 = 0x6810), ID1..ID8 (11 22 33 44 FF FF FF FF), Fuse1 (30 3F = 0x3F30), ...
+        String configHex = "106811223344FFFFFFFF303FFFFFFFFFFFFFFFFFFFFFFFFFFF3F";
+
+        String firmwareHex = HexEditorManager.construirFirmwareIntelHexDesdeLectura(romHex, eepromHex, configHex, mockChip);
+        assertNotNull(firmwareHex);
+        assertTrue(firmwareHex.contains(":00000001FF"));
+
+        DatosPicProcesados procesado = new DatosPicProcesados(null, firmwareHex, mockChip);
+        procesado.iniciarProcesamientoDeDatos();
+
+        // ROM debe preservarse
+        byte[] romBytes = procesado.obtenerBytesHexROMProcesado();
+        assertNotNull(romBytes);
+        assertEquals((byte) 0x28, romBytes[0]);
+        assertEquals((byte) 0x05, romBytes[1]);
+
+        // Fuses deben coincidir con 0x3F30 (Fuse1_L=0x30, Fuse1_H=0x3F)
+        int[] fuses = procesado.obtenerValoresIntHexFusesProcesado();
+        assertNotNull(fuses);
+        assertTrue(fuses.length > 0);
+        assertEquals(0x3F30, fuses[0]);
+
+        // ID útil de 14-bit (4 bytes) debe coincidir con 11 22 33 44
+        byte[] idData = procesado.obtenerValoresBytesHexIDProcesado();
+        assertNotNull(idData);
+        assertEquals(4, idData.length);
+        assertEquals((byte) 0x11, idData[0]);
+        assertEquals((byte) 0x22, idData[1]);
+        assertEquals((byte) 0x33, idData[2]);
+        assertEquals((byte) 0x44, idData[3]);
+    }
 }

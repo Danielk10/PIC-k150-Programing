@@ -590,12 +590,27 @@ public class HexEditorManager {
             int fuseByteLen = fuseCount * 2;
             int fuseStart = 10;
             if (rawConfig.length >= (idStart + idLen) && rawConfig.length > fuseStart) {
-                byte[] idBytes = java.util.Arrays.copyOfRange(rawConfig, idStart, Math.min(idStart + idLen, rawConfig.length));
+                byte[] rawId = java.util.Arrays.copyOfRange(rawConfig, idStart, Math.min(idStart + idLen, rawConfig.length));
                 byte[] fuseBytes = java.util.Arrays.copyOfRange(rawConfig, fuseStart, Math.min(fuseStart + fuseByteLen, rawConfig.length));
-                idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
-                fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
+
                 int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
                 int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
+
+                byte[] idBytes;
+                if (coreBits == 16) {
+                    idBytes = rawId.clone();
+                } else {
+                    // Para núcleos de 12/14 bits, cada User ID ocupa una palabra de 16 bits en INHX32
+                    // [LSB = rawId[i], MSB = 0x00].
+                    // Al swabbear por endianness, el dato pasa al byte alto (impar: 1, 3, 5, 7)
+                    // que es de donde DatosPicProcesados extrae el User ID final.
+                    idBytes = new byte[8];
+                    for (int i = 0; i < Math.min(rawId.length, 4); i++) {
+                        idBytes[i * 2] = rawId[i]; // LSB
+                        idBytes[i * 2 + 1] = 0x00; // MSB
+                    }
+                }
+
                 fullHex.append(HexExportManager.convertSegmentToIntelHex(idBytes, idAddr));
                 fullHex.append(HexExportManager.convertSegmentToIntelHex(fuseBytes, fuseAddr));
             }

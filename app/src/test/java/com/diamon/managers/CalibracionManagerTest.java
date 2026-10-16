@@ -134,7 +134,7 @@ public class CalibracionManagerTest {
     public void borrarConPreservacion_flujoPIC12F675_preservaYRestaura() {
         // Simular lectura de OSCCAL previo: 0x3448 (hex LE "4834")
         when(protocolo.leerDatosDeCalibracionDelPic()).thenReturn("4834");
-        when(programmingManager.eraseMemory()).thenReturn(true);
+        when(programmingManager.eraseMemory(chip12f675)).thenReturn(true);
         when(protocolo.programarCalibracionDelPic(chip12f675, 0x3448)).thenReturn(true);
 
         CalibracionManager.ResultadoBorradoSeguro res =
@@ -148,7 +148,7 @@ public class CalibracionManagerTest {
         assertTrue(res.mensaje.contains("0x3448"));
 
         verify(protocolo).leerDatosDeCalibracionDelPic();
-        verify(programmingManager).eraseMemory();
+        verify(programmingManager).eraseMemory(chip12f675);
         verify(protocolo).programarCalibracionDelPic(chip12f675, 0x3448);
     }
 
@@ -156,7 +156,7 @@ public class CalibracionManagerTest {
     public void borrarConPreservacion_flujoPIC10F_usaComandoDedicado10F() {
         // Simular lectura de OSCCAL en PIC10F: 0x0C2A (hex LE "2A0C")
         when(protocolo.leerDatosDeCalibracionDelPic()).thenReturn("2A0C");
-        when(programmingManager.eraseMemory()).thenReturn(true);
+        when(programmingManager.eraseMemory(chip10f200)).thenReturn(true);
         when(protocolo.programarDatosDeCalibracionDePics10F(0x0C2A, 0x0C2A)).thenReturn(true);
 
         CalibracionManager.ResultadoBorradoSeguro res =
@@ -168,13 +168,14 @@ public class CalibracionManagerTest {
         assertEquals(Integer.valueOf(0x0C2A), res.osccalPreservado);
         assertTrue(res.restauracionExitosa);
 
+        verify(programmingManager).eraseMemory(chip10f200);
         verify(protocolo).programarDatosDeCalibracionDePics10F(0x0C2A, 0x0C2A);
         verify(protocolo, never()).programarCalibracionDelPic(any(), anyInt());
     }
 
     @Test
     public void borrarConPreservacion_chipSinCalibracion_borradoDirecto() {
-        when(programmingManager.eraseMemory()).thenReturn(true);
+        when(programmingManager.eraseMemory(chip16f628a)).thenReturn(true);
 
         CalibracionManager.ResultadoBorradoSeguro res =
                 calibracionManager.borrarConPreservacion(chip16f628a, programmingManager);
@@ -185,7 +186,7 @@ public class CalibracionManagerTest {
         assertNull(res.osccalPreservado);
         assertFalse(res.restauracionExitosa);
 
-        verify(programmingManager).eraseMemory();
+        verify(programmingManager).eraseMemory(chip16f628a);
         verify(protocolo, never()).leerDatosDeCalibracionDelPic();
         verify(protocolo, never()).programarCalibracionDelPic(any(), anyInt());
     }
