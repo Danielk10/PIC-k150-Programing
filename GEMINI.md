@@ -182,6 +182,12 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Play Automatic Protection:** Actualización de `minSdkVersion` a 24 para dar soporte nativo a las defensas automáticas de Google Play contra piratería y manipulación.
    * **Optimización DEX y Ofuscación R8 (Android Vitals):** Habilitación de `minifyEnabled true` y `shrinkResources true` con reglas exhaustivas en `proguard-rules.pro`, reduciendo el peso del APK de 21 MB a 15 MB y superando el umbral de ofuscación del 25% de Google Play Vitals.
    * **Versionado:** Incremento a `versionCode 57` y `versionName "2.9.3"`.
+30. **Lanzamiento Mayor v2.9.4 (versionCode 58, Blindaje de Facturación Google Play Billing 9.1.0 y Reintentos Dinámicos):**
+   * **Compatibilidad Dual de Productos In-App:** Soporte simultáneo para `remove_ads_pro` y `remove_ads`, asegurando coincidencia total con la configuración de Google Play Console.
+   * **Consultas Silenciosas en Segundo Plano (Estilo C-PIC):** Se eliminó la notificación de errores de sondeo en la consola del programador (`Failed to load product details` / `Product details not available`), manteniéndola exclusivamente dedicada a operaciones de microcontroladores PIC.
+   * **Reintento Dinámico en UI (`ProAccessDialog`):** Ante retrasos de propagación de Google Play, el diálogo Pro no se cierra prematuramente; reintenta la consulta en segundo plano y muestra un aviso Toast amigable sin interrumpir al usuario.
+   * **Permiso Explícito:** Declaración de `com.android.vending.BILLING` en el AndroidManifest.
+   * **Sincronización Total y Validación:** Superadas 116/116 pruebas automatizadas con el emulador en C++ (`ejecutar_pruebas_con_emulador.sh cpp`) y publicación directa a Google Play Store (producción) y GitHub Releases.
 
 ---
 
@@ -239,6 +245,6 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 * **Guía de Pruebas con Emulador Virtual:** [`GUIA_PRUEBAS.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS.md) (documentación de las 108 pruebas automatizadas JUnit + Emulador C++/Python).
 * **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
 * **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (Evidencias visuales del ciclo completo de validación física: permisos USB, detección en socket con Device ID 0x6810, volcado ROM/EEPROM, diagnóstico de hardware sin desincronización, seguridad de voltajes 13V/5V con Comando 19 y prueba interactiva de sensores ZIF).
-* **Notas de Lanzamiento Vigentes (v2.9.3):** [`RELEASE_NOTES_v2.9.3.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.3.md) (versionCode 57, minSdkVersion 24, ofuscación R8, aislamiento estricto de memoria y sincronización a 474 claves en 53 idiomas).
+* **Notas de Lanzamiento Vigentes (v2.9.4):** [`RELEASE_NOTES_v2.9.4.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.4.md) (versionCode 58, minSdkVersion 24, blindaje de compras in-app y optimización R8 DEX).
 
 
