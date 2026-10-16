@@ -6,7 +6,7 @@
 
 [![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=com.diamon.pic)
 
-![Version](https://img.shields.io/badge/version-2.9.1-blue.svg)
+![Version](https://img.shields.io/badge/version-2.9.2-blue.svg)
 ![API Level](https://img.shields.io/badge/API-23%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange.svg)
 ![Target SDK](https://img.shields.io/badge/Target%20SDK-37-blueviolet.svg)
@@ -26,13 +26,19 @@ El protocolo y la aplicación han sido **100% verificados y certificados sobre h
 
 - **🚀 Programación móvil sin PC**: Programa microcontroladores PIC directamente desde tu teléfono o tablet Android usando el programador PIC k150 o cualquier dispositivo compatible con el protocolo P018
 - **🔬 Protocolo P18A 100% Verificado en Silicio Real y Emulador**: Validación integral de ciclo de vida probada en laboratorio sobre microcontrolador físico Microchip PIC16F628A montado en K150 vía USB-OTG (Android 12), y respaldada por suite automatizada de pruebas JUnit con emulador local (C++/Python)
-- **📡 Protocolo P018**: Basado en el protocolo estándar KITSRUS Programmer Firmware Protocol P018, garantizando amplia compatibilidad con hardware de programación
-- **🔌 Comunicación USB-Serial**: Utiliza la librería de código abierto `usb-serial-for-android` para establecer comunicación USB confiable entre el dispositivo Android y el programador
-- **🎯 Interfaz intuitiva**: Diseño Material Design con flujo de trabajo optimizado para cargar archivos HEX y programar con mínimos pasos
-- **📊 Soporte multiarquitectura**: Compatible con todas las arquitecturas Android modernas
-- **💾 Compatible con archivos HEX**: Soporta formato Intel HEX estándar para carga de firmware
-- **🌍 Internacionalización Global (53 Idiomas)**: Traducción y sincronización completa del 100% de los recursos (450 claves) en 53 idiomas con terminología técnica certificada para microcontroladores y electrónica.
-- **📱 OTG Ready**: Funciona con cualquier dispositivo Android que soporte USB Host Mode
+- **🔘 Selector de Protocolos de Alto Contraste**: Diálogo moderno con RadioButtons diferenciados (`#00E676` seleccionado / `#B0BEC5` no seleccionado) en tarjetas interactivas oscuras con descripciones técnicas para P18A, P018, P016 y P014.
+- **⚡ Diagnóstico de Hardware y Control 13V/5V**: Medición interactiva de eco serial, sensores ZIF y botón unificado `13V/5V` que energiza simultáneamente VPP (13V) y VDD (5V) con protección fail-safe.
+- **🧮 Editor Hexadecimal en Tarjetas**: Editor interactivo estructurado en 3 tarjetas (métricas de memoria, desglose Little-Endian y teclado hexadecimal monospace de 20sp).
+- **🛡️ Blindaje de Sonda en Zócalo ZIF**: Detección segura no bloqueante de microcontroladores (Comandos 18 y 19) inmune a zócalos vacíos o contactos deficientes.
+- **📋 Copiado de Log al Portapapeles (Estilo C-PIC)**: Selección de texto y copiado por pulsación prolongada (long-click) sin saltos involuntarios de scroll.
+- **🧼 Interfaz Profesional Libre de Paréntesis**: Diseño visual limpio, técnico y estandarizado en todos los menús y modales.
+- **📡 Protocolo P018/P18A Multi-Variante**: Basado en el estándar industrial KITSRUS con soporte para programadores K150, K128, K149 y K182.
+- **🔌 Comunicación USB-Serial**: Utiliza la librería de código abierto `usb-serial-for-android` para establecer comunicación USB confiable entre el dispositivo Android y el programador.
+- **🎯 Interfaz intuitiva**: Diseño Material Design con flujo de trabajo optimizado para cargar archivos HEX y programar con mínimos pasos.
+- **📊 Soporte multiarquitectura**: Compatible con todas las arquitecturas Android modernas (ARM64, ARMv7, x86, x86_64).
+- **💾 Compatible con archivos HEX y BIN**: Soporta Intel HEX estándar y binarios crudos para carga, exportación y verificación.
+- **🌍 Internacionalización Global (53 Idiomas x 474 Claves)**: Traducción y sincronización completa del 100% de los recursos en 53 idiomas con paridad absoluta y cero cadenas hardcodeadas.
+- **📱 OTG Ready**: Funciona con cualquier dispositivo Android que soporte USB Host Mode.
 
 ## 🏗️ Arquitectura y compatibilidad
 
@@ -294,6 +300,7 @@ Para más detalles, consulta el archivo [LICENSE.txt](LICENSE.txt).
 | picpro | LGPL-3.0 | Adam Schubert (Salamek) |
 | picprogrammer | LGPL-2.0 | Proyecto comunitario |
 | Termux | GPL-3.0 | Fredrik Fornwall y colaboradores |
+| Android Code Studio | Apache-2.0 / MIT | AndroidCSOfficial |
 
 ## 🛠️ Especificaciones técnicas
 
@@ -401,12 +408,15 @@ PIC-k150-Programing/
 
 ## 🔮 Roadmap
 
-- [ ] Soporte para más familias de microcontroladores PIC
-- [ ] Modo batch para programación múltiple
-- [ ] Interfaz de configuración de fuses avanzada
-- [ ] Soporte para programadores adicionales
-- [ ] Modo offline con caché de configuraciones
-- [ ] Temas oscuro/claro personalizables
+- [x] Soporte para protocolos KITSRUS P18A, P018, P016 y P014 con selector de alto contraste
+- [x] Interfaz de configuración de fuses avanzada y vector de depuración ICD
+- [x] Diagnóstico de hardware en vivo con prueba de voltajes 13V/5V y sensores ZIF
+- [x] Editor Hexadecimal interactivo en tarjetas con decodificación Little-Endian
+- [x] Autodetección de PIC por Device ID en silicio y reconexión USB en vivo
+- [x] Internacionalización exhaustiva al 100% en 53 idiomas (474 claves)
+- [ ] Soporte para familias adicionales de microcontroladores PIC (PIC24 / dsPIC)
+- [ ] Modo batch para programación secuencial múltiple
+- [ ] Modo offline con caché de configuraciones avanzadas
 
 ## 📞 Soporte y contacto
 

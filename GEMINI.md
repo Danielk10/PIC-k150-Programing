@@ -210,4 +210,5 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 * **Guía de Mejoras Técnicas:** [`PROPUESTA_AUTODETECCION_CHIP_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/PROPUESTA_AUTODETECCION_CHIP_K150.md) (arquitectura de autodetección de modelo PIC por Device ID, control USB, diagnóstico de hardware y calibración, 100% implementada en v2.9.0).
 * **Notas de Lanzamiento v2.9.0:** [`RELEASE_NOTES_v2.9.0.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.0.md) (detalle técnico bilingüe y registro de cambios para Google Play Console).
 * **Notas de Lanzamiento v2.9.1:** [`RELEASE_NOTES_v2.9.1.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.1.md) (internacionalización global a 53 idiomas, resolución de issues de GitHub y blindaje de buffers USB).
+* **Notas de Lanzamiento v2.9.2:** [`RELEASE_NOTES_v2.9.2.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.2.md) (sincronización a 474 claves en 53 idiomas, selector de protocolos de alto contraste, botón 13V/5V, editor hexadecimal en 3 tarjetas y cero cadenas hardcodeadas).
 

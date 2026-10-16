@@ -68,6 +68,13 @@ Valida la independencia de la memoria de datos y de programa:
 *   Genera el archivo Intel HEX resultante en memoria.
 *   Importa de vuelta el HEX generado a través de `DatosPicProcesados` y comprueba que coincida al 100% byte por byte con la memoria física original, asegurando que cualquier exportación es compatible para importación posterior.
 
+### G. Grabación Selectiva Dinámica (`ProgramacionSelectivaTest`)
+*   Valida que el diálogo modal de programación filtre dinámicamente las opciones disponibles (Flash ROM, EEPROM, Configuración) en función de las regiones reales del archivo HEX o BIN cargado.
+
+### H. Sonda No Bloqueante en Zócalo ZIF y Sensores (`testDeteccionSocketYBorrado`)
+*   Verifica la detección no bloqueante con sondeo periódico de los sensores de inserción (Comando 18) y extracción (Comando 19), eliminando riesgos de bucle infinito en ensamblador cuando el zócalo está vacío o el microcontrolador no hace buen contacto.
+*   Total del suite automatizado: **109 pruebas ejecutadas y aprobadas al 100%**.
+
 ---
 
 ## 📦 4. Publicación en Producción
