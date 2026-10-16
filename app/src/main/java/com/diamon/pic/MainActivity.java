@@ -511,7 +511,8 @@ public class MainActivity extends AppCompatActivity
                 btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C62828")));
                 btnConnectUsb.setTextColor(Color.WHITE);
             }
-            actualizarEstadoBotones(true, !firmware.isEmpty());
+            boolean tieneArchivo = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
+            actualizarEstadoBotones(true, tieneArchivo);
             programmingManager.setProtocolo(usbManager.getProtocolo());
             calibracionManager.setProtocolo(usbManager.getProtocolo());
             appendLog("🔌 " + getString(R.string.conectado_al_programador));
@@ -543,7 +544,8 @@ public class MainActivity extends AppCompatActivity
                 btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2E7D32")));
                 btnConnectUsb.setTextColor(Color.WHITE);
             }
-            actualizarEstadoBotones(false, !firmware.isEmpty());
+            boolean tieneArchivo = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
+            actualizarEstadoBotones(false, tieneArchivo);
             appendLog("❌ " + getString(R.string.desconectado));
         });
     }
@@ -564,7 +566,8 @@ public class MainActivity extends AppCompatActivity
                 btnConnectUsb.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2E7D32")));
                 btnConnectUsb.setTextColor(Color.WHITE);
             }
-            actualizarEstadoBotones(false, !firmware.isEmpty());
+            boolean tieneArchivo = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
+            actualizarEstadoBotones(false, tieneArchivo);
             appendLog("❌ " + errorMessage);
         });
     }
@@ -861,11 +864,16 @@ public class MainActivity extends AppCompatActivity
                                     String detailMsg = getString(R.string.hex_procesado_correctamente)
                                             + "\n  ROM: " + romLen + " B, EEPROM: " + eepromLen + " B";
                                     appendLog("✓ " + detailMsg);
+
+                                    boolean tieneArchivoValido = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
+                                    actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), tieneArchivoValido);
                                 });
 
                     } catch (Exception e) {
                         runOnUiThread(
                                 () -> {
+                                    originalLoadedDatosPic = null;
+                                    actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), false);
                                     appendLog("❌ " + getString(R.string.error_procesando_hex) + ": " + e.getMessage());
                                 });
                     }
@@ -986,40 +994,10 @@ public class MainActivity extends AppCompatActivity
                             memoryDisplayManager.refreshRow(false, addr, lastReadEepromData, eepromSize);
                         }
                     }
-                    sincronizarFirmwareDesdeMemoriaLeida(updatedFirmware);
                     appendLog(getString(R.string.log_memoria_editada,
                             isRomEdited ? "ROM" : "EEPROM", addr, oldVal, newVal));
                 }
         );
-    }
-
-    /**
-     * Sincroniza y reconstruye el firmware Intel HEX y DatosPicProcesados a partir de
-     * los buffers de memoria leídos o editados (lastReadRomData, lastReadEepromData, lastReadConfigData).
-     * Esto permite tanto reprogramar directamente como exportar la memoria editada.
-     */
-    private void sincronizarFirmwareDesdeMemoriaLeida(String fallbackFirmware) {
-        try {
-            String hexConstruido = HexEditorManager.construirFirmwareIntelHexDesdeLectura(
-                    lastReadRomData, lastReadEepromData, lastReadConfigData, currentChip);
-            if (hexConstruido != null && !hexConstruido.isEmpty()) {
-                firmware = hexConstruido;
-            } else if (fallbackFirmware != null && !fallbackFirmware.isEmpty()) {
-                firmware = fallbackFirmware;
-            }
-
-            if (currentChip != null && firmware != null && !firmware.isEmpty()) {
-                try {
-                    datosPicProcesados = new DatosPicProcesados(this, firmware, currentChip);
-                    datosPicProcesados.iniciarProcesamientoDeDatos();
-                } catch (Exception e) {
-                    android.util.Log.w("MainActivity", "Error procesando datos pic sincronizados: " + e.getMessage());
-                }
-            }
-            actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), firmware != null && !firmware.isEmpty());
-        } catch (Exception e) {
-            android.util.Log.e("MainActivity", "Error en sincronizarFirmwareDesdeMemoriaLeida: " + e.getMessage());
-        }
     }
 
     /**
@@ -1138,7 +1116,10 @@ public class MainActivity extends AppCompatActivity
     /**
      * Desacoplamiento de botones de hardware y firmware:
      * - Operaciones de hardware (Detectar, Leer, Borrar, Blank Check) habilitadas si hardwareConectado == true
-     * - Operaciones dependientes de firmware (Programar, Verificar) habilitadas si hardwareConectado == true && firmwareCargado == true
+     * - Operaciones dependientes de firmware (Programar, Verificar) habilitadas ÚNICAMENTE si
+     *   hardwareConectado == true Y se ha cargado explícitamente un archivo HEX o BIN desde disco
+     *   (originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null).
+     *   La lectura o edición de memoria del zócalo NUNCA activa estos botones principales.
      * - Configuración de fusibles habilitada si currentChip != null
      */
     private void actualizarEstadoBotones(boolean hardwareConectado, boolean firmwareCargado) {
@@ -1148,8 +1129,9 @@ public class MainActivity extends AppCompatActivity
         setButtonState(btnBorrarMemoriaDeLPic, hardwareConectado, Color.parseColor("#D32F2F"));
         setButtonState(btnBlankCheck, hardwareConectado, Color.parseColor("#00B0FF"));
 
-        // Operaciones que requieren hardware conectado y firmware cargado
-        boolean progHabilitado = hardwareConectado && firmwareCargado;
+        // Operaciones que requieren hardware conectado y archivo de firmware original cargado desde disco
+        boolean archivoRealCargado = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
+        boolean progHabilitado = hardwareConectado && firmwareCargado && archivoRealCargado;
         setButtonState(btnProgramarPic, progHabilitado, Color.parseColor("#FF6600"));
         setButtonState(btnVerificarMemoriaDelPic, progHabilitado, Color.parseColor("#00B0FF"));
 
@@ -1228,59 +1210,85 @@ public class MainActivity extends AppCompatActivity
     /**
      * Programación Selectiva: Ofrece modal con las 4 opciones
      * (Completa, Solo Flash ROM, Solo EEPROM, Solo Configuración).
-     * Siempre prioriza el archivo HEX/BIN original cargado desde el selector de archivos.
+     * Siempre y únicamente programa el archivo HEX/BIN original cargado desde el selector de archivos.
+     * Si no se ha cargado un archivo desde disco, nunca programa volcados de lectura ni memoria modificada en visor.
      */
     private void executeProgram() {
-        if (originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null) {
-            firmware = originalLoadedFirmware;
-            datosPicProcesados = originalLoadedDatosPic;
-        }
-        if (currentChip == null || firmware.isEmpty()) {
+        if (originalLoadedFirmware == null || originalLoadedFirmware.isEmpty() || originalLoadedDatosPic == null) {
             appendLog("⚠ " + getString(R.string.seleccione_un_chip_y_cargue_un));
             return;
         }
 
-        if (datosPicProcesados == null) {
-            appendLog("⚠ " + getString(R.string.debe_procesar_hex_primero));
+        if (currentChip == null) {
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
             return;
         }
 
-        verificarChipEnSocketYEjecutar(this::iniciarFlujoSeleccionProgramacion, getString(R.string.programar_pic));
+        firmware = originalLoadedFirmware;
+        datosPicProcesados = originalLoadedDatosPic;
+
+        verificarChipEnSocketYEjecutar(
+                () -> iniciarFlujoSeleccionProgramacion(originalLoadedFirmware, originalLoadedDatosPic),
+                getString(R.string.programar_pic));
     }
 
     /**
      * Reprograma el microcontrolador utilizando los datos leídos de la memoria y
-     * modificados a través del editor hexadecimal interactivo en vivo.
+     * potencialmente modificados a través del editor hexadecimal interactivo en vivo.
+     * Esta operación es independiente del archivo HEX/BIN cargado y no altera
+     * el estado de los botones principales de la pantalla ni el archivo original.
      */
     private void executeReprogramFromMemoryDisplay() {
-        sincronizarFirmwareDesdeMemoriaLeida(null);
-        if (currentChip == null || firmware.isEmpty()) {
-            appendLog("⚠ " + getString(R.string.seleccione_un_chip_y_cargue_un));
+        if (currentChip == null) {
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip));
             return;
         }
 
-        if (datosPicProcesados == null) {
-            appendLog("⚠ " + getString(R.string.debe_procesar_hex_primero));
+        if (usbManager == null || !usbManager.isConnected()) {
+            appendLog(getString(R.string.log_connect_programmer_first));
             return;
         }
 
-        verificarChipEnSocketYEjecutar(this::iniciarFlujoSeleccionProgramacion, getString(R.string.programar_pic));
+        if (lastReadRomData.isEmpty() && lastReadEepromData.isEmpty() && lastReadConfigData.isEmpty()) {
+            appendLog("⚠ " + getString(R.string.no_hay_datos_para_exportar));
+            return;
+        }
+
+        String hexReprogramar = HexEditorManager.construirFirmwareIntelHexDesdeLectura(
+                lastReadRomData, lastReadEepromData, lastReadConfigData, currentChip);
+        if (hexReprogramar == null || hexReprogramar.isEmpty()) {
+            appendLog("❌ " + getString(R.string.error_procesando_hex));
+            return;
+        }
+
+        DatosPicProcesados datosReprogramar;
+        try {
+            datosReprogramar = new DatosPicProcesados(this, hexReprogramar, currentChip);
+            datosReprogramar.iniciarProcesamientoDeDatos();
+        } catch (Exception e) {
+            appendLog("❌ " + getString(R.string.error_procesando_hex) + ": " + e.getMessage());
+            return;
+        }
+
+        verificarChipEnSocketYEjecutar(
+                () -> iniciarFlujoSeleccionProgramacion(hexReprogramar, datosReprogramar),
+                getString(R.string.reprogramar));
     }
 
-    private void iniciarFlujoSeleccionProgramacion() {
+    private void iniciarFlujoSeleccionProgramacion(String hexToProgram, DatosPicProcesados datosToProgram) {
         if (programacionSelectivaManager != null) {
             programacionSelectivaManager.mostrarMenuSeleccion(
                     this,
                     currentChip,
-                    datosPicProcesados,
+                    datosToProgram,
                     fusesConfigured,
-                    this::doProgrammingFlow);
+                    tipo -> doProgrammingFlow(tipo, hexToProgram));
         } else {
-            doProgrammingFlow(TipoProgramacion.COMPLETA);
+            doProgrammingFlow(TipoProgramacion.COMPLETA, hexToProgram);
         }
     }
 
-    private void doProgrammingFlow(TipoProgramacion tipo) {
+    private void doProgrammingFlow(TipoProgramacion tipo, String hexToProgram) {
         publicidad.ocultarBanner();
 
         final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
@@ -1293,14 +1301,14 @@ public class MainActivity extends AppCompatActivity
                             () -> {
                                 boolean success;
                                 if (tipo == TipoProgramacion.SOLO_ROM) {
-                                    success = programmingManager.programRomOnly(currentChip, firmware);
+                                    success = programmingManager.programRomOnly(currentChip, hexToProgram);
                                 } else if (tipo == TipoProgramacion.SOLO_EEPROM) {
-                                    success = programmingManager.programEepromOnly(currentChip, firmware);
+                                    success = programmingManager.programEepromOnly(currentChip, hexToProgram);
                                 } else if (tipo == TipoProgramacion.SOLO_CONFIG) {
-                                    success = programmingManager.programConfigOnly(currentChip, firmware, idToUse, fusesToUse);
+                                    success = programmingManager.programConfigOnly(currentChip, hexToProgram, idToUse, fusesToUse);
                                 } else {
                                     // Default: Grabación Completa
-                                    success = programmingManager.programChip(currentChip, firmware, idToUse, fusesToUse);
+                                    success = programmingManager.programChip(currentChip, hexToProgram, idToUse, fusesToUse);
                                 }
 
                                 final boolean finalSuccess = success;
@@ -1319,6 +1327,10 @@ public class MainActivity extends AppCompatActivity
                                                 }
                                                 appendLog(getString(R.string.log_programming_failed));
                                             }
+
+                                            // Asegurar que el estado de los botones refleje únicamente si hay un archivo real cargado
+                                            boolean archivoRealCargado = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
+                                            actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), archivoRealCargado);
                                         });
                             })
                             .start();
@@ -1377,8 +1389,6 @@ public class MainActivity extends AppCompatActivity
                                             lastReadEepromData,
                                             eepromSize,
                                             hasEeprom);
-
-                                    sincronizarFirmwareDesdeMemoriaLeida(null);
 
                                     appendLog("✓ " + getString(R.string.memoria_leida_exitosamente));
 
@@ -1441,10 +1451,13 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        if (datosPicProcesados == null || firmware == null || firmware.isEmpty()) {
+        if (originalLoadedFirmware == null || originalLoadedFirmware.isEmpty() || originalLoadedDatosPic == null) {
             appendLog("❌ " + getString(R.string.error_verificando_memoria) + ": " + getString(R.string.no_hay_firmware_valido));
             return;
         }
+
+        firmware = originalLoadedFirmware;
+        datosPicProcesados = originalLoadedDatosPic;
 
         verificarChipEnSocketYEjecutar(this::doVerifyMemoryOperation, getString(R.string.verificar));
     }

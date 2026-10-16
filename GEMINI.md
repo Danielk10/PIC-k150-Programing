@@ -159,6 +159,12 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Botón «Reprogramar» y Desacoplamiento de Flujos de Grabación:** Se agregó el botón naranja «Reprogramar» dentro de la ventana de lectura de memoria para grabar el volcado editado. Se blindó la separación de datos (`originalLoadedFirmware` y `originalLoadedDatosPic`) garantizando que pulsar el botón principal «Programar PIC» programe siempre el archivo HEX/BIN original cargado desde el almacenamiento sin sufrir alteraciones por las ediciones realizadas en el lector.
    * **Manejo Exclusivo de K150 Pro Permanente:** Cuando el usuario ya dispone de la compra permanente ($4.99), tocar el componente en la barra superior ya no muestra ofertas de compra ni anuncios; ahora despliega un diálogo informativo confirmando su estado permanente activo (`pro_permanent_active_title` y `pro_permanent_active_desc`).
    * **Validación Total con Emulador Virtual y Lanzamiento:** Las 114 pruebas unitarias y de integración Java pasaron al 100% contra el emulador virtual K150 en C++ (`./ejecutar_pruebas_con_emulador.sh cpp`), compilando y actualizando los binarios firmados (`.apk` y `.aab`) en el release `v2.9.2` y cerrando formalmente el Issue #69 en GitHub.
+26. **Aislamiento Estricto de Reprogramación y Botón Principal de Grabación:**
+   * **Desacoplamiento total entre volcado de memoria y firmware original:** Se eliminó la sobreescritura accidental de la variable `firmware` en lecturas de memoria y ediciones en el visor (eliminando la función `sincronizarFirmwareDesdeMemoriaLeida`).
+   * **Comportamiento determinista del botón principal «Programar PIC»:**
+     - Si NO hay archivo HEX/BIN cargado desde disco: Los botones «Programar PIC» y «Verificar Memoria» permanecen estrictamente deshabilitados e inactivos al salir del lector de memoria, y cualquier intento de invocación es rechazado defensivamente.
+     - Si SÍ hay un archivo HEX/BIN cargado desde disco: Los botones principales se mantienen activos y programan **única y exclusivamente el archivo original cargado**, sin ser contaminados ni reemplazados por lecturas del microcontrolador ni modificaciones manuales realizadas en el visor de memoria.
+   * **Flujo dedicado para «Reprogramar»:** El botón naranja dentro del lector de memoria genera dinámicamente su propio volcado independiente (`hexReprogramar` y `datosReprogramar`) para programar el chip en el zócalo, restaurando al finalizar el estado legítimo de los botones de la pantalla principal según la presencia del archivo original cargado.
 
 ---
 
