@@ -66,6 +66,10 @@ public class ProAccessDialog {
             return;
         }
 
+        if (billingManager != null && !billingManager.isProductAvailable()) {
+            billingManager.queryProducts();
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         float density = activity.getResources().getDisplayMetrics().density;
 
@@ -195,8 +199,17 @@ public class ProAccessDialog {
 
         btnBuyPro.setOnClickListener(v -> {
             if (billingManager != null) {
-                billingManager.launchPurchaseFlow(activity);
-                dialog.dismiss();
+                if (!billingManager.isProductAvailable()) {
+                    billingManager.queryProducts();
+                    Toast.makeText(activity, activity.getString(R.string.pro_billing_not_available), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                boolean launched = billingManager.launchPurchaseFlow(activity);
+                if (launched) {
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(activity, activity.getString(R.string.pro_billing_not_available), Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(activity, activity.getString(R.string.pro_billing_not_available), Toast.LENGTH_SHORT).show();
             }

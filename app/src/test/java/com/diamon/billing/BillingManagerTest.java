@@ -221,6 +221,19 @@ public class BillingManagerTest {
     }
 
     @Test
+    public void handlePurchase_alternativeProductId_activatesAdsRemoved() {
+        Purchase purchase = mock(Purchase.class);
+        when(purchase.getProducts()).thenReturn(Collections.singletonList(BillingManager.PRODUCT_ID_REMOVE_ADS_ALT));
+        when(purchase.getPurchaseState()).thenReturn(Purchase.PurchaseState.PURCHASED);
+        when(purchase.isAcknowledged()).thenReturn(true);
+
+        billingManager.handlePurchase(purchase);
+
+        assertTrue(billingManager.isAdsRemoved());
+        verify(mockListener).onAdsRemovedChanged(true);
+    }
+
+    @Test
     public void handlePurchase_otherProduct_ignored() {
         Purchase purchase = mock(Purchase.class);
         when(purchase.getProducts()).thenReturn(Collections.singletonList("other_product"));

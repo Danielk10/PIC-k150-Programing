@@ -21,6 +21,7 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,8 +29,8 @@ import java.util.List;
  * Gestor de compras integradas (In-App Billing) para PIC-k150-Programing
  * utilizando Google Play Billing Library.
  *
- * <p>Maneja la compra del producto no consumible "remove_ads_pro" para
- * eliminar publicidad permanentemente y activar las funciones Pro de la aplicación.</p>
+ * <p>Maneja la compra del producto no consumible "remove_ads_pro" (y retrocompatibilidad con "remove_ads")
+ * para eliminar publicidad permanentemente y activar las funciones Pro de la aplicación.</p>
  */
 public class BillingManager implements PurchasesUpdatedListener {
 
@@ -37,6 +38,7 @@ public class BillingManager implements PurchasesUpdatedListener {
 
     /** ID del producto configurado en Google Play Console para eliminar anuncios. */
     public static final String PRODUCT_ID_REMOVE_ADS = "remove_ads_pro";
+    public static final String PRODUCT_ID_REMOVE_ADS_ALT = "remove_ads";
 
     public static final String PREFS_NAME = "billing_prefs";
     public static final String KEY_ADS_REMOVED = "is_ads_removed";
@@ -118,11 +120,8 @@ public class BillingManager implements PurchasesUpdatedListener {
                     queryProducts();
                 } else {
                     isServiceConnected = false;
-                    String errorMsg = "Billing setup failed: " + billingResult.getDebugMessage();
-                    Log.w(TAG, errorMsg);
-                    if (listener != null) {
-                        listener.onBillingError(errorMsg);
-                    }
+                    Log.w(TAG, "Billing setup failed: " + billingResult.getDebugMessage()
+                            + " (Code: " + billingResult.getResponseCode() + ")");
                 }
             }
 
@@ -135,16 +134,21 @@ public class BillingManager implements PurchasesUpdatedListener {
     }
 
     /**
-     * Consulta los detalles del producto in-app remove_ads_pro en Google Play.
+     * Consulta los detalles del producto in-app (remove_ads_pro / remove_ads) en Google Play.
      */
     public void queryProducts() {
-        QueryProductDetailsParams.Product product = QueryProductDetailsParams.Product.newBuilder()
+        List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
+        productList.add(QueryProductDetailsParams.Product.newBuilder()
                 .setProductId(PRODUCT_ID_REMOVE_ADS)
                 .setProductType(BillingClient.ProductType.INAPP)
-                .build();
+                .build());
+        productList.add(QueryProductDetailsParams.Product.newBuilder()
+                .setProductId(PRODUCT_ID_REMOVE_ADS_ALT)
+                .setProductType(BillingClient.ProductType.INAPP)
+                .build());
 
         QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
-                .setProductList(Collections.singletonList(product))
+                .setProductList(productList)
                 .build();
 
         billingClient.queryProductDetailsAsync(params, (billingResult, queryResult) -> {
@@ -152,8 +156,21 @@ public class BillingManager implements PurchasesUpdatedListener {
                     && queryResult != null
                     && queryResult.getProductDetailsList() != null
                     && !queryResult.getProductDetailsList().isEmpty()) {
-                removeAdsDetails = queryResult.getProductDetailsList().get(0);
-                Log.d(TAG, "Product details loaded: " + removeAdsDetails.getName());
+                ProductDetails selectedDetails = null;
+                for (ProductDetails details : queryResult.getProductDetailsList()) {
+                    if (PRODUCT_ID_REMOVE_ADS.equals(details.getProductId())) {
+                        selectedDetails = details;
+                        break;
+                    } else if (PRODUCT_ID_REMOVE_ADS_ALT.equals(details.getProductId())) {
+                        selectedDetails = details;
+                    }
+                }
+                if (selectedDetails == null) {
+                    selectedDetails = queryResult.getProductDetailsList().get(0);
+                }
+                removeAdsDetails = selectedDetails;
+                Log.d(TAG, "Product details loaded: " + removeAdsDetails.getName()
+                        + " (" + removeAdsDetails.getProductId() + ")");
 
                 ProductDetails.OneTimePurchaseOfferDetails offerDetails =
                         removeAdsDetails.getOneTimePurchaseOfferDetails();
@@ -162,11 +179,8 @@ public class BillingManager implements PurchasesUpdatedListener {
                 }
             } else {
                 removeAdsDetails = null;
-                String errorMsg = "Failed to load product details: " + billingResult.getDebugMessage();
-                Log.w(TAG, errorMsg);
-                if (listener != null) {
-                    listener.onBillingError(errorMsg);
-                }
+                Log.w(TAG, "Failed to load product details: " + billingResult.getDebugMessage()
+                        + " (Code: " + billingResult.getResponseCode() + ")");
             }
         });
     }
@@ -181,6 +195,7 @@ public class BillingManager implements PurchasesUpdatedListener {
         if (removeAdsDetails == null) {
             String errorMsg = "Product details not available. Cannot launch purchase flow.";
             Log.w(TAG, errorMsg);
+            queryProducts();
             if (listener != null) {
                 listener.onBillingError(errorMsg);
             }
@@ -234,7 +249,8 @@ public class BillingManager implements PurchasesUpdatedListener {
      * @param purchase Compra devuelta por Google Play.
      */
     public void handlePurchase(@NonNull Purchase purchase) {
-        if (purchase.getProducts().contains(PRODUCT_ID_REMOVE_ADS)) {
+        List<String> products = purchase.getProducts();
+        if (products.contains(PRODUCT_ID_REMOVE_ADS) || products.contains(PRODUCT_ID_REMOVE_ADS_ALT)) {
             if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                 if (!purchase.isAcknowledged()) {
                     acknowledgePurchase(purchase);
@@ -242,7 +258,7 @@ public class BillingManager implements PurchasesUpdatedListener {
                     setAdsRemoved(true);
                 }
             } else if (purchase.getPurchaseState() == Purchase.PurchaseState.PENDING) {
-                Log.d(TAG, "Purchase is pending. Ads will be removed once confirmed.");
+                Log.d(TAG, "Purchase is pending. Pro will be unlocked once confirmed.");
             }
         }
     }
@@ -283,7 +299,8 @@ public class BillingManager implements PurchasesUpdatedListener {
                 boolean hasActivePurchase = false;
                 if (purchases != null) {
                     for (Purchase purchase : purchases) {
-                        if (purchase.getProducts().contains(PRODUCT_ID_REMOVE_ADS)
+                        List<String> prods = purchase.getProducts();
+                        if ((prods.contains(PRODUCT_ID_REMOVE_ADS) || prods.contains(PRODUCT_ID_REMOVE_ADS_ALT))
                                 && purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                             hasActivePurchase = true;
                             handlePurchase(purchase);
@@ -295,11 +312,8 @@ public class BillingManager implements PurchasesUpdatedListener {
                     setAdsRemoved(false);
                 }
             } else {
-                String errorMsg = "Failed to query purchases: " + billingResult.getDebugMessage();
-                Log.w(TAG, errorMsg);
-                if (listener != null) {
-                    listener.onBillingError(errorMsg);
-                }
+                Log.w(TAG, "Failed to query purchases: " + billingResult.getDebugMessage()
+                        + " (Code: " + billingResult.getResponseCode() + ")");
             }
         });
     }

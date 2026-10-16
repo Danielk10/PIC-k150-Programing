@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onBillingError(String errorMessage) {
-                appendLog(getString(R.string.log_pro_purchase_error, errorMessage));
+                android.util.Log.w("MainActivity", "Billing error: " + errorMessage);
             }
         });
         billingManager.startConnection();
