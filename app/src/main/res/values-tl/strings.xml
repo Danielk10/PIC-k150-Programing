@@ -374,11 +374,7 @@ Kapag naalis na ang chip, i-tap ang \'Magpatuloy\' upang i-activate ang pagsukat
 Kasalukuyang halaga: 0x%2$s (Maximum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format ng Word at Pagkakasunod-sunod ng Byte (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format ng EEPROM Cell (8-bit)</string>
-    <string name="hex_editor_desc_rom">• Nag-iimbak ang mga PIC ng 14/16-bit words sa pagkakasunud-sunod na Little-Endian:
-   - Mababang Byte (LSB): 0x%1$s (offset 2×N)
-   - Mataas na Byte (MSB): 0x%2$s (offset 2×N+1)
-• Paano mag-edit?: Ilagay ang buong lohikal na salita [MSB][LSB] (hal. 2805 = LSB 05, MSB 28).
-• Awtomatikong muling inaayos ng app ang mga byte sa Little-Endian para sa silicon at HEX file.</string>
+    <string name="hex_editor_desc_rom">Ilagay ang word sa lohikal na MSB LSB order. Awtomatikong inilalapat ang Little-Endian conversion para sa microcontroller at HEX file.</string>
     <string name="hex_editor_desc_eeprom">• Binubuo ang mga cell ng EEPROM ng mga indibidwal na 8-bit bytes.
 • Direktang ilagay ang 2-character na hexadecimal byte (saklaw: 00 hanggang FF).</string>
     <string name="hex_editor_input_label_rom">Ilagay ang bagong halaga (Hex Word [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Mangyaring ipasok ang PIC %1$s sa kaukulang posisyon, i-lock ang lever, at i-tap
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">I-reprogram</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanenteng Aktibo</string>
+    <string name="pro_permanent_active_desc">Mayroon kang permanenteng access sa K150 Pro. Ang lahat ng advanced na tool ay ganap na naka-unlock nang walang mga ad o limitasyon sa oras.</string>
 </resources>

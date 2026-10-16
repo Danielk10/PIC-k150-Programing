@@ -374,11 +374,7 @@ Po vybratí čipu klepnite na \'Pokračovať\' pre aktiváciu merania alebo na \
 Aktuálna hodnota: 0x%2$s (Maximum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Formát slova a poradie bajtov (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Formát bunky EEPROM (8-bit)</string>
-    <string name="hex_editor_desc_rom">• PIC ukladajú 14/16-bitové slová v poradí Little-Endian:
-   - Dolný bajt (LSB): 0x%1$s (posun 2×N)
-   - Horný bajt (MSB): 0x%2$s (posun 2×N+1)
-• Ako upravovať?: Zadajte celé logické slovo [MSB][LSB] (napr. 2805 = LSB 05, MSB 28).
-• Aplikácia automaticky preusporiada bajty do Little-Endian pre čip a HEX súbor.</string>
+    <string name="hex_editor_desc_rom">Zadajte slovo v logickom poradí MSB LSB. Konverzia na Little-Endian sa automaticky použije pre mikrokontrolér a súbor HEX.</string>
     <string name="hex_editor_desc_eeprom">• Bunky EEPROM pozostávajú z jednotlivých 8-bitových bajtov.
 • Zadajte 2-znakový hexadecimálny bajt priamo (rozsah: 00 až FF).</string>
     <string name="hex_editor_input_label_rom">Zadajte novú hodnotu (Hex slovo [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Vložte prosím PIC %1$s do príslušnej pozície, zaistite páčku a znova klep
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Preprogramovať</string>
+    <string name="pro_permanent_active_title">K150 Pro Trvalý aktívny</string>
+    <string name="pro_permanent_active_desc">Máte trvalý prístup k K150 Pro. Všetky pokročilé nástroje sú plne odomknuté bez reklám alebo časových obmedzení.</string>
 </resources>

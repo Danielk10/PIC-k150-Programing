@@ -374,11 +374,7 @@
 Geçerli değer: 0x%2$s (Maksimum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Kelime Formatı ve Bayt Sırası (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM Hücre Formatı (8-bit)</string>
-    <string name="hex_editor_desc_rom">• PIC\'ler 14/16-bitlik kelimeleri Little-Endian sırasında saklar:
-   - Düşük Bayt (LSB): 0x%1$s (ofset 2×N)
-   - Yüksek Bayt (MSB): 0x%2$s (ofset 2×N+1)
-• Nasıl düzenlenir?: Tam mantıksal kelimeyi [MSB][LSB] girin (örn. 2805 = LSB 05, MSB 28).
-• Uygulama, baytları silikon ve HEX dosyası için otomatik olarak Little-Endian düzenine dönüştürür.</string>
+    <string name="hex_editor_desc_rom">Kelimeyi mantıksal MSB LSB sırasıyla girin. Mikrodenetleyici ve HEX dosyası için Little-Endian dönüşümü otomatik olarak uygulanır.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM hücreleri bağımsız 8-bitlik baytlardan oluşur.
 • 2 karakterli onaltılık baytı doğrudan girin (aralık: 00 - FF).</string>
     <string name="hex_editor_input_label_rom">Yeni değeri girin (Hex Kelime [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Yeniden Programla</string>
+    <string name="pro_permanent_active_title">K150 Pro Kalıcı Etkin</string>
+    <string name="pro_permanent_active_desc">Kalıcı K150 Pro erişiminiz var. Tüm gelişmiş araçlar reklam veya zaman sınırı olmaksızın tamamen açılmıştır.</string>
 </resources>

@@ -374,11 +374,7 @@ Zodra de chip is verwijderd, tikt u op \'Doorgaan\' om de meting te activeren, o
 Huidige waarde: 0x%2$s (Maximum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Woordformaat en bytevolgorde (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-celformaat (8-bit)</string>
-    <string name="hex_editor_desc_rom">• PIC\'s slaan 14/16-bits woorden op in Little-Endian-volgorde:
-   - Lage byte (LSB): 0x%1$s (offset 2×N)
-   - Hoge byte (MSB): 0x%2$s (offset 2×N+1)
-• Hoe te bewerken?: Voer het volledige logische woord in [MSB][LSB] (bijv. 2805 = LSB 05, MSB 28).
-• De app herschikt bytes automatisch naar Little-Endian voor de chip en het HEX-bestand.</string>
+    <string name="hex_editor_desc_rom">Voer het woord in logische MSB LSB-volgorde in. Little-Endian-conversie wordt automatisch toegepast voor de microcontroller en het HEX-bestand.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM-cellen bestaan uit individuele 8-bits bytes.
 • Voer de hexadecimale byte van 2 tekens direct in (bereik: 00 tot FF).</string>
     <string name="hex_editor_input_label_rom">Voer nieuwe waarde in (Hex-woord [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Plaats de PIC %1$s in de juiste positie, vergrendel de hendel en tik opnieuw op 
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Herprogrammeren</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanent Actief</string>
+    <string name="pro_permanent_active_desc">U beschikt over permanente K150 Pro-toegang. Alle geavanceerde functies zijn volledig ontgrendeld zonder advertenties of tijdslimieten.</string>
 </resources>

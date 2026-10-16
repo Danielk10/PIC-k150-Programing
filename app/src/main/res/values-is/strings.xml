@@ -374,11 +374,7 @@
 Núverandi gildi: 0x%2$s (Hámark: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Orðasnið og bætaröð (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM hólfasnið (8 bita)</string>
-    <string name="hex_editor_desc_rom">• PIC geyma 14/16 bita orð í Little-Endian röð:
-   - Lágbæt (LSB): 0x%1$s (hliðrun 2×N)
-   - Hábæt (MSB): 0x%2$s (hliðrun 2×N+1)
-• Hvernig á að breyta?: Sláðu inn allt röklegt orð [MSB][LSB] (t.d. 2805 = LSB 05, MSB 28).
-• Forritið endurraðar bætum sjálfkrafa í Little-Endian fyrir örgjörva og HEX skrá.</string>
+    <string name="hex_editor_desc_rom">Sláðu inn orðið í rökréttri MSB LSB röð. Little-Endian umbreyting er sjálfkrafavirkjuð fyrir örtölvuna og HEX skrána.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM hólf samanstanda af einstökum 8 bita bætum.
 • Sláðu beint inn 2 stafa sextándakerfisbætið (bil: 00 til FF).</string>
     <string name="hex_editor_input_label_rom">Sláðu inn nýtt gildi (Hex orð [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Vinsamlegast settu PIC %1$s í viðeigandi stöðu, læstu handfanginu og ýttu 
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Endurforrita</string>
+    <string name="pro_permanent_active_title">K150 Pro Varanleg virk</string>
+    <string name="pro_permanent_active_desc">Þú ert með varanlegan K150 Pro aðgang. Öll háþróuð verkfæri eru að fullu opnuð án auglýsinga eða tímamarka.</string>
 </resources>

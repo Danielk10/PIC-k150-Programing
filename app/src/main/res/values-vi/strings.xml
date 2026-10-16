@@ -374,11 +374,7 @@ Sau khi tháo chip, nhấn \'Tiếp tục\' để kích hoạt phép đo, hoặc
 Giá trị hiện tại: 0x%2$s (Tối đa: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Định dạng từ &amp; Thứ tự byte (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Định dạng ô EEPROM (8 bit)</string>
-    <string name="hex_editor_desc_rom">• PIC lưu trữ các từ 14/16 bit theo thứ tự Little-Endian:
-   - Byte thấp (LSB): 0x%1$s (độ lệch 2×N)
-   - Byte cao (MSB): 0x%2$s (độ lệch 2×N+1)
-• Cách chỉnh sửa?: Nhập từ logic hoàn chỉnh [MSB][LSB] (ví dụ: 2805 = LSB 05, MSB 28).
-• Ứng dụng tự động sắp xếp lại các byte thành Little-Endian cho chip và tệp HEX.</string>
+    <string name="hex_editor_desc_rom">Nhập từ theo thứ tự logic MSB LSB. Chuyển đổi Little-Endian được áp dụng tự động cho vi điều khiển và tệp HEX.</string>
     <string name="hex_editor_desc_eeprom">• Các ô nhớ EEPROM bao gồm các byte 8 bit riêng lẻ.
 • Nhập trực tiếp byte thập lục phân 2 ký tự (phạm vi: 00 đến FF).</string>
     <string name="hex_editor_input_label_rom">Nhập giá trị mới (Từ Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Vui lòng cắm PIC %1$s vào đúng vị trí, khóa cần gạt và nhấn l�
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Lập trình lại</string>
+    <string name="pro_permanent_active_title">K150 Pro Vĩnh viễn Đang hoạt động</string>
+    <string name="pro_permanent_active_desc">Bạn có quyền truy cập K150 Pro vĩnh viễn. Tất cả các công cụ nâng cao đều được mở khóa hoàn toàn mà không có quảng cáo hoặc giới hạn thời gian.</string>
 </resources>

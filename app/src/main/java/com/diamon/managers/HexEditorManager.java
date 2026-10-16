@@ -441,14 +441,221 @@ public class HexEditorManager {
     }
 
     /**
-     * Refresca la vista TextView sustituyendo el valor anterior con el nuevo.
+     * Obtiene el valor actual de una palabra ROM o byte EEPROM priorizando la cadena hexadecimal
+     * leída del microcontrolador (lastReadRomData / lastReadEepromData), con respaldo en
+     * DatosPicProcesados o el valor blank de la arquitectura.
+     */
+    public static int obtenerValorActualEnMemoria(
+            String hexLeido,
+            boolean isRom,
+            int address,
+            DatosPicProcesados datosPicProcesados,
+            ChipPic chip) {
+
+        int coreBits = 14;
+        if (chip != null) {
+            try {
+                coreBits = chip.getTipoDeNucleoBit();
+            } catch (Exception ignored) {
+            }
+        }
+        int blankWord = (coreBits == 16) ? 0xFFFF : ((~(0xFFFF << coreBits)) & 0xFFFF);
+
+        if (isRom) {
+            int charOffset = address * 4;
+            if (hexLeido != null && charOffset >= 0 && charOffset + 4 <= hexLeido.length()) {
+                try {
+                    return Integer.parseInt(hexLeido.substring(charOffset, charOffset + 4), 16) & blankWord;
+                } catch (NumberFormatException ignored) {
+                }
+            }
+            if (datosPicProcesados != null && datosPicProcesados.obtenerBytesHexROMProcesado() != null) {
+                byte[] rom = datosPicProcesados.obtenerBytesHexROMProcesado();
+                int byteOffset = address * 2;
+                if (byteOffset >= 0 && byteOffset + 1 < rom.length) {
+                    return (((rom[byteOffset] & 0xFF) << 8) | (rom[byteOffset + 1] & 0xFF)) & blankWord;
+                }
+            }
+            return blankWord;
+        } else {
+            int charOffset = address * 2;
+            if (hexLeido != null && charOffset >= 0 && charOffset + 2 <= hexLeido.length()) {
+                try {
+                    return Integer.parseInt(hexLeido.substring(charOffset, charOffset + 2), 16) & 0xFF;
+                } catch (NumberFormatException ignored) {
+                }
+            }
+            if (datosPicProcesados != null && datosPicProcesados.obtenerBytesHexEEPROMProcesado() != null) {
+                byte[] eep = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
+                if (address >= 0 && address < eep.length) {
+                    return eep[address] & 0xFF;
+                }
+            }
+            return 0xFF;
+        }
+    }
+
+    /**
+     * Actualiza la cadena hexadecimal cruda (lastReadRomData o lastReadEepromData) en la
+     * dirección editada para que tanto la exportación HEX/BIN como la reprogramación conserven el cambio.
+     */
+    public static String actualizarCeldaEnHexLeido(
+            String hexActual,
+            boolean isRom,
+            int address,
+            int nuevoValor,
+            ChipPic chip) {
+
+        if (address < 0) {
+            return hexActual != null ? hexActual : "";
+        }
+
+        int coreBits = 14;
+        int totalUnits = 0;
+        if (chip != null) {
+            try {
+                coreBits = chip.getTipoDeNucleoBit();
+            } catch (Exception ignored) {
+            }
+            try {
+                totalUnits = isRom ? chip.getTamanoROM() : (chip.isTamanoValidoDeEEPROM() ? chip.getTamanoEEPROM() : 0);
+            } catch (Exception ignored) {
+            }
+        }
+
+        int maxWord = (coreBits == 16) ? 0xFFFF : ((~(0xFFFF << coreBits)) & 0xFFFF);
+        int groupSize = isRom ? 4 : 2;
+        String blankUnit = isRom ? String.format(Locale.US, "%04X", maxWord) : "FF";
+        String newUnitHex = isRom
+                ? String.format(Locale.US, "%04X", nuevoValor & maxWord)
+                : String.format(Locale.US, "%02X", nuevoValor & 0xFF);
+
+        String base = (hexActual != null && !hexActual.startsWith("Error")) ? hexActual : "";
+        int currentUnits = base.length() / groupSize;
+        int targetUnits = Math.max(address + 1, currentUnits);
+
+        StringBuilder sb = new StringBuilder(Math.max(base.length(), targetUnits * groupSize));
+        sb.append(base);
+        while (currentUnits < targetUnits) {
+            sb.append(blankUnit);
+            currentUnits++;
+        }
+
+        int charOffset = address * groupSize;
+        if (charOffset + groupSize <= sb.length()) {
+            sb.replace(charOffset, charOffset + groupSize, newUnitHex);
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Construye un archivo Intel HEX completo y válido a partir de los datos leídos/editados
+     * en memoria (ROM, EEPROM y Configuración), permitiendo reprogramar o verificar el chip directamente.
+     */
+    public static String construirFirmwareIntelHexDesdeLectura(
+            String romHex,
+            String eepromHex,
+            String configHex,
+            ChipPic chip) {
+
+        int coreBits = 14;
+        int fuseCount = 1;
+        if (chip != null) {
+            try {
+                coreBits = chip.getTipoDeNucleoBit();
+            } catch (Exception ignored) {
+            }
+            try {
+                if (chip.getFuseBlank() != null) {
+                    fuseCount = Math.max(1, chip.getFuseBlank().length);
+                }
+            } catch (Exception ignored) {
+            }
+        }
+
+        StringBuilder fullHex = new StringBuilder();
+
+        if (romHex != null && !romHex.isEmpty() && !romHex.startsWith("Error")) {
+            byte[] romBytes = hexStringToByteArray(romHex);
+            if (romBytes.length > 0) {
+                byte[] romFormatted = HexExportManager.formatForHexExport(romBytes, coreBits, false);
+                fullHex.append(HexExportManager.convertSegmentToIntelHex(romFormatted, 0));
+            }
+        }
+
+        if (configHex != null && !configHex.isEmpty() && !configHex.startsWith("Error")) {
+            byte[] rawConfig = hexStringToByteArray(configHex);
+            int idLen = (coreBits == 16) ? 8 : 4;
+            int idStart = 2;
+            int fuseByteLen = fuseCount * 2;
+            int fuseStart = 10;
+            if (rawConfig.length >= (idStart + idLen) && rawConfig.length > fuseStart) {
+                byte[] idBytes = java.util.Arrays.copyOfRange(rawConfig, idStart, Math.min(idStart + idLen, rawConfig.length));
+                byte[] fuseBytes = java.util.Arrays.copyOfRange(rawConfig, fuseStart, Math.min(fuseStart + fuseByteLen, rawConfig.length));
+                idBytes = HexExportManager.formatForHexExport(idBytes, coreBits, false);
+                fuseBytes = HexExportManager.formatForHexExport(fuseBytes, coreBits, false);
+                int idAddr = (coreBits == 16) ? 0x200000 : 0x4000;
+                int fuseAddr = (coreBits == 16) ? 0x300000 : 0x400E;
+                fullHex.append(HexExportManager.convertSegmentToIntelHex(idBytes, idAddr));
+                fullHex.append(HexExportManager.convertSegmentToIntelHex(fuseBytes, fuseAddr));
+            }
+        }
+
+        if (eepromHex != null && !eepromHex.isEmpty() && !eepromHex.startsWith("Error")) {
+            byte[] eepromBytes = hexStringToByteArray(eepromHex);
+            if (eepromBytes.length > 0) {
+                int eepromAddr = (coreBits == 16) ? 0xF000 : 0x4200;
+                byte[] eepromFormatted = HexExportManager.formatForHexExport(eepromBytes, coreBits, true);
+                fullHex.append(HexExportManager.convertSegmentToIntelHex(eepromFormatted, eepromAddr));
+            }
+        }
+
+        if (fullHex.length() == 0) {
+            return "";
+        }
+
+        fullHex.append(":00000001FF\r\n");
+        return fullHex.toString();
+    }
+
+    private static byte[] hexStringToByteArray(String s) {
+        if (s == null || s.isEmpty()) {
+            return new byte[0];
+        }
+        try {
+            String clean = s.replaceAll("\\s+", "");
+            int len = clean.length() & ~1;
+            byte[] data = new byte[len / 2];
+            for (int i = 0; i < len; i += 2) {
+                int hi = Character.digit(clean.charAt(i), 16);
+                int lo = Character.digit(clean.charAt(i + 1), 16);
+                if (hi == -1 || lo == -1) {
+                    return new byte[0];
+                }
+                data[i / 2] = (byte) ((hi << 4) + lo);
+            }
+            return data;
+        } catch (Exception e) {
+            return new byte[0];
+        }
+    }
+
+    /**
+     * Refresca la vista TextView sustituyendo el valor anterior con el nuevo sin alterar el prefijo de dirección.
      */
     private static void refrescarFilaVisual(TextView filaView, String oldHex, String newHex) {
         if (filaView == null) return;
         CharSequence current = filaView.getText();
         if (current != null) {
-            String updated = current.toString().replaceFirst(oldHex, newHex);
-            filaView.setText(updated);
+            String text = current.toString();
+            int colonIdx = text.indexOf(": ");
+            if (colonIdx >= 0 && colonIdx + 2 < text.length()) {
+                String prefix = text.substring(0, colonIdx + 2);
+                String rest = text.substring(colonIdx + 2).replaceFirst(oldHex, newHex);
+                filaView.setText(prefix + rest);
+            } else {
+                filaView.setText(text.replaceFirst(oldHex, newHex));
+            }
         }
     }
 

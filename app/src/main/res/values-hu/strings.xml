@@ -374,11 +374,7 @@ Miután eltávolította a chipet, koppintson a \'Folytatás\' gombra a mérés a
 Jelenlegi érték: 0x%2$s (Maximum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Szóformátum és bájtsorrend (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM cellaformátum (8 bites)</string>
-    <string name="hex_editor_desc_rom">• A PIC-ek 14/16 bites szavakat Little-Endian sorrendben tárolnak:
-   - Alsó bájt (LSB): 0x%1$s (eltolás 2×N)
-   - Felső bájt (MSB): 0x%2$s (eltolás 2×N+1)
-• Hogyan szerkessze?: Adja meg a teljes logikai szót [MSB][LSB] (pl. 2805 = LSB 05, MSB 28).
-• Az alkalmazás automatikusan átrendezi a bájtokat Little-Endian formátumra a chiphez és a HEX fájlhoz.</string>
+    <string name="hex_editor_desc_rom">Adja meg a szót logikai MSB LSB sorrendben. A Little-Endian konverzió automatikusan megtörténik a mikrokontroller és a HEX fájl számára.</string>
     <string name="hex_editor_desc_eeprom">• Az EEPROM cellák egyedi 8 bites bájtokból állnak.
 • Adja meg közvetlenül a 2 karakteres hexadecimális bájtot (tartomány: 00-tól FF-ig).</string>
     <string name="hex_editor_input_label_rom">Adjon meg új értéket (Hex szó [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Kérjük, helyezze be a PIC %1$s mikrokontrollert a megfelelő pozícióba, zár
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Újraprogramozás</string>
+    <string name="pro_permanent_active_title">K150 Pro Véglegesen aktív</string>
+    <string name="pro_permanent_active_desc">Végleges K150 Pro hozzáféréssel rendelkezik. Minden speciális eszköz teljesen fel van oldva hirdetések és időkorlátok nélkül.</string>
 </resources>

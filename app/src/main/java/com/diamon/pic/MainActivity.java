@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity
     private ProPassManager proPassManager; // NUEVO: Pase temporal Pro de 12 Horas
 
     private String firmware = "";
+    private String originalLoadedFirmware = "";
+    private DatosPicProcesados originalLoadedDatosPic = null;
     private String lastReadRomData = ""; // Últimos datos ROM leídos
     private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
     private String lastReadConfigData = ""; // Últimos datos Config leídos
@@ -345,7 +347,12 @@ public class MainActivity extends AppCompatActivity
                     fileManager.clearLoadedFile();
                 }
                 firmware = "";
+                originalLoadedFirmware = "";
                 datosPicProcesados = null;
+                originalLoadedDatosPic = null;
+                lastReadRomData = "";
+                lastReadEepromData = "";
+                lastReadConfigData = "";
                 chipInfoTextView.setText(chipSelectionManager.getSelectedChipInfoColored());
                 appendLog("⚙ " + getString(R.string.pic_seleccionado) + ": " + model);
 
@@ -386,6 +393,7 @@ public class MainActivity extends AppCompatActivity
 
         memoryDisplayManager = new MemoryDisplayManager(this);
         memoryDisplayManager.setOnMemoryRowClickListener(this::abrirEditorHexadecimal);
+        memoryDisplayManager.setOnReprogramClickListener(this::executeReprogramFromMemoryDisplay);
         programacionSelectivaManager = new ProgramacionSelectivaManager(this);
         hexEditorManager = new HexEditorManager(this);
         proPassManager = new ProPassManager(this);
@@ -754,6 +762,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onFileLoaded(String content, String fileName) {
                         firmware = content;
+                        originalLoadedFirmware = content;
 
                         // Detectar tipo de archivo para mensaje coherente
                         boolean esBin = fileName != null && fileName.toLowerCase().endsWith(".bin");
@@ -833,6 +842,9 @@ public class MainActivity extends AppCompatActivity
                     try {
                         datosPicProcesados = new DatosPicProcesados(MainActivity.this, firmware, currentChip);
                         datosPicProcesados.iniciarProcesamientoDeDatos();
+                        if (firmware != null && firmware.equals(originalLoadedFirmware)) {
+                            originalLoadedDatosPic = datosPicProcesados;
+                        }
 
                         runOnUiThread(
                                 () -> {
@@ -840,6 +852,9 @@ public class MainActivity extends AppCompatActivity
                                     byte[] eepromBytes = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
                                     int romLen = (romBytes != null) ? romBytes.length : 0;
                                     int eepromLen = (eepromBytes != null) ? eepromBytes.length : 0;
+
+                                    lastReadRomData = romBytes != null ? com.diamon.utilidades.ByteUtils.bytesToHex(romBytes) : "";
+                                    lastReadEepromData = eepromBytes != null ? com.diamon.utilidades.ByteUtils.bytesToHex(eepromBytes) : "";
 
                                     popularContenedoresMemoria(romBytes, eepromBytes);
 
@@ -873,12 +888,48 @@ public class MainActivity extends AppCompatActivity
 
     /** Muestra el diálogo modal de Acceso K150 Pro. */
     private void showProAccessDialog(Runnable onUnlocked) {
+        if (billingManager != null && billingManager.isProPurchased()) {
+            mostrarDialogoProYaAdquirido();
+            if (onUnlocked != null) {
+                onUnlocked.run();
+            }
+            return;
+        }
         ProAccessDialog.show(this, publicidad, billingManager, proPassManager, () -> {
             actualizarEstadoProUI();
             if (onUnlocked != null) {
                 onUnlocked.run();
             }
         });
+    }
+
+    /**
+     * Muestra información de confirmación cuando el usuario ya ha adquirido la versión Pro permanente.
+     */
+    private void mostrarDialogoProYaAdquirido() {
+        float density = getResources().getDisplayMetrics().density;
+        int pad = Math.round(16 * density);
+
+        android.widget.ScrollView scrollView = new android.widget.ScrollView(this);
+        scrollView.setBackgroundColor(0xFF181824);
+
+        android.widget.TextView textView = new android.widget.TextView(this);
+        textView.setPadding(pad, pad, pad, pad);
+        textView.setTextSize(14);
+        textView.setTextColor(0xFFE0E0E0);
+        textView.setLineSpacing(0, 1.3f);
+
+        String htmlText = "<h3><b><font color=\"#FFD700\">⭐ " + getString(R.string.pro_permanent_active_title) + "</font></b></h3>" +
+                "<p>" + getString(R.string.pro_permanent_active_desc) + "</p>";
+
+        textView.setText(androidx.core.text.HtmlCompat.fromHtml(htmlText, androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY));
+        scrollView.addView(textView);
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.pro_permanent_active_title))
+                .setView(scrollView)
+                .setPositiveButton(getString(R.string.aceptar), null)
+                .show();
     }
 
     /**
@@ -891,23 +942,12 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         if (hexEditorManager == null) return;
-        int valorActual = 0;
-        if (isRom) {
-            if (datosPicProcesados != null && datosPicProcesados.obtenerBytesHexROMProcesado() != null) {
-                byte[] rom = datosPicProcesados.obtenerBytesHexROMProcesado();
-                int offset = address * 2;
-                if (offset + 1 < rom.length) {
-                    valorActual = (rom[offset] & 0xFF) | ((rom[offset + 1] & 0xFF) << 8);
-                }
-            }
-        } else {
-            if (datosPicProcesados != null && datosPicProcesados.obtenerBytesHexEEPROMProcesado() != null) {
-                byte[] eep = datosPicProcesados.obtenerBytesHexEEPROMProcesado();
-                if (address < eep.length) {
-                    valorActual = eep[address] & 0xFF;
-                }
-            }
-        }
+        int valorActual = HexEditorManager.obtenerValorActualEnMemoria(
+                isRom ? lastReadRomData : lastReadEepromData,
+                isRom,
+                address,
+                datosPicProcesados,
+                currentChip);
 
         hexEditorManager.mostrarDialogoEdicion(
                 this,
@@ -919,11 +959,67 @@ public class MainActivity extends AppCompatActivity
                 firmware,
                 rowView,
                 (isRomEdited, addr, oldVal, newVal, updatedFirmware) -> {
-                    firmware = updatedFirmware;
+                    if (isRomEdited) {
+                        lastReadRomData = HexEditorManager.actualizarCeldaEnHexLeido(
+                                lastReadRomData, true, addr, newVal, currentChip);
+                        int romSize = 0;
+                        try {
+                            if (currentChip != null) {
+                                romSize = currentChip.getTamanoROM();
+                            }
+                        } catch (Exception ignored) {
+                        }
+                        if (memoryDisplayManager != null) {
+                            memoryDisplayManager.refreshRow(true, addr, lastReadRomData, romSize);
+                        }
+                    } else {
+                        lastReadEepromData = HexEditorManager.actualizarCeldaEnHexLeido(
+                                lastReadEepromData, false, addr, newVal, currentChip);
+                        int eepromSize = 0;
+                        try {
+                            if (currentChip != null && currentChip.isTamanoValidoDeEEPROM()) {
+                                eepromSize = currentChip.getTamanoEEPROM();
+                            }
+                        } catch (Exception ignored) {
+                        }
+                        if (memoryDisplayManager != null) {
+                            memoryDisplayManager.refreshRow(false, addr, lastReadEepromData, eepromSize);
+                        }
+                    }
+                    sincronizarFirmwareDesdeMemoriaLeida(updatedFirmware);
                     appendLog(getString(R.string.log_memoria_editada,
                             isRomEdited ? "ROM" : "EEPROM", addr, oldVal, newVal));
                 }
         );
+    }
+
+    /**
+     * Sincroniza y reconstruye el firmware Intel HEX y DatosPicProcesados a partir de
+     * los buffers de memoria leídos o editados (lastReadRomData, lastReadEepromData, lastReadConfigData).
+     * Esto permite tanto reprogramar directamente como exportar la memoria editada.
+     */
+    private void sincronizarFirmwareDesdeMemoriaLeida(String fallbackFirmware) {
+        try {
+            String hexConstruido = HexEditorManager.construirFirmwareIntelHexDesdeLectura(
+                    lastReadRomData, lastReadEepromData, lastReadConfigData, currentChip);
+            if (hexConstruido != null && !hexConstruido.isEmpty()) {
+                firmware = hexConstruido;
+            } else if (fallbackFirmware != null && !fallbackFirmware.isEmpty()) {
+                firmware = fallbackFirmware;
+            }
+
+            if (currentChip != null && firmware != null && !firmware.isEmpty()) {
+                try {
+                    datosPicProcesados = new DatosPicProcesados(this, firmware, currentChip);
+                    datosPicProcesados.iniciarProcesamientoDeDatos();
+                } catch (Exception e) {
+                    android.util.Log.w("MainActivity", "Error procesando datos pic sincronizados: " + e.getMessage());
+                }
+            }
+            actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), firmware != null && !firmware.isEmpty());
+        } catch (Exception e) {
+            android.util.Log.e("MainActivity", "Error en sincronizarFirmwareDesdeMemoriaLeida: " + e.getMessage());
+        }
     }
 
     /**
@@ -1131,9 +1227,33 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Programación Selectiva: Ofrece modal con las 4 opciones
-     * (Completa, Solo Flash ROM, Solo EEPROM, Solo Configuración)
+     * (Completa, Solo Flash ROM, Solo EEPROM, Solo Configuración).
+     * Siempre prioriza el archivo HEX/BIN original cargado desde el selector de archivos.
      */
     private void executeProgram() {
+        if (originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null) {
+            firmware = originalLoadedFirmware;
+            datosPicProcesados = originalLoadedDatosPic;
+        }
+        if (currentChip == null || firmware.isEmpty()) {
+            appendLog("⚠ " + getString(R.string.seleccione_un_chip_y_cargue_un));
+            return;
+        }
+
+        if (datosPicProcesados == null) {
+            appendLog("⚠ " + getString(R.string.debe_procesar_hex_primero));
+            return;
+        }
+
+        verificarChipEnSocketYEjecutar(this::iniciarFlujoSeleccionProgramacion, getString(R.string.programar_pic));
+    }
+
+    /**
+     * Reprograma el microcontrolador utilizando los datos leídos de la memoria y
+     * modificados a través del editor hexadecimal interactivo en vivo.
+     */
+    private void executeReprogramFromMemoryDisplay() {
+        sincronizarFirmwareDesdeMemoriaLeida(null);
         if (currentChip == null || firmware.isEmpty()) {
             appendLog("⚠ " + getString(R.string.seleccione_un_chip_y_cargue_un));
             return;
@@ -1257,6 +1377,8 @@ public class MainActivity extends AppCompatActivity
                                             lastReadEepromData,
                                             eepromSize,
                                             hasEeprom);
+
+                                    sincronizarFirmwareDesdeMemoriaLeida(null);
 
                                     appendLog("✓ " + getString(R.string.memoria_leida_exitosamente));
 
@@ -1408,7 +1530,9 @@ public class MainActivity extends AppCompatActivity
                     String hexStr = String.format("0x%04X", res.rawDeviceId);
                     appendLog(getString(R.string.log_chip_auto_identified, res.modeloIdentificado, hexStr));
                     firmware = "";
+                    originalLoadedFirmware = "";
                     datosPicProcesados = null;
+                    originalLoadedDatosPic = null;
                     if (fileManager != null) {
                         fileManager.clearLoadedFile();
                     }
@@ -1419,7 +1543,9 @@ public class MainActivity extends AppCompatActivity
                     String hexStr = (res.rawDeviceId > 0) ? String.format("0x%04X", res.rawDeviceId) : getString(R.string.unknown_device_id);
                     appendLog(getString(R.string.log_chip_present_select_manually, hexStr));
                     firmware = "";
+                    originalLoadedFirmware = "";
                     datosPicProcesados = null;
+                    originalLoadedDatosPic = null;
                     if (fileManager != null) {
                         fileManager.clearLoadedFile();
                     }
@@ -1528,7 +1654,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case 12:
-                showProAccessDialog(null);
+                if (billingManager != null && billingManager.isProPurchased()) {
+                    mostrarDialogoProYaAdquirido();
+                } else {
+                    showProAccessDialog(null);
+                }
                 return true;
             case 9:
                 if (proPassManager != null && !proPassManager.isProActive(billingManager)) {

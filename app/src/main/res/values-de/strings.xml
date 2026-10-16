@@ -374,11 +374,7 @@ Sobald der Chip entfernt ist, tippen Sie auf \'Fortfahren\', um die Messung zu a
 Aktueller Wert: 0x%2$s (Maximum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Wortformat und Byte-Reihenfolge (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-Zellenformat (8-Bit)</string>
-    <string name="hex_editor_desc_rom">• PICs speichern 14/16-Bit-Wörter in Little-Endian-Reihenfolge:
-   - Niedriges Byte (LSB): 0x%1$s (Offset 2×N)
-   - Hohes Byte (MSB): 0x%2$s (Offset 2×N+1)
-• Wie bearbeiten?: Geben Sie das vollständige logische Wort [MSB][LSB] ein (z. B. 2805 = LSB 05, MSB 28).
-• Die App ordnet Bytes automatisch für Silizium und HEX-Datei in Little-Endian an.</string>
+    <string name="hex_editor_desc_rom">Geben Sie das Wort in logischer MSB-LSB-Reihenfolge ein. Die Little-Endian-Konvertierung wird automatisch für den Mikrocontroller und die HEX-Datei angewendet.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM-Zellen bestehen aus einzelnen 8-Bit-Bytes.
 • Geben Sie das 2-stellige hexadezimale Byte direkt ein (Bereich: 00 bis FF).</string>
     <string name="hex_editor_input_label_rom">Neuen Wert eingeben (Hex-Wort [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Bitte setzen Sie den PIC %1$s in die entsprechende Position ein, verriegeln Sie 
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Neu programmieren</string>
+    <string name="pro_permanent_active_title">K150 Pro Dauerhaft Aktiv</string>
+    <string name="pro_permanent_active_desc">Sie verfügen über dauerhaften K150 Pro-Zugriff. Alle erweiterten Tools sind ohne Werbung oder Zeitlimits vollständig freigeschaltet.</string>
 </resources>

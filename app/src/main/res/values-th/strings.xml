@@ -374,11 +374,7 @@
 ค่าปัจจุบัน: 0x%2$s (สูงสุด: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ รูปแบบ Word และลำดับไบต์ (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ รูปแบบเซลล์ EEPROM (8 บิต)</string>
-    <string name="hex_editor_desc_rom">• PIC จัดเก็บข้อมูล 14/16 บิตในลำดับ Little-Endian:
-   - ไบต์ต่ำ (LSB): 0x%1$s (ออฟเซ็ต 2×N)
-   - ไบต์สูง (MSB): 0x%2$s (ออฟเซ็ต 2×N+1)
-• วิธีแก้ไข?: ป้อนคำเชิงตรรกะแบบเต็ม [MSB][LSB] (เช่น 2805 = LSB 05, MSB 28)
-• แอปจะเรียงลำดับไบต์เป็น Little-Endian สำหรับซิลิคอนและไฟล์ HEX โดยอัตโนมัติ</string>
+    <string name="hex_editor_desc_rom">ป้อนคำตามลำดับตรรกะ MSB LSB การแปลง Little-Endian จะถูกนำไปใช้โดยอัตโนมัติสำหรับไมโครคอนโทรลเลอร์และไฟล์ HEX</string>
     <string name="hex_editor_desc_eeprom">• เซลล์ EEPROM ประกอบด้วยไบต์ 8 บิตแต่ละตัว
 • ป้อนไบต์ฐานสิบหก 2 อักขระโดยตรง (ช่วง: 00 ถึง FF)</string>
     <string name="hex_editor_input_label_rom">ป้อนค่าใหม่ (Hex Word [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">โปรแกรมใหม่</string>
+    <string name="pro_permanent_active_title">K150 Pro ถาวรเปิดใช้งานอยู่</string>
+    <string name="pro_permanent_active_desc">คุณมีสิทธิ์เข้าถึง K150 Pro แบบถาวร เครื่องมือขั้นสูงทั้งหมดได้รับการปลดล็อกอย่างสมบูรณ์โดยไม่มีโฆษณาหรือการจำกัดเวลา</string>
 </resources>

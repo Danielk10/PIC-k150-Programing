@@ -374,11 +374,7 @@
 Текуща стойност: 0x%2$s (Максимум: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Формат на думата и ред на байтовете (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Формат на EEPROM клетката (8-битов)</string>
-    <string name="hex_editor_desc_rom">• Микроконтролерите PIC съхраняват 14/16-битови думи в ред Little-Endian:
-   - Младши байт (LSB): 0x%1$s (отместване 2×N)
-   - Старши байт (MSB): 0x%2$s (отместване 2×N+1)
-• Как да редактирате?: Въведете пълната логическа дума [MSB][LSB] (напр. 2805 = LSB 05, MSB 28).
-• Приложението автоматично пренарежда байтовете в Little-Endian за чипа и HEX файла.</string>
+    <string name="hex_editor_desc_rom">Въведете думата в логически ред MSB LSB. Преобразуването в Little-Endian се прилага автоматично за микроконтролера и HEX файла.</string>
     <string name="hex_editor_desc_eeprom">• Клетките на EEPROM се състоят от отделни 8-битови байтове.
 • Въведете директно 2-символния шестнадесетичен байт (диапазон: 00 до FF).</string>
     <string name="hex_editor_input_label_rom">Въведете нова стойност (Hex дума [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Препрограмиране</string>
+    <string name="pro_permanent_active_title">K150 Pro Постоянен активен</string>
+    <string name="pro_permanent_active_desc">Имате постоянен достъп до K150 Pro. Всички разширени инструменти са напълно отключени без реклами или времеви ограничения.</string>
 </resources>

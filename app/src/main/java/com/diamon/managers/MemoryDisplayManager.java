@@ -49,6 +49,7 @@ public class MemoryDisplayManager {
     private LinearLayout eepromContainer;
     private TextView romLabel;
     private TextView eepromLabel;
+    private Button reprogramButton;
 
     // Colores
     private static final int COLOR_BACKGROUND = Color.parseColor("#505060");
@@ -57,16 +58,26 @@ public class MemoryDisplayManager {
     private static final int COLOR_DATA_EMPTY = Color.parseColor("#F44336");
     private static final int COLOR_ASCII = Color.parseColor("#00BCD4");
     private static final int COLOR_BUTTON = Color.parseColor("#2196F3");
+    private static final int COLOR_BUTTON_REPROGRAM = Color.parseColor("#FF6600");
     private static final int COLOR_TEXT_SECONDARY = Color.parseColor("#9E9E9E");
 
     public interface OnMemoryRowClickListener {
         void onRowClick(boolean isRom, int address, TextView rowTextView);
     }
 
+    public interface OnReprogramClickListener {
+        void onReprogramClick();
+    }
+
     private OnMemoryRowClickListener rowClickListener;
+    private OnReprogramClickListener reprogramClickListener;
 
     public void setOnMemoryRowClickListener(OnMemoryRowClickListener listener) {
         this.rowClickListener = listener;
+    }
+
+    public void setOnReprogramClickListener(OnReprogramClickListener listener) {
+        this.reprogramClickListener = listener;
     }
 
     public MemoryDisplayManager(Context context) {
@@ -175,6 +186,10 @@ public class MemoryDisplayManager {
                 eepromContainer.removeAllViews();
                 displayDataWithColors(eepromContainer, eepromData != null ? eepromData : "", 2, 8, false, eepromSize);
             }
+        }
+
+        if (reprogramButton != null) {
+            reprogramButton.setVisibility(View.VISIBLE);
         }
 
         if (memoryPopup != null) {
@@ -319,26 +334,60 @@ public class MemoryDisplayManager {
 
         container.addView(contentContainer);
 
+        LinearLayout buttonBar = new LinearLayout(context);
+        buttonBar.setOrientation(LinearLayout.HORIZONTAL);
+        buttonBar.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams barParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        barParams.setMargins(0, dpToPx(6), 0, 0);
+        buttonBar.setLayoutParams(barParams);
+
+        reprogramButton = new Button(context);
+        reprogramButton.setText(context.getString(R.string.reprogramar));
+        reprogramButton.setTextColor(Color.WHITE);
+        reprogramButton.setTextSize(14);
+        reprogramButton.setAllCaps(false);
+
+        GradientDrawable reprogramBg = new GradientDrawable();
+        reprogramBg.setShape(GradientDrawable.RECTANGLE);
+        reprogramBg.setColor(COLOR_BUTTON_REPROGRAM);
+        reprogramBg.setCornerRadius(dpToPx(8));
+        reprogramButton.setBackground(reprogramBg);
+        reprogramButton.setPadding(dpToPx(24), dpToPx(12), dpToPx(24), dpToPx(12));
+        reprogramButton.setVisibility(View.GONE);
+
+        LinearLayout.LayoutParams reprogramParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        reprogramParams.setMargins(0, 0, dpToPx(12), 0);
+        reprogramButton.setLayoutParams(reprogramParams);
+        reprogramButton.setOnClickListener(v -> {
+            dismiss();
+            if (reprogramClickListener != null) {
+                reprogramClickListener.onReprogramClick();
+            }
+        });
+
         Button closeButton = new Button(context);
         closeButton.setText(context.getString(R.string.cerrar));
         closeButton.setTextColor(Color.WHITE);
         closeButton.setTextSize(14);
+        closeButton.setAllCaps(false);
 
         GradientDrawable buttonBg = new GradientDrawable();
         buttonBg.setShape(GradientDrawable.RECTANGLE);
         buttonBg.setColor(COLOR_BUTTON);
         buttonBg.setCornerRadius(dpToPx(8));
         closeButton.setBackground(buttonBg);
-        closeButton.setPadding(dpToPx(40), dpToPx(12), dpToPx(40), dpToPx(12));
+        closeButton.setPadding(dpToPx(28), dpToPx(12), dpToPx(28), dpToPx(12));
 
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        buttonParams.gravity = Gravity.CENTER;
-        buttonParams.setMargins(0, dpToPx(4), 0, 0);
         closeButton.setLayoutParams(buttonParams);
         closeButton.setOnClickListener(v -> dismissWithAnimation());
 
-        container.addView(closeButton);
+        buttonBar.addView(reprogramButton);
+        buttonBar.addView(closeButton);
+        container.addView(buttonBar);
 
         return container;
     }
@@ -349,44 +398,10 @@ public class MemoryDisplayManager {
         int bytesPerRow = groupSize * columns;
 
         for (int i = 0; i < data.length(); i += bytesPerRow) {
-            StringBuilder hexPart = new StringBuilder();
-            StringBuilder asciiPart = new StringBuilder();
-
+            String fullText = buildRowText(data, i, address, groupSize, columns, isROM);
             String addressHex = String.format("%04X", address);
-            hexPart.append(addressHex).append(": ");
-
-            for (int j = 0; j < columns; j++) {
-                int start = i + j * groupSize;
-                int end = Math.min(start + groupSize, data.length());
-
-                if (start < data.length()) {
-                    String hexGroup = data.substring(start, end);
-                    hexPart.append(hexGroup).append(" ");
-
-                    if (isROM) {
-                        if (hexGroup.length() >= 2) {
-                            String lowByteHex = hexGroup.substring(hexGroup.length() - 2);
-                            appendAscii(asciiPart, lowByteHex);
-                        }
-                    } else {
-                        for (int k = 0; k < hexGroup.length(); k += 2) {
-                            if (k + 2 <= hexGroup.length()) {
-                                appendAscii(asciiPart, hexGroup.substring(k, k + 2));
-                            }
-                        }
-                    }
-                }
-            }
-
-            String fullText = hexPart.toString() + "│" + asciiPart.toString();
-            TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, hexPart.length());
-            final int currentRowAddr = address;
-            final boolean currentIsRom = isROM;
-            rowTextView.setOnClickListener(v -> {
-                if (rowClickListener != null) {
-                    rowClickListener.onRowClick(currentIsRom, currentRowAddr, rowTextView);
-                }
-            });
+            TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, 0);
+            attachRowClickListener(rowTextView, isROM, address, groupSize, columns, memorySize);
             container.addView(rowTextView);
 
             address += columns;
@@ -395,40 +410,140 @@ public class MemoryDisplayManager {
         int totalDataRows = (int) Math.ceil(data.length() / (double) bytesPerRow);
         int totalMemoryRows = (int) Math.ceil(memorySize / (double) columns);
 
-        String emptyValue = isROM ? (groupSize == 4 ? "3FFF" : "FFFF") : "FF";
-
         for (int i = totalDataRows; i < totalMemoryRows && i < totalDataRows + 50; i++) {
+            String fullText = buildRowText(data, address * groupSize, address, groupSize, columns, isROM);
             String addressHex = String.format("%04X", address);
-            StringBuilder hexPart = new StringBuilder();
-            StringBuilder asciiPart = new StringBuilder();
-
-            hexPart.append(addressHex).append(": ");
-
-            for (int j = 0; j < columns; j++) {
-                hexPart.append(emptyValue).append(" ");
-                for (int k = 0; k < groupSize / 2; k++) {
-                    asciiPart.append('.');
-                }
-            }
-
-            String fullText = hexPart.toString() + "│" + asciiPart.toString();
-            TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, hexPart.length());
-            final int currentRowAddr = address;
-            final boolean currentIsRom = isROM;
-            rowTextView.setOnClickListener(v -> {
-                if (rowClickListener != null) {
-                    rowClickListener.onRowClick(currentIsRom, currentRowAddr, rowTextView);
-                }
-            });
+            TextView rowTextView = createColoredRowWithAscii(fullText, addressHex, groupSize, isROM, 0);
+            attachRowClickListener(rowTextView, isROM, address, groupSize, columns, memorySize);
             container.addView(rowTextView);
 
             address += columns;
         }
     }
 
+    private String buildRowText(String data, int rowStartOffset, int rowBaseAddress, int groupSize, int columns, boolean isROM) {
+        String addressHex = String.format("%04X", rowBaseAddress);
+        StringBuilder hexPart = new StringBuilder();
+        StringBuilder asciiPart = new StringBuilder();
+        hexPart.append(addressHex).append(": ");
+
+        String emptyValue = isROM ? (groupSize == 4 ? "3FFF" : "FFFF") : "FF";
+        int safeLen = (data != null) ? data.length() : 0;
+
+        for (int j = 0; j < columns; j++) {
+            int start = rowStartOffset + j * groupSize;
+            int end = start + groupSize;
+            String hexGroup;
+            if (data != null && start >= 0 && end <= safeLen) {
+                hexGroup = data.substring(start, end);
+            } else if (data != null && start >= 0 && start < safeLen) {
+                hexGroup = data.substring(start, safeLen);
+            } else {
+                hexGroup = emptyValue;
+            }
+            hexPart.append(hexGroup).append(" ");
+
+            if (isROM) {
+                if (hexGroup.length() >= 2) {
+                    String lowByteHex = hexGroup.substring(hexGroup.length() - 2);
+                    appendAscii(asciiPart, lowByteHex);
+                } else {
+                    asciiPart.append('.');
+                }
+            } else {
+                for (int k = 0; k < hexGroup.length(); k += 2) {
+                    if (k + 2 <= hexGroup.length()) {
+                        appendAscii(asciiPart, hexGroup.substring(k, k + 2));
+                    }
+                }
+            }
+        }
+
+        return hexPart.toString() + "│" + asciiPart.toString();
+    }
+
+    @android.annotation.SuppressLint("ClickableViewAccessibility")
+    private void attachRowClickListener(TextView rowTextView, boolean isROM, int rowBaseAddr,
+            int groupSize, int columns, int memorySize) {
+        final float[] lastTouchX = new float[] { -1f };
+        rowTextView.setOnTouchListener((v, event) -> {
+            if (event != null && event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+                lastTouchX[0] = event.getX();
+            }
+            return false;
+        });
+        rowTextView.setOnClickListener(v -> {
+            if (rowClickListener == null) {
+                return;
+            }
+            int col = 0;
+            if (lastTouchX[0] >= 0f && rowTextView.getLayout() != null) {
+                float x = lastTouchX[0] - rowTextView.getTotalPaddingLeft() + rowTextView.getScrollX();
+                int charOffset = rowTextView.getLayout().getOffsetForHorizontal(0, Math.max(0f, x));
+                int dataStart = 6; // "XXXX: "
+                int cellStride = groupSize + 1; // "XXXX " o "XX "
+                int dataEnd = dataStart + columns * cellStride;
+                CharSequence text = rowTextView.getText();
+                int sepPos = text != null ? text.toString().indexOf("│") : -1;
+                if (charOffset < dataStart) {
+                    col = 0;
+                } else if (charOffset < dataEnd) {
+                    col = (charOffset - dataStart) / cellStride;
+                } else if (sepPos >= 0 && charOffset > sepPos) {
+                    col = charOffset - (sepPos + 1);
+                }
+            }
+            if (col < 0) {
+                col = 0;
+            } else if (col >= columns) {
+                col = columns - 1;
+            }
+            int targetAddr = rowBaseAddr + col;
+            if (memorySize > 0 && targetAddr >= memorySize) {
+                targetAddr = Math.max(rowBaseAddr, memorySize - 1);
+            }
+            rowClickListener.onRowClick(isROM, targetAddr, rowTextView);
+        });
+    }
+
+    /**
+     * Refresca visualmente una fila de memoria tras editar una celda en el Editor Hexadecimal,
+     * conservando todos los colores de sintaxis y actualizando la columna ASCII.
+     */
+    public void refreshRow(boolean isROM, int address, String fullHexData, int memorySize) {
+        LinearLayout container = isROM ? romContainer : eepromContainer;
+        if (container == null) {
+            return;
+        }
+        int columns = 8;
+        int groupSize = isROM ? 4 : 2;
+        int rowIndex = address / columns;
+        int rowBaseAddr = rowIndex * columns;
+        if (rowIndex < 0 || rowIndex >= container.getChildCount()) {
+            return;
+        }
+        View child = container.getChildAt(rowIndex);
+        if (!(child instanceof TextView)) {
+            return;
+        }
+        TextView rowTextView = (TextView) child;
+        String addressHex = String.format("%04X", rowBaseAddr);
+        String fullText = buildRowText(fullHexData, rowBaseAddr * groupSize, rowBaseAddr, groupSize, columns, isROM);
+        rowTextView.setText(buildColoredSpannable(fullText, addressHex, isROM));
+    }
+
     private TextView createColoredRowWithAscii(String fullText, String address, int groupSize, boolean isROM,
             int hexPartLength) {
         TextView textView = new TextView(context);
+        textView.setText(buildColoredSpannable(fullText, address, isROM));
+        textView.setTextSize(12);
+        textView.setTypeface(Typeface.MONOSPACE);
+        textView.setPadding(dpToPx(4), dpToPx(1), dpToPx(4), dpToPx(1));
+
+        return textView;
+    }
+
+    private SpannableString buildColoredSpannable(String fullText, String address, boolean isROM) {
         SpannableString spannableString = new SpannableString(fullText);
 
         int dirEnd = address.length() + 2;
@@ -469,12 +584,7 @@ public class MemoryDisplayManager {
             }
         }
 
-        textView.setText(spannableString);
-        textView.setTextSize(12);
-        textView.setTypeface(Typeface.MONOSPACE);
-        textView.setPadding(dpToPx(4), dpToPx(1), dpToPx(4), dpToPx(1));
-
-        return textView;
+        return spannableString;
     }
 
     private boolean isEmptyData(String data, boolean isROM) {

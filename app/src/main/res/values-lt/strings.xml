@@ -374,11 +374,7 @@ Išėmę mikroschemą, bakstelėkite „Tęsti“, kad įjungtumėte matavimą, 
 Dabartinė reikšmė: 0x%2$s (Maksimali: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Žodžio formatas ir baitų tvarka („Little-Endian“)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM ląstelės formatas (8 bitai)</string>
-    <string name="hex_editor_desc_rom">• PIC mikrovaldikliai saugo 14/16 bitų žodžius „Little-Endian“ tvarka:
-   - Žemasis baitas (LSB): 0x%1$s (poslinkis 2×N)
-   - Aukštasis baitas (MSB): 0x%2$s (poslinkis 2×N+1)
-• Kaip redaguoti?: Įveskite visą loginį žodį [MSB][LSB] (pvz., 2805 = LSB 05, MSB 28).
-• Programėlė automatiškai pertvarko baitus į „Little-Endian“ mikroschemai ir HEX failui.</string>
+    <string name="hex_editor_desc_rom">Įveskite žodį logine MSB LSB tvarka. Little-Endian konvertavimas automatiškai taikomas mikrovaldikliui ir HEX failui.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM ląsteles sudaro atskiri 8 bitų baitai.
 • Įveskite 2 simbolių šešioliktainį baitą tiesiogiai (diapazonas: nuo 00 iki FF).</string>
     <string name="hex_editor_input_label_rom">Įveskite naują reikšmę (Hex žodis [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Perprogramuoti</string>
+    <string name="pro_permanent_active_title">K150 Pro Nuolatinis aktyvus</string>
+    <string name="pro_permanent_active_desc">Turite nuolatinę K150 Pro prieigą. Visi išplėstiniai įrankiai yra visiškai atrakinti be skelbimų ar laiko apribojimų.</string>
 </resources>

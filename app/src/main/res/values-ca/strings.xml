@@ -374,11 +374,7 @@ Un cop retirat el xip, premeu \'Continuar\' per activar la mesura, o \'Cancel·l
 Valor actual: 0x%2$s (Màxim: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format de Paraula i Ordre de Bytes (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format de Cel·la EEPROM (8 bits)</string>
-    <string name="hex_editor_desc_rom">• Els PIC emmagatzemen paraules de 14/16 bits en ordre Little-Endian:
-   - Byte Baix (LSB): 0x%1$s (desplaçament 2×N)
-   - Byte Alt (MSB): 0x%2$s (desplaçament 2×N+1)
-• Com editar?: Introduïu la paraula lògica completa [MSB][LSB] (ex. 2805 = LSB 05, MSB 28).
-• L\'aplicació reordena automàticament els bytes a Little-Endian per al silici i el fitxer HEX.</string>
+    <string name="hex_editor_desc_rom">Introduïu la paraula en ordre lògic MSB LSB. La conversió a Little-Endian s\'aplica automàticament per al microcontrolador i el fitxer HEX.</string>
     <string name="hex_editor_desc_eeprom">• Les cel·les EEPROM consten de bytes individuals de 8 bits.
 • Introduïu directament el byte hexadecimal de 2 caràcters (rang: 00 a FF).</string>
     <string name="hex_editor_input_label_rom">Introduïu un nou valor (Paraula Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Si us plau inseriu el PIC %1$s a la posició corresponent, bloquegeu la palanca 
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Reprogramar</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanent Actiu</string>
+    <string name="pro_permanent_active_desc">Disposes de la versió K150 Pro permanent. Totes les eines avançades estan desbloquejades sense anuncis ni límits de temps.</string>
 </resources>

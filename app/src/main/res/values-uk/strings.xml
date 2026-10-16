@@ -374,11 +374,7 @@
 Поточне значення: 0x%2$s (Максимум: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Формат слова та порядок байтів (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Формат комірки EEPROM (8-бітний)</string>
-    <string name="hex_editor_desc_rom">• Мікроконтролери PIC зберігають 14/16-бітні слова у порядку Little-Endian:
-   - Молодший байт (LSB): 0x%1$s (зсув 2×N)
-   - Старший байт (MSB): 0x%2$s (зсув 2×N+1)
-• Як редагувати?: Введіть повне логічне слово [MSB][LSB] (наприклад, 2805 = LSB 05, MSB 28).
-• Програма автоматично переставляє байти в Little-Endian для кристала та файлу HEX.</string>
+    <string name="hex_editor_desc_rom">Введіть слово у логічному порядку MSB LSB. Перетворення у Little-Endian застосовується автоматично для мікроконтролера та файлу HEX.</string>
     <string name="hex_editor_desc_eeprom">• Комірки EEPROM складаються з окремих 8-бітних байтів.
 • Введіть двозначний шістнадцятковий байт безпосередньо (діапазон: від 00 до FF).</string>
     <string name="hex_editor_input_label_rom">Введіть нове значення (Слово Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Перепрограмувати</string>
+    <string name="pro_permanent_active_title">K150 Pro Постійний активний</string>
+    <string name="pro_permanent_active_desc">У вас є постійний доступ до K150 Pro. Усі розширені інструменти повністю розблоковано без реклами чи часових обмежень.</string>
 </resources>

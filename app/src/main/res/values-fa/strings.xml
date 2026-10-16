@@ -374,11 +374,7 @@
 مقدار فعلی: 0x%2$s (حداکثر: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ قالب کلمه و ترتیب بایت‌ها (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ قالب سلول EEPROM (۸ بیتی)</string>
-    <string name="hex_editor_desc_rom">• تراشه‌های PIC کلمات ۱۴/۱۶ بیتی را به ترتیب Little-Endian ذخیره می‌کنند:
-   - بایت پایین (LSB): 0x%1$s (آفست 2×N)
-   - بایت بالا (MSB): 0x%2$s (آفست 2×N+1)
-• نحوه ویرایش: کلمه منطقی کامل را وارد کنید [MSB][LSB] (مثلاً 2805 = LSB 05, MSB 28).
-• برنامه به طور خودکار بایت‌ها را به Little-Endian برای سیلیکون و فایل HEX مرتب می‌کند.</string>
+    <string name="hex_editor_desc_rom">کلمه را به ترتیب منطقی MSB LSB وارد کنید. تبدیل Little-Endian به طور خودکار برای میکروکنترلر و فایل HEX اعمال می‌شود.</string>
     <string name="hex_editor_desc_eeprom">• سلول‌های EEPROM شامل بایت‌های مجزای ۸ بیتی هستند.
 • بایت هگزادسیمال ۲ کاراکتری را مستقیماً وارد کنید (محدوده: 00 تا FF).</string>
     <string name="hex_editor_input_label_rom">مقدار جدید را وارد کنید (کلمه هگز [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">برنامه‌ریزی مجدد</string>
+    <string name="pro_permanent_active_title">K150 Pro دائمی فعال</string>
+    <string name="pro_permanent_active_desc">شما دسترسی دائمی به K150 Pro دارید. همه ابزارهای پیشرفته بدون تبلیغات یا محدودیت زمانی کاملاً باز شده‌اند.</string>
 </resources>

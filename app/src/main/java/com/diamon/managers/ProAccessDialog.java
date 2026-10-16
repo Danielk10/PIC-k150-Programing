@@ -58,6 +58,14 @@ public class ProAccessDialog {
 
         if (activity.isFinishing() || activity.isDestroyed()) return;
 
+        if (billingManager != null && billingManager.isProPurchased()) {
+            Toast.makeText(activity, activity.getString(R.string.pro_permanent_active_desc), Toast.LENGTH_LONG).show();
+            if (onProUnlocked != null) {
+                onProUnlocked.run();
+            }
+            return;
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         float density = activity.getResources().getDisplayMetrics().density;
 

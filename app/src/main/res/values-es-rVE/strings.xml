@@ -475,10 +475,13 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="hex_editor_label_current">Actual</string>
     <string name="hex_editor_label_max">Máximo</string>
     <string name="hex_editor_byte_low">Byte bajo: 0x%1$s</string>
-    <string name="hex_editor_byte_high">Byte alto: 0x%2$s</string>
+    <string name="hex_editor_byte_high">Byte alto: 0x%1$s</string>
     <string name="about_more_apps_title">Otras aplicaciones del desarrollador en Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">Ver en Google Play</string>
+    <string name="reprogramar">Reprogramar</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanente Activo</string>
+    <string name="pro_permanent_active_desc">Dispones de la versión K150 Pro permanente. Todas las herramientas avanzadas están desbloqueadas sin anuncios ni límites de tiempo.</string>
 </resources>

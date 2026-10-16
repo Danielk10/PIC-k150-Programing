@@ -475,10 +475,13 @@ Please insert the PIC %1$s in the corresponding position, lock the lever, and ta
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Reprogram</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanent Active</string>
+    <string name="pro_permanent_active_desc">You have permanent K150 Pro access. All advanced tools are fully unlocked without ads or time limits.</string>
 </resources>

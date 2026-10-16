@@ -374,11 +374,7 @@
 वर्तमान मान: 0x%2$s (अधिकतम: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ वर्ड फॉर्मेट और बाइट क्रम (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM सेल फॉर्मेट (8-बिट)</string>
-    <string name="hex_editor_desc_rom">• PIC 14/16-बिट शब्दों को Little-Endian क्रम में संग्रहीत करते हैं:
-   - निचला बाइट (LSB): 0x%1$s (ऑफ़सेट 2×N)
-   - उच्च बाइट (MSB): 0x%2$s (ऑफ़सेट 2×N+1)
-• कैसे संपादित करें?: पूरा तार्किक शब्द दर्ज करें [MSB][LSB] (उदा. 2805 = LSB 05, MSB 28)।
-• ऐप स्वचालित रूप से सिलिकॉन और HEX फ़ाइल के लिए बाइट्स को Little-Endian में पुनर्व्यवस्थित करता है।</string>
+    <string name="hex_editor_desc_rom">शब्द को MSB LSB तार्किक क्रम में दर्ज करें। माइक्रोकंट्रोलर और HEX फ़ाइल के लिए Little-Endian रूपांतरण स्वचालित रूप से लागू होता है।</string>
     <string name="hex_editor_desc_eeprom">• EEPROM सेल अलग-अलग 8-बिट बाइट्स से बने होते हैं।
 • सीधे 2-वर्ण हेक्साडेसिमल बाइट दर्ज करें (श्रेणी: 00 से FF)।</string>
     <string name="hex_editor_input_label_rom">नया मान दर्ज करें (हेक्स वर्ड [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">पुनः प्रोग्राम करें</string>
+    <string name="pro_permanent_active_title">K150 Pro स्थायी सक्रिय</string>
+    <string name="pro_permanent_active_desc">आपके पास स्थायी K150 Pro का उपयोग है। बिना किसी विज्ञापन या समय सीमा के सभी उन्नत उपकरण पूरी तरह से अनलॉक हैं।</string>
 </resources>

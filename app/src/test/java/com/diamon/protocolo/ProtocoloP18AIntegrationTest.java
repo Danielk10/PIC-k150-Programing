@@ -1120,4 +1120,72 @@ public class ProtocoloP18AIntegrationTest {
         boolean resultadoDefault = protocolo.programarDatosDeCalibracionDePics10F();
         assertTrue("La programación de calibración por defecto para PIC10F falló", resultadoDefault);
     }
+
+    @Test
+    public void testFlujoLecturaEdicionHexYReprogramacionConEmulador() throws Exception {
+        // 1. Inicializar el chip en el emulador y borrarlo
+        assertTrue("Fallo al iniciar variables de programación", protocolo.iniciarVariablesDeProgramacion(chip16f628a));
+        assertTrue("Fallo al borrar el chip", protocolo.borrarMemoriasDelPic());
+
+        // 2. Leer la memoria del chip (está en blanco)
+        String romLeidaInicial = protocolo.leerMemoriaROMDelPic(chip16f628a);
+        String eepromLeidaInicial = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+        String configLeidaInicial = protocolo.leerDatosDeConfiguracionDelPic();
+
+        assertNotNull(romLeidaInicial);
+        assertNotNull(eepromLeidaInicial);
+        assertNotNull(configLeidaInicial);
+
+        // 3. Simular la edición en el Hex Editor:
+        //    - Modificar la palabra 0 de ROM a 0x2805 (GOTO 0x005)
+        //    - Modificar el byte 0 de EEPROM a 0xA5
+        String romEditada = com.diamon.managers.HexEditorManager.actualizarCeldaEnHexLeido(
+                romLeidaInicial, true, 0, 0x2805, chip16f628a);
+        String eepromEditada = com.diamon.managers.HexEditorManager.actualizarCeldaEnHexLeido(
+                eepromLeidaInicial, false, 0, 0xA5, chip16f628a);
+
+        assertTrue("La ROM editada debe comenzar con 2805", romEditada.startsWith("2805"));
+        assertTrue("La EEPROM editada debe comenzar con A5", eepromEditada.startsWith("A5"));
+
+        // 4. Reconstruir firmware Intel HEX y procesar con DatosPicProcesados
+        String firmwareReconstruido = com.diamon.managers.HexEditorManager.construirFirmwareIntelHexDesdeLectura(
+                romEditada, eepromEditada, configLeidaInicial, chip16f628a);
+
+        assertNotNull(firmwareReconstruido);
+        com.diamon.datos.DatosPicProcesados datosPicEditados = new com.diamon.datos.DatosPicProcesados(
+                null, firmwareReconstruido, chip16f628a);
+        datosPicEditados.iniciarProcesamientoDeDatos();
+
+        // 5. Reprogramar el chip en el emulador con la memoria editada
+        boolean romProgOk = protocolo.programarMemoriaROMDelPic(chip16f628a, datosPicEditados);
+        assertTrue("Fallo al reprogramar ROM editada", romProgOk);
+
+        boolean eepromProgOk = protocolo.programarMemoriaEEPROMDelPic(chip16f628a, datosPicEditados);
+        assertTrue("Fallo al reprogramar EEPROM editada", eepromProgOk);
+
+        // 6. Leer nuevamente del emulador y verificar que los datos editados se grabaron físicamente
+        String romLeidaFinal = protocolo.leerMemoriaROMDelPic(chip16f628a);
+        String eepromLeidaFinal = protocolo.leerMemoriaEEPROMDelPic(chip16f628a);
+
+        assertNotNull(romLeidaFinal);
+        assertTrue("La ROM reprogramada en el silicio/emulador debe contener la palabra 0x2805 (Little-Endian 0528)",
+                romLeidaFinal.startsWith("0528"));
+
+        assertNotNull(eepromLeidaFinal);
+        assertTrue("La EEPROM reprogramada en el silicio/emulador debe contener el byte 0xA5",
+                eepromLeidaFinal.startsWith("A5"));
+
+        // 7. Simular la exportación de la memoria editada y verificar que conserva los datos modificados
+        byte[] romBytesExport = com.diamon.managers.HexExportManager.formatForHexExport(
+                com.diamon.utilidades.ByteUtils.hexToBytes(romEditada), 14, false);
+        String hexExportadoRom = com.diamon.managers.HexExportManager.convertSegmentToIntelHex(romBytesExport, 0);
+        assertTrue("El dump HEX exportado de ROM debe contener la palabra modificada Little-Endian 0528",
+                hexExportadoRom.contains("0528"));
+
+        byte[] eepromBytesExport = com.diamon.managers.HexExportManager.formatForHexExport(
+                com.diamon.utilidades.ByteUtils.hexToBytes(eepromEditada), 14, true);
+        String hexExportadoEeprom = com.diamon.managers.HexExportManager.convertSegmentToIntelHex(eepromBytesExport, 0x4200);
+        assertTrue("El dump HEX exportado de EEPROM debe contener el byte modificado Little-Endian A500",
+                hexExportadoEeprom.contains("A500"));
+    }
 }

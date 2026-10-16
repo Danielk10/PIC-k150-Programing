@@ -374,11 +374,7 @@ Kun siru on poistettu, napauta \'Jatka\' ottaaksesi mittauksen käyttöön tai \
 Nykyinen arvo: 0x%2$s (Enintään: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Sanan Muoto ja Tavujärjestys (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-solumuoto (8-bittinen)</string>
-    <string name="hex_editor_desc_rom">• PIC-piirit tallentavat 14/16-bittiset sanat Little-Endian-järjestyksessä:
-   - Matala tavu (LSB): 0x%1$s (siirtymä 2×N)
-   - Korkea tavu (MSB): 0x%2$s (siirtymä 2×N+1)
-• Kuinka muokata?: Syötä koko looginen sana [MSB][LSB] (esim. 2805 = LSB 05, MSB 28).
-• Sovellus järjestää tavut automaattisesti Little-Endian-järjestykseen sirulle ja HEX-tiedostolle.</string>
+    <string name="hex_editor_desc_rom">Syötä sana loogisessa MSB LSB -järjestyksessä. Little-Endian-muunnos tehdään automaattisesti mikrokontrollerille ja HEX-tiedostolle.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM-solut koostuvat yksittäisistä 8-bittisistä tavuista.
 • Syötä 2-merkkinen heksadesimaalitavu suoraan (alue: 00 - FF).</string>
     <string name="hex_editor_input_label_rom">Syötä uusi arvo (Heksa-sana [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</s
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Ohjelmoi uudelleen</string>
+    <string name="pro_permanent_active_title">K150 Pro Pysyvä aktiivinen</string>
+    <string name="pro_permanent_active_desc">Sinulla on pysyvä K150 Pro -käyttöoikeus. Kaikki edistyneet työkalut ovat täysin auki ilman mainoksia tai aikarajoituksia.</string>
 </resources>

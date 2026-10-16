@@ -374,11 +374,7 @@
 当前值：0x%2$s (最大值：0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ 字格式与字节顺序 (小端序 Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM 单元格式 (8 位)</string>
-    <string name="hex_editor_desc_rom">• PIC 按小端序 (Little-Endian) 存储 14/16 位字：
-   - 低字节 (LSB)：0x%1$s (偏移量 2×N)
-   - 高字节 (MSB)：0x%2$s (偏移量 2×N+1)
-• 如何编辑？：输入完整的逻辑字 [MSB][LSB] (例如 2805 = LSB 05, MSB 28)。
-• 应用会自动将字节重新排列为小端序以写入芯片和 HEX 文件。</string>
+    <string name="hex_editor_desc_rom">按 MSB LSB 逻辑顺序输入字。系统会自动为微控制器和 HEX 文件应用小端序转换。</string>
     <string name="hex_editor_desc_eeprom">• EEPROM 单元由独立的 8 位字节组成。
 • 直接输入 2 个字符的十六进制字节 (范围：00 至 FF)。</string>
     <string name="hex_editor_input_label_rom">输入新值 (十六进制字 [MSB][LSB])：</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">重新编程</string>
+    <string name="pro_permanent_active_title">K150 Pro 永久激活</string>
+    <string name="pro_permanent_active_desc">您已拥有永久 K150 Pro 访问权限。所有高级工具已完全解锁，无广告且无时间限制。</string>
 </resources>

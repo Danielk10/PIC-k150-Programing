@@ -374,11 +374,7 @@
 ערך נוכחי: 0x%2$s (מקסימום: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ מבנה מילה וסדר בייטים (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ מבנה תא EEPROM (8 סיביות)</string>
-    <string name="hex_editor_desc_rom">• בקרי PIC שומרים מילות 14/16 סיביות בסדר Little-Endian:
-   - בייט נמוך (LSB): 0x%1$s (היסט 2×N)
-   - בייט גבוה (MSB): 0x%2$s (היסט 2×N+1)
-• כיצד לערוך?: הזן מילה לוגית מלאה [MSB][LSB] (למשל 2805 = LSB 05, MSB 28).
-• האפליקציה מסדרת אוטומטית את הבייטים ל-Little-Endian עבור השבב וקובץ ה-HEX.</string>
+    <string name="hex_editor_desc_rom">הזן את המילה בסדר לוגי MSB LSB. המרת Little-Endian מוחלת באופן אוטומטי עבור המיקרו-בקר וקובץ ה-HEX.</string>
     <string name="hex_editor_desc_eeprom">• תאי EEPROM מורכבים מבייטים בודדים של 8 סיביות.
 • הזן את הבייט ההקסדצימלי בן 2 התווים ישירות (טווח: 00 עד FF).</string>
     <string name="hex_editor_input_label_rom">הזן ערך חדש (מילת Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">תכנת מחדש</string>
+    <string name="pro_permanent_active_title">K150 Pro קבוע פעיל</string>
+    <string name="pro_permanent_active_desc">יש לך גישה קבועה ל-K150 Pro. כל הכלים המתקדמים פתוחים לחלוטין ללא פרסומות או מגבלות זמן.</string>
 </resources>

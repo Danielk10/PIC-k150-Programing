@@ -374,11 +374,7 @@
 القيمة الحالية: 0x%2$s (الحد الأقصى: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ تنسيق الكلمة وترتيب البايتات (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ تنسيق خلية EEPROM (8 بت)</string>
-    <string name="hex_editor_desc_rom">• تخزن معالجات PIC كلمات 14/16 بت بترتيب Little-Endian:
-   - البايت المنخفض (LSB): 0x%1$s (الإزاحة 2×N)
-   - البايت المرتفع (MSB): 0x%2$s (الإزاحة 2×N+1)
-• كيفية التعديل؟: أدخل الكلمة المنطقية كاملة [MSB][LSB] (مثال: 2805 = LSB 05, MSB 28).
-• يعيد التطبيق ترتيب البايتات تلقائياً إلى Little-Endian للسيليكون وملف HEX.</string>
+    <string name="hex_editor_desc_rom">أدخل الكلمة بالترتيب المنطقي MSB LSB. يتم تطبيق تحويل Little-Endian تلقائيًا للمتحكم الدقيق وملف HEX.</string>
     <string name="hex_editor_desc_eeprom">• تتكون خلايا EEPROM من بايتات مفردة بحجم 8 بت.
 • أدخل البايت السداسي عشري المكون من حرفين مباشرة (النطاق: 00 إلى FF).</string>
     <string name="hex_editor_input_label_rom">أدخل القيمة الجديدة (كلمة سداسية عشرية [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">إعادة البرمجة</string>
+    <string name="pro_permanent_active_title">K150 Pro الدائم نشط</string>
+    <string name="pro_permanent_active_desc">لديك وصول دائم إلى K150 Pro. تم إلغاء قفل جميع الأدوات المتقدمة بالكامل دون إعلانات أو حدود زمنية.</string>
 </resources>

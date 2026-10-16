@@ -374,11 +374,7 @@ Une fois la puce retirée, appuyez sur \'Continuer\' pour activer la mesure, ou 
 Valeur actuelle : 0x%2$s (Maximum : 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format de Mot et Ordre des Octets (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format de Cellule EEPROM (8 bits)</string>
-    <string name="hex_editor_desc_rom">• Les PIC stockent les mots de 14/16 bits dans l\'ordre Little-Endian :
-   - Octet de poids faible (LSB) : 0x%1$s (décalage 2×N)
-   - Octet de poids fort (MSB) : 0x%2$s (décalage 2×N+1)
-• Comment modifier ? : Entrez le mot logique complet [MSB][LSB] (ex. 2805 = LSB 05, MSB 28).
-• L\'application réordonne automatiquement les octets en Little-Endian pour le silicium et le fichier HEX.</string>
+    <string name="hex_editor_desc_rom">Entrez le mot dans l\'ordre logique MSB LSB. La conversion Little-Endian est appliquée automatiquement pour le microcontrôleur et le fichier HEX.</string>
     <string name="hex_editor_desc_eeprom">• Les cellules EEPROM se composent d\'octets individuels de 8 bits.
 • Entrez directement l\'octet hexadécimal à 2 caractères (plage : 00 à FF).</string>
     <string name="hex_editor_input_label_rom">Entrez la nouvelle valeur (Mot hex [MSB][LSB]) :</string>
@@ -481,10 +477,13 @@ Veuillez insérer le PIC %1$s dans la position correspondante, verrouiller le le
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Reprogrammer</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanent Actif</string>
+    <string name="pro_permanent_active_desc">Vous disposez d\'un accès K150 Pro permanent. Tous les outils avancés sont entièrement déverrouillés, sans publicité ni limite de temps.</string>
 </resources>

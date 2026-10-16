@@ -374,11 +374,7 @@ Setelah chip dilepas, ketuk \'Lanjutkan\' untuk mengaktifkan pengukuran, atau \'
 Nilai saat ini: 0x%2$s (Maksimum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format Word &amp; Urutan Byte (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format Sel EEPROM (8-bit)</string>
-    <string name="hex_editor_desc_rom">• PIC menyimpan word 14/16-bit dalam urutan Little-Endian:
-   - Byte Rendah (LSB): 0x%1$s (offset 2×N)
-   - Byte Tinggi (MSB): 0x%2$s (offset 2×N+1)
-• Cara mengedit: Masukkan word logis lengkap [MSB][LSB] (mis. 2805 = LSB 05, MSB 28).
-• Aplikasi secara otomatis mengurutkan byte ke Little-Endian untuk silikon dan file HEX.</string>
+    <string name="hex_editor_desc_rom">Masukkan kata dalam urutan logis MSB LSB. Konversi Little-Endian diterapkan secara otomatis untuk mikrokontroler dan file HEX.</string>
     <string name="hex_editor_desc_eeprom">• Sel EEPROM terdiri dari byte 8-bit individual.
 • Masukkan 2 karakter byte heksadesimal secara langsung (rentang: 00 hingga FF).</string>
     <string name="hex_editor_input_label_rom">Masukkan nilai baru (Word Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Harap masukkan PIC %1$s pada posisi yang sesuai, kunci tuasnya, lalu ketuk [%2$s
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Program Ulang</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanen Aktif</string>
+    <string name="pro_permanent_active_desc">Anda memiliki akses K150 Pro permanen. Semua alat canggih sepenuhnya terbuka tanpa iklan atau batas waktu.</string>
 </resources>

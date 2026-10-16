@@ -374,11 +374,7 @@ Uma i-chip isikhishiwe, thinta \'Qhubeka\' ukuze uvule isilinganiso, noma \'Khan
 Inani lamanje: 0x%2$s (Ubukhulu: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Ifomethi Yegama Nokulandelana Kwe-Byte (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Ifomethi Yeseli ye-EEPROM (amabhithi angu-8)</string>
-    <string name="hex_editor_desc_rom">• Ama-PIC agcina amagama angamabhithi angu-14/16 ngokulandelana kwe-Little-Endian:
-   - I-Byte Ephansi (LSB): 0x%1$s (offset 2×N)
-   - I-Byte Ephezulu (MSB): 0x%2$s (offset 2×N+1)
-• Uhlela kanjani?: Faka igama eligcwele elinengqondo [MSB][LSB] (isib. 2805 = LSB 05, MSB 28).
-• Uhlelo lokusebenza luhlela kabusha ngokuzenzakalelayo amabhayithi abe yi-Little-Endian ye-silicon nefayela le-HEX.</string>
+    <string name="hex_editor_desc_rom">Faka igama ngokulandelana okunengqondo kwe-MSB LSB. Ukuguqulwa kwe-Little-Endian kusetshenziswa ngokuzenzakalelayo ku-microcontroller nefayela le-HEX.</string>
     <string name="hex_editor_desc_eeprom">• Amaseli e-EEPROM anama-byte angamabhithi angu-8 ngalinye.
 • Faka i-byte ye-hexadecimal enezinhlamvu ezi-2 ngokuqondile (ibanga: 00 kuya ku-FF).</string>
     <string name="hex_editor_input_label_rom">Faka inani elisha (Igama le-Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Hlela kabusha</string>
+    <string name="pro_permanent_active_title">K150 Pro Unomphela Iyasebenza</string>
+    <string name="pro_permanent_active_desc">Unokufinyelela okungunaphakade kwe-K150 Pro. Wonke amathuluzi athuthukile avuliwe ngokugcwele ngaphandle kwezikhangiso noma imikhawulo yesikhathi.</string>
 </resources>

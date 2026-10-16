@@ -374,11 +374,7 @@ Baada ya kuondoa chip, gonga \'Endelea\' ili kuanzisha kipimo, au \'Ghairi\' ili
 Thamani ya sasa: 0x%2$s (Kiwango cha juu: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Muundo wa Neno na Mpangilio wa Baiti (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Muundo wa Seli ya EEPROM (Biti 8)</string>
-    <string name="hex_editor_desc_rom">• PIC huhifadhi maneno ya biti 14/16 kwa mpangilio wa Little-Endian:
-   - Baiti ya Chini (LSB): 0x%1$s (kikomo 2×N)
-   - Baiti ya Juu (MSB): 0x%2$s (kikomo 2×N+1)
-• Jinsi ya kuhariri?: Weka neno kamili la kimantiki [MSB][LSB] (mfano 2805 = LSB 05, MSB 28).
-• Programu hupanga upya baiti kiotomatiki kuwa Little-Endian kwa silicon na faili ya HEX.</string>
+    <string name="hex_editor_desc_rom">Ingiza neno kwa mpangilio wa kimantiki wa MSB LSB. Ubadilishaji wa Little-Endian unatumika kiotomatiki kwa kidhibiti kidogo na faili ya HEX.</string>
     <string name="hex_editor_desc_eeprom">• Seli za EEPROM zinajumuisha baiti moja moja za biti 8.
 • Weka baiti ya hexadecimal ya herufi 2 moja kwa moja (masafa: 00 hadi FF).</string>
     <string name="hex_editor_input_label_rom">Weka thamani mpya (Neno la Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Panga Upya</string>
+    <string name="pro_permanent_active_title">K150 Pro Ya Kudumu Inayotumika</string>
+    <string name="pro_permanent_active_desc">Una ufikiaji wa kudumu wa K150 Pro. Zana zote za hali ya juu zimefunguliwa kikamilifu bila matangazo au vikomo vya muda.</string>
 </resources>

@@ -226,9 +226,6 @@ public class DatosPicProcesados {
             //   por eso aquí solo se swabbea EEPROM para 16-bit.
             if (swapBytes) {
                 romRecords = HexFileUtils.swabRecords(romRecords);
-                if (coreBits == 16) {
-                    eepromRecords = HexFileUtils.swabRecords(eepromRecords);
-                }
             }
             if (swapConfig) {
                 idRecords = HexFileUtils.swabRecords(idRecords);
@@ -429,8 +426,8 @@ public class DatosPicProcesados {
 
         int strongScoreLane0 = 0;
         int strongScoreLane1 = 0;
-        int weakScoreLane0 = 0;
-        int weakScoreLane1 = 0;
+        int blankScoreLane0 = 0;
+        int blankScoreLane1 = 0;
 
         for (HexFileUtils.Pair<Integer, String> record : eepromRecords) {
             String data = record.second;
@@ -446,12 +443,13 @@ public class DatosPicProcesados {
                     strongScoreLane1++;
                 }
 
-                // Señal débil: byte distinto de FF (incluye 00 válido en EEPROM)
-                if (!"FF".equals(b0)) {
-                    weakScoreLane0++;
+                // En EEPROM de 14 bits, el byte de padding superior es siempre 00
+                // y el byte de datos en blanco es FF.
+                if ("FF".equalsIgnoreCase(b0)) {
+                    blankScoreLane0++;
                 }
-                if (!"FF".equals(b1)) {
-                    weakScoreLane1++;
+                if ("FF".equalsIgnoreCase(b1)) {
+                    blankScoreLane1++;
                 }
             }
         }
@@ -463,10 +461,10 @@ public class DatosPicProcesados {
             return 1;
         }
 
-        if (weakScoreLane0 > weakScoreLane1) {
+        if (blankScoreLane0 > blankScoreLane1) {
             return 0;
         }
-        if (weakScoreLane1 > weakScoreLane0) {
+        if (blankScoreLane1 > blankScoreLane0) {
             return 1;
         }
 

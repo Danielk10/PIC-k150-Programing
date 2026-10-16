@@ -374,11 +374,7 @@ După ce ați scos cipul, apăsați pe \'Continuare\' pentru a activa măsurarea
 Valoare curentă: 0x%2$s (Maxim: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format cuvânt și ordine octeți (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format celulă EEPROM (8 biți)</string>
-    <string name="hex_editor_desc_rom">• PIC-urile stochează cuvinte de 14/16 biți în ordinea Little-Endian:
-   - Octet inferior (LSB): 0x%1$s (decalaj 2×N)
-   - Octet superior (MSB): 0x%2$s (decalaj 2×N+1)
-• Cum se editează?: Introduceți cuvântul logic complet [MSB][LSB] (de ex. 2805 = LSB 05, MSB 28).
-• Aplicația reordonează automat octeții în Little-Endian pentru siliciu și fișierul HEX.</string>
+    <string name="hex_editor_desc_rom">Introduceți cuvântul în ordinea logică MSB LSB. Conversia Little-Endian se aplică automat pentru microcontroler și fișierul HEX.</string>
     <string name="hex_editor_desc_eeprom">• Celulele EEPROM constau din octeți individuali de 8 biți.
 • Introduceți octetul hexazecimal de 2 caractere direct (interval: 00 la FF).</string>
     <string name="hex_editor_input_label_rom">Introduceți noua valoare (Cuvânt Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Vă rugăm să introduceți PIC %1$s în poziția corespunzătoare, să blocați
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Reprogramează</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanent Activ</string>
+    <string name="pro_permanent_active_desc">Aveți acces permanent la K150 Pro. Toate instrumentele avansate sunt complet deblocate fără reclame sau limite de timp.</string>
 </resources>

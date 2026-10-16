@@ -374,11 +374,7 @@ När chippet har tagits bort trycker du på \'Fortsätt\' för att aktivera mät
 Aktuellt värde: 0x%2$s (Max: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Ordformat och byteordning (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-cellformat (8-bitars)</string>
-    <string name="hex_editor_desc_rom">• PIC lagrar 14/16-bitars ord i Little-Endian-ordning:
-   - Låg byte (LSB): 0x%1$s (förskjutning 2×N)
-   - Hög byte (MSB): 0x%2$s (förskjutning 2×N+1)
-• Hur redigerar man?: Ange hela det logiska ordet [MSB][LSB] (t.ex. 2805 = LSB 05, MSB 28).
-• Appen ordnar automatiskt om byten till Little-Endian för kisel och HEX-fil.</string>
+    <string name="hex_editor_desc_rom">Ange ordet i logisk MSB LSB-ordning. Little-Endian-konvertering tillämpas automatisk för mikrokontrollern och HEX-filen.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM-celler består av individuella 8-bitars byte.
 • Ange den 2-teckens hexadecimala byten direkt (intervall: 00 till FF).</string>
     <string name="hex_editor_input_label_rom">Ange nytt värde (Hex-ord [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Sätt i PIC %1$s i rätt position, lås spaken och tryck på [%2$s] igen.</strin
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Omprogrammera</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanent Aktiv</string>
+    <string name="pro_permanent_active_desc">Du har permanent K150 Pro-åtkomst. Alla avancerade verktyg är helt upplåsta utan annonser eller tidsbegränsningar.</string>
 </resources>

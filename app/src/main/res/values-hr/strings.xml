@@ -374,11 +374,7 @@ Nakon što uklonite čip, dodirnite \'Nastavi\' za aktiviranje mjerenja ili \'Od
 Trenutna vrijednost: 0x%2$s (Maksimalno: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format Riječi i Redoslijed Bajtova (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format EEPROM Ćelije (8-bitni)</string>
-    <string name="hex_editor_desc_rom">• PIC mikrokontroleri pohranjuju 14/16-bitne riječi u Little-Endian redoslijedu:
-   - Niži bajt (LSB): 0x%1$s (pomak 2×N)
-   - Viši bajt (MSB): 0x%2$s (pomak 2×N+1)
-• Kako urediti?: Unesite punu logičku riječ [MSB][LSB] (npr. 2805 = LSB 05, MSB 28).
-• Aplikacija automatski preslaguje bajtove u Little-Endian za čip i HEX datoteku.</string>
+    <string name="hex_editor_desc_rom">Unesite riječ u logičkom redoslijedu MSB LSB. Pretvorba u Little-Endian automatski se primjenjuje za mikrokontroler i HEX datoteku.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM ćelije sastoje se od pojedinačnih 8-bitnih bajtova.
 • Unesite izravno 2-znamenkasti heksadecimalni bajt (raspon: 00 do FF).</string>
     <string name="hex_editor_input_label_rom">Unesite novu vrijednost (Heks riječ [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Umetnite PIC %1$s u odgovarajući položaj, zaključajte polugu i ponovno dodirn
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Ponovno programiraj</string>
+    <string name="pro_permanent_active_title">K150 Pro Trajno aktivan</string>
+    <string name="pro_permanent_active_desc">Imate trajni pristup K150 Pro. Svi napredni alati potpuno su otključani bez oglasa ili vremenskih ograničenja.</string>
 </resources>

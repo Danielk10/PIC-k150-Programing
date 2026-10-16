@@ -374,11 +374,7 @@
 現在の値: 0x%2$s (最大: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ ワード形式とバイト順序 (リトルエンディアン)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROMセル形式 (8ビット)</string>
-    <string name="hex_editor_desc_rom">• PICは14/16ビットワードをリトルエンディアン順で格納します:
-   - 下位バイト (LSB): 0x%1$s (オフセット 2×N)
-   - 上位バイト (MSB): 0x%2$s (オフセット 2×N+1)
-• 編集方法: 完全な論理ワード [MSB][LSB] を入力します (例: 2805 = LSB 05, MSB 28)。
-• アプリはシリコンおよびHEXファイル用に自動的にリトルエンディアンへ並べ替えます。</string>
+    <string name="hex_editor_desc_rom">論理順序 MSB LSB でワードを入力してください。マイクロコントローラと HEX ファイルには Little-Endian 変換が自動的に適用されます。</string>
     <string name="hex_editor_desc_eeprom">• EEPROMセルは個別の8ビットバイトで構成されています。
 • 2文字の16進数バイトを直接入力してください (範囲: 00〜FF)。</string>
     <string name="hex_editor_input_label_rom">新しい値を入力 (16進ワード [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ PIC %1$sを対応する位置に挿入してレバーをロックし、もう一
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">再プログラム</string>
+    <string name="pro_permanent_active_title">K150 Pro 永久有効</string>
+    <string name="pro_permanent_active_desc">永久版 K150 Pro をご利用いただけます。広告や時間制限なしですべての高度なツールが完全にロック解除されています。</string>
 </resources>

@@ -178,6 +178,26 @@ public final class ByteUtils {
         return resultado;
     }
 
+    public static byte[] hexToBytes(String hex) {
+        if (hex == null) {
+            return new byte[0];
+        }
+        hex = hex.replaceAll("\\s+", "").toUpperCase();
+        if (hex.length() % 2 != 0) {
+            return new byte[0];
+        }
+        byte[] resultado = new byte[hex.length() / 2];
+        for (int i = 0; i < hex.length(); i += 2) {
+            int high = HEX_CHARS.indexOf(hex.charAt(i));
+            int low = HEX_CHARS.indexOf(hex.charAt(i + 1));
+            if (high == -1 || low == -1) {
+                return new byte[0];
+            }
+            resultado[i / 2] = (byte) ((high << 4) | low);
+        }
+        return resultado;
+    }
+
     /**
      * Convierte un entero a array de bytes con endianness especificado.
      *

@@ -374,11 +374,7 @@
 Ընթացիկ արժեք՝ 0x%2$s (Առավելագույնը՝ 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Բառի ձևաչափ և բայթերի կարգ (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM բջջի ձևաչափ (8 բիթ)</string>
-    <string name="hex_editor_desc_rom">• PIC-երը պահպանում են 14/16 բիթանոց բառերը Little-Endian կարգով.
-   - Կրտսեր բայթ (LSB)՝ 0x%1$s (շեղում 2×N)
-   - Ավագ բայթ (MSB)՝ 0x%2$s (շեղում 2×N+1)
-• Ինչպե՞ս խմբագրել. մուտքագրեք ամբողջական տրամաբանական բառը [MSB][LSB] (օր.՝ 2805 = LSB 05, MSB 28):
-• Հավելվածն ավտոմատ կերպով վերադասավորում է բայթերը Little-Endian կարգով սիլիցիումի և HEX ֆայլի համար:</string>
+    <string name="hex_editor_desc_rom">Մուտքագրեք բառը MSB LSB տրամաբանական հերթականությամբ: Little-Endian փոխակերպումը կիրառվում է ավտոմատ կերպով միկրոկոնտրոլերի և HEX ֆայլի համար:</string>
     <string name="hex_editor_desc_eeprom">• EEPROM բջիջները բաղկացած են առանձին 8-բիթանոց բայթերից:
 • Մուտքագրեք 2 նիշանոց տասնվեցական բայթը անմիջապես (տիրույթ՝ 00-ից մինչև FF):</string>
     <string name="hex_editor_input_label_rom">Մուտքագրեք նոր արժեք (տասնվեցական բառ [MSB][LSB])՝</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Վերածրագրավորել</string>
+    <string name="pro_permanent_active_title">K150 Pro Մշտական ակտիվ</string>
+    <string name="pro_permanent_active_desc">Դուք ունեք մշտական K150 Pro մուտք: Բոլոր առաջադեմ գործիքներն ամբողջությամբ ապակողպված են առանց գովազդի կամ ժամանակային սահմանափակումների:</string>
 </resources>

@@ -374,11 +374,7 @@ Una volta rimosso il chip, tocca \'Continua\' per attivare la misurazione, oppur
 Valore attuale: 0x%2$s (Massimo: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Formato Word e Ordine dei Byte (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Formato Cella EEPROM (8 bit)</string>
-    <string name="hex_editor_desc_rom">• I PIC memorizzano parole a 14/16 bit in ordine Little-Endian:
-   - Byte Basso (LSB): 0x%1$s (offset 2×N)
-   - Byte Alto (MSB): 0x%2$s (offset 2×N+1)
-• Come modificare?: Inserire la parola logica completa [MSB][LSB] (es. 2805 = LSB 05, MSB 28).
-• L\'app riordina automaticamente i byte in Little-Endian per il silicio e il file HEX.</string>
+    <string name="hex_editor_desc_rom">Inserisci la parola nell\'ordine logico MSB LSB. La conversione Little-Endian viene applicata automaticamente per il microcontrollore e il file HEX.</string>
     <string name="hex_editor_desc_eeprom">• Le celle EEPROM sono composte da singoli byte a 8 bit.
 • Inserire direttamente il byte esadecimale di 2 caratteri (intervallo: da 00 a FF).</string>
     <string name="hex_editor_input_label_rom">Inserisci nuovo valore (Word Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Inserire il PIC %1$s nella posizione corrispondente, bloccare la leva e toccare 
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Riprogramma</string>
+    <string name="pro_permanent_active_title">K150 Pro Permanente Attivo</string>
+    <string name="pro_permanent_active_desc">Disponi dell\'accesso permanente a K150 Pro. Tutti gli strumenti avanzati sono completamente sbloccati senza pubblicità o limiti di tempo.</string>
 </resources>

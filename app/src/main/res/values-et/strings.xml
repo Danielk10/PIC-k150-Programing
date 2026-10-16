@@ -374,11 +374,7 @@ Kui kiip on eemaldatud, puudutage mõõtmise aktiveerimiseks \'Jätka\' või pin
 Praegune väärtus: 0x%2$s (Maksimaalne: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Sõnavorming ja Baitide Järjekord (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM-i Elemendi Vorming (8-bitine)</string>
-    <string name="hex_editor_desc_rom">• PIC-id salvestavad 14/16-bitiseid sõnu Little-Endian järjekorras:
-   - Madal bait (LSB): 0x%1$s (nihe 2×N)
-   - Kõrge bait (MSB): 0x%2$s (nihe 2×N+1)
-• Kuidas muuta?: Sisestage täielik loogiline sõna [MSB][LSB] (nt 2805 = LSB 05, MSB 28).
-• Rakendus järjestab baidid kiibi ja HEX-faili jaoks automaatselt Little-Endian kujule.</string>
+    <string name="hex_editor_desc_rom">Sisestage sõna loogilises MSB LSB järjekorras. Little-Endian teisendus rakendatakse mikrokontrolleri ja HEX-faili jaoks automaatselt.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM-i elemendid koosnevad eraldiseisvatest 8-bitistest baitidest.
 • Sisestage otse 2-kohaline heksadetsimaalbait (vahemik: 00 kuni FF).</string>
     <string name="hex_editor_input_label_rom">Sisestage uus väärtus (Heks-sõna [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Palun sisestage PIC %1$s vastavasse asendisse, lukustage hoob ja puudutage uuest
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Ümberprogrammeerimine</string>
+    <string name="pro_permanent_active_title">K150 Pro Püsiv aktiivne</string>
+    <string name="pro_permanent_active_desc">Teil on püsiv K150 Pro juurdepääs. Kõik täpsemad tööriistad on täielikult lukustamata ilma reklaamide ja ajaliste piiranguteta.</string>
 </resources>

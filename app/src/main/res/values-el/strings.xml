@@ -374,11 +374,7 @@
 Τρέχουσα τιμή: 0x%2$s (Μέγιστο: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Μορφή Λέξης και Σειρά Byte (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Μορφή Κελιού EEPROM (8-bit)</string>
-    <string name="hex_editor_desc_rom">• Τα PIC αποθηκεύουν λέξεις 14/16-bit σε σειρά Little-Endian:
-   - Χαμηλό Byte (LSB): 0x%1$s (μετατόπιση 2×N)
-   - Υψηλό Byte (MSB): 0x%2$s (μετατόπιση 2×N+1)
-• Πώς να επεξεργαστείτε;: Εισαγάγετε την πλήρη λογική λέξη [MSB][LSB] (π.χ. 2805 = LSB 05, MSB 28).
-• Η εφαρμογή αναδιατάσσει αυτόματα τα byte σε Little-Endian για το πυρίτιο και το αρχείο HEX.</string>
+    <string name="hex_editor_desc_rom">Εισαγάγετε τη λέξη με λογική σειρά MSB LSB. Η μετατροπή Little-Endian εφαρμόζεται αυτόματα για τον μικροελεγκτή και το αρχείο HEX.</string>
     <string name="hex_editor_desc_eeprom">• Τα κελιά EEPROM αποτελούνται από μεμονωμένα byte 8-bit.
 • Εισαγάγετε απευθείας το δεκαεξαδικό byte 2 χαρακτήρων (εύρος: 00 έως FF).</string>
     <string name="hex_editor_input_label_rom">Εισαγάγετε νέα τιμή (Hex λέξη [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Επαναπρογραμματισμός</string>
+    <string name="pro_permanent_active_title">K150 Pro Μόνιμο Ενεργό</string>
+    <string name="pro_permanent_active_desc">Έχετε μόνιμη πρόσβαση K150 Pro. Όλα τα προηγμένα εργαλεία είναι πλήρως ξεκλείδωτα χωρίς διαφημίσεις ή χρονικά όρια.</string>
 </resources>

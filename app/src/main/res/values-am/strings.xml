@@ -374,11 +374,7 @@
 የአሁኑ እሴት፦ 0x%2$s (ከፍተኛ፦ 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ የቃል ቅርጸት እና የባይት ቅደም ተከተል (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ የEEPROM ሴል ቅርጸት (8-ቢት)</string>
-    <string name="hex_editor_desc_rom">• PIC ዎች 14/16-ቢት ቃላትን በLittle-Endian ቅደም ተከተል ያከማቻሉ፦
-   - ዝቅተኛ ባይት (LSB)፦ 0x%1$s (ማካካሻ 2×N)
-   - ከፍተኛ ባይት (MSB)፦ 0x%2$s (ማካካሻ 2×N+1)
-• እንዴት ማረም ይቻላል?፦ ሙሉ አመክንዮአዊ ቃል ያስገቡ [MSB][LSB] (ለምሳሌ 2805 = LSB 05, MSB 28)።
-• መተግበሪያው ባይቶችን ለሲሊኮን እና HEX ፋይል በራስ-ሰር ወደ Little-Endian ያስተካክላል።</string>
+    <string name="hex_editor_desc_rom">ቃሉን በ MSB LSB አመክንዮአዊ ቅደም ተከተል ያስገቡ። የ Little-Endian ልወጣ ለማይክሮኮንትሮለሩ እና ለ HEX ፋይሉ በራስ-ሰር ይተገበራል።</string>
     <string name="hex_editor_desc_eeprom">• የEEPROM ሴሎች የግል 8-ቢት ባይቶችን ያካትታሉ።
 • የ2-ቁምፊ ሄክሳዴሲማል ባይት በቀጥታ ያስገቡ (ክልል፦ 00 እስከ FF)።</string>
     <string name="hex_editor_input_label_rom">አዲስ እሴት ያስገቡ (ሄክስ ቃል [MSB][LSB])፦</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">እንደገና ፕሮግራም አድርግ</string>
+    <string name="pro_permanent_active_title">K150 Pro ቋሚ ንቁ</string>
+    <string name="pro_permanent_active_desc">ቋሚ የ K150 Pro መዳረሻ አለዎት። ሁሉም የላቁ መሣሪያዎች ያለ ማስታወቂያ ወይም የጊዜ ገደብ ሙሉ በሙሉ ተከፍተዋል።</string>
 </resources>

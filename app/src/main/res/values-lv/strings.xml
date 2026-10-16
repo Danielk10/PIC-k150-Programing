@@ -374,11 +374,7 @@ Kad mikroshēma ir izņemta, pieskarieties \'Turpināt\', lai aktivizētu mērī
 Pašreizējā vērtība: 0x%2$s (Maksimums: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Vārda formāts un baitu secība (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ EEPROM šūnas formāts (8 biti)</string>
-    <string name="hex_editor_desc_rom">• PIC glabā 14/16 bitu vārdus Little-Endian secībā:
-   - Zemākais baits (LSB): 0x%1$s (nobīde 2×N)
-   - Augstākais baits (MSB): 0x%2$s (nobīde 2×N+1)
-• Kā rediģēt?: Ievadiet pilnu loģisko vārdu [MSB][LSB] (piem., 2805 = LSB 05, MSB 28).
-• Lietotne automātiski pārkārto baitus uz Little-Endian mikroshēmai un HEX failam.</string>
+    <string name="hex_editor_desc_rom">Ievadiet vārdu loģiskā MSB LSB secībā. Little-Endian pārveidošana tiek automātiski piemērota mikrokontrollerim un HEX failam.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM šūnas sastāv no atsevišķiem 8 bitu baitiem.
 • Ievadiet 2 rakstzīmju heksadecimālo baitu tieši (diapazons: 00 līdz FF).</string>
     <string name="hex_editor_input_label_rom">Ievadiet jaunu vērtību (Hex vārds [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Lūdzu, ievietojiet PIC %1$s atbilstošajā pozīcijā, nofiksējiet sviru un v�
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Pārprogrammēt</string>
+    <string name="pro_permanent_active_title">K150 Pro Pastāvīgi aktīvs</string>
+    <string name="pro_permanent_active_desc">Jums ir pastāvīga K150 Pro piekļuve. Visi uzlabotie rīki ir pilnībā atbloķēti bez reklāmām vai laika ierobežojumiem.</string>
 </resources>

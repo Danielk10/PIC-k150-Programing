@@ -135,7 +135,7 @@
     <string name="eeprom_not_blank">ЕЕПРОМ: НИЈЕ ПРАЗАН</string>
     <string name="idioma_espanol">шпански</string>
     <string name="idioma_ingles">енглески</string>
-    <string name="idioma_label">Језик: %1$s</string>
+    <string name="idioma_label">Језик: %s</string>
     <string name="copiar_todo">📋 Копирај све</string>
     <string name="tutorial_copiado">Водич је копиран у међуспремник</string>
     <string name="error_cargar_tutorial">Грешка при учитавању водича</string>
@@ -374,11 +374,7 @@
 Тренутна вредност: 0x%2$s (Максимум: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Формат речи и редослед бајтова (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Формат EEPROM ћелије (8-битни)</string>
-    <string name="hex_editor_desc_rom">• PIC микроконтролери чувају 14/16-битне речи у Little-Endian редоследу:
-   - Нижи бајт (LSB): 0x%1$s (помак 2×N)
-   - Виши бајт (MSB): 0x%2$s (помак 2×N+1)
-• Како уређивати?: Унесите целу логичку реч [MSB][LSB] (нпр. 2805 = LSB 05, MSB 28).
-• Апликација аутоматски реорганизује бајтове у Little-Endian за силицијум и HEX датотеку.</string>
+    <string name="hex_editor_desc_rom">Унесите реч у логичком редоследу MSB LSB. Конверзија у Little-Endian се аутоматски примењује за микроконтролер и HEX датотеку.</string>
     <string name="hex_editor_desc_eeprom">• EEPROM ћелије се састоје од појединачних 8-битних бајтова.
 • Унесите двоцифрени хексадецимални бајт директно (опсег: 00 до FF).</string>
     <string name="hex_editor_input_label_rom">Унесите нову вредност (Хекс реч [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Репрограмирај</string>
+    <string name="pro_permanent_active_title">K150 Pro Трајно активан</string>
+    <string name="pro_permanent_active_desc">Имате трајни приступ за K150 Pro. Сви напредни алати су потпуно откључани без огласа или временских ограничења.</string>
 </resources>

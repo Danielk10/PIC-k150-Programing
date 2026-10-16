@@ -86,4 +86,31 @@ public class DatosPicProcesadosTest {
 
         assertArrayEquals(esperado, java.util.Arrays.copyOf(eeprom, esperado.length));
     }
+
+    @Test
+    public void eepromBlankHexExportado_debeConservarFFEnBit14() throws Exception {
+        // Hex exportado con EEPROM en blanco: cada palabra es FF 00
+        String hexEepromBlank =
+                ":10420000FF00FF00FF00FF00FF00FF00FF00FF00B6\n"
+                        + ":00000001FF\n";
+
+        Context context = mock(Context.class);
+        when(context.getString(anyInt())).thenReturn("msg");
+        when(context.getString(anyInt(), any())).thenReturn("msg");
+
+        DatosPicProcesados procesado = new DatosPicProcesados(
+                context,
+                hexEepromBlank,
+                crearChip16F628A());
+
+        procesado.iniciarProcesamientoDeDatos();
+
+        byte[] eeprom = procesado.obtenerBytesHexEEPROMProcesado();
+        byte[] esperado = new byte[] {
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF
+        };
+
+        assertArrayEquals(esperado, java.util.Arrays.copyOf(eeprom, esperado.length));
+    }
 }

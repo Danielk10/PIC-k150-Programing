@@ -374,11 +374,7 @@ Setelah cip dikeluarkan, ketik \'Teruskan\' untuk mengaktifkan pengukuran, atau 
 Nilai semasa: 0x%2$s (Maksimum: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Format Word &amp; Susunan Bait (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Format Sel EEPROM (8-bit)</string>
-    <string name="hex_editor_desc_rom">• PIC menyimpan word 14/16-bit dalam susunan Little-Endian:
-   - Bait Rendah (LSB): 0x%1$s (ofset 2×N)
-   - Bait Tinggi (MSB): 0x%2$s (ofset 2×N+1)
-• Cara mengedit?: Masukkan word logik penuh [MSB][LSB] (cth. 2805 = LSB 05, MSB 28).
-• Aplikasi menyusun semula bait ke Little-Endian secara automatik untuk silikon dan fail HEX.</string>
+    <string name="hex_editor_desc_rom">Masukkan perkataan dalam susunan logik MSB LSB. Penukaran Little-Endian digunakan secara automatik untuk mikropengawal dan fail HEX.</string>
     <string name="hex_editor_desc_eeprom">• Sel EEPROM mengandungi bait 8-bit individu.
 • Masukkan bait heksadesimal 2 aksara secara langsung (julat: 00 hingga FF).</string>
     <string name="hex_editor_input_label_rom">Masukkan nilai baharu (Word Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@ Sila masukkan PIC %1$s pada kedudukan yang sepadan, kunci tuil dan ketik [%2$s] 
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Program Semula</string>
+    <string name="pro_permanent_active_title">K150 Pro Kekal Aktif</string>
+    <string name="pro_permanent_active_desc">Anda mempunyai akses K150 Pro kekal. Semua alat lanjutan dibuka sepenuhnya tanpa iklan atau had masa.</string>
 </resources>

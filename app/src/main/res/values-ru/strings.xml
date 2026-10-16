@@ -374,11 +374,7 @@
 Текущее значение: 0x%2$s (Максимум: 0x%3$s)</string>
     <string name="hex_editor_card_title_rom">ℹ️ Формат слова и порядок байтов (Little-Endian)</string>
     <string name="hex_editor_card_title_eeprom">ℹ️ Формат ячейки EEPROM (8 бит)</string>
-    <string name="hex_editor_desc_rom">• Контроллеры PIC хранят 14/16-битные слова в порядке Little-Endian:
-   - Младший байт (LSB): 0x%1$s (смещение 2×N)
-   - Старший байт (MSB): 0x%2$s (смещение 2×N+1)
-• Как редактировать?: Введите полное логическое слово [MSB][LSB] (например, 2805 = LSB 05, MSB 28).
-• Приложение автоматически переставит байты в порядок Little-Endian для кремния и HEX-файла.</string>
+    <string name="hex_editor_desc_rom">Введите слово в логическом порядке MSB LSB. Преобразование в Little-Endian применяется автоматически для микроконтроллера и файла HEX.</string>
     <string name="hex_editor_desc_eeprom">• Ячейки EEPROM состоят из отдельных 8-битных байтов.
 • Введите двухзначный шестнадцатеричный байт напрямую (диапазон: от 00 до FF).</string>
     <string name="hex_editor_input_label_rom">Введите новое значение (Слово Hex [MSB][LSB]):</string>
@@ -481,10 +477,13 @@
     <string name="hex_editor_label_current">Current</string>
     <string name="hex_editor_label_max">Maximum</string>
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
-    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%1$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
     <string name="about_app_curso">Flash SPI Tool</string>
     <string name="about_app_ptc">C PIC Compiler</string>
     <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="reprogramar">Перепрограммировать</string>
+    <string name="pro_permanent_active_title">K150 Pro Постоянный активен</string>
+    <string name="pro_permanent_active_desc">У вас есть постоянный доступ к K150 Pro. Все расширенные инструменты полностью разблокированы без рекламы и ограничений по времени.</string>
 </resources>
