@@ -39,14 +39,23 @@ El usuario puede desbloquear las herramientas Pro de dos formas:
 3. En el menú lateral izquierdo, ve a: **Monetizar con Play** ➔ **Productos** ➔ **Productos integrados en la aplicación**.
 4. Haz clic en **Crear producto**.
 
-### Paso 2.2: Parámetros del Producto
+### Paso 2.2: Parámetros Principales del Producto
 
 | Campo | Valor Requerido | Notas |
 | :--- | :--- | :--- |
 | **ID de producto** | `remove_ads_pro` | **Debe coincidir exactamente con `BillingManager.PRODUCT_ID_REMOVE_ADS`** |
-| **Tipo de producto** | No consumible (One-time product) | Compra permanente de por vida |
+| **Tipo de producto** | No consumible / Compra única | Compra permanente de por vida |
 
-### Paso 2.3: Nombre y Descripción Localizados
+### Paso 2.3: Configuración de la «Opción de Compra» (Play Console Actualizada)
+En la versión moderna de Google Play Console, cada producto integrado incluye la sección **Opción de compra**:
+
+| Campo de Opción de Compra | Valor Recomendado | Explicación y Reglas de Play Console |
+| :--- | :--- | :--- |
+| **ID de la opción de compra \*** | `remove-ads-pro` o `pro-lifetime` | **Obligatorio.** Identificador interno (los usuarios no lo ven). Solo letras minúsculas, números y guiones medios `-` (máx. 63 caracteres). |
+| **Tipo de compra \*** | `Comprar` | Compra única de pago único (no recurrente). |
+| **Etiquetas (Tags)** | `k150-pro` o dejarlo **Vacío** | **Opcional.** Si se usa: máx. 20 caracteres, solo letras minúsculas y guiones medios `-` (no usar guiones bajos `_`). |
+
+### Paso 2.4: Nombre y Descripción Localizados
 
 #### 🇪🇸 Español (es-419 / es-ES) — Idioma Principal:
 * **Nombre:**
@@ -68,7 +77,7 @@ El usuario puede desbloquear las herramientas Pro de dos formas:
   Permanently unlock all Pro silicon tools (Live Hex Editor, Hardware Diagnostics & VPP/VDD voltage tests, ICD Debug Vector, and OSCCAL manual calibration) with zero ads across the entire app.
   ```
 
-### Paso 2.4: Fijar Precio y Activar
+### Paso 2.5: Fijar Precio y Activar
 * **Precio Oficial:** `$4.99 USD` (Google Play calculará automáticamente los equivalentes en moneda local para cada país con impuestos incluidos).
 * Haz clic en **Guardar** y luego en **Activar producto**.
 
