@@ -127,7 +127,7 @@ public class UsbConnectionManager {
 
     /** Solicita permisos USB si hay dispositivos disponibles */
     private void requestPermissionsIfNeeded() {
-        if (!drivers.isEmpty()) {
+        if (drivers != null && !drivers.isEmpty()) {
             UsbSerialDriver driver = drivers.get(0);
 
             if (usbManager.hasPermission(driver.getDevice())) {
@@ -168,7 +168,13 @@ public class UsbConnectionManager {
                 usbSerialPort = driver.getPorts().get(0);
 
                 // Abrir conexion
-                usbSerialPort.open(usbManager.openDevice(driver.getDevice()));
+                android.hardware.usb.UsbDeviceConnection connection = usbManager.openDevice(driver.getDevice());
+                if (connection == null) {
+                    cleanupConnection();
+                    notifyError(context.getString(R.string.error_de_conexion_usb));
+                    return;
+                }
+                usbSerialPort.open(connection);
 
                 // Configurar parametros del puerto serial
                 usbSerialPort.setParameters(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);

@@ -113,10 +113,10 @@ public class ProPassManager {
                 }
                 File backupFile = new File(privateDir, BACKUP_FILENAME);
                 String hash = calcularHash(getDeviceId(), expireTime);
-                FileWriter writer = new FileWriter(backupFile);
-                writer.write(expireTime + ":" + hash);
-                writer.flush();
-                writer.close();
+                try (FileWriter writer = new FileWriter(backupFile)) {
+                    writer.write(expireTime + ":" + hash);
+                    writer.flush();
+                }
             } catch (Exception ignored) {
             }
         }, "ProPassBackupWorker").start();
@@ -130,9 +130,10 @@ public class ProPassManager {
             if (!backupFile.exists() || !backupFile.canRead()) {
                 return;
             }
-            BufferedReader reader = new BufferedReader(new FileReader(backupFile));
-            String line = reader.readLine();
-            reader.close();
+            String line;
+            try (BufferedReader reader = new BufferedReader(new FileReader(backupFile))) {
+                line = reader.readLine();
+            }
             if (line == null || !line.contains(":")) {
                 return;
             }
