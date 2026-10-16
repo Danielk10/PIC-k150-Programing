@@ -332,7 +332,7 @@
     <string name="diag_status_error_activating">État : ❌ Erreur lors de l\'activation des tensions</string>
     <string name="diag_status_error_deactivating">État : ❌ Erreur lors de l\'arrêt des tensions</string>
     <string name="diag_status_error_restarting">État : ❌ Erreur lors du redémarrage des tensions</string>
-    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_vpp_13v">13V/5V</string>
     <string name="diag_btn_power_off_0v">Éteindre - 0V</string>
     <string name="diag_btn_restart_voltages">Redémarrer</string>
     <string name="diag_programmer_not_connected">Programmateur non connecté</string>
@@ -487,4 +487,8 @@ Veuillez insérer le PIC %1$s dans la position correspondante, verrouiller le le
     <string name="about_app_ptc">Periodic Table PTC</string>
     <string name="about_app_mini">Mini Calculator</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="proto_desc_p18a">K150 / K128 • Firmware standard</string>
+    <string name="proto_desc_p018">KITSRUS P018 • Firmware intermédiaire</string>
+    <string name="proto_desc_p016">KITSRUS P016 • Firmware classique</string>
+    <string name="proto_desc_p014">KITSRUS P014 • Firmware hérité</string>
 </resources>

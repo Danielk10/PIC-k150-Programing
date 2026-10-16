@@ -2093,13 +2093,13 @@ public class MainActivity extends AppCompatActivity
             String proto = protocolos[i];
             String desc = "";
             if ("P18A".equals(proto)) {
-                desc = "\nK150 / K128 • Firmware estándar";
+                desc = "\n" + getString(R.string.proto_desc_p18a);
             } else if ("P018".equals(proto)) {
-                desc = "\nKITSRUS P018 • Firmware intermedio";
+                desc = "\n" + getString(R.string.proto_desc_p018);
             } else if ("P016".equals(proto)) {
-                desc = "\nKITSRUS P016 • Firmware clásico";
+                desc = "\n" + getString(R.string.proto_desc_p016);
             } else if ("P014".equals(proto)) {
-                desc = "\nKITSRUS P014 • Firmware heredado";
+                desc = "\n" + getString(R.string.proto_desc_p014);
             }
 
             android.text.SpannableString span = new android.text.SpannableString(proto + desc);
@@ -2206,15 +2206,15 @@ public class MainActivity extends AppCompatActivity
                 "</ul>" +
                 "<hr>" +
                 "<h4><b><font color=\"#00B0FF\">" + getString(R.string.licencia_de_aplicacion) + "</font></b></h4>" +
-                "<p>GNU General Public License v3.0 (<a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GPL-3.0</a>)</p>" +
+                "<p>GNU General Public License v3.0 - <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GPL-3.0</a></p>" +
                 "<hr>" +
                 "<h4><b><font color=\"#00B0FF\">" + getString(R.string.licencias_de_terceros) + "</font></b></h4>" +
                 "<ul>" +
-                "  <li><b>usb-serial-for-android:</b> MIT License - <a href=\"https://github.com/mik3y/usb-serial-for-android\">mik3y/usb-serial-for-android</a> (Mike Wakerly / Google Inc.)</li>" +
-                "  <li><b>picpro:</b> LGPL-3.0 - <a href=\"https://github.com/Salamek/picpro\">Salamek/picpro</a> (Adam Schubert / Salamek)</li>" +
-                "  <li><b>picprogrammer:</b> LGPL-2.0 - <a href=\"https://github.com/almost/picprogrammer\">almost/picprogrammer</a> (Proyecto comunitario)</li>" +
-                "  <li><b>Termux:</b> GPL-3.0 - <a href=\"https://github.com/termux/termux-app\">termux/termux-app</a> (Fredrik Fornwall y colaboradores)</li>" +
-                "  <li><b>KITSRUS P018:</b> <a href=\"https://www.kitsrus.com/pic.html\">kitsrus.com</a> (Protocolo estándar de programación)</li>" +
+                "  <li><b>usb-serial-for-android:</b> MIT License - <a href=\"https://github.com/mik3y/usb-serial-for-android\">mik3y/usb-serial-for-android</a></li>" +
+                "  <li><b>picpro:</b> LGPL-3.0 - <a href=\"https://github.com/Salamek/picpro\">Salamek/picpro</a></li>" +
+                "  <li><b>picprogrammer:</b> LGPL-2.0 - <a href=\"https://github.com/almost/picprogrammer\">almost/picprogrammer</a></li>" +
+                "  <li><b>Termux:</b> GPL-3.0 - <a href=\"https://github.com/termux/termux-app\">termux/termux-app</a></li>" +
+                "  <li><b>KITSRUS P018:</b> <a href=\"https://www.kitsrus.com/pic.html\">kitsrus.com</a></li>" +
                 "  <li><b>Android Code Studio:</b> <a href=\"https://github.com/AndroidCSOfficial/android-code-studio\">AndroidCSOfficial/android-code-studio</a></li>" +
                 "</ul>" +
                 "<hr>" +

@@ -332,7 +332,7 @@
     <string name="diag_status_error_activating">Būsena: ❌ Klaida įjungiant įtampą</string>
     <string name="diag_status_error_deactivating">Būsena: ❌ Klaida išjungiant įtampą</string>
     <string name="diag_status_error_restarting">Būsena: ❌ Klaida paleidžiant įtampą iš naujo</string>
-    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_vpp_13v">13V/5V</string>
     <string name="diag_btn_power_off_0v">Išjungti - 0V</string>
     <string name="diag_btn_restart_voltages">Paleisti iš naujo</string>
     <string name="diag_programmer_not_connected">Programuotuvas neprijungtas</string>
@@ -487,4 +487,8 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="about_app_ptc">Periodic Table PTC</string>
     <string name="about_app_mini">Mini Calculator</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="proto_desc_p18a">K150 / K128 • Standartinė programinė aparatinė įranga</string>
+    <string name="proto_desc_p018">KITSRUS P018 • Tarpinė programinė aparatinė įranga</string>
+    <string name="proto_desc_p016">KITSRUS P016 • Klasikinė programinė aparatinė įranga</string>
+    <string name="proto_desc_p014">KITSRUS P014 • Ankstesnė programinė aparatinė įranga</string>
 </resources>

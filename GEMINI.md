@@ -145,6 +145,12 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Diálogo «Acerca de / Licencias» y README:** Se integraron enlaces directos a las tres aplicaciones del desarrollador en Google Play (Curso Microcontroladores PIC, Tabla Periódica PTC y Mini Calculadora) y se alinearon todas las referencias y licencias (GPL-3.0, Apache-2.0, MIT) con el `README.md`.
    * **Paridad del 100% en 53 Idiomas:** Se agregaron 10 nuevas claves de cadenas sincronizadas en todas las 53 variantes de `strings.xml` (exactamente 470 claves en cada archivo).
    * **SDK/NDK de Android:** Instalado y verificado en `/tmp/android-sdk` mediante `setup-sdk.sh`.
+23. **Sincronización Total Multilingüe (53 Idiomas x 474 Claves), Botón 13V/5V y Selector de Protocolo:**
+   * **Selector de Protocolo con RadioButtons de Alto Contraste:** Rediseño del modal en tarjetas oscuras `#222234` con RadioButtons tintados `#00E676` (seleccionado) y `#B0BEC5` (no seleccionado), asegurando visibilidad perfecta.
+   * **Sincronización de 4 Claves con 3 Subagentes en Lotes de 5:** Se añadieron y tradujeron desde el inglés base (`values/strings.xml`) las descripciones `proto_desc_p18a`, `proto_desc_p018`, `proto_desc_p016` y `proto_desc_p014` para los 48 idiomas restantes utilizando 3 subagentes en paralelo, alcanzando exactamente 474 claves en cada uno de los 53 archivos XML.
+   * **Renombrado de Botón de Diagnóstico a `13V/5V`:** Actualización en las 53 variantes de recursos para reflejar con precisión la alimentación simultánea de VPP (13V) y VDD (5V).
+   * **Cero Cadenas Hardcodeadas:** Eliminación de cadenas literales en Java (`MainActivity.java`), unificando todos los mensajes a través de `getString(R.string.*)`.
+   * **Publicación de Producción en GitHub Releases:** Recompilación limpia de APK y Bundle AAB con 109/109 pruebas aprobadas, y actualización de activos en el lanzamiento `v2.9.2`.
 
 ---
 

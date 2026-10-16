@@ -332,7 +332,7 @@
     <string name="diag_status_error_activating">상태: ❌ 전압 활성화 오류</string>
     <string name="diag_status_error_deactivating">상태: ❌ 전압 끄기 오류</string>
     <string name="diag_status_error_restarting">상태: ❌ 전압 재시작 오류</string>
-    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_vpp_13v">13V/5V</string>
     <string name="diag_btn_power_off_0v">전원 끄기 - 0V</string>
     <string name="diag_btn_restart_voltages">재시작</string>
     <string name="diag_programmer_not_connected">프로그래머가 연결되지 않음</string>
@@ -487,4 +487,8 @@ PIC %1$s을(를) 해당 위치에 삽입하고 레버를 잠근 후 [%2$s]을(�
     <string name="about_app_ptc">Periodic Table PTC</string>
     <string name="about_app_mini">Mini Calculator</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="proto_desc_p18a">K150 / K128 • 표준 펌웨어</string>
+    <string name="proto_desc_p018">KITSRUS P018 • 중간 펌웨어</string>
+    <string name="proto_desc_p016">KITSRUS P016 • 클래식 펌웨어</string>
+    <string name="proto_desc_p014">KITSRUS P014 • 레거시 펌웨어</string>
 </resources>

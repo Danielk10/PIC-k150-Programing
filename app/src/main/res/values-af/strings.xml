@@ -332,7 +332,7 @@
     <string name="diag_status_error_activating">Status: ❌ Fout met aktivering van spannings</string>
     <string name="diag_status_error_deactivating">Status: ❌ Fout met afskakeling van spannings</string>
     <string name="diag_status_error_restarting">Status: ❌ Fout met herbegin van spannings</string>
-    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_vpp_13v">13V/5V</string>
     <string name="diag_btn_power_off_0v">Skakel af - 0V</string>
     <string name="diag_btn_restart_voltages">Herbegin</string>
     <string name="diag_programmer_not_connected">Programmeerder nie gekoppel nie</string>
@@ -487,4 +487,8 @@ Plaas asseblief die PIC %1$s in die ooreenstemmende posisie, sluit die hefboom, 
     <string name="about_app_ptc">Periodic Table PTC</string>
     <string name="about_app_mini">Mini Calculator</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="proto_desc_p18a">K150 / K128 • Standaard-firmware</string>
+    <string name="proto_desc_p018">KITSRUS P018 • Intermediêre firmware</string>
+    <string name="proto_desc_p016">KITSRUS P016 • Klassieke firmware</string>
+    <string name="proto_desc_p014">KITSRUS P014 • Oorgeërfde firmware</string>
 </resources>

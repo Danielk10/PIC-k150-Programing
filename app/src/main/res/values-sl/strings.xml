@@ -332,7 +332,7 @@
     <string name="diag_status_error_activating">Stanje: ❌ Napaka pri vklopu napetosti</string>
     <string name="diag_status_error_deactivating">Stanje: ❌ Napaka pri izklopu napetosti</string>
     <string name="diag_status_error_restarting">Stanje: ❌ Napaka pri ponovnem zagonu napetosti</string>
-    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_vpp_13v">13V/5V</string>
     <string name="diag_btn_power_off_0v">Izklopi - 0V</string>
     <string name="diag_btn_restart_voltages">Ponovni zagon</string>
     <string name="diag_programmer_not_connected">Programator ni povezan</string>
@@ -487,4 +487,8 @@ Vstavite PIC %1$s v ustrezni položaj, zaklenite ročico in znova tapnite [%2$s]
     <string name="about_app_ptc">Periodic Table PTC</string>
     <string name="about_app_mini">Mini Calculator</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="proto_desc_p18a">K150 / K128 • Standardna vdelana programska oprema</string>
+    <string name="proto_desc_p018">KITSRUS P018 • Vmesna vdelana programska oprema</string>
+    <string name="proto_desc_p016">KITSRUS P016 • Klasična vdelana programska oprema</string>
+    <string name="proto_desc_p014">KITSRUS P014 • Podedovana vdelana programska oprema</string>
 </resources>

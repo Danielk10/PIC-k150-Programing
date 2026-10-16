@@ -332,7 +332,7 @@
     <string name="diag_status_error_activating">Isimo: ❌ Iphutha lokuvula amavoltheji</string>
     <string name="diag_status_error_deactivating">Isimo: ❌ Iphutha lokucisha amavoltheji</string>
     <string name="diag_status_error_restarting">Isimo: ❌ Iphutha lokuphinda uqale amavoltheji</string>
-    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_vpp_13v">13V/5V</string>
     <string name="diag_btn_power_off_0v">Cisha - 0V</string>
     <string name="diag_btn_restart_voltages">Qala Kabusha</string>
     <string name="diag_programmer_not_connected">Umhleli akaxhunyiwe</string>
@@ -487,4 +487,8 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="about_app_ptc">Periodic Table PTC</string>
     <string name="about_app_mini">Mini Calculator</string>
     <string name="about_view_on_play_store">View on Google Play</string>
+    <string name="proto_desc_p18a">K150 / K128 • I-firmware ejwayelekile</string>
+    <string name="proto_desc_p018">KITSRUS P018 • I-firmware ephakathi</string>
+    <string name="proto_desc_p016">KITSRUS P016 • I-firmware yakudala</string>
+    <string name="proto_desc_p014">KITSRUS P014 • I-firmware eyifa</string>
 </resources>
