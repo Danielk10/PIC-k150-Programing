@@ -21,9 +21,9 @@ android {
 
     defaultConfig {
         applicationId "com.diamon.pic"
-        minSdk 23
+        minSdk 24
         targetSdk 37
-        versionCode 55
+        versionCode 56
         versionName "2.9.2"
 
         vectorDrawables.useSupportLibrary = true

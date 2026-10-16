@@ -7,7 +7,7 @@
 [![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=com.diamon.pic)
 
 ![Version](https://img.shields.io/badge/version-2.9.2-blue.svg)
-![API Level](https://img.shields.io/badge/API-23%2B-brightgreen.svg)
+![API Level](https://img.shields.io/badge/API-24%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange.svg)
 ![Target SDK](https://img.shields.io/badge/Target%20SDK-37-blueviolet.svg)
 ![Hardware Validated](https://img.shields.io/badge/Hardware%20Tested-PIC16F628A%20%E2%9C%85-success.svg)
@@ -53,7 +53,7 @@ El protocolo y la aplicación han sido **100% verificados y certificados sobre h
 
 ### Requisitos del sistema
 
-- **API mínima**: Android 6.0 (Marshmallow) - API Level 23
+- **API mínima**: Android 7.0 (Nougat) - API Level 24
 - **API objetivo**: Android 17 - API Level 37
 - **Permisos requeridos**: USB Host Mode
 - **Hardware**: Cable USB OTG y programador PIC k150 o compatible
@@ -273,7 +273,7 @@ Las contribuciones son bienvenidas y apreciadas. Si deseas mejorar la aplicació
 - Sigue las mejores prácticas de codificación Java/Android
 - Realiza pruebas exhaustivas antes de enviar
 - Documenta nuevas funcionalidades
-- Mantén compatibilidad con API 23+
+- Mantén compatibilidad con API 24+
 - Respeta la arquitectura del proyecto
 
 ## 📄 Licencia
