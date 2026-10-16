@@ -131,6 +131,8 @@ public class MainActivity extends AppCompatActivity
     private String firmware = "";
     private String originalLoadedFirmware = "";
     private DatosPicProcesados originalLoadedDatosPic = null;
+    private String lastProgrammedFirmware = "";
+    private DatosPicProcesados lastProgrammedDatosPic = null;
     private String lastReadRomData = ""; // Últimos datos ROM leídos
     private String lastReadEepromData = ""; // Últimos datos EEPROM leídos
     private String lastReadConfigData = ""; // Últimos datos Config leídos
@@ -350,6 +352,8 @@ public class MainActivity extends AppCompatActivity
                 originalLoadedFirmware = "";
                 datosPicProcesados = null;
                 originalLoadedDatosPic = null;
+                lastProgrammedFirmware = "";
+                lastProgrammedDatosPic = null;
                 lastReadRomData = "";
                 lastReadEepromData = "";
                 lastReadConfigData = "";
@@ -766,6 +770,8 @@ public class MainActivity extends AppCompatActivity
                     public void onFileLoaded(String content, String fileName) {
                         firmware = content;
                         originalLoadedFirmware = content;
+                        lastProgrammedFirmware = "";
+                        lastProgrammedDatosPic = null;
 
                         // Detectar tipo de archivo para mensaje coherente
                         boolean esBin = fileName != null && fileName.toLowerCase().endsWith(".bin");
@@ -1116,10 +1122,10 @@ public class MainActivity extends AppCompatActivity
     /**
      * Desacoplamiento de botones de hardware y firmware:
      * - Operaciones de hardware (Detectar, Leer, Borrar, Blank Check) habilitadas si hardwareConectado == true
-     * - Operaciones dependientes de firmware (Programar, Verificar) habilitadas ÚNICAMENTE si
-     *   hardwareConectado == true Y se ha cargado explícitamente un archivo HEX o BIN desde disco
-     *   (originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null).
-     *   La lectura o edición de memoria del zócalo NUNCA activa estos botones principales.
+     * - Operación «Programar PIC» habilitada ÚNICAMENTE si hardwareConectado == true Y se ha cargado
+     *   explícitamente un archivo HEX o BIN desde almacenamiento (originalLoadedFirmware).
+     * - Operación «Verificar Memoria» habilitada si hardwareConectado == true Y existe firmware válido
+     *   para comparar (bien sea el último grabado exitosamente, original o modificado, o el archivo cargado).
      * - Configuración de fusibles habilitada si currentChip != null
      */
     private void actualizarEstadoBotones(boolean hardwareConectado, boolean firmwareCargado) {
@@ -1129,11 +1135,15 @@ public class MainActivity extends AppCompatActivity
         setButtonState(btnBorrarMemoriaDeLPic, hardwareConectado, Color.parseColor("#D32F2F"));
         setButtonState(btnBlankCheck, hardwareConectado, Color.parseColor("#00B0FF"));
 
-        // Operaciones que requieren hardware conectado y archivo de firmware original cargado desde disco
+        // Programar PIC requiere estrictamente hardware conectado y archivo original cargado desde disco
         boolean archivoRealCargado = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
         boolean progHabilitado = hardwareConectado && firmwareCargado && archivoRealCargado;
         setButtonState(btnProgramarPic, progHabilitado, Color.parseColor("#FF6600"));
-        setButtonState(btnVerificarMemoriaDelPic, progHabilitado, Color.parseColor("#00B0FF"));
+
+        // Verificar Memoria requiere hardware conectado y datos para verificar (último grabado o archivo cargado)
+        boolean tieneDatosParaVerificar = (lastProgrammedDatosPic != null) || (firmwareCargado && archivoRealCargado);
+        boolean verificarHabilitado = hardwareConectado && tieneDatosParaVerificar;
+        setButtonState(btnVerificarMemoriaDelPic, verificarHabilitado, Color.parseColor("#00B0FF"));
 
         // Configuración de fusibles (requiere chip seleccionado)
         boolean fusesHabilitado = currentChip != null;
@@ -1282,13 +1292,13 @@ public class MainActivity extends AppCompatActivity
                     currentChip,
                     datosToProgram,
                     fusesConfigured,
-                    tipo -> doProgrammingFlow(tipo, hexToProgram));
+                    tipo -> doProgrammingFlow(tipo, hexToProgram, datosToProgram));
         } else {
-            doProgrammingFlow(TipoProgramacion.COMPLETA, hexToProgram);
+            doProgrammingFlow(TipoProgramacion.COMPLETA, hexToProgram, datosToProgram);
         }
     }
 
-    private void doProgrammingFlow(TipoProgramacion tipo, String hexToProgram) {
+    private void doProgrammingFlow(TipoProgramacion tipo, String hexToProgram, DatosPicProcesados datosToProgram) {
         publicidad.ocultarBanner();
 
         final byte[] idToUse = fusesConfigured ? configuredID : new byte[] { 0 };
@@ -1316,6 +1326,9 @@ public class MainActivity extends AppCompatActivity
                                         () -> {
                                             dialogManager.updateProgrammingResult(finalSuccess);
                                             if (finalSuccess) {
+                                                lastProgrammedFirmware = hexToProgram;
+                                                lastProgrammedDatosPic = datosToProgram;
+
                                                 if (notificacionVibracionManager != null) {
                                                     notificacionVibracionManager.vibrarExito();
                                                     notificacionVibracionManager.reproducirSonidoNotificacion();
@@ -1328,7 +1341,7 @@ public class MainActivity extends AppCompatActivity
                                                 appendLog(getString(R.string.log_programming_failed));
                                             }
 
-                                            // Asegurar que el estado de los botones refleje únicamente si hay un archivo real cargado
+                                            // Asegurar que el estado de los botones refleje el archivo cargado y la disponibilidad de verificación
                                             boolean archivoRealCargado = originalLoadedFirmware != null && !originalLoadedFirmware.isEmpty() && originalLoadedDatosPic != null;
                                             actualizarEstadoBotones(usbManager != null && usbManager.isConnected(), archivoRealCargado);
                                         });
@@ -1451,13 +1464,19 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        if (originalLoadedFirmware == null || originalLoadedFirmware.isEmpty() || originalLoadedDatosPic == null) {
+        DatosPicProcesados datosParaVerificar = (lastProgrammedDatosPic != null)
+                ? lastProgrammedDatosPic
+                : originalLoadedDatosPic;
+
+        if (datosParaVerificar == null) {
             appendLog("❌ " + getString(R.string.error_verificando_memoria) + ": " + getString(R.string.no_hay_firmware_valido));
             return;
         }
 
-        firmware = originalLoadedFirmware;
-        datosPicProcesados = originalLoadedDatosPic;
+        datosPicProcesados = datosParaVerificar;
+        firmware = (lastProgrammedFirmware != null && !lastProgrammedFirmware.isEmpty())
+                ? lastProgrammedFirmware
+                : originalLoadedFirmware;
 
         verificarChipEnSocketYEjecutar(this::doVerifyMemoryOperation, getString(R.string.verificar));
     }
@@ -1546,6 +1565,8 @@ public class MainActivity extends AppCompatActivity
                     originalLoadedFirmware = "";
                     datosPicProcesados = null;
                     originalLoadedDatosPic = null;
+                    lastProgrammedFirmware = "";
+                    lastProgrammedDatosPic = null;
                     if (fileManager != null) {
                         fileManager.clearLoadedFile();
                     }
@@ -1559,6 +1580,8 @@ public class MainActivity extends AppCompatActivity
                     originalLoadedFirmware = "";
                     datosPicProcesados = null;
                     originalLoadedDatosPic = null;
+                    lastProgrammedFirmware = "";
+                    lastProgrammedDatosPic = null;
                     if (fileManager != null) {
                         fileManager.clearLoadedFile();
                     }

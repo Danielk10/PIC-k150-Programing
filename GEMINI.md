@@ -165,6 +165,7 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
      - Si NO hay archivo HEX/BIN cargado desde disco: Los botones «Programar PIC» y «Verificar Memoria» permanecen estrictamente deshabilitados e inactivos al salir del lector de memoria, y cualquier intento de invocación es rechazado defensivamente.
      - Si SÍ hay un archivo HEX/BIN cargado desde disco: Los botones principales se mantienen activos y programan **única y exclusivamente el archivo original cargado**, sin ser contaminados ni reemplazados por lecturas del microcontrolador ni modificaciones manuales realizadas en el visor de memoria.
    * **Flujo dedicado para «Reprogramar»:** El botón naranja dentro del lector de memoria genera dinámicamente su propio volcado independiente (`hexReprogramar` y `datosReprogramar`) para programar el chip en el zócalo, restaurando al finalizar el estado legítimo de los botones de la pantalla principal según la presencia del archivo original cargado.
+   * **Seguimiento Dinámico de Verificación (`lastProgrammedDatosPic`):** El botón «Verificar Memoria» detecta y compara automáticamente contra el último firmware efectivamente grabado en el chip (bien sea la memoria modificada reprogramada o el archivo original cargado). Si se vuelve a grabar el archivo original, la verificación conmuta automáticamente a dicho archivo original, permitiendo verificar en todo momento lo que realmente se grabó en el silicio.
 
 ---
 
