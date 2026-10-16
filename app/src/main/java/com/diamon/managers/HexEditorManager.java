@@ -2,17 +2,24 @@ package com.diamon.managers;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diamon.chip.ChipPic;
 import com.diamon.datos.DatosPicProcesados;
 import com.diamon.pic.R;
+
+import java.util.Locale;
 
 /**
  * Gestor del Editor Hexadecimal Interactivo en Vivo (Code Editor MicroPro).
@@ -84,57 +91,113 @@ public class HexEditorManager {
         String tipoMem = isRom ? context.getString(R.string.hex_editor_type_rom_word) : context.getString(R.string.hex_editor_type_eeprom_byte);
         builder.setTitle(context.getString(R.string.hex_editor_title, tipoMem));
 
+        final float density = context.getResources().getDisplayMetrics().density;
+        final int dp4 = Math.round(4 * density);
+        final int dp8 = Math.round(8 * density);
+        final int dp12 = Math.round(12 * density);
+        final int dp16 = Math.round(16 * density);
+
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.setBackgroundColor(0xFF181824);
+
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
-        int padding = dpToPx(context, 16);
-        layout.setPadding(padding, padding, padding, padding);
+        layout.setPadding(dp16, dp16, dp16, dp16);
+        scrollView.addView(layout);
 
-        TextView infoText = new TextView(context);
-        String addrStr = String.format("0x%04X", address);
-        String currHex = isRom ? String.format("%04X", valorActual & maxVal) : String.format("%02X", valorActual & 0xFF);
-        infoText.setText(context.getString(R.string.hex_editor_info_address_value, addrStr, currHex, String.format(isRom ? "%04X" : "%02X", maxVal)));
-        infoText.setTextSize(14);
-        infoText.setTextColor(0xFFFFFFFF);
-        infoText.setPadding(0, 0, 0, dpToPx(context, 8));
-        layout.addView(infoText);
+        String addrStr = String.format(Locale.US, "0x%04X", address);
+        String currHex = isRom ? String.format(Locale.US, "%04X", valorActual & maxVal) : String.format(Locale.US, "%02X", valorActual & 0xFF);
+        String maxHex = String.format(Locale.US, isRom ? "%04X" : "%02X", maxVal);
 
-        // Tarjeta informativa de formato y orden de bytes (Little-Endian vs Big-Endian lógico)
+        // --- TARJETA 1: RESUMEN DE MEMORIA (Métricas limpias en 3 columnas) ---
+        LinearLayout cardOverview = new LinearLayout(context);
+        cardOverview.setOrientation(LinearLayout.VERTICAL);
+        cardOverview.setPadding(dp12, dp12, dp12, dp12);
+        GradientDrawable bgOverview = new GradientDrawable();
+        bgOverview.setColor(0xFF222234);
+        bgOverview.setCornerRadius(dp8);
+        bgOverview.setStroke(Math.round(1 * density), 0xFF35354D);
+        cardOverview.setBackground(bgOverview);
+
+        LinearLayout rowStats = new LinearLayout(context);
+        rowStats.setOrientation(LinearLayout.HORIZONTAL);
+        rowStats.setWeightSum(3.0f);
+
+        rowStats.addView(crearColumnaInfo(context, context.getString(R.string.hex_editor_label_address), addrStr, 0xFFFFFFFF, density));
+        rowStats.addView(crearColumnaInfo(context, context.getString(R.string.hex_editor_label_current), "0x" + currHex, 0xFF00E676, density));
+        rowStats.addView(crearColumnaInfo(context, context.getString(R.string.hex_editor_label_max), "0x" + maxHex, 0xFFFFB300, density));
+
+        cardOverview.addView(rowStats);
+
+        LinearLayout.LayoutParams cardOverviewParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        cardOverviewParams.bottomMargin = dp12;
+        layout.addView(cardOverview, cardOverviewParams);
+
+        // --- TARJETA 2: FORMATO TÉCNICO Y ORGANIZACIÓN ---
         LinearLayout infoCard = new LinearLayout(context);
         infoCard.setOrientation(LinearLayout.VERTICAL);
-        infoCard.setBackgroundColor(0xFF252538);
-        int cardPadding = dpToPx(context, 10);
-        infoCard.setPadding(cardPadding, cardPadding, cardPadding, cardPadding);
+        infoCard.setPadding(dp12, dp12, dp12, dp12);
+        GradientDrawable bgInfo = new GradientDrawable();
+        bgInfo.setColor(0xFF1E1E2E);
+        bgInfo.setCornerRadius(dp8);
+        bgInfo.setStroke(Math.round(1 * density), 0xFF2E2E42);
+        infoCard.setBackground(bgInfo);
 
         TextView tvCardTitle = new TextView(context);
         tvCardTitle.setText(isRom ? context.getString(R.string.hex_editor_card_title_rom) : context.getString(R.string.hex_editor_card_title_eeprom));
         tvCardTitle.setTextSize(12);
-        tvCardTitle.setTextColor(0xFF00E676);
-        tvCardTitle.setTypeface(null, android.graphics.Typeface.BOLD);
+        tvCardTitle.setTextColor(0xFF00B0FF);
+        tvCardTitle.setTypeface(null, Typeface.BOLD);
         infoCard.addView(tvCardTitle);
 
-        TextView tvCardDesc = new TextView(context);
         if (isRom) {
             int lsb = valorActual & 0xFF;
             int msb = (valorActual >> 8) & 0xFF;
-            tvCardDesc.setText(context.getString(R.string.hex_editor_desc_rom, String.format("%02X", lsb), String.format("%02X", msb)));
-        } else {
-            tvCardDesc.setText(context.getString(R.string.hex_editor_desc_eeprom));
+
+            LinearLayout rowBytes = new LinearLayout(context);
+            rowBytes.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams rbParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            rbParams.topMargin = dp8;
+            rbParams.bottomMargin = dp8;
+            rowBytes.setLayoutParams(rbParams);
+
+            TextView tvLsb = crearBadgeByte(context, context.getString(R.string.hex_editor_byte_low, String.format(Locale.US, "%02X", lsb)), density);
+            TextView tvMsb = crearBadgeByte(context, context.getString(R.string.hex_editor_byte_high, String.format(Locale.US, "%02X", msb)), density);
+
+            LinearLayout.LayoutParams p1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+            p1.rightMargin = dp4;
+            LinearLayout.LayoutParams p2 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+            p2.leftMargin = dp4;
+
+            rowBytes.addView(tvLsb, p1);
+            rowBytes.addView(tvMsb, p2);
+            infoCard.addView(rowBytes);
         }
+
+        TextView tvCardDesc = new TextView(context);
+        tvCardDesc.setText(isRom ? context.getString(R.string.hex_editor_desc_rom) : context.getString(R.string.hex_editor_desc_eeprom));
         tvCardDesc.setTextSize(11);
-        tvCardDesc.setTextColor(0xFFCCCCCC);
-        tvCardDesc.setPadding(0, dpToPx(context, 4), 0, 0);
+        tvCardDesc.setTextColor(0xFFB0BEC5);
+        tvCardDesc.setLineSpacing(0, 1.15f);
+        if (!isRom) {
+            tvCardDesc.setPadding(0, dp8, 0, 0);
+        }
         infoCard.addView(tvCardDesc);
 
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        cardParams.bottomMargin = dpToPx(context, 12);
+        cardParams.bottomMargin = dp12;
         layout.addView(infoCard, cardParams);
 
+        // --- TARJETA 3: EDICIÓN DE VALOR (Input) ---
         TextView inputLabel = new TextView(context);
         inputLabel.setText(isRom ? context.getString(R.string.hex_editor_input_label_rom) : context.getString(R.string.hex_editor_input_label_eeprom));
         inputLabel.setTextSize(12);
-        inputLabel.setTextColor(0xFFB0BEC5);
-        inputLabel.setPadding(0, 0, 0, dpToPx(context, 4));
+        inputLabel.setTypeface(null, Typeface.BOLD);
+        inputLabel.setTextColor(0xFFFFFFFF);
+        inputLabel.setPadding(0, 0, 0, dp8);
         layout.addView(inputLabel);
 
         EditText input = new EditText(context);
@@ -142,10 +205,15 @@ public class HexEditorManager {
         input.setText(currHex);
         input.setSelectAllOnFocus(true);
         input.setGravity(Gravity.CENTER);
-        input.setTextSize(18);
-        input.setTextColor(0xFF00E676); // Verde neón
-        input.setBackgroundColor(0xFF1E1E2E);
-        input.setPadding(dpToPx(context, 8), dpToPx(context, 10), dpToPx(context, 8), dpToPx(context, 10));
+        input.setTextSize(20);
+        input.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
+        input.setTextColor(0xFF00E676);
+        GradientDrawable inputBg = new GradientDrawable();
+        inputBg.setColor(0xFF141420);
+        inputBg.setCornerRadius(dp8);
+        inputBg.setStroke(Math.round(1.5f * density), 0xFF00E676);
+        input.setBackground(inputBg);
+        input.setPadding(dp12, dp12, dp12, dp12);
 
         // Filtro de caracteres hexadecimales y longitud máxima
         InputFilter hexFilter = (source, start, end, dest, dstart, dend) -> {
@@ -160,7 +228,7 @@ public class HexEditorManager {
         input.setFilters(new InputFilter[]{hexFilter, new InputFilter.LengthFilter(maxChars)});
         layout.addView(input);
 
-        builder.setView(layout);
+        builder.setView(scrollView);
 
         builder.setPositiveButton(context.getString(R.string.guardar), (dialog, which) -> {
             String text = input.getText().toString().trim();
@@ -382,6 +450,48 @@ public class HexEditorManager {
             String updated = current.toString().replaceFirst(oldHex, newHex);
             filaView.setText(updated);
         }
+    }
+
+    private static LinearLayout crearColumnaInfo(Context context, String label, String value, int valueColor, float density) {
+        LinearLayout col = new LinearLayout(context);
+        col.setOrientation(LinearLayout.VERTICAL);
+        col.setGravity(Gravity.CENTER_HORIZONTAL);
+        col.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+
+        TextView tvLabel = new TextView(context);
+        tvLabel.setText(label.toUpperCase(Locale.ROOT));
+        tvLabel.setTextSize(10);
+        tvLabel.setTextColor(0xFF9E9EB4);
+        tvLabel.setGravity(Gravity.CENTER_HORIZONTAL);
+        col.addView(tvLabel);
+
+        TextView tvValue = new TextView(context);
+        tvValue.setText(value);
+        tvValue.setTextSize(13);
+        tvValue.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
+        tvValue.setTextColor(valueColor);
+        tvValue.setGravity(Gravity.CENTER_HORIZONTAL);
+        tvValue.setPadding(0, Math.round(2 * density), 0, 0);
+        col.addView(tvValue);
+
+        return col;
+    }
+
+    private static TextView crearBadgeByte(Context context, String text, float density) {
+        TextView tv = new TextView(context);
+        tv.setText(text);
+        tv.setTextSize(11);
+        tv.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
+        tv.setTextColor(0xFFE0E0E0);
+        tv.setGravity(Gravity.CENTER);
+        GradientDrawable bg = new GradientDrawable();
+        bg.setColor(0xFF28283C);
+        bg.setCornerRadius(Math.round(6 * density));
+        tv.setBackground(bg);
+        int padH = Math.round(8 * density);
+        int padV = Math.round(6 * density);
+        tv.setPadding(padH, padV, padH, padV);
+        return tv;
     }
 
     private static int dpToPx(Context context, int dp) {

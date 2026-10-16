@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 하드웨어 진단</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL 교정</string>
-    <string name="menu_debug_vector_icd">🛠️ 인서킷 디버그 벡터 (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ 인서킷 디버그 벡터 ICD</string>
     <string name="cd_socket_diagram">소켓 다이어그램</string>
     <string name="btn_connect_usb">USB 프로그래머 연결</string>
     <string name="btn_disconnect_usb">USB 프로그래머 분리</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ZIF 센서 테스트 (삽입/제거)</string>
     <string name="diag_section_voltage_control">⚡ 전압 제어 VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ 주의: 멀티미터로 전압을 활성화하거나 측정하기 전에 ZIF 소켓에서 마이크로컨트롤러를 제거하십시오.</string>
-    <string name="diag_status_voltages_off">상태: 전압 꺼짐 (0V)</string>
-    <string name="diag_status_vpp_active">상태: ⚡ VPP (13V) / VDD (5V) 활성화됨</string>
+    <string name="diag_status_voltages_off">상태: 전압 꺼짐 - 0V</string>
+    <string name="diag_status_vpp_active">상태: ⚡ VPP 13V / VDD 5V 활성화됨</string>
     <string name="diag_status_voltages_restarted">상태: ⚡ 전압 재시작됨 (활성)</string>
     <string name="diag_status_error_activating">상태: ❌ 전압 활성화 오류</string>
     <string name="diag_status_error_deactivating">상태: ❌ 전압 끄기 오류</string>
     <string name="diag_status_error_restarting">상태: ❌ 전압 재시작 오류</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">전원 끄기 (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">전원 끄기 - 0V</string>
     <string name="diag_btn_restart_voltages">재시작</string>
     <string name="diag_programmer_not_connected">프로그래머가 연결되지 않음</string>
     <string name="diag_connect_programmer_prompt">⚠ 진단을 사용하려면 K150 프로그래머를 연결하십시오</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ 소켓에서 안정적인 접촉이 감지되지 않음</string>
     <string name="diag_toast_chip_removed_voltages_active">칩 제거됨: 안전한 측정을 위해 전압이 활성화되었습니다</string>
     <string name="diag_toast_voltages_activated_multimeter">전압 활성화됨: VPP 및 VDD 핀에서 멀티미터로 측정하십시오</string>
-    <string name="diag_toast_voltages_off">전압 꺼짐 (0V)</string>
+    <string name="diag_toast_voltages_off">전압 꺼짐 - 0V</string>
     <string name="diag_toast_voltages_restarted">칩 제거됨: 측정을 위해 전압이 재시작되었습니다</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ 소켓에 마이크로컨트롤러 있음</string>
     <string name="diag_alert_chip_in_socket_message">13V VPP로 인한 PIC 손상을 방지하려면 전압을 활성화하거나 측정하기 전에 ZIF 소켓에서 마이크로컨트롤러를 제거하십시오.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">유효하지 않은 16진수 값입니다</string>
     <string name="cal_toast_write_success">✓ OSCCAL이 칩에 성공적으로 기록되었습니다</string>
     <string name="cal_toast_write_error">❌ 실리콘에 교정값 쓰기 실패</string>
-    <string name="icd_dialog_subtitle">인서킷 디버깅 (ICD) - 24비트 주소 벡터
+    <string name="icd_dialog_subtitle">인서킷 디버깅 ICD - 24비트 주소 벡터
 (유효 범위: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 현재 벡터: %1$s</string>
@@ -410,7 +410,7 @@
 16진수 디버그 주소 (예: 000020):</string>
     <string name="icd_btn_read_vector">📥 벡터 읽기</string>
     <string name="icd_btn_write_vector">💾 벡터 쓰기</string>
-    <string name="icd_dialog_title">🛠️ 디버깅 벡터 (ICD)</string>
+    <string name="icd_dialog_title">🛠️ 디버깅 벡터 ICD</string>
     <string name="icd_toast_read_success">✓ 벡터 읽기 완료: %1$s</string>
     <string name="icd_toast_invalid_address">유효하지 않은 24비트 16진수 주소입니다</string>
     <string name="icd_toast_write_success">✓ ICD 벡터 프로그래밍 완료: %1$s</string>
@@ -477,4 +477,14 @@ PIC %1$s을(를) 해당 위치에 삽입하고 레버를 잠근 후 [%2$s]을(�
     <string name="toast_clipboard_fail">클립보드에 액세스할 수 없습니다.</string>
     <string name="toast_logs_copied">로그가 클립보드에 복사되었습니다.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ 마이크로컨트롤러가 아직 ZIF 소켓에 있습니다. 계속하기 전에 제거하십시오.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

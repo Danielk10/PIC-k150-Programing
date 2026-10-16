@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Ekspor KONFIG (.hex)</string>
-    <string name="exportar_config_bin">Ekspor KONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Ekspor Dump Penuh (.hex)</string>
-    <string name="exportar_dump_completo_bin">Ekspor Dump Penuh (.bin)</string>
+    <string name="exportar_config_hex">Ekspor KONFIG .hex</string>
+    <string name="exportar_config_bin">Ekspor KONFIG .bin</string>
+    <string name="exportar_dump_completo">Ekspor Dump Penuh .hex</string>
+    <string name="exportar_dump_completo_bin">Ekspor Dump Penuh .bin</string>
     <string name="verificar_borrado">Verifikasi Penghapusan</string>
     <string name="chip_esta_borrado">Chip terhapus (Kosong)</string>
     <string name="chip_no_esta_borrado">Chipnya TIDAK terhapus</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnostik Perangkat Keras K150</string>
     <string name="menu_osccal_calibration">⏱️ Kalibrasi OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vektor Debug In-Circuit (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor Debug In-Circuit ICD</string>
     <string name="cd_socket_diagram">Diagram soket</string>
     <string name="btn_connect_usb">Hubungkan Pemrogram USB</string>
     <string name="btn_disconnect_usb">Putuskan Pemrogram USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Uji Sensor ZIF (Pasang/Lepas)</string>
     <string name="diag_section_voltage_control">⚡ Kontrol Tegangan VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ PERHATIAN: Lepaskan mikrokontroler dari soket ZIF sebelum mengaktifkan atau mengukur tegangan dengan multimeter.</string>
-    <string name="diag_status_voltages_off">Status: Tegangan dimatikan (0V)</string>
-    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) DIAKTIFKAN</string>
+    <string name="diag_status_voltages_off">Status: Tegangan dimatikan - 0V</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP 13V / VDD 5V DIAKTIFKAN</string>
     <string name="diag_status_voltages_restarted">Status: ⚡ Tegangan dimulai ulang (Aktif)</string>
     <string name="diag_status_error_activating">Status: ❌ Kesalahan mengaktifkan tegangan</string>
     <string name="diag_status_error_deactivating">Status: ❌ Kesalahan mematikan tegangan</string>
     <string name="diag_status_error_restarting">Status: ❌ Kesalahan memulai ulang tegangan</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Matikan (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Matikan - 0V</string>
     <string name="diag_btn_restart_voltages">Mulai Ulang</string>
     <string name="diag_programmer_not_connected">Pemrogram tidak terhubung</string>
     <string name="diag_connect_programmer_prompt">⚠ Hubungkan pemrogram K150 untuk menggunakan diagnostik</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Kontak rapat tidak terdeteksi di soket</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip dilepas: Tegangan diaktifkan untuk pengukuran yang aman</string>
     <string name="diag_toast_voltages_activated_multimeter">Tegangan diaktifkan: ukur dengan multimeter pada pin VPP dan VDD</string>
-    <string name="diag_toast_voltages_off">Tegangan dimatikan (0V)</string>
+    <string name="diag_toast_voltages_off">Tegangan dimatikan - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip dilepas: Tegangan dimulai ulang untuk pengukuran</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroler di Soket</string>
     <string name="diag_alert_chip_in_socket_message">Untuk menghindari kerusakan pada PIC akibat VPP 13V, harap lepaskan mikrokontroler dari soket ZIF sebelum mengaktifkan atau mengukur tegangan.
@@ -402,7 +402,7 @@ Masukkan nilai heksadesimal (mis. %1$s):</string>
     <string name="cal_toast_invalid_hex">Nilai heksadesimal tidak valid</string>
     <string name="cal_toast_write_success">✓ OSCCAL berhasil ditulis ke chip</string>
     <string name="cal_toast_write_error">❌ Gagal menulis kalibrasi ke silikon</string>
-    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) - Vektor Alamat 24-bit
+    <string name="icd_dialog_subtitle">In-Circuit Debugging ICD - Vektor Alamat 24-bit
 (Rentang valid: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Vektor Saat Ini: %1$s</string>
@@ -410,7 +410,7 @@ Vektor Saat Ini: %1$s</string>
 Alamat debug heksadesimal (mis. 000020):</string>
     <string name="icd_btn_read_vector">📥 Baca Vektor</string>
     <string name="icd_btn_write_vector">💾 Tulis Vektor</string>
-    <string name="icd_dialog_title">🛠️ Vektor Debug (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vektor Debug ICD</string>
     <string name="icd_toast_read_success">✓ Vektor terbaca: %1$s</string>
     <string name="icd_toast_invalid_address">Alamat heksadesimal 24-bit tidak valid</string>
     <string name="icd_toast_write_success">✓ Vektor ICD terprogram: %1$s</string>
@@ -477,4 +477,14 @@ Harap masukkan PIC %1$s pada posisi yang sesuai, kunci tuasnya, lalu ketuk [%2$s
     <string name="toast_clipboard_fail">Tidak dapat mengakses papan klip.</string>
     <string name="toast_logs_copied">Log disalin ke papan klip.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroler masih berada di soket ZIF. Harap lepaskan sebelum melanjutkan.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

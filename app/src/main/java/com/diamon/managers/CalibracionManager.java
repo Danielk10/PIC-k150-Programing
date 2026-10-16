@@ -207,7 +207,7 @@ public class CalibracionManager {
             return String.format("0x%04X", valor & 0x0FFF);
         }
         int lowByte = valor & 0xFF;
-        return String.format("0x%04X (RETLW 0x%02X)", valor & 0x3FFF, lowByte);
+        return String.format("0x%04X - RETLW 0x%02X", valor & 0x3FFF, lowByte);
     }
 
     /**

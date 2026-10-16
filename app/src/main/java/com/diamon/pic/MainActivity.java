@@ -2060,11 +2060,106 @@ public class MainActivity extends AppCompatActivity
         final int[] selectedIndex = { currentIndex };
         String title = getString(R.string.seleccionar_protocolo);
 
+        float density = getResources().getDisplayMetrics().density;
+        int pad = Math.round(16 * density);
+        int padItemH = Math.round(14 * density);
+        int padItemV = Math.round(12 * density);
+
+        android.widget.ScrollView scrollView = new android.widget.ScrollView(this);
+        scrollView.setBackgroundColor(0xFF181824);
+
+        android.widget.RadioGroup radioGroup = new android.widget.RadioGroup(this);
+        radioGroup.setOrientation(android.widget.RadioGroup.VERTICAL);
+        radioGroup.setPadding(pad, pad, pad, pad);
+
+        // ColorStateList de alto contraste para los RadioButtons:
+        // Seleccionado: Verde neón vibrante (#00E676)
+        // No seleccionado: Gris plateado claro (#B0BEC5), claramente distinguible del fondo oscuro (#181824 / #222234)
+        ColorStateList radioColorStateList = new ColorStateList(
+                new int[][]{
+                        new int[]{android.R.attr.state_checked},
+                        new int[]{-android.R.attr.state_checked}
+                },
+                new int[]{
+                        0xFF00E676,
+                        0xFFB0BEC5
+                }
+        );
+
+        for (int i = 0; i < protocolos.length; i++) {
+            androidx.appcompat.widget.AppCompatRadioButton rb = new androidx.appcompat.widget.AppCompatRadioButton(this);
+            rb.setId(View.generateViewId());
+
+            String proto = protocolos[i];
+            String desc = "";
+            if ("P18A".equals(proto)) {
+                desc = "\nK150 / K128 • Firmware estándar";
+            } else if ("P018".equals(proto)) {
+                desc = "\nKITSRUS P018 • Firmware intermedio";
+            } else if ("P016".equals(proto)) {
+                desc = "\nKITSRUS P016 • Firmware clásico";
+            } else if ("P014".equals(proto)) {
+                desc = "\nKITSRUS P014 • Firmware heredado";
+            }
+
+            android.text.SpannableString span = new android.text.SpannableString(proto + desc);
+            span.setSpan(new android.text.style.StyleSpan(Typeface.BOLD), 0, proto.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new android.text.style.ForegroundColorSpan(0xFFFFFFFF), 0, proto.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new android.text.style.RelativeSizeSpan(1.05f), 0, proto.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (!desc.isEmpty()) {
+                int startDesc = proto.length();
+                int endDesc = span.length();
+                span.setSpan(new android.text.style.ForegroundColorSpan(0xFF90A4AE), startDesc, endDesc, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                span.setSpan(new android.text.style.RelativeSizeSpan(0.85f), startDesc, endDesc, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+
+            rb.setText(span);
+            rb.setSupportButtonTintList(radioColorStateList);
+            rb.setPadding(padItemH, padItemV, padItemH, padItemV);
+            rb.setMinimumHeight(Math.round(48 * density));
+
+            android.graphics.drawable.GradientDrawable cardBg = new android.graphics.drawable.GradientDrawable();
+            cardBg.setColor(0xFF222234);
+            cardBg.setCornerRadius(8 * density);
+            cardBg.setStroke(Math.round(1.5f * density), (i == currentIndex) ? 0xFF00E676 : 0xFF35354A);
+            rb.setBackground(cardBg);
+
+            android.widget.RadioGroup.LayoutParams lp = new android.widget.RadioGroup.LayoutParams(
+                    android.widget.RadioGroup.LayoutParams.MATCH_PARENT,
+                    android.widget.RadioGroup.LayoutParams.WRAP_CONTENT
+            );
+            if (i < protocolos.length - 1) {
+                lp.bottomMargin = Math.round(8 * density);
+            }
+            rb.setLayoutParams(lp);
+
+            if (i == currentIndex) {
+                rb.setChecked(true);
+            }
+
+            radioGroup.addView(rb);
+        }
+
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            for (int i = 0; i < group.getChildCount(); i++) {
+                View child = group.getChildAt(i);
+                boolean isChecked = (child.getId() == checkedId);
+                if (isChecked) {
+                    selectedIndex[0] = i;
+                }
+                android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+                bg.setColor(0xFF222234);
+                bg.setCornerRadius(8 * density);
+                bg.setStroke(Math.round(1.5f * density), isChecked ? 0xFF00E676 : 0xFF35354A);
+                child.setBackground(bg);
+            }
+        });
+
+        scrollView.addView(radioGroup);
+
         new AlertDialog.Builder(this)
                 .setTitle(title)
-                .setSingleChoiceItems(protocolos, currentIndex, (dialog, which) -> {
-                    selectedIndex[0] = which;
-                })
+                .setView(scrollView)
                 .setPositiveButton(getString(R.string.aceptar), (dialog, which) -> {
                     TipoProtocolo selected = TipoProtocolo.values()[selectedIndex[0]];
                     usbManager.setTipoProtocolo(selected);
@@ -2075,21 +2170,27 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showAboutLicensesDialog() {
-        android.widget.TextView textView = new android.widget.TextView(this);
         float density = getResources().getDisplayMetrics().density;
         int pad = Math.round(16 * density);
+
+        android.widget.ScrollView scrollView = new android.widget.ScrollView(this);
+        scrollView.setBackgroundColor(0xFF181824);
+
+        android.widget.TextView textView = new android.widget.TextView(this);
         textView.setPadding(pad, pad, pad, pad);
-        textView.setTextSize(14);
-        textView.setTextColor(Color.BLACK);
+        textView.setTextSize(13);
+        textView.setTextColor(0xFFE0E0E0);
+        textView.setLinkTextColor(0xFF00B0FF);
+        textView.setLineSpacing(0, 1.25f);
         textView.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
-        
-        String htmlText = "<h3><b>PIC k150 Programming</b></h3>" +
+
+        String htmlText = "<h3><b><font color=\"#00E676\">PIC k150 Programming</font></b></h3>" +
                 "<p><b>" + getString(R.string.desarrollador) + ":</b> Danielk10</p>" +
-                "<p><b>" + getString(R.string.repositorio) + ":</b> <a href=\"https://github.com/Danielk10/PIC-k150-Programing\">GitHub Repo</a></p>" +
+                "<p><b>" + getString(R.string.repositorio) + ":</b> <a href=\"https://github.com/Danielk10/PIC-k150-Programing\">GitHub - Danielk10/PIC-k150-Programing</a></p>" +
                 "<hr>" +
                 "<p>" + getString(R.string.about_description) + "</p>" +
                 "<hr>" +
-                "<h4><b>" + getString(R.string.about_features) + "</b></h4>" +
+                "<h4><b><font color=\"#00B0FF\">" + getString(R.string.about_features) + "</font></b></h4>" +
                 "<ul>" +
                 "  <li>" + getString(R.string.about_feature_1) + "</li>" +
                 "  <li>" + getString(R.string.about_feature_2) + "</li>" +
@@ -2097,25 +2198,35 @@ public class MainActivity extends AppCompatActivity
                 "  <li>" + getString(R.string.about_feature_4) + "</li>" +
                 "</ul>" +
                 "<hr>" +
-                "<h4><b>" + getString(R.string.licencia_de_aplicacion) + "</b></h4>" +
-                "<p>GNU General Public License v3.0 (GPL-3.0)</p>" +
-                "<hr>" +
-                "<h4><b>" + getString(R.string.licencias_de_terceros) + "</b></h4>" +
+                "<h4><b><font color=\"#FFB300\">" + getString(R.string.about_more_apps_title) + "</font></b></h4>" +
                 "<ul>" +
-                "  <li><b>usb-serial-for-android:</b> MIT License (Mike Wakerly / Google Inc.)</li>" +
-                "  <li><b>picpro:</b> LGPL-3.0 (Adam Schubert / Salamek)</li>" +
-                "  <li><b>picprogrammer:</b> LGPL-2.0 (Proyecto comunitario)</li>" +
-                "  <li><b>Termux:</b> GPL-3.0 (Fredrik Fornwall y colaboradores)</li>" +
+                "  <li>📱 <b>" + getString(R.string.about_app_curso) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.curso\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
+                "  <li>🧪 <b>" + getString(R.string.about_app_ptc) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.ptc\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
+                "  <li>🧮 <b>" + getString(R.string.about_app_mini) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.mini\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
                 "</ul>" +
                 "<hr>" +
-                "<h4><b>" + getString(R.string.about_acknowledgements_title) + "</b></h4>" +
+                "<h4><b><font color=\"#00B0FF\">" + getString(R.string.licencia_de_aplicacion) + "</font></b></h4>" +
+                "<p>GNU General Public License v3.0 (<a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GPL-3.0</a>)</p>" +
+                "<hr>" +
+                "<h4><b><font color=\"#00B0FF\">" + getString(R.string.licencias_de_terceros) + "</font></b></h4>" +
+                "<ul>" +
+                "  <li><b>usb-serial-for-android:</b> MIT License - <a href=\"https://github.com/mik3y/usb-serial-for-android\">mik3y/usb-serial-for-android</a> (Mike Wakerly / Google Inc.)</li>" +
+                "  <li><b>picpro:</b> LGPL-3.0 - <a href=\"https://github.com/Salamek/picpro\">Salamek/picpro</a> (Adam Schubert / Salamek)</li>" +
+                "  <li><b>picprogrammer:</b> LGPL-2.0 - <a href=\"https://github.com/almost/picprogrammer\">almost/picprogrammer</a> (Proyecto comunitario)</li>" +
+                "  <li><b>Termux:</b> GPL-3.0 - <a href=\"https://github.com/termux/termux-app\">termux/termux-app</a> (Fredrik Fornwall y colaboradores)</li>" +
+                "  <li><b>KITSRUS P018:</b> <a href=\"https://www.kitsrus.com/pic.html\">kitsrus.com</a> (Protocolo estándar de programación)</li>" +
+                "  <li><b>Android Code Studio:</b> <a href=\"https://github.com/AndroidCSOfficial/android-code-studio\">AndroidCSOfficial/android-code-studio</a></li>" +
+                "</ul>" +
+                "<hr>" +
+                "<h4><b><font color=\"#00B0FF\">" + getString(R.string.about_acknowledgements_title) + "</font></b></h4>" +
                 "<p>" + getString(R.string.about_acknowledgements_desc) + "</p>";
-                
+
         textView.setText(androidx.core.text.HtmlCompat.fromHtml(htmlText, androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY));
-        
+        scrollView.addView(textView);
+
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.acerca_de_licencias))
-                .setView(textView)
+                .setView(scrollView)
                 .setPositiveButton(getString(R.string.aceptar), null)
                 .show();
     }

@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Ekspordi CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Ekspordi CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Ekspordi täielik tühjendus (.hex)</string>
-    <string name="exportar_dump_completo_bin">Ekspordi täielik tühjendus (.bin)</string>
+    <string name="exportar_config_hex">Ekspordi CONFIG .hex</string>
+    <string name="exportar_config_bin">Ekspordi CONFIG .bin</string>
+    <string name="exportar_dump_completo">Ekspordi täielik tühjendus .hex</string>
+    <string name="exportar_dump_completo_bin">Ekspordi täielik tühjendus .bin</string>
     <string name="verificar_borrado">Kinnitage kustutamine</string>
     <string name="chip_esta_borrado">Kiip on kustutatud (tühi)</string>
     <string name="chip_no_esta_borrado">Kiipi EI kustutata</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 Riistvara Diagnostika</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL Kalibreerimine</string>
-    <string name="menu_debug_vector_icd">🛠️ Skeemisisese Silumise Vektor (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Skeemisisese Silumise Vektor ICD</string>
     <string name="cd_socket_diagram">Sokli skeem</string>
     <string name="btn_connect_usb">Ühenda USB-programmeerija</string>
     <string name="btn_disconnect_usb">Katkesta USB-programmeerija ühendus</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Testi ZIF-andureid (Sisesta/Eemalda)</string>
     <string name="diag_section_voltage_control">⚡ Pingete Juhtimine VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ETTEVAATUST: Enne pingete lubamist või multimeetriga mõõtmist eemaldage mikrokontroller ZIF-soklist.</string>
-    <string name="diag_status_voltages_off">Olek: Pinged välja lülitatud (0V)</string>
-    <string name="diag_status_vpp_active">Olek: ⚡ VPP (13V) / VDD (5V) AKTIVEERITUD</string>
+    <string name="diag_status_voltages_off">Olek: Pinged välja lülitatud - 0V</string>
+    <string name="diag_status_vpp_active">Olek: ⚡ VPP 13V / VDD 5V AKTIVEERITUD</string>
     <string name="diag_status_voltages_restarted">Olek: ⚡ Pinged taaskäivitatud (Aktiivne)</string>
     <string name="diag_status_error_activating">Olek: ❌ Viga pingete aktiveerimisel</string>
     <string name="diag_status_error_deactivating">Olek: ❌ Viga pingete väljalülitamisel</string>
     <string name="diag_status_error_restarting">Olek: ❌ Viga pingete taaskäivitamisel</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Lülita välja (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Lülita välja - 0V</string>
     <string name="diag_btn_restart_voltages">Taaskäivita</string>
     <string name="diag_programmer_not_connected">Programmeerija pole ühendatud</string>
     <string name="diag_connect_programmer_prompt">⚠ Diagnostika kasutamiseks ühendage K150 programmeerija</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Soklis ei tuvastatud kindlat kontakti</string>
     <string name="diag_toast_chip_removed_voltages_active">Kiip eemaldatud: Pinged aktiveeritud ohutuks mõõtmiseks</string>
     <string name="diag_toast_voltages_activated_multimeter">Pinged aktiveeritud: mõõtke multimeetriga VPP ja VDD pealt</string>
-    <string name="diag_toast_voltages_off">Pinged välja lülitatud (0V)</string>
+    <string name="diag_toast_voltages_off">Pinged välja lülitatud - 0V</string>
     <string name="diag_toast_voltages_restarted">Kiip eemaldatud: Pinged taaskäivitatud mõõtmiseks</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroller Soklis</string>
     <string name="diag_alert_chip_in_socket_message">PIC-i kahjustamise vältimiseks 13V VPP pingega eemaldage mikrokontroller ZIF-soklist enne pingete lubamist või mõõtmist.
@@ -402,7 +402,7 @@ Sisestage heksadetsimaalväärtus (nt %1$s):</string>
     <string name="cal_toast_invalid_hex">Kehtetu heksadetsimaalväärtus</string>
     <string name="cal_toast_write_success">✓ OSCCAL edukalt kiibile kirjutatud</string>
     <string name="cal_toast_write_error">❌ Kalibreerimise kirjutamine kiibile ebaõnnestus</string>
-    <string name="icd_dialog_subtitle">Skeemisisene silumine (ICD) – 24-bitine aadressivektor
+    <string name="icd_dialog_subtitle">Skeemisisene silumine ICD – 24-bitine aadressivektor
 (Kehtiv vahemik: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Praegune vektor: %1$s</string>
@@ -410,7 +410,7 @@ Praegune vektor: %1$s</string>
 Silumise aadress heks-vormingus (nt 000020):</string>
     <string name="icd_btn_read_vector">📥 Loe Vektor</string>
     <string name="icd_btn_write_vector">💾 Kirjuta Vektor</string>
-    <string name="icd_dialog_title">🛠️ Silumisvektor (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Silumisvektor ICD</string>
     <string name="icd_toast_read_success">✓ Vektor loetud: %1$s</string>
     <string name="icd_toast_invalid_address">Kehtetu 24-bitine heksadetsimaalaadress</string>
     <string name="icd_toast_write_success">✓ ICD vektor programmeeritud: %1$s</string>
@@ -477,4 +477,14 @@ Palun sisestage PIC %1$s vastavasse asendisse, lukustage hoob ja puudutage uuest
     <string name="toast_clipboard_fail">Lõikelauale ei pääsenud juurde.</string>
     <string name="toast_logs_copied">Logid kopeeriti lõikelauale.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroller on endiselt ZIF-pesas. Enne jätkamist eemaldage see.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

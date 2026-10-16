@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Exporteren CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Export CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Exporteer volledige dump (.hex)</string>
-    <string name="exportar_dump_completo_bin">Volledige dump exporteren (.bin)</string>
+    <string name="exportar_config_hex">Exporteren CONFIG .hex</string>
+    <string name="exportar_config_bin">Export CONFIG .bin</string>
+    <string name="exportar_dump_completo">Exporteer volledige dump .hex</string>
+    <string name="exportar_dump_completo_bin">Volledige dump exporteren .bin</string>
     <string name="verificar_borrado">Verifieer wissen</string>
     <string name="chip_esta_borrado">De chip is gewist (leeg)</string>
     <string name="chip_no_esta_borrado">De chip is NIET gewist</string>
@@ -292,7 +292,7 @@
     <string name="pro_access_subtitle">Ontgrendel geavanceerde technische tools voor %1$s</string>
     <string name="pro_feature_hex_editor">Live hexadecimale editor (Live Patching)</string>
     <string name="pro_feature_hardware_diagnostics">Hardwarediagnose en spanningstest (VPP 13V / VDD 5V)</string>
-    <string name="pro_feature_icd_vector">ICD-foutopsporingsvector (24 bits)</string>
+    <string name="pro_feature_icd_vector">ICD-foutopsporingsvector 24 bits</string>
     <string name="pro_feature_osccal">OSCCAL redden en handmatig bewerken</string>
     <string name="pro_feature_remove_ads">Verwijder alle advertenties uit de applicatie</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Bekijk video - 12 uur gratis toegang</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 hardwarediagnose</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibratie</string>
-    <string name="menu_debug_vector_icd">🛠️ In-Circuit foutopsporingsvector (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Circuit foutopsporingsvector ICD</string>
     <string name="cd_socket_diagram">Voetdiagram</string>
     <string name="btn_connect_usb">Verbind USB-programmeur</string>
     <string name="btn_disconnect_usb">Koppel USB-programmeur los</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Test ZIF-sensoren (Plaatsen/Verwijderen)</string>
     <string name="diag_section_voltage_control">⚡ Spanningsregeling VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ LET OP: Verwijder de microcontroller uit de ZIF-voet voordat u spanningen inschakelt of meet met een multimeter.</string>
-    <string name="diag_status_voltages_off">Status: Spanningen uitgeschakeld (0V)</string>
-    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) GEACTIVEERD</string>
+    <string name="diag_status_voltages_off">Status: Spanningen uitgeschakeld - 0V</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP 13V / VDD 5V GEACTIVEERD</string>
     <string name="diag_status_voltages_restarted">Status: ⚡ Spanningen herstart (Actief)</string>
     <string name="diag_status_error_activating">Status: ❌ Fout bij inschakelen van spanningen</string>
     <string name="diag_status_error_deactivating">Status: ❌ Fout bij uitschakelen van spanningen</string>
     <string name="diag_status_error_restarting">Status: ❌ Fout bij herstarten van spanningen</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Uitschakelen (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Uitschakelen - 0V</string>
     <string name="diag_btn_restart_voltages">Herstarten</string>
     <string name="diag_programmer_not_connected">Programmeur niet verbonden</string>
     <string name="diag_connect_programmer_prompt">⚠ Sluit de K150-programmeur aan om diagnostiek te gebruiken</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Geen stevig contact gedetecteerd in voet</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip verwijderd: Spanningen geactiveerd voor veilige meting</string>
     <string name="diag_toast_voltages_activated_multimeter">Spanningen geactiveerd: meet met multimeter op VPP en VDD</string>
-    <string name="diag_toast_voltages_off">Spanningen uitgeschakeld (0V)</string>
+    <string name="diag_toast_voltages_off">Spanningen uitgeschakeld - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip verwijderd: Spanningen herstart voor meting</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Microcontroller in voet</string>
     <string name="diag_alert_chip_in_socket_message">Om te voorkomen dat de PIC beschadigd raakt door 13V VPP, dient u de microcontroller uit de ZIF-voet te verwijderen voordat u spanningen inschakelt of meet.
@@ -402,7 +402,7 @@ Voer hexadecimale waarde in (bijv. %1$s):</string>
     <string name="cal_toast_invalid_hex">Ongeldige hexadecimale waarde</string>
     <string name="cal_toast_write_success">✓ OSCCAL succesvol naar chip geschreven</string>
     <string name="cal_toast_write_error">❌ Schrijven van kalibratie naar chip mislukt</string>
-    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) - 24-bits adresvector
+    <string name="icd_dialog_subtitle">In-Circuit Debugging ICD - 24-bits adresvector
 (Geldig bereik: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Huidige vector: %1$s</string>
@@ -410,7 +410,7 @@ Huidige vector: %1$s</string>
 Foutopsporingsadres in hex (bijv. 000020):</string>
     <string name="icd_btn_read_vector">📥 Vector lezen</string>
     <string name="icd_btn_write_vector">💾 Vector schrijven</string>
-    <string name="icd_dialog_title">🛠️ Foutopsporingsvector (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Foutopsporingsvector ICD</string>
     <string name="icd_toast_read_success">✓ Vector gelezen: %1$s</string>
     <string name="icd_toast_invalid_address">Ongeldig 24-bits hexadecimaal adres</string>
     <string name="icd_toast_write_success">✓ ICD-vector geprogrammeerd: %1$s</string>
@@ -477,4 +477,14 @@ Plaats de PIC %1$s in de juiste positie, vergrendel de hendel en tik opnieuw op 
     <string name="toast_clipboard_fail">Kon geen toegang krijgen tot klembord.</string>
     <string name="toast_logs_copied">Logboeken gekopieerd naar klembord.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ De microcontroller bevindt zich nog in de ZIF-voet. Verwijder deze voordat u doorgaat.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

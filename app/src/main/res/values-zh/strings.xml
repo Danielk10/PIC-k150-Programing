@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">导出配置 (.hex)</string>
-    <string name="exportar_config_bin">导出配置 (.bin)</string>
-    <string name="exportar_dump_completo">导出完整转储 (.hex)</string>
-    <string name="exportar_dump_completo_bin">导出完整转储 (.bin)</string>
+    <string name="exportar_config_hex">导出配置 .hex</string>
+    <string name="exportar_config_bin">导出配置 .bin</string>
+    <string name="exportar_dump_completo">导出完整转储 .hex</string>
+    <string name="exportar_dump_completo_bin">导出完整转储 .bin</string>
     <string name="verificar_borrado">验证擦除</string>
     <string name="chip_esta_borrado">芯片已已擦除（空白）</string>
     <string name="chip_no_esta_borrado">芯片未擦除</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ 专业版 %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 硬件诊断</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL 校准</string>
-    <string name="menu_debug_vector_icd">🛠️ 在线调试向量 (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ 在线调试向量 ICD</string>
     <string name="cd_socket_diagram">插槽示意图</string>
     <string name="btn_connect_usb">连接 USB 编程器</string>
     <string name="btn_disconnect_usb">断开 USB 编程器</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 测试 ZIF 传感器 (插入/拔出)</string>
     <string name="diag_section_voltage_control">⚡ 电压控制 VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ 注意：在使用万用表启用或测量电压之前，请从 ZIF 插座中取出微控制器。</string>
-    <string name="diag_status_voltages_off">状态：电压已关闭 (0V)</string>
-    <string name="diag_status_vpp_active">状态：⚡ VPP (13V) / VDD (5V) 已激活</string>
+    <string name="diag_status_voltages_off">状态：电压已关闭 - 0V</string>
+    <string name="diag_status_vpp_active">状态：⚡ VPP 13V / VDD 5V 已激活</string>
     <string name="diag_status_voltages_restarted">状态：⚡ 电压已重启 (活动)</string>
     <string name="diag_status_error_activating">状态：❌ 激活电压出错</string>
     <string name="diag_status_error_deactivating">状态：❌ 关闭电压出错</string>
     <string name="diag_status_error_restarting">状态：❌ 重启电压出错</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">关闭电源 (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">关闭电源 - 0V</string>
     <string name="diag_btn_restart_voltages">重启</string>
     <string name="diag_programmer_not_connected">编程器未连接</string>
     <string name="diag_connect_programmer_prompt">⚠ 请连接 K150 编程器以使用诊断功能</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ 插槽中未检测到稳固接触</string>
     <string name="diag_toast_chip_removed_voltages_active">芯片已取出：已激活电压以进行安全测量</string>
     <string name="diag_toast_voltages_activated_multimeter">电压已激活：请使用万用表测量 VPP 和 VDD</string>
-    <string name="diag_toast_voltages_off">电压已关闭 (0V)</string>
+    <string name="diag_toast_voltages_off">电压已关闭 - 0V</string>
     <string name="diag_toast_voltages_restarted">芯片已取出：电压已重启以进行测量</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ 插槽中有微控制器</string>
     <string name="diag_alert_chip_in_socket_message">为避免 13V VPP 损坏 PIC，请在启用或测量电压前从 ZIF 插槽中取出微控制器。
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">无效的十六进制值</string>
     <string name="cal_toast_write_success">✓ OSCCAL 已成功写入芯片</string>
     <string name="cal_toast_write_error">❌ 写入校准值到芯片失败</string>
-    <string name="icd_dialog_subtitle">在线调试 (ICD) - 24 位地址向量
+    <string name="icd_dialog_subtitle">在线调试 ICD - 24 位地址向量
 (有效范围：0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 当前向量：%1$s</string>
@@ -410,7 +410,7 @@
 调试十六进制地址 (例如 000020)：</string>
     <string name="icd_btn_read_vector">📥 读取向量</string>
     <string name="icd_btn_write_vector">💾 写入向量</string>
-    <string name="icd_dialog_title">🛠️ 调试向量 (ICD)</string>
+    <string name="icd_dialog_title">🛠️ 调试向量 ICD</string>
     <string name="icd_toast_read_success">✓ 读取向量：%1$s</string>
     <string name="icd_toast_invalid_address">无效的 24 位十六进制地址</string>
     <string name="icd_toast_write_success">✓ 已烧录 ICD 向量：%1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">无法访问剪贴板。</string>
     <string name="toast_logs_copied">日志已复制到剪贴板。</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ 微控制器仍在ZIF插座中。请在继续之前将其取出。</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

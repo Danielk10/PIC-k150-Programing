@@ -41,7 +41,7 @@
     <string name="pin_1">Pin 1</string>
     <string name="filemanager_no_inicializado">FileManager no inicializado</string>
     <string name="no_se_pudo_obtener_el_nombre_d">No se pudo obtener el nombre del archivo</string>
-    <string name="seleccione_un_archivo_binario_">Seleccione un archivo binario válido (.hex o .bin)</string>
+    <string name="seleccione_un_archivo_binario_">Seleccione un archivo binario válido .hex o .bin</string>
     <string name="error_abriendo_el_archivo_sele">Error abriendo el archivo seleccionado</string>
     <string name="el_archivo_seleccionado_esta_v">El archivo seleccionado está vacío</string>
     <string name="error_leyendo_el_archivo">Error leyendo el archivo</string>
@@ -101,23 +101,23 @@
     <string name="sdcc_termux_tutorial">Compilar SDCC en Termux compilador C</string>
     <string name="error_abriendo_tutorial">No se pudo abrir el tutorial</string>
     <string name="exportar_memoria">Exportar Memoria</string>
-    <string name="exportar_rom_hex">Exportar ROM (.hex)</string>
-    <string name="exportar_eeprom_hex">Exportar EEPROM (.hex)</string>
-    <string name="exportar_rom_bin">Exportar ROM (.bin)</string>
-    <string name="exportar_eeprom_bin">Exportar EEPROM (.bin)</string>
-    <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Exportar Volcado Completo (.hex)</string>
-    <string name="exportar_dump_completo_bin">Exportar Volcado Completo (.bin)</string>
+    <string name="exportar_rom_hex">Exportar ROM .hex</string>
+    <string name="exportar_eeprom_hex">Exportar EEPROM .hex</string>
+    <string name="exportar_rom_bin">Exportar ROM .bin</string>
+    <string name="exportar_eeprom_bin">Exportar EEPROM .bin</string>
+    <string name="exportar_config_hex">Exportar CONFIG .hex</string>
+    <string name="exportar_config_bin">Exportar CONFIG .bin</string>
+    <string name="exportar_dump_completo">Exportar Volcado Completo .hex</string>
+    <string name="exportar_dump_completo_bin">Exportar Volcado Completo .bin</string>
     <string name="verificar_borrado">Verificar Borrado</string>
-    <string name="chip_esta_borrado">El chip está borrado (Blank)</string>
+    <string name="chip_esta_borrado">El chip está borrado - Blank</string>
     <string name="chip_no_esta_borrado">El chip NO está borrado</string>
     <string name="verificando_borrado">Verificando borrado...</string>
     <string name="resultado_verificacion_borrado">Resultado de Verificación de Borrado</string>
     <string name="error_verificando_borrado">Error verificando borrado</string>
     <string name="configuracion_de_fusibles">Configuración de Fusibles</string>
     <string name="id_personalizado_hex">ID Personalizado</string>
-    <string name="hint_id_personalizado">Ingresa bytes HEX con espacios (Ej: FF 01 02 03)</string>
+    <string name="hint_id_personalizado">Ingresa bytes HEX con espacios - Ej: FF 01 02 03</string>
     <string name="restaurar_desde_bd">Restaurar desde BD</string>
     <string name="restaurar_desde_hex">Restaurar desde HEX</string>
     <string name="aplicar_fuses">Aplicar Fuses</string>
@@ -129,9 +129,9 @@
     <string name="publicidad_recomendada">Publicidad recomendada</string>
     <string name="lectura_completa">Lectura Completa</string>
     <string name="datos_de_memoria">Datos de Memoria</string>
-    <string name="rom_ok_blank">ROM: OK (En blanco)</string>
+    <string name="rom_ok_blank">ROM: OK - En blanco</string>
     <string name="rom_not_blank">ROM: NO ESTÁ EN BLANCO</string>
-    <string name="eeprom_ok_blank">EEPROM: OK (En blanco)</string>
+    <string name="eeprom_ok_blank">EEPROM: OK - En blanco</string>
     <string name="eeprom_not_blank">EEPROM: NO ESTÁ EN BLANCO</string>
     <string name="idioma_espanol">Español</string>
     <string name="idioma_ingles">English</string>
@@ -181,7 +181,7 @@
     <string name="chip_id_label">Chip ID:</string>
     <string name="include_file_label">Archivo Include:</string>
     <string name="rom_capacity_label">Capacidad ROM:</string>
-    <string name="rom_words_bytes">%1$,d Words (%2$,d Bytes)</string>
+    <string name="rom_words_bytes">%1$,d Words - %2$,d Bytes</string>
     <string name="eeprom_capacity_label">Capacidad EEPROM:</string>
     <string name="eeprom_bytes">%1$,d Bytes</string>
     <string name="fuse_blank_value_label">Valor FUSE en Blanco:</string>
@@ -196,7 +196,7 @@
     <string name="icsp_required_label">ICSP Requerido:</string>
     <string name="erase_algorithm_label">Algoritmo de Borrado:</string>
     <string name="power_sequence_label">Secuencia Encendido:</string>
-    <string name="prog_delay_label">Retraso Prog. (ms):</string>
+    <string name="prog_delay_label">Retraso Prog. ms:</string>
     <string name="prog_retries_label">Reintentos Prog.:</string>
     <string name="over_prog_factor_label">Factor Over-prog.:</string>
     <string name="cp_warn_label">Aviso Code Protect:</string>
@@ -237,7 +237,7 @@
     <string name="error_verif_eeprom_detalle">Error en verificación EEPROM: %1$s</string>
     <string name="titulo_info_hex">=== Información del HEX ===</string>
     <string name="rom_info_usage">%1$d palabras usadas, %2$d palabras libres en chip</string>
-    <string name="rom_total_info">ROM total chip: %1$d palabras (%2$d bytes)</string>
+    <string name="rom_total_info">ROM total chip: %1$d palabras - %2$d bytes</string>
     <string name="eeprom_info_usage">%1$d bytes usados, %2$d bytes libres en chip</string>
     <string name="eeprom_total_info">EEPROM total chip: %1$d bytes</string>
     <string name="eeprom_no_disponible">EEPROM: No disponible en este chip</string>
@@ -252,7 +252,7 @@
     <string name="record_address_error">Record address %1$s is outside the allowed range.</string>
     <string name="error_argumento_null">Parámetro %1$s no puede ser null</string>
     <string name="error_tamano_esperado">Parámetro %1$s debe tener %2$d bytes, pero tiene %3$d</string>
-    <string name="error_tamano_maximo">Parámetro %1$s excede el tamaño máximo permitido (%2$d bytes)</string>
+    <string name="error_tamano_maximo">Parámetro %1$s excede el tamaño máximo permitido de %2$d bytes</string>
     <string name="error_rango_invalido">Rango inválido: offset=%1$d, longitud=%2$d, arraySize=%3$d</string>
     <string name="error_hex_null">String hexadecimal no puede ser null</string>
     <string name="error_hex_longitud">String hexadecimal debe tener longitud par</string>
@@ -281,7 +281,7 @@
     <string name="about_description">Aplicación profesional para programar microcontroladores PIC utilizando el <b>Protocolo P018</b> de KITSRUS. Permite programar dispositivos PIC directamente desde Android vía USB OTG sin necesidad de PC.</string>
     <string name="about_features">Características principales:</string>
     <string name="about_feature_1">Programación móvil sin PC vía OTG.</string>
-    <string name="about_feature_2">Soporte para protocolos KITSRUS P018 (K150, K128, K149, K182).</string>
+    <string name="about_feature_2">Soporte para protocolos KITSRUS P018: K150, K128, K149, K182.</string>
     <string name="about_feature_3">Interfaz Material Design intuitiva.</string>
     <string name="about_feature_4">Soporte para arquitecturas arm64-v8a, armeabi-v7a, x86 y x86_64.</string>
     <string name="about_acknowledgements_title">Agradecimientos:</string>
@@ -290,9 +290,9 @@
     <string name="no_hay_firmware_valido">No hay firmware válido</string>
     <string name="pro_access_title">⭐ %1$s Pro</string>
     <string name="pro_access_subtitle">Desbloquea herramientas técnicas avanzadas para %1$s</string>
-    <string name="pro_feature_hex_editor">Editor Hexadecimal en Vivo (Parcheo de Memoria)</string>
-    <string name="pro_feature_hardware_diagnostics">Diagnóstico de Hardware y Prueba de Voltajes (VPP 13V / VDD 5V)</string>
-    <string name="pro_feature_icd_vector">Vector de Depuración ICD (24 bits)</string>
+    <string name="pro_feature_hex_editor">Editor Hexadecimal en Vivo y Parcheo de Memoria</string>
+    <string name="pro_feature_hardware_diagnostics">Diagnóstico de Hardware y Prueba de Voltajes VPP 13V / VDD 5V</string>
+    <string name="pro_feature_icd_vector">Vector de Depuración ICD de 24 bits</string>
     <string name="pro_feature_osccal">Rescate y Edición Manual de OSCCAL</string>
     <string name="pro_feature_remove_ads">Elimina toda la publicidad de la aplicación</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Ver Video - Pase Gratis de 12 Horas</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnóstico de Hardware K150</string>
     <string name="menu_osccal_calibration">⏱️ Calibración OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vector de Depuración en Circuito (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vector de Depuración ICD</string>
     <string name="cd_socket_diagram">Diagrama del zócalo</string>
     <string name="btn_connect_usb">Conectar Programador USB</string>
     <string name="btn_disconnect_usb">Desconectar Programador USB</string>
@@ -323,77 +323,71 @@
     <string name="diag_status_pending">Pendiente</string>
     <string name="diag_btn_test_echo">⚡ Probar Eco</string>
     <string name="diag_btn_full_diagnosis">🔄 Diagnóstico Completo</string>
-    <string name="diag_btn_test_zif_sensors">🧪 Probar Sensores ZIF (Insertar/Extraer)</string>
+    <string name="diag_btn_test_zif_sensors">🧪 Probar Sensores ZIF de Inserción y Extracción</string>
     <string name="diag_section_voltage_control">⚡ Control de Voltajes VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ PRECAUCIÓN: Retire el microcontrolador del zócalo ZIF antes de activar o medir voltajes con un multímetro.</string>
-    <string name="diag_status_voltages_off">Estado: Voltajes apagados (0V)</string>
-    <string name="diag_status_vpp_active">Estado: ⚡ VPP (13V) / VDD (5V) ACTIVADOS</string>
-    <string name="diag_status_voltages_restarted">Estado: ⚡ Voltajes reiniciados (Activos)</string>
+    <string name="diag_status_voltages_off">Estado: Voltajes apagados - 0V</string>
+    <string name="diag_status_vpp_active">Estado: ⚡ Voltajes VPP 13V y VDD 5V activados</string>
+    <string name="diag_status_voltages_restarted">Estado: ⚡ Voltajes reiniciados y activos</string>
     <string name="diag_status_error_activating">Estado: ❌ Error activando voltajes</string>
     <string name="diag_status_error_deactivating">Estado: ❌ Error apagando voltajes</string>
     <string name="diag_status_error_restarting">Estado: ❌ Error reiniciando voltajes</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Apagar (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Apagar 0V</string>
     <string name="diag_btn_restart_voltages">Reiniciar</string>
     <string name="diag_programmer_not_connected">Programador no conectado</string>
     <string name="diag_connect_programmer_prompt">⚠ Conecte el programador K150 para usar el diagnóstico</string>
     <string name="diag_model_not_connected">Modelo: Programador no conectado</string>
     <string name="diag_echo_measuring">Prueba de Eco: Midiendo...</string>
     <string name="diag_zif_reading">Sensor ZIF: Leyendo...</string>
-    <string name="diag_echo_ok">Prueba de Eco: ✓ Correcto (%1$d ms)</string>
+    <string name="diag_echo_ok">Prueba de Eco: ✓ Correcto - %1$d ms</string>
     <string name="diag_echo_no_response">Prueba de Eco: ❌ Sin respuesta</string>
     <string name="diag_echo_failed">Prueba de Eco: ❌ Falló</string>
     <string name="diag_socket_pic_detected">✓ PIC detectado en el zócalo ZIF</string>
-    <string name="diag_socket_empty">ℹ Zócalo vacío (No se detectó chip)</string>
+    <string name="diag_socket_empty">ℹ Zócalo vacío - Sin chip detectado</string>
     <string name="diag_socket_no_firm_contact">⚠ No se detectó contacto firme en el zócalo</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip retirado: Voltajes activados para medición segura</string>
     <string name="diag_toast_voltages_activated_multimeter">Voltajes activados: mida con multímetro en VPP y VDD</string>
-    <string name="diag_toast_voltages_off">Voltajes apagados (0V)</string>
+    <string name="diag_toast_voltages_off">Voltajes apagados - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip retirado: Voltajes reiniciados para medición</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Microcontrolador en el Zócalo</string>
     <string name="diag_alert_chip_in_socket_message">Para evitar dañar el PIC con 13V VPP, por favor retire el microcontrolador del zócalo ZIF antes de habilitar o medir los voltajes.
 
 Una vez retirado el chip, pulse \'Continuar\' para activar la medición, o \'Cancelar\' para mantener los voltajes apagados.</string>
-    <string name="diag_btn_continue_chip_removed">Continuar (Chip Retirado)</string>
+    <string name="diag_btn_continue_chip_removed">Continuar tras retirar chip</string>
     <string name="diag_zif_test_title">🧪 Prueba de Sensores ZIF</string>
-    <string name="diag_zif_test_desc">Prueba de sensores de hardware del zócalo ZIF (Comandos Kitsrus 18 y 19):
+    <string name="diag_zif_test_desc">Prueba de sensores de hardware del zócalo ZIF:
 </string>
-    <string name="diag_zif_step1_waiting">⏳ Paso 1: Inserte un microcontrolador en el zócalo y trabe la palanca (Comando 18)...</string>
-    <string name="diag_zif_step2_pending">⚪ Paso 2: Pendiente (Extracción con Comando 19)</string>
-    <string name="diag_zif_step1_ok">✓ Paso 1: Sensor de Inserción Correcto (Comando 18)</string>
-    <string name="diag_zif_step2_waiting">⏳ Paso 2: Ahora levante la palanca y retire el chip del zócalo (Comando 19)...</string>
+    <string name="diag_zif_step1_waiting">⏳ Paso 1: Inserte un microcontrolador en el zócalo y trabe la palanca...</string>
+    <string name="diag_zif_step2_pending">⚪ Paso 2: Pendiente - Extracción del chip</string>
+    <string name="diag_zif_step1_ok">✓ Paso 1: Sensor de Inserción Correcto</string>
+    <string name="diag_zif_step2_waiting">⏳ Paso 2: Ahora levante la palanca y retire el chip del zócalo...</string>
     <string name="diag_zif_step1_timeout">❌ Paso 1: Tiempo de espera agotado sin detectar chip</string>
-    <string name="diag_zif_step2_ok">✓ Paso 2: Sensor de Extracción Correcto (Comando 19)</string>
+    <string name="diag_zif_step2_ok">✓ Paso 2: Sensor de Extracción Correcto</string>
     <string name="diag_zif_both_sensors_ok">🎉 ¡Ambos sensores físicos del zócalo ZIF funcionan a la perfección!
 </string>
     <string name="diag_zif_step2_timeout">❌ Paso 2: Tiempo de espera agotado sin detectar extracción</string>
     <string name="hex_editor_title">✏️ Editar %1$s</string>
-    <string name="hex_editor_type_rom_word">ROM (Palabra)</string>
-    <string name="hex_editor_type_eeprom_byte">EEPROM (Byte)</string>
-    <string name="hex_editor_info_address_value">Dirección de Memoria: %1$s
-Valor actual: 0x%2$s (Máximo: 0x%3$s)</string>
-    <string name="hex_editor_card_title_rom">ℹ️ Formato de Palabra y Orden de Bytes (Little-Endian)</string>
-    <string name="hex_editor_card_title_eeprom">ℹ️ Formato de Celda EEPROM (8 bits)</string>
-    <string name="hex_editor_desc_rom">• Los PIC almacenan palabras de 14/16 bits en orden Little-Endian:
-   - Byte Bajo (LSB): 0x%1$s (offset 2×N)
-   - Byte Alto (MSB): 0x%2$s (offset 2×N+1)
-• ¿Cómo editar?: Ingrese la palabra lógica completa [MSB][LSB] (ej. 2805 = LSB 05, MSB 28).
-• La app reordena automáticamente los bytes a Little-Endian para el silicio y el archivo HEX.</string>
-    <string name="hex_editor_desc_eeprom">• Las celdas EEPROM constan de bytes individuales de 8 bits.
-• Ingrese directamente el byte hexadecimal de 2 caracteres (rango: 00 a FF).</string>
-    <string name="hex_editor_input_label_rom">Ingrese nuevo valor (Palabra Hex [MSB][LSB]):</string>
-    <string name="hex_editor_input_label_eeprom">Ingrese nuevo valor (Byte Hex 00-FF):</string>
+    <string name="hex_editor_type_rom_word">ROM Flash</string>
+    <string name="hex_editor_type_eeprom_byte">Memoria EEPROM</string>
+    <string name="hex_editor_info_address_value">Dirección: %1$s | Valor: 0x%2$s | Máximo: 0x%3$s</string>
+    <string name="hex_editor_card_title_rom">ℹ️ Organización de Bytes en Memoria Flash</string>
+    <string name="hex_editor_card_title_eeprom">ℹ️ Estructura de Memoria EEPROM</string>
+    <string name="hex_editor_desc_rom">Ingrese la palabra en orden lógico MSB LSB. La conversión a Little-Endian se aplica automáticamente para el microcontrolador y el archivo HEX.</string>
+    <string name="hex_editor_desc_eeprom">Ingrese directamente el byte hexadecimal de 2 caracteres en el rango 00 a FF.</string>
+    <string name="hex_editor_input_label_rom">Nuevo valor hexadecimal:</string>
+    <string name="hex_editor_input_label_eeprom">Nuevo byte hexadecimal:</string>
     <string name="guardar">Guardar</string>
     <string name="hex_editor_err_empty">El valor no puede estar vacío</string>
     <string name="hex_editor_err_invalid_hex">Formato hexadecimal no válido</string>
-    <string name="hex_editor_err_exceeds_max">El valor supera el máximo permitido (0x%1$s)</string>
-    <string name="cal_chip_subtitle_10f">Microcontrolador: %1$s (Familia PIC10F - 2 registros CAL)</string>
-    <string name="cal_chip_subtitle_standard">Microcontrolador: %1$s (Palabra OSCCAL en última dirección ROM)</string>
+    <string name="hex_editor_err_exceeds_max">El valor supera el máximo permitido de 0x%1$s</string>
+    <string name="cal_chip_subtitle_10f">Microcontrolador: %1$s - Familia PIC10F con 2 registros CAL</string>
+    <string name="cal_chip_subtitle_standard">Microcontrolador: %1$s - Palabra OSCCAL en última dirección ROM</string>
     <string name="cal_not_read_yet">Aún no leído del chip</string>
     <string name="cal_silicon_value">
 Valor en Silicio: %1$s</string>
     <string name="cal_enter_hex_prompt">
-Ingrese valor hexadecimal (ej. %1$s):</string>
+Ingrese valor hexadecimal - Ej: %1$s:</string>
     <string name="cal_btn_read_from_chip">📥 Leer del Chip</string>
     <string name="cal_btn_write_silicon">💾 Grabar Silicio</string>
     <string name="cal_dialog_title">⏱️ Calibración OSCCAL</string>
@@ -402,15 +396,15 @@ Ingrese valor hexadecimal (ej. %1$s):</string>
     <string name="cal_toast_invalid_hex">Valor hexadecimal no válido</string>
     <string name="cal_toast_write_success">✓ OSCCAL grabado exitosamente en el chip</string>
     <string name="cal_toast_write_error">❌ Falló la grabación de calibración en el silicio</string>
-    <string name="icd_dialog_subtitle">Depuración en Circuito (ICD) - Vector de Dirección de 24 bits
-(Rango válido: 0x000000 - 0xFFFFFF)</string>
+    <string name="icd_dialog_subtitle">Depuración en Circuito ICD - Vector de Dirección de 24 bits
+Rango válido: 0x000000 a 0xFFFFFF</string>
     <string name="icd_current_vector">
 Vector Actual: %1$s</string>
     <string name="icd_enter_address_prompt">
-Dirección de depuración en hex (ej. 000020):</string>
+Dirección de depuración en hex - Ej: 000020:</string>
     <string name="icd_btn_read_vector">📥 Leer Vector</string>
     <string name="icd_btn_write_vector">💾 Escribir Vector</string>
-    <string name="icd_dialog_title">🛠️ Vector de Depuración (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vector de Depuración ICD</string>
     <string name="icd_toast_read_success">✓ Vector leído: %1$s</string>
     <string name="icd_toast_invalid_address">Dirección hexadecimal de 24 bits no válida</string>
     <string name="icd_toast_write_success">✓ Vector ICD programado: %1$s</string>
@@ -429,13 +423,13 @@ Dirección de depuración en hex (ej. 000020):</string>
     <string name="prog_type_config_desc">Fusibles y bits de configuración</string>
     <string name="blank_check_err_null_result">❌ Error en chequeo en blanco: resultado nulo</string>
     <string name="blank_check_err_verifying">❌ Error verificando chequeo en blanco: %1$s</string>
-    <string name="blank_check_dual_header">📋 Chequeo en Blanco Diferencial (Dual Blank Check):</string>
-    <string name="blank_check_rom_clean">  ✓ ROM 100%% limpia (%1$s)</string>
-    <string name="blank_check_rom_has_data">  ⚠ ROM con datos previos detectados (No está en blanco)</string>
-    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% limpia (0xFF)</string>
-    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM con datos previos detectados (No está en blanco)</string>
+    <string name="blank_check_dual_header">📋 Chequeo en Blanco Diferencial:</string>
+    <string name="blank_check_rom_clean">  ✓ ROM 100%% limpia - %1$s</string>
+    <string name="blank_check_rom_has_data">  ⚠ ROM con datos previos detectados - No está en blanco</string>
+    <string name="blank_check_eeprom_clean">  ✓ EEPROM 100%% limpia - 0xFF</string>
+    <string name="blank_check_eeprom_has_data">  ⚠ EEPROM con datos previos detectados - No está en blanco</string>
     <string name="blank_check_method_label">  ℹ Método: %1$s</string>
-    <string name="blank_check_ready_to_program">✓ Microcontrolador listo para programar (100%% Borrado)</string>
+    <string name="blank_check_ready_to_program">✓ Microcontrolador listo para programar - 100%% Borrado</string>
     <string name="blank_check_erase_required">⚠ Se requiere borrado previo antes de programar</string>
     <string name="dialog_insert_microcontroller_title">⚠️ Inserte el Microcontrolador</string>
     <string name="dialog_insert_microcontroller_message">No se detectó ningún chip en el zócalo ZIF.
@@ -444,11 +438,11 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="log_no_chip_in_socket">⚠️ No hay chip en el zócalo ZIF. Inserte el microcontrolador %1$s y pulse [%2$s] nuevamente.</string>
     <string name="log_verifying_pic_in_socket">🔍 Verificando presencia de PIC en el zócalo ZIF...</string>
     <string name="log_detecting_chip_in_socket">🔍 Detectando chip en el zócalo...</string>
-    <string name="log_no_pic_detected_in_zif">⚠ No se detectó PIC en el zócalo ZIF (verifique orientación y palanca)</string>
+    <string name="log_no_pic_detected_in_zif">⚠ No se detectó PIC en el zócalo ZIF - Verifique orientación y palanca</string>
     <string name="log_pic_physically_detected">✓ PIC detectado físicamente en el zócalo</string>
-    <string name="log_chip_auto_identified">🎯 Identificado automáticamente: %1$s (ID: %2$s)</string>
+    <string name="log_chip_auto_identified">🎯 Identificado automáticamente: %1$s - ID: %2$s</string>
     <string name="toast_chip_detected">Chip detectado: %1$s</string>
-    <string name="log_chip_present_select_manually">ℹ Chip presente (ID: %1$s). Seleccione el modelo de la lista manual.</string>
+    <string name="log_chip_present_select_manually">ℹ Chip presente con ID: %1$s. Seleccione el modelo de la lista manual.</string>
     <string name="log_connecting_to_programmer">🔌 Conectando al programador...</string>
     <string name="log_connect_programmer_first">⚠ Conecte primero el programador K150 por USB.</string>
     <string name="log_loading_file">📂 Cargando %1$s: %2$s</string>
@@ -477,4 +471,14 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="toast_clipboard_fail">No se pudo acceder al portapapeles.</string>
     <string name="toast_logs_copied">Logs copiados al portapapeles.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ El microcontrolador aún sigue en el zócalo ZIF. Por favor retírelo antes de continuar.</string>
+    <string name="hex_editor_label_address">Dirección</string>
+    <string name="hex_editor_label_current">Actual</string>
+    <string name="hex_editor_label_max">Máximo</string>
+    <string name="hex_editor_byte_low">Byte bajo: 0x%1$s</string>
+    <string name="hex_editor_byte_high">Byte alto: 0x%2$s</string>
+    <string name="about_more_apps_title">Otras aplicaciones del desarrollador en Google Play:</string>
+    <string name="about_app_curso">Curso Microcontroladores PIC</string>
+    <string name="about_app_ptc">Tabla Periódica PTC</string>
+    <string name="about_app_mini">Mini Calculadora</string>
+    <string name="about_view_on_play_store">Ver en Google Play</string>
 </resources>

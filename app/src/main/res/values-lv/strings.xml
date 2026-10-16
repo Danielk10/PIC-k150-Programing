@@ -106,9 +106,9 @@
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
     <string name="exportar_config_hex">Eksportēt CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Eksportēt CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Eksportēt pilnu izdruku (.hex)</string>
-    <string name="exportar_dump_completo_bin">Eksportēt pilnu izdruku (.bin)</string>
+    <string name="exportar_config_bin">Eksportēt CONFIG .bin</string>
+    <string name="exportar_dump_completo">Eksportēt pilnu izdruku .hex</string>
+    <string name="exportar_dump_completo_bin">Eksportēt pilnu izdruku .bin</string>
     <string name="verificar_borrado">Apstipriniet dzēšanu</string>
     <string name="chip_esta_borrado">Mikroshēma ir izdzēsta (tukša)</string>
     <string name="chip_no_esta_borrado">Mikroshēma NAV izdzēsta</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 aparatūras diagnostika</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL kalibrēšana</string>
-    <string name="menu_debug_vector_icd">🛠️ Shēmas atkļūdošanas vektors (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Shēmas atkļūdošanas vektors ICD</string>
     <string name="cd_socket_diagram">Ligzdas shēma</string>
     <string name="btn_connect_usb">Pievienot USB programmētāju</string>
     <string name="btn_disconnect_usb">Atvienot USB programmētāju</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Pārbaudīt ZIF sensorus (Ievietot/Izņemt)</string>
     <string name="diag_section_voltage_control">⚡ Sprieguma kontrole VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ UZMANĪBU: Pirms sprieguma ieslēgšanas vai mērīšanas ar multimetru izņemiet mikrokontrolleru no ZIF ligzdas.</string>
-    <string name="diag_status_voltages_off">Statuss: Spriegumi izslēgti (0V)</string>
-    <string name="diag_status_vpp_active">Statuss: ⚡ VPP (13V) / VDD (5V) IESLĒGTI</string>
+    <string name="diag_status_voltages_off">Statuss: Spriegumi izslēgti - 0V</string>
+    <string name="diag_status_vpp_active">Statuss: ⚡ VPP 13V / VDD 5V IESLĒGTI</string>
     <string name="diag_status_voltages_restarted">Statuss: ⚡ Spriegumi restartēti (Aktīvi)</string>
     <string name="diag_status_error_activating">Statuss: ❌ Kļūda, ieslēdzot spriegumus</string>
     <string name="diag_status_error_deactivating">Statuss: ❌ Kļūda, izslēdzot spriegumus</string>
     <string name="diag_status_error_restarting">Statuss: ❌ Kļūda, restartējot spriegumus</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Izslēgt (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Izslēgt - 0V</string>
     <string name="diag_btn_restart_voltages">Restartēt</string>
     <string name="diag_programmer_not_connected">Programmētājs nav pievienots</string>
     <string name="diag_connect_programmer_prompt">⚠ Pievienojiet K150 programmētāju, lai izmantotu diagnostiku</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Ligzdā nav noteikts stabils kontakts</string>
     <string name="diag_toast_chip_removed_voltages_active">Mikroshēma izņemta: Spriegumi ieslēgti drošai mērīšanai</string>
     <string name="diag_toast_voltages_activated_multimeter">Spriegumi ieslēgti: mēriet ar multimetru pie VPP un VDD</string>
-    <string name="diag_toast_voltages_off">Spriegumi izslēgti (0V)</string>
+    <string name="diag_toast_voltages_off">Spriegumi izslēgti - 0V</string>
     <string name="diag_toast_voltages_restarted">Mikroshēma izņemta: Spriegumi restartēti mērīšanai</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontrollers ligzdā</string>
     <string name="diag_alert_chip_in_socket_message">Lai nesabojātu PIC ar 13V VPP, lūdzu, izņemiet mikrokontrolleru no ZIF ligzdas pirms sprieguma ieslēgšanas vai mērīšanas.
@@ -402,7 +402,7 @@ Ievadiet heksadecimālu vērtību (piem., %1$s):</string>
     <string name="cal_toast_invalid_hex">Nederīga heksadecimālā vērtība</string>
     <string name="cal_toast_write_success">✓ OSCCAL veiksmīgi ierakstīts mikroshēmā</string>
     <string name="cal_toast_write_error">❌ Neizdevās ierakstīt kalibrēšanu mikroshēmā</string>
-    <string name="icd_dialog_subtitle">Shēmas atkļūdošana (ICD) - 24 bitu adreses vektors
+    <string name="icd_dialog_subtitle">Shēmas atkļūdošana ICD - 24 bitu adreses vektors
 (Derīgs diapazons: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Pašreizējais vektors: %1$s</string>
@@ -410,7 +410,7 @@ Pašreizējais vektors: %1$s</string>
 Atkļūdošanas adrese heksadecimāli (piem., 000020):</string>
     <string name="icd_btn_read_vector">📥 Nolasīt vektoru</string>
     <string name="icd_btn_write_vector">💾 Ierakstīt vektoru</string>
-    <string name="icd_dialog_title">🛠️ Atkļūdošanas vektors (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Atkļūdošanas vektors ICD</string>
     <string name="icd_toast_read_success">✓ Vektors nolasīts: %1$s</string>
     <string name="icd_toast_invalid_address">Nederīga 24 bitu heksadecimālā adrese</string>
     <string name="icd_toast_write_success">✓ ICD vektors ieprogrammēts: %1$s</string>
@@ -477,4 +477,14 @@ Lūdzu, ievietojiet PIC %1$s atbilstošajā pozīcijā, nofiksējiet sviru un v�
     <string name="toast_clipboard_fail">Nevarēja piekļūt starpliktuvei.</string>
     <string name="toast_logs_copied">Žurnāli nokopēti starptuvē.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolleris joprojām atrodas ZIF ligzdā. Pirms turpināt, lūdzu, izņemiet to.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

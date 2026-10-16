@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Експортиране на CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Експортиране на CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Експортиране на пълен дъмп (.hex)</string>
-    <string name="exportar_dump_completo_bin">Експортиране на пълен дъмп (.bin)</string>
+    <string name="exportar_config_hex">Експортиране на CONFIG .hex</string>
+    <string name="exportar_config_bin">Експортиране на CONFIG .bin</string>
+    <string name="exportar_dump_completo">Експортиране на пълен дъмп .hex</string>
+    <string name="exportar_dump_completo_bin">Експортиране на пълен дъмп .bin</string>
     <string name="verificar_borrado">Потвърдете изтриването</string>
     <string name="chip_esta_borrado">Чипът е изтрит (празен)</string>
     <string name="chip_no_esta_borrado">Чипа НЕ е изтрит</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Хардуерна диагностика на K150</string>
     <string name="menu_osccal_calibration">⏱️ Калибриране на OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Вектор за вътрешносхемно дебъгване (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Вектор за вътрешносхемно дебъгване ICD</string>
     <string name="cd_socket_diagram">Диаграма на цокъла</string>
     <string name="btn_connect_usb">Свързване на USB програматор</string>
     <string name="btn_disconnect_usb">Изключване на USB програматор</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Тест на ZIF сензорите (Поставяне/Изваждане)</string>
     <string name="diag_section_voltage_control">⚡ Контрол на напрежението VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ВНИМАНИЕ: Извадете микроконтролера от ZIF цокъла преди активиране или измерване на напрежения с мултицет.</string>
-    <string name="diag_status_voltages_off">Състояние: Напреженията са изключени (0V)</string>
-    <string name="diag_status_vpp_active">Състояние: ⚡ VPP (13V) / VDD (5V) АКТИВИРАНИ</string>
+    <string name="diag_status_voltages_off">Състояние: Напреженията са изключени - 0V</string>
+    <string name="diag_status_vpp_active">Състояние: ⚡ VPP 13V / VDD 5V АКТИВИРАНИ</string>
     <string name="diag_status_voltages_restarted">Състояние: ⚡ Напреженията са рестартирани (Активни)</string>
     <string name="diag_status_error_activating">Състояние: ❌ Грешка при активиране на напреженията</string>
     <string name="diag_status_error_deactivating">Състояние: ❌ Грешка при изключване на напреженията</string>
     <string name="diag_status_error_restarting">Състояние: ❌ Грешка при рестартиране на напреженията</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Изключване (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Изключване - 0V</string>
     <string name="diag_btn_restart_voltages">Рестартиране</string>
     <string name="diag_programmer_not_connected">Програматорът не е свързан</string>
     <string name="diag_connect_programmer_prompt">⚠ Свържете програматора K150, за да използвате диагностиката</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Не е открит стабилен контакт в цокъла</string>
     <string name="diag_toast_chip_removed_voltages_active">Чипът е изваден: Напреженията са активирани за безопасно измерване</string>
     <string name="diag_toast_voltages_activated_multimeter">Напреженията са активирани: измерете с мултицет на VPP и VDD</string>
-    <string name="diag_toast_voltages_off">Напреженията са изключени (0V)</string>
+    <string name="diag_toast_voltages_off">Напреженията са изключени - 0V</string>
     <string name="diag_toast_voltages_restarted">Чипът е изваден: Напреженията са рестартирани за измерване</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Микроконтролер в цокъла</string>
     <string name="diag_alert_chip_in_socket_message">За да избегнете повреда на PIC с 13V VPP, моля, извадете микроконтролера от ZIF цокъла, преди да активирате или измервате напреженията.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">Невалидна шестнадесетична стойност</string>
     <string name="cal_toast_write_success">✓ OSCCAL е записан успешно в чипа</string>
     <string name="cal_toast_write_error">❌ Неуспешен запис на калибрацията в чипа</string>
-    <string name="icd_dialog_subtitle">Вътрешносхемно дебъгване (ICD) - 24-битов адрес на вектора
+    <string name="icd_dialog_subtitle">Вътрешносхемно дебъгване ICD - 24-битов адрес на вектора
 (Валиден диапазон: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Текущ вектор: %1$s</string>
@@ -410,7 +410,7 @@
 Адрес за дебъгване в hex (напр. 000020):</string>
     <string name="icd_btn_read_vector">📥 Четене на вектор</string>
     <string name="icd_btn_write_vector">💾 Запис на вектор</string>
-    <string name="icd_dialog_title">🛠️ Вектор за дебъгване (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Вектор за дебъгване ICD</string>
     <string name="icd_toast_read_success">✓ Прочетен вектор: %1$s</string>
     <string name="icd_toast_invalid_address">Невалиден 24-битов шестнадесетичен адрес</string>
     <string name="icd_toast_write_success">✓ Програмиран ICD вектор: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">Няма достъп до клипборда.</string>
     <string name="toast_logs_copied">Дневниците са копирани в клипборда.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтролерът все още е в цокъла ZIF. Моля, извадете го, преди да продължите.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

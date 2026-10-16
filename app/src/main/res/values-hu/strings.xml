@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">CONFIG (.hex) exportálása</string>
-    <string name="exportar_config_bin">CONFIG exportálása (.bin)</string>
-    <string name="exportar_dump_completo">Teljes kiírat exportálása (.hex)</string>
-    <string name="exportar_dump_completo_bin">Teljes kiíratás exportálása (.bin)</string>
+    <string name="exportar_config_hex">CONFIG .hex exportálása</string>
+    <string name="exportar_config_bin">CONFIG exportálása .bin</string>
+    <string name="exportar_dump_completo">Teljes kiírat exportálása .hex</string>
+    <string name="exportar_dump_completo_bin">Teljes kiíratás exportálása .bin</string>
     <string name="verificar_borrado">Ellenőrizze a törlést</string>
     <string name="chip_esta_borrado">A chip törlődik (Üres)</string>
     <string name="chip_no_esta_borrado">A chip NEM törlődik</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 hardverdiagnosztika</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL kalibráció</string>
-    <string name="menu_debug_vector_icd">🛠️ Áramköri hibakeresési vektor (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Áramköri hibakeresési vektor ICD</string>
     <string name="cd_socket_diagram">Foglalat ábrája</string>
     <string name="btn_connect_usb">USB programozó csatlakoztatása</string>
     <string name="btn_disconnect_usb">USB programozó leválasztása</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ZIF érzékelők tesztelése (Behelyezés/Kivétel)</string>
     <string name="diag_section_voltage_control">⚡ Feszültségvezérlés VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ VIGYÁZAT: Távolítsa el a mikrokontrollert a ZIF foglalatból, mielőtt engedélyezi vagy multiméterrel méri a feszültségeket.</string>
-    <string name="diag_status_voltages_off">Állapot: Feszültségek kikapcsolva (0V)</string>
-    <string name="diag_status_vpp_active">Állapot: ⚡ VPP (13V) / VDD (5V) BEKAPCSOLVA</string>
+    <string name="diag_status_voltages_off">Állapot: Feszültségek kikapcsolva - 0V</string>
+    <string name="diag_status_vpp_active">Állapot: ⚡ VPP 13V / VDD 5V BEKAPCSOLVA</string>
     <string name="diag_status_voltages_restarted">Állapot: ⚡ Feszültségek újraindítva (Aktív)</string>
     <string name="diag_status_error_activating">Állapot: ❌ Hiba a feszültségek bekapcsolásakor</string>
     <string name="diag_status_error_deactivating">Állapot: ❌ Hiba a feszültségek kikapcsolásakor</string>
     <string name="diag_status_error_restarting">Állapot: ❌ Hiba a feszültségek újraindításakor</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Kikapcsolás (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Kikapcsolás - 0V</string>
     <string name="diag_btn_restart_voltages">Újraindítás</string>
     <string name="diag_programmer_not_connected">A programozó nincs csatlakoztatva</string>
     <string name="diag_connect_programmer_prompt">⚠ A diagnosztika használatához csatlakoztassa a K150 programozót</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Nem észlelhető stabil érintkezés a foglalatban</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip eltávolítva: A feszültségek bekapcsolva a biztonságos méréshez</string>
     <string name="diag_toast_voltages_activated_multimeter">Feszültségek bekapcsolva: mérjen multiméterrel a VPP és VDD pontokon</string>
-    <string name="diag_toast_voltages_off">Feszültségek kikapcsolva (0V)</string>
+    <string name="diag_toast_voltages_off">Feszültségek kikapcsolva - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip eltávolítva: A feszültségek újraindítva a méréshez</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroller a foglalatban</string>
     <string name="diag_alert_chip_in_socket_message">A PIC 13V VPP miatti károsodásának megelőzése érdekében kérjük, távolítsa el a mikrokontrollert a ZIF foglalatból a feszültségek bekapcsolása vagy mérése előtt.
@@ -402,7 +402,7 @@ Adja meg a hexadecimális értéket (pl. %1$s):</string>
     <string name="cal_toast_invalid_hex">Érvénytelen hexadecimális érték</string>
     <string name="cal_toast_write_success">✓ OSCCAL sikeresen beírva a chipbe</string>
     <string name="cal_toast_write_error">❌ Nem sikerült a kalibrációt a chipbe írni</string>
-    <string name="icd_dialog_subtitle">Áramköri hibakeresés (ICD) – 24 bites címvektor
+    <string name="icd_dialog_subtitle">Áramköri hibakeresés ICD – 24 bites címvektor
 (Érvényes tartomány: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Jelenlegi vektor: %1$s</string>
@@ -410,7 +410,7 @@ Jelenlegi vektor: %1$s</string>
 Hibakeresési cím hexadecimálisan (pl. 000020):</string>
     <string name="icd_btn_read_vector">📥 Vektor olvasása</string>
     <string name="icd_btn_write_vector">💾 Vektor írása</string>
-    <string name="icd_dialog_title">🛠️ Hibakeresési vektor (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Hibakeresési vektor ICD</string>
     <string name="icd_toast_read_success">✓ Vektor beolvasva: %1$s</string>
     <string name="icd_toast_invalid_address">Érvénytelen 24 bites hexadecimális cím</string>
     <string name="icd_toast_write_success">✓ ICD vektor beprogramozva: %1$s</string>
@@ -477,4 +477,14 @@ Kérjük, helyezze be a PIC %1$s mikrokontrollert a megfelelő pozícióba, zár
     <string name="toast_clipboard_fail">Nem sikerült elérni a vágólapot.</string>
     <string name="toast_logs_copied">Naplók másolva a vágólapra.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ A mikrokontroller még mindig a ZIF foglalatban van. Kérjük, távolítsa el a folytatás előtt.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

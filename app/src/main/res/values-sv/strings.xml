@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Exportera CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Exportera CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Exportera full dump (.hex)</string>
-    <string name="exportar_dump_completo_bin">Exportera full dumpning (.bin)</string>
+    <string name="exportar_config_hex">Exportera CONFIG .hex</string>
+    <string name="exportar_config_bin">Exportera CONFIG .bin</string>
+    <string name="exportar_dump_completo">Exportera full dump .hex</string>
+    <string name="exportar_dump_completo_bin">Exportera full dumpning .bin</string>
     <string name="verificar_borrado">Verifiera borttagning</string>
     <string name="chip_esta_borrado">Chippet är raderat (tomt)</string>
     <string name="chip_no_esta_borrado">Chipet raderas INTE</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 Hårdvarudiagnostik</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibrering</string>
-    <string name="menu_debug_vector_icd">🛠️ Vektor för kretsfelsökning (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor för kretsfelsökning ICD</string>
     <string name="cd_socket_diagram">Sockeldiagram</string>
     <string name="btn_connect_usb">Anslut USB-programmerare</string>
     <string name="btn_disconnect_usb">Koppla från USB-programmerare</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Testa ZIF-sensorer (Sätt i/Ta ut)</string>
     <string name="diag_section_voltage_control">⚡ Spänningskontroll VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ FÖRSIKTIGHET: Ta bort mikrokontrollern från ZIF-sockeln innan spänningar aktiveras eller mäts med multimeter.</string>
-    <string name="diag_status_voltages_off">Status: Spänningar avstängda (0V)</string>
-    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) AKTIVERADE</string>
+    <string name="diag_status_voltages_off">Status: Spänningar avstängda - 0V</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP 13V / VDD 5V AKTIVERADE</string>
     <string name="diag_status_voltages_restarted">Status: ⚡ Spänningar omstartade (Aktiva)</string>
     <string name="diag_status_error_activating">Status: ❌ Fel vid aktivering av spänningar</string>
     <string name="diag_status_error_deactivating">Status: ❌ Fel vid avstängning av spänningar</string>
     <string name="diag_status_error_restarting">Status: ❌ Fel vid omstart av spänningar</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Stäng av (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Stäng av - 0V</string>
     <string name="diag_btn_restart_voltages">Starta om</string>
     <string name="diag_programmer_not_connected">Programmeraren är inte ansluten</string>
     <string name="diag_connect_programmer_prompt">⚠ Anslut K150-programmeraren för att köra diagnostik</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Fast kontakt inte detekterad i sockeln</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip borttaget: Spänningar aktiverade för säker mätning</string>
     <string name="diag_toast_voltages_activated_multimeter">Spänningar aktiverade: mät med multimeter på VPP och VDD</string>
-    <string name="diag_toast_voltages_off">Spänningar avstängda (0V)</string>
+    <string name="diag_toast_voltages_off">Spänningar avstängda - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip borttaget: Spänningar omstartade för mätning</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroller i sockeln</string>
     <string name="diag_alert_chip_in_socket_message">För att undvika att skada PIC med 13V VPP, ta bort mikrokontrollern från ZIF-sockeln innan spänningar aktiveras eller mäts.
@@ -402,7 +402,7 @@ Ange hexadecimalt värde (t.ex. %1$s):</string>
     <string name="cal_toast_invalid_hex">Ogiltigt hexadecimalt värde</string>
     <string name="cal_toast_write_success">✓ OSCCAL har skrivits till chipet</string>
     <string name="cal_toast_write_error">❌ Misslyckades med att skriva kalibrering till kisel</string>
-    <string name="icd_dialog_subtitle">Kretsfelsökning (ICD) – 24-bitars adressvektor
+    <string name="icd_dialog_subtitle">Kretsfelsökning ICD – 24-bitars adressvektor
 (Giltigt intervall: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Aktuell vektor: %1$s</string>
@@ -410,7 +410,7 @@ Aktuell vektor: %1$s</string>
 Felsökningsadress i hex (t.ex. 000020):</string>
     <string name="icd_btn_read_vector">📥 Läs vektor</string>
     <string name="icd_btn_write_vector">💾 Skriv vektor</string>
-    <string name="icd_dialog_title">🛠️ Felsökningsvektor (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Felsökningsvektor ICD</string>
     <string name="icd_toast_read_success">✓ Vektor läst: %1$s</string>
     <string name="icd_toast_invalid_address">Ogiltig 24-bitars hexadecimal adress</string>
     <string name="icd_toast_write_success">✓ ICD-vektor programmerad: %1$s</string>
@@ -477,4 +477,14 @@ Sätt i PIC %1$s i rätt position, lås spaken och tryck på [%2$s] igen.</strin
     <string name="toast_clipboard_fail">Kunde inte komma åt urklipp.</string>
     <string name="toast_logs_copied">Loggar kopierade till urklipp.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrollern sitter fortfarande i ZIF-sockeln. Ta bort den innan du fortsätter.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Экспарт КАНФІГ (.hex)</string>
-    <string name="exportar_config_bin">Экспарт КАНФІГ (.bin)</string>
-    <string name="exportar_dump_completo">Экспартаваць поўны дамп (.hex)</string>
-    <string name="exportar_dump_completo_bin">Экспартаваць поўны дамп (.bin)</string>
+    <string name="exportar_config_hex">Экспарт КАНФІГ .hex</string>
+    <string name="exportar_config_bin">Экспарт КАНФІГ .bin</string>
+    <string name="exportar_dump_completo">Экспартаваць поўны дамп .hex</string>
+    <string name="exportar_dump_completo_bin">Экспартаваць поўны дамп .bin</string>
     <string name="verificar_borrado">Праверце выдаленне</string>
     <string name="chip_esta_borrado">Чып сцёрты (пусты)</string>
     <string name="chip_no_esta_borrado">Чып НЕ сціраецца</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Дыягностыка абсталявання K150</string>
     <string name="menu_osccal_calibration">⏱️ Каліброўка OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Вектар унутрысхемнай адладкі (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Вектар унутрысхемнай адладкі ICD</string>
     <string name="cd_socket_diagram">Дыяграма сокета</string>
     <string name="btn_connect_usb">Падключыць USB-праграматар</string>
     <string name="btn_disconnect_usb">Адключыць USB-праграматар</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Тэст датчыкаў ZIF (Устаўка/Выманне)</string>
     <string name="diag_section_voltage_control">⚡ Кіраванне напружаннем VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ УВАГА: Выміце мікракантролер з сокета ZIF перад уключэннем або вымярэннем напружання мультыметрам.</string>
-    <string name="diag_status_voltages_off">Стан: Напружанне выключана (0V)</string>
-    <string name="diag_status_vpp_active">Стан: ⚡ VPP (13V) / VDD (5V) УКЛЮЧАНА</string>
+    <string name="diag_status_voltages_off">Стан: Напружанне выключана - 0V</string>
+    <string name="diag_status_vpp_active">Стан: ⚡ VPP 13V / VDD 5V УКЛЮЧАНА</string>
     <string name="diag_status_voltages_restarted">Стан: ⚡ Напружанне перазапушчана (Актыўна)</string>
     <string name="diag_status_error_activating">Стан: ❌ Памылка ўключэння напружання</string>
     <string name="diag_status_error_deactivating">Стан: ❌ Памылка выключэння напружання</string>
     <string name="diag_status_error_restarting">Стан: ❌ Памылка перазапуску напружання</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Выключыць (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Выключыць - 0V</string>
     <string name="diag_btn_restart_voltages">Перазапусціць</string>
     <string name="diag_programmer_not_connected">Праграматар не падключаны</string>
     <string name="diag_connect_programmer_prompt">⚠ Падключыце праграматар K150 для выкарыстання дыягностыкі</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Надзейны кантакт у сокеце не выяўлены</string>
     <string name="diag_toast_chip_removed_voltages_active">Чып выняты: Напружанне ўключана для бяспечнага вымярэння</string>
     <string name="diag_toast_voltages_activated_multimeter">Напружанне ўключана: вымерайце мультыметрам на VPP і VDD</string>
-    <string name="diag_toast_voltages_off">Напружанне выключана (0V)</string>
+    <string name="diag_toast_voltages_off">Напружанне выключана - 0V</string>
     <string name="diag_toast_voltages_restarted">Чып выняты: Напружанне перазапушчана для вымярэння</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Мікракантролер у сокеце</string>
     <string name="diag_alert_chip_in_socket_message">Каб пазбегнуць пашкоджання PIC напружаннем 13V VPP, калі ласка, выміце мікракантролер з сокета ZIF перад уключэннем або вымярэннем напружання.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">Няправільнае шаснаццатковае значэнне</string>
     <string name="cal_toast_write_success">✓ OSCCAL паспяхова запісаны ў чып</string>
     <string name="cal_toast_write_error">❌ Не ўдалося запісаць каліброўку ў чып</string>
-    <string name="icd_dialog_subtitle">Унутрысхемная адладка (ICD) - 24-бітны вектар адраса
+    <string name="icd_dialog_subtitle">Унутрысхемная адладка ICD - 24-бітны вектар адраса
 (Дапушчальны дыяпазон: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Бягучы вектар: %1$s</string>
@@ -410,7 +410,7 @@
 Адрас адладкі ў hex (напрыклад, 000020):</string>
     <string name="icd_btn_read_vector">📥 Чытаць вектар</string>
     <string name="icd_btn_write_vector">💾 Запісаць вектар</string>
-    <string name="icd_dialog_title">🛠️ Вектар адладкі (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Вектар адладкі ICD</string>
     <string name="icd_toast_read_success">✓ Вектар прачытаны: %1$s</string>
     <string name="icd_toast_invalid_address">Няправільны 24-бітны шаснаццатковы адрас</string>
     <string name="icd_toast_write_success">✓ Вектар ICD запраграмаваны: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">Не ўдалося атрымаць доступ да буфера абмену.</string>
     <string name="toast_logs_copied">Журнал скапіяваны ў буфер абмену.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Мікракантролер усё яшчэ знаходзіцца ў раздыме ZIF. Калі ласка, выміце яго перад працягам.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

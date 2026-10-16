@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Izvoz CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Izvoz CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Izvoz celotnega izpisa (.hex)</string>
-    <string name="exportar_dump_completo_bin">Izvoz celotnega izpisa (.bin)</string>
+    <string name="exportar_config_hex">Izvoz CONFIG .hex</string>
+    <string name="exportar_config_bin">Izvoz CONFIG .bin</string>
+    <string name="exportar_dump_completo">Izvoz celotnega izpisa .hex</string>
+    <string name="exportar_dump_completo_bin">Izvoz celotnega izpisa .bin</string>
     <string name="verificar_borrado">Verify Izbriši</string>
     <string name="chip_esta_borrado">Čip je izbrisan (prazen)</string>
     <string name="chip_no_esta_borrado">Čip NI izbrisan</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnostika strojne opreme K150</string>
     <string name="menu_osccal_calibration">⏱️ Umerjanje OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vektor razhroščevanja v vezju (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor razhroščevanja v vezju ICD</string>
     <string name="cd_socket_diagram">Diagram podnožja</string>
     <string name="btn_connect_usb">Poveži programator USB</string>
     <string name="btn_disconnect_usb">Prekini povezavo s programatorjem USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Preizkus senzorjev ZIF (Vstavi/Odstrani)</string>
     <string name="diag_section_voltage_control">⚡ Nadzor napetosti VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ POZOR: Pred vklopom ali merjenjem napetosti z multimetrom odstranite mikrokrmilnik iz podnožja ZIF.</string>
-    <string name="diag_status_voltages_off">Stanje: Napetosti izklopljene (0V)</string>
-    <string name="diag_status_vpp_active">Stanje: ⚡ VPP (13V) / VDD (5V) AKTIVIRANI</string>
+    <string name="diag_status_voltages_off">Stanje: Napetosti izklopljene - 0V</string>
+    <string name="diag_status_vpp_active">Stanje: ⚡ VPP 13V / VDD 5V AKTIVIRANI</string>
     <string name="diag_status_voltages_restarted">Stanje: ⚡ Napetosti ponovno zagnane (Aktivne)</string>
     <string name="diag_status_error_activating">Stanje: ❌ Napaka pri vklopu napetosti</string>
     <string name="diag_status_error_deactivating">Stanje: ❌ Napaka pri izklopu napetosti</string>
     <string name="diag_status_error_restarting">Stanje: ❌ Napaka pri ponovnem zagonu napetosti</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Izklopi (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Izklopi - 0V</string>
     <string name="diag_btn_restart_voltages">Ponovni zagon</string>
     <string name="diag_programmer_not_connected">Programator ni povezan</string>
     <string name="diag_connect_programmer_prompt">⚠ Povežite programator K150 za uporabo diagnostike</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ V podnožju ni zaznanega trdnega stika</string>
     <string name="diag_toast_chip_removed_voltages_active">Čip odstranjen: napetosti vklopljene za varno merjenje</string>
     <string name="diag_toast_voltages_activated_multimeter">Napetosti vklopljene: z multimetrom izmerite VPP in VDD</string>
-    <string name="diag_toast_voltages_off">Napetosti izklopljene (0V)</string>
+    <string name="diag_toast_voltages_off">Napetosti izklopljene - 0V</string>
     <string name="diag_toast_voltages_restarted">Čip odstranjen: napetosti ponovno vklopljene za merjenje</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokrmilnik v podnožju</string>
     <string name="diag_alert_chip_in_socket_message">Da preprečite poškodbe PIC z napetostjo 13V VPP, odstranite mikrokrmilnik iz podnožja ZIF pred vklopom ali merjenjem napetosti.
@@ -402,7 +402,7 @@ Vnesite šestnajstiško vrednost (npr. %1$s):</string>
     <string name="cal_toast_invalid_hex">Neveljavna šestnajstiška vrednost</string>
     <string name="cal_toast_write_success">✓ OSCCAL uspešno zapisan v čip</string>
     <string name="cal_toast_write_error">❌ Zapis umerjanja na čip ni uspel</string>
-    <string name="icd_dialog_subtitle">Razhroščevanje v vezju (ICD) – 24-bitni naslovni vektor
+    <string name="icd_dialog_subtitle">Razhroščevanje v vezju ICD – 24-bitni naslovni vektor
 (Veljavno območje: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Trenutni vektor: %1$s</string>
@@ -410,7 +410,7 @@ Trenutni vektor: %1$s</string>
 Naslov za razhroščevanje v hex (npr. 000020):</string>
     <string name="icd_btn_read_vector">📥 Preberi vektor</string>
     <string name="icd_btn_write_vector">💾 Zapiši vektor</string>
-    <string name="icd_dialog_title">🛠️ Vektor razhroščevanja (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vektor razhroščevanja ICD</string>
     <string name="icd_toast_read_success">✓ Vektor prebran: %1$s</string>
     <string name="icd_toast_invalid_address">Neveljaven 24-bitni šestnajstiški naslov</string>
     <string name="icd_toast_write_success">✓ Vektor ICD sprogramiran: %1$s</string>
@@ -477,4 +477,14 @@ Vstavite PIC %1$s v ustrezni položaj, zaklenite ročico in znova tapnite [%2$s]
     <string name="toast_clipboard_fail">Dostop do odložišča ni uspel.</string>
     <string name="toast_logs_copied">Dnevniki kopirani v odložišče.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokrmilnik je še vedno v podnožju ZIF. Pred nadaljevanjem ga odstranite.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

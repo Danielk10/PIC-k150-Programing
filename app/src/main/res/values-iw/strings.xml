@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">ייצוא CONFIG (.hex)</string>
-    <string name="exportar_config_bin">ייצוא CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">ייצא dump מלא (.hex)</string>
-    <string name="exportar_dump_completo_bin">ייצא dump מלא (.bin)</string>
+    <string name="exportar_config_hex">ייצוא CONFIG .hex</string>
+    <string name="exportar_config_bin">ייצוא CONFIG .bin</string>
+    <string name="exportar_dump_completo">ייצא dump מלא .hex</string>
+    <string name="exportar_dump_completo_bin">ייצא dump מלא .bin</string>
     <string name="verificar_borrado">אמת את המחיקה</string>
     <string name="chip_esta_borrado">השבב נמחק (ריק)</string>
     <string name="chip_no_esta_borrado">השבב לא נמחק</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 אבחון חומרת K150</string>
     <string name="menu_osccal_calibration">⏱️ כיול OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ וקטור ניפוי שגיאות במעגל (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ וקטור ניפוי שגיאות במעגל ICD</string>
     <string name="cd_socket_diagram">דיאגרמת תושבת</string>
     <string name="btn_connect_usb">חבר צורב USB</string>
     <string name="btn_disconnect_usb">נתק צורב USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 בדיקת חיישני ZIF (הכנסה/הוצאה)</string>
     <string name="diag_section_voltage_control">⚡ בקרת מתחים VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ זהירות: הסר את המיקרו-בקר מתושבת ה-ZIF לפני הפעלה או מדידת מתחים באמצעות רב-מודד.</string>
-    <string name="diag_status_voltages_off">סטטוס: מתחים כבויים (0V)</string>
-    <string name="diag_status_vpp_active">סטטוס: ⚡ VPP (13V) / VDD (5V) מופעלים</string>
+    <string name="diag_status_voltages_off">סטטוס: מתחים כבויים - 0V</string>
+    <string name="diag_status_vpp_active">סטטוס: ⚡ VPP 13V / VDD 5V מופעלים</string>
     <string name="diag_status_voltages_restarted">סטטוס: ⚡ מתחים הופעלו מחדש (פעיל)</string>
     <string name="diag_status_error_activating">סטטוס: ❌ שגיאה בהפעלת מתחים</string>
     <string name="diag_status_error_deactivating">סטטוס: ❌ שגיאה בכיבוי מתחים</string>
     <string name="diag_status_error_restarting">סטטוס: ❌ שגיאה בהפעלה מחדש של מתחים</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">כיבוי (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">כיבוי - 0V</string>
     <string name="diag_btn_restart_voltages">הפעל מחדש</string>
     <string name="diag_programmer_not_connected">הצורב אינו מחובר</string>
     <string name="diag_connect_programmer_prompt">⚠ חבר את צורב ה-K150 כדי להשתמש באבחון</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ לא זוהה מגע יציב בתושבת</string>
     <string name="diag_toast_chip_removed_voltages_active">השבב הוסר: מתחים הופעלו למדידה בטוחה</string>
     <string name="diag_toast_voltages_activated_multimeter">מתחים מופעלים: מדוד עם רב-מודד בפינים VPP ו-VDD</string>
-    <string name="diag_toast_voltages_off">מתחים כבויים (0V)</string>
+    <string name="diag_toast_voltages_off">מתחים כבויים - 0V</string>
     <string name="diag_toast_voltages_restarted">השבב הוסר: מתחים הופעלו מחדש למדידה</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ מיקרו-בקר בתושבת</string>
     <string name="diag_alert_chip_in_socket_message">כדי למנוע נזק ל-PIC ממתח VPP של 13V, אנא הסר את המיקרו-בקר מתושבת ה-ZIF לפני הפעלת או מדידת מתחים.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">ערך הקסדצימלי לא תקין</string>
     <string name="cal_toast_write_success">✓ OSCCAL נכתב בהצלחה לשבב</string>
     <string name="cal_toast_write_error">❌ כתיבת הכיול לסיליקון נכשלה</string>
-    <string name="icd_dialog_subtitle">ניפוי שגיאות במעגל (ICD) - וקטור כתובת 24 סיביות
+    <string name="icd_dialog_subtitle">ניפוי שגיאות במעגל ICD - וקטור כתובת 24 סיביות
 (טווח תקין: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 וקטור נוכחי: %1$s</string>
@@ -410,7 +410,7 @@
 כתובת ניפוי בהקס (למשל 000020):</string>
     <string name="icd_btn_read_vector">📥 קרא וקטור</string>
     <string name="icd_btn_write_vector">💾 כתוב וקטור</string>
-    <string name="icd_dialog_title">🛠️ וקטור ניפוי שגיאות (ICD)</string>
+    <string name="icd_dialog_title">🛠️ וקטור ניפוי שגיאות ICD</string>
     <string name="icd_toast_read_success">✓ וקטור נקרא: %1$s</string>
     <string name="icd_toast_invalid_address">כתובת הקסדצימלית של 24 סיביות לא חוקית</string>
     <string name="icd_toast_write_success">✓ וקטור ICD תוכנת: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">לא ניתן היה לגשת ללוח הגזירים.</string>
     <string name="toast_logs_copied">יומנים הועתקו ללוח.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ המיקרו-בקר עדיין נמצא בתושבת ZIF. אנא הסר אותו לפני שתמשיך.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

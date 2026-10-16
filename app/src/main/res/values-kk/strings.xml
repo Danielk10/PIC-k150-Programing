@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">CONFIG (.hex) экспорттау</string>
-    <string name="exportar_config_bin">CONFIG (.bin) экспорттау</string>
-    <string name="exportar_dump_completo">Толық демпті экспорттау (.hex)</string>
-    <string name="exportar_dump_completo_bin">Толық демпті экспорттау (.bin)</string>
+    <string name="exportar_config_hex">CONFIG .hex экспорттау</string>
+    <string name="exportar_config_bin">CONFIG .bin экспорттау</string>
+    <string name="exportar_dump_completo">Толық демпті экспорттау .hex</string>
+    <string name="exportar_dump_completo_bin">Толық демпті экспорттау .bin</string>
     <string name="verificar_borrado">Жоюды растау</string>
     <string name="chip_esta_borrado">Чип өшірілді (бос)</string>
     <string name="chip_no_esta_borrado">Чип ӨШІРІЛМЕЙДІ</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 аппараттық диагностикасы</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL калибрлеуі</string>
-    <string name="menu_debug_vector_icd">🛠️ Сұлбаішілік жөндеу векторы (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Сұлбаішілік жөндеу векторы ICD</string>
     <string name="cd_socket_diagram">Ұяшық диаграммасы</string>
     <string name="btn_connect_usb">USB бағдарламалағышты қосу</string>
     <string name="btn_disconnect_usb">USB бағдарламалағышты ажырату</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ZIF сенсорларын тексеру (Орнату/Шығару)</string>
     <string name="diag_section_voltage_control">⚡ Кернеуді басқару VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ НАЗАР АУДАРЫҢЫЗ: Кернеуді қоспас немесе мультиметрмен өлшемес бұрын микроконтроллерді ZIF ұяшығынан шығарыңыз.</string>
-    <string name="diag_status_voltages_off">Күйі: Кернеулер өшірулі (0V)</string>
-    <string name="diag_status_vpp_active">Күйі: ⚡ VPP (13V) / VDD (5V) ҚОСЫЛҒАН</string>
+    <string name="diag_status_voltages_off">Күйі: Кернеулер өшірулі - 0V</string>
+    <string name="diag_status_vpp_active">Күйі: ⚡ VPP 13V / VDD 5V ҚОСЫЛҒАН</string>
     <string name="diag_status_voltages_restarted">Күйі: ⚡ Кернеулер қайта іске қосылды (Белсенді)</string>
     <string name="diag_status_error_activating">Күйі: ❌ Кернеулерді қосу қатесі</string>
     <string name="diag_status_error_deactivating">Күйі: ❌ Кернеулерді өшіру қатесі</string>
     <string name="diag_status_error_restarting">Күйі: ❌ Кернеулерді қайта іске қосу қатесі</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Өшіру (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Өшіру - 0V</string>
     <string name="diag_btn_restart_voltages">Қайта іске қосу</string>
     <string name="diag_programmer_not_connected">Бағдарламалағыш қосылмаған</string>
     <string name="diag_connect_programmer_prompt">⚠ Диагностиканы пайдалану үшін K150 бағдарламалағышын қосыңыз</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Ұяшықта тығыз байланыс анықталмады</string>
     <string name="diag_toast_chip_removed_voltages_active">Чип шығарылды: Қауіпсіз өлшеу үшін кернеулер қосылды</string>
     <string name="diag_toast_voltages_activated_multimeter">Кернеулер қосылды: VPP және VDD түйіспелерін мультиметрмен өлшеңіз</string>
-    <string name="diag_toast_voltages_off">Кернеулер өшірілді (0V)</string>
+    <string name="diag_toast_voltages_off">Кернеулер өшірілді - 0V</string>
     <string name="diag_toast_voltages_restarted">Чип шығарылды: Өлшеу үшін кернеулер қайта қосылды</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Ұяшықта микроконтроллер бар</string>
     <string name="diag_alert_chip_in_socket_message">13V VPP салдарынан PIC зақымданбауы үшін, кернеуді қоспас немесе өлшемес бұрын микроконтроллерді ZIF ұяшығынан шығарыңыз.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">Жарамсыз он алтылық мән</string>
     <string name="cal_toast_write_success">✓ OSCCAL чипке сәтті жазылды</string>
     <string name="cal_toast_write_error">❌ Калибрлеуді кремнийге жазу сәтсіз аяқталды</string>
-    <string name="icd_dialog_subtitle">Сұлбаішілік жөндеу (ICD) - 24 биттік мекенжай векторы
+    <string name="icd_dialog_subtitle">Сұлбаішілік жөндеу ICD - 24 биттік мекенжай векторы
 (Жарамды диапазон: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Ағымдағы вектор: %1$s</string>
@@ -410,7 +410,7 @@
 Он алтылық жөндеу мекенжайы (мысалы, 000020):</string>
     <string name="icd_btn_read_vector">📥 Векторды оқу</string>
     <string name="icd_btn_write_vector">💾 Векторды жазу</string>
-    <string name="icd_dialog_title">🛠️ Жөндеу векторы (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Жөндеу векторы ICD</string>
     <string name="icd_toast_read_success">✓ Вектор оқылды: %1$s</string>
     <string name="icd_toast_invalid_address">Жарамсыз 24 биттік он алтылық мекенжай</string>
     <string name="icd_toast_write_success">✓ ICD векторы бағдарламаланды: %1$s</string>
@@ -477,4 +477,14 @@ PIC %1$s микроконтроллерін тиісті орынға салып
     <string name="toast_clipboard_fail">Алмасу буферіне қол жеткізілмеді.</string>
     <string name="toast_logs_copied">Журналдар алмасу буферіне көшірілді.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтроллер әлі де ZIF ұяшығында. Жалғастырмас бұрын оны шығарып алыңыз.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

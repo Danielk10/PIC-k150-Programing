@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">I-export ang CONFIG (.hex)</string>
-    <string name="exportar_config_bin">I-export ang CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">I-export ang Buong Dump (.hex)</string>
-    <string name="exportar_dump_completo_bin">I-export ang Buong Dump (.bin)</string>
+    <string name="exportar_config_hex">I-export ang CONFIG .hex</string>
+    <string name="exportar_config_bin">I-export ang CONFIG .bin</string>
+    <string name="exportar_dump_completo">I-export ang Buong Dump .hex</string>
+    <string name="exportar_dump_completo_bin">I-export ang Buong Dump .bin</string>
     <string name="verificar_borrado">I-verify ang Pagtanggal</string>
     <string name="chip_esta_borrado">Ang chip ay nabura (Blanko)</string>
     <string name="chip_no_esta_borrado">HINDI nabubura ang chip</string>
@@ -292,7 +292,7 @@
     <string name="pro_access_subtitle">I-unlock ang mga advanced na teknikal na tool para sa %1$s</string>
     <string name="pro_feature_hex_editor">Live Hexadecimal Editor (Live Patching)</string>
     <string name="pro_feature_hardware_diagnostics">Diagnostics ng Hardware at Pagsubok sa Boltahe (VPP 13V / VDD 5V)</string>
-    <string name="pro_feature_icd_vector">ICD Debugging Vector (24 bits)</string>
+    <string name="pro_feature_icd_vector">ICD Debugging Vector 24 bits</string>
     <string name="pro_feature_osccal">Pagsagip at Manu-manong Pag-edit ng OSCCAL</string>
     <string name="pro_feature_remove_ads">Alisin ang lahat ng ad mula sa application</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Manood ng Video - 12 Oras na Libreng Pass</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 Hardware Diagnostics</string>
     <string name="menu_osccal_calibration">⏱️ Kalibrasyon ng OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ In-Circuit Debugging Vector (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Circuit Debugging Vector ICD</string>
     <string name="cd_socket_diagram">Diagram ng socket</string>
     <string name="btn_connect_usb">Ikonekta ang USB Programmer</string>
     <string name="btn_disconnect_usb">Idiskonekta ang USB Programmer</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Subukan ang ZIF Sensors (Ipasok/Alisin)</string>
     <string name="diag_section_voltage_control">⚡ Pagkontrol sa Boltahe VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ PAUNAWA: Alisin ang microcontroller sa ZIF socket bago paganahin o sukatin ang boltahe gamit ang multimeter.</string>
-    <string name="diag_status_voltages_off">Katayuan: Naka-off ang mga boltahe (0V)</string>
-    <string name="diag_status_vpp_active">Katayuan: ⚡ NAKA-ACTIVATE ang VPP (13V) / VDD (5V)</string>
+    <string name="diag_status_voltages_off">Katayuan: Naka-off ang mga boltahe - 0V</string>
+    <string name="diag_status_vpp_active">Katayuan: ⚡ NAKA-ACTIVATE ang VPP 13V / VDD 5V</string>
     <string name="diag_status_voltages_restarted">Katayuan: ⚡ Na-restart ang mga boltahe (Aktibo)</string>
     <string name="diag_status_error_activating">Katayuan: ❌ Error sa pag-activate ng mga boltahe</string>
     <string name="diag_status_error_deactivating">Katayuan: ❌ Error sa pagpatay ng mga boltahe</string>
     <string name="diag_status_error_restarting">Katayuan: ❌ Error sa pag-restart ng mga boltahe</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">I-off (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">I-off - 0V</string>
     <string name="diag_btn_restart_voltages">I-restart</string>
     <string name="diag_programmer_not_connected">Hindi nakakonekta ang programmer</string>
     <string name="diag_connect_programmer_prompt">⚠ Ikonekta ang K150 programmer upang magamit ang diagnostics</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Hindi nakita ang matatag na kontak sa socket</string>
     <string name="diag_toast_chip_removed_voltages_active">Inalis ang chip: Na-activate ang boltahe para sa ligtas na pagsukat</string>
     <string name="diag_toast_voltages_activated_multimeter">Na-activate ang boltahe: sukatin gamit ang multimeter sa VPP at VDD</string>
-    <string name="diag_toast_voltages_off">Napatay ang mga boltahe (0V)</string>
+    <string name="diag_toast_voltages_off">Napatay ang mga boltahe - 0V</string>
     <string name="diag_toast_voltages_restarted">Inalis ang chip: Na-restart ang boltahe para sa pagsukat</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ May Microcontroller sa Socket</string>
     <string name="diag_alert_chip_in_socket_message">Upang maiwasang masira ang PIC sa 13V VPP, mangyaring alisin ang microcontroller sa ZIF socket bago paganahin o sukatin ang boltahe.
@@ -402,7 +402,7 @@ Ilagay ang hexadecimal na halaga (hal. %1$s):</string>
     <string name="cal_toast_invalid_hex">Di-wastong hexadecimal na halaga</string>
     <string name="cal_toast_write_success">✓ Matagumpay na naisulat ang OSCCAL sa chip</string>
     <string name="cal_toast_write_error">❌ Nabigong isulat ang kalibrasyon sa silicon</string>
-    <string name="icd_dialog_subtitle">In-Circuit Debugging (ICD) - 24-bit Address Vector
+    <string name="icd_dialog_subtitle">In-Circuit Debugging ICD - 24-bit Address Vector
 (Wastong saklaw: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Kasalukuyang Vector: %1$s</string>
@@ -410,7 +410,7 @@ Kasalukuyang Vector: %1$s</string>
 Debug address sa hex (hal. 000020):</string>
     <string name="icd_btn_read_vector">📥 Basahin ang Vector</string>
     <string name="icd_btn_write_vector">💾 Isulat ang Vector</string>
-    <string name="icd_dialog_title">🛠️ Debugging Vector (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Debugging Vector ICD</string>
     <string name="icd_toast_read_success">✓ Nabasa ang vector: %1$s</string>
     <string name="icd_toast_invalid_address">Di-wastong 24-bit hexadecimal address</string>
     <string name="icd_toast_write_success">✓ Niprograma ang ICD vector: %1$s</string>
@@ -477,4 +477,14 @@ Mangyaring ipasok ang PIC %1$s sa kaukulang posisyon, i-lock ang lever, at i-tap
     <string name="toast_clipboard_fail">Hindi ma-access ang clipboard.</string>
     <string name="toast_logs_copied">Nakopya ang mga log sa clipboard.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Ang microcontroller ay nasa socket pa rin ng ZIF. Paki-alis ito bago magpatuloy.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

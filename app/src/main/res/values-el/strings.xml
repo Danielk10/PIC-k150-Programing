@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Εξαγωγή CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Εξαγωγή CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Εξαγωγή Full Dump (.hex)</string>
-    <string name="exportar_dump_completo_bin">Εξαγωγή Full Dump (.bin)</string>
+    <string name="exportar_config_hex">Εξαγωγή CONFIG .hex</string>
+    <string name="exportar_config_bin">Εξαγωγή CONFIG .bin</string>
+    <string name="exportar_dump_completo">Εξαγωγή Full Dump .hex</string>
+    <string name="exportar_dump_completo_bin">Εξαγωγή Full Dump .bin</string>
     <string name="verificar_borrado">Επαλήθευση διαγραφής</string>
     <string name="chip_esta_borrado">Το τσιπ διαγράφεται (Κενό)</string>
     <string name="chip_no_esta_borrado">Το τσιπ ΔΕΝ σβήνεται</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Διαγνωστικά Υλικού K150</string>
     <string name="menu_osccal_calibration">⏱️ Βαθμονόμηση OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Διάνυσμα Αποσφαλμάτωσης Εντός Κυκλώματος (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Διάνυσμα Αποσφαλμάτωσης Εντός Κυκλώματος ICD</string>
     <string name="cd_socket_diagram">Διάγραμμα υποδοχής</string>
     <string name="btn_connect_usb">Σύνδεση προγραμματιστή USB</string>
     <string name="btn_disconnect_usb">Αποσύνδεση προγραμματιστή USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Δοκιμή Αισθητήρων ZIF (Εισαγωγή/Εξαγωγή)</string>
     <string name="diag_section_voltage_control">⚡ Έλεγχος Τάσης VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ΠΡΟΣΟΧΗ: Αφαιρέστε τον μικροελεγκτή από την υποδοχή ZIF πριν ενεργοποιήσετε ή μετρήσετε τάσεις με πολύμετρο.</string>
-    <string name="diag_status_voltages_off">Κατάσταση: Τάσεις απενεργοποιημένες (0V)</string>
-    <string name="diag_status_vpp_active">Κατάσταση: ⚡ VPP (13V) / VDD (5V) ΕΝΕΡΓΟΠΟΙΗΘΗΚΑΝ</string>
+    <string name="diag_status_voltages_off">Κατάσταση: Τάσεις απενεργοποιημένες - 0V</string>
+    <string name="diag_status_vpp_active">Κατάσταση: ⚡ VPP 13V / VDD 5V ΕΝΕΡΓΟΠΟΙΗΘΗΚΑΝ</string>
     <string name="diag_status_voltages_restarted">Κατάσταση: ⚡ Τάσεις επανεκκινήθηκαν (Ενεργές)</string>
     <string name="diag_status_error_activating">Κατάσταση: ❌ Σφάλμα ενεργοποίησης τάσεων</string>
     <string name="diag_status_error_deactivating">Κατάσταση: ❌ Σφάλμα απενεργοποίησης τάσεων</string>
     <string name="diag_status_error_restarting">Κατάσταση: ❌ Σφάλμα επανεκκίνησης τάσεων</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Απενεργοποίηση (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Απενεργοποίηση - 0V</string>
     <string name="diag_btn_restart_voltages">Επανεκκίνηση</string>
     <string name="diag_programmer_not_connected">Ο προγραμματιστής δεν είναι συνδεδεμένος</string>
     <string name="diag_connect_programmer_prompt">⚠ Συνδέστε τον προγραμματιστή K150 για να χρησιμοποιήσετε τα διαγνωστικά</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Δεν εντοπίστηκε σταθερή επαφή στην υποδοχή</string>
     <string name="diag_toast_chip_removed_voltages_active">Το τσιπ αφαιρέθηκε: Οι τάσεις ενεργοποιήθηκαν για ασφαλή μέτρηση</string>
     <string name="diag_toast_voltages_activated_multimeter">Οι τάσεις ενεργοποιήθηκαν: μετρήστε με πολύμετρο σε VPP και VDD</string>
-    <string name="diag_toast_voltages_off">Τάσεις απενεργοποιημένες (0V)</string>
+    <string name="diag_toast_voltages_off">Τάσεις απενεργοποιημένες - 0V</string>
     <string name="diag_toast_voltages_restarted">Το τσιπ αφαιρέθηκε: Οι τάσεις επανεκκινήθηκαν για μέτρηση</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Μικροελεγκτής στην Υποδοχή</string>
     <string name="diag_alert_chip_in_socket_message">Για να αποφύγετε τη φθορά του PIC με τάση 13V VPP, αφαιρέστε τον μικροελεγκτή από την υποδοχή ZIF πριν ενεργοποιήσετε ή μετρήσετε τις τάσεις.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">Μη έγκυρη δεκαεξαδική τιμή</string>
     <string name="cal_toast_write_success">✓ Το OSCCAL γράφτηκε επιτυχώς στο τσιπ</string>
     <string name="cal_toast_write_error">❌ Αποτυχία εγγραφής βαθμονόμησης στο πυρίτιο</string>
-    <string name="icd_dialog_subtitle">Αποσφαλμάτωση εντός κυκλώματος (ICD) - Διάνυσμα διεύθυνσης 24-bit
+    <string name="icd_dialog_subtitle">Αποσφαλμάτωση εντός κυκλώματος ICD - Διάνυσμα διεύθυνσης 24-bit
 (Έγκυρο εύρος: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Τρέχον διάνυσμα: %1$s</string>
@@ -410,7 +410,7 @@
 Διεύθυνση αποσφαλμάτωσης σε hex (π.χ. 000020):</string>
     <string name="icd_btn_read_vector">📥 Ανάγνωση Διανύσματος</string>
     <string name="icd_btn_write_vector">💾 Εγγραφή Διανύσματος</string>
-    <string name="icd_dialog_title">🛠️ Διάνυσμα Αποσφαλμάτωσης (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Διάνυσμα Αποσφαλμάτωσης ICD</string>
     <string name="icd_toast_read_success">✓ Διάνυσμα αναγνώστηκε: %1$s</string>
     <string name="icd_toast_invalid_address">Μη έγκυρη δεκαεξαδική διεύθυνση 24-bit</string>
     <string name="icd_toast_write_success">✓ Το διάνυσμα ICD προγραμματίστηκε: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">Δεν ήταν δυνατή η πρόσβαση στο πρόχειρο.</string>
     <string name="toast_logs_copied">Τα αρχεία καταγραφής αντιγράφηκαν στο πρόχειρο.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Ο μικροελεγκτής βρίσκεται ακόμα στην υποδοχή ZIF. Αφαιρέστε τον πριν συνεχίσετε.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

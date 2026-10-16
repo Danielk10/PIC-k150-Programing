@@ -105,9 +105,9 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">CONFIG ወደ ውጪ ላክ (.hex)</string>
+    <string name="exportar_config_hex">CONFIG ወደ ውጪ ላክ .hex</string>
     <string name="exportar_config_bin">CONFIG (.ቢን) ወደ ውጪ ላክ</string>
-    <string name="exportar_dump_completo">ሙሉ ቆሻሻ ወደ ውጪ ላክ (.hex)</string>
+    <string name="exportar_dump_completo">ሙሉ ቆሻሻ ወደ ውጪ ላክ .hex</string>
     <string name="exportar_dump_completo_bin">ሙሉ ቆሻሻን ወደ ውጪ ላክ (.ቢን)</string>
     <string name="verificar_borrado">ስረዛን ያረጋግጡ</string>
     <string name="chip_esta_borrado">ቺፕው ተሰርዟል (ባዶ)</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ ፕሮ %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 የK150 ሃርድዌር ምርመራ</string>
     <string name="menu_osccal_calibration">⏱️ የOSCCAL ልኬት ማስተካከያ</string>
-    <string name="menu_debug_vector_icd">🛠️ የወረዳ ውስጥ ማረሚያ ቬክተር (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ የወረዳ ውስጥ ማረሚያ ቬክተር ICD</string>
     <string name="cd_socket_diagram">የሶኬት ንድፍ</string>
     <string name="btn_connect_usb">የUSB ፕሮግራመር ያገናኙ</string>
     <string name="btn_disconnect_usb">የUSB ፕሮግራመር ያላቅቁ</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 የZIF ዳሳሾችን ሞክር (አስገባ/አውጣ)</string>
     <string name="diag_section_voltage_control">⚡ የቮልቴጅ መቆጣጠሪያ VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ጥንቃቄ፦ ቮልቴጆችን ከማንቃት ወይም በመልቲሜትር ከመለካትዎ በፊት ማይክሮ መቆጣጠሪያውን ከZIF ሶኬት ያስወግዱ።</string>
-    <string name="diag_status_voltages_off">ሁኔታ፦ ቮልቴጆች ጠፍተዋል (0V)</string>
-    <string name="diag_status_vpp_active">ሁኔታ፦ ⚡ VPP (13V) / VDD (5V) ነቅቷል</string>
+    <string name="diag_status_voltages_off">ሁኔታ፦ ቮልቴጆች ጠፍተዋል - 0V</string>
+    <string name="diag_status_vpp_active">ሁኔታ፦ ⚡ VPP 13V / VDD 5V ነቅቷል</string>
     <string name="diag_status_voltages_restarted">ሁኔታ፦ ⚡ ቮልቴጆች እንደገና ተጀምረዋል (ገባሪ)</string>
     <string name="diag_status_error_activating">ሁኔታ፦ ❌ ቮልቴጆችን በማንቃት ላይ ስህተት ተከስቷል</string>
     <string name="diag_status_error_deactivating">ሁኔታ፦ ❌ ቮልቴጆችን በማጥፋት ላይ ስህተት ተከስቷል</string>
     <string name="diag_status_error_restarting">ሁኔታ፦ ❌ ቮልቴጆችን እንደገና በማስጀመር ላይ ስህተት ተከስቷል</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">አጥፋ (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">አጥፋ - 0V</string>
     <string name="diag_btn_restart_voltages">እንደገና አስጀምር</string>
     <string name="diag_programmer_not_connected">ፕሮግራመር አልተገናኘም</string>
     <string name="diag_connect_programmer_prompt">⚠ ምርመራን ለመጠቀም የK150 ፕሮግራመርን ያገናኙ</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ በሶኬት ውስጥ አስተማማኝ ግንኙነት አልተገኘም</string>
     <string name="diag_toast_chip_removed_voltages_active">ቺፕ ተወግዷል፦ ለአስተማማኝ ልኬት ቮልቴጆች ነቅተዋል</string>
     <string name="diag_toast_voltages_activated_multimeter">ቮልቴጆች ነቅተዋል፦ በመልቲሜትር በVPP እና VDD ላይ ይለኩ</string>
-    <string name="diag_toast_voltages_off">ቮልቴጆች ጠፍተዋል (0V)</string>
+    <string name="diag_toast_voltages_off">ቮልቴጆች ጠፍተዋል - 0V</string>
     <string name="diag_toast_voltages_restarted">ቺፕ ተወግዷል፦ ለልኬት ቮልቴጆች እንደገና ተጀምረዋል</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ ማይክሮ መቆጣጠሪያ በሶኬት ውስጥ</string>
     <string name="diag_alert_chip_in_socket_message">PIC በ13V VPP እንዳይጎዳ ለመከላከል እባክዎ ቮልቴጆችን ከማንቃት ወይም ከመለካትዎ በፊት ማይክሮ መቆጣጠሪያውን ከZIF ሶኬት ያስወግዱ።
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">ልክ ያልሆነ ሄክሳዴሲማል እሴት</string>
     <string name="cal_toast_write_success">✓ OSCCAL በተሳካ ሁኔታ ወደ ቺፕ ተጽፏል</string>
     <string name="cal_toast_write_error">❌ ልኬትን ወደ ሲሊኮን መጻፍ አልተሳካም</string>
-    <string name="icd_dialog_subtitle">የወረዳ ውስጥ ማረም (ICD) - 24-ቢት የአድራሻ ቬክተር
+    <string name="icd_dialog_subtitle">የወረዳ ውስጥ ማረም ICD - 24-ቢት የአድራሻ ቬክተር
 (ትክክለኛ ክልል፦ 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 የአሁኑ ቬክተር፦ %1$s</string>
@@ -410,7 +410,7 @@
 የማረሚያ አድራሻ በሄክስ (ለምሳሌ 000020)፦</string>
     <string name="icd_btn_read_vector">📥 ቬክተር አንብብ</string>
     <string name="icd_btn_write_vector">💾 ቬክተር ጻፍ</string>
-    <string name="icd_dialog_title">🛠️ የማረሚያ ቬክተር (ICD)</string>
+    <string name="icd_dialog_title">🛠️ የማረሚያ ቬክተር ICD</string>
     <string name="icd_toast_read_success">✓ ቬክተር ተነቧል፦ %1$s</string>
     <string name="icd_toast_invalid_address">ልክ ያልሆነ 24-ቢት ሄክሳዴሲማል አድራሻ</string>
     <string name="icd_toast_write_success">✓ የICD ቬክተር ተዘጋጅቷል፦ %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">ቅንጥብ ሰሌዳውን መድረስ አልተቻለም።</string>
     <string name="toast_logs_copied">ምዝግብ ማስታወሻዎች ወደ ቅንጥብ ሰሌዳ ተቀድተዋል።</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ ማይክሮ መቆጣጠሪያው አሁንም በZIF ሶኬት ውስጥ አለ። እባክዎ ከመቀጠልዎ በፊት ያስወግዱት።</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

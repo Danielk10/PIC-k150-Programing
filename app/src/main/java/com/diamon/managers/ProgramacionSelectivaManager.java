@@ -273,7 +273,7 @@ public class ProgramacionSelectivaManager {
             return lineas;
         }
 
-        lineas.add(context != null ? context.getString(R.string.blank_check_dual_header) : "📋 Verificación de Borrado Diferenciada (Blank Check Dual):");
+        lineas.add(context != null ? context.getString(R.string.blank_check_dual_header) : "📋 Verificación de Borrado Diferenciada:");
 
         // 1. Diagnóstico de Memoria ROM
         int coreBits = 14;
@@ -287,18 +287,18 @@ public class ProgramacionSelectivaManager {
         String blankHex = String.format("0x%04X", blankWord);
 
         if (resultado.romEnBlanco) {
-            lineas.add(context != null ? context.getString(R.string.blank_check_rom_clean, blankHex) : ("  ✓ ROM limpia al 100% (" + blankHex + ")"));
+            lineas.add(context != null ? context.getString(R.string.blank_check_rom_clean, blankHex) : ("  ✓ ROM limpia al 100% - " + blankHex));
         } else {
-            lineas.add(context != null ? context.getString(R.string.blank_check_rom_has_data) : "  ⚠ ROM con datos previos detectados (No está en blanco)");
+            lineas.add(context != null ? context.getString(R.string.blank_check_rom_has_data) : "  ⚠ ROM con datos previos detectados - No está en blanco");
         }
 
         // 2. Diagnóstico de Memoria EEPROM
         boolean hasEeprom = (chip != null && chip.isTamanoValidoDeEEPROM());
         if (hasEeprom) {
             if (resultado.eepromEnBlanco) {
-                lineas.add(context != null ? context.getString(R.string.blank_check_eeprom_clean) : "  ✓ EEPROM limpia al 100% (0xFF)");
+                lineas.add(context != null ? context.getString(R.string.blank_check_eeprom_clean) : "  ✓ EEPROM limpia al 100% - 0xFF");
             } else {
-                lineas.add(context != null ? context.getString(R.string.blank_check_eeprom_has_data) : "  ⚠ EEPROM con datos previos detectados (No está en blanco)");
+                lineas.add(context != null ? context.getString(R.string.blank_check_eeprom_has_data) : "  ⚠ EEPROM con datos previos detectados - No está en blanco");
             }
         }
 
@@ -309,7 +309,7 @@ public class ProgramacionSelectivaManager {
 
         // 4. Conclusión global
         if (resultado.chipEnBlanco()) {
-            lineas.add(context != null ? context.getString(R.string.blank_check_ready_to_program) : "✓ Microcontrolador listo para grabar (100% Borrado)");
+            lineas.add(context != null ? context.getString(R.string.blank_check_ready_to_program) : "✓ Microcontrolador listo para grabar - 100% Borrado");
         } else {
             lineas.add(context != null ? context.getString(R.string.blank_check_erase_required) : "⚠ Se requiere borrado previo antes de grabar");
         }

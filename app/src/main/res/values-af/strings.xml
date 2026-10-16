@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Voer CONFIG (.hex) uit</string>
-    <string name="exportar_config_bin">Voer CONFIG (.bin) uit</string>
-    <string name="exportar_dump_completo">Voer volledige storting uit (.hex)</string>
-    <string name="exportar_dump_completo_bin">Voer volledige storting (.bin) uit</string>
+    <string name="exportar_config_hex">Voer CONFIG .hex uit</string>
+    <string name="exportar_config_bin">Voer CONFIG .bin uit</string>
+    <string name="exportar_dump_completo">Voer volledige storting uit .hex</string>
+    <string name="exportar_dump_completo_bin">Voer volledige storting .bin uit</string>
     <string name="verificar_borrado">Verifieer uitvee</string>
     <string name="chip_esta_borrado">Die skyfie is uitgevee (leeg)</string>
     <string name="chip_no_esta_borrado">Die skyfie word NIE uitgevee nie</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 Hardeware Diagnostiek</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibrasie</string>
-    <string name="menu_debug_vector_icd">🛠️ In-Stroombaan Ontfoutingsvektor (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Stroombaan Ontfoutingsvektor ICD</string>
     <string name="cd_socket_diagram">Sokdiagram</string>
     <string name="btn_connect_usb">Koppel USB-programmeerder</string>
     <string name="btn_disconnect_usb">Ontkoppel USB-programmeerder</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Toets ZIF-sensors (Plaas in/Verwyder)</string>
     <string name="diag_section_voltage_control">⚡ Spanningsbeheer VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ WAARSKUWING: Verwyder mikrobeheerder uit ZIF-sok voor aktivering of meting van spannings met \'n multimeter.</string>
-    <string name="diag_status_voltages_off">Status: Spannings afgeskakel (0V)</string>
-    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) GEAKTIVEER</string>
+    <string name="diag_status_voltages_off">Status: Spannings afgeskakel - 0V</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP 13V / VDD 5V GEAKTIVEER</string>
     <string name="diag_status_voltages_restarted">Status: ⚡ Spannings herbegin (Aktief)</string>
     <string name="diag_status_error_activating">Status: ❌ Fout met aktivering van spannings</string>
     <string name="diag_status_error_deactivating">Status: ❌ Fout met afskakeling van spannings</string>
     <string name="diag_status_error_restarting">Status: ❌ Fout met herbegin van spannings</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Skakel af (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Skakel af - 0V</string>
     <string name="diag_btn_restart_voltages">Herbegin</string>
     <string name="diag_programmer_not_connected">Programmeerder nie gekoppel nie</string>
     <string name="diag_connect_programmer_prompt">⚠ Koppel die K150-programmeerder om diagnostiek te gebruik</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Geen stewige kontak opgespoor in sok nie</string>
     <string name="diag_toast_chip_removed_voltages_active">Skyfie verwyder: Spannings geaktiveer vir veilige meting</string>
     <string name="diag_toast_voltages_activated_multimeter">Spannings geaktiveer: meet met multimeter op VPP en VDD</string>
-    <string name="diag_toast_voltages_off">Spannings afgeskakel (0V)</string>
+    <string name="diag_toast_voltages_off">Spannings afgeskakel - 0V</string>
     <string name="diag_toast_voltages_restarted">Skyfie verwyder: Spannings herbegin vir meting</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrobeheerder in Sok</string>
     <string name="diag_alert_chip_in_socket_message">Om skade aan die PIC met 13V VPP te voorkom, verwyder asseblief die mikrobeheerder uit die ZIF-sok voordat spannings geaktiveer of gemeet word.
@@ -402,7 +402,7 @@ Voer heksadesimale waarde in (bv. %1$s):</string>
     <string name="cal_toast_invalid_hex">Ongeldige heksadesimale waarde</string>
     <string name="cal_toast_write_success">✓ OSCCAL suksesvol na skyfie geskryf</string>
     <string name="cal_toast_write_error">❌ Kon nie kalibrasie na silikon skryf nie</string>
-    <string name="icd_dialog_subtitle">In-stroombaan ontfouting (ICD) - 24-bis adresvektor
+    <string name="icd_dialog_subtitle">In-stroombaan ontfouting ICD - 24-bis adresvektor
 (Geldige reeks: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Huidige vektor: %1$s</string>
@@ -410,7 +410,7 @@ Huidige vektor: %1$s</string>
 Ontfoutingsadres in heks (bv. 000020):</string>
     <string name="icd_btn_read_vector">📥 Lees vektor</string>
     <string name="icd_btn_write_vector">💾 Skryf vektor</string>
-    <string name="icd_dialog_title">🛠️ Ontfoutingsvektor (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Ontfoutingsvektor ICD</string>
     <string name="icd_toast_read_success">✓ Vektor gelees: %1$s</string>
     <string name="icd_toast_invalid_address">Ongeldige 24-bis heksadesimale adres</string>
     <string name="icd_toast_write_success">✓ ICD-vektor geprogrammeer: %1$s</string>
@@ -477,4 +477,14 @@ Plaas asseblief die PIC %1$s in die ooreenstemmende posisie, sluit die hefboom, 
     <string name="toast_clipboard_fail">Kon nie toegang tot knipbord kry nie.</string>
     <string name="toast_logs_copied">Logboeke na knipbord gekopieer.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Die mikrobeheerder is steeds in die ZIF-sok. Verwyder dit asseblief voordat u voortgaan.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

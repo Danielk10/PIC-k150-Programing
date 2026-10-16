@@ -159,6 +159,14 @@ El proyecto se basa en las siguientes tecnologías y recursos de código abierto
     <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="200">
   </a>
 
+## 📱 Otras aplicaciones del desarrollador en Google Play
+
+Descubre otras aplicaciones educativas y herramientas de ingeniería desarrolladas por el autor en Google Play Store:
+
+- 📱 **[Curso Microcontroladores PIC](https://play.google.com/store/apps/details?id=com.diamon.curso)**: Aprende arquitectura, registros y programación en C y ensamblador para microcontroladores PIC.
+- 🧪 **[Tabla Periódica PTC](https://play.google.com/store/apps/details?id=com.diamon.ptc)**: Tabla periódica interactiva y completa para química y ciencia con propiedades detalladas de cada elemento.
+- 🧮 **[Mini Calculadora](https://play.google.com/store/apps/details?id=com.diamon.mini)**: Calculadora compacta, rápida y práctica para operaciones y cálculos matemáticos cotidianos.
+
 ## 🚀 Instrucciones de instalación
 
 ### Para usuarios

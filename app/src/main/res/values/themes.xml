@@ -5,6 +5,9 @@
         <item name="actionMenuTextColor">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
         
+        <item name="colorControlNormal">#B0BEC5</item>
+        <item name="colorControlActivated">#00E676</item>
+        
         <!-- Edge-to-Edge configuration for Android 15+ -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>

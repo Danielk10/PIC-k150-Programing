@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Eksport CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Eksportuj CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Eksportuj pełny zrzut (.hex)</string>
-    <string name="exportar_dump_completo_bin">Eksportuj pełny zrzut (.bin)</string>
+    <string name="exportar_config_hex">Eksport CONFIG .hex</string>
+    <string name="exportar_config_bin">Eksportuj CONFIG .bin</string>
+    <string name="exportar_dump_completo">Eksportuj pełny zrzut .hex</string>
+    <string name="exportar_dump_completo_bin">Eksportuj pełny zrzut .bin</string>
     <string name="verificar_borrado">Sprawdź usunięcie</string>
     <string name="chip_esta_borrado">Chip został skasowany (Pusty)</string>
     <string name="chip_no_esta_borrado">Chip NIE został skasowany</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnostyka sprzętowa K150</string>
     <string name="menu_osccal_calibration">⏱️ Kalibracja OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Wektor debugowania w układzie (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Wektor debugowania w układzie ICD</string>
     <string name="cd_socket_diagram">Schemat podstawki</string>
     <string name="btn_connect_usb">Połącz programator USB</string>
     <string name="btn_disconnect_usb">Odłącz programator USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Testuj czujniki ZIF (Włóż/Wyjmij)</string>
     <string name="diag_section_voltage_control">⚡ Kontrola napięć VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ UWAGA: Wyjmij mikrokontroler z podstawki ZIF przed włączeniem lub pomiarem napięć za pomocą multimetru.</string>
-    <string name="diag_status_voltages_off">Stan: Napięcia wyłączone (0V)</string>
-    <string name="diag_status_vpp_active">Stan: ⚡ VPP (13V) / VDD (5V) WŁĄCZONE</string>
+    <string name="diag_status_voltages_off">Stan: Napięcia wyłączone - 0V</string>
+    <string name="diag_status_vpp_active">Stan: ⚡ VPP 13V / VDD 5V WŁĄCZONE</string>
     <string name="diag_status_voltages_restarted">Stan: ⚡ Napięcia zrestartowane (Aktywne)</string>
     <string name="diag_status_error_activating">Stan: ❌ Błąd podczas włączania napięć</string>
     <string name="diag_status_error_deactivating">Stan: ❌ Błąd podczas wyłączania napięć</string>
     <string name="diag_status_error_restarting">Stan: ❌ Błąd podczas restartowania napięć</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Wyłącz (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Wyłącz - 0V</string>
     <string name="diag_btn_restart_voltages">Restartuj</string>
     <string name="diag_programmer_not_connected">Programator nie jest podłączony</string>
     <string name="diag_connect_programmer_prompt">⚠ Podłącz programator K150, aby użyć diagnostyki</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Nie wykryto pewnego kontaktu w podstawce</string>
     <string name="diag_toast_chip_removed_voltages_active">Układ wyjęty: Napięcia włączone do bezpiecznego pomiaru</string>
     <string name="diag_toast_voltages_activated_multimeter">Napięcia włączone: zmierz multimetrem na pinach VPP i VDD</string>
-    <string name="diag_toast_voltages_off">Napięcia wyłączone (0V)</string>
+    <string name="diag_toast_voltages_off">Napięcia wyłączone - 0V</string>
     <string name="diag_toast_voltages_restarted">Układ wyjęty: Napięcia zrestartowane do pomiaru</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontroler w podstawce</string>
     <string name="diag_alert_chip_in_socket_message">Aby uniknąć uszkodzenia PIC napięciem 13V VPP, wyjmij mikrokontroler z podstawki ZIF przed włączeniem lub pomiarem napięć.
@@ -402,7 +402,7 @@ Wprowadź wartość szesnastkową (np. %1$s):</string>
     <string name="cal_toast_invalid_hex">Nieprawidłowa wartość szesnastkowa</string>
     <string name="cal_toast_write_success">✓ OSCCAL pomyślnie zapisany do układu</string>
     <string name="cal_toast_write_error">❌ Nie udało się zapisać kalibracji do krzemu</string>
-    <string name="icd_dialog_subtitle">Debugowanie w układzie (ICD) – 24-bitowy wektor adresu
+    <string name="icd_dialog_subtitle">Debugowanie w układzie ICD – 24-bitowy wektor adresu
 (Prawidłowy zakres: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Bieżący wektor: %1$s</string>
@@ -410,7 +410,7 @@ Bieżący wektor: %1$s</string>
 Adres debugowania w hex (np. 000020):</string>
     <string name="icd_btn_read_vector">📥 Odczytaj wektor</string>
     <string name="icd_btn_write_vector">💾 Zapisz wektor</string>
-    <string name="icd_dialog_title">🛠️ Wektor debugowania (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Wektor debugowania ICD</string>
     <string name="icd_toast_read_success">✓ Odczytano wektor: %1$s</string>
     <string name="icd_toast_invalid_address">Nieprawidłowy 24-bitowy adres szesnastkowy</string>
     <string name="icd_toast_write_success">✓ Zaprogramowano wektor ICD: %1$s</string>
@@ -477,4 +477,14 @@ Włóż PIC %1$s w odpowiednie miejsce, zablokuj dźwignię i dotknij [%2$s] pon
     <string name="toast_clipboard_fail">Nie można uzyskać dostępu do schowka.</string>
     <string name="toast_logs_copied">Dzienniki skopiowane do schowka.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontroler nadal znajduje się w podstawce ZIF. Wyjmij go przed kontynuowaniem.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

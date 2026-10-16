@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Dışa Aktarma CONFIG (.hex)</string>
-    <string name="exportar_config_bin">CONFIG\'i dışa aktar (.bin)</string>
-    <string name="exportar_dump_completo">Tam Dökümü Dışa Aktar (.hex)</string>
-    <string name="exportar_dump_completo_bin">Tam Dökümü Dışa Aktar (.bin)</string>
+    <string name="exportar_config_hex">Dışa Aktarma CONFIG .hex</string>
+    <string name="exportar_config_bin">CONFIG\'i dışa aktar .bin</string>
+    <string name="exportar_dump_completo">Tam Dökümü Dışa Aktar .hex</string>
+    <string name="exportar_dump_completo_bin">Tam Dökümü Dışa Aktar .bin</string>
     <string name="verificar_borrado">Silme işlemini doğrula</string>
     <string name="chip_esta_borrado">Çip silinir (Boş)</string>
     <string name="chip_no_esta_borrado">Çip SİLİNMEZ</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 Donanım Teşhisi</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL Kalibrasyonu</string>
-    <string name="menu_debug_vector_icd">🛠️ Devre İçi Hata Ayıklama Vektörü (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Devre İçi Hata Ayıklama Vektörü ICD</string>
     <string name="cd_socket_diagram">Soket diyagramı</string>
     <string name="btn_connect_usb">USB Programlayıcıyı Bağla</string>
     <string name="btn_disconnect_usb">USB Programlayıcı Bağlantısını Kes</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ZIF Sensörlerini Test Et (Tak/Çıkar)</string>
     <string name="diag_section_voltage_control">⚡ Voltaj Kontrolü VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ DİKKAT: Voltajları etkinleştirmeden veya multimetre ile ölçmeden önce mikrodenetleyiciyi ZIF soketinden çıkarın.</string>
-    <string name="diag_status_voltages_off">Durum: Voltajlar kapalı (0V)</string>
-    <string name="diag_status_vpp_active">Durum: ⚡ VPP (13V) / VDD (5V) ETKİNLEŞTİRİLDİ</string>
+    <string name="diag_status_voltages_off">Durum: Voltajlar kapalı - 0V</string>
+    <string name="diag_status_vpp_active">Durum: ⚡ VPP 13V / VDD 5V ETKİNLEŞTİRİLDİ</string>
     <string name="diag_status_voltages_restarted">Durum: ⚡ Voltajlar yeniden başlatıldı (Aktif)</string>
     <string name="diag_status_error_activating">Durum: ❌ Voltajları etkinleştirme hatası</string>
     <string name="diag_status_error_deactivating">Durum: ❌ Voltajları kapatma hatası</string>
     <string name="diag_status_error_restarting">Durum: ❌ Voltajları yeniden başlatma hatası</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Kapat (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Kapat - 0V</string>
     <string name="diag_btn_restart_voltages">Yeniden Başlat</string>
     <string name="diag_programmer_not_connected">Programlayıcı bağlı değil</string>
     <string name="diag_connect_programmer_prompt">⚠ Teşhisi kullanmak için K150 programlayıcıyı bağlayın</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Sokette sağlam temas algılanmadı</string>
     <string name="diag_toast_chip_removed_voltages_active">Çip çıkarıldı: Güvenli ölçüm için voltajlar etkinleştirildi</string>
     <string name="diag_toast_voltages_activated_multimeter">Voltajlar etkinleştirildi: VPP ve VDD üzerinde multimetre ile ölçün</string>
-    <string name="diag_toast_voltages_off">Voltajlar kapatıldı (0V)</string>
+    <string name="diag_toast_voltages_off">Voltajlar kapatıldı - 0V</string>
     <string name="diag_toast_voltages_restarted">Çip çıkarıldı: Ölçüm için voltajlar yeniden başlatıldı</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Sokette Mikrodenetleyici Var</string>
     <string name="diag_alert_chip_in_socket_message">PIC\'in 13V VPP ile zarar görmesini önlemek için voltajları etkinleştirmeden veya ölçmeden önce mikrodenetleyiciyi ZIF soketinden çıkarın.
@@ -402,7 +402,7 @@ Onaltılık değeri girin (örn. %1$s):</string>
     <string name="cal_toast_invalid_hex">Geçersiz onaltılık değer</string>
     <string name="cal_toast_write_success">✓ OSCCAL çipe başarıyla yazıldı</string>
     <string name="cal_toast_write_error">❌ Kalibrasyon silikona yazılamadı</string>
-    <string name="icd_dialog_subtitle">Devre İçi Hata Ayıklama (ICD) - 24-bit Adres Vektörü
+    <string name="icd_dialog_subtitle">Devre İçi Hata Ayıklama ICD - 24-bit Adres Vektörü
 (Geçerli aralık: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Geçerli Vektör: %1$s</string>
@@ -410,7 +410,7 @@ Geçerli Vektör: %1$s</string>
 Hex formatında hata ayıklama adresi (örn. 000020):</string>
     <string name="icd_btn_read_vector">📥 Vektörü Oku</string>
     <string name="icd_btn_write_vector">💾 Vektörü Yaz</string>
-    <string name="icd_dialog_title">🛠️ Hata Ayıklama Vektörü (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Hata Ayıklama Vektörü ICD</string>
     <string name="icd_toast_read_success">✓ Vektör okundu: %1$s</string>
     <string name="icd_toast_invalid_address">Geçersiz 24-bit onaltılık adres</string>
     <string name="icd_toast_write_success">✓ ICD vektörü programlandı: %1$s</string>
@@ -477,4 +477,14 @@ Lütfen PIC %1$s mikrodenetleyicisini uygun konuma takın, kolu kilitleyin ve [%
     <string name="toast_clipboard_fail">Panoya erişilemedi.</string>
     <string name="toast_logs_copied">Günlükler panoya kopyalandı.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrodenetleyici hala ZIF soketinde. Lütfen devam etmeden önce çıkarın.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Vie CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Vie CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Vie koko vedos (.hex)</string>
-    <string name="exportar_dump_completo_bin">Vie koko vedos (.bin)</string>
+    <string name="exportar_config_hex">Vie CONFIG .hex</string>
+    <string name="exportar_config_bin">Vie CONFIG .bin</string>
+    <string name="exportar_dump_completo">Vie koko vedos .hex</string>
+    <string name="exportar_dump_completo_bin">Vie koko vedos .bin</string>
     <string name="verificar_borrado">Vahvista poisto</string>
     <string name="chip_esta_borrado">Siru on poistettu (tyhjä)</string>
     <string name="chip_no_esta_borrado">Sirua EI poisteta</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150-laitteistodiagnostiikka</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL-kalibrointi</string>
-    <string name="menu_debug_vector_icd">🛠️ Piirinsisäinen Virheenkorjausvektori (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Piirinsisäinen Virheenkorjausvektori ICD</string>
     <string name="cd_socket_diagram">Kannan kaavio</string>
     <string name="btn_connect_usb">Yhdistä USB-ohjelmoija</string>
     <string name="btn_disconnect_usb">Katkaise USB-ohjelmoijan yhteys</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Testaa ZIF-anturit (Asetus/Poisto)</string>
     <string name="diag_section_voltage_control">⚡ Jännitteen Ohjaus VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ VAROITUS: Poista mikrokontrolleri ZIF-kannasta ennen jännitteiden käyttöönottoa tai mittaamista yleismittarilla.</string>
-    <string name="diag_status_voltages_off">Tila: Jännitteet katkaistu (0V)</string>
-    <string name="diag_status_vpp_active">Tila: ⚡ VPP (13V) / VDD (5V) KÄYTÖSSÄ</string>
+    <string name="diag_status_voltages_off">Tila: Jännitteet katkaistu - 0V</string>
+    <string name="diag_status_vpp_active">Tila: ⚡ VPP 13V / VDD 5V KÄYTÖSSÄ</string>
     <string name="diag_status_voltages_restarted">Tila: ⚡ Jännitteet käynnistetty uudelleen (Aktiivinen)</string>
     <string name="diag_status_error_activating">Tila: ❌ Virhe jännitteiden kytkemisessä</string>
     <string name="diag_status_error_deactivating">Tila: ❌ Virhe jännitteiden katkaisemisessa</string>
     <string name="diag_status_error_restarting">Tila: ❌ Virhe jännitteiden uudelleenkäynnistyksessä</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Katkaise (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Katkaise - 0V</string>
     <string name="diag_btn_restart_voltages">Käynnistä uudelleen</string>
     <string name="diag_programmer_not_connected">Ohjelmoija ei ole yhdistetty</string>
     <string name="diag_connect_programmer_prompt">⚠ Yhdistä K150-ohjelmoija käyttääksesi diagnostiikkaa</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Kannassa ei havaittu varmaa kosketusta</string>
     <string name="diag_toast_chip_removed_voltages_active">Siru poistettu: Jännitteet kytketty turvallista mittausta varten</string>
     <string name="diag_toast_voltages_activated_multimeter">Jännitteet kytketty: mittaa yleismittarilla VPP ja VDD</string>
-    <string name="diag_toast_voltages_off">Jännitteet katkaistu (0V)</string>
+    <string name="diag_toast_voltages_off">Jännitteet katkaistu - 0V</string>
     <string name="diag_toast_voltages_restarted">Siru poistettu: Jännitteet käynnistetty uudelleen mittausta varten</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontrolleri Kannassa</string>
     <string name="diag_alert_chip_in_socket_message">Jotta PIC ei vaurioituisi 13V VPP -jännitteellä, poista mikrokontrolleri ZIF-kannasta ennen jännitteiden käyttöönottoa tai mittaamista.
@@ -402,7 +402,7 @@ Syötä heksadesimaaliarvo (esim. %1$s):</string>
     <string name="cal_toast_invalid_hex">Virheellinen heksadesimaaliarvo</string>
     <string name="cal_toast_write_success">✓ OSCCAL kirjoitettu onnistuneesti sirulle</string>
     <string name="cal_toast_write_error">❌ Kalibroinnin kirjoittaminen sirulle epäonnistui</string>
-    <string name="icd_dialog_subtitle">Piirinsisäinen virheenkorjaus (ICD) – 24-bittinen osoitevektori
+    <string name="icd_dialog_subtitle">Piirinsisäinen virheenkorjaus ICD – 24-bittinen osoitevektori
 (Sallittu alue: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Nykyinen vektori: %1$s</string>
@@ -410,7 +410,7 @@ Nykyinen vektori: %1$s</string>
 Virheenkorjausosoite heksana (esim. 000020):</string>
     <string name="icd_btn_read_vector">📥 Lue Vektori</string>
     <string name="icd_btn_write_vector">💾 Kirjoita Vektori</string>
-    <string name="icd_dialog_title">🛠️ Virheenkorjausvektori (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Virheenkorjausvektori ICD</string>
     <string name="icd_toast_read_success">✓ Vektori luettu: %1$s</string>
     <string name="icd_toast_invalid_address">Virheellinen 24-bittinen heksadesimaaliosoite</string>
     <string name="icd_toast_write_success">✓ ICD-vektori ohjelmoitu: %1$s</string>
@@ -477,4 +477,14 @@ Aseta PIC %1$s vastaavaan asentoon, lukitse vipu ja napauta [%2$s] uudelleen.</s
     <string name="toast_clipboard_fail">Leikepöydälle ei päästy.</string>
     <string name="toast_logs_copied">Lokit kopioitu leikepöydälle.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolleri on edelleen ZIF-kannassa. Poista se ennen jatkamista.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

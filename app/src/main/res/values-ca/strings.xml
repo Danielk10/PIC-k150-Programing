@@ -105,12 +105,12 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Exportar CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Exportar CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Exportar Bolcat Complet (.hex)</string>
-    <string name="exportar_dump_completo_bin">Exportar Bolcat Complet (.bin)</string>
+    <string name="exportar_config_hex">Exportar CONFIG .hex</string>
+    <string name="exportar_config_bin">Exportar CONFIG .bin</string>
+    <string name="exportar_dump_completo">Exportar Bolcat Complet .hex</string>
+    <string name="exportar_dump_completo_bin">Exportar Bolcat Complet .bin</string>
     <string name="verificar_borrado">Verificar Esborrat</string>
-    <string name="chip_esta_borrado">El xip està esborrat (Blank)</string>
+    <string name="chip_esta_borrado">El xip està esborrat - Blank</string>
     <string name="chip_no_esta_borrado">El xip NO està esborrat</string>
     <string name="verificando_borrado">Verificant esborrat...</string>
     <string name="resultado_verificacion_borrado">Resultat de Verificació d\'Esborrat</string>
@@ -292,7 +292,7 @@
     <string name="pro_access_subtitle">Desbloqueja eines tècniques avançades per a %1$s</string>
     <string name="pro_feature_hex_editor">Editor Hexadecimal en Viu (Pegat de Memòria)</string>
     <string name="pro_feature_hardware_diagnostics">Diagnòstic de Maquinari i Prova de Voltatges (VPP 13V / VDD 5V)</string>
-    <string name="pro_feature_icd_vector">Vector de Depuració ICD (24 bits)</string>
+    <string name="pro_feature_icd_vector">Vector de Depuració ICD 24 bits</string>
     <string name="pro_feature_osccal">Rescat i Edició Manual d\'OSCCAL</string>
     <string name="pro_feature_remove_ads">Elimina tota la publicitat de l\'aplicació</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Veure Vídeo - Passi Gratuït de 12 Hores</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnòstic de Maquinari K150</string>
     <string name="menu_osccal_calibration">⏱️ Calibració OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vector de Depuració en Circuit (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vector de Depuració en Circuit ICD</string>
     <string name="cd_socket_diagram">Diagrama del sòcol</string>
     <string name="btn_connect_usb">Connectar Programador USB</string>
     <string name="btn_disconnect_usb">Desconnectar Programador USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Provar Sensors ZIF (Inserir/Extreure)</string>
     <string name="diag_section_voltage_control">⚡ Control de Voltatges VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ PRECAUCIÓ: Retireu el microcontrolador del sòcol ZIF abans d\'activar o mesurar voltatges amb un multímetre.</string>
-    <string name="diag_status_voltages_off">Estat: Voltatges apagats (0V)</string>
-    <string name="diag_status_vpp_active">Estat: ⚡ VPP (13V) / VDD (5V) ACTIVATS</string>
+    <string name="diag_status_voltages_off">Estat: Voltatges apagats - 0V</string>
+    <string name="diag_status_vpp_active">Estat: ⚡ VPP 13V / VDD 5V ACTIVATS</string>
     <string name="diag_status_voltages_restarted">Estat: ⚡ Voltatges reiniciats (Actius)</string>
     <string name="diag_status_error_activating">Estat: ❌ Error en activar voltatges</string>
     <string name="diag_status_error_deactivating">Estat: ❌ Error en apagar voltatges</string>
     <string name="diag_status_error_restarting">Estat: ❌ Error en reiniciar voltatges</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Apagar (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Apagar 0V</string>
     <string name="diag_btn_restart_voltages">Reiniciar</string>
     <string name="diag_programmer_not_connected">Programador no connectat</string>
     <string name="diag_connect_programmer_prompt">⚠ Connecteu el programador K150 per utilitzar el diagnòstic</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ No s\'ha detectat contacte ferm al sòcol</string>
     <string name="diag_toast_chip_removed_voltages_active">Xip retirat: Voltatges activats per a mesura segura</string>
     <string name="diag_toast_voltages_activated_multimeter">Voltatges activats: mesureu amb multímetre a VPP i VDD</string>
-    <string name="diag_toast_voltages_off">Voltatges apagats (0V)</string>
+    <string name="diag_toast_voltages_off">Voltatges apagats - 0V</string>
     <string name="diag_toast_voltages_restarted">Xip retirat: Voltatges reiniciats per a mesura</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Microcontrolador al Sòcol</string>
     <string name="diag_alert_chip_in_socket_message">Per evitar danyar el PIC amb 13V VPP, si us plau retireu el microcontrolador del sòcol ZIF abans d\'habilitar o mesurar els voltatges.
@@ -402,7 +402,7 @@ Introduïu valor hexadecimal (ex. %1$s):</string>
     <string name="cal_toast_invalid_hex">Valor hexadecimal no vàlid</string>
     <string name="cal_toast_write_success">✓ OSCCAL gravat correctament al xip</string>
     <string name="cal_toast_write_error">❌ Ha fallat la gravació de calibració al silici</string>
-    <string name="icd_dialog_subtitle">Depuració en Circuit (ICD) - Vector d\'Adreça de 24 bits
+    <string name="icd_dialog_subtitle">Depuració en Circuit ICD - Vector d\'Adreça de 24 bits
 (Rang vàlid: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Vector Actual: %1$s</string>
@@ -410,7 +410,7 @@ Vector Actual: %1$s</string>
 Adreça de depuració en hex (ex. 000020):</string>
     <string name="icd_btn_read_vector">📥 Llegir Vector</string>
     <string name="icd_btn_write_vector">💾 Escriure Vector</string>
-    <string name="icd_dialog_title">🛠️ Vector de Depuració (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vector de Depuració ICD</string>
     <string name="icd_toast_read_success">✓ Vector llegit: %1$s</string>
     <string name="icd_toast_invalid_address">Adreça hexadecimal de 24 bits no vàlida</string>
     <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
@@ -477,4 +477,14 @@ Si us plau inseriu el PIC %1$s a la posició corresponent, bloquegeu la palanca 
     <string name="toast_clipboard_fail">No s\'ha pogut accedir al porta-retalls.</string>
     <string name="toast_logs_copied">Registres copiats al porta-retalls.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ El microcontrolador encara és al sòcol ZIF. Si us plau, retireu-lo abans de continuar.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

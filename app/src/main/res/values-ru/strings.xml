@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Экспортировать CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Экспортировать CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Экспортировать полный дамп (.hex)</string>
-    <string name="exportar_dump_completo_bin">Экспорт полного дампа (.bin)</string>
+    <string name="exportar_config_hex">Экспортировать CONFIG .hex</string>
+    <string name="exportar_config_bin">Экспортировать CONFIG .bin</string>
+    <string name="exportar_dump_completo">Экспортировать полный дамп .hex</string>
+    <string name="exportar_dump_completo_bin">Экспорт полного дампа .bin</string>
     <string name="verificar_borrado">Проверка удаления</string>
     <string name="chip_esta_borrado">Чип стерт (пусто)</string>
     <string name="chip_no_esta_borrado">Чип НЕ стерт</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Диагностика оборудования K150</string>
     <string name="menu_osccal_calibration">⏱️ Калибровка OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Вектор внутрисхемной отладки (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Вектор внутрисхемной отладки ICD</string>
     <string name="cd_socket_diagram">Схема сокета</string>
     <string name="btn_connect_usb">Подключить программатор USB</string>
     <string name="btn_disconnect_usb">Отключить программатор USB</string>
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">Неверное шестнадцатеричное значение</string>
     <string name="cal_toast_write_success">✓ OSCCAL успешно записан в чип</string>
     <string name="cal_toast_write_error">❌ Не удалось записать калибровку в кристалл</string>
-    <string name="icd_dialog_subtitle">Внутрисхемная отладка (ICD) — 24-битный вектор адреса
+    <string name="icd_dialog_subtitle">Внутрисхемная отладка ICD — 24-битный вектор адреса
 (Допустимый диапазон: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Текущий вектор: %1$s</string>
@@ -410,7 +410,7 @@
 Адрес отладки в hex (например, 000020):</string>
     <string name="icd_btn_read_vector">📥 Прочитать вектор</string>
     <string name="icd_btn_write_vector">💾 Записать вектор</string>
-    <string name="icd_dialog_title">🛠️ Вектор отладки (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Вектор отладки ICD</string>
     <string name="icd_toast_read_success">✓ Вектор прочитан: %1$s</string>
     <string name="icd_toast_invalid_address">Неверный 24-битный шестнадцатеричный адрес</string>
     <string name="icd_toast_write_success">✓ Вектор ICD запрограммирован: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">Не удалось получить доступ к буферу обмена.</string>
     <string name="toast_logs_copied">Журнал скопирован в буфер обмена.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтроллер все еще находится в разъеме ZIF. Пожалуйста, извлеките его перед продолжением.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

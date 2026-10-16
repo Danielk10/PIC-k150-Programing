@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Khipha i-CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Khipha i-CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Khipha Ukulahla Okugcwele (.hex)</string>
-    <string name="exportar_dump_completo_bin">Khipha Ukulahla Okugcwele (.bin)</string>
+    <string name="exportar_config_hex">Khipha i-CONFIG .hex</string>
+    <string name="exportar_config_bin">Khipha i-CONFIG .bin</string>
+    <string name="exportar_dump_completo">Khipha Ukulahla Okugcwele .hex</string>
+    <string name="exportar_dump_completo_bin">Khipha Ukulahla Okugcwele .bin</string>
     <string name="verificar_borrado">Qinisekisa Ukususwa</string>
     <string name="chip_esta_borrado">I-chip iyasulwa (Ayinalutho)</string>
     <string name="chip_no_esta_borrado">I-chip AYISULIWE</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Ukuxilongwa Kwezingxenyekazi ze-K150</string>
     <string name="menu_osccal_calibration">⏱️ Ukulinganisa kwe-OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ I-Vector Yokulungisa Iphutha Kusekethe (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ I-Vector Yokulungisa Iphutha Kusekethe ICD</string>
     <string name="cd_socket_diagram">Umdwebo wesokhethi</string>
     <string name="btn_connect_usb">Xhuma Umhleli we-USB</string>
     <string name="btn_disconnect_usb">Nqamula Umhleli we-USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Hlola Izinzwa ze-ZIF (Faka/Khipha)</string>
     <string name="diag_section_voltage_control">⚡ Ukulawula Amavoltheji VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ISIXWAYISO: Khipha i-microcontroller esokethini le-ZIF ngaphambi kokuvula noma ukukala amavoltheji nge-multimeter.</string>
-    <string name="diag_status_voltages_off">Isimo: Amavoltheji acishiwe (0V)</string>
-    <string name="diag_status_vpp_active">Isimo: ⚡ VPP (13V) / VDD (5V) IVULIWE</string>
+    <string name="diag_status_voltages_off">Isimo: Amavoltheji acishiwe - 0V</string>
+    <string name="diag_status_vpp_active">Isimo: ⚡ VPP 13V / VDD 5V IVULIWE</string>
     <string name="diag_status_voltages_restarted">Isimo: ⚡ Amavoltheji aphinde aqaliswa (Ayasebenza)</string>
     <string name="diag_status_error_activating">Isimo: ❌ Iphutha lokuvula amavoltheji</string>
     <string name="diag_status_error_deactivating">Isimo: ❌ Iphutha lokucisha amavoltheji</string>
     <string name="diag_status_error_restarting">Isimo: ❌ Iphutha lokuphinda uqale amavoltheji</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Cisha (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Cisha - 0V</string>
     <string name="diag_btn_restart_voltages">Qala Kabusha</string>
     <string name="diag_programmer_not_connected">Umhleli akaxhunyiwe</string>
     <string name="diag_connect_programmer_prompt">⚠ Xhuma umhleli we-K150 ukuze usebenzise ukuxilonga</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Akukho ukuxhumana okuqinile okutholakele esokethini</string>
     <string name="diag_toast_chip_removed_voltages_active">I-chip ikishiwe: Amavoltheji avuliwe ukuze kulinganiswe ngokuphepha</string>
     <string name="diag_toast_voltages_activated_multimeter">Amavoltheji avuliwe: kala nge-multimeter ku-VPP no-VDD</string>
-    <string name="diag_toast_voltages_off">Amavoltheji acishiwe (0V)</string>
+    <string name="diag_toast_voltages_off">Amavoltheji acishiwe - 0V</string>
     <string name="diag_toast_voltages_restarted">I-chip ikishiwe: Amavoltheji aphinde aqaliswa ukuze kulinganiswe</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ I-Microcontroller Isekusokethini</string>
     <string name="diag_alert_chip_in_socket_message">Ukuze ugweme ukulimaza i-PIC nge-13V VPP, sicela ukhiphe i-microcontroller esokethini le-ZIF ngaphambi kokuvula noma ukukala amavoltheji.
@@ -402,7 +402,7 @@ Faka inani le-hexadecimal (isib. %1$s):</string>
     <string name="cal_toast_invalid_hex">Inani le-hexadecimal elingavumelekile</string>
     <string name="cal_toast_write_success">✓ I-OSCCAL ibhalwe ngempumelelo ku-chip</string>
     <string name="cal_toast_write_error">❌ Kwehlulekile ukubhala ukulinganisa ku-silicon</string>
-    <string name="icd_dialog_subtitle">Ukulungisa Iphutha Kusekethe (ICD) - I-Vector Yekheli Lamabhithi angu-24
+    <string name="icd_dialog_subtitle">Ukulungisa Iphutha Kusekethe ICD - I-Vector Yekheli Lamabhithi angu-24
 (Ibanga elivumelekile: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 I-Vector Yamanje: %1$s</string>
@@ -410,7 +410,7 @@ I-Vector Yamanje: %1$s</string>
 Ikheli lokulungisa ku-hex (isib. 000020):</string>
     <string name="icd_btn_read_vector">📥 Funda i-Vector</string>
     <string name="icd_btn_write_vector">💾 Bhala i-Vector</string>
-    <string name="icd_dialog_title">🛠️ I-Vector Yokulungisa (ICD)</string>
+    <string name="icd_dialog_title">🛠️ I-Vector Yokulungisa ICD</string>
     <string name="icd_toast_read_success">✓ I-Vector ifundiwe: %1$s</string>
     <string name="icd_toast_invalid_address">Ikheli le-hexadecimal lamabhithi angu-24 elingavumelekile</string>
     <string name="icd_toast_write_success">✓ I-Vector ye-ICD ihleliwe: %1$s</string>
@@ -477,4 +477,14 @@ Sicela ufake i-PIC %1$s endaweni ehambisanayo, ukhiye isigwedlo, bese uthinta [%
     <string name="toast_clipboard_fail">Ayikwazanga ukufinyelela ebhodini lokunamathisela.</string>
     <string name="toast_logs_copied">Amalogi akopishelwe ebhodini lokunamathisela.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Isilawuli esincane sisekhona kusokhethi ye-ZIF. Sicela usisuse ngaphambi kokuqhubeka.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">ส่งออก CONFIG (.hex)</string>
-    <string name="exportar_config_bin">ส่งออก CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">ส่งออก Full Dump (.hex)</string>
-    <string name="exportar_dump_completo_bin">ส่งออกการถ่ายโอนข้อมูลแบบเต็ม (.bin)</string>
+    <string name="exportar_config_hex">ส่งออก CONFIG .hex</string>
+    <string name="exportar_config_bin">ส่งออก CONFIG .bin</string>
+    <string name="exportar_dump_completo">ส่งออก Full Dump .hex</string>
+    <string name="exportar_dump_completo_bin">ส่งออกการถ่ายโอนข้อมูลแบบเต็ม .bin</string>
     <string name="verificar_borrado">Verify Erase</string>
     <string name="chip_esta_borrado">ชิป ถูกลบ (ว่าง)</string>
     <string name="chip_no_esta_borrado">ชิปไม่ถูกลบ</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 การวินิจฉัยฮาร์ดแวร์ K150</string>
     <string name="menu_osccal_calibration">⏱️ การสอบเทียบ OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ เวกเตอร์การดีบักในวงจร (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ เวกเตอร์การดีบักในวงจร ICD</string>
     <string name="cd_socket_diagram">แผนผังซ็อกเก็ต</string>
     <string name="btn_connect_usb">เชื่อมต่อโปรแกรมเมอร์ USB</string>
     <string name="btn_disconnect_usb">ตัดการเชื่อมต่อโปรแกรมเมอร์ USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ทดสอบเซ็นเซอร์ ZIF (ใส่/ถอด)</string>
     <string name="diag_section_voltage_control">⚡ การควบคุมแรงดันไฟฟ้า VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ข้อควรระวัง: ถอดไมโครคอนโทรลเลอร์ออกจากซ็อกเก็ต ZIF ก่อนเปิดใช้งานหรือวัดแรงดันไฟฟ้าด้วยมัลติมิเตอร์</string>
-    <string name="diag_status_voltages_off">สถานะ: ปิดแรงดันไฟฟ้าแล้ว (0V)</string>
-    <string name="diag_status_vpp_active">สถานะ: ⚡ เปิดใช้งาน VPP (13V) / VDD (5V) แล้ว</string>
+    <string name="diag_status_voltages_off">สถานะ: ปิดแรงดันไฟฟ้าแล้ว - 0V</string>
+    <string name="diag_status_vpp_active">สถานะ: ⚡ เปิดใช้งาน VPP 13V / VDD 5V แล้ว</string>
     <string name="diag_status_voltages_restarted">สถานะ: ⚡ รีสตาร์ทแรงดันไฟฟ้าแล้ว (ทำงานอยู่)</string>
     <string name="diag_status_error_activating">สถานะ: ❌ เกิดข้อผิดพลาดในการเปิดใช้งานแรงดันไฟฟ้า</string>
     <string name="diag_status_error_deactivating">สถานะ: ❌ เกิดข้อผิดพลาดในการปิดแรงดันไฟฟ้า</string>
     <string name="diag_status_error_restarting">สถานะ: ❌ เกิดข้อผิดพลาดในการรีสตาร์ทแรงดันไฟฟ้า</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">ปิดเครื่อง (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">ปิดเครื่อง - 0V</string>
     <string name="diag_btn_restart_voltages">รีสตาร์ท</string>
     <string name="diag_programmer_not_connected">ไม่ได้เชื่อมต่อโปรแกรมเมอร์</string>
     <string name="diag_connect_programmer_prompt">⚠ เชื่อมต่อโปรแกรมเมอร์ K150 เพื่อใช้การวินิจฉัย</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ ตรวจไม่พบการสัมผัสที่แน่นหนาในซ็อกเก็ต</string>
     <string name="diag_toast_chip_removed_voltages_active">ถอดชิปออกแล้ว: เปิดใช้งานแรงดันไฟฟ้าเพื่อการวัดที่ปลอดภัย</string>
     <string name="diag_toast_voltages_activated_multimeter">เปิดใช้งานแรงดันไฟฟ้าแล้ว: วัดด้วยมัลติมิเตอร์ที่ VPP และ VDD</string>
-    <string name="diag_toast_voltages_off">ปิดแรงดันไฟฟ้าแล้ว (0V)</string>
+    <string name="diag_toast_voltages_off">ปิดแรงดันไฟฟ้าแล้ว - 0V</string>
     <string name="diag_toast_voltages_restarted">ถอดชิปออกแล้ว: รีสตาร์ทแรงดันไฟฟ้าสำหรับการวัด</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ มีไมโครคอนโทรลเลอร์ในซ็อกเก็ต</string>
     <string name="diag_alert_chip_in_socket_message">เพื่อหลีกเลี่ยงความเสียหายต่อ PIC จาก 13V VPP โปรดถอดไมโครคอนโทรลเลอร์ออกจากซ็อกเก็ต ZIF ก่อนเปิดใช้งานหรือวัดแรงดันไฟฟ้า
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">ค่าเลขฐานสิบหกไม่ถูกต้อง</string>
     <string name="cal_toast_write_success">✓ เขียน OSCCAL ลงในชิปสำเร็จแล้ว</string>
     <string name="cal_toast_write_error">❌ ล้มเหลวในการเขียนค่าการสอบเทียบลงในซิลิคอน</string>
-    <string name="icd_dialog_subtitle">การดีบักในวงจร (ICD) - เวกเตอร์ที่อยู่ 24 บิต
+    <string name="icd_dialog_subtitle">การดีบักในวงจร ICD - เวกเตอร์ที่อยู่ 24 บิต
 (ช่วงที่ถูกต้อง: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 เวกเตอร์ปัจจุบัน: %1$s</string>
@@ -410,7 +410,7 @@
 ที่อยู่การดีบักเป็นเลขฐานสิบหก (เช่น 000020):</string>
     <string name="icd_btn_read_vector">📥 อ่านเวกเตอร์</string>
     <string name="icd_btn_write_vector">💾 เขียนเวกเตอร์</string>
-    <string name="icd_dialog_title">🛠️ เวกเตอร์การดีบัก (ICD)</string>
+    <string name="icd_dialog_title">🛠️ เวกเตอร์การดีบัก ICD</string>
     <string name="icd_toast_read_success">✓ อ่านเวกเตอร์: %1$s</string>
     <string name="icd_toast_invalid_address">ที่อยู่เลขฐานสิบหก 24 บิตไม่ถูกต้อง</string>
     <string name="icd_toast_write_success">✓ โปรแกรมเวกเตอร์ ICD: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">ไม่สามารถเข้าถึงคลิปบอร์ดได้</string>
     <string name="toast_logs_copied">คัดลอกบันทึกไปยังคลิปบอร์ดแล้ว</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ ไมโครคอนโทรลเลอร์ยังคงอยู่ในซ็อกเก็ต ZIF โปรดถอดออกก่อนดำเนินการต่อ</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

@@ -185,11 +185,11 @@ public class ProgramacionSelectivaTest {
         assertNotNull(reporte);
 
         String reporteCompleto = String.join("\n", reporte);
-        assertTrue(reporteCompleto.contains("Blank Check Dual"));
-        assertTrue(reporteCompleto.contains("ROM limpia al 100% (0x3FFF)"));
-        assertTrue(reporteCompleto.contains("EEPROM limpia al 100% (0xFF)"));
+        assertTrue(reporteCompleto.contains("Verificación de Borrado Diferenciada"));
+        assertTrue(reporteCompleto.contains("ROM limpia al 100% - 0x3FFF"));
+        assertTrue(reporteCompleto.contains("EEPROM limpia al 100% - 0xFF"));
         assertTrue(reporteCompleto.contains("Hardware K150 (P18A)"));
-        assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar (100% Borrado)"));
+        assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar - 100% Borrado"));
     }
 
     @Test
@@ -204,9 +204,9 @@ public class ProgramacionSelectivaTest {
         List<String> reporte = manager.formatearReporteBlankCheckDual(res, mockChip);
         String reporteCompleto = String.join("\n", reporte);
 
-        assertTrue(reporteCompleto.contains("ROM limpia al 100% (0xFFFF)"));
-        assertTrue(reporteCompleto.contains("EEPROM limpia al 100% (0xFF)"));
-        assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar (100% Borrado)"));
+        assertTrue(reporteCompleto.contains("ROM limpia al 100% - 0xFFFF"));
+        assertTrue(reporteCompleto.contains("EEPROM limpia al 100% - 0xFF"));
+        assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar - 100% Borrado"));
     }
 
     @Test
@@ -238,9 +238,9 @@ public class ProgramacionSelectivaTest {
         List<String> reporte = manager.formatearReporteBlankCheckDual(res, mockChip);
         String reporteCompleto = String.join("\n", reporte);
 
-        assertTrue(reporteCompleto.contains("ROM limpia al 100% (0x3FFF)"));
+        assertTrue(reporteCompleto.contains("ROM limpia al 100% - 0x3FFF"));
         assertFalse(reporteCompleto.contains("EEPROM"));
-        assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar (100% Borrado)"));
+        assertTrue(reporteCompleto.contains("Microcontrolador listo para grabar - 100% Borrado"));
     }
 
     @Test

@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Exportați CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Exportați CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Exportați descărcarea completă (.hex)</string>
-    <string name="exportar_dump_completo_bin">Exportați descărcarea completă (.bin)</string>
+    <string name="exportar_config_hex">Exportați CONFIG .hex</string>
+    <string name="exportar_config_bin">Exportați CONFIG .bin</string>
+    <string name="exportar_dump_completo">Exportați descărcarea completă .hex</string>
+    <string name="exportar_dump_completo_bin">Exportați descărcarea completă .bin</string>
     <string name="verificar_borrado">Verificați ștergerea</string>
     <string name="chip_esta_borrado">Cipul este șters (Alb)</string>
     <string name="chip_no_esta_borrado">Cipul NU este șters</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnosticare hardware K150</string>
     <string name="menu_osccal_calibration">⏱️ Calibrare OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vector de depanare în circuit (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vector de depanare în circuit ICD</string>
     <string name="cd_socket_diagram">Diagrama soclului</string>
     <string name="btn_connect_usb">Conectare programator USB</string>
     <string name="btn_disconnect_usb">Deconectare programator USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Testare senzori ZIF (Inserare/Extragere)</string>
     <string name="diag_section_voltage_control">⚡ Control tensiuni VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ATENȚIE: Scoateți microcontrolerul din soclul ZIF înainte de a activa sau măsura tensiunile cu un multimetru.</string>
-    <string name="diag_status_voltages_off">Stare: Tensiuni oprite (0V)</string>
-    <string name="diag_status_vpp_active">Stare: ⚡ VPP (13V) / VDD (5V) ACTIVATE</string>
+    <string name="diag_status_voltages_off">Stare: Tensiuni oprite - 0V</string>
+    <string name="diag_status_vpp_active">Stare: ⚡ VPP 13V / VDD 5V ACTIVATE</string>
     <string name="diag_status_voltages_restarted">Stare: ⚡ Tensiuni repornite (Active)</string>
     <string name="diag_status_error_activating">Stare: ❌ Eroare la activarea tensiunilor</string>
     <string name="diag_status_error_deactivating">Stare: ❌ Eroare la oprirea tensiunilor</string>
     <string name="diag_status_error_restarting">Stare: ❌ Eroare la repornirea tensiunilor</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Oprire (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Oprire - 0V</string>
     <string name="diag_btn_restart_voltages">Repornire</string>
     <string name="diag_programmer_not_connected">Programator neconectat</string>
     <string name="diag_connect_programmer_prompt">⚠ Conectați programatorul K150 pentru a utiliza diagnosticul</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Contact ferm nedetectat în soclu</string>
     <string name="diag_toast_chip_removed_voltages_active">Cip scos: Tensiuni activate pentru măsurare sigură</string>
     <string name="diag_toast_voltages_activated_multimeter">Tensiuni activate: măsurați cu multimetrul pe VPP și VDD</string>
-    <string name="diag_toast_voltages_off">Tensiuni oprite (0V)</string>
+    <string name="diag_toast_voltages_off">Tensiuni oprite - 0V</string>
     <string name="diag_toast_voltages_restarted">Cip scos: Tensiuni repornite pentru măsurare</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Microcontroler în soclu</string>
     <string name="diag_alert_chip_in_socket_message">Pentru a evita deteriorarea PIC-ului cu 13V VPP, vă rugăm să scoateți microcontrolerul din soclul ZIF înainte de a activa sau măsura tensiunile.
@@ -402,7 +402,7 @@ Introduceți valoarea hexazecimală (de ex. %1$s):</string>
     <string name="cal_toast_invalid_hex">Valoare hexazecimală nevalidă</string>
     <string name="cal_toast_write_success">✓ OSCCAL scris cu succes pe cip</string>
     <string name="cal_toast_write_error">❌ Eșec la scrierea calibrării pe siliciu</string>
-    <string name="icd_dialog_subtitle">Depanare în circuit (ICD) - Vector de adresă pe 24 biți
+    <string name="icd_dialog_subtitle">Depanare în circuit ICD - Vector de adresă pe 24 biți
 (Interval valid: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Vector curent: %1$s</string>
@@ -410,7 +410,7 @@ Vector curent: %1$s</string>
 Adresă de depanare în hex (de ex. 000020):</string>
     <string name="icd_btn_read_vector">📥 Citire vector</string>
     <string name="icd_btn_write_vector">💾 Scriere vector</string>
-    <string name="icd_dialog_title">🛠️ Vector de depanare (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vector de depanare ICD</string>
     <string name="icd_toast_read_success">✓ Vector citit: %1$s</string>
     <string name="icd_toast_invalid_address">Adresă hexazecimală pe 24 biți nevalidă</string>
     <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
@@ -477,4 +477,14 @@ Vă rugăm să introduceți PIC %1$s în poziția corespunzătoare, să blocați
     <string name="toast_clipboard_fail">Nu s-a putut accesa clipboard-ul.</string>
     <string name="toast_logs_copied">Jurnale copiate în clipboard.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Microcontrolerul este încă în soclul ZIF. Vă rugăm să îl scoateți înainte de a continua.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

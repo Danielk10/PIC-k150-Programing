@@ -106,9 +106,9 @@
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
     <string name="exportar_config_hex">تصدير التكوين (.عرافة)</string>
-    <string name="exportar_config_bin">تصدير التكوين (.bin)</string>
-    <string name="exportar_dump_completo">تصدير التفريغ الكامل (.hex)</string>
-    <string name="exportar_dump_completo_bin">تصدير التفريغ الكامل (.bin)</string>
+    <string name="exportar_config_bin">تصدير التكوين .bin</string>
+    <string name="exportar_dump_completo">تصدير التفريغ الكامل .hex</string>
+    <string name="exportar_dump_completo_bin">تصدير التفريغ الكامل .bin</string>
     <string name="verificar_borrado">التحقق من الحذف</string>
     <string name="chip_esta_borrado">تم مسح الشريحة (فارغة)</string>
     <string name="chip_no_esta_borrado">لا يتم مسح الشريحة</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ برو %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 تشخيص عتاد K150</string>
     <string name="menu_osccal_calibration">⏱️ معايرة OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ متجه تصحيح الأخطاء داخل الدائرة (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ متجه تصحيح الأخطاء داخل الدائرة ICD</string>
     <string name="cd_socket_diagram">مخطط المقبس</string>
     <string name="btn_connect_usb">توصيل مبرمجة USB</string>
     <string name="btn_disconnect_usb">فصل مبرمجة USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 اختبار مستشعرات ZIF (إدخال/إخراج)</string>
     <string name="diag_section_voltage_control">⚡ التحكم بالجهد VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ تنبيه: قم بإزالة المتحكم الدقيق من مقبس ZIF قبل تفعيل أو قياس الجهود باستخدام الملتيميتر.</string>
-    <string name="diag_status_voltages_off">الحالة: تم إيقاف تشغيل الجهد (0V)</string>
-    <string name="diag_status_vpp_active">الحالة: ⚡ تم تفعيل VPP (13V) / VDD (5V)</string>
+    <string name="diag_status_voltages_off">الحالة: تم إيقاف تشغيل الجهد - 0V</string>
+    <string name="diag_status_vpp_active">الحالة: ⚡ تم تفعيل VPP 13V / VDD 5V</string>
     <string name="diag_status_voltages_restarted">الحالة: ⚡ تمت إعادة تشغيل الجهد (نشط)</string>
     <string name="diag_status_error_activating">الحالة: ❌ خطأ في تفعيل الجهد</string>
     <string name="diag_status_error_deactivating">الحالة: ❌ خطأ في إيقاف تشغيل الجهد</string>
     <string name="diag_status_error_restarting">الحالة: ❌ خطأ في إعادة تشغيل الجهد</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">إيقاف (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">إيقاف - 0V</string>
     <string name="diag_btn_restart_voltages">إعادة تشغيل</string>
     <string name="diag_programmer_not_connected">المبرمجة غير متصلة</string>
     <string name="diag_connect_programmer_prompt">⚠ قم بتوصيل مبرمجة K150 لاستخدام التشخيص</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ لم يتم اكتشاف اتصال محكم في المقبس</string>
     <string name="diag_toast_chip_removed_voltages_active">تمت إزالة الرقاقة: تم تفعيل الجهد للقياس الآمن</string>
     <string name="diag_toast_voltages_activated_multimeter">تم تفعيل الجهد: قم بالقياس بالملتيميتر على VPP و VDD</string>
-    <string name="diag_toast_voltages_off">تم إيقاف تشغيل الجهد (0V)</string>
+    <string name="diag_toast_voltages_off">تم إيقاف تشغيل الجهد - 0V</string>
     <string name="diag_toast_voltages_restarted">تمت إزالة الرقاقة: تمت إعادة تشغيل الجهد للقياس</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ متحكم دقيق في المقبس</string>
     <string name="diag_alert_chip_in_socket_message">لتجنب إتلاف شريحة PIC بجهد 13V VPP، يرجى إزالة المتحكم الدقيق من مقبس ZIF قبل تمكين أو قياس الجهود.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">قيمة سداسية عشرية غير صالحة</string>
     <string name="cal_toast_write_success">✓ تمت كتابة OSCCAL بنجاح على الشريحة</string>
     <string name="cal_toast_write_error">❌ فشلت كتابة المعايرة على السيليكون</string>
-    <string name="icd_dialog_subtitle">تصحيح الأخطاء داخل الدائرة (ICD) - متجه عنوان 24 بت
+    <string name="icd_dialog_subtitle">تصحيح الأخطاء داخل الدائرة ICD - متجه عنوان 24 بت
 (النطاق الصالح: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 المتجه الحالي: %1$s</string>
@@ -410,7 +410,7 @@
 عنوان التصحيح بالسداسي عشري (مثال: 000020):</string>
     <string name="icd_btn_read_vector">📥 قراءة المتجه</string>
     <string name="icd_btn_write_vector">💾 كتابة المتجه</string>
-    <string name="icd_dialog_title">🛠️ متجه تصحيح الأخطاء (ICD)</string>
+    <string name="icd_dialog_title">🛠️ متجه تصحيح الأخطاء ICD</string>
     <string name="icd_toast_read_success">✓ تمت قراءة المتجه: %1$s</string>
     <string name="icd_toast_invalid_address">عنوان سداسي عشري 24 بت غير صالح</string>
     <string name="icd_toast_write_success">✓ تمت برمجة متجه ICD: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">تعذر الوصول إلى الحافظة.</string>
     <string name="toast_logs_copied">تم نسخ السجلات إلى الحافظة.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ لا يزال المتحكم الدقيق في مقبس ZIF. يرجى إزالته قبل المتابعة.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

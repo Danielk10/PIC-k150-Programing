@@ -105,12 +105,12 @@
     <string name="exportar_eeprom_hex">EEPROM als HEX exportieren</string>
     <string name="exportar_rom_bin">ROM als BIN exportieren</string>
     <string name="exportar_eeprom_bin">EEPROM als BIN exportieren</string>
-    <string name="exportar_config_hex">KONFIG exportieren (.hex)</string>
-    <string name="exportar_config_bin">KONFIGURATION exportieren (.bin)</string>
-    <string name="exportar_dump_completo">Vollständigen Dump exportieren (.hex)</string>
-    <string name="exportar_dump_completo_bin">Vollständigen Dump exportieren (.bin)</string>
+    <string name="exportar_config_hex">KONFIG exportieren .hex</string>
+    <string name="exportar_config_bin">KONFIGURATION exportieren .bin</string>
+    <string name="exportar_dump_completo">Vollständigen Dump exportieren .hex</string>
+    <string name="exportar_dump_completo_bin">Vollständigen Dump exportieren .bin</string>
     <string name="verificar_borrado">Überprüfen Sie den Löschvorgang</string>
-    <string name="chip_esta_borrado">Der Chip ist gelöscht (Blank)</string>
+    <string name="chip_esta_borrado">Der Chip ist gelöscht - Blank</string>
     <string name="chip_no_esta_borrado">Der Chip wird NICHT gelöscht</string>
     <string name="verificando_borrado">Löschung wird überprüft...</string>
     <string name="resultado_verificacion_borrado">Ergebnis der Löschüberprüfung</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 Hardware-Diagnose</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL-Kalibrierung</string>
-    <string name="menu_debug_vector_icd">🛠️ In-Circuit-Debug-Vektor (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ In-Circuit-Debug-Vektor ICD</string>
     <string name="cd_socket_diagram">Sockel-Diagramm</string>
     <string name="btn_connect_usb">USB-Programmiergerät verbinden</string>
     <string name="btn_disconnect_usb">USB-Programmiergerät trennen</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ZIF-Sensoren Testen (Einsetzen/Entnehmen)</string>
     <string name="diag_section_voltage_control">⚡ Spannungssteuerung VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ ACHTUNG: Entfernen Sie den Mikrocontroller aus dem ZIF-Sockel, bevor Sie Spannungen aktivieren oder mit einem Multimeter messen.</string>
-    <string name="diag_status_voltages_off">Status: Spannungen ausgeschaltet (0V)</string>
-    <string name="diag_status_vpp_active">Status: ⚡ VPP (13V) / VDD (5V) AKTIVIERT</string>
+    <string name="diag_status_voltages_off">Status: Spannungen ausgeschaltet - 0V</string>
+    <string name="diag_status_vpp_active">Status: ⚡ VPP 13V / VDD 5V AKTIVIERT</string>
     <string name="diag_status_voltages_restarted">Status: ⚡ Spannungen neu gestartet (Aktiv)</string>
     <string name="diag_status_error_activating">Status: ❌ Fehler beim Aktivieren der Spannungen</string>
     <string name="diag_status_error_deactivating">Status: ❌ Fehler beim Ausschalten der Spannungen</string>
     <string name="diag_status_error_restarting">Status: ❌ Fehler beim Neustarten der Spannungen</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Ausschalten (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Ausschalten - 0V</string>
     <string name="diag_btn_restart_voltages">Neustart</string>
     <string name="diag_programmer_not_connected">Programmiergerät nicht verbunden</string>
     <string name="diag_connect_programmer_prompt">⚠ Verbinden Sie das K150-Programmiergerät, um die Diagnose zu verwenden</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Kein fester Kontakt im Sockel erkannt</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip entfernt: Spannungen für sichere Messung aktiviert</string>
     <string name="diag_toast_voltages_activated_multimeter">Spannungen aktiviert: mit Multimeter an VPP und VDD messen</string>
-    <string name="diag_toast_voltages_off">Spannungen ausgeschaltet (0V)</string>
+    <string name="diag_toast_voltages_off">Spannungen ausgeschaltet - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip entfernt: Spannungen für Messung neu gestartet</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrocontroller im Sockel</string>
     <string name="diag_alert_chip_in_socket_message">Um eine Beschädigung des PIC durch 13V VPP zu vermeiden, entfernen Sie bitte den Mikrocontroller aus dem ZIF-Sockel, bevor Sie Spannungen aktivieren oder messen.
@@ -402,7 +402,7 @@ Hexadezimalwert eingeben (z. B. %1$s):</string>
     <string name="cal_toast_invalid_hex">Ungültiger Hexadezimalwert</string>
     <string name="cal_toast_write_success">✓ OSCCAL erfolgreich auf Chip geschrieben</string>
     <string name="cal_toast_write_error">❌ Schreiben der Kalibrierung in Silizium fehlgeschlagen</string>
-    <string name="icd_dialog_subtitle">In-Circuit-Debugging (ICD) – 24-Bit-Adressvektor
+    <string name="icd_dialog_subtitle">In-Circuit-Debugging ICD – 24-Bit-Adressvektor
 (Gültiger Bereich: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Aktueller Vektor: %1$s</string>
@@ -410,7 +410,7 @@ Aktueller Vektor: %1$s</string>
 Debug-Adresse in Hex (z. B. 000020):</string>
     <string name="icd_btn_read_vector">📥 Vektor Lesen</string>
     <string name="icd_btn_write_vector">💾 Vektor Schreiben</string>
-    <string name="icd_dialog_title">🛠️ Debugging-Vektor (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Debugging-Vektor ICD</string>
     <string name="icd_toast_read_success">✓ Vektor gelesen: %1$s</string>
     <string name="icd_toast_invalid_address">Ungültige 24-Bit-Hexadezimaladresse</string>
     <string name="icd_toast_write_success">✓ ICD-Vektor programmiert: %1$s</string>
@@ -477,4 +477,14 @@ Bitte setzen Sie den PIC %1$s in die entsprechende Position ein, verriegeln Sie 
     <string name="toast_clipboard_fail">Zugriff auf die Zwischenablage fehlgeschlagen.</string>
     <string name="toast_logs_copied">Protokolle in die Zwischenablage kopiert.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Der Mikrocontroller befindet sich noch im ZIF-Sockel. Bitte entfernen Sie ihn, bevor Sie fortfahren.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

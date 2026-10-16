@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 дијагностика хардвера</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL калибрација</string>
-    <string name="menu_debug_vector_icd">🛠️ Вектор за отклањање грешака у колу (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Вектор за отклањање грешака у колу ICD</string>
     <string name="cd_socket_diagram">Дијаграм подножја</string>
     <string name="btn_connect_usb">Повежи USB програматор</string>
     <string name="btn_disconnect_usb">Искључи USB програматор</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Тестирај ZIF сензоре (Убаци/Извуци)</string>
     <string name="diag_section_voltage_control">⚡ Контрола напона VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ УПОЗОРЕЊЕ: Извадите микроконтролер из ZIF подножја пре активирања или мерења напона мултиметром.</string>
-    <string name="diag_status_voltages_off">Статус: Напони искључени (0V)</string>
-    <string name="diag_status_vpp_active">Статус: ⚡ VPP (13V) / VDD (5V) АКТИВИРАНИ</string>
+    <string name="diag_status_voltages_off">Статус: Напони искључени - 0V</string>
+    <string name="diag_status_vpp_active">Статус: ⚡ VPP 13V / VDD 5V АКТИВИРАНИ</string>
     <string name="diag_status_voltages_restarted">Статус: ⚡ Напони поново покренути (Активни)</string>
     <string name="diag_status_error_activating">Статус: ❌ Грешка при активирању напона</string>
     <string name="diag_status_error_deactivating">Статус: ❌ Грешка при искључивању напона</string>
     <string name="diag_status_error_restarting">Статус: ❌ Грешка при поновном покретању напона</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Искључи (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Искључи - 0V</string>
     <string name="diag_btn_restart_voltages">Рестартуј</string>
     <string name="diag_programmer_not_connected">Програматор није повезан</string>
     <string name="diag_connect_programmer_prompt">⚠ Повежите K150 програматор за коришћење дијагностике</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Чврст контакт није детектован у подножју</string>
     <string name="diag_toast_chip_removed_voltages_active">Чип извађен: Напони активирани за безбедно мерење</string>
     <string name="diag_toast_voltages_activated_multimeter">Напони активирани: мерите мултиметром на VPP и VDD</string>
-    <string name="diag_toast_voltages_off">Напони искључени (0V)</string>
+    <string name="diag_toast_voltages_off">Напони искључени - 0V</string>
     <string name="diag_toast_voltages_restarted">Чип извађен: Напони поново покренути за мерење</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Микроконтролер у подножју</string>
     <string name="diag_alert_chip_in_socket_message">Да бисте избегли оштећење PIC-а напоном од 13V VPP, уклоните микроконтролер из ZIF подножја пре активирања или мерења напона.
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">Неважећа хексадецимална вредност</string>
     <string name="cal_toast_write_success">✓ OSCCAL успешно уписан у чип</string>
     <string name="cal_toast_write_error">❌ Уписивање калибрације у чип није успело</string>
-    <string name="icd_dialog_subtitle">Отклањање грешака у колу (ICD) – 24-битни адресни вектор
+    <string name="icd_dialog_subtitle">Отклањање грешака у колу ICD – 24-битни адресни вектор
 (Важећи опсег: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Тренутни вектор: %1$s</string>
@@ -410,7 +410,7 @@
 Адреса за отклањање грешака у hex-у (нпр. 000020):</string>
     <string name="icd_btn_read_vector">📥 Очитај вектор</string>
     <string name="icd_btn_write_vector">💾 Упиши вектор</string>
-    <string name="icd_dialog_title">🛠️ Вектор за отклањање грешака (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Вектор за отклањање грешака ICD</string>
     <string name="icd_toast_read_success">✓ Вектор очитан: %1$s</string>
     <string name="icd_toast_invalid_address">Неважећа 24-битна хексадецимална адреса</string>
     <string name="icd_toast_write_success">✓ ICD вектор програмиран: %1$s</string>
@@ -477,4 +477,14 @@
     <string name="toast_clipboard_fail">Није могуће приступити међуспремнику.</string>
     <string name="toast_logs_copied">Дневници су копирани у међуспремник.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Микроконтролер је и даље у ZIF подножју. Уклоните га пре него што наставите.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

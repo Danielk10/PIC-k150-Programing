@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Xuất CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Xuất CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Xuất kết xuất đầy đủ (.hex)</string>
-    <string name="exportar_dump_completo_bin">Xuất kết xuất đầy đủ (.bin)</string>
+    <string name="exportar_config_hex">Xuất CONFIG .hex</string>
+    <string name="exportar_config_bin">Xuất CONFIG .bin</string>
+    <string name="exportar_dump_completo">Xuất kết xuất đầy đủ .hex</string>
+    <string name="exportar_dump_completo_bin">Xuất kết xuất đầy đủ .bin</string>
     <string name="verificar_borrado">Xác minh xóa</string>
     <string name="chip_esta_borrado">Chip bị xóa (Trống)</string>
     <string name="chip_no_esta_borrado">Chip KHÔNG bị xóa</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Chẩn đoán phần cứng K150</string>
     <string name="menu_osccal_calibration">⏱️ Hiệu chuẩn OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vector gỡ lỗi trong mạch (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vector gỡ lỗi trong mạch ICD</string>
     <string name="cd_socket_diagram">Sơ đồ đế cắm</string>
     <string name="btn_connect_usb">Kết nối bộ nạp USB</string>
     <string name="btn_disconnect_usb">Ngắt kết nối bộ nạp USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Kiểm tra cảm biến ZIF (Cắm/Rút)</string>
     <string name="diag_section_voltage_control">⚡ Điều khiển điện áp VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ THẬN TRỌNG: Tháo vi điều khiển khỏi đế ZIF trước khi kích hoạt hoặc đo điện áp bằng đồng hồ vạn năng.</string>
-    <string name="diag_status_voltages_off">Trạng thái: Điện áp đã tắt (0V)</string>
-    <string name="diag_status_vpp_active">Trạng thái: ⚡ VPP (13V) / VDD (5V) ĐÃ KÍCH HOẠT</string>
+    <string name="diag_status_voltages_off">Trạng thái: Điện áp đã tắt - 0V</string>
+    <string name="diag_status_vpp_active">Trạng thái: ⚡ VPP 13V / VDD 5V ĐÃ KÍCH HOẠT</string>
     <string name="diag_status_voltages_restarted">Trạng thái: ⚡ Điện áp đã khởi động lại (Hoạt động)</string>
     <string name="diag_status_error_activating">Trạng thái: ❌ Lỗi kích hoạt điện áp</string>
     <string name="diag_status_error_deactivating">Trạng thái: ❌ Lỗi tắt điện áp</string>
     <string name="diag_status_error_restarting">Trạng thái: ❌ Lỗi khởi động lại điện áp</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Tắt nguồn (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Tắt nguồn - 0V</string>
     <string name="diag_btn_restart_voltages">Khởi động lại</string>
     <string name="diag_programmer_not_connected">Bộ nạp chưa được kết nối</string>
     <string name="diag_connect_programmer_prompt">⚠ Kết nối bộ nạp K150 để sử dụng tính năng chẩn đoán</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Tiếp xúc không chắc chắn trong đế cắm</string>
     <string name="diag_toast_chip_removed_voltages_active">Đã tháo chip: Điện áp được kích hoạt để đo an toàn</string>
     <string name="diag_toast_voltages_activated_multimeter">Điện áp đã kích hoạt: đo bằng đồng hồ vạn năng tại VPP và VDD</string>
-    <string name="diag_toast_voltages_off">Điện áp đã tắt (0V)</string>
+    <string name="diag_toast_voltages_off">Điện áp đã tắt - 0V</string>
     <string name="diag_toast_voltages_restarted">Đã tháo chip: Điện áp được khởi động lại để đo</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Vi điều khiển còn trong đế cắm</string>
     <string name="diag_alert_chip_in_socket_message">Để tránh làm hỏng PIC với mức điện áp 13V VPP, vui lòng tháo vi điều khiển khỏi đế ZIF trước khi bật hoặc đo điện áp.
@@ -402,7 +402,7 @@ Nhập giá trị thập lục phân (ví dụ: %1$s):</string>
     <string name="cal_toast_invalid_hex">Giá trị thập lục phân không hợp lệ</string>
     <string name="cal_toast_write_success">✓ Đã ghi OSCCAL vào chip thành công</string>
     <string name="cal_toast_write_error">❌ Ghi hiệu chuẩn vào chip thất bại</string>
-    <string name="icd_dialog_subtitle">Gỡ lỗi trong mạch (ICD) - Vector địa chỉ 24 bit
+    <string name="icd_dialog_subtitle">Gỡ lỗi trong mạch ICD - Vector địa chỉ 24 bit
 (Phạm vi hợp lệ: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Vector hiện tại: %1$s</string>
@@ -410,7 +410,7 @@ Vector hiện tại: %1$s</string>
 Địa chỉ gỡ lỗi bằng hex (ví dụ: 000020):</string>
     <string name="icd_btn_read_vector">📥 Đọc Vector</string>
     <string name="icd_btn_write_vector">💾 Ghi Vector</string>
-    <string name="icd_dialog_title">🛠️ Vector gỡ lỗi (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vector gỡ lỗi ICD</string>
     <string name="icd_toast_read_success">✓ Đã đọc vector: %1$s</string>
     <string name="icd_toast_invalid_address">Địa chỉ thập lục phân 24 bit không hợp lệ</string>
     <string name="icd_toast_write_success">✓ Đã nạp vector ICD: %1$s</string>
@@ -477,4 +477,14 @@ Vui lòng cắm PIC %1$s vào đúng vị trí, khóa cần gạt và nhấn l�
     <string name="toast_clipboard_fail">Không thể truy cập khay nhớ tạm.</string>
     <string name="toast_logs_copied">Nhật ký đã được sao chép vào khay nhớ tạm.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Vi điều khiển vẫn còn trong đế ZIF. Vui lòng tháo ra trước khi tiếp tục.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Eksportuoti CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Eksportuoti CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Eksportuoti visą išrašymą (.hex)</string>
-    <string name="exportar_dump_completo_bin">Eksportuoti visą išrašymą (.bin)</string>
+    <string name="exportar_config_hex">Eksportuoti CONFIG .hex</string>
+    <string name="exportar_config_bin">Eksportuoti CONFIG .bin</string>
+    <string name="exportar_dump_completo">Eksportuoti visą išrašymą .hex</string>
+    <string name="exportar_dump_completo_bin">Eksportuoti visą išrašymą .bin</string>
     <string name="verificar_borrado">Patvirtinkite ištrynimą</string>
     <string name="chip_esta_borrado">Lustas ištrintas (tuščias)</string>
     <string name="chip_no_esta_borrado">Lustas NĖRA ištrintas</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150 aparatinės įrangos diagnostika</string>
     <string name="menu_osccal_calibration">⏱️ OSCCAL kalibravimas</string>
-    <string name="menu_debug_vector_icd">🛠️ Grandinės derinimo vektorius (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Grandinės derinimo vektorius ICD</string>
     <string name="cd_socket_diagram">Lizdo diagrama</string>
     <string name="btn_connect_usb">Prijungti USB programuotuvą</string>
     <string name="btn_disconnect_usb">Atjungti USB programuotuvą</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Tikrinti ZIF jutiklius (Įdėjimas/Išėmimas)</string>
     <string name="diag_section_voltage_control">⚡ Įtampos valdymas VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ DĖMESIO: Prieš įjungdami ar matuodami įtampas multimetru, išimkite mikrovaldiklį iš ZIF lizdo.</string>
-    <string name="diag_status_voltages_off">Būsena: Įtampa išjungta (0V)</string>
-    <string name="diag_status_vpp_active">Būsena: ⚡ VPP (13V) / VDD (5V) ĮJUNGTA</string>
+    <string name="diag_status_voltages_off">Būsena: Įtampa išjungta - 0V</string>
+    <string name="diag_status_vpp_active">Būsena: ⚡ VPP 13V / VDD 5V ĮJUNGTA</string>
     <string name="diag_status_voltages_restarted">Būsena: ⚡ Įtampa paleista iš naujo (Aktyvi)</string>
     <string name="diag_status_error_activating">Būsena: ❌ Klaida įjungiant įtampą</string>
     <string name="diag_status_error_deactivating">Būsena: ❌ Klaida išjungiant įtampą</string>
     <string name="diag_status_error_restarting">Būsena: ❌ Klaida paleidžiant įtampą iš naujo</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Išjungti (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Išjungti - 0V</string>
     <string name="diag_btn_restart_voltages">Paleisti iš naujo</string>
     <string name="diag_programmer_not_connected">Programuotuvas neprijungtas</string>
     <string name="diag_connect_programmer_prompt">⚠ Prijunkite K150 programuotuvą, kad galėtumėte naudoti diagnostiką</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Lizde neaptiktas patikimas kontaktas</string>
     <string name="diag_toast_chip_removed_voltages_active">Mikroschema išimta: Įtampos įjungtos saugiam matavimui</string>
     <string name="diag_toast_voltages_activated_multimeter">Įtampos įjungtos: matuokite multimetru ties VPP ir VDD</string>
-    <string name="diag_toast_voltages_off">Įtampos išjungtos (0V)</string>
+    <string name="diag_toast_voltages_off">Įtampos išjungtos - 0V</string>
     <string name="diag_toast_voltages_restarted">Mikroschema išimta: Įtampos paleistos iš naujo matavimui</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrovaldiklis lizde</string>
     <string name="diag_alert_chip_in_socket_message">Kad nepažeistumėte PIC su 13V VPP, prieš įjungdami arba matuodami įtampas išimkite mikrovaldiklį iš ZIF lizdo.
@@ -402,7 +402,7 @@ Reikšmė silicio luste: %1$s</string>
     <string name="cal_toast_invalid_hex">Neteisinga šešioliktainė reikšmė</string>
     <string name="cal_toast_write_success">✓ OSCCAL sėkmingai įrašyta į mikroschemą</string>
     <string name="cal_toast_write_error">❌ Nepavyko įrašyti kalibravimo į lustą</string>
-    <string name="icd_dialog_subtitle">Grandinės derinimas (ICD) – 24 bitų adreso vektorius
+    <string name="icd_dialog_subtitle">Grandinės derinimas ICD – 24 bitų adreso vektorius
 (Galiojantis diapazonas: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Dabartinis vektorius: %1$s</string>
@@ -410,7 +410,7 @@ Dabartinis vektorius: %1$s</string>
 Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="icd_btn_read_vector">📥 Skaityti vektorių</string>
     <string name="icd_btn_write_vector">💾 Įrašyti vektorių</string>
-    <string name="icd_dialog_title">🛠️ Derinimo vektorius (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Derinimo vektorius ICD</string>
     <string name="icd_toast_read_success">✓ Vektorius nuskaitytas: %1$s</string>
     <string name="icd_toast_invalid_address">Neteisingas 24 bitų šešioliktainis adresas</string>
     <string name="icd_toast_write_success">✓ ICD vektorius užprogramuotas: %1$s</string>
@@ -477,4 +477,14 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="toast_clipboard_fail">Nepavyko pasiekti iškarpinės.</string>
     <string name="toast_logs_copied">Žurnalas nukopijuotas į iškarpinę.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrovaldiklis vis dar yra ZIF lizde. Prieš tęsdami jį išimkite.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

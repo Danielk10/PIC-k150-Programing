@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">設定をエクスポート (.hex)</string>
-    <string name="exportar_config_bin">設定をエクスポート (.bin)</string>
-    <string name="exportar_dump_completo">フルダンプ (.hex) をエクスポート</string>
-    <string name="exportar_dump_completo_bin">フルダンプ (.bin) をエクスポート</string>
+    <string name="exportar_config_hex">設定をエクスポート .hex</string>
+    <string name="exportar_config_bin">設定をエクスポート .bin</string>
+    <string name="exportar_dump_completo">フルダンプ .hex をエクスポート</string>
+    <string name="exportar_dump_completo_bin">フルダンプ .bin をエクスポート</string>
     <string name="verificar_borrado">削除の確認</string>
     <string name="chip_esta_borrado">チップは消去済み（ブランク）</string>
     <string name="chip_no_esta_borrado">チップは消去されていません</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 K150ハードウェア診断</string>
     <string name="menu_osccal_calibration">⏱️ OSCCALキャリブレーション</string>
-    <string name="menu_debug_vector_icd">🛠️ インサーキット・デバッグベクター (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ インサーキット・デバッグベクター ICD</string>
     <string name="cd_socket_diagram">ソケット図</string>
     <string name="btn_connect_usb">USBライターを接続</string>
     <string name="btn_disconnect_usb">USBライターを切断</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 ZIFセンサーテスト (挿入/取り出し)</string>
     <string name="diag_section_voltage_control">⚡ 電圧制御 VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ 注意: テスターで電圧を印加または測定する前に、必ずZIFソケットからマイコンを取り外してください。</string>
-    <string name="diag_status_voltages_off">状態: 電圧オフ (0V)</string>
-    <string name="diag_status_vpp_active">状態: ⚡ VPP (13V) / VDD (5V) 有効</string>
+    <string name="diag_status_voltages_off">状態: 電圧オフ - 0V</string>
+    <string name="diag_status_vpp_active">状態: ⚡ VPP 13V / VDD 5V 有効</string>
     <string name="diag_status_voltages_restarted">状態: ⚡ 電圧再起動 (有効)</string>
     <string name="diag_status_error_activating">状態: ❌ 電圧有効化エラー</string>
     <string name="diag_status_error_deactivating">状態: ❌ 電圧オフエラー</string>
     <string name="diag_status_error_restarting">状態: ❌ 電圧再起動エラー</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">電源オフ (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">電源オフ - 0V</string>
     <string name="diag_btn_restart_voltages">再起動</string>
     <string name="diag_programmer_not_connected">ライターが接続されていません</string>
     <string name="diag_connect_programmer_prompt">⚠ 診断を使用するにはK150ライターを接続してください</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ ソケットの確実な接触が検出されません</string>
     <string name="diag_toast_chip_removed_voltages_active">チップ取り外し済み: 安全な測定のため電圧を有効化しました</string>
     <string name="diag_toast_voltages_activated_multimeter">電圧有効化: VPPおよびVDD端子をテスターで測定してください</string>
-    <string name="diag_toast_voltages_off">電圧をオフにしました (0V)</string>
+    <string name="diag_toast_voltages_off">電圧をオフにしました - 0V</string>
     <string name="diag_toast_voltages_restarted">チップ取り外し済み: 測定用電圧を再起動しました</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ ソケット内にマイコンがあります</string>
     <string name="diag_alert_chip_in_socket_message">13VのVPPによるPICの損傷を防ぐため、電圧を印加または測定する前に必ずZIFソケットからマイコンを取り外してください。
@@ -402,7 +402,7 @@
     <string name="cal_toast_invalid_hex">無効な16進数値です</string>
     <string name="cal_toast_write_success">✓ OSCCALがチップに正常に書き込まれました</string>
     <string name="cal_toast_write_error">❌ シリコンへのキャリブレーション書き込みに失敗しました</string>
-    <string name="icd_dialog_subtitle">インサーキット・デバッグ (ICD) - 24ビットアドレスベクター
+    <string name="icd_dialog_subtitle">インサーキット・デバッグ ICD - 24ビットアドレスベクター
 (有効範囲: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 現在のベクター: %1$s</string>
@@ -410,7 +410,7 @@
 16進数デバッグアドレス (例: 000020):</string>
     <string name="icd_btn_read_vector">📥 ベクターを読み取り</string>
     <string name="icd_btn_write_vector">💾 ベクターを書き込み</string>
-    <string name="icd_dialog_title">🛠️ デバッグベクター (ICD)</string>
+    <string name="icd_dialog_title">🛠️ デバッグベクター ICD</string>
     <string name="icd_toast_read_success">✓ ベクター読み取り完了: %1$s</string>
     <string name="icd_toast_invalid_address">無効な24ビット16進アドレスです</string>
     <string name="icd_toast_write_success">✓ ICDベクター書き込み完了: %1$s</string>
@@ -477,4 +477,14 @@ PIC %1$sを対応する位置に挿入してレバーをロックし、もう一
     <string name="toast_clipboard_fail">クリップボードにアクセスできませんでした。</string>
     <string name="toast_logs_copied">ログをクリップボードにコピーしました。</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ マイクロコントローラはまだZIFソケットにあります。続行する前に取り外してください。</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

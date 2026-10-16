@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Export CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Exportovat CONFIG (.bin)</string>
-    <string name="exportar_dump_completo">Exportovat úplný výpis (.hex)</string>
-    <string name="exportar_dump_completo_bin">Exportovat úplný výpis (.bin)</string>
+    <string name="exportar_config_hex">Export CONFIG .hex</string>
+    <string name="exportar_config_bin">Exportovat CONFIG .bin</string>
+    <string name="exportar_dump_completo">Exportovat úplný výpis .hex</string>
+    <string name="exportar_dump_completo_bin">Exportovat úplný výpis .bin</string>
     <string name="verificar_borrado">Ověřte smazání</string>
     <string name="chip_esta_borrado">Čip je vymazán (prázdný)</string>
     <string name="chip_no_esta_borrado">Čip NENÍ vymazán</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Diagnostika hardwaru K150</string>
     <string name="menu_osccal_calibration">⏱️ Kalibrace OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vektor obvodového ladění (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vektor obvodového ladění ICD</string>
     <string name="cd_socket_diagram">Schéma patice</string>
     <string name="btn_connect_usb">Připojit USB programátor</string>
     <string name="btn_disconnect_usb">Odpojit USB programátor</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Test snímačů ZIF (Vložení/Vyjmutí)</string>
     <string name="diag_section_voltage_control">⚡ Řízení napětí VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ UPOZORNĚNÍ: Před zapnutím nebo měřením napětí multimetrem vyjměte mikrokontrolér z patice ZIF.</string>
-    <string name="diag_status_voltages_off">Stav: Napětí vypnuto (0V)</string>
-    <string name="diag_status_vpp_active">Stav: ⚡ VPP (13V) / VDD (5V) AKTIVOVÁNO</string>
+    <string name="diag_status_voltages_off">Stav: Napětí vypnuto - 0V</string>
+    <string name="diag_status_vpp_active">Stav: ⚡ VPP 13V / VDD 5V AKTIVOVÁNO</string>
     <string name="diag_status_voltages_restarted">Stav: ⚡ Napětí restartováno (Aktivní)</string>
     <string name="diag_status_error_activating">Stav: ❌ Chyba při aktivaci napětí</string>
     <string name="diag_status_error_deactivating">Stav: ❌ Chyba při vypínání napětí</string>
     <string name="diag_status_error_restarting">Stav: ❌ Chyba při restartu napětí</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Vypnout (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Vypnout - 0V</string>
     <string name="diag_btn_restart_voltages">Restartovat</string>
     <string name="diag_programmer_not_connected">Programátor není připojen</string>
     <string name="diag_connect_programmer_prompt">⚠ Pro použití diagnostiky připojte programátor K150</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ V patici nebyl detekován pevný kontakt</string>
     <string name="diag_toast_chip_removed_voltages_active">Čip vyjmut: Napětí aktivována pro bezpečné měření</string>
     <string name="diag_toast_voltages_activated_multimeter">Napětí aktivována: změřte multimetrem na VPP a VDD</string>
-    <string name="diag_toast_voltages_off">Napětí vypnuto (0V)</string>
+    <string name="diag_toast_voltages_off">Napětí vypnuto - 0V</string>
     <string name="diag_toast_voltages_restarted">Čip vyjmut: Napětí restartována pro měření</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Mikrokontrolér v patici</string>
     <string name="diag_alert_chip_in_socket_message">Aby nedošlo k poškození PIC napětím 13V VPP, před zapnutím nebo měřením napětí vyjměte mikrokontrolér z patice ZIF.
@@ -402,7 +402,7 @@ Zadejte hexadecimální hodnotu (např. %1$s):</string>
     <string name="cal_toast_invalid_hex">Neplatná hexadecimální hodnota</string>
     <string name="cal_toast_write_success">✓ OSCCAL úspěšně zapsán do čipu</string>
     <string name="cal_toast_write_error">❌ Zápis kalibrace do čipu se nezdařil</string>
-    <string name="icd_dialog_subtitle">Obvodové ladění (ICD) – 24bitový adresní vektor
+    <string name="icd_dialog_subtitle">Obvodové ladění ICD – 24bitový adresní vektor
 (Platný rozsah: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Aktuální vektor: %1$s</string>
@@ -410,7 +410,7 @@ Aktuální vektor: %1$s</string>
 Ladicí adresa v hex (např. 000020):</string>
     <string name="icd_btn_read_vector">📥 Načíst vektor</string>
     <string name="icd_btn_write_vector">💾 Zapsat vektor</string>
-    <string name="icd_dialog_title">🛠️ Ladicí vektor (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Ladicí vektor ICD</string>
     <string name="icd_toast_read_success">✓ Vektor načten: %1$s</string>
     <string name="icd_toast_invalid_address">Neplatná 24bitová hexadecimální adresa</string>
     <string name="icd_toast_write_success">✓ Vektor ICD naprogramován: %1$s</string>
@@ -477,4 +477,14 @@ Vložte prosím PIC %1$s do odpovídající polohy, zajistěte páčku a znovu k
     <string name="toast_clipboard_fail">Nelze získat přístup k schránce.</string>
     <string name="toast_logs_copied">Protokoly zkopírovány do schránky.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Mikrokontrolér je stále v patici ZIF. Před pokračováním jej prosím vyjměte.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

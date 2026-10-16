@@ -139,6 +139,12 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Prueba Dinámica de Sensores ZIF Segura:** Se actualizaron `esperarInsercionEnElSocket()` y `esperarExtraccionDelSocket()` para utilizar sondeo no bloqueante en bucle con cancelación inmediata sin riesgo de colgar el programador ni la app.
    * **Restauración de Grabación Parcial Dinámica:** Basada en la rama `backup-v2.8.5-estable`, el modal de programación selectiva filtra dinámicamente las opciones disponibles en función de las regiones presentes en el archivo HEX/BIN cargado (Flash ROM, EEPROM, Configuración).
    * **Copiado de Log al Portapapeles (Estilo C-PIC Compiler):** Se eliminó el copiado accidental por toques bruscos (`setOnClickListener`), reemplazándolo por pulsación prolongada (`setOnLongClickListener`), selección de texto (`textIsSelectable`) y protección de foco en el ScrollView (`blocksDescendants`), con 100% de paridad de cadenas en los 53 idiomas.
+22. **Rediseño Profesional de UI/Diálogos, Editor Hexadecimal en Tarjetas, Limpieza de Paréntesis y Enlaces de Ecosistema:**
+   * **Rediseño del Editor Hexadecimal (`HexEditorManager.java`):** Se transformó el diálogo en una interfaz estructurada y moderna basada en 3 tarjetas sobre fondo oscuro (`#181824`): métricas de memoria (Dirección, Valor Actual, Límite Máximo), desglose técnico con badges para Byte Bajo y Byte Alto (orden Little-Endian) y campo de entrada hexadecimal centrado 20sp monospace con borde `#00E676`.
+   * **Erradicación de Paréntesis en UI, Diagnóstico y Pase Pro:** Se eliminaron paréntesis informales en todas las etiquetas de la app (`VPP 13V`, `Apagar 0V`, `Voltajes VPP 13V y VDD 5V activados`, `Palabra`, `Blank`, `24 bits`, etc.) logrando una apariencia estética profesional.
+   * **Diálogo «Acerca de / Licencias» y README:** Se integraron enlaces directos a las tres aplicaciones del desarrollador en Google Play (Curso Microcontroladores PIC, Tabla Periódica PTC y Mini Calculadora) y se alinearon todas las referencias y licencias (GPL-3.0, Apache-2.0, MIT) con el `README.md`.
+   * **Paridad del 100% en 53 Idiomas:** Se agregaron 10 nuevas claves de cadenas sincronizadas en todas las 53 variantes de `strings.xml` (exactamente 470 claves en cada archivo).
+   * **SDK/NDK de Android:** Instalado y verificado en `/tmp/android-sdk` mediante `setup-sdk.sh`.
 
 ---
 

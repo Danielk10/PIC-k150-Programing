@@ -105,10 +105,10 @@
     <string name="exportar_eeprom_hex">Export EEPROM as HEX</string>
     <string name="exportar_rom_bin">Export ROM as BIN</string>
     <string name="exportar_eeprom_bin">Export EEPROM as BIN</string>
-    <string name="exportar_config_hex">Hamisha CONFIG (.hex)</string>
-    <string name="exportar_config_bin">Hamisha MFUNGO (.bin)</string>
-    <string name="exportar_dump_completo">Hamisha Taka Kamili (.hex)</string>
-    <string name="exportar_dump_completo_bin">Hamisha Taka Kamili (.bin)</string>
+    <string name="exportar_config_hex">Hamisha CONFIG .hex</string>
+    <string name="exportar_config_bin">Hamisha MFUNGO .bin</string>
+    <string name="exportar_dump_completo">Hamisha Taka Kamili .hex</string>
+    <string name="exportar_dump_completo_bin">Hamisha Taka Kamili .bin</string>
     <string name="verificar_borrado">Thibitisha Ufutaji</string>
     <string name="chip_esta_borrado">Chip imefutwa (Tupu)</string>
     <string name="chip_no_esta_borrado">Chip HAIJAFUTWA</string>
@@ -305,7 +305,7 @@
     <string name="menu_pro_timer">⭐ Pro %1$s</string>
     <string name="menu_hardware_diagnostic">🩺 Uchunguzi wa Vifaa vya K150</string>
     <string name="menu_osccal_calibration">⏱️ Urekebishaji wa OSCCAL</string>
-    <string name="menu_debug_vector_icd">🛠️ Vekta ya Utatuzi Ndani ya Saketi (ICD)</string>
+    <string name="menu_debug_vector_icd">🛠️ Vekta ya Utatuzi Ndani ya Saketi ICD</string>
     <string name="cd_socket_diagram">Mchoro wa soketi</string>
     <string name="btn_connect_usb">Unganisha Programu ya USB</string>
     <string name="btn_disconnect_usb">Tenganisha Programu ya USB</string>
@@ -326,14 +326,14 @@
     <string name="diag_btn_test_zif_sensors">🧪 Jaribu Vihisi vya ZIF (Weka/Ondoa)</string>
     <string name="diag_section_voltage_control">⚡ Udhibiti wa Volteji VPP / VDD</string>
     <string name="diag_voltage_warning_banner">⚠️ TAHADHARI: Ondoa kikontrola kidogo kwenye soketi ya ZIF kabla ya kuwasha au kupima volteji kwa mita.</string>
-    <string name="diag_status_voltages_off">Hali: Volteji zimezimwa (0V)</string>
-    <string name="diag_status_vpp_active">Hali: ⚡ VPP (13V) / VDD (5V) ZIMEWASHWA</string>
+    <string name="diag_status_voltages_off">Hali: Volteji zimezimwa - 0V</string>
+    <string name="diag_status_vpp_active">Hali: ⚡ VPP 13V / VDD 5V ZIMEWASHWA</string>
     <string name="diag_status_voltages_restarted">Hali: ⚡ Volteji zimewashwa upya (Amilifu)</string>
     <string name="diag_status_error_activating">Hali: ❌ Hitilafu wakati wa kuwasha volteji</string>
     <string name="diag_status_error_deactivating">Hali: ❌ Hitilafu wakati wa kuzima volteji</string>
     <string name="diag_status_error_restarting">Hali: ❌ Hitilafu wakati wa kuwasha tena volteji</string>
-    <string name="diag_btn_vpp_13v">VPP (13V)</string>
-    <string name="diag_btn_power_off_0v">Zima (0V)</string>
+    <string name="diag_btn_vpp_13v">13V 5V</string>
+    <string name="diag_btn_power_off_0v">Zima - 0V</string>
     <string name="diag_btn_restart_voltages">Washa Upya</string>
     <string name="diag_programmer_not_connected">Kiprogramu hakijaunganishwa</string>
     <string name="diag_connect_programmer_prompt">⚠ Unganisha kiprogramu cha K150 ili kutumia uchunguzi</string>
@@ -348,7 +348,7 @@
     <string name="diag_socket_no_firm_contact">⚠ Mguso thabiti haukugunduliwa kwenye soketi</string>
     <string name="diag_toast_chip_removed_voltages_active">Chip imeondolewa: Volteji zimewashwa kwa kipimo salama</string>
     <string name="diag_toast_voltages_activated_multimeter">Volteji zimewashwa: pima kwa mita kwenye VPP na VDD</string>
-    <string name="diag_toast_voltages_off">Volteji zimezimwa (0V)</string>
+    <string name="diag_toast_voltages_off">Volteji zimezimwa - 0V</string>
     <string name="diag_toast_voltages_restarted">Chip imeondolewa: Volteji zimewashwa upya kwa kipimo</string>
     <string name="diag_alert_chip_in_socket_title">⚠️ Kikontrola Kidogo kipo kwenye Soketi</string>
     <string name="diag_alert_chip_in_socket_message">Ili kuepuka kuharibu PIC kwa 13V VPP, tafadhali ondoa kikontrola kidogo kwenye soketi ya ZIF kabla ya kuwezesha au kupima volteji.
@@ -402,7 +402,7 @@ Weka thamani ya hexadecimal (mfano %1$s):</string>
     <string name="cal_toast_invalid_hex">Thamani batili ya hexadecimal</string>
     <string name="cal_toast_write_success">✓ OSCCAL imeandikwa kwa mafanikio kwenye chip</string>
     <string name="cal_toast_write_error">❌ Imeshindwa kuandika urekebishaji kwenye silicon</string>
-    <string name="icd_dialog_subtitle">Utatuzi Ndani ya Saketi (ICD) - Vekta ya Anwani ya Biti 24
+    <string name="icd_dialog_subtitle">Utatuzi Ndani ya Saketi ICD - Vekta ya Anwani ya Biti 24
 (Masafa halali: 0x000000 - 0xFFFFFF)</string>
     <string name="icd_current_vector">
 Vekta ya Sasa: %1$s</string>
@@ -410,7 +410,7 @@ Vekta ya Sasa: %1$s</string>
 Anwani ya utatuzi kwa hex (mfano 000020):</string>
     <string name="icd_btn_read_vector">📥 Soma Vekta</string>
     <string name="icd_btn_write_vector">💾 Andika Vekta</string>
-    <string name="icd_dialog_title">🛠️ Vekta ya Utatuzi (ICD)</string>
+    <string name="icd_dialog_title">🛠️ Vekta ya Utatuzi ICD</string>
     <string name="icd_toast_read_success">✓ Vekta imesomwa: %1$s</string>
     <string name="icd_toast_invalid_address">Anwani batili ya hexadecimal ya biti 24</string>
     <string name="icd_toast_write_success">✓ Vekta ya ICD imeratibiwa: %1$s</string>
@@ -477,4 +477,14 @@ Tafadhali ingiza PIC %1$s katika nafasi inayolingana, funga leveri, kisha ugonge
     <string name="toast_clipboard_fail">Haikuweza kufikia ubao wa kunakili.</string>
     <string name="toast_logs_copied">Kumbukumbu zimenakiliwa kwenye ubao wa kunakili.</string>
     <string name="diag_chip_still_in_socket_warning">⚠️ Kidhibiti kidogo bado kiko kwenye soketi ya ZIF. Tafadhali kiondoe kabla ya kuendelea.</string>
+    <string name="hex_editor_label_address">Address</string>
+    <string name="hex_editor_label_current">Current</string>
+    <string name="hex_editor_label_max">Maximum</string>
+    <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
+    <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
+    <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
+    <string name="about_app_curso">PIC Microcontrollers Course</string>
+    <string name="about_app_ptc">Periodic Table PTC</string>
+    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_view_on_play_store">View on Google Play</string>
 </resources>

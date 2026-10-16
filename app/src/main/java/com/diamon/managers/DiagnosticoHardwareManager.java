@@ -80,7 +80,7 @@ public class DiagnosticoHardwareManager {
             if (picEnSocket) {
                 return context != null ? context.getString(R.string.diag_socket_pic_detected) : "✓ PIC Detectado en el zócalo ZIF";
             } else if (picFueraSocket) {
-                return context != null ? context.getString(R.string.diag_socket_empty) : "ℹ Zócalo vacío (Sin chip detectado)";
+                return context != null ? context.getString(R.string.diag_socket_empty) : "ℹ Zócalo vacío - Sin chip detectado";
             } else {
                 return context != null ? context.getString(R.string.diag_socket_no_firm_contact) : "⚠ No se detectó contacto firme en el zócalo";
             }
