@@ -167,11 +167,11 @@ El proyecto se basa en las siguientes tecnologías y recursos de código abierto
 
 ## 📱 Otras aplicaciones del desarrollador en Google Play
 
-Descubre otras aplicaciones educativas y herramientas de ingeniería desarrolladas por el autor en Google Play Store:
+Descubre otras aplicaciones educativas y herramientas de ingeniería electrónica desarrolladas por el autor en Google Play Store:
 
-- 📱 **[Curso Microcontroladores PIC](https://play.google.com/store/apps/details?id=com.diamon.curso)**: Aprende arquitectura, registros y programación en C y ensamblador para microcontroladores PIC.
-- 🧪 **[Tabla Periódica PTC](https://play.google.com/store/apps/details?id=com.diamon.ptc)**: Tabla periódica interactiva y completa para química y ciencia con propiedades detalladas de cada elemento.
-- 🧮 **[Mini Calculadora](https://play.google.com/store/apps/details?id=com.diamon.mini)**: Calculadora compacta, rápida y práctica para operaciones y cálculos matemáticos cotidianos.
+- 💻 **[C PIC Compiler](https://play.google.com/store/apps/details?id=com.diamon.ptc)**: Compila código C y ensamblador ASM para microcontroladores PIC directamente en Android.
+- 💾 **[Flash SPI Tool](https://play.google.com/store/apps/details?id=com.diamon.curso)**: Herramienta para leer y escribir en memorias Flash SPI desde dispositivos Android.
+- 🔌 **[EEPROM Flasher](https://play.google.com/store/apps/details?id=com.diamon.mini)**: Herramienta para leer y programar memorias EEPROM, Flash SPI y microcontroladores vía USB OTG.
 
 ## 🚀 Instrucciones de instalación
 

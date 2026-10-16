@@ -483,12 +483,8 @@
     <string name="hex_editor_byte_low">Low byte: 0x%1$s</string>
     <string name="hex_editor_byte_high">High byte: 0x%2$s</string>
     <string name="about_more_apps_title">Other apps by developer on Google Play:</string>
-    <string name="about_app_curso">PIC Microcontrollers Course</string>
-    <string name="about_app_ptc">Periodic Table PTC</string>
-    <string name="about_app_mini">Mini Calculator</string>
+    <string name="about_app_curso">Flash SPI Tool</string>
+    <string name="about_app_ptc">C PIC Compiler</string>
+    <string name="about_app_mini">EEPROM Flasher</string>
     <string name="about_view_on_play_store">View on Google Play</string>
-    <string name="proto_desc_p18a">K150 / K128 • קושחה רגילה</string>
-    <string name="proto_desc_p018">KITSRUS P018 • קושחת ביניים</string>
-    <string name="proto_desc_p016">KITSRUS P016 • קושחה קלאסית</string>
-    <string name="proto_desc_p014">KITSRUS P014 • קושחה מדור קודם</string>
 </resources>

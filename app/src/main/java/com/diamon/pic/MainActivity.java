@@ -2035,11 +2035,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showProgrammerModelDialog() {
-        if (usbManager.isConnected()) {
+        if (usbManager != null && usbManager.isConnected() && usbManager.getProtocolo() != null) {
             String model = usbManager.getProtocolo().obtenerVersionOModeloDelProgramador();
             new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.modelo_del_programador))
                     .setMessage(model)
+                    .setPositiveButton(getString(R.string.aceptar), null)
+                    .show();
+        } else {
+            Toast.makeText(this, getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
+            appendLog(getString(R.string.log_connect_programmer_first));
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.modelo_del_programador))
+                    .setMessage(getString(R.string.diag_programmer_not_connected))
                     .setPositiveButton(getString(R.string.aceptar), null)
                     .show();
         }
@@ -2091,29 +2099,10 @@ public class MainActivity extends AppCompatActivity
             rb.setId(View.generateViewId());
 
             String proto = protocolos[i];
-            String desc = "";
-            if ("P18A".equals(proto)) {
-                desc = "\n" + getString(R.string.proto_desc_p18a);
-            } else if ("P018".equals(proto)) {
-                desc = "\n" + getString(R.string.proto_desc_p018);
-            } else if ("P016".equals(proto)) {
-                desc = "\n" + getString(R.string.proto_desc_p016);
-            } else if ("P014".equals(proto)) {
-                desc = "\n" + getString(R.string.proto_desc_p014);
-            }
-
-            android.text.SpannableString span = new android.text.SpannableString(proto + desc);
-            span.setSpan(new android.text.style.StyleSpan(Typeface.BOLD), 0, proto.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            span.setSpan(new android.text.style.ForegroundColorSpan(0xFFFFFFFF), 0, proto.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            span.setSpan(new android.text.style.RelativeSizeSpan(1.05f), 0, proto.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            if (!desc.isEmpty()) {
-                int startDesc = proto.length();
-                int endDesc = span.length();
-                span.setSpan(new android.text.style.ForegroundColorSpan(0xFF90A4AE), startDesc, endDesc, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                span.setSpan(new android.text.style.RelativeSizeSpan(0.85f), startDesc, endDesc, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-
-            rb.setText(span);
+            rb.setText(proto);
+            rb.setTextColor(0xFFFFFFFF);
+            rb.setTextSize(15f);
+            rb.setTypeface(null, Typeface.BOLD);
             rb.setSupportButtonTintList(radioColorStateList);
             rb.setPadding(padItemH, padItemV, padItemH, padItemV);
             rb.setMinimumHeight(Math.round(48 * density));
@@ -2200,9 +2189,9 @@ public class MainActivity extends AppCompatActivity
                 "<hr>" +
                 "<h4><b><font color=\"#FFB300\">" + getString(R.string.about_more_apps_title) + "</font></b></h4>" +
                 "<ul>" +
-                "  <li>📱 <b>" + getString(R.string.about_app_curso) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.curso\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
-                "  <li>🧪 <b>" + getString(R.string.about_app_ptc) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.ptc\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
-                "  <li>🧮 <b>" + getString(R.string.about_app_mini) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.mini\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
+                "  <li>💻 <b>" + getString(R.string.about_app_ptc) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.ptc\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
+                "  <li>💾 <b>" + getString(R.string.about_app_curso) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.curso\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
+                "  <li>🔌 <b>" + getString(R.string.about_app_mini) + ":</b> <a href=\"https://play.google.com/store/apps/details?id=com.diamon.mini\">" + getString(R.string.about_view_on_play_store) + "</a></li>" +
                 "</ul>" +
                 "<hr>" +
                 "<h4><b><font color=\"#00B0FF\">" + getString(R.string.licencia_de_aplicacion) + "</font></b></h4>" +
