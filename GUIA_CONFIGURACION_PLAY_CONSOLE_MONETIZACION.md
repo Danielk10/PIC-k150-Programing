@@ -13,15 +13,15 @@ La aplicación implementa un modelo **100% ético y técnico**: todas las operac
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                       ESTRUCTURA DE CARACTERÍSTICAS                         │
 ├──────────────────────────────────────┬──────────────────────────────────────┤
-│ 🆓 100% LIBRES (Sin Restricciones)   │ 👑 CARACTERÍSTICAS PRO (Gated)       │
+│ 🆓 100% LIBRES — Sin Restricciones   │ 👑 CARACTERÍSTICAS PRO — Gated       │
 ├──────────────────────────────────────┼──────────────────────────────────────┤
 │ • Grabación Flash ROM Completa       │ • Editor Hexadecimal en Vivo         │
-│ • Grabación Solo Flash ROM           │ • Diagnóstico Hardware & Voltajes    │
-│ • Grabación Solo EEPROM              │   (Test VPP 13V y VDD 5V)            │
-│ • Grabación Solo Fusibles de Config. │ • Vector de Depuración ICD (24 bits) │
+│ • Grabación Solo Flash ROM           │ • Diagnóstico Hardware y Voltajes    │
+│ • Grabación Solo EEPROM              │   Prueba 13V/5V VPP y VDD            │
+│ • Grabación Solo Fusibles de Config. │ • Vector de Depuración ICD 24 bits   │
 │ • Detección en Zócalo / Device ID    │ • Rescate y Edición Manual OSCCAL    │
 │ • Borrado Físico y Blank Check Dual  │ • Cero Publicidad durante 12 horas   │
-│ • Volcado y Exportación (HEX / BIN)  │   (o permanente tras compra)         │
+│ • Volcado y Exportación HEX / BIN    │   o permanente tras compra           │
 └──────────────────────────────────────┴──────────────────────────────────────┘
 ```
 

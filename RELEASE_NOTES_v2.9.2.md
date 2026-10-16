@@ -48,6 +48,11 @@ Fecha de lanzamiento / Release Date: 16 de Octubre de 2026 / October 16, 2026
    - 100% de paridad en los 53 archivos de idioma (`values-*/strings.xml`), con 470 claves en cada uno y nombres oficiales verificados de Google Play (`C PIC Compiler`, `Flash SPI Tool`, `EEPROM Flasher`).
    - Eliminación de cadenas literales en Java unificando referencias con `getString(R.string.*)`.
 
-5. **Pruebas y Certificación**:
-   - 109/109 pruebas unitarias y de integración Java aprobadas contra el emulador virtual K150 en C++.
+5. **Auditoría Integral C++/Java y Limpieza del Repositorio**:
+   - Endurecimiento de [`emulador_pic_k150.cpp`](file:///home/danielpdiamon/PIC-k150-Programing/emulador_pic_k150/emulador_k150.cpp) con escritura completa (`write_all()`), validación estricta de rangos antes de `std::memcpy`, cierre seguro de descriptores PTY y compilación con `0 warnings` (`-Wall -Wextra -O2`).
+   - Blindaje defensivo en [`UsbConnectionManager.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/managers/UsbConnectionManager.java) (validación de nulidad en `openDevice` y lista de drivers) y [`ProPassManager.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/managers/ProPassManager.java) (`try-with-resources`).
+   - Eliminación de código muerto (`com.diamon.tutorial.utilidadestutorial`), notas de versiones antiguas, planes ya implementados y scripts obsoletos.
+
+6. **Pruebas y Certificación**:
+   - 108/108 pruebas unitarias y de integración Java aprobadas contra el emulador virtual K150 en C++ y Python.
    - Verificación de compilación Debug y Release (`assembleRelease` y `bundleRelease`).

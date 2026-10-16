@@ -405,28 +405,26 @@ Valida el blindaje preventivo contra intentos de grabación cuando el zócalo ZI
 
 ---
 
-### Prueba 9: Notificación del Sistema y Vibración de Éxito al Finalizar Grabación
-Certifica la entrega de confirmación sensorial y en segundo plano tras un proceso exitoso de grabación de silicio.
+### Prueba 9: Sonido del Sistema y Vibración de Éxito al Finalizar Grabación
+Certifica la entrega de confirmación sensorial tras un proceso exitoso de grabación de silicio.
 
 *   **Comportamiento al Finalizar:**
     1.  **Vibración:** Patrón de pulso doble festivo de éxito (`vibrarExito()`).
-    2.  **Notificación de Sistema Android:** Emite notificación persistente en el canal prioritario `"canal_k150_operaciones"` con sonido del sistema:
-        *   *Título:* `¡Grabación Completada!`
-        *   *Mensaje:* `El microcontrolador PIC16F628A fue grabado correctamente.`
-    3.  **Supervisión con Comando 19:** El diálogo de fin de proceso activa un hilo de sondeo continuo con el Comando 19 (`esperarExtraccionDelSocket`) para registrar cuándo el microcontrolador ha sido retirado con seguridad del programador.
+    2.  **Sonido de Notificación Directo:** Emite el sonido de notificación predeterminado del sistema Android (`reproducirSonidoNotificacion()`) al concluir la programación.
+    3.  **Supervisión No Bloqueante en Zócalo:** El diálogo de fin de proceso activa un hilo de sondeo continuo no bloqueante (`esperarExtraccionDelSocket`) para registrar cuándo el microcontrolador ha sido retirado con seguridad del programador.
 
 ---
 
-### Prueba 10: Suite de Diagnóstico de Hardware, Prueba de Sensores ZIF y Seguridad VPP (13V)
+### Prueba 10: Suite de Diagnóstico de Hardware, Prueba de Sensores ZIF y Seguridad 13V/5V
 Valida la integridad de la circuitería física del programador K150 y el aislamiento de alta tensión.
 
 *   **Pasos de Ejecución:**
     1.  Acceso mediante el menú de 3 puntos -> `🩺 Diagnóstico de Hardware K150`.
     2.  **Telemetría Automática:** Identifica Modelo `K150`, Protocolo `P18A` y realiza test de eco bidireccional midiendo una latencia de ~**424 ms**.
-    3.  **Seguridad Fail-Safe de 13V (VPP):** Al presionar `VPP (13V)` con el microcontrolador en el zócalo, el sistema bloquea inmediatamente la energización y despliega: `⚠️ Microcontrolador en el Zócalo: Para evitar dañar el PIC con 13V de VPP, por favor retire el microcontrolador del zócalo ZIF`.
-    4.  **Prueba Interactiva de Sensores ZIF:** Ejecuta la rutina paso a paso de validación física:
-        *   *Paso 1 (Comando 18):* Inserción detectada `✓ Paso 1: Sensor de Inserción OK`.
-        *   *Paso 2 (Comando 19):* Extracción monitoreada `✓ Paso 2: Sensor de Extracción OK`.
+    3.  **Seguridad Fail-Safe de 13V/5V:** Al presionar `13V/5V` con el microcontrolador en el zócalo, el sistema bloquea inmediatamente la energización y despliega: `⚠️ Microcontrolador en el Zócalo: Para evitar dañar el PIC con 13V de VPP, por favor retire el microcontrolador del zócalo ZIF`.
+    4.  **Prueba Interactiva de Sensores ZIF:** Ejecuta la rutina paso a paso de validación física con sondeo no bloqueante:
+        *   *Paso 1 (Inserción):* Inserción detectada `✓ Paso 1: Sensor de Inserción OK`.
+        *   *Paso 2 (Extracción):* Extracción monitoreada `✓ Paso 2: Sensor de Extracción OK`.
         *   Interfaz estilizada en tarjeta de alto contraste `#1A1A2E` / `#2A2A3E`.
 
 ---

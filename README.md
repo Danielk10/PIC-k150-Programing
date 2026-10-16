@@ -26,7 +26,7 @@ El protocolo y la aplicación han sido **100% verificados y certificados sobre h
 
 - **🚀 Programación móvil sin PC**: Programa microcontroladores PIC directamente desde tu teléfono o tablet Android usando el programador PIC k150 o cualquier dispositivo compatible con el protocolo P018
 - **🔬 Protocolo P18A 100% Verificado en Silicio Real y Emulador**: Validación integral de ciclo de vida probada en laboratorio sobre microcontrolador físico Microchip PIC16F628A montado en K150 vía USB-OTG (Android 12), y respaldada por suite automatizada de pruebas JUnit con emulador local (C++/Python)
-- **🔘 Selector de Protocolos de Alto Contraste**: Diálogo moderno con RadioButtons diferenciados (`#00E676` seleccionado / `#B0BEC5` no seleccionado) en tarjetas interactivas oscuras con descripciones técnicas para P18A, P018, P016 y P014.
+- **🔘 Selector de Protocolos de Alto Contraste**: Diálogo moderno con RadioButtons diferenciados (`#00E676` seleccionado / `#B0BEC5` no seleccionado) en tarjetas interactivas oscuras mostrando únicamente el nombre limpio del protocolo (`P18A`, `P018`, `P016` y `P014`).
 - **⚡ Diagnóstico de Hardware y Control 13V/5V**: Medición interactiva de eco serial, sensores ZIF y botón unificado `13V/5V` que energiza simultáneamente VPP (13V) y VDD (5V) con protección fail-safe.
 - **🧮 Editor Hexadecimal en Tarjetas**: Editor interactivo estructurado en 3 tarjetas (métricas de memoria, desglose Little-Endian y teclado hexadecimal monospace de 20sp).
 - **🛡️ Blindaje de Sonda en Zócalo ZIF**: Detección segura no bloqueante de microcontroladores (Comandos 18 y 19) inmune a zócalos vacíos o contactos deficientes.
@@ -37,7 +37,7 @@ El protocolo y la aplicación han sido **100% verificados y certificados sobre h
 - **🎯 Interfaz intuitiva**: Diseño Material Design con flujo de trabajo optimizado para cargar archivos HEX y programar con mínimos pasos.
 - **📊 Soporte multiarquitectura**: Compatible con todas las arquitecturas Android modernas (ARM64, ARMv7, x86, x86_64).
 - **💾 Compatible con archivos HEX y BIN**: Soporta Intel HEX estándar y binarios crudos para carga, exportación y verificación.
-- **🌍 Internacionalización Global (53 Idiomas x 474 Claves)**: Traducción y sincronización completa del 100% de los recursos en 53 idiomas con paridad absoluta y cero cadenas hardcodeadas.
+- **🌍 Internacionalización Global (53 Idiomas x 470 Claves)**: Traducción y sincronización completa del 100% de los recursos en 53 idiomas con paridad absoluta y cero cadenas hardcodeadas.
 - **📱 OTG Ready**: Funciona con cualquier dispositivo Android que soporte USB Host Mode.
 
 ## 🏗️ Arquitectura y compatibilidad
@@ -321,37 +321,45 @@ PIC-k150-Programing/
 ├── app/                                # Módulo principal de la aplicación Android
 │   ├── src/
 │   │   ├── main/
+│   │   │   ├── cpp/                    # Librería nativa C++ (bypass fdsan con alineación de 16 KB)
 │   │   │   ├── java/                   # Código fuente en Java de la aplicación
 │   │   │   │   └── com/diamon/
+│   │   │   │       ├── billing/        # Integración con Google Play Billing (Compras In-App)
 │   │   │   │       ├── chip/           # Modelado y especificaciones de chips PIC soportados
-│   │   │   │       ├── datos/          # Procesamiento de archivos HEX y datos a grabar
+│   │   │   │       ├── datos/          # Procesamiento de archivos HEX/BIN y base de datos chipinfo.cid
 │   │   │   │       ├── excepciones/    # Excepciones personalizadas para el flujo de comunicación
-│   │   │   │       ├── managers/       # Gestores de lógica de negocio (e.g., gestor de archivos HEX)
-│   │   │   │       ├── nucleo/         # Clases base, vistas y componentes comunes de UI
-│   │   │   │       ├── pic/            # Actividades, diálogos y adaptadores específicos de la aplicación
-│   │   │   │       ├── politicas/      # Gestión de políticas de la aplicación
-│   │   │   │       ├── protocolo/      # Implementación del Protocolo P18A (programación serial de K150)
+│   │   │   │       ├── managers/       # Gestores de hardware, UI, editor hex, diagnóstico y Pase Pro
+│   │   │   │       ├── nucleo/         # Clases base y contratos de protocolo, archivos y publicidad
+│   │   │   │       ├── pic/            # Actividad principal, aplicación y servicios Firebase
+│   │   │   │       ├── politicas/      # Gestión de políticas de privacidad de la aplicación
+│   │   │   │       ├── protocolo/      # Implementación del Protocolo P18A/P018/P016/P014
 │   │   │   │       ├── publicidad/     # Módulos y adaptadores para Google AdMob
-│   │   │   │       ├── tutorial/       # Guías visuales y tutoriales integrados paso a paso
-│   │   │   │       └── utilidades/     # Clases de utilidad generales (conversión, UI Helpers)
-│   │   │   ├── res/                    # Recursos de la interfaz (drawables, layouts, values, XMLs)
+│   │   │   │       ├── tutorial/       # Guías visuales y renderizadores para GPUTILS y SDCC
+│   │   │   │       └── utilidades/     # Clases utilitarias seguras para bytes, HEX y pantalla
+│   │   │   ├── res/                    # Recursos de la interfaz (53 idiomas x 470 claves)
 │   │   │   └── AndroidManifest.xml     # Manifiesto de Android (permisos USB, actividades, configuración)
-│   │   └── test/                       # Pruebas unitarias locales JUnit e integración con el emulador
+│   │   └── test/                       # Suite de 108 pruebas JUnit e integración con emulador K150
 │   └── build.gradle                    # Configuración del build a nivel de módulo
-├── gradle/                             # Wrapper de Gradle y archivos de configuración centralizados
-│   └── libs.versions.toml              # Catálogo de versiones de dependencias (AGP 9.2.1, SDK 37)
+├── emulador_pic_k150/                  # Emulador virtual de hardware K150 en C++ y Python (PTY)
+├── gradle/                             # Wrapper de Gradle y catálogo de versiones
+│   └── libs.versions.toml              # Catálogo de dependencias (AGP 9.2.1, SDK 37)
+├── docs/                               # Documentación técnica adicional y evidencias fotográficas
+│   ├── capturas_hardware_k150/         # Galería de capturas de validación en hardware físico
+│   └── imagenes_microbrn/              # Referencias visuales de orientación ZIF de MicroBrn
 ├── build.gradle                        # Configuración de compilación del proyecto raíz
 ├── settings.gradle                     # Ajustes del proyecto y habilitación del catálogo de plugins
-├── setup-sdk.sh                        # Script automatizado para configurar Android SDK, NDK y dependencias en /tmp
-├── run_java_emulator_tests.sh          # Script de pruebas automatizadas contra el emulador virtual K150
+├── setup-sdk.sh                        # Script automatizado para configurar Android SDK y NDK en /tmp
+├── ejecutar_pruebas_con_emulador.sh    # Script principal de pruebas integradas Java + Emulador C++/Python
+├── run_java_emulator_tests.sh          # Alias directo de ejecución de pruebas con emulador
 ├── sincronizacion_protocolo_k150_android.md # Arquitectura de sincronización USB-OTG vs PC Linux/DTR
-├── GUIA_PRUEBAS_HARDWARE_REAL_K150.md    # Manual exhaustivo de pruebas en hardware real por ADB y USB-OTG
+├── GUIA_PRUEBAS.md                     # Guía de pruebas unitarias y de integración con el emulador
+├── GUIA_PRUEBAS_HARDWARE_REAL_K150.md  # Manual exhaustivo de pruebas en hardware real por ADB y USB-OTG
+├── GUIA_CONFIGURACION_PLAY_CONSOLE_MONETIZACION.md # Guía de monetización híbrida y Google Play Console
 ├── REPORTE_VALIDACION_HARDWARE_PIC16F628A.md # Certificación técnica y análisis de tramas en PIC16F628A
-├── docs/                                 # Documentación técnica adicional y evidencias fotográficas
-│   └── capturas_hardware_k150/          # Galería de capturas de validación en hardware físico
-├── GEMINI.md                           # Guía rápida de compilación y emulación local para agentes/desarrolladores
+├── RELEASE_NOTES_v2.9.2.md             # Notas de lanzamiento vigentes (v2.9.2)
+├── GEMINI.md                           # Guía de desarrollo, compilación y arquitectura para agentes/devs
 ├── LICENSE.txt                         # Licencia de código abierto del proyecto (GPL-3.0)
-└── README.md                           # Documentación general y guía del proyecto (este archivo)
+└── README.md                           # Documentación general del proyecto (este archivo)
 ```
 
 ## 📱 Capturas de pantalla
@@ -413,7 +421,7 @@ PIC-k150-Programing/
 - [x] Diagnóstico de hardware en vivo con prueba de voltajes 13V/5V y sensores ZIF
 - [x] Editor Hexadecimal interactivo en tarjetas con decodificación Little-Endian
 - [x] Autodetección de PIC por Device ID en silicio y reconexión USB en vivo
-- [x] Internacionalización exhaustiva al 100% en 53 idiomas (474 claves)
+- [x] Internacionalización exhaustiva al 100% en 53 idiomas (470 claves)
 - [ ] Soporte para familias adicionales de microcontroladores PIC (PIC24 / dsPIC)
 - [ ] Modo batch para programación secuencial múltiple
 - [ ] Modo offline con caché de configuraciones avanzadas
