@@ -411,6 +411,7 @@ Adresa za uklanjanje pogrešaka u heksu (npr. 000020):</string>
     <string name="icd_toast_invalid_address">Nevažeća 24-bitna heksadecimalna adresa</string>
     <string name="icd_toast_write_success">✓ ICD vektor programiran: %1$s</string>
     <string name="icd_toast_write_error">❌ Programiranje ICD vektora nije uspjelo</string>
+    <string name="chip_no_compatible_funcion">Mikrokontroler %1$s nije kompatibilan s ovom funkcijom</string>
     <string name="programar_todo">Zakažite sve</string>
     <string name="programar_solo_rom">Programirajte samo ROM</string>
     <string name="programar_solo_eeprom">Programirajte samo EEPROM</string>

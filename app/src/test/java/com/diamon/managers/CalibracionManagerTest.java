@@ -116,6 +116,14 @@ public class CalibracionManagerTest {
     }
 
     @Test
+    public void isCompatibleConIcd_clasificacionCorrecta() {
+        assertFalse(CalibracionManager.isCompatibleConIcd(chip10f200));
+        assertTrue(CalibracionManager.isCompatibleConIcd(chip12f675));
+        assertTrue(CalibracionManager.isCompatibleConIcd(chip16f628a));
+        assertFalse(CalibracionManager.isCompatibleConIcd(null));
+    }
+
+    @Test
     public void formatearCalibracionYDireccionIcd() {
         String f1 = CalibracionManager.formatearCalibracionHex(0x3448, false);
         assertTrue(f1.contains("0x3448") && f1.contains("RETLW 0x48"));
@@ -125,6 +133,14 @@ public class CalibracionManagerTest {
 
         String f3 = CalibracionManager.formatearCalibracionHex(-1, false);
         assertEquals("No disponible", f3);
+
+        // Prueba de enmascaramiento por arquitectura (14-bit no muestra FFFF sino 3FFF)
+        String f4 = CalibracionManager.formatearCalibracionHex(0xFFFF, chip16f628a);
+        assertEquals("0x3FFF", f4);
+
+        // Prueba de enmascaramiento por arquitectura para 12-bit (0x0FFF)
+        String f5 = CalibracionManager.formatearCalibracionHex(0xFFFF, chip10f200);
+        assertEquals("0x0FFF", f5);
 
         String addr = CalibracionManager.formatearDireccionIcdHex(0x000020);
         assertEquals("0x000020", addr);

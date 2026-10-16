@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">유효하지 않은 24비트 16진수 주소입니다</string>
     <string name="icd_toast_write_success">✓ ICD 벡터 프로그래밍 완료: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD 벡터 프로그래밍 실패</string>
+    <string name="chip_no_compatible_funcion">마이크로컨트롤러 %1$s은(는) 이 기능과 호환되지 않습니다</string>
     <string name="programar_todo">전체 프로그램</string>
     <string name="programar_solo_rom">ROM만 프로그램</string>
     <string name="programar_solo_eeprom">EEPROM만 프로그램</string>

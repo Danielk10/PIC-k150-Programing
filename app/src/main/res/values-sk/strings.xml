@@ -411,6 +411,7 @@ Ladiaca adresa v hex (napr. 000020):</string>
     <string name="icd_toast_invalid_address">Neplatná 24-bitová hexadecimálna adresa</string>
     <string name="icd_toast_write_success">✓ ICD vektor naprogramovaný: %1$s</string>
     <string name="icd_toast_write_error">❌ Programovanie vektora ICD zlyhalo</string>
+    <string name="chip_no_compatible_funcion">Mikrokontrolér %1$s nie je kompatibilný s touto funkciou</string>
     <string name="programar_todo">Naplánujte si všetko</string>
     <string name="programar_solo_rom">Len program ROM</string>
     <string name="programar_solo_eeprom">Naprogramujte iba EEPROM</string>

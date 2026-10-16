@@ -411,6 +411,7 @@ Hex formatında hata ayıklama adresi (örn. 000020):</string>
     <string name="icd_toast_invalid_address">Geçersiz 24-bit onaltılık adres</string>
     <string name="icd_toast_write_success">✓ ICD vektörü programlandı: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD vektörü programlanamadı</string>
+    <string name="chip_no_compatible_funcion">Mikrodenetleyici %1$s bu işlevle uyumlu değil</string>
     <string name="programar_todo">Tümünü Programla</string>
     <string name="programar_solo_rom">Yalnızca ROM\'u programla</string>
     <string name="programar_solo_eeprom">Yalnızca EEPROM\'u programla</string>

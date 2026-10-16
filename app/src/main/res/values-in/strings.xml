@@ -411,6 +411,7 @@ Alamat debug heksadesimal (mis. 000020):</string>
     <string name="icd_toast_invalid_address">Alamat heksadesimal 24-bit tidak valid</string>
     <string name="icd_toast_write_success">✓ Vektor ICD terprogram: %1$s</string>
     <string name="icd_toast_write_error">❌ Gagal memprogram vektor ICD</string>
+    <string name="chip_no_compatible_funcion">Mikrokontroler %1$s tidak kompatibel dengan fungsi ini</string>
     <string name="programar_todo">Jadwalkan Segalanya</string>
     <string name="programar_solo_rom">ROM Program saja</string>
     <string name="programar_solo_eeprom">Program EEPROM saja</string>

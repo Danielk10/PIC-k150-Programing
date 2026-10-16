@@ -411,6 +411,7 @@ Virheenkorjausosoite heksana (esim. 000020):</string>
     <string name="icd_toast_invalid_address">Virheellinen 24-bittinen heksadesimaaliosoite</string>
     <string name="icd_toast_write_success">✓ ICD-vektori ohjelmoitu: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD-vektorin ohjelmointi epäonnistui</string>
+    <string name="chip_no_compatible_funcion">Mikro-ohjain %1$s ei ole yhteensopiva tämän toiminnon kanssa</string>
     <string name="programar_todo">Aikatauluta kaikki</string>
     <string name="programar_solo_rom">Ohjelma vain ROM</string>
     <string name="programar_solo_eeprom">Ohjelmoi vain EEPROM</string>

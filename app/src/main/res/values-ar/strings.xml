@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">عنوان سداسي عشري 24 بت غير صالح</string>
     <string name="icd_toast_write_success">✓ تمت برمجة متجه ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ فشلت برمجة متجه ICD</string>
+    <string name="chip_no_compatible_funcion">المتحكم الدقيق %1$s غير متوافق مع هذه الوظيفة</string>
     <string name="programar_todo">جدولة كل شيء</string>
     <string name="programar_solo_rom">روم البرنامج فقط</string>
     <string name="programar_solo_eeprom">برنامج إيبروم فقط</string>

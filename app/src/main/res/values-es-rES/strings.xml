@@ -409,6 +409,7 @@ Dirección de depuración en hex - Ej: 000020:</string>
     <string name="icd_toast_invalid_address">Dirección hexadecimal de 24 bits no válida</string>
     <string name="icd_toast_write_success">✓ Vector ICD programado: %1$s</string>
     <string name="icd_toast_write_error">❌ Falló la programación del vector ICD</string>
+    <string name="chip_no_compatible_funcion">El microcontrolador %1$s no es compatible con esta función</string>
     <string name="programar_todo">Programar Todo</string>
     <string name="programar_solo_rom">Programar solo ROM</string>
     <string name="programar_solo_eeprom">Programar solo EEPROM</string>

@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">Недійсна 24-бітна шістнадцяткова адреса</string>
     <string name="icd_toast_write_success">✓ Вектор ICD запрограмовано: %1$s</string>
     <string name="icd_toast_write_error">❌ Не вдалося запрограмувати вектор ICD</string>
+    <string name="chip_no_compatible_funcion">Мікроконтролер %1$s несумісний із цією функцією</string>
     <string name="programar_todo">Програмувати все</string>
     <string name="programar_solo_rom">Програмувати лише ROM</string>
     <string name="programar_solo_eeprom">Програмувати лише EEPROM</string>

@@ -411,6 +411,7 @@ Feilsøkingsadresse i hex (f.eks. 000020):</string>
     <string name="icd_toast_invalid_address">Ugyldig 24-bits heksadesimal adresse</string>
     <string name="icd_toast_write_success">✓ ICD-vektor programmert: %1$s</string>
     <string name="icd_toast_write_error">❌ Kunne ikke programmere ICD-vektor</string>
+    <string name="chip_no_compatible_funcion">Mikrokontroller %1$s er ikke kompatibel med denne funksjonen</string>
     <string name="programar_todo">Planlegg alt</string>
     <string name="programar_solo_rom">Bare program-ROM</string>
     <string name="programar_solo_eeprom">Programmer kun EEPROM</string>

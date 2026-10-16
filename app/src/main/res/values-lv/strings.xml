@@ -411,6 +411,7 @@ Atkļūdošanas adrese heksadecimāli (piem., 000020):</string>
     <string name="icd_toast_invalid_address">Nederīga 24 bitu heksadecimālā adrese</string>
     <string name="icd_toast_write_success">✓ ICD vektors ieprogrammēts: %1$s</string>
     <string name="icd_toast_write_error">❌ Neizdevās ieprogrammēt ICD vektoru</string>
+    <string name="chip_no_compatible_funcion">Mikrokontrollers %1$s nav saderīgs ar šo funkciju</string>
     <string name="programar_todo">Ieplānojiet visu</string>
     <string name="programar_solo_rom">Programma tikai ROM</string>
     <string name="programar_solo_eeprom">Programmējiet tikai EEPROM</string>

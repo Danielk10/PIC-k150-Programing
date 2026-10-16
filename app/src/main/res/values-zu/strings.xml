@@ -411,6 +411,7 @@ Ikheli lokulungisa ku-hex (isib. 000020):</string>
     <string name="icd_toast_invalid_address">Ikheli le-hexadecimal lamabhithi angu-24 elingavumelekile</string>
     <string name="icd_toast_write_success">✓ I-Vector ye-ICD ihleliwe: %1$s</string>
     <string name="icd_toast_write_error">❌ Kwehlulekile ukuhlela i-vector ye-ICD</string>
+    <string name="chip_no_compatible_funcion">I-microcontroller %1$s ayihambisani nalo msebenzi</string>
     <string name="programar_todo">Hlela Konke</string>
     <string name="programar_solo_rom">Uhlelo lwe-ROM kuphela</string>
     <string name="programar_solo_eeprom">Uhlelo EEPROM kuphela</string>

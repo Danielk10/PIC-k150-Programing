@@ -411,6 +411,7 @@ Silumise aadress heks-vormingus (nt 000020):</string>
     <string name="icd_toast_invalid_address">Kehtetu 24-bitine heksadetsimaalaadress</string>
     <string name="icd_toast_write_success">✓ ICD vektor programmeeritud: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD vektori programmeerimine ebaõnnestus</string>
+    <string name="chip_no_compatible_funcion">Mikrokontroller %1$s ei ühildu selle funktsiooniga</string>
     <string name="programar_todo">Ajasta kõik</string>
     <string name="programar_solo_rom">Ainult programmi ROM</string>
     <string name="programar_solo_eeprom">Programmeerige ainult EEPROM</string>

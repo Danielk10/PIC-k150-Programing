@@ -409,6 +409,7 @@ Debug address in hex - Ex: 000020:</string>
     <string name="icd_toast_invalid_address">Invalid 24-bit hexadecimal address</string>
     <string name="icd_toast_write_success">✓ ICD vector programmed: %1$s</string>
     <string name="icd_toast_write_error">❌ Failed to program ICD vector</string>
+    <string name="chip_no_compatible_funcion">Microcontroller %1$s is not compatible with this function</string>
     <string name="programar_todo">Program All</string>
     <string name="programar_solo_rom">Program ROM only</string>
     <string name="programar_solo_eeprom">Program EEPROM only</string>

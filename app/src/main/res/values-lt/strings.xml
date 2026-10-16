@@ -411,6 +411,7 @@ Derinimo adresas šešioliktainiu formatu (pvz., 000020):</string>
     <string name="icd_toast_invalid_address">Neteisingas 24 bitų šešioliktainis adresas</string>
     <string name="icd_toast_write_success">✓ ICD vektorius užprogramuotas: %1$s</string>
     <string name="icd_toast_write_error">❌ Nepavyko užprogramuoti ICD vektoriaus</string>
+    <string name="chip_no_compatible_funcion">Mikrovaldiklis %1$s nesuderinamas su šia funkcija</string>
     <string name="programar_todo">Suplanuokite viską</string>
     <string name="programar_solo_rom">Tik programos ROM</string>
     <string name="programar_solo_eeprom">Programuoti tik EEPROM</string>

@@ -411,6 +411,7 @@ Adreça de depuració en hex (ex. 000020):</string>
     <string name="icd_toast_invalid_address">Adreça hexadecimal de 24 bits no vàlida</string>
     <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
     <string name="icd_toast_write_error">❌ Ha fallat la programació del vector ICD</string>
+    <string name="chip_no_compatible_funcion">El microcontrolador %1$s no és compatible amb aquesta funció</string>
     <string name="programar_todo">Programar Tot</string>
     <string name="programar_solo_rom">Programar només ROM</string>
     <string name="programar_solo_eeprom">Programar només EEPROM</string>

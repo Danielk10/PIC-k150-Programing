@@ -411,6 +411,7 @@ Adres debugowania w hex (np. 000020):</string>
     <string name="icd_toast_invalid_address">Nieprawidłowy 24-bitowy adres szesnastkowy</string>
     <string name="icd_toast_write_success">✓ Zaprogramowano wektor ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ Nie udało się zaprogramować wektora ICD</string>
+    <string name="chip_no_compatible_funcion">Mikrokontroler %1$s nie jest kompatybilny z tą funkcją</string>
     <string name="programar_todo">Programuj wszystko</string>
     <string name="programar_solo_rom">Programuj tylko ROM</string>
     <string name="programar_solo_eeprom">Programuj tylko EEPROM</string>

@@ -411,6 +411,7 @@ Vistfang villuleitar í hex (t.d. 000020):</string>
     <string name="icd_toast_invalid_address">Ógilt 24 bita sextándakerfisvistfang</string>
     <string name="icd_toast_write_success">✓ ICD vigur forritaður: %1$s</string>
     <string name="icd_toast_write_error">❌ Tókst ekki að forrita ICD vigur</string>
+    <string name="chip_no_compatible_funcion">Örgjörvi %1$s er ekki samhæfður þessari aðgerð</string>
     <string name="programar_todo">Skipuleggðu allt</string>
     <string name="programar_solo_rom">Aðeins forrit ROM</string>
     <string name="programar_solo_eeprom">Forrit aðeins EEPROM</string>

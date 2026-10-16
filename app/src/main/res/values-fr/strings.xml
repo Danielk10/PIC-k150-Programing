@@ -411,6 +411,7 @@ Adresse de débogage en hex (ex. 000020) :</string>
     <string name="icd_toast_invalid_address">Adresse hexadécimale 24 bits non valide</string>
     <string name="icd_toast_write_success">✓ Vecteur ICD programmé : %1$s</string>
     <string name="icd_toast_write_error">❌ Échec de la programmation du vecteur ICD</string>
+    <string name="chip_no_compatible_funcion">Le microcontrôleur %1$s n\'est pas compatible avec cette fonction</string>
     <string name="programar_todo">Planifiez tout</string>
     <string name="programar_solo_rom">ROM du programme uniquement</string>
     <string name="programar_solo_eeprom">Programmer l\'EEPROM uniquement</string>

@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">無効な24ビット16進アドレスです</string>
     <string name="icd_toast_write_success">✓ ICDベクター書き込み完了: %1$s</string>
     <string name="icd_toast_write_error">❌ ICDベクターの書き込みに失敗しました</string>
+    <string name="chip_no_compatible_funcion">マイコン %1$s はこの機能に対応していません</string>
     <string name="programar_todo">すべてをスケジュールする</string>
     <string name="programar_solo_rom">プログラムROMのみ</string>
     <string name="programar_solo_eeprom">プログラムEEPROMのみ</string>

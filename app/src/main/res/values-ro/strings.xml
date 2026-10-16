@@ -411,6 +411,7 @@ Adresă de depanare în hex (de ex. 000020):</string>
     <string name="icd_toast_invalid_address">Adresă hexazecimală pe 24 biți nevalidă</string>
     <string name="icd_toast_write_success">✓ Vector ICD programat: %1$s</string>
     <string name="icd_toast_write_error">❌ Eșec la programarea vectorului ICD</string>
+    <string name="chip_no_compatible_funcion">Microcontrolerul %1$s nu este compatibil cu această funcție</string>
     <string name="programar_todo">Programează totul</string>
     <string name="programar_solo_rom">Numai programul ROM</string>
     <string name="programar_solo_eeprom">Program doar EEPROM</string>

@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">Μη έγκυρη δεκαεξαδική διεύθυνση 24-bit</string>
     <string name="icd_toast_write_success">✓ Το διάνυσμα ICD προγραμματίστηκε: %1$s</string>
     <string name="icd_toast_write_error">❌ Αποτυχία προγραμματισμού διανύσματος ICD</string>
+    <string name="chip_no_compatible_funcion">Ο μικροελεγκτής %1$s δεν είναι συμβατός με αυτή τη λειτουργία</string>
     <string name="programar_todo">Προγραμματίστε τα πάντα</string>
     <string name="programar_solo_rom">Μόνο ROM προγράμματος</string>
     <string name="programar_solo_eeprom">Πρόγραμμα μόνο EEPROM</string>

@@ -411,6 +411,7 @@ Foutopsporingsadres in hex (bijv. 000020):</string>
     <string name="icd_toast_invalid_address">Ongeldig 24-bits hexadecimaal adres</string>
     <string name="icd_toast_write_success">✓ ICD-vector geprogrammeerd: %1$s</string>
     <string name="icd_toast_write_error">❌ Programmeren van ICD-vector mislukt</string>
+    <string name="chip_no_compatible_funcion">Microcontroller %1$s is niet compatibel met deze functie</string>
     <string name="programar_todo">Programma alles</string>
     <string name="programar_solo_rom">Alleen programma-ROM</string>
     <string name="programar_solo_eeprom">Alleen programma-EEPROM</string>

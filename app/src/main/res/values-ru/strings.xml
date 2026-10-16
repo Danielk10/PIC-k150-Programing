@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">Неверный 24-битный шестнадцатеричный адрес</string>
     <string name="icd_toast_write_success">✓ Вектор ICD запрограммирован: %1$s</string>
     <string name="icd_toast_write_error">❌ Не удалось запрограммировать вектор ICD</string>
+    <string name="chip_no_compatible_funcion">Микроконтроллер %1$s не совместим с этой функцией</string>
     <string name="programar_todo">Программа Все</string>
     <string name="programar_solo_rom">Программа только ROM</string>
     <string name="programar_solo_eeprom">Программа только EEPROM</string>

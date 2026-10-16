@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">無效的 24 位元十六進位位址</string>
     <string name="icd_toast_write_success">✓ 已燒錄 ICD 向量：%1$s</string>
     <string name="icd_toast_write_error">❌ 燒錄 ICD 向量失敗</string>
+    <string name="chip_no_compatible_funcion">微控制器 %1$s 與此功能不相容</string>
     <string name="programar_todo">安排一切</string>
     <string name="programar_solo_rom">僅程式 ROM</string>
     <string name="programar_solo_eeprom">僅對 EEPROM 進行編程</string>

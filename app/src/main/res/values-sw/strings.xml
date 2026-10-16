@@ -411,6 +411,7 @@ Anwani ya utatuzi kwa hex (mfano 000020):</string>
     <string name="icd_toast_invalid_address">Anwani batili ya hexadecimal ya biti 24</string>
     <string name="icd_toast_write_success">✓ Vekta ya ICD imeratibiwa: %1$s</string>
     <string name="icd_toast_write_error">❌ Imeshindwa kuratibu vekta ya ICD</string>
+    <string name="chip_no_compatible_funcion">Kidhibiti kidogo %1$s hakiendani na kitendakazi hiki</string>
     <string name="programar_todo">Panga Kila Kitu</string>
     <string name="programar_solo_rom">Programu ya ROM pekee</string>
     <string name="programar_solo_eeprom">Mpango wa EEPROM pekee</string>

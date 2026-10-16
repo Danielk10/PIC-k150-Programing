@@ -411,6 +411,7 @@ Vector hiện tại: %1$s</string>
     <string name="icd_toast_invalid_address">Địa chỉ thập lục phân 24 bit không hợp lệ</string>
     <string name="icd_toast_write_success">✓ Đã nạp vector ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ Nạp vector ICD thất bại</string>
+    <string name="chip_no_compatible_funcion">Vi điều khiển %1$s không tương thích với chức năng này</string>
     <string name="programar_todo">Tất cả chương trình</string>
     <string name="programar_solo_rom">Chỉ ROM chương trình</string>
     <string name="programar_solo_eeprom">Chỉ chương trình EEPROM</string>

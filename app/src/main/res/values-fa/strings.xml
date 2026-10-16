@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">آدرس هگزادسیمال ۲۴ بیتی نامعتبر است</string>
     <string name="icd_toast_write_success">✓ بردار ICD برنامه‌ریزی شد: %1$s</string>
     <string name="icd_toast_write_error">❌ برنامه‌ریزی بردار ICD ناموفق بود</string>
+    <string name="chip_no_compatible_funcion">میکروکنترلر %1$s با این عملکرد سازگار نیست</string>
     <string name="programar_todo">همه چیز را برنامه ریزی کنید</string>
     <string name="programar_solo_rom">فقط رام برنامه</string>
     <string name="programar_solo_eeprom">فقط EEPROM را برنامه ریزی کنید</string>

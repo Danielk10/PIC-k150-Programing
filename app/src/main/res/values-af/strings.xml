@@ -411,6 +411,7 @@ Ontfoutingsadres in heks (bv. 000020):</string>
     <string name="icd_toast_invalid_address">Ongeldige 24-bis heksadesimale adres</string>
     <string name="icd_toast_write_success">✓ ICD-vektor geprogrammeer: %1$s</string>
     <string name="icd_toast_write_error">❌ Kon nie ICD-vektor programmeer nie</string>
+    <string name="chip_no_compatible_funcion">Mikrobeheerder %1$s is nie versoenbaar met hierdie funksie nie</string>
     <string name="programar_todo">Skeduleer alles</string>
     <string name="programar_solo_rom">Program slegs ROM</string>
     <string name="programar_solo_eeprom">Program slegs EEPROM</string>

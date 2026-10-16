@@ -1444,7 +1444,7 @@ public class MainActivity extends AppCompatActivity
                                     if (res.requiereCalibracion) {
                                         if (res.restauracionExitosa && res.osccalPreservado != null) {
                                             String calHex = CalibracionManager.formatearCalibracionHex(
-                                                    res.osccalPreservado, CalibracionManager.isFamilia10F(currentChip));
+                                                    res.osccalPreservado, currentChip);
                                             appendLog(getString(R.string.log_osccal_restored, calHex));
                                         } else if (res.osccalPreservado != null) {
                                             appendLog(getString(R.string.log_osccal_restore_failed_warning));

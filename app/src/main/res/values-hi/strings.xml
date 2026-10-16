@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">अमान्य 24-बिट हेक्साडेसिमल पता</string>
     <string name="icd_toast_write_success">✓ ICD वेक्टर प्रोग्राम किया गया: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD वेक्टर प्रोग्राम करने में विफल</string>
+    <string name="chip_no_compatible_funcion">माइक्रोकंट्रोलर %1$s इस फ़ंक्शन के साथ संगत नहीं है</string>
     <string name="programar_todo">सब कुछ शेड्यूल करें</string>
     <string name="programar_solo_rom">केवल प्रोग्राम ROM</string>
     <string name="programar_solo_eeprom">प्रोग्राम केवल EEPROM</string>

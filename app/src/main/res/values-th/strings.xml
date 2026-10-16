@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">ที่อยู่เลขฐานสิบหก 24 บิตไม่ถูกต้อง</string>
     <string name="icd_toast_write_success">✓ โปรแกรมเวกเตอร์ ICD: %1$s</string>
     <string name="icd_toast_write_error">❌ ล้มเหลวในการโปรแกรมเวกเตอร์ ICD</string>
+    <string name="chip_no_compatible_funcion">ไมโครคอนโทรลเลอร์ %1$s ไม่รองรับฟังก์ชันนี้</string>
     <string name="programar_todo">โปรแกรมทั้งหมด</string>
     <string name="programar_solo_rom">Program ROM เท่านั้น</string>
     <string name="programar_solo_eeprom">โปรแกรม EEPROM เท่านั้น</string>

@@ -411,6 +411,7 @@ Indirizzo di debug in hex (es. 000020):</string>
     <string name="icd_toast_invalid_address">Indirizzo esadecimale a 24 bit non valido</string>
     <string name="icd_toast_write_success">✓ Vettore ICD programmato: %1$s</string>
     <string name="icd_toast_write_error">❌ Impossibile programmare il vettore ICD</string>
+    <string name="chip_no_compatible_funcion">Il microcontrollore %1$s non è compatibile con questa funzione</string>
     <string name="programar_todo">Pianifica tutto</string>
     <string name="programar_solo_rom">Solo ROM del programma</string>
     <string name="programar_solo_eeprom">Programmare solo EEPROM</string>

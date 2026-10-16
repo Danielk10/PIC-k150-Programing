@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">Жарамсыз 24 биттік он алтылық мекенжай</string>
     <string name="icd_toast_write_success">✓ ICD векторы бағдарламаланды: %1$s</string>
     <string name="icd_toast_write_error">❌ ICD векторын бағдарламалау сәтсіз аяқталды</string>
+    <string name="chip_no_compatible_funcion">Микроконтроллер %1$s бұл функциямен үйлесімді емес</string>
     <string name="programar_todo">Барлығын жоспарлаңыз</string>
     <string name="programar_solo_rom">Тек бағдарлама ROM</string>
     <string name="programar_solo_eeprom">Тек EEPROM бағдарламасы</string>

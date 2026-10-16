@@ -20,6 +20,8 @@ import com.diamon.chip.ChipPic;
 import com.diamon.pic.R;
 import com.diamon.protocolo.ProtocoloP18A;
 
+import java.util.Locale;
+
 
 /**
  * Gestor integral de Calibración de Oscilador (OSCCAL), arquitectura PIC10F
@@ -131,9 +133,26 @@ public class CalibracionManager {
                 || nombre.startsWith("12F508") || nombre.startsWith("12F509");
     }
 
-    // -------------------------------------------------------------------------
-    // Parseo y Formateo Hexadecimal
-    // -------------------------------------------------------------------------
+    /**
+     * Determina si un microcontrolador es compatible con el Vector de Depuración ICD (24 bits).
+     * Los microcontroladores de 12 bits (PIC10F y familia Baseline) no cuentan con soporte
+     * para vectores de depuración ICD in-circuit.
+     */
+    public static boolean isCompatibleConIcd(ChipPic chip) {
+        if (chip == null) {
+            return false;
+        }
+        if (isFamilia10F(chip)) {
+            return false;
+        }
+        try {
+            if (chip.getTipoDeNucleoBit() == 12) {
+                return false;
+            }
+        } catch (Exception ignored) {
+        }
+        return true;
+    }
 
     /**
      * Parsea un string hexadecimal de 4 caracteres proveniente del comando de lectura de config
@@ -204,10 +223,45 @@ public class CalibracionManager {
             return "No disponible";
         }
         if (es10F) {
-            return String.format("0x%04X", valor & 0x0FFF);
+            return String.format(Locale.US, "0x%04X", valor & 0x0FFF);
         }
+        int masked = valor & 0x3FFF;
         int lowByte = valor & 0xFF;
-        return String.format("0x%04X - RETLW 0x%02X", valor & 0x3FFF, lowByte);
+        int opcode = (masked >> 8) & 0xFF;
+        if (opcode == 0x34) {
+            return String.format(Locale.US, "0x%04X - RETLW 0x%02X", masked, lowByte);
+        }
+        return String.format(Locale.US, "0x%04X", masked);
+    }
+
+    /**
+     * Formatea un valor de calibración según la arquitectura del chip (12, 14 o 16 bits).
+     */
+    public static String formatearCalibracionHex(int valor, ChipPic chip) {
+        if (valor < 0) {
+            return "No disponible";
+        }
+        boolean es10F = isFamilia10F(chip);
+        int coreBits = 14;
+        if (chip != null) {
+            try {
+                coreBits = chip.getTipoDeNucleoBit();
+            } catch (Exception ignored) {
+            }
+        }
+        if (es10F || coreBits == 12) {
+            return String.format(Locale.US, "0x%04X", valor & 0x0FFF);
+        } else if (coreBits == 16) {
+            return String.format(Locale.US, "0x%04X", valor & 0xFFFF);
+        } else {
+            int masked = valor & 0x3FFF;
+            int lowByte = valor & 0xFF;
+            int opcode = (masked >> 8) & 0xFF;
+            if (opcode == 0x34) {
+                return String.format(Locale.US, "0x%04X - RETLW 0x%02X", masked, lowByte);
+            }
+            return String.format(Locale.US, "0x%04X", masked);
+        }
     }
 
     /**
@@ -217,7 +271,7 @@ public class CalibracionManager {
         if (address < 0) {
             return "0x000000";
         }
-        return String.format("0x%06X", address & 0xFFFFFF);
+        return String.format(Locale.US, "0x%06X", address & 0xFFFFFF);
     }
 
     // -------------------------------------------------------------------------
@@ -226,6 +280,7 @@ public class CalibracionManager {
 
     /**
      * Lee la calibración actual del microcontrolador y la almacena en el respaldo de memoria.
+     * Enmascara el valor según los bits de la arquitectura del núcleo (12, 14 o 16 bits).
      *
      * @param chip Microcontrolador objetivo
      * @return Valor numérico de calibración leído o null en caso de error
@@ -239,7 +294,21 @@ public class CalibracionManager {
             return null;
         }
         int calVal = parsearCalibracionHex(calHex);
-        if (calVal > 0) {
+        if (calVal >= 0) {
+            int coreBits = 14;
+            if (chip != null) {
+                try {
+                    coreBits = chip.getTipoDeNucleoBit();
+                } catch (Exception ignored) {
+                }
+            }
+            if (coreBits == 12 || isFamilia10F(chip)) {
+                calVal &= 0x0FFF;
+            } else if (coreBits == 14) {
+                calVal &= 0x3FFF;
+            } else {
+                calVal &= 0xFFFF;
+            }
             this.ultimoOsccalPreservado = calVal;
             return calVal;
         }
@@ -360,7 +429,7 @@ public class CalibracionManager {
         // Estado del valor en silicio
         TextView tvValorActual = new TextView(activity);
         String valStr = (ultimoOsccalPreservado != null) ?
-                formatearCalibracionHex(ultimoOsccalPreservado, es10F) : activity.getString(R.string.cal_not_read_yet);
+                formatearCalibracionHex(ultimoOsccalPreservado, chip) : activity.getString(R.string.cal_not_read_yet);
         tvValorActual.setText(activity.getString(R.string.cal_silicon_value, valStr));
         tvValorActual.setTextColor(Color.WHITE);
         tvValorActual.setTextSize(15);
@@ -418,6 +487,10 @@ public class CalibracionManager {
                 .create();
 
         btnLeer.setOnClickListener(v -> {
+            if (!requiereCalibracion(chip)) {
+                Toast.makeText(activity, activity.getString(R.string.chip_no_compatible_funcion, chipNombre), Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (protocolo == null) {
                 Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
@@ -426,9 +499,9 @@ public class CalibracionManager {
                 Integer cal = leerYPreservarCalibracion(chip);
                 activity.runOnUiThread(() -> {
                     if (cal != null) {
-                        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, formatearCalibracionHex(cal, es10F)));
+                        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, formatearCalibracionHex(cal, chip)));
                         etValorHex.setText(String.format(es10F ? "%03X" : "%04X", cal));
-                        Toast.makeText(activity, activity.getString(R.string.cal_toast_read_success, formatearCalibracionHex(cal, es10F)), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.cal_toast_read_success, formatearCalibracionHex(cal, chip)), Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(activity, activity.getString(R.string.cal_toast_read_error), Toast.LENGTH_SHORT).show();
                     }
@@ -437,22 +510,42 @@ public class CalibracionManager {
         });
 
         btnGrabar.setOnClickListener(v -> {
+            if (!requiereCalibracion(chip)) {
+                Toast.makeText(activity, activity.getString(R.string.chip_no_compatible_funcion, chipNombre), Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (protocolo == null) {
                 Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
             }
             String input = etValorHex.getText().toString().trim();
-            int valorAGrabar = parsearCalibracionHex(input.length() == 4 ? input : ("0" + input));
-            if (valorAGrabar < 0) {
-                try {
-                    valorAGrabar = Integer.parseInt(input, 16);
-                } catch (NumberFormatException e) {
-                    valorAGrabar = -1;
-                }
+            if (input.toLowerCase().startsWith("0x")) {
+                input = input.substring(2);
+            }
+            int valorAGrabar = -1;
+            try {
+                valorAGrabar = Integer.parseInt(input, 16);
+            } catch (NumberFormatException e) {
+                valorAGrabar = -1;
             }
             if (valorAGrabar < 0) {
                 Toast.makeText(activity, activity.getString(R.string.cal_toast_invalid_hex), Toast.LENGTH_SHORT).show();
                 return;
+            }
+
+            int coreBits = 14;
+            if (chip != null) {
+                try {
+                    coreBits = chip.getTipoDeNucleoBit();
+                } catch (Exception ignored) {
+                }
+            }
+            if (coreBits == 12 || isFamilia10F(chip)) {
+                valorAGrabar &= 0x0FFF;
+            } else if (coreBits == 14) {
+                valorAGrabar &= 0x3FFF;
+            } else {
+                valorAGrabar &= 0xFFFF;
             }
 
             final int valorFinal = valorAGrabar;
@@ -461,7 +554,7 @@ public class CalibracionManager {
                 activity.runOnUiThread(() -> {
                     if (ok) {
                         ultimoOsccalPreservado = valorFinal;
-                        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, formatearCalibracionHex(valorFinal, es10F)));
+                        tvValorActual.setText(activity.getString(R.string.cal_silicon_value, formatearCalibracionHex(valorFinal, chip)));
                         Toast.makeText(activity, activity.getString(R.string.cal_toast_write_success), Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(activity, activity.getString(R.string.cal_toast_write_error), Toast.LENGTH_SHORT).show();
@@ -480,6 +573,8 @@ public class CalibracionManager {
         if (activity == null) {
             return;
         }
+
+        final String chipNombre = (chip != null) ? chip.getNombreDelPic() : "PIC";
 
         ScrollView scrollView = new ScrollView(activity);
         LinearLayout layout = new LinearLayout(activity);
@@ -552,6 +647,10 @@ public class CalibracionManager {
                 .create();
 
         btnLeer.setOnClickListener(v -> {
+            if (!isCompatibleConIcd(chip)) {
+                Toast.makeText(activity, activity.getString(R.string.chip_no_compatible_funcion, chipNombre), Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (protocolo == null) {
                 Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;
@@ -577,6 +676,10 @@ public class CalibracionManager {
         });
 
         btnGrabar.setOnClickListener(v -> {
+            if (!isCompatibleConIcd(chip)) {
+                Toast.makeText(activity, activity.getString(R.string.chip_no_compatible_funcion, chipNombre), Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (protocolo == null) {
                 Toast.makeText(activity, activity.getString(R.string.diag_programmer_not_connected), Toast.LENGTH_SHORT).show();
                 return;

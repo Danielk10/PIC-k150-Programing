@@ -411,6 +411,7 @@ Felsökningsadress i hex (t.ex. 000020):</string>
     <string name="icd_toast_invalid_address">Ogiltig 24-bitars hexadecimal adress</string>
     <string name="icd_toast_write_success">✓ ICD-vektor programmerad: %1$s</string>
     <string name="icd_toast_write_error">❌ Misslyckades med att programmera ICD-vektor</string>
+    <string name="chip_no_compatible_funcion">Mikrokontroller %1$s är inte kompatibel med denna funktion</string>
     <string name="programar_todo">Schemalägg allt</string>
     <string name="programar_solo_rom">Endast program-ROM</string>
     <string name="programar_solo_eeprom">Programmera endast EEPROM</string>

@@ -411,6 +411,7 @@ Endereço de depuração em hex (ex. 000020):</string>
     <string name="icd_toast_invalid_address">Endereço hexadecimal de 24 bits inválido</string>
     <string name="icd_toast_write_success">✓ Vetor ICD programado: %1$s</string>
     <string name="icd_toast_write_error">❌ Falha ao programar vetor ICD</string>
+    <string name="chip_no_compatible_funcion">O microcontrolador %1$s não é compatível com esta função</string>
     <string name="programar_todo">Programar todos</string>
     <string name="programar_solo_rom">Apenas programa ROM</string>
     <string name="programar_solo_eeprom">Somente programa EEPROM</string>

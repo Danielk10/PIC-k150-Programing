@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">ልክ ያልሆነ 24-ቢት ሄክሳዴሲማል አድራሻ</string>
     <string name="icd_toast_write_success">✓ የICD ቬክተር ተዘጋጅቷል፦ %1$s</string>
     <string name="icd_toast_write_error">❌ የICD ቬክተር ማዘጋጀት አልተሳካም</string>
+    <string name="chip_no_compatible_funcion">ማይክሮኮንትሮለር %1$s ከዚህ ተግባር ጋር ተኳሃኝ አይደለም</string>
     <string name="programar_todo">ሁሉንም ነገር ያቅዱ</string>
     <string name="programar_solo_rom">ፕሮግራም ROM ብቻ</string>
     <string name="programar_solo_eeprom">ፕሮግራም EEPROM ብቻ</string>

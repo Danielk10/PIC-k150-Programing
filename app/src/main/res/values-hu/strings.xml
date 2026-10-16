@@ -411,6 +411,7 @@ Hibakeresési cím hexadecimálisan (pl. 000020):</string>
     <string name="icd_toast_invalid_address">Érvénytelen 24 bites hexadecimális cím</string>
     <string name="icd_toast_write_success">✓ ICD vektor beprogramozva: %1$s</string>
     <string name="icd_toast_write_error">❌ Nem sikerült az ICD vektor programozása</string>
+    <string name="chip_no_compatible_funcion">A(z) %1$s mikrokontroller nem kompatibilis ezzel a funkcióval</string>
     <string name="programar_todo">Ütemezze be mindent</string>
     <string name="programar_solo_rom">Csak program ROM</string>
     <string name="programar_solo_eeprom">Csak az EEPROM programozása</string>

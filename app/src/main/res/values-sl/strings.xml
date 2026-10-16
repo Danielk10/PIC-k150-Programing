@@ -411,6 +411,7 @@ Naslov za razhroščevanje v hex (npr. 000020):</string>
     <string name="icd_toast_invalid_address">Neveljaven 24-bitni šestnajstiški naslov</string>
     <string name="icd_toast_write_success">✓ Vektor ICD sprogramiran: %1$s</string>
     <string name="icd_toast_write_error">❌ Programiranje vektorja ICD ni uspelo</string>
+    <string name="chip_no_compatible_funcion">Mikrokrmilnik %1$s ni združljiv s to funkcijo</string>
     <string name="programar_todo">Program Vse</string>
     <string name="programar_solo_rom">Program ROM samo</string>
     <string name="programar_solo_eeprom">Program EEPROM samo</string>

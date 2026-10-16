@@ -411,6 +411,7 @@ Alamat nyahpepijat dalam hex (cth. 000020):</string>
     <string name="icd_toast_invalid_address">Alamat heksadesimal 24-bit tidak sah</string>
     <string name="icd_toast_write_success">✓ Vektor ICD diprogramkan: %1$s</string>
     <string name="icd_toast_write_error">❌ Gagal memprogram vektor ICD</string>
+    <string name="chip_no_compatible_funcion">Mikropengawal %1$s tidak serasi dengan fungsi ini</string>
     <string name="programar_todo">Jadualkan Semuanya</string>
     <string name="programar_solo_rom">ROM program sahaja</string>
     <string name="programar_solo_eeprom">Program EEPROM sahaja</string>

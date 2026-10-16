@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">Неважећа 24-битна хексадецимална адреса</string>
     <string name="icd_toast_write_success">✓ ICD вектор програмиран: %1$s</string>
     <string name="icd_toast_write_error">❌ Програмирање ICD вектора није успело</string>
+    <string name="chip_no_compatible_funcion">Микроконтролер %1$s није компатибилан са овом функцијом</string>
     <string name="programar_todo">Закажите све</string>
     <string name="programar_solo_rom">Само РОМ програма</string>
     <string name="programar_solo_eeprom">Програмирајте само ЕЕПРОМ</string>

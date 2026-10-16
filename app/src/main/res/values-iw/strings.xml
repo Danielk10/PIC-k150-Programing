@@ -411,6 +411,7 @@
     <string name="icd_toast_invalid_address">כתובת הקסדצימלית של 24 סיביות לא חוקית</string>
     <string name="icd_toast_write_success">✓ וקטור ICD תוכנת: %1$s</string>
     <string name="icd_toast_write_error">❌ תכנות וקטור ICD נכשל</string>
+    <string name="chip_no_compatible_funcion">המיקرو-בקר %1$s אינו תואם לפונקציה זו</string>
     <string name="programar_todo">תזמן הכל</string>
     <string name="programar_solo_rom">תוכנית ROM בלבד</string>
     <string name="programar_solo_eeprom">תוכנית EEPROM בלבד</string>
