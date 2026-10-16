@@ -1000,16 +1000,6 @@ public class MainActivity extends AppCompatActivity
                             memoryDisplayManager.refreshRow(false, addr, lastReadEepromData, eepromSize);
                         }
                     }
-                    if (updatedFirmware != null && !updatedFirmware.isEmpty()) {
-                        firmware = updatedFirmware;
-                        originalLoadedFirmware = updatedFirmware;
-                        try {
-                            datosPicProcesados = new DatosPicProcesados(MainActivity.this, updatedFirmware, currentChip);
-                            datosPicProcesados.iniciarProcesamientoDeDatos();
-                            originalLoadedDatosPic = datosPicProcesados;
-                        } catch (Exception ignored) {
-                        }
-                    }
                     appendLog(getString(R.string.log_memoria_editada,
                             isRomEdited ? "ROM" : "EEPROM", addr, oldVal, newVal));
                 }
