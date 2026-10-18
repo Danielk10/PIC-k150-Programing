@@ -53,6 +53,34 @@ public class GestorPantalla {
     }
 
     /**
+     * Obtiene los insets de las barras del sistema de forma segura con protección retrocompatible.
+     * En algunos dispositivos con Android 14+, llamar directamente a
+     * WindowInsetsCompat.Type.systemBars() puede lanzar NoSuchMethodError (systemOverlays).
+     *
+     * @param windowInsets Los insets de ventana
+     * @return Los insets calculados o Insets.NONE si ocurre un error
+     */
+    @SuppressWarnings("deprecation")
+    private Insets obtenerInsetsSeguros(WindowInsetsCompat windowInsets) {
+        if (windowInsets == null) {
+            return Insets.NONE;
+        }
+        try {
+            return windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+        } catch (Throwable t) {
+            try {
+                return Insets.of(
+                        windowInsets.getSystemWindowInsetLeft(),
+                        windowInsets.getSystemWindowInsetTop(),
+                        windowInsets.getSystemWindowInsetRight(),
+                        windowInsets.getSystemWindowInsetBottom());
+            } catch (Throwable ignored) {
+                return Insets.NONE;
+            }
+        }
+    }
+
+    /**
      * Aplica window insets a una vista específica.
      * Esto asegura que el contenido no quede oculto por las barras del sistema.
      * 
@@ -60,7 +88,7 @@ public class GestorPantalla {
      */
     public void aplicarWindowInsets(View view) {
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
-            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets insets = obtenerInsetsSeguros(windowInsets);
 
             // Aplicar padding para que el contenido no quede debajo de las barras del
             // sistema
@@ -78,7 +106,7 @@ public class GestorPantalla {
      */
     public void aplicarWindowInsetsInferior(View view) {
         ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
-            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets insets = obtenerInsetsSeguros(windowInsets);
 
             // Solo aplicar padding inferior
             v.setPadding(
@@ -98,12 +126,16 @@ public class GestorPantalla {
         WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
 
         if (controller != null) {
-            // Ocultar barras del sistema (navegación y estado)
-            controller.hide(WindowInsetsCompat.Type.systemBars());
+            try {
+                // Ocultar barras del sistema (navegación y estado)
+                controller.hide(WindowInsetsCompat.Type.systemBars());
 
-            // Configurar comportamiento inmersivo
-            controller.setSystemBarsBehavior(
-                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+                // Configurar comportamiento inmersivo
+                controller.setSystemBarsBehavior(
+                        WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+            } catch (Throwable ignored) {
+                // Protección en firmwares donde WindowInsets.Type.systemOverlays() no existe
+            }
         }
     }
 

@@ -23,8 +23,8 @@ android {
         applicationId "com.diamon.pic"
         minSdk 24
         targetSdk 37
-        versionCode 58
-        versionName "2.9.4"
+        versionCode 59
+        versionName "2.9.5"
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -99,8 +99,6 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
     implementation(libs.usb.serial.for1.android)
-    implementation libs.activity
-    def appCenterSdkVersion = '5.0.6'
     implementation libs.appcenter.analytics
     implementation libs.appcenter.crashes
     implementation libs.play.services.ads

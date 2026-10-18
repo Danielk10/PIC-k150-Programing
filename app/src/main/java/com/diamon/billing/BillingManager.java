@@ -1,8 +1,10 @@
 package com.diamon.billing;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -63,6 +65,10 @@ public class BillingManager implements PurchasesUpdatedListener {
     private ProductDetails removeAdsDetails;
     private boolean isServiceConnected = false;
     private boolean isAdsRemovedCached = false;
+
+    /** Ventana anti-doble-toque para evitar lanzar dos ProxyBillingActivity seguidas. */
+    private static final long LAUNCH_DEBOUNCE_MS = 2000L;
+    private long lastLaunchTimestamp = 0L;
 
     public BillingManager(@NonNull Context context, @Nullable BillingListener listener) {
         this(context, listener, null);
@@ -188,17 +194,45 @@ public class BillingManager implements PurchasesUpdatedListener {
     /**
      * Lanza la hoja modal de compra de Google Play para el producto "remove_ads_pro".
      *
+     * <p>Incluye salvaguardas contra el crash interno de Google Play Billing
+     * {@code ProxyBillingActivity.onCreate -> PendingIntent.getIntentSender() on null}
+     * (Crashlytics 8101c07c), que ocurre cuando Google Play Services no entrega un
+     * PendingIntent válido: dispositivos de prueba automatizada (Firebase Test Lab /
+     * informe previo al lanzamiento de Play Console), cliente desconectado, o lanzamientos
+     * duplicados por doble toque.</p>
+     *
      * @param activity Actividad desde donde se inicia la compra.
      * @return true si el flujo se lanzó exitosamente; false de lo contrario.
      */
     public boolean launchPurchaseFlow(@NonNull Activity activity) {
+        if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+            Log.w(TAG, "Activity not valid. Cannot launch purchase flow.");
+            return false;
+        }
+
+        if (isRunningInTestLab(activity)) {
+            notifyError("Purchase flow disabled on automated test devices.");
+            return false;
+        }
+
         if (removeAdsDetails == null) {
             String errorMsg = "Product details not available. Cannot launch purchase flow.";
             Log.w(TAG, errorMsg);
             queryProducts();
-            if (listener != null) {
-                listener.onBillingError(errorMsg);
-            }
+            notifyError(errorMsg);
+            return false;
+        }
+
+        if (!billingClient.isReady()) {
+            isServiceConnected = false;
+            startConnection();
+            notifyError("Billing client not ready. Reconnecting...");
+            return false;
+        }
+
+        long now = System.currentTimeMillis();
+        if (now - lastLaunchTimestamp < LAUNCH_DEBOUNCE_MS) {
+            Log.w(TAG, "Purchase flow already launched recently. Ignoring duplicate request.");
             return false;
         }
 
@@ -211,18 +245,58 @@ public class BillingManager implements PurchasesUpdatedListener {
                 .setProductDetailsParamsList(Collections.singletonList(productDetailsParams))
                 .build();
 
-        BillingResult result = billingClient.launchBillingFlow(activity, billingFlowParams);
-        boolean success = result.getResponseCode() == BillingClient.BillingResponseCode.OK;
-        if (!success && listener != null) {
-            listener.onBillingError("Launch billing flow failed: " + result.getDebugMessage());
+        BillingResult result;
+        try {
+            result = billingClient.launchBillingFlow(activity, billingFlowParams);
+        } catch (RuntimeException e) {
+            Log.e(TAG, "launchBillingFlow threw an exception", e);
+            notifyError("Launch billing flow failed: " + e.getMessage());
+            return false;
+        }
+
+        boolean success = result != null
+                && result.getResponseCode() == BillingClient.BillingResponseCode.OK;
+        if (success) {
+            lastLaunchTimestamp = now;
+        } else {
+            notifyError("Launch billing flow failed: "
+                    + (result != null ? result.getDebugMessage() : "null result"));
         }
         return success;
+    }
+
+    /**
+     * Detecta si la app se ejecuta en Firebase Test Lab (usado también por el
+     * informe previo al lanzamiento de Google Play Console). En esos dispositivos
+     * Google Play Services no entrega un PendingIntent de compra válido y
+     * {@code ProxyBillingActivity} falla con NullPointerException.
+     */
+    @VisibleForTesting
+    static boolean isRunningInTestLab(@NonNull Context context) {
+        try {
+            ContentResolver resolver = context.getContentResolver();
+            if (resolver == null) {
+                return false;
+            }
+            return "true".equals(Settings.System.getString(resolver, "firebase.test.lab"));
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    private void notifyError(@NonNull String errorMsg) {
+        Log.w(TAG, errorMsg);
+        if (listener != null) {
+            listener.onBillingError(errorMsg);
+        }
     }
 
     @Override
     public void onPurchasesUpdated(@NonNull BillingResult billingResult,
                                    @Nullable List<Purchase> purchases) {
         int responseCode = billingResult.getResponseCode();
+        // El flujo anterior terminó (éxito, cancelación o error): permitir un nuevo intento.
+        lastLaunchTimestamp = 0L;
 
         if (responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
             for (Purchase purchase : purchases) {

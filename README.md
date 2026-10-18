@@ -6,7 +6,7 @@
 
 [![Get it on Google Play](https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg)](https://play.google.com/store/apps/details?id=com.diamon.pic)
 
-![Version](https://img.shields.io/badge/version-2.9.3-blue.svg)
+![Version](https://img.shields.io/badge/version-2.9.5-blue.svg)
 ![API Level](https://img.shields.io/badge/API-24%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange.svg)
 ![Target SDK](https://img.shields.io/badge/Target%20SDK-37-blueviolet.svg)
@@ -356,7 +356,7 @@ PIC-k150-Programing/
 ├── GUIA_PRUEBAS_HARDWARE_REAL_K150.md  # Manual exhaustivo de pruebas en hardware real por ADB y USB-OTG
 ├── GUIA_CONFIGURACION_PLAY_CONSOLE_MONETIZACION.md # Guía de monetización híbrida y Google Play Console
 ├── REPORTE_VALIDACION_HARDWARE_PIC16F628A.md # Certificación técnica y análisis de tramas en PIC16F628A
-├── RELEASE_NOTES_v2.9.2.md             # Notas de lanzamiento vigentes (v2.9.2)
+├── RELEASE_NOTES_v2.9.5.md             # Notas de lanzamiento vigentes (v2.9.5)
 ├── GEMINI.md                           # Guía de desarrollo, compilación y arquitectura para agentes/devs
 ├── LICENSE.txt                         # Licencia de código abierto del proyecto (GPL-3.0)
 └── README.md                           # Documentación general del proyecto (este archivo)

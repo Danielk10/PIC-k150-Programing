@@ -188,6 +188,11 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Reintento Dinámico en UI (`ProAccessDialog`):** Ante retrasos de propagación de Google Play, el diálogo Pro no se cierra prematuramente; reintenta la consulta en segundo plano y muestra un aviso Toast amigable sin interrumpir al usuario.
    * **Permiso Explícito:** Declaración de `com.android.vending.BILLING` en el AndroidManifest.
    * **Sincronización Total y Validación:** Superadas 116/116 pruebas automatizadas con el emulador en C++ (`ejecutar_pruebas_con_emulador.sh cpp`) y publicación directa a Google Play Store (producción) y GitHub Releases.
+31. **Lanzamiento v2.9.5 (versionCode 59, Resolución de Crashlytics #8101c07c en ProxyBillingActivity, Blindaje WindowInsets y Actualización de Librerías):**
+   * **Resolución de Crashlytics `#8101c07c307416da1819dc7553864c1b` (`ProxyBillingActivity.onCreate` NPE):** Se blindó `BillingManager.launchPurchaseFlow()` con detección de dispositivos de prueba automatizada de Google Play / Firebase Test Lab (`isRunningInTestLab`), validación de ciclo de vida de la `Activity` y `billingClient.isReady()` con reconexión automática, filtro anti-doble-toque (`LAUNCH_DEBOUNCE_MS = 2000ms`) y bloque `try-catch (RuntimeException)`.
+   * **Blindaje de `WindowInsets` en `GestorPantalla.java` (Guía C-PIC):** Se incorporó `obtenerInsetsSeguros(WindowInsetsCompat)` con respaldo retrocompatible y captura de `Throwable` para evitar `NoSuchMethodError: WindowInsets.Type.systemOverlays()` en firmwares Android 14+.
+   * **Actualización de Dependencias (`gradle/libs.versions.toml`):** Actualización a las últimas versiones estables: `agp 9.4.1`, `firebaseBom 35.0.2` (`firebase-analytics 24.0.0`, `firebase-firestore 27.0.1`, `firebase-messaging 26.0.0`, `firebase-crashlytics-ndk 21.0.0`), `firebaseCrashlytics 21.0.0` y `playServicesAds 25.5.0`.
+   * **Validación Completa:** 121/121 pruebas automatizadas superadas (incluyendo 23 pruebas en `BillingManagerTest` y 22 pruebas de integración con el emulador K150 en C++).
 
 ---
 
@@ -242,9 +247,9 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 
 ### 📚 Documentación de Referencia y Evidencias
 * **Guía Operativa Exhaustiva:** [`GUIA_PRUEBAS_HARDWARE_REAL_K150.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS_HARDWARE_REAL_K150.md) (manual completo para reproducir las pruebas de hardware sin pantalla física).
-* **Guía de Pruebas con Emulador Virtual:** [`GUIA_PRUEBAS.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS.md) (documentación de las 108 pruebas automatizadas JUnit + Emulador C++/Python).
+* **Guía de Pruebas con Emulador Virtual:** [`GUIA_PRUEBAS.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS.md) (documentación de las 121 pruebas automatizadas JUnit + Emulador C++/Python).
 * **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
 * **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (Evidencias visuales del ciclo completo de validación física: permisos USB, detección en socket con Device ID 0x6810, volcado ROM/EEPROM, diagnóstico de hardware sin desincronización, seguridad de voltajes 13V/5V con Comando 19 y prueba interactiva de sensores ZIF).
-* **Notas de Lanzamiento Vigentes (v2.9.4):** [`RELEASE_NOTES_v2.9.4.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.4.md) (versionCode 58, minSdkVersion 24, blindaje de compras in-app y optimización R8 DEX).
+* **Notas de Lanzamiento Vigentes (v2.9.5):** [`RELEASE_NOTES_v2.9.5.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.5.md) (versionCode 59, resolución de Crashlytics en ProxyBillingActivity, blindaje WindowInsets y actualización de librerías).
 
 

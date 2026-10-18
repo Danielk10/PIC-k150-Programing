@@ -13,6 +13,7 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -293,6 +294,7 @@ public class BillingManagerTest {
         ProductDetails details = mock(ProductDetails.class);
         when(details.zza()).thenReturn("dummy_product_json");
         billingManager.setRemoveAdsDetails(details);
+        when(mockBillingClient.isReady()).thenReturn(true);
 
         BillingResult okResult = mock(BillingResult.class);
         when(okResult.getResponseCode()).thenReturn(BillingClient.BillingResponseCode.OK);
@@ -303,6 +305,71 @@ public class BillingManagerTest {
         assertTrue(launched);
         verify(mockBillingClient).launchBillingFlow(eq(mockActivity), any(BillingFlowParams.class));
         verify(mockListener, never()).onBillingError(anyString());
+    }
+
+    @Test
+    public void launchPurchaseFlow_whenClientNotReady_reconnectsInsteadOfLaunching() {
+        Activity mockActivity = mock(Activity.class);
+        ProductDetails details = mock(ProductDetails.class);
+        billingManager.setRemoveAdsDetails(details);
+        when(mockBillingClient.isReady()).thenReturn(false);
+
+        boolean launched = billingManager.launchPurchaseFlow(mockActivity);
+
+        assertFalse(launched);
+        verify(mockBillingClient, never()).launchBillingFlow(any(), any());
+        verify(mockBillingClient).startConnection(any());
+        verify(mockListener).onBillingError(eq("Billing client not ready. Reconnecting..."));
+    }
+
+    @Test
+    public void launchPurchaseFlow_whenFinishingActivity_doesNotLaunch() {
+        Activity mockActivity = mock(Activity.class);
+        when(mockActivity.isFinishing()).thenReturn(true);
+        billingManager.setRemoveAdsDetails(mock(ProductDetails.class));
+        when(mockBillingClient.isReady()).thenReturn(true);
+
+        assertFalse(billingManager.launchPurchaseFlow(mockActivity));
+        verify(mockBillingClient, never()).launchBillingFlow(any(), any());
+    }
+
+    @Test
+    public void launchPurchaseFlow_doubleTap_launchesOnlyOnce() {
+        Activity mockActivity = mock(Activity.class);
+        ProductDetails details = mock(ProductDetails.class);
+        when(details.zza()).thenReturn("dummy_product_json");
+        billingManager.setRemoveAdsDetails(details);
+        when(mockBillingClient.isReady()).thenReturn(true);
+
+        BillingResult okResult = mock(BillingResult.class);
+        when(okResult.getResponseCode()).thenReturn(BillingClient.BillingResponseCode.OK);
+        when(mockBillingClient.launchBillingFlow(eq(mockActivity), any(BillingFlowParams.class))).thenReturn(okResult);
+
+        assertTrue(billingManager.launchPurchaseFlow(mockActivity));
+        assertFalse(billingManager.launchPurchaseFlow(mockActivity));
+        verify(mockBillingClient, times(1)).launchBillingFlow(eq(mockActivity), any(BillingFlowParams.class));
+
+        // Tras el resultado de Play (p. ej. cancelación) se permite un nuevo intento.
+        BillingResult canceled = mock(BillingResult.class);
+        when(canceled.getResponseCode()).thenReturn(BillingClient.BillingResponseCode.USER_CANCELED);
+        billingManager.onPurchasesUpdated(canceled, null);
+
+        assertTrue(billingManager.launchPurchaseFlow(mockActivity));
+        verify(mockBillingClient, times(2)).launchBillingFlow(eq(mockActivity), any(BillingFlowParams.class));
+    }
+
+    @Test
+    public void launchPurchaseFlow_whenLaunchThrows_returnsFalseWithoutCrashing() {
+        Activity mockActivity = mock(Activity.class);
+        ProductDetails details = mock(ProductDetails.class);
+        when(details.zza()).thenReturn("dummy_product_json");
+        billingManager.setRemoveAdsDetails(details);
+        when(mockBillingClient.isReady()).thenReturn(true);
+        when(mockBillingClient.launchBillingFlow(eq(mockActivity), any(BillingFlowParams.class)))
+                .thenThrow(new NullPointerException("PendingIntent null"));
+
+        assertFalse(billingManager.launchPurchaseFlow(mockActivity));
+        verify(mockListener).onBillingError(eq("Launch billing flow failed: PendingIntent null"));
     }
 
     @Test
