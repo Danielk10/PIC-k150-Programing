@@ -1,8 +1,11 @@
 import argparse
+import socket
 import sys
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
+
+socket.setdefaulttimeout(300)
 
 def main():
     parser = argparse.ArgumentParser(description="Upload AAB to Google Play Store")
