@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Recursos que AppCompat necesita para inflar SwitchCompat.
+    Se mantienen explícitamente para que un futuro build con shrinkResources
+    no vuelva a eliminar los PNG que referencia abc_switch_thumb_material
+    (Crashlytics 857da16195dd070f687c07a80e369d06).
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/abc_switch_thumb_material,
+                @drawable/abc_switch_thumb_material_*,
+                @drawable/abc_btn_switch_to_on_mtrl_00001,
+                @drawable/abc_btn_switch_to_on_mtrl_00012,
+                @drawable/abc_switch_track_mtrl_alpha,
+                @color/abc_tint_switch_track" />

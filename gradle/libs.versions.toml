@@ -16,11 +16,16 @@ usbSerialForAndroid = "3.11.0"
 vectordrawable = "1.2.0"
 firebaseCrashlytics = "21.0.0"
 googleServices = "4.5.0"
-billing = "9.1.0"
+# Billing 9.1.0 llama a ActivityOptions.setPendingIntentBackgroundActivityStartMode
+# desde ProxyBillingActivity en builds de Android 14 que no exponen el método
+# (NoSuchMethodError). 8.3.0 es la última 8.x soportada por Play hasta 2027.
+billing = "8.3.0"
+hsdp = "2.2.0"
 crashlyticsPlugin = "3.0.8"
 
 [libraries]
 billing = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
+hsdp = { module = "com.google.android.play:hsdp", version.ref = "hsdp" }
 admob-mediation = { module = "io.start:admob-mediation", version.ref = "admobMediation" }
 appcenter-analytics = { module = "com.microsoft.appcenter:appcenter-analytics", version.ref = "appCenterSdkVersion" }
 appcenter-crashes = { module = "com.microsoft.appcenter:appcenter-crashes", version.ref = "appCenterSdkVersion" }

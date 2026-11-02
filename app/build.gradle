@@ -23,8 +23,8 @@ android {
         applicationId "com.diamon.pic"
         minSdk 24
         targetSdk 37
-        versionCode 59
-        versionName "2.9.5"
+        versionCode 60
+        versionName "2.9.6"
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -54,7 +54,11 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
-            shrinkResources true
+            // Crashlytics 857da161...: el resource shrinker de AGP eliminó los
+            // PNG de AppCompat referenciados por abc_switch_thumb_material y el
+            // SwitchCompat de activity_main no pudo inflarse en Android 12.
+            // Mantener todos los recursos evita referencias colgantes en el APK.
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             ndk {
                 debugSymbolLevel 'SYMBOL_TABLE'
@@ -102,6 +106,10 @@ dependencies {
     implementation libs.appcenter.analytics
     implementation libs.appcenter.crashes
     implementation libs.play.services.ads
+    // play-services-ads-api 25.5.0 arrastra hsdp 2.0.1, que lanza
+    // "targetPackageName is null" en HsdpShimActivity. 2.2.0 cierra la
+    // actividad limpiamente cuando el intent no trae los extras.
+    implementation libs.hsdp
     implementation libs.billing
     implementation platform(libs.firebase.bom)
     implementation libs.firebase.analytics

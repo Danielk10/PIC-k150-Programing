@@ -64,7 +64,9 @@ public class PicApplication extends Application {
 
     /**
      * Configura un UncaughtExceptionHandler personalizado que captura
-     * CannotDeliverBroadcastException y otras excepciones del sistema.
+     * CannotDeliverBroadcastException y otras excepciones del sistema
+     * únicamente en hilos de fondo. En el hilo principal se delega siempre al
+     * handler por defecto para no dejar el looper muerto (ANR).
      * 
      * Esto evita que la app crashee por errores internos del sistema Android
      * o del SDK de Google Ads que están fuera de nuestro control.
@@ -73,8 +75,11 @@ public class PicApplication extends Application {
         defaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
 
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
-            // Verificar si es una excepción del sistema que podemos absorber
-            if (isSystemException(throwable)) {
+            // Solo absorber errores del sistema en hilos de fondo. Si se traga
+            // una excepción del hilo principal, el looper muere y el proceso
+            // termina en DestroyJavaVM esperando hilos no-daemon (ANR).
+            boolean isMainThread = thread == android.os.Looper.getMainLooper().getThread();
+            if (!isMainThread && isSystemException(throwable)) {
                 Log.w(TAG, "Absorbed system exception: " + throwable.getClass().getSimpleName(), throwable);
                 // No re-lanzar, simplemente logear
                 return;

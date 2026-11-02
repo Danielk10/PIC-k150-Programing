@@ -33,6 +33,12 @@
 -keep class com.android.billingclient.api.** { *; }
 -keep class com.diamon.billing.** { *; }
 
+# 5b. Play Core HSDP (dependencia transitiva de play-services-ads-api).
+# La actividad se declara en el manifest de la librería y R8 debe conservar
+# sus nombres y clases auxiliares cargadas por reflexión.
+-keep class com.google.android.play.core.hsdp.** { *; }
+-dontwarn com.google.android.play.core.hsdp.**
+
 # 6. Firebase (Firestore, Messaging, Crashlytics) y Google Play Services
 -keep class com.google.firebase.** { *; }
 -dontwarn com.google.firebase.**
