@@ -2420,6 +2420,8 @@ public class MainActivity extends AppCompatActivity
         } else {
             if (publicidad != null) {
                 publicidad.resumenBanner();
+                // Reanuda la precarga que se omite mientras la app esta en segundo plano.
+                publicidad.precargarRewardedAd();
             }
         }
         actualizarEstadoProUI();

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 
 import com.diamon.nucleo.Publicidad;
 import com.diamon.pic.PicApplication;
@@ -86,6 +87,18 @@ public class GestorPublicidad implements Publicidad {
         return adsDisabledChecker != null && adsDisabledChecker.areAdsDisabled();
     }
 
+    /**
+     * Evita cargar anuncios (y crear WebViews internos de AdMob) cuando la
+     * actividad ya no está visible. Crashlytics 169756c0...: el ANR ocurría con
+     * la app en segundo plano mientras AdMob inicializaba un WebView.
+     */
+    private boolean isActivityVisible() {
+        return actividad != null
+                && !actividad.isFinishing()
+                && !actividad.isDestroyed()
+                && actividad.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED);
+    }
+
     private AdView adView;
     private RewardedAd rewardedAd;
     private boolean isRewardedLoading = false;
@@ -106,6 +119,13 @@ public class GestorPublicidad implements Publicidad {
     public void cargarRewardedAd() {
         mainHandler.post(() -> {
             try {
+                if (isAdDisabled()) {
+                    return;
+                }
+                if (!isActivityVisible()) {
+                    Log.d(TAG, "RewardedAd: actividad no visible; se reanudara al volver.");
+                    return;
+                }
                 if (!PicApplication.isMobileAdsInitialized()) {
                     Log.d(TAG, "Diferido: Cargando RewardedAd tras inicialización...");
                     mainHandler.postDelayed(this::cargarRewardedAd, 2000);
@@ -370,6 +390,13 @@ public class GestorPublicidad implements Publicidad {
 
         mainHandler.post(() -> {
             try {
+                if (isAdDisabled()) {
+                    return;
+                }
+                if (!isActivityVisible()) {
+                    Log.d(TAG, "NativeAd (" + key + "): actividad no visible; se reanudara al volver.");
+                    return;
+                }
                 if (!PicApplication.isMobileAdsInitialized()) {
                     Log.d(TAG, "Diferido: Precargando NativeAd (" + key + ") tras inicialización...");
                     mainHandler.postDelayed(() -> precargarNativeAd(key), 2000);
