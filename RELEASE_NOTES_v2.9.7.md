@@ -53,3 +53,35 @@ This v2.9.7 release resolves the critical `IllegalArgumentException: Read buffer
 • **Regression Unit Tests:** Created [`ProtocoloFtdiReadBufferTest.java`](app/src/test/java/com/diamon/protocolo/ProtocoloFtdiReadBufferTest.java).
 • **K150 Emulator Integration Tests:** 100% passed for PIC12, PIC16, PIC18 and ICD Debug Vector in [`ProtocoloP18AIntegrationTest.java`](app/src/test/java/com/diamon/protocolo/ProtocoloP18AIntegrationTest.java).
 • **Production Release Build:** AAB and APK signed with production release keystore.
+
+### 📦 Artifacts
+• **APK Release:** `PIC-k150-Programing-v2.9.7-release.apk`  
+  **SHA-256:** `5ebb851088e8b4cef1b695772b14926c668479e67a1d2297f1160665cf81abbe`
+• **AAB Release (Google Play Bundle):** `PIC-k150-Programing-v2.9.7-release.aab`  
+  **SHA-256:** `dca2015afe313589456062700d7b05bcd7d039d08c2dfd926bad9d11798b0a00`
+
+---
+
+## 📋 Notas Cortas para Google Play Console / Short Play Store Release Notes
+
+### 🇪🇸 Español (`es-419` / `es-ES`)
+```text
+• Corrección crítica de crash en programadores K150 con chip USB-Serial FTDI (IllegalArgumentException: Read buffer too small).
+• Ahora compatible con chips Prolific, FTDI, CH340 y CP2102 sin ningún fallo.
+• Soporte de comandos ICD (Vector de Depuración 22/23) en el emulador K150.
+• Tests de integración al 100% en PIC12, PIC16 y PIC18.
+```
+
+### 🇺🇸 English (`en-US`)
+```text
+• Critical crash fix for K150 programmers with FTDI USB-Serial adapters (IllegalArgumentException: Read buffer too small).
+• Now fully compatible with Prolific, FTDI, CH340, and CP2102 chips without any failure.
+• ICD Debug Vector commands 22/23 added to the K150 hardware emulator.
+• 100% integration tests passing for PIC12, PIC16, and PIC18.
+```
+
+---
+
+## 🔗 Enlaces / Links
+• **Repositorio / Repository:** https://github.com/Danielk10/PIC-k150-Programing
+• **Lanzamiento / Release:** https://github.com/Danielk10/PIC-k150-Programing/releases/tag/v2.9.7
