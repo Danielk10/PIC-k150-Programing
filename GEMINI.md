@@ -256,6 +256,6 @@ Para inspeccionar, depurar y operar el dispositivo físico desde Cloud Shell o t
 * **Guía de Pruebas con Emulador Virtual:** [`GUIA_PRUEBAS.md`](file:///home/danielpdiamon/PIC-k150-Programing/GUIA_PRUEBAS.md) (documentación de las 121 pruebas automatizadas JUnit + Emulador C++/Python).
 * **Reporte Técnico de Validación:** [`REPORTE_VALIDACION_HARDWARE_PIC16F628A.md`](file:///home/danielpdiamon/PIC-k150-Programing/REPORTE_VALIDACION_HARDWARE_PIC16F628A.md) (certificación formal de tramas, Device ID 0x6810, lectura/escritura y fuses).
 * **Galería de Capturas de Pantalla:** [`docs/capturas_hardware_k150/`](file:///home/danielpdiamon/PIC-k150-Programing/docs/capturas_hardware_k150/) (Evidencias visuales del ciclo completo de validación física: permisos USB, detección en socket con Device ID 0x6810, volcado ROM/EEPROM, diagnóstico de hardware sin desincronización, seguridad de voltajes 13V/5V con Comando 19 y prueba interactiva de sensores ZIF).
-* **Notas de Lanzamiento Vigentes (v2.9.6):** [`RELEASE_NOTES_v2.9.6.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.6.md) (versionCode 60, corrección de ResourcesNotFoundException, mitigación del ANR de AdMob y actualización de Billing/HSDP).
+* **Notas de Lanzamiento Vigentes (v2.9.7):** [`RELEASE_NOTES_v2.9.7.md`](file:///home/danielpdiamon/PIC-k150-Programing/RELEASE_NOTES_v2.9.7.md) (versionCode 61, resolución de Crashlytics #98da621c, blindaje de buffer mínimo de 3 bytes para FTDI y soporte ICD en emulador).
 
 
