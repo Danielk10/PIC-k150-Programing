@@ -176,3 +176,5 @@ El emulador implementa y responde exactamente a los comandos mapeados por la ló
 | `11` | `0x0B` | Leer ROM | Devuelve la ROM simulada | `leerMemoriaROMDelPic()` |
 | `12` | `0x0C` | Leer EEPROM | Devuelve la EEPROM simulada | `leerMemoriaEEPROMDelPic()` |
 | `13` | `0x0D` | Leer Configuración | Responde `C` + 26 bytes de fuses/ID | `leerDatosDeConfiguracionDelPic()` |
+| `22` | `0x16` | Programar vector de depuración (P18A) | Lee 3 bytes + responde `Y` | `programarVectorDeDepuracionDelPic()` |
+| `23` | `0x17` | Leer vector de depuración (P18A) | Responde `0xEF` + 3 bytes de dirección | `leerVectorDeDepuracionDelPic()` |

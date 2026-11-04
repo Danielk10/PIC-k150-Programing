@@ -193,6 +193,12 @@ Recientemente se aplicaron correcciones críticas para mejorar la robustez de la
    * **Blindaje de `WindowInsets` en `GestorPantalla.java` (Guía C-PIC):** Se incorporó `obtenerInsetsSeguros(WindowInsetsCompat)` con respaldo retrocompatible y captura de `Throwable` para evitar `NoSuchMethodError: WindowInsets.Type.systemOverlays()` en firmwares Android 14+.
    * **Actualización de Dependencias (`gradle/libs.versions.toml`):** Actualización a las últimas versiones estables: `agp 9.4.1`, `firebaseBom 35.0.2` (`firebase-analytics 24.0.0`, `firebase-firestore 27.0.1`, `firebase-messaging 26.0.0`, `firebase-crashlytics-ndk 21.0.0`), `firebaseCrashlytics 21.0.0` y `playServicesAds 25.5.0`.
    * **Validación Completa:** 121/121 pruebas automatizadas superadas (incluyendo 23 pruebas en `BillingManagerTest` y 22 pruebas de integración con el emulador K150 en C++).
+32. **Blindaje de Búfer USB contra Crashlytics en Drivers FTDI (`Read buffer too small`):**
+   * **Resolución de Crashlytics `#98da621ca29a1c7804af7c57e98e2d81`:** En chips FTDI (o clones FTDI), `FtdiSerialDriver` antepone 2 bytes de cabecera de estado (`READ_HEADER_LENGTH = 2`) y lanza `IllegalArgumentException: Read buffer too small` si el buffer destino tiene $\le 2$ bytes.
+   * **Búfer Mínimo Seguro y Cola FIFO:** Se fijó `MIN_READ_BUFFER_SIZE = 3` en [`Protocolo.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/nucleo/Protocolo.java) y se implementó una cola FIFO `bytesPendientes` (`Deque<Byte>`) para almacenar bytes leídos en exceso y entregarlos en lecturas subsiguientes sin pérdidas.
+   * **Método `readDisponible()` en [`ProtocoloP18A.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/main/java/com/diamon/protocolo/ProtocoloP18A.java):** Se migraron lecturas atómicas directas a `readDisponible()`, desacoplando llamadas crudas al driver y blindando excepciones no comprobadas dentro de `UsbCommunicationException`.
+   * **Emulador K150 (C++ y Python):** Soporte añadido para Comandos 22 (`0x16`, programar vector ICD) y 23 (`0x17`, leer vector ICD).
+   * **Tests Automatizados:** Creado test de regresión [`ProtocoloFtdiReadBufferTest.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/test/java/com/diamon/protocolo/ProtocoloFtdiReadBufferTest.java) y test de integración `testVectorDeDepuracionNoRompeConEmuladorK150()` en [`ProtocoloP18AIntegrationTest.java`](file:///home/danielpdiamon/PIC-k150-Programing/app/src/test/java/com/diamon/protocolo/ProtocoloP18AIntegrationTest.java).
 
 ---
 

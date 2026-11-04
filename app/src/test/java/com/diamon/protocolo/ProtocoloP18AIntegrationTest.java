@@ -30,7 +30,10 @@ import java.util.Map;
  */
 public class ProtocoloP18AIntegrationTest {
 
-    private static final String VTTY_PATH = "/home/danielpdiamon/emulador_pic_k150/vtty";
+    private static final String VTTY_PATH =
+            System.getProperty(
+                    "k150.vtty",
+                    "/home/danielpdiamon/PIC-k150-Programing/emulador_pic_k150/vtty");
     private static final String HEX_FILE_PATH = "/home/danielpdiamon/PIC-k150-Programing/pwmc_main107_628A.HEX";
 
     private FileInputStream in;
@@ -210,9 +213,25 @@ public class ProtocoloP18AIntegrationTest {
         assertTrue("El protocolo debe contener P18A", protoStr.contains("P18A"));
     }
 
+    /**
+     * Regresión Crashlytics 98da621c: el diálogo de calibración lee el vector de
+     * depuración y esa ruta pasaba por readBytes(1), que hacía fallar al driver
+     * FTDI con "Read buffer too small".
+     */
     @Test
-    public void testDeteccionSocketYBorrado() throws Exception {
-        // 1. Detectar PIC en el Socket
+    public void testVectorDeDepuracionNoRompeConEmuladorK150() {
+        int direccion = 0x001234;
+
+        assertTrue(
+                "Fallo al programar el vector de depuración",
+                protocolo.programarVectorDeDepuracionDelPic(direccion));
+
+        String vector = protocolo.leerVectorDeDepuracionDelPic();
+        assertEquals("Vector de depuración leído: 0x001234", vector);
+    }
+
+    @Test
+    public void testDeteccionSocketYBorrado() throws Exception {        // 1. Detectar PIC en el Socket
         boolean picEnSocket = protocolo.detectarPicEnElSocket();
         assertTrue("El emulador debería indicar que el PIC está en el socket", picEnSocket);
 

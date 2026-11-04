@@ -10,7 +10,9 @@ import com.diamon.utilidades.ByteUtils;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -46,6 +48,26 @@ public abstract class Protocolo {
     protected final String nombreProtocolo;
 
     /**
+     * Tamaño mínimo de buffer para lecturas USB.
+     *
+     * <p>El driver FTDI ({@code FtdiSerialDriver}) antepone dos bytes de estado
+     * a cada paquete y lanza {@link IllegalArgumentException} si el buffer de
+     * destino tiene dos bytes o menos. Con 3 bytes se garantiza al menos un
+     * byte útil y se evita el crash "Read buffer too small".
+     */
+    private static final int MIN_READ_BUFFER_SIZE = 3;
+
+    /**
+     * Bytes ya recibidos del puerto USB que aún no se han entregado al llamador.
+     *
+     * <p>El driver FTDI exige búferes de al menos 3 bytes, por lo que una
+     * lectura de 1 byte puede arrastrar el byte siguiente (por ejemplo la 'P'
+     * final tras la 'Y' de un bloque). Esos bytes se guardan aquí para la
+     * próxima lectura en lugar de descartarlos.
+     */
+    private final Deque<Byte> bytesPendientes = new ArrayDeque<>();
+
+    /**
      * Constructor de la clase base Protocolo.
      *
      * @param contexto Contexto de la aplicación Android
@@ -69,6 +91,10 @@ public abstract class Protocolo {
     protected void clearBuffer() throws UsbCommunicationException {
         if (usbSerialPort == null) {
             throw new UsbCommunicationException("Puerto USB no inicializado");
+        }
+
+        synchronized (bytesPendientes) {
+            bytesPendientes.clear();
         }
 
         try {
@@ -106,11 +132,11 @@ public abstract class Protocolo {
         try {
             // Buffer final para los datos leídos
             byte[] resultado = new byte[count];
-            int totalBytesRead = 0;
+            int totalBytesRead = extraerPendientes(resultado, 0, count);
             long startTime = System.currentTimeMillis();
 
             // Buffer temporal reutilizable fuera del bucle para eliminar la presión sobre el Garbage Collector
-            int chunkCapacity = Math.min(count, 1024);
+            int chunkCapacity = Math.max(Math.min(count, 1024), MIN_READ_BUFFER_SIZE);
             byte[] tmpBuffer = new byte[chunkCapacity];
 
             // Mientras no se hayan leído todos los bytes y el tiempo de espera no haya expirado
@@ -118,16 +144,35 @@ public abstract class Protocolo {
                     && (System.currentTimeMillis() - startTime) < timeoutMillis) {
 
                 int remaining = count - totalBytesRead;
-                byte[] targetBuf = (remaining == tmpBuffer.length)
+                // Nunca pasar al driver un buffer de 1 o 2 bytes: FTDI necesita
+                // espacio para sus 2 bytes de estado (READ_HEADER_LENGTH = 2).
+                int readCapacity =
+                        Math.max(Math.min(remaining, tmpBuffer.length), MIN_READ_BUFFER_SIZE);
+                byte[] targetBuf = (readCapacity == tmpBuffer.length)
                         ? tmpBuffer
-                        : (remaining < tmpBuffer.length ? new byte[remaining] : tmpBuffer);
+                        : new byte[readCapacity];
 
-                int bytesRead = usbSerialPort.read(targetBuf, Math.min(timeoutMillis, 100));
+                int bytesRead;
+                try {
+                    bytesRead = usbSerialPort.read(targetBuf, Math.min(timeoutMillis, 100));
+                } catch (RuntimeException e) {
+                    // Los drivers USB de terceros pueden lanzar excepciones no
+                    // comprobadas (p. ej. "Read buffer too small"). Convertirlas
+                    // evita que un fallo de lectura tumbe el hilo de la app.
+                    throw new UsbCommunicationException(
+                            "Error del driver USB durante lectura de "
+                                    + count
+                                    + " bytes (búfer de "
+                                    + targetBuf.length
+                                    + " bytes)",
+                            e);
+                }
 
                 if (bytesRead > 0) {
                     int bytesToCopy = Math.min(bytesRead, Math.min(targetBuf.length, remaining));
                     System.arraycopy(targetBuf, 0, resultado, totalBytesRead, bytesToCopy);
                     totalBytesRead += bytesToCopy;
+                    guardarPendientes(targetBuf, bytesToCopy, bytesRead - bytesToCopy);
 
                 } else if (bytesRead == 0) {
                     // Si no se reciben datos, esperar brevemente antes de reintentar
@@ -157,6 +202,102 @@ public abstract class Protocolo {
 
         } catch (IOException e) {
             throw new UsbCommunicationException("Error I/O durante lectura USB", e);
+        }
+    }
+
+    /**
+     * Lee hasta completar el buffer indicado o agotar el timeout, usando
+     * buffers internos de al menos {@link #MIN_READ_BUFFER_SIZE} bytes.
+     *
+     * <p>Se usa para lecturas puntuales de 1 o 2 bytes (por ejemplo respuestas
+     * {@code 'Y'} o {@code 'N'}) que de otro modo hacen fallar al driver FTDI
+     * con {@code IllegalArgumentException: Read buffer too small}. El bucle
+     * también permite reconstruir respuestas de varios bytes cuando FTDI
+     * entrega un byte útil por transferencia.
+     *
+     * @param destino Buffer donde se copiarán los bytes leídos
+     * @param timeoutMillis Tiempo máximo de espera en milisegundos
+     * @return Número de bytes copiados en {@code destino}; 0 si no hubo datos
+     * @throws IOException Si ocurre un error de comunicación USB
+     */
+    protected int readDisponible(byte[] destino, int timeoutMillis) throws IOException {
+        if (destino == null || destino.length == 0) {
+            return 0;
+        }
+        if (usbSerialPort == null) {
+            throw new IOException("Puerto USB no inicializado");
+        }
+
+        int totalLeidos = extraerPendientes(destino, 0, destino.length);
+        long startTime = System.currentTimeMillis();
+
+        while (totalLeidos < destino.length
+                && (System.currentTimeMillis() - startTime) < timeoutMillis) {
+
+            int restante = destino.length - totalLeidos;
+            int capacidad = Math.max(restante, MIN_READ_BUFFER_SIZE);
+            byte[] buffer = new byte[capacidad];
+
+            int leidos;
+            try {
+                leidos = usbSerialPort.read(buffer, Math.min(timeoutMillis, 100));
+            } catch (RuntimeException e) {
+                throw new IOException("Error del driver USB durante lectura", e);
+            }
+
+            if (leidos > 0) {
+                int copiados = Math.min(leidos, restante);
+                System.arraycopy(buffer, 0, destino, totalLeidos, copiados);
+                totalLeidos += copiados;
+                guardarPendientes(buffer, copiados, leidos - copiados);
+            } else if (leidos < 0) {
+                // Desconexión física o EOF del puerto USB.
+                synchronized (bytesPendientes) {
+                    bytesPendientes.clear();
+                }
+                break;
+            }
+            // leidos == 0: reintentar hasta que expire el timeout.
+        }
+
+        return totalLeidos;
+    }
+
+    /**
+     * Extrae bytes del búfer de sobrantes hacia {@code destino}.
+     *
+     * @param destino Buffer de salida
+     * @param offset Posición inicial en {@code destino}
+     * @param maximo Número máximo de bytes a extraer
+     * @return Bytes extraídos
+     */
+    private int extraerPendientes(byte[] destino, int offset, int maximo) {
+        int copiados = 0;
+        synchronized (bytesPendientes) {
+            while (copiados < maximo && !bytesPendientes.isEmpty()) {
+                destino[offset + copiados] = bytesPendientes.removeFirst();
+                copiados++;
+            }
+        }
+        return copiados;
+    }
+
+    /**
+     * Guarda en el búfer de sobrantes los bytes leídos que no se entregaron al
+     * llamador, para no perderlos.
+     *
+     * @param origen Buffer con los datos leídos
+     * @param offset Posición del primer byte sobrante
+     * @param cantidad Número de bytes sobrantes
+     */
+    private void guardarPendientes(byte[] origen, int offset, int cantidad) {
+        if (cantidad <= 0) {
+            return;
+        }
+        synchronized (bytesPendientes) {
+            for (int i = 0; i < cantidad; i++) {
+                bytesPendientes.addLast(origen[offset + i]);
+            }
         }
     }
 

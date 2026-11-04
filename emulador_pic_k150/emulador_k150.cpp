@@ -65,6 +65,7 @@ void run_emulator(const std::string& symlink_path) {
     std::vector<uint8_t> pic_id(4, 0xFF);
     uint16_t calibrate = 0x3FFF;
     uint16_t chip_id = 4192;  // PIC16F628A (0x1060)
+    std::vector<uint8_t> debug_vector(3, 0x00);
  
     std::cout << "================ K150 PROGRAMMER EMULATOR (C++) ================" << std::endl;
     std::cout << "Simulating PIC microcontrollers (Dynamic Family Support)" << std::endl;
@@ -339,6 +340,21 @@ void run_emulator(const std::string& symlink_path) {
                         config_bytes[25] = (calibrate >> 8) & 0xFF;
                         
                         write_all(master_fd, config_bytes, 26);
+                        state = JUMP_TABLE;
+                    } else if (cmd == 22) {  // program debug vector (P18A)
+                        uint8_t vector_bytes[3];
+                        if (!read_exactly(master_fd, vector_bytes, 3)) break;
+                        debug_vector.assign(vector_bytes, vector_bytes + 3);
+                        std::cout << "[K150-EMULATOR-C++] Programmed debug vector: ";
+                        for (size_t i = 0; i < debug_vector.size(); ++i) printf("%02X", debug_vector[i]);
+                        printf("\n");
+                        uint8_t resp = 'Y';
+                        write_all(master_fd, &resp, 1);
+                        state = JUMP_TABLE;
+                    } else if (cmd == 23) {  // read debug vector (P18A)
+                        std::cout << "[K150-EMULATOR-C++] Reading debug vector..." << std::endl;
+                        uint8_t vector_resp[4] = { 0xEF, debug_vector[0], debug_vector[1], debug_vector[2] };
+                        write_all(master_fd, vector_resp, 4);
                         state = JUMP_TABLE;
                     } else if (cmd == 24 || cmd == 25) {  // program cal data for 10Fxxx
                         uint8_t cal_data[4];

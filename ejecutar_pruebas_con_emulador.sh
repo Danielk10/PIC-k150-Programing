@@ -7,7 +7,7 @@ set -euo pipefail
 export GRADLE_USER_HOME="/tmp/.gradle"
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-EMULATOR_DIR="/home/danielpdiamon/emulador_pic_k150"
+EMULATOR_DIR="${BASE_DIR}/emulador_pic_k150"
 VTTY="${EMULATOR_DIR}/vtty"
 MODE="${1:-python}" # 'python' o 'cpp'
 
@@ -19,7 +19,7 @@ rm -f "$VTTY"
 
 if [ "$MODE" = "cpp" ]; then
     echo "=== 2. Iniciando el emulador K150 (C++) en segundo plano ==="
-    if [ ! -f "${EMULATOR_DIR}/emulador_k150_cpp" ]; then
+    if [ ! -f "${EMULATOR_DIR}/emulador_k150_cpp" ] || [ "${EMULATOR_DIR}/emulador_k150.cpp" -nt "${EMULATOR_DIR}/emulador_k150_cpp" ]; then
         echo "Compilando emulador C++..."
         g++ -O2 "${EMULATOR_DIR}/emulador_k150.cpp" -o "${EMULATOR_DIR}/emulador_k150_cpp"
     fi

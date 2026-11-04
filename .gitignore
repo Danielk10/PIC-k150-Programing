@@ -24,6 +24,11 @@ local.properties
 .externalNativeBuild/
 .cxx/
 
+# --- Python & Emulador Temporal ---
+__pycache__/
+*.py[cod]
+emulador_pic_k150/vtty
+
 # --- Otros ---
 .kilocode/
 .mvn/wrapper/

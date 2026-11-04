@@ -636,7 +636,7 @@ public class ProtocoloP18A extends Protocolo {
 
             // Leer respuesta (algunas variantes antiguas pueden responder "00")
             byte[] response = new byte[2];
-            int responseLen = usbSerialPort.read(response, 120);
+            int responseLen = readDisponible(response, 120);
 
             // Desactivar voltajes y limpiar comandos
             desactivarVoltajesDeProgramacion();
@@ -967,7 +967,7 @@ public class ProtocoloP18A extends Protocolo {
             int intentosSinDatos = 0;
             byte[] buffer = new byte[1];
             while (true) {
-                int leidos = usbSerialPort.read(buffer, 100);
+                int leidos = readDisponible(buffer, 100);
 
                 if (leidos > 0) {
                     intentosSinDatos = 0;
@@ -1014,7 +1014,7 @@ public class ProtocoloP18A extends Protocolo {
             usbSerialPort.write(new byte[] { (byte) getCmdEepromBlankCheck() }, 10);
 
             byte[] response = new byte[1];
-            int leidos = usbSerialPort.read(response, 300);
+            int leidos = readDisponible(response, 300);
             resetearComandos();
 
             if (leidos != 1) {
@@ -1185,7 +1185,7 @@ public class ProtocoloP18A extends Protocolo {
             enviarComandoOpcode(tipoProtocolo.getCmdVersion());
 
             byte[] bytes = new byte[1];
-            int bytesLeidos = usbSerialPort.read(bytes, 250);
+            int bytesLeidos = readDisponible(bytes, 250);
 
             try { clearBuffer(); } catch (Exception ignored) {}
 
@@ -1283,7 +1283,7 @@ public class ProtocoloP18A extends Protocolo {
             usbSerialPort.write(new byte[] { BE4_address[1], BE4_address[2], BE4_address[3] }, 10);
 
             byte[] response = new byte[1];
-            int bytesRead = usbSerialPort.read(response, 100);
+            int bytesRead = readDisponible(response, 100);
             resetearComandos();
 
             return bytesRead == 1 && response[0] == 'Y';
@@ -1309,7 +1309,7 @@ public class ProtocoloP18A extends Protocolo {
 
             // Leer la respuesta (4 bytes)
             byte[] response = new byte[4];
-            usbSerialPort.read(response, 100);
+            readDisponible(response, 100);
 
             // Verificar si el primer byte es 0xEF y extraer la dirección
             if (response[0] == (byte) 0xEF) {
@@ -1323,7 +1323,7 @@ public class ProtocoloP18A extends Protocolo {
             } else {
                 return "Respuesta inesperada: " + String.format("%02X", response[0] & 0xFF);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             return "Error al leer el vector de depuración: " + e.getMessage();
         }
     }

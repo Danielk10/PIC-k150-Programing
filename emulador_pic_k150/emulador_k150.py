@@ -52,6 +52,7 @@ def run_emulator():
     pic_id = bytearray(b'\xff\xff\xff\xff')
     calibrate = 0x3fff
     chip_id = 4192  # PIC16F628A (0x1060)
+    debug_vector = bytearray(b'\x00\x00\x00')
 
     def get_config_bytes():
         padded_id = pic_id.ljust(8, b'\xff')
@@ -246,6 +247,15 @@ def run_emulator():
                         print("[K150-EMULATOR] Reading config...")
                         os.write(master, HeaderEnum.CONFIGURATION.value)
                         os.write(master, get_config_bytes())
+                        state = "JUMP_TABLE"
+                    elif cmd == 22:  # program debug vector (P18A)
+                        debug_vector = bytearray(read_exactly(master, 3))
+                        print(f"[K150-EMULATOR] Programmed debug vector: {debug_vector.hex()}")
+                        os.write(master, ResponseEnum.YES.value)
+                        state = "JUMP_TABLE"
+                    elif cmd == 23:  # read debug vector (P18A)
+                        print(f"[K150-EMULATOR] Read debug vector: {debug_vector.hex()}")
+                        os.write(master, b'\xEF' + bytes(debug_vector))
                         state = "JUMP_TABLE"
                     elif cmd == 24 or cmd == 25:  # program cal data for 10Fxxx
                         cal_data = read_exactly(master, 4)
