@@ -16,6 +16,8 @@
     <string name="protocolo">Protocolo</string>
     <string name="protocolo_descripcion">Nativo + validación config por comparación</string>
     <string name="politica_de_privacidad">Politica de Privacidad</string>
+    <string name="menu_privacy_options">Opciones de privacidad</string>
+    <string name="privacy_options_error">No se pudieron abrir las opciones de privacidad. Inténtalo de nuevo.</string>
     <string name="error_borrando_memoria">Error borrando memoria</string>
     <string name="memoria_borrada_exitosamente">Memoria borrada exitosamente</string>
     <string name="memoria_leida_exitosamente">Lectura Completa</string>
@@ -296,6 +298,7 @@
     <string name="pro_feature_osccal">Rescate y Edición Manual de OSCCAL</string>
     <string name="pro_feature_remove_ads">Elimina toda la publicidad de la aplicación</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Ver Video - Pase Gratis de 12 Horas</string>
+    <string name="pro_loading_rewarded_video">🎬 Cargando video…</string>
     <string name="pro_pass_activated_toast">⭐ ¡Pase %1$s Pro activado por 12 horas!</string>
     <string name="pro_ads_not_available">Publicidad no disponible</string>
     <string name="pro_btn_buy_permanent">👑 Comprar %1$s Pro Permanente%2$s</string>

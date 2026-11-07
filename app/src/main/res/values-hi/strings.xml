@@ -16,6 +16,8 @@
     <string name="protocolo">प्रोटोकॉल</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">गोपनीयता नीति</string>
+    <string name="menu_privacy_options">गोपनीयता विकल्प</string>
+    <string name="privacy_options_error">गोपनीयता विकल्प नहीं खोल सके। कृपया पुनः प्रयास करें।</string>
     <string name="error_borrando_memoria">मेमोरी मिटाते समय त्रुटि</string>
     <string name="memoria_borrada_exitosamente">मेमोरी सफलतापूर्वक मिटा दी गई</string>
     <string name="memoria_leida_exitosamente">मेमोरी सफलतापूर्वक पढ़ी गई</string>
@@ -296,6 +298,7 @@
     <string name="pro_feature_osccal">OSCCAL रिकवरी और मैनुअल संपादन</string>
     <string name="pro_feature_remove_ads">ऐप से सभी विज्ञापन हटाएं</string>
     <string name="pro_btn_watch_rewarded_video">🎬 वीडियो देखें - 12 घंटे का निःशुल्क पास</string>
+    <string name="pro_loading_rewarded_video">🎬 वीडियो लोड हो रहा है…</string>
     <string name="pro_pass_activated_toast">⭐ %1$s प्रो पास 12 घंटे के लिए सक्रिय हुआ!</string>
     <string name="pro_ads_not_available">विज्ञापन उपलब्ध नहीं हैं</string>
     <string name="pro_btn_buy_permanent">👑 %1$s प्रो स्थायी रूप से खरीदें%2$s</string>

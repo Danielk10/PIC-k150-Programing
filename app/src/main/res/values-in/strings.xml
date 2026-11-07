@@ -16,6 +16,8 @@
     <string name="protocolo">Protokol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Kebijakan Privasi</string>
+    <string name="menu_privacy_options">Opsi privasi</string>
+    <string name="privacy_options_error">Tidak dapat membuka opsi privasi. Silakan coba lagi.</string>
     <string name="error_borrando_memoria">Error menghapus memori</string>
     <string name="memoria_borrada_exitosamente">Memori berhasil dihapus</string>
     <string name="memoria_leida_exitosamente">Memori berhasil dibaca</string>
@@ -296,6 +298,7 @@
     <string name="pro_feature_osccal">Penyelamatan &amp; Pengeditan Manual OSCCAL</string>
     <string name="pro_feature_remove_ads">Hapus semua iklan dari aplikasi</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Tonton Video - Akses Gratis 12 Jam</string>
+    <string name="pro_loading_rewarded_video">🎬 Memuat video…</string>
     <string name="pro_pass_activated_toast">⭐ Akses %1$s Pro diaktifkan selama 12 jam!</string>
     <string name="pro_ads_not_available">Iklan tidak tersedia</string>
     <string name="pro_btn_buy_permanent">👑 Beli %1$s Pro Permanen%2$s</string>

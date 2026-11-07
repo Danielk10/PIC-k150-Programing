@@ -16,6 +16,8 @@
     <string name="protocolo">Protocol</string>
     <string name="protocolo_descripcion">Native + config validation by comparison</string>
     <string name="politica_de_privacidad">Privacy Policy</string>
+    <string name="menu_privacy_options">Privacy options</string>
+    <string name="privacy_options_error">Could not open privacy options. Please try again.</string>
     <string name="error_borrando_memoria">Error erasing memory</string>
     <string name="memoria_borrada_exitosamente">Memory erased successfully</string>
     <string name="memoria_leida_exitosamente">Memory read successfully</string>
@@ -296,6 +298,7 @@
     <string name="pro_feature_osccal">OSCCAL Rescue and Manual Editing</string>
     <string name="pro_feature_remove_ads">Remove all ads from the application</string>
     <string name="pro_btn_watch_rewarded_video">🎬 Watch Video - 12-Hour Free Pass</string>
+    <string name="pro_loading_rewarded_video">🎬 Loading video…</string>
     <string name="pro_pass_activated_toast">⭐ %1$s Pro pass activated for 12 hours!</string>
     <string name="pro_ads_not_available">Ads not available</string>
     <string name="pro_btn_buy_permanent">👑 Buy %1$s Pro Permanent%2$s</string>

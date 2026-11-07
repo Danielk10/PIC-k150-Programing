@@ -106,6 +106,8 @@ dependencies {
     implementation libs.appcenter.analytics
     implementation libs.appcenter.crashes
     implementation libs.play.services.ads
+    // UMP: consentimiento de privacidad (RGPD / normativas estatales de EE. UU.)
+    implementation 'com.google.android.ump:user-messaging-platform:4.0.0'
     // play-services-ads-api 25.5.0 arrastra hsdp 2.0.1, que lanza
     // "targetPackageName is null" en HsdpShimActivity. 2.2.0 cierra la
     // actividad limpiamente cuando el intent no trae los extras.

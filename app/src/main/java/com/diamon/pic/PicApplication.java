@@ -1,6 +1,7 @@
 package com.diamon.pic;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.webkit.WebView;
@@ -58,8 +59,8 @@ public class PicApplication extends Application {
         // Configurar handler para excepciones del sistema que no podemos controlar
         setupUncaughtExceptionHandler();
 
-        // Diferir inicialización de MobileAds
-        initializeMobileAdsDeferred();
+        // MobileAds se inicializa desde ConsentManager, después de que el
+        // usuario acepte el consentimiento de privacidad.
     }
 
     /**
@@ -141,30 +142,21 @@ public class PicApplication extends Application {
     }
 
     /**
-     * Inicializa Google Mobile Ads SDK de forma diferida.
-     * Espera 1 segundo después del inicio para no bloquear el main thread.
+     * Inicializa Google Mobile Ads SDK una sola vez, después de que UMP haya
+     * resuelto el consentimiento. Se puede llamar desde cualquier Activity.
      */
-    private void initializeMobileAdsDeferred() {
-        if (mobileAdsInitialized)
+    public static void initializeMobileAds(Context context) {
+        if (mobileAdsInitialized) {
             return;
-
-        // Corrección para evitar bloqueos asociados a ANR (Unsafe.park).
-        // Iniciar un HILO DE FONDO real para la inicialización pesada de
-        // AdMob/StartApp.
-        // Esto evita que el main thread se bloquee esperando mediadores sincronizados.
-        new Thread(() -> {
-            try {
-                // Esperar a que la app termine de cargar la UI básica
-                Thread.sleep(2000);
-
-                MobileAds.initialize(PicApplication.this, initializationStatus -> {
-                    mobileAdsInitialized = true;
-                    Log.d(TAG, "MobileAds initialized successfully in background thread");
-                });
-            } catch (Exception e) {
-                Log.e(TAG, "Error initializing MobileAds in background: " + e.getMessage());
-            }
-        }, "AdMobInitializer").start();
+        }
+        mobileAdsInitialized = true;
+        try {
+            MobileAds.initialize(
+                    context.getApplicationContext(),
+                    initializationStatus -> Log.d(TAG, "MobileAds initialized successfully"));
+        } catch (Exception e) {
+            Log.e(TAG, "Error initializing MobileAds: " + e.getMessage());
+        }
     }
 
     /**

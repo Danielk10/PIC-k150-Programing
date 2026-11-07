@@ -61,6 +61,7 @@ import com.diamon.managers.SocketDrawingManager;
 import com.diamon.nucleo.Protocolo;
 import com.diamon.protocolo.TipoProtocolo;
 import com.diamon.politicas.PoliticaPrivacidadActivity;
+import com.diamon.publicidad.ConsentManager;
 import com.diamon.publicidad.GestorPublicidad;
 import com.diamon.tutorial.TutorialGputilsActivity;
 import com.diamon.utilidades.GestorPantalla;
@@ -185,8 +186,8 @@ public class MainActivity extends AppCompatActivity
         initializeAppCenter();
         initializeBasicComponents();
         findViews();
-        setupBanner();
         initializeManagers();
+        setupBanner();
         setupListeners();
         setupToolbar();
         // Inicializar USB en un hilo secundario para no bloquear el onCreate.
@@ -309,11 +310,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupBanner() {
-        if (proPassManager != null && proPassManager.isProActive(billingManager)) {
-            return;
-        }
         FrameLayout bannerContainer = findViewById(R.id.bannerContainer);
         if (bannerContainer != null && publicidad != null) {
+            // cargarBanner() ya respeta el estado Pro y no hace ninguna petición
+            // si los anuncios están desactivados. Guardamos el contenedor para
+            // poder mostrar el banner si el pase Pro caduca sin recrear la Activity.
             publicidad.cargarBanner(bannerContainer);
         }
     }
@@ -445,14 +446,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // NUEVO: Diferir la precarga para evitar ANR durante la inicialización
-        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-            if (publicidad != null) {
-                publicidad.precargarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_MEMORY);
-                publicidad.precargarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_PROGRAMMING);
-                publicidad.precargarRewardedAd();
-            }
-        }, 3000); // Esperar 3 segundos para asegurar que MobileAds esté listo
+        // Los nativos y el rewarded se cargan bajo demanda: los nativos al abrir
+        // su diálogo y el rewarded al abrir el diálogo Pro. Así no se piden
+        // anuncios que el usuario nunca va a ver.
 
         // NUEVO: Inicializar popup de fusibles
         fuseConfigPopup = new FuseConfigPopup(
@@ -1672,6 +1668,11 @@ public class MainActivity extends AppCompatActivity
         }
         menu.add(Menu.NONE, 12, 0, proTitle).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
+        if (ConsentManager.isPrivacyOptionsRequired()) {
+            menu.add(Menu.NONE, 13, 1, "🔒 " + getString(R.string.menu_privacy_options))
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        }
+
         menu.add(Menu.NONE, 9, 1, getString(R.string.menu_hardware_diagnostic)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 10, 2, getString(R.string.menu_osccal_calibration)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 11, 3, getString(R.string.menu_debug_vector_icd)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
@@ -1689,6 +1690,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case 13:
+                ConsentManager.showPrivacyOptionsForm(
+                        this,
+                        error -> {
+                            if (error != null) {
+                                Toast.makeText(
+                                                this,
+                                                getString(R.string.privacy_options_error),
+                                                Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                            if (publicidad != null) {
+                                publicidad.onConsentChanged();
+                            }
+                            invalidateOptionsMenu();
+                        });
+                return true;
             case 12:
                 if (billingManager != null && billingManager.isProPurchased()) {
                     mostrarDialogoProYaAdquirido();
@@ -2396,7 +2414,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
-        publicidad.pausarBanner();
+        if (publicidad != null) {
+            publicidad.pausarBanner();
+        }
         super.onPause();
 
         // NUEVO: Liberar recursos gráficos pesados al pausar para evitar ANR en otras actividades
@@ -2419,9 +2439,8 @@ public class MainActivity extends AppCompatActivity
             }
         } else {
             if (publicidad != null) {
+                publicidad.mostrarBanner();
                 publicidad.resumenBanner();
-                // Reanuda la precarga que se omite mientras la app esta en segundo plano.
-                publicidad.precargarRewardedAd();
             }
         }
         actualizarEstadoProUI();

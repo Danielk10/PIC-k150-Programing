@@ -70,6 +70,12 @@ public class ProAccessDialog {
             billingManager.queryProducts();
         }
 
+        // Calentar el rewarded mientras el usuario lee el diálogo. Si no está
+        // listo al pulsar el botón, se mostrará en cuanto termine de cargar.
+        if (gestorPublicidad != null) {
+            gestorPublicidad.cargarRewardedAd();
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         float density = activity.getResources().getDisplayMetrics().density;
 
@@ -159,21 +165,30 @@ public class ProAccessDialog {
         btnRewarded.setPadding(dp(12, density), dp(12, density), dp(12, density), dp(12, density));
 
         btnRewarded.setOnClickListener(v -> {
-            if (gestorPublicidad != null) {
-                gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
-                    proPassManager.activarPase12Horas();
-                    gestorPublicidad.ocultarBanner();
-                    Toast.makeText(activity, activity.getString(R.string.pro_pass_activated_toast, appName), Toast.LENGTH_LONG).show();
-                    if (onProUnlocked != null) {
-                        onProUnlocked.run();
-                    }
-                    dialog.dismiss();
-                }, () -> {
-                    // Si se cierra sin recompensa
-                });
-            } else {
+            if (gestorPublicidad == null) {
                 Toast.makeText(activity, activity.getString(R.string.pro_ads_not_available), Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Evita doble pulsación y muestra estado de carga si aún no está listo.
+            btnRewarded.setEnabled(false);
+            if (!gestorPublicidad.isRewardedAdLoaded()) {
+                btnRewarded.setText(activity.getString(R.string.pro_loading_rewarded_video));
+            }
+
+            gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
+                proPassManager.activarPase12Horas();
+                gestorPublicidad.ocultarBanner();
+                Toast.makeText(activity, activity.getString(R.string.pro_pass_activated_toast, appName), Toast.LENGTH_LONG).show();
+                if (onProUnlocked != null) {
+                    onProUnlocked.run();
+                }
+                dialog.dismiss();
+            }, () -> {
+                // Si se cierra sin recompensa o falla la carga, restaurar el botón.
+                btnRewarded.setEnabled(true);
+                btnRewarded.setText(activity.getString(R.string.pro_btn_watch_rewarded_video));
+            });
         });
         rootLayout.addView(btnRewarded);
 
