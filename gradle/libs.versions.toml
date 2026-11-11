@@ -1,6 +1,6 @@
 [versions]
 admobMediation = "3.1.1"
-agp = "9.4.1"
+agp = "9.5.1"
 appCenterSdkVersion = "5.0.6"
 firebaseBom = "35.0.2"
 junit = "4.13.2"
