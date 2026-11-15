@@ -23,8 +23,8 @@ android {
         applicationId "com.diamon.pic"
         minSdk 24
         targetSdk 37
-        versionCode 62
-        versionName "2.9.8"
+        versionCode 63
+        versionName "2.9.9"
 
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -70,7 +70,7 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
     buildToolsVersion '37.0.0'
-    ndkVersion '30.0.14904198 rc1'
+    ndkVersion '30.0.14904198'
 
     externalNativeBuild {
         cmake {
