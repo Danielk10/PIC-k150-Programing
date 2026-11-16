@@ -38,10 +38,9 @@ consentimiento que ya estaba obsoleta.
   `x86` y `x86_64`.
 
 ### 📦 Artefactos
-• `PIC-k150-Programing-v2.9.9-release.apk` — {{APK_SIZE}} bytes
-  • SHA-256: `{{APK_SHA}}`
-• `PIC-k150-Programing-v2.9.9-release.aab` — {{AAB_SIZE}} bytes
-  • SHA-256: `{{AAB_SHA}}`
+• `PIC-k150-Programing-v2.9.9-release.apk` — 15945867 bytes
+  • SHA-256: `b50a8b33cc4848583866795e3ab629e17ca2df51a2d984276ed7f482d5d3dffb`
+• El AAB se publicó en Google Play Console; no se adjunta a este release.
 
 ---
 
@@ -72,10 +71,9 @@ consent guide is removed.
   `x86` and `x86_64`.
 
 ### 📦 Artifacts
-• `PIC-k150-Programing-v2.9.9-release.apk` — {{APK_SIZE}} bytes
-  • SHA-256: `{{APK_SHA}}`
-• `PIC-k150-Programing-v2.9.9-release.aab` — {{AAB_SIZE}} bytes
-  • SHA-256: `{{AAB_SHA}}`
+• `PIC-k150-Programing-v2.9.9-release.apk` — 15945867 bytes
+  • SHA-256: `b50a8b33cc4848583866795e3ab629e17ca2df51a2d984276ed7f482d5d3dffb`
+• The AAB was published to Google Play Console (not attached to this release).
 
 ---
 
