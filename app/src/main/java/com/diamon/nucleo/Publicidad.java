@@ -16,6 +16,8 @@ public interface Publicidad {
 
     public void mostrarNativeAd(String key, android.view.ViewGroup container);
 
+    public void mostrarNativeAdCompacto(String key, android.view.ViewGroup container);
+
     public void pausarBanner();
 
     public void resumenBanner();

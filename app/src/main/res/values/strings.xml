@@ -488,4 +488,6 @@ Please insert the PIC %1$s in the corresponding position, lock the lever, and ta
     <string name="reprogramar">Reprogram</string>
     <string name="pro_permanent_active_title">K150 Pro Permanent Active</string>
     <string name="pro_permanent_active_desc">You have permanent K150 Pro access. All advanced tools are fully unlocked without ads or time limits.</string>
+    <string name="ad_badge">Ad</string>
+    <string name="ad_icon_desc">Advertisement icon</string>
 </resources>

@@ -142,6 +142,11 @@ public class GestorPublicidad implements Publicidad {
     private final Map<String, Long> nativeLoadedAtMap = new ConcurrentHashMap<>();
     private final Map<String, Boolean> loadingAdsMap = new ConcurrentHashMap<>();
     private final Map<String, ViewGroup> pendingNativeContainers = new ConcurrentHashMap<>();
+    /** Contenedores que usan el formato compacto (tarjeta horizontal de la pantalla principal). */
+    private final java.util.Set<ViewGroup> compactNativeContainers =
+            java.util.Collections.newSetFromMap(new java.util.WeakHashMap<>());
+    /** Contenedores compactos que esperan a que termine el consentimiento UMP. */
+    private final Map<String, ViewGroup> pendingCompactContainers = new ConcurrentHashMap<>();
     private final Map<String, Integer> nativeInitRetriesMap = new ConcurrentHashMap<>();
     private static final Map<String, Long> lastRequestTimeMap = new ConcurrentHashMap<>();
 
@@ -195,11 +200,18 @@ public class GestorPublicidad implements Publicidad {
             if (bannerContainer != null) {
                 cargarBanner(bannerContainer);
             }
+            // Reanudar el nativo compacto que se pidió antes de resolver el UMP.
+            for (Map.Entry<String, ViewGroup> pending
+                    : new java.util.ArrayList<>(pendingCompactContainers.entrySet())) {
+                mostrarNativeAd(pending.getKey(), pending.getValue());
+            }
+            pendingCompactContainers.clear();
             if (rewardedShowPending) {
                 cargarRewardedAd();
                 schedulePendingRewardedTimeout();
             }
         } else {
+            pendingCompactContainers.clear();
             ocultarBanner();
             Runnable dismissed = pendingRewardedDismissListener;
             clearPendingRewarded();
@@ -766,7 +778,7 @@ public class GestorPublicidad implements Publicidad {
                                         + adError.getMessage() + " Code: " + adError.getCode());
                                 ViewGroup pending = pendingNativeContainers.remove(key);
                                 if (pending != null) {
-                                    showNativePlaceholder(pending);
+                                    prepareNativeContainer(pending);
                                 }
                             }
                         })
@@ -791,7 +803,7 @@ public class GestorPublicidad implements Publicidad {
 
         mainHandler.post(() -> {
             if (destroyed || !adsReady || isAdDisabled()) {
-                showNativePlaceholder(container);
+                prepareNativeContainer(container);
                 return;
             }
 
@@ -808,7 +820,7 @@ public class GestorPublicidad implements Publicidad {
             // Si ya hay una carga en curso, esperar a que termine y mostrarla aquí.
             if (Boolean.TRUE.equals(loadingAdsMap.get(key))) {
                 Log.d(TAG, "NativeAd (" + key + ") en carga; se mostrará en este contenedor.");
-                showNativePlaceholder(container);
+                prepareNativeContainer(container);
                 pendingNativeContainers.put(key, container);
                 return;
             }
@@ -816,6 +828,41 @@ public class GestorPublicidad implements Publicidad {
             Log.w(TAG, "NativeAd no listo para: " + key + ". Cargando dinámicamente...");
             loadAndShowNativeAd(key, container);
         });
+    }
+
+    /**
+     * Muestra un nativo en formato compacto (tarjeta horizontal), como en C-PIC
+     * y el Comunicador OTG. Si el consentimiento UMP todavía no está resuelto,
+     * guarda el contenedor y lo reintenta en {@link #onConsentState(boolean)}.
+     * Si no hay relleno o los anuncios están desactivados, la tarjeta queda
+     * oculta en lugar de mostrar el placeholder de los diálogos.
+     */
+    @Override
+    public void mostrarNativeAdCompacto(String key, ViewGroup container) {
+        if (container == null) {
+            return;
+        }
+        compactNativeContainers.add(container);
+        container.setVisibility(View.GONE);
+        if (!adsReady) {
+            pendingCompactContainers.put(key, container);
+            return;
+        }
+        mostrarNativeAd(key, container);
+    }
+
+    private boolean isCompactContainer(ViewGroup container) {
+        return container != null && compactNativeContainers.contains(container);
+    }
+
+    /** Prepara el contenedor: placeholder en diálogos, oculto en la tarjeta compacta. */
+    private void prepareNativeContainer(ViewGroup container) {
+        if (isCompactContainer(container)) {
+            container.removeAllViews();
+            container.setVisibility(View.GONE);
+        } else {
+            showNativePlaceholder(container);
+        }
     }
 
     private void loadAndShowNativeAd(String key, ViewGroup container) {
@@ -829,13 +876,13 @@ public class GestorPublicidad implements Publicidad {
         long lastRequest = ultimoRegistro != null ? ultimoRegistro : 0L;
         if (now - lastRequest < MIN_REQUEST_INTERVAL) {
             Log.w(TAG, "Carga dinámica de NativeAd (" + key + ") en cooldown; se muestra placeholder.");
-            showNativePlaceholder(container);
+            prepareNativeContainer(container);
             return;
         }
 
         loadingAdsMap.put(key, true);
         lastRequestTimeMap.put(key, now);
-        showNativePlaceholder(container);
+        prepareNativeContainer(container);
 
         AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
                 .forNativeAd(nativeAd -> {
@@ -849,7 +896,7 @@ public class GestorPublicidad implements Publicidad {
                         loadingAdsMap.put(key, false);
                         Log.e(TAG, "Fallo carga dinámica NativeAd (" + key + "): "
                                 + adError.getMessage());
-                        showNativePlaceholder(container);
+                        prepareNativeContainer(container);
                     }
                 })
                 .build();
@@ -861,9 +908,12 @@ public class GestorPublicidad implements Publicidad {
             // Limpiar vistas previas para evitar duplicados
             container.removeAllViews();
 
+            boolean compact = isCompactContainer(container);
+
             // Inflar CON parent para que los LayoutParams se apliquen correctamente
             NativeAdView adView = (NativeAdView) actividad.getLayoutInflater()
-                    .inflate(R.layout.layout_native_ad, container, false);
+                    .inflate(compact ? R.layout.layout_native_ad_compact : R.layout.layout_native_ad,
+                            container, false);
 
             // Registrar vistas de assets con el NativeAdView
             TextView headlineView = adView.findViewById(R.id.ad_headline);
@@ -877,7 +927,9 @@ public class GestorPublicidad implements Publicidad {
             adView.setBodyView(bodyView);
             adView.setCallToActionView(ctaView);
             adView.setIconView(iconView);
-            adView.setMediaView(mediaView);
+            if (mediaView != null) {
+                adView.setMediaView(mediaView);
+            }
             adView.setAdvertiserView(advertiserView);
 
             // Rellenar titulo (obligatorio)
@@ -933,12 +985,15 @@ public class GestorPublicidad implements Publicidad {
             // Forzar que el NativeAdView llene su contenedor completamente
             adView.setLayoutParams(new android.widget.FrameLayout.LayoutParams(
                     android.widget.FrameLayout.LayoutParams.MATCH_PARENT,
-                    android.widget.FrameLayout.LayoutParams.MATCH_PARENT));
+                    compact
+                            ? android.widget.FrameLayout.LayoutParams.WRAP_CONTENT
+                            : android.widget.FrameLayout.LayoutParams.MATCH_PARENT));
 
             // IMPORTANTE: añadir la vista al contenedor ANTES de registrar el
             // anuncio. La impresión se cuenta cuando el NativeAdView está
             // attached y visible.
             container.addView(adView);
+            container.setVisibility(View.VISIBLE);
 
             if (container.isAttachedToWindow()) {
                 if (!destroyed) {
@@ -962,7 +1017,7 @@ public class GestorPublicidad implements Publicidad {
             }
         } catch (Exception e) {
             Log.e(TAG, "Error al renderizar NativeAd: " + e.getMessage());
-            showNativePlaceholder(container);
+            prepareNativeContainer(container);
         }
     }
 
@@ -990,6 +1045,8 @@ public class GestorPublicidad implements Publicidad {
         nativeLoadedAtMap.clear();
         loadingAdsMap.clear();
         pendingNativeContainers.clear();
+        pendingCompactContainers.clear();
+        compactNativeContainers.clear();
         rewardedAd = null;
         rewardedLoadedAt = 0;
         isRewardedLoading = false;

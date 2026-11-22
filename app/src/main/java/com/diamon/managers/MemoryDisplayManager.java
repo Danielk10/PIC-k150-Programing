@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
@@ -42,7 +41,6 @@ public class MemoryDisplayManager {
     // Referencias a elementos del popup
     private ProgressBar progressBar;
     private TextView statusTextView;
-    private FrameLayout adContainer;
     private ScrollView romScrollView;
     private ScrollView eepromScrollView;
     private LinearLayout romContainer;
@@ -129,13 +127,6 @@ public class MemoryDisplayManager {
             android.util.Log.e("MemoryDisplayManager", "BadTokenException al mostrar popup: " + e.getMessage());
             return;
         }
-
-        // Cargar o mostrar anuncio nativo usando el gestor centralizado
-        if (context instanceof com.diamon.pic.MainActivity) {
-            com.diamon.pic.MainActivity mainActivity = (com.diamon.pic.MainActivity) context;
-            mainActivity.getPublicidad().mostrarNativeAd(com.diamon.publicidad.GestorPublicidad.KEY_NATIVE_MEMORY,
-                    adContainer);
-        }
     }
 
     /**
@@ -149,13 +140,6 @@ public class MemoryDisplayManager {
 
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
-        }
-
-        // Ajustar el contenedor del anuncio para mantener visibilidad sin invadir el área de datos.
-        if (adContainer != null) {
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) adContainer.getLayoutParams();
-            lp.height = dpToPx(280); // Mantener minimo 280dp para cumplir el requisito de 120x120dp del MediaView
-            adContainer.setLayoutParams(lp);
         }
 
         if (statusTextView != null) {
@@ -259,16 +243,6 @@ public class MemoryDisplayManager {
                 LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
         dividerParams.setMargins(0, dpToPx(8), 0, dpToPx(8));
         container.addView(divider, dividerParams);
-
-        adContainer = new FrameLayout(context);
-        LinearLayout.LayoutParams adParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(300));
-        adParams.setMargins(0, dpToPx(4), 0, dpToPx(4));
-        adContainer.setLayoutParams(adParams);
-        // Sin padding para que los assets del anuncio no se salgan del NativeAdView
-        adContainer.setClipChildren(true);
-        adContainer.setClipToPadding(true);
-        container.addView(adContainer);
 
         LinearLayout contentContainer = new LinearLayout(context);
         contentContainer.setOrientation(LinearLayout.VERTICAL);

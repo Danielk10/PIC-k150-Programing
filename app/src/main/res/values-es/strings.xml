@@ -488,4 +488,6 @@ Por favor inserte el PIC %1$s en la posición correspondiente, trabe la palanca 
     <string name="reprogramar">Reprogramar</string>
     <string name="pro_permanent_active_title">K150 Pro Permanente Activo</string>
     <string name="pro_permanent_active_desc">Dispones de la versión K150 Pro permanente. Todas las herramientas avanzadas están desbloqueadas sin anuncios ni límites de tiempo.</string>
+    <string name="ad_badge">Anuncio</string>
+    <string name="ad_icon_desc">Icono del anuncio</string>
 </resources>

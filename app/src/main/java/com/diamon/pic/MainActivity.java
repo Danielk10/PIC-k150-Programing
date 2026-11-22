@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity
     private TextView fuseStatusTextView; // NUEVO
     private LinearLayout romDataContainer;
     private LinearLayout eepromDataContainer;
+    private FrameLayout nativeAdContainer;
     private Spinner chipSpinner;
     private android.widget.ImageView chipSocketImageView; // NUEVO
     private androidx.appcompat.widget.SwitchCompat swModeICSP;
@@ -188,6 +189,7 @@ public class MainActivity extends AppCompatActivity
         findViews();
         initializeManagers();
         setupBanner();
+        setupNativeAd();
         setupListeners();
         setupToolbar();
         // Inicializar USB en un hilo secundario para no bloquear el onCreate.
@@ -316,6 +318,20 @@ public class MainActivity extends AppCompatActivity
             // si los anuncios están desactivados. Guardamos el contenedor para
             // poder mostrar el banner si el pase Pro caduca sin recrear la Activity.
             publicidad.cargarBanner(bannerContainer);
+        }
+    }
+
+    /**
+     * Coloca el anuncio nativo en la pantalla principal (tarjeta compacta).
+     * Antes vivía dentro del visor HEX; ahora se muestra al abrir la app,
+     * igual que en C-PIC y el Comunicador OTG. La tarjeta permanece oculta
+     * hasta que AdMob devuelve un anuncio.
+     */
+    private void setupNativeAd() {
+        nativeAdContainer = findViewById(R.id.nativeAdContainer);
+        if (nativeAdContainer != null && publicidad != null) {
+            nativeAdContainer.setVisibility(View.GONE);
+            publicidad.mostrarNativeAdCompacto(GestorPublicidad.KEY_NATIVE_MEMORY, nativeAdContainer);
         }
     }
 
