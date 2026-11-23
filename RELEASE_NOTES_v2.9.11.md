@@ -26,6 +26,13 @@ operación, en lugar de quedar pegado al registro.
 • `versionCode 65` y `versionName 2.9.11`; ABIs `arm64-v8a`, `armeabi-v7a`,
   `x86` y `x86_64`.
 
+### 📦 Artefactos
+• `PIC-k150-Programing-v2.9.11-release.apk` — 15949283 bytes
+  • SHA-256: `b8ef2a223559c8fb851d21d7d05495f14305c81690c9201e22a15b27782ef1ef`
+• `PIC-k150-Programing-v2.9.11-release.aab` — 16200943 bytes
+  • SHA-256: `20b9571d6f620e6f79ddb200140aac33e7b7f5f5377a997459df0a48da11753d`
+• AAB publicado en Google Play, track `production`, estado `completed` (100 %).
+
 ---
 
 ## 🇺🇸 English
