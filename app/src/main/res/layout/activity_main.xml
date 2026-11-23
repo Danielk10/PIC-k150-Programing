@@ -200,6 +200,14 @@
 
         </LinearLayout>
 
+        <!-- Anuncio nativo compacto: debajo de Estado de fusibles y Modo ICSP -->
+        <FrameLayout
+            android:id="@+id/nativeAdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:visibility="gone" />
+
         <!-- Fila 3: Botones de operación (compactos en grid) -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -422,14 +430,6 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <!-- Anuncio nativo compacto en la pantalla principal (unidad del visor HEX reubicada) -->
-        <FrameLayout
-            android:id="@+id/nativeAdContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:visibility="gone" />
 
         <!-- Fila 4: LOG con scroll propio (ocupa el espacio restante) -->
         <androidx.cardview.widget.CardView
