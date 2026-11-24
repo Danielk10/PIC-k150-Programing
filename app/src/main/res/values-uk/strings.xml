@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Вектор налагодження ICD (24 біти)</string>
     <string name="pro_feature_osccal">Відновлення та ручне редагування OSCCAL</string>
     <string name="pro_feature_remove_ads">Видалити всю рекламу з програми</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Переглянути відео – 12-годинний безкоштовний доступ</string>
-    <string name="pro_pass_activated_toast">⭐ Доступ %1$s Pro активовано на 12 годин!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Переглянути відео – 15 хвилин безкоштовний доступ</string>
+    <string name="pro_pass_activated_toast">⭐ Доступ %1$s Pro активовано на 15 хвилин!</string>
     <string name="pro_ads_not_available">Реклама недоступна</string>
     <string name="pro_btn_buy_permanent">👑 Купити безстроковий %1$s Pro%2$s</string>
     <string name="pro_billing_not_available">Google Play Billing недоступний</string>

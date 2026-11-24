@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD villuleitavigur (24 bitar)</string>
     <string name="pro_feature_osccal">OSCCAL björgun og handvirk breyting</string>
     <string name="pro_feature_remove_ads">Fjarlægja allar auglýsingar úr forritinu</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Horfa á myndband - 12 stunda ókeypis aðgangur</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro aðgangur virkjaður í 12 klukkustundir!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Horfa á myndband - 15 mínútna ókeypis aðgangur</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro aðgangur virkjaður í 15 mínútur!</string>
     <string name="pro_ads_not_available">Auglýsingar ekki tiltækar</string>
     <string name="pro_btn_buy_permanent">👑 Kaupa %1$s Pro varanlega%2$s</string>
     <string name="pro_billing_not_available">Google Play greiðsluþjónusta ekki tiltæk</string>

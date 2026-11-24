@@ -297,9 +297,9 @@
     <string name="pro_feature_icd_vector">ICD Debugging Vector of 24 bits</string>
     <string name="pro_feature_osccal">OSCCAL Rescue and Manual Editing</string>
     <string name="pro_feature_remove_ads">Remove all ads from the application</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Watch Video - 12-Hour Free Pass</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Watch Video - 15 min Free Pass</string>
     <string name="pro_loading_rewarded_video">🎬 Loading video…</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro pass activated for 12 hours!</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro pass activated for 15 min!</string>
     <string name="pro_ads_not_available">Ads not available</string>
     <string name="pro_btn_buy_permanent">👑 Buy %1$s Pro Permanent%2$s</string>
     <string name="pro_billing_not_available">Google Play Billing not available</string>

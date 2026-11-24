@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Вектор за дебъгване ICD (24 бита)</string>
     <string name="pro_feature_osccal">Спасяване и ръчно редактиране на OSCCAL</string>
     <string name="pro_feature_remove_ads">Премахване на всички реклами от приложението</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Гледайте видео - 12-часов безплатен достъп</string>
-    <string name="pro_pass_activated_toast">⭐ Достъпът до %1$s Pro е активиран за 12 часа!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Гледайте видео - 15-минутен безплатен достъп</string>
+    <string name="pro_pass_activated_toast">⭐ Достъпът до %1$s Pro е активиран за 15 минути!</string>
     <string name="pro_ads_not_available">Няма налични реклами</string>
     <string name="pro_btn_buy_permanent">👑 Купете %1$s Pro за постоянно%2$s</string>
     <string name="pro_billing_not_available">Google Play таксуването не е налично</string>

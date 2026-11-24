@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">بردار اشکال‌زدایی ICD (۲۴ بیتی)</string>
     <string name="pro_feature_osccal">بازیابی و ویرایش دستی OSCCAL</string>
     <string name="pro_feature_remove_ads">حذف تمام تبلیغات از برنامه</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 تماشای ویدیو - اشتراک رایگان ۱۲ ساعته</string>
-    <string name="pro_pass_activated_toast">⭐ اشتراک %1$s Pro به مدت ۱۲ ساعت فعال شد!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 تماشای ویدیو - اشتراک رایگان ۱۵ دقیقه</string>
+    <string name="pro_pass_activated_toast">⭐ اشتراک %1$s Pro به مدت ۱۵ دقیقه فعال شد!</string>
     <string name="pro_ads_not_available">تبلیغات در دسترس نیست</string>
     <string name="pro_btn_buy_permanent">👑 خرید دائمی %1$s Pro%2$s</string>
     <string name="pro_billing_not_available">پرداخت Google Play در دسترس نیست</string>

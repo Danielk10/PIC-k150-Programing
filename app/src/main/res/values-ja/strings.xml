@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICDデバッグベクター (24ビット)</string>
     <string name="pro_feature_osccal">OSCCALレスキュー＆手動編集</string>
     <string name="pro_feature_remove_ads">アプリからすべての広告を削除</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 動画を見る - 12時間無料パス</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Proパスが12時間有効化されました！</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 動画を見る - 15分無料パス</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Proパスが15分有効化されました！</string>
     <string name="pro_ads_not_available">広告は利用できません</string>
     <string name="pro_btn_buy_permanent">👑 %1$s Pro（永久版）を購入%2$s</string>
     <string name="pro_billing_not_available">Google Play請求サービスを利用できません</string>

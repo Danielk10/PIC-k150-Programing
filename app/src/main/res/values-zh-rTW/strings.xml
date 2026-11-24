@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD 偵錯向量 (24 位元)</string>
     <string name="pro_feature_osccal">OSCCAL 救援與手動編輯</string>
     <string name="pro_feature_remove_ads">移除應用程式中的所有廣告</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 觀看影片 - 12小時免費通行證</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s 專業版通行證已啟用 12 小時！</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 觀看影片 - 15 分鐘免費通行證</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s 專業版通行證已啟用 15 分鐘！</string>
     <string name="pro_ads_not_available">廣告目前無法使用</string>
     <string name="pro_btn_buy_permanent">👑 購買永久 %1$s 專業版%2$s</string>
     <string name="pro_billing_not_available">Google Play 結帳服務無法使用</string>

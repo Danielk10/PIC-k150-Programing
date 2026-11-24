@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD 调试向量 (24 位)</string>
     <string name="pro_feature_osccal">OSCCAL 救援与手动编辑</string>
     <string name="pro_feature_remove_ads">移除应用程序中的所有广告</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 观看视频 - 12小时免费通行证</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s 专业版通行证已激活 12 小时！</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 观看视频 - 15 分钟免费通行证</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s 专业版通行证已激活 15 分钟！</string>
     <string name="pro_ads_not_available">广告暂不可用</string>
     <string name="pro_btn_buy_permanent">👑 购买永久 %1$s 专业版%2$s</string>
     <string name="pro_billing_not_available">Google Play 结算服务不可用</string>

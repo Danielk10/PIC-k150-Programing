@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">متجه تصحيح الأخطاء ICD (24 بت)</string>
     <string name="pro_feature_osccal">استعادة وتحرير OSCCAL يدوياً</string>
     <string name="pro_feature_remove_ads">إزالة جميع الإعلانات من التطبيق</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 مشاهدة الفيديو - تصريح مجاني لمدة 12 ساعة</string>
-    <string name="pro_pass_activated_toast">⭐ تم تفعيل تصريح %1$s برو لمدة 12 ساعة!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 مشاهدة الفيديو - تصريح مجاني لمدة 15 دقيقة</string>
+    <string name="pro_pass_activated_toast">⭐ تم تفعيل تصريح %1$s برو لمدة 15 دقيقة!</string>
     <string name="pro_ads_not_available">الإعلانات غير متوفرة</string>
     <string name="pro_btn_buy_permanent">👑 شراء %1$s برو الدائم%2$s</string>
     <string name="pro_billing_not_available">الفوترة عبر Google Play غير متوفرة</string>

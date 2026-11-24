@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD-feilsøkingsvektor (24 biter)</string>
     <string name="pro_feature_osccal">OSCCAL-redning og manuell redigering</string>
     <string name="pro_feature_remove_ads">Fjern all reklame fra applikasjonen</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Se video - 12-timers gratispass</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro-pass aktivert i 12 timer!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Se video - 15 min gratispass</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro-pass aktivert i 15 min!</string>
     <string name="pro_ads_not_available">Annonser er ikke tilgjengelige</string>
     <string name="pro_btn_buy_permanent">👑 Kjøp %1$s Pro permanent%2$s</string>
     <string name="pro_billing_not_available">Google Play Fakturering er ikke tilgjengelig</string>

@@ -297,9 +297,9 @@
     <string name="pro_feature_icd_vector">Vetor de Depuração ICD 24 bits</string>
     <string name="pro_feature_osccal">Resgate e Edição Manual de OSCCAL</string>
     <string name="pro_feature_remove_ads">Remover todos os anúncios do aplicativo</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Assistir Vídeo - Passe Gratuito de 12 Horas</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Assistir Vídeo - Passe Gratuito de 15 min</string>
     <string name="pro_loading_rewarded_video">🎬 Carregando vídeo…</string>
-    <string name="pro_pass_activated_toast">⭐ Passe %1$s Pro ativado por 12 horas!</string>
+    <string name="pro_pass_activated_toast">⭐ Passe %1$s Pro ativado por 15 min!</string>
     <string name="pro_ads_not_available">Anúncios indisponíveis</string>
     <string name="pro_btn_buy_permanent">👑 Comprar %1$s Pro Permanente%2$s</string>
     <string name="pro_billing_not_available">O faturamento do Google Play não está disponível</string>

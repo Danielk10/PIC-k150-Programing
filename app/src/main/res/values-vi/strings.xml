@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Vector gỡ lỗi ICD (24 bit)</string>
     <string name="pro_feature_osccal">Cứu hộ và chỉnh sửa thủ công OSCCAL</string>
     <string name="pro_feature_remove_ads">Xóa tất cả quảng cáo khỏi ứng dụng</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Xem video - Thẻ miễn phí 12 giờ</string>
-    <string name="pro_pass_activated_toast">⭐ Thẻ %1$s Pro đã được kích hoạt trong 12 giờ!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Xem video - Thẻ miễn phí 15 phút</string>
+    <string name="pro_pass_activated_toast">⭐ Thẻ %1$s Pro đã được kích hoạt trong 15 phút!</string>
     <string name="pro_ads_not_available">Quảng cáo hiện không khả dụng</string>
     <string name="pro_btn_buy_permanent">👑 Mua %1$s Pro vĩnh viễn%2$s</string>
     <string name="pro_billing_not_available">Google Play Billing hiện không khả dụng</string>

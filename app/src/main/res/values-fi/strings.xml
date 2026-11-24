@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD-virheenkorjausvektori (24 bittiä)</string>
     <string name="pro_feature_osccal">OSCCAL-pelastus ja manuaalinen muokkaus</string>
     <string name="pro_feature_remove_ads">Poista kaikki mainokset sovelluksesta</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Katso Video – 12 Tunnin Ilmainen Passi</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro -passi aktivoitu 12 tunniksi!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Katso Video – 15 minuutin Ilmainen Passi</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro -passi aktivoitu 15 minuuttia!</string>
     <string name="pro_ads_not_available">Mainoksia ei ole saatavilla</string>
     <string name="pro_btn_buy_permanent">👑 Osta %1$s Pro Pysyvästi%2$s</string>
     <string name="pro_billing_not_available">Google Play -laskutus ei ole käytettävissä</string>

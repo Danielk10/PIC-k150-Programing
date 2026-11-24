@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">וקטור ניפוי שגיאות ICD (24 סיביות)</string>
     <string name="pro_feature_osccal">שחזור ועריכה ידנית של OSCCAL</string>
     <string name="pro_feature_remove_ads">הסרת כל הפרסומות מהאפליקציה</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 צפה בסרטון - כרטיס חינם ל-12 שעות</string>
-    <string name="pro_pass_activated_toast">⭐ כרטיס %1$s Pro הופעל ל-12 שעות!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 צפה בסרטון - כרטיס חינם ל-15 דקות</string>
+    <string name="pro_pass_activated_toast">⭐ כרטיס %1$s Pro הופעל ל-15 דקות!</string>
     <string name="pro_ads_not_available">פרסומות אינן זמינות</string>
     <string name="pro_btn_buy_permanent">👑 קנה %1$s Pro לתמיד%2$s</string>
     <string name="pro_billing_not_available">שירות התשלומים של Google Play אינו זמין</string>

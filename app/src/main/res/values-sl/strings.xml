@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Vektor razhroščevanja ICD (24-bitni)</string>
     <string name="pro_feature_osccal">Reševanje in ročno urejanje OSCCAL</string>
     <string name="pro_feature_remove_ads">Odstrani vse oglase iz aplikacije</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Oglejte si video – 12-urni brezplačni prehod</string>
-    <string name="pro_pass_activated_toast">⭐ Prehod %1$s Pro aktiviran za 12 ur!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Oglejte si video – 15-minutni brezplačni prehod</string>
+    <string name="pro_pass_activated_toast">⭐ Prehod %1$s Pro aktiviran za 15 minut!</string>
     <string name="pro_ads_not_available">Oglasi niso na voljo</string>
     <string name="pro_btn_buy_permanent">👑 Kupi trajni %1$s Pro%2$s</string>
     <string name="pro_billing_not_available">Google Play Billing ni na voljo</string>

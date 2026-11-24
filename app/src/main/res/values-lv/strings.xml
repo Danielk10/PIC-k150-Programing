@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD atkļūdošanas vektors (24 biti)</string>
     <string name="pro_feature_osccal">OSCCAL glābšana un manuāla rediģēšana</string>
     <string name="pro_feature_remove_ads">Noņemt visas reklāmas no lietotnes</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Skatīties video - 12 stundu bezmaksas piekļuve</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro piekļuve aktivizēta uz 12 stundām!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Skatīties video - 15 minūšu bezmaksas piekļuve</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro piekļuve aktivizēta uz 15 minūtes!</string>
     <string name="pro_ads_not_available">Reklāmas nav pieejamas</string>
     <string name="pro_btn_buy_permanent">👑 Pirkt %1$s Pro uz visiem laikiem%2$s</string>
     <string name="pro_billing_not_available">Google Play norēķinu pakalpojums nav pieejams</string>

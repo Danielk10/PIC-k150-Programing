@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity
     private ProgramacionSelectivaManager programacionSelectivaManager; // NUEVO: Programación selectiva y Dual Blank Check
     private HexEditorManager hexEditorManager; // NUEVO: Editor hexadecimal interactivo en vivo
     private BillingManager billingManager; // NUEVO: Facturación Google Play (Pro Permanente)
-    private ProPassManager proPassManager; // NUEVO: Pase temporal Pro de 12 Horas
+    private ProPassManager proPassManager; // NUEVO: Pase temporal Pro de 15 Minutos
 
     private String firmware = "";
     private String originalLoadedFirmware = "";

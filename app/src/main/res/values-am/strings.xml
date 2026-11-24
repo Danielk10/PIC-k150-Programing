@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">የICD ማረም ቬክተር (24 ቢት)</string>
     <string name="pro_feature_osccal">የOSCCAL ማዳን እና በእጅ ማረም</string>
     <string name="pro_feature_remove_ads">ሁሉንም ማስታወቂያዎች ከመተግበሪያው ያስወግዱ</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 ቪዲዮ ይመልከቱ - የ12 ሰዓት ነፃ ማለፊያ</string>
-    <string name="pro_pass_activated_toast">⭐ የ%1$s ፕሮ ማለፊያ ለ12 ሰዓታት ነቅቷል!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 ቪዲዮ ይመልከቱ - የ15 ደቂቃ ነፃ ማለፊያ</string>
+    <string name="pro_pass_activated_toast">⭐ የ%1$s ፕሮ ማለፊያ ለ15 ደቂቃ ነቅቷል!</string>
     <string name="pro_ads_not_available">ማስታወቂያዎች አልተገኙም</string>
     <string name="pro_btn_buy_permanent">👑 %1$s ፕሮ ቋሚ ይግዙ%2$s</string>
     <string name="pro_billing_not_available">የGoogle Play ክፍያ አገልግሎት አልተገኘም</string>

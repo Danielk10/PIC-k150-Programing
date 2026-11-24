@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD կարգաբերման վեկտոր (24 բիթ)</string>
     <string name="pro_feature_osccal">OSCCAL-ի պահպանում և ձեռքով խմբագրում</string>
     <string name="pro_feature_remove_ads">Հեռացնել բոլոր գովազդները հավելվածից</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Դիտել տեսանյութ - 12 ժամ անվճար հասանելիություն</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro հասանելիությունն ակտիվացված է 12 ժամով:</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Դիտել տեսանյութ - 15 րոպե անվճար հասանելիություն</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro հասանելիությունն ակտիվացված է 15 րոպեով:</string>
     <string name="pro_ads_not_available">Գովազդները հասանելի չեն</string>
     <string name="pro_btn_buy_permanent">👑 Գնել %1$s Pro ընդմիշտ%2$s</string>
     <string name="pro_billing_not_available">Google Play վճարային համակարգը հասանելի չէ</string>

@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Вектор за ICD отклањање грешака (24 бита)</string>
     <string name="pro_feature_osccal">Спашавање и ручно уређивање OSCCAL-а</string>
     <string name="pro_feature_remove_ads">Уклоните све рекламе из апликације</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Гледај видео – 12-часовни бесплатни приступ</string>
-    <string name="pro_pass_activated_toast">⭐ Приступ %1$s Pro активиран на 12 сати!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Гледај видео – 15 минута бесплатни приступ</string>
+    <string name="pro_pass_activated_toast">⭐ Приступ %1$s Pro активиран на 15 минута!</string>
     <string name="pro_ads_not_available">Рекламе нису доступне</string>
     <string name="pro_btn_buy_permanent">👑 Купи трајни %1$s Pro%2$s</string>
     <string name="pro_billing_not_available">Google Play Billing није доступан</string>

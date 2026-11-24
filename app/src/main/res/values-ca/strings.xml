@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Vector de Depuració ICD 24 bits</string>
     <string name="pro_feature_osccal">Rescat i Edició Manual d\'OSCCAL</string>
     <string name="pro_feature_remove_ads">Elimina tota la publicitat de l\'aplicació</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Veure Vídeo - Passi Gratuït de 12 Hores</string>
-    <string name="pro_pass_activated_toast">⭐ Passi %1$s Pro activat durant 12 hores!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Veure Vídeo - Passi Gratuït de 15 min</string>
+    <string name="pro_pass_activated_toast">⭐ Passi %1$s Pro activat durant 15 min!</string>
     <string name="pro_ads_not_available">Publicitat no disponible</string>
     <string name="pro_btn_buy_permanent">👑 Comprar %1$s Pro Permanent%2$s</string>
     <string name="pro_billing_not_available">Facturació de Google Play no disponible</string>

@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Вектар адладкі ICD (24 біты)</string>
     <string name="pro_feature_osccal">Аднаўленне і ручное рэдагаванне OSCCAL</string>
     <string name="pro_feature_remove_ads">Выдаліць усю рэкламу з праграмы</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Глядзець відэа - 12-гадзінны бясплатны пропуск</string>
-    <string name="pro_pass_activated_toast">⭐ Пропуск %1$s Pro актываваны на 12 гадзін!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Глядзець відэа - 15-хвілінны бясплатны пропуск</string>
+    <string name="pro_pass_activated_toast">⭐ Пропуск %1$s Pro актываваны на 15 хвілін!</string>
     <string name="pro_ads_not_available">Рэклама недаступная</string>
     <string name="pro_btn_buy_permanent">👑 Купіць %1$s Pro назаўсёды%2$s</string>
     <string name="pro_billing_not_available">Аплата праз Google Play недаступная</string>

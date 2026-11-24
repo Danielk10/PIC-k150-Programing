@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD 디버깅 벡터 (24비트)</string>
     <string name="pro_feature_osccal">OSCCAL 복구 및 수동 편집</string>
     <string name="pro_feature_remove_ads">애플리케이션에서 모든 광고 제거</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 동영상 시청 - 12시간 무료 패스</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro 패스가 12시간 동안 활성화되었습니다!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 동영상 시청 - 15분 무료 패스</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro 패스가 15분 동안 활성화되었습니다!</string>
     <string name="pro_ads_not_available">광고를 사용할 수 없습니다</string>
     <string name="pro_btn_buy_permanent">👑 %1$s Pro 평생 구매%2$s</string>
     <string name="pro_billing_not_available">Google Play 결제를 사용할 수 없습니다</string>

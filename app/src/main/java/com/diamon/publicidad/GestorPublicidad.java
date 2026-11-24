@@ -62,7 +62,7 @@ public class GestorPublicidad implements Publicidad {
     public static final String KEY_NATIVE_MEMORY = "memory_native";
     public static final String KEY_NATIVE_PROGRAMMING = "programming_native";
 
-    /** ID Real AdMob de producción: "Pase Pro 12 Horas K150" */
+    /** ID Real AdMob de producción: "Pase Pro 15 Minutos K150" */
     public static final String REWARDED_AD_UNIT_ID = "ca-app-pub-5141499161332805/7291519778";
     public static final String REWARDED_ID = REWARDED_AD_UNIT_ID; // Alias retrocompatible
 
@@ -316,7 +316,7 @@ public class GestorPublicidad implements Publicidad {
     }
 
     /**
-     * Muestra el video de recompensa para desbloquear el Pase Pro de 12 horas.
+     * Muestra el video de recompensa para desbloquear el Pase Pro de 15 minutos.
      * Si aún no está cargado, espera a que termine la carga y lo muestra.
      *
      * @param activity             Actividad que presenta el anuncio.

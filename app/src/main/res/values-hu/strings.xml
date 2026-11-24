@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD hibakeresési vektor (24 bites)</string>
     <string name="pro_feature_osccal">OSCCAL mentés és kézi szerkesztés</string>
     <string name="pro_feature_remove_ads">Összes hirdetés eltávolítása az alkalmazásból</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Videó megtekintése – 12 órás ingyenes hozzáférés</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro hozzáférés aktiválva 12 órára!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Videó megtekintése – 15 perces ingyenes hozzáférés</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro hozzáférés aktiválva 15 perc!</string>
     <string name="pro_ads_not_available">A hirdetések nem érhetők el</string>
     <string name="pro_btn_buy_permanent">👑 %1$s Pro végleges vásárlása%2$s</string>
     <string name="pro_billing_not_available">A Google Play Számlázás nem érhető el</string>

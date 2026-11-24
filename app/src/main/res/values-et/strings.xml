@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD silumisvektor (24 bitti)</string>
     <string name="pro_feature_osccal">OSCCAL-i päästmine ja käsitsi redigeerimine</string>
     <string name="pro_feature_remove_ads">Eemalda rakendusest kõik reklaamid</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Vaata Videot – 12-Tunnine Tasuta Pääse</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro pääse aktiveeritud 12 tunniks!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Vaata Videot – 15-minutiline Tasuta Pääse</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro pääse aktiveeritud 15 minutit!</string>
     <string name="pro_ads_not_available">Reklaamid pole saadaval</string>
     <string name="pro_btn_buy_permanent">👑 Osta %1$s Pro Püsivalt%2$s</string>
     <string name="pro_billing_not_available">Google Play arveldamine pole saadaval</string>

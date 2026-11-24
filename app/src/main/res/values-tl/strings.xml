@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD Debugging Vector 24 bits</string>
     <string name="pro_feature_osccal">Pagsagip at Manu-manong Pag-edit ng OSCCAL</string>
     <string name="pro_feature_remove_ads">Alisin ang lahat ng ad mula sa application</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Manood ng Video - 12 Oras na Libreng Pass</string>
-    <string name="pro_pass_activated_toast">⭐ Na-activate ang %1$s Pro pass nang 12 oras!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Manood ng Video - 15 minuto na Libreng Pass</string>
+    <string name="pro_pass_activated_toast">⭐ Na-activate ang %1$s Pro pass nang 15 minuto!</string>
     <string name="pro_ads_not_available">Hindi available ang mga ad</string>
     <string name="pro_btn_buy_permanent">👑 Bumili ng Permanenteng %1$s Pro%2$s</string>
     <string name="pro_billing_not_available">Hindi available ang Google Play Billing</string>

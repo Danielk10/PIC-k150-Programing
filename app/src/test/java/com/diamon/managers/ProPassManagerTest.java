@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Pruebas unitarias para ProPassManager:
- * - Activación del pase de 12 horas.
+ * - Activación del pase de 15 minutos.
  * - Cálculo y persistencia de tiempo de expiración.
  * - Formato del tiempo restante ("11h 45m", "Expirado").
  * - Integración de isProActive con BillingManager y estado del pase.
@@ -71,14 +71,14 @@ public class ProPassManagerTest {
     }
 
     @Test
-    public void activarPase12Horas_estableceTiempoFuturoCorrecto() {
+    public void activarPasePro_estableceTiempoFuturoCorrecto() {
         long antes = System.currentTimeMillis();
-        proPassManager.activarPase12Horas();
+        proPassManager.activarPasePro();
         long despues = System.currentTimeMillis();
 
         long expireTime = proPassManager.getExpireTime();
-        assertTrue("ExpireTime debe ser >= antes + 12h", expireTime >= antes + ProPassManager.DURACION_PASE_MS);
-        assertTrue("ExpireTime debe ser <= despues + 12h", expireTime <= despues + ProPassManager.DURACION_PASE_MS);
+        assertTrue("ExpireTime debe ser >= antes + 15 min", expireTime >= antes + ProPassManager.DURACION_PASE_MS);
+        assertTrue("ExpireTime debe ser <= despues + 15 min", expireTime <= despues + ProPassManager.DURACION_PASE_MS);
         assertTrue("Pase debe estar activo", proPassManager.hasActiveProPass());
         assertTrue("isPaseActivo() debe ser true", proPassManager.isPaseActivo());
     }
@@ -177,7 +177,7 @@ public class ProPassManagerTest {
 
     @Test
     public void limpiarPase_remueveClaveYDesactiva() {
-        proPassManager.activarPase12Horas();
+        proPassManager.activarPasePro();
         assertTrue(proPassManager.hasActiveProPass());
 
         proPassManager.limpiarPase();

@@ -23,7 +23,7 @@ import com.diamon.publicidad.GestorPublicidad;
 /**
  * Diálogo modal para gestionar el Acceso K150 Pro.
  * Ofrece dos vías para desbloquear las herramientas avanzadas:
- * 1. 🎬 Ver un video publicitario para activar el Pase Libre de 12 Horas.
+ * 1. 🎬 Ver un video publicitario para activar el Pase Libre de 15 Minutos.
  * 2. 👑 Adquirir la Versión Pro Permanente mediante Google Play Billing.
  */
 public class ProAccessDialog {
@@ -46,7 +46,7 @@ public class ProAccessDialog {
      * @param activity         Actividad host.
      * @param gestorPublicidad Gestor de anuncios para video recompensado.
      * @param billingManager   Gestor de facturación Google Play Billing.
-     * @param proPassManager   Gestor de pase temporal de 12 horas.
+     * @param proPassManager   Gestor de pase temporal de 15 minutos.
      * @param onProUnlocked    Acción a ejecutar si el usuario desbloquea el acceso Pro (opcional).
      */
     public static void show(
@@ -152,7 +152,7 @@ public class ProAccessDialog {
 
         AlertDialog dialog = builder.setView(scrollView).create();
 
-        // 3. BOTÓN 1: VER VIDEO RECOMPENSADO (PASE 12 HORAS)
+        // 3. BOTÓN 1: VER VIDEO RECOMPENSADO (PASE 15 MINUTOS)
         Button btnRewarded = new Button(activity);
         btnRewarded.setText(activity.getString(R.string.pro_btn_watch_rewarded_video));
         btnRewarded.setTextSize(14);
@@ -177,7 +177,7 @@ public class ProAccessDialog {
             }
 
             gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
-                proPassManager.activarPase12Horas();
+                proPassManager.activarPasePro();
                 gestorPublicidad.ocultarBanner();
                 Toast.makeText(activity, activity.getString(R.string.pro_pass_activated_toast, appName), Toast.LENGTH_LONG).show();
                 if (onProUnlocked != null) {

@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD Hata Ayıklama Vektörü (24 bit)</string>
     <string name="pro_feature_osccal">OSCCAL Kurtarma ve Manuel Düzenleme</string>
     <string name="pro_feature_remove_ads">Uygulamadaki tüm reklamları kaldırın</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Video İzle - 12 Saatlik Ücretsiz Geçiş</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro geçişi 12 saatliğine etkinleştirildi!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Video İzle - 15 dakikalık Ücretsiz Geçiş</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro geçişi 15 dakika etkinleştirildi!</string>
     <string name="pro_ads_not_available">Reklamlar mevcut değil</string>
     <string name="pro_btn_buy_permanent">👑 Kalıcı %1$s Pro Satın Al%2$s</string>
     <string name="pro_billing_not_available">Google Play Faturalandırma kullanılamıyor</string>

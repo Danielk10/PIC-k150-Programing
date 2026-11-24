@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Vektor ladění ICD (24 bitů)</string>
     <string name="pro_feature_osccal">Záchrana a ruční úprava OSCCAL</string>
     <string name="pro_feature_remove_ads">Odstranit všechny reklamy z aplikace</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Sledovat video – 12hodinový bezplatný přístup</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro přístup aktivován na 12 hodin!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Sledovat video – 15minutový bezplatný přístup</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro přístup aktivován na 15 minut!</string>
     <string name="pro_ads_not_available">Reklamy nejsou k dispozici</string>
     <string name="pro_btn_buy_permanent">👑 Koupit %1$s Pro trvale%2$s</string>
     <string name="pro_billing_not_available">Fakturace Google Play není k dispozici</string>

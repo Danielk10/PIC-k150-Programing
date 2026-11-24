@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Wektor debugowania ICD (24 bity)</string>
     <string name="pro_feature_osccal">Ratowanie i ręczna edycja OSCCAL</string>
     <string name="pro_feature_remove_ads">Usuń wszystkie reklamy z aplikacji</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Obejrzyj wideo – 12-godzinny darmowy dostęp</string>
-    <string name="pro_pass_activated_toast">⭐ Dostęp %1$s Pro aktywowany na 12 godzin!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Obejrzyj wideo – 15-minutowy darmowy dostęp</string>
+    <string name="pro_pass_activated_toast">⭐ Dostęp %1$s Pro aktywowany na 15 minut!</string>
     <string name="pro_ads_not_available">Reklamy są niedostępne</string>
     <string name="pro_btn_buy_permanent">👑 Kup %1$s Pro na stałe%2$s</string>
     <string name="pro_billing_not_available">Płatności Google Play są niedostępne</string>

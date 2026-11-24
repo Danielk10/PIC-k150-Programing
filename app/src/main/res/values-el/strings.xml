@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">Διάνυσμα αποσφαλμάτωσης ICD (24 bit)</string>
     <string name="pro_feature_osccal">Διάσωση και χειροκίνητη επεξεργασία OSCCAL</string>
     <string name="pro_feature_remove_ads">Κατάργηση όλων των διαφημίσεων από την εφαρμογή</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Παρακολουθήστε Βίντεο - Δωρεάν Πάσο 12 Ωρών</string>
-    <string name="pro_pass_activated_toast">⭐ Το πάσο %1$s Pro ενεργοποιήθηκε για 12 ώρες!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Παρακολουθήστε Βίντεο - Δωρεάν Πάσο 15 Λεπτών</string>
+    <string name="pro_pass_activated_toast">⭐ Το πάσο %1$s Pro ενεργοποιήθηκε για 15 λεπτά!</string>
     <string name="pro_ads_not_available">Οι διαφημίσεις δεν είναι διαθέσιμες</string>
     <string name="pro_btn_buy_permanent">👑 Αγοράστε το %1$s Pro Μόνιμα%2$s</string>
     <string name="pro_billing_not_available">Η χρέωση μέσω Google Play δεν είναι διαθέσιμη</string>

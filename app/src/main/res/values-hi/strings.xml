@@ -297,9 +297,9 @@
     <string name="pro_feature_icd_vector">ICD डिबगिंग वेक्टर (24 बिट्स)</string>
     <string name="pro_feature_osccal">OSCCAL रिकवरी और मैनुअल संपादन</string>
     <string name="pro_feature_remove_ads">ऐप से सभी विज्ञापन हटाएं</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 वीडियो देखें - 12 घंटे का निःशुल्क पास</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 वीडियो देखें - 15 मिनट का निःशुल्क पास</string>
     <string name="pro_loading_rewarded_video">🎬 वीडियो लोड हो रहा है…</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s प्रो पास 12 घंटे के लिए सक्रिय हुआ!</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s प्रो पास 15 मिनट के लिए सक्रिय हुआ!</string>
     <string name="pro_ads_not_available">विज्ञापन उपलब्ध नहीं हैं</string>
     <string name="pro_btn_buy_permanent">👑 %1$s प्रो स्थायी रूप से खरीदें%2$s</string>
     <string name="pro_billing_not_available">Google Play बिलिंग उपलब्ध नहीं है</string>

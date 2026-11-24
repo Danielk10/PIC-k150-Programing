@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD жөндеу векторы (24 бит)</string>
     <string name="pro_feature_osccal">OSCCAL қалпына келтіру және қолмен өңдеу</string>
     <string name="pro_feature_remove_ads">Қолданбадан барлық жарнамаларды алып тастау</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Бейне көру - 12 сағаттық тегін рұқсат</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro рұқсаты 12 сағатқа белсендірілді!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Бейне көру - 15 минуттық тегін рұқсат</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro рұқсаты 15 минутқа белсендірілді!</string>
     <string name="pro_ads_not_available">Жарнамалар қолжетімді емес</string>
     <string name="pro_btn_buy_permanent">👑 %1$s Pro біржола сатып алу%2$s</string>
     <string name="pro_billing_not_available">Google Play Төлем жүйесі қолжетімді емес</string>

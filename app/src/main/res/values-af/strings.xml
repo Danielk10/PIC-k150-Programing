@@ -295,8 +295,8 @@
     <string name="pro_feature_icd_vector">ICD-ontfoutingsvektor (24 bisse)</string>
     <string name="pro_feature_osccal">OSCCAL-redding en Handmatige Redigering</string>
     <string name="pro_feature_remove_ads">Verwyder alle advertensies uit die toepassing</string>
-    <string name="pro_btn_watch_rewarded_video">🎬 Kyk Video - 12-Uur Gratis Pas</string>
-    <string name="pro_pass_activated_toast">⭐ %1$s Pro-pas geaktiveer vir 12 uur!</string>
+    <string name="pro_btn_watch_rewarded_video">🎬 Kyk Video - 15 min Gratis Pas</string>
+    <string name="pro_pass_activated_toast">⭐ %1$s Pro-pas geaktiveer vir 15 min!</string>
     <string name="pro_ads_not_available">Advertensies nie beskikbaar nie</string>
     <string name="pro_btn_buy_permanent">👑 Koop %1$s Pro Permanent%2$s</string>
     <string name="pro_billing_not_available">Google Play-fakturering nie beskikbaar nie</string>
