@@ -95,7 +95,7 @@ public class GestorPublicidad implements Publicidad {
     public void setAdsDisabledChecker(AdsDisabledChecker checker) {
         this.adsDisabledChecker = checker;
         if (isAdDisabled()) {
-            ocultarBanner();
+            ocultarTodosLosAnuncios();
         }
     }
 
@@ -147,6 +147,9 @@ public class GestorPublicidad implements Publicidad {
             java.util.Collections.newSetFromMap(new java.util.WeakHashMap<>());
     /** Contenedores compactos que esperan a que termine el consentimiento UMP. */
     private final Map<String, ViewGroup> pendingCompactContainers = new ConcurrentHashMap<>();
+    /** Todos los contenedores donde se ha mostrado o se va a mostrar un nativo. */
+    private final java.util.Set<ViewGroup> nativeContainers =
+            java.util.Collections.newSetFromMap(new java.util.WeakHashMap<>());
     private final Map<String, Integer> nativeInitRetriesMap = new ConcurrentHashMap<>();
     private static final Map<String, Long> lastRequestTimeMap = new ConcurrentHashMap<>();
 
@@ -212,7 +215,7 @@ public class GestorPublicidad implements Publicidad {
             }
         } else {
             pendingCompactContainers.clear();
-            ocultarBanner();
+            ocultarTodosLosAnuncios();
             Runnable dismissed = pendingRewardedDismissListener;
             clearPendingRewarded();
             if (dismissed != null) {
@@ -682,6 +685,35 @@ public class GestorPublicidad implements Publicidad {
         });
     }
 
+    @Override
+    public void ocultarTodosLosAnuncios() {
+        mainHandler.post(() -> {
+            if (adView != null) {
+                adView.setVisibility(View.GONE);
+            }
+
+            // Cancelar cualquier carga pendiente para que su callback no
+            // vuelva a mostrar un nativo después de activar el pase Pro.
+            pendingNativeContainers.clear();
+            pendingCompactContainers.clear();
+            loadingAdsMap.clear();
+            nativeInitRetriesMap.clear();
+
+            for (NativeAd ad : nativeAdsMap.values()) {
+                ad.destroy();
+            }
+            nativeAdsMap.clear();
+            nativeLoadedAtMap.clear();
+
+            for (ViewGroup container : new java.util.ArrayList<>(nativeContainers)) {
+                if (container != null) {
+                    container.removeAllViews();
+                    container.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
     // --- NATIVOS ---
 
     private boolean isNativeAdFresh(String key) {
@@ -755,6 +787,13 @@ public class GestorPublicidad implements Publicidad {
                 AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
                         .forNativeAd(nativeAd -> {
                             loadingAdsMap.put(key, false);
+                            if (destroyed || isAdDisabled()) {
+                                // El pase Pro se activó mientras cargaba: no
+                                // guardar ni mostrar el anuncio.
+                                nativeAd.destroy();
+                                pendingNativeContainers.remove(key);
+                                return;
+                            }
                             NativeAd oldAd = nativeAdsMap.put(key, nativeAd);
                             nativeLoadedAtMap.put(key, System.currentTimeMillis());
                             if (oldAd != null) {
@@ -802,6 +841,7 @@ public class GestorPublicidad implements Publicidad {
         }
 
         mainHandler.post(() -> {
+            nativeContainers.add(container);
             if (destroyed || !adsReady || isAdDisabled()) {
                 prepareNativeContainer(container);
                 return;
@@ -843,6 +883,7 @@ public class GestorPublicidad implements Publicidad {
             return;
         }
         compactNativeContainers.add(container);
+        nativeContainers.add(container);
         container.setVisibility(View.GONE);
         if (!adsReady) {
             pendingCompactContainers.put(key, container);
@@ -887,6 +928,12 @@ public class GestorPublicidad implements Publicidad {
         AdLoader adLoader = new AdLoader.Builder(actividad, adUnitId)
                 .forNativeAd(nativeAd -> {
                     loadingAdsMap.put(key, false);
+                    if (destroyed || isAdDisabled()) {
+                        // El pase Pro se activó mientras cargaba: descartar.
+                        nativeAd.destroy();
+                        prepareNativeContainer(container);
+                        return;
+                    }
                     renderNativeAd(nativeAd, container);
                     Log.d(TAG, "NativeAd cargado y mostrado dinámicamente: " + key);
                 })
@@ -904,6 +951,11 @@ public class GestorPublicidad implements Publicidad {
     }
 
     private void renderNativeAd(NativeAd nativeAd, ViewGroup container) {
+        if (destroyed || isAdDisabled()) {
+            nativeAd.destroy();
+            prepareNativeContainer(container);
+            return;
+        }
         try {
             // Limpiar vistas previas para evitar duplicados
             container.removeAllViews();

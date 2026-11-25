@@ -178,7 +178,7 @@ public class ProAccessDialog {
 
             gestorPublicidad.mostrarRewardedAd(activity, rewardItem -> {
                 proPassManager.activarPasePro();
-                gestorPublicidad.ocultarBanner();
+                gestorPublicidad.ocultarTodosLosAnuncios();
                 Toast.makeText(activity, activity.getString(R.string.pro_pass_activated_toast, appName), Toast.LENGTH_LONG).show();
                 if (onProUnlocked != null) {
                     onProUnlocked.run();

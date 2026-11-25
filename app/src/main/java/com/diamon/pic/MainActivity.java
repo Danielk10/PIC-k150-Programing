@@ -903,9 +903,15 @@ public class MainActivity extends AppCompatActivity
     private void actualizarEstadoProUI() {
         runOnUiThread(() -> {
             boolean isPro = proPassManager != null && proPassManager.isProActive(billingManager);
-            if (isPro) {
-                if (publicidad != null) {
-                    publicidad.ocultarBanner();
+            if (publicidad != null) {
+                if (isPro) {
+                    publicidad.ocultarTodosLosAnuncios();
+                } else {
+                    publicidad.mostrarBanner();
+                    if (nativeAdContainer != null) {
+                        publicidad.mostrarNativeAdCompacto(
+                                GestorPublicidad.KEY_NATIVE_MEMORY, nativeAdContainer);
+                    }
                 }
             }
             invalidateOptionsMenu();
@@ -2451,12 +2457,16 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         if (proPassManager != null && proPassManager.isProActive(billingManager)) {
             if (publicidad != null) {
-                publicidad.ocultarBanner();
+                publicidad.ocultarTodosLosAnuncios();
             }
         } else {
             if (publicidad != null) {
                 publicidad.mostrarBanner();
                 publicidad.resumenBanner();
+                if (nativeAdContainer != null) {
+                    publicidad.mostrarNativeAdCompacto(
+                            GestorPublicidad.KEY_NATIVE_MEMORY, nativeAdContainer);
+                }
             }
         }
         actualizarEstadoProUI();
