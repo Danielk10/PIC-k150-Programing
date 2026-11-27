@@ -24,7 +24,7 @@ import java.util.Map;
  * Pruebas unitarias para ProPassManager:
  * - Activación del pase de 15 minutos.
  * - Cálculo y persistencia de tiempo de expiración.
- * - Formato del tiempo restante ("11h 45m", "Expirado").
+ * - Formato del tiempo restante ("11:45:10", "00:00").
  * - Integración de isProActive con BillingManager y estado del pase.
  */
 public class ProPassManagerTest {
@@ -151,10 +151,10 @@ public class ProPassManagerTest {
     @Test
     public void getTiempoRestanteFormateado_cuandoExpirado_retornaExpirado() {
         proPassManager.setExpireTime(System.currentTimeMillis() - 5000L);
-        assertEquals("Expirado", proPassManager.getTiempoRestanteFormateado());
+        assertEquals("00:00", proPassManager.getTiempoRestanteFormateado());
 
         proPassManager.setExpireTime(0L);
-        assertEquals("Expirado", proPassManager.getTiempoRestanteFormateado());
+        assertEquals("00:00", proPassManager.getTiempoRestanteFormateado());
     }
 
     @Test
@@ -199,6 +199,6 @@ public class ProPassManagerTest {
         proPassManager.limpiarPase();
         assertFalse(proPassManager.hasActiveProPass());
         assertEquals(0L, proPassManager.getExpireTime());
-        assertEquals("Expirado", proPassManager.getTiempoRestanteFormateado());
+        assertEquals("00:00", proPassManager.getTiempoRestanteFormateado());
     }
 }
