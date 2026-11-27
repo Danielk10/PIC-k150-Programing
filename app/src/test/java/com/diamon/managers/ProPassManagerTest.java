@@ -117,8 +117,8 @@ public class ProPassManagerTest {
         proPassManager.setExpireTime(ahora + tiempo);
 
         String formateado = proPassManager.getTiempoRestanteFormateado();
-        assertEquals("11h 45m", formateado);
-        assertEquals("11h 45m", proPassManager.formatearTiempoRestante());
+        assertEquals("11:45:10", formateado);
+        assertEquals("11:45:10", proPassManager.formatearTiempoRestante());
     }
 
     @Test
@@ -129,7 +129,23 @@ public class ProPassManagerTest {
         proPassManager.setExpireTime(ahora + tiempo);
 
         String formateado = proPassManager.getTiempoRestanteFormateado();
-        assertEquals("45m", formateado);
+        assertEquals("45:10", formateado);
+    }
+
+    @Test
+    public void activarPasePro_rellenaA15MinutosExactos() {
+        // Simular que le quedaban 2 minutos de pase previo
+        long ahora = System.currentTimeMillis();
+        proPassManager.setExpireTime(ahora + 2 * 60 * 1000L);
+
+        // Al ver otro video bonificado se rellena a 15 minutos exactos (con tope de 15m)
+        long antes = System.currentTimeMillis();
+        proPassManager.activarPasePro();
+        long despues = System.currentTimeMillis();
+
+        long expireTime = proPassManager.getExpireTime();
+        assertTrue(expireTime >= antes + ProPassManager.DURACION_PASE_MS);
+        assertTrue(expireTime <= despues + ProPassManager.DURACION_PASE_MS);
     }
 
     @Test

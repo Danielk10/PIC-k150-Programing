@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -129,6 +131,19 @@ public class MainActivity extends AppCompatActivity
     private HexEditorManager hexEditorManager; // NUEVO: Editor hexadecimal interactivo en vivo
     private BillingManager billingManager; // NUEVO: Facturación Google Play (Pro Permanente)
     private ProPassManager proPassManager; // NUEVO: Pase temporal Pro de 15 Minutos
+    private Menu optionsMenu;
+    private final Handler proTimerHandler = new Handler(Looper.getMainLooper());
+    private final Runnable proTimerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (proPassManager != null && proPassManager.hasActiveProPass()) {
+                actualizarProTimerText();
+                proTimerHandler.postDelayed(this, 1000);
+            } else {
+                actualizarEstadoProUI();
+            }
+        }
+    };
 
     private String firmware = "";
     private String originalLoadedFirmware = "";
@@ -915,7 +930,31 @@ public class MainActivity extends AppCompatActivity
                 }
             }
             invalidateOptionsMenu();
+            gestionarProTimer();
         });
+    }
+
+    private void actualizarProTimerText() {
+        if (optionsMenu != null && proPassManager != null) {
+            MenuItem item = optionsMenu.findItem(12);
+            if (item != null) {
+                if (billingManager != null && billingManager.isProPurchased()) {
+                    item.setTitle(getString(R.string.menu_pro_permanent));
+                } else if (proPassManager.hasActiveProPass()) {
+                    item.setTitle(getString(R.string.menu_pro_timer, proPassManager.formatearTiempoRestante()));
+                } else {
+                    item.setTitle(getString(R.string.menu_pro_mode));
+                }
+            }
+        }
+    }
+
+    private void gestionarProTimer() {
+        proTimerHandler.removeCallbacks(proTimerRunnable);
+        if (proPassManager != null && proPassManager.hasActiveProPass() && !isFinishing() && !isDestroyed()) {
+            actualizarProTimerText();
+            proTimerHandler.postDelayed(proTimerRunnable, 1000);
+        }
     }
 
     /** Muestra el diálogo modal de Acceso K150 Pro. */
@@ -1680,6 +1719,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.optionsMenu = menu;
         String proTitle = getString(R.string.menu_pro_mode);
         if (proPassManager != null && proPassManager.isProActive(billingManager)) {
             if (billingManager != null && billingManager.isProPurchased()) {
@@ -1707,6 +1747,22 @@ public class MainActivity extends AppCompatActivity
         menu.add(Menu.NONE, 4, 10, "🛡️ " + getString(R.string.politica_de_privacidad)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, 8, 11, "ℹ️ " + getString(R.string.acerca_de_licencias)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        this.optionsMenu = menu;
+        MenuItem item = menu.findItem(12);
+        if (item != null && proPassManager != null) {
+            if (billingManager != null && billingManager.isProPurchased()) {
+                item.setTitle(getString(R.string.menu_pro_permanent));
+            } else if (proPassManager.hasActiveProPass()) {
+                item.setTitle(getString(R.string.menu_pro_timer, proPassManager.formatearTiempoRestante()));
+            } else {
+                item.setTitle(getString(R.string.menu_pro_mode));
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -2436,6 +2492,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
+        proTimerHandler.removeCallbacks(proTimerRunnable);
         if (publicidad != null) {
             publicidad.pausarBanner();
         }
@@ -2479,11 +2536,14 @@ public class MainActivity extends AppCompatActivity
         if (wakeLock != null) {
             wakeLock.acquire(10 * 60 * 1000L);
         }
+        gestionarProTimer();
     }
 
     @SuppressLint("Wakelock")
     @Override
     protected void onDestroy() {
+        proTimerHandler.removeCallbacks(proTimerRunnable);
+        optionsMenu = null;
         try {
             if (billingManager != null) {
                 billingManager.destroy();

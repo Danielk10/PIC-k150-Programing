@@ -22,6 +22,7 @@ import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -70,12 +71,10 @@ public class ProPassManager {
 
     /**
      * Activa el pase temporal Pro por 15 minutos a partir del momento actual.
-     * Si ya hay un pase activo con más tiempo restante, no se recorta: se conserva
-     * el vencimiento mayor para no perjudicar a los usuarios con un pase en curso.
+     * Al ver un nuevo video bonificado, rellena el pase a 15 minutos exactos (con tope de 15 minutos).
      */
     public void activarPasePro() {
-        long nuevoVencimiento = Math.max(getExpireTime(),
-                System.currentTimeMillis() + DURACION_PASE_MS);
+        long nuevoVencimiento = System.currentTimeMillis() + DURACION_PASE_MS;
         prefs.edit().putLong(KEY_EXPIRE_TIME, nuevoVencimiento).apply();
         guardarRespaldoPersistente(nuevoVencimiento);
         guardarRespaldoEnFirestore(nuevoVencimiento);
@@ -257,25 +256,23 @@ public class ProPassManager {
     }
 
     /**
-     * Retorna un texto formateado del tiempo restante (ej: "14m 30s" o "Expirado").
+     * Retorna un texto formateado del tiempo restante con segundos (ej: "14:59" o "Expirado").
      */
     public String getTiempoRestanteFormateado() {
         long restante = getTiempoRestanteMs();
         if (restante <= 0) {
-            return context != null ? context.getString(R.string.pro_pass_expired) : "Expirado";
+            return context != null ? context.getString(R.string.pro_pass_expired) : "00:00";
         }
 
-        long horas = TimeUnit.MILLISECONDS.toHours(restante);
-        long minutos = TimeUnit.MILLISECONDS.toMinutes(restante) % 60;
+        long totalSegundos = TimeUnit.MILLISECONDS.toSeconds(restante);
+        long horas = totalSegundos / 3600L;
+        long minutos = (totalSegundos % 3600L) / 60L;
+        long segundos = totalSegundos % 60L;
 
         if (horas > 0) {
-            return horas + "h " + minutos + "m";
-        } else if (minutos > 0) {
-            return minutos + "m";
-        } else {
-            long segundos = TimeUnit.MILLISECONDS.toSeconds(restante);
-            return Math.max(1, segundos) + "s";
+            return String.format(Locale.US, "%d:%02d:%02d", horas, minutos, segundos);
         }
+        return String.format(Locale.US, "%02d:%02d", minutos, segundos);
     }
 
     /**
